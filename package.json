@@ -1,0 +1,48 @@
+{
+  "name": "angular2-bootstrap",
+  "version": "0.34.0",
+  "description": "angular2 bootstrap components",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "tsd reinstall --overwrite",
+    "prestart": "npm install",
+    "server": "webpack-dev-server --inline --colors --display-error-details --display-cached --port 8080",
+    "start": "npm run server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/angular2-bootstrap.git"
+  },
+  "keywords": [
+    "angular2",
+    "bootstrap",
+    "angularjs",
+    "twitter-bootstrap"
+  ],
+  "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valor-software/angular2-bootstrap/issues"
+  },
+  "homepage": "https://github.com/valor-software/angular2-bootstrap#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "angular2": "^2.0.0-alpha.34",
+    "babel-eslint": "^4.0.5",
+    "bootstrap": "^3.3.5",
+    "eslint": "^1.1.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0",
+    "reflect-metadata": "^0.1.0",
+    "require-dir": "^0.3.0",
+    "rtts_assert": "^2.0.0-alpha.34",
+    "traceur-runtime": "0.0.59",
+    "typescript": "^1.5.3",
+    "typescript-simple": "^2.0.0",
+    "typescript-simple-loader": "^0.3.4",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1",
+    "zone.js": "angular/zone.js"
+  }
+}
