@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 
+/*eslint no-process-env:0*/
 var isProduction = process.env.NODE_ENV || 'development';
 
 var src = 'src/public';
@@ -17,13 +18,12 @@ var config = {
 
   resolve: {
     root: __dirname,
-    extensions: ['','.ts','.js','.json'],
-    alias: {
-    }
+    extensions: ['', '.ts', '.js', '.json'],
+    alias: {}
   },
 
   entry: {
-    'angular2': [
+    angular2: [
       // Angular 2 Deps
       'traceur-runtime',
       'zone.js',
@@ -31,9 +31,10 @@ var config = {
       'rtts_assert/rtts_assert',
       'angular2/angular2'
     ],
-    'app': [
+    app: [
       './src/public'
-    ]
+    ],
+    alert: ['./src/components/alert/alert.ts']
   },
 
   output: {
@@ -54,22 +55,27 @@ var config = {
   module: {
     loaders: [
       // Support for *.json files.
-      { test: /\.json$/,  loader: 'json' },
+      {test: /\.json$/, loader: 'json'},
 
       // Support for CSS as raw text
-      { test: /\.css$/,   loader: 'raw' },
+      {test: /\.css$/, loader: 'raw'},
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw' },
+      {test: /\.html$/, loader: 'raw'},
 
       // Support for .ts files.
-      { test: /\.ts$/,    loader: 'typescript-simple?ignoreWarnings[]=2345', exclude: [
-        /\.spec\.ts$/,
-        /\.e2e\.ts$/,
-        /web_modules/,
-        /test/,
-        /node_modules/
-      ]
+      {
+        test: /\.ts$/,
+        loader: 'typescript-simple?ignoreWarnings[]=2345',
+        //loader: 'awesome-typescript-loader',
+        //loader: 'ts-loader',
+        exclude: [
+          /\.spec\.ts$/,
+          /\.e2e\.ts$/,
+          /web_modules/,
+          /test/,
+          /node_modules/
+        ]
       }
     ],
     noParse: [
@@ -88,7 +94,7 @@ var config = {
       filename: 'common.js'
     }),
     new webpack.optimize.DedupePlugin({
-      '__isProduction': isProduction
+      __isProduction: isProduction
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin()
@@ -105,7 +111,7 @@ var config = {
     //})
   ],
 
-  stats: { colors: true, reasons: true }
+  stats: {colors: true, reasons: true}
 };
 
 module.exports = config;

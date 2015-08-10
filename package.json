@@ -6,9 +6,9 @@
   "scripts": {
     "postinstall": "tsd reinstall --overwrite",
     "prestart": "npm install",
-    "server": "webpack-dev-server --inline --colors --display-error-details --display-cached --port 8080",
+    "server": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "start": "npm run server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp lint"
   },
   "repository": {
     "type": "git",
@@ -29,11 +29,14 @@
   "dependencies": {},
   "devDependencies": {
     "angular2": "^2.0.0-alpha.34",
+    "awesome-typescript-loader": "^0.11.3",
     "babel-eslint": "^4.0.5",
     "bootstrap": "^3.3.5",
     "eslint": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",
+    "gulp-tslint": "^3.1.2",
+    "pre-commit": "^1.1.1",
     "reflect-metadata": "^0.1.0",
     "require-dir": "^0.3.0",
     "rtts_assert": "^2.0.0-alpha.34",
