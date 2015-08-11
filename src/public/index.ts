@@ -2,7 +2,7 @@
 
 import {Component, View, bootstrap, coreDirectives} from 'angular2/angular2';
 
-import {AlertComponent} from 'src/components/alert/alert';
+import {Alert} from 'src/components/alert/alert';
 
 @Component({
   selector: 'app'
@@ -16,7 +16,7 @@ import {AlertComponent} from 'src/components/alert/alert';
     </div>
     <button type="button" class='btn btn-default' (click)="addAlert()">Add Alert</button>
   `,
-  directives: [AlertComponent, coreDirectives]
+  directives: [Alert, coreDirectives]
 })
 export class Hello {
   alerts:Array<Object>;

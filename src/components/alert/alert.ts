@@ -26,7 +26,7 @@ import {
   `,
   directives: [NgIf, CSSClass]
 })
-export class AlertComponent {
+export class Alert {
   type:string;
   close:EventEmitter;
   templateUrl:string;
