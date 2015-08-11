@@ -45,6 +45,8 @@ export class Alert {
     this.classes[0] = 'alert-' + (this.type || 'warning');
     if (this.closeable) {
       this.classes[1] = 'alert-dismissible';
+    } else {
+      this.classes.length = 1;
     }
 
     if (this.dismissOnTimeout) {

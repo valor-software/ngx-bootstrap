@@ -16,8 +16,14 @@
   "files": [
     "node_modules/typescript/bin/lib.dom.d.ts",
     "typings/tsd.d.ts",
+
     "src/public/index.ts",
-    "src/components/alert/alert.ts"
+    "src/components/demo/alert-demo.ts",
+    "src/components/demo/buttonts-demo.ts",
+
+    "src/components/alert/alert.ts",
+    "src/components/buttons/button-checkbox.ts",
+    "src/components/buttons/button-radio.ts"
   ],
   "exclude": [
     "node_modules"
