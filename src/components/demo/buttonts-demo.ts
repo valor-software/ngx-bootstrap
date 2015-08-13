@@ -1,5 +1,5 @@
 /// <reference path="../../../typings/tsd.d.ts" />
-
+// todo: add pipe for checkResults | get values
 import {Component, View, bootstrap} from 'angular2/angular2';
 
 import {coreDirectives, formDirectives} from 'angular2/angular2';
@@ -22,7 +22,7 @@ import {ButtonRadio} from 'src/components/buttons/button-radio';
     </button>
     <h4>Checkbox</h4>
     <pre>Model: {{checkModel | json}}</pre>
-    <pre>Results: {{checkResults}}</pre>
+    <!--<pre>Results: {{checkResults}}</pre>-->
     <div class="btn-group">
       <label class="btn btn-primary" [(ng-model)]="checkModel.left" btn-checkbox>Left</label>
       <label class="btn btn-primary" [(ng-model)]="checkModel.middle" btn-checkbox>Middle</label>

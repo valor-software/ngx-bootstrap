@@ -13,7 +13,7 @@ all components will have same API
 
 - [ ] Accordion
 - [x] Alert
-- [ ] Buttons
+- [x] Buttons
 - [ ] Carousel
 - [ ] Collapse
 - [ ] Datepicker

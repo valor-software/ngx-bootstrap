@@ -1,8 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
 
-/*eslint no-process-env:0*/
-var isProduction = process.env.NODE_ENV || 'development';
+var CompressionPlugin = require('compression-webpack-plugin');
+
+/*eslint no-process-env:0, camelcase:0*/
+var isProduction = (process.env.NODE_ENV || 'development') === 'production';
 
 var src = 'src/public';
 //var absSrc = path.join(__dirname, src);
@@ -98,20 +100,37 @@ var config = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin()
-    // production
-    //new webpack.optimize.UglifyJsPlugin({
-    //  compress: {
-    //    warnings: false,
-    //    drop_debugger: false
-    //  },
-    //  output: {
-    //    comments: false
-    //  },
-    //  beautify: false
-    //})
   ],
+  pushPlugins: function () {
+    if (!isProduction) {
+      return;
+    }
+
+    this.plugins.push.apply(this.plugins, [
+       //production only
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          drop_debugger: false
+        },
+        output: {
+          comments: false
+        },
+        beautify: false
+      }),
+      new CompressionPlugin({
+        asset: '{file}.gz',
+        algorithm: 'gzip',
+        regExp: /\.js$|\.html|\.css|.map$/,
+        threshold: 10240,
+        minRatio: 0.8
+      })
+    ]);
+  },
 
   stats: {colors: true, reasons: true}
 };
+
+config.pushPlugins();
 
 module.exports = config;

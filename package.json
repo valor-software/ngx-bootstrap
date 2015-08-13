@@ -1,9 +1,10 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.34.1",
+  "version": "0.34.2",
   "description": "angular2 bootstrap components",
   "main": "index.js",
   "scripts": {
+    "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
     "postinstall": "tsd reinstall --overwrite",
     "prestart": "npm install",
     "server": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
@@ -32,6 +33,7 @@
     "awesome-typescript-loader": "^0.11.3",
     "babel-eslint": "^4.0.5",
     "bootstrap": "^3.3.5",
+    "compression-webpack-plugin": "^0.2.0",
     "eslint": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",

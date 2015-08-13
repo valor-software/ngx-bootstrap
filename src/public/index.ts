@@ -10,8 +10,8 @@ import {ButtonsDemo} from 'src/components/demo/buttonts-demo';
 })
 @View({
   template: `
-   <buttons-demo></buttons-demo>
-    <!--<alert-demo></alert-demo>-->
+    <alert-demo></alert-demo>
+    <buttons-demo></buttons-demo>
   `,
   directives: [AlertDemo, ButtonsDemo, coreDirectives]
 })
