@@ -10,9 +10,6 @@ import {
 @Directive({
   selector: '[ng-model][btn-checkbox]',
   properties: [
-    'activeClass',
-    'disabled',
-    'toggleEvent',
     'btnCheckboxTrue: btn-checkbox-true',
     'btnCheckboxFalse: btn-checkbox-false'
   ],
@@ -58,7 +55,6 @@ export class ButtonCheckbox extends DefaultValueAccessor {
   // model -> view
   writeValue(value:any) {
     this.value = value;
-    console.log(this);
   }
 
   // view -> model

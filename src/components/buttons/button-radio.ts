@@ -1,25 +1,62 @@
 /// <reference path="../../../typings/tsd.d.ts" />
-
 import {
-  Component, View,
-  LifecycleEvent, EventEmitter,
-  ElementRef, ViewContainerRef,
-  NgIf, CSSClass
+  Directive,
+  DefaultValueAccessor,
+  Self, NgModel, Renderer, ElementRef
 } from 'angular2/angular2';
 
-// TODO: templateUrl
-@Component({
-  selector: 'btn-radio',
-  properties: [],
-  events: [],
-  lifecycle: []
-})
-@View({
-  template: `
-  <span>Radio button</span>
-  `,
-  directives: [NgIf, CSSClass]
-})
-export class ButtonRadio {
 
+@Directive({
+  selector: '[ng-model][btn-radio]',
+  properties: [
+    'btnRadio: btn-radio'
+  ],
+  host: {
+    '(click)': 'onClick()',
+    '[class.ng-untouched]': 'ngClassUntouched',
+    '[class.ng-touched]': 'ngClassTouched',
+    '[class.ng-pristine]': 'ngClassPristine',
+    '[class.ng-dirty]': 'ngClassDirty',
+    '[class.ng-valid]': 'ngClassValid',
+    '[class.ng-invalid]': 'ngClassInvalid',
+    '[class.active]': 'isActive'
+  }
+})
+export class ButtonRadio extends DefaultValueAccessor {
+  private btnRadio:any;
+  uncheckable:any;
+
+  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
+    super(cd, renderer, elementRef);
+    this.uncheckable = elementRef.nativeElement.getAttribute('uncheckable') != null;
+    console.log(this.uncheckable);
+
+  }
+
+  private get isActive() {
+    return typeof this.btnRadio !== 'undefined' ? (this.btnRadio === this.value) : false;
+  }
+
+  // hack view model!
+  private get value() {
+    return this.cd.viewModel;
+  }
+
+  private set value(value) {
+    this.cd.viewModel = value;
+  }
+
+  // model -> view
+  writeValue(value:any) {
+    this.value = value;
+  }
+
+  // view -> model
+  onClick() {
+    if (this.uncheckable && this.btnRadio === this.value) {
+      return this.cd.viewToModelUpdate(null);
+    }
+
+    this.cd.viewToModelUpdate(this.btnRadio);
+  }
 }
