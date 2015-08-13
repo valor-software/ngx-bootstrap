@@ -34,6 +34,7 @@
     "babel-eslint": "^4.0.5",
     "bootstrap": "^3.3.5",
     "compression-webpack-plugin": "^0.2.0",
+    "es6-promise": "^3.0.2",
     "eslint": "^1.1.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0",

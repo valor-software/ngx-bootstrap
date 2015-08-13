@@ -28,7 +28,7 @@ import {
 })
 export class Alert {
   type:string;
-  close:EventEmitter;
+  close:EventEmitter = new EventEmitter();
   templateUrl:string;
   dismissOnTimeout:number;
   private closed:boolean;
@@ -36,7 +36,6 @@ export class Alert {
   private classes:Array<string> = [];
 
   constructor(public el:ElementRef) {
-    this.close = new EventEmitter();
     this.closeable = el.nativeElement.getAttribute('(close)');
   }
 
@@ -56,7 +55,7 @@ export class Alert {
   }
 
   // todo: mouse event + touch + pointer
-  onClose($event:any) {
+  onClose($event: MouseEvent) {
     this.close.next($event);
     this.closed = true;
   }

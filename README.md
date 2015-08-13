@@ -9,6 +9,11 @@ all components will have same API
 <!---
 [![Test Coverage](https://codeclimate.com/github/valor-software/angular2-bootstrap/badges/coverage.svg)](https://codeclimate.com/github/valor-software/angular2-bootstrap/coverage)
 -->
+
+# Demo
+
+[http://valor-software.github.io/angular2-bootstrap/](http://valor-software.github.io/angular2-bootstrap/)
+
 # Components
 
 - [ ] Accordion
@@ -17,7 +22,7 @@ all components will have same API
 - [ ] Carousel
 - [ ] Collapse
 - [ ] Datepicker
-- [ ] Dropdown
+- [x] Dropdown
 - [ ] Modal
 - [ ] Pagination
 - [ ] Popover
@@ -27,6 +32,9 @@ all components will have same API
 - [ ] Timepicker
 - [ ] Tooltip
 - [ ] Typeahead
+
+- [ ] positinal service
+- [ ] template url support
 
 ## Jump on board! :)
 

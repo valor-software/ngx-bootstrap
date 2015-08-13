@@ -12,7 +12,8 @@ var dest = '/build';
 var absDest = path.join(__dirname, dest);
 
 var config = {
-  devtool: isProduction ? 'source-map' : 'evale',
+  // isProduction ? 'source-map' : 'evale',
+  devtool: 'source-map',
 
   debug: true,
   cache: true,

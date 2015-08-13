@@ -12,10 +12,9 @@ import {Alert} from 'src/components/alert/alert';
     <hr/>
     <h2>Alerts demo</h2>
     <span *ng-if="name">Hello, {{name}}!</span>
-    <alert [dismiss-on-timeout]="3000">This alert will dismiss in 3s</alert>
+    <alert dismiss-on-timeout="3000">This alert will dismiss in 3s</alert>
     <alert *ng-for="#alert of alerts;#i = index" [type]="alert.type" (close)="closeAlert(i)">{{ alert.msg }}</alert>
-    <div >
-    </div>
+    <div></div>
     <button type="button" class='btn btn-default' (click)="addAlert()">Add Alert</button>
   `,
   directives: [Alert, coreDirectives]

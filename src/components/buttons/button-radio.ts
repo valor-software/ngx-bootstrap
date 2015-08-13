@@ -25,11 +25,11 @@ import {
 export class ButtonRadio extends DefaultValueAccessor {
   private btnRadio:any;
   uncheckable:any;
+  cd: NgModel;
 
   constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     super(cd, renderer, elementRef);
     this.uncheckable = elementRef.nativeElement.getAttribute('uncheckable') != null;
-
   }
 
   private get isActive() {
