@@ -1,0 +1,6 @@
+# node.js
+node_modules
+# typescript
+typings
+# web storm
+.idea
