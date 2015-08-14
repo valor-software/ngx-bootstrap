@@ -70,8 +70,6 @@ var config = {
       {
         test: /\.ts$/,
         loader: 'typescript-simple?ignoreWarnings[]=2345',
-        //loader: 'awesome-typescript-loader',
-        //loader: 'ts-loader',
         exclude: [
           /\.spec\.ts$/,
           /\.e2e\.ts$/,
