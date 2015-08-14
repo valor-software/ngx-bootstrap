@@ -17,12 +17,12 @@ all components will have same API
 # Components
 
 - [ ] Accordion
-- [x] Alert
+- [x] Alert ([ ] template url)
 - [x] Buttons
 - [ ] Carousel
 - [ ] Collapse
 - [ ] Datepicker
-- [x] Dropdown
+- [x] Dropdown ([ ] template url, [ ] append to body)
 - [ ] Modal
 - [ ] Pagination
 - [ ] Popover
@@ -33,7 +33,7 @@ all components will have same API
 - [ ] Tooltip
 - [ ] Typeahead
 
-- [ ] positinal service
+- [ ] positional service
 - [ ] template url support
 
 ## Jump on board! :)
