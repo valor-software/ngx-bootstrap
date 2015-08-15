@@ -16,7 +16,7 @@ all components will have same API
 
 # Components
 
-- [ ] Accordion (... in progress)
+- [x] Accordion
 - [x] Alert ([ ] template url)
 - [x] Buttons
 - [ ] Carousel

@@ -66,7 +66,7 @@ export class Collapse {
       this.height = '0';
       this.isCollapse = true;
       this.isCollapsing = false;
-    }, 100);
+    }, 4);
   }
 
   show() {
@@ -80,6 +80,6 @@ export class Collapse {
 
       this.isCollapse = true;
       this.isCollapsing = false;
-    }, 100);
+    }, 4);
   }
 }
