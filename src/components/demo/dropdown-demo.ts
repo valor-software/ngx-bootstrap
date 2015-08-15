@@ -11,7 +11,7 @@ import {dropdown} from 'src/components/dropdown/index';
   template: `
     <hr/>
     <h2>Dropdown</h2>
-    <div>
+    <div (^click)="$event.preventDefault()">
         <!-- Simple dropdown -->
         <span dropdown (on-toggle)="toggled($event)">
           <a href id="simple-dropdown" dropdown-toggle>

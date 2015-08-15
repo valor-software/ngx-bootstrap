@@ -21,6 +21,7 @@
     "src/components/demo/alert-demo.ts",
     "src/components/demo/buttons-demo.ts",
     "src/components/demo/dropdown-demo.ts",
+    "src/components/demo/collapse-demo.ts",
 
     "src/components/alert/alert.ts",
     "src/components/buttons/button-radio.ts",
@@ -28,12 +29,10 @@
     "src/components/dropdown/dropdown.ts",
     "src/components/dropdown/dropdown-menu.ts",
     "src/components/dropdown/dropdown-service.ts",
-    "src/components/dropdown/dropdown-toggle.ts"
+    "src/components/dropdown/dropdown-toggle.ts",
+    "src/components/collapse/collapse.ts"
   ],
   "exclude": [
     "node_modules"
-  ],
-  "ignore": [
-    "node_modules/angular2/angular2.d.ts"
   ]
 }

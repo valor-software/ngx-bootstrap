@@ -16,11 +16,11 @@ all components will have same API
 
 # Components
 
-- [ ] Accordion
+- [ ] Accordion (... in progress)
 - [x] Alert ([ ] template url)
 - [x] Buttons
 - [ ] Carousel
-- [ ] Collapse
+- [x] Collapse ([ ] animate)
 - [ ] Datepicker
 - [x] Dropdown ([ ] template url, [ ] append to body)
 - [ ] Modal
