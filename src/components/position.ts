@@ -66,8 +66,8 @@ export class PositionService {
 
     let boundingClientRect = nativeEl.getBoundingClientRect();
     return {
-      width: boundingClientRect.width || nativeEl.prop('offsetWidth'),
-      height: boundingClientRect.height || nativeEl.prop('offsetHeight'),
+      width: boundingClientRect.width || nativeEl.offsetWidth,
+      height: boundingClientRect.height || nativeEl.offsetHeight,
       top: elBCR.top - offsetParentBCR.top,
       left: elBCR.left - offsetParentBCR.left
     };
@@ -80,8 +80,8 @@ export class PositionService {
   public offset(nativeEl:any):{width: number, height: number, top: number, left: number} {
     let boundingClientRect = nativeEl.getBoundingClientRect();
     return {
-      width: boundingClientRect.width || nativeEl.prop('offsetWidth'),
-      height: boundingClientRect.height || nativeEl.prop('offsetHeight'),
+      width: boundingClientRect.width || nativeEl.offsetWidth,
+      height: boundingClientRect.height || nativeEl.offsetHeight,
       top: boundingClientRect.top + (this.window.pageYOffset || this.document.documentElement.scrollTop),
       left: boundingClientRect.left + (this.window.pageXOffset || this.document.documentElement.scrollLeft)
     };
@@ -90,38 +90,41 @@ export class PositionService {
   /**
    * Provides coordinates for the targetEl in relation to hostEl
    */
-  public positionElements(hostEl:any, targetEl:any, positionStr:any, appendToBody:any): {top: number, left: number} {
+  public positionElements(hostEl:any, targetEl:any, positionStr:any, appendToBody:any):{top: number, left: number} {
     let positionStrParts = positionStr.split('-');
-    let pos0 = positionStrParts[0], pos1 = positionStrParts[1] || 'center';
-    let hostElPos = appendToBody ? this.offset(hostEl) : this.position(hostEl);
-    let targetElWidth = targetEl.prop('offsetWidth');
-    let targetElHeight = targetEl.prop('offsetHeight');
+    let pos0 = positionStrParts[0];
+    let pos1 = positionStrParts[1] || 'center';
+    let hostElPos = appendToBody ?
+      this.offset(hostEl) :
+      this.position(hostEl);
+    let targetElWidth = targetEl.offsetWidth;
+    let targetElHeight = targetEl.offsetHeight;
 
     let shiftWidth = {
-      center: function() {
+      center: function () {
         return hostElPos.left + hostElPos.width / 2 - targetElWidth / 2;
       },
-      left: function() {
+      left: function () {
         return hostElPos.left;
       },
-      right: function() {
+      right: function () {
         return hostElPos.left + hostElPos.width;
       }
     };
 
     let shiftHeight = {
-      center: function():number {
+      center: function ():number {
         return hostElPos.top + hostElPos.height / 2 - targetElHeight / 2;
       },
-      top: function():number {
+      top: function ():number {
         return hostElPos.top;
       },
-      bottom: function():number {
+      bottom: function ():number {
         return hostElPos.top + hostElPos.height;
       }
     };
 
-    let targetElPos: {top: number, left: number};
+    let targetElPos:{top: number, left: number};
     switch (pos0) {
       case 'right':
         targetElPos = {

@@ -13,8 +13,7 @@ import {
   properties: [
     'templateUrl',
     'bCloseOthers: closeOthers'
-  ],
-  host: {}
+  ]
 })
 @View({
   template: `

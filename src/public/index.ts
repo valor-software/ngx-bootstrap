@@ -20,7 +20,7 @@ import {TooltipDemo} from 'src/components/demo/tooltip-demo';
     <buttons-demo></buttons-demo>
     <dropdown-demo></dropdown-demo>
     <collapse-demo></collapse-demo>
-    <!--<tooltip-demo></tooltip-demo>-->
+    <tooltip-demo></tooltip-demo>
   `,
   directives: [
     AlertDemo, AccordionDemo,

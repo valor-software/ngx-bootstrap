@@ -30,10 +30,10 @@ all components will have same API
 - [ ] Rating
 - [ ] Tabs
 - [ ] Timepicker
-- [ ] Tooltip
+- [+-] Tooltip (baseline working, in progress...)
 - [ ] Typeahead
 
-- [ ] positional service
+- [x] positional service
 - [ ] template url support
 
 ## Jump on board! :)
