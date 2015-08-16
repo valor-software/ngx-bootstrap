@@ -6,15 +6,15 @@ import {
 } from 'angular2/angular2';
 
 export class PositionService {
-  private get window() {
+  private get window():any {
     return window;
   }
 
-  private get document() {
+  private get document():any {
     return window.document;
   }
 
-  private getStyle(nativeEl:any, cssProp:string) {
+  private getStyle(nativeEl:any, cssProp:string):any {
     // IE
     if (nativeEl.currentStyle) {
       return nativeEl.currentStyle[cssProp];
@@ -32,7 +32,7 @@ export class PositionService {
    * Checks if a given element is statically positioned
    * @param nativeEl - raw DOM element
    */
-  private isStaticPositioned(nativeEl:any) {
+  private isStaticPositioned(nativeEl:any):any {
     return (this.getStyle(nativeEl, 'position') || 'static' ) === 'static';
   }
 
@@ -90,7 +90,7 @@ export class PositionService {
   /**
    * Provides coordinates for the targetEl in relation to hostEl
    */
-  public positionElements(hostEl, targetEl, positionStr, appendToBody) {
+  public positionElements(hostEl:any, targetEl:any, positionStr:any, appendToBody:any): {top: number, left: number} {
     let positionStrParts = positionStr.split('-');
     let pos0 = positionStrParts[0], pos1 = positionStrParts[1] || 'center';
     let hostElPos = appendToBody ? this.offset(hostEl) : this.position(hostEl);
@@ -110,18 +110,18 @@ export class PositionService {
     };
 
     let shiftHeight = {
-      center: function() {
+      center: function():number {
         return hostElPos.top + hostElPos.height / 2 - targetElHeight / 2;
       },
-      top: function() {
+      top: function():number {
         return hostElPos.top;
       },
-      bottom: function() {
+      bottom: function():number {
         return hostElPos.top + hostElPos.height;
       }
     };
 
-    let targetElPos;
+    let targetElPos: {top: number, left: number};
     switch (pos0) {
       case 'right':
         targetElPos = {

@@ -4,7 +4,7 @@
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
@@ -22,6 +22,7 @@
     "src/components/demo/buttons-demo.ts",
     "src/components/demo/dropdown-demo.ts",
     "src/components/demo/collapse-demo.ts",
+    "src/components/demo/tooltip-demo.ts",
 
     "src/components/alert/alert.ts",
     "src/components/buttons/button-radio.ts",
@@ -31,6 +32,7 @@
     "src/components/dropdown/dropdown-service.ts",
     "src/components/dropdown/dropdown-toggle.ts",
     "src/components/collapse/collapse.ts",
+    "src/components/tooltip/tooltip.ts",
     "src/components/position.ts"
   ],
   "exclude": [

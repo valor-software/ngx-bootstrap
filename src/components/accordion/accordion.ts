@@ -31,23 +31,23 @@ export class Accordion {
   constructor() {
   }
 
-  public closeOthers(openGroup:any) {
+  public closeOthers(openGroup:AccordionGroup) {
     if (!this.bCloseOthers) {
       return;
     }
 
-    this.groups.forEach((group) => {
+    this.groups.forEach((group:AccordionGroup) => {
       if (group !== openGroup) {
         group.isOpen = false;
       }
     });
   }
 
-  public addGroup(group) {
+  public addGroup(group:AccordionGroup) {
     this.groups.push(group);
   }
 
-  public removeGroup(group) {
+  public removeGroup(group:AccordionGroup) {
     let index = this.groups.indexOf(group);
     if (index !== -1) {
       this.groups.slice(index, 1);
