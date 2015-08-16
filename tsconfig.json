@@ -30,7 +30,8 @@
     "src/components/dropdown/dropdown-menu.ts",
     "src/components/dropdown/dropdown-service.ts",
     "src/components/dropdown/dropdown-toggle.ts",
-    "src/components/collapse/collapse.ts"
+    "src/components/collapse/collapse.ts",
+    "src/components/position.ts"
   ],
   "exclude": [
     "node_modules"

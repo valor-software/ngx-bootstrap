@@ -14,7 +14,7 @@ import {accordion} from 'src/components/accordion/accordion';
   template: `
     <hr/>
     <h2>Accordion demo</h2>
-    <div class="col-md-6">
+    <div>
       <p>
         <button type="button" class="btn btn-default btn-sm"
           (click)="status.open = !status.open">Toggle last panel</button>
