@@ -50,3 +50,4 @@ all components will have same API
 - [ ] docs
 - [ ] support animation
 - [ ] publish to npm, bower, etc.
+- [ ] migration guide from Angular 1 to Angular 2
