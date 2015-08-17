@@ -7,6 +7,7 @@ import {AlertDemo} from 'src/components/demo/alert-demo';
 import {ButtonsDemo} from 'src/components/demo/buttons-demo';
 import {DropdownDemo} from 'src/components/demo/dropdown-demo';
 import {CollapseDemo} from 'src/components/demo/collapse-demo';
+import {ProgressbarDemo} from 'src/components/demo/progressbar-demo';
 import {TooltipDemo} from 'src/components/demo/tooltip-demo';
 
 @Component({
@@ -20,12 +21,14 @@ import {TooltipDemo} from 'src/components/demo/tooltip-demo';
     <buttons-demo></buttons-demo>
     <dropdown-demo></dropdown-demo>
     <collapse-demo></collapse-demo>
+    <progressbar-demo></progressbar-demo>
     <tooltip-demo></tooltip-demo>
   `,
   directives: [
     AlertDemo, AccordionDemo,
     ButtonsDemo, DropdownDemo,
     CollapseDemo,
+    ProgressbarDemo,
     TooltipDemo,
     coreDirectives
   ]

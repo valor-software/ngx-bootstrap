@@ -15,15 +15,19 @@
   },
   "files": [
     "node_modules/typescript/bin/lib.dom.d.ts",
+    "src/typings/es6-object.d.ts",
     "typings/tsd.d.ts",
 
     "src/public/index.ts",
+    "src/components/demo/accordion-demo.ts",
     "src/components/demo/alert-demo.ts",
     "src/components/demo/buttons-demo.ts",
     "src/components/demo/dropdown-demo.ts",
     "src/components/demo/collapse-demo.ts",
+    "src/components/demo/progressbar-demo.ts",
     "src/components/demo/tooltip-demo.ts",
 
+    "src/components/accordion/accordion.ts",
     "src/components/alert/alert.ts",
     "src/components/buttons/button-radio.ts",
     "src/components/buttons/button-checkbox.ts",
@@ -32,6 +36,7 @@
     "src/components/dropdown/dropdown-service.ts",
     "src/components/dropdown/dropdown-toggle.ts",
     "src/components/collapse/collapse.ts",
+    "src/components/progressbar/progressbar.ts",
     "src/components/tooltip/tooltip.ts",
     "src/components/position.ts"
   ],

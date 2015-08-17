@@ -26,8 +26,8 @@ all components will have same API
 - [ ] Modal
 - [ ] Pagination
 - [ ] Popover
-- [ ] Progressbar
-- [ ] Rating
+- [x] Progressbar
+- [ ] Rating  (in progress...)
 - [ ] Tabs
 - [ ] Timepicker
 - [+-] Tooltip (baseline working, in progress...)
