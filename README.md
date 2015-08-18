@@ -24,11 +24,11 @@ all components will have same API
 - [ ] Datepicker
 - [x] Dropdown ([ ] template url, [ ] append to body)
 - [ ] Modal
-- [ ] Pagination  (in progress...)
+- [x] Pagination([ ] todos, ugly code:) )
 - [ ] Popover
 - [x] Progressbar
 - [x] Rating
-- [ ] Tabs
+- [ ] Tabs  (in progress...)
 - [ ] Timepicker
 - [+-] Tooltip (baseline working, in progress...)
 - [ ] Typeahead
@@ -44,6 +44,7 @@ all components will have same API
 ```
 
 ### TODO
+- [ ] use lodash defaults and isDefined?
 - [ ] find a better way to detect is event handler is set (see alerts.ts)
 - [ ] support `templateUrl` for directives
 - [ ] demo page
