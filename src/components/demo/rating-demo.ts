@@ -11,7 +11,7 @@ import {Rating} from 'src/components/rating/rating';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Rating demo</h2>
     <div>
       <h4>Default</h4>

@@ -24,10 +24,10 @@ all components will have same API
 - [ ] Datepicker
 - [x] Dropdown ([ ] template url, [ ] append to body)
 - [ ] Modal
-- [ ] Pagination
+- [ ] Pagination  (in progress...)
 - [ ] Popover
 - [x] Progressbar
-- [ ] Rating  (in progress...)
+- [x] Rating
 - [ ] Tabs
 - [ ] Timepicker
 - [+-] Tooltip (baseline working, in progress...)
