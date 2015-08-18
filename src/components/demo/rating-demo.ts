@@ -32,7 +32,7 @@ import {Rating} from 'src/components/rating/rating';
         <rating [(ng-model)]="y" [rating-states]="ratingStates"></rating> <b>(<i>Rate:</i> {{y}})</b></div>
     </div>
   `,
-  directives: [Rating, CSSClass, NgStyle formDirectives, coreDirectives]
+  directives: [Rating, CSSClass, NgStyle, formDirectives, coreDirectives]
 })
 export class RatingDemo {
   private x = 5;

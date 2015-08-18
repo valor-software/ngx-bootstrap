@@ -25,6 +25,7 @@
     "src/components/demo/dropdown-demo.ts",
     "src/components/demo/collapse-demo.ts",
     "src/components/demo/progressbar-demo.ts",
+    "src/components/demo/rating-demo.ts",
     "src/components/demo/tooltip-demo.ts",
 
     "src/components/accordion/accordion.ts",
@@ -37,6 +38,7 @@
     "src/components/dropdown/dropdown-toggle.ts",
     "src/components/collapse/collapse.ts",
     "src/components/progressbar/progressbar.ts",
+    "src/components/rating/rating.ts",
     "src/components/tooltip/tooltip.ts",
     "src/components/position.ts"
   ],
