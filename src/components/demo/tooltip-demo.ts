@@ -6,7 +6,15 @@ import {Component, View, bootstrap,
 
 import {tooltip} from 'src/components/tooltip/tooltip';
 
-let template = `  <div>
+@Component({
+  selector: 'tooltip-demo'
+})
+@View({
+  template: `
+    <br>
+    <hr/>
+    <h2>Tooltip demo</h2>
+    <div>
       <div class="form-group">
         <label>Dynamic Tooltip Text</label>
         <input type="text" [(ng-model)]="dynamicTooltipText" class="form-control">
@@ -37,18 +45,7 @@ let template = `  <div>
       </p>
 
       <p>
-          <style>
-              /* Specify styling for tooltip contents */
-              .tooltip.customClass .tooltip-inner {
-                  color: #880000;
-                  background-color: #ffff66;
-                  box-shadow: 0 6px 12px rgba(0,0,0,.175);
-              }
-              /* Hide arrow */
-              .tooltip.customClass .tooltip-arrow {
-                  display: none;
-              }
-          </style>
+
           I can have a custom class. <a href="#" tooltip="I can have a custom class applied to me!" tooltip-class="customClass">Check me out!</a>
       </p>
 
@@ -72,22 +69,20 @@ let template = `  <div>
       <script type="text/ng-template" id="myTooltipTemplate.html">
         <span>Special Tooltip with <strong>markup</strong> and {{ dynamicTooltipText }}</span>
       </script>
-  </div>`;
-
-let temp = `<p>
-    at <a href="#" tooltip-placement="left" tooltip="On the Left!">left</a>
-  </p>`;
-
-@Component({
-  selector: 'tooltip-demo'
-})
-@View({
-  template: `
-    <hr/>
-    <h2>Tooltip demo</h2>
-     ${template}
-  `,
-  directives: [tooltip, coreDirectives, formDirectives, CSSClass]
+  </div>`,
+  directives: [tooltip, coreDirectives, formDirectives, CSSClass],
+  style: `
+    /* Specify styling for tooltip contents */
+    .tooltip.customClass .tooltip-inner {
+        color: #880000;
+        background-color: #ffff66;
+        box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    }
+    /* Hide arrow */
+    .tooltip.customClass .tooltip-arrow {
+        display: none;
+    }
+  `
 })
 export class TooltipDemo {
   public dynamicTooltip:string = 'Hello, World!';
