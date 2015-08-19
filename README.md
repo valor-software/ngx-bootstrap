@@ -36,7 +36,13 @@ all components will have same API
 - [x] positional service
 - [ ] template url support
 
-## Jump on board! :)
+## Install from npm
+
+```bash
+npm i ng2-bootstrap
+```
+
+## Install from source
 
 ```bash
   npm i
