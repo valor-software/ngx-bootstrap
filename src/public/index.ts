@@ -10,6 +10,7 @@ import {CollapseDemo} from 'src/components/demo/collapse-demo';
 import {PaginationDemo} from 'src/components/demo/pagination-demo';
 import {ProgressbarDemo} from 'src/components/demo/progressbar-demo';
 import {RatingDemo} from 'src/components/demo/rating-demo';
+import {TabsDemo} from 'src/components/demo/tabs-demo';
 import {TooltipDemo} from 'src/components/demo/tooltip-demo';
 
 @Component({
@@ -26,16 +27,17 @@ import {TooltipDemo} from 'src/components/demo/tooltip-demo';
     <pagination-demo class="col-md-12"></pagination-demo>
     <progressbar-demo class="col-md-12"></progressbar-demo>
     <rating-demo class="col-md-12"></rating-demo>
+    <tabs-demo class="col-md-12"></tabs-demo>
     <tooltip-demo class="col-md-12"></tooltip-demo>
   `,
   directives: [
     AlertDemo, AccordionDemo,
-    ButtonsDemo, DropdownDemo,
+    ButtonsDemo,
+    DropdownDemo,
     CollapseDemo,
-    PaginationDemo,
-    ProgressbarDemo,
+    PaginationDemo, ProgressbarDemo,
     RatingDemo,
-    TooltipDemo,
+    TabsDemo, TooltipDemo,
     coreDirectives
   ]
 })

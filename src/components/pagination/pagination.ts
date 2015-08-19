@@ -110,7 +110,6 @@ export class Pagination extends DefaultValueAccessor {
 
   private set totalPages(v: number) {
     this._totalPages = v;
-    console.log(`num pages: ${v}`);
     this.numPages.next(v);
     if (this.page  > v) {
       this.selectPage(v);

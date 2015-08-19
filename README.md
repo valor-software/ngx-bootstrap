@@ -28,8 +28,8 @@ all components will have same API
 - [ ] Popover
 - [x] Progressbar
 - [x] Rating
-- [ ] Tabs  (in progress...)
-- [ ] Timepicker
+- [x] Tabs
+- [ ] Timepicker (in progress...)
 - [+-] Tooltip (baseline working, in progress...)
 - [ ] Typeahead
 
