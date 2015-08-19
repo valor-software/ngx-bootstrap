@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.34.9",
+  "version": "0.34.10",
   "description": "angular2 bootstrap components",
   "main": "index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/valor-software/angular2-bootstrap#readme",
   "dependencies": {},
   "devDependencies": {
-    "angular2": "^2.0.0-alpha.34",
+    "angular2": "2.0.0-alpha.34",
     "babel-eslint": "^4.0.5",
     "bootstrap": "^3.3.5",
     "compression-webpack-plugin": "^0.2.0",
