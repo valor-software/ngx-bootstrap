@@ -11,8 +11,7 @@ import {tooltip} from 'src/components/tooltip/tooltip';
 })
 @View({
   template: `
-    <br>
-    <hr/>
+    <br><hr/>
     <h2>Tooltip demo</h2>
     <div>
       <div class="form-group">

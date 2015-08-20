@@ -13,7 +13,7 @@ import {ButtonRadio} from 'src/components/buttons/button-radio';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Buttons</h2>
     <h4>Single toggle</h4>
     <pre>{{singleModel}}</pre>

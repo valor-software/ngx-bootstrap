@@ -19,7 +19,7 @@ all components will have same API
 - [x] Accordion
 - [x] Alert ([ ] template url)
 - [x] Buttons
-- [ ] Carousel
+- [ ] Carousel (in progress...)
 - [x] Collapse ([ ] animate)
 - [ ] Datepicker
 - [x] Dropdown ([ ] template url, [ ] append to body)
@@ -29,10 +29,11 @@ all components will have same API
 - [x] Progressbar
 - [x] Rating
 - [x] Tabs
-- [ ] Timepicker (in progress...)
+- [x] Timepicker ([ ] validation)
 - [+-] Tooltip (baseline working, in progress...)
 - [ ] Typeahead
 
+- [x] NgTransclude - to transclude templates
 - [x] positional service
 - [ ] template url support
 

@@ -9,7 +9,7 @@ import {dropdown} from 'src/components/dropdown/index';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Dropdown</h2>
     <div (^click)="$event.preventDefault()">
         <!-- Simple dropdown -->

@@ -9,7 +9,7 @@ import {progressbar} from 'src/components/progressbar/progressbar';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Progressbar demo</h2>
     <div>
         <h3>Static</h3>

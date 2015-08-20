@@ -9,7 +9,7 @@ import {Collapse} from 'src/components/collapse/collapse';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Collapse demo</h2>
     <div>
       <button type="button" class="btn btn-default"

@@ -11,6 +11,7 @@ import {PaginationDemo} from 'src/components/demo/pagination-demo';
 import {ProgressbarDemo} from 'src/components/demo/progressbar-demo';
 import {RatingDemo} from 'src/components/demo/rating-demo';
 import {TabsDemo} from 'src/components/demo/tabs-demo';
+import {TimepickerDemo} from 'src/components/demo/timepicker-demo';
 import {TooltipDemo} from 'src/components/demo/tooltip-demo';
 
 @Component({
@@ -28,6 +29,7 @@ import {TooltipDemo} from 'src/components/demo/tooltip-demo';
     <progressbar-demo class="col-md-12"></progressbar-demo>
     <rating-demo class="col-md-12"></rating-demo>
     <tabs-demo class="col-md-12"></tabs-demo>
+    <timepicker-demo class="col-md-12"></timepicker-demo>
     <tooltip-demo class="col-md-12"></tooltip-demo>
   `,
   directives: [
@@ -37,7 +39,7 @@ import {TooltipDemo} from 'src/components/demo/tooltip-demo';
     CollapseDemo,
     PaginationDemo, ProgressbarDemo,
     RatingDemo,
-    TabsDemo, TooltipDemo,
+    TabsDemo, TimepickerDemo, TooltipDemo,
     coreDirectives
   ]
 })

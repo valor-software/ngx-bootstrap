@@ -34,10 +34,9 @@ var config = {
       'rtts_assert/rtts_assert',
       'angular2/angular2'
     ],
-    app: [
+    'angular2-bootstrap': [
       './src/public'
-    ],
-    alert: ['./src/components/alert/alert.ts']
+    ]
   },
 
   output: {
@@ -89,10 +88,6 @@ var config = {
       name: 'angular2',
       minChunks: Infinity,
       filename: 'angular2.js'
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      filename: 'common.js'
     }),
     new webpack.optimize.DedupePlugin({
       __isProduction: isProduction

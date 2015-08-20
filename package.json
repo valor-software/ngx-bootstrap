@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.34.12",
+  "version": "0.34.13",
   "description": "angular2 bootstrap components",
   "main": "index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "url": "https://github.com/valor-software/angular2-bootstrap/issues"
   },
   "homepage": "https://github.com/valor-software/angular2-bootstrap#readme",
+  "files": ["./dist/components" , "./build"],
   "dependencies": {},
   "devDependencies": {
     "angular2": "2.0.0-alpha.34",

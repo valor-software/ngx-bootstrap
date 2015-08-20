@@ -12,7 +12,7 @@ import {accordion} from 'src/components/accordion/accordion';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Accordion demo</h2>
     <div>
       <p>

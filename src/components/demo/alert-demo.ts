@@ -9,7 +9,7 @@ import {Alert} from 'src/components/alert/alert';
 })
 @View({
   template: `
-    <hr/>
+    <br><hr/>
     <h2>Alerts demo</h2>
     <span *ng-if="name">Hello, {{name}}!</span>
     <alert dismiss-on-timeout="3000">This alert will dismiss in 3s</alert>
