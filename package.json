@@ -1,8 +1,8 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.34.13",
+  "version": "0.34.14",
   "description": "angular2 bootstrap components",
-  "main": "index.js",
+  "main": "build/angular2-bootstrap.js",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
     "postinstall": "tsd reinstall --overwrite",
@@ -27,10 +27,17 @@
     "url": "https://github.com/valor-software/angular2-bootstrap/issues"
   },
   "homepage": "https://github.com/valor-software/angular2-bootstrap#readme",
-  "files": ["./dist/components" , "./build"],
-  "dependencies": {},
-  "devDependencies": {
+  "files": [
+    "src", "build", "typings",
+    "dist/components" , "dist/public"],
+  "dependencies": {
     "angular2": "2.0.0-alpha.34",
+    "reflect-metadata": "^0.1.0",
+    "rtts_assert": "2.0.0-alpha.34",
+    "traceur-runtime": "0.0.59",
+    "zone.js": "^0.5.2"
+  },
+  "devDependencies": {
     "babel-eslint": "^4.0.5",
     "bootstrap": "^3.3.5",
     "compression-webpack-plugin": "^0.2.0",
@@ -42,15 +49,11 @@
     "gulp-tslint": "^3.1.2",
     "moment": "^2.10.6",
     "pre-commit": "^1.1.1",
-    "reflect-metadata": "^0.1.0",
     "require-dir": "^0.3.0",
-    "rtts_assert": "^2.0.0-alpha.34",
-    "traceur-runtime": "0.0.59",
     "typescript": "^1.5.3",
     "typescript-simple": "^2.0.0",
     "typescript-simple-loader": "^0.3.4",
     "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1",
-    "zone.js": "^0.5.2"
+    "webpack-dev-server": "^1.10.1"
   }
 }
