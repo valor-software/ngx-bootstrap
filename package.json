@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.34.10",
+  "version": "0.34.11",
   "description": "angular2 bootstrap components",
   "main": "index.js",
   "scripts": {
