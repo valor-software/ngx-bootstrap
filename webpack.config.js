@@ -1,12 +1,13 @@
 var webpack = require('webpack');
 var path = require('path');
 
+var Clean = require('clean-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
 
 /*eslint no-process-env:0, camelcase:0*/
 var isProduction = (process.env.NODE_ENV || 'development') === 'production';
 
-var src = 'src/public';
+var src = 'demo';
 //var absSrc = path.join(__dirname, src);
 var dest = '/build';
 var absDest = path.join(__dirname, dest);
@@ -34,9 +35,8 @@ var config = {
       'rtts_assert/rtts_assert',
       'angular2/angular2'
     ],
-    'angular2-bootstrap': [
-      './src/public'
-    ]
+    'angular2-bootstrap': 'components/ng2-bootstrap',
+    'angular2-bootstrap-demo': 'demo'
   },
 
   output: {
@@ -68,7 +68,7 @@ var config = {
       // Support for .ts files.
       {
         test: /\.ts$/,
-        loader: 'typescript-simple?ignoreWarnings[]=2345',
+        loader: 'typescript-simple',
         exclude: [
           /\.spec\.ts$/,
           /\.e2e\.ts$/,
@@ -84,6 +84,7 @@ var config = {
   },
 
   plugins: [
+    new Clean(['build']),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'angular2',
       minChunks: Infinity,

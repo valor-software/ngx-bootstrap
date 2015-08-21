@@ -3,53 +3,41 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": true,
     "declaration": true,
-    "noImplicitAny": false,
     "removeComments": true,
-    "noLib": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "listFiles": true,
-    "outDir": "dist"
+    "listFiles": false,
+    "noLib": false,
+    "noEmitOnError": false,
+    "noImplicitAny": false
   },
-  "files": [
-    "node_modules/typescript/bin/lib.dom.d.ts",
-    "typings/tsd.d.ts",
-    "src/typings/es6-object.d.ts",
-    "src/typings/ng2-custom.d.ts",
-
-    "src/public/index.ts",
-    "src/components/demo/accordion-demo.ts",
-    "src/components/demo/alert-demo.ts",
-    "src/components/demo/buttons-demo.ts",
-    "src/components/demo/dropdown-demo.ts",
-    "src/components/demo/collapse-demo.ts",
-    "src/components/demo/pagination-demo.ts",
-    "src/components/demo/progressbar-demo.ts",
-    "src/components/demo/rating-demo.ts",
-    "src/components/demo/tabs-demo.ts",
-    "src/components/demo/timepicker-demo.ts",
-    "src/components/demo/tooltip-demo.ts",
-
-    "src/components/accordion/accordion.ts",
-    "src/components/alert/alert.ts",
-    "src/components/buttons/button-radio.ts",
-    "src/components/buttons/button-checkbox.ts",
-    "src/components/dropdown/dropdown.ts",
-    "src/components/dropdown/dropdown-menu.ts",
-    "src/components/dropdown/dropdown-service.ts",
-    "src/components/dropdown/dropdown-toggle.ts",
-    "src/components/collapse/collapse.ts",
-    "src/components/pagination/pagination.ts",
-    "src/components/progressbar/progressbar.ts",
-    "src/components/rating/rating.ts",
-    "src/components/tabs/tabs.ts",
-    "src/components/timepicker/timepicker.ts",
-    "src/components/tooltip/tooltip.ts",
-    "src/components/position.ts"
+  "filesGlob": [
+    "./**/*.ts",
+    "!./node_modules/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
+  "files": [
+    "tsd.d.ts",
+    "components/index.ts",
+    "components/module.ts",
+    "components/accordion/accordion.ts",
+    "components/alert/alert.ts",
+    "components/buttons/button-radio.ts",
+    "components/buttons/button-checkbox.ts",
+    "components/dropdown/index.ts",
+    "components/dropdown/dropdown.ts",
+    "components/dropdown/dropdown-menu.ts",
+    "components/dropdown/dropdown-service.ts",
+    "components/dropdown/dropdown-toggle.ts",
+    "components/collapse/collapse.ts",
+    "components/pagination/pagination.ts",
+    "components/progressbar/progressbar.ts",
+    "components/rating/rating.ts",
+    "components/tabs/tabs.ts",
+    "components/timepicker/timepicker.ts",
+    "components/tooltip/tooltip.ts",
+    "components/position.ts"
   ]
 }

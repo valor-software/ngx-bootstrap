@@ -12,5 +12,8 @@ npm-debug.log
 # ignore build and dist for now
 /build
 /dist
-/src/**/*.js
-/src/**/*.js.map
+
+/demo/**/*.js
+/demo/**/*.js.map
+/components/**/*.js
+/components/**/*.js.map
