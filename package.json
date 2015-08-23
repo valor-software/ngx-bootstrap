@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.34.14",
+  "version": "0.35.0",
   "description": "angular2 bootstrap components",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",

@@ -5,6 +5,7 @@ Goal: smooth transition from ui-bootstrap to angular2,
 all components will have same API
 
 [![Code Climate](https://codeclimate.com/github/valor-software/angular2-bootstrap/badges/gpa.svg)](https://codeclimate.com/github/valor-software/angular2-bootstrap)
+[![Dependency Status](https://david-dm.org/valor-software/angular2-bootstrap.svg)](https://david-dm.org/valor-software/angular2-bootstrap)
 [![devDependency Status](https://david-dm.org/valor-software/angular2-bootstrap/dev-status.svg)](https://david-dm.org/valor-software/angular2-bootstrap#info=devDependencies)
 <!---
 [![Test Coverage](https://codeclimate.com/github/valor-software/angular2-bootstrap/badges/coverage.svg)](https://codeclimate.com/github/valor-software/angular2-bootstrap/coverage)
@@ -13,6 +14,12 @@ all components will have same API
 # Demo
 
 [http://valor-software.github.io/angular2-bootstrap/](http://valor-software.github.io/angular2-bootstrap/)
+
+# Starter package
+
+You can start hacking by cloning starter repo:
+[https://github.com/valor-software/angular2-bootstrap-starter](angular2-bootstrap-starter)
+
 
 # Components
 
