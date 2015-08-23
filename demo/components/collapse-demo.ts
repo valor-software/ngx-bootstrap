@@ -2,7 +2,7 @@
 
 import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {Collapse} from '../../components/index.ts';
+import {Collapse} from '../../components/index';
 
 @Component({
   selector: 'collapse-demo'

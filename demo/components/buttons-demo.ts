@@ -4,7 +4,7 @@ import {Component, View, bootstrap} from 'angular2/angular2';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 
 
-import {ButtonCheckbox, ButtonRadio} from '../../components/index.ts';
+import {ButtonCheckbox, ButtonRadio} from '../../components/index';
 
 @Component({
   selector: 'buttons-demo'

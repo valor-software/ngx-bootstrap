@@ -2,7 +2,7 @@
 
 import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {Alert} from '../../components/index.ts';
+import {Alert} from '../../components/index';
 
 @Component({
   selector: 'alert-demo'

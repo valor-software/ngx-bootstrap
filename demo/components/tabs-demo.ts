@@ -2,7 +2,7 @@
 
 import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {tabs} from '../../components/index.ts';
+import {tabs} from '../../components/index';
 
 @Component({
   selector: 'tabs-demo'

@@ -5,7 +5,7 @@ import {Component, View, bootstrap,
   NgClass
 } from 'angular2/angular2';
 
-import {accordion} from '../../components/index.ts';
+import {accordion} from '../../components/index';
 
 @Component({
   selector: 'accordion-demo'

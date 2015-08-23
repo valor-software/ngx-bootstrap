@@ -4,7 +4,7 @@ import {Component, View, bootstrap,
   NgClass, NgStyle,
   CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 
-import {Rating} from '../../components/index.ts';
+import {Rating} from '../../components/index';
 
 @Component({
   selector: 'rating-demo'

@@ -35,7 +35,7 @@ var config = {
       'rtts_assert/rtts_assert',
       'angular2/angular2'
     ],
-    'angular2-bootstrap': 'components/ng2-bootstrap',
+    'angular2-bootstrap': 'components',
     'angular2-bootstrap-demo': 'demo'
   },
 

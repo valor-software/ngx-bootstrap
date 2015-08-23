@@ -2,7 +2,7 @@
 
 import {Component, View, bootstrap, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {dropdown} from '../../components/index.ts';
+import {dropdown} from '../../components/index';
 
 @Component({
   selector: 'dropdown-demo'

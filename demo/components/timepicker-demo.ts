@@ -2,7 +2,7 @@
 
 import {Component, View, bootstrap, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 
-import {Timepicker} from '../../components/index.ts';
+import {Timepicker} from '../../components/index';
 
 @Component({
   selector: 'timepicker-demo'

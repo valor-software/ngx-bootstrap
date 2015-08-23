@@ -4,7 +4,7 @@ import {Component, View, bootstrap,
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass
 } from 'angular2/angular2';
 
-import {tooltip} from '../../components/index.ts';
+import {tooltip} from '../../components/index';
 
 @Component({
   selector: 'tooltip-demo'

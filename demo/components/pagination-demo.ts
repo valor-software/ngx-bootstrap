@@ -3,7 +3,7 @@
 import {Component, View, bootstrap,
   FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {pagination} from '../../components/index.ts';
+import {pagination} from '../../components/index';
 
 @Component({
   selector: 'pagination-demo'
