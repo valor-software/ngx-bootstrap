@@ -5,7 +5,6 @@
     "mocha": 2,
     "es6": 2
   },
-  "parser": "babel-eslint",
   "ecmaFeatures": {
     "modules": true
   },
