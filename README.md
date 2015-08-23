@@ -18,7 +18,7 @@ all components will have same API
 # Starter package
 
 You can start hacking by cloning starter repo:
-[https://github.com/valor-software/angular2-bootstrap-starter](angular2-bootstrap-starter)
+[https://github.com/valor-software/angular2-bootstrap-starter](https://github.com/valor-software/angular2-bootstrap-starter)
 
 
 # Components

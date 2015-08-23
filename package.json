@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.35.0",
+  "version": "0.35.1",
   "description": "angular2 bootstrap components",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
@@ -22,10 +22,6 @@
     "typings",
     "tsd.d.ts"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/valor-software/angular2-bootstrap.git"
-  },
   "keywords": [
     "angular2",
     "bootstrap",
@@ -34,6 +30,10 @@
   ],
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/angular2-bootstrap.git"
+  },
   "bugs": {
     "url": "https://github.com/valor-software/angular2-bootstrap/issues"
   },
