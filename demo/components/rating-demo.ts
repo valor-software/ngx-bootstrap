@@ -18,7 +18,7 @@ import {Rating} from '../../components/index';
       <rating [(ng-model)]="rate" [max]="max" [readonly]="isReadonly" (on-hover)="hoveringOver($event)" (on-leave)="test($event)" [titles]="['one','two','three']" ></rating>
       <span class="label" [ng-class]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" [ng-style]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
 
-      <pre style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></pre>
+      <pre class="card card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></pre>
 
       <button type="button" class="btn btn-sm btn-danger" (click)="rate = 0"  [disabled]="isReadonly">Clear</button>
       <button type="button" class="btn btn-sm btn-primary" (click)="isReadonly = ! isReadonly">Toggle Readonly</button>

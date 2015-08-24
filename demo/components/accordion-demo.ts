@@ -45,7 +45,7 @@ import {accordion} from '../../components/index';
         <accordion-group [is-open]="status.open">
             <template accordion-heading>
                 I can have markup, too! <i class="pull-right glyphicon"
-                [ng-class]="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                [ng-class]="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
             </template>
             This is just some content to illustrate fancy headings.
         </accordion-group>

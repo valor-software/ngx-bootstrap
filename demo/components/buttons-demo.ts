@@ -14,20 +14,20 @@ import {ButtonCheckbox, ButtonRadio} from '../../components/index';
     <br><hr/>
     <h2>Buttons</h2>
     <h4>Single toggle</h4>
-    <pre>{{singleModel}}</pre>
+    <pre class="card card-block card-header">{{singleModel}}</pre>
     <button type="button" class="btn btn-primary" [(ng-model)]="singleModel" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
         Single Toggle
     </button>
     <h4>Checkbox</h4>
-    <pre>Model: {{checkModel | json}}</pre>
-    <!--<pre>Results: {{checkResults}}</pre>-->
+    <pre class="card card-block card-header">Model: {{checkModel | json}}</pre>
+    <!--<pre class="card card-block card-header">Results: {{checkResults}}</pre>-->
     <div class="btn-group">
       <label class="btn btn-primary" [(ng-model)]="checkModel.left" btn-checkbox>Left</label>
       <label class="btn btn-primary" [(ng-model)]="checkModel.middle" btn-checkbox>Middle</label>
       <label class="btn btn-primary" [(ng-model)]="checkModel.right" btn-checkbox>Right</label>
     </div>
     <h4>Radio &amp; Uncheckable Radio</h4>
-    <pre>{{radioModel || 'null'}}</pre>
+    <pre class="card card-block card-header">{{radioModel || 'null'}}</pre>
     <div class="btn-group">
         <label class="btn btn-primary" [(ng-model)]="radioModel" btn-radio="Left">Left</label>
         <label class="btn btn-primary" [(ng-model)]="radioModel" btn-radio="Middle">Middle</label>
