@@ -16,9 +16,9 @@ import {accordion} from '../../components/index';
     <h2>Accordion demo</h2>
     <div>
       <p>
-        <button type="button" class="btn btn-default btn-sm"
+        <button type="button" class="btn btn-primary btn-sm"
           (click)="status.open = !status.open">Toggle last panel</button>
-        <button type="button" class="btn btn-default btn-sm"
+        <button type="button" class="btn btn-primary btn-sm"
           (click)="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
       </p>
 
@@ -39,7 +39,7 @@ import {accordion} from '../../components/index';
         </accordion-group>
         <accordion-group heading="Dynamic Body Content">
           <p>The body of the accordion group grows to fit the contents</p>
-            <button type="button" class="btn btn-default btn-sm" (click)="addItem()">Add Item</button>
+            <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>
             <div *ng-for="#item of items">{{item}}</div>
         </accordion-group>
         <accordion-group [is-open]="status.open">

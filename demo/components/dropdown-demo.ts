@@ -80,7 +80,7 @@ import {Ng2BootstrapConfig} from '../../components/ng2-bootstrap-config';
 
         <hr />
         <p>
-            <button type="button" class="btn btn-default btn-sm" (click)="toggleDropdown($event)">Toggle button dropdown</button>
+            <button type="button" class="btn btn-primary btn-sm" (click)="toggleDropdown($event)">Toggle button dropdown</button>
             <button type="button" class="btn btn-warning btn-sm" (click)="disabled = !disabled">Enable/Disable</button>
         </p>
 

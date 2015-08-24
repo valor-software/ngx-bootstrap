@@ -34,7 +34,7 @@ import {Timepicker} from '../../components/index';
       <hr>
 
       <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
-      <button type="button" class="btn btn-default" (click)="update()">Set to 14:00</button>
+      <button type="button" class="btn btn-primary" (click)="update()">Set to 14:00</button>
       <button type="button" class="btn btn-danger" (click)="clear()">Clear</button>
 
     </div>

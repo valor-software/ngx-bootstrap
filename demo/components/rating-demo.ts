@@ -21,7 +21,7 @@ import {Rating} from '../../components/index';
       <pre style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></pre>
 
       <button type="button" class="btn btn-sm btn-danger" (click)="rate = 0"  [disabled]="isReadonly">Clear</button>
-      <button type="button" class="btn btn-sm btn-default" (click)="isReadonly = ! isReadonly">Toggle Readonly</button>
+      <button type="button" class="btn btn-sm btn-primary" (click)="isReadonly = ! isReadonly">Toggle Readonly</button>
       <hr />
 
       <h4>Custom icons</h4>

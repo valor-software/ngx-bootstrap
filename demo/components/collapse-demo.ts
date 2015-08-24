@@ -12,7 +12,7 @@ import {Collapse} from '../../components/index';
     <br><hr/>
     <h2>Collapse demo</h2>
     <div>
-      <button type="button" class="btn btn-default"
+      <button type="button" class="btn btn-primary"
         (click)="isCollapsed = !isCollapsed">Toggle collapse</button>
       <hr>
       <div [collapse]="isCollapsed" class="card card-block card-header">
