@@ -1,6 +1,8 @@
 # angular2-bootstrap
 Native Angular2 directives for Bootstrap
 
+Works with Bootstrap 3 and 4-alfa
+
 Goal: smooth transition from ui-bootstrap to angular2,
 all components will have same API
 

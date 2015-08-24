@@ -14,11 +14,11 @@ import {tabs} from '../../components/index';
     <div (^click)="$event.preventDefault()">
       <p>Select a tab by setting active binding to true:</p>
       <p>
-        <button type="button" class="btn btn-default btn-sm" (click)="tabs[0].active = true">Select second tab</button>
-        <button type="button" class="btn btn-default btn-sm" (click)="tabs[1].active = true">Select third tab</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="tabs[0].active = true">Select second tab</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="tabs[1].active = true">Select third tab</button>
       </p>
       <p>
-        <button type="button" class="btn btn-default btn-sm" (click)="tabs[1].disabled = ! tabs[1].disabled">Enable / Disable third tab</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="tabs[1].disabled = ! tabs[1].disabled">Enable / Disable third tab</button>
       </p>
       <hr />
       <tabset>
