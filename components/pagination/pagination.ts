@@ -49,16 +49,29 @@ const paginationConfig = {
 @View({
   template: `
   <ul class="pagination" [ng-class]="classMap">
-    <li [ng-class]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}" class="pagination-first">
-      <a href (click)="selectPage(1, $event)">{{getText('first')}}</a></li>
+    <li class="pagination-first"
+        [ng-class]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}"
+        [hidden]="!boundaryLinks">
+      <a href (click)="selectPage(1, $event)">{{getText('first')}}</a>
+    </li>
 
-    <li [ng-class]="{disabled: noPrevious()||disabled, hidden: !directionLinks}" class="pagination-prev"><a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a></li>
+    <li class="pagination-prev"
+        [ng-class]="{disabled: noPrevious()||disabled, hidden: !directionLinks}"
+        [hidden]="!directionLinks">
+      <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
+      </li>
 
     <li *ng-for="#page of pages" [ng-class]="{active: page.active, disabled: disabled&&!page.active}" class="pagination-page"><a href (click)="selectPage(page.number, $event)">{{page.text}}</a></li>
 
-    <li [ng-class]="{disabled: noNext()||disabled, hidden: !directionLinks}" class="pagination-next"><a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
+    <li class="pagination-next"
+        [ng-class]="{disabled: noNext()||disabled, hidden: !directionLinks}"
+        [hidden]="!directionLinks">
+      <a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
 
-    <li [ng-class]="{disabled: noNext()||disabled, hidden: !boundaryLinks}" class="pagination-last"><a href (click)="selectPage(totalPages, $event)">{{getText('last')}}</a></li>
+    <li class="pagination-last"
+        [ng-class]="{disabled: noNext()||disabled, hidden: !boundaryLinks}"
+        [hidden]="!boundaryLinks">
+      <a href (click)="selectPage(totalPages, $event)">{{getText('last')}}</a></li>
   </ul>
   `,
   directives: [CORE_DIRECTIVES, NgClass],

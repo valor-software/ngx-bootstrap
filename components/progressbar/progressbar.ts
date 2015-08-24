@@ -21,7 +21,8 @@ const progressConfig = {
   selector: 'bs-progress, [progress]',
   properties: ['animate', 'max'],
   host: {
-    'class': 'progress'
+    'class': 'progress',
+    '[attr.max]': 'max'
   },
   lifecycle: [LifecycleEvent.onInit]
 })

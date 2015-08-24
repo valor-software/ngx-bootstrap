@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.35.1",
+  "version": "0.35.2",
   "description": "angular2 bootstrap components",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
@@ -13,7 +13,7 @@
   "main": "dist/index.js",
   "typescript": {
     "definition": [
-      "dist/index.d.ts", "dist/module.d.ts", "typings/es6-object.d.ts"
+      "dist/module.d.ts", "typings/es6-object.d.ts"
     ]
   },
   "files": [

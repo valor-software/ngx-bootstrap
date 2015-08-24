@@ -6,6 +6,10 @@ import {
   NgClass, ViewContainerRef, TemplateRef
 } from 'angular2/angular2';
 
+import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
+
+console.log(Ng2BootstrapConfig.theme);
+
 // todo: support template url
 @Component({
   selector: 'accordion, [accordion]',

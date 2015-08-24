@@ -18,3 +18,4 @@ export * from  './timepicker/timepicker';
 export * from  './tooltip/tooltip';
 export * from  './position'
 export * from  './common'
+export * from './ng2-bootstrap-config';

@@ -20,9 +20,9 @@ import {NgTransclude} from '../common';
   template: `
     <div>
       <ul class="nav" [ng-class]="classMap">
-          <li *ng-for="#tabz of tabs" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-            <a href (^click)="tabz.active = true">
-              <span  [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
+          <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
+            <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (^click)="tabz.active = true">
+              <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
             </a>
           </li>
       </ul>

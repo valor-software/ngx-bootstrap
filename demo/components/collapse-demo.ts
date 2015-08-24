@@ -15,7 +15,7 @@ import {Collapse} from '../../components/index';
       <button type="button" class="btn btn-default"
         (click)="isCollapsed = !isCollapsed">Toggle collapse</button>
       <hr>
-      <div [collapse]="isCollapsed">
+      <div [collapse]="isCollapsed" class="card card-block card-header">
         <div class="well well-lg">Some content</div>
       </div>
     </div>

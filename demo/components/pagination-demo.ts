@@ -18,7 +18,7 @@ import {pagination} from '../../components/index';
         <pagination [boundary-links]="true" [total-items]="totalItems" [(ng-model)]="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
         <pagination [direction-links]="false" [boundary-links]="true" [total-items]="totalItems" [(ng-model)]="currentPage"></pagination>
         <pagination [direction-links]="false" [total-items]="totalItems" [(ng-model)]="currentPage" (num-pages)="smallnumPages = $event"></pagination>
-        <pre>The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
+        <pre class="card card-block card-header">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
         <button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>
 
         <hr />
@@ -29,7 +29,7 @@ import {pagination} from '../../components/index';
         <h4>Limit the maximum visible buttons</h4>
         <pagination [total-items]="bigTotalItems" [(ng-model)]="bigCurrentPage" [max-size]="maxSize" class="pagination-sm" [boundary-links]="true"></pagination>
         <pagination [total-items]="bigTotalItems" [(ng-model)]="bigCurrentPage" [max-size]="maxSize" class="pagination-sm" [boundary-links]="true" [rotate]="false" (num-pages)="numPages = $event"></pagination>
-        <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+        <pre class="card card-block card-header">Page: {{bigCurrentPage}} / {{numPages}}</pre>
     </div>
   `,
   directives: [pagination, FORM_DIRECTIVES, CORE_DIRECTIVES]

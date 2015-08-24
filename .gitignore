@@ -17,3 +17,5 @@ npm-debug.log
 /demo/**/*.js.map
 /components/**/*.js
 /components/**/*.js.map
+
+/logs

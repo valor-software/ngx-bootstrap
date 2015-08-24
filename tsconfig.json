@@ -21,6 +21,7 @@
   "files": [
     "tsd.d.ts",
     "components/index.ts",
+    "components/ng2-bootstrap-config.ts",
     "components/module.ts",
     "components/accordion/accordion.ts",
     "components/alert/alert.ts",
