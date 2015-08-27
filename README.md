@@ -13,7 +13,7 @@ all components will have same API
 [![Test Coverage](https://codeclimate.com/github/valor-software/angular2-bootstrap/badges/coverage.svg)](https://codeclimate.com/github/valor-software/angular2-bootstrap/coverage)
 -->
 
-# Demo
+# Usage & Demo
 
 [http://valor-software.github.io/ng2-bootstrap/](http://valor-software.github.io/ng2-bootstrap/)
 
@@ -22,8 +22,22 @@ all components will have same API
 You can start hacking by cloning starter repo:
 [https://github.com/valor-software/angular2-bootstrap-starter](https://github.com/valor-software/angular2-bootstrap-starter)
 
+## Install from npm
 
-# Components
+```bash
+npm i ng2-bootstrap --save
+# if you are developing with typescript it will link .d.ts from package definition
+tsd link
+```
+
+## Install from source
+
+```bash
+  npm i
+  npm start
+```
+
+## Components
 
 - [x] Accordion
 - [x] Alert ([ ] template url)
@@ -46,19 +60,9 @@ You can start hacking by cloning starter repo:
 - [x] positional service
 - [ ] template url support
 
-## Install from npm
+## Contribution
 
-```bash
-npm i ng2-bootstrap
-```
-
-## Install from source
-
-```bash
-  npm i
-  npm start
-```
-
+Please read central `ng2` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach and welcome :)
 
 
 ### TODO
