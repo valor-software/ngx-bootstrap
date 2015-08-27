@@ -1,4 +1,4 @@
-# angular2-bootstrap
+# ng2-bootstrap
 Native Angular2 directives for Bootstrap
 
 Works with Bootstrap 3 and 4-alfa
