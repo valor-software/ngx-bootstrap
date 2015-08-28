@@ -42,9 +42,9 @@ tsd link
 - [x] Accordion
 - [x] Alert ([ ] template url)
 - [x] Buttons
-- [ ] Carousel (in progress...)
+- [x] Carousel
 - [x] Collapse ([ ] animate)
-- [ ] Datepicker
+- [ ] Datepicker (in progress...)
 - [x] Dropdown ([ ] template url, [ ] append to body)
 - [ ] Modal
 - [x] Pagination([ ] todos, ugly code:) )
@@ -54,7 +54,7 @@ tsd link
 - [x] Tabs
 - [x] Timepicker ([ ] validation)
 - [+-] Tooltip (baseline working, in progress...)
-- [ ] Typeahead
+- [ ] Typeahead  (in progress...)
 
 - [x] NgTransclude - to transclude templates
 - [x] positional service
@@ -69,7 +69,7 @@ Please read central `ng2` modules [readme](https://github.com/valor-software/ng2
 - [ ] use lodash defaults and isDefined?
 - [ ] find a better way to detect is event handler is set (see alerts.ts)
 - [ ] support `templateUrl` for directives
-- [ ] support animation
+- [ ] support animation  (in progress...)
 - [x] demo page
 - [ ] docs
 - [ ] publish to bower, etc.
