@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.35.5",
+  "version": "0.35.6",
   "description": "angular2 bootstrap components",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/valor-software/angular2-bootstrap.git"
+    "url": "git+ssh://git@github.com/valor-software/ng2-bootstrap.git"
   },
   "bugs": {
-    "url": "https://github.com/valor-software/angular2-bootstrap/issues"
+    "url": "https://github.com/valor-software/ng2-bootstrap/issues"
   },
-  "homepage": "https://github.com/valor-software/angular2-bootstrap#readme",
+  "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
     "angular2": "2.0.0-alpha.35",
     "es6-promise": "^3.0.2",
