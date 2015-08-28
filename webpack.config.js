@@ -1,8 +1,21 @@
-var webpack = require('webpack');
 var path = require('path');
+var marked = require('marked');
+var webpack = require('webpack');
 
 var Clean = require('clean-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
+
+// marked renderer hack
+marked.Renderer.prototype.code = function (code, lang) {
+  var out = this.options.highlight(code, lang);
+
+  if (!lang) {
+    return '<pre><code>' + out + '\n</code></pre>';
+  }
+
+  var classMap = this.options.langPrefix + lang;
+  return '<pre class="' + classMap + '"><code class="' + classMap + '">' + out + '\n</code></pre>\n';
+};
 
 /*eslint no-process-env:0, camelcase:0*/
 var isProduction = (process.env.NODE_ENV || 'development') === 'production';
@@ -17,7 +30,7 @@ var config = {
   devtool: 'source-map',
 
   debug: true,
-  cache: true,
+  cache: false,
   context: __dirname,
 
   resolve: {
@@ -54,8 +67,25 @@ var config = {
     contentBase: src,
     publicPath: dest
   },
+  markdownLoader: {
+    langPrefix: 'language-',
+    highlight: function (code, lang) {
+      var language = !lang || lang === 'html' ? 'markup' : lang;
+      if (!global.Prism) {
+        global.Prism = require('prismjs');
+      }
+      var Prism = global.Prism;
+      if (!Prism.languages[language]) {
+        require('prismjs/components/prism-' + language + '.js');
+      }
+      return Prism.highlight(code, Prism.languages[language]);
+    }
+  },
   module: {
     loaders: [
+      // support markdown
+      {test: /\.md$/, loader: 'html!markdown'},
+
       // Support for *.json files.
       {test: /\.json$/, loader: 'json'},
 
@@ -102,7 +132,7 @@ var config = {
     }
 
     this.plugins.push.apply(this.plugins, [
-       //production only
+      //production only
       new webpack.optimize.UglifyJsPlugin({
         compress: {
           warnings: false,

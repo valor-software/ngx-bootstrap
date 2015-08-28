@@ -7,14 +7,13 @@ import {
   CORE_DIRECTIVES, NgClass
 } from 'angular2/angular2';
 
-import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
-
 // todo: add animate
 
 const NAVIGATION = {
-  bs4: `
+  [Ng2BootstrapTheme.BS4]: `
 <a class="left carousel-control" (^click)="prev()" [hidden]="!slides.length">
   <span class="icon-prev" aria-hidden="true"></span>
   <span class="sr-only">Previous</span>
@@ -24,7 +23,7 @@ const NAVIGATION = {
   <span class="sr-only">Next</span>
 </a>
   `,
-  bs3: `
+  [Ng2BootstrapTheme.BS3]: `
 <a class="left carousel-control" (^click)="prev()" [hidden]="!slides.length">
   <span class="glyphicon glyphicon-chevron-left"></span>
 </a>
@@ -36,12 +35,7 @@ const NAVIGATION = {
 
 @Component({
   selector: 'carousel, [carousel]',
-  properties: [
-    'interval',
-    'noTransition',
-    'noPause',
-    'noWrap'
-  ],
+  properties: ['interval', 'noTransition', 'noPause', 'noWrap'],
   lifecycle: [LifecycleEvent.onDestroy]
 })
 // todo:
@@ -53,7 +47,7 @@ const NAVIGATION = {
      <li *ng-for="#slidez of slides" [ng-class]="{active: slidez.active === true}" (click)="select(slidez)"></li>
   </ol>
   <div class="carousel-inner"><ng-content></ng-content></div>
-  ${NAVIGATION[Ng2BootstrapConfig.theme] || NAVIGATION.bs3}
+  ${NAVIGATION[Ng2BootstrapConfig.theme]}
 </div>
   `,
   directives: [CORE_DIRECTIVES, NgClass]
@@ -81,7 +75,7 @@ export class Carousel {
     this.restartTimer();
   }
 
-  public select(nextSlide:Slide, direction?:Direction = Direction.UNKNOWN) {
+  public select(nextSlide:Slide, direction:Direction = Direction.UNKNOWN) {
     let nextIndex = nextSlide.index;
     if (direction === Direction.UNKNOWN) {
       direction = nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
@@ -212,11 +206,7 @@ export class Carousel {
 
 @Component({
   selector: 'slide, [slide]',
-  properties: [
-    'direction',
-    'active',
-    'index'
-  ],
+  properties: ['direction', 'active', 'index'],
   host: {
     '[class.active]': 'active',
     '[class.item]': 'true',
@@ -226,7 +216,9 @@ export class Carousel {
 })
 @View({
   template: `
-<div [ng-class]="{active: active}" class="item text-center"><ng-content></ng-content></div>
+  <div [ng-class]="{active: active}" class="item text-center">
+    <ng-content></ng-content>
+  </div>
   `,
   directives: [NgClass]
 })

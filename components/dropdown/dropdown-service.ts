@@ -66,7 +66,7 @@ export class DropdownService {
       return;
     }
 
-    if (this.openScope.keynavEnabled && this.openScope.isOpen &&
+    if (this.openScope.keyboardNav && this.openScope.isOpen &&
       (event.which === 38 || event.which === 40)) {
       event.preventDefault();
       event.stopPropagation();

@@ -10,7 +10,7 @@ import {
 // TODO: templateUrl
 @Component({
   selector: 'alert',
-  properties: ['type', 'dismissOnTimeout: dismiss-on-timeout'],
+  properties: ['type', 'dismissible', 'dismissOnTimeout'],
   events: ['close'],
   lifecycle: [LifecycleEvent.onInit]
 })
@@ -35,8 +35,15 @@ export class Alert {
   private closeable:boolean;
   private classes:Array<string> = [];
 
+  private set dismissible(v:boolean){
+    this.closeable = v;
+  }
+  private get dismissible():boolean{
+    return this.closeable;
+  }
+
   constructor(public el:ElementRef) {
-    this.closeable = el.nativeElement.getAttribute('(close)');
+    this.closeable = this.closeable || el.nativeElement.getAttribute('(close)');
   }
 
   onInit() {
@@ -55,8 +62,8 @@ export class Alert {
   }
 
   // todo: mouse event + touch + pointer
-  onClose($event: MouseEvent) {
-    this.close.next($event);
+  onClose() {
+    this.close.next(this);
     this.closed = true;
   }
 }

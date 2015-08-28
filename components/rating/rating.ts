@@ -9,7 +9,7 @@ import {
 
 // TODO: templateUrl
 @Component({
-  selector: 'rating',
+  selector: 'rating[ng-model]',
   properties: [
     'max', 'readonly', 'titles',
     'stateOn', 'stateOff',
@@ -102,7 +102,7 @@ export class Rating extends DefaultValueAccessor {
 
   private reset() {
     this.value = this.preValue;
-    this.onLeave.next(null);
+    this.onLeave.next(this.value);
   }
 
   private onKeydown(event:KeyboardEvent) {

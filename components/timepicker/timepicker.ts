@@ -45,18 +45,14 @@ function addMinutes(date, minutes) {
 
 // TODO: templateUrl
 @Component({
-  selector: 'timepicker',
+  selector: 'timepicker[ng-model]',
   properties: [
-    'hourStep',
-    'minuteStep',
-    'showMeridian',
-    'meridians',
+    'hourStep', 'minuteStep',
+    'meridians', 'showMeridian',
     'readonlyInput',
-    'mousewheel',
-    'arrowkeys',
+    'mousewheel', 'arrowkeys',
     'showSpinners',
-    'min',
-    'max'
+    'min', 'max'
   ],
   lifecycle: [LifecycleEvent.onInit]
 })
@@ -68,7 +64,7 @@ function addMinutes(date, minutes) {
           <td><a (^click)="incrementHours()" [ng-class]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
           <td>&nbsp;</td>
           <td><a (^click)="incrementMinutes()" [ng-class]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-          <td [ng-class]="{hidden: !showMeridian}"></td>
+          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
         <tr>
           <td class="form-group" [ng-class]="{'has-error': invalidHours}">
@@ -78,13 +74,13 @@ function addMinutes(date, minutes) {
           <td class="form-group" [ng-class]="{'has-error': invalidMinutes}">
             <input style="width:50px;" type="text" [(ng-model)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
           </td>
-          <td [ng-class]="{hidden: !showMeridian}"><button type="button" [ng-class]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
+          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ng-class]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>
         <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
           <td><a (^click)="decrementHours()" [ng-class]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
           <td>&nbsp;</td>
           <td><a (^click)="decrementMinutes()" [ng-class]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-          <td [ng-class]="{hidden: !showMeridian}"></td>
+          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
       </tbody>
     </table>
@@ -99,7 +95,7 @@ export class Timepicker extends DefaultValueAccessor {
   private minuteStep:number;
   private _showMeridian:boolean;
   private meridian:any; // ??
-  private meridians:Array<any> = ['AM', 'PM']; // ??
+  private meridians:Array<string> = ['AM', 'PM']; // ??
   private readonlyInput:boolean;
   private mousewheel:boolean;
   private arrowkeys:boolean;
