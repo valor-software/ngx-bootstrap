@@ -32,6 +32,7 @@
     "components/dropdown/dropdown-menu.ts",
     "components/dropdown/dropdown-service.ts",
     "components/dropdown/dropdown-toggle.ts",
+    "components/carousel/carousel.ts",
     "components/collapse/collapse.ts",
     "components/pagination/pagination.ts",
     "components/progressbar/progressbar.ts",

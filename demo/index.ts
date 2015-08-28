@@ -6,6 +6,7 @@ import {AccordionDemo} from './components/accordion-demo';
 import {AlertDemo} from './components/alert-demo';
 import {ButtonsDemo} from './components/buttons-demo';
 import {DropdownDemo} from './components/dropdown-demo';
+import {CarouselDemo} from './components/carousel-demo';
 import {CollapseDemo} from './components/collapse-demo';
 import {PaginationDemo} from './components/pagination-demo';
 import {ProgressbarDemo} from './components/progressbar-demo';
@@ -24,6 +25,7 @@ import {TooltipDemo} from './components/tooltip-demo';
     <alert-demo class="col-md-12"></alert-demo>
     <buttons-demo class="col-md-12"></buttons-demo>
     <dropdown-demo class="col-md-12"></dropdown-demo>
+    <carousel-demo class="col-md-12"></carousel-demo>
     <collapse-demo class="col-md-12"></collapse-demo>
     <pagination-demo class="col-md-12"></pagination-demo>
     <progressbar-demo class="col-md-12"></progressbar-demo>
@@ -37,6 +39,7 @@ import {TooltipDemo} from './components/tooltip-demo';
     AccordionDemo,
     ButtonsDemo,
     DropdownDemo,
+    CarouselDemo,
     CollapseDemo,
     PaginationDemo,
     ProgressbarDemo,

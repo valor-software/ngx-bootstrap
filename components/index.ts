@@ -9,6 +9,7 @@ export * from  './dropdown/dropdown';
 export * from  './dropdown/dropdown-menu';
 export * from  './dropdown/dropdown-service';
 export * from  './dropdown/dropdown-toggle';
+export * from  './carousel/carousel';
 export * from  './collapse/collapse';
 export * from  './pagination/pagination';
 export * from  './progressbar/progressbar';
