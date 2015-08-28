@@ -152,8 +152,8 @@ export class Carousel {
     let interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
       this.currentInterval = setInterval(() => {
-        let interval = +this.interval;
-        if (this.isPlaying && !isNaN(this.interval) && interval > 0 && this.slides.length) {
+        let nInterval = +this.interval;
+        if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
           this.next();
         } else {
           this.pause();
