@@ -27,6 +27,7 @@
     "components/alert/alert.ts",
     "components/buttons/button-radio.ts",
     "components/buttons/button-checkbox.ts",
+    "components/datepicker/index.ts",
     "components/dropdown/index.ts",
     "components/dropdown/dropdown.ts",
     "components/dropdown/dropdown-menu.ts",

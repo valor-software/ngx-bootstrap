@@ -5,6 +5,7 @@ import {Component, View, bootstrap} from 'angular2/angular2';
 import {AccordionDemo} from './components/accordion-demo';
 import {AlertDemo} from './components/alert-demo';
 import {ButtonsDemo} from './components/buttons-demo';
+import {DatePickerDemo} from './components/datepicker-demo';
 import {DropdownDemo} from './components/dropdown-demo';
 import {CarouselDemo} from './components/carousel-demo';
 import {CollapseDemo} from './components/collapse-demo';
@@ -24,8 +25,9 @@ import {TooltipDemo} from './components/tooltip-demo';
     <accordion-demo class="col-md-12"></accordion-demo>
     <alert-demo class="col-md-12"></alert-demo>
     <buttons-demo class="col-md-12"></buttons-demo>
-    <dropdown-demo class="col-md-12"></dropdown-demo>
     <carousel-demo class="col-md-12"></carousel-demo>
+    <datepicker-demo class="col-md-12"></datepicker-demo>
+    <dropdown-demo class="col-md-12"></dropdown-demo>
     <collapse-demo class="col-md-12"></collapse-demo>
     <pagination-demo class="col-md-12"></pagination-demo>
     <progressbar-demo class="col-md-12"></progressbar-demo>
@@ -38,6 +40,7 @@ import {TooltipDemo} from './components/tooltip-demo';
     AlertDemo,
     AccordionDemo,
     ButtonsDemo,
+    DatePickerDemo,
     DropdownDemo,
     CarouselDemo,
     CollapseDemo,
