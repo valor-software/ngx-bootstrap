@@ -1,49 +1,45 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Angular2-bootstrap by valor-software</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <!--link to bootstrap.css-->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <style media="screen">
-      .header {
-        background-color: #0143A3;
-        background: -webkit-linear-gradient(#0143A3,#0273D4);
-        background: linear-gradient(#0143A3,#0273D4);
-        color: #FFF;
-        padding: 30px;
-      }
-    </style>
-  </head>
-  <body>
-    <header class="text-center header">
-      <h1 class="project-name">ng2-bootstrap</h1>
-      <h2 class="project-tagline">Native Angular2 directives for Bootstrap</h2>
-      <a class="btn btn-primary btn-lg" href="https://github.com/valor-software/ng2-bootstrap" class="btn">View on GitHub</a>
-      <a class="btn btn-primary btn-lg" href="https://github.com/valor-software/ng2-bootstrap/zipball/master" class="btn">Download .zip</a>
-      <a class="btn btn-primary btn-lg" href="https://github.com/valor-software/ng2-bootstrap/tarball/master" class="btn">Download .tar.gz</a>
-    </header>
+<html lang="en">
+<head>
+  <title>Angular2 Bootstrap</title>
+  <base href="/">
 
-    <div class="container">
-      <h2>Welcome to ng2-bootstrap</h2>
-      <a class="btn btn-primary" href="./index-bs4.html"> View with Bootstrap 4</a>
-      <app>
-        Loading...
-      </app>
-    </div>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Angular2 Bootstrap">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted text-center"><a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.</p>
-      </div>
-    </footer>
-    <!-- Angular2 files -->
-    <script src="build/angular2.js"></script>
-    <!-- angular2-bootstrap script -->
-    <script src="build/angular2-bootstrap.js"></script>
-    <!-- angular2-bootstrap-demo script-->
-    <script src="build/angular2-bootstrap-demo.js"></script>
-  </body>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="author" href="https://github.com/valor-software/ng2-bootstrap/graphs/contributors">
+
+  <!--link to bootstrap.css-->
+  <link rel="stylesheet" href="assets/css/prism-okaidia.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style media="screen">
+    .header {
+      background-color: #0143A3;
+      background: -webkit-linear-gradient(#0143A3, #0273D4);
+      background: linear-gradient(#0143A3, #0273D4);
+      color: #FFF;
+      padding: 30px;
+    }
+    section {
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <app>
+    Loading...
+  </app>
+
+  <!-- Angular2 files -->
+  <script src="/build/angular2.js"></script>
+  <!-- Angular2 bootstrap script -->
+  <script src="/build/angular2-bootstrap.js"></script>
+  <!-- App script -->
+  <script src="/build/angular2-bootstrap-demo.js"></script>
+</body>
 </html>
