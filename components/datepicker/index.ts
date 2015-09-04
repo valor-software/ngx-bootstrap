@@ -27,4 +27,4 @@ import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 import {DatePicker} from './datepicker';
 
-export const datepicker:Array<any> = [DatePickerInner, DatePickerPopup, DayPicker, MonthPicker, YearPicker, DatePicker];
+export const datepicker:Array<any> = [DatePicker, DatePickerPopup];

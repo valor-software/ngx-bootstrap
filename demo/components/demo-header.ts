@@ -3,7 +3,7 @@ import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
 import {Collapse, dropdown, Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../components/index';
 
 let components = [
-  'Accordion', 'Alerts', 'Buttons', 'Carousel', 'Collapse', /*'Datepicker',*/
+  'Accordion', 'Alerts', 'Buttons', 'Carousel', 'Collapse', 'Datepicker',
   'Dropdowns', /*'Modal',*/ 'Pagination', /*'Popover',*/ 'Progressbar',
   'Rating', 'Tabs', 'Timepicker', 'Tooltip', /*'Typeahead'*/
 ];

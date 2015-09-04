@@ -116,7 +116,7 @@ class PopupContainer {
 }
 
 @Directive({
-  selector: '[ng-model][datepicker-popup]',
+  selector: '[datepicker-popup][ng-model]',
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
   host: {'(cupdate)': 'onUpdate1($event)'},

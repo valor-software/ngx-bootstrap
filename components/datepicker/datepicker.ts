@@ -19,23 +19,16 @@ import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 
 @Component({
-  selector: 'datepicker, [datepicker]',
+  selector: 'datepicker[ng-model], [datepicker][ng-model]',
   properties: [
-    'activeDate',
     'datepickerMode',
+    'minDate', 'maxDate',
+    'dateDisabled', 'activeDate',
+    'showWeeks', 'startingDay',
     'initDate',
-    'minDate',
-    'maxDate',
-    'minMode',
-    'maxMode',
-    'showWeeks',
-    'formatDay',
-    'formatMonth',
-    'formatYear',
-    'formatDayHeader',
-    'formatDayTitle',
-    'formatMonthTitle',
-    'startingDay',
+    'minMode', 'maxMode',
+    'formatDay', 'formatMonth', 'formatYear',
+    'formatDayHeader', 'formatDayTitle', 'formatMonthTitle',
     'yearRange',
     'shortcutPropagation'
   ]
