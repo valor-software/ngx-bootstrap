@@ -1,0 +1,26 @@
+<div class='container-fluid'>
+    <h4>Static arrays</h4>
+    <pre>Model: {{selected | json}}</pre>
+    <input [(ng-model)]="selected"
+           [typeahead]="statesComplex"
+           (typeahead-on-select)="typeaheadOnSelect($event)"
+           [typeahead-option-field]="'name'"
+           class="form-control">
+
+    <h4>Asynchronous results</h4>
+    <pre>Model: {{asyncSelected | json}}</pre>
+    <input [(ng-model)]="asyncSelected"
+           [typeahead]="getAsyncData(getContext())"
+           (typeahead-loading)="changeTypeaheadLoading($event)"
+           (typeahead-no-results)="changeTypeaheadNoResults($event)"
+           (typeahead-on-select)="typeaheadOnSelect($event)"
+           [typeahead-options-limit]="7"
+           placeholder="Locations loaded with timeout"
+           class="form-control">
+    <div [hidden]="typeaheadLoading!==true">
+        <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
+    </div>
+    <div [hidden]="typeaheadNoResults!==true" class="" style="">
+        <i class="glyphicon glyphicon-remove"></i> No Results Found
+    </div>
+</div>
