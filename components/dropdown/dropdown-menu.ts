@@ -5,9 +5,7 @@ import {Dropdown} from './dropdown';
 
 @Directive({
   selector: '[dropdown-menu], .dropdown-menu',
-  host: {
-    '[attr.templateUrl]': 'templateUrl'
-  },
+  properties: ['templateUrl'],
   lifecycle: [LifecycleEvent.onInit]
 })
 export class DropdownMenu {

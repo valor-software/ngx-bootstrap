@@ -29,19 +29,12 @@ const paginationConfig = {
 };
 
 @Component({
-  selector: 'pagination, [pagination]',
+  selector: 'pagination[ng-model], [pagination][ng-model]',
   properties: [
-    'maxSize',
-    'rotate',
-    'boundaryLinks',
-    'totalItems',
-    'firstText',
-    'previousText',
-    'nextText',
-    'lastText',
-    'disabled',
-    'directionLinks',
-    'itemsPerPage'
+    'rotate', 'disabled',
+    'totalItems', 'itemsPerPage', 'maxSize',
+    'boundaryLinks', 'directionLinks',
+    'firstText', 'previousText', 'nextText', 'lastText'
   ],
   events: ['numPages'],
   lifecycle: [LifecycleEvent.onInit]
@@ -80,7 +73,7 @@ const paginationConfig = {
 export class Pagination extends DefaultValueAccessor {
   public config:any;
 
-  private classMap: string;
+  private classMap:string;
   private maxSize:number;
   private rotate:boolean;
   private boundaryLinks:any;
@@ -108,7 +101,7 @@ export class Pagination extends DefaultValueAccessor {
     this.totalPages = this.calculateTotalPages();
   }
 
-  private get totalItems() {
+  private get totalItems():number {
     return this._totalItems;
   }
 
@@ -121,10 +114,10 @@ export class Pagination extends DefaultValueAccessor {
     return this._totalPages;
   }
 
-  private set totalPages(v: number) {
+  private set totalPages(v:number) {
     this._totalPages = v;
     this.numPages.next(v);
-    if (this.page  > v) {
+    if (this.page > v) {
       this.selectPage(v);
     }
   }
@@ -262,26 +255,29 @@ const pagerConfig = {
 };
 
 @Component({
-  selector: 'pager, [pager]',
+  selector: 'pager[ng-model], [pager][ng-model]',
   properties: [
-    'align', 'totalItems', 'previousText', 'nextText', 'itemsPerPage'
+    'align',
+    'totalItems', 'itemsPerPage',
+    'previousText', 'nextText',
   ],
   lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
     <ul class="pager">
-      <li [ng-class]="{disabled: noPrevious(), previous: align}"><a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a></li>
-      <li [ng-class]="{disabled: noNext(), next: align}"><a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
+      <li [ng-class]="{disabled: noPrevious(), previous: align, 'pull-left': align}"><a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a></li>
+      <li [ng-class]="{disabled: noNext(), next: align, 'pull-right': align}"><a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
   </ul>
   `,
   directives: [NgClass]
 })
 export class Pager extends Pagination {
+  private align: boolean = pagerConfig.align;
+  public config = pagerConfig;
   constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    this.config = pagerConfig;
     super(cd, renderer, elementRef);
   }
 }
 
-export const pagination = [Pagination, Pager];
+export const pagination:Array<any> = [Pagination, Pager];

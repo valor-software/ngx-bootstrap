@@ -8,19 +8,10 @@ import {
 
 
 @Directive({
-  selector: '[ng-model][btn-checkbox]',
-  properties: [
-    'btnCheckboxTrue: btn-checkbox-true',
-    'btnCheckboxFalse: btn-checkbox-false'
-  ],
+  selector: '[btn-checkbox][ng-model]',
+  properties: ['btnCheckboxTrue', 'btnCheckboxFalse'],
   host: {
     '(click)': 'onClick()',
-    '[class.ng-untouched]': 'ngClassUntouched',
-    '[class.ng-touched]': 'ngClassTouched',
-    '[class.ng-pristine]': 'ngClassPristine',
-    '[class.ng-dirty]': 'ngClassDirty',
-    '[class.ng-valid]': 'ngClassValid',
-    '[class.ng-invalid]': 'ngClassInvalid',
     '[class.active]': 'state'
   },
   lifecycle: [LifecycleEvent.onInit]
@@ -35,16 +26,16 @@ export class ButtonCheckbox extends DefaultValueAccessor {
     super(cd, renderer, elementRef);
   }
 
-  private get trueValue(){
+  onInit() {
+    this.toggle(this.trueValue === this.value);
+  }
+
+  private get trueValue() {
     return typeof this.btnCheckboxTrue !== 'undefined' ? this.btnCheckboxTrue : true;
   }
 
-  private get falseValue(){
+  private get falseValue() {
     return typeof this.btnCheckboxFalse !== 'undefined' ? this.btnCheckboxFalse : false;
-  }
-
-  onInit() {
-    this.toggle(this.trueValue === this.value);
   }
 
   toggle(state:boolean) {
@@ -54,6 +45,7 @@ export class ButtonCheckbox extends DefaultValueAccessor {
 
   // model -> view
   writeValue(value:any) {
+    this.state = this.trueValue === value;
     this.value = value;
   }
 

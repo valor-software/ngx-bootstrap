@@ -70,9 +70,7 @@ export class Progress {
 // todo: use query from progress?
 @Component({
   selector: 'bar, [bar]',
-  properties: [
-    'type', 'value'
-  ],
+  properties: ['type', 'value'],
   lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 @View({

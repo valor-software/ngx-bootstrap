@@ -10,15 +10,8 @@ import {dropdownService, ALWAYS} from './dropdown-service';
 
 @Directive({
   selector: '[dropdown]',
-  properties: [
-    'isOpen',
-    'autoClose',
-    'keynavEnabled: keyboardNav',
-    'dropdownAppendToBody'
-  ],
-  events: [
-    'onToggle'
-  ],
+  properties: ['isOpen', 'autoClose', 'keyboardNav', 'dropdownAppendToBody'],
+  events: ['onToggle'],
   lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy],
   host: {
     '[class.dropdown]': 'true',
@@ -32,7 +25,7 @@ export class Dropdown {
   private onToggle:EventEmitter = new EventEmitter();
 
   public autoClose:string;
-  public keynavEnabled:boolean;
+  public keyboardNav:boolean;
   // index of selected element
   public selectedOption:number;
   // drop menu html
@@ -48,7 +41,7 @@ export class Dropdown {
 
   onInit() {
     this.autoClose = this.autoClose || ALWAYS;
-    this.keynavEnabled = typeof this.keynavEnabled !== 'undefined';
+    this.keyboardNav = typeof this.keyboardNav !== 'undefined';
     this.dropdownAppendToBody = typeof this.dropdownAppendToBody !== 'undefined';
     if (this.isOpen) {
       // todo: watch for event get-is-open?
@@ -61,7 +54,7 @@ export class Dropdown {
     }
   }
 
-  public set dropDownMenu(dropdownMenu:DropdownMenuInterface){
+  public set dropDownMenu(dropdownMenu:DropdownMenuInterface) {
     // init drop down menu
     this.menuEl = dropdownMenu.el;
 
@@ -74,7 +67,7 @@ export class Dropdown {
     }
   }
 
-  public set dropDownToggle(dropdownToggle: DropdownToggleInterface){
+  public set dropDownToggle(dropdownToggle:DropdownToggleInterface) {
     // init toggle element
     this.toggleEl = dropdownToggle.el;
   }

@@ -1,19 +1,49 @@
-The **accordion directive** builds on top of the collapse directive to provide a list of items, with collapsible bodies that are collapsed or expanded by clicking on the item's header.
+### Usage
+```typescript
+import {accordion} from 'ng2-bootstrap';
+```
 
-We can control whether expanding an item will cause the other items to close, using the `close-others` attribute on accordion.
+### Annotations
+```typescript
+// class Accordion
+@Component({
+  selector: 'accordion, [accordion]',
+  properties: ['templateUrl', 'closeOthers'],
+  host: {
+    '[class.panel-group]': 'true'
+  }
+})
 
-The body of each accordion group is transcluded in to the body of the collapsible element.
+// class AccordionGroup
+@Component({
+  selector: 'accordion-group, [accordion-group]',
+  properties: ['templateUrl', 'heading', 'isOpen', 'isDisabled', 'panelClass'],
+  host: {
+    '[class.panel-open]': 'isOpen'
+  },
+  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
+})
 
-### Accordion Settings ###
+// class AccordionHeading
+@Directive({
+  selector: 'accordion-heading, [accordion-heading]'
+})
 
-  * `is-open` <i class="glyphicon glyphicon-eye-open"></i> (Defaults: false) :
-    Whether accordion group is open or closed.
-  * `template-url` (Defaults: `template/accordion/accordion.html`) :
-    Add ability to override the template url used
 
-### Accordion Group Settings ###
+export const accordion:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
+```
 
-  * `panel-class` (Defaults: `panel-default`) :
-    Add ability to use Bootstrap's contextual panel classes (panel-primary, panel-success, panel-info, etc...) or your own.  This must be a string.
-  * `template-url` (Defaults: `template/accordion/accordion-group.html`) :
-    Add ability to override the template url used. Note that this must be a string
+### Accordion properties
+  - `close-others` (`?boolean=false`) - if `true` expanding one item will close all others
+  - `template-url` (*not yet supported*) - allows to override the template url of component (default: `components/accordion/accordion.html`)
+
+### Accordion Group properties
+  - `heading` (`?string=''`) - clickable text in accordion's group header
+  - `is-open` (`?boolean=false`) - is accordion group open or closed
+  - `is-disabled` (`?boolean=false`) - if `true` disables accordion group
+  - `panel-class` (`?string='panel-default'`) - provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives)
+  - `template-url` (*not yet supported*) - allows to override the template url of component (default: `components/accordion/accordion-group.html`)
+
+### Accordion heading
+
+Instead of the `heading` attribute on the `accordion-group`, you can use an `accordion-heading` attribute on `template` element inside a group that will be used as the group's header.

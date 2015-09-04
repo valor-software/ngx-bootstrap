@@ -18,17 +18,15 @@ import {NgTransclude} from '../common';
 })
 @View({
   template: `
-    <div>
-      <ul class="nav" [ng-class]="classMap">
-          <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-            <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (^click)="tabz.active = true">
-              <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
-            </a>
-          </li>
-      </ul>
-      <div class="tab-content">
-        <ng-content></ng-content>
-      </div>
+    <ul class="nav" [ng-class]="classMap" (^click)="$event.preventDefault()">
+        <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
+          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (^click)="tabz.active = true">
+            <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
+          </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+      <ng-content></ng-content>
     </div>
   `,
   directives: [CORE_DIRECTIVES, NgClass, NgTransclude]

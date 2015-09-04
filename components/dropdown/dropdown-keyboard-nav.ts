@@ -12,7 +12,7 @@ import {Dropdown} from './dropdown';
 export class KeyboardNav {
   constructor(private dd:Dropdown, private el:ElementRef) {
     console.warn('keyboard-nav deprecated');
-    dd.keynavEnabled = true;
+    dd.keyboardNav = true;
   }
 
   onKeydown(event:KeyboardEvent) {

@@ -17,7 +17,6 @@ gulp.paths = {
 
 require('require-dir')('./gulp-tasks');
 
-// todo: rework ts compile
 var typescript = require('gulp-tsc');
 var options = require('./tsconfig.json').compilerOptions;
 options.emitError = false;

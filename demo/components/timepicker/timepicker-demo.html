@@ -1,0 +1,25 @@
+<timepicker [(ng-model)]="mytime" (change)="changed()" [hour-step]="hstep" [minute-step]="mstep" [show-meridian]="ismeridian"></timepicker>
+
+<pre class="alert alert-info">Time is: {{mytime}}</pre>
+<pre> (note: | date:'shortTime' and date pipe currently supported only in Chrome)</pre>
+
+<div class="row">
+  <div class="col-xs-6">
+    Hours step is:
+    <select class="form-control" [(ng-model)]="hstep">
+      <option *ng-for="#opt of options.hstep" [value]="opt">{{opt}}</option>
+    </select>
+  </div>
+  <div class="col-xs-6">
+    Minutes step is:
+    <select class="form-control" [(ng-model)]="mstep">
+      <option *ng-for="#opt of options.mstep" [value]="opt">{{opt}}</option>
+    </select>
+  </div>
+</div>
+
+<hr>
+
+<button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+<button type="button" class="btn btn-primary" (click)="update()">Set to 14:00</button>
+<button type="button" class="btn btn-danger" (click)="clear()">Clear</button>

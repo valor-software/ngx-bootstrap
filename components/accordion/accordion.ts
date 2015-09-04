@@ -6,35 +6,27 @@ import {
   NgClass, ViewContainerRef, TemplateRef
 } from 'angular2/angular2';
 
-import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
-
-console.log(Ng2BootstrapConfig.theme);
-
 // todo: support template url
 @Component({
   selector: 'accordion, [accordion]',
-  properties: [
-    'templateUrl',
-    'bCloseOthers: closeOthers'
-  ]
+  properties: ['templateUrl', 'closeOthers'],
+  host: {
+    '[class.panel-group]': 'true'
+  }
 })
 @View({
-  template: `
-  <div class="panel-group">
-    <ng-content></ng-content>
-  </div>
-  `
+  template: `<ng-content></ng-content>`
 })
 export class Accordion {
   private templateUrl:string;
-  private bCloseOthers:any;
-  private groups:Array<any> = [];
+  private closeOthers:boolean;
+  private groups:Array<AccordionGroup> = [];
 
   constructor() {
   }
 
-  public closeOthers(openGroup:AccordionGroup) {
-    if (!this.bCloseOthers) {
+  public closeOtherGroups(openGroup:AccordionGroup) {
+    if (!this.closeOthers) {
       return;
     }
 
@@ -59,18 +51,18 @@ export class Accordion {
 
 @Directive({
   selector: 'accordion-transclude, [accordion-transclude]',
-  properties: ['headingTemplate: accordion-transclude'],
+  properties: ['accordionTransclude'],
   lifecycle: [LifecycleEvent.onInit]
 })
 export class AccordionTransclude {
-  private headingTemplate: TemplateRef;
+  private accordionTransclude:TemplateRef;
 
-  constructor(private viewRef: ViewContainerRef) {
+  constructor(private viewRef:ViewContainerRef) {
   }
 
   onInit() {
-    if (this.headingTemplate) {
-      this.viewRef.createEmbeddedView(this.headingTemplate);
+    if (this.accordionTransclude) {
+      this.viewRef.createEmbeddedView(this.accordionTransclude);
     }
   }
 }
@@ -80,12 +72,7 @@ import {Collapse} from '../collapse/collapse';
 // todo: support custom `open class`
 @Component({
   selector: 'accordion-group, [accordion-group]',
-  properties: [
-    'templateUrl',
-    'heading',
-    'isOpen',
-    'isDisabled'
-  ],
+  properties: ['templateUrl', 'heading', 'isOpen', 'isDisabled', 'panelClass'],
   host: {
     '[class.panel-open]': 'isOpen'
   },
@@ -93,11 +80,10 @@ import {Collapse} from '../collapse/collapse';
 })
 @View({
   template: `
-  <div class="panel panel-default">
-    <div class="panel-heading">
+  <div class="panel" [ng-class]="panelClass">
+    <div class="panel-heading" (^click)="toggleOpen($event)">
       <h4 class="panel-title">
-        <a href tabindex="0" class="accordion-toggle"
-          (^click)="toggleOpen($event)">
+        <a href tabindex="0" class="accordion-toggle">
           <span [ng-class]="{'text-muted': isDisabled}"
             [accordion-transclude]="headingTemplate">{{heading}}</span>
         </a>
@@ -114,16 +100,17 @@ import {Collapse} from '../collapse/collapse';
 })
 export class AccordionGroup {
   private templateUrl:string;
+  private panelClass:string;
   private _isOpen:boolean;
 
   public isDisabled:boolean;
-  public headingTemplate:any;
-  // public templateRef: any;
+  public headingTemplate:TemplateRef;
 
   constructor(private accordion:Accordion) {
   }
 
   onInit() {
+    this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 
@@ -145,7 +132,7 @@ export class AccordionGroup {
   public set isOpen(value:boolean) {
     this._isOpen = value;
     if (value) {
-      this.accordion.closeOthers(this);
+      this.accordion.closeOtherGroups(this);
     }
   }
 }
@@ -154,11 +141,9 @@ export class AccordionGroup {
   selector: 'accordion-heading, [accordion-heading]'
 })
 export class AccordionHeading {
-  constructor(private group:AccordionGroup, private templateRef: TemplateRef) {
+  constructor(private group:AccordionGroup, private templateRef:TemplateRef) {
     group.headingTemplate = templateRef;
   }
 }
 
-export const accordion:Array<any> = [
-  Accordion, AccordionGroup,
-  AccordionHeading, AccordionTransclude];
+export const accordion:Array<any> = [Accordion, AccordionGroup, AccordionHeading];

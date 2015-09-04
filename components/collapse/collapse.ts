@@ -10,9 +10,7 @@ import {
 // todo: add init and on change
 @Directive({
   selector: '[collapse]',
-  properties: [
-    'collapse'
-  ],
+  properties: ['collapse'],
   host: {
     '[class.in]': 'isExpanded',
     '[class.collapse]': 'isCollapse',

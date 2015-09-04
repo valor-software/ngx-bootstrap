@@ -1,70 +1,102 @@
 /// <reference path="../tsd.d.ts" />
+import {Component, View, bootstrap, NgClass} from 'angular2/angular2';
 
-import {Component, View, bootstrap} from 'angular2/angular2';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../components/index';
 
-import {AccordionDemo} from './components/accordion-demo';
-import {AlertDemo} from './components/alert-demo';
-import {ButtonsDemo} from './components/buttons-demo';
-import {DropdownDemo} from './components/dropdown-demo';
-import {CarouselDemo} from './components/carousel-demo';
-import {CollapseDemo} from './components/collapse-demo';
-import {PaginationDemo} from './components/pagination-demo';
-import {ProgressbarDemo} from './components/progressbar-demo';
-import {RatingDemo} from './components/rating-demo';
-import {TabsDemo} from './components/tabs-demo';
-import {TimepickerDemo} from './components/timepicker-demo';
-import {TooltipDemo} from './components/tooltip-demo';
+let w:any = window;
+if (w && w.__theme === 'bs4') {
+  Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
+}
+
+import {AccordionSection} from './components/accordion-section';
+import {AlertSection} from './components/alert-section';
+import {ButtonsSection} from './components/buttons-section';
+import {CarouselSection} from './components/carousel-section';
+import {CollapseSection} from './components/collapse-section';
+import {DropdownSection} from './components/dropdown-section';
+import {PaginationSection} from './components/pagination-section';
+import {ProgressbarSection} from './components/progressbar-section';
+import {RatingSection} from './components/rating-section';
+import {TabsSection} from './components/tabs-section';
+import {TimepickerSection} from './components/timepicker-section';
+import {TooltipSection} from './components/tooltip-section';
+
+import {DemoHeader} from './components/demo-header';
+
+let gettingStarted = require('./getting-started.md');
 
 @Component({
   selector: 'app'
 })
 @View({
   template: `
-    <div></div>
-    <accordion-demo class="col-md-12"></accordion-demo>
-    <alert-demo class="col-md-12"></alert-demo>
-    <buttons-demo class="col-md-12"></buttons-demo>
-    <dropdown-demo class="col-md-12"></dropdown-demo>
-    <carousel-demo class="col-md-12"></carousel-demo>
-    <collapse-demo class="col-md-12"></collapse-demo>
-    <pagination-demo class="col-md-12"></pagination-demo>
-    <progressbar-demo class="col-md-12"></progressbar-demo>
-    <rating-demo class="col-md-12"></rating-demo>
-    <tabs-demo class="col-md-12"></tabs-demo>
-    <timepicker-demo class="col-md-12"></timepicker-demo>
-    <tooltip-demo class="col-md-12"></tooltip-demo>
+  <demo-header>Loading header</demo-header>
+
+  <main class="bd-pageheader">
+    <div class="container">
+      <h1>ng2-bootstrap</h1>
+      <p>Native Angular2 directives for Bootstrap</p>
+      <a class="btn btn-primary" href="https://github.com/valor-software/ng2-bootstrap">View on GitHub</a>
+      <div class="row">
+        <div class="col-lg-1"><iframe src="https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></div>
+        <div class="col-lg-1"><iframe src="https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=fork&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></div>
+      </div>
+    </div>
+  </main>
+
+  <div class="container">
+    <div class="col-md-12 card card-block panel panel-default">
+      <selection>
+          <h1>ng2-bootstrap available with:
+          <a class="btn btn-default btn-secondary btn-lg" [ng-class]="{active: isBs3}" href="./">Bootstrap 3</a>
+          <a class="btn btn-default btn-secondary btn-lg" [ng-class]="{active: !isBs3}" href="./index-bs4.html">Bootstrap 4</a>
+          </h1>
+      </selection>
+    </div>
+    <br>
+    <section id="getting-started">${gettingStarted}</section>
+
+    <accordion-section class="col-md-12"></accordion-section>
+    <alert-section class="col-md-12"></alert-section>
+    <buttons-section class="col-md-12"></buttons-section>
+    <carousel-section class="col-md-12"></carousel-section>
+    <collapse-section class="col-md-12"></collapse-section>
+    <dropdown-section class="col-md-12"></dropdown-section>
+    <pagination-section class="col-md-12"></pagination-section>
+    <progressbar-section class="col-md-12"></progressbar-section>
+    <rating-section class="col-md-12"></rating-section>
+    <tabs-section class="col-md-12"></tabs-section>
+    <timepicker-section class="col-md-12"></timepicker-section>
+    <tooltip-section class="col-md-12"></tooltip-section>
+  </div>
+
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted text-center"><a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.</p>
+    </div>
+  </footer>
   `,
   directives: [
-    AlertDemo,
-    AccordionDemo,
-    ButtonsDemo,
-    DropdownDemo,
-    CarouselDemo,
-    CollapseDemo,
-    PaginationDemo,
-    ProgressbarDemo,
-    RatingDemo,
-    TabsDemo,
-    TimepickerDemo,
-    TooltipDemo
+    NgClass,
+    DemoHeader,
+
+    AccordionSection,
+    AlertSection,
+    ButtonsSection,
+    CarouselSection,
+    CollapseSection,
+    DropdownSection,
+    PaginationSection,
+    ProgressbarSection,
+    RatingSection,
+    TabsSection,
+    TimepickerSection,
+    TooltipSection
   ]
 })
-export class Home {
+export class Demo {
+  private isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
 }
 
-bootstrap(Home);
-
-
-// "demo/index.ts",
-//  "demo/typings/es6-object.d.ts",
-//  "demo/components/accordion-demo.ts",
-//  "demo/components/alert-demo.ts",
-//  "demo/components/buttons-demo.ts",
-//  "demo/components/dropdown-demo.ts",
-//  "demo/components/collapse-demo.ts",
-//  "demo/components/pagination-demo.ts",
-//  "demo/components/progressbar-demo.ts",
-//  "demo/components/rating-demo.ts",
-//  "demo/components/tabs-demo.ts",
-//  "demo/components/timepicker-demo.ts",
-//  "demo/components/tooltip-demo.ts"
+bootstrap(Demo);
