@@ -40,20 +40,20 @@ tsd link
 ## Components
 
 - [x] Accordion
-- [x] Alert ([ ] template url)
+- [x] Alert
 - [x] Buttons
 - [x] Carousel
-- [x] Collapse ([ ] animate)
-- [ ] Datepicker (in progress...)
-- [x] Dropdown ([ ] template url, [ ] append to body)
+- [x] Collapse
+- [+-] Datepicker (Datepicker popup not implemented)
+- [x] Dropdown
 - [ ] Modal
-- [x] Pagination([ ] todos, ugly code:) )
+- [x] Pagination
 - [ ] Popover
 - [x] Progressbar
 - [x] Rating
 - [x] Tabs
-- [x] Timepicker ([ ] validation)
-- [+-] Tooltip (baseline working, in progress...)
+- [x] Timepicker
+- [+-] Tooltip
 - [ ] Typeahead  (in progress...)
 
 - [x] NgTransclude - to transclude templates
@@ -71,7 +71,7 @@ Please read central `ng2` modules [readme](https://github.com/valor-software/ng2
 - [ ] support `templateUrl` for directives
 - [ ] support animation  (in progress...)
 - [x] demo page
-- [ ] docs
+- [x] docs
 - [ ] publish to bower, etc.
 - [ ] migration guide from Angular 1 to Angular 2
 - [x] publish to npm

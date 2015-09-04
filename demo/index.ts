@@ -8,11 +8,13 @@ if (w && w.__theme === 'bs4') {
   Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
 }
 
+
 import {AccordionSection} from './components/accordion-section';
 import {AlertSection} from './components/alert-section';
 import {ButtonsSection} from './components/buttons-section';
 import {CarouselSection} from './components/carousel-section';
 import {CollapseSection} from './components/collapse-section';
+import {DatepickerSection} from './components/datepicker-section';
 import {DropdownSection} from './components/dropdown-section';
 import {PaginationSection} from './components/pagination-section';
 import {ProgressbarSection} from './components/progressbar-section';
@@ -61,6 +63,7 @@ let gettingStarted = require('./getting-started.md');
     <buttons-section class="col-md-12"></buttons-section>
     <carousel-section class="col-md-12"></carousel-section>
     <collapse-section class="col-md-12"></collapse-section>
+    <datepicker-section class="col-md-12"></datepicker-section>
     <dropdown-section class="col-md-12"></dropdown-section>
     <pagination-section class="col-md-12"></pagination-section>
     <progressbar-section class="col-md-12"></progressbar-section>
@@ -86,6 +89,7 @@ let gettingStarted = require('./getting-started.md');
     ButtonsSection,
     CarouselSection,
     CollapseSection,
+    DatepickerSection,
     DropdownSection,
     PaginationSection,
     ProgressbarSection,
