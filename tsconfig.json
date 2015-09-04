@@ -26,6 +26,7 @@
         "./components/carousel/carousel.ts",
         "./components/collapse/collapse.ts",
         "./components/common.ts",
+        "./components/datepicker/index.ts",
         "./components/dropdown/dropdown-menu.ts",
         "./components/dropdown/dropdown-service.ts",
         "./components/dropdown/dropdown-toggle.ts",

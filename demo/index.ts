@@ -8,6 +8,8 @@ if (w && w.__theme === 'bs4') {
   Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
 }
 
+import {DatePickerDemo} from './components/datepicker-demo';
+
 import {AccordionSection} from './components/accordion-section';
 import {AlertSection} from './components/alert-section';
 import {ButtonsSection} from './components/buttons-section';
@@ -61,6 +63,7 @@ let gettingStarted = require('./getting-started.md');
     <buttons-section class="col-md-12"></buttons-section>
     <carousel-section class="col-md-12"></carousel-section>
     <collapse-section class="col-md-12"></collapse-section>
+    <datepicker-demo class="col-md-12"></datepicker-demo>
     <dropdown-section class="col-md-12"></dropdown-section>
     <pagination-section class="col-md-12"></pagination-section>
     <progressbar-section class="col-md-12"></progressbar-section>
@@ -86,6 +89,7 @@ let gettingStarted = require('./getting-started.md');
     ButtonsSection,
     CarouselSection,
     CollapseSection,
+    DatePickerDemo,
     DropdownSection,
     PaginationSection,
     ProgressbarSection,
