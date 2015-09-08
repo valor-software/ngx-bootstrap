@@ -73,7 +73,7 @@ const KEYS = {
 })
 @View({
   template: `
-<div [hidden]="!datepickerMode" class="well well-sm" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
+<div [hidden]="!datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
   <ng-content></ng-content>
 </div>
   `,

@@ -9,21 +9,21 @@ import {
   Self, NgModel, Renderer
 } from 'angular2/angular2';
 
-import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {DatePickerInner} from './datepicker-inner';
 
 const TEMPLATE_OPTIONS = {
-  bs4: {
+  [Ng2BootstrapTheme.BS4]: {
     DAY_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-sm"
-                [ng-class]="{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
+                [ng-class]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
                 (^click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ng-class]="{'text-muted': dtz.secondary, 'text-success': dtz.current}">{{dtz.label}}</span>
+          <span [ng-class]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>
         </button>
     `
   },
-  bs3: {
+  [Ng2BootstrapTheme.BS3]: {
     DAY_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
                 [ng-class]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
@@ -47,13 +47,13 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   <thead>
     <tr>
       <th>
-        <button type="button" class="btn btn-default btn-sm pull-left" (^click)="datePicker.move(-1)" tabindex="-1">
+        <button type="button" class="btn btn-default btn-secondary btn-sm pull-left" (^click)="datePicker.move(-1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </th>
       <th colspan="5" [hidden]="datePicker.showWeeks">
         <button [id]="datePicker.uniqueId + '-title'"
-                type="button" class="btn btn-default btn-sm"
+                type="button" class="btn btn-default btn-secondary btn-sm"
                 (^click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
                 [ng-class]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
@@ -62,7 +62,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
       </th>
       <th colspan="6" [hidden]="!datePicker.showWeeks">
         <button [id]="datePicker.uniqueId + '-title'"
-                type="button" class="btn btn-default btn-sm"
+                type="button" class="btn btn-default btn-secondary btn-sm"
                 (^click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
                 [ng-class]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
@@ -70,14 +70,14 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
         </button>
       </th>
       <th>
-        <button type="button" class="btn btn-default btn-sm pull-right" (^click)="datePicker.move(1)" tabindex="-1">
+        <button type="button" class="btn btn-default btn-secondary btn-sm pull-right" (^click)="datePicker.move(1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
       </th>
     </tr>
     <tr>
       <th [hidden]="!datePicker.showWeeks" class="text-center"></th>
-      <th *ng-for="#labelz of labels" class="text-center"><small aria-label="labelz.full">{{labelz.abbr}}</small></th>
+      <th *ng-for="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
     </tr>
   </thead>
   <tbody>
