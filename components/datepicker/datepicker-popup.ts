@@ -57,10 +57,10 @@ const datePickerPopupConfig:Object = {
         </li>
         <li *ng-if="showButtonBar" style="padding:10px 9px 2px">
             <span class="btn-group pull-left">
-                 <button type="button" class="btn btn-sm btn-info" (^click)="select('today')" ng-disabled="isDisabled('today')">{{ getText('current') }}</button>
-                 <button type="button" class="btn btn-sm btn-danger" (^click)="select(null)">{{ getText('clear') }}</button>
+                 <button type="button" class="btn btn-sm btn-info" (click)="select('today')" ng-disabled="isDisabled('today')">{{ getText('current') }}</button>
+                 <button type="button" class="btn btn-sm btn-danger" (click)="select(null)">{{ getText('clear') }}</button>
             </span>
-            <button type="button" class="btn btn-sm btn-success pull-right" (^click)="close()">{{ getText('close') }}</button>
+            <button type="button" class="btn btn-sm btn-success pull-right" (click)="close()">{{ getText('close') }}</button>
         </li>
     </ul>`,
   directives: [NgClass, NgStyle, DatePicker, FORM_DIRECTIVES, CORE_DIRECTIVES],

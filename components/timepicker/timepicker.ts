@@ -60,9 +60,9 @@ function addMinutes(date, minutes) {
     <table>
       <tbody>
         <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
-          <td><a (^click)="incrementHours()" [ng-class]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+          <td><a (click)="incrementHours()" [ng-class]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
           <td>&nbsp;</td>
-          <td><a (^click)="incrementMinutes()" [ng-class]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+          <td><a (click)="incrementMinutes()" [ng-class]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
           <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
         <tr>
@@ -76,9 +76,9 @@ function addMinutes(date, minutes) {
           <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ng-class]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>
         <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
-          <td><a (^click)="decrementHours()" [ng-class]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+          <td><a (click)="decrementHours()" [ng-class]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
           <td>&nbsp;</td>
-          <td><a (^click)="decrementMinutes()" [ng-class]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+          <td><a (click)="decrementMinutes()" [ng-class]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
           <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
       </tbody>

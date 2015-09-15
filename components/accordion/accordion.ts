@@ -79,7 +79,7 @@ import {Collapse} from '../collapse/collapse';
 @View({
   template: `
   <div class="panel" [ng-class]="panelClass">
-    <div class="panel-heading" (^click)="toggleOpen($event)">
+    <div class="panel-heading" (click)="toggleOpen($event)">
       <h4 class="panel-title">
         <a href tabindex="0" class="accordion-toggle">
           <span [ng-class]="{'text-muted': isDisabled}"
