@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES,
@@ -54,7 +54,6 @@ function addMinutes(date, minutes) {
     'showSpinners',
     'min', 'max'
   ],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -87,7 +86,7 @@ function addMinutes(date, minutes) {
   `,
   directives: [FORM_DIRECTIVES, NgClass]
 })
-export class Timepicker extends DefaultValueAccessor {
+export class Timepicker extends DefaultValueAccessor implements OnInit {
   // result value
   private _selected:Date = new Date();
   // config

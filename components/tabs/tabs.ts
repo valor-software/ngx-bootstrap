@@ -2,7 +2,7 @@
 
 import {
   Component, View, Directive,
-  LifecycleEvent, EventEmitter,
+  OnInit, OnDestroy, OnCheck, EventEmitter,
   ElementRef, TemplateRef,
   CORE_DIRECTIVES, NgClass
 } from 'angular2/angular2';
@@ -14,7 +14,6 @@ import {NgTransclude} from '../common';
 @Component({
   selector: 'tabset',
   properties: ['vertical', 'justified', 'type'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -31,7 +30,7 @@ import {NgTransclude} from '../common';
   `,
   directives: [CORE_DIRECTIVES, NgClass, NgTransclude]
 })
-export class Tabset {
+export class Tabset implements OnInit{
   private vertical:boolean;
   private justified:boolean;
   private type:string;
@@ -84,10 +83,8 @@ export class Tabset {
     '[class.tab-pane]': 'true',
     '[class.active]': 'active'
   },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy,
-    LifecycleEvent.onCheck]
 })
-export class Tab {
+export class Tab implements OnInit, OnDestroy, OnCheck {
   public _active:boolean;
   public disabled:boolean;
   public heading:string;

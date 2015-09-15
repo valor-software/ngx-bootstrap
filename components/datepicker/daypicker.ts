@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host, Directive,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
@@ -39,7 +39,6 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
 
 @Component({
   selector: 'daypicker, [daypicker]',
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -93,7 +92,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class DayPicker {
+export class DayPicker implements OnInit {
 
   public labels:Array<any> = [];
   public title:string;

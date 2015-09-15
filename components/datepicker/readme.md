@@ -23,13 +23,12 @@ import {datepicker} from 'ng2-bootstrap';
 })
 
 // not yet implemented properly
-// class DatePickerPopup
+// class DatePickerPopup implements OnInit
 @Directive({
   selector: '[datepicker-popup][ng-model]',
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
   host: {'(cupdate)': 'onUpdate1($event)'},
-  lifecycle: [LifecycleEvent.onInit]
 })
 
 export const datepicker:Array<any> = [DatePicker, DatePickerPopup];

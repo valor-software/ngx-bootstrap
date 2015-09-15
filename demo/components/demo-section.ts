@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  LifecycleEvent,
+  OnInit,
   CORE_DIRECTIVES, NgNonBindable
 } from 'angular2/angular2';
 
@@ -30,7 +30,6 @@ export class DemoSectionConfig {
 @Component({
   selector: 'demo-section',
   properties: ['demoSection'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -80,6 +79,6 @@ export class DemoSectionConfig {
   `,
   directives: [tabs, CORE_DIRECTIVES, NgNonBindable]
 })
-export class DemoSection {
+export class DemoSection implements OnInit {
   private demoSection: DemoSectionConfig;
 }

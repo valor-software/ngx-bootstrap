@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  Directive, LifecycleEvent,
+  Directive, OnInit, OnDestroy,
   NgClass, ViewContainerRef, TemplateRef
 } from 'angular2/angular2';
 
@@ -52,9 +52,8 @@ export class Accordion {
 @Directive({
   selector: 'accordion-transclude, [accordion-transclude]',
   properties: ['accordionTransclude'],
-  lifecycle: [LifecycleEvent.onInit]
 })
-export class AccordionTransclude {
+export class AccordionTransclude implements OnInit{
   private accordionTransclude:TemplateRef;
 
   constructor(private viewRef:ViewContainerRef) {
@@ -76,7 +75,6 @@ import {Collapse} from '../collapse/collapse';
   host: {
     '[class.panel-open]': 'isOpen'
   },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 @View({
   template: `
@@ -98,7 +96,7 @@ import {Collapse} from '../collapse/collapse';
   `,
   directives: [Collapse, AccordionTransclude, NgClass]
 })
-export class AccordionGroup {
+export class AccordionGroup implements OnInit, OnDestroy {
   private templateUrl:string;
   private panelClass:string;
   private _isOpen:boolean;

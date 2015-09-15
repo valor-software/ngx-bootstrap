@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  Directive, LifecycleEvent,
+  Directive, 
   EventEmitter, ElementRef
 } from 'angular2/angular2';
 

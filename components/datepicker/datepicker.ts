@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host,
-  LifecycleEvent, EventEmitter,
+  EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,

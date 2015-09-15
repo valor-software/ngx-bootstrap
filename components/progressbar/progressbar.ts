@@ -3,7 +3,7 @@
 import {
   Type,
   Component, View, Directive,
-  LifecycleEvent, EventEmitter,
+  OnInit, OnDestroy, EventEmitter,
   ElementRef, ViewContainerRef,
   NgClass, NgStyle, Host,
   ViewEncapsulation,
@@ -24,13 +24,12 @@ const progressConfig = {
     'class': 'progress',
     '[attr.max]': 'max'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 // @View({
 //  template: `<div class="progress"><ng-content></ng-content></div>`,
 //  encapsulation: ViewEncapsulation.NONE
 // })
-export class Progress {
+export class Progress implements OnInit {
   private _max:number;
   public animate:boolean;
   public bars:Array<any> = [];
@@ -71,7 +70,6 @@ export class Progress {
 @Component({
   selector: 'bar, [bar]',
   properties: ['type', 'value'],
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 @View({
   template: `
@@ -89,7 +87,7 @@ export class Progress {
   directives: [NgStyle, NgClass],
   encapsulation: ViewEncapsulation.NONE
 })
-export class Bar {
+export class Bar implements OnInit, OnDestroy {
   public type:string;
   public percent:number = 0;
   public transition:string;

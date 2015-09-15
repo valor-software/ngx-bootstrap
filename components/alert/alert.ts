@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   ElementRef, ViewContainerRef,
   NgIf, NgClass
 } from 'angular2/angular2';
@@ -12,7 +12,6 @@ import {
   selector: 'alert',
   properties: ['type', 'dismissible', 'dismissOnTimeout'],
   events: ['close'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -24,9 +23,9 @@ import {
     <ng-content></ng-content>
   </div>
   `,
-  directives: [NgIf, NgClass]
+  directives: [NgIf, NgClass],
 })
-export class Alert {
+export class Alert implements OnInit {
   type:string;
   close:EventEmitter = new EventEmitter();
   templateUrl:string;

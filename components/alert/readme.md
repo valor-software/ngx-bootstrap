@@ -5,12 +5,11 @@ import {Alert} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Alert
+// class Alert implements OnInit
 @Component({
   selector: 'alert',
   properties: ['type', 'dismissible', 'dismissOnTimeout'],
   events: ['close'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 ```
 

@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
@@ -39,7 +39,6 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
 
 @Component({
   selector: 'yearpicker, [yearpicker]',
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -80,7 +79,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class YearPicker {
+export class YearPicker implements OnInit {
   private title:string;
   private rows:Array<any> = [];
 

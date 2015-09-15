@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  Directive, LifecycleEvent,
+  Directive, OnInit, OnDestroy,
   EventEmitter, ElementRef,
   CORE_DIRECTIVES, NgClass
 } from 'angular2/angular2';
@@ -36,7 +36,6 @@ const NAVIGATION = {
 @Component({
   selector: 'carousel, [carousel]',
   properties: ['interval', 'noTransition', 'noPause', 'noWrap'],
-  lifecycle: [LifecycleEvent.onDestroy]
 })
 // todo:
 // (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
@@ -52,7 +51,7 @@ const NAVIGATION = {
   `,
   directives: [CORE_DIRECTIVES, NgClass]
 })
-export class Carousel {
+export class Carousel implements OnDestroy {
   private noPause:boolean;
   private noWrap:boolean;
   private slides:Array<Slide> = [];
@@ -212,7 +211,6 @@ export class Carousel {
     '[class.item]': 'true',
     '[class.carousel-item]': 'true'
   },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 @View({
   template: `
@@ -222,7 +220,7 @@ export class Carousel {
   `,
   directives: [NgClass]
 })
-export class Slide {
+export class Slide implements OnInit, OnDestroy {
   public active:boolean;
   public direction:Direction;
   public index:number;

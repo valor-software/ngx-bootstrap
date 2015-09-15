@@ -1,14 +1,13 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Directive, ElementRef, Host, LifecycleEvent} from 'angular2/angular2';
+import {Directive, ElementRef, Host, OnInit} from 'angular2/angular2';
 import {Dropdown} from './dropdown';
 
 @Directive({
   selector: '[dropdown-menu], .dropdown-menu',
   properties: ['templateUrl'],
-  lifecycle: [LifecycleEvent.onInit]
 })
-export class DropdownMenu {
+export class DropdownMenu implements OnInit {
   public templateUrl:string;
 
   constructor(@Host() public dropdown:Dropdown, public el:ElementRef) {

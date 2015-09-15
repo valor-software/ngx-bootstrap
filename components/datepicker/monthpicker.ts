@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
@@ -35,7 +35,6 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
 
 @Component({
   selector: 'monthpicker, [monthpicker]',
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -75,7 +74,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class MonthPicker {
+export class MonthPicker implements OnInit {
   public title:string;
   public rows:Array<any> = [];
 

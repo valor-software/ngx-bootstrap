@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host, Directive,
-  LifecycleEvent, EventEmitter, NgControl,
+  OnInit, EventEmitter, NgControl,
   DefaultValueAccessor, ComponentRef, ViewEncapsulation, ControlValueAccessor,
   ElementRef, ViewContainerRef, DynamicComponentLoader,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
@@ -120,9 +120,8 @@ class PopupContainer {
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
   host: {'(cupdate)': 'onUpdate1($event)'},
-  lifecycle: [LifecycleEvent.onInit]
 })
-export class DatePickerPopup {
+export class DatePickerPopup implements OnInit {
   private _activeDate:Date;
   private placement:string = 'bottom';
   private _isOpen:boolean = false;

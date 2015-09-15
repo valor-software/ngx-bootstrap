@@ -5,7 +5,7 @@ import {progressbar} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Progress
+// class Progress implements OnInit
 @Directive({
   selector: 'bs-progress, [progress]',
   properties: ['animate', 'max'],
@@ -13,14 +13,12 @@ import {progressbar} from 'ng2-bootstrap';
     'class': 'progress',
     '[attr.max]': 'max'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 
-// class Bar
+// class Bar implements OnInit, OnDestroy
 @Component({
   selector: 'bar, [bar]',
   properties: ['type', 'value'],
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 
 // class Progressbar
