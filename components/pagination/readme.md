@@ -5,7 +5,7 @@ import {pagination} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Pagination
+// class Pagination implements OnInit
 @Component({
   selector: 'pagination[ng-model], [pagination][ng-model]',
   properties: [
@@ -15,10 +15,9 @@ import {pagination} from 'ng2-bootstrap';
     'firstText', 'previousText', 'nextText', 'lastText'
   ],
   events: ['numPages'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 
-// class Pager
+// class Pager implements OnInit
 @Component({
   selector: 'pager[ng-model], [pager][ng-model]',
   properties: [
@@ -26,7 +25,6 @@ import {pagination} from 'ng2-bootstrap';
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
   ],
-  lifecycle: [LifecycleEvent.onInit]
 })
 
 export const pagination:Array<any> = [Pagination, Pager];

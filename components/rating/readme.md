@@ -5,7 +5,7 @@ import {Rating} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Rating
+// class Rating implements on Init
 @Component({
   selector: 'rating[ng-model]',
   properties: [
@@ -17,7 +17,6 @@ import {Rating} from 'ng2-bootstrap';
   host: {
     '(keydown)': 'onKeydown($event)'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 ```
 

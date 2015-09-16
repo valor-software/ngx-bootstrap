@@ -1,6 +1,6 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Directive, ElementRef, Host, LifecycleEvent} from 'angular2/angular2';
+import {Directive, ElementRef, Host, OnInit} from 'angular2/angular2';
 
 import {Dropdown} from './dropdown';
 
@@ -13,10 +13,9 @@ import {Dropdown} from './dropdown';
     '[class.disabled]': 'disabled',
     '[attr.aria-haspopup]': 'true',
     '[attr.aria-expanded]': 'isOpen'
-  },
-  lifecycle: [LifecycleEvent.onInit]
+  }
 })
-export class DropdownToggle {
+export class DropdownToggle implements OnInit {
   private disabled:boolean = false;
 
   constructor(@Host() public dropdown:Dropdown, public el:ElementRef) {

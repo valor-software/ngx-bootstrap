@@ -12,7 +12,7 @@ let template = `
     <header class="navbar navbar-default navbar-fixed-top navbar-inner bg-faded">
     <div class="container">
       <div class="navbar-header hidden-md-up">
-        <button type="button" class="navbar-toggle navbar-toggler pull-right" (^click)="isCollapsed = !isCollapsed">
+        <button type="button" class="navbar-toggle navbar-toggler pull-right" (click)="isCollapsed = !isCollapsed">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -34,7 +34,7 @@ let template = `
         </ul>
       </nav>
       <nav class="visible-xs hidden-md-up">
-        <ul class="nav nav-pills nav-stacked scrollable-menu" [collapse]="!isCollapsed" (^click)="isCollapsed = !isCollapsed; true">
+        <ul class="nav nav-pills nav-stacked scrollable-menu" [collapse]="!isCollapsed" (click)="isCollapsed = !isCollapsed; true">
           <li class="nav-item"><a class="nav-link" href="{{prefix}}#getting-started">Getting started</a></li>
           <li class="nav-item"><a class="nav-link" href="{{prefix}}#migration">Migration</a></li>
           <li *ng-for="#comp of components" class="nav-item"><a class="dropdown-item nav-link" href="{{prefix}}#{{comp.toLowerCase()}}">{{comp}}</a></li>

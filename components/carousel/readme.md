@@ -5,14 +5,13 @@ import {carousel} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Carousel
+// class Carousel implements OnDestroy
 @Component({
   selector: 'carousel, [carousel]',
   properties: ['interval', 'noTransition', 'noPause', 'noWrap'],
-  lifecycle: [LifecycleEvent.onDestroy]
 })
 
-// class Slide
+// class Slide implements OnInit, OnDestroy
 @Component({
   selector: 'slide, [slide]',
   properties: ['direction', 'active', 'index'],
@@ -21,7 +20,6 @@ import {carousel} from 'ng2-bootstrap';
     '[class.item]': 'true',
     '[class.carousel-item]': 'true'
   },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 
 export const carousel:Array<any> = [Carousel, Slide];

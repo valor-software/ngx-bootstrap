@@ -4,7 +4,7 @@ import {ButtonRadio, ButtonCheckbox} from 'ng2-bootstrap';
 ```
 ### Annotations
 ```typescript
-// class ButtonRadio
+// class ButtonRadio implements OnInit
 @Directive({
   selector: '[btn-radio][ng-model]',
   properties: ['btnRadio', 'uncheckable'],
@@ -12,10 +12,9 @@ import {ButtonRadio, ButtonCheckbox} from 'ng2-bootstrap';
     '(click)': 'onClick()',
     '[class.active]': 'isActive'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 
-// class ButtonCheckbox
+// class ButtonCheckbox implements OnInit
 @Directive({
   selector: '[btn-checkbox][ng-model]',
   properties: ['btnCheckboxTrue', 'btnCheckboxFalse'],
@@ -23,7 +22,6 @@ import {ButtonRadio, ButtonCheckbox} from 'ng2-bootstrap';
     '(click)': 'onClick()',
     '[class.active]': 'state'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 ```
 

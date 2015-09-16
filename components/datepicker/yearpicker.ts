@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
@@ -18,7 +18,7 @@ const TEMPLATE_OPTIONS = {
         <button type="button" style="min-width:100%;" class="btn btn-default"
                 [ng-class]="{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
-                (^click)="datePicker.select(dtz.date)" tabindex="-1">
+                (click)="datePicker.select(dtz.date)" tabindex="-1">
           <span [ng-class]="{'text-success': dtz.current}">{{dtz.label}}</span>
         </button>
     `
@@ -28,7 +28,7 @@ const TEMPLATE_OPTIONS = {
         <button type="button" style="min-width:100%;" class="btn btn-default"
                 [ng-class]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
-                (^click)="datePicker.select(dtz.date)" tabindex="-1">
+                (click)="datePicker.select(dtz.date)" tabindex="-1">
           <span [ng-class]="{'text-info': dtz.current}">{{dtz.label}}</span>
         </button>
     `
@@ -38,8 +38,7 @@ const TEMPLATE_OPTIONS = {
 const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 
 @Component({
-  selector: 'yearpicker, [yearpicker]',
-  lifecycle: [LifecycleEvent.onInit]
+  selector: 'yearpicker, [yearpicker]'
 })
 @View({
   template: `
@@ -48,14 +47,14 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
     <tr>
       <th>
         <button type="button" class="btn btn-default btn-sm pull-left"
-                (^click)="datePicker.move(-1)" tabindex="-1">
+                (click)="datePicker.move(-1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </th>
       <th colspan="3">
         <button [id]="uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
-                (^click)="datePicker.toggleMode()"
+                (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"
                 [ng-class]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{title}}</strong>
@@ -63,7 +62,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
       </th>
       <th>
         <button type="button" class="btn btn-default btn-sm pull-right"
-                (^click)="datePicker.move(1)" tabindex="-1">
+                (click)="datePicker.move(1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
       </th>
@@ -80,7 +79,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class YearPicker {
+export class YearPicker implements OnInit {
   private title:string;
   private rows:Array<any> = [];
 

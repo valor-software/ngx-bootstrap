@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   ElementRef, ViewContainerRef,
   NgIf, NgClass
 } from 'angular2/angular2';
@@ -11,13 +11,12 @@ import {
 @Component({
   selector: 'alert',
   properties: ['type', 'dismissible', 'dismissOnTimeout'],
-  events: ['close'],
-  lifecycle: [LifecycleEvent.onInit]
+  events: ['close']
 })
 @View({
   template: `
   <div class="alert" role="alert" [ng-class]="classes" *ng-if="!closed">
-    <button *ng-if="closeable" type="button" class="close" (^click)="onClose($event)">
+    <button *ng-if="closeable" type="button" class="close" (click)="onClose($event)">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
@@ -26,7 +25,7 @@ import {
   `,
   directives: [NgIf, NgClass]
 })
-export class Alert {
+export class Alert implements OnInit {
   type:string;
   close:EventEmitter = new EventEmitter();
   templateUrl:string;

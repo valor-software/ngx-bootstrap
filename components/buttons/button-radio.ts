@@ -1,7 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 import {
   Directive,
-  DefaultValueAccessor, LifecycleEvent,
+  DefaultValueAccessor, OnInit,
   Self, NgModel, Renderer, ElementRef
 } from 'angular2/angular2';
 
@@ -12,10 +12,9 @@ import {
   host: {
     '(click)': 'onClick()',
     '[class.active]': 'isActive'
-  },
-  lifecycle: [LifecycleEvent.onInit]
+  }
 })
-export class ButtonRadio extends DefaultValueAccessor {
+export class ButtonRadio extends DefaultValueAccessor implements OnInit {
   private btnRadio:string;
   private uncheckable:boolean;
   cd:NgModel;

@@ -1,7 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 
 import {
-  Directive, LifecycleEvent,
+  Directive, OnInit, OnDestroy,
   EventEmitter, ElementRef
 } from 'angular2/angular2';
 
@@ -12,13 +12,12 @@ import {dropdownService, ALWAYS} from './dropdown-service';
   selector: '[dropdown]',
   properties: ['isOpen', 'autoClose', 'keyboardNav', 'dropdownAppendToBody'],
   events: ['onToggle'],
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy],
   host: {
     '[class.dropdown]': 'true',
     '[class.open]': 'isOpen'
   }
 })
-export class Dropdown {
+export class Dropdown implements OnInit, OnDestroy {
   private _isOpen:boolean;
   // enum string: ['always', 'outsideClick', 'disabled']
   private dropdownAppendToBody:boolean;

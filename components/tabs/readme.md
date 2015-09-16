@@ -15,14 +15,13 @@ import {tabs} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Tabset
+// class Tabset implements OnInit
 @Component({
   selector: 'tabset',
   properties: ['vertical', 'justified', 'type'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 
-// class Tab
+// class Tab implements OnInit, OnDestroy, DoCheck
 @Directive({
   selector: 'tab, [tab]',
   properties: ['active', 'disable', 'disabled', 'heading'],
@@ -31,8 +30,6 @@ import {tabs} from 'ng2-bootstrap';
     '[class.tab-pane]': 'true',
     '[class.active]': 'active'
   },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy,
-    LifecycleEvent.onCheck]
 })
 
 // class TabHeading

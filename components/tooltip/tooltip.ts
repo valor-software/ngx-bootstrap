@@ -3,7 +3,7 @@
 import {
   Directive,
   Component, View,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   ElementRef,
   NgClass, NgStyle,
   ViewRef, ViewContainerRef, TemplateRef,
@@ -40,7 +40,7 @@ class TooltipOptions {
       </div>
     </div>`,
   directives: [NgClass, NgStyle],
-  encapsulation: ViewEncapsulation.NONE
+  encapsulation: ViewEncapsulation.None
 })
 class TooltipContainer {
   private classMap:Object;
@@ -88,10 +88,9 @@ class TooltipContainer {
     '(mouseleave)': 'hide($event, $targe)',
     '(focusin)': 'show($event, $targe)',
     '(focusout)': 'hide($event, $targe)'
-  },
-  lifecycle: [LifecycleEvent.onInit]
+  }
 })
-export class Tooltip {
+export class Tooltip implements OnInit {
   private visible:boolean = false;
 
   private content:string;

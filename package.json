@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.36.0",
+  "version": "0.37.0",
   "description": "angular2 bootstrap components",
   "scripts": {
     "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
@@ -40,12 +40,12 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
-    "angular2": "2.0.0-alpha.36",
+    "angular2": "2.0.0-alpha.37",
     "es6-promise": "3.0.2",
     "reflect-metadata": "0.1.1",
-    "rtts_assert": "2.0.0-alpha.36",
+    "rtts_assert": "2.0.0-alpha.37",
     "traceur-runtime": "0.0.59",
-    "zone.js": "0.5.4"
+    "zone.js": "0.5.5"
   },
   "devDependencies": {
     "bootstrap": "^3.3.5",

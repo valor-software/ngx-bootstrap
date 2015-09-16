@@ -2,7 +2,7 @@
 
 import {
   Component, View, Directive,
-  LifecycleEvent, EventEmitter,
+  OnInit, OnDestroy, DoCheck, EventEmitter,
   ElementRef, TemplateRef,
   CORE_DIRECTIVES, NgClass
 } from 'angular2/angular2';
@@ -13,14 +13,13 @@ import {NgTransclude} from '../common';
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  properties: ['vertical', 'justified', 'type'],
-  lifecycle: [LifecycleEvent.onInit]
+  properties: ['vertical', 'justified', 'type']
 })
 @View({
   template: `
-    <ul class="nav" [ng-class]="classMap" (^click)="$event.preventDefault()">
+    <ul class="nav" [ng-class]="classMap" (click)="$event.preventDefault()">
         <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (^click)="tabz.active = true">
+          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
             <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
           </a>
         </li>
@@ -31,7 +30,7 @@ import {NgTransclude} from '../common';
   `,
   directives: [CORE_DIRECTIVES, NgClass, NgTransclude]
 })
-export class Tabset {
+export class Tabset implements OnInit{
   private vertical:boolean;
   private justified:boolean;
   private type:string;
@@ -83,11 +82,9 @@ export class Tabset {
   host: {
     '[class.tab-pane]': 'true',
     '[class.active]': 'active'
-  },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy,
-    LifecycleEvent.onCheck]
+  }
 })
-export class Tab {
+export class Tab implements OnInit, OnDestroy, DoCheck {
   public _active:boolean;
   public disabled:boolean;
   public heading:string;
@@ -135,7 +132,8 @@ export class Tab {
     });
   }
 
-  onCheck() {
+  doCheck():boolean {
+    return true;
   }
 
   onInit() {

@@ -30,7 +30,8 @@ var config = {
   devtool: 'source-map',
 
   debug: true,
-  cache: false,
+  cache: true,
+  watch: true,
   context: __dirname,
 
   resolve: {

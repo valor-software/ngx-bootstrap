@@ -2,7 +2,7 @@
 
 import {
   Component, View,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   NgClass, DefaultValueAccessor, NgFor,
   NgModel, Self, Renderer, ElementRef
 } from 'angular2/angular2';
@@ -18,8 +18,7 @@ import {
   events: ['onHover', 'onLeave'],
   host: {
     '(keydown)': 'onKeydown($event)'
-  },
-  lifecycle: [LifecycleEvent.onInit]
+  }
 })
 @View({
   template: `
@@ -32,7 +31,7 @@ import {
   `,
   directives: [NgClass, NgFor]
 })
-export class Rating extends DefaultValueAccessor {
+export class Rating extends DefaultValueAccessor implements OnInit {
   private max:number;
   private range:Array<any>;
   private value:number;
