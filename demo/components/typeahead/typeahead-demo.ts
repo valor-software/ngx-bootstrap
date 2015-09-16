@@ -50,16 +50,13 @@ export class TypeaheadDemo {
   }
 
   private getAsyncData(context:any):Function {
-    let f:Function = function ():Promise {
-      let p:Promise = new Promise((resolve:Function) => {
+    let f:Function = function ():Promise<string[]> {
+      let p:Promise<string[]> = new Promise((resolve:Function) => {
         setTimeout(() => {
-          let matches:Array<any> = [];
-          for (let i = 0; i < context.states.length; i++) {
-            if (context.states[i].toLowerCase().indexOf(context.asyncSelected.toLowerCase()) >= 0) {
-              matches.push(context.states[i]);
-            }
-          }
-          resolve(matches);
+          let query = new RegExp(context.asyncSelected, 'ig');
+          return resolve(context.states.filter((state) => {
+            return query.test(state);
+          }));
         }, 200);
       });
       return p;

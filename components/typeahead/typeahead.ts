@@ -224,13 +224,13 @@ export class Typeahead {
   private debounce(func:Function, wait:number):Function {
     let timeout:any;
     let args:Array<any>;
-    let timestamp:Date;
+    let timestamp:number;
     let waitOriginal:number = wait;
 
     return function () {
       // save details of latest call
       args = [].slice.call(arguments, 0);
-      timestamp = new Date();
+      timestamp = Date.now();
 
       // this trick is about implementing of 'typeaheadWaitMs'
       // in this case we have adaptive 'wait' parameter
@@ -242,7 +242,7 @@ export class Typeahead {
       let later = function () {
 
         // how long ago was the last call
-        let last = (new Date()) - timestamp;
+        let last = Date.now() - timestamp;
 
         // if the latest call was less that the wait period ago
         // then we reset the timeout to wait for the difference
@@ -400,8 +400,9 @@ export class Typeahead {
   }
 
   show(matches:Array<string>) {
-    let options:TypeaheadOptions = new TypeaheadOptions({
-      placement: this.placement
+    let options = new TypeaheadOptions({
+      placement: this.placement,
+      animation: false
     });
 
     let binding = Injector.resolve([
