@@ -13,7 +13,7 @@ import {Dropdown} from './dropdown';
     '[class.disabled]': 'disabled',
     '[attr.aria-haspopup]': 'true',
     '[attr.aria-expanded]': 'isOpen'
-  },
+  }
 })
 export class DropdownToggle implements OnInit {
   private disabled:boolean = false;

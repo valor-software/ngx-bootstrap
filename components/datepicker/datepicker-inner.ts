@@ -68,7 +68,7 @@ const KEYS = {
     'customClass',
     'dateDisabled',
     'templateUrl'
-  ],
+  ]
 })
 @View({
   template: `

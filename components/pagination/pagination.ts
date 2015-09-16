@@ -36,7 +36,7 @@ const paginationConfig = {
     'boundaryLinks', 'directionLinks',
     'firstText', 'previousText', 'nextText', 'lastText'
   ],
-  events: ['numPages'],
+  events: ['numPages']
 })
 @View({
   template: `
@@ -67,7 +67,7 @@ const paginationConfig = {
   </ul>
   `,
   directives: [CORE_DIRECTIVES, NgClass],
-  encapsulation: ViewEncapsulation.NONE
+  encapsulation: ViewEncapsulation.None
 })
 export class Pagination extends DefaultValueAccessor implements OnInit {
   public config:any;
@@ -259,7 +259,7 @@ const pagerConfig = {
     'align',
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
-  ],
+  ]
 })
 @View({
   template: `

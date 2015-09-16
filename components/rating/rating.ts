@@ -18,7 +18,7 @@ import {
   events: ['onHover', 'onLeave'],
   host: {
     '(keydown)': 'onKeydown($event)'
-  },
+  }
 })
 @View({
   template: `

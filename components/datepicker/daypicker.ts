@@ -35,10 +35,10 @@ const TEMPLATE_OPTIONS = {
   }
 };
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
+const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2BootstrapTheme.BS3];
 
 @Component({
-  selector: 'daypicker, [daypicker]',
+  selector: 'daypicker, [daypicker]'
 })
 @View({
   template: `

@@ -40,7 +40,7 @@ class TooltipOptions {
       </div>
     </div>`,
   directives: [NgClass, NgStyle],
-  encapsulation: ViewEncapsulation.NONE
+  encapsulation: ViewEncapsulation.None
 })
 class TooltipContainer {
   private classMap:Object;
@@ -88,7 +88,7 @@ class TooltipContainer {
     '(mouseleave)': 'hide($event, $targe)',
     '(focusin)': 'show($event, $targe)',
     '(focusout)': 'hide($event, $targe)'
-  },
+  }
 })
 export class Tooltip implements OnInit {
   private visible:boolean = false;

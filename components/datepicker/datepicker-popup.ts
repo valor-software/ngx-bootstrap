@@ -64,7 +64,7 @@ const datePickerPopupConfig:Object = {
         </li>
     </ul>`,
   directives: [NgClass, NgStyle, DatePicker, FORM_DIRECTIVES, CORE_DIRECTIVES],
-  encapsulation: ViewEncapsulation.NONE
+  encapsulation: ViewEncapsulation.None
 })
 class PopupContainer {
   public popupComp:DatePickerPopup;
@@ -119,7 +119,7 @@ class PopupContainer {
   selector: '[datepicker-popup][ng-model]',
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
-  host: {'(cupdate)': 'onUpdate1($event)'},
+  host: {'(cupdate)': 'onUpdate1($event)'}
 })
 export class DatePickerPopup implements OnInit {
   private _activeDate:Date;

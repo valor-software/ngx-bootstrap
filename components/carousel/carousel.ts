@@ -35,7 +35,7 @@ const NAVIGATION = {
 
 @Component({
   selector: 'carousel, [carousel]',
-  properties: ['interval', 'noTransition', 'noPause', 'noWrap'],
+  properties: ['interval', 'noTransition', 'noPause', 'noWrap']
 })
 // todo:
 // (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
@@ -210,7 +210,7 @@ export class Carousel implements OnDestroy {
     '[class.active]': 'active',
     '[class.item]': 'true',
     '[class.carousel-item]': 'true'
-  },
+  }
 })
 @View({
   template: `

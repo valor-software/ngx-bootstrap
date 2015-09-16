@@ -29,7 +29,7 @@ export class DemoSectionConfig {
 
 @Component({
   selector: 'demo-section',
-  properties: ['demoSection'],
+  properties: ['demoSection']
 })
 @View({
   template: `
@@ -79,6 +79,6 @@ export class DemoSectionConfig {
   `,
   directives: [tabs, CORE_DIRECTIVES, NgNonBindable]
 })
-export class DemoSection implements OnInit {
+export class DemoSection {
   private demoSection: DemoSectionConfig;
 }

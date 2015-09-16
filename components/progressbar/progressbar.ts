@@ -23,11 +23,11 @@ const progressConfig = {
   host: {
     'class': 'progress',
     '[attr.max]': 'max'
-  },
+  }
 })
 // @View({
 //  template: `<div class="progress"><ng-content></ng-content></div>`,
-//  encapsulation: ViewEncapsulation.NONE
+//  encapsulation: ViewEncapsulation.None
 // })
 export class Progress implements OnInit {
   private _max:number;
@@ -69,7 +69,7 @@ export class Progress implements OnInit {
 // todo: use query from progress?
 @Component({
   selector: 'bar, [bar]',
-  properties: ['type', 'value'],
+  properties: ['type', 'value']
 })
 @View({
   template: `
@@ -85,7 +85,7 @@ export class Progress implements OnInit {
     ><ng-content></ng-content></div>
 `,
   directives: [NgStyle, NgClass],
-  encapsulation: ViewEncapsulation.NONE
+  encapsulation: ViewEncapsulation.None
 })
 export class Bar implements OnInit, OnDestroy {
   public type:string;

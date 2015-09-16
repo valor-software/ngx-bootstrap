@@ -51,7 +51,7 @@ export class Accordion {
 
 @Directive({
   selector: 'accordion-transclude, [accordion-transclude]',
-  properties: ['accordionTransclude'],
+  properties: ['accordionTransclude']
 })
 export class AccordionTransclude implements OnInit{
   private accordionTransclude:TemplateRef;
@@ -74,7 +74,7 @@ import {Collapse} from '../collapse/collapse';
   properties: ['templateUrl', 'heading', 'isOpen', 'isDisabled', 'panelClass'],
   host: {
     '[class.panel-open]': 'isOpen'
-  },
+  }
 })
 @View({
   template: `

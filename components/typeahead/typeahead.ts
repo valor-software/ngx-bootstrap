@@ -3,7 +3,7 @@
 import {
   Directive,
   Component, View, Self, NgModel,
-  LifecycleEvent, EventEmitter,
+  LifecycleEvent, EventEmitter, OnInit,
   ElementRef, DefaultValueAccessor,
   NgClass, NgStyle, Renderer, CORE_DIRECTIVES,
   ViewRef, ViewContainerRef, TemplateRef,
@@ -22,11 +22,11 @@ const TEMPLATE = {
   <div class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
-      <a href
+      <a href="#"
          *ng-for="#match of matches"
+         (click)="selectMatch(match, $event)"
          [ng-class]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
-         (^click)="selectMatch(match, $event)"
          class="dropdown-item"
          [inner-html]="hightlight(match, query)"></a>
   </div>
@@ -37,9 +37,8 @@ const TEMPLATE = {
       style="display: block">
     <li *ng-for="#match of matches"
         [ng-class]="{active: isActive(match) }"
-        (mouseenter)="selectActive(match)"
-        (^click)="selectMatch(match, $event)">
-        <a href tabindex="-1" [inner-html]="hightlight(match, query)"></a>
+        (mouseenter)="selectActive(match)">
+        <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>
   </ul>
   `
@@ -60,7 +59,7 @@ export class TypeaheadOptions {
 @View({
   template: TEMPLATE[Ng2BootstrapConfig.theme],
   directives: [CORE_DIRECTIVES, NgClass, NgStyle],
-  encapsulation: ViewEncapsulation.NONE
+  encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainer {
   public parent:Typeahead;
@@ -132,6 +131,7 @@ export class TypeaheadContainer {
     this.parent.typeaheadOnSelect.next({
       item: value
     });
+    return false;
   }
 
   private escapeRegexp(queryToEscape) {
@@ -179,10 +179,9 @@ export class TypeaheadContainer {
   host: {
     '(keyup)': 'onChange($event)'
   },
-  lifecycle: [LifecycleEvent.onInit],
   directives: [CORE_DIRECTIVES, TypeaheadContainer]
 })
-export class Typeahead {
+export class Typeahead implements OnInit{
   public typeaheadLoading:EventEmitter = new EventEmitter();
   public typeaheadNoResults:EventEmitter = new EventEmitter();
   public typeaheadOnSelect:EventEmitter = new EventEmitter();

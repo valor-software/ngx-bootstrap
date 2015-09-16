@@ -21,7 +21,7 @@ import {tabs} from 'ng2-bootstrap';
   properties: ['vertical', 'justified', 'type'],
 })
 
-// class Tab implements OnInit, OnDestroy, OnCheck
+// class Tab implements OnInit, OnDestroy, DoCheck
 @Directive({
   selector: 'tab, [tab]',
   properties: ['active', 'disable', 'disabled', 'heading'],

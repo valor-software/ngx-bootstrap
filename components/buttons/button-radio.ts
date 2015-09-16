@@ -12,7 +12,7 @@ import {
   host: {
     '(click)': 'onClick()',
     '[class.active]': 'isActive'
-  },
+  }
 })
 export class ButtonRadio extends DefaultValueAccessor implements OnInit {
   private btnRadio:string;

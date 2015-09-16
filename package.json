@@ -43,9 +43,9 @@
     "angular2": "2.0.0-alpha.37",
     "es6-promise": "3.0.2",
     "reflect-metadata": "0.1.1",
-    "rtts_assert": "2.0.0-alpha.36",
+    "rtts_assert": "2.0.0-alpha.37",
     "traceur-runtime": "0.0.59",
-    "zone.js": "0.5.4"
+    "zone.js": "0.5.5"
   },
   "devDependencies": {
     "bootstrap": "^3.3.5",

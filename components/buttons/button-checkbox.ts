@@ -13,7 +13,7 @@ import {
   host: {
     '(click)': 'onClick()',
     '[class.active]': 'state'
-  },
+  }
 })
 export class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
   private btnCheckboxTrue:any;

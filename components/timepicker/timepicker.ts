@@ -53,7 +53,7 @@ function addMinutes(date, minutes) {
     'mousewheel', 'arrowkeys',
     'showSpinners',
     'min', 'max'
-  ],
+  ]
 })
 @View({
   template: `

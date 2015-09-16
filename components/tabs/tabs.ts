@@ -2,7 +2,7 @@
 
 import {
   Component, View, Directive,
-  OnInit, OnDestroy, OnCheck, EventEmitter,
+  OnInit, OnDestroy, DoCheck, EventEmitter,
   ElementRef, TemplateRef,
   CORE_DIRECTIVES, NgClass
 } from 'angular2/angular2';
@@ -13,7 +13,7 @@ import {NgTransclude} from '../common';
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  properties: ['vertical', 'justified', 'type'],
+  properties: ['vertical', 'justified', 'type']
 })
 @View({
   template: `
@@ -82,9 +82,9 @@ export class Tabset implements OnInit{
   host: {
     '[class.tab-pane]': 'true',
     '[class.active]': 'active'
-  },
+  }
 })
-export class Tab implements OnInit, OnDestroy, OnCheck {
+export class Tab implements OnInit, OnDestroy, DoCheck {
   public _active:boolean;
   public disabled:boolean;
   public heading:string;
@@ -132,7 +132,8 @@ export class Tab implements OnInit, OnDestroy, OnCheck {
     });
   }
 
-  onCheck() {
+  doCheck():boolean {
+    return true;
   }
 
   onInit() {

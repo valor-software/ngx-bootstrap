@@ -34,7 +34,7 @@ const TEMPLATE_OPTIONS = {
 const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 
 @Component({
-  selector: 'monthpicker, [monthpicker]',
+  selector: 'monthpicker, [monthpicker]'
 })
 @View({
   template: `
