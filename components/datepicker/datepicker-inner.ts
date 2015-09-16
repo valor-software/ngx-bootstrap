@@ -2,7 +2,7 @@
 
 import {
   Component, View, Host,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   DefaultValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
@@ -69,7 +69,6 @@ const KEYS = {
     'dateDisabled',
     'templateUrl'
   ],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -79,7 +78,7 @@ const KEYS = {
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
 })
-export class DatePickerInner {
+export class DatePickerInner implements OnInit {
   public datepickerMode:string;
   public startingDay:number;
   public yearRange:number;

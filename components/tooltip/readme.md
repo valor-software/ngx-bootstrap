@@ -5,7 +5,7 @@ import {Timepicker} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Tooltip
+// class Tooltip implements OnInit
 @Directive({
   selector: '[tooltip]',
   properties: [
@@ -21,7 +21,6 @@ import {Timepicker} from 'ng2-bootstrap';
     '(focusin)': 'show($event, $targe)',
     '(focusout)': 'hide($event, $targe)'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 ```
 

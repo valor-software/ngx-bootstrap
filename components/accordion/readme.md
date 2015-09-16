@@ -14,14 +14,13 @@ import {accordion} from 'ng2-bootstrap';
   }
 })
 
-// class AccordionGroup
+// class AccordionGroup implements OnInit, OnDestroy
 @Component({
   selector: 'accordion-group, [accordion-group]',
   properties: ['templateUrl', 'heading', 'isOpen', 'isDisabled', 'panelClass'],
   host: {
     '[class.panel-open]': 'isOpen'
   },
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy]
 })
 
 // class AccordionHeading

@@ -3,7 +3,7 @@
 import {
   Directive,
   Component, View,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   ElementRef,
   NgClass, NgStyle,
   ViewRef, ViewContainerRef, TemplateRef,
@@ -89,9 +89,8 @@ class TooltipContainer {
     '(focusin)': 'show($event, $targe)',
     '(focusout)': 'hide($event, $targe)'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
-export class Tooltip {
+export class Tooltip implements OnInit {
   private visible:boolean = false;
 
   private content:string;

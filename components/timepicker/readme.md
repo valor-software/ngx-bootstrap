@@ -5,7 +5,7 @@ import {Timepicker} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Timepicker
+// class Timepicker implements OnInit
 @Component({
   selector: 'timepicker[ng-model]',
   properties: [
@@ -16,7 +16,6 @@ import {Timepicker} from 'ng2-bootstrap';
     'showSpinners',
     'min', 'max'
   ],
-  lifecycle: [LifecycleEvent.onInit]
 })
 ```
 

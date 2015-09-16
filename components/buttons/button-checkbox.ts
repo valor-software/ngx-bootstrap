@@ -3,7 +3,7 @@ import {
   Directive,
   DefaultValueAccessor,
   Self, NgModel, Renderer, ElementRef,
-  LifecycleEvent
+  OnInit
 } from 'angular2/angular2';
 
 
@@ -14,9 +14,8 @@ import {
     '(click)': 'onClick()',
     '[class.active]': 'state'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
-export class ButtonCheckbox extends DefaultValueAccessor {
+export class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
   private btnCheckboxTrue:any;
   private btnCheckboxFalse:any;
   private value:any;

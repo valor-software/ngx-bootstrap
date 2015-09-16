@@ -2,7 +2,7 @@
 
 import {
   Component, View, Directive,
-  LifecycleEvent, EventEmitter,
+  OnInit, EventEmitter,
   ElementRef,
   DefaultValueAccessor,
   CORE_DIRECTIVES, NgClass,
@@ -37,7 +37,6 @@ const paginationConfig = {
     'firstText', 'previousText', 'nextText', 'lastText'
   ],
   events: ['numPages'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -70,7 +69,7 @@ const paginationConfig = {
   directives: [CORE_DIRECTIVES, NgClass],
   encapsulation: ViewEncapsulation.NONE
 })
-export class Pagination extends DefaultValueAccessor {
+export class Pagination extends DefaultValueAccessor implements OnInit {
   public config:any;
 
   private classMap:string;
@@ -261,7 +260,6 @@ const pagerConfig = {
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
   ],
-  lifecycle: [LifecycleEvent.onInit]
 })
 @View({
   template: `
@@ -272,7 +270,7 @@ const pagerConfig = {
   `,
   directives: [NgClass]
 })
-export class Pager extends Pagination {
+export class Pager extends Pagination implements OnInit {
   private align: boolean = pagerConfig.align;
   public config = pagerConfig;
   constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {

@@ -17,19 +17,18 @@ import {dropdown} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Dropdown
+// class Dropdown implements OnInit, OnDestroy
 @Directive({
   selector: '[dropdown]',
   properties: ['isOpen', 'autoClose', 'keyboardNav', 'dropdownAppendToBody'],
   events: ['onToggle'],
-  lifecycle: [LifecycleEvent.onInit, LifecycleEvent.onDestroy],
   host: {
     '[class.dropdown]': 'true',
     '[class.open]': 'isOpen'
   }
 })
 
-// class DropdownToggle
+// class DropdownToggle implements OnInit
 @Directive({
   selector: '[dropdown-toggle]',
   properties: ['disabled'],
@@ -40,14 +39,12 @@ import {dropdown} from 'ng2-bootstrap';
     '[attr.aria-haspopup]': 'true',
     '[attr.aria-expanded]': 'isOpen'
   },
-  lifecycle: [LifecycleEvent.onInit]
 })
 
-// class DropdownMenu
+// class DropdownMenu implements OnInit
 @Directive({
   selector: '[dropdown-menu], .dropdown-menu',
   properties: ['templateUrl'],
-  lifecycle: [LifecycleEvent.onInit]
 })
 
 export const dropdown: Array<any> = [Dropdown, DropdownMenu, DropdownToggle];
