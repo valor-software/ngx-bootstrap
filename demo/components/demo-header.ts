@@ -5,7 +5,7 @@ import {Collapse, dropdown, Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../c
 let components = [
   'Accordion', 'Alerts', 'Buttons', 'Carousel', 'Collapse', 'Datepicker',
   'Dropdowns', /*'Modal',*/ 'Pagination', /*'Popover',*/ 'Progressbar',
-  'Rating', 'Tabs', 'Timepicker', 'Tooltip', /*'Typeahead'*/
+  'Rating', 'Tabs', 'Timepicker', 'Tooltip', 'Typeahead'
 ];
 
 let template = `

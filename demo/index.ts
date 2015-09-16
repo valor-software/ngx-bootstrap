@@ -22,6 +22,7 @@ import {RatingSection} from './components/rating-section';
 import {TabsSection} from './components/tabs-section';
 import {TimepickerSection} from './components/timepicker-section';
 import {TooltipSection} from './components/tooltip-section';
+import {TypeaheadSection} from './components/typeahead-section';
 
 import {DemoHeader} from './components/demo-header';
 
@@ -71,6 +72,7 @@ let gettingStarted = require('./getting-started.md');
     <tabs-section class="col-md-12"></tabs-section>
     <timepicker-section class="col-md-12"></timepicker-section>
     <tooltip-section class="col-md-12"></tooltip-section>
+    <typeahead-section class="col-md-12"></typeahead-section>
   </div>
 
   </div>
@@ -96,7 +98,8 @@ let gettingStarted = require('./getting-started.md');
     RatingSection,
     TabsSection,
     TimepickerSection,
-    TooltipSection
+    TooltipSection,
+    TypeaheadSection
   ]
 })
 export class Demo {
