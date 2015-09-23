@@ -178,8 +178,7 @@ export class TypeaheadContainer {
   events: ['typeaheadLoading', 'typeaheadNoResults', 'typeaheadOnSelect'],
   host: {
     '(keyup)': 'onChange($event)'
-  },
-  directives: [CORE_DIRECTIVES, TypeaheadContainer]
+  }
 })
 export class Typeahead implements OnInit{
   public typeaheadLoading:EventEmitter = new EventEmitter();

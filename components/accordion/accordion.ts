@@ -3,7 +3,7 @@
 import {
   Component, View,
   Directive, OnInit, OnDestroy,
-  NgClass, ViewContainerRef, TemplateRef
+  NgClass, ViewContainerRef, TemplateRef, Inject
 } from 'angular2/angular2';
 
 // todo: support template url
@@ -56,7 +56,7 @@ export class Accordion {
 export class AccordionTransclude implements OnInit{
   private accordionTransclude:TemplateRef;
 
-  constructor(private viewRef:ViewContainerRef) {
+  constructor(@Inject(ViewContainerRef) private viewRef:ViewContainerRef) {
   }
 
   onInit() {

@@ -1,13 +1,12 @@
 /// <reference path="../tsd.d.ts" />
-
-import {Directive, TemplateRef, ViewContainerRef} from 'angular2/angular2';
+import {Directive, TemplateRef, ViewContainerRef, Inject} from 'angular2/angular2';
 
 @Directive({
   selector: '[ng-transclude]',
   properties: ['ngTransclude']
 })
 export class NgTransclude {
-  private _ngTransclude:any;
+  private _ngTransclude: TemplateRef;
 
   private set ngTransclude(templateRef:TemplateRef) {
     this._ngTransclude = templateRef;
@@ -20,6 +19,6 @@ export class NgTransclude {
     return this._ngTransclude;
   }
 
-  constructor(public viewRef:ViewContainerRef) {
+  constructor(@Inject(ViewContainerRef) public viewRef:ViewContainerRef) {
   }
 }
