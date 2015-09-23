@@ -15,7 +15,7 @@ let template = require('./tooltip-demo.html');
 @View({
   template: template,
   directives: [tooltip, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass],
-  style: `
+  styles: [`
     /* Specify styling for tooltip contents */
     .tooltip.customClass .tooltip-inner {
         color: #880000;
@@ -26,7 +26,7 @@ let template = require('./tooltip-demo.html');
     .tooltip.customClass .tooltip-arrow {
         display: none;
     }
-  `
+  `]
 })
 export class TooltipDemo {
   public dynamicTooltip:string = 'Hello, World!';

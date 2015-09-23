@@ -125,7 +125,7 @@ export class DatePickerPopup implements OnInit {
   private _activeDate:Date;
   private placement:string = 'bottom';
   private _isOpen:boolean = false;
-  private popup:Promise<void>;
+  private popup:Promise<ComponentRef>;
 
   constructor(@Self() public cd:NgModel, public element:ElementRef, public renderer:Renderer, public loader:DynamicComponentLoader) {
     this.activeDate = cd.model;

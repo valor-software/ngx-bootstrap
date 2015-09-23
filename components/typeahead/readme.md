@@ -5,7 +5,7 @@ import {Typeahead} from 'ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Typeahead
+// class Typeahead implements OnInit
 @Directive({
   selector: 'typeahead, [typeahead]',
   properties: [
@@ -29,7 +29,6 @@ import {Typeahead} from 'ng2-bootstrap';
   host: {
     '(keyup)': 'onChange($event)'
   },
-  lifecycle: [LifecycleEvent.onInit],
   directives: [CORE_DIRECTIVES, TypeaheadContainer]
 })
 ```

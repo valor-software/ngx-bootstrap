@@ -101,7 +101,7 @@ export class Tooltip implements OnInit {
   private isOpen:boolean;
   private enable:boolean;
 
-  private tooltip:Promise<void>;
+  private tooltip:Promise<ComponentRef>;
 
   constructor(public element:ElementRef,
               public loader:DynamicComponentLoader) {

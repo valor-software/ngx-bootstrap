@@ -3,7 +3,7 @@
 import {
   Directive,
   Component, View, Self, NgModel,
-  LifecycleEvent, EventEmitter, OnInit,
+  EventEmitter, OnInit,
   ElementRef, DefaultValueAccessor,
   NgClass, NgStyle, Renderer, CORE_DIRECTIVES,
   ViewRef, ViewContainerRef, TemplateRef,
@@ -208,7 +208,7 @@ export class Typeahead implements OnInit{
   private source:any;
   private _matches:Array<string> = [];
   private placement:string = 'bottom-left';
-  private popup:Promise<void>;
+  private popup:Promise<ComponentRef>;
 
   constructor(private cd:NgModel,
               private element:ElementRef,

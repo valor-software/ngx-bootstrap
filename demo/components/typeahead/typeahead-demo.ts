@@ -1,6 +1,6 @@
 /// <reference path="../../../tsd.d.ts" />
 import {
-  Component, View, NgClass, LifecycleEvent,
+  Component, View, NgClass,
   CORE_DIRECTIVES, FORM_DIRECTIVES
 } from 'angular2/angular2';
 
