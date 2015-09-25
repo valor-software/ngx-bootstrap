@@ -14,7 +14,7 @@ import {pagination} from 'ng2-bootstrap';
     'boundaryLinks', 'directionLinks',
     'firstText', 'previousText', 'nextText', 'lastText'
   ],
-  events: ['numPages'],
+  events: ['numPages', 'pageChanged'],
 })
 
 // class Pager implements OnInit
@@ -44,7 +44,8 @@ export const pagination:Array<any> = [Pagination, Pager];
   - `template-url`(*not yet supported*) (`?string`) - allows to override the template url of component (default: `components/pagination/pagination.html`)
 
 ### Pagination events
-- `num-pages` - fired when total pages count changes, `$event:number` equals to total pages count
+  - `num-pages` - fired when total pages count changes, `$event:number` equals to total pages count
+  - `page-changed` - fired when page was changed, `$event:{page, itemsPerPage}` equals to object with current page index and number of items per page
 
 ### Pager properties
   - `align` (`?boolean=true`) - if `true` aligns each link to the sides of pager
@@ -57,3 +58,4 @@ export const pagination:Array<any> = [Pagination, Pager];
 
 ### Pager events
   - `num-pages` - fired when total pages count changes, `$event:number` equals to total pages count
+  - `page-changed` - fired when page was changed, `$event:{page, itemsPerPage}` equals to object with current page index and number of items per page
