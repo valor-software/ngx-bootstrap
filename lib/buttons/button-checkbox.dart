@@ -14,22 +14,19 @@ class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
 
   bool state = false;
 
-  ButtonCheckbox(@Self () NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef) {
-    /* super call moved to initializer */
-    ;
-  }
+  ButtonCheckbox(@Self() NgModel cd, Renderer renderer, ElementRef elementRef)
+      : super (cd, renderer, elementRef);
 
   onInit() {
     this.toggle(identical(this.trueValue, this.value));
   }
 
   get trueValue {
-    return !identical(, "undefined") ? this.btnCheckboxTrue : true;
+    return btnCheckboxTrue ?? true;
   }
 
   get falseValue {
-    return !identical(, "undefined") ? this.btnCheckboxFalse : false;
+    return btnCheckboxFalse ?? false;
   }
 
   toggle(bool state) {
