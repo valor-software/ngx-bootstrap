@@ -95,7 +95,7 @@ class Timepicker extends DefaultValueAccessor
 
   dynamic meridian;
 
-  Array <String> meridians = [ "AM", "PM"];
+  List<String> meridians = [ "AM", "PM"];
 
   bool readonlyInput;
 

@@ -31,7 +31,7 @@ class Alert
 
   bool closeable;
 
-  Array <String> classes = [];
+  List<String> classes = [];
 
   set dismissible(bool v) {
     this.closeable = v;

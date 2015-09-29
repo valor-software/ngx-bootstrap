@@ -14,7 +14,7 @@ class Progress implements OnInit {
 
   bool animate;
 
-  Array <dynamic> bars = [];
+  List<dynamic> bars = [];
 
   Progress() {}
 
@@ -127,4 +127,4 @@ class Progressbar {
   num value;
 }
 
-const Array <dynamic> progressbar = [ Progress, Bar, Progressbar];
+const List<dynamic> progressbar = [ Progress, Bar, Progressbar];

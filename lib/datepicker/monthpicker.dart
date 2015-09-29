@@ -61,7 +61,7 @@ class MonthPicker
 
   String title;
 
-  Array <dynamic> rows = [];
+  List<dynamic> rows = [];
 
   MonthPicker(this .datePicker) {}
 
@@ -69,7 +69,7 @@ class MonthPicker
     var self = this;
     this.datePicker.stepMonth = { "years" : 1};
     this.datePicker.setRefreshViewHandler(() {
-      Array <dynamic> months = new Array (12);
+      List<dynamic> months = new List(12);
       num year = this.activeDate.getFullYear();
       var date;
       for (var i = 0; i < 12; i ++) {

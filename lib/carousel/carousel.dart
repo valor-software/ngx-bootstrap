@@ -44,7 +44,7 @@ class Carousel
 
   bool noWrap;
 
-  Array <Slide> slides = [];
+  List<Slide> slides = [];
 
   num currentInterval;
 
@@ -224,4 +224,4 @@ class Slide
   }
 }
 
-const Array <dynamic> carousel = [ Carousel, Slide];
+const List<dynamic> carousel = [ Carousel, Slide];

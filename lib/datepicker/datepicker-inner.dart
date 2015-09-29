@@ -92,7 +92,7 @@ class DatePickerInner
 
   dynamic stepYear = {};
 
-  Array <String> modes = [ "day", "month", "year"];
+  List<String> modes = [ "day", "month", "year"];
 
   DateFormatter dateFormatter = new DateFormatter ();
 
@@ -274,8 +274,8 @@ class DatePickerInner
         (this.maxDate && this.compare(date, this.maxDate) > 0));
   }
 
-  split(Array <dynamic> arr, num size) {
-    Array <dynamic> arrays = [];
+  split(List<dynamic> arr, num size) {
+    List<dynamic> arrays = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
     }

@@ -66,7 +66,7 @@ class YearPicker
 
   String title;
 
-  Array <dynamic> rows = [];
+  List<dynamic> rows = [];
 
   YearPicker(this .datePicker) {}
 
@@ -80,7 +80,7 @@ class YearPicker
     var self = this;
     this.datePicker.stepYear = { "years" : this.datePicker.yearRange};
     this.datePicker.setRefreshViewHandler(() {
-      Array <dynamic> years = new Array (this.yearRange);
+      List<dynamic> years = new List(this.yearRange);
       var date;
       for (var i = 0,
           start = self.getStartingYear(this.activeDate.getFullYear()); i <

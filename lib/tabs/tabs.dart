@@ -27,7 +27,7 @@ class Tabset
 
   String type;
 
-  Array <Tab> tabs = [];
+  List<Tab> tabs = [];
 
   get classMap {
     var map = {
@@ -142,4 +142,4 @@ class TabHeading {
   }
 }
 
-const Array <dynamic> tabs = [ Tab, TabHeading, Tabset];
+const List<dynamic> tabs = [ Tab, TabHeading, Tabset];

@@ -87,13 +87,13 @@ class DayPicker
     implements OnInit {
   DatePickerInner datePicker;
 
-  Array <dynamic> labels = [];
+  List<dynamic> labels = [];
 
   String title;
 
-  Array <dynamic> rows = [];
+  List<dynamic> rows = [];
 
-  Array <num> weekNumbers = [];
+  List<num> weekNumbers = [];
 
   DayPicker(this .datePicker) {}
 
@@ -102,7 +102,7 @@ class DayPicker
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
   getDates(Date startDate, num n) {
-    Array <Date> dates = new Array (n);
+    List<Date> dates = new List(n);
     var current = new Date (startDate.getTime());
     var i = 0;
     var date;
@@ -143,8 +143,8 @@ class DayPicker
         firstDate.setDate(-numDisplayedFromPreviousMonth + 1);
       }
       // 42 is the number of days on a six-month calendar
-      Array <Date> _days = self.getDates(firstDate, 42);
-      Array <dynamic> days = [];
+      List<Date> _days = self.getDates(firstDate, 42);
+      List<dynamic> days = [];
       for (var i = 0; i < 42; i ++) {
         var _dateObject = this.createDateObject(_days [ i ], this.formatDay);
         _dateObject.secondary = !identical(_days [ i ].getMonth(), month);

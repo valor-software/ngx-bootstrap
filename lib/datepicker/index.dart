@@ -17,4 +17,4 @@ import "monthpicker.dart" show MonthPicker;
 import "yearpicker.dart" show YearPicker;
 import "datepicker.dart" show DatePicker;
 
-const Array <dynamic> datepicker = [ DatePicker, DatePickerPopup];
+const List<dynamic> datepicker = [ DatePicker, DatePickerPopup];

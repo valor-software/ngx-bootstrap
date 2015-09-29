@@ -138,4 +138,4 @@ class Tooltip implements OnInit {
   }
 }
 
-const Array <dynamic> tooltip = [ Tooltip, TooltipContainer];
+const List<dynamic> tooltip = [ Tooltip, TooltipContainer];

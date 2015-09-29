@@ -56,7 +56,7 @@ class TypeaheadContainer {
 
   String query;
 
-  Array <String> _matches = [];
+  List<String> _matches = [];
 
   String _active;
 
@@ -72,11 +72,11 @@ class TypeaheadContainer {
     Object.assign(this, options);
   }
 
-  Array <String> get matches {
+  List<String> get matches {
     return this._matches;
   }
 
-  set matches(Array <String> value) {
+  set matches(List<String> value) {
     this._matches = value;
     if (this._matches.length > 0) {
       this._active = this._matches [ 0 ];
@@ -225,7 +225,7 @@ class Typeahead implements OnInit {
 
   dynamic source;
 
-  Array <String> _matches = [];
+  List<String> _matches = [];
 
   String placement = "bottom-left";
 
@@ -239,7 +239,7 @@ class Typeahead implements OnInit {
 
   Function debounce(Function func, num wait) {
     dynamic timeout;
-    Array <dynamic> args;
+    List<dynamic> args;
     num timestamp;
     num waitOriginal = wait;
     return () {
@@ -401,7 +401,7 @@ class Typeahead implements OnInit {
     this.hide();
   }
 
-  show(Array <String> matches) {
+  show(List<String> matches) {
     var options = new TypeaheadOptions (
         placement: this.placement, animation: false);
     var binding = Injector.resolve([ bind(TypeaheadOptions).toValue(options)]);
@@ -429,4 +429,4 @@ class Typeahead implements OnInit {
   }
 }
 
-const Array <dynamic> typeahead = [ Typeahead];
+const List<dynamic> typeahead = [ Typeahead];

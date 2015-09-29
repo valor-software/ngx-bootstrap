@@ -20,13 +20,13 @@ class Rating extends DefaultValueAccessor
     implements OnInit {
   num max;
 
-  Array <dynamic> range;
+  List<dynamic> range;
 
   num value;
 
   num preValue;
 
-  Array <String> titles;
+  List<String> titles;
 
   String stateOn;
 
@@ -34,7 +34,7 @@ class Rating extends DefaultValueAccessor
 
   bool readonly;
 
-  Array <dynamic> ratingStates;
+  List<dynamic> ratingStates;
 
   EventEmitter onHover = new EventEmitter ();
 
@@ -69,7 +69,7 @@ class Rating extends DefaultValueAccessor
     this.value = value;
   }
 
-  buildTemplateObjects(Array <dynamic> ratingStates, num max) {
+  buildTemplateObjects(List<dynamic> ratingStates, num max) {
     ratingStates = ratingStates || [];
     var count = ratingStates.length || max;
     var result = [];
