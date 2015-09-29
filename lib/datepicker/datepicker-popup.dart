@@ -84,8 +84,8 @@ class PopupContainer {
   onUpdate($event) {
     console.log("update", $event);
     if ($event) {
-      if (!identical(, "Date")) {
-        $event = new Date ($event);
+      if (!identical(, "DateTime")) {
+        $event = new DateTime ($event);
       }
       this.popupComp.activeDate = $event;
     }
@@ -105,7 +105,7 @@ class PopupContainer {
     return this [ key + "Text" ] || datePickerPopupConfig [ key + "Text" ];
   }
 
-  bool isDisabled(Date date) {
+  bool isDisabled(DateTime date) {
     return false;
   }
 }
@@ -122,7 +122,7 @@ class DatePickerPopup implements OnInit {
 
   DynamicComponentLoader loader;
 
-  Date _activeDate;
+  DateTime _activeDate;
 
   String placement = "bottom";
 
@@ -135,11 +135,11 @@ class DatePickerPopup implements OnInit {
     this.activeDate = cd.model;
   }
 
-  Date get activeDate {
+  DateTime get activeDate {
     return this._activeDate;
   }
 
-  set activeDate(Date value) {
+  set activeDate(DateTime value) {
     this._activeDate = value;
   }
 

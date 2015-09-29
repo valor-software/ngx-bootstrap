@@ -28,9 +28,9 @@ const num STARTING_DAY = 0;
 
 const num YEAR_RANGE = 20;
 
-const Date MIN_DATE = null;
+const DateTime MIN_DATE = null;
 
-const Date MAX_DATE = null;
+const DateTime MAX_DATE = null;
 
 const bool SHORTCUT_PROPAGATION = false;
 
@@ -98,15 +98,15 @@ class DatePickerInner
 
   String uniqueId;
 
-  Date _initDate;
+  DateTime _initDate;
 
-  Date _activeDate;
+  DateTime _activeDate;
 
   String activeDateId;
 
-  Date minDate;
+  DateTime minDate;
 
-  Date maxDate;
+  DateTime maxDate;
 
   String minMode;
 
@@ -150,24 +150,24 @@ class DatePickerInner
 
   EventEmitter update = new EventEmitter ();
 
-  Date get initDate {
+  DateTime get initDate {
     return this._initDate;
   }
 
-  set initDate(Date value) {
+  set initDate(DateTime value) {
     this._initDate = value;
   }
 
-  Date get activeDate {
+  DateTime get activeDate {
     return this._activeDate;
   }
 
-  set activeDate(Date value) {
+  set activeDate(DateTime value) {
     this._activeDate = value;
     this.refreshView();
   }
 
-  // todo: add formatter value to Date object
+  // todo: add formatter value to DateTime object
   onInit() {
     this.formatDay = this.formatDay || FORMAT_DAY;
     this.formatMonth = this.formatMonth || FORMAT_MONTH;
@@ -187,7 +187,7 @@ class DatePickerInner
     if (this.initDate) {
       this.activeDate = this.initDate;
     } else {
-      this.activeDate = new Date ();
+      this.activeDate = new DateTime ();
     }
     this.update.next(this.activeDate);
     this.refreshView();
@@ -205,7 +205,7 @@ class DatePickerInner
     }
   }
 
-  num compare(Date date1, Date date2) {
+  num compare(DateTime date1, DateTime date2) {
     if (identical(this.datepickerMode, "day") && this.compareHandlerDay) {
       return this.compareHandlerDay(date1, date2);
     }
@@ -243,7 +243,7 @@ class DatePickerInner
     }
   }
 
-  String dateFilter(Date date, String format) {
+  String dateFilter(DateTime date, String format) {
     return this.dateFormatter.format(date, format);
   }
 
@@ -255,20 +255,20 @@ class DatePickerInner
     return false;
   }
 
-  dynamic createDateObject(Date date, String format) {
+  dynamic createDateObject(DateTime date, String format) {
     dynamic dateObject = {};
     dateObject.date = date;
     dateObject.label = this.dateFilter(date, format);
     dateObject.selected = identical(this.compare(date, this.activeDate), 0);
     dateObject.disabled = this.isDisabled(date);
-    dateObject.current = identical(this.compare(date, new Date ()), 0);
+    dateObject.current = identical(this.compare(date, new DateTime ()), 0);
     // todo: do it
 
     // dateObject.customClass = this.customClass({date: date, mode: this.datepickerMode}) || {};
     return dateObject;
   }
 
-  bool isDisabled(Date date) {
+  bool isDisabled(DateTime date) {
     // todo: implement dateDisabled attribute
     return ((this.minDate && this.compare(date, this.minDate) < 0) ||
         (this.maxDate && this.compare(date, this.maxDate) > 0));
@@ -288,20 +288,20 @@ class DatePickerInner
 
   // i.e.
 
-  // var date = new Date(2014, 0, 1);
+  // var date = new DateTime(2014, 0, 1);
 
   // console.log(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours());
 
   // can result in "2013 11 31 23" because of the bug.
-  fixTimeZone(Date date) {
+  fixTimeZone(DateTime date) {
     var hours = date.getHours();
     date.setHours(identical(hours, 23) ? hours + 2 : 0);
   }
 
-  select(Date date) {
+  select(DateTime date) {
     if (identical(this.datepickerMode, this.minMode)) {
       if (!this.activeDate) {
-        this.activeDate = new Date (
+        this.activeDate = new DateTime (
             0,
             0,
             0,

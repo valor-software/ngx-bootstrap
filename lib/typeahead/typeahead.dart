@@ -245,7 +245,7 @@ class Typeahead implements OnInit {
     return () {
       // save details of latest call
       args = [].slice.call(arguments, 0);
-      timestamp = Date.now();
+      timestamp = DateTime.now();
       // this trick is about implementing of 'typeaheadWaitMs'
 
       // in this case we have adaptive 'wait' parameter
@@ -257,7 +257,7 @@ class Typeahead implements OnInit {
       // this is where the magic happens
       var later = () {
         // how long ago was the last call
-        var last = Date.now() - timestamp;
+        var last = DateTime.now() - timestamp;
         // if the latest call was less that the wait period ago
 
         // then we reset the timeout to wait for the difference

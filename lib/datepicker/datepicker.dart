@@ -65,15 +65,15 @@ import "yearpicker.dart" show YearPicker;
       CORE_DIRECTIVES
     ])
 class DatePicker extends DefaultValueAccessor {
-  Date _activeDate;
+  DateTime _activeDate;
 
   String datepickerMode;
 
-  Date initDate;
+  DateTime initDate;
 
-  Date minDate;
+  DateTime minDate;
 
-  Date maxDate;
+  DateTime maxDate;
 
   String minMode;
 
@@ -113,11 +113,11 @@ class DatePicker extends DefaultValueAccessor {
     ;
   }
 
-  Date get activeDate {
+  DateTime get activeDate {
     return this._activeDate;
   }
 
-  set activeDate(Date value) {
+  set activeDate(DateTime value) {
     this._activeDate = value;
     this.cd.viewToModelUpdate(moment(this.activeDate).toDate());
   }
@@ -128,8 +128,8 @@ class DatePicker extends DefaultValueAccessor {
 
   writeValue(dynamic value) {
     if (value) {
-      if (!identical(, "Date")) {
-        value = new Date (value);
+      if (!identical(, "DateTime")) {
+        value = new DateTime (value);
       }
       this.activeDate = value;
     }

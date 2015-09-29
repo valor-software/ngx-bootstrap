@@ -73,7 +73,7 @@ class MonthPicker
       num year = this.activeDate.getFullYear();
       var date;
       for (var i = 0; i < 12; i ++) {
-        date = new Date (year, i, 1);
+        date = new DateTime (year, i, 1);
         this.fixTimeZone(date);
         months [ i ] = this.createDateObject(date, this.formatMonth);
         months [ i ].uid = this.uniqueId + "-" + i;
@@ -82,8 +82,8 @@ class MonthPicker
       self.rows = this.split(months, 3);
     }, "month");
     this.datePicker.setCompareHandler((date1, date2) {
-      var d1 = new Date (date1.getFullYear(), date1.getMonth());
-      var d2 = new Date (date2.getFullYear(), date2.getMonth());
+      var d1 = new DateTime (date1.getFullYear(), date1.getMonth());
+      var d2 = new DateTime (date2.getFullYear(), date2.getMonth());
       return d1.getTime() - d2.getTime();
     }, "month");
     this.datePicker.refreshView();

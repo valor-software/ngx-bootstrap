@@ -34,8 +34,8 @@ def(dynamic value, Function fn, defaultValue) {
 }
 
 addMinutes(date, minutes) {
-  var dt = new Date (date.getTime() + minutes * 60000);
-  var newDate = new Date (date);
+  var dt = new DateTime (date.getTime() + minutes * 60000);
+  var newDate = new DateTime (date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
   return newDate;
 }
@@ -84,7 +84,7 @@ addMinutes(date, minutes) {
 class Timepicker extends DefaultValueAccessor
     implements OnInit {
   // result value
-  Date _selected = new Date ();
+  DateTime _selected = new DateTime ();
 
   // config
   num hourStep;
@@ -105,9 +105,9 @@ class Timepicker extends DefaultValueAccessor
 
   bool showSpinners;
 
-  Date min;
+  DateTime min;
 
-  Date max;
+  DateTime max;
 
   // input values
   String hours;
@@ -118,7 +118,7 @@ class Timepicker extends DefaultValueAccessor
     return this._selected;
   }
 
-  set selected(Date v) {
+  set selected(DateTime v) {
     if (v) {
       this._selected = v;
       this.updateTemplate();
@@ -157,7 +157,7 @@ class Timepicker extends DefaultValueAccessor
     ;
   }
 
-  // todo: add formatter value to Date object
+  // todo: add formatter value to DateTime object
   onInit() {
     // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
     this.meridians =
@@ -188,7 +188,7 @@ class Timepicker extends DefaultValueAccessor
   }
 
   writeValue(v) {
-    this.selected = v ? new Date (v) : null;
+    this.selected = v ? new DateTime (v) : null;
   }
 
   refresh([ String type ]) {

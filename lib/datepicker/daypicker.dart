@@ -101,13 +101,13 @@ class DayPicker
    return ((month === 1) && (year % 4 === 0) &&
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
-  getDates(Date startDate, num n) {
-    List<Date> dates = new List(n);
-    var current = new Date (startDate.getTime());
+  getDates(DateTime startDate, num n) {
+    List<DateTime> dates = new List(n);
+    var current = new DateTime (startDate.getTime());
     var i = 0;
     var date;
     while (i < n) {
-      date = new Date (current.getTime());
+      date = new DateTime (current.getTime());
       this.datePicker.fixTimeZone(date);
       dates [ i ++ ] = date;
       current.setDate(current.getDate() + 1);
@@ -115,8 +115,8 @@ class DayPicker
     return dates;
   }
 
-  num getISO8601WeekNumber(Date date) {
-    var checkDate = new Date (date.getTime());
+  num getISO8601WeekNumber(DateTime date) {
+    var checkDate = new DateTime (date.getTime());
     // Thursday
     checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
     var time = checkDate.getTime();
@@ -133,17 +133,17 @@ class DayPicker
     this.datePicker.setRefreshViewHandler(() {
       var year = this.activeDate.getFullYear();
       var month = this.activeDate.getMonth();
-      var firstDayOfMonth = new Date (year, month, 1);
+      var firstDayOfMonth = new DateTime (year, month, 1);
       var difference = this.startingDay - firstDayOfMonth.getDay();
       var numDisplayedFromPreviousMonth = (difference > 0)
           ? 7 - difference
           : -difference;
-      var firstDate = new Date (firstDayOfMonth.getTime());
+      var firstDate = new DateTime (firstDayOfMonth.getTime());
       if (numDisplayedFromPreviousMonth > 0) {
         firstDate.setDate(-numDisplayedFromPreviousMonth + 1);
       }
       // 42 is the number of days on a six-month calendar
-      List<Date> _days = self.getDates(firstDate, 42);
+      List<DateTime> _days = self.getDates(firstDate, 42);
       List<dynamic> days = [];
       for (var i = 0; i < 42; i ++) {
         var _dateObject = this.createDateObject(_days [ i ], this.formatDay);
@@ -171,9 +171,9 @@ class DayPicker
       }
     }, "day");
     this.datePicker.setCompareHandler((date1, date2) {
-      var d1 = new Date (
+      var d1 = new DateTime (
           date1.getFullYear(), date1.getMonth(), date1.getDate());
-      var d2 = new Date (
+      var d2 = new DateTime (
           date2.getFullYear(), date2.getMonth(), date2.getDate());
       return d1.getTime() - d2.getTime();
     }, "day");
