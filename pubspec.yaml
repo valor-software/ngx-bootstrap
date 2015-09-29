@@ -1,0 +1,17 @@
+name: ng2-strap
+version: 0.0.1
+description:
+author:
+environment:
+  sdk: '>=1.12.0 <2.0.0'
+dependencies:
+  angular2: '^2.0.0-alpha.37'
+  browser: '^0.10.0+2'
+  bootstrap: "^3.3.4"
+  node_shims: '^0.1.3'
+transformers:
+- angular2:
+    entry_points: web/main.dart
+- bootstrap:
+    url: //maxcdn.bootstrapcdn.com/bootstrap/{{version}}
+    version: 3.3.5
