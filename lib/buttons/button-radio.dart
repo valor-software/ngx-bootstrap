@@ -19,7 +19,7 @@ class ButtonRadio extends DefaultValueAccessor implements OnInit {
   }
 
   onInit() {
-    this.uncheckable = !identical(, "undefined");
+    this.uncheckable = uncheckable != null;
   }
 
   get isActive {
