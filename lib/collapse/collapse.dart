@@ -1,6 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Component, View, Directive, EventEmitter, ElementRef;
+import 'dart:async';
 // todo: add animate
 
 // todo: add init and on change
@@ -60,11 +61,11 @@ class Collapse {
     this.isCollapsing = true;
     this.isExpanded = false;
     this.isCollapsed = true;
-    setTimeout(() {
+    new Timer(const Duration(milliseconds: 4), () {
       this.height = "0";
       this.isCollapse = true;
       this.isCollapsing = false;
-    }, 4);
+    });
   }
 
   show() {
@@ -72,10 +73,10 @@ class Collapse {
     this.isCollapsing = true;
     this.isExpanded = true;
     this.isCollapsed = false;
-    setTimeout(() {
+    new Timer(const Duration(milliseconds: 4), () {
       this.height = "auto";
       this.isCollapse = true;
       this.isCollapsing = false;
-    }, 4);
+    });
   }
 }

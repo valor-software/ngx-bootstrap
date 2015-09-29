@@ -4,10 +4,13 @@ import "package:angular2/angular2.dart"
 import "../ng2-bootstrap-config.dart"
     show Ng2BootstrapConfig, Ng2BootstrapTheme;
 
+import "package:node_shims/js.dart";
+import 'dart:async';
+
 enum Direction { UNKNOWN, NEXT, PREV }
 // todo: add animate
-const NAVIGATION = {
-:
+const NAVIGATION = const {
+Ng2BootstrapTheme.BS4 :
 '''
 <a class="left carousel-control" (click)="prev()" [hidden]="!slides.length">
   <span class="icon-prev" aria-hidden="true"></span>
@@ -17,7 +20,8 @@ const NAVIGATION = {
   <span class="icon-next" aria-hidden="true"></span>
   <span class="sr-only">Next</span>
 </a>
-  ''', : '''
+  ''',
+  Ng2BootstrapTheme.BS3 : '''
 <a class="left carousel-control" (click)="prev()" [hidden]="!slides.length">
   <span class="glyphicon glyphicon-chevron-left"></span>
 </a>
@@ -35,18 +39,17 @@ const NAVIGATION = {
      <li *ng-for="#slidez of slides" [ng-class]="{active: slidez.active === true}" (click)="select(slidez)"></li>
   </ol>
   <div class="carousel-inner"><ng-content></ng-content></div>
-  ${ NAVIGATION [ Ng2BootstrapConfig.theme ]}
+  \${ NAVIGATION [ Ng2BootstrapConfig.theme ]}
 </div>
   ''', directives: const [ CORE_DIRECTIVES, NgClass])
-class Carousel
-    implements OnDestroy {
+class Carousel implements OnDestroy {
   bool noPause;
 
   bool noWrap;
 
   List<Slide> slides = [];
 
-  num currentInterval;
+  Timer currentInterval;
 
   bool isPlaying;
 
@@ -54,17 +57,15 @@ class Carousel
 
   Slide currentSlide;
 
-  num _interval;
+  int _interval;
 
   onDestroy() {
     this.destroyed = true;
   }
 
-  num get interval {
-    return this._interval;
-  }
+  int get interval => _interval;
 
-  set interval(num value) {
+  set interval(int value) {
     this._interval = value;
     this.restartTimer();
   }
@@ -105,8 +106,8 @@ class Carousel
     }
   }
 
-  getCurrentIndex() {
-    return !this.currentSlide ? 0 : this.currentSlide.index;
+  int getCurrentIndex() {
+    return falsey(this.currentSlide) ? 0 : this.currentSlide.index;
   }
 
   next() {
@@ -131,23 +132,23 @@ class Carousel
 
   restartTimer() {
     this.resetTimer();
-    var interval = +this.interval;
-    if (!isNaN(interval) && interval > 0) {
-      this.currentInterval = setInterval(() {
-        var nInterval = +this.interval;
-        if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 &&
-            this.slides.length) {
+    var interval = this.interval;
+    if (interval != double.NAN && interval > 0) {
+      this.currentInterval = new Timer(new Duration(milliseconds: interval), () {
+        var nInterval = this.interval;
+        if (this.isPlaying && interval != double.NAN && nInterval > 0 &&
+            truthy(this.slides.length)) {
           this.next();
         } else {
           this.pause();
         }
-      }, interval);
+      });
     }
   }
 
   resetTimer() {
-    if (this.currentInterval) {
-      clearInterval(this.currentInterval);
+    if (truthy(currentInterval)) {
+      currentInterval.cancel();
       this.currentInterval = null;
     }
   }
@@ -168,7 +169,7 @@ class Carousel
 
   addSlide(Slide slide) {
     slide.index = this.slides.length;
-    this.slides.push(slide);
+    push(this.slides, slide);
     if (identical(this.slides.length, 1) || slide.active) {
       this.select(this.slides [ this.slides.length - 1 ]);
       if (identical(this.slides.length, 1)) {
@@ -180,7 +181,7 @@ class Carousel
   }
 
   removeSlide(Slide slide) {
-    this.slides.splice(slide.index, 1);
+    splice(this.slides, slide.index, 1);
     if (identical(this.slides.length, 0)) {
       this.currentSlide = null;
       return;
@@ -202,9 +203,8 @@ class Carousel
   <div [ng-class]="{active: active}" class="item text-center">
     <ng-content></ng-content>
   </div>
-  ''', directives: const [ NgClass])
-class Slide
-    implements OnInit, OnDestroy {
+  ''', directives: const [NgClass])
+class Slide implements OnInit, OnDestroy {
   Carousel carousel;
 
   bool active;
@@ -224,4 +224,4 @@ class Slide
   }
 }
 
-const List<dynamic> carousel = [ Carousel, Slide];
+const List carousel = const [ Carousel, Slide];
