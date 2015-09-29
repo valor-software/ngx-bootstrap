@@ -8,17 +8,14 @@ npm-debug.log
 
 # WebStorm
 .idea
+*.iml
 
 # ignore build and dist for now
 /build
 /dist
 
 # ignore incline compiling
-/demo/**/*.js
-/demo/**/*.js.map
-/demo/**/*.d.ts
-/components/**/*.js
-/components/**/*.js.map
-/components/**/*.d.ts
-
-/logs
+.pub
+**/packages
+pubspec.lock
+.packages
