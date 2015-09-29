@@ -36,7 +36,7 @@ const paginationConfig = {
     'boundaryLinks', 'directionLinks',
     'firstText', 'previousText', 'nextText', 'lastText'
   ],
-  events: ['numPages']
+  events: ['numPages', 'pageChanged']
 })
 @View({
   template: `
@@ -53,7 +53,11 @@ const paginationConfig = {
       <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
       </li>
 
-    <li *ng-for="#page of pages" [ng-class]="{active: page.active, disabled: disabled&&!page.active}" class="pagination-page"><a href (click)="selectPage(page.number, $event)">{{page.text}}</a></li>
+    <li *ng-for="#pg of pages"
+    [ng-class]="{active: pg.active, disabled: disabled&&!pg.active}"
+    class="pagination-page">
+      <a href (click)="selectPage(pg.number, $event)">{{pg.text}}</a>
+    </li>
 
     <li class="pagination-next"
         [ng-class]="{disabled: noNext()||disabled, hidden: !directionLinks}"
@@ -86,10 +90,13 @@ export class Pagination extends DefaultValueAccessor implements OnInit {
   private disabled:boolean;
   private directionLinks:boolean;
   private numPages:EventEmitter = new EventEmitter();
+  private pageChanged:EventEmitter = new EventEmitter();
 
   private _itemsPerPage:number;
   private _totalItems:number;
   private _totalPages:number;
+
+  private inited: boolean = false;
 
   private get itemsPerPage() {
     return this._itemsPerPage;
@@ -116,13 +123,26 @@ export class Pagination extends DefaultValueAccessor implements OnInit {
   private set totalPages(v:number) {
     this._totalPages = v;
     this.numPages.next(v);
-    if (this.page > v) {
+    if (this.inited) {
       this.selectPage(v);
     }
   }
 
+  public set page(value) {
+    this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
+
+    this.pageChanged.next({
+      page: this._page,
+      itemsPerPage: this.itemsPerPage
+    });
+  }
+
+  public get page() {
+    return this._page;
+  }
+
   // ??
-  private page:number;
+  private _page:number;
   private pages:Array<any>;
 
   constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
@@ -138,18 +158,17 @@ export class Pagination extends DefaultValueAccessor implements OnInit {
     this.boundaryLinks = typeof this.boundaryLinks !== 'undefined' ? this.boundaryLinks : paginationConfig.boundaryLinks;
     this.directionLinks = typeof this.directionLinks !== 'undefined' ? this.directionLinks : paginationConfig.directionLinks;
 
-
     // base class
-    this.page = typeof this.page !== 'undefined' ? this.page : 1;
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined' ? this.itemsPerPage : paginationConfig.itemsPerPage;
-
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
+    this.page = this.cd.value;
+    this.inited = true;
   }
 
   writeValue(value:number) {
-    this.page = value || 1;
+    this.page = value;
     this.pages = this.getPages(this.page, this.totalPages);
   }
 
@@ -158,11 +177,12 @@ export class Pagination extends DefaultValueAccessor implements OnInit {
       event.preventDefault();
     }
 
-    if ((!this.disabled || !event) && this.page !== page && page > 0 && page <= this.totalPages) {
-      let target:any = event.target;
-      target.blur();
+    if (!this.disabled) {
+      if (event && event.target) {
+        event.target.blur();
+      }
       this.writeValue(page);
-      this.cd.viewToModelUpdate(page);
+      this.cd.viewToModelUpdate(this.page);
     }
   }
 

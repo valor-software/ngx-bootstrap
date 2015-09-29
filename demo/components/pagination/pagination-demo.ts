@@ -1,5 +1,7 @@
 /// <reference path="../../../tsd.d.ts" />
-import {Component, View, FORM_DIRECTIVES, CORE_DIRECTIVES} from 'angular2/angular2';
+import {
+  Component, View, FORM_DIRECTIVES, CORE_DIRECTIVES
+} from 'angular2/angular2';
 import {pagination} from '../../../components/index';
 
 // webpack html imports
@@ -24,7 +26,8 @@ export class PaginationDemo {
     this.currentPage = pageNo;
   };
 
-  private pageChanged():void {
-    console.log('Page changed to: ' + this.currentPage);
+  private pageChanged(event:any):void {
+    console.log('Page changed to: ' + event.page);
+    console.log('Number items per page: ' + event.itemsPerPage);
   };
 }
