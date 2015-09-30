@@ -9,6 +9,7 @@ dependencies:
   browser: '^0.10.0+2'
   bootstrap: "^3.3.4"
   node_shims: '^0.1.3'
+  intl: ^0.12.4+2
 transformers:
 - angular2:
     entry_points: web/main.dart
