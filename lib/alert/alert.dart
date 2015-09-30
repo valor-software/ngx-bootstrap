@@ -1,6 +1,7 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, OnInit, EventEmitter, ElementRef, ViewContainerRef, NgIf, NgClass;
+import 'dart:async';
+
+import "package:angular2/angular2.dart";
+import 'package:node_shims/js.dart';
 
 // TODO: templateUrl
 @Component (selector: "alert",
@@ -8,60 +9,58 @@ import "package:angular2/angular2.dart"
     events: const [ "close"])
 @View (template: '''
   <div class="alert" role="alert" [ng-class]="classes" *ng-if="!closed">
-    <button *ng-if="closeable" type="button" class="close" (click)="onClose(\$event)">
+    <button *ng-if="closeable" type="button" class="close" (click)="onClose()">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
     <ng-content></ng-content>
   </div>
-  ''', directives: const [ NgIf, NgClass])
-class Alert
-    implements OnInit {
+  ''', directives: const [NgIf, NgClass])
+class Alert implements OnInit {
   ElementRef el;
 
   String type;
 
   EventEmitter close = new EventEmitter ();
 
-  String templateUrl;
+  int dismissOnTimeout;
 
-  num dismissOnTimeout;
+  bool closed = false;
 
-  bool closed;
-
-  bool closeable;
+  bool closeable = false;
 
   List<String> classes = [];
 
   set dismissible(bool v) {
-    this.closeable = v;
+    closeable = v;
   }
 
   bool get dismissible {
-    return this.closeable;
+    return closeable;
   }
 
-  Alert(this .el) {
-    this.closeable = this.closeable || el.nativeElement.getAttribute("(close)");
+  Alert(this.el) {
+    closeable = closeable || el.nativeElement.getAttribute("(close)") != null;
   }
 
   onInit() {
-    this.type = this.type || "warning";
-    this.classes [ 0 ] = "alert-" + (this.type || "warning");
-    if (this.closeable) {
-      this.classes [ 1 ] = "alert-dismissible";
+    type ??= "warning";
+    classes.add("alert-$type");
+    if (closeable) {
+      classes.add("alert-dismissible");
     } else {
-      this.classes.length = 1;
+      classes.length = 1;
     }
-    if (this.dismissOnTimeout) {
-      var close = this.onClose.bind(this);
-      setTimeout(close, this.dismissOnTimeout);
+    if (truthy(dismissOnTimeout)) {
+      dismissible = true;
+      new Timer(new Duration(milliseconds: dismissOnTimeout), onClose);
     }
   }
 
   // todo: mouse event + touch + pointer
   onClose() {
-    this.close.next(this);
-    this.closed = true;
+    close.add(this);
+    el.nativeElement.remove();
+    closed = true;
   }
 }
