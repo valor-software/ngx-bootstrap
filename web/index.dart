@@ -1,23 +1,21 @@
-import "package:angular2/angular2.dart"
-    show Component, View, bootstrap, NgClass;
-import "package:ng2-strap/index.dart"
-    show Ng2BootstrapConfig, Ng2BootstrapTheme;
-import "components/accordion-section.dart" show AccordionSection;
-import "components/alert-section.dart" show AlertSection;
-import "components/buttons-section.dart" show ButtonsSection;
-import "components/carousel-section.dart" show CarouselSection;
-import "components/collapse-section.dart" show CollapseSection;
-import "components/datepicker-section.dart" show DatepickerSection;
-import "components/dropdown-section.dart" show DropdownSection;
-import "components/pagination-section.dart" show PaginationSection;
-import "components/progressbar-section.dart" show ProgressbarSection;
-import "components/rating-section.dart" show RatingSection;
-import "components/tabs-section.dart" show TabsSection;
-import "components/timepicker-section.dart" show TimepickerSection;
-import "components/tooltip-section.dart" show TooltipSection;
-import "components/typeahead-section.dart" show TypeaheadSection;
-import "components/demo-header.dart" show DemoHeader;
-import "dart:html";
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/index.dart";
+
+import "components/accordion-section.dart";
+import "components/alert-section.dart";
+import "components/buttons-section.dart";
+import "components/carousel-section.dart";
+import "components/collapse-section.dart";
+import "components/datepicker-section.dart";
+import "components/demo-header.dart";
+import "components/dropdown-section.dart";
+import "components/pagination-section.dart";
+import "components/progressbar-section.dart";
+import "components/rating-section.dart";
+import "components/tabs-section.dart";
+import "components/timepicker-section.dart";
+import "components/tooltip-section.dart";
+import "components/typeahead-section.dart";
 
 @Component (selector: "app")
 @View (template: '''
