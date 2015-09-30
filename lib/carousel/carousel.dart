@@ -1,8 +1,5 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, Directive, OnInit, OnDestroy, EventEmitter, ElementRef, CORE_DIRECTIVES, NgClass;
-import "../ng2-bootstrap-config.dart"
-    show Ng2BootstrapConfig, Ng2BootstrapTheme;
+import "package:angular2/angular2.dart";
+import "../ng2-bootstrap-config.dart";
 
 import "package:node_shims/js.dart";
 import 'dart:async';
@@ -39,11 +36,10 @@ Ng2BootstrapTheme.BS4 :
      <li *ng-for="#slidez of slides" [ng-class]="{active: slidez.active === true}" (click)="select(slidez)"></li>
   </ol>
   <div class="carousel-inner"><ng-content></ng-content></div>
-  \${ NAVIGATION [ Ng2BootstrapConfig.theme ]}
 </div>
   ''', directives: const [ CORE_DIRECTIVES, NgClass])
 class Carousel implements OnDestroy {
-  bool noPause;
+  bool noPause = false;
 
   bool noWrap;
 
@@ -51,7 +47,7 @@ class Carousel implements OnDestroy {
 
   Timer currentInterval;
 
-  bool isPlaying;
+  bool isPlaying = false;
 
   bool destroyed = false;
 
@@ -66,81 +62,81 @@ class Carousel implements OnDestroy {
   int get interval => _interval;
 
   set interval(int value) {
-    this._interval = value;
-    this.restartTimer();
+    _interval = value;
+    restartTimer();
   }
 
   select(Slide nextSlide, [ Direction direction = Direction.UNKNOWN ]) {
     var nextIndex = nextSlide.index;
     if (identical(direction, Direction.UNKNOWN)) {
       direction =
-      nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
+      nextIndex > getCurrentIndex() ? Direction.NEXT : Direction.PREV;
     }
     // Prevent this user-triggered transition from occurring if there is already one in progress
-    if (nextSlide && !identical(nextSlide, this.currentSlide)) {
-      this.goNext(nextSlide, direction);
+    if (nextSlide != null && nextSlide != currentSlide) {
+      goNext(nextSlide, direction);
     }
   }
 
   goNext(Slide slide, Direction direction) {
-    if (this.destroyed) {
+    if (destroyed) {
       return;
     }
     slide.direction = direction;
     slide.active = true;
-    if (this.currentSlide) {
-      this.currentSlide.direction = direction;
-      this.currentSlide.active = false;
+    if (currentSlide != null) {
+      currentSlide.direction = direction;
+      currentSlide.active = false;
     }
-    this.currentSlide = slide;
+    currentSlide = slide;
     // every time you change slides, reset the timer
-    this.restartTimer();
+    restartTimer();
   }
 
   getSlideByIndex(num index) {
-    var len = this.slides.length;
+    var len = slides.length;
     for (var i = 0; i < len; ++i) {
-      if (identical(this.slides [ i ].index, index)) {
-        return this.slides [ i ];
+      if (identical(slides [ i ].index, index)) {
+        return slides [ i ];
       }
     }
   }
 
   int getCurrentIndex() {
-    return falsey(this.currentSlide) ? 0 : this.currentSlide.index;
+    return falsey(currentSlide) ? 0 : currentSlide.index;
   }
 
   next() {
-    var newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
-    if (identical(newIndex, 0) && this.noWrap) {
-      this.pause();
-      return;
+    var newIndex = (getCurrentIndex() + 1) % slides.length;
+    if (identical(newIndex, 0) && noWrap) {
+      pause();
+      return null;
     }
-    return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
+    return select(getSlideByIndex(newIndex), Direction.NEXT);
   }
 
   prev() {
-    var newIndex = this.getCurrentIndex() - 1 < 0
-        ? this.slides.length - 1
-        : this.getCurrentIndex() - 1;
-    if (this.noWrap && identical(newIndex, this.slides.length - 1)) {
-      this.pause();
-      return;
+    var newIndex = getCurrentIndex() - 1 < 0
+        ? slides.length - 1
+        : getCurrentIndex() - 1;
+    if (noWrap && identical(newIndex, slides.length - 1)) {
+      pause();
+      return null;
     }
-    return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
+    return select(getSlideByIndex(newIndex), Direction.PREV);
   }
 
   restartTimer() {
-    this.resetTimer();
+    resetTimer();
     var interval = this.interval;
     if (interval != double.NAN && interval > 0) {
-      this.currentInterval = new Timer(new Duration(milliseconds: interval), () {
+      currentInterval = new Timer(new Duration(milliseconds: interval), () {
         var nInterval = this.interval;
-        if (this.isPlaying && interval != double.NAN && nInterval > 0 &&
-            truthy(this.slides.length)) {
-          this.next();
+        if (isPlaying && interval != double.NAN && nInterval > 0 &&
+            truthy(slides.length)) {
+          next();
         } else {
-          this.pause();
+          pause();
         }
       });
     }
@@ -149,31 +145,31 @@ class Carousel implements OnDestroy {
   resetTimer() {
     if (truthy(currentInterval)) {
       currentInterval.cancel();
-      this.currentInterval = null;
+      currentInterval = null;
     }
   }
 
   play() {
-    if (!this.isPlaying) {
-      this.isPlaying = true;
-      this.restartTimer();
+    if (!isPlaying) {
+      isPlaying = true;
+      restartTimer();
     }
   }
 
   pause() {
-    if (!this.noPause) {
-      this.isPlaying = false;
-      this.resetTimer();
+    if (!noPause) {
+      isPlaying = false;
+      resetTimer();
     }
   }
 
   addSlide(Slide slide) {
-    slide.index = this.slides.length;
-    push(this.slides, slide);
-    if (identical(this.slides.length, 1) || slide.active) {
-      this.select(this.slides [ this.slides.length - 1 ]);
-      if (identical(this.slides.length, 1)) {
-        this.play();
+    slide.index = slides.length;
+    push(slides, slide);
+    if (identical(slides.length, 1) || slide.active) {
+      select(slides [ slides.length - 1 ]);
+      if (identical(slides.length, 1)) {
+        play();
       }
     } else {
       slide.active = false;
@@ -181,13 +177,13 @@ class Carousel implements OnDestroy {
   }
 
   removeSlide(Slide slide) {
-    splice(this.slides, slide.index, 1);
-    if (identical(this.slides.length, 0)) {
-      this.currentSlide = null;
+    splice(slides, slide.index, 1);
+    if (identical(slides.length, 0)) {
+      currentSlide = null;
       return;
     }
-    for (var i = 0; i < this.slides.length; i ++) {
-      this.slides [ i ].index = i;
+    for (var i = 0; i < slides.length; i ++) {
+      slides [ i ].index = i;
     }
   }
 }
@@ -213,15 +209,15 @@ class Slide implements OnInit, OnDestroy {
 
   num index;
 
-  Slide(this .carousel) {}
+  Slide(this.carousel) {}
 
   onInit() {
-    this.carousel.addSlide(this);
+    carousel.addSlide(this);
   }
 
   onDestroy() {
-    this.carousel.removeSlide(this);
+    carousel.removeSlide(this);
   }
 }
 
-const List carousel = const [ Carousel, Slide];
+const CAROUSEL_DIRECTIVES = const [Carousel, Slide];

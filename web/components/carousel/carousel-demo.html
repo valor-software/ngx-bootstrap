@@ -2,13 +2,13 @@
   <div class="col-md-6">
     <carousel [interval]="myInterval" [no-wrap]="noWrapSlides">
       <slide *ng-for="#slidez of slides; #index=index"
-             [active]="slidez.active">
-        <img [src]="slidez.image" style="margin:auto;">
+             [active]="slidez['active'] != null ? slidez['active'] : false ">
+        <img [src]="slidez['image']" style="margin:auto;">
 
         <div class="carousel-caption">
           <h4>Slide {{index}}</h4>
 
-          <p>{{slidez.text}}</p>
+          <p>{{slidez['text']}}</p>
         </div>
       </slide>
     </carousel>
