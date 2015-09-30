@@ -1,7 +1,10 @@
-<alert *ng-for="#alert of alerts;#i = index" [type]="alert.type" (close)="closeAlert(i)">
-  {{ alert.msg }}
+<alert [dismissible]="true">This alert is closeable/dismissible</alert>
+<alert type="info">This alert is info</alert>
+
+<alert *ng-for="#alert of alerts;#i = index" [type]="alert['type']" (close)="closeAlert(i)">
+  {{ alert['msg'] }}
 </alert>
 
-<alert dismiss-on-timeout="3000">This alert will dismiss in 3s</alert>
+<alert [dismiss-on-timeout]="3000">This alert will dismiss in 3s</alert>
 
 <button type="button" class='btn btn-primary' (click)="addAlert()">Add Alert</button>

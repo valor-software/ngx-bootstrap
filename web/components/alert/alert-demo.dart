@@ -1,14 +1,11 @@
-/// <reference path="../../../tsd.d.ts" />
 import "package:angular2/angular2.dart" show Component, View, NgFor;
-import "../../../lib/index.dart" show Alert;
-
-// webpack html imports
-var template = require("./alert-demo.html");
+import "package:ng2-strap/alert/alert.dart" show Alert;
+import 'package:node_shims/js.dart';
 
 @Component(selector: "alert-demo")
-@View(template: template, directives: const [Alert, NgFor])
+@View(templateUrl: "alert-demo.html", directives: const [Alert, NgFor])
 class AlertDemo {
-  Array<Object> alerts = [
+  List alerts = [
     {
       "type": "danger",
       "msg": "Oh snap! Change a few things up and try submitting again."
@@ -20,10 +17,10 @@ class AlertDemo {
     }
   ];
   closeAlert(num i) {
-    this.alerts.splice(i, 1);
+    splice(this.alerts, i, 1);
   }
 
   addAlert() {
-    this.alerts.push(msg: "Another alert!", closable: true);
+    alerts.add({"msg": "Another alert!", 'closable': true});
   }
 }
