@@ -35,46 +35,46 @@ class Collapse {
   // animation state
   bool isCollapsing = false;
 
-  Collapse(this .el) {}
+  Collapse(this.el);
 
   bool get collapse {
-    return this.isExpanded;
+    return isExpanded;
   }
 
   set collapse(bool value) {
-    this.isExpanded = value;
-    this.toggle();
+    isExpanded = value;
+    toggle();
   }
 
   toggle() {
-    if (this.isExpanded) {
-      this.hide();
+    if (isExpanded) {
+      hide();
     } else {
-      this.show();
+      show();
     }
   }
 
   hide() {
-    this.isCollapse = false;
-    this.isCollapsing = true;
-    this.isExpanded = false;
-    this.isCollapsed = true;
+    isCollapse = false;
+    isCollapsing = true;
+    isExpanded = false;
+    isCollapsed = true;
     new Timer(const Duration(milliseconds: 4), () {
-      this.height = "0";
-      this.isCollapse = true;
-      this.isCollapsing = false;
+      height = "0";
+      isCollapse = true;
+      isCollapsing = false;
     });
   }
 
   show() {
-    this.isCollapse = false;
-    this.isCollapsing = true;
-    this.isExpanded = true;
-    this.isCollapsed = false;
+    isCollapse = false;
+    isCollapsing = true;
+    isExpanded = true;
+    isCollapsed = false;
     new Timer(const Duration(milliseconds: 4), () {
-      this.height = "auto";
-      this.isCollapse = true;
-      this.isCollapsing = false;
+      height = "auto";
+      isCollapse = true;
+      isCollapsing = false;
     });
   }
 }
