@@ -1,4 +1,5 @@
 import "dropdown.dart" show Dropdown;
+import 'dart:html';
 
 const ALWAYS = "always";
 

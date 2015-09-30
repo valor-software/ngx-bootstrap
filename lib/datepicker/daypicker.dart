@@ -4,11 +4,11 @@ import "package:angular2/angular2.dart"
 import "../ng2-bootstrap-config.dart"
     show Ng2BootstrapConfig, Ng2BootstrapTheme;
 import "datepicker-inner.dart" show DatePickerInner;
+import 'package:node_shims/js.dart';
 
-const TEMPLATE_OPTIONS = {
-:
-{
-"DAY_BUTTON" : '''
+const TEMPLATE_OPTIONS = const {
+  Ng2BootstrapTheme.BS4 : const {
+    "DAY_BUTTON" : '''
         <button type="button" style="min-width:100%;" class="btn btn-sm"
                 [ng-class]="{\'btn-secondary\': !dtz.selected && !datePicker.isActive(dtz), \'btn-info\': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
@@ -16,22 +16,21 @@ const TEMPLATE_OPTIONS = {
           <span [ng-class]="{\'text-muted\': dtz.secondary || dtz.current}">{{dtz.label}}</span>
         </button>
     '''
-}
-, :
-{
-"DAY_BUTTON" : '''
-        <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
-                [ng-class]="{\'btn-info\': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
-                [disabled]="dtz.disabled"
-                (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ng-class]="{\'text-muted\': dtz.secondary, \'text-info\': dtz.current}">{{dtz.label}}</span>
-        </button>
-    '''
-}
+  },
+  Ng2BootstrapTheme.BS3 : const {
+    "DAY_BUTTON" : '''
+            <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
+                    [ng-class]="{\'btn-info\': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
+                    [disabled]="dtz.disabled"
+                    (click)="datePicker.select(dtz.date)" tabindex="-1">
+              <span [ng-class]="{\'text-muted\': dtz.secondary, \'text-info\': dtz.current}">{{dtz.label}}</span>
+            </button>
+        '''
+    }
 };
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ||
-    Ng2BootstrapTheme.BS3 ];
+final CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ or(Ng2BootstrapConfig.theme,
+    Ng2BootstrapTheme.BS3) ];
 
 @Component (selector: "daypicker, [daypicker]")
 @View (template: '''
@@ -77,7 +76,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ||
       <td [hidden]="!datePicker.showWeeks" class="text-center h6"><em>{{ weekNumbers[index] }}</em></td>
       <!--  [ng-class]="dtz.customClass" -->
       <td *ng-for="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
-        ${ CURRENT_THEME_TEMPLATE.DAY_BUTTON}
+        \${ CURRENT_THEME_TEMPLATE.DAY_BUTTON}
       </td>
     </tr>
   </tbody>

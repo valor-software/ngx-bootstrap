@@ -1,6 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart" show Directive, ElementRef;
 import "dropdown.dart" show Dropdown;
+import 'dart:html';
 
 @Directive (selector: "[dropdown][keyboard-nav]",
     host: const { "(keydown)" : "onKeydown(\$event)"})
@@ -23,7 +24,7 @@ class KeyboardNav {
     var elems = this.dd.menuEl.nativeElement.getElementsByTagName("a");
     switch (event.which) {
       case (40) :
-        if (!identical(, "number")) {
+        if (dd.selectedOption is! num) {
           this.dd.selectedOption = 0;
           break;
         }
@@ -33,7 +34,7 @@ class KeyboardNav {
         this.dd.selectedOption ++;
         break;
       case (38) :
-        if (!identical(, "number")) {
+        if (dd.selectedOption is! num) {
           return;
         }
         if (identical(this.dd.selectedOption, 0)) {

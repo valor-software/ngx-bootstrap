@@ -1,6 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Component, View, OnInit, EventEmitter, DefaultValueAccessor, ElementRef, ViewContainerRef, NgIf, NgClass, FORM_DIRECTIVES, Self, NgModel, Renderer;
+import 'dart:html';
+import 'package:node_shims/js.dart';
+
 // todo: implement global configuration via DI
 
 // todo: refactor directive has to many functions! (extract to stateless helper)
@@ -12,7 +15,7 @@ import "package:angular2/angular2.dart"
 // todo: replace increment/decrement blockers with getters, or extract
 
 // todo: unify work with selected
-const timepickerConfig = {
+const timepickerConfig = const {
   "hourStep" : 1,
   "minuteStep" : 1,
   "showMeridian" : true,
@@ -21,23 +24,20 @@ const timepickerConfig = {
   "mousewheel" : true,
   "arrowkeys" : true,
   "showSpinners" : true,
-  "min" : undefined,
-  "max" : undefined
+  "min" : null,
+  "max" : null
 };
 
 bool isDefined(dynamic value) {
-  return !identical(, "undefined");
+  return value != null;
 }
 
 def(dynamic value, Function fn, defaultValue) {
   return fn(value) ? value : defaultValue;
 }
 
-addMinutes(date, minutes) {
-  var dt = new DateTime (date.getTime() + minutes * 60000);
-  var newDate = new DateTime (date);
-  newDate.setHours(dt.getHours(), dt.getMinutes());
-  return newDate;
+DateTime addMinutes(DateTime date, minutes) {
+  return date.add(new Duration(minutes: minutes));
 }
 // TODO: templateUrl
 @Component (selector: "timepicker[ng-model]",
@@ -84,7 +84,7 @@ addMinutes(date, minutes) {
 class Timepicker extends DefaultValueAccessor
     implements OnInit {
   // result value
-  DateTime _selected = new DateTime ();
+  DateTime _selected = new DateTime.now();
 
   // config
   num hourStep;
@@ -161,30 +161,29 @@ class Timepicker extends DefaultValueAccessor
   onInit() {
     // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
     this.meridians =
-        def(this.meridians, isDefined, timepickerConfig.meridians) ||
-            [ "AM", "PM"];
+        or(def(this.meridians, isDefined, timepickerConfig['meridians']), [ "AM", "PM"]);
     this.mousewheel =
-        def(this.mousewheel, isDefined, timepickerConfig.mousewheel);
+        def(this.mousewheel, isDefined, timepickerConfig['mousewheel']);
     if (this.mousewheel) {
       this.setupMousewheelEvents();
     }
-    this.arrowkeys = def(this.arrowkeys, isDefined, timepickerConfig.arrowkeys);
+    this.arrowkeys = def(this.arrowkeys, isDefined, timepickerConfig['arrowkeys']);
     if (this.arrowkeys) {
       this.setupArrowkeyEvents();
     }
     this.readonlyInput =
-        def(this.readonlyInput, isDefined, timepickerConfig.readonlyInput);
+        def(this.readonlyInput, isDefined, timepickerConfig['readonlyInput']);
     this.setupInputEvents();
-    this.hourStep = def(this.hourStep, isDefined, timepickerConfig.hourStep);
+    this.hourStep = def(this.hourStep, isDefined, timepickerConfig['hourStep']);
     this.minuteStep =
-        def(this.minuteStep, isDefined, timepickerConfig.minuteStep);
-    this.min = def(this.min, isDefined, timepickerConfig.min);
-    this.max = def(this.max, isDefined, timepickerConfig.max);
+        def(this.minuteStep, isDefined, timepickerConfig['minuteStep']);
+    this.min = def(this.min, isDefined, timepickerConfig['min']);
+    this.max = def(this.max, isDefined, timepickerConfig['max']);
     // 12H / 24H mode
     this.showMeridian =
-        def(this.showMeridian, isDefined, timepickerConfig.showMeridian);
+        def(this.showMeridian, isDefined, timepickerConfig['showMeridian']);
     this.showSpinners =
-        def(this.showSpinners, isDefined, timepickerConfig.showSpinners);
+        def(this.showSpinners, isDefined, timepickerConfig['showSpinners']);
   }
 
   writeValue(v) {
@@ -218,11 +217,11 @@ class Timepicker extends DefaultValueAccessor
   }
 
   getHoursFromTemplate() {
-    var hours = parseInt(this.hours, 10);
+    var hours = int.parse(this.hours);
     var valid = this.showMeridian ? (hours > 0 && hours < 13) : (hours >= 0 &&
         hours < 24);
     if (!valid) {
-      return undefined;
+      return null;
     }
     if (this.showMeridian) {
       if (identical(hours, 12)) {
@@ -236,8 +235,8 @@ class Timepicker extends DefaultValueAccessor
   }
 
   getMinutesFromTemplate() {
-    var minutes = parseInt(this.minutes, 10);
-    return (minutes >= 0 && minutes < 60) ? minutes : undefined;
+    var minutes = int.parse(this.minutes);
+    return (minutes >= 0 && minutes < 60) ? minutes : null;
   }
 
   pad(value) {
@@ -270,7 +269,7 @@ class Timepicker extends DefaultValueAccessor
       return;
     }
     // todo: binded with validation
-    if (!this.invalidHours && parseInt(this.hours, 10) < 10) {
+    if (!this.invalidHours && int.parse(this.hours) < 10) {
       this.hours = this.pad(this.hours);
     }
   }
@@ -292,7 +291,7 @@ class Timepicker extends DefaultValueAccessor
     if (this.readonlyInput) {
       return;
     }
-    if (!this.invalidMinutes && parseInt(this.minutes, 10) < 10) {
+    if (!this.invalidMinutes && int.parse(this.minutes) < 10) {
       this.minutes = this.pad(this.minutes);
     }
   }

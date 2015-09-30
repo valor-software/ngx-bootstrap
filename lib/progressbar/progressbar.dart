@@ -1,8 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Type, Component, View, Directive, OnInit, OnDestroy, EventEmitter, ElementRef, ViewContainerRef, NgClass, NgStyle, Host, ViewEncapsulation, CORE_DIRECTIVES;
+import 'package:node_shims/js.dart';
 
-const progressConfig = { "animate" : true, "max" : 100};
+const progressConfig = const { "animate" : true, "max" : 100};
 // todo: progress element conflict with bootstrap.css
 
 // todo: need hack: replace host element with div
@@ -20,7 +21,7 @@ class Progress implements OnInit {
 
   onInit() {
     this.animate = !identical(this.animate, false);
-    this.max = identical(, "number") ? this.max : progressConfig.max;
+    this.max = max is num ? max : progressConfig['max'];
   }
 
   num get max {
@@ -38,11 +39,11 @@ class Progress implements OnInit {
     if (!this.animate) {
       bar.transition = "none";
     }
-    this.bars.push(bar);
+    push(bars, bar);
   }
 
   removeBar(Bar bar) {
-    this.bars.splice(this.bars.indexOf(bar), 1);
+    splice(bars, this.bars.indexOf(bar), 1);
   }
 }
 // todo: number pipe
@@ -98,10 +99,10 @@ class Bar
   }
 
   recalculatePercentage() {
-    this.percent = +(100 * this.value / this.progress.max).toFixed(2);
-    var totalPercentage = this.progress.bars.reduce((total, bar) {
+    this.percent = num.parse((100 * this.value / this.progress.max).toStringAsFixed(2));
+    var totalPercentage = this.progress.bars.fold(0, (total, bar) {
       return total + bar.percent;
-    }, 0);
+    });
     if (totalPercentage > 100) {
       this.percent -= totalPercentage - 100;
     }
@@ -127,4 +128,4 @@ class Progressbar {
   num value;
 }
 
-const List<dynamic> progressbar = [ Progress, Bar, Progressbar];
+const List progressbar = const [ Progress, Bar, Progressbar];

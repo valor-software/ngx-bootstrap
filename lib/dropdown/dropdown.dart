@@ -4,6 +4,8 @@ import "package:angular2/angular2.dart"
 import "dropdown.interfaces.dart"
     show DropdownMenuInterface, DropdownToggleInterface;
 import "dropdown-service.dart" show dropdownService, ALWAYS;
+import 'package:node_shims/js.dart';
+import 'dart:html';
 
 @Directive (selector: "[dropdown]",
     properties: const [
@@ -39,14 +41,14 @@ class Dropdown implements OnInit, OnDestroy {
   Dropdown(this .el) {}
 
   onInit() {
-    this.autoClose = this.autoClose || ALWAYS;
-    this.keyboardNav = !identical(, "undefined");
-    this.dropdownAppendToBody = !identical(, "undefined");
+    this.autoClose = or(this.autoClose, ALWAYS);
+    this.keyboardNav ?? true;
+    this.dropdownAppendToBody ?? true;
     if (this.isOpen) {}
   }
 
   onDestroy() {
-    if (this.dropdownAppendToBody && this.menuEl) {
+    if (this.dropdownAppendToBody && truthy(this.menuEl)) {
       this.menuEl.nativeElement.remove();
     }
   }
@@ -54,11 +56,11 @@ class Dropdown implements OnInit, OnDestroy {
   set dropDownMenu(DropdownMenuInterface dropdownMenu) {
     // init drop down menu
     this.menuEl = dropdownMenu.el;
-    if (dropdownMenu.templateUrl) {
+    if (truthy(dropdownMenu.templateUrl)) {
       this.dropdownMenuTemplateUrl = dropdownMenu.templateUrl;
     }
     if (this.dropdownAppendToBody) {
-      window.document.body.appendChild(this.menuEl.nativeElement);
+      window.document.documentElement.children.add(this.menuEl.nativeElement);
     }
   }
 
@@ -68,7 +70,7 @@ class Dropdown implements OnInit, OnDestroy {
   }
 
   bool toggle([ bool open ]) {
-    return this.isOpen = arguments.length ? ! !open : !this.isOpen;
+    return this.isOpen = open ?? !this.isOpen;
   }
 
   bool get isOpen {
@@ -78,14 +80,14 @@ class Dropdown implements OnInit, OnDestroy {
   set isOpen(value) {
     this._isOpen = ! !value;
     // todo: implement after porting position
-    if (this.dropdownAppendToBody && this.menuEl) {}
+    if (this.dropdownAppendToBody && truthy(this.menuEl)) {}
     // todo: $animate open<->close transitions, as soon as ng2Animate will be ready
     if (this.isOpen) {
-      if (this.dropdownMenuTemplateUrl) {}
+      if (truthy(this.dropdownMenuTemplateUrl)) {}
       this.focusToggleElement();
       dropdownService.open(this);
     } else {
-      if (this.dropdownMenuTemplateUrl) {}
+      if (truthy(this.dropdownMenuTemplateUrl)) {}
       dropdownService.close(this);
       this.selectedOption = null;
     }
@@ -94,7 +96,7 @@ class Dropdown implements OnInit, OnDestroy {
 
   focusDropdownEntry(num keyCode) {
     // If append to body is used.
-    var hostEl = this.menuEl ? this.menuEl.nativeElement : this.el.nativeElement
+    var hostEl = truthy(this.menuEl) ? this.menuEl.nativeElement : this.el.nativeElement
         .getElementsByTagName("ul") [ 0 ];
     if (!hostEl) {
       // todo: throw exception?
@@ -110,7 +112,7 @@ class Dropdown implements OnInit, OnDestroy {
     // todo: or implement selectedOption as a get\set pair with parseInt on set
     switch (keyCode) {
       case (40) :
-        if (!identical(, "number")) {
+        if (selectedOption is! num) {
           this.selectedOption = 0;
           break;
         }
@@ -120,7 +122,7 @@ class Dropdown implements OnInit, OnDestroy {
         this.selectedOption ++;
         break;
       case (38) :
-        if (!identical(, "number")) {
+        if (selectedOption is! num) {
           return;
         }
         if (identical(this.selectedOption, 0)) {
@@ -134,7 +136,7 @@ class Dropdown implements OnInit, OnDestroy {
   }
 
   focusToggleElement() {
-    if (this.toggleEl) {
+    if (truthy(this.toggleEl)) {
       this.toggleEl.nativeElement.focus();
     }
   }

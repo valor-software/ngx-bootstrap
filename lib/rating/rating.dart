@@ -1,7 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Component, View, OnInit, EventEmitter, NgClass, DefaultValueAccessor, NgFor, NgModel, Self, Renderer, ElementRef;
-
+import 'dart:html';
 // TODO: templateUrl
 @Component (selector: "rating[ng-model]",
     properties: const [
@@ -47,13 +47,11 @@ class Rating extends DefaultValueAccessor
   }
 
   onInit() {
-    this.max = !identical(, "undefined") ? this.max : 5;
+    this.max ??= 5;
     this.readonly = identical(this.readonly, true);
-    this.stateOn = !identical(, "undefined") ? this.stateOn : "glyphicon-star";
-    this.stateOff =
-    !identical(, "undefined") ? this.stateOff : "glyphicon-star-empty";
-    this.titles =
-    !identical(, "undefined") && this.titles.length > 0 ? this.titles : [
+    this.stateOn ??= "glyphicon-star";
+    this.stateOff ??= "glyphicon-star-empty";
+    this.titles ??= this.titles.length > 0 ? this.titles : [
       "one", "two", "three", "four", "five"];
     this.range = this.buildTemplateObjects(this.ratingStates, this.max);
   }
@@ -61,7 +59,7 @@ class Rating extends DefaultValueAccessor
   // model -> view
   writeValue(num value) {
     if (!identical(value % 1, value)) {
-      this.value = Math.round(value);
+      this.value = value.round();
       this.preValue = value;
       return;
     }
@@ -74,7 +72,7 @@ class Rating extends DefaultValueAccessor
     var count = ratingStates.length || max;
     var result = [];
     for (var i = 0; i < count; i ++) {
-      result.push(Object.assign({
+      push(result,Object.assign({
         "index" : i,
         "stateOn" : this.stateOn,
         "stateOff" : this.stateOff,

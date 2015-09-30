@@ -2,6 +2,7 @@
 import "package:angular2/angular2.dart"
     show Directive, ElementRef, Host, OnInit;
 import "dropdown.dart" show Dropdown;
+import 'dart:html';
 
 @Directive (selector: "[dropdown-toggle]",
     properties: const [ "disabled"],

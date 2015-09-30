@@ -7,9 +7,12 @@ import "package:angular2/di.dart"
 import "../ng2-bootstrap-config.dart"
     show Ng2BootstrapConfig, Ng2BootstrapTheme;
 import "../position.dart" show positionService;
+import 'dart:html';
+import 'dart:async';
+import 'package:node_shims/js.dart';
 
-const TEMPLATE = {
-:
+const TEMPLATE = const {
+Ng2BootstrapTheme.BS4 :
 '''
   <div class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
@@ -22,7 +25,8 @@ const TEMPLATE = {
          class="dropdown-item"
          [inner-html]="hightlight(match, query)"></a>
   </div>
-  ''', : '''
+  ''',
+  Ng2BootstrapTheme.BS3: '''
   <ul class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
@@ -40,13 +44,11 @@ class TypeaheadOptions {
 
   bool animation;
 
-  TypeaheadOptions(TypeaheadOptions options) {
-    Object.assign(this, options);
-  }
+  TypeaheadOptions({this.placement, this.animation});
 }
 
 @Component (selector: "typeahead-container")
-@View (template: TEMPLATE [ Ng2BootstrapConfig.theme ],
+@View (template: '\${TEMPLATE [ Ng2BootstrapConfig.theme ]}',
     directives: const [ CORE_DIRECTIVES, NgClass, NgStyle],
     encapsulation: ViewEncapsulation.None)
 class TypeaheadContainer {
@@ -68,9 +70,7 @@ class TypeaheadContainer {
 
   String placement;
 
-  TypeaheadContainer(this .element, TypeaheadOptions options) {
-    Object.assign(this, options);
-  }
+  TypeaheadContainer(this .element, {this.parent, this.query, this.top, this.left, this.display, this.placement});
 
   List<String> get matches {
     return this._matches;
@@ -119,7 +119,7 @@ class TypeaheadContainer {
   }
 
   selectMatch(String value, [ Event e = null ]) {
-    if (e) {
+    if (e != null) {
       e.stopPropagation();
       e.preventDefault();
     }
@@ -128,7 +128,7 @@ class TypeaheadContainer {
     return false;
   }
 
-  escapeRegexp(queryToEscape) {
+  RegExp escapeRegexp(queryToEscape) {
     // Regex: capture the whole query string and replace it with the string that will be used to match
 
     // the results, for example if the capture is "a" the result will be \a
@@ -240,12 +240,12 @@ class Typeahead implements OnInit {
   Function debounce(Function func, num wait) {
     dynamic timeout;
     List<dynamic> args;
-    num timestamp;
+    DateTime timestamp;
     num waitOriginal = wait;
     return () {
       // save details of latest call
       args = [].slice.call(arguments, 0);
-      timestamp = DateTime.now();
+      timestamp = new DateTime.now();
       // this trick is about implementing of 'typeaheadWaitMs'
 
       // in this case we have adaptive 'wait' parameter
@@ -253,24 +253,25 @@ class Typeahead implements OnInit {
       // we should use standard 'wait'('waitOriginal') in case of
 
       // popup is opened, otherwise - 'typeaheadWaitMs' parameter
-      wait = this.container ? waitOriginal : this.waitMs;
+      wait =truthy(this.container) ? waitOriginal : this.waitMs;
       // this is where the magic happens
-      var later = () {
+      Function later;
+      later = () {
         // how long ago was the last call
-        var last = DateTime.now() - timestamp;
+        var last = new DateTime.now().difference(timestamp);
         // if the latest call was less that the wait period ago
 
         // then we reset the timeout to wait for the difference
         if (last < wait) {
-          timeout = setTimeout(later, wait - last);
+          timeout = new Timer(new Duration(milliseconds: wait - last), later);
         } else {
           timeout = null;
           func.apply(this, args);
         }
       };
       // we only need to set the timer now if one isn't already running
-      if (!timeout) {
-        timeout = setTimeout(later, wait);
+      if (falsey(timeout)) {
+        timeout = new Timer(new Duration(milliseconds: wait), later);
       }
     };
   }
@@ -282,19 +283,19 @@ class Typeahead implements OnInit {
         .length >= this.minLength) {
       for (var i = 0; i < this.source.length; i ++) {
         String match;
-        if (identical(, "object") && this.source [ i ] [ this.field ]) {
+        if (source is Map && truthy(source[i][this.field])) {
           match = this.source [ i ] [ this.field ];
         }
-        if (identical(, "string")) {
+        if (source is String) {
           match = this.source [ i ];
         }
-        if (!match) {
-          console.log("Invalid match type", , this .field);
+        if (falsey(match)) {
+          print("Invalid match type $field");
           continue;
         }
         if (match.toLowerCase().indexOf(
             this.cd.model.toString().toLowerCase()) >= 0) {
-          this._matches.push(match);
+          push(this._matches, match);
           if (this._matches.length > this.optionsLimit - 1) {
             break;
           }
@@ -314,37 +315,37 @@ class Typeahead implements OnInit {
       this.hide();
       return;
     }
-    if (this.container && this._matches.length > 0) {
+    if (truthy(this.container) && this._matches.length > 0) {
       this.container.query = this.cd.model;
       this.container.matches = this._matches;
     }
-    if (!this.container && this._matches.length > 0) {
+    if (falsey(this.container) && this._matches.length > 0) {
       this.show(this._matches);
     }
   }
 
   onInit() {
-    this.optionsLimit = this.optionsLimit || 20;
-    this.minLength = this.minLength || 1;
-    this.waitMs = this.waitMs || 0;
+    this.optionsLimit = or(this.optionsLimit, 20);
+    this.minLength = or(this.minLength, 1);
+    this.waitMs = or(this.waitMs, 0);
     // async should be false in case of array
-    if (identical(this.async, null) && !identical(, "function")) {
+    if (async != null && source is! Function) {
       this.async = false;
     }
     // async should be true for any case of function
-    if (identical(, "function")) {
+    if (source is Function) {
       this.async = true;
     }
     if (identical(this.async, true)) {
       this.debouncer = this.debounce(() {
-        if (identical(, "function")) {
+        if (source is Function) {
           this.source().then((matches) {
             this._matches = [];
             if (this.cd.model
                 .toString()
                 .length >= this.minLength) {
               for (var i = 0; i < matches.length; i ++) {
-                this._matches.push(matches [ i ]);
+                push(this._matches, matches [ i ]);
                 if (this._matches.length > this.optionsLimit - 1) {
                   break;
                 }
@@ -354,7 +355,7 @@ class Typeahead implements OnInit {
           });
         }
         // source is array
-        if (identical(, "object") && this.source.length) {
+        if (source is List && this.source.length > 0) {
           this.processMatches();
           this.finalizeAsyncCall();
         }
@@ -363,7 +364,7 @@ class Typeahead implements OnInit {
   }
 
   onChange(KeyboardEvent e) {
-    if (this.container) {
+    if (truthy(this.container)) {
       // esc
       if (identical(e.keyCode, 27)) {
         this.hide();
@@ -419,7 +420,7 @@ class Typeahead implements OnInit {
   }
 
   hide() {
-    if (this.container) {
+    if (truthy(this.container)) {
       this.popup.then((ComponentRef componentRef) {
         componentRef.dispose();
         this.container = null;
@@ -429,4 +430,4 @@ class Typeahead implements OnInit {
   }
 }
 
-const List<dynamic> typeahead = [ Typeahead];
+const List typeahead = const [ Typeahead];

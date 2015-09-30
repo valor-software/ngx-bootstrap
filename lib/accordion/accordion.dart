@@ -1,6 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Component, View, Directive, OnInit, OnDestroy, NgClass, ViewContainerRef, TemplateRef, Inject;
+import 'package:node_shims/js.dart';
+import 'dart:html';
+import "package:ng2-strap/collapse/collapse.dart" show Collapse;
 
 // todo: support template url
 @Component (selector: "accordion, [accordion]",
@@ -28,13 +31,13 @@ class Accordion {
   }
 
   addGroup(AccordionGroup group) {
-    this.groups.push(group);
+    push(this.groups, group);
   }
 
   removeGroup(AccordionGroup group) {
     var index = this.groups.indexOf(group);
     if (!identical(index, -1)) {
-      this.groups.slice(index, 1);
+      slice(this.groups, index, 1);
     }
   }
 }
@@ -49,12 +52,11 @@ class AccordionTransclude implements OnInit {
   AccordionTransclude(@Inject (ViewContainerRef) this .viewRef) {}
 
   onInit() {
-    if (this.accordionTransclude) {
+    if (truthy(this.accordionTransclude)) {
       this.viewRef.createEmbeddedView(this.accordionTransclude);
     }
   }
 }
-import "../collapse/collapse.dart" show Collapse;
 // todo: support template url
 
 // todo: support custom `open class`
@@ -96,7 +98,7 @@ class AccordionGroup
   AccordionGroup(this .accordion) {}
 
   onInit() {
-    this.panelClass = this.panelClass || "panel-default";
+    this.panelClass = or(this.panelClass, "panel-default");
     this.accordion.addGroup(this);
   }
 

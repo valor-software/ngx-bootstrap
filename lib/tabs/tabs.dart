@@ -2,6 +2,7 @@
 import "package:angular2/angular2.dart"
     show Component, View, Directive, OnInit, OnDestroy, DoCheck, EventEmitter, ElementRef, TemplateRef, CORE_DIRECTIVES, NgClass;
 import "../common.dart" show NgTransclude;
+import 'package:node_shims/js.dart';
 // todo: add active event to tab
 
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
@@ -45,7 +46,7 @@ class Tabset
   }
 
   addTab(Tab tab) {
-    this.tabs.push(tab);
+    push(this.tabs,tab);
     tab.active =
         identical(this.tabs.length, 1) && !identical(tab.active, false);
   }
@@ -63,7 +64,7 @@ class Tabset
           : index + 1;
       this.tabs [ newActiveIndex ].active = true;
     }
-    this.tabs.slice(index, 1);
+    slice(this.tabs, index, 1);
   }
 }
 // TODO: templateUrl?
@@ -142,4 +143,4 @@ class TabHeading {
   }
 }
 
-const List<dynamic> tabs = [ Tab, TabHeading, Tabset];
+const List<dynamic> tabs = const [ Tab, TabHeading, Tabset];

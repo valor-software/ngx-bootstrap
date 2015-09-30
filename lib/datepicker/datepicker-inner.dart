@@ -3,6 +3,8 @@ import "package:angular2/angular2.dart"
     show Component, View, Host, OnInit, EventEmitter, DefaultValueAccessor, ElementRef, ViewContainerRef, NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES, Self, NgModel, Renderer;
 import "package:moment.dart" as moment;
 import "date-formatter.dart" show DateFormatter;
+import 'package:node_shims/js.dart';
+import 'dart:math';
 
 const String FORMAT_DAY = "DD";
 
@@ -34,9 +36,9 @@ const DateTime MAX_DATE = null;
 
 const bool SHORTCUT_PROPAGATION = false;
 
-const DAYS_IN_MONTH = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const DAYS_IN_MONTH = const [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-const KEYS = {
+const KEYS = const {
   13 : "enter",
   32 : "space",
   33 : "pageup",
@@ -169,25 +171,25 @@ class DatePickerInner
 
   // todo: add formatter value to DateTime object
   onInit() {
-    this.formatDay = this.formatDay || FORMAT_DAY;
-    this.formatMonth = this.formatMonth || FORMAT_MONTH;
-    this.formatYear = this.formatYear || FORMAT_YEAR;
-    this.formatDayHeader = this.formatDayHeader || FORMAT_DAY_HEADER;
-    this.formatDayTitle = this.formatDayTitle || FORMAT_DAY_TITLE;
-    this.formatMonthTitle = this.formatMonthTitle || FORMAT_MONTH_TITLE;
-    this.showWeeks = this.showWeeks || SHOW_WEEKS;
-    this.startingDay = this.startingDay || STARTING_DAY;
-    this.yearRange = this.yearRange || YEAR_RANGE;
-    this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;
-    this.datepickerMode = this.datepickerMode || DATEPICKER_MODE;
-    this.minMode = this.minMode || MIN_MODE;
-    this.maxMode = this.maxMode || MAX_MODE;
+    this.formatDay = or(this.formatDay, FORMAT_DAY);
+    this.formatMonth = or(this.formatMonth, FORMAT_MONTH);
+    this.formatYear = or(this.formatYear, FORMAT_YEAR);
+    this.formatDayHeader = or(this.formatDayHeader, FORMAT_DAY_HEADER);
+    this.formatDayTitle = or(this.formatDayTitle, FORMAT_DAY_TITLE);
+    this.formatMonthTitle = or(this.formatMonthTitle, FORMAT_MONTH_TITLE);
+    this.showWeeks = or(this.showWeeks, SHOW_WEEKS);
+    this.startingDay = or(this.startingDay, STARTING_DAY);
+    this.yearRange = or(this.yearRange, YEAR_RANGE);
+    this.shortcutPropagation = or(this.shortcutPropagation, SHORTCUT_PROPAGATION);
+    this.datepickerMode = or(this.datepickerMode, DATEPICKER_MODE);
+    this.minMode = or(this.minMode, MIN_MODE);
+    this.maxMode = or(this.maxMode, MAX_MODE);
     // todo: use date for unique value
-    this.uniqueId = "datepicker-" + "-" + Math.floor(Math.random() * 10000);
-    if (this.initDate) {
+    this.uniqueId = "datepicker--${(new Random().nextDouble() * 10000).floor}";
+    if (falsey(this.initDate)) {
       this.activeDate = this.initDate;
     } else {
-      this.activeDate = new DateTime ();
+      this.activeDate = new DateTime.now();
     }
     this.update.next(this.activeDate);
     this.refreshView();
@@ -206,13 +208,13 @@ class DatePickerInner
   }
 
   num compare(DateTime date1, DateTime date2) {
-    if (identical(this.datepickerMode, "day") && this.compareHandlerDay) {
+    if (datepickerMode == "day" && truthy(this.compareHandlerDay)) {
       return this.compareHandlerDay(date1, date2);
     }
-    if (identical(this.datepickerMode, "month") && this.compareHandlerMonth) {
+    if (datepickerMode == "month" && truthy(this.compareHandlerMonth)) {
       return this.compareHandlerMonth(date1, date2);
     }
-    if (identical(this.datepickerMode, "year") && this.compareHandlerMonth) {
+    if (datepickerMode == "year" && truthy(this.compareHandlerMonth)) {
       return this.compareHandlerYear(date1, date2);
     }
     return null;
@@ -231,14 +233,13 @@ class DatePickerInner
   }
 
   refreshView() {
-    if (identical(this.datepickerMode, "day") && this.refreshViewHandlerDay) {
+    if (datepickerMode == "day" && truthy(this.refreshViewHandlerDay)) {
       this.refreshViewHandlerDay();
     }
-    if (identical(this.datepickerMode, "month") &&
-        this.refreshViewHandlerMonth) {
+    if (datepickerMode == "month" && truthy(this.refreshViewHandlerMonth)) {
       this.refreshViewHandlerMonth();
     }
-    if (identical(this.datepickerMode, "year") && this.refreshViewHandlerYear) {
+    if (datepickerMode == "year" && truthy(this.refreshViewHandlerYear)) {
       this.refreshViewHandlerYear();
     }
   }
@@ -257,27 +258,27 @@ class DatePickerInner
 
   dynamic createDateObject(DateTime date, String format) {
     dynamic dateObject = {};
-    dateObject.date = date;
-    dateObject.label = this.dateFilter(date, format);
-    dateObject.selected = identical(this.compare(date, this.activeDate), 0);
-    dateObject.disabled = this.isDisabled(date);
-    dateObject.current = identical(this.compare(date, new DateTime ()), 0);
+    dateObject['date'] = date;
+    dateObject['label'] = this.dateFilter(date, format);
+    dateObject['selected'] = identical(this.compare(date, this.activeDate), 0);
+    dateObject['disabled'] = this.isDisabled(date);
+    dateObject['current'] = identical(this.compare(date, new DateTime.now()), 0);
     // todo: do it
 
-    // dateObject.customClass = this.customClass({date: date, mode: this.datepickerMode}) || {};
+    // dateObject['customClass'] = this.customClass({date: date, mode: this.datepickerMode}) || {};
     return dateObject;
   }
 
   bool isDisabled(DateTime date) {
     // todo: implement dateDisabled attribute
-    return ((this.minDate && this.compare(date, this.minDate) < 0) ||
-        (this.maxDate && this.compare(date, this.maxDate) > 0));
+    return ((truthy(this.minDate) && this.compare(date, this.minDate) < 0) ||
+        (truthy(this.maxDate) && this.compare(date, this.maxDate) > 0));
   }
 
   split(List<dynamic> arr, num size) {
     List<dynamic> arrays = [];
     while (arr.length > 0) {
-      arrays.push(arr.splice(0, size));
+      push(arrays, splice(arr, 0, size));
     }
     return arrays;
   }
@@ -294,13 +295,13 @@ class DatePickerInner
 
   // can result in "2013 11 31 23" because of the bug.
   fixTimeZone(DateTime date) {
-    var hours = date.getHours();
-    date.setHours(identical(hours, 23) ? hours + 2 : 0);
+//    var hours = date.hour;
+//    date.hour = hours == 23 ? hours + 2 : 0;
   }
 
   select(DateTime date) {
     if (identical(this.datepickerMode, this.minMode)) {
-      if (!this.activeDate) {
+      if (falsey(this.activeDate)) {
         this.activeDate = new DateTime (
             0,
             0,
@@ -344,7 +345,7 @@ class DatePickerInner
   }
 
   toggleMode(num direction) {
-    direction = direction || 1;
+    direction = or(direction, 1);
     if ((identical(this.datepickerMode, this.maxMode) &&
         identical(direction, 1)) ||
         (identical(this.datepickerMode, this.minMode) &&

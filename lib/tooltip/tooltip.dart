@@ -80,10 +80,10 @@ class TooltipContainer {
       "enable: tooltip-enable"
     ],
     host: const {
-      "(mouseenter)" : "show(\$event, $targe)",
-      "(mouseleave)" : "hide(\$event, $targe)",
-      "(focusin)" : "show(\$event, $targe)",
-      "(focusout)" : "hide(\$event, $targe)"
+      "(mouseenter)" : "show(\$event, \$targe)",
+      "(mouseleave)" : "hide(\$event, \$targe)",
+      "(focusin)" : "show(\$event, \$targe)",
+      "(focusout)" : "hide(\$event, \$targe)"
     })
 class Tooltip implements OnInit {
   ElementRef element;
@@ -138,4 +138,4 @@ class Tooltip implements OnInit {
   }
 }
 
-const List<dynamic> tooltip = [ Tooltip, TooltipContainer];
+const List<dynamic> tooltip = const [ Tooltip, TooltipContainer];

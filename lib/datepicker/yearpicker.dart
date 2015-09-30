@@ -4,7 +4,7 @@ import "package:angular2/angular2.dart"
 import "../ng2-bootstrap-config.dart" show Ng2BootstrapConfig;
 import "datepicker-inner.dart" show DatePickerInner;
 
-const TEMPLATE_OPTIONS = { "bs4" : { "YEAR_BUTTON" : '''
+const TEMPLATE_OPTIONS = const { "bs4" : { "YEAR_BUTTON" : '''
         <button type="button" style="min-width:100%;" class="btn btn-default"
                 [ng-class]="{\'btn-info\': dtz.selected, \'btn-link\': !dtz.selected && !datePicker.isActive(dtz), \'btn-info\': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
@@ -20,7 +20,7 @@ const TEMPLATE_OPTIONS = { "bs4" : { "YEAR_BUTTON" : '''
         </button>
     '''}};
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
+final CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
     TEMPLATE_OPTIONS.bs3;
 
 @Component (selector: "yearpicker, [yearpicker]")
@@ -54,7 +54,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
   <tbody>
     <tr *ng-for="#rowz of rows">
       <td *ng-for="#dtz of rowz" class="text-center" role="gridcell">
-      ${ CURRENT_THEME_TEMPLATE.YEAR_BUTTON}
+      \${ CURRENT_THEME_TEMPLATE.YEAR_BUTTON}
       </td>
     </tr>
   </tbody>
