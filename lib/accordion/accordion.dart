@@ -1,9 +1,7 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, Directive, OnInit, OnDestroy, NgClass, ViewContainerRef, TemplateRef, Inject;
+import "package:angular2/angular2.dart";
 import 'package:node_shims/js.dart';
 import 'dart:html';
-import "package:ng2-strap/collapse/collapse.dart" show Collapse;
+import "package:ng2-strap/collapse/collapse.dart";
 
 // todo: support template url
 @Component (selector: "accordion, [accordion]",
@@ -17,13 +15,11 @@ class Accordion {
 
   List<AccordionGroup> groups = [];
 
-  Accordion() {}
-
   closeOtherGroups(AccordionGroup openGroup) {
-    if (!this.closeOthers) {
+    if (!closeOthers) {
       return;
     }
-    this.groups.forEach((AccordionGroup group) {
+    groups.forEach((AccordionGroup group) {
       if (!identical(group, openGroup)) {
         group.isOpen = false;
       }
@@ -31,13 +27,13 @@ class Accordion {
   }
 
   addGroup(AccordionGroup group) {
-    push(this.groups, group);
+    push(groups, group);
   }
 
   removeGroup(AccordionGroup group) {
-    var index = this.groups.indexOf(group);
+    var index = groups.indexOf(group);
     if (!identical(index, -1)) {
-      slice(this.groups, index, 1);
+      slice(groups, index, 1);
     }
   }
 }
@@ -49,11 +45,11 @@ class AccordionTransclude implements OnInit {
 
   TemplateRef accordionTransclude;
 
-  AccordionTransclude(@Inject (ViewContainerRef) this .viewRef) {}
+  AccordionTransclude(@Inject(ViewContainerRef) this .viewRef) {}
 
   onInit() {
-    if (truthy(this.accordionTransclude)) {
-      this.viewRef.createEmbeddedView(this.accordionTransclude);
+    if (truthy(accordionTransclude)) {
+      viewRef.createEmbeddedView(accordionTransclude);
     }
   }
 }
@@ -80,7 +76,7 @@ class AccordionTransclude implements OnInit {
       </div>
     </div>
   </div>
-  ''', directives: const [ Collapse, AccordionTransclude, NgClass])
+  ''', directives: const [Collapse, AccordionTransclude, NgClass])
 class AccordionGroup
     implements OnInit, OnDestroy {
   Accordion accordion;
@@ -89,38 +85,39 @@ class AccordionGroup
 
   String panelClass;
 
+  String heading;
+
   bool _isOpen;
 
-  bool isDisabled;
+  bool isDisabled = false;
 
   TemplateRef headingTemplate;
 
-  AccordionGroup(this .accordion) {}
+  AccordionGroup(this.accordion);
 
   onInit() {
-    this.panelClass = or(this.panelClass, "panel-default");
-    this.accordion.addGroup(this);
+    panelClass = or(panelClass, "panel-default");
+    accordion.addGroup(this);
+    if (isOpen == null) isOpen = false;
   }
 
   onDestroy() {
-    this.accordion.removeGroup(this);
+    accordion.removeGroup(this);
   }
 
   toggleOpen(MouseEvent event) {
     event.preventDefault();
-    if (!this.isDisabled) {
-      this.isOpen = !this.isOpen;
+    if (!isDisabled) {
+      isOpen = !isOpen;
     }
   }
 
-  bool get isOpen {
-    return this._isOpen;
-  }
+  bool get isOpen => _isOpen;
 
   set isOpen(bool value) {
-    this._isOpen = value;
-    if (value) {
-      this.accordion.closeOtherGroups(this);
+    _isOpen = value;
+    if (truthy(value)) {
+      accordion.closeOtherGroups(this);
     }
   }
 }
@@ -131,9 +128,10 @@ class AccordionHeading {
 
   TemplateRef templateRef;
 
-  AccordionHeading(this .group, this .templateRef) {
+  AccordionHeading(this.group, this.templateRef) {
     group.headingTemplate = templateRef;
   }
 }
 
-const List<dynamic> accordion = const [ Accordion, AccordionGroup, AccordionHeading];
+const List<dynamic> ACCORDION_DIRECTIVES = const [
+  Accordion, AccordionGroup, AccordionHeading];
