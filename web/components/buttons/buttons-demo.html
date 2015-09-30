@@ -9,19 +9,19 @@
 <pre class="card card-block card-header">Model: {{checkModel | json}}</pre>
 <!--<pre class="card card-block card-header">Results: {{checkResults}}</pre>-->
 <div class="btn-group">
-  <label class="btn btn-primary" [(ng-model)]="checkModel.left" btn-checkbox>Left</label>
-  <label class="btn btn-primary" [(ng-model)]="checkModel.middle" btn-checkbox>Middle</label>
-  <label class="btn btn-primary" [(ng-model)]="checkModel.right" btn-checkbox>Right</label>
+  <label class="btn btn-primary" [(ng-model)]="checkModel['left']" btn-checkbox>Left</label>
+  <label class="btn btn-primary" [(ng-model)]="checkModel['middle']" btn-checkbox>Middle</label>
+  <label class="btn btn-primary" [(ng-model)]="checkModel['right']" btn-checkbox>Right</label>
 </div>
 <h4>Radio &amp; Uncheckable Radio</h4>
-<pre class="card card-block card-header">{{radioModel || 'null'}}</pre>
+<pre class="card card-block card-header">{{radioModel}}</pre>
 <div class="btn-group">
   <label class="btn btn-primary" [(ng-model)]="radioModel" btn-radio="Left">Left</label>
   <label class="btn btn-primary" [(ng-model)]="radioModel" btn-radio="Middle">Middle</label>
   <label class="btn btn-primary" [(ng-model)]="radioModel" btn-radio="Right">Right</label>
 </div>
 <div class="btn-group">
-  <label class="btn btn-success" [(ng-model)]="radioModel" btn-radio="Left" uncheckable>Left</label>
-  <label class="btn btn-success" [(ng-model)]="radioModel" btn-radio="Middle" uncheckable>Middle</label>
-  <label class="btn btn-success" [(ng-model)]="radioModel" btn-radio="Right" uncheckable>Right</label>
+  <label class="btn btn-success" [(ng-model)]="radioModel" btn-radio="Left" [uncheckable]>Left</label>
+  <label class="btn btn-success" [(ng-model)]="radioModel" btn-radio="Middle" [uncheckable]>Middle</label>
+  <label class="btn btn-success" [(ng-model)]="radioModel" btn-radio="Right" [uncheckable]>Right</label>
 </div>

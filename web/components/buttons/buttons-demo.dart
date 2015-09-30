@@ -1,14 +1,10 @@
-/// <reference path="../../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES;
-import "../../../lib/index.dart" show ButtonCheckbox, ButtonRadio;
-
-// webpack html imports
-var template = require("./buttons-demo.html");
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/buttons/button-checkbox.dart";
+import 'package:ng2-strap/buttons/button-radio.dart';
 
 @Component(selector: "buttons-demo")
 @View(
-    template: template,
+    templateUrl: "buttons-demo.html",
     directives: const [
       ButtonCheckbox,
       ButtonRadio,

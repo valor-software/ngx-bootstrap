@@ -18,31 +18,27 @@ class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
       : super (cd, renderer, elementRef);
 
   onInit() {
-    this.toggle(identical(this.trueValue, this.value));
+    toggle(trueValue == value);
   }
 
-  get trueValue {
-    return btnCheckboxTrue ?? true;
-  }
+  get trueValue => btnCheckboxTrue ?? true;
 
-  get falseValue {
-    return btnCheckboxFalse ?? false;
-  }
+  get falseValue => btnCheckboxFalse ?? false;
 
   toggle(bool state) {
     this.state = state;
-    this.value = this.state ? this.trueValue : this.falseValue;
+    value = this.state ? trueValue : falseValue;
   }
 
   // model -> view
   writeValue(dynamic value) {
-    this.state = identical(this.trueValue, value);
+    state = trueValue == value;
     this.value = value;
   }
 
   // view -> model
   onClick() {
-    this.toggle(!this.state);
-    this.cd.viewToModelUpdate(this.value);
+    toggle(!state);
+    cd.viewToModelUpdate(value);
   }
 }
