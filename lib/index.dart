@@ -1,4 +1,3 @@
-///<reference path="../tsd.d.ts"/>
 export "accordion/accordion.dart";
 export "alert/alert.dart";
 export "buttons/button-radio.dart";

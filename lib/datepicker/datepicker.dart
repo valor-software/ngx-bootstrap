@@ -1,7 +1,8 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Component, View, Host, EventEmitter, DefaultValueAccessor, ElementRef, ViewContainerRef, NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES, Self, NgModel, Renderer, QueryList, Query;
-import "package:moment.dart" as moment;
+//import "package:moment.dart" as moment;
+import 'package:intl/intl.dart';
 import "datepicker-inner.dart" show DatePickerInner;
 import "datepicker-popup.dart" show DatePickerPopup;
 import "daypicker.dart" show DayPicker;
@@ -119,7 +120,7 @@ class DatePicker extends DefaultValueAccessor {
 
   set activeDate(DateTime value) {
     this._activeDate = value;
-    this.cd.viewToModelUpdate(moment(this.activeDate).toDate());
+    this.cd.viewToModelUpdate(this.activeDate.toString());
   }
 
   onUpdate(event) {
@@ -128,8 +129,8 @@ class DatePicker extends DefaultValueAccessor {
 
   writeValue(dynamic value) {
     if (value) {
-      if (!identical(, "DateTime")) {
-        value = new DateTime (value);
+      if (value is! DateTime) {
+        value = new DateTime(value);
       }
       this.activeDate = value;
     }

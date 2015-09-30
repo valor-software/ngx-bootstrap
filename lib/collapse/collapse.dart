@@ -1,6 +1,4 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, Directive, EventEmitter, ElementRef;
+import "package:angular2/angular2.dart";
 import 'dart:async';
 // todo: add animate
 
