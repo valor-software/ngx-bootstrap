@@ -1,17 +1,10 @@
-# ng2-bootstrap
+# ng2-strap
 Native Angular2 directives for Bootstrap
 
 Works with Bootstrap 3 and 4-alfa
 
 Goal: smooth transition from ui-bootstrap to angular2,
 all components will have same API
-
-[![Code Climate](https://codeclimate.com/github/valor-software/ng2-bootstrap/badges/gpa.svg)](https://codeclimate.com/github/valor-software/ng2-bootstrap)
-[![Dependency Status](https://david-dm.org/valor-software/ng2-bootstrap.svg)](https://david-dm.org/valor-software/ng2-bootstrap)
-[![devDependency Status](https://david-dm.org/valor-software/ng2-bootstrap/dev-status.svg)](https://david-dm.org/valor-software/ng2-bootstrap#info=devDependencies)
-<!---
-[![Test Coverage](https://codeclimate.com/github/valor-software/angular2-bootstrap/badges/coverage.svg)](https://codeclimate.com/github/valor-software/angular2-bootstrap/coverage)
--->
 
 # Usage & Demo
 
@@ -22,21 +15,6 @@ all components will have same API
 You can start hacking by cloning starter repo:
 [https://github.com/valor-software/angular2-bootstrap-starter](https://github.com/valor-software/angular2-bootstrap-starter)
 
-## Install from npm
-
-```bash
-npm i ng2-bootstrap --save
-# if you are developing with typescript it will link .d.ts from package definition
-tsd link
-```
-
-## Install from source
-
-```bash
-  npm i
-  npm start
-```
-
 ## Components
 
 - [x] Accordion
@@ -44,20 +22,20 @@ tsd link
 - [x] Buttons
 - [x] Carousel
 - [x] Collapse
-- [+-] Datepicker (Datepicker popup not implemented)
-- [x] Dropdown
+- [ ] Datepicker (Datepicker popup not implemented)
+- [ ] Dropdown
 - [ ] Modal (in progress...)
 - [x] Pagination
 - [ ] Popover
-- [x] Progressbar
-- [x] Rating
-- [x] Tabs
-- [x] Timepicker
-- [+-] Tooltip
-- [x] Typeahead
+- [ ] Progressbar
+- [ ] Rating
+- [ ] Tabs
+- [ ] Timepicker
+- [ ] Tooltip
+- [ ] Typeahead
 
-- [x] NgTransclude - to transclude templates
-- [x] positional service
+- [ ] NgTransclude - to transclude templates
+- [ ] positional service
 - [ ] template url support
 
 ## Contribution
