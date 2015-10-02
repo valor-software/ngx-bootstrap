@@ -1,7 +1,55 @@
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/progressbar/progressbar.dart";
+import 'dart:math';
 
- /// <reference path="../../../tsd.d.ts" />
- import "package:angular2/angular2.dart" show Component , View , CORE_DIRECTIVES , NgStyle ;
- // switch bs3\bs4 templates
- import "../../../lib/ng2-bootstrap-config.dart" show Ng2BootstrapConfig , Ng2BootstrapTheme ; import "../../../lib/index.dart" show progressbar ;
- // webpack html imports
- var templates = { : require ( "./progressbar-demo.html" ) , : require ( "./progressbar-demo-bs4.html" ) } ; @ Component ( selector : "progressbar-demo" ) @ View ( template : templates [ Ng2BootstrapConfig . theme ] , directives : const [ progressbar , CORE_DIRECTIVES , NgStyle ] ) class ProgressbarDemo { num max = 200 ; bool showWarning ; num dynamic ; String type ; Array < dynamic > stacked = [ ] ; ProgressbarDemo ( ) { this . random ( ) ; this . randomStacked ( ) ; } random ( ) { var value = Math . floor ( ( Math . random ( ) * 100 ) + 1 ) ; var type ; if ( value < 25 ) { type = "success" ; } else if ( value < 50 ) { type = "info" ; } else if ( value < 75 ) { type = "warning" ; } else { type = "danger" ; } this . showWarning = ( identical ( type , "danger" ) || identical ( type , "warning" ) ) ; this . dynamic = value ; this . type = type ; } randomStacked ( ) { var types = [ "success" , "info" , "warning" , "danger" ] ; this . stacked = [ ] ; var total = 0 ; for ( var i = 0 , n = Math . floor ( ( Math . random ( ) * 4 ) + 1 ) ; i < n ; i ++ ) { var index = Math . floor ( ( Math . random ( ) * 4 ) ) ; var value = Math . floor ( ( Math . random ( ) * 30 ) + 1 ) ; total += value ; this . stacked . push ( value : value , max : value , type : types [ index ] ) ; } } }
+@Component (selector: "progressbar-demo")
+@View (templateUrl: "progressbar-demo.html",
+    directives: const [ PROGRESSBAR_DIRECTIVES, CORE_DIRECTIVES, NgStyle])
+class ProgressbarDemo {
+  num max = 200;
+
+  bool showWarning;
+
+  num dynamic;
+
+  String type;
+
+  List stacked = [];
+
+  ProgressbarDemo() {
+    this.random();
+    this.randomStacked();
+  }
+
+  random() {
+    var value = new Random().nextInt(100);
+    print(value);
+    var type;
+    if (value < 25) {
+      type = "success";
+    } else if (value < 50) {
+      type = "info";
+    } else if (value < 75) {
+      type = "warning";
+    } else {
+      type = "danger";
+    }
+    this.showWarning =
+    (identical(type, "danger") || identical(type, "warning"));
+    this.dynamic = value;
+    this.type = type;
+  }
+
+  randomStacked() {
+    var types = [ "success", "info", "warning", "danger"];
+    this.stacked = [];
+    var total = 0;
+    for (var i = 0, n = new Random().nextInt(5); i < n; i ++) {
+      print(n);
+      var index = new Random().nextInt(4);
+      var value = new Random().nextInt(30);
+      total += value;
+      this.stacked.add({'value': value, 'max': value, 'type': types[index]});
+    }
+  }
+}

@@ -7,7 +7,7 @@ const progressConfig = const { "animate" : true, "max" : 100};
 // todo: progress element conflict with bootstrap.css
 
 // todo: need hack: replace host element with div
-@Directive (selector: "bs-progress, [progress]",
+@Directive(selector: "bs-progress, [progress]",
     properties: const [ "animate", "max"],
     host: const { "class" : "progress", "[attr.max]" : "max"})
 class Progress implements OnInit {
@@ -20,55 +20,55 @@ class Progress implements OnInit {
   Progress() {}
 
   onInit() {
-    this.animate = !identical(this.animate, false);
-    this.max = max is num ? max : progressConfig['max'];
+    animate = !identical(animate, false);
+    max = max is num ? max : progressConfig['max'];
   }
 
-  num get max {
-    return this._max;
-  }
+  num get max => _max;
 
   set max(num v) {
-    this._max = v;
-    this.bars.forEach((Bar bar) {
+    _max = v;
+    bars.forEach((Bar bar) {
       bar.recalculatePercentage();
     });
   }
 
   addBar(Bar bar) {
-    if (!this.animate) {
+    if (!animate) {
       bar.transition = "none";
     }
-    push(bars, bar);
+    bars.add(bar);
   }
 
   removeBar(Bar bar) {
-    splice(bars, this.bars.indexOf(bar), 1);
+    bars.remove(bar);
   }
 }
 // todo: number pipe
 
 // todo: use query from progress?
-@Component (selector: "bar, [bar]", properties: const [ "type", "value"])
+@Component (selector: "bar, [bar]", properties: const ["type", "value"])
 @View (template: '''
   <div class="progress-bar"
     style="min-width: 0;"
     role="progressbar"
-    [ng-class]="type && \'progress-bar-\' + type"
-    [ng-style]="{width: (percent < 100 ? percent : 100) + \'%\', transition: transition}"
+    [ng-class]="type"
+    [ng-style]="{'width': (percent < 100 ? percent : 100).toString() + \'%\', transition: transition}"
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
-    [attr.aria-valuetext]="percent.toFixed(0) + \'%\'"
+    [attr.aria-valuetext]="percent.toStringAsFixed(0) + \'%\'"
     [attr.aria-valuemax]="max"
     ><ng-content></ng-content></div>
 ''',
-    directives: const [ NgStyle, NgClass],
+    directives: const [NgStyle, NgClass],
     encapsulation: ViewEncapsulation.None)
-class Bar
-    implements OnInit, OnDestroy {
+class Bar implements OnInit, OnDestroy {
   Progress progress;
 
-  String type;
+  String _type;
+
+  String get type => _type != null ? 'progress-bar-' + _type : null;
+  set type(String type) => _type = type;
 
   num percent = 0;
 
@@ -76,35 +76,35 @@ class Bar
 
   num _value;
 
-  Bar(@Host () this .progress) {}
+  num max;
+
+  Bar(@Host() this.progress) {}
 
   onInit() {
-    this.progress.addBar(this);
+    progress.addBar(this);
   }
 
   onDestroy() {
-    this.progress.removeBar(this);
+    progress.removeBar(this);
   }
 
-  num get value {
-    return this._value;
-  }
+  num get value => _value;
 
   set value(num v) {
-    if (!v && !identical(v, 0)) {
+    if (v == null || v == 0) {
       return;
     }
-    this._value = v;
-    this.recalculatePercentage();
+    _value = v;
+    recalculatePercentage();
   }
 
   recalculatePercentage() {
-    this.percent = num.parse((100 * this.value / this.progress.max).toStringAsFixed(2));
-    var totalPercentage = this.progress.bars.fold(0, (total, bar) {
+    percent = 100 * value / progress.max;
+    var totalPercentage = progress.bars.fold(0, (total, bar) {
       return total + bar.percent;
     });
     if (totalPercentage > 100) {
-      this.percent -= totalPercentage - 100;
+      percent -= totalPercentage - 100;
     }
   }
 }
@@ -128,4 +128,4 @@ class Progressbar {
   num value;
 }
 
-const List progressbar = const [ Progress, Bar, Progressbar];
+const List PROGRESSBAR_DIRECTIVES = const [ Progress, Bar, Progressbar];
