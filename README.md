@@ -27,7 +27,7 @@ You can start hacking by cloning starter repo:
 - [ ] Modal (in progress...)
 - [x] Pagination
 - [ ] Popover
-- [ ] Progressbar
+- [x] Progressbar
 - [ ] Rating
 - [ ] Tabs
 - [ ] Timepicker
