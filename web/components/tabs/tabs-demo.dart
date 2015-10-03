@@ -1,14 +1,12 @@
-/// <reference path="../../../tsd.d.ts" />
-import "package:angular2/angular2.dart" show Component, View, CORE_DIRECTIVES;
-import "../../../lib/index.dart" show tabs;
-
-// webpack html imports
-var template = require("./tabs-demo.html");
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/tabs/tabs.dart";
+import 'dart:async';
+import 'dart:html';
 
 @Component(selector: "tabs-demo")
-@View(template: template, directives: const [tabs, CORE_DIRECTIVES])
+@View(templateUrl: "tabs-demo.html", directives: const [TABS_DIRECTIVES, CORE_DIRECTIVES])
 class TabsDemo {
-  Array<dynamic> tabs = [
+  var tabs = [
     {"title": "Dynamic Title 1", "content": "Dynamic content 1"},
     {
       "title": "Dynamic Title 2",
@@ -17,8 +15,8 @@ class TabsDemo {
     }
   ];
   alertMe() {
-    setTimeout(() {
-      alert("You've selected the alert tab!");
+    new Timer(const Duration(seconds: 1), () {
+      window.alert("You've selected the alert tab!");
     });
   }
 }

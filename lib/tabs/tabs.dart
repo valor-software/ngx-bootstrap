@@ -1,7 +1,5 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, Directive, OnInit, OnDestroy, DoCheck, EventEmitter, ElementRef, TemplateRef, CORE_DIRECTIVES, NgClass;
-import "../common.dart" show NgTransclude;
+import "package:angular2/angular2.dart";
+import 'package:ng2-strap/common.dart';
 import 'package:node_shims/js.dart';
 // todo: add active event to tab
 
@@ -9,7 +7,14 @@ import 'package:node_shims/js.dart';
 @Component (
     selector: "tabset", properties: const [ "vertical", "justified", "type"])
 @View (template: '''
-    <ul class="nav" [ng-class]="classMap" (click)="\$event.preventDefault()">
+    <ul class="nav"
+        [ng-class]="{
+          'nav-stacked' : vertical,
+          'nav-justified' : justified,
+          'nav-tabs' : type == 'tabs',
+          'nav-pills' : type == 'pills'
+        }"
+        (click)="\$event.preventDefault()">
         <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
           <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
             <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
@@ -19,52 +24,41 @@ import 'package:node_shims/js.dart';
     <div class="tab-content">
       <ng-content></ng-content>
     </div>
-  ''', directives: const [ CORE_DIRECTIVES, NgClass, NgTransclude])
-class Tabset
-    implements OnInit {
-  bool vertical;
+  ''', directives: const [CORE_DIRECTIVES, NgClass, NgTransclude])
+class Tabset implements OnInit {
+  bool vertical = false;
 
-  bool justified;
+  bool justified = false;
 
   String type;
 
   List<Tab> tabs = [];
 
-  get classMap {
-    var map = {
-      "nav-stacked" : this.vertical,
-      "nav-justified" : this.justified
-    };
-    map [ "nav-" + (this.type || "tabs") ] = true;
-    return map;
-  }
-
-  Tabset() {}
+  Tabset();
 
   onInit() {
-    this.type = !identical(this.type, "undefined") ? this.type : "tabs";
+    type ??= "tabs";
   }
 
   addTab(Tab tab) {
-    push(this.tabs,tab);
-    tab.active =
-        identical(this.tabs.length, 1) && !identical(tab.active, false);
+    tabs.add(tab);
+    tab.active = tabs.length == 1 && tab.active != false;
   }
 
   removeTab(Tab tab) {
-    var index = this.tabs.indexOf(tab);
+    var index = tabs.indexOf(tab);
     if (identical(index, -1)) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
-    if (tab.active && this.tabs.length > 1) {
+    if (tab.active && tabs.length > 1) {
       // If this is the last tab, select the previous tab. else, the next tab.
-      var newActiveIndex = identical(index, this.tabs.length - 1)
+      var newActiveIndex = identical(index, tabs.length - 1)
           ? index - 1
           : index + 1;
-      this.tabs [ newActiveIndex ].active = true;
+      tabs [ newActiveIndex ].active = true;
     }
-    slice(this.tabs, index, 1);
+    slice(tabs, index, 1);
   }
 }
 // TODO: templateUrl?
@@ -75,9 +69,9 @@ class Tabset
 class Tab implements OnInit, OnDestroy, DoCheck {
   Tabset tabset;
 
-  bool _active;
+  bool _active = true;
 
-  bool disabled;
+  bool disabled = false;
 
   String heading;
 
@@ -87,36 +81,39 @@ class Tab implements OnInit, OnDestroy, DoCheck {
 
   EventEmitter deselect = new EventEmitter ();
 
-  Tab(this .tabset) {
-    this.tabset.addTab(this);
+  Tab(this.tabset) {
+    tabset.addTab(this);
   }
 
+  @deprecated
   set disable(bool v) {
-    console.warn("DEPRECATED use `disabled` property (not `disable`)");
-    this.disabled = v;
+    print("DEPRECATED use `disabled` property (not `disable`)");
+    disabled = v;
   }
 
   /** DEPRECATE disable */
+  @deprecated
   get disable {
-    return this.disabled;
+    return disabled;
   }
 
   /** tab active state toogle */
   get active {
-    return this._active;
+    return _active;
   }
 
-  set active(active) {
-    if (this.disabled && active || !active) {
+  set active(bool active) {
+    active ??= true;
+    if (disabled && active != null || !active) {
       if (!active) {
-        this._active = active;
+        _active = active;
       }
-      this.deselect.next(this);
+      deselect.add(this);
       return;
     }
-    this._active = active;
-    this.select.next(this);
-    this.tabset.tabs.forEach((Tab tab) {
+    _active = active;
+    select.add(this);
+    tabset.tabs.forEach((Tab tab) {
       if (!identical(tab, this)) {
         tab.active = false;
       }
@@ -130,7 +127,7 @@ class Tab implements OnInit, OnDestroy, DoCheck {
   onInit() {}
 
   onDestroy() {
-    this.tabset.removeTab(this);
+    tabset.removeTab(this);
   }
 }
 
@@ -143,4 +140,4 @@ class TabHeading {
   }
 }
 
-const List<dynamic> tabs = const [ Tab, TabHeading, Tabset];
+const TABS_DIRECTIVES = const [Tab, TabHeading, Tabset];
