@@ -1,6 +1,4 @@
-/// <reference path="../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, TemplateRef, ViewContainerRef, Inject;
+import "package:angular2/angular2.dart";
 
 @Directive (selector: "[ng-transclude]", properties: const [ "ngTransclude"])
 class NgTransclude {
@@ -10,7 +8,7 @@ class NgTransclude {
 
   set ngTransclude(TemplateRef templateRef) {
     this._ngTransclude = templateRef;
-    if (templateRef) {
+    if (templateRef != null) {
       this.viewRef.createEmbeddedView(templateRef);
     }
   }
