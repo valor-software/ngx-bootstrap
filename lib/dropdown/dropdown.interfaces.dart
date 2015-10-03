@@ -1,5 +1,4 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart" show ElementRef;
+import "package:angular2/angular2.dart";
 
 abstract class DropdownMenuInterface {
   ElementRef el;

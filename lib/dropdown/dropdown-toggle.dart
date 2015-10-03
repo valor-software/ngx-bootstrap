@@ -3,6 +3,7 @@ import "package:angular2/angular2.dart"
     show Directive, ElementRef, Host, OnInit;
 import "dropdown.dart" show Dropdown;
 import 'dart:html';
+import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
 
 @Directive (selector: "[dropdown-toggle]",
     properties: const [ "disabled"],
@@ -13,7 +14,7 @@ import 'dart:html';
       "[attr.aria-haspopup]" : "true",
       "[attr.aria-expanded]" : "isOpen"
     })
-class DropdownToggle implements OnInit {
+class DropdownToggle implements DropdownToggleInterface, OnInit {
   Dropdown dropdown;
 
   ElementRef el;

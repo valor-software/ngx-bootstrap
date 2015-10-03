@@ -1,6 +1,5 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart" show Directive, ElementRef;
-import "dropdown.dart" show Dropdown;
+import "package:angular2/angular2.dart";
+import "dropdown.dart";
 import 'dart:html';
 
 @Directive (selector: "[dropdown][keyboard-nav]",
@@ -11,7 +10,7 @@ class KeyboardNav {
   ElementRef el;
 
   KeyboardNav(this .dd, this .el) {
-    console.warn("keyboard-nav deprecated");
+    print("keyboard-nav deprecated");
     dd.keyboardNav = true;
   }
 

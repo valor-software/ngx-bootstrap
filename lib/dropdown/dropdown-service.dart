@@ -1,5 +1,6 @@
 import "dropdown.dart" show Dropdown;
 import 'dart:html';
+import 'dart:async';
 
 const ALWAYS = "always";
 
@@ -12,60 +13,61 @@ class DropdownService {
 
   Dropdown dropdownScope;
 
-  EventListener closeDropdownBind = this.closeDropdown.bind(this);
+  StreamSubscription closeDropdownStSub;
 
-  EventListener keybindFilterBind = this.keybindFilter.bind(this);
+  StreamSubscription keybindFilterStSub;
 
   open(Dropdown dropdownScope) {
-    if (!this.openScope) {
-      window.document.addEventListener("click", this.closeDropdownBind);
-      window.document.addEventListener("keydown", this.keybindFilterBind);
+    if (openScope == null) {
+      closeDropdownStSub = window.onClick.listen(closeDropdown);
+      keybindFilterStSub = window.onKeyDown.listen(keybindFilter);
     }
-    if (this.openScope && !identical(this.openScope, this.dropdownScope)) {
-      this.openScope.isOpen = false;
+    if (openScope != null && openScope != dropdownScope) {
+      openScope.isOpen = false;
     }
-    this.openScope = dropdownScope;
+    openScope = dropdownScope;
   }
 
   close(Dropdown dropdownScope) {
-    if (!identical(this.openScope, dropdownScope)) {
+    if (openScope != dropdownScope) {
       return;
     }
-    this.openScope = null;
-    window.document.removeEventListener("click", this.closeDropdownBind);
-    window.document.removeEventListener("keydown", this.keybindFilterBind);
+    openScope = null;
+    closeDropdownStSub.cancel();
+    keybindFilterStSub.cancel();
   }
 
   closeDropdown(MouseEvent event) {
-    if (!this.openScope) {
+    if (openScope == null) {
       return;
     }
-    if (event && identical(this.openScope.autoClose, DISABLED)) {
+    if (event != null && identical(openScope.autoClose, DISABLED)) {
       return;
     }
-    if (event && this.openScope.toggleEl &&
-        identical(this.openScope.toggleEl.nativeElement, event.target)) {
+    if (event != null
+        && openScope.toggleEl != null
+        && openScope.toggleEl.nativeElement == event.target) {
       return;
     }
-    if (event && identical(this.openScope.autoClose, OUTSIDECLICK) &&
-        this.openScope.menuEl &&
-        identical(this.openScope.menuEl.nativeElement, event.target)) {
+    if (event != null && openScope.autoClose == OUTSIDECLICK &&
+        openScope.menuEl != null &&
+        openScope.menuEl.nativeElement == event.target) {
       return;
     }
-    this.openScope.isOpen = false;
+    openScope.isOpen = false;
   }
 
   keybindFilter(KeyboardEvent event) {
-    if (identical(event.which, 27)) {
-      this.openScope.focusToggleElement();
-      this.closeDropdown(null);
+    if (event.which == KeyCode.ESC) {
+      openScope.focusToggleElement();
+      closeDropdown(null);
       return;
     }
-    if (this.openScope.keyboardNav && this.openScope.isOpen &&
-        (identical(event.which, 38) || identical(event.which, 40))) {
+    if (openScope.keyboardNav && openScope.isOpen &&
+        (event.which == KeyCode.UP || event.which == KeyCode.DOWN)) {
       event.preventDefault();
       event.stopPropagation();
-      this.openScope.focusDropdownEntry(event.which);
+      openScope.focusDropdownEntry(event.which);
     }
   }
 }

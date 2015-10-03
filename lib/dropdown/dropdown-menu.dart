@@ -1,11 +1,11 @@
 /// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, ElementRef, Host, OnInit;
-import "dropdown.dart" show Dropdown;
+import "package:angular2/angular2.dart";
+import "dropdown.dart";
+import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
 
 @Directive (selector: "[dropdown-menu], .dropdown-menu",
     properties: const [ "templateUrl"])
-class DropdownMenu implements OnInit {
+class DropdownMenu implements DropdownMenuInterface, OnInit {
   Dropdown dropdown;
 
   ElementRef el;
@@ -15,6 +15,6 @@ class DropdownMenu implements OnInit {
   DropdownMenu(@Host () this .dropdown, this .el) {}
 
   onInit() {
-    this.dropdown.dropDownMenu = this;
+    dropdown.dropDownMenu = this;
   }
 }

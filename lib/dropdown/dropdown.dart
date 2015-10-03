@@ -1,30 +1,27 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, OnInit, OnDestroy, EventEmitter, ElementRef;
-import "dropdown.interfaces.dart"
-    show DropdownMenuInterface, DropdownToggleInterface;
-import "dropdown-service.dart" show dropdownService, ALWAYS;
+import "package:angular2/angular2.dart";
+import "dropdown.interfaces.dart";
+import "dropdown-service.dart";
 import 'package:node_shims/js.dart';
 import 'dart:html';
 
 @Directive (selector: "[dropdown]",
     properties: const [
       "isOpen", "autoClose", "keyboardNav", "dropdownAppendToBody"],
-    events: const [ "onToggle"],
+    events: const ["onToggle"],
     host: const { "[class.dropdown]" : "true", "[class.open]" : "isOpen"})
 class Dropdown implements OnInit, OnDestroy {
   ElementRef el;
 
-  bool _isOpen;
+  bool _isOpen = false;
 
   // enum string: ['always', 'outsideClick', 'disabled']
-  bool dropdownAppendToBody;
+  bool dropdownAppendToBody = false;
 
   EventEmitter onToggle = new EventEmitter ();
 
-  String autoClose;
+  String autoClose = ALWAYS;
 
-  bool keyboardNav;
+  bool keyboardNav = false;
 
   // index of selected element
   num selectedOption;
@@ -38,13 +35,13 @@ class Dropdown implements OnInit, OnDestroy {
   // not implemented:
   String dropdownMenuTemplateUrl;
 
-  Dropdown(this .el) {}
+  Dropdown(this .el);
 
   onInit() {
-    this.autoClose = or(this.autoClose, ALWAYS);
-    this.keyboardNav ?? true;
-    this.dropdownAppendToBody ?? true;
-    if (this.isOpen) {}
+//    this.autoClose ?? ALWAYS;
+//    this.keyboardNav ?? true;
+//    this.dropdownAppendToBody ?? true;
+//    if (this.isOpen) {}
   }
 
   onDestroy() {
@@ -70,7 +67,7 @@ class Dropdown implements OnInit, OnDestroy {
   }
 
   bool toggle([ bool open ]) {
-    return this.isOpen = open ?? !this.isOpen;
+    return isOpen = open ?? !isOpen;
   }
 
   bool get isOpen {
@@ -78,32 +75,36 @@ class Dropdown implements OnInit, OnDestroy {
   }
 
   set isOpen(value) {
-    this._isOpen = ! !value;
+    this._isOpen = value ?? false;
     // todo: implement after porting position
-    if (this.dropdownAppendToBody && truthy(this.menuEl)) {}
+    if (truthy(this.dropdownAppendToBody) && truthy(this.menuEl)) {}
     // todo: $animate open<->close transitions, as soon as ng2Animate will be ready
-    if (this.isOpen) {
-      if (truthy(this.dropdownMenuTemplateUrl)) {}
+    if (isOpen) {
+      if (truthy(this.dropdownMenuTemplateUrl)) {
+        // todo: implement template url option
+      }
       this.focusToggleElement();
       dropdownService.open(this);
     } else {
-      if (truthy(this.dropdownMenuTemplateUrl)) {}
+      if (truthy(this.dropdownMenuTemplateUrl)) {
+        // todo: implement template url option
+      }
       dropdownService.close(this);
       this.selectedOption = null;
     }
-    this.onToggle.next(this.isOpen);
+    this.onToggle.add(this.isOpen);
+    // todo: implement call to setIsOpen if set and function
   }
 
   focusDropdownEntry(num keyCode) {
     // If append to body is used.
-    var hostEl = truthy(this.menuEl) ? this.menuEl.nativeElement : this.el.nativeElement
-        .getElementsByTagName("ul") [ 0 ];
-    if (!hostEl) {
+    Element hostEl = this.menuEl?.nativeElement ?? this.el.nativeElement.querySelectorAll("ul")[0];
+    if (hostEl == null) {
       // todo: throw exception?
       return;
     }
-    var elems = hostEl.getElementsByTagName("a");
-    if (!elems || !elems.length) {
+    var elems = hostEl.querySelectorAll("a");
+    if (elems == null || elems.isEmpty) {
       // todo: throw exception?
       return;
     }

@@ -1,6 +1,5 @@
-import "dropdown.dart" show Dropdown;
-import "dropdown-menu.dart" show DropdownMenu;
-import "dropdown-toggle.dart" show DropdownToggle;
+import "dropdown.dart" ;
+import "dropdown-menu.dart";
+import "dropdown-toggle.dart" ;
 
-const List<dynamic> dropdown = const [ Dropdown, DropdownMenu, DropdownToggle];
-// , KeyboardNav
+const List<dynamic> DROPDOWN_DIRECTIVES = const [ Dropdown, DropdownMenu, DropdownToggle];
