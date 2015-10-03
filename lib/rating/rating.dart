@@ -1,7 +1,7 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, OnInit, EventEmitter, NgClass, DefaultValueAccessor, NgFor, NgModel, Self, Renderer, ElementRef;
+import "package:angular2/angular2.dart";
 import 'dart:html';
+import 'package:node_shims/js.dart';
+
 // TODO: templateUrl
 @Component (selector: "rating[ng-model]",
     properties: const [
@@ -11,16 +11,15 @@ import 'dart:html';
 @View (template: '''
     <span (mouseleave)="reset()" (keydown)="onKeydown(\$event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
       <template ng-for #r [ng-for-of]="range" #index="index">
-        <span class="sr-only">({{ index < value ? \'*\' : \' \' }})</span>
-        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ng-class]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
+        <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
+        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ng-class]="index < value ? r['stateOn'] : r['stateOff']" [title]="r['title']" ></i>
       </template>
     </span>
-  ''', directives: const [ NgClass, NgFor])
-class Rating extends DefaultValueAccessor
-    implements OnInit {
+  ''', directives: const [NgClass, NgFor])
+class Rating extends DefaultValueAccessor implements OnInit {
   num max;
 
-  List<dynamic> range;
+  List range;
 
   num value;
 
@@ -34,82 +33,80 @@ class Rating extends DefaultValueAccessor
 
   bool readonly;
 
-  List<dynamic> ratingStates;
+  List ratingStates;
 
   EventEmitter onHover = new EventEmitter ();
 
   EventEmitter onLeave = new EventEmitter ();
 
-  Rating(@Self () NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef) {
-    /* super call moved to initializer */
-    ;
-  }
+  Rating(@Self() NgModel cd, Renderer renderer, ElementRef elementRef)
+      : super (cd, renderer, elementRef) ;
 
   onInit() {
-    this.max ??= 5;
-    this.readonly = identical(this.readonly, true);
-    this.stateOn ??= "glyphicon-star";
-    this.stateOff ??= "glyphicon-star-empty";
-    this.titles ??= this.titles.length > 0 ? this.titles : [
-      "one", "two", "three", "four", "five"];
-    this.range = this.buildTemplateObjects(this.ratingStates, this.max);
+    max ??= 5;
+    readonly = readonly == true;
+    stateOn ??= "glyphicon-star";
+    stateOff ??= "glyphicon-star-empty";
+    titles = titles != null && titles.length > 0  ? titles : ["one", "two", "three", "four", "five"];
+    ratingStates ??= [];
+    range = _buildTemplateObjects();
   }
 
   // model -> view
-  writeValue(num value) {
-    if (!identical(value % 1, value)) {
-      this.value = value.round();
-      this.preValue = value;
+  writeValue(num _value) {
+    _value ??= 0;
+    if (_value != 0) {
+      value = _value.round();
+      preValue = _value;
       return;
     }
-    this.preValue = value;
-    this.value = value;
+    preValue = _value;
+    value = _value;
+
   }
 
-  buildTemplateObjects(List<dynamic> ratingStates, num max) {
-    ratingStates = ratingStates || [];
-    var count = ratingStates.length || max;
+  _buildTemplateObjects() {
+    var count = or(ratingStates.length, max) ;
     var result = [];
-    for (var i = 0; i < count; i ++) {
-      push(result,Object.assign({
+    for (var i = 0; i < count; i++) {
+      result.add({
         "index" : i,
-        "stateOn" : this.stateOn,
-        "stateOff" : this.stateOff,
-        "title" : this.titles [ i ] || i + 1
-      }, ratingStates [ i ] || {}));
+        "stateOn" : stateOn,
+        "stateOff" : stateOff,
+        "title" : titles.length > i ? titles[i] : i + 1,
+      }..addAll(ratingStates.length > i ? ratingStates[i] : {}));
     }
     return result;
   }
 
   rate(num value) {
-    if (!this.readonly && value >= 0 && value <= this.range.length) {
-      this.writeValue(value);
-      this.cd.viewToModelUpdate(value);
+    if (!readonly && value >= 0 && value <= range.length) {
+      writeValue(value);
+      cd.viewToModelUpdate(value);
     }
   }
 
-  enter(num value) {
-    if (!this.readonly) {
-      this.value = value;
-      this.onHover.next(value);
+  enter(num _value) {
+    if (!readonly) {
+      value = _value;
+      onHover.add(_value);
     }
   }
 
   reset() {
-    this.value = this.preValue;
-    this.onLeave.next(this.value);
+    value = preValue;
+    onLeave.add(value);
   }
 
   onKeydown(KeyboardEvent event) {
-    if (identical([ 37, 38, 39, 40].indexOf(event.which), -1)) {
+    if (![37, 38, 39, 40].contains(event.which)) {
       return;
     }
     event.preventDefault();
     event.stopPropagation();
-    var sign = identical(event.which, 38) || identical(event.which, 39)
+    var sign = event.which == 38 || event.which == 39
         ? 1
         : -1;
-    this.rate(this.value + sign);
+    rate(value + sign);
   }
 }

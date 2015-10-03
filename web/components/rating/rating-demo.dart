@@ -1,14 +1,9 @@
-/// <reference path="../../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES;
-import "../../../lib/index.dart" show Rating;
-
-// webpack html imports
-var template = require("./rating-demo.html");
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/rating/rating.dart";
 
 @Component(selector: "rating-demo")
 @View(
-    template: template,
+    templateUrl: "rating-demo.html",
     directives: const [
       Rating,
       NgClass,
@@ -23,8 +18,8 @@ class RatingDemo {
   num rate = 7;
   bool isReadonly = false;
   num overStar;
-  num percent;
-  dynamic ratingStates = [
+  num percent = 0;
+  var ratingStates = [
     {"stateOn": "glyphicon-ok-sign", "stateOff": "glyphicon-ok-circle"},
     {"stateOn": "glyphicon-star", "stateOff": "glyphicon-star-empty"},
     {"stateOn": "glyphicon-heart", "stateOff": "glyphicon-ban-circle"},
