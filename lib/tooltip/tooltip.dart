@@ -1,9 +1,7 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, Component, View, OnInit, EventEmitter, ElementRef, NgClass, NgStyle, ViewRef, ViewContainerRef, TemplateRef, DynamicComponentLoader, ComponentRef, ViewEncapsulation;
-import "package:angular2/di.dart"
-    show bind, Injectable, ResolvedBinding, Injector;
+import "package:angular2/angular2.dart";
+import "package:angular2/di.dart";
 import "../position.dart" show positionService;
+import 'dart:async';
 
 class TooltipOptions {
   String placement;
@@ -14,9 +12,15 @@ class TooltipOptions {
 
   bool isOpen;
 
-  TooltipOptions(Object options) {
-    Object.assign(this, options);
-  }
+  var content;
+
+  TooltipOptions({
+    this.placement,
+    this.popupClass,
+    this.animation,
+    this.isOpen,
+    this.content
+  });
 }
 
 @Component (selector: "tooltip-container")
@@ -29,12 +33,12 @@ class TooltipOptions {
         {{content}}
       </div>
     </div>''',
-    directives: const [ NgClass, NgStyle],
+    directives: const [NgClass, NgStyle],
     encapsulation: ViewEncapsulation.None)
 class TooltipContainer {
   ElementRef element;
 
-  Object classMap;
+  Map<String, dynamic> classMap;
 
   dynamic positionMap;
 
@@ -46,28 +50,38 @@ class TooltipContainer {
 
   String content;
 
-  String placement;
+  String placement = "top";
 
-  bool appendToBody;
+  bool appendToBody = false;
 
   bool isOpen;
 
-  TooltipContainer(this .element, TooltipOptions options) {
-    Object.assign(this, options);
-    this.classMap = { "in" : false};
-    this.classMap [ options.placement ] = true;
+  String popupClass;
+
+  bool animation;
+
+  TooltipContainer(this.element, TooltipOptions options) {
+    classMap = { "in" : false};
+    placement = options.placement;
+    popupClass = options.popupClass;
+    animation = options.animation;
+    isOpen = options.isOpen;
+    content = options.content;
+    classMap[placement] = true;
   }
 
   position(ElementRef hostEl) {
-    this.display = "block";
-    this.top = "0px";
-    this.left = "0px";
+    display = "block";
+    top = "0px";
+    left = "0px";
     var p = positionService.positionElements(
-        hostEl.nativeElement, this.element.nativeElement.children [ 0 ],
-        this.placement, this.appendToBody);
-    this.top = p.top + "px";
-    this.left = p.left + "px";
-    this.classMap [ "in" ] = true;
+        hostEl.nativeElement,
+        element.nativeElement.children[0],
+        placement,
+        appendToBody);
+    top = p.top.toString() + "px";
+    left = p.left.toString() + "px";
+    classMap [ "in" ] = true;
   }
 }
 
@@ -80,12 +94,12 @@ class TooltipContainer {
       "enable: tooltip-enable"
     ],
     host: const {
-      "(mouseenter)" : "show(\$event, \$targe)",
-      "(mouseleave)" : "hide(\$event, \$targe)",
-      "(focusin)" : "show(\$event, \$targe)",
-      "(focusout)" : "hide(\$event, \$targe)"
+      "(mouseenter)" : "show(\$event)",
+      "(mouseleave)" : "hide(\$event)",
+      "(focusin)" : "show(\$event)",
+      "(focusout)" : "hide(\$event)"
     })
-class Tooltip implements OnInit {
+class Tooltip {
   ElementRef element;
 
   DynamicComponentLoader loader;
@@ -103,39 +117,35 @@ class Tooltip implements OnInit {
 
   bool enable;
 
-  Promise <ComponentRef> tooltip;
+  Future<ComponentRef> tooltip;
 
-  Tooltip(this .element, this .loader) {}
-
-  onInit() {}
+  Tooltip(this.element, this.loader);
 
   // todo: filter triggers
-  show(event, target) {
-    if (this.visible) {
+  show(event) {
+    if (visible) {
       return;
     }
-    this.visible = true;
-    var options = new TooltipOptions (
-        content: this.content, placement: this.placement);
-    var binding = Injector.resolve([ bind(TooltipOptions).toValue(options)]);
-    this.tooltip =
-        this.loader.loadNextToLocation(TooltipContainer, this.element, binding)
-            .then((ComponentRef componentRef) {
-          componentRef.instance.position(this.element);
-          return componentRef;
-        });
+    visible = true;
+    var options = new TooltipOptions (content: content, placement: placement);
+    var binding = Injector.resolve([bind(TooltipOptions).toValue(options)]);
+    tooltip = loader.loadNextToLocation(TooltipContainer, element, binding)
+        .then((ComponentRef componentRef) {
+      (componentRef.instance as TooltipContainer).position(element);
+      return componentRef;
+    });
   }
 
-  hide(event, target) {
-    if (!this.visible) {
+  hide(event) {
+    if (!visible) {
       return;
     }
-    this.visible = false;
-    this.tooltip.then((ComponentRef componentRef) {
+    visible = false;
+    tooltip.then((ComponentRef componentRef) {
       componentRef.dispose();
       return componentRef;
     });
   }
 }
 
-const List<dynamic> tooltip = const [ Tooltip, TooltipContainer];
+const List<dynamic> TOOLTIP_DIRECTIVES = const [Tooltip, TooltipContainer];

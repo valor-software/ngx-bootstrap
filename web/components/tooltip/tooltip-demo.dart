@@ -1,15 +1,10 @@
-/// <reference path="../../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES;
-import "../../../lib/index.dart" show tooltip;
-
-// webpack html imports
-var template = require("./tooltip-demo.html");
+import "package:angular2/angular2.dart";
+import 'package:ng2-strap/tooltip/tooltip.dart';
 
 @Component(selector: "tooltip-demo")
 @View(
-    template: template,
-    directives: const [tooltip, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass],
+    templateUrl: 'tooltip-demo.html',
+    directives: const [TOOLTIP_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass],
     styles: const [
       '''
     /* Specify styling for tooltip contents */
@@ -28,4 +23,5 @@ class TooltipDemo {
   String dynamicTooltip = "Hello, World!";
   String dynamicTooltipText = "dynamic";
   String htmlTooltip = "I've been made <b>bold</b>!";
+  String inputModel;
 }

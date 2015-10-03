@@ -1,51 +1,45 @@
-/// <reference path="../tsd.d.ts" />
-import "package:angular2/angular2.dart" show Injectable, ElementRef;
+import "package:angular2/angular2.dart";
 import "package:node_shims/js.dart";
+import 'dart:html';
 
 class PositionService {
 
   const PositionService();
 
-  dynamic get window {
-    return window;
-  }
+  Window get _window => window;
 
-  dynamic get document {
-    return window.document;
-  }
+  Document get _document => window.document;
 
-  dynamic getStyle(dynamic nativeEl, String cssProp) {
-    // IE
-    if (nativeEl.currentStyle) {
-      return nativeEl.currentStyle [ cssProp ];
-    }
-    if (this.window.getComputedStyle) {
-      return this.window.getComputedStyle(nativeEl) [ cssProp ];
-    }
+  String getStyle(dynamic nativeEl, String cssProp) {
+//    // IE
+//    if ((nativeEl as Element).style != null) {
+//      return (nativeEl as Element).style.getPropertyValue(cssProp);
+//    }
+//    if (window.document.getComputedStyle) {
+//      return this._window.getComputedStyle(nativeEl) [ cssProp ];
+//    }
     // finally try and get inline style
-    return nativeEl.style [ cssProp ];
+    return (nativeEl as Element).style.getPropertyValue(cssProp);
   }
 
   /**
    * Checks if a given element is statically positioned
    * @param nativeEl - raw DOM element
    */
-  dynamic isStaticPositioned(dynamic nativeEl) {
-    return identical(
-        or(this.getStyle(nativeEl, "position"), "static"), "static");
-  }
+  bool isStaticPositioned(dynamic nativeEl) => or(getStyle(nativeEl, "position"), "static") == "static";
 
   /**
    * returns the closest, non-statically positioned parentOffset of a given element
    * @param nativeEl
    */
   parentOffsetEl(dynamic nativeEl) {
-    var offsetParent = or(nativeEl.offsetParent, this.document);
-    while (offsetParent && !identical(offsetParent, this.document) &&
-        this.isStaticPositioned(offsetParent)) {
+    var offsetParent = or(nativeEl.offsetParent, _document);
+    while (offsetParent != null
+        && offsetParent != _document
+        && isStaticPositioned(offsetParent)) {
       offsetParent = offsetParent.offsetParent;
     }
-    return offsetParent || this.document;
+    return offsetParent ?? _document;
   }
 
   /**
@@ -53,23 +47,22 @@ class PositionService {
    * http://api.jquery.com/position/
    */
   dynamic position(dynamic nativeEl) {
-    var elBCR = this.offset(nativeEl);
-    var offsetParentBCR = { "top" : 0, "left" : 0};
-    var offsetParentEl = this.parentOffsetEl(nativeEl);
-    if (!identical(offsetParentEl, this.document)) {
-      offsetParentBCR = this.offset(offsetParentEl);
+    var elBCR = offset(nativeEl);
+    var offsetParentBCR = new Position(top: 0, left: 0);
+    var offsetParentEl = parentOffsetEl(nativeEl);
+    if (!identical(offsetParentEl, _document)) {
+      offsetParentBCR = offset(offsetParentEl);
       offsetParentBCR.top +=
           offsetParentEl.clientTop - offsetParentEl.scrollTop;
       offsetParentBCR.left +=
           offsetParentEl.clientLeft - offsetParentEl.scrollLeft;
     }
     var boundingClientRect = nativeEl.getBoundingClientRect();
-    return {
-      "width" : boundingClientRect.width || nativeEl.offsetWidth,
-      "height" : boundingClientRect.height || nativeEl.offsetHeight,
-      "top" : elBCR.top - offsetParentBCR.top,
-      "left" : elBCR.left - offsetParentBCR.left
-    };
+    return new Rectangle(
+        elBCR.left - offsetParentBCR.left,
+        elBCR.top - offsetParentBCR.top,
+        boundingClientRect.width ?? nativeEl.offsetWidth,
+        boundingClientRect.height ?? nativeEl.offsetHeight);
   }
 
   /**
@@ -78,67 +71,70 @@ class PositionService {
    */
   dynamic offset(dynamic nativeEl) {
     var boundingClientRect = nativeEl.getBoundingClientRect();
-    return {
-      "width" : boundingClientRect.width || nativeEl.offsetWidth,
-      "height" : boundingClientRect.height || nativeEl.offsetHeight,
-      "top" : boundingClientRect.top +
-          (this.window.pageYOffset || this.document.documentElement.scrollTop),
-      "left" : boundingClientRect.left +
-          (this.window.pageXOffset || this.document.documentElement.scrollLeft)
-    };
+
+    return new Rectangle(
+        boundingClientRect.left + (_window.pageXOffset ?? _document.documentElement.scrollLeft),
+        boundingClientRect.top + (_window.pageYOffset ?? _document.documentElement.scrollTop),
+        boundingClientRect.width ?? nativeEl.offsetWidth,
+        boundingClientRect.height ?? nativeEl.offsetHeight);
   }
 
   /**
    * Provides coordinates for the targetEl in relation to hostEl
    */
-  dynamic positionElements(dynamic hostEl, dynamic targetEl,
-      dynamic positionStr, dynamic appendToBody) {
+  dynamic positionElements(
+      hostEl,
+      Element targetEl,
+      dynamic positionStr,
+      bool appendToBody) {
     var positionStrParts = positionStr.split("-");
     var pos0 = positionStrParts [ 0 ];
-    var pos1 = or(positionStrParts [ 1 ], "center");
-    var hostElPos = appendToBody ? this.offset(hostEl) : this.position(hostEl);
+    var pos1 = positionStrParts.length > 1 ? positionStrParts[1] : "center";
+    var hostElPos = appendToBody ? offset(hostEl) : position(hostEl);
     var targetElWidth = targetEl.offsetWidth;
     var targetElHeight = targetEl.offsetHeight;
-    var shiftWidth = { "center" : () {
-      return hostElPos.left + hostElPos.width / 2 - targetElWidth / 2;
-    }, "left" : () {
-      return hostElPos.left;
-    }, "right" : () {
-      return hostElPos.left + hostElPos.width;
-    }};
-    var shiftHeight = {
-      "center" : () { return hostElPos .top + hostElPos .height / 2 - targetElHeight / 2;
-      },
-      "top" : () { return hostElPos .top;
-      },
-      "bottom" : () { return hostElPos .top + hostElPos .height;
-      }
+    var shiftWidth = {
+      "center" : () => hostElPos.left + hostElPos.width / 2 - targetElWidth / 2,
+      "left" : () => hostElPos.left,
+      "right" : () => hostElPos.left + hostElPos.width
     };
-    dynamic targetElPos;
+    var shiftHeight = {
+      "center" : () => hostElPos .top + hostElPos .height / 2 - targetElHeight / 2,
+      "top" : () => hostElPos .top,
+      "bottom" : () => hostElPos .top + hostElPos .height
+    };
+    Position targetElPos;
     switch (pos0) {
       case "right" :
-        targetElPos =
-        { "top" : shiftHeight [ pos1 ](), "left" : shiftWidth [ pos0 ]()};
+        targetElPos = new Position(
+            top : shiftHeight[pos1](),
+            left : shiftWidth[pos0]());
         break;
       case "left" :
-        targetElPos = {
-          "top" : shiftHeight [ pos1 ](),
-          "left" : hostElPos.left - targetElWidth
-        };
+        targetElPos = new Position(
+            top : shiftHeight[pos1](),
+            left : hostElPos.left - targetElWidth);
         break;
       case "bottom" :
-        targetElPos =
-        { "top" : shiftHeight [ pos0 ](), "left" : shiftWidth [ pos1 ]()};
+        targetElPos = new Position(
+            top : shiftHeight[pos0](),
+            left : shiftWidth[pos1]());
         break;
       default :
-        targetElPos = {
-          "top" : hostElPos.top - targetElHeight,
-          "left" : shiftWidth [ pos1 ]()
-        };
-        break;
+        targetElPos = new Position(
+            top : hostElPos.top - targetElHeight,
+            left : shiftWidth[pos1]());
     }
     return targetElPos;
   }
+}
+
+
+class Position {
+  var top;
+  var left;
+  Position({this.top, this.left});
+  toString() => "$top, $left";
 }
 
 const positionService = const PositionService();
