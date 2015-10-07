@@ -1,6 +1,5 @@
 import "package:angular2/angular2.dart" show Component, View, NgFor;
 import "package:ng2-strap/alert/alert.dart" show Alert;
-import 'package:node_shims/js.dart';
 
 @Component(selector: "alert-demo")
 @View(templateUrl: "alert-demo.html", directives: const [Alert, NgFor])
@@ -17,7 +16,7 @@ class AlertDemo {
     }
   ];
   closeAlert(num i) {
-    splice(this.alerts, i, 1);
+    alerts.removeAt(i);
   }
 
   addAlert() {

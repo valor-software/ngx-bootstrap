@@ -14,5 +14,5 @@ import 'package:ng2-strap/buttons/button-radio.dart';
 class ButtonsDemo {
   String singleModel = "1";
   String radioModel = "Middle";
-  Object checkModel = {"left": false, "middle": true, "right": false};
+  Map checkModel = {"left": false, "middle": true, "right": false};
 }

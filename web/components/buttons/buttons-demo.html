@@ -6,8 +6,11 @@
   Single Toggle
 </button>
 <h4>Checkbox</h4>
-<pre class="card card-block card-header">Model: {{checkModel | json}}</pre>
-<!--<pre class="card card-block card-header">Results: {{checkResults}}</pre>-->
+<pre class="card card-block card-header">
+  Left: {{checkModel['left']}},
+  Middle: {{checkModel['middle']}},
+  Right: {{checkModel['right']}}
+</pre>
 <div class="btn-group">
   <label class="btn btn-primary" [(ng-model)]="checkModel['left']" btn-checkbox>Left</label>
   <label class="btn btn-primary" [(ng-model)]="checkModel['middle']" btn-checkbox>Middle</label>

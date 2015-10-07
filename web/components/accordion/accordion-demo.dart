@@ -1,6 +1,5 @@
 import "package:angular2/angular2.dart";
 import 'package:ng2-strap/accordion/accordion.dart';
-import 'package:node_shims/js.dart';
 
 @Component(selector: "accordion-demo")
 @View(

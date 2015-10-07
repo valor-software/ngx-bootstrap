@@ -5,8 +5,8 @@ import 'package:node_shims/js.dart';
 
 // TODO: templateUrl
 @Component (selector: "alert",
-    properties: const [ "type", "dismissible", "dismissOnTimeout"],
-    events: const [ "close"])
+    inputs: const [ "type", "dismissible", "dismissOnTimeout"],
+    outputs: const ["close"])
 @View (template: '''
   <div class="alert" role="alert" [ng-class]="classes" *ng-if="!closed">
     <button *ng-if="closeable" type="button" class="close" (click)="onClose()">

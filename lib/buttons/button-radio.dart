@@ -1,38 +1,34 @@
-/// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart";
 
 @Directive (selector: "[btn-radio][ng-model]",
-    properties: const [ "btnRadio", "uncheckable"],
+    inputs: const [ "btnRadio", "uncheckable", 'value: ngModel'],
+    outputs: const ['valueEmitter: ngModel'],
     host: const { "(click)" : "onClick()", "[class.active]" : "isActive"})
-class ButtonRadio extends DefaultValueAccessor implements OnInit {
+class ButtonRadio extends DefaultValueAccessor {
   String btnRadio;
 
   bool uncheckable;
 
-  NgModel cd;
-
-  ButtonRadio(@Self() NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef);
-
-  onInit() {
-    uncheckable = uncheckable != null;
-  }
+  ButtonRadio(Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef);
 
   get isActive => btnRadio == value;
 
-  // hack view model!
-  get value => cd.viewModel;
+  var _value;
 
-  set value(value) => cd.viewModel = value;
+  get value => _value;
+  set value(value) {
+    valueEmitter.add(value);
+    _value = value;
+  }
 
-  // model -> view
-  writeValue(dynamic value) => this.value = value;
+  EventEmitter valueEmitter = new EventEmitter();
 
-  // view -> model
   onClick() {
-    if (uncheckable && btnRadio == value) {
-      return cd.viewToModelUpdate(null);
+    if (uncheckable != false && btnRadio == value) {
+      value = null;
+      return;
     }
-    cd.viewToModelUpdate(btnRadio);
+    value = btnRadio;
   }
 }

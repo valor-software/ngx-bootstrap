@@ -1,21 +1,31 @@
 /// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, DefaultValueAccessor, Self, NgModel, Renderer, ElementRef, OnInit;
+import "package:angular2/angular2.dart";
 
 @Directive (selector: "[btn-checkbox][ng-model]",
-    properties: const [ "btnCheckboxTrue", "btnCheckboxFalse"],
+    inputs: const [ "btnCheckboxTrue", "btnCheckboxFalse", 'value: ngModel'],
+    outputs: const ['update: ngModel'],
     host: const { "(click)" : "onClick()", "[class.active]" : "state"})
 class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
   dynamic btnCheckboxTrue;
 
   dynamic btnCheckboxFalse;
 
-  dynamic value;
+  var _value;
+
+  get value => _value;
+
+  set value(value) {
+    print('value: $_value');
+    _value = value;
+    update.add(value);
+  }
+
+  EventEmitter update = new EventEmitter();
 
   bool state = false;
 
-  ButtonCheckbox(@Self() NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef);
+  ButtonCheckbox(Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef);
 
   onInit() {
     toggle(trueValue == value);
@@ -25,20 +35,12 @@ class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
 
   get falseValue => btnCheckboxFalse ?? false;
 
-  toggle(bool state) {
-    this.state = state;
-    value = this.state ? trueValue : falseValue;
+  toggle(bool _state) {
+    state = _state;
+    value = state ? trueValue : falseValue;
   }
 
-  // model -> view
-  writeValue(dynamic value) {
-    state = trueValue == value;
-    this.value = value;
-  }
-
-  // view -> model
   onClick() {
     toggle(!state);
-    cd.viewToModelUpdate(value);
   }
 }

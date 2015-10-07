@@ -57,7 +57,7 @@ class AccordionTransclude implements OnInit {
 
 // todo: support custom `open class`
 @Component (selector: "accordion-group, [accordion-group]",
-    properties: const [
+    inputs: const [
       "templateUrl", "heading", "isOpen", "isDisabled", "panelClass"],
     host: const { "[class.panel-open]" : "isOpen"})
 @View (template: '''
