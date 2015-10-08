@@ -1,6 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:angular2/di.dart";
-import "../position.dart" show positionService;
+import "package:ng2-strap/position.dart" show positionService;
 import 'dart:async';
 
 class TooltipOptions {
@@ -86,7 +85,7 @@ class TooltipContainer {
 }
 
 @Directive (selector: "[tooltip]",
-    properties: const [
+    inputs: const [
       "content:tooltip",
       "placement:tooltip-placement",
       "appendToBody",
