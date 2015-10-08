@@ -6,7 +6,7 @@ import 'dart:html';
 import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
 
 @Directive (selector: "[dropdown-toggle]",
-    properties: const [ "disabled"],
+    inputs: const [ "disabled"],
     host: const {
       "(click)" : "toggleDropdown(\$event)",
       "[class.dropdown-toggle]" : "true",

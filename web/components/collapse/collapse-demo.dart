@@ -1,12 +1,9 @@
-/// <reference path="../../../tsd.d.ts" />
 import "package:angular2/angular2.dart" show Component, View;
-import "../../../lib/index.dart" show Collapse;
+import 'package:ng2-strap/collapse/collapse.dart';
 
-// webpack html imports
-var template = require("./collapse-demo.html");
 
 @Component(selector: "collapse-demo")
-@View(template: template, directives: const [Collapse])
+@View(template: 'collapse-demo.html', directives: const [Collapse])
 class CollapseDemo {
   bool isCollapsed = false;
 }

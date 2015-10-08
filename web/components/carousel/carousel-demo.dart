@@ -7,7 +7,7 @@ import 'package:node_shims/js.dart';
     templateUrl: "carousel-demo.html",
     directives: const [CAROUSEL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES])
 class CarouselDemo {
-  int myInterval = 5000;
+  String myInterval = '5000';
   bool noWrapSlides = false;
   List slides = [];
   CarouselDemo() {

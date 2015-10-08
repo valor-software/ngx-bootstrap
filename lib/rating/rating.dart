@@ -4,9 +4,9 @@ import 'package:node_shims/js.dart';
 
 // TODO: templateUrl
 @Component (selector: "rating[ng-model]",
-    properties: const [
-      "max", "readonly", "titles", "stateOn", "stateOff", "ratingStates"],
-    events: const [ "onHover", "onLeave"],
+    inputs: const [
+      "max", "readonly", "titles", "stateOn", "stateOff", "ratingStates", 'value: ngModel'],
+    outputs: const [ "onHover", "onLeave", 'valueEmitter: ngModel'],
     host: const { "(keydown)" : "onKeydown(\$event)"})
 @View (template: '''
     <span (mouseleave)="reset()" (keydown)="onKeydown(\$event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
@@ -21,7 +21,19 @@ class Rating extends DefaultValueAccessor implements OnInit {
 
   List range;
 
-  num value;
+  num _value = 0;
+
+  get value => _value;
+
+  set value(num value) {
+    value ??= 0;
+    _value = value != 0
+      ? value.round()
+      : value;
+    valueEmitter.add(_value);
+  }
+
+  EventEmitter valueEmitter = new EventEmitter();
 
   num preValue;
 
@@ -39,8 +51,8 @@ class Rating extends DefaultValueAccessor implements OnInit {
 
   EventEmitter onLeave = new EventEmitter ();
 
-  Rating(@Self() NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef) ;
+  Rating(Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) ;
 
   onInit() {
     max ??= 5;
@@ -50,19 +62,7 @@ class Rating extends DefaultValueAccessor implements OnInit {
     titles = titles != null && titles.length > 0  ? titles : ["one", "two", "three", "four", "five"];
     ratingStates ??= [];
     range = _buildTemplateObjects();
-  }
-
-  // model -> view
-  writeValue(num _value) {
-    _value ??= 0;
-    if (_value != 0) {
-      value = _value.round();
-      preValue = _value;
-      return;
-    }
-    preValue = _value;
-    value = _value;
-
+    preValue = value;
   }
 
   _buildTemplateObjects() {
@@ -79,10 +79,10 @@ class Rating extends DefaultValueAccessor implements OnInit {
     return result;
   }
 
-  rate(num value) {
-    if (!readonly && value >= 0 && value <= range.length) {
-      writeValue(value);
-      cd.viewToModelUpdate(value);
+  rate(num _value) {
+    if (!readonly && _value >= 0 && _value <= range.length) {
+      value = _value;
+      preValue = _value;
     }
   }
 

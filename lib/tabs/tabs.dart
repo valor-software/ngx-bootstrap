@@ -63,8 +63,8 @@ class Tabset implements OnInit {
 }
 // TODO: templateUrl?
 @Directive (selector: "tab, [tab]",
-    properties: const [ "active", "disable", "disabled", "heading"],
-    events: const [ "select", "deselect"],
+    inputs: const [ "active", "disable", "disabled", "heading"],
+    outputs: const [ "select", "deselect"],
     host: const { "[class.tab-pane]" : "true", "[class.active]" : "active"})
 class Tab implements OnInit, OnDestroy, DoCheck {
   Tabset tabset;
@@ -103,6 +103,7 @@ class Tab implements OnInit, OnDestroy, DoCheck {
   }
 
   set active(bool active) {
+    print('active: $active');
     active ??= true;
     if (disabled && active != null || !active) {
       if (!active) {

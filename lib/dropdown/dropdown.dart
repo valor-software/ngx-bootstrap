@@ -5,9 +5,9 @@ import 'package:node_shims/js.dart';
 import 'dart:html';
 
 @Directive (selector: "[dropdown]",
-    properties: const [
+    inputs: const [
       "isOpen", "autoClose", "keyboardNav", "dropdownAppendToBody"],
-    events: const ["onToggle"],
+    outputs: const ["onToggle"],
     host: const { "[class.dropdown]" : "true", "[class.open]" : "isOpen"})
 class Dropdown implements OnInit, OnDestroy {
   ElementRef el;

@@ -4,7 +4,7 @@ import "dropdown.dart";
 import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
 
 @Directive (selector: "[dropdown-menu], .dropdown-menu",
-    properties: const [ "templateUrl"])
+    inputs: const [ "templateUrl"])
 class DropdownMenu implements DropdownMenuInterface, OnInit {
   Dropdown dropdown;
 

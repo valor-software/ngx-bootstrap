@@ -59,10 +59,10 @@ class Carousel implements OnDestroy {
     this.destroyed = true;
   }
 
-  int get interval => _interval;
+  String get interval => _interval.toString();
 
-  set interval(int value) {
-    _interval = value;
+  set interval(String value) {
+    _interval = int.parse(value);
     restartTimer();
   }
 
@@ -128,10 +128,10 @@ class Carousel implements OnDestroy {
 
   restartTimer() {
     resetTimer();
-    var interval = this.interval;
+    var interval = _interval;
     if (interval != double.NAN && interval > 0) {
       currentInterval = new Timer(new Duration(milliseconds: interval), () {
-        var nInterval = this.interval;
+        var nInterval = _interval;
         if (isPlaying && interval != double.NAN && nInterval > 0 &&
             truthy(slides.length)) {
           next();

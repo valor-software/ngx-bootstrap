@@ -1,12 +1,8 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, Component, View, Self, NgModel, EventEmitter, OnInit, ElementRef, DefaultValueAccessor, NgClass, NgStyle, Renderer, CORE_DIRECTIVES, ViewRef, ViewContainerRef, TemplateRef, DynamicComponentLoader, ComponentRef, ViewEncapsulation;
-import "package:angular2/src/forms/directives/shared.dart" show setProperty;
-import "package:angular2/di.dart"
-    show bind, Injectable, ResolvedBinding, Injector;
-import "../ng2-bootstrap-config.dart"
-    show Ng2BootstrapConfig, Ng2BootstrapTheme;
-import "../position.dart" show positionService;
+import "package:angular2/angular2.dart";
+import "package:angular2/src/core/forms/directives/shared.dart";
+//import "package:angular2/src/core/di.dart";
+import "../ng2-bootstrap-config.dart";
+import "../position.dart";
 import 'dart:html';
 import 'dart:async';
 import 'package:node_shims/js.dart';
@@ -48,7 +44,17 @@ class TypeaheadOptions {
 }
 
 @Component (selector: "typeahead-container")
-@View (template: '\${TEMPLATE [ Ng2BootstrapConfig.theme ]}',
+@View (template: '''
+  <ul class="dropdown-menu"
+      [ng-style]="{top: top, left: left, display: display}"
+      style="display: block">
+    <li *ng-for="#match of matches"
+        [ng-class]="{active: isActive(match) }"
+        (mouseenter)="selectActive(match)">
+        <a href="#" (click)="selectMatch(match, \$event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
+    </li>
+  </ul>
+  ''',
     directives: const [ CORE_DIRECTIVES, NgClass, NgStyle],
     encapsulation: ViewEncapsulation.None)
 class TypeaheadContainer {
@@ -70,77 +76,79 @@ class TypeaheadContainer {
 
   String placement;
 
-  TypeaheadContainer(this .element, {this.parent, this.query, this.top, this.left, this.display, this.placement});
+  bool animation;
+
+  TypeaheadContainer(this .element, TypeaheadOptions typeaheadOptions) :
+        placement = typeaheadOptions.placement,
+        animation = typeaheadOptions.animation;
 
   List<String> get matches {
-    return this._matches;
+    return _matches;
   }
 
   set matches(List<String> value) {
-    this._matches = value;
-    if (this._matches.length > 0) {
-      this._active = this._matches [ 0 ];
+    _matches = value;
+    if (_matches.length > 0) {
+      _active = _matches [ 0 ];
     }
   }
 
   position(ElementRef hostEl) {
-    this.display = "block";
-    this.top = "0px";
-    this.left = "0px";
+    display = "block";
+    top = "0px";
+    left = "0px";
     var p = positionService.positionElements(
-        hostEl.nativeElement, this.element.nativeElement.children [ 0 ],
-        this.placement, false);
-    this.top = p.top + "px";
-    this.left = p.left + "px";
+        hostEl.nativeElement, element.nativeElement.children [ 0 ],
+        placement, false);
+    top = p.top.toString() + "px";
+    left = p.left.toString() + "px";
   }
 
   selectActiveMatch() {
-    this.selectMatch(this._active);
+    selectMatch(_active);
   }
 
   prevActiveMatch() {
-    var index = this.matches.indexOf(this._active);
-    this._active =
-    this.matches [ index - 1 < 0 ? this.matches.length - 1 : index - 1 ];
+    var index = matches.indexOf(_active);
+    _active =
+    matches [ index - 1 < 0 ? matches.length - 1 : index - 1 ];
   }
 
   nextActiveMatch() {
-    var index = this.matches.indexOf(this._active);
-    this._active =
-    this.matches [ index + 1 > this.matches.length - 1 ? 0 : index + 1 ];
+    var index = matches.indexOf(_active);
+    _active =
+    matches [ index + 1 > matches.length - 1 ? 0 : index + 1 ];
   }
 
   selectActive(String value) {
-    this._active = value;
+    _active = value;
   }
 
   bool isActive(value) {
-    return identical(this._active, value);
+    return _active == value;
   }
 
-  selectMatch(String value, [ Event e = null ]) {
+  selectMatch(String value, [Event e = null]) {
     if (e != null) {
       e.stopPropagation();
       e.preventDefault();
     }
-    this.parent.changeModel(value);
-    this.parent.typeaheadOnSelect.next(item: value);
+    parent.changeModel(value);
+    parent.typeaheadOnSelect.add({'item': value});
     return false;
   }
 
-  RegExp escapeRegexp(queryToEscape) {
+  String escapeRegexp(String queryToEscape) {
     // Regex: capture the whole query string and replace it with the string that will be used to match
 
     // the results, for example if the capture is "a" the result will be \a
-    return queryToEscape.replace(
-        new RegExp (r'([.?*+^$[\]\\(){}|-])'), "\\\$1");
+    return queryToEscape.replaceAll(new RegExp(r'([.?*+^$[\]\\(){}|-])'), "\\\$1");
   }
 
   hightlight(String item, String query) {
     // Replaces the capture string with a the same string inside of a "strong" tag
-    return query
-        ? item.replace(
-        new RegExp (this.escapeRegexp(query), "gi"), "<strong>\$&</strong>")
+    return falsey(query)
+        ? item.replaceAll(new RegExp(escapeRegexp(query)), "<strong>\$&</strong>")
         : item;
   }
 }
@@ -193,11 +201,11 @@ class Typeahead implements OnInit {
 
   TypeaheadContainer container;
 
-  num minLength;
+  num minLength = 1;
 
-  num waitMs;
+  num waitMs = 0;
 
-  num optionsLimit;
+  num optionsLimit = 20;
 
   bool appendToBody;
 
@@ -219,7 +227,7 @@ class Typeahead implements OnInit {
 
   String field;
 
-  bool async = null;
+  bool async = false;
 
   Function debouncer;
 
@@ -229,44 +237,40 @@ class Typeahead implements OnInit {
 
   String placement = "bottom-left";
 
-  Promise <ComponentRef> popup;
+  Future<ComponentRef> popup;
 
-  Typeahead(this .cd, this .element, this .renderer, this .loader) {}
+  Typeahead(this.cd, this.element, this.renderer, this.loader) {}
 
-  get matches {
-    return this._matches;
-  }
+  get matches => _matches;
 
   Function debounce(Function func, num wait) {
     dynamic timeout;
-    List<dynamic> args;
+//    List<dynamic> args;
     DateTime timestamp;
     num waitOriginal = wait;
     return () {
       // save details of latest call
-      args = [].slice.call(arguments, 0);
+//      args = [].slice.call(arguments, 0);
       timestamp = new DateTime.now();
-      // this trick is about implementing of 'typeaheadWaitMs'
+      // trick is about implementing of 'typeaheadWaitMs'
 
       // in this case we have adaptive 'wait' parameter
 
       // we should use standard 'wait'('waitOriginal') in case of
 
       // popup is opened, otherwise - 'typeaheadWaitMs' parameter
-      wait =truthy(this.container) ? waitOriginal : this.waitMs;
+      wait =truthy(container) ? waitOriginal : waitMs;
       // this is where the magic happens
-      Function later;
-      later = () {
+      later() {
         // how long ago was the last call
         var last = new DateTime.now().difference(timestamp);
-        // if the latest call was less that the wait period ago
-
+        // if the latest call was less than the wait period ago
         // then we reset the timeout to wait for the difference
         if (last < wait) {
           timeout = new Timer(new Duration(milliseconds: wait - last), later);
         } else {
           timeout = null;
-          func.apply(this, args);
+//          func.apply(this, args);
         }
       };
       // we only need to set the timer now if one isn't already running
@@ -277,26 +281,26 @@ class Typeahead implements OnInit {
   }
 
   processMatches() {
-    this._matches = [];
-    if (this.cd.model
+    _matches = [];
+    if (cd.model
         .toString()
-        .length >= this.minLength) {
-      for (var i = 0; i < this.source.length; i ++) {
+        .length >= minLength) {
+      for (var i = 0; i < source.length; i ++) {
         String match;
-        if (source is Map && truthy(source[i][this.field])) {
-          match = this.source [ i ] [ this.field ];
+        if (source[i] is Map && truthy(source[i][field])) {
+          match = source[i][field];
         }
-        if (source is String) {
-          match = this.source [ i ];
+        if (source[i] is String) {
+          match = source[i];
         }
         if (falsey(match)) {
           print("Invalid match type $field");
           continue;
         }
         if (match.toLowerCase().indexOf(
-            this.cd.model.toString().toLowerCase()) >= 0) {
-          push(this._matches, match);
-          if (this._matches.length > this.optionsLimit - 1) {
+            cd.model.toString().toLowerCase()) >= 0) {
+          push(_matches, match);
+          if (_matches.length > optionsLimit - 1) {
             break;
           }
         }
@@ -305,125 +309,119 @@ class Typeahead implements OnInit {
   }
 
   finalizeAsyncCall() {
-    this.typeaheadLoading.next(false);
-    this.typeaheadNoResults.next(this.cd.model
+    typeaheadLoading.add(false);
+    typeaheadNoResults.add(cd.model
         .toString()
-        .length >= this.minLength && this.matches.length <= 0);
-    if (this.cd.model
+        .length >= minLength && matches.length <= 0);
+    if (cd.model
         .toString()
-        .length <= 0 || this._matches.length <= 0) {
-      this.hide();
+        .length <= 0 || _matches.length <= 0) {
+      hide();
       return;
     }
-    if (truthy(this.container) && this._matches.length > 0) {
-      this.container.query = this.cd.model;
-      this.container.matches = this._matches;
+    if (truthy(container) && _matches.length > 0) {
+      container.query = cd.model;
+      container.matches = _matches;
     }
-    if (falsey(this.container) && this._matches.length > 0) {
-      this.show(this._matches);
+    if (falsey(container) && _matches.length > 0) {
+      show(_matches);
     }
   }
 
   onInit() {
-    this.optionsLimit = or(this.optionsLimit, 20);
-    this.minLength = or(this.minLength, 1);
-    this.waitMs = or(this.waitMs, 0);
     // async should be false in case of array
-    if (async != null && source is! Function) {
-      this.async = false;
-    }
-    // async should be true for any case of function
-    if (source is Function) {
-      this.async = true;
-    }
-    if (identical(this.async, true)) {
-      this.debouncer = this.debounce(() {
-        if (source is Function) {
-          this.source().then((matches) {
-            this._matches = [];
-            if (this.cd.model
-                .toString()
-                .length >= this.minLength) {
-              for (var i = 0; i < matches.length; i ++) {
-                push(this._matches, matches [ i ]);
-                if (this._matches.length > this.optionsLimit - 1) {
-                  break;
-                }
-              }
-            }
-            this.finalizeAsyncCall();
-          });
-        }
-        // source is array
-        if (source is List && this.source.length > 0) {
-          this.processMatches();
-          this.finalizeAsyncCall();
-        }
-      }, 100);
+    async = source is Function;
+
+    if (async == true) {
+      print('async: $async');
+      print('source: $source');
+//      debouncer = debounce(() {
+//        if (source is Function) {
+//          print('source: $source');
+//          source().then((matches) {
+//            _matches = [];
+//            if (cd.model
+//                .toString()
+//                .length >= minLength) {
+//              for (var i = 0; i < matches.length; i ++) {
+//                push(_matches, matches [ i ]);
+//                if (_matches.length > optionsLimit - 1) {
+//                  break;
+//                }
+//              }
+//            }
+//            finalizeAsyncCall();
+//          });
+//        }
+//        // source is array
+//        if (source is List && source.length > 0) {
+//          processMatches();
+//          finalizeAsyncCall();
+//        }
+//      }, 100);
     }
   }
 
   onChange(KeyboardEvent e) {
-    if (truthy(this.container)) {
+    if (truthy(container)) {
+      print('container: $container');
       // esc
-      if (identical(e.keyCode, 27)) {
-        this.hide();
+      if (e.keyCode == KeyCode.ESC) {
+        hide();
         return;
       }
       // up
-      if (identical(e.keyCode, 38)) {
-        this.container.prevActiveMatch();
+      if (e.keyCode == KeyCode.UP) {
+        container.prevActiveMatch();
         return;
       }
       // down
-      if (identical(e.keyCode, 40)) {
-        this.container.nextActiveMatch();
+      if (e.keyCode == KeyCode.DOWN) {
+        container.nextActiveMatch();
         return;
       }
       // enter
-      if (identical(e.keyCode, 13)) {
-        this.container.selectActiveMatch();
+      if (e.keyCode == KeyCode.ENTER) {
+        container.selectActiveMatch();
         return;
       }
     }
-    this.typeaheadLoading.next(true);
-    if (identical(this.async, true)) {
-      this.debouncer();
-    }
-    if (identical(this.async, false)) {
-      this.processMatches();
-      this.finalizeAsyncCall();
+    typeaheadLoading.add(true);
+    if (async == true) {
+//      debouncer();
+    } else {
+      processMatches();
+      finalizeAsyncCall();
     }
   }
 
   changeModel(value) {
-    this.cd.viewToModelUpdate(value);
-    setProperty(this.renderer, this.element, "value", value);
-    this.hide();
+    cd.viewToModelUpdate(value);
+    setProperty(renderer, element, "value", value);
+    hide();
   }
 
   show(List<String> matches) {
-    var options = new TypeaheadOptions (
-        placement: this.placement, animation: false);
+    var options = new TypeaheadOptions (placement: placement, animation: false);
     var binding = Injector.resolve([ bind(TypeaheadOptions).toValue(options)]);
-    this.popup = this.loader.loadNextToLocation(
-        TypeaheadContainer, this.element, binding).then((
+    popup = loader.loadNextToLocation(
+        TypeaheadContainer, element, binding).then((
         ComponentRef componentRef) {
-      componentRef.instance.position(this.element);
-      this.container = componentRef.instance;
-      this.container.parent = this;
-      this.container.query = this.cd.model;
-      this.container.matches = matches;
-      this.element.nativeElement.focus();
+      componentRef.instance.position(element);
+      container = componentRef.instance;
+      container.parent = this;
+      container.query = cd.model;
+      container.matches = matches;
+      element.nativeElement.focus();
       return componentRef;
     });
   }
 
   hide() {
-    if (truthy(this.container)) {
-      this.popup.then((ComponentRef componentRef) {
+    if (truthy(container)) {
+      popup.then((ComponentRef componentRef) {
         componentRef.dispose();
-        this.container = null;
+        container = null;
         return componentRef;
       });
     }

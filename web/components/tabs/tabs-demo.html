@@ -13,7 +13,6 @@
     <tab *ng-for="#tabz of tabs"
          [heading]="tabz['title']"
          [active]="tabz['active'] == true"
-         (select)="tabz['active'] = true"
          (deselect)="tabz['active'] = false"
          [disabled]="tabz['disabled'] == true">
       {{tabz['content']}}

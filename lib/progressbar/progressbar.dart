@@ -47,7 +47,7 @@ class Progress implements OnInit {
 // todo: number pipe
 
 // todo: use query from progress?
-@Component (selector: "bar, [bar]", properties: const ["type", "value"])
+@Component (selector: "bar, [bar]", inputs: const ["type", "value"])
 @View (template: '''
   <div class="progress-bar"
     style="min-width: 0;"
