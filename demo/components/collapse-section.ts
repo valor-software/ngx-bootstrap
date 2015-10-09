@@ -1,6 +1,6 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES, NgNonBindable} from 'angular2/angular2';
+import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
 import {tabs} from '../../components/index';
 import {CollapseDemo} from './collapse/collapse-demo';
@@ -62,7 +62,7 @@ let html = require('!!prismjs?lang=markup!./collapse/collapse-demo.html');
     </div>
   </section>
   `,
-  directives: [CollapseDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [CollapseDemo, tabs, CORE_DIRECTIVES]
 })
 export class CollapseSection {
 }

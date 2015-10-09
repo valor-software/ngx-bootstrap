@@ -1,6 +1,6 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES, NgNonBindable} from 'angular2/angular2';
+import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
 import {tabs} from '../../components/index';
 import {AccordionDemo} from './accordion/accordion-demo';
@@ -58,7 +58,7 @@ let html = require('!!prismjs?lang=markup!./accordion/accordion-demo.html');
     </div>
   </section>
   `,
-  directives: [AccordionDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [AccordionDemo, tabs, CORE_DIRECTIVES]
 })
 export class AccordionSection {
 }

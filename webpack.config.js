@@ -43,7 +43,6 @@ var config = {
   entry: {
     angular2: [
       // Angular 2 Deps
-      'traceur-runtime',
       'zone.js',
       'reflect-metadata',
       'rtts_assert/rtts_assert',
@@ -62,6 +61,7 @@ var config = {
 
   // our Development Server configs
   devServer: {
+    watch: true,
     inline: true,
     colors: true,
     historyApiFallback: true,

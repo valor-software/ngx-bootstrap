@@ -9,20 +9,20 @@ if (w && w.__theme === 'bs4') {
 }
 
 
-import {AccordionSection} from './components/accordion-section';
-import {AlertSection} from './components/alert-section';
-import {ButtonsSection} from './components/buttons-section';
-import {CarouselSection} from './components/carousel-section';
-import {CollapseSection} from './components/collapse-section';
-import {DatepickerSection} from './components/datepicker-section';
-import {DropdownSection} from './components/dropdown-section';
-import {PaginationSection} from './components/pagination-section';
-import {ProgressbarSection} from './components/progressbar-section';
-import {RatingSection} from './components/rating-section';
-import {TabsSection} from './components/tabs-section';
-import {TimepickerSection} from './components/timepicker-section';
-import {TooltipSection} from './components/tooltip-section';
-import {TypeaheadSection} from './components/typeahead-section';
+//import {AccordionSection} from './components/accordion-section';
+//import {AlertSection} from './components/alert-section';
+//import {ButtonsSection} from './components/buttons-section';
+//import {CarouselSection} from './components/carousel-section';
+//import {CollapseSection} from './components/collapse-section';
+//import {DatepickerSection} from './components/datepicker-section';
+//import {DropdownSection} from './components/dropdown-section';
+//import {PaginationSection} from './components/pagination-section';
+//import {ProgressbarSection} from './components/progressbar-section';
+//import {RatingSection} from './components/rating-section';
+//import {TabsSection} from './components/tabs-section';
+//import {TimepickerSection} from './components/timepicker-section';
+//import {TooltipSection} from './components/tooltip-section';
+//import {TypeaheadSection} from './components/typeahead-section';
 
 import {DemoHeader} from './components/demo-header';
 
@@ -34,7 +34,6 @@ let gettingStarted = require('./getting-started.md');
 @View({
   template: `
   <demo-header>Loading header</demo-header>
-
   <main class="bd-pageheader">
     <div class="container">
       <h1>ng2-bootstrap</h1>
@@ -46,6 +45,36 @@ let gettingStarted = require('./getting-started.md');
       </div>
     </div>
   </main>
+
+  `,
+  directives: [
+    NgClass,
+    DemoHeader,
+    //
+    //AccordionSection,
+    //AlertSection,
+    //ButtonsSection,
+    //CarouselSection,
+    //CollapseSection,
+    //DatepickerSection,
+    //DropdownSection,
+    //PaginationSection,
+    //ProgressbarSection,
+    //RatingSection,
+    //TabsSection,
+    //TimepickerSection,
+    //TooltipSection,
+    //TypeaheadSection
+  ]
+})
+export class Demo {
+  private isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+}
+
+bootstrap(Demo);
+
+var t = `
+
 
   <div class="container">
     <div class="col-md-12 card card-block panel panel-default">
@@ -81,29 +110,4 @@ let gettingStarted = require('./getting-started.md');
       <p class="text-muted text-center"><a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.</p>
     </div>
   </footer>
-  `,
-  directives: [
-    NgClass,
-    DemoHeader,
-
-    AccordionSection,
-    AlertSection,
-    ButtonsSection,
-    CarouselSection,
-    CollapseSection,
-    DatepickerSection,
-    DropdownSection,
-    PaginationSection,
-    ProgressbarSection,
-    RatingSection,
-    TabsSection,
-    TimepickerSection,
-    TooltipSection,
-    TypeaheadSection
-  ]
-})
-export class Demo {
-  private isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
-}
-
-bootstrap(Demo);
+`
