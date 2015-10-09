@@ -155,7 +155,8 @@ class TypeaheadContainer {
 // todo: options loading by http not yet implemented
 @Directive (
     selector: "typeahead, [typeahead]",
-    properties: const [
+    inputs: const [
+      'context',
       "source:typeahead",
       // todo: not yet implemented
       "appendToBody:typeaheadAppendToBody",
@@ -181,11 +182,16 @@ class TypeaheadContainer {
       "field:typeaheadOptionField",
       "async:typeaheadAsync"
     ],
-    events: const ["typeaheadLoading", "typeaheadNoResults", "typeaheadOnSelect"
+    outputs: const [
+      "typeaheadLoading",
+      "typeaheadNoResults",
+      "typeaheadOnSelect"
     ],
     host: const { "(keyup)" : "onChange(\$event)"})
 class Typeahead implements OnInit {
   NgModel cd;
+
+  var context;
 
   ElementRef element;
 
@@ -263,14 +269,14 @@ class Typeahead implements OnInit {
       // this is where the magic happens
       later() {
         // how long ago was the last call
-        var last = new DateTime.now().difference(timestamp);
+        var last = new DateTime.now().difference(timestamp).inMilliseconds;
         // if the latest call was less than the wait period ago
         // then we reset the timeout to wait for the difference
         if (last < wait) {
           timeout = new Timer(new Duration(milliseconds: wait - last), later);
         } else {
           timeout = null;
-//          func.apply(this, args);
+          func();
         }
       };
       // we only need to set the timer now if one isn't already running
@@ -297,9 +303,8 @@ class Typeahead implements OnInit {
           print("Invalid match type $field");
           continue;
         }
-        if (match.toLowerCase().indexOf(
-            cd.model.toString().toLowerCase()) >= 0) {
-          push(_matches, match);
+        if (match.toLowerCase().indexOf(cd.model.toString().toLowerCase()) >= 0) {
+          _matches.add(match);
           if (_matches.length > optionsLimit - 1) {
             break;
           }
@@ -310,12 +315,8 @@ class Typeahead implements OnInit {
 
   finalizeAsyncCall() {
     typeaheadLoading.add(false);
-    typeaheadNoResults.add(cd.model
-        .toString()
-        .length >= minLength && matches.length <= 0);
-    if (cd.model
-        .toString()
-        .length <= 0 || _matches.length <= 0) {
+    typeaheadNoResults.add(cd.model.toString().length >= minLength && matches.length <= 0);
+    if (cd.model.toString().length <= 0 || _matches.length <= 0) {
       hide();
       return;
     }
@@ -333,62 +334,48 @@ class Typeahead implements OnInit {
     async = source is Function;
 
     if (async == true) {
-      print('async: $async');
-      print('source: $source');
-//      debouncer = debounce(() {
-//        if (source is Function) {
-//          print('source: $source');
-//          source().then((matches) {
-//            _matches = [];
-//            if (cd.model
-//                .toString()
-//                .length >= minLength) {
-//              for (var i = 0; i < matches.length; i ++) {
-//                push(_matches, matches [ i ]);
-//                if (_matches.length > optionsLimit - 1) {
-//                  break;
-//                }
-//              }
-//            }
-//            finalizeAsyncCall();
-//          });
-//        }
-//        // source is array
-//        if (source is List && source.length > 0) {
-//          processMatches();
-//          finalizeAsyncCall();
-//        }
-//      }, 100);
+      debouncer = debounce(() {
+        if (source is Function) {
+          source(context).then((Iterable matches) {
+            _matches = [];
+            if (cd.model.toString().length >= minLength) {
+              for (var i = 0; i < matches.length; i ++) {
+                _matches.add(matches.elementAt(i));
+                if (_matches.length > optionsLimit - 1) {
+                  break;
+                }
+              }
+            }
+            finalizeAsyncCall();
+          });
+        } else if (source is List && source.length > 0) { // source is array
+          processMatches();
+          finalizeAsyncCall();
+        }
+      }, 100);
     }
   }
 
   onChange(KeyboardEvent e) {
     if (truthy(container)) {
-      print('container: $container');
-      // esc
-      if (e.keyCode == KeyCode.ESC) {
+      switch(e.keyCode) {
+        case KeyCode.ESC:
         hide();
         return;
-      }
-      // up
-      if (e.keyCode == KeyCode.UP) {
+        case KeyCode.UP:
         container.prevActiveMatch();
         return;
-      }
-      // down
-      if (e.keyCode == KeyCode.DOWN) {
+        case KeyCode.DOWN:
         container.nextActiveMatch();
         return;
-      }
-      // enter
-      if (e.keyCode == KeyCode.ENTER) {
+        case KeyCode.ENTER:
         container.selectActiveMatch();
         return;
       }
     }
     typeaheadLoading.add(true);
     if (async == true) {
-//      debouncer();
+      debouncer();
     } else {
       processMatches();
       finalizeAsyncCall();
