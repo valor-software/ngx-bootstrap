@@ -1,20 +1,17 @@
-/// <reference path="../../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES;
-import "../../../lib/index.dart" show Timepicker;
-
-// webpack html imports
-var template = require("./timepicker-demo.html");
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/timepicker/timepicker.dart";
 
 @Component(selector: "timepicker-demo")
 @View(
-    template: template,
+    templateUrl: 'timepicker-demo.html',
     directives: const [Timepicker, CORE_DIRECTIVES, FORM_DIRECTIVES])
 class TimepickerDemo {
-  num hstep = 1;
-  num mstep = 15;
+  String hstep = '1';
+  get hstepInt => int.parse(hstep);
+  String mstep = '15';
+  get mstepInt => int.parse(mstep);
   bool ismeridian = true;
-  Date mytime = new Date();
+  String mytime = new DateTime.now().toString();
   dynamic options = {
     "hstep": [1, 2, 3],
     "mstep": [1, 5, 10, 15, 25, 30]
@@ -24,14 +21,12 @@ class TimepickerDemo {
   }
 
   void update() {
-    var d = new Date();
-    d.setHours(14);
-    d.setMinutes(0);
-    this.mytime = d;
+    var d = new DateTime(0, 1, 1, 14);
+    this.mytime = d.toString();
   }
 
   void changed() {
-    console.log("Time changed to: " + this.mytime);
+    print("Time changed to: ${mytime}");
   }
 
   void clear() {

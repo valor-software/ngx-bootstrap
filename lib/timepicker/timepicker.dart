@@ -1,47 +1,19 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, OnInit, EventEmitter, DefaultValueAccessor, ElementRef, ViewContainerRef, NgIf, NgClass, FORM_DIRECTIVES, Self, NgModel, Renderer;
+import "package:angular2/angular2.dart";
 import 'dart:html';
-import 'package:node_shims/js.dart';
 
 // todo: implement global configuration via DI
 
 // todo: refactor directive has to many functions! (extract to stateless helper)
 
-// todo: use moment js?
-
 // todo: implement `time` validator
 
 // todo: replace increment/decrement blockers with getters, or extract
 
-// todo: unify work with selected
-const timepickerConfig = const {
-  "hourStep" : 1,
-  "minuteStep" : 1,
-  "showMeridian" : true,
-  "meridians" : null,
-  "readonlyInput" : false,
-  "mousewheel" : true,
-  "arrowkeys" : true,
-  "showSpinners" : true,
-  "min" : null,
-  "max" : null
-};
+DateTime addMinutes(DateTime time, minutes) => time.add(new Duration(minutes: minutes));
 
-bool isDefined(dynamic value) {
-  return value != null;
-}
-
-def(dynamic value, Function fn, defaultValue) {
-  return fn(value) ? value : defaultValue;
-}
-
-DateTime addMinutes(DateTime date, minutes) {
-  return date.add(new Duration(minutes: minutes));
-}
 // TODO: templateUrl
 @Component (selector: "timepicker[ng-model]",
-    properties: const [
+    inputs: const [
       "hourStep",
       "minuteStep",
       "meridians",
@@ -81,29 +53,26 @@ DateTime addMinutes(DateTime date, minutes) {
       </tbody>
     </table>
   ''', directives: const [ FORM_DIRECTIVES, NgClass])
-class Timepicker extends DefaultValueAccessor
-    implements OnInit {
+class Timepicker extends DefaultValueAccessor implements OnInit {
   // result value
   DateTime _selected = new DateTime.now();
 
   // config
-  num hourStep;
+  num hourStep = 1;
 
-  num minuteStep;
-
-  bool _showMeridian;
+  num minuteStep = 1;
 
   dynamic meridian;
 
   List<String> meridians = [ "AM", "PM"];
 
-  bool readonlyInput;
+  bool readonlyInput = false;
 
-  bool mousewheel;
+  bool mousewheel = true;
 
-  bool arrowkeys;
+  bool arrowkeys = true;
 
-  bool showSpinners;
+  bool showSpinners = true;
 
   DateTime min;
 
@@ -114,22 +83,24 @@ class Timepicker extends DefaultValueAccessor
 
   String minutes;
 
-  get selected {
+  DateTime get selected {
     return this._selected;
   }
 
   set selected(DateTime v) {
-    if (v) {
+    if (v != null) {
       this._selected = v;
       this.updateTemplate();
-      this.cd.viewToModelUpdate(this.selected);
+      this.cd.viewToModelUpdate(this.selected.toIso8601String());
     }
   }
 
   // validation
-  dynamic invalidHours;
+  bool invalidHours = false;
 
-  dynamic invalidMinutes;
+  bool invalidMinutes = false;
+
+  bool _showMeridian = true;
 
   get showMeridian {
     return this._showMeridian;
@@ -137,71 +108,55 @@ class Timepicker extends DefaultValueAccessor
 
   set showMeridian(bool value) {
     this._showMeridian = value;
-    // || !this.$error.time
+    // || !this.$error.DateTime
     if (true) {
-      this.updateTemplate();
+      updateTemplate();
       return;
     }
     // Evaluate from template
-    var hours = this.getHoursFromTemplate();
-    var minutes = this.getMinutesFromTemplate();
-    if (isDefined(hours) && isDefined(minutes)) {
-      this.selected.setHours(hours);
-      this.refresh();
+    var hours = getHoursFromTemplate();
+    var minutes = getMinutesFromTemplate();
+    if (hours != null && minutes != null) {
+      selected;
+      refresh();
     }
   }
 
-  Timepicker(@Self () NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef) {
-    /* super call moved to initializer */
-    ;
-  }
+  NgModel cd;
+
+  Timepicker(this.cd, Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) ;
 
   // todo: add formatter value to DateTime object
   onInit() {
     // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
-    this.meridians =
-        or(def(this.meridians, isDefined, timepickerConfig['meridians']), [ "AM", "PM"]);
-    this.mousewheel =
-        def(this.mousewheel, isDefined, timepickerConfig['mousewheel']);
-    if (this.mousewheel) {
-      this.setupMousewheelEvents();
+    if (mousewheel) {
+      setupMousewheelEvents();
     }
-    this.arrowkeys = def(this.arrowkeys, isDefined, timepickerConfig['arrowkeys']);
-    if (this.arrowkeys) {
-      this.setupArrowkeyEvents();
+    if (arrowkeys) {
+      setupArrowkeyEvents();
     }
-    this.readonlyInput =
-        def(this.readonlyInput, isDefined, timepickerConfig['readonlyInput']);
-    this.setupInputEvents();
-    this.hourStep = def(this.hourStep, isDefined, timepickerConfig['hourStep']);
-    this.minuteStep =
-        def(this.minuteStep, isDefined, timepickerConfig['minuteStep']);
-    this.min = def(this.min, isDefined, timepickerConfig['min']);
-    this.max = def(this.max, isDefined, timepickerConfig['max']);
-    // 12H / 24H mode
-    this.showMeridian =
-        def(this.showMeridian, isDefined, timepickerConfig['showMeridian']);
-    this.showSpinners =
-        def(this.showSpinners, isDefined, timepickerConfig['showSpinners']);
+    setupInputEvents();
   }
 
   writeValue(v) {
-    this.selected = v ? new DateTime (v) : null;
+    print(v);
+    selected = v ? new DateTime(v) : null;
   }
 
   refresh([ String type ]) {
     // this.makeValid();
-    this.updateTemplate();
-    this.cd.viewToModelUpdate(this.selected);
+    updateTemplate();
+    cd.viewToModelUpdate(selected.toIso8601String());
   }
 
   updateTemplate([ dynamic keyboardChange ]) {
-    var hours = this.selected.getHours();
-    var minutes = this.selected.getMinutes();
-    if (this.showMeridian) {
+    print('updateTemplate');
+    var _hours = selected.hour;
+    var _minutes = selected.minute;
+    if (showMeridian) {
       // Convert 24 to 12 hour system
-      hours = (identical(hours, 0) || identical(hours, 12)) ? 12 : hours % 12;
+      _hours = (identical(_hours, 0) || identical(_hours, 12)) ? 12 : _hours % 12;
     }
     // this.hours = keyboardChange === 'h' ? hours : this.pad(hours);
 
@@ -210,24 +165,25 @@ class Timepicker extends DefaultValueAccessor
     //  this.minutes = this.pad(minutes);
 
     // }
-    this.hours = this.pad(hours);
-    this.minutes = this.pad(minutes);
-    this.meridian =
-    this.selected.getHours() < 12 ? this.meridians [ 0 ] : this.meridians [ 1 ];
+    hours = pad(_hours);
+    minutes = pad(_minutes);
+    print('hours: $hours');
+    print('minutes: $minutes');
+    meridian = selected.hour < 12 ? meridians[0] : meridians[1];
   }
 
   getHoursFromTemplate() {
     var hours = int.parse(this.hours);
-    var valid = this.showMeridian ? (hours > 0 && hours < 13) : (hours >= 0 &&
+    var valid = showMeridian ? (hours > 0 && hours < 13) : (hours >= 0 &&
         hours < 24);
     if (!valid) {
       return null;
     }
-    if (this.showMeridian) {
-      if (identical(hours, 12)) {
+    if (showMeridian) {
+      if (hours == 12) {
         hours = 0;
       }
-      if (identical(this.meridian, this.meridians [ 1 ])) {
+      if (identical(meridian, meridians [ 1 ])) {
         hours = hours + 12;
       }
     }
@@ -240,9 +196,9 @@ class Timepicker extends DefaultValueAccessor
   }
 
   pad(value) {
-    return (isDefined(value) && value
-        .toString()
-        .length < 2) ? "0" + value : value.toString();
+    return (value != null && value.toString().length < 2)
+        ? "0" + value.toString()
+        : value.toString();
   }
 
   setupMousewheelEvents() {}
@@ -252,115 +208,125 @@ class Timepicker extends DefaultValueAccessor
   setupInputEvents() {}
 
   updateHours() {
-    if (this.readonlyInput) {
+    if (readonlyInput) {
       return;
     }
-    var hours = this.getHoursFromTemplate();
-    var minutes = this.getMinutesFromTemplate();
-    if (!isDefined(hours) || !isDefined(minutes)) {}
-    this.selected.setHours(hours);
-    if (this.selected < this.min || this.selected > this.max) {} else {
-      this.refresh("h");
+    var hours = getHoursFromTemplate();
+    var minutes = getMinutesFromTemplate();
+    if (hours == null || minutes == null) {}
+    selected = _updateDateTime(selected, hours: hours);
+    if (min != null && !(selected.isBefore(min) || max != null && selected.isAfter(max))) {
+      refresh("h");
     }
   }
 
   hoursOnBlur(Event event) {
-    if (this.readonlyInput) {
+    if (readonlyInput) {
       return;
     }
     // todo: binded with validation
-    if (!this.invalidHours && int.parse(this.hours) < 10) {
-      this.hours = this.pad(this.hours);
+    if (!invalidHours && int.parse(hours) < 10) {
+      hours = pad(hours);
     }
   }
 
   updateMinutes() {
-    if (this.readonlyInput) {
+    if (readonlyInput) {
       return;
     }
-    var minutes = this.getMinutesFromTemplate();
-    var hours = this.getHoursFromTemplate();
-    if (!isDefined(minutes) || !isDefined(hours)) {}
-    this.selected.setMinutes(minutes);
-    if (this.selected < this.min || this.selected > this.max) {} else {
-      this.refresh("m");
+    var minutes = getMinutesFromTemplate();
+    var hours = getHoursFromTemplate();
+    if (minutes == null || hours == null) {}
+    selected = _updateDateTime(selected, minutes: minutes);
+//    selected.minute = minutes;
+    if (!(min != null && selected.isBefore(min) || max != null && selected.isAfter(max))) {
+      refresh("m");
     }
   }
 
+  _updateDateTime(DateTime selected, {int minutes, int hours}) =>
+      new DateTime(
+          selected.year,
+          selected.month,
+          selected.day,
+          hours ?? selected.hour,
+          minutes ?? selected.minute,
+          selected.second);
+
   minutesOnBlur(Event event) {
-    if (this.readonlyInput) {
+    if (readonlyInput) {
       return;
     }
-    if (!this.invalidMinutes && int.parse(this.minutes) < 10) {
-      this.minutes = this.pad(this.minutes);
+    if (!invalidMinutes && int.parse(minutes) < 10) {
+      minutes = pad(minutes);
     }
   }
 
   noIncrementHours() {
-    var incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
-    return incrementedSelected > this.max ||
-        (incrementedSelected < this.selected && incrementedSelected < this.min);
+    var incrementedSelected = addMinutes(selected, hourStep * 60);
+    return min != null && incrementedSelected.isBefore(min)
+        || max != null && incrementedSelected.isAfter(selected) && incrementedSelected.isAfter(max);
   }
 
   noDecrementHours() {
-    var decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
-    return decrementedSelected < this.min ||
-        (decrementedSelected > this.selected && decrementedSelected > this.max);
+    var decrementedSelected = addMinutes(selected, -hourStep * 60);
+    return min != null && decrementedSelected.isBefore(min)
+        || max != null && decrementedSelected.isAfter(selected) && decrementedSelected.isAfter(max);
   }
 
   noIncrementMinutes() {
-    var incrementedSelected = addMinutes(this.selected, this.minuteStep);
-    return incrementedSelected > this.max ||
-        (incrementedSelected < this.selected && incrementedSelected < this.min);
+    var incrementedSelected = addMinutes(selected, minuteStep);
+    return min != null && incrementedSelected.isBefore(min)
+        || max != null && incrementedSelected.isAfter(selected) && incrementedSelected.isAfter(max);
   }
 
   noDecrementMinutes() {
-    var decrementedSelected = addMinutes(this.selected, -this.minuteStep);
-    return decrementedSelected < this.min ||
-        (decrementedSelected > this.selected && decrementedSelected > this.max);
+    var decrementedSelected = addMinutes(selected, -minuteStep);
+    return min != null && decrementedSelected.isBefore(min)
+        || max != null && decrementedSelected.isAfter(selected) && decrementedSelected.isAfter(max);
   }
 
   addMinutesToSelected(minutes) {
-    this.selected = addMinutes(this.selected, minutes);
-    this.refresh();
+    selected = addMinutes(selected, minutes);
+    refresh();
   }
 
   noToggleMeridian() {
-    if (this.selected.getHours() < 13) {
-      return addMinutes(this.selected, 12 * 60) > this.max;
+    if (selected.hour < 13) {
+      return max != null && addMinutes(selected, 12 * 60).isAfter(max);
     } else {
-      return addMinutes(this.selected, -12 * 60) < this.min;
+      return min != null && addMinutes(selected, -12 * 60).isBefore(min);
     }
   }
 
   incrementHours() {
-    if (!this.noIncrementHours()) {
-      this.addMinutesToSelected(this.hourStep * 60);
+    if (!noIncrementHours()) {
+      addMinutesToSelected(hourStep * 60);
     }
   }
 
   decrementHours() {
-    if (!this.noDecrementHours()) {
-      this.addMinutesToSelected(-this.hourStep * 60);
+    if (!noDecrementHours()) {
+      addMinutesToSelected(-hourStep * 60);
     }
   }
 
   incrementMinutes() {
-    if (!this.noIncrementMinutes()) {
-      this.addMinutesToSelected(this.minuteStep);
+    if (!noIncrementMinutes()) {
+      addMinutesToSelected(minuteStep);
     }
   }
 
   decrementMinutes() {
-    if (!this.noDecrementMinutes()) {
-      this.addMinutesToSelected(-this.minuteStep);
+    if (!noDecrementMinutes()) {
+      addMinutesToSelected(-minuteStep);
     }
   }
 
   toggleMeridian() {
-    if (!this.noToggleMeridian()) {
-      var sign = this.selected.getHours() < 12 ? 1 : -1;
-      this.addMinutesToSelected(12 * 60 * sign);
+    if (!noToggleMeridian()) {
+      var sign = selected.hour < 12 ? 1 : -1;
+      addMinutesToSelected(12 * 60 * sign);
     }
   }
 }
