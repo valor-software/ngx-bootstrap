@@ -11,7 +11,7 @@ if (w && w.__theme === 'bs4') {
 
 import {AccordionSection} from './components/accordion-section';
 import {AlertSection} from './components/alert-section';
-//import {ButtonsSection} from './components/buttons-section';
+import {ButtonsSection} from './components/buttons-section';
 //import {CarouselSection} from './components/carousel-section';
 //import {CollapseSection} from './components/collapse-section';
 //import {DatepickerSection} from './components/datepicker-section';
@@ -86,9 +86,9 @@ let gettingStarted = require('./getting-started.md');
     NgClass,
     DemoHeader,
 
-    AccordionSection,
-    AlertSection,
-    //ButtonsSection,
+    //AccordionSection,
+    //AlertSection,
+    ButtonsSection,
     //CarouselSection,
     //CollapseSection,
     //DatepickerSection,

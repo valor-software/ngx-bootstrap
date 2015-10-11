@@ -2,8 +2,8 @@
 
 export * from  './accordion/accordion';
 export * from  './alert/alert';
-//export * from  './buttons/button-radio';
-//export * from  './buttons/button-checkbox';
+export * from  './buttons/button-radio';
+export * from  './buttons/button-checkbox';
 //export * from  './datepicker/index';
 export * from  './dropdown/index';
 export * from  './dropdown/dropdown';

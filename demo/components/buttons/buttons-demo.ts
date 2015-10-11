@@ -14,7 +14,7 @@ let template = require('./buttons-demo.html');
   selector: 'buttons-demo'
 })
 @View({
-  template:template,
+  template: template,
   directives: [
     ButtonCheckbox, ButtonRadio,
     CORE_DIRECTIVES, FORM_DIRECTIVES
@@ -23,5 +23,5 @@ let template = require('./buttons-demo.html');
 export class ButtonsDemo {
   private singleModel:string = '1';
   private radioModel:string = 'Middle';
-  private checkModel:Object = {left: false, middle: true, right: false};
+  public checkModel:any = {left: false, middle: true, right: false};
 }

@@ -1,9 +1,8 @@
 /// <reference path="../../tsd.d.ts" />
 import {
   Directive,
-  DefaultValueAccessor,
   Self, NgModel, Renderer, ElementRef,
-  OnInit
+  OnInit, ControlValueAccessor
 } from 'angular2/angular2';
 
 
@@ -15,14 +14,16 @@ import {
     '[class.active]': 'state'
   }
 })
-export class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
+export class ButtonCheckbox implements ControlValueAccessor, OnInit{
   private btnCheckboxTrue:any;
   private btnCheckboxFalse:any;
+
   private value:any;
   private state:boolean = false;
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
+  constructor(@Self() public cd:NgModel) {
+    // hack !
+    cd.valueAccessor = this;
   }
 
   onInit() {
@@ -42,15 +43,27 @@ export class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
     this.value = this.state ? this.trueValue : this.falseValue;
   }
 
+  // view -> model
+  onClick() {
+    this.toggle(!this.state);
+    this.cd.viewToModelUpdate(this.value);
+  }
+
+  // ControlValueAccessor
   // model -> view
   writeValue(value:any) {
     this.state = this.trueValue === value;
     this.value = value;
   }
 
-  // view -> model
-  onClick() {
-    this.toggle(!this.state);
-    this.cd.viewToModelUpdate(this.value);
+  onChange = (_) => {};
+  onTouched = () => {};
+
+  registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
   }
 }
