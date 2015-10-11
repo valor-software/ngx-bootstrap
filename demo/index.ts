@@ -21,8 +21,8 @@ import {ProgressbarSection} from './components/progressbar-section';
 import {RatingSection} from './components/rating-section';
 import {TabsSection} from './components/tabs-section';
 import {TimepickerSection} from './components/timepicker-section';
-//import {TooltipSection} from './components/tooltip-section';
-//import {TypeaheadSection} from './components/typeahead-section';
+import {TooltipSection} from './components/tooltip-section';
+import {TypeaheadSection} from './components/typeahead-section';
 
 import {DemoHeader} from './components/demo-header';
 
@@ -86,21 +86,23 @@ let gettingStarted = require('./getting-started.md');
     NgClass,
     DemoHeader,
 
-    //AccordionSection,
-    //AlertSection,
-    //ButtonsSection,
-    //CarouselSection,
-    //CollapseSection,
+    AccordionSection,
+    AlertSection,
+    ButtonsSection,
+    CarouselSection,
+    CollapseSection,
+
     // todo: fix it to much write value calls!!!
     //DatepickerSection,
-    //DropdownSection,
-    //PaginationSection,
-    //ProgressbarSection,
-    //RatingSection,
-    //TabsSection,
+
+    DropdownSection,
+    PaginationSection,
+    ProgressbarSection,
+    RatingSection,
+    TabsSection,
     TimepickerSection,
-    //TooltipSection,
-    //TypeaheadSection
+    TooltipSection,
+    TypeaheadSection
   ]
 })
 export class Demo {

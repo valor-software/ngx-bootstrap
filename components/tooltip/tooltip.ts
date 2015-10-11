@@ -11,7 +11,7 @@ import {
   ViewEncapsulation
 } from 'angular2/angular2';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/di';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
 
 import {positionService} from '../position';
 

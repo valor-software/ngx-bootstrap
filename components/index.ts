@@ -17,8 +17,8 @@ export * from  './progressbar/progressbar';
 export * from  './rating/rating';
 export * from  './tabs/tabs';
 export * from  './timepicker/timepicker';
-//export * from  './tooltip/tooltip';
-//export * from  './typeahead/typeahead';
+export * from  './tooltip/tooltip';
+export * from  './typeahead/typeahead';
 export * from  './position'
 export * from  './common'
 export * from './ng2-bootstrap-config';
