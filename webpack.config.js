@@ -28,11 +28,16 @@ var absDest = path.join(__dirname, dest);
 var config = {
   // isProduction ? 'source-map' : 'evale',
   devtool: 'source-map',
-
   debug: true,
   cache: true,
-  watch: true,
+
+  verbose: true,
+  displayErrorDetails: true,
   context: __dirname,
+  stats: {
+    colors: true,
+    reasons: true
+  },
 
   resolve: {
     root: __dirname,
@@ -45,8 +50,8 @@ var config = {
       // Angular 2 Deps
       'zone.js',
       'reflect-metadata',
-      'rtts_assert/rtts_assert',
-      'angular2/angular2'
+      'angular2/angular2',
+      'angular2/core'
     ],
     'angular2-bootstrap': ['components'],
     'angular2-bootstrap-demo': 'demo'
@@ -61,13 +66,13 @@ var config = {
 
   // our Development Server configs
   devServer: {
-    watch: true,
     inline: true,
     colors: true,
     historyApiFallback: true,
     contentBase: src,
     publicPath: dest
   },
+
   markdownLoader: {
     langPrefix: 'language-',
     highlight: function (code, lang) {
@@ -99,8 +104,15 @@ var config = {
       // Support for .ts files.
       {
         test: /\.ts$/,
-        loader: 'typescript-simple',
+        loader: 'ts',
+        query: {
+          'ignoreDiagnostics': [
+            // 2300, // 2300 -> Duplicate identifier
+            // 2309 // 2309 -> An export assignment cannot be used in a module with other exported elements.
+          ]
+        },
         exclude: [
+          /\.min\.js$/,
           /\.spec\.ts$/,
           /\.e2e\.ts$/,
           /web_modules/,
@@ -110,7 +122,8 @@ var config = {
       }
     ],
     noParse: [
-      /rtts_assert\/src\/rtts_assert/
+      /rtts_assert\/src\/rtts_assert/,
+      /reflect-metadata/
     ]
   },
 

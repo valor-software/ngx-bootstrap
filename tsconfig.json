@@ -1,5 +1,5 @@
 {
-    "version": "1.5.3",
+    "version": "1.6.2",
     "compilerOptions": {
         "target": "es5",
         "module": "commonjs",
@@ -15,18 +15,14 @@
         "noImplicitAny": false
     },
     "filesGlob": [
-        "./**/*.ts",
         "!./node_modules/**/*.ts"
     ],
     "files": [
         "./components/accordion/accordion.ts",
         "./components/alert/alert.ts",
-        "./components/buttons/button-checkbox.ts",
-        "./components/buttons/button-radio.ts",
         "./components/carousel/carousel.ts",
         "./components/collapse/collapse.ts",
         "./components/common.ts",
-        "./components/datepicker/index.ts",
         "./components/dropdown/dropdown-menu.ts",
         "./components/dropdown/dropdown-service.ts",
         "./components/dropdown/dropdown-toggle.ts",
@@ -34,16 +30,10 @@
         "./components/dropdown/dropdown.ts",
         "./components/dropdown/index.ts",
         "./components/index.ts",
-        "./components/module.ts",
         "./components/ng2-bootstrap-config.ts",
-        "./components/pagination/pagination.ts",
         "./components/position.ts",
         "./components/progressbar/progressbar.ts",
-        "./components/rating/rating.ts",
         "./components/tabs/tabs.ts",
-        "./components/timepicker/timepicker.ts",
-        "./components/tooltip/tooltip.ts",
-        "./components/typeahead/typeahead.ts",
 
         "./tsd.d.ts",
         "./typings/es6-object.d.ts"
