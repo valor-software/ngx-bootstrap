@@ -17,8 +17,8 @@ import {CollapseSection} from './components/collapse-section';
 import {DatepickerSection} from './components/datepicker-section';
 import {DropdownSection} from './components/dropdown-section';
 import {PaginationSection} from './components/pagination-section';
-//import {ProgressbarSection} from './components/progressbar-section';
-//import {RatingSection} from './components/rating-section';
+import {ProgressbarSection} from './components/progressbar-section';
+import {RatingSection} from './components/rating-section';
 //import {TabsSection} from './components/tabs-section';
 //import {TimepickerSection} from './components/timepicker-section';
 //import {TooltipSection} from './components/tooltip-section';
@@ -94,9 +94,9 @@ let gettingStarted = require('./getting-started.md');
     // todo: fix it to much write value calls!!!
     ////DatepickerSection,
     //DropdownSection,
-    PaginationSection,
+    //PaginationSection,
     //ProgressbarSection,
-    //RatingSection,
+    RatingSection,
     //TabsSection,
     //TimepickerSection,
     //TooltipSection,
