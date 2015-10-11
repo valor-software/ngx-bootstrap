@@ -3,7 +3,7 @@
 import {
   Component, View, Host,
   EventEmitter,
-  DefaultValueAccessor,
+  ControlValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
   Self, NgModel, Renderer,
@@ -63,7 +63,7 @@ import {YearPicker} from './yearpicker';
     `,
   directives: [DatePickerInner, DayPicker, MonthPicker, YearPicker, FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class DatePicker extends DefaultValueAccessor {
+export class DatePicker implements ControlValueAccessor {
   private _activeDate:Date;
   private datepickerMode:string;
   private initDate:Date;
@@ -87,8 +87,9 @@ export class DatePicker extends DefaultValueAccessor {
   private dateDisabled:any;
   private templateUrl:string;
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
+  constructor(@Self() public cd:NgModel) {
+    // hack
+    cd.valueAccessor = this;
   }
 
   public get activeDate():Date {
@@ -105,6 +106,7 @@ export class DatePicker extends DefaultValueAccessor {
   }
 
   writeValue(value:any) {
+    console.log(value);
     if (value) {
       if (typeof value !== 'Date') {
         value = new Date(value);
@@ -113,4 +115,16 @@ export class DatePicker extends DefaultValueAccessor {
       this.activeDate = value;
     }
   }
+
+  onChange = (_) => {};
+  onTouched = () => {};
+
+  registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
+
 }

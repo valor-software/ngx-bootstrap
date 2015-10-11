@@ -12,11 +12,11 @@ if (w && w.__theme === 'bs4') {
 import {AccordionSection} from './components/accordion-section';
 import {AlertSection} from './components/alert-section';
 import {ButtonsSection} from './components/buttons-section';
-//import {CarouselSection} from './components/carousel-section';
-//import {CollapseSection} from './components/collapse-section';
-//import {DatepickerSection} from './components/datepicker-section';
-//import {DropdownSection} from './components/dropdown-section';
-//import {PaginationSection} from './components/pagination-section';
+import {CarouselSection} from './components/carousel-section';
+import {CollapseSection} from './components/collapse-section';
+import {DatepickerSection} from './components/datepicker-section';
+import {DropdownSection} from './components/dropdown-section';
+import {PaginationSection} from './components/pagination-section';
 //import {ProgressbarSection} from './components/progressbar-section';
 //import {RatingSection} from './components/rating-section';
 //import {TabsSection} from './components/tabs-section';
@@ -88,12 +88,13 @@ let gettingStarted = require('./getting-started.md');
 
     //AccordionSection,
     //AlertSection,
-    ButtonsSection,
+    //ButtonsSection,
     //CarouselSection,
     //CollapseSection,
-    //DatepickerSection,
+    // todo: fix it to much write value calls!!!
+    ////DatepickerSection,
     //DropdownSection,
-    //PaginationSection,
+    PaginationSection,
     //ProgressbarSection,
     //RatingSection,
     //TabsSection,
