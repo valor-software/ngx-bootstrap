@@ -3,7 +3,7 @@
 import {
   Component, View,
   OnInit, EventEmitter,
-  DefaultValueAccessor,
+  ControlValueAccessor,
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES,
   Self, NgModel, Renderer
@@ -86,7 +86,7 @@ function addMinutes(date, minutes) {
   `,
   directives: [FORM_DIRECTIVES, NgClass]
 })
-export class Timepicker extends DefaultValueAccessor implements OnInit {
+export class Timepicker implements ControlValueAccessor, OnInit {
   // result value
   private _selected:Date = new Date();
   // config
@@ -142,8 +142,8 @@ export class Timepicker extends DefaultValueAccessor implements OnInit {
     }
   }
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
+  constructor(@Self() public cd:NgModel) {
+    cd.valueAccessor = this;
   }
 
   // todo: add formatter value to Date object
@@ -173,6 +173,13 @@ export class Timepicker extends DefaultValueAccessor implements OnInit {
   }
 
   writeValue(v) {
+    if (v === this.selected) {
+      return;
+    }
+    if (v && v instanceof Date) {
+      this.selected = v;
+      return;
+    }
     this.selected = v ? new Date(v) : null;
     // todo: implement logic from render
   }
@@ -371,5 +378,16 @@ export class Timepicker extends DefaultValueAccessor implements OnInit {
       let sign = this.selected.getHours() < 12 ? 1 : -1;
       this.addMinutesToSelected(12 * 60 * sign);
     }
+  }
+
+  onChange = (_) => {};
+  onTouched = () => {};
+
+  registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
   }
 }

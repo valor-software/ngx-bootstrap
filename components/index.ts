@@ -16,7 +16,7 @@ export * from  './pagination/pagination';
 export * from  './progressbar/progressbar';
 export * from  './rating/rating';
 export * from  './tabs/tabs';
-//export * from  './timepicker/timepicker';
+export * from  './timepicker/timepicker';
 //export * from  './tooltip/tooltip';
 //export * from  './typeahead/typeahead';
 export * from  './position'
