@@ -14,7 +14,7 @@ import {
     '[class.active]': 'state'
   }
 })
-export class ButtonCheckbox implements ControlValueAccessor, OnInit{
+export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   private btnCheckboxTrue:any;
   private btnCheckboxFalse:any;
 

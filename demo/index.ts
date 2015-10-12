@@ -93,7 +93,7 @@ let gettingStarted = require('./getting-started.md');
     CollapseSection,
 
     // todo: fix it to much write value calls!!!
-    //DatepickerSection,
+    // DatepickerSection,
 
     DropdownSection,
     PaginationSection,

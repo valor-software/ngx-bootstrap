@@ -183,7 +183,7 @@ export class TypeaheadContainer {
     '(keyup)': 'onChange($event)'
   }
 })
-export class Typeahead implements OnInit{
+export class Typeahead implements OnInit {
   public typeaheadLoading:EventEmitter = new EventEmitter();
   public typeaheadNoResults:EventEmitter = new EventEmitter();
   public typeaheadOnSelect:EventEmitter = new EventEmitter();

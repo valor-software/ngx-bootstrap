@@ -108,13 +108,13 @@ export class DatePicker implements ControlValueAccessor {
   writeValue(value:any) {
     // todo: fix something sends here new date all the time
     console.log(value);
-    //if (value) {
+    // if (value) {
     //  if (typeof value !== 'Date') {
     //    value = new Date(value);
     //  }
     //
     //  this.activeDate = value;
-    //}
+    // }
     if (value === this.activeDate) {
       return;
     }

@@ -30,7 +30,7 @@ import {NgTransclude} from '../common';
   `,
   directives: [CORE_DIRECTIVES, NgClass, NgTransclude]
 })
-export class Tabset implements OnInit{
+export class Tabset implements OnInit {
   private vertical:boolean;
   private justified:boolean;
   private type:string;

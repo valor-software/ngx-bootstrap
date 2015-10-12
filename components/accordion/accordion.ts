@@ -53,7 +53,7 @@ export class Accordion {
   selector: 'accordion-transclude, [accordion-transclude]',
   properties: ['accordionTransclude']
 })
-export class AccordionTransclude implements OnInit{
+export class AccordionTransclude implements OnInit {
   private accordionTransclude:TemplateRef;
 
   constructor(@Inject(ViewContainerRef) private viewRef:ViewContainerRef) {

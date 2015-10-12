@@ -106,7 +106,7 @@ var config = {
         test: /\.ts$/,
         loader: 'ts',
         query: {
-          'ignoreDiagnostics': [
+          ignoreDiagnostics: [
             // 2300, // 2300 -> Duplicate identifier
             // 2309 // 2309 -> An export assignment cannot be used in a module with other exported elements.
           ]
@@ -165,9 +165,7 @@ var config = {
         minRatio: 0.8
       })
     ]);
-  },
-
-  stats: {colors: true, reasons: true}
+  }
 };
 
 config.pushPlugins();
