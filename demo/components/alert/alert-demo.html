@@ -1,4 +1,4 @@
-<alert *ng-for="#alert of alerts;#i = index" [type]="alert.type" (close)="closeAlert(i)">
+<alert *ng-for="#alert of alerts;#i = index" [type]="alert.type" dismissible="true" (close)="closeAlert(i)">
   {{ alert.msg }}
 </alert>
 

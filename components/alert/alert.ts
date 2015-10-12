@@ -10,8 +10,8 @@ import {
 // TODO: templateUrl
 @Component({
   selector: 'alert',
-  properties: ['type', 'dismissible', 'dismissOnTimeout'],
-  events: ['close']
+  inputs: ['type', 'dismissible', 'dismissOnTimeout'],
+  outputs: ['close']
 })
 @View({
   template: `
@@ -26,10 +26,11 @@ import {
   directives: [NgIf, NgClass]
 })
 export class Alert implements OnInit {
-  type:string;
-  close:EventEmitter = new EventEmitter();
-  templateUrl:string;
-  dismissOnTimeout:number;
+  public type:string;
+  public close:EventEmitter = new EventEmitter();
+  public templateUrl:string;
+  public dismissOnTimeout:number;
+
   private closed:boolean;
   private closeable:boolean;
   private classes:Array<string> = [];

@@ -44,9 +44,7 @@ let template = `
   </header>`;
 
 @Component({
-  selector: 'demo-header'
-})
-@View({
+  selector: 'demo-header',
   template: template,
   directives: [
     NgFor,
@@ -55,8 +53,9 @@ let template = `
   ]
 })
 export class DemoHeader {
-  private components:Array<string> = components;
-  private prefix:string;
+  public components:Array<string> = components;
+  public isCollapsed: boolean = true;
+  public prefix:string;
 
   constructor() {
     this.prefix = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4 ? 'index-bs4.html' : '';

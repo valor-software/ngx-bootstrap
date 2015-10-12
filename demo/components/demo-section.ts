@@ -3,7 +3,7 @@
 import {
   Component, View,
   OnInit,
-  CORE_DIRECTIVES, NgNonBindable
+  CORE_DIRECTIVES
 } from 'angular2/angular2';
 
 import {tabs} from '../../components/index';
@@ -77,7 +77,7 @@ export class DemoSectionConfig {
     </div>
   </section>
   `,
-  directives: [tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [tabs, CORE_DIRECTIVES]
 })
 export class DemoSection {
   private demoSection: DemoSectionConfig;

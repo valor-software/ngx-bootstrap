@@ -1,8 +1,8 @@
 /// <reference path="../../tsd.d.ts" />
 import {
   Directive,
-  DefaultValueAccessor, OnInit,
-  Self, NgModel, Renderer, ElementRef
+  Self, NgModel, ElementRef,
+  ControlValueAccessor, OnInit
 } from 'angular2/angular2';
 
 
@@ -14,13 +14,13 @@ import {
     '[class.active]': 'isActive'
   }
 })
-export class ButtonRadio extends DefaultValueAccessor implements OnInit {
-  private btnRadio:string;
-  private uncheckable:boolean;
-  cd:NgModel;
+export class ButtonRadio implements ControlValueAccessor, OnInit {
+  public btnRadio:string;
+  public uncheckable:boolean;
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
+  constructor(@Self() public cd:NgModel, public el:ElementRef) {
+    // hack!
+    cd.valueAccessor = this;
   }
 
   onInit() {
@@ -32,17 +32,18 @@ export class ButtonRadio extends DefaultValueAccessor implements OnInit {
   }
 
   // hack view model!
-  private get value() {
+  public get value() {
     return this.cd.viewModel;
   }
 
-  private set value(value) {
+  public set value(value) {
     this.cd.viewModel = value;
-  }
-
-  // model -> view
-  writeValue(value:any) {
-    this.value = value;
+    // hack: host classes updated before value is set >.<
+    if (this.isActive) {
+      this.el.nativeElement.classList.add('active');
+    } else {
+      this.el.nativeElement.classList.remove('active');
+    }
   }
 
   // view -> model
@@ -53,4 +54,22 @@ export class ButtonRadio extends DefaultValueAccessor implements OnInit {
 
     this.cd.viewToModelUpdate(this.btnRadio);
   }
+
+  // ControlValueAccessor
+  // model -> view
+  writeValue(value:any) {
+    this.value = value;
+  }
+
+  onChange = (_) => {};
+  onTouched = () => {};
+
+  registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
+
 }

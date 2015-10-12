@@ -34,7 +34,6 @@ let gettingStarted = require('./getting-started.md');
 @View({
   template: `
   <demo-header>Loading header</demo-header>
-
   <main class="bd-pageheader">
     <div class="container">
       <h1>ng2-bootstrap</h1>
@@ -46,6 +45,7 @@ let gettingStarted = require('./getting-started.md');
       </div>
     </div>
   </main>
+
 
   <div class="container">
     <div class="col-md-12 card card-block panel panel-default">
@@ -91,7 +91,10 @@ let gettingStarted = require('./getting-started.md');
     ButtonsSection,
     CarouselSection,
     CollapseSection,
-    DatepickerSection,
+
+    // todo: fix it to much write value calls!!!
+    //DatepickerSection,
+
     DropdownSection,
     PaginationSection,
     ProgressbarSection,

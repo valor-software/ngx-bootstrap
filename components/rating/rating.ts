@@ -3,7 +3,7 @@
 import {
   Component, View,
   OnInit, EventEmitter,
-  NgClass, DefaultValueAccessor, NgFor,
+  NgClass, ControlValueAccessor, NgFor,
   NgModel, Self, Renderer, ElementRef
 } from 'angular2/angular2';
 
@@ -31,7 +31,7 @@ import {
   `,
   directives: [NgClass, NgFor]
 })
-export class Rating extends DefaultValueAccessor implements OnInit {
+export class Rating implements ControlValueAccessor, OnInit {
   private max:number;
   private range:Array<any>;
   private value:number;
@@ -45,8 +45,8 @@ export class Rating extends DefaultValueAccessor implements OnInit {
   private onHover:EventEmitter = new EventEmitter();
   private onLeave:EventEmitter = new EventEmitter();
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
+  constructor(@Self() public cd:NgModel) {
+    cd.valueAccessor = this;
   }
 
   onInit() {
@@ -113,5 +113,16 @@ export class Rating extends DefaultValueAccessor implements OnInit {
     event.stopPropagation();
     let sign = event.which === 38 || event.which === 39 ? 1 : -1;
     this.rate(this.value + sign);
+  }
+
+  onChange = (_) => {};
+  onTouched = () => {};
+
+  registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
   }
 }

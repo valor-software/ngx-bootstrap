@@ -1,6 +1,6 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES, NgNonBindable} from 'angular2/angular2';
+import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
 import {tabs} from '../../components/index';
 import {AlertDemo} from './alert/alert-demo';
@@ -60,7 +60,7 @@ let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
     </div>
   </section>
   `,
-  directives: [AlertDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [AlertDemo, tabs, CORE_DIRECTIVES]
 })
 export class AlertSection {
 }

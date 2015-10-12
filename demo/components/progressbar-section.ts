@@ -1,6 +1,6 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES, NgNonBindable} from 'angular2/angular2';
+import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../components/ng2-bootstrap-config';
 
 import {tabs} from '../../components/index';
@@ -65,7 +65,7 @@ let html = templates[Ng2BootstrapConfig.theme];
     </div>
   </section>
   `,
-  directives: [ProgressbarDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [ProgressbarDemo, tabs, CORE_DIRECTIVES]
 })
 export class ProgressbarSection {
 }

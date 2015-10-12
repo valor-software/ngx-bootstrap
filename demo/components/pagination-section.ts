@@ -1,5 +1,5 @@
 /// <reference path="../../tsd.d.ts" />
-import {Component, View, CORE_DIRECTIVES, NgNonBindable} from 'angular2/angular2';
+import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
 import {tabs} from '../../components/index';
 import {PaginationDemo} from './pagination/pagination-demo';
@@ -59,7 +59,7 @@ let html = require('!!prismjs?lang=markup!./pagination/pagination-demo.html');
     </div>
   </section>
   `,
-  directives: [PaginationDemo, tabs, CORE_DIRECTIVES, NgNonBindable]
+  directives: [PaginationDemo, tabs, CORE_DIRECTIVES]
 })
 export class PaginationSection {
 }

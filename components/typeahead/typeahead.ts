@@ -11,8 +11,11 @@ import {
   ViewEncapsulation
 } from 'angular2/angular2';
 
-import {setProperty} from 'angular2/src/forms/directives/shared';
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/di';
+// https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
+function setProperty(renderer: Renderer, elementRef: ElementRef, propName: string, propValue: any) {
+  renderer.setElementProperty(elementRef, propName, propValue);
+}
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {positionService} from '../position';

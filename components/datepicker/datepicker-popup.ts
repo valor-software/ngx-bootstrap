@@ -12,7 +12,7 @@ import {
 // import {setProperty} from 'angular2/src/forms/directives/shared';
 // import {DOM} from 'angular2/src/dom/dom_adapter';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/di';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
 import {positionService} from '../position';
 import * as moment from 'moment';
 

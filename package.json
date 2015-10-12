@@ -40,12 +40,10 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
-    "angular2": "2.0.0-alpha.37",
-    "es6-promise": "3.0.2",
-    "reflect-metadata": "^0.1.1",
-    "rtts_assert": "2.0.0-alpha.37",
-    "traceur-runtime": "0.0.59",
-    "zone.js": "0.5.5"
+    "angular2": "^2.0.0-alpha.40",
+    "reflect-metadata": "0.1.2",
+    "ts-loader": "^0.5.6",
+    "zone.js": "0.5.8"
   },
   "devDependencies": {
     "bootstrap": "^3.3.5",
@@ -69,9 +67,8 @@
     "prismjs-loader": "0.0.2",
     "raw-loader": "^0.5.1",
     "require-dir": "^0.3.0",
-    "typescript": "^1.5.3",
-    "typescript-simple-loader": "^0.3.4",
-    "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.10.1"
+    "typescript": "^1.6.2",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0"
   }
 }
