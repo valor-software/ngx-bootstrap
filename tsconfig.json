@@ -14,36 +14,10 @@
     "noEmitOnError": false,
     "noImplicitAny": false
   },
-  "filesGlob": [
-    "!./node_modules/**/*.ts"
+  "exclude": [
+    "node_modules"
   ],
   "files": [
-    "./tsd.d.ts",
-
-    "./components/accordion/accordion.ts",
-    "./components/alert/alert.ts",
-    "./components/buttons/button-checkbox.ts",
-    "./components/buttons/button-radio.ts",
-    "./components/carousel/carousel.ts",
-    "./components/collapse/collapse.ts",
-    "./components/dropdown/dropdown-menu.ts",
-    "./components/dropdown/dropdown-service.ts",
-    "./components/dropdown/dropdown-toggle.ts",
-    "./components/dropdown/dropdown.interfaces.ts",
-    "./components/dropdown/dropdown.ts",
-    "./components/dropdown/index.ts",
-    "./components/pagination/pagination.ts",
-    "./components/progressbar/progressbar.ts",
-    "./components/rating/rating.ts",
-    "./components/tabs/tabs.ts",
-    "./components/timepicker/timepicker.ts",
-    "./components/typeahead/typeahead.ts",
-
-    "./components/common.ts",
-    "./components/position.ts",
-
-    "./components/ng2-bootstrap-config.ts",
-
     "./components/index.ts"
   ]
 }

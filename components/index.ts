@@ -1,5 +1,3 @@
-///<reference path="../tsd.d.ts"/>
-
 export * from  './accordion/accordion';
 export * from  './alert/alert';
 export * from  './buttons/button-radio';
