@@ -1,5 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
-
 import {
   Type,
   Component, View, Directive,

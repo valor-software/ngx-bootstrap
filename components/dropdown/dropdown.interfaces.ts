@@ -1,5 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
-
 import {ElementRef} from 'angular2/angular2';
 
 export interface DropdownMenuInterface {

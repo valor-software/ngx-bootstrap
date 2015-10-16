@@ -1,4 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
 import {
   Directive,
   Self, NgModel, Renderer, ElementRef,
