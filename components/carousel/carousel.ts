@@ -1,5 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
-
 import {
   Component, View,
   Directive, OnInit, OnDestroy,

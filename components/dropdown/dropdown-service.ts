@@ -1,5 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
-
 export const ALWAYS = 'always';
 export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';

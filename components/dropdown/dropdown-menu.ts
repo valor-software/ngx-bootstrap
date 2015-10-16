@@ -1,5 +1,3 @@
-/// <reference path="../../tsd.d.ts" />
-
 import {Directive, ElementRef, Host, OnInit} from 'angular2/angular2';
 import {Dropdown} from './dropdown';
 
