@@ -28,11 +28,25 @@ You can start hacking by cloning starter repo:
 npm i ng2-bootstrap --save
 ```
 
-## Install from source
+## Quick start
 
-```bash
-  npm i
-  npm start
+```ts
+import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
+
+@Component({
+  selector: 'app'
+})
+@View({
+  template: `
+    <alert type="info">ng2-bootstrap hello world!</alert>
+    This is a webpack sample:
+  `,
+  directives: [
+    Alert
+  ]
+})
+export class Home {
+}
 ```
 
 ## Components

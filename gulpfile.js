@@ -9,8 +9,8 @@ gulp.paths = {
     '!**/*.{ts,coffee}.js'],
   jssrc: [
     '*.js',
-    '!ng2-bootstrap.js',
     'gulp-tasks/*.js',
+    '!ng2-bootstrap.js',
     '!node_modules',
     '!**/*.{ts,coffee}.js']
 };
