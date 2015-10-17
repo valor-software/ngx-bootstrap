@@ -1,76 +1,73 @@
-/// <reference path="../../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES;
-import "package:moment.dart" as moment;
-import "../../../lib/index.dart" show datepicker;
-
-// webpack html imports
-var template = require("./datepicker-demo.html");
+import "package:angular2/angular2.dart";
+//import "package:moment.dart" as moment;
+import "package:ng2-strap/index.dart" show datepicker;
 
 @Component(selector: "datepicker-demo")
 @View(
-    template: template,
+    templateUrl: 'datepicker-demo.html',
     directives: const [datepicker, CORE_DIRECTIVES, FORM_DIRECTIVES])
 class DatepickerDemo {
-  Date dt = new Date();
-  Date minDate = null;
-  Array<dynamic> events;
-  Date tomorrow;
-  Date afterTomorrow;
-  Array<String> formats = [
+  String dt = new DateTime.now().toIso8601String();
+  List<Map> events;
+  DateTime tomorrow;
+  DateTime afterTomorrow;
+  List<String> formats = [
     "DD-MM-YYYY",
     "YYYY/MM/DD",
     "DD.MM.YYYY",
     "shortDate"
   ];
-  var format = this.formats[0];
+  var format;
   dynamic dateOptions = {"formatYear": "YY", "startingDay": 1};
   bool opened = false;
+
+  DateTime minDate = new DateTime.now().add(new Duration(days: -1000));
+
   DatepickerDemo() {
-    (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
-    (this.afterTomorrow = new Date()).setDate(this.tomorrow.getDate() + 2);
-    (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
-    this.events = [
-      {"date": this.tomorrow, "status": "full"},
-      {"date": this.afterTomorrow, "status": "partially"}
+    tomorrow = new DateTime.now().add(new Duration(days: 1));
+    afterTomorrow = new DateTime.now().add(new Duration(days: 2));
+    minDate = new DateTime.now().add(new Duration(days: -1000));
+    events = [
+      {"date": tomorrow, "status": "full"},
+      {"date": afterTomorrow, "status": "partially"}
     ];
+    format = formats[0];
   }
   today() {
-    this.dt = new Date();
+    dt = new DateTime.now().toIso8601String();
   }
 
   d20090824() {
-    this.dt = moment("2009-08-24", "YYYY-MM-DD").toDate();
+    dt = new DateTime(2009, 08, 24).toIso8601String();
   }
 
   // todo: implement custom class cases
-  getDayClass(date, mode) {
-    if (identical(mode, "day")) {
-      var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-      for (var i = 0; i < this.events.length; i++) {
-        var currentDay = new Date(this.events[i].date).setHours(0, 0, 0, 0);
-        if (identical(dayToCheck, currentDay)) {
-          return this.events[i].status;
+  getDayClass(DateTime date, String mode) {
+    if (mode == "day") {
+      var dayToCheck = new DateTime(date.year, date.month, date.day);
+      for (var event in events) {
+        var currentDay = event['date'];
+        if (dayToCheck == currentDay) {
+          return event['status'];
         }
       }
     }
     return "";
   }
 
-  bool disabled(Date date, String mode) {
-    return (identical(mode, "day") &&
-        (identical(date.getDay(), 0) || identical(date.getDay(), 6)));
+  bool disabled(DateTime date, String mode) {
+    return mode == "day" && (date.day == 0 || date.day == 6);
   }
 
   open() {
-    this.opened = !this.opened;
+    opened = !opened;
   }
 
   clear() {
-    this.dt = null;
+    dt = null;
   }
 
   toggleMin() {
-    this.dt = this.minDate;
+    dt = minDate.toIso8601String();
   }
 }

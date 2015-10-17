@@ -1,18 +1,13 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, Host, Directive, OnInit, EventEmitter, NgControl, DefaultValueAccessor, ComponentRef, ViewEncapsulation, ControlValueAccessor, ElementRef, ViewContainerRef, DynamicComponentLoader, NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES, Self, NgModel, Renderer, NgStyle;
-// import {setProperty} from 'angular2/src/forms/directives/shared';
-
-// import {DOM} from 'angular2/src/dom/dom_adapter';
-import "package:angular2/di.dart"
-    show bind, Injectable, ResolvedBinding, Injector;
-import "../position.dart" show positionService;
-import "package:moment.dart" as moment;
+import "package:angular2/angular2.dart";
+import "package:angular2/src/core/di.dart";
+import "package:ng2-strap/position.dart";
+//import "package:moment.dart" as moment;
 import "datepicker-inner.dart" show DatePickerInner;
 import "daypicker.dart" show DayPicker;
 import "monthpicker.dart" show MonthPicker;
 import "yearpicker.dart" show YearPicker;
 import "datepicker.dart" show DatePicker;
+import 'dart:async';
 
 class PopupOptions {
   String placement;
@@ -21,22 +16,10 @@ class PopupOptions {
 
   bool isOpen;
 
-  PopupOptions(Object options) {
-    Object.assign(this, options);
-  }
+  PopupOptions({this.placement, this.animation, this.isOpen});
 }
 
-const Object datePickerPopupConfig = {
-  "datepickerPopup" : "YYYY-MM-dd",
-  "currentText" : "Today",
-  "clearText" : "Clear",
-  "closeText" : "Done",
-  "closeOnDateSelection" : true,
-  "showButtonBar" : true,
-  "onOpenFocus" : true
-};
-
-@Component (selector: "popup-container", events: const [ "update1"])
+@Component (selector: "popup-container", outputs: const [ "update1"])
 @View (template: '''
     <ul class="dropdown-menu"
         style="display: block"
@@ -47,10 +30,10 @@ const Object datePickerPopupConfig = {
         </li>
         <li *ng-if="showButtonBar" style="padding:10px 9px 2px">
             <span class="btn-group pull-left">
-                 <button type="button" class="btn btn-sm btn-info" (click)="select(\'today\')" ng-disabled="isDisabled(\'today\')">{{ getText(\'current\') }}</button>
-                 <button type="button" class="btn btn-sm btn-danger" (click)="select(null)">{{ getText(\'clear\') }}</button>
+                 <button type="button" class="btn btn-sm btn-info" (click)="select(\'today\')" ng-disabled="isDisabled(\'today\')">{{ currentText }}</button>
+                 <button type="button" class="btn btn-sm btn-danger" (click)="select(null)">{{ clearText }}</button>
             </span>
-            <button type="button" class="btn btn-sm btn-success pull-right" (click)="close()">{{ getText(\'close\') }}</button>
+            <button type="button" class="btn btn-sm btn-success pull-right" (click)="close()">{{ closeText }}</button>
         </li>
     </ul>''',
     directives: const [
@@ -61,7 +44,7 @@ class PopupContainer {
 
   DatePickerPopup popupComp;
 
-  Object classMap;
+  Map classMap;
 
   String top;
 
@@ -71,23 +54,30 @@ class PopupContainer {
 
   String placement;
 
+  String datepickerPopup = "YYYY-MM-dd";
+  String currentText = "Today";
+  String clearText = "Clear";
+  String closeText = "Done";
+  bool closeOnDateSelection = true;
   bool showButtonBar = true;
+  bool onOpenFocus = true;
 
   EventEmitter update1 = new EventEmitter ();
 
   PopupContainer(this .element, PopupOptions options) {
-    Object.assign(this, options);
-    this.classMap = { "in" : false};
-    this.classMap [ options.placement ] = true;
+    placement = options.placement;
+//    isOpen =options.isOpen;
+//    animation = options.animation;
+    classMap = {"in" : false, placement : true};
   }
 
-  onUpdate($event) {
-    console.log("update", $event);
-    if ($event) {
-      if (!identical(, "DateTime")) {
-        $event = new DateTime ($event);
+  onUpdate(event) {
+    print("update $event");
+    if (event) {
+      if (event is! DateTime) {
+        event = DateTime.parse(event);
       }
-      this.popupComp.activeDate = $event;
+      this.popupComp.activeDate = event;
     }
   }
 
@@ -101,17 +91,13 @@ class PopupContainer {
     this.top = p.top + "px";
   }
 
-  String getText(String key) {
-    return this [ key + "Text" ] || datePickerPopupConfig [ key + "Text" ];
-  }
-
   bool isDisabled(DateTime date) {
     return false;
   }
 }
 
 @Directive (selector: "[datepicker-popup][ng-model]",
-    properties: const [ "datepickerPopup", "isOpen"],
+    inputs: const [ "datepickerPopup", "isOpen"],
     host: const { "(cupdate)" : "onUpdate1(\$event)"})
 class DatePickerPopup implements OnInit {
   NgModel cd;
@@ -128,7 +114,7 @@ class DatePickerPopup implements OnInit {
 
   bool _isOpen = false;
 
-  Promise <ComponentRef> popup;
+  Future<ComponentRef> popup;
 
   DatePickerPopup(@Self () this .cd, this .element, this .renderer,
       this .loader) {

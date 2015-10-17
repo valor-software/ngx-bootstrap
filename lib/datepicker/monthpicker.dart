@@ -4,24 +4,25 @@ import "package:angular2/angular2.dart"
 import "datepicker-inner.dart" show DatePickerInner;
 import "../ng2-bootstrap-config.dart" show Ng2BootstrapConfig;
 
-const TEMPLATE_OPTIONS = { "bs4" : { "MONTH_BUTTON" : '''
-        <button type="button" style="min-width:100%;" class="btn btn-default"
-                [ng-class]="{\'btn-info\': dtz.selected, \'btn-link\': !dtz.selected && !datePicker.isActive(dtz), \'btn-info\': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
-                [disabled]="dtz.disabled"
-                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ng-class]="{\'text-success\': dtz.current}">{{dtz.label}}</span></button>
-    '''}, "bs3" : { "MONTH_BUTTON" : '''
-        <button type="button" style="min-width:100%;" class="btn btn-default"
-                [ng-class]="{\'btn-info\': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
-                [disabled]="dtz.disabled"
-                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ng-class]="{\'text-info\': dtz.current}">{{dtz.label}}</span></button>
-    '''}};
+//const TEMPLATE_OPTIONS = const { "bs4" : const { "MONTH_BUTTON" : '''
+//        <button type="button" style="min-width:100%;" class="btn btn-default"
+//                [ng-class]="{\'btn-info\': dtz.selected, \'btn-link\': !dtz.selected && !datePicker.isActive(dtz), \'btn-info\': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
+//                [disabled]="dtz.disabled"
+//                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ng-class]="{\'text-success\': dtz.current}">{{dtz.label}}</span></button>
+//    '''}, "bs3" : const { "MONTH_BUTTON" : '''
+//        <button type="button" style="min-width:100%;" class="btn btn-default"
+//                [ng-class]="{\'btn-info\': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
+//                [disabled]="dtz.disabled"
+//                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ng-class]="{\'text-info\': dtz.current}">{{dtz.label}}</span></button>
+//    '''}};
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
-    TEMPLATE_OPTIONS.bs3;
+//const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
+//    TEMPLATE_OPTIONS.bs3;
 
 @Component (selector: "monthpicker, [monthpicker]")
 @View (template: '''
-<table [hidden]="datePicker.datepickerMode!==\'month\'" role="grid">
+{{datePicker.datepickerMode!='month'}}
+<table [hidden]="datePicker.datepickerMode!='month'" role="grid">
   <thead>
     <tr>
       <th>
@@ -30,11 +31,11 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button></th>
       <th>
-        <button [id]="uniqueId + \'-title\'"
+        <button [id]="uniqueId + '-title'"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
-                [disabled]="datePicker.datepickerMode === maxMode"
-                [ng-class]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
+                [disabled]="datePicker.datepickerMode == maxMode"
+                [ng-class]="{disabled: datePicker.datepickerMode == maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{title}}</strong>
         </button>
       </th>
@@ -48,8 +49,14 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
   </thead>
   <tbody>
     <tr *ng-for="#rowz of rows">
-      <td *ng-for="#dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ng-class]="dtz.customClass">
-        ${ CURRENT_THEME_TEMPLATE.MONTH_BUTTON}
+      <td *ng-for="#dtz of rowz" class="text-center" role="gridcell" id="{{dtz['uid']}}" [ng-class]="dtz['customClass']">
+
+        <button type="button" style="min-width:100%;" class="btn btn-default"
+                [ng-class]="{\'btn-info\': dtz['selected'], active: datePicker.isActive(dtz), disabled: dtz['disabled']}"
+                [disabled]="dtz['disabled']"
+                (click)="datePicker.select(dtz['date'])" tabindex="-1"><span [ng-class]="{\'text-info\': dtz['current']}">{{dtz['label']}}</span></button>
+
+
       </td>
     </tr>
   </tbody>
@@ -63,28 +70,31 @@ class MonthPicker
 
   List<dynamic> rows = [];
 
-  MonthPicker(this .datePicker) {}
+  String maxMode = 'year';
+
+  String uniqueId = '';
+
+  MonthPicker(this.datePicker) {}
 
   onInit() {
-    var self = this;
-    this.datePicker.stepMonth = { "years" : 1};
-    this.datePicker.setRefreshViewHandler(() {
+    datePicker.stepMonth = { "years" : 1};
+    datePicker.setRefreshViewHandler(() {
       List<dynamic> months = new List(12);
-      num year = this.activeDate.getFullYear();
+      num year = datePicker.activeDate.year;
       var date;
       for (var i = 0; i < 12; i ++) {
         date = new DateTime (year, i, 1);
-        this.fixTimeZone(date);
-        months [ i ] = this.createDateObject(date, this.formatMonth);
-        months [ i ].uid = this.uniqueId + "-" + i;
+        datePicker.fixTimeZone(date);
+        months[i] = datePicker.createDateObject(date, datePicker.formatMonth);
+        months[i]['uid'] = datePicker.uniqueId + "-" + i.toString();
       }
-      self.title = this.dateFilter(this.activeDate, this.formatMonthTitle);
-      self.rows = this.split(months, 3);
+      title = datePicker.dateFilter(datePicker.activeDate, datePicker.formatMonthTitle);
+      rows = datePicker.split(months, 3);
     }, "month");
-    this.datePicker.setCompareHandler((date1, date2) {
-      var d1 = new DateTime (date1.getFullYear(), date1.getMonth());
-      var d2 = new DateTime (date2.getFullYear(), date2.getMonth());
-      return d1.getTime() - d2.getTime();
+    this.datePicker.setCompareHandler((DateTime date1, DateTime date2) {
+      var d1 = new DateTime (date1.year, date1.month);
+      var d2 = new DateTime (date2.year, date2.month);
+      return d1.millisecondsSinceEpoch - d2.millisecondsSinceEpoch;
     }, "month");
     this.datePicker.refreshView();
   }

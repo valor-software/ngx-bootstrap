@@ -1,6 +1,4 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, Host, EventEmitter, DefaultValueAccessor, ElementRef, ViewContainerRef, NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES, Self, NgModel, Renderer, QueryList, Query;
+import "package:angular2/angular2.dart";
 //import "package:moment.dart" as moment;
 import 'package:intl/intl.dart';
 import "datepicker-inner.dart" show DatePickerInner;
@@ -10,7 +8,7 @@ import "monthpicker.dart" show MonthPicker;
 import "yearpicker.dart" show YearPicker;
 
 @Component (selector: "datepicker[ng-model], [datepicker][ng-model]",
-    properties: const [
+    inputs: const [
       "datepickerMode",
       "minDate",
       "maxDate",
@@ -108,11 +106,10 @@ class DatePicker extends DefaultValueAccessor {
 
   String templateUrl;
 
-  DatePicker(@Self () NgModel cd, Renderer renderer, ElementRef elementRef)
-      : super (cd, renderer, elementRef) {
-    /* super call moved to initializer */
-    ;
-  }
+  NgModel cd;
+
+  DatePicker(this.cd, Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) ;
 
   DateTime get activeDate {
     return this._activeDate;
@@ -128,7 +125,7 @@ class DatePicker extends DefaultValueAccessor {
   }
 
   writeValue(dynamic value) {
-    if (value) {
+    if (value != null) {
       if (value is! DateTime) {
         value = new DateTime(value);
       }
