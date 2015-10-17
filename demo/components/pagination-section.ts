@@ -1,7 +1,7 @@
 /// <reference path="../../tsd.d.ts" />
 import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {tabs} from '../../components/index';
+import {tabs} from '../../ng2-bootstrap';
 import {PaginationDemo} from './pagination/pagination-demo';
 
 let name = 'Pagination';

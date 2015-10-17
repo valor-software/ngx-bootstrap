@@ -4,7 +4,7 @@ import {
   CORE_DIRECTIVES, FORM_DIRECTIVES
 } from 'angular2/angular2';
 
-import {Rating} from '../../../components/index';
+import {Rating} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./rating-demo.html');

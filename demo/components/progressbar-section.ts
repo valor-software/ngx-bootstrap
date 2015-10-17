@@ -3,7 +3,7 @@
 import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../components/ng2-bootstrap-config';
 
-import {tabs} from '../../components/index';
+import {tabs} from '../../ng2-bootstrap';
 import {ProgressbarDemo} from './progressbar/progressbar-demo';
 
 let name = 'Progressbar';

@@ -5,7 +5,7 @@ import {
   CORE_DIRECTIVES, FORM_DIRECTIVES
 } from 'angular2/angular2';
 
-import {ButtonCheckbox, ButtonRadio} from '../../../components/index';
+import {ButtonCheckbox, ButtonRadio} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./buttons-demo.html');

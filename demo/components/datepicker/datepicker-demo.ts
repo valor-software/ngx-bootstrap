@@ -3,7 +3,7 @@
 import {Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
 
 import * as moment from 'moment';
-import {datepicker} from '../../../components/index';
+import {datepicker} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./datepicker-demo.html');

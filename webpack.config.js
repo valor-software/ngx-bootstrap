@@ -53,7 +53,7 @@ var config = {
       'angular2/angular2',
       'angular2/core'
     ],
-    'angular2-bootstrap': ['components'],
+    'angular2-bootstrap': ['ng2-bootstrap'],
     'angular2-bootstrap-demo': 'demo'
   },
 

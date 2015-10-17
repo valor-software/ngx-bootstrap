@@ -1,7 +1,7 @@
 /// <reference path="../../../tsd.d.ts" />
 
 import {Component, View, NgFor} from 'angular2/angular2';
-import {Alert} from '../../../components/index';
+import {Alert} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./alert-demo.html');

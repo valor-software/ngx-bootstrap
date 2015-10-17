@@ -4,7 +4,7 @@ import {
   CORE_DIRECTIVES, FORM_DIRECTIVES
 } from 'angular2/angular2';
 
-import {tooltip} from '../../../components/index';
+import {tooltip} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./tooltip-demo.html');

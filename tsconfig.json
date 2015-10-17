@@ -3,21 +3,18 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "listFiles": false,
-    "noLib": false,
-    "noEmitOnError": false,
-    "noImplicitAny": false
+    "noLib": false
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "./components/index.ts"
+    "./ng2-bootstrap.ts"
   ]
 }

@@ -3,7 +3,7 @@ import {Component, View, CORE_DIRECTIVES, NgStyle} from 'angular2/angular2';
 // switch bs3\bs4 templates
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../../components/ng2-bootstrap-config';
 
-import {progressbar} from '../../../components/index';
+import {progressbar} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let templates = {

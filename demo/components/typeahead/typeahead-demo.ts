@@ -4,7 +4,7 @@ import {
   CORE_DIRECTIVES, FORM_DIRECTIVES
 } from 'angular2/angular2';
 
-import {typeahead} from '../../../components/index';
+import {typeahead} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./typeahead-demo.html');

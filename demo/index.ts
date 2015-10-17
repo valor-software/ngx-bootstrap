@@ -1,7 +1,7 @@
 /// <reference path="../tsd.d.ts" />
 import {Component, View, bootstrap, NgClass} from 'angular2/angular2';
 
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../components/index';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
 
 let w:any = window;
 if (w && w.__theme === 'bs4') {

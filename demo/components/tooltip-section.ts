@@ -2,7 +2,7 @@
 
 import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {tabs} from '../../components/index';
+import {tabs} from '../../ng2-bootstrap';
 import {TooltipDemo} from './tooltip/tooltip-demo';
 
 let name = 'Tooltip';

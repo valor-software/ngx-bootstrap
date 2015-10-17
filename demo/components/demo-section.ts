@@ -6,7 +6,7 @@ import {
   CORE_DIRECTIVES
 } from 'angular2/angular2';
 
-import {tabs} from '../../components/index';
+import {tabs} from '../../ng2-bootstrap';
 
 let name = 'Alerts';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts';

@@ -1,7 +1,7 @@
 /// <reference path="../../../tsd.d.ts" />
 
 import {Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
-import {carousel} from '../../../components/index';
+import {carousel} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./carousel-demo.html');

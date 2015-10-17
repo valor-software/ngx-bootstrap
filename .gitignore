@@ -20,5 +20,7 @@ npm-debug.log
 /components/**/*.js
 /components/**/*.js.map
 /components/**/*.d.ts
-
+ng2-bootstrap.js
+ng2-bootstrap.d.ts
+ng2-bootstrap.js.map
 /logs

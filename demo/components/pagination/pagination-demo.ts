@@ -2,7 +2,7 @@
 import {
   Component, View, FORM_DIRECTIVES, CORE_DIRECTIVES
 } from 'angular2/angular2';
-import {pagination} from '../../../components/index';
+import {pagination} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./pagination-demo.html');

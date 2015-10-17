@@ -1,7 +1,5 @@
 # ng2-bootstrap
-Native Angular2 directives for Bootstrap
-
-Works with Bootstrap 3 and 4-alfa
+Native Angular2 directives for Bootstrap, works with Bootstrap 3 and 4-alfa
 
 Goal: smooth transition from ui-bootstrap to angular2,
 all components will have same API
@@ -17,6 +15,8 @@ all components will have same API
 
 [http://valor-software.github.io/ng2-bootstrap/](http://valor-software.github.io/ng2-bootstrap/)
 
+## If you need more modules check [here](https://github.com/valor-software/ng2-plans)
+
 # Starter package
 
 You can start hacking by cloning starter repo:
@@ -26,8 +26,6 @@ You can start hacking by cloning starter repo:
 
 ```bash
 npm i ng2-bootstrap --save
-# if you are developing with typescript it will link .d.ts from package definition
-tsd link
 ```
 
 ## Install from source
@@ -71,6 +69,4 @@ Please read central `ng2` modules [readme](https://github.com/valor-software/ng2
 - [ ] support animation  (in progress...)
 - [x] demo page
 - [x] docs
-- [ ] publish to bower, etc.
-- [ ] migration guide from Angular 1 to Angular 2
 - [x] publish to npm

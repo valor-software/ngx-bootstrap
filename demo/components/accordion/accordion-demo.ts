@@ -5,7 +5,7 @@ import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass
 } from 'angular2/angular2';
 
-import {accordion} from '../../../components/index';
+import {accordion} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./accordion-demo.html');

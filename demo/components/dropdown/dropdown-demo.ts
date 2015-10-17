@@ -2,7 +2,7 @@
 
 import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
 
-import {dropdown} from '../../../components/index';
+import {dropdown} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./dropdown-demo.html');
