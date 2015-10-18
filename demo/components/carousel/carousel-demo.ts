@@ -33,7 +33,7 @@ export class CarouselDemo {
     });
   }
 
-  private removeSlide(index) {
+  private removeSlide(index:number) {
     this.slides.splice(index, 1);
   }
 }

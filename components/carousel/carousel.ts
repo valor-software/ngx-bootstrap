@@ -10,7 +10,7 @@ import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 export enum Direction {UNKNOWN, NEXT, PREV}
 // todo: add animate
 
-const NAVIGATION = {
+const NAVIGATION:any = {
   [Ng2BootstrapTheme.BS4]: `
 <a class="left carousel-control" (click)="prev()" [hidden]="!slides.length">
   <span class="icon-prev" aria-hidden="true"></span>

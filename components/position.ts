@@ -2,6 +2,7 @@ import {
   Injectable,
   ElementRef
 } from 'angular2/angular2';
+import {IAttribute} from './common';
 
 export class PositionService {
   private get window():any {
@@ -98,7 +99,7 @@ export class PositionService {
     let targetElWidth = targetEl.offsetWidth;
     let targetElHeight = targetEl.offsetHeight;
 
-    let shiftWidth = {
+    let shiftWidth:IAttribute = {
       center: function () {
         return hostElPos.left + hostElPos.width / 2 - targetElWidth / 2;
       },
@@ -110,7 +111,7 @@ export class PositionService {
       }
     };
 
-    let shiftHeight = {
+    let shiftHeight:IAttribute = {
       center: function ():number {
         return hostElPos.top + hostElPos.height / 2 - targetElHeight / 2;
       },

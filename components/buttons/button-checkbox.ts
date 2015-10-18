@@ -55,7 +55,7 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
     this.value = value;
   }
 
-  onChange = (_) => {};
+  onChange = (_:any) => {};
   onTouched = () => {};
 
   registerOnChange(fn:(_:any) => {}):void {

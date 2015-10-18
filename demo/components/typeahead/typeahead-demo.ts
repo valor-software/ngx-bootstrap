@@ -54,7 +54,7 @@ export class TypeaheadDemo {
       let p:Promise<string[]> = new Promise((resolve:Function) => {
         setTimeout(() => {
           let query = new RegExp(context.asyncSelected, 'ig');
-          return resolve(context.states.filter((state) => {
+          return resolve(context.states.filter((state:any) => {
             return query.test(state);
           }));
         }, 200);
@@ -64,15 +64,15 @@ export class TypeaheadDemo {
     return f;
   }
 
-  private changeTypeaheadLoading(e) {
+  private changeTypeaheadLoading(e:boolean) {
     this.typeaheadLoading = e;
   }
 
-  private changeTypeaheadNoResults(e) {
+  private changeTypeaheadNoResults(e:boolean) {
     this.typeaheadNoResults = e;
   }
 
-  private typeaheadOnSelect(e) {
+  private typeaheadOnSelect(e:any) {
     console.log(`Selected value: ${e.item}`);
   }
 }

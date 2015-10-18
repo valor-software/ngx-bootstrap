@@ -1,5 +1,9 @@
 import {Directive, TemplateRef, ViewContainerRef, Inject} from 'angular2/angular2';
 
+export interface IAttribute {
+  [name: string]: any;
+}
+
 @Directive({
   selector: '[ng-transclude]',
   properties: ['ngTransclude']

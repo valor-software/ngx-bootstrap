@@ -7,13 +7,26 @@ import {
   Self, NgModel, Renderer
 } from 'angular2/angular2';
 
+export interface ITimepickerConfig {
+  hourStep: number;
+  minuteStep: number;
+  showMeridian: boolean;
+  meridians?: any[];
+  readonlyInput: boolean;
+  mousewheel: boolean;
+  arrowkeys: boolean;
+  showSpinners: boolean;
+  min?: number;
+  max?: number;
+}
+
 // todo: implement global configuration via DI
 // todo: refactor directive has to many functions! (extract to stateless helper)
 // todo: use moment js?
 // todo: implement `time` validator
 // todo: replace increment/decrement blockers with getters, or extract
 // todo: unify work with selected
-export const timepickerConfig = {
+export const timepickerConfig:ITimepickerConfig = {
   hourStep: 1,
   minuteStep: 1,
   showMeridian: true,
@@ -22,19 +35,19 @@ export const timepickerConfig = {
   mousewheel: true,
   arrowkeys: true,
   showSpinners: true,
-  min: undefined,
-  max: undefined
+  min: void 0,
+  max: void 0
 };
 
 function isDefined(value:any):boolean {
   return typeof value !== 'undefined';
 }
 
-function def(value:any, fn:Function, defaultValue) {
+function def(value:any, fn:Function, defaultValue:any) {
   return fn(value) ? value : defaultValue;
 }
 
-function addMinutes(date, minutes) {
+function addMinutes(date: any, minutes:number) {
   let dt = new Date(date.getTime() + minutes * 60000);
   let newDate = new Date(date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
@@ -104,7 +117,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   private hours:string;
   private minutes:string;
 
-  private get selected() {
+  private get selected():Date {
     return this._selected;
   }
 
@@ -170,7 +183,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     this.showSpinners = def(this.showSpinners, isDefined, timepickerConfig.showSpinners);
   }
 
-  writeValue(v) {
+  writeValue(v:any) {
     if (v === this.selected) {
       return;
     }
@@ -229,7 +242,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     return (minutes >= 0 && minutes < 60) ? minutes : undefined;
   }
 
-  private pad(value) {
+  private pad(value:any) {
     return (isDefined(value) && value.toString().length < 2) ? '0' + value : value.toString();
   }
 
@@ -334,7 +347,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
 
   }
 
-  private addMinutesToSelected(minutes) {
+  private addMinutesToSelected(minutes:any) {
     this.selected = addMinutes(this.selected, minutes);
     this.refresh();
   }
@@ -378,7 +391,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     }
   }
 
-  onChange = (_) => {};
+  onChange = (_:any) => {};
   onTouched = () => {};
 
   registerOnChange(fn:(_:any) => {}):void {

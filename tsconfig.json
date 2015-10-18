@@ -5,9 +5,10 @@
     "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
-    "removeComments": true,
+    "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noImplicitAny": true,
     "listFiles": false,
     "noLib": false
   },

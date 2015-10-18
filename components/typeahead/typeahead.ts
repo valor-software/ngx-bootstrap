@@ -18,7 +18,7 @@ import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {positionService} from '../position';
 
-const TEMPLATE = {
+const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
   <div class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
@@ -118,7 +118,7 @@ export class TypeaheadContainer {
     this._active = value;
   }
 
-  private isActive(value):boolean {
+  private isActive(value:any):boolean {
     return this._active === value;
   }
 
@@ -135,7 +135,7 @@ export class TypeaheadContainer {
     return false;
   }
 
-  private escapeRegexp(queryToEscape) {
+  private escapeRegexp(queryToEscape:string) {
     // Regex: capture the whole query string and replace it with the string that will be used to match
     // the results, for example if the capture is "a" the result will be \a
     return queryToEscape.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
@@ -329,7 +329,7 @@ export class Typeahead implements OnInit {
     if (this.async === true) {
       this.debouncer = this.debounce(() => {
         if (typeof this.source === 'function') {
-          this.source().then((matches) => {
+          this.source().then((matches:any[]) => {
             this._matches = [];
             if (this.cd.model.toString().length >= this.minLength) {
               for (let i = 0; i < matches.length; i++) {
@@ -392,7 +392,7 @@ export class Typeahead implements OnInit {
     }
   }
 
-  public changeModel(value) {
+  public changeModel(value:any) {
     this.cd.viewToModelUpdate(value);
     setProperty(this.renderer, this.element, 'value', value);
     this.hide();

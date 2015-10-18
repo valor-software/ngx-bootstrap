@@ -9,13 +9,28 @@ import {
   ViewContainerRef, TemplateRef, NgFor, ComponentRef
 } from 'angular2/angular2';
 
+import {IAttribute} from '../common';
+
 // todo: extract base functionality classes
 // todo: use lodash#default for configuration
 // todo: expose an option to change default configuration
 // todo: solve problem with .pagination-sm>li:first-child>a and <template/> from ng-if >.<
+export interface IPaginationConfig extends IAttribute {
+  maxSize: number;
+  itemsPerPage: number;
+  // is navigation buttons visible
+  boundaryLinks: boolean;
+  directionLinks: boolean;
+  // labels
+  firstText: string;
+  previousText: string;
+  nextText: string;
+  lastText: string;
 
-const paginationConfig = {
-  maxSize: undefined,
+  rotate: boolean;
+}
+const paginationConfig:IPaginationConfig = {
+  maxSize: void 0,
   itemsPerPage: 10,
   boundaryLinks: false,
   directionLinks: true,
@@ -71,22 +86,23 @@ const paginationConfig = {
   directives: [CORE_DIRECTIVES, NgClass],
   encapsulation: ViewEncapsulation.None
 })
-export class Pagination implements ControlValueAccessor, OnInit {
-  public config:any;
+export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
+  public config: any;
+
+  public maxSize:number;
+
+  public boundaryLinks:boolean;
+  public directionLinks:boolean;
+  // labels
+  public firstText:string;
+  public previousText:string;
+  public nextText:string;
+  public lastText:string;
+  public rotate:boolean;
 
   private classMap:string;
-  private maxSize:number;
-  private rotate:boolean;
-  private boundaryLinks:any;
-
-  // labels
-  private firstText:string;
-  private previousText:string;
-  private nextText:string;
-  private lastText:string;
 
   private disabled:boolean;
-  private directionLinks:boolean;
   private numPages:EventEmitter = new EventEmitter();
   private pageChanged:EventEmitter = new EventEmitter();
 
@@ -96,11 +112,11 @@ export class Pagination implements ControlValueAccessor, OnInit {
 
   private inited: boolean = false;
 
-  private get itemsPerPage() {
+  public get itemsPerPage() {
     return this._itemsPerPage;
   }
 
-  private set itemsPerPage(v:number) {
+  public set itemsPerPage(v:number) {
     this._itemsPerPage = v;
     this.totalPages = this.calculateTotalPages();
   }
@@ -185,20 +201,21 @@ export class Pagination implements ControlValueAccessor, OnInit {
     }
   }
 
-  private getText(key:string) {
-    return this[key + 'Text'] || paginationConfig[key + 'Text'];
+  private getText(key:string):string {
+    return (<IAttribute>this)[key + 'Text'] || paginationConfig[key + 'Text'];
   }
 
-  private noPrevious() {
+  private noPrevious():boolean {
     return this.page === 1;
   }
 
-  private noNext() {
+  private noNext():boolean {
     return this.page === this.totalPages;
   }
 
   // Create page object used in template
-  private makePage(number, text, isActive) {
+  private makePage(number:number, text:string, isActive:boolean):
+   {number: number, text: string, active: boolean} {
     return {
       number: number,
       text: text,
@@ -206,8 +223,8 @@ export class Pagination implements ControlValueAccessor, OnInit {
     };
   }
 
-  private getPages(currentPage, totalPages) {
-    let pages = [];
+  private getPages(currentPage:number, totalPages:number):Array<any> {
+    let pages:any[] = [];
 
     // Default page limits
     let startPage = 1;
@@ -237,7 +254,7 @@ export class Pagination implements ControlValueAccessor, OnInit {
 
     // Add page number links
     for (var number = startPage; number <= endPage; number++) {
-      let page = this.makePage(number, number, number === currentPage);
+      let page = this.makePage(number, number.toString(), number === currentPage);
       pages.push(page);
     }
 
@@ -258,12 +275,12 @@ export class Pagination implements ControlValueAccessor, OnInit {
   }
 
   // base class
-  private calculateTotalPages() {
+  private calculateTotalPages():number {
     let totalPages = this.itemsPerPage < 1 ? 1 : Math.ceil(this.totalItems / this.itemsPerPage);
     return Math.max(totalPages || 0, 1);
   }
 
-  onChange = (_) => {};
+  onChange = (_:any) => {};
   onTouched = () => {};
 
   registerOnChange(fn:(_:any) => {}):void {

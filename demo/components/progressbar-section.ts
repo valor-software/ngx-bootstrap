@@ -14,7 +14,7 @@ let doc = require('../../components/progressbar/readme.md');
 let titleDoc = require('../../components/progressbar/title.md');
 
 let ts = require('!!prismjs?lang=typescript!./progressbar/progressbar-demo.ts');
-let templates = {
+let templates:any = {
   [Ng2BootstrapTheme.BS3]: require('!!prismjs?lang=markup!./progressbar/progressbar-demo.html'),
   [Ng2BootstrapTheme.BS4]: require('!!prismjs?lang=markup!./progressbar/progressbar-demo-bs4.html')
 };

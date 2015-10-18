@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "0.44.1",
+  "version": "0.44.2",
   "description": "angular2 bootstrap components",
   "scripts": {
     "prepublish": "gulp clean && tsc",
