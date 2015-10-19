@@ -21,7 +21,6 @@ import "../ng2-bootstrap-config.dart" show Ng2BootstrapConfig;
 
 @Component (selector: "monthpicker, [monthpicker]")
 @View (template: '''
-{{datePicker.datepickerMode!='month'}}
 <table [hidden]="datePicker.datepickerMode!='month'" role="grid">
   <thead>
     <tr>

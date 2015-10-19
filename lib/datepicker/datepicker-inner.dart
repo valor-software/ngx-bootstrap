@@ -74,7 +74,7 @@ const KEYS = const {
       "templateUrl"
     ])
 @View (template: '''
-<div [hidden]="datepickerMode != null" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown(\$event)"&ndash;&gt;-->
+<div [hidden]="datepickerMode == null" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown(\$event)"&ndash;&gt;-->
   <ng-content></ng-content>
 </div>
   ''', directives: const [ FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel])

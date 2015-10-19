@@ -23,7 +23,6 @@ import "datepicker-inner.dart" ;
 
 @Component (selector: "yearpicker, [yearpicker]")
 @View (template: '''
-{{datePicker.datepickerMode!='year'}}
 <table [hidden]="datePicker.datepickerMode!='year'" role="grid">
   <thead>
     <tr>

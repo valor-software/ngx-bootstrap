@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 
 @Component (selector: "daypicker, [daypicker]")
 @View (template: '''
-{{datePicker.datepickerMode != 'day'}}
-<table [hidden]="datePicker.datepickerMode != 'day' ? 'hidden' : ''" role="grid" aria-labelledby="uniqueId+\'-title\'" aria-activedescendant="activeDateId">
+<table [hidden]="datePicker.datepickerMode != 'day'" role="grid" aria-labelledby="uniqueId+\'-title\'" aria-activedescendant="activeDateId">
   <thead>
     <tr>
       <th>
@@ -13,8 +12,8 @@ import 'package:intl/intl.dart';
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </th>
-      <th colspan="5" [hidden]="datePicker.showWeeks">
-        <button [id]="datePicker.uniqueId + \'-title\'"
+      <th colspan="5" [hidden]="!datePicker.showWeeks">
+        <button [id]="datePicker.uniqueId + '-title'"
                 type="button"
                 class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
@@ -24,9 +23,9 @@ import 'package:intl/intl.dart';
         </button>
       </th>
       <th colspan="6" [hidden]="!datePicker.showWeeks">
-        <button [id]="datePicker.uniqueId + \'-title\'"
+        <button [id]="datePicker.uniqueId + '-title'"
                 type="button" class="btn btn-default btn-secondary btn-sm"
-                (click)="datePicker.toggleMode()"
+                (click)="datePicker.toggleMode(2)"
                 [disabled]="datePicker.datepickerMode == maxMode"
                 [ng-class]="{disabled: datePicker.datepickerMode == maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{yearTitle}}</strong>
