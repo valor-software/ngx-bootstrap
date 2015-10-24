@@ -5,7 +5,7 @@ import "package:ng2-strap/collapse/collapse.dart";
 
 // todo: support template url
 @Component (selector: "accordion, [accordion]",
-    properties: const [ "templateUrl", "closeOthers"],
+    inputs: const [ "templateUrl", "closeOthers"],
     host: const { "[class.panel-group]" : "true"})
 @View (template: '''<ng-content></ng-content>''')
 class Accordion {
@@ -39,7 +39,7 @@ class Accordion {
 }
 
 @Directive (selector: "accordion-transclude, [accordion-transclude]",
-    properties: const [ "accordionTransclude"])
+    inputs: const [ "accordionTransclude"])
 class AccordionTransclude implements OnInit {
   ViewContainerRef viewRef;
 
@@ -56,11 +56,11 @@ class AccordionTransclude implements OnInit {
 // todo: support template url
 
 // todo: support custom `open class`
-@Component (selector: "accordion-group, [accordion-group]",
+@Component(selector: "accordion-group, [accordion-group]",
     inputs: const [
       "templateUrl", "heading", "isOpen", "isDisabled", "panelClass"],
-    host: const { "[class.panel-open]" : "isOpen"})
-@View (template: '''
+    host: const { "[class.panel-open]" : "isOpen"},
+    template: '''
   <div class="panel" [ng-class]="panelClass">
     <div class="panel-heading" (click)="toggleOpen(\$event)">
       <h4 class="panel-title">
