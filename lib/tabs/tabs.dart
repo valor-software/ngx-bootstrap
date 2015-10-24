@@ -5,7 +5,7 @@ import 'package:node_shims/js.dart';
 
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component (
-    selector: "tabset", properties: const [ "vertical", "justified", "type"])
+    selector: "tabset", inputs: const [ "vertical", "justified", "type"])
 @View (template: '''
     <ul class="nav"
         [ng-class]="{
@@ -103,7 +103,6 @@ class Tab implements OnInit, OnDestroy, DoCheck {
   }
 
   set active(bool active) {
-    print('active: $active');
     active ??= true;
     if (disabled && active != null || !active) {
       if (!active) {
@@ -136,7 +135,7 @@ class Tab implements OnInit, OnDestroy, DoCheck {
 class TabHeading {
   TemplateRef templateRef;
 
-  TabHeading(this .templateRef, Tab tab) {
+  TabHeading(this.templateRef, Tab tab) {
     tab.headingRef = templateRef;
   }
 }
