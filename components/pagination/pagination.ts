@@ -138,7 +138,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
     this._totalPages = v;
     this.numPages.next(v);
     if (this.inited) {
-      this.selectPage(v);
+      this.selectPage(this.page);
     }
   }
 
