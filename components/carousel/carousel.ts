@@ -142,7 +142,7 @@ export class Carousel implements OnDestroy {
     this.resetTimer();
     let interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
-      this.currentInterval = setInterval(() => {
+      this.currentInterval = <number>setInterval(() => {
         let nInterval = +this.interval;
         if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
           this.next();
