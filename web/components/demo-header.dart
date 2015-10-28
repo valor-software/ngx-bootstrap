@@ -1,9 +1,9 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart" show Component, View, bootstrap, NgFor;
-import "../../lib/index.dart"
-    show Collapse, dropdown, Ng2BootstrapConfig, Ng2BootstrapTheme;
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/index.dart";
 
-const template = '''
+@Component(
+    selector: "demo-header",
+    template: '''
     <header class="navbar navbar-default navbar-fixed-top navbar-inner bg-faded">
     <div class="container">
       <div class="navbar-header hidden-md-up">
@@ -36,14 +36,12 @@ const template = '''
         </ul>
       </nav>
     </div>
-  </header>''';
-
-@Component (selector: "demo-header")
-@View (template: template, directives: const [ NgFor, Collapse, dropdown])
+  </header>''',
+    directives: const [ NgFor, Collapse, DROPDOWN_DIRECTIVES])
 class DemoHeader {
   List<String> components = [
     "Accordion",
-    "Alerts",
+    "Alert",
     "Buttons",
     "Carousel",
     "Collapse",
@@ -60,9 +58,9 @@ class DemoHeader {
 
   String prefix;
 
+  bool isCollapsed = true;
+
   DemoHeader() {
-    this.prefix = identical(Ng2BootstrapConfig.theme, Ng2BootstrapTheme.BS4)
-        ? "index-bs4.html"
-        : "";
+    this.prefix =  "";
   }
 }

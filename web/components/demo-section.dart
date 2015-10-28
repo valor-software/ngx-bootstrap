@@ -1,81 +1,35 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Component, View, OnInit, CORE_DIRECTIVES, NgNonBindable;
-import "../../lib/index.dart" show tabs;
+import "package:angular2/angular2.dart";
+import "package:ng2-strap/index.dart";
+import "accordion/accordion-demo.dart";
+import 'dart:html';
+import 'package:markdown/markdown.dart' hide Element;
 
-var name = "Alerts";
+@Component (
+    selector: "demo-section",
+    inputs: const ['name'],
+    templateUrl: 'demo-section.html',
+    directives: const [ AccordionDemo, TABS_DIRECTIVES, CORE_DIRECTIVES])
+class DemoSection implements OnInit {
+  String name, nameLC, src, doc, titleDoc, dart, html;
 
-var src = "https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts";
-// webpack html imports
-var doc = require("../../lib/alert/readme.md");
+  ViewContainerRef viewRef;
 
-var titleDoc = require("../../lib/alert/title.md");
+  DemoSection(@Inject(ViewContainerRef) this.viewRef);
 
-var ts = require("!!prismjs?lang=typescript!./alert/alert-demo.ts");
-
-var html = require("!!prismjs?lang=markup!./alert/alert-demo.html");
-
-var annotations = require(
-    "!!prismjs?lang=typescript!../../lib/alert/annotation.md");
-
-class DemoSectionConfig {
-  String doc;
-
-  String title;
-
-  String ts;
-
-  String html;
-
-  String annotations;
-}
-
-@Component (selector: "demo-section", properties: const [ "demoSection"])
-@View (template: '''
-  <br>
-  <section id="${ name.toLowerCase()}">
-    <div class="row"><h1>${ name}<small>(<a href="${ src}">src</a>)</small></h1></div>
-
-    <hr>
-
-    <div class="row"><div class="col-md-12">${ titleDoc}</div></div>
-
-    <div class="row">
-      <h2>Example</h2>
-      <div class="card card-block panel panel-default panel-body">
-        <ng-content></ng-content>
-      </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <tabset>
-        <tab heading="Markup">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ng-non-bindable>${ html}</code></pre>
-          </div>
-        </tab>
-        <tab heading="TypeScript">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${ ts}</code></pre>
-          </div>
-        </tab>
-      </tabset>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <h2>API</h2>
-      <div class="card card-block panel panel-default panel-body">
-      <h2>Annotations</h2>
-      <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${ annotations}</code></pre>
-      ${ doc}
-      </div>
-    </div>
-  </section>
-  ''', directives: const [ tabs, CORE_DIRECTIVES, NgNonBindable])
-class DemoSection {
-  DemoSectionConfig demoSection;
+  @override
+  onInit() async {
+    nameLC = name.toLowerCase();
+    var rawMasterUrl = 'https://raw.githubusercontent.com/luisvt/ng2-strap/master';
+    var rawLibUrl = '$rawMasterUrl/lib';
+    var componentsUrl = '$rawMasterUrl/web/components';
+    src = 'https://github.com/luisvt/ng2-strap/tree/master/lib/$nameLC/$nameLC.dart';
+    HttpRequest.getString('$rawLibUrl/$nameLC/title.md').then((result) {
+      (viewRef.element.nativeElement as Element).querySelector('#titleDoc').innerHtml = markdownToHtml(result);
+    });
+    HttpRequest.getString('$rawLibUrl/$nameLC/readme.md').then((result) {
+      (viewRef.element.nativeElement as Element).querySelector('#doc').innerHtml = markdownToHtml(result);
+    });
+    dart = await HttpRequest.getString('$componentsUrl/$nameLC/$nameLC-demo.dart');
+    html = await HttpRequest.getString('$componentsUrl/$nameLC/$nameLC-demo.html');
+  }
 }
