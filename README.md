@@ -1,4 +1,6 @@
 # ng2-bootstrap
+
+[![Join the chat at https://gitter.im/valor-software/ng2-bootstrap](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/valor-software/ng2-bootstrap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Native Angular2 directives for Bootstrap, works with Bootstrap 3 and 4-alfa
 
 Goal: smooth transition from ui-bootstrap to angular2,
