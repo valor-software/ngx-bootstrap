@@ -25,7 +25,7 @@ import {
 })
 export class Alert implements OnInit {
   public type:string;
-  public close:EventEmitter = new EventEmitter();
+  public close:EventEmitter<Alert> = new EventEmitter();
   public templateUrl:string;
   public dismissOnTimeout:number;
 

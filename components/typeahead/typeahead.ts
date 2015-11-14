@@ -182,9 +182,9 @@ export class TypeaheadContainer {
   }
 })
 export class Typeahead implements OnInit {
-  public typeaheadLoading:EventEmitter = new EventEmitter();
-  public typeaheadNoResults:EventEmitter = new EventEmitter();
-  public typeaheadOnSelect:EventEmitter = new EventEmitter();
+  public typeaheadLoading:EventEmitter<boolean> = new EventEmitter();
+  public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter();
+  public typeaheadOnSelect:EventEmitter<{item: string}> = new EventEmitter();
 
   public container:TypeaheadContainer;
 
