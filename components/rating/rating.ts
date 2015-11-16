@@ -40,8 +40,8 @@ export class Rating implements ControlValueAccessor, OnInit {
   private readonly:boolean;
   private ratingStates:Array<{stateOn:string, stateOff:string}>;
 
-  private onHover:EventEmitter = new EventEmitter();
-  private onLeave:EventEmitter = new EventEmitter();
+  private onHover:EventEmitter<number> = new EventEmitter();
+  private onLeave:EventEmitter<number> = new EventEmitter();
 
   constructor(@Self() public cd:NgModel) {
     cd.valueAccessor = this;

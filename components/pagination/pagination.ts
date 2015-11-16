@@ -29,6 +29,10 @@ export interface IPaginationConfig extends IAttribute {
 
   rotate: boolean;
 }
+interface IPageChangedEvent {
+  itemsPerPage: number;
+  page: number;
+}
 const paginationConfig:IPaginationConfig = {
   maxSize: void 0,
   itemsPerPage: 10,
@@ -103,8 +107,8 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   private classMap:string;
 
   private disabled:boolean;
-  private numPages:EventEmitter = new EventEmitter();
-  private pageChanged:EventEmitter = new EventEmitter();
+  private numPages:EventEmitter<number> = new EventEmitter();
+  private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter();
 
   private _itemsPerPage:number;
   private _totalItems:number;

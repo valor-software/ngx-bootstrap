@@ -19,7 +19,7 @@ export class Dropdown implements OnInit, OnDestroy {
   private _isOpen:boolean;
   // enum string: ['always', 'outsideClick', 'disabled']
   private dropdownAppendToBody:boolean;
-  private onToggle:EventEmitter = new EventEmitter();
+  private onToggle:EventEmitter<boolean> = new EventEmitter();
 
   public autoClose:string;
   public keyboardNav:boolean;

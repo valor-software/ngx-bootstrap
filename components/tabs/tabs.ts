@@ -89,8 +89,8 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
 
   public headingRef:TemplateRef;
 
-  public select:EventEmitter = new EventEmitter();
-  public deselect:EventEmitter = new EventEmitter();
+  public select:EventEmitter<Tab> = new EventEmitter();
+  public deselect:EventEmitter<Tab> = new EventEmitter();
 
   constructor(public tabset:Tabset) {
     this.tabset.addTab(this);
