@@ -29,8 +29,8 @@ Ng2BootstrapTheme.BS4 :
 };
 
 @Component (selector: "carousel, [carousel]",
-    properties: const [ "interval", "noTransition", "noPause", "noWrap"])
-@View (template: '''
+    inputs: const [ "interval", "noTransition", "noPause", "noWrap"],
+    template: '''
 <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
   <ol class="carousel-indicators" [hidden]="slides.length <= 1">
      <li *ng-for="#slidez of slides" [ng-class]="{active: slidez.active === true}" (click)="select(slidez)"></li>
@@ -53,18 +53,18 @@ class Carousel implements OnDestroy {
 
   Slide currentSlide;
 
-  int _interval;
+  num interval;
 
   onDestroy() {
     this.destroyed = true;
   }
 
-  String get interval => _interval.toString();
-
-  set interval(String value) {
-    _interval = int.parse(value);
-    restartTimer();
-  }
+//  String get interval => _interval.toString();
+//
+//  set interval(String value) {
+//    _interval = int.parse(value);
+//    restartTimer();
+//  }
 
   select(Slide nextSlide, [ Direction direction = Direction.UNKNOWN ]) {
     var nextIndex = nextSlide.index;
@@ -128,11 +128,11 @@ class Carousel implements OnDestroy {
 
   restartTimer() {
     resetTimer();
-    var interval = _interval;
-    if (interval != double.NAN && interval > 0) {
-      currentInterval = new Timer(new Duration(milliseconds: interval), () {
-        var nInterval = _interval;
-        if (isPlaying && interval != double.NAN && nInterval > 0 &&
+    var intervalAux = interval.toInt();
+    if (intervalAux != double.NAN && intervalAux > 0) {
+      currentInterval = new Timer(new Duration(milliseconds: intervalAux), () {
+        var nInterval = interval;
+        if (isPlaying && intervalAux != double.NAN && nInterval > 0 &&
             truthy(slides.length)) {
           next();
         } else {
@@ -189,13 +189,13 @@ class Carousel implements OnDestroy {
 }
 
 @Component (selector: "slide, [slide]",
-    properties: const [ "direction", "active", "index"],
+    inputs: const [ "direction", "active", "index"],
     host: const {
       "[class.active]" : "active",
       "[class.item]" : "true",
       "[class.carousel-item]" : "true"
-    })
-@View (template: '''
+    },
+    template: '''
   <div [ng-class]="{active: active}" class="item text-center">
     <ng-content></ng-content>
   </div>

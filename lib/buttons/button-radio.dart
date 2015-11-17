@@ -1,34 +1,37 @@
 import "package:angular2/angular2.dart";
 
-@Directive (selector: "[btn-radio][ng-model]",
-    inputs: const [ "btnRadio", "uncheckable", 'value: ngModel'],
-    outputs: const ['valueEmitter: ngModel'],
+@Directive (selector: "ns-btn-radio",
+    inputs: const [ "option", "uncheckable"],
     host: const { "(click)" : "onClick()", "[class.active]" : "isActive"})
 class ButtonRadio extends DefaultValueAccessor {
-  String btnRadio;
+  ButtonRadio(this.ngModel, Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) {
+    ngModel.valueAccessor = this;
+  }
 
-  bool uncheckable;
+  NgModel ngModel;
 
-  ButtonRadio(Renderer renderer, ElementRef elementRef)
-      : super (renderer, elementRef);
+  String option;
 
-  get isActive => btnRadio == value;
+  bool uncheckable = true;
+
+  bool get isActive => option == _value;
 
   var _value;
 
-  get value => _value;
-  set value(value) {
-    valueEmitter.add(value);
+  @override
+  writeValue(value) {
     _value = value;
+    super.writeValue(value);
   }
 
-  EventEmitter valueEmitter = new EventEmitter();
-
   onClick() {
-    if (uncheckable != false && btnRadio == value) {
-      value = null;
+    if (uncheckable != false && option == _value) {
+      _value = null;
       return;
     }
-    value = btnRadio;
+    _value = option;
+
+    ngModel.viewToModelUpdate(_value);
   }
 }

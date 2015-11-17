@@ -1,8 +1,4 @@
-import "package:angular2/angular2.dart";
-import "dropdown.interfaces.dart";
-import "dropdown-service.dart";
-import 'package:node_shims/js.dart';
-import 'dart:html';
+part of ns_dropdown;
 
 @Directive (selector: "[dropdown]",
     inputs: const [

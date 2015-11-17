@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:angular2/src/core/forms/directives/shared.dart";
+import "package:angular2/src/common/forms/directives/shared.dart";
 //import "package:angular2/src/core/di.dart";
 import "../ng2-bootstrap-config.dart";
 import "../position.dart";
@@ -43,8 +43,8 @@ class TypeaheadOptions {
   TypeaheadOptions({this.placement, this.animation});
 }
 
-@Component (selector: "typeahead-container")
-@View (template: '''
+@Component (selector: "typeahead-container",
+    template: '''
   <ul class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
@@ -78,7 +78,7 @@ class TypeaheadContainer {
 
   bool animation;
 
-  TypeaheadContainer(this .element, TypeaheadOptions typeaheadOptions) :
+  TypeaheadContainer(this.element, TypeaheadOptions typeaheadOptions) :
         placement = typeaheadOptions.placement,
         animation = typeaheadOptions.animation;
 

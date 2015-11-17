@@ -23,7 +23,6 @@ class ProgressbarDemo {
 
   random() {
     var value = new Random().nextInt(100);
-    print(value);
     var type;
     if (value < 25) {
       type = "success";
@@ -45,7 +44,6 @@ class ProgressbarDemo {
     this.stacked = [];
     var total = 0;
     for (var i = 0, n = new Random().nextInt(5); i < n; i ++) {
-      print(n);
       var index = new Random().nextInt(4);
       var value = new Random().nextInt(30);
       total += value;

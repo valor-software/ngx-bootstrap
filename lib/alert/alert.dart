@@ -6,16 +6,9 @@ import 'package:node_shims/js.dart';
 // TODO: templateUrl
 @Component (selector: "alert",
     inputs: const [ "type", "dismissible", "dismissOnTimeout"],
-    outputs: const ["close"])
-@View (template: '''
-  <div class="alert" role="alert" [ng-class]="classes" *ng-if="!closed">
-    <button *ng-if="closeable" type="button" class="close" (click)="onClose()">
-      <span aria-hidden="true">&times;</span>
-      <span class="sr-only">Close</span>
-    </button>
-    <ng-content></ng-content>
-  </div>
-  ''', directives: const [NgIf, NgClass])
+    outputs: const ["close"],
+    templateUrl: 'alert.html',
+    directives: const [NgIf, NgClass])
 class Alert implements OnInit {
   ElementRef el;
 

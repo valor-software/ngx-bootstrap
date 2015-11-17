@@ -1,11 +1,10 @@
 import "package:angular2/angular2.dart";
 //import "package:moment.dart" as moment;
-import "package:ng2-strap/index.dart" show datepicker;
+import "package:ng2-strap/index.dart";
 
-@Component(selector: "datepicker-demo")
-@View(
+@Component(selector: "datepicker-demo",
     templateUrl: 'datepicker-demo.html',
-    directives: const [datepicker, CORE_DIRECTIVES, FORM_DIRECTIVES])
+    directives: const [DATEPICKER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES])
 class DatepickerDemo {
   String dt = new DateTime.now().toIso8601String();
   List<Map> events;

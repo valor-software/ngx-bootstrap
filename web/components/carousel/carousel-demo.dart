@@ -2,12 +2,11 @@ import "package:angular2/angular2.dart";
 import "package:ng2-strap/carousel/carousel.dart";
 import 'package:node_shims/js.dart';
 
-@Component(selector: "carousel-demo")
-@View(
+@Component(selector: "carousel-demo",
     templateUrl: "carousel-demo.html",
     directives: const [CAROUSEL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES])
 class CarouselDemo {
-  String myInterval = '5000';
+  num myInterval = 5000;
   bool noWrapSlides = false;
   List slides = [];
   CarouselDemo() {

@@ -2,8 +2,7 @@ import "package:angular2/angular2.dart";
 import 'package:ng2-strap/dropdown/index.dart';
 import 'dart:html';
 
-@Component(selector: "dropdown-demo")
-@View(
+@Component(selector: "dropdown-demo",
     templateUrl: 'dropdown-demo.html',
     directives: const [DROPDOWN_DIRECTIVES, CORE_DIRECTIVES])
 class DropdownDemo {

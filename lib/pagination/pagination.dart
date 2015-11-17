@@ -31,10 +31,9 @@ const _PAGINATION_CONFIG = const {
       "firstText",
       "previousText",
       "nextText",
-      "lastText",
-      "page: ngModel"
+      "lastText"
     ],
-    outputs: const ["numPages", "pageEmitter: ngModel"])
+    outputs: const ["numPages"])
 @View (template: '''
   <ul class="pagination" [ng-class]="classMap">
     <li class="pagination-first"
@@ -49,7 +48,9 @@ const _PAGINATION_CONFIG = const {
       <a href (click)="selectPage(page - 1, \$event)">{{previousText}}</a>
       </li>
 
-    <li *ng-for="#page of pages" [ng-class]="{active: page['active'], disabled: disabled&&!page['active']}" class="pagination-page"><a href (click)="selectPage(page['number'], \$event)">{{page['text']}}</a></li>
+    <li *ng-for="#page of pages" [ng-class]="{active: page['active'], disabled: disabled && !page['active']}" class="pagination-page">
+      <a href (click)="selectPage(page['number'], \$event)">{{page['text']}}</a>
+    </li>
 
     <li class="pagination-next"
         [ng-class]="{disabled: noNext()||disabled, hidden: !directionLinks}"
@@ -65,6 +66,14 @@ const _PAGINATION_CONFIG = const {
     directives: const [ CORE_DIRECTIVES, NgClass],
     encapsulation: ViewEncapsulation.None)
 class Pagination extends DefaultValueAccessor implements OnInit {
+  Pagination(this.ngModel, Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) {
+    this.elementRef = elementRef;
+    ngModel.valueAccessor = this;
+  }
+
+  NgModel ngModel;
+
   Map config;
 
   String classMap;
@@ -117,58 +126,52 @@ class Pagination extends DefaultValueAccessor implements OnInit {
   set totalPages(int v) {
     _totalPages = v;
     numPages.add(v);
-    if (_page > v) {
+    if (page > v) {
       selectPage(v);
     }
   }
 
   // ??
-  int _page = 1;
-  int get page => _page;
-  set page(int page) {
-    _page = page ?? 1;
-    pages = getPages(_page, totalPages);
-    pageEmitter.add(_page);
-  }
-
-  EventEmitter pageEmitter = new EventEmitter();
-
+  int page = 1;
+//  int get page => _page;
+//  set page(int page) {
+//    _page = page ?? 1;
+//    pages = getPages(_page, totalPages);
+//    pageEmitter.add(_page);
+//  }
 
   List<Map> pages = [];
 
   ElementRef elementRef;
 
-  Pagination(Renderer renderer, ElementRef elementRef)
-      : super (renderer, elementRef) {
-    this.elementRef = elementRef;
-  }
-
   onInit() {
     classMap = elementRef.nativeElement.getAttribute("class") ?? "";
     totalPages = calculateTotalPages();
-    pages = getPages(_page, totalPages);
+    pages = getPages(page, totalPages);
   }
 
-//  writeValue(num value) {
-//    _page = value ?? 1;
-//    pages = getPages(_page, totalPages);
-//  }
+  writeValue(num value) {
+    page = value ?? 1;
+    pages = getPages(page, totalPages);
+  }
 
   selectPage(num _page, [MouseEvent event]) {
     if (event != null) {
       event.preventDefault();
     }
-    if ((!disabled || event == null) && this._page != _page && _page > 0 &&
+    if ((!disabled || event == null) && this.page != _page && _page > 0 &&
         _page <= totalPages) {
       dynamic target = event.target;
       target.blur();
       page = _page;
+      pages = getPages(_page, totalPages);
+      ngModel.viewToModelUpdate(_page);
     }
   }
 
-  noPrevious() => _page <= 1;
+  noPrevious() => page <= 1;
 
-  noNext() => _page >= totalPages;
+  noNext() => page >= totalPages;
 
   // Create page object used in template
   makePage(number, text, isActive) {
@@ -228,20 +231,19 @@ class Pagination extends DefaultValueAccessor implements OnInit {
 
 @Component (selector: "pager[ng-model], [pager][ng-model]",
     inputs: const [
-      "align", "totalItems", "itemsPerPage", "previousText", "nextText", 'page: ngModel'],
-    outputs: const ['pageEmitter: ngModel'])
+      "align", "totalItems", "itemsPerPage", "previousText", "nextText"])
 @View (template: '''
-    <ul class="pager">
-      <li [ng-class]="{disabled: noPrevious(), previous: align, \'pull-left\': align}"><a href (click)="selectPage(page - 1, \$event)">{{previousText}}</a></li>
-      <li [ng-class]="{disabled: noNext(), next: align, \'pull-right\': align}"><a href (click)="selectPage(page + 1, \$event)">{{nextText}}</a></li>
-  </ul>
-  ''', directives: const [ NgClass])
+<ul class="pager">
+  <li [ng-class]="{disabled: noPrevious(), previous: align, \'pull-left\': align}"><a href (click)="selectPage(page - 1, \$event)">{{previousText}}</a></li>
+  <li [ng-class]="{disabled: noNext(), next: align, \'pull-right\': align}"><a href (click)="selectPage(page + 1, \$event)">{{nextText}}</a></li>
+</ul>
+''', directives: const [ NgClass])
 class Pager extends Pagination
     implements OnInit {
   bool align = true;
 
-  Pager(Renderer renderer, ElementRef elementRef)
-      : super (renderer, elementRef) {
+  Pager(@Self() NgModel ngModel, Renderer renderer, ElementRef elementRef)
+      : super (ngModel, renderer, elementRef) {
     _itemsPerPage = 10;
     previousText = "« Previous";
     nextText = "Next »";

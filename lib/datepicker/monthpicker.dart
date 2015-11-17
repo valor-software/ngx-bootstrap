@@ -1,8 +1,8 @@
 /// <reference path="../../tsd.d.ts" />
 import "package:angular2/angular2.dart"
     show Component, View, Host, OnInit, EventEmitter, DefaultValueAccessor, ElementRef, ViewContainerRef, NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES, Self, NgModel, Renderer;
+
 import "datepicker-inner.dart" show DatePickerInner;
-import "../ng2-bootstrap-config.dart" show Ng2BootstrapConfig;
 
 //const TEMPLATE_OPTIONS = const { "bs4" : const { "MONTH_BUTTON" : '''
 //        <button type="button" style="min-width:100%;" class="btn btn-default"

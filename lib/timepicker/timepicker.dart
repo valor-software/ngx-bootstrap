@@ -24,8 +24,8 @@ DateTime addMinutes(DateTime time, minutes) => time.add(new Duration(minutes: mi
       "showSpinners",
       "min",
       "max"
-    ])
-@View (template: '''
+    ],
+    template: '''
     <table>
       <tbody>
         <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
@@ -84,7 +84,7 @@ class Timepicker extends DefaultValueAccessor implements OnInit {
   String minutes;
 
   DateTime get selected {
-    return this._selected;
+    return _selected;
   }
 
   set selected(DateTime v) {
@@ -125,7 +125,9 @@ class Timepicker extends DefaultValueAccessor implements OnInit {
   NgModel cd;
 
   Timepicker(this.cd, Renderer renderer, ElementRef elementRef)
-      : super (renderer, elementRef) ;
+      : super (renderer, elementRef) {
+    cd.valueAccessor = this;
+  }
 
   // todo: add formatter value to DateTime object
   onInit() {
@@ -140,8 +142,7 @@ class Timepicker extends DefaultValueAccessor implements OnInit {
   }
 
   writeValue(v) {
-    print(v);
-    selected = v ? new DateTime(v) : null;
+    selected = DateTime.parse(v ?? '1971-01-01T00:00:00');
   }
 
   refresh([ String type ]) {
@@ -151,7 +152,6 @@ class Timepicker extends DefaultValueAccessor implements OnInit {
   }
 
   updateTemplate([ dynamic keyboardChange ]) {
-    print('updateTemplate');
     var _hours = selected.hour;
     var _minutes = selected.minute;
     if (showMeridian) {
@@ -167,8 +167,6 @@ class Timepicker extends DefaultValueAccessor implements OnInit {
     // }
     hours = pad(_hours);
     minutes = pad(_minutes);
-    print('hours: $hours');
-    print('minutes: $minutes');
     meridian = selected.hour < 12 ? meridians[0] : meridians[1];
   }
 

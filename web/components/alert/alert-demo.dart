@@ -1,8 +1,10 @@
 import "package:angular2/angular2.dart" show Component, View, NgFor;
 import "package:ng2-strap/alert/alert.dart" show Alert;
 
-@Component(selector: "alert-demo")
-@View(templateUrl: "alert-demo.html", directives: const [Alert, NgFor])
+@Component(
+    selector: "alert-demo",
+    templateUrl: "alert-demo.html",
+    directives: const [Alert, NgFor])
 class AlertDemo {
   List alerts = [
     {

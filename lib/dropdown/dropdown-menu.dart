@@ -1,7 +1,4 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart";
-import "dropdown.dart";
-import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
+part of ns_dropdown;
 
 @Directive (selector: "[dropdown-menu], .dropdown-menu",
     inputs: const [ "templateUrl"])

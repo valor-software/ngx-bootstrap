@@ -1,6 +1,4 @@
-import "package:angular2/angular2.dart";
-import "dropdown.dart";
-import 'dart:html';
+part of ns_dropdown;
 
 @Directive (selector: "[dropdown][keyboard-nav]",
     host: const { "(keydown)" : "onKeydown(\$event)"})

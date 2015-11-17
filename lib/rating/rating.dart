@@ -5,10 +5,10 @@ import 'package:node_shims/js.dart';
 // TODO: templateUrl
 @Component (selector: "rating[ng-model]",
     inputs: const [
-      "max", "readonly", "titles", "stateOn", "stateOff", "ratingStates", 'value: ngModel'],
-    outputs: const [ "onHover", "onLeave", 'valueEmitter: ngModel'],
-    host: const { "(keydown)" : "onKeydown(\$event)"})
-@View (template: '''
+      "max", "readonly", "titles", "stateOn", "stateOff", "ratingStates"],
+    outputs: const [ "onHover", "onLeave"],
+    host: const { "(keydown)" : "onKeydown(\$event)"},
+    template: '''
     <span (mouseleave)="reset()" (keydown)="onKeydown(\$event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
       <template ng-for #r [ng-for-of]="range" #index="index">
         <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
@@ -17,23 +17,18 @@ import 'package:node_shims/js.dart';
     </span>
   ''', directives: const [NgClass, NgFor])
 class Rating extends DefaultValueAccessor implements OnInit {
+  Rating(this.cd, Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) {
+    cd.valueAccessor = this;
+  }
+
+  NgModel cd;
+
   num max;
 
   List range;
 
-  num _value = 0;
-
-  get value => _value;
-
-  set value(num value) {
-    value ??= 0;
-    _value = value != 0
-      ? value.round()
-      : value;
-    valueEmitter.add(_value);
-  }
-
-  EventEmitter valueEmitter = new EventEmitter();
+  num value;
 
   num preValue;
 
@@ -51,9 +46,6 @@ class Rating extends DefaultValueAccessor implements OnInit {
 
   EventEmitter onLeave = new EventEmitter ();
 
-  Rating(Renderer renderer, ElementRef elementRef)
-      : super (renderer, elementRef) ;
-
   onInit() {
     max ??= 5;
     readonly = readonly == true;
@@ -62,7 +54,19 @@ class Rating extends DefaultValueAccessor implements OnInit {
     titles = titles != null && titles.length > 0  ? titles : ["one", "two", "three", "four", "five"];
     ratingStates ??= [];
     range = _buildTemplateObjects();
-    preValue = value;
+  }
+
+  // model -> view
+  writeValue(num _value) {
+    _value ??= 0;
+    if (_value != 0) {
+      value = _value.round();
+      preValue = _value;
+      return;
+    }
+    preValue = _value;
+    value = _value;
+
   }
 
   _buildTemplateObjects() {
@@ -79,10 +83,10 @@ class Rating extends DefaultValueAccessor implements OnInit {
     return result;
   }
 
-  rate(num _value) {
-    if (!readonly && _value >= 0 && _value <= range.length) {
-      value = _value;
-      preValue = _value;
+  rate(num value) {
+    if (!readonly && value >= 0 && value <= range.length) {
+      writeValue(value);
+      cd.viewToModelUpdate(value);
     }
   }
 

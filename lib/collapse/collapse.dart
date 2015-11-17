@@ -4,7 +4,7 @@ import 'dart:async';
 
 // todo: add init and on change
 @Directive (selector: "[collapse]",
-    properties: const [ "collapse"],
+    inputs: const [ "collapse"],
     host: const {
       "[class.in]" : "isExpanded",
       "[class.collapse]" : "isCollapse",

@@ -2,8 +2,8 @@ import "package:angular2/angular2.dart";
 import "package:ng2-strap/buttons/button-checkbox.dart";
 import 'package:ng2-strap/buttons/button-radio.dart';
 
-@Component(selector: "buttons-demo")
-@View(
+@Component(
+    selector: "buttons-demo",
     templateUrl: "buttons-demo.html",
     directives: const [
       ButtonCheckbox,

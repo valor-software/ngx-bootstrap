@@ -1,9 +1,4 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Directive, ElementRef, Host, OnInit;
-import "dropdown.dart" show Dropdown;
-import 'dart:html';
-import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
+part of ns_dropdown;
 
 @Directive (selector: "[dropdown-toggle]",
     inputs: const [ "disabled"],

@@ -5,8 +5,8 @@ import 'package:node_shims/js.dart';
 
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component (
-    selector: "tabset", inputs: const [ "vertical", "justified", "type"])
-@View (template: '''
+    selector: "tabset", inputs: const [ "vertical", "justified", "type"],
+    template: '''
     <ul class="nav"
         [ng-class]="{
           'nav-stacked' : vertical,

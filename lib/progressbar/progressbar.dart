@@ -1,14 +1,11 @@
-/// <reference path="../../tsd.d.ts" />
-import "package:angular2/angular2.dart"
-    show Type, Component, View, Directive, OnInit, OnDestroy, EventEmitter, ElementRef, ViewContainerRef, NgClass, NgStyle, Host, ViewEncapsulation, CORE_DIRECTIVES;
-import 'package:node_shims/js.dart';
+import "package:angular2/angular2.dart";
 
 const progressConfig = const { "animate" : true, "max" : 100};
 // todo: progress element conflict with bootstrap.css
 
 // todo: need hack: replace host element with div
 @Directive(selector: "bs-progress, [progress]",
-    properties: const [ "animate", "max"],
+    inputs: const [ "animate", "max"],
     host: const { "class" : "progress", "[attr.max]" : "max"})
 class Progress implements OnInit {
   num _max;
@@ -110,8 +107,8 @@ class Bar implements OnInit, OnDestroy {
 }
 
 @Component (selector: "progressbar, [progressbar]",
-    properties: const [ "animate", "max", "type", "value"])
-@View (template: '''
+    inputs: const [ "animate", "max", "type", "value"],
+    template: '''
     <div progress [animate]="animate" [max]="max">
       <bar [type]="type" [value]="value">
           <ng-content></ng-content>

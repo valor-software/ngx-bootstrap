@@ -1,13 +1,4 @@
-import "package:angular2/angular2.dart";
-import "package:angular2/src/core/di.dart";
-import "package:ng2-strap/position.dart";
-//import "package:moment.dart" as moment;
-import "datepicker-inner.dart" show DatePickerInner;
-import "daypicker.dart" show DayPicker;
-import "monthpicker.dart" show MonthPicker;
-import "yearpicker.dart" show YearPicker;
-import "datepicker.dart" show DatePicker;
-import 'dart:async';
+part of ns_datepicker;
 
 class PopupOptions {
   String placement;
@@ -166,7 +157,7 @@ class DatePickerPopup implements OnInit {
   }
 
   hide(Function cb) {
-    if (this.popup) {
+    if (this.popup != null) {
       this.popup.then((ComponentRef componentRef) {
         componentRef.dispose();
         cb();

@@ -1,6 +1,4 @@
-import "dropdown.dart" show Dropdown;
-import 'dart:html';
-import 'dart:async';
+part of ns_dropdown;
 
 const ALWAYS = "always";
 

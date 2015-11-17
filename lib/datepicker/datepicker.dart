@@ -1,11 +1,4 @@
-import "package:angular2/angular2.dart";
-//import "package:moment.dart" as moment;
-import 'package:intl/intl.dart';
-import "datepicker-inner.dart" show DatePickerInner;
-import "datepicker-popup.dart" show DatePickerPopup;
-import "daypicker.dart" show DayPicker;
-import "monthpicker.dart" show MonthPicker;
-import "yearpicker.dart" show YearPicker;
+part of ns_datepicker;
 
 @Component (selector: "datepicker[ng-model], [datepicker][ng-model]",
     inputs: const [
@@ -27,8 +20,8 @@ import "yearpicker.dart" show YearPicker;
       "formatMonthTitle",
       "yearRange",
       "shortcutPropagation"
-    ])
-@View (template: '''
+    ],
+    template: '''
     <datepicker-inner [active-date]="activeDate"
                       (update)="onUpdate(\$event)"
                       [datepicker-mode]="datepickerMode"
@@ -64,6 +57,11 @@ import "yearpicker.dart" show YearPicker;
       CORE_DIRECTIVES
     ])
 class DatePicker extends DefaultValueAccessor {
+  DatePicker(this.cd, Renderer renderer, ElementRef elementRef)
+      : super (renderer, elementRef) {
+    cd.valueAccessor = this;
+  }
+
   DateTime _activeDate;
 
   String datepickerMode;
@@ -108,9 +106,6 @@ class DatePicker extends DefaultValueAccessor {
 
   NgModel cd;
 
-  DatePicker(this.cd, Renderer renderer, ElementRef elementRef)
-      : super (renderer, elementRef) ;
-
   DateTime get activeDate {
     return this._activeDate;
   }
@@ -126,8 +121,8 @@ class DatePicker extends DefaultValueAccessor {
 
   writeValue(dynamic value) {
     if (value != null) {
-      if (value is! DateTime) {
-        value = new DateTime(value);
+      if (value is String) {
+        value = DateTime.parse(value);
       }
       this.activeDate = value;
     }
