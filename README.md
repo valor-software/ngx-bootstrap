@@ -1,14 +1,11 @@
 # ng2-strap
 Native Angular2 directives for Bootstrap
 
-Works with Bootstrap 3 and 4-alfa
-
-Goal: smooth transition from ui-bootstrap to angular2,
-all components will have same API
+Works with Bootstrap 3
 
 # Usage & Demo
 
-[http://valor-software.github.io/ng2-bootstrap/](http://valor-software.github.io/ng2-bootstrap/)
+http://luisvt.github.io/ng2-strap/
 
 # Starter package
 
@@ -23,19 +20,19 @@ You can start hacking by cloning starter repo:
 - [x] Carousel
 - [x] Collapse
 - [ ] Datepicker (Datepicker popup not implemented)
-- [ ] Dropdown
+- [x] Dropdown
 - [ ] Modal (in progress...)
 - [x] Pagination
 - [ ] Popover
 - [x] Progressbar
 - [x] Rating
-- [ ] Tabs
-- [ ] Timepicker
-- [ ] Tooltip
-- [ ] Typeahead
+- [x] Tabs
+- [x] Timepicker
+- [-] Tooltip
+- [x] Typeahead
 
-- [ ] NgTransclude - to transclude templates
-- [ ] positional service
+- [x] NgTransclude - to transclude templates
+- [x] positional service
 - [ ] template url support
 
 ## Contribution
