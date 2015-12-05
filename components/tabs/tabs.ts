@@ -130,7 +130,7 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
     });
   }
 
-  doCheck():boolean {
+  ngDoCheck():boolean {
     return true;
   }
 
