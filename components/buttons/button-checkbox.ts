@@ -25,7 +25,7 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
     cd.valueAccessor = this;
   }
 
-  onInit() {
+  ngOnInit() {
     this.toggle(this.trueValue === this.value);
   }
 

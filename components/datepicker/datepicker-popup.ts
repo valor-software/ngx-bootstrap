@@ -157,7 +157,7 @@ export class DatePickerPopup implements OnInit {
     }
   }
 
-  onInit() {
+  ngOnInit() {
   }
 
   private show(cb:Function) {
