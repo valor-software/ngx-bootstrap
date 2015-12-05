@@ -35,7 +35,7 @@ export class Progress implements OnInit {
   constructor() {
   }
 
-  onInit() {
+  ngOnInit() {
     this.animate = this.animate !== false;
     this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
   }
@@ -95,11 +95,11 @@ export class Bar implements OnInit, OnDestroy {
   constructor(@Host() public progress:Progress) {
   }
 
-  onInit() {
+  ngOnInit() {
     this.progress.addBar(this);
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     this.progress.removeBar(this);
   }
 

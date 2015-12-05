@@ -57,7 +57,7 @@ export class AccordionTransclude implements OnInit {
   constructor(@Inject(ViewContainerRef) private viewRef:ViewContainerRef) {
   }
 
-  onInit() {
+  ngOnInit() {
     if (this.accordionTransclude) {
       this.viewRef.createEmbeddedView(this.accordionTransclude);
     }
@@ -105,12 +105,12 @@ export class AccordionGroup implements OnInit, OnDestroy {
   constructor(private accordion:Accordion) {
   }
 
-  onInit() {
+  ngOnInit() {
     this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     this.accordion.removeGroup(this);
   }
 

@@ -130,7 +130,7 @@ export class DayPicker implements OnInit {
     return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
   }
 
-  onInit() {
+  ngOnInit() {
     let self = this;
 
     this.datePicker.stepDay = {months: 1};

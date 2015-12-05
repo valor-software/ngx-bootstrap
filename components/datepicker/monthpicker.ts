@@ -79,7 +79,7 @@ export class MonthPicker implements OnInit {
   constructor(public datePicker:DatePickerInner) {
   }
 
-  onInit() {
+  ngOnInit() {
     let self = this;
 
     this.datePicker.stepMonth = {years: 1};

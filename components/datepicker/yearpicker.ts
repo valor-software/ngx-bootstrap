@@ -89,7 +89,7 @@ export class YearPicker implements OnInit {
     return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
   }
 
-  onInit() {
+  ngOnInit() {
     let self = this;
 
     this.datePicker.stepYear = {years: this.datePicker.yearRange};

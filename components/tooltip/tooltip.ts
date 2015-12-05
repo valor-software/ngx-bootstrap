@@ -106,7 +106,7 @@ export class Tooltip implements OnInit {
               public loader:DynamicComponentLoader) {
   }
 
-  onInit() {
+  ngOnInit() {
   }
 
   // todo: filter triggers
