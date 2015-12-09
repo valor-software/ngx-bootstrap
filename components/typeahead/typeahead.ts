@@ -143,7 +143,7 @@ export class TypeaheadContainer {
 
   private hightlight(item:string, query:string) {
     // Replaces the capture string with a the same string inside of a "strong" tag
-    return query ? item.replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : item;
+    return query ? item.toString().replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : item;
   };
 }
 
@@ -281,7 +281,7 @@ export class Typeahead implements OnInit {
           continue;
         }
 
-        if (match.toLowerCase().indexOf(this.cd.model.toString().toLowerCase()) >= 0) {
+        if (match.toString().toLowerCase().indexOf(this.cd.model.toString().toLowerCase()) >= 0) {
           this._matches.push(match);
           if (this._matches.length > this.optionsLimit - 1) {
             break;
