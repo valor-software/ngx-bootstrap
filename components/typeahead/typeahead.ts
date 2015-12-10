@@ -404,8 +404,14 @@ export class Typeahead implements OnInit {
   }
 
   public changeModel(value:any) {
-    this.cd.viewToModelUpdate(value);
-    setProperty(this.renderer, this.element, 'value', value);
+    var valueStr:string;
+    if (typeof value === 'object' && this.field) {
+      valueStr = value[this.field].toString();
+    } else {
+      valueStr = value.toString();
+    }
+    this.cd.viewToModelUpdate(valueStr);
+    setProperty(this.renderer, this.element, 'value', valueStr);
     this.hide();
   }
 
