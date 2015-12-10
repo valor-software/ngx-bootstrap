@@ -151,7 +151,7 @@ export class TypeaheadContainer {
     if (typeof item === 'object' && this._field) {
       itemStr = item[this._field].toString();
     } else {
-        itemStr = item.toString();
+      itemStr = item.toString();
     }
     // Replaces the capture string with a the same string inside of a "strong" tag
     return query ? itemStr.replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : itemStr;
