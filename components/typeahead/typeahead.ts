@@ -201,7 +201,7 @@ export class TypeaheadContainer {
     'field:typeaheadOptionField',
     'async:typeaheadAsync',
     'latinize:typeaheadLatinize',
-    'breakSpaces:typeaheadBreakSpaces',
+    'singleWords:typeaheadsingleWords',
     'wordDelimiters:typeaheadWordDelimiters',
     'phraseDelimiters:typeaheadPhraseDelimiters'
   ],
@@ -221,7 +221,7 @@ export class Typeahead implements OnInit {
   public waitMs:number;
   public optionsLimit:number;
   public latinize:boolean = true;
-  public breakSpaces:boolean = true;
+  public singleWords:boolean = true;
 
   private appendToBody:boolean;
   private editable:boolean;
@@ -297,9 +297,9 @@ export class Typeahead implements OnInit {
   private processMatches() {
     this._matches = [];
     if (this.cd.model.toString().length >= this.minLength) {
-      // If breakSpaces, break model here to not be doing extra work on each iteration
+      // If singleWords, break model here to not be doing extra work on each iteration
       let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      normalizedQuery = this.breakSpaces ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
+      normalizedQuery = this.singleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       for (let i = 0; i < this.source.length; i++) {
         let match:string;
 
@@ -356,7 +356,7 @@ export class Typeahead implements OnInit {
     if (this.container && this._matches.length > 0) {
       // This improves the speedas it won't have to be done for each list item
       let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      this.container.query = this.breakSpaces ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
+      this.container.query = this.singleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       this.container.matches = this._matches;
     }
 
@@ -471,7 +471,7 @@ export class Typeahead implements OnInit {
       this.container.parent = this;
       // This improves the speedas it won't have to be done for each list item
       let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      this.container.query = this.breakSpaces ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
+      this.container.query = this.singleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       this.container.matches = matches;
       this.container.field = this.field;
       this.element.nativeElement.focus();
