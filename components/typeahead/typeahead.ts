@@ -17,6 +17,7 @@ import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {positionService} from '../position';
+import {TypeaheadUtils} from './typeahead-utils';
 
 const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
@@ -64,7 +65,7 @@ export class TypeaheadOptions {
 })
 export class TypeaheadContainer {
   public parent:Typeahead;
-  public query:string;
+  public query:any;
   private _matches:Array<any> = [];
   private _field:string;
   private _active:any;
@@ -140,17 +141,35 @@ export class TypeaheadContainer {
     return false;
   }
 
-  private escapeRegexp(queryToEscape:string) {
-    // Regex: capture the whole query string and replace it with the string that will be used to match
-    // the results, for example if the capture is "a" the result will be \a
-    return queryToEscape.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
-  }
-
   private hightlight(item:any, query:string) {
     let itemStr:string = (typeof item === 'object' && this._field ? item[this._field] : item).toString();
-    // Replaces the capture string with a the same string inside of a "strong" tag
-    return query ? itemStr.replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : itemStr;
-  };
+    let itemStrHelper:string = (this.parent.latinize ? TypeaheadUtils.latinize(itemStr) : itemStr).toLowerCase();
+    let startIdx:number;
+    let tokenLen:number;
+
+    // Replaces the capture string with the same string inside of a "strong" tag
+    if (typeof query === 'object') {
+      let queryLen:number = query.length;
+      for (let i = 0; i < queryLen; i += 1) {
+        // query[i] is already latinized and lower case
+        startIdx = itemStrHelper.indexOf(query[i]);
+        tokenLen = query[i].length;
+        if (startIdx >= 0 && tokenLen > 0) {
+          itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
+          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + " ".repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
+        }
+      }
+    } else if (query) {
+      // query is already latinized and lower case
+      startIdx = itemStrHelper.indexOf(query);
+      tokenLen = query.length;
+      if (startIdx >= 0 && tokenLen > 0) {
+        itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
+      }
+    }
+
+    return itemStr;
+  }
 }
 
 // todo: options loading by http not yet implemented
@@ -180,7 +199,11 @@ export class TypeaheadContainer {
     // todo: not yet implemented
     'focusOnSelect:typeaheadFocusOnSelect',
     'field:typeaheadOptionField',
-    'async:typeaheadAsync'
+    'async:typeaheadAsync',
+    'latinize:typeaheadLatinize',
+    'singleWords:typeaheadSingleWords',
+    'wordDelimiters:typeaheadWordDelimiters',
+    'phraseDelimiters:typeaheadPhraseDelimiters'
   ],
   events: ['typeaheadLoading', 'typeaheadNoResults', 'typeaheadOnSelect'],
   host: {
@@ -197,6 +220,8 @@ export class Typeahead implements OnInit {
   public minLength:number;
   public waitMs:number;
   public optionsLimit:number;
+  public latinize:boolean = true;
+  public singleWords:boolean = true;
 
   private appendToBody:boolean;
   private editable:boolean;
@@ -209,6 +234,8 @@ export class Typeahead implements OnInit {
   private focusOnSelect:boolean;
   private field:string;
   private async:boolean = null;
+  private wordDelimiters:string = " ";
+  private phraseDelimiters:string = "'\"";
 
   private debouncer:Function;
   private source:any;
@@ -270,16 +297,19 @@ export class Typeahead implements OnInit {
   private processMatches() {
     this._matches = [];
     if (this.cd.model.toString().length >= this.minLength) {
+      // If singleWords, break model here to not be doing extra work on each iteration
+      let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+      normalizedQuery = this.singleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       for (let i = 0; i < this.source.length; i++) {
         let match:string;
 
         if (typeof this.source[i] === 'object' &&
           this.source[i][this.field]) {
-          match = this.source[i][this.field];
+          match = this.latinize ? TypeaheadUtils.latinize(this.source[i][this.field].toString()) : this.source[i][this.field].toString();
         }
 
         if (typeof this.source[i] === 'string') {
-          match = this.source[i];
+          match = this.latinize ? TypeaheadUtils.latinize(this.source[i].toString()) : this.source[i].toString();
         }
 
         if (!match) {
@@ -287,13 +317,29 @@ export class Typeahead implements OnInit {
           continue;
         }
 
-        if (match.toString().toLowerCase().indexOf(this.cd.model.toString().toLowerCase()) >= 0) {
+        if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
           this._matches.push(this.source[i]);
           if (this._matches.length > this.optionsLimit - 1) {
             break;
           }
         }
       }
+    }
+  }
+
+  private testMatch(match:string, test:any) {
+    let spaceLength:number;
+
+    if (typeof test === 'object') {
+      spaceLength = test.length;
+      for (let i = 0; i < spaceLength; i += 1) {
+        if (test[i].length > 0 && match.indexOf(test[i]) < 0) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return match.indexOf(test) >= 0;
     }
   }
 
@@ -308,7 +354,9 @@ export class Typeahead implements OnInit {
     }
 
     if (this.container && this._matches.length > 0) {
-      this.container.query = this.cd.model;
+      // This improves the speedas it won't have to be done for each list item
+      let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+      this.container.query = this.singleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       this.container.matches = this._matches;
     }
 
@@ -421,7 +469,9 @@ export class Typeahead implements OnInit {
       componentRef.instance.position(this.element);
       this.container = componentRef.instance;
       this.container.parent = this;
-      this.container.query = this.cd.model;
+      // This improves the speedas it won't have to be done for each list item
+      let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+      this.container.query = this.singleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       this.container.matches = matches;
       this.container.field = this.field;
       this.element.nativeElement.focus();
