@@ -25,7 +25,7 @@ import {Typeahead} from 'ng2-bootstrap';
     'typeaheadOptionField',
     'typeaheadAsync',
     'typeaheadLatinize',
-    'typeaheadBreakSpaces',
+    'typeaheadSingleWords',
     'typeaheadWordDelimiters',
     '
   ],
