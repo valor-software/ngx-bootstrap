@@ -27,7 +27,7 @@ import {Typeahead} from 'ng2-bootstrap';
     'typeaheadLatinize',
     'typeaheadSingleWords',
     'typeaheadWordDelimiters',
-    '
+    'typeaheadPhraseDelimiters'
   ],
   events: ['typeaheadLoading', 'typeaheadNoResults', 'typeaheadOnSelect'],
   host: {
