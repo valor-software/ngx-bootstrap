@@ -201,7 +201,7 @@ export class TypeaheadContainer {
     'field:typeaheadOptionField',
     'async:typeaheadAsync',
     'latinize:typeaheadLatinize',
-    'singleWords:typeaheadsingleWords',
+    'singleWords:typeaheadSingleWords',
     'wordDelimiters:typeaheadWordDelimiters',
     'phraseDelimiters:typeaheadPhraseDelimiters'
   ],
