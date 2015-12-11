@@ -65,8 +65,9 @@ export class TypeaheadOptions {
 export class TypeaheadContainer {
   public parent:Typeahead;
   public query:string;
-  private _matches:Array<string> = [];
-  private _active:string;
+  private _matches:Array<any> = [];
+  private _field:string;
+  private _active:any;
   private top:string;
   private left:string;
   private display:string;
@@ -86,6 +87,10 @@ export class TypeaheadContainer {
     if (this._matches.length > 0) {
       this._active = this._matches[0];
     }
+  }
+
+  public set field(value:string) {
+    this._field = value;
   }
 
   public position(hostEl:ElementRef) {
@@ -114,7 +119,7 @@ export class TypeaheadContainer {
     this._active = this.matches[index + 1 > this.matches.length - 1 ? 0 : index + 1];
   }
 
-  private selectActive(value:string) {
+  private selectActive(value:any) {
     this._active = value;
   }
 
@@ -122,7 +127,7 @@ export class TypeaheadContainer {
     return this._active === value;
   }
 
-  private selectMatch(value:string, e:Event = null) {
+  private selectMatch(value:any, e:Event = null) {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
@@ -141,9 +146,10 @@ export class TypeaheadContainer {
     return queryToEscape.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
   }
 
-  private hightlight(item:string, query:string) {
+  private hightlight(item:any, query:string) {
+    let itemStr:string = (typeof item === 'object' && this._field ? item[this._field] : item).toString();
     // Replaces the capture string with a the same string inside of a "strong" tag
-    return query ? item.toString().replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : item;
+    return query ? itemStr.replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : itemStr;
   };
 }
 
@@ -184,7 +190,7 @@ export class TypeaheadContainer {
 export class Typeahead implements OnInit {
   public typeaheadLoading:EventEmitter<boolean> = new EventEmitter();
   public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter();
-  public typeaheadOnSelect:EventEmitter<{item: string}> = new EventEmitter();
+  public typeaheadOnSelect:EventEmitter<{item: any}> = new EventEmitter();
 
   public container:TypeaheadContainer;
 
@@ -206,7 +212,7 @@ export class Typeahead implements OnInit {
 
   private debouncer:Function;
   private source:any;
-  private _matches:Array<string> = [];
+  private _matches:Array<any> = [];
   private placement:string = 'bottom-left';
   private popup:Promise<ComponentRef>;
 
@@ -282,7 +288,7 @@ export class Typeahead implements OnInit {
         }
 
         if (match.toString().toLowerCase().indexOf(this.cd.model.toString().toLowerCase()) >= 0) {
-          this._matches.push(match);
+          this._matches.push(this.source[i]);
           if (this._matches.length > this.optionsLimit - 1) {
             break;
           }
@@ -393,12 +399,13 @@ export class Typeahead implements OnInit {
   }
 
   public changeModel(value:any) {
-    this.cd.viewToModelUpdate(value);
-    setProperty(this.renderer, this.element, 'value', value);
+    let valueStr:string = ((typeof value === 'object' && this.field) ? value[this.field] : value).toString();
+    this.cd.viewToModelUpdate(valueStr);
+    setProperty(this.renderer, this.element, 'value', valueStr);
     this.hide();
   }
 
-  show(matches:Array<string>) {
+  show(matches:Array<any>) {
     let options = new TypeaheadOptions({
       placement: this.placement,
       animation: false
@@ -416,6 +423,7 @@ export class Typeahead implements OnInit {
       this.container.parent = this;
       this.container.query = this.cd.model;
       this.container.matches = matches;
+      this.container.field = this.field;
       this.element.nativeElement.focus();
       return componentRef;
     });
