@@ -23,7 +23,11 @@ import {Typeahead} from 'ng2-bootstrap';
     'typeaheadSelectOnBlur',
     'typeaheadFocusOnSelect',
     'typeaheadOptionField',
-    'typeaheadAsync'
+    'typeaheadAsync',
+    'typeaheadLatinize',
+    'typeaheadBreakSpaces',
+    'typeaheadWordDelimiters',
+    '
   ],
   events: ['typeaheadLoading', 'typeaheadNoResults', 'typeaheadOnSelect'],
   host: {
@@ -51,6 +55,10 @@ import {Typeahead} from 'ng2-bootstrap';
   - `typeahead-focus-on-select` (*not implemented*) (`?boolean=true`) - if `false` don't focus the input element the typeahead directive is associated with on selection
   - `typeahead-option-field` (`?string`) - name of field in array of states that contain options as objects, we use array item as option in case of this field is missing
   - `typeahead-async` (`?boolean`) - should be used only in case of `typeahead` attribute is array. If `true` - loading of options will be async, otherwise - sync. `true` make sense if options array is large.
+  - `typeahead-latinize` (`?boolean`) - match latin symbols. If `true` the word `súper` would match `super` and vice versa.
+  - `typeahead-break-spaces` (`?boolean`) - break words with spaces. If `true` the text `"exact phrase" here match` would match with `match exact phrase here` but not with `phrase here exact match` (kind of "google style"). Simple or double quotes indicates "exact phrase".
+  - `typeahead-word-delimiters` (`?string`) - should be used only in case `typeahead-break-spaces` attribute is `true`. Sets the word delimiter to break words. Defaults to space (` `)
+  - `typeahead-phrase-delimiters` (`?string`) - should be used only in case `typeahead-break-spaces` attribute is `true`. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes (`'"`).
 
 
 ### Typeahead events
