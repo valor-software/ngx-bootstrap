@@ -22,5 +22,3 @@ interface ObjectConstructor {
    */
   setPrototypeOf(o: any, proto: any): any;
 }
-
-declare function require(path:string): any;
