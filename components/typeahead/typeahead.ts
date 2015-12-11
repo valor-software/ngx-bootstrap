@@ -147,12 +147,7 @@ export class TypeaheadContainer {
   }
 
   private hightlight(item:any, query:string) {
-    var itemStr:string;
-    if (typeof item === 'object' && this._field) {
-      itemStr = item[this._field].toString();
-    } else {
-      itemStr = item.toString();
-    }
+    let itemStr:string = (typeof item === 'object' && this._field ? item[this._field] : item).toString();
     // Replaces the capture string with a the same string inside of a "strong" tag
     return query ? itemStr.replace(new RegExp(this.escapeRegexp(query), 'gi'), '<strong>$&</strong>') : itemStr;
   };
@@ -404,12 +399,7 @@ export class Typeahead implements OnInit {
   }
 
   public changeModel(value:any) {
-    var valueStr:string;
-    if (typeof value === 'object' && this.field) {
-      valueStr = value[this.field].toString();
-    } else {
-      valueStr = value.toString();
-    }
+    let valueStr:string = ((typeof value === 'object' && this.field) ? value[this.field] : value).toString();
     this.cd.viewToModelUpdate(valueStr);
     setProperty(this.renderer, this.element, 'value', valueStr);
     this.hide();
