@@ -158,7 +158,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   }
 
   // todo: add formatter value to Date object
-  onInit() {
+  ngOnInit() {
     // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
     this.meridians = def(this.meridians, isDefined, timepickerConfig.meridians) || ['AM', 'PM'];
     this.mousewheel = def(this.mousewheel, isDefined, timepickerConfig.mousewheel);

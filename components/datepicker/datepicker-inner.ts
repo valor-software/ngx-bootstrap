@@ -134,7 +134,7 @@ export class DatePickerInner implements OnInit {
   }
 
   // todo: add formatter value to Date object
-  onInit() {
+  ngOnInit() {
     this.formatDay = this.formatDay || FORMAT_DAY;
     this.formatMonth = this.formatMonth || FORMAT_MONTH;
     this.formatYear = this.formatYear || FORMAT_YEAR;

@@ -11,7 +11,7 @@ export class DropdownMenu implements OnInit {
   constructor(@Host() public dropdown:Dropdown, public el:ElementRef) {
   }
 
-  onInit() {
+  ngOnInit() {
     this.dropdown.dropDownMenu = this;
   }
 }
