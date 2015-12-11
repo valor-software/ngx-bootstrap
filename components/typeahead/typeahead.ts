@@ -220,8 +220,8 @@ export class Typeahead implements OnInit {
   public minLength:number;
   public waitMs:number;
   public optionsLimit:number;
-  public latinize:boolean = false;
-  public breakSpaces:boolean = false;
+  public latinize:boolean = true;
+  public breakSpaces:boolean = true;
 
   private appendToBody:boolean;
   private editable:boolean;
@@ -298,18 +298,18 @@ export class Typeahead implements OnInit {
     this._matches = [];
     if (this.cd.model.toString().length >= this.minLength) {
       // If breakSpaces, break model here to not be doing extra work on each iteration
-      let query = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      query = this.breakSpaces ? TypeaheadUtils.tokenize(query, this.wordDelimiters, this.phraseDelimiters) : query;
+      let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+      normalizedQuery = this.breakSpaces ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       for (let i = 0; i < this.source.length; i++) {
         let match:string;
 
         if (typeof this.source[i] === 'object' &&
           this.source[i][this.field]) {
-          match = this.latinize ? TypeaheadUtils.latinize(this.source[i][this.field]) : this.source[i][this.field];
+          match = this.latinize ? TypeaheadUtils.latinize(this.source[i][this.field].toString()) : this.source[i][this.field].toString();
         }
 
         if (typeof this.source[i] === 'string') {
-          match = this.latinize ? TypeaheadUtils.latinize(this.source[i]) : this.source[i];
+          match = this.latinize ? TypeaheadUtils.latinize(this.source[i].toString()) : this.source[i].toString();
         }
 
         if (!match) {
@@ -317,7 +317,7 @@ export class Typeahead implements OnInit {
           continue;
         }
 
-        if (this.testMatch(match.toString().toLowerCase(), query)) {
+        if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
           this._matches.push(this.source[i]);
           if (this._matches.length > this.optionsLimit - 1) {
             break;
@@ -355,8 +355,8 @@ export class Typeahead implements OnInit {
 
     if (this.container && this._matches.length > 0) {
       // This improves the speedas it won't have to be done for each list item
-      let query = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      this.container.query = this.breakSpaces ? TypeaheadUtils.tokenize(query, this.wordDelimiters, this.phraseDelimiters) : query;
+      let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+      this.container.query = this.breakSpaces ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       this.container.matches = this._matches;
     }
 
@@ -470,8 +470,8 @@ export class Typeahead implements OnInit {
       this.container = componentRef.instance;
       this.container.parent = this;
       // This improves the speedas it won't have to be done for each list item
-      let query = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      this.container.query = this.breakSpaces ? TypeaheadUtils.tokenize(query, this.wordDelimiters, this.phraseDelimiters) : query;
+      let normalizedQuery = (this.latinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+      this.container.query = this.breakSpaces ? TypeaheadUtils.tokenize(normalizedQuery, this.wordDelimiters, this.phraseDelimiters) : normalizedQuery;
       this.container.matches = matches;
       this.container.field = this.field;
       this.element.nativeElement.focus();
