@@ -148,7 +148,7 @@ export class TypeaheadContainer {
     let tokenLen:number;
 
     // Replaces the capture string with the same string inside of a "strong" tag
-    if (query && typeof query === 'object') {
+    if (typeof query === 'object') {
       let queryLen:number = query.length;
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
