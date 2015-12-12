@@ -52,7 +52,7 @@ var config = {
       // Angular 2 Deps
       'zone.js',
       'reflect-metadata',
-      'angular2/angular2',
+      'angular2/common',
       'angular2/core'
     ],
     'angular2-bootstrap': ['ng2-bootstrap'],

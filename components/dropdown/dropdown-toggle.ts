@@ -1,4 +1,4 @@
-import {Directive, ElementRef, Host, OnInit} from 'angular2/angular2';
+import {Directive, ElementRef, Host, OnInit} from 'angular2/core';
 
 import {Dropdown} from './dropdown';
 

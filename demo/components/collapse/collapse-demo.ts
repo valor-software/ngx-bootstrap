@@ -1,5 +1,5 @@
 /// <reference path="../../../tsd.d.ts" />
-import {Component, View} from 'angular2/angular2';
+import {Component, View} from 'angular2/core';
 import {Collapse} from '../../../ng2-bootstrap';
 
 // webpack html imports

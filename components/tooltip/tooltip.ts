@@ -3,13 +3,12 @@ import {
   Component, View,
   OnInit, EventEmitter,
   ElementRef,
-  NgClass, NgStyle,
   ViewRef, ViewContainerRef, TemplateRef,
   DynamicComponentLoader, ComponentRef,
   ViewEncapsulation
-} from 'angular2/angular2';
-
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
 
 import {positionService} from '../position';
 import {IAttribute} from '../common';
@@ -31,14 +30,14 @@ class TooltipOptions {
 @View({
   template: `
     <div class="tooltip" role="tooltip"
-     [ng-style]="{top: top, left: left, display: display}"
-     [ng-class]="classMap" >
+     [ngStyle]="{top: top, left: left, display: display}"
+     [ngClass]="classMap" >
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner">
         {{content}}
       </div>
     </div>`,
-  directives: [NgClass, NgStyle],
+  directives: [CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 class TooltipContainer {
@@ -79,7 +78,7 @@ class TooltipContainer {
     'content:tooltip',
     'placement:tooltip-placement',
     'appendToBody',
-    'isOpen: tooltip-is-open',
+    'isOpen: tooltip-isOpen',
     'enable: tooltip-enable'
   ],
   host: {

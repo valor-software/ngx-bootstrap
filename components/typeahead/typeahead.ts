@@ -1,19 +1,25 @@
 import {
   Directive,
-  Component, View, Self, NgModel,
+  Component, View, Self,
   EventEmitter, OnInit,
-  ElementRef, DefaultValueAccessor,
-  NgClass, NgStyle, Renderer, CORE_DIRECTIVES,
+  ElementRef,
+  Renderer,
   ViewRef, ViewContainerRef, TemplateRef,
   DynamicComponentLoader, ComponentRef,
   ViewEncapsulation
-} from 'angular2/angular2';
+} from 'angular2/core';
+import {
+  CORE_DIRECTIVES,
+  ControlValueAccessor,
+  DefaultValueAccessor,
+  NgModel }
+from 'angular2/common';
 
 // https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
 function setProperty(renderer: Renderer, elementRef: ElementRef, propName: string, propValue: any) {
   renderer.setElementProperty(elementRef, propName, propValue);
 }
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {positionService} from '../position';
@@ -22,12 +28,12 @@ import {TypeaheadUtils} from './typeahead-utils';
 const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
   <div class="dropdown-menu"
-      [ng-style]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: display}"
       style="display: block">
       <a href="#"
-         *ng-for="#match of matches"
+         *ngFor="#match of matches"
          (click)="selectMatch(match, $event)"
-         [ng-class]="{active: isActive(match) }"
+         [ngClass]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
          class="dropdown-item"
          [inner-html]="hightlight(match, query)"></a>
@@ -35,10 +41,10 @@ const TEMPLATE:any = {
   `,
   [Ng2BootstrapTheme.BS3]: `
   <ul class="dropdown-menu"
-      [ng-style]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: display}"
       style="display: block">
-    <li *ng-for="#match of matches"
-        [ng-class]="{active: isActive(match) }"
+    <li *ngFor="#match of matches"
+        [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>
@@ -60,7 +66,7 @@ export class TypeaheadOptions {
 })
 @View({
   template: TEMPLATE[Ng2BootstrapConfig.theme],
-  directives: [CORE_DIRECTIVES, NgClass, NgStyle],
+  directives: [CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainer {

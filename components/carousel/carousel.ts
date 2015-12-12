@@ -2,8 +2,8 @@ import {
   Component, View,
   Directive, OnInit, OnDestroy,
   EventEmitter, ElementRef,
-  CORE_DIRECTIVES, NgClass
-} from 'angular2/angular2';
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 
@@ -41,13 +41,13 @@ const NAVIGATION:any = {
   template: `
 <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
   <ol class="carousel-indicators" [hidden]="slides.length <= 1">
-     <li *ng-for="#slidez of slides" [ng-class]="{active: slidez.active === true}" (click)="select(slidez)"></li>
+     <li *ngFor="#slidez of slides" [ngClass]="{active: slidez.active === true}" (click)="select(slidez)"></li>
   </ol>
   <div class="carousel-inner"><ng-content></ng-content></div>
   ${NAVIGATION[Ng2BootstrapConfig.theme]}
 </div>
   `,
-  directives: [CORE_DIRECTIVES, NgClass]
+  directives: [CORE_DIRECTIVES]
 })
 export class Carousel implements OnDestroy {
   private noPause:boolean;
@@ -212,11 +212,11 @@ export class Carousel implements OnDestroy {
 })
 @View({
   template: `
-  <div [ng-class]="{active: active}" class="item text-center">
+  <div [ngClass]="{active: active}" class="item text-center">
     <ng-content></ng-content>
   </div>
   `,
-  directives: [NgClass]
+  directives: [CORE_DIRECTIVES]
 })
 export class Slide implements OnInit, OnDestroy {
   public active:boolean;

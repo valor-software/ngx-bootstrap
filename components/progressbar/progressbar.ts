@@ -3,10 +3,9 @@ import {
   Component, View, Directive,
   OnInit, OnDestroy, EventEmitter,
   ElementRef, ViewContainerRef,
-  NgClass, NgStyle, Host,
-  ViewEncapsulation,
-  CORE_DIRECTIVES
-} from 'angular2/angular2';
+  Host, ViewEncapsulation,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 const progressConfig = {
   animate: true,
@@ -74,15 +73,15 @@ export class Progress implements OnInit {
   <div class="progress-bar"
     style="min-width: 0;"
     role="progressbar"
-    [ng-class]="type && 'progress-bar-' + type"
-    [ng-style]="{width: (percent < 100 ? percent : 100) + '%', transition: transition}"
+    [ngClass]="type && 'progress-bar-' + type"
+    [ngStyle]="{width: (percent < 100 ? percent : 100) + '%', transition: transition}"
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
     [attr.aria-valuetext]="percent.toFixed(0) + '%'"
     [attr.aria-valuemax]="max"
     ><ng-content></ng-content></div>
 `,
-  directives: [NgStyle, NgClass],
+  directives: [CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 export class Bar implements OnInit, OnDestroy {
