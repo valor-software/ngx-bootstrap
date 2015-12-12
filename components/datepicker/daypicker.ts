@@ -14,20 +14,20 @@ const TEMPLATE_OPTIONS = {
   [Ng2BootstrapTheme.BS4]: {
     DAY_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-sm"
-                [ng-class]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
+                [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
                 (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ng-class]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>
+          <span [ngClass]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>
         </button>
     `
   },
   [Ng2BootstrapTheme.BS3]: {
     DAY_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
-                [ng-class]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
+                [ngClass]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
                 [disabled]="dtz.disabled"
                 (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ng-class]="{'text-muted': dtz.secondary, 'text-info': dtz.current}">{{dtz.label}}</span>
+          <span [ngClass]="{'text-muted': dtz.secondary, 'text-info': dtz.current}">{{dtz.label}}</span>
         </button>
     `
   }
@@ -53,7 +53,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2B
                 type="button" class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
-                [ng-class]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
+                [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{title}}</strong>
         </button>
       </th>
@@ -62,7 +62,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2B
                 type="button" class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
-                [ng-class]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
+                [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{title}}</strong>
         </button>
       </th>
@@ -74,14 +74,14 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2B
     </tr>
     <tr>
       <th [hidden]="!datePicker.showWeeks" class="text-center"></th>
-      <th *ng-for="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+      <th *ngFor="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ng-for="#rowz of rows;#index=index">
+    <tr *ngFor="#rowz of rows;#index=index">
       <td [hidden]="!datePicker.showWeeks" class="text-center h6"><em>{{ weekNumbers[index] }}</em></td>
-      <!--  [ng-class]="dtz.customClass" -->
-      <td *ng-for="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
+      <!--  [ngClass]="dtz.customClass" -->
+      <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
         ${CURRENT_THEME_TEMPLATE.DAY_BUTTON}
       </td>
     </tr>

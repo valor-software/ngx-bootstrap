@@ -56,7 +56,7 @@ function addMinutes(date: any, minutes:number) {
 
 // TODO: templateUrl
 @Component({
-  selector: 'timepicker[ng-model]',
+  selector: 'timepicker[ngModel]',
   properties: [
     'hourStep', 'minuteStep',
     'meridians', 'showMeridian',
@@ -70,27 +70,27 @@ function addMinutes(date: any, minutes:number) {
   template: `
     <table>
       <tbody>
-        <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
-          <td><a (click)="incrementHours()" [ng-class]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+        <tr class="text-center" [ngClass]="{hidden: !showSpinners}">
+          <td><a (click)="incrementHours()" [ngClass]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
           <td>&nbsp;</td>
-          <td><a (click)="incrementMinutes()" [ng-class]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
+          <td><a (click)="incrementMinutes()" [ngClass]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
         <tr>
-          <td class="form-group" [ng-class]="{'has-error': invalidHours}">
-            <input style="width:50px;" type="text" [(ng-model)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur($event)" maxlength="2">
+          <td class="form-group" [ngClass]="{'has-error': invalidHours}">
+            <input style="width:50px;" type="text" [(ngModel)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur($event)" maxlength="2">
           </td>
           <td>:</td>
-          <td class="form-group" [ng-class]="{'has-error': invalidMinutes}">
-            <input style="width:50px;" type="text" [(ng-model)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
+          <td class="form-group" [ngClass]="{'has-error': invalidMinutes}">
+            <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
           </td>
-          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ng-class]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
+          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>
-        <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
-          <td><a (click)="decrementHours()" [ng-class]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+        <tr class="text-center" [ngClass]="{hidden: !showSpinners}">
+          <td><a (click)="decrementHours()" [ngClass]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
           <td>&nbsp;</td>
-          <td><a (click)="decrementMinutes()" [ng-class]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
+          <td><a (click)="decrementMinutes()" [ngClass]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
       </tbody>
     </table>

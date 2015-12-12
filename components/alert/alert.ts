@@ -13,8 +13,8 @@ import {
 })
 @View({
   template: `
-  <div class="alert" role="alert" [ng-class]="classes" *ng-if="!closed">
-    <button *ng-if="closeable" type="button" class="close" (click)="onClose($event)">
+  <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
+    <button *ngIf="closeable" type="button" class="close" (click)="onClose($event)">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>

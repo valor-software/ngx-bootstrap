@@ -17,7 +17,7 @@ import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 
 @Component({
-  selector: 'datepicker[ng-model], [datepicker][ng-model]',
+  selector: 'datepicker[ngModel], [datepicker][ng-model]',
   properties: [
     'datepickerMode',
     'minDate', 'maxDate',

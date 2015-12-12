@@ -21,12 +21,12 @@ import {positionService} from '../position';
 const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
   <div class="dropdown-menu"
-      [ng-style]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: display}"
       style="display: block">
       <a href="#"
-         *ng-for="#match of matches"
+         *ngFor="#match of matches"
          (click)="selectMatch(match, $event)"
-         [ng-class]="{active: isActive(match) }"
+         [ngClass]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
          class="dropdown-item"
          [inner-html]="hightlight(match, query)"></a>
@@ -34,10 +34,10 @@ const TEMPLATE:any = {
   `,
   [Ng2BootstrapTheme.BS3]: `
   <ul class="dropdown-menu"
-      [ng-style]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: display}"
       style="display: block">
-    <li *ng-for="#match of matches"
-        [ng-class]="{active: isActive(match) }"
+    <li *ngFor="#match of matches"
+        [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>

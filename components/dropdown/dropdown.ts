@@ -41,7 +41,7 @@ export class Dropdown implements OnInit, OnDestroy {
     this.keyboardNav = typeof this.keyboardNav !== 'undefined';
     this.dropdownAppendToBody = typeof this.dropdownAppendToBody !== 'undefined';
     if (this.isOpen) {
-      // todo: watch for event get-is-open?
+      // todo: watch for event get-isOpen?
     }
   }
 

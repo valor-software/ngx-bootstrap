@@ -5,7 +5,7 @@ export interface IAttribute {
 }
 
 @Directive({
-  selector: '[ng-transclude]',
+  selector: '[ngTransclude]',
   properties: ['ngTransclude']
 })
 export class NgTransclude {

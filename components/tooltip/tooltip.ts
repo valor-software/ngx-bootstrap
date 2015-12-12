@@ -31,8 +31,8 @@ class TooltipOptions {
 @View({
   template: `
     <div class="tooltip" role="tooltip"
-     [ng-style]="{top: top, left: left, display: display}"
-     [ng-class]="classMap" >
+     [ngStyle]="{top: top, left: left, display: display}"
+     [ngClass]="classMap" >
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner">
         {{content}}
@@ -79,7 +79,7 @@ class TooltipContainer {
     'content:tooltip',
     'placement:tooltip-placement',
     'appendToBody',
-    'isOpen: tooltip-is-open',
+    'isOpen: tooltip-isOpen',
     'enable: tooltip-enable'
   ],
   host: {

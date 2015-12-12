@@ -15,10 +15,10 @@ import {NgTransclude, IAttribute} from '../common';
 })
 @View({
   template: `
-    <ul class="nav" [ng-class]="classMap" (click)="$event.preventDefault()">
-        <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
-            <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
+    <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
+        <li *ngFor="#tabz of tabs" class="nav-item" [ngClass]="{active: tabz.active, disabled: tabz.disabled}">
+          <a href class="nav-link" [ngClass]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
+            <span [ngTransclude]="tabz.headingRef">{{tabz.heading}}</span>
           </a>
         </li>
     </ul>
