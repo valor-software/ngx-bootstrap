@@ -42,7 +42,9 @@ var config = {
   resolve: {
     root: __dirname,
     extensions: ['', '.ts', '.js', '.json'],
-    alias: {}
+    alias: {
+      'rxjs/operators/toPromise': 'rxjs/operator/toPromise.js'
+    }
   },
 
   entry: {

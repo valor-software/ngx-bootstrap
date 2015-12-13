@@ -75,7 +75,6 @@ let gettingStarted = require('./getting-started.md');
     <typeahead-section class="col-md-12"></typeahead-section>
   </div>
 
-  </div>
   <footer class="footer">
     <div class="container">
       <p class="text-muted text-center"><a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.</p>
