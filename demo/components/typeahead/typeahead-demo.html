@@ -1,20 +1,20 @@
 <div class='container-fluid'>
     <h4>Static arrays</h4>
     <pre>Model: {{selected | json}}</pre>
-    <input [(ng-model)]="selected"
+    <input [(ngModel)]="selected"
            [typeahead]="statesComplex"
            (typeahead-on-select)="typeaheadOnSelect($event)"
-           [typeahead-option-field]="'name'"
+           [typeaheadOptionField]="'name'"
            class="form-control">
 
     <h4>Asynchronous results</h4>
     <pre>Model: {{asyncSelected | json}}</pre>
-    <input [(ng-model)]="asyncSelected"
+    <input [(ngModel)]="asyncSelected"
            [typeahead]="getAsyncData(getContext())"
            (typeahead-loading)="changeTypeaheadLoading($event)"
            (typeahead-no-results)="changeTypeaheadNoResults($event)"
            (typeahead-on-select)="typeaheadOnSelect($event)"
-           [typeahead-options-limit]="7"
+           [typeaheadOptionsLimit]="7"
            placeholder="Locations loaded with timeout"
            class="form-control">
     <div [hidden]="typeaheadLoading!==true">

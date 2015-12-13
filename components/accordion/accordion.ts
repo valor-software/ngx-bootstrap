@@ -1,8 +1,9 @@
 import {
   Component, View,
   Directive, OnInit, OnDestroy,
-  NgClass, ViewContainerRef, TemplateRef, Inject
-} from 'angular2/angular2';
+  ViewContainerRef, TemplateRef, Inject
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 // todo: support template url
 @Component({
@@ -48,7 +49,7 @@ export class Accordion {
 }
 
 @Directive({
-  selector: 'accordion-transclude, [accordion-transclude]',
+  selector: 'accordionTransclude, [accordionTransclude]',
   properties: ['accordionTransclude']
 })
 export class AccordionTransclude implements OnInit {
@@ -76,12 +77,12 @@ import {Collapse} from '../collapse/collapse';
 })
 @View({
   template: `
-  <div class="panel" [ng-class]="panelClass">
+  <div class="panel" [ngClass]="panelClass">
     <div class="panel-heading" (click)="toggleOpen($event)">
       <h4 class="panel-title">
         <a href tabindex="0" class="accordion-toggle">
-          <span [ng-class]="{'text-muted': isDisabled}"
-            [accordion-transclude]="headingTemplate">{{heading}}</span>
+          <span [ngClass]="{'text-muted': isDisabled}"
+            [accordionTransclude]="headingTemplate">{{heading}}</span>
         </a>
       </h4>
     </div>
@@ -92,7 +93,7 @@ import {Collapse} from '../collapse/collapse';
     </div>
   </div>
   `,
-  directives: [Collapse, AccordionTransclude, NgClass]
+  directives: [Collapse, AccordionTransclude, CORE_DIRECTIVES]
 })
 export class AccordionGroup implements OnInit, OnDestroy {
   private templateUrl:string;

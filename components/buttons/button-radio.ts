@@ -1,12 +1,13 @@
 import {
   Directive,
-  Self, NgModel, ElementRef,
-  ControlValueAccessor, OnInit
-} from 'angular2/angular2';
-
+  Self,
+  ElementRef,
+  OnInit
+} from 'angular2/core';
+import { CORE_DIRECTIVES, ControlValueAccessor, NgModel } from 'angular2/common';
 
 @Directive({
-  selector: '[btn-radio][ng-model]',
+  selector: '[btnRadio][ngModel]',
   properties: ['btnRadio', 'uncheckable'],
   host: {
     '(click)': 'onClick()',

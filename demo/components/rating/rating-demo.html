@@ -1,10 +1,10 @@
 <h4>Default</h4>
-<rating [(ng-model)]="rate" [max]="max" [readonly]="isReadonly"
+<rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
         (on-hover)="hoveringOver($event)" (on-leave)="resetStar($event)"
         [titles]="['one','two','three']"></rating>
 <span class="label"
-      [ng-class]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
-      [ng-style]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
+      [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+      [ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
 
 <pre class="card card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar || "none"}}</b></pre>
 
@@ -18,11 +18,11 @@
 
 <h4>Custom icons</h4>
 <div>
-  <rating [(ng-model)]="x" max="15" state-on="glyphicon-ok-sign"
+  <rating [(ngModel)]="x" max="15" state-on="glyphicon-ok-sign"
           state-off="glyphicon-ok-circle"></rating>
   <b>(<i>Rate:</i> {{x}})</b>
 </div>
 <div>
-  <rating [(ng-model)]="y" [rating-states]="ratingStates"></rating>
+  <rating [(ngModel)]="y" [ratingStates]="ratingStates"></rating>
   <b>(<i>Rate:</i> {{y}})</b>
 </div>

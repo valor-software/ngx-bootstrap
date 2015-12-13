@@ -1,9 +1,8 @@
 /// <reference path="../../../tsd.d.ts" />
 import {
-  Component, View, NgClass, NgStyle,
-  CORE_DIRECTIVES, FORM_DIRECTIVES
-} from 'angular2/angular2';
-
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import {Rating} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -14,7 +13,7 @@ let template = require('./rating-demo.html');
 })
 @View({
   template: template,
-  directives: [Rating, NgClass, NgStyle, FORM_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [Rating, FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class RatingDemo {
   private x:number = 5;

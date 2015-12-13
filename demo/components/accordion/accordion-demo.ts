@@ -2,9 +2,8 @@
 
 import {
   Component, View,
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass
-} from 'angular2/angular2';
-
+} from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import {accordion} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -15,7 +14,7 @@ let template = require('./accordion-demo.html');
 })
 @View({
   template: template,
-  directives: [accordion, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  directives: [accordion, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class AccordionDemo {
   public oneAtATime:boolean = true;

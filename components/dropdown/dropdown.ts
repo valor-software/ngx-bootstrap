@@ -1,7 +1,7 @@
 import {
   Directive, OnInit, OnDestroy,
   EventEmitter, ElementRef
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 import {DropdownMenuInterface, DropdownToggleInterface} from './dropdown.interfaces';
 import {dropdownService, ALWAYS} from './dropdown-service';
@@ -41,7 +41,7 @@ export class Dropdown implements OnInit, OnDestroy {
     this.keyboardNav = typeof this.keyboardNav !== 'undefined';
     this.dropdownAppendToBody = typeof this.dropdownAppendToBody !== 'undefined';
     if (this.isOpen) {
-      // todo: watch for event get-is-open?
+      // todo: watch for event get-isOpen?
     }
   }
 

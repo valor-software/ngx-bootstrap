@@ -1,8 +1,8 @@
 /// <reference path="../../../tsd.d.ts" />
 import {
-  Component, View, NgClass,
-  CORE_DIRECTIVES, FORM_DIRECTIVES
-} from 'angular2/angular2';
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 
 import {tooltip} from '../../../ng2-bootstrap';
 
@@ -14,7 +14,7 @@ let template = require('./tooltip-demo.html');
 })
 @View({
   template: template,
-  directives: [tooltip, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass],
+  directives: [tooltip, CORE_DIRECTIVES, FORM_DIRECTIVES],
   styles: [`
     /* Specify styling for tooltip contents */
     .tooltip.customClass .tooltip-inner {

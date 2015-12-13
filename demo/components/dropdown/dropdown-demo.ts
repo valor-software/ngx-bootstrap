@@ -1,6 +1,9 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
+import {
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 import {dropdown} from '../../../ng2-bootstrap';
 

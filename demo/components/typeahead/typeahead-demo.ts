@@ -1,8 +1,8 @@
 /// <reference path="../../../tsd.d.ts" />
 import {
-  Component, View, NgClass,
-  CORE_DIRECTIVES, FORM_DIRECTIVES
-} from 'angular2/angular2';
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 
 import {typeahead} from '../../../ng2-bootstrap';
 
@@ -14,7 +14,7 @@ let template = require('./typeahead-demo.html');
 })
 @View({
   template: template,
-  directives: [typeahead, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass]
+  directives: [typeahead, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class TypeaheadDemo {
   private selected:string = '';

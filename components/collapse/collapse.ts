@@ -2,7 +2,7 @@ import {
   Component, View,
   Directive,
   EventEmitter, ElementRef
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 // todo: add animate
 // todo: add init and on change

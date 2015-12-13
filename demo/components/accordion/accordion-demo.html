@@ -9,29 +9,31 @@
 
 <div class="checkbox">
   <label>
-    <input type="checkbox" [(ng-model)]="oneAtATime">
+    <input type="checkbox" [(ngModel)]="oneAtATime">
     Open only one at a time
   </label>
 </div>
-<accordion [close-others]="oneAtATime">
+<accordion [closeOthers]="oneAtATime">
   <accordion-group heading="Static Header, initially expanded"
-                   [is-open]="status.isFirstOpen"
-                   [is-disabled]="status.isFirstDisabled">
+                   [isOpen]="status.isFirstOpen"
+                   [isDisabled]="status.isFirstDisabled">
     This content is straight in the template.
   </accordion-group>
-  <accordion-group heading="{{group.title}}" *ng-for="#group of groups">
-    {{group.content}}
-  </accordion-group>
+  <template ngFor #group [ngForOf]="groups" #i="index">
+    <accordion-group [heading]="group.title">
+      group.content
+    </accordion-group>
+  </template>
   <accordion-group heading="Dynamic Body Content">
     <p>The body of the accordion group grows to fit the contents</p>
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>
-    <div *ng-for="#item of items">{{item}}</div>
+    <div *ngFor="#item of items">{{item}}</div>
   </accordion-group>
-  <accordion-group [is-open]="status.open">
+  <accordion-group [isOpen]="status.open">
     <template accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"
-         [ng-class]="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+         [ngClass]="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
     </template>
     This is just some content to illustrate fancy headings.
   </accordion-group>
