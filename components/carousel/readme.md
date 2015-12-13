@@ -1,28 +1,41 @@
 ### Usage
 ```typescript
-import {carousel} from 'ng2-bootstrap';
+import { CAROUSEL_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Carousel implements OnDestroy
 @Component({
-  selector: 'carousel, [carousel]',
-  properties: ['interval', 'noTransition', 'noPause', 'noWrap'],
+  selector: 'carousel',
+  directives: [NgClass, NgFor]
 })
+export class Carousel implements OnDestroy {
+  @Input() private noWrap:boolean;
+  @Input() private noPause:boolean;
+  @Input() private noTransition:boolean;
+
+  @Input() public get interval():number {}
+}
 
 // class Slide implements OnInit, OnDestroy
 @Component({
-  selector: 'slide, [slide]',
-  properties: ['direction', 'active', 'index'],
-  host: {
-    '[class.active]': 'active',
-    '[class.item]': 'true',
-    '[class.carousel-item]': 'true'
-  },
+  selector: 'slide',
+  directives: [NgClass]
 })
+export class Slide implements OnInit, OnDestroy {
+  @Input() public index:number;
+  @Input() public direction:Direction;
 
-export const carousel:Array<any> = [Carousel, Slide];
+  @HostBinding('class.active')
+  @Input() public active:boolean;
+
+  @HostBinding('class.item')
+  @HostBinding('class.carousel-item')
+  private addClass:boolean = true;
+}
+
+export const CAROUSEL_COMPONENTS:Array<any> = [Carousel, Slide];
 ```
 
 ### Carousel properties

@@ -19,9 +19,8 @@ let ts = require('!!prismjs?lang=typescript!./buttons/buttons-demo.ts');
 let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
-  selector: 'buttons-section'
-})
-@View({
+  selector: 'buttons-section',
+  directives: [ButtonsDemo, tabs, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -64,8 +63,7 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
       </div>
     </div>
   </section>
-  `,
-  directives: [ButtonsDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class ButtonsSection {
 }

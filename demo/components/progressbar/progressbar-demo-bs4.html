@@ -30,11 +30,11 @@
 <div class="row col-lg-12">
   <!-- todo: implement as component -->
   <progress *ngFor="#baz of stacked"
-            class="progress progress-{{ baz.type }}"
+            class="progress progress-{{ baz?.type }}"
             style="float: left;"
             [ngStyle]="{width: baz.value + '%'}"
             [value]="baz.value" [max]="baz.max">
-    <span [hidden]="baz.value < 5">{{baz.value}}%</span>
+    <span [hidden]="baz.value < 5">{{baz?.value}}%</span>
   </progress>
   <!-- gray background -->
   <progress class="progress" value="0" max="100" style="width: 100%;"></progress>

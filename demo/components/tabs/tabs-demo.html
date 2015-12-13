@@ -16,7 +16,7 @@
          (select)="tabz.active = true"
          (deselect)="tabz.active = false"
          [disabled]="tabz.disabled">
-      {{tabz.content}}
+      {{tabz?.content}}
     </tab>
     <tab (select)="alertMe()">
       <template tab-heading>

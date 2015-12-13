@@ -1,15 +1,9 @@
 import {
-  Component, View,
-  OnInit, EventEmitter,
-  ElementRef, ViewContainerRef,
-  Self, Renderer
+  Component,
+  OnInit, Input,
+  Self
 } from 'angular2/core';
-import {
-  CORE_DIRECTIVES,
-  FORM_DIRECTIVES,
-  ControlValueAccessor,
-  NgModel }
-from 'angular2/common';
+import { NgClass, NgModel, ControlValueAccessor } from 'angular2/common';
 
 export interface ITimepickerConfig {
   hourStep: number;
@@ -61,16 +55,7 @@ function addMinutes(date: any, minutes:number) {
 // TODO: templateUrl
 @Component({
   selector: 'timepicker[ngModel]',
-  properties: [
-    'hourStep', 'minuteStep',
-    'meridians', 'showMeridian',
-    'readonlyInput',
-    'mousewheel', 'arrowkeys',
-    'showSpinners',
-    'min', 'max'
-  ]
-})
-@View({
+  directives: [NgClass],
   template: `
     <table>
       <tbody>
@@ -98,24 +83,45 @@ function addMinutes(date: any, minutes:number) {
         </tr>
       </tbody>
     </table>
-  `,
-  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
+  `
 })
 export class Timepicker implements ControlValueAccessor, OnInit {
+  // config
+  @Input() private hourStep:number;
+  @Input() private minuteStep:number;
+  @Input() private readonlyInput:boolean;
+  @Input() private mousewheel:boolean;
+  @Input() private arrowkeys:boolean;
+  @Input() private showSpinners:boolean;
+  @Input() private min:Date;
+  @Input() private max:Date;
+  @Input() private meridians:Array<string> = ['AM', 'PM']; // ??
+
+  @Input() private get showMeridian() {
+    return this._showMeridian;
+  }
+
+  private set showMeridian(value:boolean) {
+    this._showMeridian = value;
+    // || !this.$error.time
+    if (true) {
+      this.updateTemplate();
+      return;
+    }
+    // Evaluate from template
+    let hours = this.getHoursFromTemplate();
+    let minutes = this.getMinutesFromTemplate();
+    if (isDefined(hours) && isDefined(minutes)) {
+      this.selected.setHours(hours);
+      this.refresh();
+    }
+  }
+
   // result value
   private _selected:Date = new Date();
-  // config
-  private hourStep:number;
-  private minuteStep:number;
+
   private _showMeridian:boolean;
   private meridian:any; // ??
-  private meridians:Array<string> = ['AM', 'PM']; // ??
-  private readonlyInput:boolean;
-  private mousewheel:boolean;
-  private arrowkeys:boolean;
-  private showSpinners:boolean;
-  private min:Date;
-  private max:Date;
 
   // input values
   private hours:string;
@@ -136,26 +142,6 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   // validation
   private invalidHours:any;
   private invalidMinutes:any;
-
-  private get showMeridian() {
-    return this._showMeridian;
-  }
-
-  private set showMeridian(value:boolean) {
-    this._showMeridian = value;
-    // || !this.$error.time
-    if (true) {
-      this.updateTemplate();
-      return;
-    }
-    // Evaluate from template
-    let hours = this.getHoursFromTemplate();
-    let minutes = this.getMinutesFromTemplate();
-    if (isDefined(hours) && isDefined(minutes)) {
-      this.selected.setHours(hours);
-      this.refresh();
-    }
-  }
 
   constructor(@Self() public cd:NgModel) {
     cd.valueAccessor = this;

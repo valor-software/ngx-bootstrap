@@ -19,11 +19,9 @@
                    [isDisabled]="status.isFirstDisabled">
     This content is straight in the template.
   </accordion-group>
-  <template ngFor #group [ngForOf]="groups" #i="index">
-    <accordion-group [heading]="group.title">
-      group.content
-    </accordion-group>
-  </template>
+  <accordion-group *ngFor="#group of groups" [heading]="group.title">
+     {{ group?.content }}
+  </accordion-group>
   <accordion-group heading="Dynamic Body Content">
     <p>The body of the accordion group grows to fit the contents</p>
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>

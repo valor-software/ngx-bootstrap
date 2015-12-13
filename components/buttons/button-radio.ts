@@ -1,53 +1,22 @@
 import {
   Directive,
-  Self,
-  ElementRef,
-  OnInit
+  OnInit, Input, HostBinding, HostListener,
+  Self, ElementRef
 } from 'angular2/core';
-import { CORE_DIRECTIVES, ControlValueAccessor, NgModel } from 'angular2/common';
+import { ControlValueAccessor, NgModel } from 'angular2/common';
 
-@Directive({
-  selector: '[btnRadio][ngModel]',
-  properties: ['btnRadio', 'uncheckable'],
-  host: {
-    '(click)': 'onClick()',
-    '[class.active]': 'isActive'
-  }
-})
+@Directive({ selector: '[btnRadio][ngModel]' })
 export class ButtonRadio implements ControlValueAccessor, OnInit {
-  public btnRadio:string;
-  public uncheckable:boolean;
+  @Input() private btnRadio:string;
+  @Input() private uncheckable:boolean;
 
-  constructor(@Self() public cd:NgModel, public el:ElementRef) {
-    // hack!
-    cd.valueAccessor = this;
-  }
-
-  ngOnInit() {
-    this.uncheckable = typeof this.uncheckable !== 'undefined';
-  }
-
+  @HostBinding('class.active')
   private get isActive() {
     return this.btnRadio === this.value;
   }
 
-  // hack view model!
-  public get value() {
-    return this.cd.viewModel;
-  }
-
-  public set value(value) {
-    this.cd.viewModel = value;
-    // hack: host classes updated before value is set >.<
-    if (this.isActive) {
-      this.el.nativeElement.classList.add('active');
-    } else {
-      this.el.nativeElement.classList.remove('active');
-    }
-  }
-
-  // view -> model
-  onClick() {
+  @HostListener('click')
+  private onClick() {
     if (this.uncheckable && this.btnRadio === this.value) {
       return this.cd.viewToModelUpdate(null);
     }
@@ -55,21 +24,38 @@ export class ButtonRadio implements ControlValueAccessor, OnInit {
     this.cd.viewToModelUpdate(this.btnRadio);
   }
 
+  constructor(@Self() public cd:NgModel, public el:ElementRef) {
+    // hack!
+    cd.valueAccessor = this;
+  }
+
+  public ngOnInit() {
+    this.uncheckable = typeof this.uncheckable !== 'undefined';
+  }
+
+  // hack view model!
+  protected get value() {
+    return this.cd.viewModel;
+  }
+
+  protected set value(value) {
+    this.cd.viewModel = value;
+  }
+
   // ControlValueAccessor
   // model -> view
-  writeValue(value:any) {
+  public writeValue(value:any) {
     this.value = value;
   }
 
-  onChange = (_:any) => {};
-  onTouched = () => {};
+  public onChange = (_:any) => {};
+  public onTouched = () => {};
 
-  registerOnChange(fn:(_:any) => {}):void {
+  public registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn:() => {}):void {
+  public registerOnTouched(fn:() => {}):void {
     this.onTouched = fn;
   }
-
 }

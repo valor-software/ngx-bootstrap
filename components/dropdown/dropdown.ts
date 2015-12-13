@@ -1,39 +1,68 @@
 import {
-  Directive, OnInit, OnDestroy,
+  Directive,
+  OnInit, OnDestroy, Input, Output, HostBinding,
   EventEmitter, ElementRef
 } from 'angular2/core';
 
 import {DropdownMenuInterface, DropdownToggleInterface} from './dropdown.interfaces';
 import {dropdownService, ALWAYS} from './dropdown-service';
 
-@Directive({
-  selector: '[dropdown]',
-  properties: ['isOpen', 'autoClose', 'keyboardNav', 'dropdownAppendToBody'],
-  events: ['onToggle'],
-  host: {
-    '[class.dropdown]': 'true',
-    '[class.open]': 'isOpen'
-  }
-})
+@Directive({ selector: '[dropdown]' })
 export class Dropdown implements OnInit, OnDestroy {
-  private _isOpen:boolean;
-  // enum string: ['always', 'outsideClick', 'disabled']
-  private dropdownAppendToBody:boolean;
-  private onToggle:EventEmitter<boolean> = new EventEmitter();
+  @HostBinding('class.open')
+  @Input() public get isOpen():boolean {
+    return this._isOpen;
+  }
+  @Input() public autoClose:string;
+  @Input() public keyboardNav:boolean;
+// enum string: ['always', 'outsideClick', 'disabled']
+  @Input() private dropdownAppendToBody:boolean;
 
-  public autoClose:string;
-  public keyboardNav:boolean;
+  @Output() private onToggle:EventEmitter<boolean> = new EventEmitter();
+
+  @HostBinding('class.dropdown') private addClass = true;
+
+  private _isOpen:boolean;
   // index of selected element
   public selectedOption:number;
   // drop menu html
   public menuEl:ElementRef;
   // drop down toggle element
   public toggleEl:ElementRef;
+
   // not implemented:
   private dropdownMenuTemplateUrl:string;
 
   constructor(public el:ElementRef) {
     // todo: bind to route change event
+  }
+
+  public set isOpen(value) {
+    this._isOpen = !!value;
+
+    // todo: implement after porting position
+    if (this.dropdownAppendToBody && this.menuEl) {
+
+    }
+
+    // todo: $animate open<->close transitions, as soon as ng2Animate will be ready
+    if (this.isOpen) {
+      if (this.dropdownMenuTemplateUrl) {
+        // todo: implement template url option
+      }
+
+      this.focusToggleElement();
+      dropdownService.open(this);
+    } else {
+      if (this.dropdownMenuTemplateUrl) {
+        // todo: implement template url option
+      }
+
+      dropdownService.close(this);
+      this.selectedOption = null;
+    }
+    this.onToggle.emit(this.isOpen);
+    // todo: implement call to setIsOpen if set and function
   }
 
   ngOnInit() {
@@ -71,38 +100,6 @@ export class Dropdown implements OnInit, OnDestroy {
 
   public toggle(open?:boolean):boolean {
     return this.isOpen = arguments.length ? !!open : !this.isOpen;
-  }
-
-  get isOpen():boolean {
-    return this._isOpen;
-  }
-
-  set isOpen(value) {
-    this._isOpen = !!value;
-
-    // todo: implement after porting position
-    if (this.dropdownAppendToBody && this.menuEl) {
-
-    }
-
-    // todo: $animate open<->close transitions, as soon as ng2Animate will be ready
-    if (this.isOpen) {
-      if (this.dropdownMenuTemplateUrl) {
-        // todo: implement template url option
-      }
-
-      this.focusToggleElement();
-      dropdownService.open(this);
-    } else {
-      if (this.dropdownMenuTemplateUrl) {
-        // todo: implement template url option
-      }
-
-      dropdownService.close(this);
-      this.selectedOption = null;
-    }
-    this.onToggle.next(this.isOpen);
-    // todo: implement call to setIsOpen if set and function
   }
 
   public focusDropdownEntry(keyCode:number) {

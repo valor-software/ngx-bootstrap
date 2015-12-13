@@ -1,20 +1,15 @@
 /// <reference path="../../../tsd.d.ts" />
-import {
-  Component, View,
-} from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
-
-import {tabs} from '../../../ng2-bootstrap';
+import { TAB_COMPONENTS } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./tabs-demo.html');
 
 @Component({
-  selector: 'tabs-demo'
-})
-@View({
+  selector: 'tabs-demo',
   template: template,
-  directives: [tabs, CORE_DIRECTIVES]
+  directives: [TAB_COMPONENTS, CORE_DIRECTIVES]
 })
 export class TabsDemo {
   private tabs:Array<any> = [

@@ -1,22 +1,29 @@
 ### Usage
 ```typescript
-import {Timepicker} from 'ng2-bootstrap';
+import { Timepicker } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Timepicker implements OnInit
 @Component({
-  selector: 'timepicker[ng-model]',
-  properties: [
-    'hourStep', 'minuteStep',
-    'meridians', 'showMeridian',
-    'readonlyInput',
-    'mousewheel', 'arrowkeys',
-    'showSpinners',
-    'min', 'max'
-  ],
+  selector: 'timepicker[ngModel]',
+  directives: [NgClass]
 })
+export class Timepicker implements ControlValueAccessor, OnInit {
+  // config
+  @Input() private hourStep:number;
+  @Input() private minuteStep:number;
+  @Input() private readonlyInput:boolean;
+  @Input() private mousewheel:boolean;
+  @Input() private arrowkeys:boolean;
+  @Input() private showSpinners:boolean;
+  @Input() private min:Date;
+  @Input() private max:Date;
+  @Input() private meridians:Array<string> = ['AM', 'PM']; // ??
+
+  @Input() private get showMeridian() {}
+}
 ```
 
 ### Timepicker properties

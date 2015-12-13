@@ -1,11 +1,9 @@
 import {
-  Type,
-  Component, View, Directive,
-  OnInit, OnDestroy, EventEmitter,
-  ElementRef, ViewContainerRef,
-  Host, ViewEncapsulation,
+  Component, Directive,
+  OnInit, OnDestroy,
+  Host, Input, HostBinding
 } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import { NgClass, NgStyle } from 'angular2/common';
 
 const progressConfig = {
   animate: true,
@@ -14,22 +12,27 @@ const progressConfig = {
 
 // todo: progress element conflict with bootstrap.css
 // todo: need hack: replace host element with div
-@Directive({
-  selector: 'bs-progress, [progress]',
-  properties: ['animate', 'max'],
-  host: {
-    'class': 'progress',
-    '[attr.max]': 'max'
-  }
-})
-// @View({
-//  template: `<div class="progress"><ng-content></ng-content></div>`,
-//  encapsulation: ViewEncapsulation.None
-// })
+@Directive({ selector: 'bs-progress, [progress]' })
 export class Progress implements OnInit {
-  private _max:number;
-  public animate:boolean;
+  @Input() public animate:boolean;
+
+  @HostBinding('attr.max')
+  @Input() public get max():number {
+    return this._max;
+  }
+
+  @HostBinding('class') private addClass = 'progress';
+
+  public set max(v:number) {
+    this._max = v;
+    this.bars.forEach((bar:Bar) => {
+      bar.recalculatePercentage();
+    });
+  }
+
   public bars:Array<any> = [];
+
+  private _max:number;
 
   constructor() {
   }
@@ -39,16 +42,6 @@ export class Progress implements OnInit {
     this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
   }
 
-  public get max():number {
-    return this._max;
-  }
-
-  public set max(v:number) {
-    this._max = v;
-    this.bars.forEach((bar:Bar) => {
-      bar.recalculatePercentage();
-    });
-  }
 
   public addBar(bar:Bar) {
     if (!this.animate) {
@@ -66,9 +59,7 @@ export class Progress implements OnInit {
 // todo: use query from progress?
 @Component({
   selector: 'bar, [bar]',
-  properties: ['type', 'value']
-})
-@View({
+  directives: [NgClass, NgStyle],
   template: `
   <div class="progress-bar"
     style="min-width: 0;"
@@ -80,12 +71,22 @@ export class Progress implements OnInit {
     [attr.aria-valuetext]="percent.toFixed(0) + '%'"
     [attr.aria-valuemax]="max"
     ><ng-content></ng-content></div>
-`,
-  directives: [CORE_DIRECTIVES],
-  encapsulation: ViewEncapsulation.None
+`
 })
 export class Bar implements OnInit, OnDestroy {
-  public type:string;
+  @Input() public type:string;
+  @Input() public get value():number {
+    return this._value;
+  }
+
+  public set value(v:number) {
+    if (!v && v !== 0) {
+      return;
+    }
+    this._value = v;
+    this.recalculatePercentage();
+  }
+
   public percent:number = 0;
   public transition:string;
 
@@ -100,18 +101,6 @@ export class Bar implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.progress.removeBar(this);
-  }
-
-  public get value():number {
-    return this._value;
-  }
-
-  public set value(v:number) {
-    if (!v && v !== 0) {
-      return;
-    }
-    this._value = v;
-    this.recalculatePercentage();
   }
 
   public recalculatePercentage() {
@@ -129,23 +118,25 @@ export class Bar implements OnInit, OnDestroy {
 
 @Component({
   selector: 'progressbar, [progressbar]',
-  properties: ['animate', 'max', 'type', 'value']
-})
-@View({
+  directives: [Progress, Bar],
   template: `
     <div progress [animate]="animate" [max]="max">
       <bar [type]="type" [value]="value">
           <ng-content></ng-content>
       </bar>
     </div>
-  `,
-  directives: [Progress, Bar]
+  `
 })
 export class Progressbar {
-  private animate:boolean;
-  private max:number;
-  private type:string;
-  private value:number;
+  @Input() private animate:boolean;
+  @Input() private max:number;
+  @Input() private type:string;
+  @Input() private value:number;
 }
 
+export const PROGRESSBAR_COMPONENTS:Array<any> = [Progress, Bar, Progressbar];
+/**
+ * @deprecated use PROGRESSBAR_COMPONENTS instead
+ * @type {Progress|Bar|Progressbar[]}
+ */
 export const progressbar:Array<any> = [Progress, Bar, Progressbar];

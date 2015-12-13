@@ -1,6 +1,6 @@
 import {
   Directive,
-  Component, View, Self,
+  Component, Self,
   EventEmitter, OnInit,
   ElementRef,
   Renderer,
@@ -36,7 +36,7 @@ const TEMPLATE:any = {
          [ngClass]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
          class="dropdown-item"
-         [inner-html]="hightlight(match, query)"></a>
+         [innerHtml]="hightlight(match, query)"></a>
   </div>
   `,
   [Ng2BootstrapTheme.BS3]: `
@@ -62,11 +62,9 @@ export class TypeaheadOptions {
 }
 
 @Component({
-  selector: 'typeahead-container'
-})
-@View({
-  template: TEMPLATE[Ng2BootstrapConfig.theme],
+  selector: 'typeahead-container',
   directives: [CORE_DIRECTIVES],
+  template: TEMPLATE[Ng2BootstrapConfig.theme],
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainer {
@@ -162,7 +160,7 @@ export class TypeaheadContainer {
         tokenLen = query[i].length;
         if (startIdx >= 0 && tokenLen > 0) {
           itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
-          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + " ".repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
+          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + ' '.repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
         }
       }
     } else if (query) {
@@ -240,8 +238,8 @@ export class Typeahead implements OnInit {
   private focusOnSelect:boolean;
   private field:string;
   private async:boolean = null;
-  private wordDelimiters:string = " ";
-  private phraseDelimiters:string = "'\"";
+  private wordDelimiters:string = ' ';
+  private phraseDelimiters:string = '\'"';
 
   private debouncer:Function;
   private source:any;
@@ -495,5 +493,3 @@ export class Typeahead implements OnInit {
     }
   }
 }
-
-export const typeahead:Array<any> = [Typeahead];

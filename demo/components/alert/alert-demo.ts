@@ -1,16 +1,14 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {Component, View} from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
-import {Alert} from '../../../ng2-bootstrap';
+import { Alert } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./alert-demo.html');
 
 @Component({
-  selector: 'alert-demo'
-})
-@View({
+  selector: 'alert-demo',
   template: template,
   directives: [Alert, CORE_DIRECTIVES]
 })
@@ -32,6 +30,6 @@ export class AlertDemo {
   }
 
   addAlert() {
-    this.alerts.push({msg: 'Another alert!', closable: true});
+    this.alerts.push({msg: 'Another alert!', type: 'warning', closable: true});
   }
 }

@@ -1,28 +1,33 @@
 ### Usage
 ```typescript
-import {ButtonRadio, ButtonCheckbox} from 'ng2-bootstrap';
+import { ButtonRadio, ButtonCheckbox } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 ### Annotations
 ```typescript
 // class ButtonRadio implements OnInit
-@Directive({
-  selector: '[btn-radio][ng-model]',
-  properties: ['btnRadio', 'uncheckable'],
-  host: {
-    '(click)': 'onClick()',
-    '[class.active]': 'isActive'
-  },
-})
+@Directive({ selector: '[btnRadio][ngModel]' })
+export class ButtonRadio implements ControlValueAccessor, OnInit {
+  @Input() public btnRadio:string;
+  @Input() public uncheckable:boolean;
 
+  @HostBinding('class.active')
+  private get isActive() {}
+
+  @HostListener('click')
+  private onClick() {}
+}
 // class ButtonCheckbox implements OnInit
-@Directive({
-  selector: '[btn-checkbox][ng-model]',
-  properties: ['btnCheckboxTrue', 'btnCheckboxFalse'],
-  host: {
-    '(click)': 'onClick()',
-    '[class.active]': 'state'
-  },
-})
+@Directive({ selector: '[btnCheckbox][ngModel]' })
+export class ButtonCheckbox implements ControlValueAccessor, OnInit {
+  @Input() private btnCheckboxTrue:any;
+  @Input() private btnCheckboxFalse:any;
+
+  @HostBinding('class.active')
+  private state:boolean = false;
+
+  @HostListener('click')
+  private onClick() {}
+}
 ```
 
 ### Radio button properties

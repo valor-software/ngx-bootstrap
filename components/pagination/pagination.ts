@@ -1,13 +1,11 @@
 import {
-  Component, View, Directive,
-  OnInit, EventEmitter,
-  ElementRef,
-  Self, Renderer,
-  ViewEncapsulation, ViewRef,
-  ViewContainerRef, TemplateRef, ComponentRef
+  Component,
+  OnInit, Input, Output,
+  ElementRef, EventEmitter,
+  Self, Renderer
 } from 'angular2/core';
-import { CORE_DIRECTIVES, ControlValueAccessor, NgModel } from 'angular2/common';
-import {IAttribute} from '../common';
+import { NgFor, NgClass, ControlValueAccessor, NgModel } from 'angular2/common';
+import { IAttribute } from '../common';
 
 // todo: extract base functionality classes
 // todo: use lodash#default for configuration
@@ -27,10 +25,11 @@ export interface IPaginationConfig extends IAttribute {
 
   rotate: boolean;
 }
-interface IPageChangedEvent {
+export interface IPageChangedEvent {
   itemsPerPage: number;
   page: number;
 }
+
 const paginationConfig:IPaginationConfig = {
   maxSize: void 0,
   itemsPerPage: 10,
@@ -43,19 +42,8 @@ const paginationConfig:IPaginationConfig = {
   rotate: true
 };
 
-@Component({
-  selector: 'pagination[ngModel], [pagination][ng-model]',
-  properties: [
-    'rotate', 'disabled',
-    'totalItems', 'itemsPerPage', 'maxSize',
-    'boundaryLinks', 'directionLinks',
-    'firstText', 'previousText', 'nextText', 'lastText'
-  ],
-  events: ['numPages', 'pageChanged']
-})
-@View({
-  template: `
-  <ul class="pagination" [ngClass]="classMap">
+const PAGINATION_TEMPLATE = `
+    <ul class="pagination" [ngClass]="classMap">
     <li class="pagination-first"
         [ngClass]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}"
         [hidden]="!boundaryLinks">
@@ -84,37 +72,31 @@ const paginationConfig:IPaginationConfig = {
         [hidden]="!boundaryLinks">
       <a href (click)="selectPage(totalPages, $event)">{{getText('last')}}</a></li>
   </ul>
-  `,
-  directives: [CORE_DIRECTIVES],
-  encapsulation: ViewEncapsulation.None
+  `;
+
+@Component({
+  selector: 'pagination[ngModel]',
+  template: PAGINATION_TEMPLATE,
+  directives: [NgClass, NgFor]
 })
 export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
-  public config: any;
+  @Input() public maxSize:number;
 
-  public maxSize:number;
-
-  public boundaryLinks:boolean;
-  public directionLinks:boolean;
+  @Input() public boundaryLinks:boolean;
+  @Input() public directionLinks:boolean;
   // labels
-  public firstText:string;
-  public previousText:string;
-  public nextText:string;
-  public lastText:string;
-  public rotate:boolean;
+  @Input() public firstText:string;
+  @Input() public previousText:string;
+  @Input() public nextText:string;
+  @Input() public lastText:string;
+  @Input() public rotate:boolean;
 
-  private classMap:string;
+  @Input() private disabled:boolean;
 
-  private disabled:boolean;
-  private numPages:EventEmitter<number> = new EventEmitter();
-  private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter();
+  @Output() private numPages:EventEmitter<number> = new EventEmitter();
+  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter();
 
-  private _itemsPerPage:number;
-  private _totalItems:number;
-  private _totalPages:number;
-
-  private inited: boolean = false;
-
-  public get itemsPerPage() {
+  @Input() public get itemsPerPage() {
     return this._itemsPerPage;
   }
 
@@ -123,7 +105,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
     this.totalPages = this.calculateTotalPages();
   }
 
-  private get totalItems():number {
+  @Input() private get totalItems():number {
     return this._totalItems;
   }
 
@@ -131,6 +113,15 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
     this._totalItems = v;
     this.totalPages = this.calculateTotalPages();
   }
+
+  public config:any;
+  private classMap:string;
+
+  private _itemsPerPage:number;
+  private _totalItems:number;
+  private _totalPages:number;
+
+  private inited:boolean = false;
 
   private get totalPages() {
     return this._totalPages;
@@ -195,7 +186,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
 
     if (!this.disabled) {
       if (event && event.target) {
-        let target: any = event.target;
+        let target:any = event.target;
         target.blur();
       }
       this.writeValue(page);
@@ -216,8 +207,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   }
 
   // Create page object used in template
-  private makePage(number:number, text:string, isActive:boolean):
-   {number: number, text: string, active: boolean} {
+  private makePage(number:number, text:string, isActive:boolean):{number: number, text: string, active: boolean} {
     return {
       number: number,
       text: text,
@@ -282,8 +272,10 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
     return Math.max(totalPages || 0, 1);
   }
 
-  onChange = (_:any) => {};
-  onTouched = () => {};
+  onChange = (_:any) => {
+  };
+  onTouched = () => {
+  };
 
   registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;
@@ -302,29 +294,38 @@ const pagerConfig = {
   align: true
 };
 
+const PAGER_TEMPLATE = `
+    <ul class="pager">
+      <li [ngClass]="{disabled: noPrevious(), previous: align, 'pull-left': align}">
+        <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
+      </li>
+      <li [ngClass]="{disabled: noNext(), next: align, 'pull-right': align}">
+        <a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a>
+      </li>
+  </ul>
+`;
+
 @Component({
-  selector: 'pager[ngModel], [pager][ng-model]',
+  selector: 'pager[ngModel]',
   properties: [
     'align',
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
-  ]
-})
-@View({
-  template: `
-    <ul class="pager">
-      <li [ngClass]="{disabled: noPrevious(), previous: align, 'pull-left': align}"><a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a></li>
-      <li [ngClass]="{disabled: noNext(), next: align, 'pull-right': align}"><a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
-  </ul>
-  `,
-  directives: [CORE_DIRECTIVES]
+  ],
+  template: PAGER_TEMPLATE,
+  directives: [NgClass]
 })
 export class Pager extends Pagination implements OnInit {
-  private align: boolean = pagerConfig.align;
   public config = pagerConfig;
+
   constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     super(cd, renderer, elementRef);
   }
 }
 
+export const PAGINATION_COMPONENTS:Array<any> = [Pagination, Pager];
+/**
+ * @deprecated - use PAGINATION_COMPONENTS instead
+ * @type {Pagination|Pager[]}
+ */
 export const pagination:Array<any> = [Pagination, Pager];
