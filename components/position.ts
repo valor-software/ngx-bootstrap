@@ -1,7 +1,7 @@
 import {
   Injectable,
   ElementRef
-} from 'angular2/angular2';
+} from 'angular2/core';
 import {IAttribute} from './common';
 
 export class PositionService {

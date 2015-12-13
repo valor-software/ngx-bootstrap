@@ -1,8 +1,9 @@
 import {
   Component, View,
   Directive, OnInit, OnDestroy,
-  ViewContainerRef, TemplateRef, Inject, CORE_DIRECTIVES
-} from 'angular2/angular2';
+  ViewContainerRef, TemplateRef, Inject
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 // todo: support template url
 @Component({

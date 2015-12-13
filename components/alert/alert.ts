@@ -1,9 +1,9 @@
 import {
   Component, View,
   OnInit, EventEmitter,
-  ElementRef, ViewContainerRef,
-  NgIf, NgClass
-} from 'angular2/angular2';
+  ElementRef, ViewContainerRef
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 // TODO: templateUrl
 @Component({
@@ -21,7 +21,7 @@ import {
     <ng-content></ng-content>
   </div>
   `,
-  directives: [NgIf, NgClass]
+  directives: [CORE_DIRECTIVES]
 })
 export class Alert implements OnInit {
   public type:string;

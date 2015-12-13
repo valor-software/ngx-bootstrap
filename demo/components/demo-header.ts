@@ -1,5 +1,8 @@
 /// <reference path="../../tsd.d.ts" />
-import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
+import {
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 import {Collapse, dropdown, Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../ng2-bootstrap';
 
 let components = [
@@ -47,7 +50,7 @@ let template = `
   selector: 'demo-header',
   template: template,
   directives: [
-    NgFor,
+    CORE_DIRECTIVES,
     Collapse,
     dropdown
   ]

@@ -3,10 +3,9 @@ import {
   Component, View, Directive,
   OnInit, OnDestroy, EventEmitter,
   ElementRef, ViewContainerRef,
-  NgClass, NgStyle, Host,
-  ViewEncapsulation,
-  CORE_DIRECTIVES
-} from 'angular2/angular2';
+  Host, ViewEncapsulation,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 const progressConfig = {
   animate: true,
@@ -82,7 +81,7 @@ export class Progress implements OnInit {
     [attr.aria-valuemax]="max"
     ><ng-content></ng-content></div>
 `,
-  directives: [NgStyle, NgClass],
+  directives: [CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 export class Bar implements OnInit, OnDestroy {

@@ -1,7 +1,7 @@
 import {
   Directive, OnInit, OnDestroy,
   EventEmitter, ElementRef
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 import {DropdownMenuInterface, DropdownToggleInterface} from './dropdown.interfaces';
 import {dropdownService, ALWAYS} from './dropdown-service';

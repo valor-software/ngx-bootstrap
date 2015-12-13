@@ -1,6 +1,7 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {Component, View, NgFor} from 'angular2/angular2';
+import {Component, View} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 import {Alert} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -11,7 +12,7 @@ let template = require('./alert-demo.html');
 })
 @View({
   template: template,
-  directives: [Alert, NgFor]
+  directives: [Alert, CORE_DIRECTIVES]
 })
 export class AlertDemo {
   alerts:Array<Object> = [

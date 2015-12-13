@@ -2,8 +2,8 @@ import {
   Component, View,
   Directive, OnInit, OnDestroy,
   EventEmitter, ElementRef,
-  CORE_DIRECTIVES, NgClass
-} from 'angular2/angular2';
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 
@@ -47,7 +47,7 @@ const NAVIGATION:any = {
   ${NAVIGATION[Ng2BootstrapConfig.theme]}
 </div>
   `,
-  directives: [CORE_DIRECTIVES, NgClass]
+  directives: [CORE_DIRECTIVES]
 })
 export class Carousel implements OnDestroy {
   private noPause:boolean;
@@ -216,7 +216,7 @@ export class Carousel implements OnDestroy {
     <ng-content></ng-content>
   </div>
   `,
-  directives: [NgClass]
+  directives: [CORE_DIRECTIVES]
 })
 export class Slide implements OnInit, OnDestroy {
   public active:boolean;

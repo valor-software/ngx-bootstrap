@@ -2,13 +2,11 @@ import {
   Component, View, Directive,
   OnInit, EventEmitter,
   ElementRef,
-  ControlValueAccessor,
-  CORE_DIRECTIVES, NgClass,
-  Self, NgModel, Renderer,
+  Self, Renderer,
   ViewEncapsulation, ViewRef,
-  ViewContainerRef, TemplateRef, NgFor, ComponentRef
-} from 'angular2/angular2';
-
+  ViewContainerRef, TemplateRef, ComponentRef
+} from 'angular2/core';
+import { CORE_DIRECTIVES, ControlValueAccessor, NgModel } from 'angular2/common';
 import {IAttribute} from '../common';
 
 // todo: extract base functionality classes
@@ -87,7 +85,7 @@ const paginationConfig:IPaginationConfig = {
       <a href (click)="selectPage(totalPages, $event)">{{getText('last')}}</a></li>
   </ul>
   `,
-  directives: [CORE_DIRECTIVES, NgClass],
+  directives: [CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
@@ -319,7 +317,7 @@ const pagerConfig = {
       <li [ngClass]="{disabled: noNext(), next: align, 'pull-right': align}"><a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
   </ul>
   `,
-  directives: [NgClass]
+  directives: [CORE_DIRECTIVES]
 })
 export class Pager extends Pagination implements OnInit {
   private align: boolean = pagerConfig.align;

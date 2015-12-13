@@ -1,11 +1,15 @@
 import {
   Component, View,
   OnInit, EventEmitter,
-  ControlValueAccessor,
   ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES,
-  Self, NgModel, Renderer
-} from 'angular2/angular2';
+  Self, Renderer
+} from 'angular2/core';
+import {
+  CORE_DIRECTIVES,
+  FORM_DIRECTIVES,
+  ControlValueAccessor,
+  NgModel }
+from 'angular2/common';
 
 export interface ITimepickerConfig {
   hourStep: number;
@@ -95,7 +99,7 @@ function addMinutes(date: any, minutes:number) {
       </tbody>
     </table>
   `,
-  directives: [FORM_DIRECTIVES, NgClass]
+  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class Timepicker implements ControlValueAccessor, OnInit {
   // result value

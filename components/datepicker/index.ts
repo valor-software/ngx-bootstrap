@@ -6,7 +6,7 @@ import {
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
   Self, NgModel, Renderer,
   QueryList, Query
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 import * as moment from 'moment';
 

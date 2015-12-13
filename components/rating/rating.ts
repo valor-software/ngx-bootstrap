@@ -1,9 +1,9 @@
 import {
   Component, View,
   OnInit, EventEmitter,
-  NgClass, ControlValueAccessor, NgFor,
-  NgModel, Self, Renderer, ElementRef
-} from 'angular2/angular2';
+  Self, Renderer, ElementRef
+} from 'angular2/core';
+import { CORE_DIRECTIVES, ControlValueAccessor, NgModel } from 'angular2/common';
 
 // TODO: templateUrl
 @Component({
@@ -27,7 +27,7 @@ import {
       </template>
     </span>
   `,
-  directives: [NgClass, NgFor]
+  directives: [CORE_DIRECTIVES]
 })
 export class Rating implements ControlValueAccessor, OnInit {
   private max:number;

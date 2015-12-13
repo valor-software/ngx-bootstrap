@@ -5,12 +5,12 @@ import {
   ElementRef, ViewContainerRef, DynamicComponentLoader,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
   Self, NgModel, Renderer, NgStyle
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 // import {setProperty} from 'angular2/src/forms/directives/shared';
 // import {DOM} from 'angular2/src/dom/dom_adapter';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
 import {positionService} from '../position';
 import * as moment from 'moment';
 

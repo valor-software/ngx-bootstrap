@@ -1,10 +1,9 @@
 import {
   Component, View, Directive,
   OnInit, OnDestroy, DoCheck, EventEmitter,
-  ElementRef, TemplateRef,
-  CORE_DIRECTIVES, NgClass
-} from 'angular2/angular2';
-
+  ElementRef, TemplateRef
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 import {NgTransclude, IAttribute} from '../common';
 
 // todo: add active event to tab
@@ -26,7 +25,7 @@ import {NgTransclude, IAttribute} from '../common';
       <ng-content></ng-content>
     </div>
   `,
-  directives: [CORE_DIRECTIVES, NgClass, NgTransclude]
+  directives: [CORE_DIRECTIVES, NgTransclude]
 })
 export class Tabset implements OnInit {
   private vertical:boolean;

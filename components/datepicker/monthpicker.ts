@@ -5,7 +5,7 @@ import {
   ElementRef, ViewContainerRef,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
   Self, NgModel, Renderer
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 import {DatePickerInner} from './datepicker-inner';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';

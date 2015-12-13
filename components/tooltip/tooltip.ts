@@ -3,13 +3,12 @@ import {
   Component, View,
   OnInit, EventEmitter,
   ElementRef,
-  NgClass, NgStyle,
   ViewRef, ViewContainerRef, TemplateRef,
   DynamicComponentLoader, ComponentRef,
   ViewEncapsulation
-} from 'angular2/angular2';
-
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
 
 import {positionService} from '../position';
 import {IAttribute} from '../common';
@@ -38,7 +37,7 @@ class TooltipOptions {
         {{content}}
       </div>
     </div>`,
-  directives: [NgClass, NgStyle],
+  directives: [CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 class TooltipContainer {

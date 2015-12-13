@@ -2,9 +2,8 @@
 
 import {
   Component, View,
-  CORE_DIRECTIVES, FORM_DIRECTIVES
-} from 'angular2/angular2';
-
+} from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 import {accordion} from '../../../ng2-bootstrap';
 
 // webpack html imports
