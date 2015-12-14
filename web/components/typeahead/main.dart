@@ -1,6 +1,7 @@
 import 'package:angular2/bootstrap.dart';
+import 'package:angular2/platform/browser.dart';
+
 import 'typeahead-demo.dart';
-import 'package:angular2/tools.dart';
 
 main() async {
   var appRef = await bootstrap(TypeaheadDemo);

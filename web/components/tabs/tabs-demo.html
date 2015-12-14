@@ -10,7 +10,7 @@
   <hr />
   <tabset>
     <tab heading="Static title">Static content</tab>
-    <tab *ng-for="#tabz of tabs"
+    <tab *ngFor="#tabz of tabs"
          [heading]="tabz['title']"
          [active]="tabz['active'] == true"
          (deselect)="tabz['active'] = false"

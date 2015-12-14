@@ -37,7 +37,7 @@
     <input type="text" value="Click me!" tooltip="See? Now click away..."  tooltip-trigger="focus" tooltip-placement="right" class="form-control" />
   </div>
 
-  <div class="form-group" ng-class="{'has-error' : !inputModel}">
+  <div class="form-group" ngClass="{'has-error' : !inputModel}">
     <label>Disable tooltips conditionally:</label>
     <input type="text" [(ng-model)]="inputModel" class="form-control"
            placeholder="Hover over this for a tooltip until this is filled"

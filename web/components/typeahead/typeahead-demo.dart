@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/typeahead/typeahead.dart";
+import "package:ng2_strap/typeahead/typeahead.dart";
 import 'dart:async';
 
 @Component (selector: "typeahead-demo")

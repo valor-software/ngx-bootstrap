@@ -14,9 +14,9 @@ Ng2BootstrapTheme.BS4 :
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
       <a href="#"
-         *ng-for="#match of matches"
+         *ngFor="#match of matches"
          (click)="selectMatch(match, \$event)"
-         [ng-class]="{active: isActive(match) }"
+         [ngClass]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
          class="dropdown-item"
          [inner-html]="hightlight(match, query)"></a>
@@ -26,8 +26,8 @@ Ng2BootstrapTheme.BS4 :
   <ul class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
-    <li *ng-for="#match of matches"
-        [ng-class]="{active: isActive(match) }"
+    <li *ngFor="#match of matches"
+        [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, \$event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>
@@ -48,8 +48,8 @@ class TypeaheadOptions {
   <ul class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
-    <li *ng-for="#match of matches"
-        [ng-class]="{active: isActive(match) }"
+    <li *ngFor="#match of matches"
+        [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, \$event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>
@@ -329,7 +329,7 @@ class Typeahead implements OnInit {
     }
   }
 
-  onInit() {
+  ngOnInit() {
     // async should be false in case of array
     async = source is Function;
 
@@ -384,7 +384,7 @@ class Typeahead implements OnInit {
 
   changeModel(value) {
     cd.viewToModelUpdate(value);
-    setProperty(renderer, element, "value", value);
+//    setProperty(renderer, element, "value", value);
     hide();
   }
 

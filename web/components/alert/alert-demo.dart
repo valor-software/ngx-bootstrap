@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart" show Component, View, NgFor;
-import "package:ng2-strap/alert/alert.dart" show Alert;
+import "package:ng2_strap/alert/alert.dart" show Alert;
 
 @Component(
     selector: "alert-demo",

@@ -59,7 +59,7 @@ export class AccordionTransclude implements OnInit{
   constructor(@Inject(ViewContainerRef) private viewRef:ViewContainerRef) {
   }
 
-  onInit() {
+  ngOnInit() {
     if (this.accordionTransclude) {
       this.viewRef.createEmbeddedView(this.accordionTransclude);
     }
@@ -78,11 +78,11 @@ import {Collapse} from '../collapse/collapse';
 })
 @View({
   template: `
-  <div class="panel" [ng-class]="panelClass">
+  <div class="panel" [ngClass]="panelClass">
     <div class="panel-heading" (click)="toggleOpen($event)">
       <h4 class="panel-title">
         <a href tabindex="0" class="accordion-toggle">
-          <span [ng-class]="{'text-muted': isDisabled}"
+          <span [ngClass]="{'text-muted': isDisabled}"
             [accordion-transclude]="headingTemplate">{{heading}}</span>
         </a>
       </h4>
@@ -107,12 +107,12 @@ export class AccordionGroup implements OnInit, OnDestroy {
   constructor(private accordion:Accordion) {
   }
 
-  onInit() {
+  ngOnInit() {
     this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     this.accordion.removeGroup(this);
   }
 

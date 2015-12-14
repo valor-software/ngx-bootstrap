@@ -6,7 +6,7 @@ import 'package:node_shims/js.dart';
 
 // todo: expose an option to change default configuration
 
-// todo: solve problem with .pagination-sm>li:first-child>a and <template/> from ng-if >.<
+// todo: solve problem with .pagination-sm>li:first-child>a and <template/> from ngIf >.<
 const _PAGINATION_CONFIG = const {
   "maxSize" : null,
   "itemsPerPage" : 10,
@@ -35,30 +35,30 @@ const _PAGINATION_CONFIG = const {
     ],
     outputs: const ["numPages"])
 @View (template: '''
-  <ul class="pagination" [ng-class]="classMap">
+  <ul class="pagination" [ngClass]="classMap">
     <li class="pagination-first"
-        [ng-class]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}"
+        [ngClass]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}"
         [hidden]="!boundaryLinks">
       <a href (click)="selectPage(1, \$event)">{{firstText}}</a>
     </li>
 
     <li class="pagination-prev"
-        [ng-class]="{disabled: noPrevious()||disabled, hidden: !directionLinks}"
+        [ngClass]="{disabled: noPrevious()||disabled, hidden: !directionLinks}"
         [hidden]="!directionLinks">
       <a href (click)="selectPage(page - 1, \$event)">{{previousText}}</a>
       </li>
 
-    <li *ng-for="#page of pages" [ng-class]="{active: page['active'], disabled: disabled && !page['active']}" class="pagination-page">
+    <li *ngFor="#page of pages" [ngClass]="{active: page['active'], disabled: disabled && !page['active']}" class="pagination-page">
       <a href (click)="selectPage(page['number'], \$event)">{{page['text']}}</a>
     </li>
 
     <li class="pagination-next"
-        [ng-class]="{disabled: noNext()||disabled, hidden: !directionLinks}"
+        [ngClass]="{disabled: noNext()||disabled, hidden: !directionLinks}"
         [hidden]="!directionLinks">
       <a href (click)="selectPage(page + 1, \$event)">{{nextText}}</a></li>
 
     <li class="pagination-last"
-        [ng-class]="{disabled: noNext()||disabled, hidden: !boundaryLinks}"
+        [ngClass]="{disabled: noNext()||disabled, hidden: !boundaryLinks}"
         [hidden]="!boundaryLinks">
       <a href (click)="selectPage(totalPages, \$event)">{{lastText}}</a></li>
   </ul>
@@ -144,7 +144,7 @@ class Pagination extends DefaultValueAccessor implements OnInit {
 
   ElementRef elementRef;
 
-  onInit() {
+  ngOnInit() {
     classMap = elementRef.nativeElement.getAttribute("class") ?? "";
     totalPages = calculateTotalPages();
     pages = getPages(page, totalPages);
@@ -234,8 +234,8 @@ class Pagination extends DefaultValueAccessor implements OnInit {
       "align", "totalItems", "itemsPerPage", "previousText", "nextText"])
 @View (template: '''
 <ul class="pager">
-  <li [ng-class]="{disabled: noPrevious(), previous: align, \'pull-left\': align}"><a href (click)="selectPage(page - 1, \$event)">{{previousText}}</a></li>
-  <li [ng-class]="{disabled: noNext(), next: align, \'pull-right\': align}"><a href (click)="selectPage(page + 1, \$event)">{{nextText}}</a></li>
+  <li [ngClass]="{disabled: noPrevious(), previous: align, \'pull-left\': align}"><a href (click)="selectPage(page - 1, \$event)">{{previousText}}</a></li>
+  <li [ngClass]="{disabled: noNext(), next: align, \'pull-right\': align}"><a href (click)="selectPage(page + 1, \$event)">{{nextText}}</a></li>
 </ul>
 ''', directives: const [ NgClass])
 class Pager extends Pagination

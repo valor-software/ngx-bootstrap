@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <carousel [interval]="myInterval" [no-wrap]="noWrapSlides">
-      <slide *ng-for="#slidez of slides; #index=index"
+      <slide *ngFor="#slidez of slides; #index=index"
              [active]="slidez['active'] != null ? slidez['active'] : false ">
         <img [src]="slidez['image']" style="margin:auto;">
 

@@ -6,14 +6,14 @@ import "datepicker-inner.dart" show DatePickerInner;
 
 //const TEMPLATE_OPTIONS = const { "bs4" : const { "MONTH_BUTTON" : '''
 //        <button type="button" style="min-width:100%;" class="btn btn-default"
-//                [ng-class]="{\'btn-info\': dtz.selected, \'btn-link\': !dtz.selected && !datePicker.isActive(dtz), \'btn-info\': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
+//                [ngClass]="{\'btn-info\': dtz.selected, \'btn-link\': !dtz.selected && !datePicker.isActive(dtz), \'btn-info\': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
 //                [disabled]="dtz.disabled"
-//                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ng-class]="{\'text-success\': dtz.current}">{{dtz.label}}</span></button>
+//                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ngClass]="{\'text-success\': dtz.current}">{{dtz.label}}</span></button>
 //    '''}, "bs3" : const { "MONTH_BUTTON" : '''
 //        <button type="button" style="min-width:100%;" class="btn btn-default"
-//                [ng-class]="{\'btn-info\': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
+//                [ngClass]="{\'btn-info\': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
 //                [disabled]="dtz.disabled"
-//                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ng-class]="{\'text-info\': dtz.current}">{{dtz.label}}</span></button>
+//                (click)="datePicker.select(dtz.date)" tabindex="-1"><span [ngClass]="{\'text-info\': dtz.current}">{{dtz.label}}</span></button>
 //    '''}};
 
 //const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
@@ -34,7 +34,7 @@ import "datepicker-inner.dart" show DatePickerInner;
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode == maxMode"
-                [ng-class]="{disabled: datePicker.datepickerMode == maxMode}" tabindex="-1" style="width:100%;">
+                [ngClass]="{disabled: datePicker.datepickerMode == maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{title}}</strong>
         </button>
       </th>
@@ -47,13 +47,13 @@ import "datepicker-inner.dart" show DatePickerInner;
     </tr>
   </thead>
   <tbody>
-    <tr *ng-for="#rowz of rows">
-      <td *ng-for="#dtz of rowz" class="text-center" role="gridcell" id="{{dtz['uid']}}" [ng-class]="dtz['customClass']">
+    <tr *ngFor="#rowz of rows">
+      <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" id="{{dtz['uid']}}" [ngClass]="dtz['customClass']">
 
         <button type="button" style="min-width:100%;" class="btn btn-default"
-                [ng-class]="{\'btn-info\': dtz['selected'], active: datePicker.isActive(dtz), disabled: dtz['disabled']}"
+                [ngClass]="{\'btn-info\': dtz['selected'], active: datePicker.isActive(dtz), disabled: dtz['disabled']}"
                 [disabled]="dtz['disabled']"
-                (click)="datePicker.select(dtz['date'])" tabindex="-1"><span [ng-class]="{\'text-info\': dtz['current']}">{{dtz['label']}}</span></button>
+                (click)="datePicker.select(dtz['date'])" tabindex="-1"><span [ngClass]="{\'text-info\': dtz['current']}">{{dtz['label']}}</span></button>
 
 
       </td>
@@ -75,7 +75,7 @@ class MonthPicker
 
   MonthPicker(this.datePicker) {}
 
-  onInit() {
+  ngOnInit() {
     datePicker.stepMonth = { "years" : 1};
     datePicker.setRefreshViewHandler(() {
       List<dynamic> months = new List(12);

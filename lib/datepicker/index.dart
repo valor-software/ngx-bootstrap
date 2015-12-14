@@ -2,7 +2,7 @@ library ns_datepicker;
 
 import "package:angular2/angular2.dart";
 import "package:angular2/src/core/di.dart";
-import "package:ng2-strap/position.dart";
+import "package:ng2_strap/position.dart";
 //import "package:moment.dart" as moment;
 import "datepicker-inner.dart";
 import "daypicker.dart";
@@ -12,8 +12,8 @@ import 'dart:async';
 //import "package:moment.dart" as moment;
 import 'package:intl/intl.dart';
 
-part "package:ng2-strap/datepicker/datepicker-popup.dart";
-part "package:ng2-strap/datepicker/datepicker.dart";
+part "package:ng2_strap/datepicker/datepicker-popup.dart";
+part "package:ng2_strap/datepicker/datepicker.dart";
 /*
 todo: general:
 1. Popup

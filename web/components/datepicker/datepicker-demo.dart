@@ -1,6 +1,6 @@
 import "package:angular2/angular2.dart";
 //import "package:moment.dart" as moment;
-import "package:ng2-strap/index.dart";
+import "package:ng2_strap/index.dart";
 
 @Component(selector: "datepicker-demo",
     templateUrl: 'datepicker-demo.html',

@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/index.dart";
+import "package:ng2_strap/index.dart";
 import 'package:angular2/bootstrap.dart';
 import 'dart:html';
 import 'package:markdown/markdown.dart' hide Element;
@@ -50,7 +50,7 @@ class Demo implements OnInit {
 
   Demo(@Inject(ViewContainerRef) this.viewRef);
   @override
-  onInit() {
+  ngOnInit() {
     HttpRequest.getString('./getting-started.md').then((result) {
       (viewRef.element.nativeElement as Element).querySelector('#getting-started').innerHtml = markdownToHtml(result);
     });

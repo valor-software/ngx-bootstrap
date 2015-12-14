@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/timepicker/timepicker.dart";
+import "package:ng2_strap/timepicker/timepicker.dart";
 
 @Component(selector: "timepicker-demo")
 @View(

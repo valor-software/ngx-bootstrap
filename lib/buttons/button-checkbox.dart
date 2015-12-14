@@ -22,7 +22,7 @@ class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
 
 
   @override
-  onInit() {
+  ngOnInit() {
     state = trueValue == _value;
   }
 

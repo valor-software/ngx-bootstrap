@@ -17,9 +17,9 @@ import {NgTransclude} from '../common';
 })
 @View({
   template: `
-    <ul class="nav" [ng-class]="classMap" (click)="$event.preventDefault()">
-        <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
+    <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
+        <li *ngFor="#tabz of tabs" class="nav-item" [ngClass]="{active: tabz.active, disabled: tabz.disabled}">
+          <a href class="nav-link" [ngClass]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
             <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
           </a>
         </li>
@@ -49,7 +49,7 @@ export class Tabset implements OnInit{
   constructor() {
   }
 
-  onInit() {
+  ngOnInit() {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';
   }
 
@@ -136,10 +136,10 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
     return true;
   }
 
-  onInit() {
+  ngOnInit() {
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     this.tabset.removeTab(this);
   }
 }

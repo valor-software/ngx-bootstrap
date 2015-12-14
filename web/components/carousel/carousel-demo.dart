@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/carousel/carousel.dart";
+import "package:ng2_strap/carousel/carousel.dart";
 import 'package:node_shims/js.dart';
 
 @Component(selector: "carousel-demo",

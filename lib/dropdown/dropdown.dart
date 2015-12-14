@@ -33,14 +33,14 @@ class Dropdown implements OnInit, OnDestroy {
 
   Dropdown(this .el);
 
-  onInit() {
+  ngOnInit() {
 //    this.autoClose ?? ALWAYS;
 //    this.keyboardNav ?? true;
 //    this.dropdownAppendToBody ?? true;
 //    if (this.isOpen) {}
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     if (this.dropdownAppendToBody && truthy(this.menuEl)) {
       this.menuEl.nativeElement.remove();
     }

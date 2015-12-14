@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/rating/rating.dart";
+import "package:ng2_strap/rating/rating.dart";
 
 @Component(selector: "rating-demo")
 @View(

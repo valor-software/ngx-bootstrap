@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/index.dart";
+import "package:ng2_strap/index.dart";
 import "accordion/accordion-demo.dart";
 import 'dart:html';
 import 'package:markdown/markdown.dart' hide Element;
@@ -17,12 +17,12 @@ class DemoSection implements OnInit {
   DemoSection(@Inject(ViewContainerRef) this.viewRef);
 
   @override
-  onInit() async {
+  ngOnInit() async {
     nameLC = name.toLowerCase();
-    var rawMasterUrl = 'https://raw.githubusercontent.com/luisvt/ng2-strap/master';
+    var rawMasterUrl = 'https://raw.githubusercontent.com/luisvt/ng2_strap/master';
     var rawLibUrl = '$rawMasterUrl/lib';
     var componentsUrl = '$rawMasterUrl/web/components';
-    src = 'https://github.com/luisvt/ng2-strap/tree/master/lib/$nameLC/$nameLC.dart';
+    src = 'https://github.com/luisvt/ng2_strap/tree/master/lib/$nameLC/$nameLC.dart';
     HttpRequest.getString('$rawLibUrl/$nameLC/title.md').then((result) {
       (viewRef.element.nativeElement as Element).querySelector('#titleDoc').innerHtml = markdownToHtml(result);
     });

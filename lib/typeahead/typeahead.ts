@@ -23,9 +23,9 @@ const TEMPLATE = {
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
       <a href="#"
-         *ng-for="#match of matches"
+         *ngFor="#match of matches"
          (click)="selectMatch(match, $event)"
-         [ng-class]="{active: isActive(match) }"
+         [ngClass]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
          class="dropdown-item"
          [inner-html]="hightlight(match, query)"></a>
@@ -35,8 +35,8 @@ const TEMPLATE = {
   <ul class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
       style="display: block">
-    <li *ng-for="#match of matches"
-        [ng-class]="{active: isActive(match) }"
+    <li *ngFor="#match of matches"
+        [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>
@@ -310,7 +310,7 @@ export class Typeahead implements OnInit{
     }
   }
 
-  onInit() {
+  ngOnInit() {
     this.optionsLimit = this.optionsLimit || 20;
     this.minLength = this.minLength || 1;
     this.waitMs = this.waitMs || 0;

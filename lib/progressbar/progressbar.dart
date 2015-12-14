@@ -16,7 +16,7 @@ class Progress implements OnInit {
 
   Progress() {}
 
-  onInit() {
+  ngOnInit() {
     animate = !identical(animate, false);
     max = max is num ? max : progressConfig['max'];
   }
@@ -49,7 +49,7 @@ class Progress implements OnInit {
   <div class="progress-bar"
     style="min-width: 0;"
     role="progressbar"
-    [ng-class]="type"
+    [ngClass]="type"
     [ng-style]="{'width': (percent < 100 ? percent : 100).toString() + \'%\', transition: transition}"
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
@@ -77,11 +77,11 @@ class Bar implements OnInit, OnDestroy {
 
   Bar(@Host() this.progress) {}
 
-  onInit() {
+  ngOnInit() {
     progress.addBar(this);
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     progress.removeBar(this);
   }
 

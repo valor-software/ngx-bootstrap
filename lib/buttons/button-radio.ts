@@ -23,7 +23,7 @@ export class ButtonRadio extends DefaultValueAccessor implements OnInit {
     super(cd, renderer, elementRef);
   }
 
-  onInit() {
+  ngOnInit() {
     this.uncheckable = typeof this.uncheckable !== 'undefined';
   }
 

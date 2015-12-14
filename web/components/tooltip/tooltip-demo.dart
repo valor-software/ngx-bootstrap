@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import 'package:ng2-strap/tooltip/tooltip.dart';
+import 'package:ng2_strap/tooltip/tooltip.dart';
 
 @Component(selector: "tooltip-demo")
 @View(

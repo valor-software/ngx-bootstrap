@@ -25,7 +25,7 @@ export class ButtonCheckbox extends DefaultValueAccessor implements OnInit {
     super(cd, renderer, elementRef);
   }
 
-  onInit() {
+  ngOnInit() {
     this.toggle(this.trueValue === this.value);
   }
 

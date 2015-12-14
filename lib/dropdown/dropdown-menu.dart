@@ -11,7 +11,7 @@ class DropdownMenu implements DropdownMenuInterface, OnInit {
 
   DropdownMenu(@Host () this .dropdown, this .el) {}
 
-  onInit() {
+  ngOnInit() {
     dropdown.dropDownMenu = this;
   }
 }

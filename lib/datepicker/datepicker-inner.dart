@@ -168,7 +168,7 @@ class DatePickerInner
   }
 
   // todo: add formatter value to DateTime object
-  onInit() {
+  ngOnInit() {
     formatDay = or(formatDay, FORMAT_DAY);
     formatMonth = or(formatMonth, FORMAT_MONTH);
     formatYear = or(formatYear, FORMAT_YEAR);

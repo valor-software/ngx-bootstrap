@@ -23,9 +23,9 @@ import {
 @View({
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
-      <template ng-for #r [ng-for-of]="range" #index="index">
+      <template ngFor #r [ngForOf]="range" #index="index">
         <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
-        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ng-class]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
+        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
       </template>
     </span>
   `,
@@ -49,7 +49,7 @@ export class Rating extends DefaultValueAccessor implements OnInit {
     super(cd, renderer, elementRef);
   }
 
-  onInit() {
+  ngOnInit() {
     this.max = typeof this.max !== 'undefined' ? this.max : 5;
     this.readonly = this.readonly === true;
     this.stateOn = typeof this.stateOn !== 'undefined' ? this.stateOn : 'glyphicon-star';

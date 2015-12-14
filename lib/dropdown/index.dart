@@ -5,7 +5,7 @@ import "dropdown.interfaces.dart";
 import 'package:node_shims/js.dart';
 import 'dart:html';
 import 'dart:async';
-import 'package:ng2-strap/dropdown/dropdown.interfaces.dart';
+import 'package:ng2_strap/dropdown/dropdown.interfaces.dart';
 
 part "dropdown.dart" ;
 part "dropdown-menu.dart";

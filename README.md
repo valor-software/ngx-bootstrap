@@ -5,7 +5,7 @@ Works with Bootstrap 3
 
 # Usage & Demo
 
-http://luisvt.github.io/ng2-strap/
+[http://luisvt.github.io/ng2_strap/](http://luisvt.github.io/ng2_strap/)
 
 # Starter package
 

@@ -38,7 +38,7 @@ export class Dropdown implements OnInit, OnDestroy {
     // todo: bind to route change event
   }
 
-  onInit() {
+  ngOnInit() {
     this.autoClose = this.autoClose || ALWAYS;
     this.keyboardNav = typeof this.keyboardNav !== 'undefined';
     this.dropdownAppendToBody = typeof this.dropdownAppendToBody !== 'undefined';
@@ -47,7 +47,7 @@ export class Dropdown implements OnInit, OnDestroy {
     }
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     if (this.dropdownAppendToBody && this.menuEl) {
       this.menuEl.nativeElement.remove();
     }

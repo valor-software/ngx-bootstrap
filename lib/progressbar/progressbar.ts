@@ -37,7 +37,7 @@ export class Progress implements OnInit {
   constructor() {
   }
 
-  onInit() {
+  ngOnInit() {
     this.animate = this.animate !== false;
     this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
   }
@@ -76,7 +76,7 @@ export class Progress implements OnInit {
   <div class="progress-bar"
     style="min-width: 0;"
     role="progressbar"
-    [ng-class]="type && 'progress-bar-' + type"
+    [ngClass]="type && 'progress-bar-' + type"
     [ng-style]="{width: (percent < 100 ? percent : 100) + '%', transition: transition}"
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
@@ -97,11 +97,11 @@ export class Bar implements OnInit, OnDestroy {
   constructor(@Host() public progress:Progress) {
   }
 
-  onInit() {
+  ngOnInit() {
     this.progress.addBar(this);
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     this.progress.removeBar(this);
   }
 

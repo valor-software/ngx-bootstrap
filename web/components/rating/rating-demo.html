@@ -3,7 +3,7 @@
         (on-hover)="hoveringOver($event)" (on-leave)="resetStar()"
         [titles]="['one','two','three']"></rating>
 <span class="label"
-      [ng-class]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+      [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
       [ng-style]="{display: (overStar != null && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
 
 <pre class="card card-block card-header" style="margin:15px 0;">Rate: <b>{{rate}}</b> - Readonly is: <i>{{isReadonly}}</i> - Hovering over: <b>{{overStar != null ? overStar : "none"}}</b></pre>

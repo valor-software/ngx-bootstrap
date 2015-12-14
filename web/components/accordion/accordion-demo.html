@@ -7,35 +7,32 @@
   </button>
 </p>
 
-
-{{status['open'] != null}}
-
 <div class="checkbox">
   <label>
     <input type="checkbox" [(ng-model)]="oneAtATime">
     Open only one at a time
   </label>
 </div>
-<accordion [close-others]="oneAtATime">
-  <accordion-group heading="Static Header, initially expanded"
+<n2s-accordion [close-others]="oneAtATime">
+  <n2s-accordion-panel heading="Static Header, initially expanded"
                    [is-open]="status['isFirstOpen']"
                    [is-disabled]="status['isFirstDisabled']">
     This content is straight in the template.
-  </accordion-group>
-  <accordion-group heading="{{group['title']}}" *ng-for="#group of groups">
+  </n2s-accordion-panel>
+  <n2s-accordion-panel heading="{{group['title']}}" *ngFor="#group of groups">
     {{group['content']}}
-  </accordion-group>
-  <accordion-group heading="Dynamic Body Content">
+  </n2s-accordion-panel>
+  <n2s-accordion-panel heading="Dynamic Body Content">
     <p>The body of the accordion group grows to fit the contents</p>
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>
-    <div *ng-for="#item of items">{{item}}</div>
-  </accordion-group>
-  <accordion-group [is-open]="status['open']">
-    <template accordion-heading>
+    <div *ngFor="#item of items">{{item}}</div>
+  </n2s-accordion-panel>
+  <n2s-accordion-panel [(isOpen)]="status['open']">
+    <n2s-accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"
-         [ng-class]="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
-    </template>
+         [ngClass]="{'glyphicon-chevron-down': status['open'], 'glyphicon-chevron-right': !status['open']}"></i>
+    </n2s-accordion-heading>
     This is just some content to illustrate fancy headings.
-  </accordion-group>
-</accordion>
+  </n2s-accordion-panel>
+</n2s-accordion>

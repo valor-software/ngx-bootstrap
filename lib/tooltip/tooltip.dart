@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/position.dart" show positionService;
+import "package:ng2_strap/position.dart" show positionService;
 import 'dart:async';
 
 class TooltipOptions {
@@ -26,7 +26,7 @@ class TooltipOptions {
 @View (template: '''
     <div class="tooltip" role="tooltip"
      [ng-style]="{top: top, left: left, display: display}"
-     [ng-class]="classMap" >
+     [ngClass]="classMap" >
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner">
         {{content}}

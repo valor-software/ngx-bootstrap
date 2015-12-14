@@ -1,7 +1,7 @@
 <div class="progress-bar"
      style="min-width: 0;"
      role="progressbar"
-     [ng-class]="type"
+     [ngClass]="type"
      [ng-style]="{'width': (percent < 100 ? percent : 100).toString() + '%', transition: transition}"
      aria-valuemin="0"
      [attr.aria-valuenow]="value"

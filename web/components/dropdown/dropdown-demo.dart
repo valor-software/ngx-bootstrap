@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import 'package:ng2-strap/dropdown/index.dart';
+import 'package:ng2_strap/dropdown/index.dart';
 import 'dart:html';
 
 @Component(selector: "dropdown-demo",

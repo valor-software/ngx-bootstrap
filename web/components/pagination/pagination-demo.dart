@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2-strap/pagination/pagination.dart";
+import "package:ng2_strap/pagination/pagination.dart";
 
 @Component(selector: "pagination-demo")
 @View(

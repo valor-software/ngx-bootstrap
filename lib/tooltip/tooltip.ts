@@ -33,7 +33,7 @@ class TooltipOptions {
   template: `
     <div class="tooltip" role="tooltip"
      [ng-style]="{top: top, left: left, display: display}"
-     [ng-class]="classMap" >
+     [ngClass]="classMap" >
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner">
         {{content}}
@@ -107,7 +107,7 @@ export class Tooltip implements OnInit {
               public loader:DynamicComponentLoader) {
   }
 
-  onInit() {
+  ngOnInit() {
   }
 
   // todo: filter triggers

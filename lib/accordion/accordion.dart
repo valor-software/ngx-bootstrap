@@ -1,36 +1,36 @@
 import "package:angular2/angular2.dart";
 import 'package:node_shims/js.dart';
 import 'dart:html';
-import "package:ng2-strap/collapse/collapse.dart";
+import "package:ng2_strap/collapse/collapse.dart";
 
 // todo: support template url
-@Component (selector: "accordion, [accordion]",
+@Component (selector: "n2s-accordion",
     inputs: const [ "templateUrl", "closeOthers"],
-    host: const { "[class.panel-group]" : "true"})
-@View (template: '''<ng-content></ng-content>''')
+    host: const { "[class.panel-group]" : "true"},
+    template: '''<ng-content></ng-content>''')
 class Accordion {
   String templateUrl;
 
   bool closeOthers;
 
-  List<AccordionGroup> groups = [];
+  List<AccordionPanel> groups = [];
 
-  closeOtherGroups(AccordionGroup openGroup) {
+  closeOtherGroups(AccordionPanel openGroup) {
     if (!closeOthers) {
       return;
     }
-    groups.forEach((AccordionGroup group) {
+    groups.forEach((AccordionPanel group) {
       if (!identical(group, openGroup)) {
         group.isOpen = false;
       }
     });
   }
 
-  addGroup(AccordionGroup group) {
+  addGroup(AccordionPanel group) {
     push(groups, group);
   }
 
-  removeGroup(AccordionGroup group) {
+  removeGroup(AccordionPanel group) {
     var index = groups.indexOf(group);
     if (!identical(index, -1)) {
       slice(groups, index, 1);
@@ -47,7 +47,7 @@ class AccordionTransclude implements OnInit {
 
   AccordionTransclude(@Inject(ViewContainerRef) this .viewRef) {}
 
-  onInit() {
+  ngOnInit() {
     if (truthy(accordionTransclude)) {
       viewRef.createEmbeddedView(accordionTransclude);
     }
@@ -56,17 +56,18 @@ class AccordionTransclude implements OnInit {
 // todo: support template url
 
 // todo: support custom `open class`
-@Component(selector: "accordion-group, [accordion-group]",
-    inputs: const [
-      "templateUrl", "heading", "isOpen", "isDisabled", "panelClass"],
+@Component(selector: "n2s-accordion-panel",
+    inputs: const ["heading", "isOpen", "isDisabled", "panelClass"],
     host: const { "[class.panel-open]" : "isOpen"},
     template: '''
-  <div class="panel" [ng-class]="panelClass">
+  <div class="panel" [ngClass]="panelClass">
     <div class="panel-heading" (click)="toggleOpen(\$event)">
       <h4 class="panel-title">
         <a href tabindex="0" class="accordion-toggle">
-          <span [ng-class]="{\'text-muted\': isDisabled}"
-            [accordion-transclude]="headingTemplate">{{heading}}</span>
+          <span [ngClass]="{\'text-muted\': isDisabled}">
+            {{heading}}
+            <ng-content select="n2s-accordion-heading"></ng-content>
+          </span>
         </a>
       </h4>
     </div>
@@ -76,8 +77,8 @@ class AccordionTransclude implements OnInit {
       </div>
     </div>
   </div>
-  ''', directives: const [Collapse, AccordionTransclude, NgClass])
-class AccordionGroup
+  ''', directives: const [Collapse, NgClass])
+class AccordionPanel
     implements OnInit, OnDestroy {
   Accordion accordion;
 
@@ -93,15 +94,15 @@ class AccordionGroup
 
   TemplateRef headingTemplate;
 
-  AccordionGroup(this.accordion);
+  AccordionPanel(this.accordion);
 
-  onInit() {
+  ngOnInit() {
     panelClass = or(panelClass, "panel-default");
     accordion.addGroup(this);
     if (isOpen == null) isOpen = false;
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     accordion.removeGroup(this);
   }
 
@@ -124,14 +125,14 @@ class AccordionGroup
 
 @Directive (selector: "accordion-heading, [accordion-heading]")
 class AccordionHeading {
-  AccordionGroup group;
+  AccordionPanel panel;
 
   TemplateRef templateRef;
 
-  AccordionHeading(this.group, this.templateRef) {
-    group.headingTemplate = templateRef;
+  AccordionHeading(this.templateRef) {
+    panel.headingTemplate = templateRef;
   }
 }
 
 const List<dynamic> ACCORDION_DIRECTIVES = const [
-  Accordion, AccordionGroup, AccordionHeading];
+  Accordion, AccordionPanel, AccordionHeading];

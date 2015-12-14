@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import 'package:ng2-strap/common.dart';
+import 'package:ng2_strap/common.dart';
 import 'package:node_shims/js.dart';
 // todo: add active event to tab
 
@@ -8,15 +8,15 @@ import 'package:node_shims/js.dart';
     selector: "tabset", inputs: const [ "vertical", "justified", "type"],
     template: '''
     <ul class="nav"
-        [ng-class]="{
+        [ngClass]="{
           'nav-stacked' : vertical,
           'nav-justified' : justified,
           'nav-tabs' : type == 'tabs',
           'nav-pills' : type == 'pills'
         }"
         (click)="\$event.preventDefault()">
-        <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
+        <li *ngFor="#tabz of tabs" class="nav-item" [ngClass]="{active: tabz.active, disabled: tabz.disabled}">
+          <a href class="nav-link" [ngClass]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
             <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
           </a>
         </li>
@@ -36,7 +36,7 @@ class Tabset implements OnInit {
 
   Tabset();
 
-  onInit() {
+  ngOnInit() {
     type ??= "tabs";
   }
 
@@ -120,13 +120,13 @@ class Tab implements OnInit, OnDestroy, DoCheck {
     });
   }
 
-  bool doCheck() {
+  bool ngDoCheck() {
     return true;
   }
 
-  onInit() {}
+  ngOnInit() {}
 
-  onDestroy() {
+  ngOnDestroy() {
     tabset.removeTab(this);
   }
 }

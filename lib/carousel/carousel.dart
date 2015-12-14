@@ -33,7 +33,7 @@ Ng2BootstrapTheme.BS4 :
     template: '''
 <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
   <ol class="carousel-indicators" [hidden]="slides.length <= 1">
-     <li *ng-for="#slidez of slides" [ng-class]="{active: slidez.active === true}" (click)="select(slidez)"></li>
+     <li *ngFor="#slidez of slides" [ngClass]="{active: slidez.active === true}" (click)="select(slidez)"></li>
   </ol>
   <div class="carousel-inner"><ng-content></ng-content></div>
 </div>
@@ -55,7 +55,7 @@ class Carousel implements OnDestroy {
 
   num interval;
 
-  onDestroy() {
+  ngOnDestroy() {
     this.destroyed = true;
   }
 
@@ -196,7 +196,7 @@ class Carousel implements OnDestroy {
       "[class.carousel-item]" : "true"
     },
     template: '''
-  <div [ng-class]="{active: active}" class="item text-center">
+  <div [ngClass]="{active: active}" class="item text-center">
     <ng-content></ng-content>
   </div>
   ''', directives: const [NgClass])
@@ -211,11 +211,11 @@ class Slide implements OnInit, OnDestroy {
 
   Slide(this.carousel) {}
 
-  onInit() {
+  ngOnInit() {
     carousel.addSlide(this);
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     carousel.removeSlide(this);
   }
 }

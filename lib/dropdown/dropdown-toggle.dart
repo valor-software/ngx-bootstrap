@@ -18,7 +18,7 @@ class DropdownToggle implements DropdownToggleInterface, OnInit {
 
   DropdownToggle(@Host () this .dropdown, this .el) {}
 
-  onInit() {
+  ngOnInit() {
     this.dropdown.dropDownToggle = this;
   }
 
