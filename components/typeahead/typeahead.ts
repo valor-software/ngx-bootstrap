@@ -1,19 +1,25 @@
 import {
   Directive,
-  Component, View, Self, NgModel,
+  Component, Self,
   EventEmitter, OnInit,
-  ElementRef, DefaultValueAccessor,
-  NgClass, NgStyle, Renderer, CORE_DIRECTIVES,
+  ElementRef,
+  Renderer,
   ViewRef, ViewContainerRef, TemplateRef,
   DynamicComponentLoader, ComponentRef,
   ViewEncapsulation
-} from 'angular2/angular2';
+} from 'angular2/core';
+import {
+  CORE_DIRECTIVES,
+  ControlValueAccessor,
+  DefaultValueAccessor,
+  NgModel }
+from 'angular2/common';
 
 // https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
 function setProperty(renderer: Renderer, elementRef: ElementRef, propName: string, propValue: any) {
   renderer.setElementProperty(elementRef, propName, propValue);
 }
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {positionService} from '../position';
@@ -22,23 +28,23 @@ import {TypeaheadUtils} from './typeahead-utils';
 const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
   <div class="dropdown-menu"
-      [ng-style]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: display}"
       style="display: block">
       <a href="#"
-         *ng-for="#match of matches"
+         *ngFor="#match of matches"
          (click)="selectMatch(match, $event)"
-         [ng-class]="{active: isActive(match) }"
+         [ngClass]="{active: isActive(match) }"
          (mouseenter)="selectActive(match)"
          class="dropdown-item"
-         [inner-html]="hightlight(match, query)"></a>
+         [innerHtml]="hightlight(match, query)"></a>
   </div>
   `,
   [Ng2BootstrapTheme.BS3]: `
   <ul class="dropdown-menu"
-      [ng-style]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: display}"
       style="display: block">
-    <li *ng-for="#match of matches"
-        [ng-class]="{active: isActive(match) }"
+    <li *ngFor="#match of matches"
+        [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
     </li>
@@ -56,11 +62,9 @@ export class TypeaheadOptions {
 }
 
 @Component({
-  selector: 'typeahead-container'
-})
-@View({
+  selector: 'typeahead-container',
+  directives: [CORE_DIRECTIVES],
   template: TEMPLATE[Ng2BootstrapConfig.theme],
-  directives: [CORE_DIRECTIVES, NgClass, NgStyle],
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainer {
@@ -156,7 +160,7 @@ export class TypeaheadContainer {
         tokenLen = query[i].length;
         if (startIdx >= 0 && tokenLen > 0) {
           itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
-          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + " ".repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
+          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + ' '.repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
         }
       }
     } else if (query) {
@@ -234,8 +238,8 @@ export class Typeahead implements OnInit {
   private focusOnSelect:boolean;
   private field:string;
   private async:boolean = null;
-  private wordDelimiters:string = " ";
-  private phraseDelimiters:string = "'\"";
+  private wordDelimiters:string = ' ';
+  private phraseDelimiters:string = '\'"';
 
   private debouncer:Function;
   private source:any;
@@ -489,5 +493,3 @@ export class Typeahead implements OnInit {
     }
   }
 }
-
-export const typeahead:Array<any> = [Typeahead];

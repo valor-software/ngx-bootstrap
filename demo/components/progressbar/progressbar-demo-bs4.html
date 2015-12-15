@@ -29,12 +29,12 @@
 <h3>Stacked <button type="button" class="btn btn-sm btn-primary" (click)="randomStacked()">Randomize</button></h3>
 <div class="row col-lg-12">
   <!-- todo: implement as component -->
-  <progress *ng-for="#baz of stacked"
-            class="progress progress-{{ baz.type }}"
+  <progress *ngFor="#baz of stacked"
+            class="progress progress-{{ baz?.type }}"
             style="float: left;"
-            [ng-style]="{width: baz.value + '%'}"
+            [ngStyle]="{width: baz.value + '%'}"
             [value]="baz.value" [max]="baz.max">
-    <span [hidden]="baz.value < 5">{{baz.value}}%</span>
+    <span [hidden]="baz.value < 5">{{baz?.value}}%</span>
   </progress>
   <!-- gray background -->
   <progress class="progress" value="0" max="100" style="width: 100%;"></progress>

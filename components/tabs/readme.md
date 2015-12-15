@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import {tabs} from 'ng2-bootstrap';
+import { TAB_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ```html
@@ -18,24 +18,33 @@ import {tabs} from 'ng2-bootstrap';
 // class Tabset implements OnInit
 @Component({
   selector: 'tabset',
-  properties: ['vertical', 'justified', 'type'],
+  directives: [NgClass, NgTransclude]
 })
+export class Tabset implements OnInit {
+  @Input() private vertical:boolean;
+  @Input() private justified:boolean;
+  @Input() private type:string;
+}
 
 // class Tab implements OnInit, OnDestroy, DoCheck
-@Directive({
-  selector: 'tab, [tab]',
-  properties: ['active', 'disable', 'disabled', 'heading'],
-  events: ['select', 'deselect'],
-  host: {
-    '[class.tab-pane]': 'true',
-    '[class.active]': 'active'
-  },
-})
+@Directive({ selector: 'tab, [tab]' })
+export class Tab implements OnInit, OnDestroy, DoCheck {
+  @Input() public heading:string;
+  @Input() public disabled:boolean;
+
+  /** tab active state toogle */
+  @HostBinding('class.active')
+  @Input() public get active() {}
+
+  @Output() public select:EventEmitter<Tab> = new EventEmitter();
+  @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
+}
 
 // class TabHeading
 @Directive({selector: '[tab-heading]'})
+export class TabHeading {}
 
-export const tabs:Array<any> = [Tab, TabHeading, Tabset];
+export const TAB_COMPONENTS:Array<any> = [Tab, TabHeading, Tabset];
 ```
 
 ### Tabset properties

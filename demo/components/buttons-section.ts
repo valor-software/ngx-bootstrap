@@ -1,6 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
+import {
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 import {tabs} from '../../ng2-bootstrap';
 import {ButtonsDemo} from './buttons/buttons-demo';
@@ -16,9 +19,8 @@ let ts = require('!!prismjs?lang=typescript!./buttons/buttons-demo.ts');
 let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
-  selector: 'buttons-section'
-})
-@View({
+  selector: 'buttons-section',
+  directives: [ButtonsDemo, tabs, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -41,12 +43,12 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
       <tabset>
         <tab heading="Markup">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ng-non-bindable>${html}</code></pre>
+            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
           </div>
         </tab>
         <tab heading="TypeScript">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${ts}</code></pre>
+            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
           </div>
         </tab>
       </tabset>
@@ -61,8 +63,7 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
       </div>
     </div>
   </section>
-  `,
-  directives: [ButtonsDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class ButtonsSection {
 }

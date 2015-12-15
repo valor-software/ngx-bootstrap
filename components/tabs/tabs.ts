@@ -1,37 +1,34 @@
 import {
-  Component, View, Directive,
-  OnInit, OnDestroy, DoCheck, EventEmitter,
-  ElementRef, TemplateRef,
-  CORE_DIRECTIVES, NgClass
-} from 'angular2/angular2';
-
-import {NgTransclude, IAttribute} from '../common';
+  Component, Directive,
+  OnInit, OnDestroy, DoCheck,
+  Input, Output, HostListener, HostBinding,
+  TemplateRef, EventEmitter
+} from 'angular2/core';
+import { NgClass } from 'angular2/common';
+import { NgTransclude, IAttribute } from '../common';
 
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  properties: ['vertical', 'justified', 'type']
-})
-@View({
+  directives: [NgClass, NgTransclude],
   template: `
-    <ul class="nav" [ng-class]="classMap" (click)="$event.preventDefault()">
-        <li *ng-for="#tabz of tabs" class="nav-item" [ng-class]="{active: tabz.active, disabled: tabz.disabled}">
-          <a href class="nav-link" [ng-class]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
-            <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
+    <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
+        <li *ngFor="#tabz of tabs" class="nav-item" [ngClass]="{active: tabz.active, disabled: tabz.disabled}">
+          <a href class="nav-link" [ngClass]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
+            <span [ngTransclude]="tabz.headingRef">{{tabz.heading}}</span>
           </a>
         </li>
     </ul>
     <div class="tab-content">
       <ng-content></ng-content>
     </div>
-  `,
-  directives: [CORE_DIRECTIVES, NgClass, NgTransclude]
+  `
 })
 export class Tabset implements OnInit {
-  private vertical:boolean;
-  private justified:boolean;
-  private type:string;
+  @Input() private vertical:boolean;
+  @Input() private justified:boolean;
+  @Input() private type:string;
 
   public tabs:Array<Tab> = [];
 
@@ -73,43 +70,20 @@ export class Tabset implements OnInit {
 }
 
 // TODO: templateUrl?
-@Directive({
-  selector: 'tab, [tab]',
-  properties: ['active', 'disable', 'disabled', 'heading'],
-  events: ['select', 'deselect'],
-  host: {
-    '[class.tab-pane]': 'true',
-    '[class.active]': 'active'
-  }
-})
+@Directive({ selector: 'tab, [tab]' })
 export class Tab implements OnInit, OnDestroy, DoCheck {
-  public _active:boolean;
-  public disabled:boolean;
-  public heading:string;
-
-  public headingRef:TemplateRef;
-
-  public select:EventEmitter<Tab> = new EventEmitter();
-  public deselect:EventEmitter<Tab> = new EventEmitter();
-
-  constructor(public tabset:Tabset) {
-    this.tabset.addTab(this);
-  }
-
-  private set disable(v:boolean) {
-    console.warn('DEPRECATED use `disabled` property (not `disable`)');
-    this.disabled = v;
-  }
-
-  /** DEPRECATE disable */
-  private get disable() {
-    return this.disabled;
-  }
+  @Input() public heading:string;
+  @Input() public disabled:boolean;
 
   /** tab active state toogle */
-  public get active() {
+  @HostBinding('class.active')
+  @Input() public get active() {
     return this._active;
   }
+
+  @Output() public select:EventEmitter<Tab> = new EventEmitter();
+  @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
+
 
   public set active(active) {
     if (this.disabled && active || !active) {
@@ -117,17 +91,26 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
         this._active = active;
       }
 
-      this.deselect.next(this);
+      this.deselect.emit(this);
       return;
     }
 
     this._active = active;
-    this.select.next(this);
+    this.select.emit(this);
     this.tabset.tabs.forEach((tab:Tab) => {
       if (tab !== this) {
         tab.active = false;
       }
     });
+  }
+
+  @HostBinding('class.tab-pane') private addClass = true;
+
+  private _active:boolean;
+  public headingRef:TemplateRef;
+
+  constructor(public tabset:Tabset) {
+    this.tabset.addTab(this);
   }
 
   ngDoCheck():boolean {
@@ -149,4 +132,9 @@ export class TabHeading {
   }
 }
 
+export const TAB_COMPONENTS:Array<any> = [Tab, TabHeading, Tabset];
+/**
+ * @deprecated - use TAB_COMPONENTS instead
+ * @type {Tab|TabHeading|Tabset[]}
+ */
 export const tabs:Array<any> = [Tab, TabHeading, Tabset];

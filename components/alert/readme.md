@@ -1,16 +1,23 @@
 ### Usage
 ```typescript
-import {Alert} from 'ng2-bootstrap';
+import { Alert } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
-// class Alert implements OnInit
+// class Alert
 @Component({
   selector: 'alert',
-  properties: ['type', 'dismissible', 'dismissOnTimeout'],
-  events: ['close'],
+  directives: [NgIf, NgClass],
+  template: ALERT_TEMPLATE
 })
+export class Alert implements OnInit {
+  @Input() public type:string = 'warning';
+  @Input() public dismissible:boolean;
+  @Input() public dismissOnTimeout:number;
+
+  @Output() public close:EventEmitter<Alert> = new EventEmitter();
+}
 ```
 
 ### Alert properties

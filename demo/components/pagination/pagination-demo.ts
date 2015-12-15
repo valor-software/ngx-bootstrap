@@ -1,8 +1,9 @@
 /// <reference path="../../../tsd.d.ts" />
 import {
-  Component, View, FORM_DIRECTIVES, CORE_DIRECTIVES
-} from 'angular2/angular2';
-import {pagination} from '../../../ng2-bootstrap';
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
+import { PAGINATION_COMPONENTS } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./pagination-demo.html');
@@ -12,7 +13,7 @@ let template = require('./pagination-demo.html');
 })
 @View({
   template: template,
-  directives: [pagination, FORM_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [PAGINATION_COMPONENTS, FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class PaginationDemo {
   private totalItems:number = 64;

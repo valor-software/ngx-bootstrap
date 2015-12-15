@@ -1,27 +1,19 @@
 ### Usage
 ```typescript
-import {Timepicker} from 'ng2-bootstrap';
+import { TOOLTIP_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Tooltip implements OnInit
-@Directive({
-  selector: '[tooltip]',
-  properties: [
-    'content:tooltip',
-    'placement:tooltip-placement',
-    'appendToBody',
-    'isOpen: tooltip-is-open',
-    'enable: tooltip-enable'
-  ],
-  host: {
-    '(mouseenter)': 'show($event, $targe)',
-    '(mouseleave)': 'hide($event, $targe)',
-    '(focusin)': 'show($event, $targe)',
-    '(focusout)': 'hide($event, $targe)'
-  },
-})
+@Directive({ selector: '[tooltip]' })
+export class Tooltip implements OnInit {
+  @Input('tooltip') private content:string;
+  @Input('tooltip-placement') private placement:string = 'top';
+  @Input('tooltip-isOpen') private isOpen:boolean;
+  @Input('tooltip-enable') private enable:boolean;
+  @Input() private appendToBody:boolean;
+}
 ```
 
 ### Tooltip properties

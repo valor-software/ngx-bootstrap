@@ -1,5 +1,8 @@
 /// <reference path="../../../tsd.d.ts" />
-import {Component, View, CORE_DIRECTIVES, NgStyle} from 'angular2/angular2';
+import {
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 // switch bs3\bs4 templates
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../../components/ng2-bootstrap-config';
 
@@ -16,7 +19,7 @@ let templates:any = {
 })
 @View({
   template: templates[Ng2BootstrapConfig.theme],
-  directives: [progressbar, CORE_DIRECTIVES, NgStyle]
+  directives: [progressbar, CORE_DIRECTIVES]
 })
 export class ProgressbarDemo {
   public max:number = 200;

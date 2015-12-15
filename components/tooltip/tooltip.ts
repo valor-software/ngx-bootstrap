@@ -1,18 +1,14 @@
 import {
-  Directive,
-  Component, View,
-  OnInit, EventEmitter,
-  ElementRef,
-  NgClass, NgStyle,
-  ViewRef, ViewContainerRef, TemplateRef,
-  DynamicComponentLoader, ComponentRef,
-  ViewEncapsulation
-} from 'angular2/angular2';
+  Directive, Component,
+  OnInit, Input, HostListener,
+  ElementRef, EventEmitter,
+  DynamicComponentLoader, ComponentRef
+} from 'angular2/core';
+import { NgClass, NgStyle } from 'angular2/common';
+import { bind, Injectable, forwardRef, ResolvedBinding, Injector } from 'angular2/core';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
-
-import {positionService} from '../position';
-import {IAttribute} from '../common';
+import { positionService } from '../position';
+import { IAttribute } from '../common';
 
 class TooltipOptions {
   public placement:string;
@@ -26,20 +22,17 @@ class TooltipOptions {
 }
 
 @Component({
-  selector: 'tooltip-container'
-})
-@View({
+  selector: 'tooltip-container',
+  directives: [NgClass, NgStyle],
   template: `
     <div class="tooltip" role="tooltip"
-     [ng-style]="{top: top, left: left, display: display}"
-     [ng-class]="classMap" >
+     [ngStyle]="{top: top, left: left, display: display}"
+     [ngClass]="classMap" >
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner">
         {{content}}
       </div>
-    </div>`,
-  directives: [NgClass, NgStyle],
-  encapsulation: ViewEncapsulation.None
+    </div>`
 })
 class TooltipContainer {
   private classMap:any;
@@ -65,41 +58,23 @@ class TooltipContainer {
     this.left = '0px';
     let p = positionService
       .positionElements(hostEl.nativeElement,
-      this.element.nativeElement.children[0],
-      this.placement, this.appendToBody);
+        this.element.nativeElement.children[0],
+        this.placement, this.appendToBody);
     this.top = p.top + 'px';
     this.left = p.left + 'px';
     this.classMap['in'] = true;
   }
 }
 
-@Directive({
-  selector: '[tooltip]',
-  properties: [
-    'content:tooltip',
-    'placement:tooltip-placement',
-    'appendToBody',
-    'isOpen: tooltip-is-open',
-    'enable: tooltip-enable'
-  ],
-  host: {
-    '(mouseenter)': 'show($event, $targe)',
-    '(mouseleave)': 'hide($event, $targe)',
-    '(focusin)': 'show($event, $targe)',
-    '(focusout)': 'hide($event, $targe)'
-  }
-})
+@Directive({selector: '[tooltip]'})
 export class Tooltip implements OnInit {
+  @Input('tooltip') private content:string;
+  @Input('tooltip-placement') private placement:string = 'top';
+  @Input('tooltip-isOpen') private isOpen:boolean;
+  @Input('tooltip-enable') private enable:boolean;
+  @Input() private appendToBody:boolean;
+
   private visible:boolean = false;
-
-  private content:string;
-  private placement:string = 'top';
-  // todo:
-  private appendToBody:boolean;
-
-  private isOpen:boolean;
-  private enable:boolean;
-
   private tooltip:Promise<ComponentRef>;
 
   constructor(public element:ElementRef,
@@ -111,6 +86,8 @@ export class Tooltip implements OnInit {
 
   // todo: filter triggers
   // params: event, target
+  @HostListener('focusin', ['$event', '$target'])
+  @HostListener('mouseenter', ['$event', '$target'])
   show() {
     if (this.visible) {
       return;
@@ -135,6 +112,8 @@ export class Tooltip implements OnInit {
   }
 
   // params event, target
+  @HostListener('focusout', ['$event', '$target'])
+  @HostListener('mouseleave', ['$event', '$target'])
   hide() {
     if (!this.visible) {
       return;
@@ -147,4 +126,9 @@ export class Tooltip implements OnInit {
   }
 }
 
+export const TOOLTIP_COMPONENTS:Array<any> = [Tooltip, TooltipContainer];
+/**
+ * @deprecated
+ * @type {Tooltip|TooltipContainer[]}
+ */
 export const tooltip:Array<any> = [Tooltip, TooltipContainer];

@@ -1,11 +1,9 @@
 import {
-  Component, View,
-  OnInit, EventEmitter,
-  ControlValueAccessor,
-  ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES,
-  Self, NgModel, Renderer
-} from 'angular2/angular2';
+  Component,
+  OnInit, Input,
+  Self
+} from 'angular2/core';
+import { NgClass, NgModel, ControlValueAccessor } from 'angular2/common';
 
 export interface ITimepickerConfig {
   hourStep: number;
@@ -56,62 +54,74 @@ function addMinutes(date: any, minutes:number) {
 
 // TODO: templateUrl
 @Component({
-  selector: 'timepicker[ng-model]',
-  properties: [
-    'hourStep', 'minuteStep',
-    'meridians', 'showMeridian',
-    'readonlyInput',
-    'mousewheel', 'arrowkeys',
-    'showSpinners',
-    'min', 'max'
-  ]
-})
-@View({
+  selector: 'timepicker[ngModel]',
+  directives: [NgClass],
   template: `
     <table>
       <tbody>
-        <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
-          <td><a (click)="incrementHours()" [ng-class]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+        <tr class="text-center" [ngClass]="{hidden: !showSpinners}">
+          <td><a (click)="incrementHours()" [ngClass]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
           <td>&nbsp;</td>
-          <td><a (click)="incrementMinutes()" [ng-class]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
+          <td><a (click)="incrementMinutes()" [ngClass]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
         <tr>
-          <td class="form-group" [ng-class]="{'has-error': invalidHours}">
-            <input style="width:50px;" type="text" [(ng-model)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur($event)" maxlength="2">
+          <td class="form-group" [ngClass]="{'has-error': invalidHours}">
+            <input style="width:50px;" type="text" [(ngModel)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur($event)" maxlength="2">
           </td>
           <td>:</td>
-          <td class="form-group" [ng-class]="{'has-error': invalidMinutes}">
-            <input style="width:50px;" type="text" [(ng-model)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
+          <td class="form-group" [ngClass]="{'has-error': invalidMinutes}">
+            <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
           </td>
-          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ng-class]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
+          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>
-        <tr class="text-center" [ng-class]="{hidden: !showSpinners}">
-          <td><a (click)="decrementHours()" [ng-class]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+        <tr class="text-center" [ngClass]="{hidden: !showSpinners}">
+          <td><a (click)="decrementHours()" [ngClass]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
           <td>&nbsp;</td>
-          <td><a (click)="decrementMinutes()" [ng-class]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-          <td [ng-class]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
+          <td><a (click)="decrementMinutes()" [ngClass]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
         </tr>
       </tbody>
     </table>
-  `,
-  directives: [FORM_DIRECTIVES, NgClass]
+  `
 })
 export class Timepicker implements ControlValueAccessor, OnInit {
+  // config
+  @Input() private hourStep:number;
+  @Input() private minuteStep:number;
+  @Input() private readonlyInput:boolean;
+  @Input() private mousewheel:boolean;
+  @Input() private arrowkeys:boolean;
+  @Input() private showSpinners:boolean;
+  @Input() private min:Date;
+  @Input() private max:Date;
+  @Input() private meridians:Array<string> = ['AM', 'PM']; // ??
+
+  @Input() private get showMeridian() {
+    return this._showMeridian;
+  }
+
+  private set showMeridian(value:boolean) {
+    this._showMeridian = value;
+    // || !this.$error.time
+    if (true) {
+      this.updateTemplate();
+      return;
+    }
+    // Evaluate from template
+    let hours = this.getHoursFromTemplate();
+    let minutes = this.getMinutesFromTemplate();
+    if (isDefined(hours) && isDefined(minutes)) {
+      this.selected.setHours(hours);
+      this.refresh();
+    }
+  }
+
   // result value
   private _selected:Date = new Date();
-  // config
-  private hourStep:number;
-  private minuteStep:number;
+
   private _showMeridian:boolean;
   private meridian:any; // ??
-  private meridians:Array<string> = ['AM', 'PM']; // ??
-  private readonlyInput:boolean;
-  private mousewheel:boolean;
-  private arrowkeys:boolean;
-  private showSpinners:boolean;
-  private min:Date;
-  private max:Date;
 
   // input values
   private hours:string;
@@ -132,26 +142,6 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   // validation
   private invalidHours:any;
   private invalidMinutes:any;
-
-  private get showMeridian() {
-    return this._showMeridian;
-  }
-
-  private set showMeridian(value:boolean) {
-    this._showMeridian = value;
-    // || !this.$error.time
-    if (true) {
-      this.updateTemplate();
-      return;
-    }
-    // Evaluate from template
-    let hours = this.getHoursFromTemplate();
-    let minutes = this.getMinutesFromTemplate();
-    if (isDefined(hours) && isDefined(minutes)) {
-      this.selected.setHours(hours);
-      this.refresh();
-    }
-  }
 
   constructor(@Self() public cd:NgModel) {
     cd.valueAccessor = this;

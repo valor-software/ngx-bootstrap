@@ -1,7 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
-
+import {
+  Component, View,
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 import {tabs} from '../../ng2-bootstrap';
 import {TypeaheadDemo} from './typeahead/typeahead-demo';
 

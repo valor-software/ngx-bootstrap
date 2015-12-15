@@ -1,18 +1,17 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES} from 'angular2/angular2';
+import { Component } from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
-import {dropdown} from '../../../ng2-bootstrap';
+import { DROPDOWN_DIRECTIVES } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./dropdown-demo.html');
 
 @Component({
-  selector: 'dropdown-demo'
-})
-@View({
-  template: template,
-  directives: [dropdown, CORE_DIRECTIVES]
+  selector: 'dropdown-demo',
+  directives: [DROPDOWN_DIRECTIVES, CORE_DIRECTIVES],
+  template: template
 })
 export class DropdownDemo {
   private disabled:boolean = false;

@@ -1,47 +1,49 @@
 import {
-  Component, View,
-  OnInit, EventEmitter,
-  NgClass, ControlValueAccessor, NgFor,
-  NgModel, Self, Renderer, ElementRef
-} from 'angular2/angular2';
+  Component,
+  OnInit, Input, Output, HostListener,
+  Self, EventEmitter
+} from 'angular2/core';
+import { NgFor, ControlValueAccessor, NgModel } from 'angular2/common';
 
 // TODO: templateUrl
 @Component({
-  selector: 'rating[ng-model]',
-  properties: [
-    'max', 'readonly', 'titles',
-    'stateOn', 'stateOff',
-    'ratingStates'
-  ],
-  events: ['onHover', 'onLeave'],
-  host: {
-    '(keydown)': 'onKeydown($event)'
-  }
-})
-@View({
+  selector: 'rating[ngModel]',
+  directives: [NgFor],
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
-      <template ng-for #r [ng-for-of]="range" #index="index">
+      <template ngFor #r [ngForOf]="range" #index="index">
         <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
-        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ng-class]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
+        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
       </template>
     </span>
-  `,
-  directives: [NgClass, NgFor]
+  `
 })
 export class Rating implements ControlValueAccessor, OnInit {
-  private max:number;
+  @Input() private max:number;
+  @Input() private stateOn:string;
+  @Input() private stateOff:string;
+  @Input() private readonly:boolean;
+  @Input() private titles:Array<string>;
+  @Input() private ratingStates:Array<{stateOn:string, stateOff:string}>;
+
+  @Output() private onHover:EventEmitter<number> = new EventEmitter();
+  @Output() private onLeave:EventEmitter<number> = new EventEmitter();
+
   private range:Array<any>;
   private value:number;
   private preValue:number;
-  private titles:Array<string>;
-  private stateOn:string;
-  private stateOff:string;
-  private readonly:boolean;
-  private ratingStates:Array<{stateOn:string, stateOff:string}>;
 
-  private onHover:EventEmitter<number> = new EventEmitter();
-  private onLeave:EventEmitter<number> = new EventEmitter();
+  @HostListener('keydown', ['$event'])
+  private onKeydown(event:KeyboardEvent) {
+    if ([37, 38, 39, 40].indexOf(event.which) === -1) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    let sign = event.which === 38 || event.which === 39 ? 1 : -1;
+    this.rate(this.value + sign);
+  }
 
   constructor(@Self() public cd:NgModel) {
     cd.valueAccessor = this;
@@ -102,19 +104,10 @@ export class Rating implements ControlValueAccessor, OnInit {
     this.onLeave.next(this.value);
   }
 
-  private onKeydown(event:KeyboardEvent) {
-    if ([37, 38, 39, 40].indexOf(event.which) === -1) {
-      return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-    let sign = event.which === 38 || event.which === 39 ? 1 : -1;
-    this.rate(this.value + sign);
-  }
-
-  onChange = (_:any) => {};
-  onTouched = () => {};
+  onChange = (_:any) => {
+  };
+  onTouched = () => {
+  };
 
   registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;

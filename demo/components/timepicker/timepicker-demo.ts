@@ -1,17 +1,15 @@
 /// <reference path="../../../tsd.d.ts" />
-import {Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/angular2';
-
-import {Timepicker} from '../../../ng2-bootstrap';
+import { Component } from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
+import { Timepicker } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./timepicker-demo.html');
 
 @Component({
-  selector: 'timepicker-demo'
-})
-@View({
-  template: template,
-  directives: [Timepicker, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  selector: 'timepicker-demo',
+  directives: [Timepicker, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  template: template
 })
 export class TimepickerDemo {
   private hstep:number = 1;
