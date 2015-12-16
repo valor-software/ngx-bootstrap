@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import { TOOLTIP_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
+import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations

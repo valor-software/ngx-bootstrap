@@ -135,6 +135,6 @@ export class AccordionHeading {
   }
 }
 
-export const ACCORDION_COMPONENTS:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
+export const ACCORDION_DIRECTIVES:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
 // will be deprecated
 export const accordion:Array<any> = [Accordion, AccordionGroup, AccordionHeading];

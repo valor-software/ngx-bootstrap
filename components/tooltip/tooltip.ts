@@ -126,7 +126,7 @@ export class Tooltip implements OnInit {
   }
 }
 
-export const TOOLTIP_COMPONENTS:Array<any> = [Tooltip, TooltipContainer];
+export const TOOLTIP_DIRECTIVES:Array<any> = [Tooltip, TooltipContainer];
 /**
  * @deprecated
  * @type {Tooltip|TooltipContainer[]}

@@ -132,9 +132,9 @@ export class TabHeading {
   }
 }
 
-export const TAB_COMPONENTS:Array<any> = [Tab, TabHeading, Tabset];
+export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
 /**
- * @deprecated - use TAB_COMPONENTS instead
+ * @deprecated - use TAB_DIRECTIVES instead
  * @type {Tab|TabHeading|Tabset[]}
  */
 export const tabs:Array<any> = [Tab, TabHeading, Tabset];

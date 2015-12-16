@@ -50,7 +50,7 @@ var config = {
   entry: {
     angular2: [
       // Angular 2 Deps
-      'zone.js',
+      'zone.js/dist/zone-microtask',
       'reflect-metadata',
       'angular2/common',
       'angular2/core'
@@ -125,7 +125,8 @@ var config = {
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,
-      /reflect-metadata/
+      /reflect-metadata/,
+      /zone\.js\/dist\/zone-microtask/
     ]
   },
 

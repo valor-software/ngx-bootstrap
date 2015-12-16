@@ -323,9 +323,9 @@ export class Pager extends Pagination implements OnInit {
   }
 }
 
-export const PAGINATION_COMPONENTS:Array<any> = [Pagination, Pager];
+export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
 /**
- * @deprecated - use PAGINATION_COMPONENTS instead
+ * @deprecated - use PAGINATION_DIRECTIVES instead
  * @type {Pagination|Pager[]}
  */
 export const pagination:Array<any> = [Pagination, Pager];

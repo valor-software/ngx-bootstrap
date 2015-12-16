@@ -232,6 +232,6 @@ export class Slide implements OnInit, OnDestroy {
   }
 }
 
-export const CAROUSEL_COMPONENTS:Array<any> = [Carousel, Slide];
+export const CAROUSEL_DIRECTIVES:Array<any> = [Carousel, Slide];
 // will be deprecated
 export const carousel:Array<any> = [Carousel, Slide];

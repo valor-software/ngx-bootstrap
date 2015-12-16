@@ -19,4 +19,4 @@ export * from  './components/tooltip/tooltip';
 export * from  './components/typeahead/typeahead';
 export * from  './components/position'
 export * from  './components/common'
-export * from './components/ng2-bootstrap-config';
+export * from  './components/ng2-bootstrap-config';

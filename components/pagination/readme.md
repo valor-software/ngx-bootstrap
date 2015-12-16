@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import { PAGINATION_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
+import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
@@ -40,7 +40,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   ]
 })
 
-export const PAGINATION_COMPONENTS:Array<any> = [Pagination, Pager];
+export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
 ```
 ### Pagination properties
   - `rotate` (`?boolean=true`) - if `true` current page will in the middle of pages list

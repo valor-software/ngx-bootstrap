@@ -2,14 +2,14 @@
 
 import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { CAROUSEL_COMPONENTS } from '../../../ng2-bootstrap';
+import { CAROUSEL_DIRECTIVES } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./carousel-demo.html');
 
 @Component({
   selector: 'carousel-demo',
-  directives: [CAROUSEL_COMPONENTS, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [CAROUSEL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: template
 })
 export class CarouselDemo {
