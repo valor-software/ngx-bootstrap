@@ -86,7 +86,15 @@ export class TypeaheadDemo {
     return this;
   }
 
+  private _cache:any;
+  private _prevContext:any;
+
   private getAsyncData(context:any):Function {
+    if (this._prevContext === context) {
+      return this._cache;
+    }
+
+    this._prevContext = context;
     let f:Function = function ():Promise<string[]> {
       let p:Promise<string[]> = new Promise((resolve:Function) => {
         setTimeout(() => {
@@ -98,7 +106,8 @@ export class TypeaheadDemo {
       });
       return p;
     };
-    return f;
+    this._cache = f;
+    return this._cache;
   }
 
   private changeTypeaheadLoading(e:boolean) {
