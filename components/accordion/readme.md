@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import { ACCORDION_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
+import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
@@ -41,7 +41,7 @@ export class AccordionHeading {
   constructor(private group:AccordionGroup, private templateRef:TemplateRef) {}
 
 
-export const ACCORDION_COMPONENTS:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
+export const ACCORDION_DIRECTIVES:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
 ```
 
 ### Accordion properties

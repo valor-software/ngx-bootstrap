@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import { TAB_COMPONENTS } from 'ng2-bootstrap/ng2-bootstrap';
+import { TAB_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ```html
@@ -44,7 +44,7 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
 @Directive({selector: '[tab-heading]'})
 export class TabHeading {}
 
-export const TAB_COMPONENTS:Array<any> = [Tab, TabHeading, Tabset];
+export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
 ```
 
 ### Tabset properties

@@ -3,7 +3,7 @@ import {
   Component, View,
 } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
-import { bootstrap } from 'angular2/bootstrap';
+import { bootstrap } from 'angular2/platform/browser';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
 

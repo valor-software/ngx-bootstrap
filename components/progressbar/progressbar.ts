@@ -134,9 +134,9 @@ export class Progressbar {
   @Input() private value:number;
 }
 
-export const PROGRESSBAR_COMPONENTS:Array<any> = [Progress, Bar, Progressbar];
+export const PROGRESSBAR_DIRECTIVES:Array<any> = [Progress, Bar, Progressbar];
 /**
- * @deprecated use PROGRESSBAR_COMPONENTS instead
+ * @deprecated use PROGRESSBAR_DIRECTIVES instead
  * @type {Progress|Bar|Progressbar[]}
  */
 export const progressbar:Array<any> = [Progress, Bar, Progressbar];

@@ -29,7 +29,7 @@
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {},
   "devDependencies": {
-    "angular2": "2.0.0-alpha.53",
+    "angular2": "2.0.0-beta.0",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
     "clean-webpack-plugin": "0.1.5",
@@ -54,7 +54,7 @@
     "raw-loader": "0.5.1",
     "reflect-metadata": "0.1.2",
     "require-dir": "0.3.0",
-    "rxjs": "5.0.0-alpha.14",
+    "rxjs": "5.0.0-beta.0",
     "ts-loader": "0.7.2",
     "tslint": "3.2.0",
     "typescript": "1.7.3",
