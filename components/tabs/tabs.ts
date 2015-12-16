@@ -26,20 +26,47 @@ import { NgTransclude, IAttribute } from '../common';
   `
 })
 export class Tabset implements OnInit {
-  @Input() private vertical:boolean;
-  @Input() private justified:boolean;
-  @Input() private type:string;
+  @Input() private get vertical() {
+    return this._vertical;
+  };
+
+  @Input() private get justified() {
+    return this._justified;
+  };
+
+  @Input() private get type() {
+    return this._type;
+  };
+
+  private set vertical(value) {
+    this._vertical = value;
+    this.setClassMap();
+  }
+
+  private set justified(value) {
+    this._justified = value;
+    this.setClassMap();
+  }
+
+  private set type(value) {
+    this._type = value;
+    this.setClassMap();
+  }
+
+  private setClassMap() {
+    this.classMap = {
+      'nav-stacked': this.vertical,
+      'nav-justified': this.justified,
+      ['nav-' + (this.type || 'tabs')]: true
+    };
+  }
 
   public tabs:Array<Tab> = [];
 
-  private get classMap() {
-    let map = {
-      'nav-stacked': this.vertical,
-      'nav-justified': this.justified
-    };
-    (<IAttribute>map)['nav-' + (this.type || 'tabs')] = true;
-    return map;
-  }
+  private _vertical:boolean;
+  private _justified:boolean;
+  private _type:string;
+  private classMap:any = {};
 
   constructor() {
   }
@@ -70,7 +97,7 @@ export class Tabset implements OnInit {
 }
 
 // TODO: templateUrl?
-@Directive({ selector: 'tab, [tab]' })
+@Directive({selector: 'tab, [tab]'})
 export class Tab implements OnInit, OnDestroy, DoCheck {
   @Input() public heading:string;
   @Input() public disabled:boolean;
