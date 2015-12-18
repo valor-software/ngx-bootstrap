@@ -46,7 +46,7 @@ const TEMPLATE:any = {
     <li *ngFor="#match of matches"
         [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
-        <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
+        <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [innerHtml]="hightlight(match, query)"></a>
     </li>
   </ul>
   `
