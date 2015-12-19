@@ -5,12 +5,12 @@ import {
   ElementRef, ViewContainerRef, DynamicComponentLoader,
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
   Self, NgModel, Renderer, NgStyle
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 // import {setProperty} from 'angular2/src/forms/directives/shared';
 // import {DOM} from 'angular2/src/dom/dom_adapter';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/angular2';
+import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
 import {positionService} from '../position';
 import * as moment from 'moment';
 
@@ -48,12 +48,12 @@ const datePickerPopupConfig:Object = {
   template: `
     <ul class="dropdown-menu"
         style="display: block"
-        [ng-style]="{top: top, left: left, display: display}"
-        [ng-class]="classMap">
+        [ngStyle]="{top: top, left: left, display: display}"
+        [ngClass]="classMap">
         <li>
-             <datepicker (cupdate)="onUpdate($event)" *ng-if="popupComp" [(ng-model)]="popupComp.cd.model" [show-weeks]="true"></datepicker>
+             <datepicker (cupdate)="onUpdate($event)" *ngIf="popupComp" [(ngModel)]="popupComp.cd.model" [show-weeks]="true"></datepicker>
         </li>
-        <li *ng-if="showButtonBar" style="padding:10px 9px 2px">
+        <li *ngIf="showButtonBar" style="padding:10px 9px 2px">
             <span class="btn-group pull-left">
                  <button type="button" class="btn btn-sm btn-info" (click)="select('today')" ng-disabled="isDisabled('today')">{{ getText('current') }}</button>
                  <button type="button" class="btn btn-sm btn-danger" (click)="select(null)">{{ getText('clear') }}</button>
@@ -114,7 +114,7 @@ class PopupContainer {
 }
 
 @Directive({
-  selector: '[datepicker-popup][ng-model]',
+  selector: '[datepicker-popup][ngModel]',
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
   host: {'(cupdate)': 'onUpdate1($event)'}

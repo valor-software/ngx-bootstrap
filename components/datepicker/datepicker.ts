@@ -6,7 +6,7 @@ import {
   NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
   Self, NgModel, Renderer,
   QueryList, Query
-} from 'angular2/angular2';
+} from 'angular2/core';
 
 import * as moment from 'moment';
 
@@ -17,7 +17,7 @@ import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 
 @Component({
-  selector: 'datepicker[ng-model], [datepicker][ng-model]',
+  selector: 'datepicker[ngModel], [datepicker][ng-model]',
   properties: [
     'datepickerMode',
     'minDate', 'maxDate',

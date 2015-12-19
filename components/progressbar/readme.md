@@ -1,32 +1,42 @@
 ### Usage
 ```typescript
-import {progressbar} from 'ng2-bootstrap';
+import { PROGRESSBAR_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Progress implements OnInit
-@Directive({
-  selector: 'bs-progress, [progress]',
-  properties: ['animate', 'max'],
-  host: {
-    'class': 'progress',
-    '[attr.max]': 'max'
-  },
-})
+@Directive({ selector: 'bs-progress, [progress]' })
+export class Progress implements OnInit {
+  @Input() public animate:boolean;
+
+  @HostBinding('attr.max')
+  @Input() public get max():number {}
+
+  @HostBinding('class') private addClass = 'progress';
+}
 
 // class Bar implements OnInit, OnDestroy
 @Component({
   selector: 'bar, [bar]',
-  properties: ['type', 'value'],
+  directives: [NgClass, NgStyle]
 })
+export class Bar implements OnInit, OnDestroy {
+  @Input() public type:string;
+  @Input() public get value():number
+}
 
 // class Progressbar
 @Component({
   selector: 'progressbar, [progressbar]',
-  properties: ['animate', 'max', 'type', 'value']
+  directives: [Progress, Bar]
 })
-```
+export class Progressbar {
+  @Input() private animate:boolean;
+  @Input() private max:number;
+  @Input() private type:string;
+  @Input() private value:number;
+}```
 
 ### Properties
 **Note**: all components have same meaning of properties

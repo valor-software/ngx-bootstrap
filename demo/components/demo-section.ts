@@ -1,10 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 
 import {
-  Component, View,
-  OnInit,
-  CORE_DIRECTIVES
-} from 'angular2/angular2';
+  Component, View, OnInit
+} from 'angular2/core';
+import { CORE_DIRECTIVES } from 'angular2/common';
 
 import {tabs} from '../../ng2-bootstrap';
 

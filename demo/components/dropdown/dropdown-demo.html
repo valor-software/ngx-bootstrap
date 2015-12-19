@@ -5,14 +5,14 @@
       Click me for a dropdown, yo!
     </a>
     <ul class="dropdown-menu" aria-labelledby="simple-dropdown">
-      <li *ng-for="#choice of items">
+      <li *ngFor="#choice of items">
         <a class="dropdown-item" href="#">{{choice}}</a>
       </li>
     </ul>
   </span>
 
   <!-- Single button -->
-  <div class="btn-group" dropdown [is-open]="status.isopen">
+  <div class="btn-group" dropdown [isOpen]="status.isopen">
     <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle [disabled]="disabled">
       Button dropdown <span class="caret"></span>
     </button>

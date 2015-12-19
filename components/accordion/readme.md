@@ -1,35 +1,47 @@
 ### Usage
 ```typescript
-import {accordion} from 'ng2-bootstrap';
+import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Accordion
 @Component({
-  selector: 'accordion, [accordion]',
-  properties: ['templateUrl', 'closeOthers'],
-  host: {
-    '[class.panel-group]': 'true'
-  }
+  selector: 'accordion',
+  template: `<ng-content></ng-content>`
 })
+export class Accordion {
+  @Input() private templateUrl:string;
+  @Input() private closeOthers:boolean;
+
+  @HostBinding('class.panel-group')
+  private addPanelGroupClass = true;
+}
 
 // class AccordionGroup implements OnInit, OnDestroy
 @Component({
-  selector: 'accordion-group, [accordion-group]',
-  properties: ['templateUrl', 'heading', 'isOpen', 'isDisabled', 'panelClass'],
-  host: {
-    '[class.panel-open]': 'isOpen'
-  },
+  selector: 'accordion-group',
+  directives: [Collapse, AccordionTransclude, NgClass]
 })
+export class AccordionGroup implements OnInit, OnDestroy {
+  @Input() private templateUrl:string;
+  @Input() private heading:string;
+  @Input() private panelClass:string;
+  @Input() public isDisabled:boolean;
+
+  @HostBinding('class.panel-open')
+  @Input() public get isOpen();
+
+  constructor(private accordion:Accordion) {}
+}
 
 // class AccordionHeading
-@Directive({
-  selector: 'accordion-heading, [accordion-heading]'
-})
+@Directive({selector: '[accordion-heading]'})
+export class AccordionHeading {
+  constructor(private group:AccordionGroup, private templateRef:TemplateRef) {}
 
 
-export const accordion:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
+export const ACCORDION_DIRECTIVES:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
 ```
 
 ### Accordion properties

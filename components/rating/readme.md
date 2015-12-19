@@ -1,23 +1,26 @@
 ### Usage
 ```typescript
-import {Rating} from 'ng2-bootstrap';
+import { Rating } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Rating implements on Init
 @Component({
-  selector: 'rating[ng-model]',
-  properties: [
-    'max', 'readonly', 'titles',
-    'stateOn', 'stateOff',
-    'ratingStates'
-  ],
-  events: ['onHover', 'onLeave'],
-  host: {
-    '(keydown)': 'onKeydown($event)'
-  },
+  selector: 'rating[ngModel]',
+  directives: [NgFor]
 })
+export class Rating implements ControlValueAccessor, OnInit {
+  @Input() private max:number;
+  @Input() private stateOn:string;
+  @Input() private stateOff:string;
+  @Input() private readonly:boolean;
+  @Input() private titles:Array<string>;
+  @Input() private ratingStates:Array<{stateOn:string, stateOff:string}>;
+
+  @Output() private onHover:EventEmitter<number> = new EventEmitter();
+  @Output() private onLeave:EventEmitter<number> = new EventEmitter();
+}
 ```
 
 ### Rating properties

@@ -1,12 +1,9 @@
-import {Directive, ElementRef, Host, OnInit} from 'angular2/angular2';
+import {Directive, ElementRef, Host, OnInit, Input} from 'angular2/core';
 import {Dropdown} from './dropdown';
 
-@Directive({
-  selector: '[dropdown-menu], .dropdown-menu',
-  properties: ['templateUrl']
-})
+@Directive({ selector: '[dropdown-menu]' })
 export class DropdownMenu implements OnInit {
-  public templateUrl:string;
+  @Input() public templateUrl:string;
 
   constructor(@Host() public dropdown:Dropdown, public el:ElementRef) {
   }

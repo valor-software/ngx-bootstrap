@@ -1,33 +1,46 @@
 ### Usage
 ```typescript
-import {pagination} from 'ng2-bootstrap';
+import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
 // class Pagination implements OnInit
 @Component({
-  selector: 'pagination[ng-model], [pagination][ng-model]',
-  properties: [
-    'rotate', 'disabled',
-    'totalItems', 'itemsPerPage', 'maxSize',
-    'boundaryLinks', 'directionLinks',
-    'firstText', 'previousText', 'nextText', 'lastText'
-  ],
-  events: ['numPages', 'pageChanged'],
+  selector: 'pagination[ngModel]',
+  template: PAGINATION_TEMPLATE,
+  directives: [NgClass, NgFor]
 })
+export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
+  @Input() public maxSize:number;
+
+  @Input() public boundaryLinks:boolean;
+  @Input() public directionLinks:boolean;
+  // labels
+  @Input() public firstText:string;
+  @Input() public previousText:string;
+  @Input() public nextText:string;
+  @Input() public lastText:string;
+  @Input() public rotate:boolean;
+
+  @Input() private disabled:boolean;
+  @Input() public get itemsPerPage():number {}
+  @Input() private get totalItems():number {}
+
+  @Output() private numPages:EventEmitter<number> = new EventEmitter();
+  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter();
 
 // class Pager implements OnInit
 @Component({
-  selector: 'pager[ng-model], [pager][ng-model]',
+  selector: 'pager[ngModel]',
   properties: [
     'align',
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
-  ],
+  ]
 })
 
-export const pagination:Array<any> = [Pagination, Pager];
+export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
 ```
 ### Pagination properties
   - `rotate` (`?boolean=true`) - if `true` current page will in the middle of pages list

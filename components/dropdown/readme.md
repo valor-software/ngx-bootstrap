@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import {dropdown} from 'ng2-bootstrap';
+import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ```html
@@ -18,36 +18,42 @@ import {dropdown} from 'ng2-bootstrap';
 ### Annotations
 ```typescript
 // class Dropdown implements OnInit, OnDestroy
-@Directive({
-  selector: '[dropdown]',
-  properties: ['isOpen', 'autoClose', 'keyboardNav', 'dropdownAppendToBody'],
-  events: ['onToggle'],
-  host: {
-    '[class.dropdown]': 'true',
-    '[class.open]': 'isOpen'
-  }
-})
+@Directive({ selector: '[dropdown]' })
+export class Dropdown implements OnInit, OnDestroy {
+  @HostBinding('class.open')
+  @Input() public get isOpen():boolean {}
+  @Input() public autoClose:string;
+  @Input() public keyboardNav:boolean;
+// enum string: ['always', 'outsideClick', 'disabled']
+  @Input() private dropdownAppendToBody:boolean;
+
+  @Output() private onToggle:EventEmitter<boolean> = new EventEmitter();
+
+  @HostBinding('class.dropdown') private addClass = true;
+}
 
 // class DropdownToggle implements OnInit
-@Directive({
-  selector: '[dropdown-toggle]',
-  properties: ['disabled'],
-  host: {
-    '(click)': 'toggleDropdown($event)',
-    '[class.dropdown-toggle]': 'true',
-    '[class.disabled]': 'disabled',
-    '[attr.aria-haspopup]': 'true',
-    '[attr.aria-expanded]': 'isOpen'
-  },
-})
+@Directive({ selector: '[dropdown-toggle]' })
+export class DropdownToggle implements OnInit {
+  @HostBinding('class.disabled')
+  @Input() private disabled:boolean = false;
+
+  @HostBinding('class.dropdown-toggle')
+  @HostBinding('attr.aria-haspopup')
+  private addClass = true;
+  @HostBinding('attr.aria-expanded')
+  public get isOpen() {}
+  @HostListener('click', ['$event'])
+  public toggleDropdown(event:MouseEvent) {}
+}
 
 // class DropdownMenu implements OnInit
-@Directive({
-  selector: '[dropdown-menu], .dropdown-menu',
-  properties: ['templateUrl'],
-})
+@Directive({ selector: '[dropdown-menu]' })
+export class DropdownMenu implements OnInit {
+  @Input() public templateUrl:string;
+}
 
-export const dropdown: Array<any> = [Dropdown, DropdownMenu, DropdownToggle];
+export const DROPDOWN_DIRECTIVES: Array<any> = [Dropdown, DropdownMenu, DropdownToggle];
 ```
 
 ### Dropdown properties

@@ -41,18 +41,15 @@ var config = {
 
   resolve: {
     root: __dirname,
-    extensions: ['', '.ts', '.js', '.json'],
-    alias: {
-      'rxjs/operators/toPromise': 'rxjs/operator/toPromise.js'
-    }
+    extensions: ['', '.ts', '.js', '.json']
   },
 
   entry: {
     angular2: [
       // Angular 2 Deps
-      'zone.js',
+      'zone.js/dist/zone-microtask',
       'reflect-metadata',
-      'angular2/angular2',
+      'angular2/common',
       'angular2/core'
     ],
     'angular2-bootstrap': ['ng2-bootstrap'],
@@ -92,7 +89,7 @@ var config = {
   module: {
     loaders: [
       // support markdown
-      {test: /\.md$/, loader: 'html!markdown'},
+      {test: /\.md$/, loader: 'html?minimize=false!markdown'},
 
       // Support for *.json files.
       {test: /\.json$/, loader: 'json'},
@@ -125,7 +122,8 @@ var config = {
     ],
     noParse: [
       /rtts_assert\/src\/rtts_assert/,
-      /reflect-metadata/
+      /reflect-metadata/,
+      /zone\.js\/dist\/zone-microtask/
     ]
   },
 
@@ -155,9 +153,11 @@ var config = {
           drop_debugger: false
         },
         output: {
-          comments: false
+          comments: true
         },
-        beautify: false
+        verbose: true,
+        beautify: true,
+        quote_style: 3
       }),
       new CompressionPlugin({
         asset: '{file}.gz',

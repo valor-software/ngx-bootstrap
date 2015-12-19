@@ -1,61 +1,51 @@
 import {
-  Component, View,
-  OnInit, EventEmitter,
-  ElementRef, ViewContainerRef,
-  NgIf, NgClass
-} from 'angular2/angular2';
+  Component,
+  OnInit, Input, Output,
+  ElementRef, ViewContainerRef, EventEmitter
+} from 'angular2/core';
+import { NgIf, NgClass } from 'angular2/common';
 
-// TODO: templateUrl
-@Component({
-  selector: 'alert',
-  inputs: ['type', 'dismissible', 'dismissOnTimeout'],
-  outputs: ['close']
-})
-@View({
-  template: `
-  <div class="alert" role="alert" [ng-class]="classes" *ng-if="!closed">
-    <button *ng-if="closeable" type="button" class="close" (click)="onClose($event)">
+const ALERT_TEMPLATE = `
+  <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
+    <button *ngIf="dismissible" type="button" class="close" (click)="onClose($event)">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
     <ng-content></ng-content>
   </div>
-  `,
-  directives: [NgIf, NgClass]
+  `;
+
+// TODO: templateUrl
+@Component({
+  selector: 'alert',
+  directives: [NgIf, NgClass],
+  template: ALERT_TEMPLATE
 })
 export class Alert implements OnInit {
-  public type:string;
-  public close:EventEmitter<Alert> = new EventEmitter();
-  public templateUrl:string;
-  public dismissOnTimeout:number;
+  @Input() private type:string = 'warning';
+  @Input() private dismissible:boolean;
+  @Input() private dismissOnTimeout:number;
 
+  @Output() public close:EventEmitter<Alert> = new EventEmitter();
+
+  public templateUrl:string;
   private closed:boolean;
-  private closeable:boolean;
   private classes:Array<string> = [];
 
-  private set dismissible(v:boolean){
-    this.closeable = v;
-  }
-  private get dismissible():boolean{
-    return this.closeable;
-  }
-
   constructor(public el:ElementRef) {
-    this.closeable = this.closeable || el.nativeElement.getAttribute('(close)');
+    this.dismissible = this.dismissible || el.nativeElement.getAttribute('(close)');
   }
 
   ngOnInit() {
-    this.type = this.type || 'warning';
-    this.classes[0] = 'alert-' + (this.type || 'warning');
-    if (this.closeable) {
+    this.classes[0] = `alert-${this.type}`;
+    if (this.dismissible) {
       this.classes[1] = 'alert-dismissible';
     } else {
       this.classes.length = 1;
     }
 
     if (this.dismissOnTimeout) {
-      let close = this.onClose.bind(this);
-      setTimeout(close, this.dismissOnTimeout);
+      setTimeout(() => this.onClose(), this.dismissOnTimeout);
     }
   }
 

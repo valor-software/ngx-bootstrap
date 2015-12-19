@@ -1,31 +1,33 @@
 import {
   Directive,
-  Self, NgModel, Renderer, ElementRef,
-  OnInit, ControlValueAccessor
-} from 'angular2/angular2';
+  OnInit, Input, HostBinding, HostListener,
+  Self, Renderer, ElementRef,
+} from 'angular2/core';
+import { ControlValueAccessor, NgModel } from 'angular2/common';
 
-
-@Directive({
-  selector: '[btn-checkbox][ng-model]',
-  properties: ['btnCheckboxTrue', 'btnCheckboxFalse'],
-  host: {
-    '(click)': 'onClick()',
-    '[class.active]': 'state'
-  }
-})
+@Directive({ selector: '[btnCheckbox][ngModel]' })
 export class ButtonCheckbox implements ControlValueAccessor, OnInit {
-  private btnCheckboxTrue:any;
-  private btnCheckboxFalse:any;
+  @Input() private btnCheckboxTrue:any;
+  @Input() private btnCheckboxFalse:any;
+
+  @HostBinding('class.active')
+  private state:boolean = false;
+
+  // view -> model
+  @HostListener('click')
+  private onClick() {
+    this.toggle(!this.state);
+    this.cd.viewToModelUpdate(this.value);
+  }
 
   private value:any;
-  private state:boolean = false;
 
   constructor(@Self() public cd:NgModel) {
     // hack !
     cd.valueAccessor = this;
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.toggle(this.trueValue === this.value);
   }
 
@@ -37,32 +39,26 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
     return typeof this.btnCheckboxFalse !== 'undefined' ? this.btnCheckboxFalse : false;
   }
 
-  toggle(state:boolean) {
+  private toggle(state:boolean) {
     this.state = state;
     this.value = this.state ? this.trueValue : this.falseValue;
   }
 
-  // view -> model
-  onClick() {
-    this.toggle(!this.state);
-    this.cd.viewToModelUpdate(this.value);
-  }
-
   // ControlValueAccessor
   // model -> view
-  writeValue(value:any) {
+  public writeValue(value:any) {
     this.state = this.trueValue === value;
     this.value = value;
   }
 
-  onChange = (_:any) => {};
-  onTouched = () => {};
+  protected onChange = (_:any) => {};
+  protected onTouched = () => {};
 
-  registerOnChange(fn:(_:any) => {}):void {
+  public registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn:() => {}):void {
+  public registerOnTouched(fn:() => {}):void {
     this.onTouched = fn;
   }
 }

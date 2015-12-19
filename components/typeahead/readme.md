@@ -1,6 +1,6 @@
 ### Usage
 ```typescript
-import {Typeahead} from 'ng2-bootstrap';
+import { Typeahead } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
