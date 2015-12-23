@@ -15,7 +15,7 @@ dependencies:
   markdown: ^0.8.0
 transformers:
 - angular2:
-    entry_points: web/components/accordion/index_accordion.dart
+    entry_points: web/index.dart
 - dart_to_js_script_rewriter
 - $dart2js:
     $include: 'web/index.dart'

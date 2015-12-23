@@ -8,7 +8,7 @@ import 'package:markdown/markdown.dart' hide Element;
     selector: "demo-section",
     inputs: const ['name'],
     templateUrl: 'demo-section.html',
-    directives: const [ AccordionDemo, TABS_DIRECTIVES, CORE_DIRECTIVES])
+    directives: const [AccordionDemo, TABS_DIRECTIVES, CORE_DIRECTIVES])
 class DemoSection implements OnInit {
   String name, nameLC, src, doc, titleDoc, dart, html;
 
