@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "test": "gulp lint"
   },
-  "main": "ng2-boostrap.js",
+  "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
   "keywords": [
     "angular2",
