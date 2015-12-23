@@ -12,7 +12,7 @@ import 'dart:html';
 DateTime addMinutes(DateTime time, minutes) => time.add(new Duration(minutes: minutes));
 
 // TODO: templateUrl
-@Component (selector: "timepicker[ng-model]",
+@Component (selector: "timepicker[ngModel]",
     inputs: const [
       "hourStep",
       "minuteStep",
@@ -36,11 +36,11 @@ DateTime addMinutes(DateTime time, minutes) => time.add(new Duration(minutes: mi
         </tr>
         <tr>
           <td class="form-group" [ngClass]="{\'has-error\': invalidHours}">
-            <input style="width:50px;" type="text" [(ng-model)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur(\$event)" maxlength="2">
+            <input style="width:50px;" type="text" [(ngModel)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur(\$event)" maxlength="2">
           </td>
           <td>:</td>
           <td class="form-group" [ngClass]="{\'has-error\': invalidMinutes}">
-            <input style="width:50px;" type="text" [(ng-model)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur(\$event)" maxlength="2">
+            <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur(\$event)" maxlength="2">
           </td>
           <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>

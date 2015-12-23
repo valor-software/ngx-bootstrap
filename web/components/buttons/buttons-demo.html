@@ -1,10 +1,10 @@
 <h4>Single toggle</h4>
 <pre class="card card-block card-header">{{singleModel}}</pre>
-<ns-btn-checkbox class="btn btn-primary"
-        [(ng-model)]="singleModel"
-        true-value="0" false-value="1">
+<n2s-btn-checkbox class="btn btn-primary"
+        [(ngModel)]="singleModel"
+        trueValue="0" falseValue="1">
   Single Toggle
-</ns-btn-checkbox>
+</n2s-btn-checkbox>
 <h4>Checkbox</h4>
 <pre class="card card-block card-header">
   Left: {{checkModel['left']}},
@@ -12,19 +12,19 @@
   Right: {{checkModel['right']}}
 </pre>
 <div class="btn-group">
-  <ns-btn-checkbox class="btn btn-primary" [(ng-model)]="checkModel['left']" >Left</ns-btn-checkbox>
-  <ns-btn-checkbox class="btn btn-primary" [(ng-model)]="checkModel['middle']">Middle</ns-btn-checkbox>
-  <ns-btn-checkbox class="btn btn-primary" [(ng-model)]="checkModel['right']" >Right</ns-btn-checkbox>
+  <n2s-btn-checkbox class="btn btn-primary" [(ngModel)]="checkModel['left']" >Left</n2s-btn-checkbox>
+  <n2s-btn-checkbox class="btn btn-primary" [(ngModel)]="checkModel['middle']">Middle</n2s-btn-checkbox>
+  <n2s-btn-checkbox class="btn btn-primary" [(ngModel)]="checkModel['right']" >Right</n2s-btn-checkbox>
 </div>
 <h4>Radio &amp; Uncheckable Radio</h4>
 <pre class="card card-block card-header">{{radioModel}}</pre>
 <div class="btn-group">
-  <ns-btn-radio class="btn btn-primary" [(ng-model)]="radioModel" option="Left">Left</ns-btn-radio>
-  <ns-btn-radio class="btn btn-primary" [(ng-model)]="radioModel" option="Middle">Middle</ns-btn-radio>
-  <ns-btn-radio class="btn btn-primary" [(ng-model)]="radioModel" option="Right">Right</ns-btn-radio>
+  <n2s-btn-radio class="btn btn-primary" [(ngModel)]="radioModel" option="Left">Left</n2s-btn-radio>
+  <n2s-btn-radio class="btn btn-primary" [(ngModel)]="radioModel" option="Middle">Middle</n2s-btn-radio>
+  <n2s-btn-radio class="btn btn-primary" [(ngModel)]="radioModel" option="Right">Right</n2s-btn-radio>
 </div>
 <div class="btn-group">
-  <ns-btn-radio class="btn btn-success" [(ng-model)]="radioModel" option="Left" [uncheckable]="false">Left</ns-btn-radio>
-  <ns-btn-radio class="btn btn-success" [(ng-model)]="radioModel" option="Middle" [uncheckable]="false">Middle</ns-btn-radio>
-  <ns-btn-radio class="btn btn-success" [(ng-model)]="radioModel" option="Right" [uncheckable]="false">Right</ns-btn-radio>
+  <n2s-btn-radio class="btn btn-success" [(ngModel)]="radioModel" option="Left" [uncheckable]="false">Left</n2s-btn-radio>
+  <n2s-btn-radio class="btn btn-success" [(ngModel)]="radioModel" option="Middle" [uncheckable]="false">Middle</n2s-btn-radio>
+  <n2s-btn-radio class="btn btn-success" [(ngModel)]="radioModel" option="Right" [uncheckable]="false">Right</n2s-btn-radio>
 </div>

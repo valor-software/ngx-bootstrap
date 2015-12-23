@@ -28,7 +28,7 @@ Ng2BootstrapTheme.BS4 :
   '''
 };
 
-@Component (selector: "carousel, [carousel]",
+@Component (selector: "n2s-carousel",
     inputs: const [ "interval", "noTransition", "noPause", "noWrap"],
     template: '''
 <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
@@ -188,7 +188,7 @@ class Carousel implements OnDestroy {
   }
 }
 
-@Component (selector: "slide, [slide]",
+@Component (selector: "n2s-slide",
     inputs: const [ "direction", "active", "index"],
     host: const {
       "[class.active]" : "active",

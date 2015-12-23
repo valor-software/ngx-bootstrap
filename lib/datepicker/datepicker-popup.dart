@@ -17,7 +17,7 @@ class PopupOptions {
         [ng-style]="{top: top, left: left, display: display}"
         [ngClass]="classMap">
         <li>
-             <datepicker (cupdate)="onUpdate(\$event)" *ngIf="popupComp" [(ng-model)]="popupComp.cd.model" [show-weeks]="true"></datepicker>
+             <datepicker (cupdate)="onUpdate(\$event)" *ngIf="popupComp" [(ngModel)]="popupComp.cd.model" [show-weeks]="true"></datepicker>
         </li>
         <li *ngIf="showButtonBar" style="padding:10px 9px 2px">
             <span class="btn-group pull-left">
@@ -87,7 +87,7 @@ class PopupContainer {
   }
 }
 
-@Directive (selector: "[datepicker-popup][ng-model]",
+@Directive (selector: "[datepicker-popup][ngModel]",
     inputs: const [ "datepickerPopup", "isOpen"],
     host: const { "(cupdate)" : "onUpdate1(\$event)"})
 class DatePickerPopup implements OnInit {

@@ -8,7 +8,7 @@ import {
 
 
 @Directive({
-  selector: '[btn-checkbox][ng-model]',
+  selector: '[btn-checkbox][ngModel]',
   properties: ['btnCheckboxTrue', 'btnCheckboxFalse'],
   host: {
     '(click)': 'onClick()',

@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-md-6">
-    <carousel [interval]="myInterval" [no-wrap]="noWrapSlides">
-      <slide *ngFor="#slidez of slides; #index=index"
+    <n2s-carousel [interval]="myInterval" [noWrap]="noWrapSlides">
+      <n2s-slide *ngFor="#slidez of slides; #index=index"
              [active]="slidez['active'] != null ? slidez['active'] : false ">
-        <img [src]="slidez['image']" style="margin:auto;">
+        <img [src]="slidez['image']">
 
         <div class="carousel-caption">
           <h4>Slide {{index}}</h4>
 
           <p>{{slidez['text']}}</p>
         </div>
-      </slide>
-    </carousel>
+      </n2s-slide>
+    </n2s-carousel>
   </div>
 
   <div class="col-md-6">
@@ -26,12 +26,12 @@
 
     <div class="checkbox">
       <label>
-        <input type="checkbox" [(ng-model)]="noWrapSlides">
+        <input type="checkbox" [(ngModel)]="noWrapSlides">
         Disable Slide Looping
       </label>
     </div>
 
-    Interval, in milliseconds: <input type="number" class="form-control" [(ng-model)]="myInterval">
+    Interval, in milliseconds: <input type="number" class="form-control" [(ngModel)]="myInterval">
     <br/>Enter a negative number or 0 to stop the interval.
   </div>
 </div>

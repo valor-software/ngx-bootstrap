@@ -43,7 +43,7 @@ class TypeaheadOptions {
   TypeaheadOptions({this.placement, this.animation});
 }
 
-@Component (selector: "typeahead-container",
+@Component (selector: "n2s-typeahead-dropdown",
     template: '''
   <ul class="dropdown-menu"
       [ng-style]="{top: top, left: left, display: display}"
@@ -51,11 +51,16 @@ class TypeaheadOptions {
     <li *ngFor="#match of matches"
         [ngClass]="{active: isActive(match) }"
         (mouseenter)="selectActive(match)">
-        <a href="#" (click)="selectMatch(match, \$event)" tabindex="-1" [inner-html]="hightlight(match, query)"></a>
+        <a href="#" (click)="selectMatch(match, \$event)" tabindex="-1" [innerHtml]="hightlight(match, query)"></a>
     </li>
   </ul>
   ''',
-    directives: const [ CORE_DIRECTIVES, NgClass, NgStyle],
+    styles: const ['''
+n2s-typeahead-dropdown {
+  position: absolute;
+}
+'''],
+    directives: const [CORE_DIRECTIVES],
     encapsulation: ViewEncapsulation.None)
 class TypeaheadContainer {
   ElementRef element;
@@ -134,7 +139,7 @@ class TypeaheadContainer {
       e.preventDefault();
     }
     parent.changeModel(value);
-    parent.typeaheadOnSelect.add({'item': value});
+    parent.onSelect.add({'item': value});
     return false;
   }
 
@@ -147,48 +152,48 @@ class TypeaheadContainer {
 
   hightlight(String item, String query) {
     // Replaces the capture string with a the same string inside of a "strong" tag
-    return falsey(query)
-        ? item.replaceAll(new RegExp(escapeRegexp(query)), "<strong>\$&</strong>")
+    return query != null && !query.isEmpty
+        ? item.replaceAllMapped(new RegExp(escapeRegexp(query), caseSensitive: false), (m) => "<strong>${m[0]}</strong>")
         : item;
   }
 }
 // todo: options loading by http not yet implemented
-@Directive (
-    selector: "typeahead, [typeahead]",
+@Component (
+    selector: "n2s-typeahead",
     inputs: const [
       'context',
-      "source:typeahead",
+      "source",
       // todo: not yet implemented
-      "appendToBody:typeaheadAppendToBody",
+      "appendToBody",
       // todo: not yet implemented
-      "editable:typeaheadEditable",
+      "editable",
       // todo: not yet implemented
-      "focusFirst:typeaheadFocusFirst",
+      "focusFirst",
       // todo: not yet implemented
-      "inputFormatter:typeaheadInputFormatter",
-      "minLength:typeaheadMinLength",
+      "inputFormatter",
+      "minLength",
       // todo: not yet implemented
-      "selectOnExact:typeaheadSelectOnExact",
+      "selectOnExact",
       // todo: not yet implemented
-      "templateUrl:typeaheadTemplateUrl",
+      "templateUrl",
       // todo: not yet implemented
-      "popupTemplateUrl:typeaheadPopupTemplateUrl",
-      "waitMs:typeaheadWaitMs",
-      "optionsLimit:typeaheadOptionsLimit",
+      "popupTemplateUrl",
+      "waitMs",
+      "optionsLimit",
       // todo: not yet implemented
-      "selectOnBlur:typeaheadSelectOnBlur",
+      "selectOnBlur",
       // todo: not yet implemented
-      "focusOnSelect:typeaheadFocusOnSelect",
-      "field:typeaheadOptionField",
-      "async:typeaheadAsync"
+      "focusOnSelect",
+      "optionField",
+      "async"
     ],
     outputs: const [
-      "typeaheadLoading",
-      "typeaheadNoResults",
-      "typeaheadOnSelect"
+      "onLoading",
+      "onNoResults",
+      "onSelect"
     ],
-    host: const { "(keyup)" : "onChange(\$event)"})
-class Typeahead implements OnInit {
+    template: '<input type="text"[(ngModel)]="cd.model" (keyup)="onTypeaheadChange(\$event)" class="form-control">')
+class Typeahead extends DefaultValueAccessor implements OnInit {
   NgModel cd;
 
   var context;
@@ -199,11 +204,11 @@ class Typeahead implements OnInit {
 
   DynamicComponentLoader loader;
 
-  EventEmitter typeaheadLoading = new EventEmitter ();
+  EventEmitter onLoading = new EventEmitter ();
 
-  EventEmitter typeaheadNoResults = new EventEmitter ();
+  EventEmitter onNoResults = new EventEmitter ();
 
-  EventEmitter typeaheadOnSelect = new EventEmitter ();
+  EventEmitter onSelect = new EventEmitter ();
 
   TypeaheadContainer container;
 
@@ -231,7 +236,7 @@ class Typeahead implements OnInit {
 
   bool focusOnSelect;
 
-  String field;
+  String optionField;
 
   bool async = false;
 
@@ -245,7 +250,12 @@ class Typeahead implements OnInit {
 
   Future<ComponentRef> popup;
 
-  Typeahead(this.cd, this.element, this.renderer, this.loader) {}
+  Typeahead(this.cd, Renderer renderer, ElementRef elementRef, this.loader)  :
+        element = elementRef,
+        renderer = renderer,
+        super(renderer, elementRef) {
+    cd.valueAccessor = this;
+  }
 
   get matches => _matches;
 
@@ -288,19 +298,17 @@ class Typeahead implements OnInit {
 
   processMatches() {
     _matches = [];
-    if (cd.model
-        .toString()
-        .length >= minLength) {
+    if (cd.model.toString().length >= minLength) {
       for (var i = 0; i < source.length; i ++) {
         String match;
-        if (source[i] is Map && truthy(source[i][field])) {
-          match = source[i][field];
+        if (source[i] is Map && truthy(source[i][optionField])) {
+          match = source[i][optionField];
         }
         if (source[i] is String) {
           match = source[i];
         }
         if (falsey(match)) {
-          print("Invalid match type $field");
+          print("Invalid match type $optionField");
           continue;
         }
         if (match.toLowerCase().indexOf(cd.model.toString().toLowerCase()) >= 0) {
@@ -314,8 +322,8 @@ class Typeahead implements OnInit {
   }
 
   finalizeAsyncCall() {
-    typeaheadLoading.add(false);
-    typeaheadNoResults.add(cd.model.toString().length >= minLength && matches.length <= 0);
+    onLoading.add(false);
+    onNoResults.add(cd.model.toString().length >= minLength && matches.length <= 0);
     if (cd.model.toString().length <= 0 || _matches.length <= 0) {
       hide();
       return;
@@ -356,7 +364,7 @@ class Typeahead implements OnInit {
     }
   }
 
-  onChange(KeyboardEvent e) {
+  onTypeaheadChange(KeyboardEvent e) {
     if (truthy(container)) {
       switch(e.keyCode) {
         case KeyCode.ESC:
@@ -373,7 +381,7 @@ class Typeahead implements OnInit {
         return;
       }
     }
-    typeaheadLoading.add(true);
+    onLoading.add(true);
     if (async == true) {
       debouncer();
     } else {
@@ -392,8 +400,7 @@ class Typeahead implements OnInit {
     var options = new TypeaheadOptions (placement: placement, animation: false);
     var binding = Injector.resolve([ bind(TypeaheadOptions).toValue(options)]);
     popup = loader.loadNextToLocation(
-        TypeaheadContainer, element, binding).then((
-        ComponentRef componentRef) {
+        TypeaheadContainer, element, binding).then((ComponentRef componentRef) {
       componentRef.instance.position(element);
       container = componentRef.instance;
       container.parent = this;
@@ -414,5 +421,3 @@ class Typeahead implements OnInit {
     }
   }
 }
-
-const List typeahead = const [ Typeahead];

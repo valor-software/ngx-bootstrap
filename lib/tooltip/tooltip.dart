@@ -22,10 +22,10 @@ class TooltipOptions {
   });
 }
 
-@Component (selector: "tooltip-container")
-@View (template: '''
+@Component (selector: "n2s-tooltip-container",
+    template: '''
     <div class="tooltip" role="tooltip"
-     [ng-style]="{top: top, left: left, display: display}"
+     [ngStyle]="{top: top, left: left, display: display}"
      [ngClass]="classMap" >
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner">
@@ -130,8 +130,10 @@ class Tooltip {
     var binding = Injector.resolve([bind(TooltipOptions).toValue(options)]);
     tooltip = loader.loadNextToLocation(TooltipContainer, element, binding)
         .then((ComponentRef componentRef) {
-      (componentRef.instance as TooltipContainer).position(element);
-      return componentRef;
+      return new Future.delayed(const Duration(milliseconds: 1), () {
+        (componentRef.instance as TooltipContainer).position(element);
+        return componentRef;
+      });
     });
   }
 

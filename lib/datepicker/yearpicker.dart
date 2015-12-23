@@ -21,7 +21,7 @@ import "datepicker-inner.dart" ;
 //final CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
 //    TEMPLATE_OPTIONS.bs3;
 
-@Component (selector: "yearpicker, [yearpicker]")
+@Component (selector: "n2s-yearpicker")
 @View (template: '''
 <table [hidden]="datePicker.datepickerMode!='year'" role="grid">
   <thead>

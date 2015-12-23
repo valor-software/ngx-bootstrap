@@ -27,11 +27,11 @@ class RatingDemo {
     {"stateOff": "glyphicon-off"}
   ];
   void hoveringOver(num value) {
-    this.overStar = value;
-    this.percent = 100 * (value / this.max);
+    overStar = value;
+    percent = 100 * (value / this.max);
   }
 
   resetStar() {
-    this.overStar = null;
+    overStar = null;
   }
 }

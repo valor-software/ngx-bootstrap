@@ -5,7 +5,7 @@ import 'package:node_shims/js.dart';
 
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component (
-    selector: "tabset", inputs: const [ "vertical", "justified", "type"],
+    selector: "n2s-tabset", inputs: const [ "vertical", "justified", "type"],
     template: '''
     <ul class="nav"
         [ngClass]="{
@@ -17,14 +17,14 @@ import 'package:node_shims/js.dart';
         (click)="\$event.preventDefault()">
         <li *ngFor="#tabz of tabs" class="nav-item" [ngClass]="{active: tabz.active, disabled: tabz.disabled}">
           <a href class="nav-link" [ngClass]="{active: tabz.active, disabled: tabz.disabled}" (click)="tabz.active = true">
-            <span [ng-transclude]="tabz.headingRef">{{tabz.heading}}</span>
+            <span ng-transclude [ngTransclude]="tabz.headingRef">{{tabz.heading}}</span>
           </a>
         </li>
     </ul>
     <div class="tab-content">
       <ng-content></ng-content>
     </div>
-  ''', directives: const [CORE_DIRECTIVES, NgClass, NgTransclude])
+  ''', directives: const [CORE_DIRECTIVES, NgTransclude])
 class Tabset implements OnInit {
   bool vertical = false;
 
@@ -62,7 +62,7 @@ class Tabset implements OnInit {
   }
 }
 // TODO: templateUrl?
-@Directive (selector: "tab, [tab]",
+@Directive (selector: "n2s-tab",
     inputs: const [ "active", "disable", "disabled", "heading"],
     outputs: const [ "select", "deselect"],
     host: const { "[class.tab-pane]" : "true", "[class.active]" : "active"})
@@ -131,7 +131,7 @@ class Tab implements OnInit, OnDestroy, DoCheck {
   }
 }
 
-@Directive (selector: "[tab-heading]")
+@Directive (selector: "[n2s-tab-heading]")
 class TabHeading {
   TemplateRef templateRef;
 

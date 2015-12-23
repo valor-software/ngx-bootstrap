@@ -29,7 +29,7 @@ const paginationConfig = {
 };
 
 @Component({
-  selector: 'pagination[ng-model], [pagination][ng-model]',
+  selector: 'pagination[ngModel], [pagination][ngModel]',
   properties: [
     'rotate', 'disabled',
     'totalItems', 'itemsPerPage', 'maxSize',
@@ -274,7 +274,7 @@ const pagerConfig = {
 };
 
 @Component({
-  selector: 'pager[ng-model], [pager][ng-model]',
+  selector: 'pager[ngModel], [pager][ngModel]',
   properties: [
     'align',
     'totalItems', 'itemsPerPage',

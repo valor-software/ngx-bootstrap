@@ -1,13 +1,13 @@
 <h3>Static</h3>
 <div class="row">
   <div class="col-sm-4">
-    <progressbar [value]="55"></progressbar>
+    <n2s-progressbar [value]="55"></n2s-progressbar>
   </div>
   <div class="col-sm-4">
-    <progressbar class="progress-striped" [value]="22" type="warning">22%</progressbar>
+    <n2s-progressbar class="progress-striped" [value]="22" type="warning">22%</n2s-progressbar>
   </div>
   <div class="col-sm-4">
-    <progressbar class="progress-striped active" [max]="200" [value]="167" type="danger"><i>166 / 200</i></progressbar>
+    <n2s-progressbar class="progress-striped active" [max]="200" [value]="167" type="danger"><i>166 / 200</i></n2s-progressbar>
   </div>
 </div>
 
@@ -15,16 +15,15 @@
 <h3>Dynamic
   <button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>
 </h3>
-{{dynamic}}
-<progressbar [max]="max" [value]="dynamic"><span style="color:white; white-space:nowrap;">{{dynamic}} / {{max}}</span>
-</progressbar>
+<n2s-progressbar [max]="max" [value]="dynamic"><span style="color:white; white-space:nowrap;">{{dynamic}} / {{max}}</span>
+</n2s-progressbar>
 
 <small><em>No animation</em></small>
-<progressbar [animate]="false" [value]="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+<n2s-progressbar [animate]="false" [value]="dynamic" type="success"><b>{{dynamic}}%</b></n2s-progressbar>
 
 <small><em>Object (changes type based on value)</em></small>
-<progressbar class="progress-striped active" [value]="dynamic" [type]="type">{{type}} <i [hidden]="!showWarning">!!!
-  Watch out !!!</i></progressbar>
+<n2s-progressbar class="progress-striped active" [value]="dynamic" [type]="type">{{type}} <i [hidden]="!showWarning">!!!
+  Watch out !!!</i></n2s-progressbar>
 
 <hr/>
 <h3>Stacked

@@ -7,7 +7,7 @@ import {datepicker} from 'ng2-bootstrap';
 ```typescript
 // class DatePicker
 @Component({
-  selector: 'datepicker[ng-model], [datepicker][ng-model]',
+  selector: 'datepicker[ngModel], [datepicker][ngModel]',
   properties: [
     'datepickerMode',
     'minDate', 'maxDate',
@@ -25,7 +25,7 @@ import {datepicker} from 'ng2-bootstrap';
 // not yet implemented properly
 // class DatePickerPopup implements OnInit
 @Directive({
-  selector: '[datepicker-popup][ng-model]',
+  selector: '[datepicker-popup][ngModel]',
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
   host: {'(cupdate)': 'onUpdate1($event)'},
@@ -35,7 +35,7 @@ export const datepicker:Array<any> = [DatePicker, DatePickerPopup];
 ```
 
 ### Date picker properties
-  - `ng-model` (`*Date`) - binds to date
+  - `ngModel` (`*Date`) - binds to date
   - `datepicker-mode` (`?string='day'`) - sets datepicker mode, supports: `day`, `month`, `year`
   - `min-date` (`?Date=null`) - oldest selectable date
   - `max-date` (`?Date=null`) - latest selectable date
@@ -43,7 +43,7 @@ export const datepicker:Array<any> = [DatePicker, DatePickerPopup];
   - `custom-class` (`?Array<{date:Date, mode:string, class: strung}>`) - array of custom classes to be applied to targeted dates
   - `show-weeks` (`?boolean=true`) - if `false` week numbers will be hidden
   - `starting-day` (`?number=0`) - starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday).
-  - `init-date` (`?Date`) - default date to show if `ng-model` value is not specified
+  - `init-date` (`?Date`) - default date to show if `ngModel` value is not specified
   - `min-mode` (`?string='day'`) - set lower datepicker mode, supports: `day`, `month`, `year`
   - `max-mode` (`?string='year'`) - sets upper datepicker mode, supports: `day`, `month`, `year`
   - `format-day` (`?string='dd'`) - format of day in month

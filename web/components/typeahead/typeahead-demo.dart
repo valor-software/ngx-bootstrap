@@ -2,9 +2,9 @@ import "package:angular2/angular2.dart";
 import "package:ng2_strap/typeahead/typeahead.dart";
 import 'dart:async';
 
-@Component (selector: "typeahead-demo")
-@View (templateUrl: 'typeahead-demo.html',
-    directives: const [ typeahead, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass])
+@Component (selector: "typeahead-demo",
+    templateUrl: 'typeahead-demo.html',
+    directives: const [Typeahead, CORE_DIRECTIVES, FORM_DIRECTIVES])
 class TypeaheadDemo {
   String selected = "";
 

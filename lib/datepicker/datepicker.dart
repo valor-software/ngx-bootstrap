@@ -1,6 +1,6 @@
 part of ns_datepicker;
 
-@Component (selector: "datepicker[ng-model], [datepicker][ng-model]",
+@Component (selector: "n2s-datepicker",
     inputs: const [
       "datepickerMode",
       "minDate",
@@ -22,31 +22,31 @@ part of ns_datepicker;
       "shortcutPropagation"
     ],
     template: '''
-    <datepicker-inner [active-date]="activeDate"
+    <n2s-datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate(\$event)"
                       [datepicker-mode]="datepickerMode"
-                      [init-date]="initDate"
-                      [min-date]="minDate"
-                      [max-date]="maxDate"
-                      [min-mode]="minMode"
-                      [max-mode]="maxMode"
-                      [show-weeks]="showWeeks"
-                      [format-day]="formatDay"
-                      [format-month]="formatMonth"
-                      [format-year]="formatYear"
-                      [format-day-header]="formatDayHeader"
-                      [format-day-title]="formatDayTitle"
-                      [format-month-title]="formatMonthTitle"
-                      [starting-day]="startingDay"
-                      [year-range]="yearRange"
-                      [custom-class]="customClass"
-                      [date-disabled]="dateDisabled"
-                      [template-url]="templateUrl"
-                      [shortcut-propagation]="shortcutPropagation">
-      <daypicker tabindex="0"></daypicker>
-      <monthpicker tabindex="0"></monthpicker>
-      <yearpicker tabindex="0"></yearpicker>
-    </datepicker-inner>
+                      [initDate]="initDate"
+                      [minDate]="minDate"
+                      [maxDate]="maxDate"
+                      [minDode]="minMode"
+                      [maxDode]="maxMode"
+                      [showDeeks]="showWeeks"
+                      [formatDay]="formatDay"
+                      [formatMonth]="formatMonth"
+                      [formatYear]="formatYear"
+                      [formatDayHeader]="formatDayHeader"
+                      [formatDayTitle]="formatDayTitle"
+                      [formatMonthTitle]="formatMonthTitle"
+                      [startingDay]="startingDay"
+                      [yearRange]="yearRange"
+                      [customClass]="customClass"
+                      [dateDisabled]="dateDisabled"
+                      [templateUrl]="templateUrl"
+                      [shortcutPropagation]="shortcutPropagation">
+      <n2s-daypicker tabindex="0"></n2s-daypicker>
+      <n2s-monthpicker tabindex="0"></n2s-monthpicker>
+      <n2s-yearpicker tabindex="0"></n2s-yearpicker>
+    </n2s-datepicker-inner>
     ''',
     directives: const [
       DatePickerInner,
@@ -106,13 +106,11 @@ class DatePicker extends DefaultValueAccessor {
 
   NgModel cd;
 
-  DateTime get activeDate {
-    return this._activeDate;
-  }
+  DateTime get activeDate => _activeDate;
 
   set activeDate(DateTime value) {
-    this._activeDate = value;
-    this.cd.viewToModelUpdate(this.activeDate.toString());
+    _activeDate = value;
+    cd.viewToModelUpdate(this.activeDate.toString());
   }
 
   onUpdate(event) {
@@ -124,7 +122,7 @@ class DatePicker extends DefaultValueAccessor {
       if (value is String) {
         value = DateTime.parse(value);
       }
-      this.activeDate = value;
+      activeDate = value;
     }
   }
 }

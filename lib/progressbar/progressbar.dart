@@ -4,7 +4,7 @@ const progressConfig = const { "animate" : true, "max" : 100};
 // todo: progress element conflict with bootstrap.css
 
 // todo: need hack: replace host element with div
-@Directive(selector: "bs-progress, [progress]",
+@Directive(selector: "[n2s-progress]",
     inputs: const [ "animate", "max"],
     host: const { "class" : "progress", "[attr.max]" : "max"})
 class Progress implements OnInit {
@@ -44,13 +44,14 @@ class Progress implements OnInit {
 // todo: number pipe
 
 // todo: use query from progress?
-@Component (selector: "bar, [bar]", inputs: const ["type", "value"])
-@View (template: '''
+@Component (selector: "n2s-bar",
+    inputs: const ["type", "value"],
+    template: '''
   <div class="progress-bar"
     style="min-width: 0;"
     role="progressbar"
     [ngClass]="type"
-    [ng-style]="{'width': (percent < 100 ? percent : 100).toString() + \'%\', transition: transition}"
+    [ngStyle]="{'width': (percent < 100 ? percent : 100).toString() + \'%\', transition: transition}"
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
     [attr.aria-valuetext]="percent.toStringAsFixed(0) + \'%\'"
@@ -106,13 +107,13 @@ class Bar implements OnInit, OnDestroy {
   }
 }
 
-@Component (selector: "progressbar, [progressbar]",
+@Component (selector: "n2s-progressbar",
     inputs: const [ "animate", "max", "type", "value"],
     template: '''
-    <div progress [animate]="animate" [max]="max">
-      <bar [type]="type" [value]="value">
+    <div n2s-progress [animate]="animate" [max]="max">
+      <n2s-bar [type]="type" [value]="value">
           <ng-content></ng-content>
-      </bar>
+      </n2s-bar>
     </div>
   ''', directives: const [ Progress, Bar])
 class Progressbar {

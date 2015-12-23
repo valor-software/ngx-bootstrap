@@ -3,7 +3,7 @@ import 'dart:html';
 import 'package:node_shims/js.dart';
 
 // TODO: templateUrl
-@Component (selector: "rating[ng-model]",
+@Component (selector: "n2s-rating",
     inputs: const [
       "max", "readonly", "titles", "stateOn", "stateOff", "ratingStates"],
     outputs: const [ "onHover", "onLeave"],

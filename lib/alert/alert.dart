@@ -4,7 +4,7 @@ import "package:angular2/angular2.dart";
 import 'package:node_shims/js.dart';
 
 // TODO: templateUrl
-@Component (selector: "alert",
+@Component (selector: "n2s-alert",
     inputs: const [ "type", "dismissible", "dismissOnTimeout"],
     outputs: const ["close"],
 //    templateUrl: 'alert.html',
@@ -31,7 +31,7 @@ class Alert implements OnInit {
 
   bool closeable = false;
 
-  List<String> classes = [];
+  Set<String> classes = new Set();
 
   set dismissible(bool v) {
     closeable = v;
@@ -50,8 +50,6 @@ class Alert implements OnInit {
     classes.add("alert-$type");
     if (closeable) {
       classes.add("alert-dismissible");
-    } else {
-      classes.length = 1;
     }
     if (truthy(dismissOnTimeout)) {
       dismissible = true;

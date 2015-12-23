@@ -9,7 +9,7 @@ import {
 
 // TODO: templateUrl
 @Component({
-  selector: 'rating[ng-model]',
+  selector: 'rating[ngModel]',
   properties: [
     'max', 'readonly', 'titles',
     'stateOn', 'stateOff',

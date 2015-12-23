@@ -2,8 +2,8 @@ import "package:angular2/angular2.dart";
 import "datepicker-inner.dart";
 import 'package:intl/intl.dart';
 
-@Component (selector: "daypicker, [daypicker]")
-@View (template: '''
+@Component (selector: "n2s-daypicker",
+    template: '''
 <table [hidden]="datePicker.datepickerMode != 'day'" role="grid" aria-labelledby="uniqueId+\'-title\'" aria-activedescendant="activeDateId">
   <thead>
     <tr>
@@ -124,7 +124,7 @@ class DayPicker
     datePicker.setRefreshViewHandler(() {
       var year = datePicker.activeDate.year;
       var month = datePicker.activeDate.month;
-      var firstDayOfMonth = new DateTime (year, month, 1);
+      var firstDayOfMonth = new DateTime (year, month, 1 - new DateTime (year, month, 1, 12).weekday, 12);
       var difference = datePicker.startingDay - firstDayOfMonth.day;
       var numDisplayedFromPreviousMonth = (difference > 0)
           ? 7 - difference
@@ -134,7 +134,7 @@ class DayPicker
         //todo luisvt: not sure what to do with next line
 //        firstDate.setDate(-numDisplayedFromPreviousMonth + 1);
       }
-      // 42 is the number of days on a six-month calendar
+      // 42 is the number of days on a six-week calendar
       List<DateTime> _days = getDates(firstDate, 42);
       List days = [];
       for (var i = 0; i < 42; i++) {

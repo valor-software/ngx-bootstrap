@@ -19,7 +19,7 @@ const _PAGINATION_CONFIG = const {
   "rotate" : true
 };
 
-@Component (selector: "pagination[ng-model], [pagination][ng-model]",
+@Component (selector: "n2s-pagination",
     inputs: const [
       "rotate",
       "disabled",
@@ -33,8 +33,8 @@ const _PAGINATION_CONFIG = const {
       "nextText",
       "lastText"
     ],
-    outputs: const ["numPages"])
-@View (template: '''
+    outputs: const ["numPages"],
+    template: '''
   <ul class="pagination" [ngClass]="classMap">
     <li class="pagination-first"
         [ngClass]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}"
@@ -229,7 +229,7 @@ class Pagination extends DefaultValueAccessor implements OnInit {
   }
 }
 
-@Component (selector: "pager[ng-model], [pager][ng-model]",
+@Component (selector: "pager[ngModel], [pager][ngModel]",
     inputs: const [
       "align", "totalItems", "itemsPerPage", "previousText", "nextText"])
 @View (template: '''

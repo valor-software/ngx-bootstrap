@@ -19,7 +19,7 @@ import "datepicker-inner.dart" show DatePickerInner;
 //const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS [ Ng2BootstrapConfig.theme ] ||
 //    TEMPLATE_OPTIONS.bs3;
 
-@Component (selector: "monthpicker, [monthpicker]")
+@Component (selector: "n2s-monthpicker")
 @View (template: '''
 <table [hidden]="datePicker.datepickerMode!='month'" role="grid">
   <thead>

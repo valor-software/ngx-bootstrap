@@ -49,7 +49,7 @@ const KEYS = const {
   40 : "down"
 };
 
-@Component (selector: "datepicker-inner",
+@Component (selector: "n2s-datepicker-inner",
     outputs: const [ "update"],
     inputs: const [
       "activeDate",

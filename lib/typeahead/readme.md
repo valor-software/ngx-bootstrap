@@ -35,12 +35,12 @@ import {Typeahead} from 'ng2-bootstrap';
 
 ### Typeahead properties
 
-  - `ng-model` (`string`) - binds to string user's input
+  - `ngModel` (`string`) - binds to string user's input
   - `typeahead` (`any`) - options source, can be Array of strings or objects or function that return Promise for external matching process
   - `typeahead-append-to-body` (*not implemented*) (`?boolean=false`) - if `true` the typeahead popup will be appended to $body instead of the parent element
   - `typeahead-editable` (*not implemented*) (`?boolean=true`) - if `false` restrict model values to the ones selected from the popup only will be provided
   - `typeahead-focus-first` (*not implemented*) (`?boolean=true`) - if `false` the first match automatically will not be focused as you type
-  - `typeahead-input-formatter` (*not implemented*) (`?any`) - format the ng-model result after selection
+  - `typeahead-input-formatter` (*not implemented*) (`?any`) - format the ngModel result after selection
   - `typeahead-min-length` (`?number=1`) - minimal no of characters that needs to be entered before typeahead kicks-in. Must be greater than or equal to 1.
   - `typeahead-select-on-exact` (*not implemented*) (`?boolean=false`) - if `true` automatically select an item when there is one option that exactly matches the user input
   - `typeahead-template-url` (*not implemented*) (`?string`) - set custom item template

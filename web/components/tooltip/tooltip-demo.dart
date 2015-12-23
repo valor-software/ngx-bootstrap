@@ -4,7 +4,7 @@ import 'package:ng2_strap/tooltip/tooltip.dart';
 @Component(selector: "tooltip-demo")
 @View(
     templateUrl: 'tooltip-demo.html',
-    directives: const [TOOLTIP_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass],
+    directives: const [TOOLTIP_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
     styles: const [
       '''
     /* Specify styling for tooltip contents */

@@ -1,6 +1,6 @@
 import "package:angular2/angular2.dart";
 
-@Directive (selector: "ns-btn-radio",
+@Directive(selector: "n2s-btn-radio",
     inputs: const [ "option", "uncheckable"],
     host: const { "(click)" : "onClick()", "[class.active]" : "isActive"})
 class ButtonRadio extends DefaultValueAccessor {

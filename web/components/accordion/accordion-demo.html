@@ -1,6 +1,6 @@
 <p>
   <button type="button" class="btn btn-primary btn-sm"
-          (click)="status['open'] = !status['open']">Toggle last panel
+          (click)="accLastPanel.isOpen = !accLastPanel.isOpen">Toggle last panel
   </button>
   <button type="button" class="btn btn-primary btn-sm"
           (click)="status['isFirstDisabled'] = ! status['isFirstDisabled']">Enable / Disable first panel
@@ -9,7 +9,7 @@
 
 <div class="checkbox">
   <label>
-    <input type="checkbox" [(ng-model)]="oneAtATime">
+    <input type="checkbox" [(ngModel)]="oneAtATime">
     Open only one at a time
   </label>
 </div>
@@ -27,11 +27,11 @@
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>
     <div *ngFor="#item of items">{{item}}</div>
   </n2s-accordion-panel>
-  <n2s-accordion-panel [(isOpen)]="status['open']">
+  <n2s-accordion-panel #accLastPanel>
     <n2s-accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': status['open'], 'glyphicon-chevron-right': !status['open']}"></i>
+         [ngClass]="{'glyphicon-chevron-down': accLastPanel.isOpen, 'glyphicon-chevron-right': !accLastPanel.isOpen}"></i>
     </n2s-accordion-heading>
     This is just some content to illustrate fancy headings.
   </n2s-accordion-panel>

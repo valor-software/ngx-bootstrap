@@ -7,7 +7,7 @@ import {Rating} from 'ng2-bootstrap';
 ```typescript
 // class Rating implements on Init
 @Component({
-  selector: 'rating[ng-model]',
+  selector: 'rating[ngModel]',
   properties: [
     'max', 'readonly', 'titles',
     'stateOn', 'stateOff',

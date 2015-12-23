@@ -7,7 +7,7 @@ import {pagination} from 'ng2-bootstrap';
 ```typescript
 // class Pagination implements OnInit
 @Component({
-  selector: 'pagination[ng-model], [pagination][ng-model]',
+  selector: 'pagination[ngModel], [pagination][ngModel]',
   properties: [
     'rotate', 'disabled',
     'totalItems', 'itemsPerPage', 'maxSize',
@@ -19,7 +19,7 @@ import {pagination} from 'ng2-bootstrap';
 
 // class Pager implements OnInit
 @Component({
-  selector: 'pager[ng-model], [pager][ng-model]',
+  selector: 'pager[ngModel], [pager][ngModel]',
   properties: [
     'align',
     'totalItems', 'itemsPerPage',

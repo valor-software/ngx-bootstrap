@@ -123,16 +123,15 @@ class AccordionPanel
   }
 }
 
-@Directive (selector: "accordion-heading, [accordion-heading]")
-class AccordionHeading {
-  AccordionPanel panel;
+//@Directive (selector: "accordion-heading, [accordion-heading]")
+//class AccordionHeading {
+//  AccordionPanel panel;
+//
+//  TemplateRef templateRef;
+//
+//  AccordionHeading(this.templateRef) {
+//    panel.headingTemplate = templateRef;
+//  }
+//}
 
-  TemplateRef templateRef;
-
-  AccordionHeading(this.templateRef) {
-    panel.headingTemplate = templateRef;
-  }
-}
-
-const List<dynamic> ACCORDION_DIRECTIVES = const [
-  Accordion, AccordionPanel, AccordionHeading];
+const List<dynamic> ACCORDION_DIRECTIVES = const [Accordion, AccordionPanel];

@@ -8,36 +8,36 @@
     <button type="button" class="btn btn-primary btn-sm" (click)="tabs[1]['disabled'] = ! tabs[1]['disabled']">Enable / Disable third tab</button>
   </p>
   <hr />
-  <tabset>
-    <tab heading="Static title">Static content</tab>
-    <tab *ngFor="#tabz of tabs"
+  <n2s-tabset>
+    <n2s-tab heading="Static title">Static content</n2s-tab>
+    <n2s-tab *ngFor="#tabz of tabs"
          [heading]="tabz['title']"
          [active]="tabz['active'] == true"
          (deselect)="tabz['active'] = false"
          [disabled]="tabz['disabled'] == true">
       {{tabz['content']}}
-    </tab>
-    <tab (select)="alertMe()">
-      <template tab-heading>
+    </n2s-tab>
+    <n2s-tab (select)="alertMe()">
+      <template n2s-tab-heading>
         <i class="glyphicon glyphicon-bell"></i> Alert!
       </template>
       I've got an HTML heading, and a select callback. Pretty cool!
-    </tab>
-  </tabset>
+    </n2s-tab>
+  </n2s-tabset>
 
   <hr />
 
-  <tabset [vertical]="true" type="pills">
-    <tab heading="Vertical 1">Vertical content 1</tab>
-    <tab heading="Vertical 2">Vertical content 2</tab>
-  </tabset>
+  <n2s-tabset [vertical]="true" type="pills">
+    <n2s-tab heading="Vertical 1">Vertical content 1</n2s-tab>
+    <n2s-tab heading="Vertical 2">Vertical content 2</n2s-tab>
+  </n2s-tabset>
 
   <hr />
 
   <p><i>Bootstrap 4 doesn't have justified classes</i></p>
-  <tabset [justified]="true">
-    <tab heading="Justified">Justified content</tab>
-    <tab heading="SJ">Short Labeled Justified content</tab>
-    <tab heading="Long Justified">Long Labeled Justified content</tab>
-  </tabset>
+  <n2s-tabset [justified]="true">
+    <n2s-tab heading="Justified">Justified content</n2s-tab>
+    <n2s-tab heading="SJ">Short Labeled Justified content</n2s-tab>
+    <n2s-tab heading="Long Justified">Long Labeled Justified content</n2s-tab>
+  </n2s-tabset>
 </div>

@@ -1,4 +1,4 @@
-<timepicker [(ng-model)]="mytime" (change)="changed()" [hour-step]="hstepInt" [minute-step]="mstepInt" [show-meridian]="ismeridian"></timepicker>
+<timepicker [(ngModel)]="mytime" (change)="changed()" [hourStep]="hstepInt" [minuteStep]="mstepInt" [showMeridian]="ismeridian"></timepicker>
 
 <pre class="alert alert-info">Time is: {{mytime}}</pre>
 <pre> (note: | date:'shortTime' and date pipe currently supported only in Chrome)</pre>
@@ -6,13 +6,13 @@
 <div class="row">
   <div class="col-xs-6">
     Hours step is:
-    <select class="form-control" [(ng-model)]="hstep">
+    <select class="form-control" [(ngModel)]="hstep">
       <option *ngFor="#opt of options['hstep']" [value]="opt">{{opt}}</option>
     </select>
   </div>
   <div class="col-xs-6">
     Minutes step is:
-    <select class="form-control" [(ng-model)]="mstep">
+    <select class="form-control" [(ngModel)]="mstep">
       <option *ngFor="#opt of options['mstep']" [value]="opt">{{opt}}</option>
     </select>
   </div>

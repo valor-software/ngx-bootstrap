@@ -1,8 +1,8 @@
 import "package:angular2/angular2.dart";
 
 @Directive(
-    selector: "ns-btn-checkbox",
-    inputs: const [ "trueValue", "falseValue"],
+    selector: "n2s-btn-checkbox",
+    inputs: const ["trueValue", "falseValue"],
     host: const { "(click)" : "onClick()", "[class.active]" : "state"}
 )
 class ButtonCheckbox extends DefaultValueAccessor implements OnInit {

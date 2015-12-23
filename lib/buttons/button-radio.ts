@@ -7,7 +7,7 @@ import {
 
 
 @Directive({
-  selector: '[btn-radio][ng-model]',
+  selector: '[btn-radio][ngModel]',
   properties: ['btnRadio', 'uncheckable'],
   host: {
     '(click)': 'onClick()',

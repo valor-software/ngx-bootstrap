@@ -7,7 +7,7 @@ import {Timepicker} from 'ng2-bootstrap';
 ```typescript
 // class Timepicker implements OnInit
 @Component({
-  selector: 'timepicker[ng-model]',
+  selector: 'timepicker[ngModel]',
   properties: [
     'hourStep', 'minuteStep',
     'meridians', 'showMeridian',
@@ -24,7 +24,7 @@ import {Timepicker} from 'ng2-bootstrap';
   - `justified` (`?boolean=false`) - if `true` tabs fill the container and have a consistent width
   - `type` (`?string='tabs'`) - navigation context class: 'tabs' or 'pills'
 
-  - `ng-model` (`*Date`) - binds to Date object
+  - `ngModel` (`*Date`) - binds to Date object
   - `hour-step` (`?number=1`) - hours change step
   - `minute-step` (`?number=1`) - minutes change step
   - `meridians` (`?Array<string> = ['AM', 'PM'];`) - meridian labels based on locale (*will be based later*)
