@@ -1,6 +1,4 @@
 import "package:angular2/angular2.dart";
-import "package:angular2/src/common/forms/directives/shared.dart";
-//import "package:angular2/src/core/di.dart";
 import "../ng2-bootstrap-config.dart";
 import "../position.dart";
 import 'dart:html';
@@ -102,7 +100,7 @@ class TypeaheadContainer {
     display = "block";
     top = "0px";
     left = "0px";
-    var p = positionService.positionElements(
+    var p = positionElements(
         hostEl.nativeElement, element.nativeElement.children [ 0 ],
         placement, false);
     top = p.top.toString() + "px";
@@ -192,7 +190,8 @@ class TypeaheadContainer {
       "onNoResults",
       "onSelect"
     ],
-    template: '<input type="text"[(ngModel)]="cd.model" (keyup)="onTypeaheadChange(\$event)" class="form-control">')
+    template: '<input type="text"[(ngModel)]="cd.model" (keyup)="onTypeaheadChange(\$event)" class="form-control">',
+    directives: const [FORM_DIRECTIVES])
 class Typeahead extends DefaultValueAccessor implements OnInit {
   NgModel cd;
 

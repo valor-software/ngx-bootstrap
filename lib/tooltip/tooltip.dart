@@ -1,5 +1,5 @@
 import "package:angular2/angular2.dart";
-import "package:ng2_strap/position.dart" show positionService;
+import "package:ng2_strap/position.dart";
 import 'dart:async';
 
 class TooltipOptions {
@@ -73,7 +73,7 @@ class TooltipContainer {
     display = "block";
     top = "0px";
     left = "0px";
-    var p = positionService.positionElements(
+    var p = positionElements(
         hostEl.nativeElement,
         element.nativeElement.children[0],
         placement,

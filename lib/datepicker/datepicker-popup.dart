@@ -76,7 +76,7 @@ class PopupContainer {
     this.display = "block";
     this.top = "0px";
     this.left = "0px";
-    var p = positionService.positionElements(
+    var p = positionElements(
         hostEl.nativeElement, this.element.nativeElement.children [ 0 ],
         this.placement, false);
     this.top = p.top + "px";
