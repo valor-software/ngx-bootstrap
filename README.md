@@ -1,16 +1,12 @@
-# ng2-strap
-Native Angular2 directives for Bootstrap
+# ng2_strap
+
+Native Angular2 Dart directives for Bootstrap
 
 Works with Bootstrap 3
 
 # Usage & Demo
 
 [http://luisvt.github.io/ng2_strap/](http://luisvt.github.io/ng2_strap/)
-
-# Starter package
-
-You can start hacking by cloning starter repo:
-[https://github.com/valor-software/angular2-bootstrap-starter](https://github.com/valor-software/angular2-bootstrap-starter)
 
 ## Components
 
@@ -19,7 +15,7 @@ You can start hacking by cloning starter repo:
 - [x] Buttons
 - [x] Carousel
 - [x] Collapse
-- [ ] Datepicker (Datepicker popup not implemented)
+- [x] Datepicker (Datepicker popup not implemented)
 - [x] Dropdown
 - [ ] Modal (in progress...)
 - [x] Pagination
@@ -28,7 +24,7 @@ You can start hacking by cloning starter repo:
 - [x] Rating
 - [x] Tabs
 - [x] Timepicker
-- [-] Tooltip
+- [x] Tooltip
 - [x] Typeahead
 
 - [x] NgTransclude - to transclude templates
