@@ -4,7 +4,7 @@ import {
   ElementRef, EventEmitter,
   Self, Renderer
 } from 'angular2/core';
-import { NgFor, NgClass, ControlValueAccessor, NgModel } from 'angular2/common';
+import { NgFor, NgIf, NgClass, ControlValueAccessor, NgModel } from 'angular2/common';
 import { IAttribute } from '../common';
 
 // todo: extract base functionality classes
@@ -43,33 +43,34 @@ const paginationConfig:IPaginationConfig = {
 };
 
 const PAGINATION_TEMPLATE = `
-    <ul class="pagination" [ngClass]="classMap">
+  <ul class="pagination" [ngClass]="classMap">
     <li class="pagination-first page-item"
-        [ngClass]="{disabled: noPrevious()||disabled, hidden: !boundaryLinks}"
-        [hidden]="!boundaryLinks">
+        *ngIf="boundaryLinks"
+        [class.disabled]="noPrevious()||disabled">
       <a class="page-link" href (click)="selectPage(1, $event)">{{getText('first')}}</a>
     </li>
 
     <li class="pagination-prev page-item"
-        [ngClass]="{disabled: noPrevious()||disabled, hidden: !directionLinks}"
-        [hidden]="!directionLinks">
+        *ngIf="directionLinks"
+        [class.disabled]="noPrevious()||disabled">
       <a class="page-link" href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
       </li>
 
     <li *ngFor="#pg of pages"
-    [ngClass]="{active: pg.active, disabled: disabled&&!pg.active}"
-    class="pagination-page page-item">
+        [class.active]="pg.active"
+        [class.disabled]="disabled&&!pg.active"
+        class="pagination-page page-item">
       <a class="page-link" href (click)="selectPage(pg.number, $event)">{{pg.text}}</a>
     </li>
 
     <li class="pagination-next page-item"
-        [ngClass]="{disabled: noNext()||disabled, hidden: !directionLinks}"
-        [hidden]="!directionLinks">
+        *ngIf="directionLinks"
+        [class.disabled]="noNext()">
       <a class="page-link" href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
 
     <li class="pagination-last page-item"
-        [ngClass]="{disabled: noNext()||disabled, hidden: !boundaryLinks}"
-        [hidden]="!boundaryLinks">
+        *ngIf="boundaryLinks"
+        [class.disabled]="noNext()">
       <a class="page-link" href (click)="selectPage(totalPages, $event)">{{getText('last')}}</a></li>
   </ul>
   `;
@@ -77,7 +78,7 @@ const PAGINATION_TEMPLATE = `
 @Component({
   selector: 'pagination[ngModel]',
   template: PAGINATION_TEMPLATE,
-  directives: [NgClass, NgFor]
+  directives: [NgFor, NgIf]
 })
 export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
   @Input() public maxSize:number;
@@ -129,7 +130,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
 
   private set totalPages(v:number) {
     this._totalPages = v;
-    this.numPages.next(v);
+    this.numPages.emit(v);
     if (this.inited) {
       this.selectPage(this.page);
     }
@@ -138,7 +139,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   public set page(value) {
     this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
 
-    this.pageChanged.next({
+    this.pageChanged.emit({
       page: this._page,
       itemsPerPage: this.itemsPerPage
     });
@@ -296,10 +297,10 @@ const pagerConfig = {
 
 const PAGER_TEMPLATE = `
     <ul class="pager">
-      <li [ngClass]="{disabled: noPrevious(), previous: align, 'pull-left': align}">
+      <li [class.disabled]="noPrevious()" [class.previous]="align" [ngClass]="{'pull-right': align}">
         <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
       </li>
-      <li [ngClass]="{disabled: noNext(), next: align, 'pull-right': align}">
+      <li [class.disabled]="noNext()" [class.next]="align" [ngClass]="{'pull-right': align}">
         <a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a>
       </li>
   </ul>
