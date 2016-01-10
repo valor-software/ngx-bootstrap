@@ -81,12 +81,3 @@ export class Home {
 ## Contribution
 
 Please read central `ng2` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach and welcome :)
-
-
-### TODO
-- [ ] find a better way to detect is event handler is set (see alerts.ts)
-- [ ] support `templateUrl` for directives
-- [ ] support animation  (in progress...)
-- [x] demo page
-- [x] docs
-- [x] publish to npm
