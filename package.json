@@ -59,7 +59,7 @@
     "tslint": "3.2.1",
     "typescript": "1.7.5",
     "webpack": "1.12.11",
-    "webpack-dev-server": "1.14.0",
+    "webpack-dev-server": "1.14.1",
     "zone.js": "0.5.10"
   }
 }
