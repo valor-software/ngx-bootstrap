@@ -1,19 +1,14 @@
-/// <reference path="../../../tsd.d.ts" />
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Rating} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./rating-demo.html');
 
 @Component({
-  selector: 'rating-demo'
-})
-@View({
-  template: template,
-  directives: [Rating, FORM_DIRECTIVES, CORE_DIRECTIVES]
+  selector: 'rating-demo',
+  directives: [Rating, FORM_DIRECTIVES, CORE_DIRECTIVES],
+  template: template
 })
 export class RatingDemo {
   private x:number = 5;

@@ -1,6 +1,6 @@
 <h4>Default</h4>
 <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
-        (on-hover)="hoveringOver($event)" (on-leave)="resetStar($event)"
+        (onHover)="hoveringOver($event)" (onLeave)="resetStar($event)"
         [titles]="['one','two','three']"></rating>
 <span class="label"
       [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
@@ -18,8 +18,8 @@
 
 <h4>Custom icons</h4>
 <div>
-  <rating [(ngModel)]="x" max="15" state-on="glyphicon-ok-sign"
-          state-off="glyphicon-ok-circle"></rating>
+  <rating [(ngModel)]="x" max="15" stateOn="glyphicon-ok-sign"
+          stateOff="glyphicon-ok-circle"></rating>
   <b>(<i>Rate:</i> {{x}})</b>
 </div>
 <div>
