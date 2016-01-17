@@ -8,7 +8,7 @@ export * from  './components/dropdown';
 export * from  './components/pagination';
 export * from  './components/progressbar';
 export * from  './components/rating';
-export * from  './components/tabs/tabs';
+export * from  './components/tabs';
 export * from  './components/timepicker/timepicker';
 export * from  './components/tooltip/tooltip';
 export * from  './components/typeahead/typeahead';

@@ -15,18 +15,18 @@ import { TAB_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 ### Annotations
 ```typescript
-// class Tabset implements OnInit
+// component Tabset
 @Component({
   selector: 'tabset',
   directives: [NgClass, NgTransclude]
 })
 export class Tabset implements OnInit {
-  @Input() private vertical:boolean;
-  @Input() private justified:boolean;
-  @Input() private type:string;
+  @Input() public vertical:boolean;
+  @Input() public justified:boolean;
+  @Input() public type:string;
 }
 
-// class Tab implements OnInit, OnDestroy, DoCheck
+// directive Tab
 @Directive({ selector: 'tab, [tab]' })
 export class Tab implements OnInit, OnDestroy, DoCheck {
   @Input() public heading:string;
@@ -40,7 +40,7 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
   @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
 }
 
-// class TabHeading
+// directive TabHeading
 @Directive({selector: '[tab-heading]'})
 export class TabHeading {}
 
@@ -56,11 +56,10 @@ export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
   - `heading` (`string`) - tab header text
   - `active` (`?boolean=false`) - if tab is active equals true, or set `true` to activate tab
   - `disabled` (`?boolean=false`) - if `true` tab can not be activated
-  - `disable` (**note: deprecated**) - mirrors `disabled` property
 
 ### Tab events
   - `select` - fired when `tab` became active, `$event:Tab` equals to selected instance of `Tab` component
   - `deselect` - fired when `tab` became inactive, `$event:Tab` equals to deselected instance of `Tab` component
 
 ### Tab heading
-Should be used to mark `<template>` element as template for tab heading
+Should be used to mark `<template>` element as a template for tab heading

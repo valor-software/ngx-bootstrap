@@ -1,11 +1,7 @@
-/// <reference path="../../tsd.d.ts" />
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TabsDemo} from './tabs/tabs-demo';
 
 let name = 'Tabs';
@@ -19,9 +15,8 @@ let ts = require('!!prismjs?lang=typescript!./tabs/tabs-demo.ts');
 let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
 
 @Component({
-  selector: 'tabs-section'
-})
-@View({
+  selector: 'tabs-section',
+  directives: [TabsDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -62,8 +57,7 @@ let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
       <div class="card card-block panel panel-default panel-body">${doc}</div>
     </div>
   </section>
-  `,
-  directives: [TabsDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class TabsSection {
 }

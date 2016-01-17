@@ -1,10 +1,7 @@
-/// <reference path="../../tsd.d.ts" />
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TimepickerDemo} from './timepicker/timepicker-demo';
 
 let name = 'Timepicker';
@@ -18,9 +15,8 @@ let ts = require('!!prismjs?lang=typescript!./timepicker/timepicker-demo.ts');
 let html = require('!!prismjs?lang=markup!./timepicker/timepicker-demo.html');
 
 @Component({
-  selector: 'timepicker-section'
-})
-@View({
+  selector: 'timepicker-section',
+  directives: [TimepickerDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -61,8 +57,7 @@ let html = require('!!prismjs?lang=markup!./timepicker/timepicker-demo.html');
       <div class="card card-block panel panel-default panel-body">${doc}</div>
     </div>
   </section>
-  `,
-  directives: [TimepickerDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class TimepickerSection {
 }
