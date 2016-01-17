@@ -1,7 +1,7 @@
 import {Directive, TemplateRef, ViewContainerRef, Inject} from 'angular2/core';
 
 export interface IAttribute {
-  [name: string]: any;
+  [key: string]: any;
 }
 
 @Directive({
