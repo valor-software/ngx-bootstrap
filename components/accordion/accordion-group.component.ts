@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, Input, HostBinding } from 'angular2/core';
-import { NgClass } from 'angular2/common';
+import {Component, OnInit, OnDestroy, Input, HostBinding} from 'angular2/core';
+import {NgClass} from 'angular2/common';
 
-import { Collapse } from '../collapse/collapse';
-import { Accordion } from './accordion.component';
+import {Collapse} from '../collapse';
+import {Accordion} from './accordion.component';
 
 
 @Component({

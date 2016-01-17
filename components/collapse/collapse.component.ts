@@ -1,10 +1,8 @@
-import {
-  Directive, Input, HostBinding
-} from 'angular2/core';
+import {Directive, Input, HostBinding} from 'angular2/core';
 
 // todo: add animate
 // todo: add init and on change
-@Directive({ selector: '[collapse]' })
+@Directive({selector: '[collapse]'})
 export class Collapse {
   // style
   @HostBinding('style.height')
