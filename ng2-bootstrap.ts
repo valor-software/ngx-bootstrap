@@ -1,4 +1,4 @@
-export * from  './components/accordion/accordion';
+export * from  './components/accordion';
 export * from  './components/alert/alert';
 export * from  './components/buttons/button-radio';
 export * from  './components/buttons/button-checkbox';
