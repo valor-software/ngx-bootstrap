@@ -65,7 +65,7 @@ let gettingStarted = require('./getting-started.md');
 
     <accordion-section class="col-md-12"></accordion-section>
     <alert-section class="col-md-12"></alert-section>
-    <!--<buttons-section class="col-md-12"></buttons-section>
+    <buttons-section class="col-md-12"></buttons-section>
     <!--<carousel-section class="col-md-12"></carousel-section>
     <!--<collapse-section class="col-md-12"></collapse-section>
     <!--<datepicker-section class="col-md-12"></datepicker-section>-->

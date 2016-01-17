@@ -1,11 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {
-  Component, View,
-} from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {ButtonsDemo} from './buttons/buttons-demo';
 
 let name = 'Buttons';
@@ -20,7 +18,7 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
   selector: 'buttons-section',
-  directives: [ButtonsDemo, tabs, CORE_DIRECTIVES],
+  directives: [ButtonsDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">

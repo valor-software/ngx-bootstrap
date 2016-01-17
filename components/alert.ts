@@ -1,3 +1,1 @@
-import {Alert as alert} from './alert/alert.component';
-
-export const Alert = alert;
+export {Alert} from './alert/alert.component';

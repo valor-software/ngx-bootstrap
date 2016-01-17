@@ -1,7 +1,6 @@
 export * from  './components/accordion';
 export * from  './components/alert';
-export * from  './components/buttons/button-radio';
-export * from  './components/buttons/button-checkbox';
+export * from  './components/buttons';
 // export * from  './components/datepicker/index';
 export * from  './components/dropdown/index';
 export * from  './components/dropdown/dropdown';

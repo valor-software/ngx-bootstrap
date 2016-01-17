@@ -1,8 +1,5 @@
-import {
-  Directive,
-  OnInit, Input, HostBinding, HostListener,
-  Self, Renderer, ElementRef,
-} from 'angular2/core';
+import { Directive, OnInit, Input, HostBinding, HostListener,
+  Self, Renderer, ElementRef } from 'angular2/core';
 import { ControlValueAccessor, NgModel } from 'angular2/common';
 
 @Directive({ selector: '[btnCheckbox][ngModel]' })
