@@ -1,16 +1,15 @@
-/// <reference path="../../tsd.d.ts" />
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../components/ng2-bootstrap-config';
-
-import {tabs} from '../../ng2-bootstrap';
+  TAB_DIRECTIVES,
+  Ng2BootstrapConfig,
+  Ng2BootstrapTheme
+} from '../../ng2-bootstrap';
 import {ProgressbarDemo} from './progressbar/progressbar-demo';
 
 let name = 'Progressbar';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/progressbar/progressbar.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/progressbar/';
 
 // webpack html imports
 let doc = require('../../components/progressbar/readme.md');
@@ -24,9 +23,8 @@ let templates:any = {
 let html = templates[Ng2BootstrapConfig.theme];
 
 @Component({
-  selector: 'progressbar-section'
-})
-@View({
+  selector: 'progressbar-section',
+  directives: [ProgressbarDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -67,8 +65,7 @@ let html = templates[Ng2BootstrapConfig.theme];
       <div class="card card-block panel panel-default panel-body">${doc}</div>
     </div>
   </section>
-  `,
-  directives: [ProgressbarDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class ProgressbarSection {
 }

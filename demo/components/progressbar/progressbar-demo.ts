@@ -1,25 +1,27 @@
-/// <reference path="../../../tsd.d.ts" />
-import {
-  Component, View,
-} from 'angular2/core';
+import {Component} from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
-// switch bs3\bs4 templates
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../../components/ng2-bootstrap-config';
 
-import {progressbar} from '../../../ng2-bootstrap';
+// switch bs3\bs4 templates
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../../ng2-bootstrap';
+
+import {PROGRESSBAR_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let templates:any = {
-  [Ng2BootstrapTheme.BS3]: require('./progressbar-demo.html'),
+  // fix: in beta.1 progress bar is broken https://github.com/angular/angular/issues/6382
+  // check and try
+  // [Ng2BootstrapTheme.BS3]: require('./progressbar-demo.html'),
+  [Ng2BootstrapTheme.BS3]: `
+  <h3>In Angular2 beta.1 progressbar will not work because of known <a href="https://github.com/angular/angular/issues/6382">issue #6382</a></h3>
+  <h4>please check version for <a href="http://valor-software.github.io/ng2-bootstrap/index-bs4.html#progressbar">bootstrap 4</a>, it is still working</h4>
+  `,
   [Ng2BootstrapTheme.BS4]: require('./progressbar-demo-bs4.html')
 };
 
 @Component({
-  selector: 'progressbar-demo'
-})
-@View({
-  template: templates[Ng2BootstrapConfig.theme],
-  directives: [progressbar, CORE_DIRECTIVES]
+  selector: 'progressbar-demo',
+  directives: [PROGRESSBAR_DIRECTIVES, CORE_DIRECTIVES],
+  template: templates[Ng2BootstrapConfig.theme]
 })
 export class ProgressbarDemo {
   public max:number = 200;

@@ -6,7 +6,7 @@ export * from  './components/collapse';
 // export * from  './components/datepicker/index';
 export * from  './components/dropdown';
 export * from  './components/pagination';
-export * from  './components/progressbar/progressbar';
+export * from  './components/progressbar';
 export * from  './components/rating/rating';
 export * from  './components/tabs/tabs';
 export * from  './components/timepicker/timepicker';
