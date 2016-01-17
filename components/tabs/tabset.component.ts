@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ChangeDetectionStrategy} from 'angular2/core';
+import {Component, OnInit, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {NgTransclude} from '../common';
 import {Tab} from './tab.directive';

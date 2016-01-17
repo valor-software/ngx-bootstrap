@@ -1,9 +1,5 @@
-import {
-  Component,
-  OnInit, Input,
-  Self
-} from 'angular2/core';
-import { NgClass, NgModel, ControlValueAccessor } from 'angular2/common';
+import {Component, OnInit, Input, Self} from 'angular2/core';
+import {NgClass, NgModel, ControlValueAccessor} from 'angular2/common';
 
 export interface ITimepickerConfig {
   hourStep: number;
@@ -45,7 +41,7 @@ function def(value:any, fn:Function, defaultValue:any) {
   return fn(value) ? value : defaultValue;
 }
 
-function addMinutes(date: any, minutes:number) {
+function addMinutes(date:any, minutes:number) {
   let dt = new Date(date.getTime() + minutes * 60000);
   let newDate = new Date(date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
@@ -182,7 +178,6 @@ export class Timepicker implements ControlValueAccessor, OnInit {
       return;
     }
     this.selected = v ? new Date(v) : null;
-    // todo: implement logic from render
   }
 
   private refresh(type?:string) {
@@ -381,8 +376,10 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     }
   }
 
-  onChange = (_:any) => {};
-  onTouched = () => {};
+  onChange = (_:any) => {
+  };
+  onTouched = () => {
+  };
 
   registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;
