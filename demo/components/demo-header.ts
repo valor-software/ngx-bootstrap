@@ -1,9 +1,12 @@
 /// <reference path="../../tsd.d.ts" />
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-import {Collapse, dropdown, Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../ng2-bootstrap';
+  Collapse,
+  DROPDOWN_DIRECTIVES,
+  Ng2BootstrapConfig,
+  Ng2BootstrapTheme
+} from '../../ng2-bootstrap';
 
 let components = [
   'Accordion', 'Alerts', 'Buttons', 'Carousel', 'Collapse', 'Datepicker',
@@ -27,7 +30,7 @@ let template = `
         <ul class="nav navbar-nav">
           <li class="nav-item"><a href="{{prefix}}#top" role="button" class="navbar-brand">ng2-bootstrap</a></li>
           <li class="nav-item dropdown" dropdown>
-            <a role="button" class="nav-link dropdown-toggle" dropdown-toggle>Directives <b class="caret"></b></a>
+            <a role="button" class="nav-link dropdownToggle" dropdownToggle>Directives <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li *ngFor="#comp of components"><a class="dropdown-item" href="{{prefix}}#{{comp.toLowerCase()}}">{{comp}}</a></li>
             </ul>
@@ -52,12 +55,12 @@ let template = `
   directives: [
     CORE_DIRECTIVES,
     Collapse,
-    dropdown
+    DROPDOWN_DIRECTIVES
   ]
 })
 export class DemoHeader {
   public components:Array<string> = components;
-  public isCollapsed: boolean = true;
+  public isCollapsed:boolean = true;
   public prefix:string;
 
   constructor() {
