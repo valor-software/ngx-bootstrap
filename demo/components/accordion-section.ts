@@ -1,4 +1,4 @@
-import { Component, View } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
@@ -13,9 +13,7 @@ let ts = require('!!prismjs?lang=typescript!./accordion/accordion-demo.ts');
 let html = require('!!prismjs?lang=markup!./accordion/accordion-demo.html');
 
 @Component({
-  selector: 'accordion-section'
-})
-@View({
+  selector: 'accordion-section',
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -57,7 +55,7 @@ let html = require('!!prismjs?lang=markup!./accordion/accordion-demo.html');
     </div>
   </section>
   `,
-  directives: [AccordionDemo, CORE_DIRECTIVES]
+  directives: [AccordionDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class AccordionSection {
 }

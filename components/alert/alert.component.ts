@@ -1,13 +1,9 @@
-import {
-  Component,
-  OnInit, Input, Output,
-  ElementRef, ViewContainerRef, EventEmitter
-} from 'angular2/core';
+import { Component, OnInit, Input, Output, EventEmitter } from 'angular2/core';
 import { NgIf, NgClass } from 'angular2/common';
 
 const ALERT_TEMPLATE = `
   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
-    <button *ngIf="dismissible" type="button" class="close" (click)="onClose($event)">
+    <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
@@ -28,13 +24,10 @@ export class Alert implements OnInit {
 
   @Output() public close:EventEmitter<Alert> = new EventEmitter();
 
-  public templateUrl:string;
   private closed:boolean;
   private classes:Array<string> = [];
 
-  constructor(public el:ElementRef) {
-    this.dismissible = this.dismissible || el.nativeElement.getAttribute('(close)');
-  }
+  constructor() {}
 
   ngOnInit() {
     this.classes[0] = `alert-${this.type}`;
@@ -51,7 +44,7 @@ export class Alert implements OnInit {
 
   // todo: mouse event + touch + pointer
   onClose() {
-    this.close.next(this);
     this.closed = true;
+    this.close.emit(this);
   }
 }

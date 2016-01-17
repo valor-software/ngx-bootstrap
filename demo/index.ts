@@ -64,7 +64,7 @@ let gettingStarted = require('./getting-started.md');
     <section id="getting-started">${gettingStarted}</section>
 
     <accordion-section class="col-md-12"></accordion-section>
-    <!--<alert-section class="col-md-12"></alert-section>
+    <alert-section class="col-md-12"></alert-section>
     <!--<buttons-section class="col-md-12"></buttons-section>
     <!--<carousel-section class="col-md-12"></carousel-section>
     <!--<collapse-section class="col-md-12"></collapse-section>

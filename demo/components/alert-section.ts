@@ -1,11 +1,8 @@
 /// <reference path="../../tsd.d.ts" />
-
-import {
-  Component, View,
-} from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {AlertDemo} from './alert/alert-demo';
 
 let name = 'Alerts';
@@ -19,9 +16,7 @@ let ts = require('!!prismjs?lang=typescript!./alert/alert-demo.ts');
 let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
 
 @Component({
-  selector: 'alert-section'
-})
-@View({
+  selector: 'alert-section',
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -63,7 +58,7 @@ let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
     </div>
   </section>
   `,
-  directives: [AlertDemo, tabs, CORE_DIRECTIVES]
+  directives: [AlertDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class AlertSection {
 }
