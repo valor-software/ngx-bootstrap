@@ -1,14 +1,12 @@
-import {
-  Component, Directive,
-  OnInit, OnDestroy, Input, HostBinding,
-  EventEmitter, ElementRef
-} from 'angular2/core';
-import { NgClass, NgFor } from 'angular2/common';
+// todo: add animate
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
+import {Component, OnDestroy, Input} from 'angular2/core';
+import {NgFor} from 'angular2/common';
+
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
+import {Slide} from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
-// todo: add animate
 
 const NAVIGATION:any = {
   [Ng2BootstrapTheme.BS4]: `
@@ -35,11 +33,11 @@ const NAVIGATION:any = {
 // (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
 @Component({
   selector: 'carousel',
-  directives: [NgClass, NgFor],
+  directives: [NgFor],
   template: `
     <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
       <ol class="carousel-indicators" [hidden]="slides.length <= 1">
-         <li *ngFor="#slidez of slides" [ngClass]="{active: slidez.active === true}" (click)="select(slidez)"></li>
+         <li *ngFor="#slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
       ${NAVIGATION[Ng2BootstrapConfig.theme]}
@@ -47,9 +45,9 @@ const NAVIGATION:any = {
   `
 })
 export class Carousel implements OnDestroy {
-  @Input() private noWrap:boolean;
-  @Input() private noPause:boolean;
-  @Input() private noTransition:boolean;
+  @Input() public noWrap:boolean;
+  @Input() public noPause:boolean;
+  @Input() public noTransition:boolean;
 
   @Input() public get interval():number {
     return this._interval;
@@ -200,38 +198,3 @@ export class Carousel implements OnDestroy {
   }
 }
 
-@Component({
-  selector: 'slide',
-  directives: [NgClass],
-  template: `
-    <div [ngClass]="{active: active}" class="item text-center">
-      <ng-content></ng-content>
-    </div>
-  `
-})
-export class Slide implements OnInit, OnDestroy {
-  @Input() public index:number;
-  @Input() public direction:Direction;
-
-  @HostBinding('class.active')
-  @Input() public active:boolean;
-
-  @HostBinding('class.item')
-  @HostBinding('class.carousel-item')
-  private addClass:boolean = true;
-
-  constructor(private carousel:Carousel) {
-  }
-
-  public ngOnInit() {
-    this.carousel.addSlide(this);
-  }
-
-  public ngOnDestroy() {
-    this.carousel.removeSlide(this);
-  }
-}
-
-export const CAROUSEL_DIRECTIVES:Array<any> = [Carousel, Slide];
-// will be deprecated
-export const carousel:Array<any> = [Carousel, Slide];

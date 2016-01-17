@@ -1,13 +1,13 @@
 export * from  './components/accordion';
 export * from  './components/alert';
 export * from  './components/buttons';
+export * from  './components/carousel';
 // export * from  './components/datepicker/index';
 export * from  './components/dropdown/index';
 export * from  './components/dropdown/dropdown';
 export * from  './components/dropdown/dropdown-menu';
 export * from  './components/dropdown/dropdown-service';
 export * from  './components/dropdown/dropdown-toggle';
-export * from  './components/carousel/carousel';
 export * from  './components/collapse/collapse';
 export * from  './components/pagination/pagination';
 export * from  './components/progressbar/progressbar';

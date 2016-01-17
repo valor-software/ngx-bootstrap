@@ -30,6 +30,8 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   @HostListener('click')
   private onClick() {}
 }
+
+export const BUTTON_DIRECTIVES = [ButtonCheckbox, ButtonRadio];
 ```
 
 ### Radio button properties
