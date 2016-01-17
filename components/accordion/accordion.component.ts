@@ -13,11 +13,10 @@ import { Collapse } from '../collapse/collapse';
   template: `<ng-content></ng-content>`
 })
 export class Accordion {
-  @Input() private templateUrl:string;
   @Input() private closeOthers:boolean;
 
   @HostBinding('class.panel-group')
-  private addPanelGroupClass = true;
+  private addClass = true;
 
   constructor() {
   }
@@ -48,34 +47,16 @@ export class Accordion {
   }
 }
 
-@Directive({
-  selector: '[accordionTransclude]'
-})
-export class AccordionTransclude implements OnInit {
-  @Input() private accordionTransclude:TemplateRef;
-
-  constructor(@Inject(ViewContainerRef) private viewRef:ViewContainerRef) {
-  }
-
-  ngOnInit() {
-    if (this.accordionTransclude) {
-      this.viewRef.createEmbeddedView(this.accordionTransclude);
-    }
-  }
-}
-
-// todo: support template url
-// todo: support custom `open class`
 @Component({
   selector: 'accordion-group',
-  directives: [Collapse, AccordionTransclude, NgClass],
+  directives: [Collapse, NgClass],
   template: `
     <div class="panel" [ngClass]="panelClass">
       <div class="panel-heading" (click)="toggleOpen($event)">
         <h4 class="panel-title">
           <a href tabindex="0" class="accordion-toggle">
-            <span [ngClass]="{'text-muted': isDisabled}"
-              [accordionTransclude]="headingTemplate">{{heading}}</span>
+            <span *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">{{heading}}</span>
+            <ng-content select="[accordion-heading]"></ng-content>
           </a>
         </h4>
       </div>
@@ -88,9 +69,8 @@ export class AccordionTransclude implements OnInit {
   `
 })
 export class AccordionGroup implements OnInit, OnDestroy {
-  @Input() private templateUrl:string;
-  @Input() private heading:string;
-  @Input() private panelClass:string;
+  @Input() public heading:string;
+  @Input() public panelClass:string;
   @Input() public isDisabled:boolean;
 
   @HostBinding('class.panel-open')
@@ -106,7 +86,6 @@ export class AccordionGroup implements OnInit, OnDestroy {
   }
 
   private _isOpen:boolean;
-  public headingTemplate:TemplateRef;
 
   constructor(private accordion:Accordion) {
   }
@@ -127,14 +106,3 @@ export class AccordionGroup implements OnInit, OnDestroy {
     }
   }
 }
-
-@Directive({selector: '[accordion-heading]'})
-export class AccordionHeading {
-  constructor(private group:AccordionGroup, private templateRef:TemplateRef) {
-    group.headingTemplate = templateRef;
-  }
-}
-
-export const ACCORDION_DIRECTIVES:Array<any> = [Accordion, AccordionGroup, AccordionHeading];
-// will be deprecated
-export const accordion:Array<any> = [Accordion, AccordionGroup, AccordionHeading];

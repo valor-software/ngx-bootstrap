@@ -53,12 +53,12 @@ export class DemoSectionConfig {
       <tabset>
         <tab heading="Markup">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ng-non-bindable>${html}</code></pre>
+            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
           </div>
         </tab>
         <tab heading="TypeScript">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${ts}</code></pre>
+            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
           </div>
         </tab>
       </tabset>
@@ -70,7 +70,7 @@ export class DemoSectionConfig {
       <h2>API</h2>
       <div class="card card-block panel panel-default panel-body">
       <h2>Annotations</h2>
-      <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${annotations}</code></pre>
+      <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${annotations}</code></pre>
       ${doc}
       </div>
     </div>

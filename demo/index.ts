@@ -64,19 +64,19 @@ let gettingStarted = require('./getting-started.md');
     <section id="getting-started">${gettingStarted}</section>
 
     <accordion-section class="col-md-12"></accordion-section>
-    <alert-section class="col-md-12"></alert-section>
-    <buttons-section class="col-md-12"></buttons-section>
-    <carousel-section class="col-md-12"></carousel-section>
-    <collapse-section class="col-md-12"></collapse-section>
+    <!--<alert-section class="col-md-12"></alert-section>
+    <!--<buttons-section class="col-md-12"></buttons-section>
+    <!--<carousel-section class="col-md-12"></carousel-section>
+    <!--<collapse-section class="col-md-12"></collapse-section>
     <!--<datepicker-section class="col-md-12"></datepicker-section>-->
-    <dropdown-section class="col-md-12"></dropdown-section>
-    <pagination-section class="col-md-12"></pagination-section>
-    <progressbar-section class="col-md-12"></progressbar-section>
-    <rating-section class="col-md-12"></rating-section>
-    <tabs-section class="col-md-12"></tabs-section>
-    <timepicker-section class="col-md-12"></timepicker-section>
-    <tooltip-section class="col-md-12"></tooltip-section>
-    <typeahead-section class="col-md-12"></typeahead-section>
+    <!--<dropdown-section class="col-md-12"></dropdown-section>
+    <!--<pagination-section class="col-md-12"></pagination-section>
+    <!--<progressbar-section class="col-md-12"></progressbar-section>
+    <!--<rating-section class="col-md-12"></rating-section>
+    <!--<tabs-section class="col-md-12"></tabs-section>
+    <!--<timepicker-section class="col-md-12"></timepicker-section>
+    <!--<tooltip-section class="col-md-12"></tooltip-section>
+    <!--<typeahead-section class="col-md-12"></typeahead-section>-->
   </div>
 
   <footer class="footer">

@@ -43,12 +43,12 @@ let html = require('!!prismjs?lang=markup!./pagination/pagination-demo.html');
       <tabset>
         <tab heading="Markup">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ng-non-bindable>${html}</code></pre>
+            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
           </div>
         </tab>
         <tab heading="TypeScript">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${ts}</code></pre>
+            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
           </div>
         </tab>
       </tabset>

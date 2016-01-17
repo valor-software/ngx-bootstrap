@@ -13,6 +13,7 @@
     Open only one at a time
   </label>
 </div>
+
 <accordion [closeOthers]="oneAtATime">
   <accordion-group heading="Static Header, initially expanded"
                    [isOpen]="status.isFirstOpen"
@@ -27,12 +28,12 @@
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>
     <div *ngFor="#item of items">{{item}}</div>
   </accordion-group>
-  <accordion-group [isOpen]="status.open">
-    <template accordion-heading>
+  <accordion-group #group [isOpen]="status.open">
+    <div accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
-    </template>
+         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+    </div>
     This is just some content to illustrate fancy headings.
   </accordion-group>
 </accordion>
