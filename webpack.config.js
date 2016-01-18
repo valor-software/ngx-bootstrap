@@ -28,8 +28,8 @@ var absDest = path.join(__dirname, dest);
 var config = {
   // isProduction ? 'source-map' : 'evale',
   devtool: 'source-map',
-  debug: true,
-  cache: true,
+  debug: false,
+  cache: false,
 
   verbose: true,
   displayErrorDetails: true,
@@ -105,19 +105,12 @@ var config = {
         test: /\.ts$/,
         loader: 'ts',
         query: {
-          ignoreDiagnostics: [
-            // 2300, // 2300 -> Duplicate identifier
-            // 2309 // 2309 -> An export assignment cannot be used in a module with other exported elements.
-          ]
+          compilerOptions: {
+            removeComments: true,
+            noEmitHelpers: false
+          }
         },
-        exclude: [
-          /\.min\.js$/,
-          /\.spec\.ts$/,
-          /\.e2e\.ts$/,
-          /web_modules/,
-          /test/,
-          /node_modules/
-        ]
+        exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
       }
     ],
     noParse: [
@@ -129,16 +122,13 @@ var config = {
 
   plugins: [
     new Clean(['build']),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'angular2',
       minChunks: Infinity,
       filename: 'angular2.js'
-    }),
-    new webpack.optimize.DedupePlugin({
-      __isProduction: isProduction
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin()
+    })
   ],
   pushPlugins: function () {
     if (!isProduction) {
@@ -148,16 +138,16 @@ var config = {
     this.plugins.push.apply(this.plugins, [
       //production only
       new webpack.optimize.UglifyJsPlugin({
+        mangle: false,
+        comments: false,
         compress: {
-          warnings: false,
-          drop_debugger: false
-        },
-        output: {
-          comments: true
-        },
-        verbose: true,
-        beautify: true,
-        quote_style: 3
+          screw_ie8: true
+          //warnings: false,
+          //drop_debugger: false
+        }
+        //verbose: true,
+        //beautify: false,
+        //quote_style: 3
       }),
       new CompressionPlugin({
         asset: '{file}.gz',
