@@ -54,7 +54,7 @@ import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 export class Home {
 }
 ```
-
+<!--
 ## Components
 
 - [x] Accordion
@@ -73,11 +73,11 @@ export class Home {
 - [x] Timepicker
 - [+-] Tooltip
 - [x] Typeahead
+-->
 
-- [x] NgTransclude - to transclude templates
-- [x] positional service
-- [ ] template url support
-
+## API
+Check demo for API [documentation](http://valor-software.github.io/ng2-bootstrap/)
+  
 ## Contribution
 
 Please read central `ng2` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach and welcome :)
