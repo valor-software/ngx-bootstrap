@@ -37,7 +37,7 @@ export class Accordion {
   public removeGroup(group:AccordionPanel) {
     let index = this.groups.indexOf(group);
     if (index !== -1) {
-      this.groups.slice(index, 1);
+      this.groups.splice(index, 1);
     }
   }
 }
