@@ -1,11 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {DropdownDemo} from './dropdown/dropdown-demo';
 
 let name = 'Dropdowns';
@@ -19,9 +17,8 @@ let ts = require('!!prismjs?lang=typescript!./dropdown/dropdown-demo.ts');
 let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
 
 @Component({
-  selector: 'dropdown-section'
-})
-@View({
+  selector: 'dropdown-section',
+  directives: [DropdownDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -44,12 +41,12 @@ let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
       <tabset>
         <tab heading="Markup">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ng-non-bindable>${html}</code></pre>
+            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
           </div>
         </tab>
         <tab heading="TypeScript">
           <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ng-non-bindable>${ts}</code></pre>
+            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
           </div>
         </tab>
       </tabset>
@@ -64,8 +61,7 @@ let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
       </div>
     </div>
   </section>
-  `,
-  directives: [DropdownDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class DropdownSection {
 }

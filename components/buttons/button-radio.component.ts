@@ -1,8 +1,5 @@
-import {
-  Directive,
-  OnInit, Input, HostBinding, HostListener,
-  Self, ElementRef
-} from 'angular2/core';
+import { Directive,  OnInit, Input, HostBinding, HostListener,
+  Self, ElementRef } from 'angular2/core';
 import { ControlValueAccessor, NgModel } from 'angular2/common';
 
 @Directive({ selector: '[btnRadio][ngModel]' })

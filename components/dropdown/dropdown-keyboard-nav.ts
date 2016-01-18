@@ -1,8 +1,8 @@
 import {Directive, ElementRef} from 'angular2/core';
-import {Dropdown} from './dropdown';
+import {Dropdown} from './dropdown.directive.ts';
 
 @Directive({
-  selector: '[dropdown][keyboard-nav]',
+  selector: '[dropdown][dropdownKeyboardNav]',
   host: {
     '(keydown)': 'onKeydown($event)'
   }

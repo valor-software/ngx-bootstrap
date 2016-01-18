@@ -1,10 +1,12 @@
 ### Usage
 ```typescript
+import {BUTTON_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+// or
 import { ButtonRadio, ButtonCheckbox } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 ### Annotations
 ```typescript
-// class ButtonRadio implements OnInit
+// component ButtonRadio
 @Directive({ selector: '[btnRadio][ngModel]' })
 export class ButtonRadio implements ControlValueAccessor, OnInit {
   @Input() public btnRadio:string;
@@ -16,7 +18,7 @@ export class ButtonRadio implements ControlValueAccessor, OnInit {
   @HostListener('click')
   private onClick() {}
 }
-// class ButtonCheckbox implements OnInit
+// component ButtonCheckbox
 @Directive({ selector: '[btnCheckbox][ngModel]' })
 export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   @Input() private btnCheckboxTrue:any;
@@ -28,12 +30,14 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   @HostListener('click')
   private onClick() {}
 }
+
+export const BUTTON_DIRECTIVES = [ButtonCheckbox, ButtonRadio];
 ```
 
 ### Radio button properties
-  - `btn-radio` (`string`) - radio button value, will be set to `ng-model`
-  - `uncheckable` (`?boolean=false`) - if `true` radio button can be unchecked and `null` will be set to `ng-model`
+  - `btnRadio` (`string`) - radio button value, will be set to `ngModel`
+  - `uncheckable` (`?boolean=false`) - if `true` radio button can be unchecked and `null` will be set to `ngModel`
 
 ### Checkbox button properties
-  - `btn-checkbox-true` (`?any=true`) - truthy value
-  - `btn-checkbox-false` (`?any=false`) - falsy value
+  - `btnCheckboxTrue` (`?any=true`) - truthy value, will be set to `ngModel`
+  - `btnCheckboxFalse` (`?any=false`) - falsy value, will be set to `ngModel`

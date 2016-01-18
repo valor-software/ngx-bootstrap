@@ -1,4 +1,5 @@
 import { latinMap } from './latin-map';
+
 export class TypeaheadUtils {
   static latinMap:any = latinMap;
 

@@ -1,20 +1,14 @@
-/// <reference path="../../../tsd.d.ts" />
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-
-import {tooltip} from '../../../ng2-bootstrap';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {TOOLTIP_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./tooltip-demo.html');
 
 @Component({
-  selector: 'tooltip-demo'
-})
-@View({
+  selector: 'tooltip-demo',
   template: template,
-  directives: [tooltip, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [TOOLTIP_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   styles: [`
     /* Specify styling for tooltip contents */
     .tooltip.customClass .tooltip-inner {

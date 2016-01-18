@@ -8,9 +8,7 @@ import { NgFor, NgIf, NgClass, ControlValueAccessor, NgModel } from 'angular2/co
 import { IAttribute } from '../common';
 
 // todo: extract base functionality classes
-// todo: use lodash#default for configuration
 // todo: expose an option to change default configuration
-// todo: solve problem with .pagination-sm>li:first-child>a and <template/> from ngIf >.<
 export interface IPaginationConfig extends IAttribute {
   maxSize: number;
   itemsPerPage: number;
@@ -286,47 +284,3 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
     this.onTouched = fn;
   }
 }
-
-
-const pagerConfig = {
-  itemsPerPage: 10,
-  previousText: '« Previous',
-  nextText: 'Next »',
-  align: true
-};
-
-const PAGER_TEMPLATE = `
-    <ul class="pager">
-      <li [class.disabled]="noPrevious()" [class.previous]="align" [ngClass]="{'pull-right': align}">
-        <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
-      </li>
-      <li [class.disabled]="noNext()" [class.next]="align" [ngClass]="{'pull-right': align}">
-        <a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a>
-      </li>
-  </ul>
-`;
-
-@Component({
-  selector: 'pager[ngModel]',
-  properties: [
-    'align',
-    'totalItems', 'itemsPerPage',
-    'previousText', 'nextText',
-  ],
-  template: PAGER_TEMPLATE,
-  directives: [NgClass]
-})
-export class Pager extends Pagination implements OnInit {
-  public config = pagerConfig;
-
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
-  }
-}
-
-export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
-/**
- * @deprecated - use PAGINATION_DIRECTIVES instead
- * @type {Pagination|Pager[]}
- */
-export const pagination:Array<any> = [Pagination, Pager];

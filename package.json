@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.1-beta.0",
   "description": "angular2 bootstrap components",
   "scripts": {
     "prepublish": "gulp clean && tsc",
@@ -29,12 +29,12 @@
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {},
   "devDependencies": {
-    "angular2": "2.0.0-beta.0",
+    "angular2": "2.0.0-beta.1",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
-    "clean-webpack-plugin": "0.1.5",
+    "clean-webpack-plugin": "0.1.6",
     "compression-webpack-plugin": "0.2.0",
-    "es6-shim": "0.33.13",
+    "es6-shim": "0.33.3",
     "eslint": "1.10.3",
     "exports-loader": "0.6.2",
     "file-loader": "0.8.5",
@@ -43,7 +43,7 @@
     "gulp-eslint": "1.1.1",
     "gulp-size": "2.0.0",
     "gulp-tsc": "1.1.4",
-    "gulp-tslint": "4.3.0",
+    "gulp-tslint": "4.3.1",
     "html-loader": "0.4.0",
     "markdown-loader": "0.1.7",
     "marked": "0.3.5",

@@ -3,9 +3,9 @@ import {
   OnInit, Input, HostBinding, HostListener
 } from 'angular2/core';
 
-import {Dropdown} from './dropdown';
+import {Dropdown} from './dropdown.directive.ts';
 
-@Directive({ selector: '[dropdown-toggle]' })
+@Directive({ selector: '[dropdownToggle]' })
 export class DropdownToggle implements OnInit {
   @HostBinding('class.disabled')
   @Input() private disabled:boolean = false;

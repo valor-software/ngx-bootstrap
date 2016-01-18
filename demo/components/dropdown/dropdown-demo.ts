@@ -1,9 +1,7 @@
-/// <reference path="../../../tsd.d.ts" />
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
-import { Component } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-
-import { DROPDOWN_DIRECTIVES } from '../../../ng2-bootstrap';
+import {DROPDOWN_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./dropdown-demo.html');

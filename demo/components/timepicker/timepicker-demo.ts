@@ -1,7 +1,6 @@
-/// <reference path="../../../tsd.d.ts" />
-import { Component } from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
-import { Timepicker } from '../../../ng2-bootstrap';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Timepicker} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./timepicker-demo.html');

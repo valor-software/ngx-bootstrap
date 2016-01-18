@@ -1,9 +1,8 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES, NgFor } from 'angular2/common';
+import { Component, View } from 'angular2/core';
+import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
+
 import { ACCORDION_DIRECTIVES } from '../../../ng2-bootstrap';
 
 // webpack html imports

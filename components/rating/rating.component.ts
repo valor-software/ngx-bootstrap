@@ -5,7 +5,6 @@ import {
 } from 'angular2/core';
 import { NgFor, ControlValueAccessor, NgModel } from 'angular2/common';
 
-// TODO: templateUrl
 @Component({
   selector: 'rating[ngModel]',
   directives: [NgFor],

@@ -1,15 +1,13 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {
-  Component, View,
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {CarouselDemo} from './carousel/carousel-demo';
 
 let name = 'Carousel';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/carousel/carousel.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/carousel/';
 
 // webpack html imports
 let doc = require('../../components/carousel/readme.md');
@@ -19,9 +17,8 @@ let ts = require('!!prismjs?lang=typescript!./carousel/carousel-demo.ts');
 let html = require('!!prismjs?lang=markup!./carousel/carousel-demo.html');
 
 @Component({
-  selector: 'carousel-section'
-})
-@View({
+  selector: 'carousel-section',
+  directives: [CarouselDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -64,8 +61,7 @@ let html = require('!!prismjs?lang=markup!./carousel/carousel-demo.html');
       </div>
     </div>
   </section>
-  `,
-  directives: [CarouselDemo, tabs, CORE_DIRECTIVES]
+  `
 })
 export class CarouselSection {
 }
