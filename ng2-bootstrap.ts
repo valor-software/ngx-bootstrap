@@ -11,7 +11,7 @@ export * from  './components/rating';
 export * from  './components/tabs';
 export * from  './components/timepicker';
 export * from  './components/tooltip';
-export * from  './components/typeahead/typeahead';
+export * from  './components/typeahead';
 
 export * from  './components/position'
 export * from  './components/common'
