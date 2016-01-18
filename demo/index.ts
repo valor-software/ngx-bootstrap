@@ -75,7 +75,7 @@ let gettingStarted = require('./getting-started.md');
     <rating-section class="col-md-12"></rating-section>
     <tabs-section class="col-md-12"></tabs-section>
     <timepicker-section class="col-md-12"></timepicker-section>
-    <!--<tooltip-section class="col-md-12"></tooltip-section>
+    <tooltip-section class="col-md-12"></tooltip-section>
     <!--<typeahead-section class="col-md-12"></typeahead-section>-->
   </div>
 
