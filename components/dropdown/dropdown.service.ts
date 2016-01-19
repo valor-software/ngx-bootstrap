@@ -2,7 +2,7 @@ export const ALWAYS = 'always';
 export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';
 
-import {Dropdown} from './dropdown.directive.ts';
+import {Dropdown} from './dropdown.directive';
 
 export class DropdownService {
   private openScope:Dropdown;

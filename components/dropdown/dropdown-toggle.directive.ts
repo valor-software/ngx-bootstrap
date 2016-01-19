@@ -3,7 +3,7 @@ import {
   OnInit, Input, HostBinding, HostListener
 } from 'angular2/core';
 
-import {Dropdown} from './dropdown.directive.ts';
+import {Dropdown} from './dropdown.directive';
 
 @Directive({ selector: '[dropdownToggle]' })
 export class DropdownToggle implements OnInit {

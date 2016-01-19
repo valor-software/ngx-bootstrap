@@ -1,5 +1,5 @@
 import {Directive, ElementRef} from 'angular2/core';
-import {Dropdown} from './dropdown.directive.ts';
+import {Dropdown} from './dropdown.directive';
 
 @Directive({
   selector: '[dropdown][dropdownKeyboardNav]',
