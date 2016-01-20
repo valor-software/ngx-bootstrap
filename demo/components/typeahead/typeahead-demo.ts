@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Observable} from 'rxjs/Rx';
 
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
@@ -13,6 +14,7 @@ let template = require('./typeahead-demo.html');
 })
 export class TypeaheadDemo {
   private selected:string = '';
+  private dataSource:Observable<any>;
   private asyncSelected:string = '';
   private typeaheadLoading:boolean = false;
   private typeaheadNoResults:boolean = false;
@@ -50,32 +52,14 @@ export class TypeaheadDemo {
     {id: 49, name: 'West Virginia'}, {id: 50, name: 'Wisconsin'},
     {id: 51, name: 'Wyoming'}];
 
-  private getContext() {
-    return this;
-  }
+  constructor() {
+    this.dataSource = Observable.create((observer:any) => {
+      let query = new RegExp(this.asyncSelected, 'ig');
 
-  private _cache:any;
-  private _prevContext:any;
-
-  private getAsyncData(context:any):Function {
-    if (this._prevContext === context) {
-      return this._cache;
-    }
-
-    this._prevContext = context;
-    let f:Function = function ():Promise<string[]> {
-      let p:Promise<string[]> = new Promise((resolve:Function) => {
-        setTimeout(() => {
-          let query = new RegExp(context.asyncSelected, 'ig');
-          return resolve(context.states.filter((state:any) => {
-            return query.test(state);
-          }));
-        }, 200);
-      });
-      return p;
-    };
-    this._cache = f;
-    return this._cache;
+      observer.next(this.states.filter((state:any) => {
+        return query.test(state);
+      }));
+    });
   }
 
   private changeTypeaheadLoading(e:boolean) {
