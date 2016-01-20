@@ -10,7 +10,7 @@
     <h4>Asynchronous results</h4>
     <pre>Model: {{asyncSelected | json}}</pre>
     <input [(ngModel)]="asyncSelected"
-           [typeahead]="getAsyncData(getContext())"
+           [typeahead]="dataSource"
            (typeaheadLoading)="changeTypeaheadLoading($event)"
            (typeaheadNoResults)="changeTypeaheadNoResults($event)"
            (typeaheadOnSelect)="typeaheadOnSelect($event)"

@@ -6,16 +6,17 @@ import {
 } from 'angular2/core';
 import {NgModel}from 'angular2/common';
 
+import {Observable, Subject} from 'rxjs/Rx';
+
 // https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
 function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, propValue:any) {
   renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 }
 
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {positionService} from '../position';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainer} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
+import {TypeaheadEventBus} from './typeahead.event.bus.service';
 
 @Directive({
   selector: 'typeahead[ngModel], [ngModel][typeahead]'
@@ -47,93 +48,97 @@ export class Typeahead implements OnInit {
 
   public container:TypeaheadContainer;
 
-  private debouncer:Function;
-  private _matches:Array<any> = [];
+  private keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
+  private _matches:Array<string>;
   private placement:string = 'bottom-left';
   private popup:Promise<ComponentRef>;
 
   constructor(private cd:NgModel,
               private element:ElementRef,
               private renderer:Renderer,
-              private loader:DynamicComponentLoader) {
+              private loader:DynamicComponentLoader,
+              private eventBus:TypeaheadEventBus) {
+  }
+
+  private asyncActions() {
+    this.keyUpEventEmitter
+      .debounceTime(100)
+      .subscribe(
+        (value:string[]) => {
+          this.eventBus.onValueChanged(value);
+        }
+      );
+
+    this.typeahead
+      .subscribe(
+        (matches:string[]) => {
+          this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+          this.finalizeAsyncCall();
+        },
+        (err:any) => {
+          console.error(err);
+        }
+      );
+  }
+
+  private syncActions() {
+    let syncSubject = new Subject();
+    syncSubject.subscribe(
+      (value:string) => {
+        // If singleWords, break model here to not be doing extra work on each iteration
+        let normalizedQuery:any =
+          (this.typeaheadLatinize ? TypeaheadUtils.latinize(value) : value)
+            .toString()
+            .toLowerCase();
+        normalizedQuery = this.typeaheadSingleWords ?
+          TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) :
+          normalizedQuery;
+
+        Observable.fromArray(this.typeahead)
+          .map((option:any) => {
+            if (value.length < this.typeaheadMinLength) {
+              return Observable.empty();
+            }
+
+            let match:any;
+
+            if (typeof option === 'object' &&
+              option[this.typeaheadOptionField]) {
+              match = this.typeaheadLatinize ?
+                TypeaheadUtils.latinize(option[this.typeaheadOptionField].toString()) :
+                option[this.typeaheadOptionField].toString();
+            }
+
+            if (typeof option === 'string') {
+              match = this.typeaheadLatinize ?
+                TypeaheadUtils.latinize(option.toString()) :
+                option.toString();
+            }
+
+            return match;
+          })
+          .filter((option:any) => {
+            return option && option.toLowerCase && this.testMatch(option.toLowerCase(), normalizedQuery);
+          })
+          .toArray()
+          .subscribe(
+            (matches:string[]) => {
+              this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+              this.finalizeAsyncCall();
+            },
+            (err:any) => {
+              console.error(err);
+            }
+          );
+      }
+    );
+
+    this.keyUpEventEmitter
+      .subscribe(syncSubject);
   }
 
   public get matches() {
     return this._matches;
-  }
-
-  private debounce(func:Function, wait:number):Function {
-    let timeout:any;
-    let args:Array<any>;
-    let timestamp:number;
-    let waitOriginal:number = wait;
-
-    return function () {
-      // save details of latest call
-      args = [].slice.call(arguments, 0);
-      timestamp = Date.now();
-
-      // this trick is about implementing of 'typeaheadWaitMs'
-      // in this case we have adaptive 'wait' parameter
-      // we should use standard 'wait'('waitOriginal') in case of
-      // popup is opened, otherwise - 'typeaheadWaitMs' parameter
-      wait = this.container ? waitOriginal : this.typeaheadWaitMs;
-
-      // this is where the magic happens
-      let later = function () {
-
-        // how long ago was the last call
-        let last = Date.now() - timestamp;
-
-        // if the latest call was less that the wait period ago
-        // then we reset the timeout to wait for the difference
-        if (last < wait) {
-          timeout = setTimeout(later, wait - last);
-          // or if not we can null out the timer and run the latest
-        } else {
-          timeout = null;
-          func.apply(this, args);
-        }
-      };
-
-      // we only need to set the timer now if one isn't already running
-      if (!timeout) {
-        timeout = setTimeout(later, wait);
-      }
-    };
-  }
-
-  private processMatches() {
-    this._matches = [];
-    if (this.cd.model.toString().length >= this.typeaheadMinLength) {
-      // If singleWords, break model here to not be doing extra work on each iteration
-      let normalizedQuery = (this.typeaheadLatinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      normalizedQuery = this.typeaheadSingleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
-      for (let i = 0; i < this.typeahead.length; i++) {
-        let match:string;
-
-        if (typeof this.typeahead[i] === 'object' &&
-          this.typeahead[i][this.typeaheadOptionField]) {
-          match = this.typeaheadLatinize ? TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString()) : this.typeahead[i][this.typeaheadOptionField].toString();
-        }
-
-        if (typeof this.typeahead[i] === 'string') {
-          match = this.typeaheadLatinize ? TypeaheadUtils.latinize(this.typeahead[i].toString()) : this.typeahead[i].toString();
-        }
-
-        if (!match) {
-          console.log('Invalid match type', typeof this.typeahead[i], this.typeaheadOptionField);
-          continue;
-        }
-
-        if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
-          this._matches.push(this.typeahead[i]);
-          if (this._matches.length > this.typeaheadOptionsLimit - 1) {
-            break;
-          }
-        }
-      }
-    }
   }
 
   private testMatch(match:string, test:any) {
@@ -153,8 +158,8 @@ export class Typeahead implements OnInit {
   }
 
   private finalizeAsyncCall() {
-    this.typeaheadLoading.next(false);
-    this.typeaheadNoResults.next(this.cd.model.toString().length >=
+    this.typeaheadLoading.emit(false);
+    this.typeaheadNoResults.emit(this.cd.model.toString().length >=
       this.typeaheadMinLength && this.matches.length <= 0);
 
     if (this.cd.model.toString().length <= 0 || this._matches.length <= 0) {
@@ -180,44 +185,25 @@ export class Typeahead implements OnInit {
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
-    if (this.typeaheadAsync === null && typeof this.typeahead !== 'function') {
+    if (this.typeaheadAsync === null && !(this.typeahead instanceof Observable)) {
       this.typeaheadAsync = false;
     }
 
-    // async should be true for any case of function
-    if (typeof this.typeahead === 'function') {
+    if (this.typeahead instanceof Observable) {
       this.typeaheadAsync = true;
     }
 
     if (this.typeaheadAsync === true) {
-      this.debouncer = this.debounce(() => {
-        if (typeof this.typeahead === 'function') {
-          this.typeahead().then((matches:any[]) => {
-            this._matches = [];
-            if (this.cd.model.toString().length >= this.typeaheadMinLength) {
-              for (let i = 0; i < matches.length; i++) {
-                this._matches.push(matches[i]);
-                if (this._matches.length > this.typeaheadOptionsLimit - 1) {
-                  break;
-                }
-              }
-            }
+      this.asyncActions();
+    }
 
-            this.finalizeAsyncCall();
-          });
-        }
-
-        // source is array
-        if (typeof this.typeahead === 'object' && this.typeahead.length) {
-          this.processMatches();
-          this.finalizeAsyncCall();
-        }
-      }, 100);
+    if (this.typeaheadAsync === false) {
+      this.syncActions();
     }
   }
 
   @HostListener('keyup', ['$event'])
-  onChange(e:KeyboardEvent) {
+  onChange(e:any) {
     if (this.container) {
       // esc
       if (e.keyCode === 27) {
@@ -244,16 +230,8 @@ export class Typeahead implements OnInit {
       }
     }
 
-    this.typeaheadLoading.next(true);
-
-    if (this.typeaheadAsync === true) {
-      this.debouncer();
-    }
-
-    if (this.typeaheadAsync === false) {
-      this.processMatches();
-      this.finalizeAsyncCall();
-    }
+    this.typeaheadLoading.emit(true);
+    this.keyUpEventEmitter.emit(e.target.value);
   }
 
   public changeModel(value:any) {

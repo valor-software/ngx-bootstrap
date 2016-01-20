@@ -29,6 +29,7 @@ import {TooltipSection} from './components/tooltip-section';
 import {TypeaheadSection} from './components/typeahead-section';
 
 import {DemoHeader} from './components/demo-header';
+import {TypeaheadEventBus} from '../components/typeahead/typeahead.event.bus.service';
 
 let gettingStarted = require('./getting-started.md');
 
@@ -112,4 +113,4 @@ export class Demo {
   private isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
 }
 
-bootstrap(Demo);
+bootstrap(Demo, [TypeaheadEventBus]);
