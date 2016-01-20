@@ -11,6 +11,9 @@
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
+  "typescript": {
+    "definition": "ng2-bootstrap.d.ts"
+  },
   "keywords": [
     "angular2",
     "bootstrap",
