@@ -22,7 +22,7 @@ Follow me at [twitter](https://twitter.com/valorkin) to be notified about new re
 
 # Starter packages
 
-With webpack: [https://github.com/valor-software/angular2-bootstrap-starter](https://github.com/valor-software/angular2-bootstrap-starter)
+With webpack: [https://github.com/AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
 
 With gulp: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play/pull/34)
 
