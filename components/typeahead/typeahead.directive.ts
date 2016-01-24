@@ -8,7 +8,7 @@ import {NgModel}from 'angular2/common';
 
 // https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
 function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, propValue:any) {
-  renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
+  renderer.setElementProperty(elementRef, propName, propValue);
 }
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
