@@ -4,14 +4,15 @@ gulp.paths = {
   tssrc: [
     '**/*.ts',
     '!node_modules/**/*',
-    '!dist/**/*',
+    '!bundles/**/*',
     '!typings/**/*',
     '!**/*.{ts,coffee}.js'],
   jssrc: [
     '*.js',
     'gulp-tasks/*.js',
+    '!bundles/*.js',
     '!ng2-bootstrap.js',
-    '!node_modules',
+    '!node_modules/**/*',
     '!**/*.{ts,coffee}.js']
 };
 
@@ -19,7 +20,7 @@ require('require-dir')('./gulp-tasks');
 
 var clean = require('gulp-clean');
 gulp.task('clean', function () {
-  return gulp.src('dist', {read: false})
+  return gulp.src('bundles', {read: false})
     .pipe(clean());
 });
 
