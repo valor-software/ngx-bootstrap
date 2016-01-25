@@ -34,7 +34,7 @@
     "bootstrap": "3.3.6",
     "clean-webpack-plugin": "0.1.6",
     "compression-webpack-plugin": "0.3.0",
-    "es6-shim": "0.33.3",
+    "es6-shim": "0.34.2",
     "eslint": "1.10.3",
     "exports-loader": "0.6.2",
     "file-loader": "0.8.5",
