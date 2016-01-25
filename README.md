@@ -40,6 +40,7 @@ If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/t
 ```html
 <!-- index.html -->
 <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 And update your `app.component.ts` to have following content:
