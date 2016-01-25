@@ -36,24 +36,29 @@ npm i ng2-bootstrap --save
 
 ## Quick start
 
+If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/ts/latest/quickstart.html), just add one line
+```html
+<!-- index.html -->
+<script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+```
+
+And update your `app.component.ts` to have following content:
+
 ```ts
+import {Component} from 'angular2/core';
 import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
-  selector: 'app'
+  selector: 'my-app',
+  directives: [Alert],
+  template: `<alert type="info">ng2-bootstrap hello world!</alert>`
 })
-@View({
-  template: `
-    <alert type="info">ng2-bootstrap hello world!</alert>
-    This is a webpack sample:
-  `,
-  directives: [
-    Alert
-  ]
-})
-export class Home {
+export class AppComponent {
 }
 ```
+
+And you are ready to go! :)
+
 <!--
 ## Components
 
@@ -77,7 +82,7 @@ export class Home {
 
 ## API
 Check demo for API [documentation](http://valor-software.github.io/ng2-bootstrap/)
-  
+
 ## Contribution
 
 Please read central `ng2` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach and welcome :)
