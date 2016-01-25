@@ -3,9 +3,9 @@
   "version": "1.0.1-beta.1",
   "description": "angular2 bootstrap components",
   "scripts": {
-    "prepublish": "gulp clean && tsc",
-    "deploy": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
-    "dev": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
+    "prepublish": "gulp clean && ./node_modules/.bin/tsc && ./make.js",
+    "build:prod": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
+    "build:dev": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "start": "npm run dev",
     "test": "gulp lint"
   },
@@ -33,7 +33,7 @@
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
     "clean-webpack-plugin": "0.1.6",
-    "compression-webpack-plugin": "0.2.0",
+    "compression-webpack-plugin": "0.3.0",
     "es6-shim": "0.33.3",
     "eslint": "1.10.3",
     "exports-loader": "0.6.2",
@@ -42,7 +42,6 @@
     "gulp-clean": "0.3.1",
     "gulp-eslint": "1.1.1",
     "gulp-size": "2.0.0",
-    "gulp-tsc": "1.1.4",
     "gulp-tslint": "4.3.1",
     "html-loader": "0.4.0",
     "markdown-loader": "0.1.7",
@@ -55,10 +54,11 @@
     "reflect-metadata": "0.1.2",
     "require-dir": "0.3.0",
     "rxjs": "5.0.0-beta.0",
+    "systemjs-builder": "0.15.4",
     "ts-loader": "0.8.0",
-    "tslint": "3.2.2",
+    "tslint": "3.3.0",
     "typescript": "1.7.5",
-    "webpack": "1.12.11",
+    "webpack": "1.12.12",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.5.10"
   }
