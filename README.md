@@ -36,6 +36,15 @@ npm i ng2-bootstrap --save
 
 ## Quick start
 
+**Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta`, ng2-bootstrap is already updated for `1-beta`,
+to avoid facing wierd issues, please update following dependecies in `package.json`
+```json
+  "dependencies": {
+    "angular2": "2.0.1-beta.0",
+    ...
+  }
+```
+
 If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/ts/latest/quickstart.html), just add one line
 ```html
 <!-- index.html -->
