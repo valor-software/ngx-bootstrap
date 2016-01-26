@@ -16,7 +16,6 @@ function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, 
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainer} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
-import {TypeaheadEventBus} from './typeahead.event.bus.service';
 
 @Directive({
   selector: 'typeahead[ngModel], [ngModel][typeahead]'
@@ -56,27 +55,29 @@ export class Typeahead implements OnInit {
   constructor(private cd:NgModel,
               private element:ElementRef,
               private renderer:Renderer,
-              private loader:DynamicComponentLoader,
-              private eventBus:TypeaheadEventBus) {
+              private loader:DynamicComponentLoader) {
   }
 
   private asyncActions() {
+    let s = new Subject();
+    s.subscribe(() => {
+      this.typeahead
+        .subscribe(
+          (matches:string[]) => {
+            this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+            this.finalizeAsyncCall();
+          },
+          (err:any) => {
+            console.error(err);
+          }
+        );
+    });
+
     this.keyUpEventEmitter
       .debounceTime(100)
       .subscribe(
-        (value:string[]) => {
-          this.eventBus.onValueChanged(value);
-        }
-      );
-
-    this.typeahead
-      .subscribe(
-        (matches:string[]) => {
-          this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-          this.finalizeAsyncCall();
-        },
-        (err:any) => {
-          console.error(err);
+        () => {
+          s.next(null);
         }
       );
   }
@@ -85,38 +86,10 @@ export class Typeahead implements OnInit {
     let syncSubject = new Subject();
     syncSubject.subscribe(
       (value:string) => {
-        // If singleWords, break model here to not be doing extra work on each iteration
-        let normalizedQuery:any =
-          (this.typeaheadLatinize ? TypeaheadUtils.latinize(value) : value)
-            .toString()
-            .toLowerCase();
-        normalizedQuery = this.typeaheadSingleWords ?
-          TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) :
-          normalizedQuery;
+        let normalizedQuery = this.normalizeQuery(value);
 
         Observable.fromArray(this.typeahead)
-          .map((option:any) => {
-            if (value.length < this.typeaheadMinLength) {
-              return Observable.empty();
-            }
-
-            let match:any;
-
-            if (typeof option === 'object' &&
-              option[this.typeaheadOptionField]) {
-              match = this.typeaheadLatinize ?
-                TypeaheadUtils.latinize(option[this.typeaheadOptionField].toString()) :
-                option[this.typeaheadOptionField].toString();
-            }
-
-            if (typeof option === 'string') {
-              match = this.typeaheadLatinize ?
-                TypeaheadUtils.latinize(option.toString()) :
-                option.toString();
-            }
-
-            return match;
-          })
+          .map(option => this.prepareOption(value, option))
           .filter((option:any) => {
             return option && option.toLowerCase && this.testMatch(option.toLowerCase(), normalizedQuery);
           })
@@ -135,6 +108,42 @@ export class Typeahead implements OnInit {
 
     this.keyUpEventEmitter
       .subscribe(syncSubject);
+  }
+
+  private prepareOption(value:string, option:any):any {
+    if (value.length < this.typeaheadMinLength) {
+      return Observable.empty();
+    }
+
+    let match:any;
+
+    if (typeof option === 'object' &&
+      option[this.typeaheadOptionField]) {
+      match = this.typeaheadLatinize ?
+        TypeaheadUtils.latinize(option[this.typeaheadOptionField].toString()) :
+        option[this.typeaheadOptionField].toString();
+    }
+
+    if (typeof option === 'string') {
+      match = this.typeaheadLatinize ?
+        TypeaheadUtils.latinize(option.toString()) :
+        option.toString();
+    }
+
+    return match;
+  }
+
+  private normalizeQuery(value:string):any {
+    // If singleWords, break model here to not be doing extra work on each iteration
+    let normalizedQuery:any =
+      (this.typeaheadLatinize ? TypeaheadUtils.latinize(value) : value)
+        .toString()
+        .toLowerCase();
+    normalizedQuery = this.typeaheadSingleWords ?
+      TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) :
+      normalizedQuery;
+
+    return normalizedQuery;
   }
 
   public get matches() {

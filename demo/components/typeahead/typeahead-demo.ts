@@ -3,7 +3,6 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {Observable} from 'rxjs/Rx';
 
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
-import {TypeaheadEventBus} from '../../../components/typeahead/typeahead.event.bus.service';
 
 // webpack html imports
 let template = require('./typeahead-demo.html');
@@ -53,13 +52,13 @@ export class TypeaheadDemo {
     {id: 49, name: 'West Virginia'}, {id: 50, name: 'Wisconsin'},
     {id: 51, name: 'Wyoming'}];
 
-  constructor(public eventBus:TypeaheadEventBus) {
-    this.dataSource = eventBus.values().map(value => {
-      let query = new RegExp(value, 'ig');
+  constructor() {
+    this.dataSource = Observable.create((observer:any) => {
+      let query = new RegExp(this.asyncSelected, 'ig');
 
-      return this.states.filter((state:any) => {
+      observer.next(this.states.filter((state:any) => {
         return query.test(state);
-      });
+      }));
     });
   }
 
