@@ -48,7 +48,7 @@ function getSystemJsBundleConfig(cb) {
   };
 
   config.meta = ['angular2', 'rxjs'].reduce((memo, currentValue) => {
-    memo[`${name}/node_modules/${currentValue}/*`] = {build: false};
+    memo[`${__dirname}/node_modules/${currentValue}/*`] = {build: false};
     return memo;
   }, {});
   return cb(null, config);
