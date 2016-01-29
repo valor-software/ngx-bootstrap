@@ -10,11 +10,12 @@
                 (numPages)="smallnumPages = $event"></pagination>
     <pre class="card card-block card-header">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
     <button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>
+    <button type="button" class="btn btn-info" (click)="increaseItems(3)">Increase items with: 3</button>
   </div>
   <hr class="visible-md visible-xs hidden-lg-up">
   <div class="col-lg-6" style="margin-top: 10px;">
     <h4>Pager</h4>
-    <pager [totalItems]="totalItems" [(ngModel)]="currentPage" onPageChanged="pageChanged($event)"></pager>
+    <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (numPages)="numPagesChanged($event)"></pager>
 
     <hr/>
     <h4>Limit the maximum visible buttons</h4>
