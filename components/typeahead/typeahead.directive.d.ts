@@ -1,0 +1,47 @@
+import { EventEmitter, OnInit, ElementRef, Renderer, DynamicComponentLoader } from 'angular2/core';
+import { NgModel } from 'angular2/common';
+import { TypeaheadContainer } from './typeahead-container.component';
+export declare class Typeahead implements OnInit {
+    private cd;
+    private element;
+    private renderer;
+    private loader;
+    typeaheadLoading: EventEmitter<boolean>;
+    typeaheadNoResults: EventEmitter<boolean>;
+    typeaheadOnSelect: EventEmitter<{
+        item: any;
+    }>;
+    typeahead: any;
+    typeaheadMinLength: number;
+    typeaheadWaitMs: number;
+    typeaheadOptionsLimit: number;
+    typeaheadOptionField: string;
+    typeaheadAsync: boolean;
+    typeaheadLatinize: boolean;
+    typeaheadSingleWords: boolean;
+    typeaheadWordDelimiters: string;
+    typeaheadPhraseDelimiters: string;
+    private typeaheadAppendToBody;
+    private typeaheadEditable;
+    private typeaheadFocusFirst;
+    private typeaheadInputFormatter;
+    private typeaheadSelectOnExact;
+    private typeaheadSelectOnBlur;
+    private typeaheadFocusOnSelect;
+    container: TypeaheadContainer;
+    private debouncer;
+    private _matches;
+    private placement;
+    private popup;
+    constructor(cd: NgModel, element: ElementRef, renderer: Renderer, loader: DynamicComponentLoader);
+    matches: any[];
+    private debounce(func, wait);
+    private processMatches();
+    private testMatch(match, test);
+    private finalizeAsyncCall();
+    ngOnInit(): void;
+    onChange(e: KeyboardEvent): void;
+    changeModel(value: any): void;
+    show(matches: Array<any>): void;
+    hide(): void;
+}

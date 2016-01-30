@@ -19,12 +19,19 @@
 <body>
   <app>Loading...</app>
 
+  <!-- Google analytics-->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-73071494-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- Enable bootstrap 4 theme -->
   <script>window.__theme = 'bs4';</script>
-  <!-- Angular2 files -->
-  <script src="build/angular2.js"></script>
-  <!-- Angular2 bootstrap script -->
-  <script src="build/angular2-bootstrap.js"></script>
-  <!-- App script -->
-  <script src="build/angular2-bootstrap-demo.js"></script>
-</body>
+  <!-- script files will be inserted by html-webpack-plugin -->
+<script src="angular2.js"></script><script src="angular2-bootstrap.js"></script><script src="angular2-bootstrap-demo.js"></script></body>
 </html>
