@@ -10,7 +10,8 @@
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "listFiles": false,
-    "noLib": false
+    "noLib": false,
+    "outDir": "./ng2-bootstrap"
   },
   "exclude": [
     "node_modules"

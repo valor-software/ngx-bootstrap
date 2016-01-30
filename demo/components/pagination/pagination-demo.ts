@@ -11,7 +11,7 @@ let template = require('./pagination-demo.html');
   template: template
 })
 export class PaginationDemo {
-  private totalItems:number = 64;
+  private totalItems:number = 69;
   private currentPage:number = 4;
 
   private maxSize:number = 5;
@@ -22,8 +22,16 @@ export class PaginationDemo {
     this.currentPage = pageNo;
   };
 
+  private increaseItems(value:number):void {
+      this.totalItems += value;
+  }
+
   private pageChanged(event:any):void {
     console.log('Page changed to: ' + event.page);
     console.log('Number items per page: ' + event.itemsPerPage);
   };
+
+  private numPagesChanged(event:any):void {
+      console.log('numPages changed to: ' + event);
+  }
 }

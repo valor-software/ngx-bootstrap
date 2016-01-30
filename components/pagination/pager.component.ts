@@ -28,7 +28,6 @@ const PAGER_TEMPLATE = `
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
   ],
-  outputs:['numPages', 'pageChanged'],
   template: PAGER_TEMPLATE,
   directives: [NgClass]
 })
