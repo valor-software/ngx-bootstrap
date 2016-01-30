@@ -23,14 +23,13 @@ const PAGER_TEMPLATE = `
 
 @Component({
   selector: 'pager[ngModel]',
+  template: PAGER_TEMPLATE,
+  directives: [NgClass],
   inputs: [
     'align',
     'totalItems', 'itemsPerPage',
     'previousText', 'nextText',
-  ],
-  outputs:['numPages', 'pageChanged'],
-  template: PAGER_TEMPLATE,
-  directives: [NgClass]
+  ]
 })
 export class Pager extends Pagination implements OnInit {
   public config = pagerConfig;
@@ -39,3 +38,10 @@ export class Pager extends Pagination implements OnInit {
     super(cd, renderer, elementRef);
   }
 }
+// todo: pager should support only this in/out
+//inputs: [
+//  'align',
+//  'totalItems', 'itemsPerPage',
+//  'previousText', 'nextText',
+//],
+//  outputs:['numPages', 'pageChanged'],
