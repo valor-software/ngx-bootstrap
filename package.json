@@ -1,12 +1,12 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.0.1-beta.2",
+  "version": "1.0.2-beta.0",
   "description": "angular2 bootstrap components",
   "scripts": {
     "prepublish": "gulp clean && ./node_modules/.bin/tsc && ./make.js",
     "build:prod": "NODE_ENV=production webpack -p --progress --color --optimize-minimize --optimize-dedupe --optimize-occurence-order",
     "build:dev": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
-    "start": "npm run dev",
+    "start": "npm run build:dev",
     "test": "gulp lint"
   },
   "main": "ng2-bootstrap.js",
@@ -28,6 +28,9 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {},
+  "peerDependencies": {
+    "angular2": "2.0.0-beta.2"
+  },
   "devDependencies": {
     "angular2": "2.0.0-beta.2",
     "async": "1.5.2",
@@ -56,7 +59,7 @@
     "reflect-metadata": "0.1.2",
     "require-dir": "0.3.0",
     "rxjs": "5.0.0-beta.0",
-    "systemjs-builder": "0.15.4",
+    "systemjs-builder": "0.15.5",
     "ts-loader": "0.8.0",
     "tslint": "3.3.0",
     "typescript": "1.7.5",
