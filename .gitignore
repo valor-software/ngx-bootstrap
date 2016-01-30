@@ -10,9 +10,8 @@ npm-debug.log
 .idea
 
 # ignore build and dist for now
-/build
-/dist
 /bundles
+/demo-build
 
 # ignore incline compiling
 /demo/**/*.js

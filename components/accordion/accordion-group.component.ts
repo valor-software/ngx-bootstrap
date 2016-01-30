@@ -1,9 +1,8 @@
-import {Component, OnInit, OnDestroy, Input, HostBinding} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Input, HostBinding, Inject} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 
 import {Collapse} from '../collapse';
 import {Accordion} from './accordion.component';
-
 
 @Component({
   selector: 'accordion-group, accordion-panel',
@@ -45,7 +44,7 @@ export class AccordionPanel implements OnInit, OnDestroy {
 
   private _isOpen:boolean;
 
-  constructor(private accordion:Accordion) {
+  constructor(@Inject(Accordion) private accordion:Accordion) {
   }
 
   ngOnInit() {

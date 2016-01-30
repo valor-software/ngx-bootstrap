@@ -2,8 +2,9 @@ var path = require('path');
 var marked = require('marked');
 var webpack = require('webpack');
 
-var Clean = require('clean-webpack-plugin');
 var CompressionPlugin = require('compression-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // marked renderer hack
 marked.Renderer.prototype.code = function (code, lang) {
@@ -20,16 +21,13 @@ marked.Renderer.prototype.code = function (code, lang) {
 /*eslint no-process-env:0, camelcase:0*/
 var isProduction = (process.env.NODE_ENV || 'development') === 'production';
 
-var src = 'demo';
-//var absSrc = path.join(__dirname, src);
-var dest = '/build';
+var dest = 'demo-build';
 var absDest = path.join(__dirname, dest);
 
 var config = {
   // isProduction ? 'source-map' : 'evale',
   devtool: 'source-map',
   debug: false,
-  cache: false,
 
   verbose: true,
   displayErrorDetails: true,
@@ -40,6 +38,7 @@ var config = {
   },
 
   resolve: {
+    cache: false,
     root: __dirname,
     extensions: ['', '.ts', '.js', '.json']
   },
@@ -68,8 +67,9 @@ var config = {
     inline: true,
     colors: true,
     historyApiFallback: true,
-    contentBase: src,
-    publicPath: dest
+    contentBase: dest,
+    //publicPath: dest,
+    watchOptions: {aggregateTimeout: 300, poll: 1000}
   },
 
   markdownLoader: {
@@ -121,13 +121,22 @@ var config = {
   },
 
   plugins: [
-    new Clean(['build']),
+    //new Clean([dest]),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'angular2',
       minChunks: Infinity,
       filename: 'angular2.js'
+    }),
+    // static assets
+    new CopyWebpackPlugin([{from: 'demo/favicon.ico', to: 'favicon.ico'}]),
+    new CopyWebpackPlugin([{from: 'demo/assets', to: 'assets'}]),
+    // generating html
+    new HtmlWebpackPlugin({template: 'demo/index.html'}),
+    new HtmlWebpackPlugin({
+      template: 'demo/index-bs4.html',
+      filename: 'index-bs4.html'
     })
   ],
   pushPlugins: function () {
@@ -138,6 +147,7 @@ var config = {
     this.plugins.push.apply(this.plugins, [
       //production only
       new webpack.optimize.UglifyJsPlugin({
+        beautify: false,
         mangle: false,
         comments: false,
         compress: {

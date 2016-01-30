@@ -22,7 +22,7 @@ async.waterfall([
   getSystemJsBundleConfig,
   buildSystemJs({}),
   getSystemJsBundleConfig,
-  buildSystemJs({minify: true, sourceMaps: true}),
+  buildSystemJs({minify: true, sourceMaps: true, mangle: false}),
   gzipSystemJsBundle
 ], function (err) {
   if (err) {
