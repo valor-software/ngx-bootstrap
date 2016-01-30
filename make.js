@@ -32,7 +32,7 @@ async.waterfall([
 
 function getSystemJsBundleConfig(cb) {
   let config = {
-    baseURL: '..',
+    baseURL: '.',
     transpiler: 'typescript',
     typescriptOptions: {
       module: 'cjs'

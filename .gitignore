@@ -15,13 +15,5 @@ npm-debug.log
 /bundles
 
 # ignore incline compiling
-/demo/**/*.js
-/demo/**/*.js.map
-/demo/**/*.d.ts
-/components/**/*.js
-/components/**/*.js.map
-/components/**/*.d.ts
-ng2-bootstrap.js
-ng2-bootstrap.d.ts
-ng2-bootstrap.js.map
+/ng2-bootstrap
 /logs
