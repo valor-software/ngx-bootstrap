@@ -20,13 +20,13 @@ marked.Renderer.prototype.code = function (code, lang) {
 
 /*eslint no-process-env:0, camelcase:0*/
 var isProduction = (process.env.NODE_ENV || 'development') === 'production';
-
+var devtool = process.env.NODE_ENV !== 'test' ? 'source-map' : 'inline-source-map';
 var dest = 'demo-build';
-var absDest = path.join(__dirname, dest);
+var absDest = root(dest);
 
 var config = {
   // isProduction ? 'source-map' : 'evale',
-  devtool: 'source-map',
+  devtool: devtool,
   debug: false,
 
   verbose: true,
@@ -87,19 +87,24 @@ var config = {
     }
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        exclude: [
+          root('node_modules/rxjs')
+        ]
+      }
+    ],
     loaders: [
       // support markdown
       {test: /\.md$/, loader: 'html?minimize=false!markdown'},
-
       // Support for *.json files.
       {test: /\.json$/, loader: 'json'},
-
       // Support for CSS as raw text
       {test: /\.css$/, loader: 'raw'},
-
       // support for .html as raw text
       {test: /\.html$/, loader: 'raw'},
-
       // Support for .ts files.
       {
         test: /\.ts$/,
@@ -173,3 +178,7 @@ var config = {
 config.pushPlugins();
 
 module.exports = config;
+
+function root(p) {
+  path.join(__dirname, p);
+}

@@ -18,9 +18,9 @@ const ALERT_TEMPLATE = `
   template: ALERT_TEMPLATE
 })
 export class Alert implements OnInit {
-  @Input() private type:string = 'warning';
-  @Input() private dismissible:boolean;
-  @Input() private dismissOnTimeout:number;
+  @Input() public type:string = 'warning';
+  @Input() public dismissible:boolean;
+  @Input() public dismissOnTimeout:number;
 
   @Output() public close:EventEmitter<Alert> = new EventEmitter();
 
