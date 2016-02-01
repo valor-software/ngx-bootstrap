@@ -1,27 +1,22 @@
 import {
-  Component, View, Host, Directive,
+  Component, Directive,
   OnInit, EventEmitter,
   ComponentRef, ViewEncapsulation,
-  ElementRef, ViewContainerRef, DynamicComponentLoader,
-  Self, Renderer
+  ElementRef, DynamicComponentLoader,
+  Self, Renderer, bind, Injector
 } from 'angular2/core';
 
-import {CORE_DIRECTIVES, FORM_DIRECTIVES,
-   DefaultValueAccessor, ControlValueAccessor,
-   NgIf, NgClass, NgModel, NgStyle, NgControl
+import {
+  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
 } from 'angular2/common';
 
-// import {setProperty} from 'angular2/src/forms/directives/shared';
-// import {DOM} from 'angular2/src/dom/dom_adapter';
-
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
+import {IAttribute} from '../common';
 import {positionService} from '../position';
-import * as moment from 'moment';
 
-import {DatePickerInner} from './datepicker-inner';
-import {DayPicker} from './daypicker';
-import {MonthPicker} from './monthpicker';
-import {YearPicker} from './yearpicker';
+//import {DatePickerInner} from './datepicker-inner';
+//import {DayPicker} from './daypicker';
+//import {MonthPicker} from './monthpicker';
+//import {YearPicker} from './yearpicker';
 import {DatePicker} from './datepicker';
 
 class PopupOptions {
@@ -34,7 +29,7 @@ class PopupOptions {
   }
 }
 
-const datePickerPopupConfig:Object = {
+const datePickerPopupConfig:IAttribute = {
   datepickerPopup: 'YYYY-MM-dd',
   currentText: 'Today',
   clearText: 'Clear',
@@ -102,13 +97,13 @@ class PopupContainer {
     this.left = '0px';
     let p = positionService
       .positionElements(hostEl.nativeElement,
-      this.element.nativeElement.children[0],
-      this.placement, false);
+        this.element.nativeElement.children[0],
+        this.placement, false);
     this.top = p.top + 'px';
   }
 
   private getText(key:string):string {
-    return this[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
+    return (<IAttribute>this)[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
   }
 
   private isDisabled(date:Date):boolean {
@@ -128,7 +123,8 @@ export class DatePickerPopup implements OnInit {
   private _isOpen:boolean = false;
   private popup:Promise<ComponentRef>;
 
-  constructor(@Self() public cd:NgModel, public element:ElementRef, public renderer:Renderer, public loader:DynamicComponentLoader) {
+  constructor(@Self()
+              public cd:NgModel, public element:ElementRef, public renderer:Renderer, public loader:DynamicComponentLoader) {
     this.activeDate = cd.model;
   }
 

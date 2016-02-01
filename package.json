@@ -6,10 +6,10 @@
     "compile": "node ./node_modules/typescript/bin/tsc",
     "prepublish": "gulp clean && ./node_modules/.bin/tsc && ./make.js",
     "build:prod": "NODE_ENV=production webpack --progress --color",
-    "build:dev": "NODE_ENV=production webpack --progress --color",
+    "build:dev": "webpack --progress --color",
     "serve:dev": "webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "serve:prod": "NODE_ENV=production webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
-    "start": "npm run build:dev",
+    "start": "npm run serve:dev",
     "pretest": "gulp lint",
     "test": "NODE_ENV=test karma start"
   },
@@ -31,7 +31,9 @@
     "url": "https://github.com/valor-software/ng2-bootstrap/issues"
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
-  "dependencies": {},
+  "dependencies": {
+    "moment": "2.11.1"
+  },
   "peerDependencies": {
     "angular2": "2.0.0-beta.2"
   },
@@ -67,7 +69,6 @@
     "karma-webpack": "1.7.0",
     "markdown-loader": "0.1.7",
     "marked": "0.3.5",
-    "moment": "2.11.1",
     "phantomjs-polyfill": "0.0.1",
     "phantomjs-prebuilt": "2.1.3",
     "pre-commit": "1.1.2",

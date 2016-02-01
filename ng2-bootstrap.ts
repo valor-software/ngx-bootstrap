@@ -3,7 +3,7 @@ export * from  './components/alert';
 export * from  './components/buttons';
 export * from  './components/carousel';
 export * from  './components/collapse';
-export * from  './components/datepicker/index';
+export * from  './components/datepicker';
 export * from  './components/dropdown';
 export * from  './components/pagination';
 export * from  './components/progressbar';

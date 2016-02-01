@@ -94,5 +94,5 @@ module.exports = function (config) {
 };
 
 function root(p) {
-  path.join(__dirname, p);
+  return path.join(__dirname, p);
 }

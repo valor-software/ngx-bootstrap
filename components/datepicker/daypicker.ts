@@ -1,12 +1,5 @@
-import {
-  Component, View, Host, Directive,
-  OnInit, EventEmitter,
-  ElementRef, ViewContainerRef,
-  Self, Renderer
-} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES,
-  DefaultValueAccessor, NgIf, NgClass, NgModel
-} from 'angular2/common';
+import {Component, OnInit} from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {DatePickerInner} from './datepicker-inner';

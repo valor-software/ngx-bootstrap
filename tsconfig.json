@@ -9,7 +9,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors":true,
     "listFiles": false,
     "noLib": false
   },
@@ -17,6 +16,7 @@
     "node_modules"
   ],
   "files": [
+    "./tsd.d.ts",
     "./ng2-bootstrap.ts"
   ]
 }

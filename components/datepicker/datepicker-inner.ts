@@ -1,14 +1,7 @@
+import {Component, OnInit, EventEmitter, Input} from 'angular2/core';
 import {
-  Component, View, Host,
-  OnInit, EventEmitter,
-  ElementRef, ViewContainerRef,
-  Self, Renderer, Input
-} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES,
-  DefaultValueAccessor, NgIf, NgClass, NgModel
+  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel
 } from 'angular2/common';
-
-import * as moment from 'moment';
 
 import {DateFormatter} from './date-formatter';
 
@@ -54,9 +47,12 @@ const KEYS = {
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
 })
 export class DatePickerInner implements OnInit {
-  @Input() public datepickerMode:string;
-  @Input() public startingDay:number;
-  @Input() public yearRange:number;
+  @Input()
+  public datepickerMode:string;
+  @Input()
+  public startingDay:number;
+  @Input()
+  public yearRange:number;
   public stepDay:any = {};
   public stepMonth:any = {};
   public stepYear:any = {};
@@ -67,23 +63,38 @@ export class DatePickerInner implements OnInit {
   private _activeDate:Date;
   private _initDate:Date;
   private activeDateId:string;
-  @Input() private minDate:Date;
-  @Input() private maxDate:Date;
-  @Input() private minMode:string;
-  @Input() private maxMode:string;
-  @Input() private showWeeks:boolean;
-  @Input() private formatDay:string;
-  @Input() private formatMonth:string;
-  @Input() private formatYear:string;
-  @Input() private formatDayHeader:string;
-  @Input() private formatDayTitle:string;
-  @Input() private formatMonthTitle:string;
-  @Input() private shortcutPropagation:boolean;
+  @Input()
+  private minDate:Date;
+  @Input()
+  private maxDate:Date;
+  @Input()
+  private minMode:string;
+  @Input()
+  private maxMode:string;
+  @Input()
+  private showWeeks:boolean;
+  @Input()
+  private formatDay:string;
+  @Input()
+  private formatMonth:string;
+  @Input()
+  private formatYear:string;
+  @Input()
+  private formatDayHeader:string;
+  @Input()
+  private formatDayTitle:string;
+  @Input()
+  private formatMonthTitle:string;
+  @Input()
+  private shortcutPropagation:boolean;
   // todo: change type during implementation
-  @Input() private customClass:any;
+  @Input()
+  private customClass:any;
   // todo: change type during implementation
-  @Input() private dateDisabled:any;
-  @Input() private templateUrl:string;
+  @Input()
+  private dateDisabled:any;
+  @Input()
+  private templateUrl:string;
 
   private refreshViewHandlerDay:Function;
   private compareHandlerDay:Function;
@@ -93,7 +104,8 @@ export class DatePickerInner implements OnInit {
   private compareHandlerYear:Function;
   private update:EventEmitter<Date> = new EventEmitter();
 
-  @Input() private get initDate():Date {
+  @Input()
+  private get initDate():Date {
     return this._initDate;
   }
 
@@ -101,7 +113,8 @@ export class DatePickerInner implements OnInit {
     this._initDate = value;
   }
 
-  @Input() private get activeDate():Date {
+  @Input()
+  private get activeDate():Date {
     return this._activeDate;
   }
 

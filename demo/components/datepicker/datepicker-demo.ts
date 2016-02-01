@@ -1,10 +1,10 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
 import * as moment from 'moment';
-import {datepicker} from '../../../ng2-bootstrap';
+import {DATEPICKER_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./datepicker-demo.html');
@@ -12,9 +12,8 @@ let template = require('./datepicker-demo.html');
 @Component({
   selector: 'datepicker-demo',
   template: template,
-  directives: [datepicker, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  directives: [DATEPICKER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
-
 export class DatepickerDemo {
   public dt:Date = new Date();
   private minDate:Date = null;
@@ -39,7 +38,7 @@ export class DatepickerDemo {
     ];
   }
   public getDate():number {
-    return this.dt.getTime() || new Date().getTime();
+    return this.dt && this.dt.getTime() || new Date().getTime();
   }
   private today() {
     this.dt = new Date();
