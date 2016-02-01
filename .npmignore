@@ -1,10 +1,17 @@
 .idea
-demo
-demo-build
 gulp-tasks
 logs
 
+# typings
 tsd.d.ts
 typings
 
+# testing
+karma.conf.js
+test.bundle.js
+coverage
+
+# demo build
+demo
+demo-build
 webpack.config.js
