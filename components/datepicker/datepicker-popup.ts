@@ -1,11 +1,15 @@
 import {
   Component, View, Host, Directive,
-  OnInit, EventEmitter, NgControl,
-  DefaultValueAccessor, ComponentRef, ViewEncapsulation, ControlValueAccessor,
+  OnInit, EventEmitter,
+  ComponentRef, ViewEncapsulation,
   ElementRef, ViewContainerRef, DynamicComponentLoader,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer, NgStyle
+  Self, Renderer
 } from 'angular2/core';
+
+import {CORE_DIRECTIVES, FORM_DIRECTIVES,
+   DefaultValueAccessor, ControlValueAccessor,
+   NgIf, NgClass, NgModel, NgStyle, NgControl
+} from 'angular2/common';
 
 // import {setProperty} from 'angular2/src/forms/directives/shared';
 // import {DOM} from 'angular2/src/dom/dom_adapter';
@@ -42,9 +46,7 @@ const datePickerPopupConfig:Object = {
 
 @Component({
   selector: 'popup-container',
-  events: ['update1']
-})
-@View({
+  events: ['update1'],
   template: `
     <ul class="dropdown-menu"
         style="display: block"
@@ -64,16 +66,17 @@ const datePickerPopupConfig:Object = {
   directives: [NgClass, NgStyle, DatePicker, FORM_DIRECTIVES, CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
+
 class PopupContainer {
   public popupComp:DatePickerPopup;
 
-  private classMap:Object;
+  private classMap:any;
   private top:string;
   private left:string;
   private display:string;
   private placement:string;
   private showButtonBar:boolean = true;
-  private update1:EventEmitter = new EventEmitter();
+  private update1:EventEmitter<any> = new EventEmitter();
 
   constructor(public element:ElementRef, options:PopupOptions) {
     Object.assign(this, options);
@@ -81,7 +84,7 @@ class PopupContainer {
     this.classMap[options.placement] = true;
   }
 
-  public onUpdate($event) {
+  public onUpdate($event:any) {
     console.log('update', $event);
     if ($event) {
       if (typeof $event !== 'Date') {

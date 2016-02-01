@@ -1,11 +1,12 @@
 import {
   Component, View, Host,
   OnInit, EventEmitter,
-  DefaultValueAccessor,
   ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer
+  Self, Renderer, Input
 } from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES,
+  DefaultValueAccessor, NgIf, NgClass, NgModel
+} from 'angular2/common';
 
 import * as moment from 'moment';
 
@@ -45,41 +46,17 @@ const KEYS = {
 @Component({
   selector: 'datepicker-inner',
   events: ['update'],
-  properties: [
-    'activeDate',
-    'datepickerMode',
-    'initDate',
-    'minDate',
-    'maxDate',
-    'minMode',
-    'maxMode',
-    'showWeeks',
-    'formatDay',
-    'formatMonth',
-    'formatYear',
-    'formatDayHeader',
-    'formatDayTitle',
-    'formatMonthTitle',
-    'startingDay',
-    'yearRange',
-    'shortcutPropagation',
-    'customClass',
-    'dateDisabled',
-    'templateUrl'
-  ]
-})
-@View({
   template: `
-<div [hidden]="!datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
-  <ng-content></ng-content>
-</div>
+    <div [hidden]="!datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
+      <ng-content></ng-content>
+    </div>
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
 })
 export class DatePickerInner implements OnInit {
-  public datepickerMode:string;
-  public startingDay:number;
-  public yearRange:number;
+  @Input() public datepickerMode:string;
+  @Input() public startingDay:number;
+  @Input() public yearRange:number;
   public stepDay:any = {};
   public stepMonth:any = {};
   public stepYear:any = {};
@@ -87,26 +64,26 @@ export class DatePickerInner implements OnInit {
   private modes:Array<string> = ['day', 'month', 'year'];
   private dateFormatter:DateFormatter = new DateFormatter();
   private uniqueId:string;
-  private _initDate:Date;
   private _activeDate:Date;
+  private _initDate:Date;
   private activeDateId:string;
-  private minDate:Date;
-  private maxDate:Date;
-  private minMode:string;
-  private maxMode:string;
-  private showWeeks:boolean;
-  private formatDay:string;
-  private formatMonth:string;
-  private formatYear:string;
-  private formatDayHeader:string;
-  private formatDayTitle:string;
-  private formatMonthTitle:string;
-  private shortcutPropagation:boolean;
+  @Input() private minDate:Date;
+  @Input() private maxDate:Date;
+  @Input() private minMode:string;
+  @Input() private maxMode:string;
+  @Input() private showWeeks:boolean;
+  @Input() private formatDay:string;
+  @Input() private formatMonth:string;
+  @Input() private formatYear:string;
+  @Input() private formatDayHeader:string;
+  @Input() private formatDayTitle:string;
+  @Input() private formatMonthTitle:string;
+  @Input() private shortcutPropagation:boolean;
   // todo: change type during implementation
-  private customClass:any;
+  @Input() private customClass:any;
   // todo: change type during implementation
-  private dateDisabled:any;
-  private templateUrl:string;
+  @Input() private dateDisabled:any;
+  @Input() private templateUrl:string;
 
   private refreshViewHandlerDay:Function;
   private compareHandlerDay:Function;
@@ -116,7 +93,7 @@ export class DatePickerInner implements OnInit {
   private compareHandlerYear:Function;
   private update:EventEmitter<Date> = new EventEmitter();
 
-  private get initDate():Date {
+  @Input() private get initDate():Date {
     return this._initDate;
   }
 
@@ -124,7 +101,7 @@ export class DatePickerInner implements OnInit {
     this._initDate = value;
   }
 
-  private get activeDate():Date {
+  @Input() private get activeDate():Date {
     return this._activeDate;
   }
 
@@ -287,7 +264,7 @@ export class DatePickerInner implements OnInit {
   }
 
   public move(direction:number) {
-    let expectedStep;
+    let expectedStep:any;
     if (this.datepickerMode === 'day') {
       expectedStep = this.stepDay;
     }

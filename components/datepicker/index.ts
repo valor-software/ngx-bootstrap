@@ -1,12 +1,13 @@
 import {
   Component, View, Host,
   EventEmitter,
-  DefaultValueAccessor,
   ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer,
+  Self, Renderer,
   QueryList, Query
 } from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES,
+  DefaultValueAccessor, NgIf, NgClass, NgModel
+} from 'angular2/common';
 
 import * as moment from 'moment';
 

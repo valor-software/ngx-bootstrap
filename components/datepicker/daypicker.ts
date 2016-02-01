@@ -1,16 +1,18 @@
 import {
   Component, View, Host, Directive,
   OnInit, EventEmitter,
-  DefaultValueAccessor,
   ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer
+  Self, Renderer
 } from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES,
+  DefaultValueAccessor, NgIf, NgClass, NgModel
+} from 'angular2/common';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {DatePickerInner} from './datepicker-inner';
 
-const TEMPLATE_OPTIONS = {
+//write an interface for template options
+const TEMPLATE_OPTIONS:any = {
   [Ng2BootstrapTheme.BS4]: {
     DAY_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-sm"
@@ -33,13 +35,11 @@ const TEMPLATE_OPTIONS = {
   }
 };
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2BootstrapTheme.BS3];
+const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2BootstrapTheme.BS3];
 
 @Component({
-  selector: 'daypicker, [daypicker]'
-})
-@View({
-  template: `
+  selector: 'daypicker, [daypicker]',
+   template: `
 <table [hidden]="datePicker.datepickerMode!=='day'" role="grid" aria-labelledby="uniqueId+'-title'" aria-activedescendant="activeDateId">
   <thead>
     <tr>
@@ -90,6 +90,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2B
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
+
 export class DayPicker implements OnInit {
 
   public labels:Array<any> = [];
@@ -109,7 +110,7 @@ export class DayPicker implements OnInit {
     let dates:Array<Date> = new Array(n);
     let current = new Date(startDate.getTime());
     let i = 0;
-    let date;
+    let date:Date;
     while (i < n) {
       date = new Date(current.getTime());
       this.datePicker.fixTimeZone(date);
@@ -177,7 +178,7 @@ export class DayPicker implements OnInit {
       }
     }, 'day');
 
-    this.datePicker.setCompareHandler(function (date1, date2) {
+    this.datePicker.setCompareHandler(function (date1:Date, date2:Date) {
       let d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
       let d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
       return d1.getTime() - d2.getTime();

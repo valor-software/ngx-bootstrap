@@ -1,11 +1,9 @@
 /// <reference path="../../tsd.d.ts" />
 
-import {
-  Component, View,
-} from 'angular2/core';
+import {Component, View} from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {DatepickerDemo} from './datepicker/datepicker-demo';
 
 let name = 'Datepicker';
@@ -63,7 +61,7 @@ let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
     </div>
   </section>
   `,
-  directives: [DatepickerDemo, tabs, CORE_DIRECTIVES]
+  directives: [DatepickerDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class DatepickerSection {
 }
