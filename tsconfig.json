@@ -9,6 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors":true,
     "listFiles": false,
     "noLib": false
   },
