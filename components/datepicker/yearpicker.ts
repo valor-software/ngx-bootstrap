@@ -1,16 +1,18 @@
 import {
   Component, View, Host,
   OnInit, EventEmitter,
-  DefaultValueAccessor,
   ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer
+  Self, Renderer
 } from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES,
+   DefaultValueAccessor, NgIf, NgClass, NgModel
+} from 'angular2/common';
 
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 import {DatePickerInner} from './datepicker-inner';
 
-const TEMPLATE_OPTIONS = {
+//write an interface for template options
+const TEMPLATE_OPTIONS:any = {
   bs4: {
     YEAR_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-default"
@@ -33,13 +35,11 @@ const TEMPLATE_OPTIONS = {
   }
 };
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
+const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 
 @Component({
-  selector: 'yearpicker, [yearpicker]'
-})
-@View({
-  template: `
+  selector: 'yearpicker, [yearpicker]',
+    template: `
 <table [hidden]="datePicker.datepickerMode!=='year'" role="grid">
   <thead>
     <tr>
@@ -77,6 +77,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
+
 export class YearPicker implements OnInit {
   private title:string;
   private rows:Array<any> = [];
@@ -96,7 +97,7 @@ export class YearPicker implements OnInit {
 
     this.datePicker.setRefreshViewHandler(function () {
       let years:Array<any> = new Array(this.yearRange);
-      let date;
+      let date:Date;
 
       for (let i = 0, start = self.getStartingYear(this.activeDate.getFullYear()); i < this.yearRange; i++) {
         date = new Date(start + i, 0, 1);
@@ -109,7 +110,7 @@ export class YearPicker implements OnInit {
       self.rows = this.split(years, 5);
     }, 'year');
 
-    this.datePicker.setCompareHandler(function (date1, date2) {
+    this.datePicker.setCompareHandler(function (date1:Date, date2:Date) {
       return date1.getFullYear() - date2.getFullYear();
     }, 'year');
 
