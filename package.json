@@ -84,6 +84,6 @@
     "typescript": "1.7.5",
     "webpack": "1.12.12",
     "webpack-dev-server": "1.14.1",
-    "zone.js": "0.5.10"
+    "zone.js": "0.5.13"
   }
 }
