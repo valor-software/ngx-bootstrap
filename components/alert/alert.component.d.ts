@@ -1,8 +1,8 @@
 import { OnInit, EventEmitter } from 'angular2/core';
 export declare class Alert implements OnInit {
-    private type;
-    private dismissible;
-    private dismissOnTimeout;
+    type: string;
+    dismissible: boolean;
+    dismissOnTimeout: number;
     close: EventEmitter<Alert>;
     private closed;
     private classes;
