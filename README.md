@@ -35,6 +35,14 @@ With angular2-seed: [mgechev/angular2-seed](http://ludohenin.github.io/angular2-
 npm i ng2-bootstrap --save
 ```
 
+## Install from CDN
+
+Check [cdnjs](https://cdnjs.com/libraries/ng2-bootstrap) to include `ng2-bootstrap` as `system.js` bundle
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/x.x.x/ng2-bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+```
+
 ## Quick start
 
 **Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta`, ng2-bootstrap is already updated for `1-beta`,
