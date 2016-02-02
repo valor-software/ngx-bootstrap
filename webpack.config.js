@@ -87,15 +87,6 @@ var config = {
     }
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'source-map-loader',
-        exclude: [
-          root('node_modules/rxjs')
-        ]
-      }
-    ],
     loaders: [
       // support markdown
       {test: /\.md$/, loader: 'html?minimize=false!markdown'},
@@ -180,5 +171,5 @@ config.pushPlugins();
 module.exports = config;
 
 function root(p) {
-  path.join(__dirname, p);
+  return path.join(__dirname, p);
 }

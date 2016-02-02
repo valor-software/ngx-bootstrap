@@ -16,5 +16,4 @@ describe('Alert', () => {
   it('should have default type', inject([Alert], (alert:Alert) => {
     expect(alert.type).toEqual('warning');
   }));
-
 });

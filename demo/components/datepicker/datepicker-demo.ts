@@ -1,19 +1,18 @@
 /// <reference path="../../../tsd.d.ts" />
 
-import {Component, View, CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/core';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 
 import * as moment from 'moment';
-import {datepicker} from '../../../ng2-bootstrap';
+import {DATEPICKER_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./datepicker-demo.html');
 
 @Component({
-  selector: 'datepicker-demo'
-})
-@View({
+  selector: 'datepicker-demo',
   template: template,
-  directives: [datepicker, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  directives: [DATEPICKER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class DatepickerDemo {
   public dt:Date = new Date();
@@ -38,7 +37,9 @@ export class DatepickerDemo {
       {date: this.afterTomorrow, status: 'partially'}
     ];
   }
-
+  public getDate():number {
+    return this.dt && this.dt.getTime() || new Date().getTime();
+  }
   private today() {
     this.dt = new Date();
   }
@@ -48,7 +49,7 @@ export class DatepickerDemo {
   }
 
   // todo: implement custom class cases
-  private getDayClass(date, mode) {
+  private getDayClass(date:any, mode:string) {
     if (mode === 'day') {
       let dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 

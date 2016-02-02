@@ -1,23 +1,22 @@
 import {
-  Component, View, Host, Directive,
-  OnInit, EventEmitter, NgControl,
-  DefaultValueAccessor, ComponentRef, ViewEncapsulation, ControlValueAccessor,
-  ElementRef, ViewContainerRef, DynamicComponentLoader,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer, NgStyle
+  Component, Directive,
+  OnInit, EventEmitter,
+  ComponentRef, ViewEncapsulation,
+  ElementRef, DynamicComponentLoader,
+  Self, Renderer, bind, Injector
 } from 'angular2/core';
 
-// import {setProperty} from 'angular2/src/forms/directives/shared';
-// import {DOM} from 'angular2/src/dom/dom_adapter';
+import {
+  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
+} from 'angular2/common';
 
-import {bind, Injectable, forwardRef, ResolvedBinding, Injector} from 'angular2/core';
+import {IAttribute} from '../common';
 import {positionService} from '../position';
-import * as moment from 'moment';
 
-import {DatePickerInner} from './datepicker-inner';
-import {DayPicker} from './daypicker';
-import {MonthPicker} from './monthpicker';
-import {YearPicker} from './yearpicker';
+//import {DatePickerInner} from './datepicker-inner';
+//import {DayPicker} from './daypicker';
+//import {MonthPicker} from './monthpicker';
+//import {YearPicker} from './yearpicker';
 import {DatePicker} from './datepicker';
 
 class PopupOptions {
@@ -30,7 +29,7 @@ class PopupOptions {
   }
 }
 
-const datePickerPopupConfig:Object = {
+const datePickerPopupConfig:IAttribute = {
   datepickerPopup: 'YYYY-MM-dd',
   currentText: 'Today',
   clearText: 'Clear',
@@ -42,9 +41,7 @@ const datePickerPopupConfig:Object = {
 
 @Component({
   selector: 'popup-container',
-  events: ['update1']
-})
-@View({
+  events: ['update1'],
   template: `
     <ul class="dropdown-menu"
         style="display: block"
@@ -64,16 +61,17 @@ const datePickerPopupConfig:Object = {
   directives: [NgClass, NgStyle, DatePicker, FORM_DIRECTIVES, CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
+
 class PopupContainer {
   public popupComp:DatePickerPopup;
 
-  private classMap:Object;
+  private classMap:any;
   private top:string;
   private left:string;
   private display:string;
   private placement:string;
   private showButtonBar:boolean = true;
-  private update1:EventEmitter = new EventEmitter();
+  private update1:EventEmitter<any> = new EventEmitter();
 
   constructor(public element:ElementRef, options:PopupOptions) {
     Object.assign(this, options);
@@ -81,7 +79,7 @@ class PopupContainer {
     this.classMap[options.placement] = true;
   }
 
-  public onUpdate($event) {
+  public onUpdate($event:any) {
     console.log('update', $event);
     if ($event) {
       if (typeof $event !== 'Date') {
@@ -99,13 +97,13 @@ class PopupContainer {
     this.left = '0px';
     let p = positionService
       .positionElements(hostEl.nativeElement,
-      this.element.nativeElement.children[0],
-      this.placement, false);
+        this.element.nativeElement.children[0],
+        this.placement, false);
     this.top = p.top + 'px';
   }
 
   private getText(key:string):string {
-    return this[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
+    return (<IAttribute>this)[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
   }
 
   private isDisabled(date:Date):boolean {
@@ -125,7 +123,8 @@ export class DatePickerPopup implements OnInit {
   private _isOpen:boolean = false;
   private popup:Promise<ComponentRef>;
 
-  constructor(@Self() public cd:NgModel, public element:ElementRef, public renderer:Renderer, public loader:DynamicComponentLoader) {
+  constructor(@Self()
+              public cd:NgModel, public element:ElementRef, public renderer:Renderer, public loader:DynamicComponentLoader) {
     this.activeDate = cd.model;
   }
 

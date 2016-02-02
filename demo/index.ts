@@ -18,7 +18,7 @@ import {AlertSection} from './components/alert-section';
 import {ButtonsSection} from './components/buttons-section';
 import {CarouselSection} from './components/carousel-section';
 import {CollapseSection} from './components/collapse-section';
-// import {DatepickerSection} from './components/datepicker-section';
+import {DatepickerSection} from './components/datepicker-section';
 import {DropdownSection} from './components/dropdown-section';
 import {PaginationSection} from './components/pagination-section';
 import {ProgressbarSection} from './components/progressbar-section';
@@ -68,7 +68,7 @@ let gettingStarted = require('./getting-started.md');
     <buttons-section class="col-md-12"></buttons-section>
     <carousel-section class="col-md-12"></carousel-section>
     <collapse-section class="col-md-12"></collapse-section>
-    <!--<datepicker-section class="col-md-12"></datepicker-section>-->
+    <datepicker-section class="col-md-12"></datepicker-section>
     <dropdown-section class="col-md-12"></dropdown-section>
     <pagination-section class="col-md-12"></pagination-section>
     <progressbar-section class="col-md-12"></progressbar-section>
@@ -96,7 +96,7 @@ let gettingStarted = require('./getting-started.md');
     CollapseSection,
 
     // todo: fix it to much write value calls!!!
-    // DatepickerSection,
+    DatepickerSection,
 
     DropdownSection,
     PaginationSection,

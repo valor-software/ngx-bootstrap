@@ -1,59 +1,43 @@
+import {Component, Self, Input} from 'angular2/core';
 import {
-  Component, View, Host,
-  EventEmitter,
+  CORE_DIRECTIVES,
+  FORM_DIRECTIVES,
   ControlValueAccessor,
-  ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer,
-  QueryList, Query
-} from 'angular2/core';
+  NgModel
+} from 'angular2/common';
 
 import * as moment from 'moment';
 
 import {DatePickerInner} from './datepicker-inner';
-import {DatePickerPopup} from './datepicker-popup';
+//import {DatePickerPopup} from './datepicker-popup';
 import {DayPicker} from './daypicker';
 import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 
 @Component({
   selector: 'datepicker[ngModel], [datepicker][ng-model]',
-  properties: [
-    'datepickerMode',
-    'minDate', 'maxDate',
-    'dateDisabled', 'activeDate',
-    'showWeeks', 'startingDay',
-    'initDate',
-    'minMode', 'maxMode',
-    'formatDay', 'formatMonth', 'formatYear',
-    'formatDayHeader', 'formatDayTitle', 'formatMonthTitle',
-    'yearRange',
-    'shortcutPropagation'
-  ]
-})
-@View({
   template: `
-    <datepicker-inner [active-date]="activeDate"
+    <datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate($event)"
-                      [datepicker-mode]="datepickerMode"
-                      [init-date]="initDate"
-                      [min-date]="minDate"
-                      [max-date]="maxDate"
-                      [min-mode]="minMode"
-                      [max-mode]="maxMode"
-                      [show-weeks]="showWeeks"
-                      [format-day]="formatDay"
-                      [format-month]="formatMonth"
-                      [format-year]="formatYear"
-                      [format-day-header]="formatDayHeader"
-                      [format-day-title]="formatDayTitle"
-                      [format-month-title]="formatMonthTitle"
-                      [starting-day]="startingDay"
-                      [year-range]="yearRange"
-                      [custom-class]="customClass"
-                      [date-disabled]="dateDisabled"
-                      [template-url]="templateUrl"
-                      [shortcut-propagation]="shortcutPropagation">
+                      [datepickerMode]="datepickerMode"
+                      [initDate]="initDate"
+                      [minDate]="minDate"
+                      [maxDate]="maxDate"
+                      [minMode]="minMode"
+                      [maxMode]="maxMode"
+                      [showWeeks]="showWeeks"
+                      [formatDay]="formatDay"
+                      [formatMonth]="formatMonth"
+                      [formatYear]="formatYear"
+                      [formatDayHeader]="formatDayHeader"
+                      [formatDayTitle]="formatDayTitle"
+                      [formatMonthTitle]="formatMonthTitle"
+                      [startingDay]="startingDay"
+                      [yearRange]="yearRange"
+                      [customClass]="customClass"
+                      [dateDisabled]="dateDisabled"
+                      [templateUrl]="templateUrl"
+                      [shortcutPropagation]="shortcutPropagation">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
@@ -61,51 +45,52 @@ import {YearPicker} from './yearpicker';
     `,
   directives: [DatePickerInner, DayPicker, MonthPicker, YearPicker, FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
+
 export class DatePicker implements ControlValueAccessor {
   private _activeDate:Date;
-  private datepickerMode:string;
-  private initDate:Date;
-  private minDate:Date;
-  private maxDate:Date;
-  private minMode:string;
-  private maxMode:string;
-  private showWeeks:boolean;
-  private formatDay:string;
-  private formatMonth:string;
-  private formatYear:string;
-  private formatDayHeader:string;
-  private formatDayTitle:string;
-  private formatMonthTitle:string;
-  private startingDay:number;
-  private yearRange:number;
-  private shortcutPropagation:boolean;
+  @Input() public datepickerMode:string;
+  @Input() public initDate:Date;
+  @Input() public minDate:Date;
+  @Input() public maxDate:Date;
+  @Input() public minMode:string;
+  @Input() public maxMode:string;
+  @Input() public showWeeks:boolean;
+  @Input() public formatDay:string;
+  @Input() public formatMonth:string;
+  @Input() public formatYear:string;
+  @Input() public formatDayHeader:string;
+  @Input() public formatDayTitle:string;
+  @Input() public formatMonthTitle:string;
+  @Input() public startingDay:number;
+  @Input() public yearRange:number;
+  @Input() public shortcutPropagation:boolean;
   // todo: change type during implementation
-  private customClass:any;
+  public customClass:any;
   // todo: change type during implementation
-  private dateDisabled:any;
-  private templateUrl:string;
+  @Input() public dateDisabled:any;
 
   constructor(@Self() public cd:NgModel) {
     // hack
     cd.valueAccessor = this;
   }
 
-  public get activeDate():Date {
-    return this._activeDate;
+  private _now:Date = new Date();
+  @Input() public get activeDate():Date {
+    return this._activeDate || this._now;
   }
 
   public set activeDate(value:Date) {
     this._activeDate = value;
-    this.cd.viewToModelUpdate(moment(this.activeDate).toDate());
   }
 
-  private onUpdate(event) {
+  private onUpdate(event:any) {
     this.writeValue(event);
+    this.cd.viewToModelUpdate(event);
   }
 
+  // todo: support null value
   writeValue(value:any) {
     // todo: fix something sends here new date all the time
-    console.log(value);
     // if (value) {
     //  if (typeof value !== 'Date') {
     //    value = new Date(value);
@@ -113,19 +98,21 @@ export class DatePicker implements ControlValueAccessor {
     //
     //  this.activeDate = value;
     // }
-    if (value === this.activeDate) {
+    if (value === this._activeDate) {
       return;
     }
     if (value && value instanceof Date) {
       this.activeDate = value;
       return;
     }
-    this.activeDate = value ? new Date(value) : null;
 
+    this.activeDate = value ? new Date(value) : null;
   }
 
-  onChange = (_) => {};
-  onTouched = () => {};
+  onChange = (_:any) => {
+  };
+  onTouched = () => {
+  };
 
   registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;
@@ -134,5 +121,4 @@ export class DatePicker implements ControlValueAccessor {
   registerOnTouched(fn:() => {}):void {
     this.onTouched = fn;
   }
-
 }

@@ -1,16 +1,19 @@
 import {
   Component, View, Host,
   OnInit, EventEmitter,
-  DefaultValueAccessor,
   ElementRef, ViewContainerRef,
-  NgIf, NgClass, FORM_DIRECTIVES, CORE_DIRECTIVES,
-  Self, NgModel, Renderer
+  Self, Renderer
 } from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES,
+   DefaultValueAccessor, NgIf, NgClass, NgModel
+} from 'angular2/common';
+
 
 import {DatePickerInner} from './datepicker-inner';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 
-const TEMPLATE_OPTIONS = {
+//write an interface for template options
+const TEMPLATE_OPTIONS:any = {
   bs4: {
     MONTH_BUTTON: `
         <button type="button" style="min-width:100%;" class="btn btn-default"
@@ -29,13 +32,11 @@ const TEMPLATE_OPTIONS = {
   }
 };
 
-const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
+const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 
 @Component({
-  selector: 'monthpicker, [monthpicker]'
-})
-@View({
-  template: `
+  selector: 'monthpicker, [monthpicker]',
+    template: `
 <table [hidden]="datePicker.datepickerMode!=='month'" role="grid">
   <thead>
     <tr>
@@ -72,6 +73,7 @@ const CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEM
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
+
 export class MonthPicker implements OnInit {
   public title:string;
   public rows:Array<any> = [];
@@ -87,7 +89,7 @@ export class MonthPicker implements OnInit {
     this.datePicker.setRefreshViewHandler(function () {
       let months:Array<any> = new Array(12);
       let year:number = this.activeDate.getFullYear();
-      let date;
+      let date:Date;
 
       for (let i = 0; i < 12; i++) {
         date = new Date(year, i, 1);
@@ -100,7 +102,7 @@ export class MonthPicker implements OnInit {
       self.rows = this.split(months, 3);
     }, 'month');
 
-    this.datePicker.setCompareHandler(function (date1, date2) {
+    this.datePicker.setCompareHandler(function (date1:Date, date2:Date) {
       let d1 = new Date(date1.getFullYear(), date1.getMonth());
       let d2 = new Date(date2.getFullYear(), date2.getMonth());
       return d1.getTime() - d2.getTime();

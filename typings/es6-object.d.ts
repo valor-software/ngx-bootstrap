@@ -22,3 +22,4 @@ interface ObjectConstructor {
    */
   setPrototypeOf(o: any, proto: any): any;
 }
+
