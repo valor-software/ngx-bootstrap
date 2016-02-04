@@ -5,6 +5,10 @@
 var ghpages = require('gh-pages');
 var path = require('path');
 
-ghpages.publish(path.join(__dirname, 'demo-build'), function(err) {
-  console.log(err);
+ghpages.publish(path.join(__dirname, 'demo-build'), function (err) {
+  if (err) {
+    console.log('Error while publish gh-pages');
+    throw err;
+  }
+  console.log('gh-pages published successfully');
 });
