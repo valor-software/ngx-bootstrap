@@ -1,17 +1,17 @@
-import {Accordion, AccordionPanel} from './components/accordion';
+import {ACCORDION_DIRECTIVES} from './components/accordion';
 import {Alert} from './components/alert';
-import {ButtonCheckbox, ButtonRadio} from './components/buttons';
-import {Carousel, Slide} from './components/carousel';
+import {BUTTON_DIRECTIVES} from './components/buttons';
+import {CAROUSEL_DIRECTIVES} from './components/carousel';
 import {Collapse} from './components/collapse';
-import {DatePicker} from './components/datepicker';
-import {Dropdown} from './components/dropdown';
-import {Pagination, Pager} from './components/pagination';
-import {Progressbar, Progress} from './components/progressbar';
+import {DATEPICKER_DIRECTIVES} from './components/datepicker';
+import {DROPDOWN_DIRECTIVES} from './components/dropdown';
+import {PAGINATION_DIRECTIVES} from './components/pagination';
+import {PROGRESSBAR_DIRECTIVES} from './components/progressbar';
 import {Rating} from './components/rating';
-import {Tabset, Tab, TabHeading} from './components/tabs';
+import {TAB_DIRECTIVES} from './components/tabs';
 import {Timepicker} from './components/timepicker';
-import {Tooltip} from './components/tooltip';
-import {Typeahead} from './components/typeahead';
+import {TOOLTIP_DIRECTIVES} from './components/tooltip';
+import {TYPEAHEAD_DIRECTIVES} from './components/typeahead';
 
 export * from  './components/accordion';
 export * from  './components/alert';
@@ -33,22 +33,19 @@ export * from  './components/common'
 export * from  './components/ng2-bootstrap-config';
 
 export default {
-  directives: [Dropdown, Progress, Tab, TabHeading],
-  components: [
-    Accordion,
-    AccordionPanel,
-    ButtonCheckbox,
-    ButtonRadio,
-    Carousel,
-    Slide,
-    Collapse,
-    DatePicker,
-    Pagination,
-    Pager,
+  directives: [
+    ACCORDION_DIRECTIVES,
+    BUTTON_DIRECTIVES,
+    CAROUSEL_DIRECTIVES,
+    Collapse,  
+    DATEPICKER_DIRECTIVES,
+    DROPDOWN_DIRECTIVES,
+    PAGINATION_DIRECTIVES,
+    PROGRESSBAR_DIRECTIVES,
     Rating,
-    Tabset,
+    TAB_DIRECTIVES,
     Timepicker,
-    Tooltip,
-    Typeahead
+    TOOLTIP_DIRECTIVES,
+    TYPEAHEAD_DIRECTIVES
   ]
 }
