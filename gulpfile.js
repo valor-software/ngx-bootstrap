@@ -42,7 +42,7 @@ gulp.task('prepublish', function() {
 })
 
 gulp.task('postpublish', function() {
-  return gulp.src('ts/**/*.ts', {base: './'})
+  return gulp.src('ts/**/*.ts')
     .pipe(clean({force: true}))
     .pipe(gulp.dest('./'));
 })
