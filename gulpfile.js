@@ -29,10 +29,10 @@ gulp.task('default', function () {
 });
 
 var tsSource = [
-    '**/*.ts',
-    '!**/*.d.ts',
-    '!node_modules/**',
-    '!demo/**'
+  '**/*.ts',
+  '!**/*.d.ts',
+  '!node_modules/**/*.ts',
+  '!demo/**/*.ts',
 ];
 
 gulp.task('prepublish', function() {
@@ -42,7 +42,7 @@ gulp.task('prepublish', function() {
 })
 
 gulp.task('postpublish', function() {
-  return gulp.src('ts/**')
+  return gulp.src('ts/**.')
     .pipe(clean({force: true}))
     .pipe(gulp.dest('./'));
 })
