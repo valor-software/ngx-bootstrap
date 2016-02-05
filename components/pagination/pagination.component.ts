@@ -135,12 +135,15 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   }
 
   public set page(value) {
+    var _previous = this._page;
     this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
+    if (_previous !== this._page && typeof _previous !== 'undefined') {
+      this.pageChanged.emit({
+        page: this._page,
+        itemsPerPage: this.itemsPerPage
+      });
+    }
 
-    this.pageChanged.emit({
-      page: this._page,
-      itemsPerPage: this.itemsPerPage
-    });
   }
 
   public get page() {
