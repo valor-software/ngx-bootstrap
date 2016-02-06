@@ -6,8 +6,6 @@ import {
   NgModel
 } from 'angular2/common';
 
-import * as moment from 'moment';
-
 import {DatePickerInner} from './datepicker-inner';
 //import {DatePickerPopup} from './datepicker-popup';
 import {DayPicker} from './daypicker';
@@ -15,7 +13,7 @@ import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 
 @Component({
-  selector: 'datepicker[ngModel], [datepicker][ng-model]',
+  selector: 'datepicker[ngModel], [datepicker][ngModel]',
   template: `
     <datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate($event)"
@@ -64,6 +62,9 @@ export class DatePicker implements ControlValueAccessor {
   @Input() public startingDay:number;
   @Input() public yearRange:number;
   @Input() public shortcutPropagation:boolean;
+  @Input() public get activeDate():Date {
+    return this._activeDate || this._now;
+  }
   // todo: change type during implementation
   public customClass:any;
   // todo: change type during implementation
@@ -75,9 +76,6 @@ export class DatePicker implements ControlValueAccessor {
   }
 
   private _now:Date = new Date();
-  @Input() public get activeDate():Date {
-    return this._activeDate || this._now;
-  }
 
   public set activeDate(value:Date) {
     this._activeDate = value;

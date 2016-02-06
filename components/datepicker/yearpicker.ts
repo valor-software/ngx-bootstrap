@@ -77,7 +77,6 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-
 export class YearPicker implements OnInit {
   private title:string;
   private rows:Array<any> = [];
