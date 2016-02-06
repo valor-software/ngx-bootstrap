@@ -18,11 +18,11 @@ export declare class DatePicker implements ControlValueAccessor {
     startingDay: number;
     yearRange: number;
     shortcutPropagation: boolean;
+    activeDate: Date;
     customClass: any;
     dateDisabled: any;
     constructor(cd: NgModel);
     private _now;
-    activeDate: Date;
     private onUpdate(event);
     writeValue(value: any): void;
     onChange: (_: any) => void;
