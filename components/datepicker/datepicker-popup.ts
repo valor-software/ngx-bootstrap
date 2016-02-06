@@ -112,7 +112,7 @@ class PopupContainer {
 }
 
 @Directive({
-  selector: '[datepicker-popup][ngModel]',
+  selector: '[datepickerPopup][ngModel]',
   // prop -> datepickerPopup - format
   properties: ['datepickerPopup', 'isOpen'],
   host: {'(cupdate)': 'onUpdate1($event)'}
@@ -134,8 +134,6 @@ export class DatePickerPopup implements OnInit {
 
   public set activeDate(value:Date) {
     this._activeDate = value;
-    // setProperty(this.renderer, this.element, 'value', value.toString());
-    // this.ngModelChanged.next(value);
   }
 
   private get isOpen():boolean {

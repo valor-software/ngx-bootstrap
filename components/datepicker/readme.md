@@ -1,13 +1,13 @@
 ### Usage
 ```typescript
-import {datepicker} from 'ng2-bootstrap';
+import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 ```
 
 ### Annotations
 ```typescript
-// class DatePicker
+// component DatePicker
 @Component({
-  selector: 'datepicker[ng-model], [datepicker][ng-model]',
+  selector: 'datepicker[ngModel], [datepicker][ngModel]',
   properties: [
     'datepickerMode',
     'minDate', 'maxDate',
@@ -22,40 +22,32 @@ import {datepicker} from 'ng2-bootstrap';
   ]
 })
 
-// not yet implemented properly
-// class DatePickerPopup implements OnInit
-@Directive({
-  selector: '[datepicker-popup][ng-model]',
-  // prop -> datepickerPopup - format
-  properties: ['datepickerPopup', 'isOpen'],
-  host: {'(cupdate)': 'onUpdate1($event)'},
-})
 
-export const datepicker:Array<any> = [DatePicker, DatePickerPopup];
+export const DATEPICKER_DIRECTIVES:Array<any> = [DatePicker];
 ```
 
 ### Date picker properties
-  - `ng-model` (`*Date`) - binds to date
-  - `datepicker-mode` (`?string='day'`) - sets datepicker mode, supports: `day`, `month`, `year`
-  - `min-date` (`?Date=null`) - oldest selectable date
-  - `max-date` (`?Date=null`) - latest selectable date
-  - `date-disabled` (`?Array<{date:Date, mode:string}>`) - array of disabled dates if `mode` is `day`, or years, etc.
-  - `custom-class` (`?Array<{date:Date, mode:string, class: strung}>`) - array of custom classes to be applied to targeted dates
-  - `show-weeks` (`?boolean=true`) - if `false` week numbers will be hidden
-  - `starting-day` (`?number=0`) - starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday).
-  - `init-date` (`?Date`) - default date to show if `ng-model` value is not specified
-  - `min-mode` (`?string='day'`) - set lower datepicker mode, supports: `day`, `month`, `year`
-  - `max-mode` (`?string='year'`) - sets upper datepicker mode, supports: `day`, `month`, `year`
-  - `format-day` (`?string='dd'`) - format of day in month
-  - `format-month` (`?string='MMMM'`) - format of month in year
-  - `format-year` (`?string='yyyy'`) - format of year in year range
-  - `format-day-header` (`?string='EEE'`) - format of day in week header
-  - `format-day-title` (`?string='MMMM yyyy'`) - format of title when selecting day
-  - `format-month-title` (`?string='yyyy'`) - format of title when selecting month
-  - `year-range` (`?number=20`) - number of years displayed in year selection
-  - `shortcut-propagation` (`?boolean=false`) - if `true` shortcut`s event propagation will be disabled
-  - `template-url` (*not yet supported*) - allows to provide datepicker template (default: `components/datepicker/datepicker.html`)
+  - `ngModel` (`:Date`) - binds to date
+  - `datepickerMode` (`?string='day'`) - sets datepicker mode, supports: `day`, `month`, `year`
+  - `minDate` (`?Date=null`) - oldest selectable date
+  - `maxDate` (`?Date=null`) - latest selectable date
+  - `dateDisabled` (`?Array<{date:Date, mode:string}>`) - array of disabled dates if `mode` is `day`, or years, etc.
+  - `customClass` (`?Array<{date:Date, mode:string, class: strung}>`) - array of custom classes to be applied to targeted dates
+  - `showWeeks` (`?boolean=true`) - if `false` week numbers will be hidden
+  - `startingDay` (`?number=0`) - starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday).
+  - `initDate` (`?Date`) - default date to show if `ng-model` value is not specified
+  - `minMode` (`?string='day'`) - set lower datepicker mode, supports: `day`, `month`, `year`
+  - `maxMode` (`?string='year'`) - sets upper datepicker mode, supports: `day`, `month`, `year`
+  - `formatDay` (`?string='dd'`) - format of day in month
+  - `formatMonth` (`?string='MMMM'`) - format of month in year
+  - `formatMear` (`?string='yyyy'`) - format of year in year range
+  - `formatDayHeader` (`?string='EEE'`) - format of day in week header
+  - `formatDayTitle` (`?string='MMMM yyyy'`) - format of title when selecting day
+  - `formatMonthTitle` (`?string='yyyy'`) - format of title when selecting month
+  - `yearRange` (`?number=20`) - number of years displayed in year selection
+  - `shortcutPropagation` (`?boolean=false`) - if `true` shortcut`s event propagation will be disabled
 
+<!--
 ### Date picker popup properties
  (*Note*: not yet implemented properly)
   - `datepicker-popup` (`?string='yyyy-MM-dd'`) - format of displayed dates
@@ -69,6 +61,7 @@ export const datepicker:Array<any> = [DatePicker, DatePickerPopup];
   - `datepicker-append-to-body` (`?boolean=false`) - if `true` datepicker will inserted in document body
   - `is-open` (`?boolean=false`) - if `true` datepicker is currently shown
   - `on-open-focus` (`?boolean=true`) - if `true` datepicker popup will focused just after opening
+
 
 ### Keyboard Support
  (*Note*: not yet implemented properly)
@@ -87,3 +80,4 @@ Depending on datepicker's current mode, the date may refer either to day, month 
  * `Ctrl`+`Up`: Move to an upper mode.
  * `Ctrl`+`Down`: Move to a lower mode.
  * `Esc`: Will close popup, and move focus to the input.
+-->

@@ -1,11 +1,6 @@
-import {
-  Component,
-  OnInit, Input, Output,
-  ElementRef, EventEmitter,
-  Self, Renderer
-} from 'angular2/core';
-import { NgFor, NgIf, NgClass, ControlValueAccessor, NgModel } from 'angular2/common';
-import { IAttribute } from '../common';
+import {Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer} from 'angular2/core';
+import {NgFor, NgIf, ControlValueAccessor, NgModel} from 'angular2/common';
+import {IAttribute} from '../common';
 
 // todo: extract base functionality classes
 // todo: expose an option to change default configuration
@@ -135,7 +130,12 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   }
 
   public set page(value) {
+    const _previous = this._page;
     this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
+
+    if (_previous === this._page || typeof _previous === 'undefined') {
+      return;
+    }
 
     this.pageChanged.emit({
       page: this._page,

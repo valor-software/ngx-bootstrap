@@ -23,11 +23,13 @@ Follow me at [twitter](https://twitter.com/valorkin) to be notified about new re
 
 # Starter packages
 
-With webpack: [https://github.com/AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
+With system.js: [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
 
-With gulp: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play/pull/34)
+With webpack: [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
 
-With angular2-seed: [mgechev/angular2-seed](http://ludohenin.github.io/angular2-seed-ng2-bootstrap/)
+With gulp and system.js: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play) or [mgechev/angular2-seed](https://github.com/mgechev/angular2-seed)
+- just add link to `ng2-bootstrap` `system.js` bundle to `index.html` like in [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
+- and `moment.js` map in `system.js` configuration
 
 ## Install from npm
 
@@ -45,11 +47,12 @@ Check [cdnjs](https://cdnjs.com/libraries/ng2-bootstrap) to include `ng2-bootstr
 
 ## Quick start
 
-**Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta`, ng2-bootstrap is already updated for `1-beta`,
-to avoid facing wierd issues, please update following dependecies in `package.json`
+*Hint*: you can just clone [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
+
+**Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta.0`, ng2-bootstrap is already updated for `0-beta.3`, to avoid facing wierd issues, please update following dependecies in `package.json`
 ```json
   "dependencies": {
-    "angular2": "2.0.1-beta.0",
+    "angular2": "2.0.0-beta.3",
     ...
   }
 ```
@@ -59,6 +62,22 @@ If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/t
 <!-- index.html -->
 <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+```
+
+As for now `datepicker` is using `moment.js` to format date, so please update `system.js` config to contain mapping:
+```html
+<!-- index.html -->
+  System.config({
+    packages: {
+      app: {
+        format: 'register',
+        defaultExtension: 'js'
+      }
+    },
+    map: {
+      moment: 'node_modules/moment/moment.js'
+    }
+  });
 ```
 
 And update your `app.component.ts` to have following content:

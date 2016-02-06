@@ -5,6 +5,7 @@ node_js:
 
 before_install:
 - npm install -g npm@3.6
+- npm install -g tsd@0.6.5
 
 script:
 - npm test

@@ -94,13 +94,13 @@ export class Rating implements ControlValueAccessor, OnInit {
   private enter(value:number) {
     if (!this.readonly) {
       this.value = value;
-      this.onHover.next(value);
+      this.onHover.emit(value);
     }
   }
 
   private reset() {
     this.value = this.preValue;
-    this.onLeave.next(this.value);
+    this.onLeave.emit(this.value);
   }
 
   onChange = (_:any) => {
