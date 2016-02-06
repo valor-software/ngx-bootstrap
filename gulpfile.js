@@ -18,12 +18,6 @@ gulp.paths = {
 
 require('require-dir')('./gulp-tasks');
 
-var clean = require('gulp-clean');
-gulp.task('clean', function () {
-  return gulp.src('bundles', {read: false})
-    .pipe(clean());
-});
-
 gulp.task('default', function () {
   gulp.start('lint');
 });
