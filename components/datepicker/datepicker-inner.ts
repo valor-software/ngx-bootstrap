@@ -131,7 +131,7 @@ export class DatePickerInner implements OnInit {
     this.formatDayHeader = this.formatDayHeader || FORMAT_DAY_HEADER;
     this.formatDayTitle = this.formatDayTitle || FORMAT_DAY_TITLE;
     this.formatMonthTitle = this.formatMonthTitle || FORMAT_MONTH_TITLE;
-    this.showWeeks = this.showWeeks || SHOW_WEEKS;
+    this.showWeeks = !!this.showWeeks || SHOW_WEEKS;
     this.startingDay = this.startingDay || STARTING_DAY;
     this.yearRange = this.yearRange || YEAR_RANGE;
     this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;
