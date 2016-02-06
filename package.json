@@ -3,13 +3,8 @@
   "version": "1.0.3",
   "description": "angular2 bootstrap components",
   "scripts": {
-<<<<<<< HEAD
-    "compile": "node ./node_modules/typescript/bin/tsc",
-    "prepublish": "gulp clean && ./node_modules/.bin/tsc && ./make.js && node ./pre-publish-npm.js",
-=======
     "compile": "./node_modules/.bin/tsc",
-    "prepublish": "./node_modules/.bin/tsc && ./make.js",
->>>>>>> valor-software/master
+    "prepublish": "./node_modules/.bin/tsc && ./make.js && node ./pre-publish-npm.js",
     "publish:gh-pages": "./gh-pages-publish.js",
     "postpublish": "npm run build:prod && npm run publish:gh-pages",
     "build:prod": "NODE_ENV=production ./node_modules/.bin/webpack --progress --color",
