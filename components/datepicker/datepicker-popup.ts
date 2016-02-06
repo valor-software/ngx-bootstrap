@@ -134,8 +134,6 @@ export class DatePickerPopup implements OnInit {
 
   public set activeDate(value:Date) {
     this._activeDate = value;
-    // setProperty(this.renderer, this.element, 'value', value.toString());
-    // this.ngModelChanged.next(value);
   }
 
   private get isOpen():boolean {

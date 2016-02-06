@@ -112,7 +112,7 @@ export class TypeaheadContainer {
     }
 
     this.parent.changeModel(value);
-    this.parent.typeaheadOnSelect.next({
+    this.parent.typeaheadOnSelect.emit({
       item: value
     });
     return false;
