@@ -25,11 +25,11 @@ Follow me at [twitter](https://twitter.com/valorkin) to be notified about new re
 
 With system.js: [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
 
-With webpack: [https://github.com/AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
+With webpack: [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
 
-With gulp: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play/pull/34)
-
-With angular2-seed: [mgechev/angular2-seed](http://ludohenin.github.io/angular2-seed-ng2-bootstrap/)
+With gulp and system.js: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play) or [mgechev/angular2-seed](https://github.com/mgechev/angular2-seed)
+- just add link to `ng2-bootstrap` `system.js` bundle to `index.html` like in [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
+- and `moment.js` map in `system.js` configuration
 
 ## Install from npm
 
