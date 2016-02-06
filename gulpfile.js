@@ -27,22 +27,3 @@ gulp.task('clean', function () {
 gulp.task('default', function () {
   gulp.start('lint');
 });
-
-var tsSource = [
-  '**/*.ts',
-  '!**/*.d.ts',
-  '!node_modules/**/*.ts',
-  '!demo/**/*.ts'
-];
-
-gulp.task('prepublish', function() {
-  return gulp.src(tsSource)
-    .pipe(clean({force: true}))
-    .pipe(gulp.dest('ts'));
-});
-
-gulp.task('postpublish', function() {
-  return gulp.src('ts/**/*.ts')
-    .pipe(clean({force: true}))
-    .pipe(gulp.dest('./'));
-});

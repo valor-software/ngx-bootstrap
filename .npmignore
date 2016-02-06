@@ -15,3 +15,7 @@ coverage
 demo
 demo-build
 webpack.config.js
+
+# source typescript
+ng2-bootstrap.ts
+components/**/*.ts
