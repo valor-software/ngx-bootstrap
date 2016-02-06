@@ -73,7 +73,6 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-
 export class MonthPicker implements OnInit {
   public title:string;
   public rows:Array<any> = [];
