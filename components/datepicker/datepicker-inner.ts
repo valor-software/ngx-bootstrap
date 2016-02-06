@@ -148,7 +148,7 @@ export class DatePickerInner implements OnInit {
       this.activeDate = new Date();
     }
 
-    this.update.next(this.activeDate);
+    this.update.emit(this.activeDate);
     this.refreshView();
   }
 
@@ -272,7 +272,7 @@ export class DatePickerInner implements OnInit {
       this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
     }
 
-    this.update.next(this.activeDate);
+    this.update.emit(this.activeDate);
     this.refreshView();
   }
 
@@ -295,7 +295,7 @@ export class DatePickerInner implements OnInit {
       let month = this.activeDate.getMonth() + direction * (expectedStep.months || 0);
       this.activeDate.setFullYear(year, month, 1);
 
-      this.update.next(this.activeDate);
+      this.update.emit(this.activeDate);
       this.refreshView();
     }
   }

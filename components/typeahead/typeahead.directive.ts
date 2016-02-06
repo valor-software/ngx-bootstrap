@@ -153,8 +153,8 @@ export class Typeahead implements OnInit {
   }
 
   private finalizeAsyncCall() {
-    this.typeaheadLoading.next(false);
-    this.typeaheadNoResults.next(this.cd.model.toString().length >=
+    this.typeaheadLoading.emit(false);
+    this.typeaheadNoResults.emit(this.cd.model.toString().length >=
       this.typeaheadMinLength && this.matches.length <= 0);
 
     if (this.cd.model.toString().length <= 0 || this._matches.length <= 0) {
@@ -244,7 +244,7 @@ export class Typeahead implements OnInit {
       }
     }
 
-    this.typeaheadLoading.next(true);
+    this.typeaheadLoading.emit(true);
 
     if (this.typeaheadAsync === true) {
       this.debouncer();
