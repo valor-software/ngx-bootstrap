@@ -45,6 +45,8 @@ Check [cdnjs](https://cdnjs.com/libraries/ng2-bootstrap) to include `ng2-bootstr
 
 ## Quick start
 
+*Hint*: you can just clone [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
+
 **Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta.0`, ng2-bootstrap is already updated for `0-beta.3`, to avoid facing wierd issues, please update following dependecies in `package.json`
 ```json
   "dependencies": {
@@ -58,6 +60,22 @@ If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/t
 <!-- index.html -->
 <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+```
+
+As for now `datepicker` is using `moment.js` to format date, so please update `system.js` config to contain mapping:
+```html
+<!-- index.html -->
+  System.config({
+    packages: {
+      app: {
+        format: 'register',
+        defaultExtension: 'js'
+      }
+    },
+    map: {
+      moment: 'node_modules/moment/moment.js'
+    }
+  });
 ```
 
 And update your `app.component.ts` to have following content:
