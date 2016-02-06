@@ -45,11 +45,10 @@ Check [cdnjs](https://cdnjs.com/libraries/ng2-bootstrap) to include `ng2-bootstr
 
 ## Quick start
 
-**Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta`, ng2-bootstrap is already updated for `1-beta`,
-to avoid facing wierd issues, please update following dependecies in `package.json`
+**Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta.0`, ng2-bootstrap is already updated for `0-beta.3`, to avoid facing wierd issues, please update following dependecies in `package.json`
 ```json
   "dependencies": {
-    "angular2": "2.0.1-beta.0",
+    "angular2": "2.0.0-beta.3",
     ...
   }
 ```
