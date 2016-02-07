@@ -29,9 +29,9 @@ Follow me at [twitter](https://twitter.com/valorkin) to be notified about new re
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 ```
 
-With system.js: [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
+### With system.js: [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
 
-With webpack: [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
+### With webpack: [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
 - install `ng2-bootstrap` and typings for `moment.js`
 ```bash
   npm install ng2-bootstrap --save
@@ -59,7 +59,7 @@ With webpack: [AngularClass/angular2-webpack-starter](https://github.com/Angular
   }
 ```
 
-With gulp and system.js: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play) or [mgechev/angular2-seed](https://github.com/mgechev/angular2-seed)
+### With gulp and system.js: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play) or [mgechev/angular2-seed](https://github.com/mgechev/angular2-seed)
 - *hint*: see `quickstart` section below for samples
 - just add link to `ng2-bootstrap` `system.js` bundle to `index.html` like in [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
 - and `moment.js` map in `system.js` configuration
