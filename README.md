@@ -46,6 +46,7 @@ Follow me at [twitter](https://twitter.com/valorkin) to be notified about new re
   </div>
 ```
 ```js
+  /* src/app/home/home.ts */
   import {Alert, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
   ...
   @Component({
