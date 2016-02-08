@@ -35,6 +35,7 @@ Follow me at [twitter](https://twitter.com/valorkin) to be notified about new re
 - install `ng2-bootstrap` and typings for `moment.js`
 ```bash
   npm install ng2-bootstrap --save
+  # Install typings from NPM. Ambient typings will not help
   typings install moment --save
 ```
 - add some code
