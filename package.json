@@ -48,7 +48,7 @@
     "copy-webpack-plugin": "1.1.1",
     "del": "2.2.0",
     "es6-promise": "3.0.2",
-    "es6-shim": "0.33.3",
+    "es6-shim": "0.34.4",
     "es7-reflect-metadata": "1.5.5",
     "eslint": "1.10.3",
     "exports-loader": "0.6.2",
