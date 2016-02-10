@@ -31,6 +31,7 @@ export class Tabset implements OnInit {
 export class Tab implements OnInit, OnDestroy, DoCheck {
   @Input() public heading:string;
   @Input() public disabled:boolean;
+  @Input() public removable:boolean;
 
   /** tab active state toogle */
   @HostBinding('class.active')
@@ -38,6 +39,7 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
 
   @Output() public select:EventEmitter<Tab> = new EventEmitter();
   @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
+  @Output() public removed:EventEmitter<Tab> = new EventEmitter();
 }
 
 // directive TabHeading
@@ -56,10 +58,12 @@ export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
   - `heading` (`string`) - tab header text
   - `active` (`?boolean=false`) - if tab is active equals true, or set `true` to activate tab
   - `disabled` (`?boolean=false`) - if `true` tab can not be activated
+  - `removable` (`?boolean=false`) - if `true` tab can be removable, additional button will appear
 
 ### Tab events
   - `select` - fired when `tab` became active, `$event:Tab` equals to selected instance of `Tab` component
   - `deselect` - fired when `tab` became inactive, `$event:Tab` equals to deselected instance of `Tab` component
+  - `removed` - fired before `tab` will be removed
 
 ### Tab heading
 Should be used to mark `<template>` element as a template for tab heading

@@ -13,6 +13,7 @@ import {Tabset} from './tabset.component';
 export class Tab implements OnDestroy {
   @Input() public heading:string;
   @Input() public disabled:boolean;
+  @Input() public removable:boolean;
 
   /** tab active state toogle */
   @HostBinding('class.active')
@@ -22,7 +23,7 @@ export class Tab implements OnDestroy {
 
   @Output() public select:EventEmitter<Tab> = new EventEmitter();
   @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
-
+  @Output() public removed:EventEmitter<Tab> = new EventEmitter();
 
   public set active(active) {
     if (this.disabled && active || !active) {
@@ -50,6 +51,10 @@ export class Tab implements OnDestroy {
 
   constructor(public tabset:Tabset) {
     this.tabset.addTab(this);
+  }
+
+  ngOnInit() {
+    this.removable = !!this.removable;
   }
 
   ngOnDestroy() {
