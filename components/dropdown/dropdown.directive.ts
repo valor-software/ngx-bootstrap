@@ -20,6 +20,7 @@ export class Dropdown implements OnInit, OnDestroy {
   @Input() public appendToBody:boolean;
 
   @Output() public onToggle:EventEmitter<boolean> = new EventEmitter();
+  @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter();
   @HostBinding('class.dropdown') private addClass = true;
 
   private _isOpen:boolean;
@@ -52,6 +53,7 @@ export class Dropdown implements OnInit, OnDestroy {
       this.selectedOption = null;
     }
     this.onToggle.emit(this.isOpen);
+    this.isOpenChange.emit(this.isOpen);
     // todo: implement call to setIsOpen if set and function
   }
 
