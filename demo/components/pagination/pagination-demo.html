@@ -10,6 +10,15 @@
                 (numPages)="smallnumPages = $event"></pagination>
     <pre class="card card-block card-header">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
     <button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>
+    <hr>
+    <h4>Default with items per page control</h4>
+    <items-per-page [itemsPerPage]="itemsPerPage" [label]="'Custom label'"
+                    [options]="itemsPerPageOptions" class="pull-left clearfix"
+                    (selectedItemsPerPage)="itemsPerPage = $event"></items-per-page>
+    <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage"
+                class="pagination-sm clearfix" [itemsPerPage]="itemsPerPage"
+                previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+    <button type="button" class="btn btn-info" (click)="itemsPerPage = 25">Set items per page: 25</button>
   </div>
   <hr class="visible-md visible-xs hidden-lg-up">
   <div class="col-lg-6" style="margin-top: 10px;">

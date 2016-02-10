@@ -13,6 +13,8 @@ let template = require('./pagination-demo.html');
 export class PaginationDemo {
   private totalItems:number = 64;
   private currentPage:number = 4;
+  private itemsPerPage:number = 10;
+  private itemsPerPageOptions:Array<any> = [10, 25, 50, 75];
 
   private maxSize:number = 5;
   private bigTotalItems:number = 175;
