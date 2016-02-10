@@ -5,7 +5,7 @@ import {
   Query, QueryList
 } from 'angular2/core';
 
-import {dropdownService, ALWAYS} from './dropdown.service';
+import {dropdownService, NONINPUT} from './dropdown.service';
 
 @Directive({selector: '[dropdown]'})
 export class Dropdown implements OnInit, OnDestroy {
@@ -56,7 +56,7 @@ export class Dropdown implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.autoClose = this.autoClose || ALWAYS;
+    this.autoClose = this.autoClose || NONINPUT;
     if (this.isOpen) {
       // todo: watch for event get-isOpen?
     }

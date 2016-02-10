@@ -1,6 +1,7 @@
 export const ALWAYS = 'always';
 export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';
+export const NONINPUT = 'nonInput';
 
 import {Dropdown} from './dropdown.directive';
 
@@ -45,6 +46,13 @@ export class DropdownService {
 
     if (event && this.openScope.toggleEl &&
       this.openScope.toggleEl.nativeElement === event.target) {
+      return;
+    }
+
+    if (event && this.openScope.autoClose === NONINPUT &&
+      this.openScope.menuEl &&
+      /input|textarea/i.test((<any> event.target).tagName) &&
+      this.openScope.menuEl.nativeElement.contains(event.target)) {
       return;
     }
 
