@@ -50,7 +50,7 @@ export class DropdownService {
 
     if (event && this.openScope.autoClose === OUTSIDECLICK &&
       this.openScope.menuEl &&
-      this.openScope.menuEl.nativeElement === event.target) {
+      this.openScope.menuEl.nativeElement.contains(event.target)) {
       return;
     }
 
