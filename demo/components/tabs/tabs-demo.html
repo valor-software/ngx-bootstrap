@@ -15,7 +15,9 @@
          [active]="tabz.active"
          (select)="tabz.active = true"
          (deselect)="tabz.active = false"
-         [disabled]="tabz.disabled">
+         [disabled]="tabz.disabled"
+         [removable]="tabz.removable"
+         (removed)="removeTabHandler(tabz)">
       {{tabz?.content}}
     </tab>
     <tab (select)="alertMe()">
