@@ -2,7 +2,6 @@ import {Component, OnInit, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {NgTransclude} from '../common';
 import {Tab} from './tab.directive';
-import {OnDestroy} from 'angular2/core';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
@@ -24,7 +23,7 @@ import {OnDestroy} from 'angular2/core';
     </div>
   `
 })
-export class Tabset implements OnInit, OnDestroy {
+export class Tabset implements OnInit {
   @Input() private get vertical() {
     return this._vertical;
   };
@@ -62,11 +61,11 @@ export class Tabset implements OnInit, OnDestroy {
 
   public tabs:Array<Tab> = [];
 
-  private destroyed: boolean;
   private _vertical:boolean;
   private _justified:boolean;
   private _type:string;
   private classMap:any = {};
+  private destroyed: boolean;
 
   constructor() {
   }
@@ -75,7 +74,7 @@ export class Tabset implements OnInit, OnDestroy {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.destroyed = true;
   }
 
@@ -85,9 +84,8 @@ export class Tabset implements OnInit, OnDestroy {
   }
 
   public removeTab(tab:Tab) {
-    if (this.destroyed) return;
     let index = this.tabs.indexOf(tab);
-    if (index === -1) {
+    if (index === -1 || this.destroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
