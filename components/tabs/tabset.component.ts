@@ -64,6 +64,7 @@ export class Tabset implements OnInit {
 
   public tabs:Array<Tab> = [];
 
+  private isDestroyed:boolean;
   private _vertical:boolean;
   private _justified:boolean;
   private _type:string;
@@ -76,6 +77,10 @@ export class Tabset implements OnInit {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';
   }
 
+  ngOnDestroy() {
+    this.isDestroyed = true;
+  }
+
   public addTab(tab:Tab) {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active !== false;
@@ -83,7 +88,7 @@ export class Tabset implements OnInit {
 
   public removeTab(tab:Tab) {
     let index = this.tabs.indexOf(tab);
-    if (index === -1) {
+    if (index === -1 || this.isDestroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
