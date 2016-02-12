@@ -80,7 +80,7 @@ export class Tabset implements OnInit {
   ngOnDestroy() {
     this.isDestroyed = true;
   }
-  
+
   public addTab(tab:Tab) {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active !== false;
