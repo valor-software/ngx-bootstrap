@@ -15,6 +15,9 @@ import {Tab} from './tab.directive';
             [class.active]="tabz.active" [class.disabled]="tabz.disabled"
             (click)="tabz.active = true">
             <span [ngTransclude]="tabz.headingRef">{{tabz.heading}}</span>
+            <span [hidden]="!tabz.removable">
+              <span (click)="$event.preventDefault(); removeTab(tabz);" class="glyphicon glyphicon-remove-circle"></span>
+            </span>
           </a>
         </li>
     </ul>
@@ -61,11 +64,11 @@ export class Tabset implements OnInit {
 
   public tabs:Array<Tab> = [];
 
+  private isDestroyed:boolean;
   private _vertical:boolean;
   private _justified:boolean;
   private _type:string;
   private classMap:any = {};
-  private destroyed: boolean;
 
   constructor() {
   }
@@ -75,9 +78,9 @@ export class Tabset implements OnInit {
   }
 
   ngOnDestroy() {
-    this.destroyed = true;
+    this.isDestroyed = true;
   }
-
+  
   public addTab(tab:Tab) {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active !== false;
@@ -85,16 +88,49 @@ export class Tabset implements OnInit {
 
   public removeTab(tab:Tab) {
     let index = this.tabs.indexOf(tab);
-    if (index === -1 || this.destroyed) {
+    if (index === -1 || this.isDestroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
-    if (tab.active && this.tabs.length > 1) {
-      // If this is the last tab, select the previous tab. else, the next tab.
-      let newActiveIndex = index === this.tabs.length - 1 ? index - 1 : index + 1;
+    if (tab.active && this.hasAvailableTabs(index)) {
+      let newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }
 
-    this.tabs.slice(index, 1);
+    tab.removed.emit(tab);
+    this.tabs.splice(index, 1);
+  }
+
+  private getClosestTabIndex (index:number):number {
+    let tabsLength = this.tabs.length;
+    if (!tabsLength) {
+      return -1;
+    }
+
+    for (let step = 1; step <= tabsLength; step += 1) {
+      let prevIndex = index - step;
+      let nextIndex = index + step;
+      if (this.tabs[prevIndex] && !this.tabs[prevIndex].disabled) {
+        return prevIndex;
+      }
+      if (this.tabs[nextIndex] && !this.tabs[nextIndex].disabled) {
+        return nextIndex;
+      }
+    }
+    return -1;
+  }
+
+  private hasAvailableTabs (index:number) {
+    let tabsLength = this.tabs.length;
+    if (!tabsLength) {
+      return false;
+    }
+
+    for (let i = 0; i < tabsLength; i += 1) {
+      if (!this.tabs[i].disabled && i !== index) {
+        return true;
+      }
+    }
+    return false;
   }
 }
