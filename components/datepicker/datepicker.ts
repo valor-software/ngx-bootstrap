@@ -6,7 +6,8 @@ import {
   NgModel
 } from 'angular2/common';
 
-import * as moment from 'moment';
+// import * as moment from 'moment';
+declare var moment:any;
 
 import {DatePickerInner} from './datepicker-inner';
 //import {DatePickerPopup} from './datepicker-popup';
