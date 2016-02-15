@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+declare var moment:any;
 
 export class DateFormatter {
   public format(date:Date, format:string):string {
