@@ -37,10 +37,10 @@
     "moment": "2.11.2"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.2"
+    "angular2": "2.0.0-beta.1"
   },
   "devDependencies": {
-    "angular2": "2.0.0-beta.2",
+    "angular2": "2.0.0-beta.1",
     "async": "1.5.2",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
