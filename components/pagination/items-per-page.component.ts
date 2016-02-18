@@ -4,7 +4,7 @@ import {IAttribute} from '../common';
 
 export interface IItemsPerPageConfig extends IAttribute {
   label: string;
-  options: Array<any>;
+  options: Array<number>;
   itemsPerPage: number;
 }
 
@@ -42,14 +42,12 @@ export class ItemsPerPage implements OnInit, IItemsPerPageConfig, IAttribute {
     this._itemsPerPage = v;
   }
 
-  public config:any;
   private classMap:string;
 
   private _itemsPerPage:number;
   private inited:boolean = false;
 
   constructor(public elementRef:ElementRef) {
-    this.config = this.config || itemsPerPageConfig;
   }
 
   ngOnInit() {

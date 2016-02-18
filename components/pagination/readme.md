@@ -43,8 +43,25 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
 })
 export class Pager extends Pagination {}
 
-export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
+@Component({
+  selector: 'items-per-page',
+  template: ITEMS_PER_PAGE_TEMPLATE,
+  directives: [NgFor]
+})
+export class ItemsPerPage implements OnInit, IItemsPerPageConfig, IAttribute {
+  @Input() public label:string;
+  @Input() public options:Array<any>;
+
+  @Output() private selectedItemsPerPage:EventEmitter<number> = new EventEmitter();
+
+  @Input() public get itemsPerPage() {
+    return this._itemsPerPage;
+  }
+}
+
+export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager, ItemsPerPage];
 ```
+
 ### Pagination properties
   - `rotate` (`?boolean=true`) - if `true` current page will in the middle of pages list
   - `disabled` (`?boolean=false`) - if `true` pagination component will be disabled
@@ -73,3 +90,12 @@ export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
 ### Pager events
   - `numPages` - fired when total pages count changes, `$event:number` equals to total pages count
   - `pageChanged` - fired when page was changed, `$event:{page, itemsPerPage}` equals to object with current page index and number of items per page
+
+### ItemsPerPage properties
+  - `label` (`?string='Items per page'`) - label to show before ItemsPerPage dropdown
+  - `options` (`?Array<number>`) - all possible values for ItemsPerPage dropdown
+  - `itemsPerPage` (`?number=10`) - maximum number of items per page. If value less than 1 will display all items on one page
+
+### ItemsPerPage events
+  - `selectItemsPerPage` - fired when ItemsPerPage dropdown is changed
+
