@@ -55,7 +55,7 @@
     "file-loader": "0.8.5",
     "gh-pages": "0.10.0",
     "gulp": "3.9.1",
-    "gulp-eslint": "1.1.1",
+    "gulp-eslint": "2.0.0",
     "gulp-size": "2.0.0",
     "gulp-tslint": "4.3.2",
     "html-loader": "0.4.0",
