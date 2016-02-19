@@ -50,7 +50,7 @@
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.3",
     "es7-reflect-metadata": "1.5.5",
-    "eslint": "1.10.3",
+    "eslint": "2.2.0",
     "exports-loader": "0.6.3",
     "file-loader": "0.8.5",
     "gh-pages": "0.10.0",
