@@ -85,7 +85,7 @@
     "systemjs-builder": "0.15.9",
     "ts-loader": "0.8.1",
     "tslint": "3.3.0",
-    "typescript": "1.7.5",
+    "typescript": "1.8.2",
     "webpack": "1.12.13",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.5.14"
