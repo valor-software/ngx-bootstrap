@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "moment": "github:typed-typings/npm-moment#a4075cd50e63efbedd850f654594f293ab81a385",
+    "webpack": "github:tkqubo/typed-webpack#10d2cc44a01602b87f8e999eec90192e7e6b3edc"
+  },
+  "devDependencies": {},
+  "ambientDependencies": {
+    "es6-shim": "github:DefinitelyTyped/DefinitelyTyped/es6-shim/es6-shim.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c",
+    "require": "github:DefinitelyTyped/DefinitelyTyped/requirejs/require.d.ts#4de74cb527395c13ba20b438c3a7a419ad931f1c"
+  }
+}
