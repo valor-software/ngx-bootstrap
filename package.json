@@ -84,7 +84,7 @@
     "source-map-loader": "0.1.5",
     "systemjs-builder": "0.15.9",
     "ts-loader": "0.8.1",
-    "tslint": "3.3.0",
+    "tslint": "3.5.0",
     "typescript": "1.7.5",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
