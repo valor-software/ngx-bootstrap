@@ -1,11 +1,14 @@
-/// <reference path="../tsd.d.ts" />
+/// <reference path="../typings/browser.d.ts" />
 import {
-  Component, View,
+  Component, View, enableProdMode,
 } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 import { bootstrap } from 'angular2/platform/browser';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
+
+// todo: enable prod mod only for prod build
+enableProdMode();
 
 let w:any = window;
 if (w && w.__theme === 'bs4') {

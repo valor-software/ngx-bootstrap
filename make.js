@@ -20,7 +20,7 @@ const targetFolder = 'bundles';
 async.waterfall([
   cleanBundlesFolder,
   getSystemJsBundleConfig,
-  buildSystemJs({}),
+  buildSystemJs({mangle: false}),
   getSystemJsBundleConfig,
   buildSystemJs({minify: true, sourceMaps: true, mangle: false}),
   gzipSystemJsBundle
