@@ -21,7 +21,9 @@ const TEMPLATE_OPTIONS:any = {
             <span [ngClass]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>
           </button>
         </td>
-    `
+    `,
+    ARROW_LEFT: '&lt;',
+    ARROW_RIGHT: '&gt;'
   },
   [Ng2BootstrapTheme.BS3]: {
     DAY_TITLE: `
@@ -38,6 +40,12 @@ const TEMPLATE_OPTIONS:any = {
             <span [ngClass]="{'text-muted': dtz.secondary, 'text-info': dtz.current}">{{dtz.label}}</span>
           </button>
         </td>
+    `,
+    ARROW_LEFT: `
+    <i class="glyphicon glyphicon-chevron-left"></i>
+    `,
+    ARROW_RIGHT: `
+    <i class="glyphicon glyphicon-chevron-right"></i>
     `
   }
 };
@@ -52,30 +60,21 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
     <tr>
       <th>
         <button type="button" class="btn btn-default btn-secondary btn-sm pull-left" (click)="datePicker.move(-1)" tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-left"></i>
+        ${CURRENT_THEME_TEMPLATE.ARROW_LEFT}
         </button>
       </th>
-      <th colspan="5" [hidden]="datePicker.showWeeks">
+      <th [attr.colspan]="5 + datePicker.showWeeks">
         <button [id]="datePicker.uniqueId + '-title'"
                 type="button" class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
-                [disabled]="datePicker.datepickerMode === maxMode"
-                [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
-          <strong>{{title}}</strong>
-        </button>
-      </th>
-      <th colspan="6" [hidden]="!datePicker.showWeeks">
-        <button [id]="datePicker.uniqueId + '-title'"
-                type="button" class="btn btn-default btn-secondary btn-sm"
-                (click)="datePicker.toggleMode()"
-                [disabled]="datePicker.datepickerMode === maxMode"
-                [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
+                [disabled]="datePicker.datepickerMode === datePicker.maxMode"
+                [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{title}}</strong>
         </button>
       </th>
       <th>
         <button type="button" class="btn btn-default btn-secondary btn-sm pull-right" (click)="datePicker.move(1)" tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-right"></i>
+        ${CURRENT_THEME_TEMPLATE.ARROW_RIGHT}
         </button>
       </th>
     </tr>
@@ -150,7 +149,7 @@ export class DayPicker implements OnInit {
         firstDate.setDate(-numDisplayedFromPreviousMonth + 1);
       }
 
-      // 42 is the number of days on a six-month calendar
+      // 42 is the number of days on a six-week calendar
       let _days:Array<Date> = self.getDates(firstDate, 42);
       let days:Array<any> = [];
       for (let i = 0; i < 42; i++) {
