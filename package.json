@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "./node_modules/.bin/typings install",
     "compile": "./node_modules/.bin/tsc",
-    "prepublish": "./node_modules/.bin/tsc && ./make.js",
+    "prepublish": "./node_modules/.bin/tsc && ./make.js && node ./pre-publish-npm.js",
     "publish:gh-pages": "./gh-pages-publish.js",
     "postpublish": "npm run build:prod && npm run publish:gh-pages",
     "build:prod": "NODE_ENV=production ./node_modules/.bin/webpack --progress --color",
@@ -50,6 +50,7 @@
     "conventional-changelog": "1.1.0",
     "conventional-changelog-cli": "1.1.1",
     "copy-webpack-plugin": "1.1.1",
+    "cpy": "^4.0.0",
     "del": "2.2.0",
     "es6-promise": "3.1.2",
     "es6-shim": "0.33.3",
