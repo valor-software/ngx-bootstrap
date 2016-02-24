@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "angular2 bootstrap components",
   "scripts": {
     "postinstall": "./node_modules/.bin/typings install",
@@ -14,7 +14,8 @@
     "serve:prod": "NODE_ENV=production ./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "start": "npm run serve:dev",
     "pretest": "./node_modules/.bin/gulp lint",
-    "test": "NODE_ENV=test ./node_modules/.bin/karma start"
+    "test": "NODE_ENV=test ./node_modules/.bin/karma start",
+    "write-changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular"
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
@@ -45,7 +46,9 @@
     "async": "1.5.2",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
-    "compression-webpack-plugin": "0.3.0",
+    "compression-webpack-plugin": "0.2.0",
+    "conventional-changelog": "1.1.0",
+    "conventional-changelog-cli": "1.1.1",
     "copy-webpack-plugin": "1.1.1",
     "del": "2.2.0",
     "es6-promise": "3.1.2",
