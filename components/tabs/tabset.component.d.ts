@@ -14,4 +14,6 @@ export declare class Tabset implements OnInit {
     ngOnInit(): void;
     addTab(tab: Tab): void;
     removeTab(tab: Tab): void;
+    private getClosestTabIndex(index);
+    private hasAvailableTabs(index);
 }

@@ -1,4 +1,3 @@
-/// <reference path="../../../tsd.d.ts" />
 export declare class CarouselDemo {
     private myInterval;
     private noWrapSlides;

@@ -1,4 +1,3 @@
-/// <reference path="../../../tsd.d.ts" />
 export declare class DatepickerDemo {
     dt: Date;
     private minDate;

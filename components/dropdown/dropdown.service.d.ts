@@ -1,6 +1,7 @@
 export declare const ALWAYS: string;
 export declare const DISABLED: string;
 export declare const OUTSIDECLICK: string;
+export declare const NONINPUT: string;
 import { Dropdown } from './dropdown.directive';
 export declare class DropdownService {
     private openScope;

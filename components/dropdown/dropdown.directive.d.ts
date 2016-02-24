@@ -6,6 +6,7 @@ export declare class Dropdown implements OnInit, OnDestroy {
     keyboardNav: boolean;
     appendToBody: boolean;
     onToggle: EventEmitter<boolean>;
+    isOpenChange: EventEmitter<boolean>;
     private addClass;
     private _isOpen;
     selectedOption: number;
