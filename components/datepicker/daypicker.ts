@@ -7,23 +7,37 @@ import {DatePickerInner} from './datepicker-inner';
 //write an interface for template options
 const TEMPLATE_OPTIONS:any = {
   [Ng2BootstrapTheme.BS4]: {
-    DAY_BUTTON: `
-        <button type="button" style="min-width:100%;" class="btn btn-sm"
-                [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
-                [disabled]="dtz.disabled"
-                (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ngClass]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>
-        </button>
+    DAY_TITLE: `
+        <th *ngFor="#labelz of labels" class="text-xs-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+    `,
+    WEEK_ROW: `
+        <td [hidden]="!datePicker.showWeeks" class="text-xs-center h6"><em>{{ weekNumbers[index] }}</em></td>
+        <!--  [ngClass]="dtz.customClass" -->
+        <td *ngFor="#dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
+          <button type="button" style="min-width:100%;" class="btn btn-sm"
+                  [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
+                  [disabled]="dtz.disabled"
+                  (click)="datePicker.select(dtz.date)" tabindex="-1">
+            <span [ngClass]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>
+          </button>
+        </td>
     `
   },
   [Ng2BootstrapTheme.BS3]: {
-    DAY_BUTTON: `
-        <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
-                [ngClass]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
-                [disabled]="dtz.disabled"
-                (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ngClass]="{'text-muted': dtz.secondary, 'text-info': dtz.current}">{{dtz.label}}</span>
-        </button>
+    DAY_TITLE: `
+        <th *ngFor="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+    `,
+    WEEK_ROW: `
+        <td [hidden]="!datePicker.showWeeks" class="text-center h6"><em>{{ weekNumbers[index] }}</em></td>
+        <!--  [ngClass]="dtz.customClass" -->
+        <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
+          <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
+                  [ngClass]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
+                  [disabled]="dtz.disabled"
+                  (click)="datePicker.select(dtz.date)" tabindex="-1">
+            <span [ngClass]="{'text-muted': dtz.secondary, 'text-info': dtz.current}">{{dtz.label}}</span>
+          </button>
+        </td>
     `
   }
 };
@@ -32,7 +46,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
 
 @Component({
   selector: 'daypicker, [daypicker]',
-   template: `
+  template: `
 <table [hidden]="datePicker.datepickerMode!=='day'" role="grid" aria-labelledby="uniqueId+'-title'" aria-activedescendant="activeDateId">
   <thead>
     <tr>
@@ -66,17 +80,13 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
       </th>
     </tr>
     <tr>
-      <th [hidden]="!datePicker.showWeeks" class="text-center"></th>
-      <th *ngFor="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+      <th [hidden]="!datePicker.showWeeks"></th>
+      ${CURRENT_THEME_TEMPLATE.DAY_TITLE}
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="#rowz of rows;#index=index">
-      <td [hidden]="!datePicker.showWeeks" class="text-center h6"><em>{{ weekNumbers[index] }}</em></td>
-      <!--  [ngClass]="dtz.customClass" -->
-      <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
-        ${CURRENT_THEME_TEMPLATE.DAY_BUTTON}
-      </td>
+      ${CURRENT_THEME_TEMPLATE.WEEK_ROW}
     </tr>
   </tbody>
 </table>
@@ -90,7 +100,7 @@ export class DayPicker implements OnInit {
   public rows:Array<any> = [];
   public weekNumbers:Array<number> = [];
 
-  constructor(public datePicker: DatePickerInner) {
+  constructor(public datePicker:DatePickerInner) {
   }
 
   /*private getDaysInMonth(year:number, month:number) {
