@@ -61,6 +61,7 @@ export class DatePickerInner implements OnInit {
   private dateFormatter:DateFormatter = new DateFormatter();
   private uniqueId:string;
   private _activeDate:Date;
+  private selectedDate:Date;
   private _initDate:Date;
   private activeDateId:string;
   @Input()
@@ -147,6 +148,7 @@ export class DatePickerInner implements OnInit {
     } else {
       this.activeDate = new Date();
     }
+    this.selectedDate = new Date(this.activeDate.valueOf());
 
     this.update.emit(this.activeDate);
     this.refreshView();
@@ -227,7 +229,7 @@ export class DatePickerInner implements OnInit {
     let dateObject:any = {};
     dateObject.date = date;
     dateObject.label = this.dateFilter(date, format);
-    dateObject.selected = this.compare(date, this.activeDate) === 0;
+    dateObject.selected = this.compare(date, this.selectedDate) === 0;
     dateObject.disabled = this.isDisabled(date);
     dateObject.current = this.compare(date, new Date()) === 0;
     // todo: do it
@@ -272,6 +274,7 @@ export class DatePickerInner implements OnInit {
       this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
     }
 
+    this.selectedDate = new Date(this.activeDate.valueOf());
     this.update.emit(this.activeDate);
     this.refreshView();
   }
@@ -295,7 +298,6 @@ export class DatePickerInner implements OnInit {
       let month = this.activeDate.getMonth() + direction * (expectedStep.months || 0);
       this.activeDate.setFullYear(year, month, 1);
 
-      this.update.emit(this.activeDate);
       this.refreshView();
     }
   }
