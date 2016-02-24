@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "angular2 bootstrap components",
   "scripts": {
+    "postinstall": "./node_modules/.bin/typings install",
     "compile": "./node_modules/.bin/tsc",
     "prepublish": "./node_modules/.bin/tsc && ./make.js",
     "publish:gh-pages": "./gh-pages-publish.js",
@@ -86,6 +87,7 @@
     "ts-loader": "0.8.1",
     "tslint": "3.4.0",
     "typescript": "1.8.2",
+    "typings": "0.6.8",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.5.15"
