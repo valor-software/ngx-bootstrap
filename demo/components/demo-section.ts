@@ -1,11 +1,9 @@
-/// <reference path="../../tsd.d.ts" />
-
 import {
   Component, View, OnInit
 } from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 
-import {tabs} from '../../ng2-bootstrap';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 
 let name = 'Alerts';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts';
@@ -76,7 +74,7 @@ export class DemoSectionConfig {
     </div>
   </section>
   `,
-  directives: [tabs, CORE_DIRECTIVES]
+  directives: [TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class DemoSection {
   private demoSection: DemoSectionConfig;

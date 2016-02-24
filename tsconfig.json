@@ -16,7 +16,7 @@
     "node_modules"
   ],
   "files": [
-    "./tsd.d.ts",
+    "./typings/browser.d.ts",
     "./ng2-bootstrap.ts"
   ]
 }

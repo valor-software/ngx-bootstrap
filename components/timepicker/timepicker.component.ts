@@ -100,17 +100,17 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   private set showMeridian(value:boolean) {
     this._showMeridian = value;
     // || !this.$error.time
-    if (true) {
-      this.updateTemplate();
-      return;
-    }
+    //if (true) {
+    this.updateTemplate();
+    return;
+    //}
     // Evaluate from template
-    let hours = this.getHoursFromTemplate();
+    /*let hours = this.getHoursFromTemplate();
     let minutes = this.getMinutesFromTemplate();
     if (isDefined(hours) && isDefined(minutes)) {
       this.selected.setHours(hours);
       this.refresh();
-    }
+    }*/
   }
 
   // result value
