@@ -1,3 +1,15 @@
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/valor-software/ng2-bootstrap/compare/1.0.4...v1.0.5) (2016-02-24)
+
+
+### Bug Fixes
+
+* **datepicker:** setting default value for SHOW_WEEKS ([aa09451](https://github.com/valor-software/ng2-bootstrap/commit/aa09451))
+* **daypicker:** text center align in bootstrap 4 ([dfd502f](https://github.com/valor-software/ng2-bootstrap/commit/dfd502f))
+* **tabs:** destroy cycle, closes #180 ([ae8c617](https://github.com/valor-software/ng2-bootstrap/commit/ae8c617)), closes [#180](https://github.com/valor-software/ng2-bootstrap/issues/180)
+
+
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/valor-software/ng2-bootstrap/compare/1.0.1-beta.2...v1.0.4) (2016-02-24)
 

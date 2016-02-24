@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "description": "angular2 bootstrap components",
   "scripts": {
-    "postinstall": "./node_modules/.bin/typings install",
+    "install:typings": "./node_modules/.bin/typings install",
     "compile": "./node_modules/.bin/tsc",
     "prepublish": "./node_modules/.bin/tsc && ./make.js",
     "publish:gh-pages": "./gh-pages-publish.js",
@@ -15,7 +15,8 @@
     "start": "npm run serve:dev",
     "pretest": "./node_modules/.bin/gulp lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
-    "write-changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular"
+    "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular",
+    "postversion": "git push && git push --tags && npm run publish"
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
