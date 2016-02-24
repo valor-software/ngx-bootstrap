@@ -64,11 +64,10 @@ export class DatePicker implements ControlValueAccessor {
   @Input() public yearRange:number;
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
+  @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
   @Input() public get activeDate():Date {
     return this._activeDate || this._now;
   }
-  // todo: change type during implementation
-  public customClass:any;
   // todo: change type during implementation
   @Input() public dateDisabled:any;
 
