@@ -1,32 +1,34 @@
-var path = require('path');
-var marked = require('marked');
-var webpack = require('webpack');
+/* eslint global-require: 0 */
+'use strict';
 
-var CompressionPlugin = require('compression-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const marked = require('marked');
+const webpack = require('webpack');
+const reqPrism = require('prismjs');
+const CompressionPlugin = require('compression-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // marked renderer hack
-marked.Renderer.prototype.code = function (code, lang) {
-  var out = this.options.highlight(code, lang);
+marked.Renderer.prototype.code = function renderCode(code, lang) {
+  const out = this.options.highlight(code, lang);
+  const classMap = this.options.langPrefix + lang;
 
   if (!lang) {
-    return '<pre><code>' + out + '\n</code></pre>';
+    return `<pre><code>${out}\n</code></pre>`;
   }
-
-  var classMap = this.options.langPrefix + lang;
-  return '<pre class="' + classMap + '"><code class="' + classMap + '">' + out + '\n</code></pre>\n';
+  return `<pre class="${classMap}"><code class="${classMap}">${out}\n</code></pre>\n`;
 };
 
 /*eslint no-process-env:0, camelcase:0*/
-var isProduction = (process.env.NODE_ENV || 'development') === 'production';
-var devtool = process.env.NODE_ENV !== 'test' ? 'source-map' : 'inline-source-map';
-var dest = 'demo-build';
-var absDest = root(dest);
+const isProduction = (process.env.NODE_ENV || 'development') === 'production';
+const devtool = process.env.NODE_ENV === 'test' ? 'inline-source-map' : 'source-map';
+const dest = 'demo-build';
+const absDest = root(dest);
 
-var config = {
+const config = {
   // isProduction ? 'source-map' : 'evale',
-  devtool: devtool,
+  devtool,
   debug: false,
 
   verbose: true,
@@ -74,14 +76,12 @@ var config = {
 
   markdownLoader: {
     langPrefix: 'language-',
-    highlight: function (code, lang) {
-      var language = !lang || lang === 'html' ? 'markup' : lang;
-      if (!global.Prism) {
-        global.Prism = require('prismjs');
-      }
-      var Prism = global.Prism;
+    highlight(code, lang) {
+      const language = !lang || lang === 'html' ? 'markup' : lang;
+      const Prism = global.Prism || reqPrism;
+
       if (!Prism.languages[language]) {
-        require('prismjs/components/prism-' + language + '.js');
+        require(`prismjs/components/prism-${language}.js`);
       }
       return Prism.highlight(code, Prism.languages[language]);
     }
@@ -135,12 +135,11 @@ var config = {
       filename: 'index-bs4.html'
     })
   ],
-  pushPlugins: function () {
+  pushPlugins() {
     if (!isProduction) {
       return;
     }
-
-    this.plugins.push.apply(this.plugins, [
+    const plugins = [
       //production only
       new webpack.optimize.UglifyJsPlugin({
         beautify: false,
@@ -162,7 +161,12 @@ var config = {
         threshold: 10240,
         minRatio: 0.8
       })
-    ]);
+    ];
+
+    this
+      .plugins
+      .push
+      .apply(plugins);
   }
 };
 
@@ -170,6 +174,6 @@ config.pushPlugins();
 
 module.exports = config;
 
-function root(p) {
-  return path.join(__dirname, p);
+function root(partialPath) {
+  return path.join(__dirname, partialPath);
 }
