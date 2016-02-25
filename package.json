@@ -5,7 +5,7 @@
   "scripts": {
     "install:typings": "./node_modules/.bin/typings install",
     "compile": "./node_modules/.bin/tsc",
-    "prepublish": "./node_modules/.bin/tsc && ./make.js",
+    "prepublish": "npm run install:typings && ./node_modules/.bin/tsc && ./make.js",
     "publish:gh-pages": "./gh-pages-publish.js",
     "postpublish": "npm run build:prod && npm run publish:gh-pages",
     "build:prod": "NODE_ENV=production ./node_modules/.bin/webpack --progress --color",
@@ -16,7 +16,8 @@
     "pretest": "./node_modules/.bin/gulp lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
     "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular",
-    "postversion": "git push origin master&& git push --tags && npm run postpublish"
+    "postversion": "git push origin master&& git push --tags && npm run postpublish",
+    "github-release": "conventional-github-releaser -p angular -r 0"
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
@@ -50,6 +51,7 @@
     "compression-webpack-plugin": "0.2.0",
     "conventional-changelog": "1.1.0",
     "conventional-changelog-cli": "1.1.1",
+    "conventional-github-releaser": "1.1.0",
     "copy-webpack-plugin": "1.1.1",
     "del": "2.2.0",
     "es6-promise": "3.1.2",

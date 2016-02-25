@@ -5,9 +5,9 @@ node_js:
 
 before_install:
 - npm install -g npm@latest
--
 
 script:
+- npm run install:typings
 - npm test
 
 addons:
