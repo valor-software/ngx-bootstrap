@@ -6,12 +6,14 @@ export declare class Tabset implements OnInit {
     private type;
     private setClassMap();
     tabs: Array<Tab>;
+    private isDestroyed;
     private _vertical;
     private _justified;
     private _type;
     private classMap;
     constructor();
     ngOnInit(): void;
+    ngOnDestroy(): void;
     addTab(tab: Tab): void;
     removeTab(tab: Tab): void;
     private getClosestTabIndex(index);
