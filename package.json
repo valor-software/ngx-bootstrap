@@ -16,7 +16,7 @@
     "pretest": "./node_modules/.bin/gulp lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
     "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular",
-    "postversion": "git push && git push --tags && npm run publish"
+    "postversion": "git push origin master&& git push --tags && npm run publish"
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
