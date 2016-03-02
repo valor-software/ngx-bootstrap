@@ -89,7 +89,7 @@
     "require-dir": "0.3.0",
     "rxjs": "5.0.0-beta.2",
     "source-map-loader": "0.1.5",
-    "systemjs-builder": "0.15.9",
+    "systemjs-builder": "0.15.10",
     "ts-loader": "0.8.1",
     "tslint": "3.4.0",
     "typescript": "1.8.7",
