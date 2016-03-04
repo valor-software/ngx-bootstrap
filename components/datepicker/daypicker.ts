@@ -15,6 +15,7 @@ const TEMPLATE_OPTIONS:any = {
         <!--  [ngClass]="dtz.customClass" -->
         <td *ngFor="#dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm"
+                  *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
                   [disabled]="dtz.disabled"
                   (click)="datePicker.select(dtz.date)" tabindex="-1">
@@ -34,6 +35,7 @@ const TEMPLATE_OPTIONS:any = {
         <!--  [ngClass]="dtz.customClass" -->
         <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-default btn-sm"
+                  *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
                   [disabled]="dtz.disabled"
                   (click)="datePicker.select(dtz.date)" tabindex="-1">
@@ -84,9 +86,11 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="#rowz of rows;#index=index">
-      ${CURRENT_THEME_TEMPLATE.WEEK_ROW}
-    </tr>
+    <template ngFor [ngForOf]="rows" #rowz="$implicit" #index="index">
+      <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
+        ${CURRENT_THEME_TEMPLATE.WEEK_ROW}
+      </tr>
+    </template>
   </tbody>
 </table>
   `,

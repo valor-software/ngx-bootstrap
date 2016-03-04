@@ -18,7 +18,8 @@ import {DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
     'formatDay', 'formatMonth', 'formatYear',
     'formatDayHeader', 'formatDayTitle', 'formatMonthTitle',
     'yearRange',
-    'shortcutPropagation'
+    'shortcutPropagation',
+    'onlyCurrentMonth'
   ]
 })
 
@@ -46,6 +47,7 @@ export const DATEPICKER_DIRECTIVES:Array<any> = [DatePicker];
   - `formatMonthTitle` (`?string='yyyy'`) - format of title when selecting month
   - `yearRange` (`?number=20`) - number of years displayed in year selection
   - `shortcutPropagation` (`?boolean=false`) - if `true` shortcut`s event propagation will be disabled
+  - `onlyCurrentMonth` (`?boolean=false`) - if `true` only dates from the currently displayed month will be shown
 
 <!--
 ### Date picker popup properties

@@ -15,6 +15,7 @@ const DATEPICKER_MODE:string = 'day';
 const MIN_MODE:string = 'day';
 const MAX_MODE:string = 'year';
 const SHOW_WEEKS:boolean = true;
+const ONLY_CURRENT_MONTH:boolean = false;
 const STARTING_DAY:number = 0;
 const YEAR_RANGE:number = 20;
 const MIN_DATE:Date = null;
@@ -87,6 +88,8 @@ export class DatePickerInner implements OnInit {
   @Input()
   private formatMonthTitle:string;
   @Input()
+  private onlyCurrentMonth:boolean;
+  @Input()
   private shortcutPropagation:boolean;
   // todo: change type during implementation
   @Input()
@@ -133,6 +136,7 @@ export class DatePickerInner implements OnInit {
     this.formatDayTitle = this.formatDayTitle || FORMAT_DAY_TITLE;
     this.formatMonthTitle = this.formatMonthTitle || FORMAT_MONTH_TITLE;
     this.showWeeks = (this.showWeeks === undefined ? SHOW_WEEKS : this.showWeeks);
+    this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined ? ONLY_CURRENT_MONTH : this.onlyCurrentMonth);
     this.startingDay = this.startingDay || STARTING_DAY;
     this.yearRange = this.yearRange || YEAR_RANGE;
     this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;

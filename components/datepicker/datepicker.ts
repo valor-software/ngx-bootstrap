@@ -35,6 +35,7 @@ import {YearPicker} from './yearpicker';
                       [customClass]="customClass"
                       [dateDisabled]="dateDisabled"
                       [templateUrl]="templateUrl"
+                      [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
@@ -61,6 +62,7 @@ export class DatePicker implements ControlValueAccessor {
   @Input() public formatMonthTitle:string;
   @Input() public startingDay:number;
   @Input() public yearRange:number;
+  @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public get activeDate():Date {
     return this._activeDate || this._now;
