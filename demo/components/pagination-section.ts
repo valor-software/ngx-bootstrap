@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {PaginationDemo} from './pagination/pagination-demo';

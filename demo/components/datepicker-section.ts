@@ -1,5 +1,5 @@
 import {Component, View} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {DatepickerDemo} from './datepicker/datepicker-demo';

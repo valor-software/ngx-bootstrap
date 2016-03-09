@@ -18,7 +18,8 @@
     "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular",
     "postversion": "git push origin master&& git push --tags && npm run postpublish",
     "github-release": "conventional-github-releaser -p angular -r 0",
-    "lint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config"
+    "eslint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config",
+    "lint": "npm run eslint"
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
@@ -58,7 +59,7 @@
     "es6-promise": "3.1.2",
     "es6-shim": "0.33.3",
     "es7-reflect-metadata": "1.6.0",
-    "eslint-config-valorsoft": "0.0.5",
+    "eslint-config-valorsoft": "0.0.7",
     "exports-loader": "0.6.3",
     "file-loader": "0.8.5",
     "gh-pages": "0.11.0",
