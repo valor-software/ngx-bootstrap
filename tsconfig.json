@@ -1,8 +1,9 @@
 {
-  "version": "1.7.5",
+  "version": "1.8.7",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "moduleResolution": "node",
     "sourceMap": true,
     "declaration": true,
     "removeComments": false,
