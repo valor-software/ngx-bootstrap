@@ -1,6 +1,6 @@
-import { ElementRef } from 'angular2/core';
+import { ElementRef, AfterViewChecked } from 'angular2/core';
 import { TooltipOptions } from './tooltip-options.class';
-export declare class TooltipContainer {
+export declare class TooltipContainer implements AfterViewChecked {
     element: ElementRef;
     private classMap;
     private positionMap;
@@ -11,6 +11,8 @@ export declare class TooltipContainer {
     private placement;
     private appendToBody;
     private isOpen;
+    private hostEl;
     constructor(element: ElementRef, options: TooltipOptions);
+    ngAfterViewChecked(): void;
     position(hostEl: ElementRef): void;
 }

@@ -17,6 +17,7 @@ export declare class DatePicker implements ControlValueAccessor {
     formatMonthTitle: string;
     startingDay: number;
     yearRange: number;
+    onlyCurrentMonth: boolean;
     shortcutPropagation: boolean;
     activeDate: Date;
     customClass: any;

@@ -10,6 +10,7 @@ export declare class DatePickerInner implements OnInit {
     private dateFormatter;
     private uniqueId;
     private _activeDate;
+    private selectedDate;
     private _initDate;
     private activeDateId;
     private minDate;
@@ -23,6 +24,7 @@ export declare class DatePickerInner implements OnInit {
     private formatDayHeader;
     private formatDayTitle;
     private formatMonthTitle;
+    private onlyCurrentMonth;
     private shortcutPropagation;
     private customClass;
     private dateDisabled;
