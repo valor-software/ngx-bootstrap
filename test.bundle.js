@@ -1,3 +1,6 @@
+'use strict';
+
+/* eslint vars-on-top:0 no-var:0 */
 // @AngularClass
 /*
  * When testing with webpack and ES6, we have to do some extra
@@ -20,6 +23,7 @@ require('zone.js/dist/jasmine-patch.js');
 
 var testing = require('angular2/testing');
 var browser = require('angular2/platform/testing/browser');
+
 testing.setBaseTestProviders(
   browser.TEST_BROWSER_PLATFORM_PROVIDERS,
   browser.TEST_BROWSER_APPLICATION_PROVIDERS);

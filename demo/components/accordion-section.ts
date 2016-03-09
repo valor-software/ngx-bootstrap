@@ -1,5 +1,5 @@
-import { Component } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {AccordionDemo} from './accordion/accordion-demo';

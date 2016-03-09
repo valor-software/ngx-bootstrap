@@ -1,1 +1,1 @@
-export {Timepicker} from './timepicker/timepicker.component'
+export {Timepicker} from './timepicker/timepicker.component';

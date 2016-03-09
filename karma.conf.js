@@ -1,7 +1,9 @@
-var path = require('path');
-var cwd = process.cwd();
+'use strict';
 
-module.exports = function (config) {
+const path = require('path');
+const cwd = process.cwd();
+
+module.exports = config => {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -77,7 +79,8 @@ module.exports = function (config) {
     colors: true,
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR ||
+    // config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -93,6 +96,6 @@ module.exports = function (config) {
   });
 };
 
-function root(p) {
-  return path.join(__dirname, p);
+function root(partialPath) {
+  return path.join(__dirname, partialPath);
 }
