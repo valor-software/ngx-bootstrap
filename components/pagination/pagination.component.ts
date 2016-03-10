@@ -40,31 +40,31 @@ const PAGINATION_TEMPLATE = `
     <li class="pagination-first page-item"
         *ngIf="boundaryLinks"
         [class.disabled]="noPrevious()||disabled">
-      <a class="page-link" href (click)="selectPage(1, $event)">{{getText('first')}}</a>
+      <a class="page-link" href (click)="selectPage(1, $event)" [innerHTML]="getText('first')"></a>
     </li>
 
     <li class="pagination-prev page-item"
         *ngIf="directionLinks"
         [class.disabled]="noPrevious()||disabled">
-      <a class="page-link" href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
+      <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
       </li>
 
     <li *ngFor="#pg of pages"
         [class.active]="pg.active"
         [class.disabled]="disabled&&!pg.active"
         class="pagination-page page-item">
-      <a class="page-link" href (click)="selectPage(pg.number, $event)">{{pg.text}}</a>
+      <a class="page-link" href (click)="selectPage(pg.number, $event)" [innerHTML]="pg.text"></a>
     </li>
 
     <li class="pagination-next page-item"
         *ngIf="directionLinks"
         [class.disabled]="noNext()">
-      <a class="page-link" href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a></li>
+      <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
 
     <li class="pagination-last page-item"
         *ngIf="boundaryLinks"
         [class.disabled]="noNext()">
-      <a class="page-link" href (click)="selectPage(totalPages, $event)">{{getText('last')}}</a></li>
+      <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
   </ul>
   `;
 
