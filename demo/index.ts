@@ -2,8 +2,8 @@
 import {
   Component, View, enableProdMode,
 } from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-import { bootstrap } from 'angular2/platform/browser';
+import {CORE_DIRECTIVES} from 'angular2/common';
+import {bootstrap} from 'angular2/platform/browser';
 
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
 
@@ -53,38 +53,36 @@ let gettingStarted = require('./getting-started.md');
     </div>
   </main>
 
-
   <div class="container">
-    <div class="col-md-12 card card-block panel panel-default">
-      <selection>
-          <h1>ng2-bootstrap available with:
-          <a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: isBs3}" href="./">Bootstrap 3</a>
-          <a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: !isBs3}" href="./index-bs4.html">Bootstrap 4</a>
-          </h1>
-      </selection>
-    </div>
-    <br>
+    <h1 id="overview" class="page-header">
+      ng2-bootstrap available with:
+      <a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: isBs3}" href="./">Bootstrap 3</a>
+      <a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: !isBs3}" href="./index-bs4.html">Bootstrap 4</a>
+    </h1>
+    
     <section id="getting-started">${gettingStarted}</section>
 
-    <accordion-section class="col-md-12"></accordion-section>
-    <alert-section class="col-md-12"></alert-section>
-    <buttons-section class="col-md-12"></buttons-section>
-    <carousel-section class="col-md-12"></carousel-section>
-    <collapse-section class="col-md-12"></collapse-section>
-    <datepicker-section class="col-md-12"></datepicker-section>
-    <dropdown-section class="col-md-12"></dropdown-section>
-    <pagination-section class="col-md-12"></pagination-section>
-    <progressbar-section class="col-md-12"></progressbar-section>
-    <rating-section class="col-md-12"></rating-section>
-    <tabs-section class="col-md-12"></tabs-section>
-    <timepicker-section class="col-md-12"></timepicker-section>
-    <tooltip-section class="col-md-12"></tooltip-section>
-    <typeahead-section class="col-md-12"></typeahead-section>
+    <accordion-section></accordion-section>
+    <alert-section></alert-section>
+    <buttons-section></buttons-section>
+    <carousel-section></carousel-section>
+    <collapse-section></collapse-section>
+    <datepicker-section></datepicker-section>
+    <dropdown-section></dropdown-section>
+    <pagination-section></pagination-section>
+    <progressbar-section></progressbar-section>
+    <rating-section></rating-section>
+    <tabs-section></tabs-section>
+    <timepicker-section></timepicker-section>
+    <tooltip-section></tooltip-section>
+    <typeahead-section></typeahead-section>
   </div>
 
   <footer class="footer">
     <div class="container">
-      <p class="text-muted text-center"><a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.</p>
+      <p class="text-muted text-center">
+        <a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.
+      </p>
     </div>
   </footer>
   `,

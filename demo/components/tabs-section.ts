@@ -18,24 +18,25 @@ let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
   selector: 'tabs-section',
   directives: [TabsDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
-  <br>
   <section id="${name.toLowerCase()}">
-    <div class="row"><h1>${name}<small>(<a href="${src}">src</a>)</small></h1></div>
+    <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
 
     <hr>
 
-    <div class="row"><div class="col-md-12">${titleDoc}</div></div>
-
-    <div class="row">
+    <div class="description">${titleDoc}</div>
+    
+    <br/>
+    
+    <div class="example">
       <h2>Example</h2>
       <div class="card card-block panel panel-default panel-body">
         <tabs-demo></tabs-demo>
       </div>
     </div>
 
-    <br>
+    <br/>
 
-    <div class="row">
+    <div class="markup">
       <tabset>
         <tab heading="Markup">
           <div class="card card-block panel panel-default panel-body">
@@ -50,9 +51,9 @@ let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
       </tabset>
     </div>
 
-    <br>
+    <br/>
 
-    <div class="row">
+    <div class="api">
       <h2>API</h2>
       <div class="card card-block panel panel-default panel-body">${doc}</div>
     </div>
