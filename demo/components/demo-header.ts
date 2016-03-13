@@ -39,7 +39,7 @@ let template = `
         </ul>
       </nav>
       <nav class="visible-xs hidden-md-up">
-        <ul class="nav nav-pills nav-stacked scrollable-menu" [collapse]="!isCollapsed" (click)="isCollapsed = !isCollapsed; true">
+        <ul class="nav nav-pills nav-stacked scrollable-menu" [collapse]="isCollapsed" (click)="isCollapsed = !isCollapsed; true">
           <li class="nav-item"><a class="nav-link" href="{{prefix}}#getting-started">Getting started</a></li>
           <li class="nav-item"><a class="nav-link" href="{{prefix}}#migration">Migration</a></li>
           <li *ngFor="#comp of components" class="nav-item"><a class="dropdown-item nav-link" href="{{prefix}}#{{comp.toLowerCase()}}">{{comp}}</a></li>

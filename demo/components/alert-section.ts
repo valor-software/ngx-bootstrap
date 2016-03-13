@@ -17,24 +17,25 @@ let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
 @Component({
   selector: 'alert-section',
   template: `
-  <br>
   <section id="${name.toLowerCase()}">
-    <div class="row"><h1>${name}<small>(<a href="${src}">src</a>)</small></h1></div>
+    <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
 
     <hr>
 
-    <div class="row"><div class="col-md-12">${titleDoc}</div></div>
+    <div class="description">${titleDoc}</div>
+    
+    <br/>
 
-    <div class="row">
+    <div class="example">
       <h2>Example</h2>
       <div class="card card-block panel panel-default panel-body">
         <alert-demo></alert-demo>
       </div>
     </div>
+    
+    <br/>
 
-    <br>
-
-    <div class="row">
+    <div class="markup">
       <tabset>
         <tab heading="Markup">
           <div class="card card-block panel panel-default panel-body">
@@ -48,10 +49,10 @@ let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
         </tab>
       </tabset>
     </div>
-
-    <br>
-
-    <div class="row">
+    
+    <br/>
+      
+    <div class="api">
       <h2>API</h2>
       <div class="card card-block panel panel-default panel-body">${doc}</div>
     </div>
