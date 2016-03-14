@@ -7,18 +7,17 @@ import {Dropdown} from './dropdown.directive';
 
 export class DropdownService {
   private openScope:Dropdown;
-  private dropdownScope:Dropdown;
 
   private closeDropdownBind:EventListener = this.closeDropdown.bind(this);
   private keybindFilterBind:EventListener = this.keybindFilter.bind(this);
 
   public open(dropdownScope:Dropdown) {
     if (!this.openScope) {
-      window.document.addEventListener('click', this.closeDropdownBind);
+      window.document.addEventListener('click', this.closeDropdownBind, true);
       window.document.addEventListener('keydown', this.keybindFilterBind);
     }
 
-    if (this.openScope && this.openScope !== this.dropdownScope) {
+    if (this.openScope && this.openScope !== dropdownScope) {
       this.openScope.isOpen = false;
     }
 
@@ -31,7 +30,7 @@ export class DropdownService {
     }
 
     this.openScope = null;
-    window.document.removeEventListener('click', this.closeDropdownBind);
+    window.document.removeEventListener('click', this.closeDropdownBind, true);
     window.document.removeEventListener('keydown', this.keybindFilterBind);
   }
 

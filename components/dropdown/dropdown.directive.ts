@@ -23,6 +23,7 @@ export class Dropdown implements OnInit, OnDestroy {
   @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter();
   @HostBinding('class.dropdown') private addClass = true;
 
+
   private _isOpen:boolean;
   // index of selected element
   public selectedOption:number;
