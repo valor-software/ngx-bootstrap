@@ -1,3 +1,33 @@
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.6...v1.0.7) (2016-03-16)
+
+
+### Bug Fixes
+
+* **demo:** fix demo layout ([227ef4e](https://github.com/valor-software/ng2-bootstrap/commit/227ef4e))
+* **progress:** progress bar now works with ng2 ([f970433](https://github.com/valor-software/ng2-bootstrap/commit/f970433))
+
+### Features
+
+* **pagination:** use inner html for pagination button text ([66cc008](https://github.com/valor-software/ng2-bootstrap/commit/66cc008))
+
+
+
+<a name="1.0.6"></a>
+## [1.0.6](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.5...v1.0.6) (2016-03-09)
+
+
+### Bug Fixes
+
+* **datepicker-inner:** When changing view on datepicker, and going left and right, selected date ([97c8735](https://github.com/valor-software/ng2-bootstrap/commit/97c8735))
+* **tooltip:** fix positioning of tooltip container ([5697574](https://github.com/valor-software/ng2-bootstrap/commit/5697574))
+
+### Features
+
+* **datepicker:** Added an attribute onlyCurrentMonth which if true will not show dates from previ ([529af20](https://github.com/valor-software/ng2-bootstrap/commit/529af20))
+
+
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/valor-software/ng2-bootstrap/compare/1.0.4...v1.0.5) (2016-02-24)
 

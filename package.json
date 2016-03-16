@@ -15,9 +15,9 @@
     "start": "npm run serve:dev",
     "pretest": "npm run lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
-    "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular",
+    "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular -v",
     "postversion": "git push origin master && git push --tags",
-    "github-release": "conventional-github-releaser -p angular -r 0",
+    "github-release": "conventional-github-releaser -p angular",
     "eslint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config",
     "lint": "npm run eslint && npm run tslint",
     "tslint": "./node_modules/.bin/gulp lint"
