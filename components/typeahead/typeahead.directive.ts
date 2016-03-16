@@ -105,35 +105,35 @@ export class Typeahead implements OnInit {
 
   private processMatches() {
     this._matches = [];
-    if (this.cd.model.toString().length >= this.typeaheadMinLength) {
-      // If singleWords, break model here to not be doing extra work on each iteration
-      let normalizedQuery = (this.typeaheadLatinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-      normalizedQuery = this.typeaheadSingleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
-      for (let i = 0; i < this.typeahead.length; i++) {
-        let match:string;
 
-        if (typeof this.typeahead[i] === 'object' &&
-          this.typeahead[i][this.typeaheadOptionField]) {
-          match = this.typeaheadLatinize ? TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString()) : this.typeahead[i][this.typeaheadOptionField].toString();
-        }
+    // If singleWords, break model here to not be doing extra work on each iteration
+    let normalizedQuery = (this.typeaheadLatinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+    normalizedQuery = this.typeaheadSingleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
+    for (let i = 0; i < this.typeahead.length; i++) {
+      let match:string;
 
-        if (typeof this.typeahead[i] === 'string') {
-          match = this.typeaheadLatinize ? TypeaheadUtils.latinize(this.typeahead[i].toString()) : this.typeahead[i].toString();
-        }
+      if (typeof this.typeahead[i] === 'object' &&
+        this.typeahead[i][this.typeaheadOptionField]) {
+        match = this.typeaheadLatinize ? TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString()) : this.typeahead[i][this.typeaheadOptionField].toString();
+      }
 
-        if (!match) {
-          console.log('Invalid match type', typeof this.typeahead[i], this.typeaheadOptionField);
-          continue;
-        }
+      if (typeof this.typeahead[i] === 'string') {
+        match = this.typeaheadLatinize ? TypeaheadUtils.latinize(this.typeahead[i].toString()) : this.typeahead[i].toString();
+      }
 
-        if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
-          this._matches.push(this.typeahead[i]);
-          if (this._matches.length > this.typeaheadOptionsLimit - 1) {
-            break;
-          }
+      if (!match) {
+        console.log('Invalid match type', typeof this.typeahead[i], this.typeaheadOptionField);
+        continue;
+      }
+
+      if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
+        this._matches.push(this.typeahead[i]);
+        if (this._matches.length > this.typeaheadOptionsLimit - 1) {
+          break;
         }
       }
     }
+
   }
 
   private testMatch(match:string, test:any) {
@@ -194,12 +194,11 @@ export class Typeahead implements OnInit {
         if (typeof this.typeahead === 'function') {
           this.typeahead().then((matches:any[]) => {
             this._matches = [];
-            if (this.cd.model.toString().length >= this.typeaheadMinLength) {
-              for (let i = 0; i < matches.length; i++) {
-                this._matches.push(matches[i]);
-                if (this._matches.length > this.typeaheadOptionsLimit - 1) {
-                  break;
-                }
+
+            for (let i = 0; i < matches.length; i++) {
+              this._matches.push(matches[i]);
+              if (this._matches.length > this.typeaheadOptionsLimit - 1) {
+                break;
               }
             }
 
@@ -244,15 +243,20 @@ export class Typeahead implements OnInit {
       }
     }
 
-    this.typeaheadLoading.emit(true);
+    // Ensure that we have typed enough characters before triggering the matchers
+    if (this.cd.model.toString().length >= this.typeaheadMinLength) {
 
-    if (this.typeaheadAsync === true) {
-      this.debouncer();
-    }
+      this.typeaheadLoading.emit(true);
 
-    if (this.typeaheadAsync === false) {
-      this.processMatches();
-      this.finalizeAsyncCall();
+      if (this.typeaheadAsync === true) {
+        this.debouncer();
+      }
+
+      if (this.typeaheadAsync === false) {
+        this.processMatches();
+        this.finalizeAsyncCall();
+      }
+
     }
   }
 
