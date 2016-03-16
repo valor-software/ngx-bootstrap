@@ -256,7 +256,9 @@ export class Typeahead implements OnInit {
         this.processMatches();
         this.finalizeAsyncCall();
       }
-
+    } else {
+      // Not enough characters typed? Hide the popup.
+      this.hide();
     }
   }
 
