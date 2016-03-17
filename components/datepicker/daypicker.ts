@@ -16,7 +16,7 @@ const TEMPLATE_OPTIONS:any = {
         <td *ngFor="#dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
-                  [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}"
+                  [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled}"
                   [disabled]="dtz.disabled"
                   (click)="datePicker.select(dtz.date)" tabindex="-1">
             <span [ngClass]="{'text-muted': dtz.secondary || dtz.current}">{{dtz.label}}</span>

@@ -76,6 +76,6 @@ export class DatepickerDemo {
   }
 
   private toggleMin() {
-    this.dt = this.minDate;
+    this.dt = new Date(this.minDate.valueOf());
   }
 }

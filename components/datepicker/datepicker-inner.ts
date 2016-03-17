@@ -181,7 +181,7 @@ export class DatePickerInner implements OnInit {
       return this.compareHandlerMonth(date1, date2);
     }
 
-    if (this.datepickerMode === 'year' && this.compareHandlerMonth) {
+    if (this.datepickerMode === 'year' && this.compareHandlerYear) {
       return this.compareHandlerYear(date1, date2);
     }
 
