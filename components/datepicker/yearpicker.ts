@@ -1,5 +1,5 @@
 import {
-  Component, View, Host,
+  Component, Host,
   OnInit, EventEmitter,
   ElementRef, ViewContainerRef,
   Self, Renderer
