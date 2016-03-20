@@ -1,4 +1,4 @@
-import { Component, View } from 'angular2/core';
+import { Component } from 'angular2/core';
 import { CORE_DIRECTIVES, FORM_DIRECTIVES } from 'angular2/common';
 
 import { ACCORDION_DIRECTIVES } from '../../../ng2-bootstrap';
@@ -7,9 +7,7 @@ import { ACCORDION_DIRECTIVES } from '../../../ng2-bootstrap';
 let template = require('./accordion-demo.html');
 
 @Component({
-  selector: 'accordion-demo'
-})
-@View({
+  selector: 'accordion-demo',
   template: template,
   directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })

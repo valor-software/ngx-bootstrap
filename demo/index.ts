@@ -1,6 +1,6 @@
 /// <reference path="../typings/browser.d.ts" />
 import {
-  Component, View, enableProdMode,
+  Component, enableProdMode,
 } from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {bootstrap} from 'angular2/platform/browser';
@@ -36,9 +36,7 @@ import {DemoHeader} from './components/demo-header';
 let gettingStarted = require('./getting-started.md');
 
 @Component({
-  selector: 'app'
-})
-@View({
+  selector: 'app',
   template: `
   <demo-header>Loading header</demo-header>
   <main class="bd-pageheader">
