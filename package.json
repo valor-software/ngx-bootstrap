@@ -41,13 +41,13 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
-    "angular2": "2.0.0-beta.9",
     "moment": "2.12.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.9"
+    "angular2": "2.0.0-beta.11"
   },
   "devDependencies": {
+    "angular2": "2.0.0-beta.11",
     "async": "1.5.2",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
@@ -58,7 +58,7 @@
     "copy-webpack-plugin": "1.1.1",
     "del": "2.2.0",
     "es6-promise": "3.1.2",
-    "es6-shim": "0.33.3",
+    "es6-shim": "0.35.0",
     "es7-reflect-metadata": "1.6.0",
     "eslint-config-valorsoft": "0.0.8",
     "exports-loader": "0.6.3",
@@ -99,6 +99,6 @@
     "typings": "0.7.9",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
-    "zone.js": "0.5.15"
+    "zone.js": "0.6.4"
   }
 }
