@@ -1,10 +1,10 @@
-import {Component, Self, Input} from 'angular2/core';
+import {Component, Self, Input, forwardRef, Provider} from 'angular2/core';
 import {
   CORE_DIRECTIVES,
   FORM_DIRECTIVES,
-  ControlValueAccessor,
-  NgModel
+  ControlValueAccessor, NG_VALUE_ACCESSOR
 } from 'angular2/common';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
 
 import {DatePickerInner} from './datepicker-inner';
 //import {DatePickerPopup} from './datepicker-popup';
@@ -12,8 +12,11 @@ import {DayPicker} from './daypicker';
 import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
 
+const CUSTOM_VALUE_ACCESSOR = CONST_EXPR(new Provider(NG_VALUE_ACCESSOR,
+  { useExisting: forwardRef(() => DatePicker), multi: true }));
+
 @Component({
-  selector: 'datepicker[ngModel], [datepicker][ngModel]',
+  selector: 'datepicker, [datepicker]',
   template: `
     <datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate($event)"
@@ -42,7 +45,8 @@ import {YearPicker} from './yearpicker';
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
     `,
-  directives: [DatePickerInner, DayPicker, MonthPicker, YearPicker, FORM_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [DatePickerInner, DayPicker, MonthPicker, YearPicker, FORM_DIRECTIVES, CORE_DIRECTIVES],
+  providers:[CUSTOM_VALUE_ACCESSOR]
 })
 
 export class DatePicker implements ControlValueAccessor {
@@ -72,9 +76,7 @@ export class DatePicker implements ControlValueAccessor {
   // todo: change type during implementation
   @Input() public dateDisabled:any;
 
-  constructor(@Self() public cd:NgModel) {
-    // hack
-    cd.valueAccessor = this;
+  constructor() {
   }
 
   private _now:Date = new Date();
@@ -85,7 +87,7 @@ export class DatePicker implements ControlValueAccessor {
 
   private onUpdate(event:any) {
     this.writeValue(event);
-    this.cd.viewToModelUpdate(event);
+    this.onChange(event);
   }
 
   // todo: support null value

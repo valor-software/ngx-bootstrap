@@ -1,5 +1,6 @@
-import {Component, OnInit, ElementRef, Renderer, Self} from 'angular2/core';
-import {NgModel, NgClass} from 'angular2/common';
+import {Component, OnInit, ElementRef, Renderer, Self, forwardRef, Provider} from 'angular2/core';
+import {NgClass, NG_VALUE_ACCESSOR} from 'angular2/common';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
 
 import {Pagination} from './pagination.component';
 
@@ -21,10 +22,14 @@ const PAGER_TEMPLATE = `
   </ul>
 `;
 
+const CUSTOM_VALUE_ACCESSOR = CONST_EXPR(new Provider(NG_VALUE_ACCESSOR,
+  { useExisting: forwardRef(() => Pager), multi: true }));
+
 @Component({
-  selector: 'pager[ngModel]',
+  selector: 'pager',
   template: PAGER_TEMPLATE,
   directives: [NgClass],
+  providers:[CUSTOM_VALUE_ACCESSOR],
   inputs: [
     'align',
     'totalItems', 'itemsPerPage',
@@ -34,8 +39,8 @@ const PAGER_TEMPLATE = `
 export class Pager extends Pagination implements OnInit {
   public config = pagerConfig;
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
-    super(cd, renderer, elementRef);
+  constructor(renderer:Renderer, elementRef:ElementRef) {
+    super(renderer, elementRef);
   }
 }
 // todo: pager should support only this in/out
