@@ -1,4 +1,4 @@
-import {Component, View} from 'angular2/core';
+import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
@@ -15,9 +15,7 @@ let ts = require('!!prismjs?lang=typescript!./datepicker/datepicker-demo.ts');
 let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
 
 @Component({
-  selector: 'datepicker-section'
-})
-@View({
+  selector: 'datepicker-section',
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
