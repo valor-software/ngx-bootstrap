@@ -1,5 +1,6 @@
-import {Component, OnInit, Input, Self} from 'angular2/core';
-import {NgClass, NgModel, ControlValueAccessor} from 'angular2/common';
+import {Component, OnInit, Input, Self,forwardRef,Provider} from 'angular2/core';
+import {NgClass, NG_VALUE_ACCESSOR, ControlValueAccessor} from 'angular2/common';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
 
 export interface ITimepickerConfig {
   hourStep: number;
@@ -48,6 +49,10 @@ function addMinutes(date:any, minutes:number) {
   return newDate;
 }
 
+const CUSTOM_VALUE_ACCESSOR = CONST_EXPR(new Provider(NG_VALUE_ACCESSOR,
+  { useExisting: forwardRef(() => Timepicker), multi: true }));
+
+
 // TODO: templateUrl
 @Component({
   selector: 'timepicker[ngModel]',
@@ -79,7 +84,8 @@ function addMinutes(date:any, minutes:number) {
         </tr>
       </tbody>
     </table>
-  `
+  `,
+  providers:[CUSTOM_VALUE_ACCESSOR]
 })
 export class Timepicker implements ControlValueAccessor, OnInit {
   // config
@@ -131,7 +137,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     if (v) {
       this._selected = v;
       this.updateTemplate();
-      this.cd.viewToModelUpdate(this.selected);
+      this.onChange(this.selected);
     }
   }
 
@@ -139,8 +145,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   private invalidHours:any;
   private invalidMinutes:any;
 
-  constructor(@Self() public cd:NgModel) {
-    cd.valueAccessor = this;
+  constructor() {
   }
 
   // todo: add formatter value to Date object
@@ -183,7 +188,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   private refresh(type?:string) {
     // this.makeValid();
     this.updateTemplate();
-    this.cd.viewToModelUpdate(this.selected);
+    this.onChange(this.selected);
   }
 
   private updateTemplate(keyboardChange?:any) {
