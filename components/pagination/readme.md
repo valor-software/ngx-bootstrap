@@ -27,8 +27,8 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   @Input() public get itemsPerPage():number {}
   @Input() private get totalItems():number {}
 
-  @Output() private numPages:EventEmitter<number> = new EventEmitter();
-  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter();
+  @Output() private numPages:EventEmitter<number> = new EventEmitter(false);
+  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
 
 @Component({
   selector: 'pager[ngModel]',

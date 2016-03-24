@@ -21,9 +21,9 @@ export class Tab implements OnDestroy {
     return this._active;
   }
 
-  @Output() public select:EventEmitter<Tab> = new EventEmitter();
-  @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
-  @Output() public removed:EventEmitter<Tab> = new EventEmitter();
+  @Output() public select:EventEmitter<Tab> = new EventEmitter(false);
+  @Output() public deselect:EventEmitter<Tab> = new EventEmitter(false);
+  @Output() public removed:EventEmitter<Tab> = new EventEmitter(false);
 
   public set active(active) {
     if (this.disabled && active || !active) {

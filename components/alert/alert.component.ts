@@ -22,7 +22,7 @@ export class Alert implements OnInit {
   @Input() public dismissible:boolean;
   @Input() public dismissOnTimeout:number;
 
-  @Output() public close:EventEmitter<Alert> = new EventEmitter();
+  @Output() public close:EventEmitter<Alert> = new EventEmitter(false);
 
   private closed:boolean;
   private classes:Array<string> = [];
