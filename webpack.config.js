@@ -48,6 +48,8 @@ const config = {
   entry: {
     angular2: [
       // Angular 2 Deps
+      'es6-shim',
+      'es6-promise',
       'zone.js',
       'reflect-metadata',
       'angular2/common',
