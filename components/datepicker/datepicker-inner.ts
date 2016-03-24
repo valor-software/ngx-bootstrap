@@ -91,9 +91,8 @@ export class DatePickerInner implements OnInit {
   private onlyCurrentMonth:boolean;
   @Input()
   private shortcutPropagation:boolean;
-  // todo: change type during implementation
   @Input()
-  private customClass:any;
+  private customClass:Array<{date:Date, mode:string, clazz:string}>;
   // todo: change type during implementation
   @Input()
   private dateDisabled:any;
@@ -232,14 +231,24 @@ export class DatePickerInner implements OnInit {
   private createDateObject(date:Date, format:string):any {
     let dateObject:any = {};
     dateObject.date = date;
+    dateObject.date.setHours(0, 0, 0, 0);
     dateObject.label = this.dateFilter(date, format);
     dateObject.selected = this.compare(date, this.selectedDate) === 0;
     dateObject.disabled = this.isDisabled(date);
     dateObject.current = this.compare(date, new Date()) === 0;
-    // todo: do it
-    // dateObject.customClass = this.customClass({date: date, mode: this.datepickerMode}) || {};
+    dateObject.customClass = this.getCustomClassForDate(dateObject.date);
     return dateObject;
   }
+
+  private getCustomClassForDate(date:Date) {
+    if (!this.customClass) {
+      return '';
+    }
+    var customClassObject:{date:Date, mode:string, clazz:string} = this.customClass.find(customClass => {
+      return customClass.date.valueOf() === date.valueOf() && customClass.mode === this.datepickerMode;
+    }, this);
+    return customClassObject === undefined ? '' : customClassObject.clazz;
+  };
 
   private isDisabled(date:Date):boolean {
     // todo: implement dateDisabled attribute
