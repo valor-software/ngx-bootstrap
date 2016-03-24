@@ -44,10 +44,10 @@
     "moment": "2.12.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.11"
+    "angular2": "2.0.0-beta.12"
   },
   "devDependencies": {
-    "angular2": "2.0.0-beta.11",
+    "angular2": "2.0.0-beta.12",
     "async": "1.5.2",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
