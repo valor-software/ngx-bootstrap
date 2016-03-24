@@ -46,6 +46,7 @@ const config = {
   },
 
   entry: {
+    polyfills: 'polyfills',
     angular2: [
       // Angular 2 Deps
       'es6-shim',
@@ -123,9 +124,9 @@ const config = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'angular2',
-      minChunks: Infinity,
-      filename: 'angular2.js'
+      name: 'polyfills',
+      filename: 'polyfills.js',
+      minChunks: Infinity
     }),
     // static assets
     new CopyWebpackPlugin([{from: 'demo/favicon.ico', to: 'favicon.ico'}]),
