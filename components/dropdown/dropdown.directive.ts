@@ -19,8 +19,8 @@ export class Dropdown implements OnInit, OnDestroy {
   // enum string: ['always', 'outsideClick', 'disabled']
   @Input() public appendToBody:boolean;
 
-  @Output() public onToggle:EventEmitter<boolean> = new EventEmitter();
-  @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter();
+  @Output() public onToggle:EventEmitter<boolean> = new EventEmitter(false);
+  @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter(false);
   @HostBinding('class.dropdown') private addClass = true;
 
 

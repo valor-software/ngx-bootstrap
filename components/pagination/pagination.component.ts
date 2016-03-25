@@ -87,8 +87,8 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
 
   @Input() private disabled:boolean;
 
-  @Output() private numPages:EventEmitter<number> = new EventEmitter();
-  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter();
+  @Output() private numPages:EventEmitter<number> = new EventEmitter(false);
+  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
 
   @Input() public get itemsPerPage() {
     return this._itemsPerPage;

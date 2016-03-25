@@ -71,7 +71,7 @@ class PopupContainer {
   private display:string;
   private placement:string;
   private showButtonBar:boolean = true;
-  private update1:EventEmitter<any> = new EventEmitter();
+  private update1:EventEmitter<any> = new EventEmitter(false);
 
   constructor(public element:ElementRef, options:PopupOptions) {
     Object.assign(this, options);

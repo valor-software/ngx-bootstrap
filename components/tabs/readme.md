@@ -37,9 +37,9 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
   @HostBinding('class.active')
   @Input() public get active() {}
 
-  @Output() public select:EventEmitter<Tab> = new EventEmitter();
-  @Output() public deselect:EventEmitter<Tab> = new EventEmitter();
-  @Output() public removed:EventEmitter<Tab> = new EventEmitter();
+  @Output() public select:EventEmitter<Tab> = new EventEmitter(false);
+  @Output() public deselect:EventEmitter<Tab> = new EventEmitter(false);
+  @Output() public removed:EventEmitter<Tab> = new EventEmitter(false);
 }
 
 // directive TabHeading

@@ -21,9 +21,9 @@ import {TypeaheadOptions} from './typeahead-options.class';
   selector: 'typeahead[ngModel], [ngModel][typeahead]'
 })
 export class Typeahead implements OnInit {
-  @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter();
-  @Output() public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter();
-  @Output() public typeaheadOnSelect:EventEmitter<{item: any}> = new EventEmitter();
+  @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter(false);
+  @Output() public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter(false);
+  @Output() public typeaheadOnSelect:EventEmitter<{item: any}> = new EventEmitter(false);
 
   @Input() public typeahead:any;
   @Input() public typeaheadMinLength:number;
