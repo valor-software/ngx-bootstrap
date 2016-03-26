@@ -8,7 +8,7 @@ import {
 } from '../../ng2-bootstrap';
 
 let components = [
-  'Accordion', 'Alerts', 'Buttons', 'Carousel', 'Collapse', 'Datepicker',
+  'Accordion', 'Alerts', 'Affix', 'Buttons', 'Carousel', 'Collapse', 'Datepicker',
   'Dropdowns', /*'Modal',*/ 'Pagination', /*'Popover',*/ 'Progressbar',
   'Rating', 'Tabs', 'Timepicker', 'Tooltip', 'Typeahead'
 ];

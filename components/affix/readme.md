@@ -18,7 +18,7 @@ export class Affix implements OnInit, OnDestroy {
     public affixOffsetBottom:number = 0;
 
     @Output()
-    public affixChange:EventEmitter<AffixStatus> = new EventEmitter(false);
+    public affixChange:EventEmitter<AffixStatusChange> = new EventEmitter(false);
 }
 ```
 
@@ -27,4 +27,4 @@ export class Affix implements OnInit, OnDestroy {
 - `affixOffsetBottom` (*not implemented*) (`?:number=0`) - Pixels to offset from screen bottom top when calculating position of scroll.
 
 ### Affix events
-- `affixChange` - fired the affix state changes. `$event` is an instance of `AffixStatusChange` class, having two properties `oldStatus` and `newStatus`.
+- `affixChange` - fired when the affix state changes. `$event` is an instance of `AffixStatusChange` class, having two properties `oldStatus` and `newStatus`.
