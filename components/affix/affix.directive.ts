@@ -71,6 +71,7 @@ export class Affix implements OnInit, OnDestroy {
                     break;
                 default:
                     this.isAffix = true;
+                    break;
             }
         }
     }
