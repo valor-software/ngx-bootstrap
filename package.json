@@ -51,7 +51,7 @@
     "async": "1.5.2",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
-    "compression-webpack-plugin": "0.2.0",
+    "compression-webpack-plugin": "0.3.1",
     "conventional-changelog": "1.1.0",
     "conventional-changelog-cli": "1.1.1",
     "conventional-github-releaser": "1.1.1",
