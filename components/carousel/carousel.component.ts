@@ -107,6 +107,7 @@ export class Carousel implements OnDestroy {
         return this.slides[i];
       }
     }
+    return null;
   }
 
   private getCurrentIndex() {
