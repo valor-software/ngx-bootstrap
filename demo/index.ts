@@ -17,6 +17,7 @@ if (w && w.__theme === 'bs4') {
 
 
 import {AccordionSection} from './components/accordion-section';
+import {AffixSection} from './components/affix-section';
 import {AlertSection} from './components/alert-section';
 import {ButtonsSection} from './components/buttons-section';
 import {CarouselSection} from './components/carousel-section';
@@ -61,6 +62,7 @@ let gettingStarted = require('./getting-started.md');
     <section id="getting-started">${gettingStarted}</section>
 
     <accordion-section></accordion-section>
+    <affix-section></affix-section>
     <alert-section></alert-section>
     <buttons-section></buttons-section>
     <carousel-section></carousel-section>
@@ -89,6 +91,7 @@ let gettingStarted = require('./getting-started.md');
     DemoHeader,
 
     AccordionSection,
+    AffixSection,
     AlertSection,
     ButtonsSection,
     CarouselSection,

@@ -1,5 +1,6 @@
 import {ACCORDION_DIRECTIVES} from './components/accordion';
 import {Alert} from './components/alert';
+import {Affix} from './components/affix';
 import {BUTTON_DIRECTIVES} from './components/buttons';
 import {CAROUSEL_DIRECTIVES} from './components/carousel';
 import {Collapse} from './components/collapse';
@@ -15,6 +16,7 @@ import {TYPEAHEAD_DIRECTIVES} from './components/typeahead';
 
 export * from './components/accordion';
 export * from './components/alert';
+export * from './components/affix';
 export * from './components/buttons';
 export * from './components/carousel';
 export * from './components/collapse';
