@@ -43,7 +43,8 @@ export class Tooltip implements OnInit {
 
     let options = new TooltipOptions({
       content: this.content,
-      placement: this.placement
+      placement: this.placement,
+      hostEl: this.element
     });
 
     let binding = Injector.resolve([
@@ -53,7 +54,6 @@ export class Tooltip implements OnInit {
     this.tooltip = this.loader
       .loadNextToLocation(TooltipContainer, this.element, binding)
       .then((componentRef:ComponentRef) => {
-        componentRef.instance.position(this.element);
         return componentRef;
       });
   }
