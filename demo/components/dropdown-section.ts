@@ -14,51 +14,20 @@ let titleDoc = require('../../components/dropdown/title.md');
 let ts = require('!!prismjs?lang=typescript!./dropdown/dropdown-demo.ts');
 let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
 
+let template = require('./demo-component.template.html');
+template = template.replace('<demoComponentContent></demoComponentContent>', '<dropdown-demo></dropdown-demo>');
+
 @Component({
   selector: 'dropdown-section',
   directives: [DropdownDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
-  template: `
-  <section id="${name.toLowerCase()}">
-    <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
-
-    <hr>
-
-    <div class="description">${titleDoc}</div>
-    
-    <br/>
-    
-    <div class="example">
-      <h2>Example</h2>
-      <div class="card card-block panel panel-default panel-body">
-        <dropdown-demo></dropdown-demo>
-      </div>
-    </div>
-
-    <br/>
-
-    <div class="markup">
-      <tabset>
-        <tab heading="Markup">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
-          </div>
-        </tab>
-        <tab heading="TypeScript">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
-          </div>
-        </tab>
-      </tabset>
-    </div>
-
-    <br/>
-
-    <div class="api">
-      <h2>API</h2>
-      <div class="card card-block panel panel-default panel-body">${doc}</div>
-    </div>
-  </section>
-  `
+  template: template
 })
+
 export class DropdownSection {
+  private name:string = name;
+  private html:string = html;
+  private ts:string = ts;
+  private titleDoc:string = titleDoc;
+  private doc:string = doc;
+  private src:string = src;
 }

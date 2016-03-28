@@ -1,0 +1,69 @@
+<div id="top-menu">
+  <div class="title">
+    <h2>ng2-bootstrap</h2>
+  </div>
+
+  <div id="mobile-main-menu">
+    <img src="assets/images/menu-left.svg" alt="">
+  </div>
+  <!--</div>-->
+
+  <div class="menu-right">
+    <div class="git-hub">
+      <iframe frameborder="0" scrolling="0"
+              src="https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=star&count=true"></iframe>
+      <iframe frameborder="0" scrolling="0"
+              src="https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=fork&count=true"></iframe>
+    </div>
+
+    <div class="logo">
+      <a href="">
+        <img src="/assets/images/logo.png" alt="">
+      </a>
+    </div>
+
+    <div id="mobile-top-menu">
+      <img src="/assets/images/menu-right.svg" alt="">
+    </div>
+  </div>
+</div>
+
+<div id="main-menu">
+  <div class="menu-search">
+    <input type="text" name="search" placeholder="Search..."/>
+  </div>
+  <div class="main-menu-container">
+    <div class="menu-content">
+      <!--<div class="section">-->
+        <!--<h3 [routerLink]="['Getting started']">Getting started</h3>-->
+      <!--</div>-->
+
+      <div class="section" *ngFor="#route of routes">
+        <h3 [routerLink]="[route.name]">{{route.name}}</h3>
+
+        <div class="item">
+          <h4>
+            <span [routerLink]="[route.name]">Example</span>
+          </h4>
+        </div>
+
+        <div class="item">
+          <h4>
+            <span [routerLink]="[route.name]">Api</span>
+          </h4>
+        </div>
+
+        <div class="item">
+          <h4>
+            <span [routerLink]="[route.name]">Properties</span>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main">
+  <router-outlet></router-outlet>
+</div>
+
