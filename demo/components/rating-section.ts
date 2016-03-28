@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {RatingDemoComponent} from './rating/rating-demo';
-
-let name = 'Rating';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating/';
+import {DemoSection} from './demo-section';
 
 // webpack html imports
 let doc = require('../../components/rating/readme.md');
@@ -16,49 +13,17 @@ let html = require('!!prismjs?lang=markup!./rating/rating-demo.html');
 
 @Component({
   selector: 'rating-section',
-  directives: [RatingDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, RatingDemo, CORE_DIRECTIVES],
   template: `
-  <section id="${name.toLowerCase()}">
-    <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
-
-    <hr>
-
-    <div class="description">${titleDoc}</div>
-    
-    <br/>
-    
-    <div class="example">
-      <h2>Example</h2>
-      <div class="card card-block panel panel-default panel-body">
-        <rating-demo></rating-demo>
-      </div>
-    </div>
-
-    <br/>
-
-    <div class="markup">
-      <tabset>
-        <tab heading="Markup">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
-          </div>
-        </tab>
-        <tab heading="TypeScript">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
-          </div>
-        </tab>
-      </tabset>
-    </div>
-
-    <br/>
-
-    <div class="api">
-      <h2>API</h2>
-      <div class="card card-block panel panel-default panel-body">${doc}</div>
-    </div>
-  </section>
-  `
+    <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
+      <rating-demo></rating-demo>
+    </demo-section>`
 })
-export class RatingSectionComponent {
+
+  private name:string = 'Rating';
+  private src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating';
+  private html:string = html;
+  private ts:string = ts;
+  private titleDoc:string = titleDoc;
+  private doc:string = doc;
 }

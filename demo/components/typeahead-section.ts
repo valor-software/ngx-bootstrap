@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TypeaheadDemoComponent} from './typeahead/typeahead-demo';
-
-let name = 'Typeahead';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/typeahead/typeahead';
+import {DemoSection} from './demo-section';
 
 // webpack html imports
 let doc = require('../../components/typeahead/readme.md');
@@ -16,49 +13,17 @@ let html = require('!!prismjs?lang=markup!./typeahead/typeahead-demo.html');
 
 @Component({
   selector: 'typeahead-section',
-  directives: [TypeaheadDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, TypeaheadDemo, CORE_DIRECTIVES],
   template: `
-  <section id="${name.toLowerCase()}">
-    <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
-
-    <hr>
-
-    <div class="description">${titleDoc}</div>
-    
-    <br/>
-    
-    <div class="example">
-      <h2>Example</h2>
-      <div class="card card-block panel panel-default panel-body">
-        <typeahead-demo></typeahead-demo>
-      </div>
-    </div>
-
-    <br/>
-
-    <div class="markup">
-      <tabset>
-        <tab heading="Markup">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-html"><code class="language-html" ngNonBindable>${html}</code></pre>
-          </div>
-        </tab>
-        <tab heading="TypeScript">
-          <div class="card card-block panel panel-default panel-body">
-            <pre class="language-typescript"><code class="language-typescript" ngNonBindable>${ts}</code></pre>
-          </div>
-        </tab>
-      </tabset>
-    </div>
-
-    <br/>
-
-    <div class="api">
-      <h2>API</h2>
-      <div class="card card-block panel panel-default panel-body">${doc}</div>
-    </div>
-  </section>
-  `
+    <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
+      <typeahead-demo></typeahead-demo>
+    </demo-section>`
 })
-export class TypeaheadSectionComponent {
+
+  private name:string = 'Typeahead';
+  private src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/typeahead';
+  private html:string = html;
+  private ts:string = ts;
+  private titleDoc:string = titleDoc;
+  private doc:string = doc;
 }

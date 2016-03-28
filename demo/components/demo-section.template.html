@@ -1,0 +1,44 @@
+<div class="content-header">
+  <h2>{{name}}
+    <a [href]="src" target="_blank">
+      <img src="/assets/images/link-doc.png" alt=""/>
+    </a>
+  </h2>
+
+  <p class="description" [innerHTML]="titleDoc"></p>
+</div>
+
+<div id="content" class="content-box">
+  <div id="example" class="section">
+    <h3>Example</h3>
+
+    <div class="item">
+      <ng-content></ng-content>
+    </div>
+  </div>
+
+  <div id="markup" class="section">
+    <h3>Markup</h3>
+
+    <div class="item">
+      <tabset>
+        <tab heading="Markup">
+          <pre class="language-html">
+            <code class="language-html" [innerHTML]="html"></code>
+          </pre>
+        </tab>
+        <tab heading="TypeScript">
+          <pre class="language-typescript">
+            <code class="language-typescript" [innerHTML]="ts"></code>
+          </pre>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+
+  <div id="api" class="section">
+    <h3>Api</h3>
+
+    <div class="item list-container" [innerHTML]="doc"></div>
+  </div>
+</div>

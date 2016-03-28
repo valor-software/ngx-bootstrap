@@ -1,252 +1,612 @@
-/*!
- * Bootstrap Docs (http://getbootstrap.com)
- * Copyright 2011-2014 Twitter, Inc.
- * Licensed under the Creative Commons Attribution 3.0 Unported License. For
- * details, see http://creativecommons.org/licenses/by/3.0/.
- */
-
-.h1, .h2, .h3, h1, h2, h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f9fb;
 }
 
-.h1, h1 {
-  font-size: 36px;
+.text-red {
+  color: #cd151e;
 }
 
-.btn-group-lg > .btn, .btn-lg {
-  font-size: 18px;
+/************* START TOP MENU **************/
+
+#top-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #1d1d2b;
+  z-index: 2;
 }
 
-section {
-  padding-top: 30px;
-}
-
-.bd-pageheader {
-  margin-top: 51px;
-}
-
-.page-header {
-  padding-bottom: 9px;
-  margin: 10px 0 40px;
-  border-bottom: 1px solid #eee;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: #777;
-}
-
-.navbar {
-  padding: 0;
-}
-
-.navbar-nav .nav-item {
-  margin-left: 0 !important;
-}
-
-.nav > li > a {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-}
-
-.nav .navbar-brand {
+#top-menu > div:not(.menu-right) {
   float: left;
-  height: 50px;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
-  margin-right: 0 !important;
 }
 
-.navbar-brand {
-  color: #777;
+#top-menu .menu-right {
+  float: right;
+}
+
+#top-menu .menu-right > div {
   float: left;
-  height: 50px;
-  padding: 15px 15px;
+}
+
+#top-menu .title {
+  border-right: 1px solid #191924;
+  min-width: 270px;
+  cursor: pointer;
+}
+
+#top-menu .title h2 {
+  font-size: 22px;
+  padding: 22px 10px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+}
+
+#top-menu .top-menu-container {
+  margin-left: 13px;
+}
+
+#top-menu .top-menu-container ul {
+  overflow: hidden;
+  margin: 0;
+}
+
+#top-menu .top-menu-container li {
+  float: left;
+}
+
+#top-menu .top-menu-container li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 24px 15px;
   font-size: 18px;
-  line-height: 20px;
-}
-
-.navbar-toggler {
-  margin-top: 8px;
-  margin-right: 15px;
-}
-
-.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-  color: #333;
-  background-color: transparent;
-}
-
-.bd-pageheader, .bs-docs-masthead {
-  position: relative;
-  padding: 30px 0;
-  color: #cdbfe3;
-  text-align: center;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
-  background-color: #6f5499;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#563d7c), to(#6f5499));
-  background-image: -webkit-linear-gradient(top, #563d7c 0, #6f5499 100%);
-  background-image: -o-linear-gradient(top, #563d7c 0, #6f5499 100%);
-  background-image: linear-gradient(to bottom, #563d7c 0, #6f5499 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
-  background-repeat: repeat-x;
-}
-
-.bd-pageheader {
-  margin-bottom: 40px;
-  font-size: 20px;
-}
-
-.bd-pageheader h1 {
-  margin-top: 0;
+  font-weight: 300;
   color: #fff;
 }
 
-.bd-pageheader p {
-  margin-bottom: 0;
-  font-weight: 300;
-  line-height: 1.4;
+#top-menu .top-menu-container li a:hover {
+  color: #cd151e;
 }
 
-.bd-pageheader .btn {
-  margin: 10px 0;
+#top-menu .logo {
+  margin: 3px 25px 11px 0;
 }
 
-.scrollable-menu .nav-link {
-  color: #337ab7;
+#top-menu .logo img {
+  height: 50px;
+}
+
+#top-menu .git-hub {
+  margin: 22px 0;
+}
+
+#top-menu .git-hub iframe {
+  height: 20px;
+  width: 95px;
+}
+
+#mobile-top-menu,
+#mobile-main-menu {
+  display: none;
+  cursor: pointer;
+}
+
+#mobile-main-menu {
+  padding: 24px 15px;
+}
+
+#mobile-top-menu {
+  padding: 24px 30px 24px 10px;
+}
+
+#mobile-main-menu img,
+#mobile-top-menu img {
+  height: 16px;
+}
+
+#top-menu #top-menu-link {
+  -webkit-transition: max-height .5s ease;
+  -moz-transition: max-height .5s ease;
+  -ms-transition: max-height .5s ease;
+  -o-transition: max-height .5s ease;
+  transition: max-height .5s ease;
+  overflow: hidden;
+}
+
+#top-menu #top-menu-link.active {
+  max-height: 500px;
+}
+
+/************* END TOP MENU **************/
+
+/************* START MAIN MENU **************/
+
+#main-menu {
+  width: 270px;
+  height: calc(100% - 66px);
+  float: left;
+  background-color: #20202f;
+  margin-top: 65px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-transition: left .5s ease;
+  -moz-transition: left .5s ease;
+  -ms-transition: left .5s ease;
+  -o-transition: left .5s ease;
+  transition: left .5s ease;
+}
+
+#main-menu.active {
+  left: 0;
+}
+
+#main-menu > div {
+  border-top: 1px solid #191924;
+}
+
+#main-menu .menu-search {
+  position: relative;
+  padding: 10px;
+}
+
+#main-menu .menu-search input {
+  border: 1px solid #babfc4;
   font-size: 14px;
+  color: #a4a4b0;
+  padding: 8px 10px 8px 30px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
-.scrollable-menu .nav-link:hover {
-  color: #23527c;
-  background-color: #eee;
+#main-menu .menu-search:before {
+  content: "";
+  background: url("../images/search-doc.png") no-repeat 50% 50%;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 19px;
+  left: 17px;
 }
 
-@media (min-width: 992px) {
-  .bd-pageheader h1, .bd-pageheader p {
-    margin-right: 380px;
+#main-menu .menu-search input:focus,
+#main-menu .menu-search input:active {
+  outline: 0;
+}
+
+#main-menu .main-menu-container {
+  overflow-y: auto;
+  height: calc(100% - 56px);
+}
+
+#main-menu .section .item h4 {
+  position: relative;
+}
+
+#main-menu .section .item h4 .arrow {
+  display: block;
+  width: 11px;
+  height: 12px;
+  background: url("../images/repa-down.png") no-repeat bottom left;
+  background-size: contain !important;
+  position: absolute;
+  top: calc(50% - 6px);
+  right: 0;
+}
+
+#main-menu .section .item.active h4 .arrow {
+  background: url("../images/repa-up.png") no-repeat top left;
+}
+
+#main-menu .menu-content {
+  padding: 0 15px 0 10px;
+}
+
+#main-menu .section h3 {
+  font-size: 16px;
+  font-weight: 300;
+  color: #a4a4b0;
+  text-transform: uppercase;
+  margin: 15px 0;
+  cursor: pointer;
+
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+#main-menu .section h3:hover,
+#main-menu .section.active h3 {
+  color: #fff;
+}
+
+#main-menu .section .item {
+  margin-bottom: 13px;
+  margin-left: 15px;
+  display: none;
+}
+
+#main-menu .section:first-child .item {
+  display: none !important;
+}
+
+#main-menu .section.active .item {
+  display: block;
+}
+
+#main-menu .section h4 {
+  color: #a4a4b0;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 300;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+#main-menu .section h4:hover {
+  color: #fff;
+}
+
+#main-menu .section .item h4 .arrow {
+  width: 8px;
+  height: 9px;
+  top: calc(50% - 5px);
+}
+
+#main-menu .section ul {
+  display: none;
+}
+
+#main-menu .section .item.active ul {
+  display: block;
+  margin: 5px 0 -5px;
+  padding: 0 0 0 5px;
+  background: url("../images/border-dot.png") repeat-y 5px 0;
+}
+
+#main-menu .section .item li {
+  color: #a4a4b0;
+  font-size: 14px;
+  padding: 0 0 0 12px;
+  margin: 14px 0;
+  font-family: 'Source Code Pro';
+  border-left: 1px solid transparent;
+  list-style: none;
+}
+
+#main-menu .section .item li.active,
+#main-menu .section .item li:hover {
+  color: #cd151e;
+  border-left: 1px solid #cd151e;
+}
+
+#main-menu .section .item li:not(.active):hover {
+  cursor: pointer;
+}
+
+/************* END MAIN MENU **************/
+
+/************* START MAIN **************/
+
+#main {
+  width: calc(100% - 270px);
+  height: 100%;
+  float: right;
+  margin-top: 65px;
+  padding: 30px 30px 0;
+  box-sizing: border-box;
+}
+
+#main .content-header {
+  border-left: 3px solid #babfc4;
+  padding-left: 15px;
+}
+
+#main .content-header h2 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #1d1d2b;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  line-height: 23px;
+}
+
+#main .content-header h2 a {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 4px;
+  line-height: 0;
+}
+
+#main .content-header h2 img {
+  width: 15px;
+  vertical-align: top;
+}
+
+#main .content-header p {
+  font-size: 18px;
+  color: #1d1d2b;
+  font-weight: 300;
+  line-height: 30px;
+}
+
+#main .content-box {
+  margin-top: 20px;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+/************* END MAIN **************/
+
+/************* START CONTENT **************/
+
+#content p,
+#content li,
+#content .accordion h4 {
+  font-weight: 300;
+  font-size: 16px;
+  color: #1d1d2b;
+}
+
+#content p {
+  line-height: 30px;
+}
+
+#content p,
+#content li {
+  line-height: 30px;
+}
+
+#content li a,
+#content p a {
+  color: #0808df;
+  text-decoration: none;
+}
+
+#content .bash-code {
+  color: #55555c !important;
+  padding: 0 5px;
+  border-radius: 2px;
+  background-color: #eef5f9 !important;
+}
+
+#content .code-container {
+  border-radius: 2px;
+  margin: 15px 0;
+  background-color: #eef5f9 !important;
+  padding: 15px;
+}
+
+#content .code-container:empty {
+  display: none;
+}
+
+#content .code-style {
+  font-size: 16px;
+  color: #1d1d2b;
+}
+
+#content .bash-code,
+#content .code-container,
+#content .code-style {
+  font-family: 'Source Code Pro' !important;
+}
+
+#content .section:not(:first-child) {
+  border-top: 1px solid #babfc4;
+  padding: 30px 0 0;
+  margin: 30px 0 0;
+}
+
+#content .section > h3 {
+  color: #1d1d2b;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+#content .list-container ul {
+  padding: 0;
+}
+
+#content .list-container ul li {
+  list-style: none;
+}
+
+#content .list-container ul li:before {
+  content: '•';
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#content .list-container ol {
+  list-style: decimal;
+  margin-left: 18px;
+}
+
+#content .accordion {
+  position: relative;
+}
+
+#content .accordion:not(:first-child) {
+  height: 90vh;
+  border-top: 1px dashed #babfc4;
+  padding: 30px 35px 0;
+  margin-top: 30px;
+}
+
+#content .accordion:first-child {
+  padding: 0 35px;
+  margin-top: 30px;
+}
+
+#content .accordion .accordion-header {
+  color: #55555c;
+  cursor: pointer;
+}
+
+#content .accordion .accordion-header h4 {
+  font-family: 'Source Code Pro';
+  font-size: 16px;
+}
+
+#content .accordion .accordion-body {
+  display: none;
+  margin-top: 10px;
+}
+
+#content .accordion.active .accordion-body {
+  display: block;
+}
+
+#content .accordion.notEmpty:before {
+  content: '';
+  background-image: url('../images/anactive.svg');
+  background-size: 8px 13px;
+  width: 8px;
+  height: 13px;
+  position: absolute;
+  top: 32px;
+  left: 15px;
+}
+
+#content .accordion.notEmpty:first-child:before {
+  top: 2px;
+}
+
+#content .accordion.active:before {
+  content: '';
+  background-image: url('../images/active.svg');
+  background-size: 12px 9px;
+  width: 12px;
+  height: 9px;
+  top: 36px;
+}
+
+#content .accordion.active:after {
+  content: '';
+  width: 1px;
+  height: calc(100% - 55px);
+  position: absolute;
+  bottom: 0;
+  left: 20.5px;
+  background-color: #20202f;
+}
+
+#content .item > h4 {
+  font-size: 22px;
+  margin: 20px 0 15px;
+}
+
+/************* END CONTENT **************/
+
+@media (max-width: 1020px) {
+  #top-menu {
+    border-bottom: 1px solid #191924;
+  }
+
+  #top-menu .logo {
+    display: none;
+  }
+
+  #top-menu .top-menu-container {
+    position: fixed;
+    background-color: #1d1d2b;
+    left: 0;
+    right: 0;
+    top: 67px;
+    margin: 0;
+    max-height: 0;
+  }
+
+  #top-menu .title {
+    max-width: 300px;
+    min-width: 1px;
+  }
+
+  #top-menu .top-menu-container ul {
+    padding: 10px 0;
+  }
+
+  #top-menu .top-menu-container li {
+    float: none;
+  }
+
+  #top-menu .top-menu-container li a {
+    display: block;
+    padding: 10px 10px;
+  }
+
+  #mobile-top-menu,
+  #mobile-main-menu {
+    display: inline-block;
+  }
+
+  #main-menu {
+    left: -100%;
+  }
+
+  #main {
+    width: 100%;
+    float: none;
   }
 }
 
-@media (min-width: 768px) {
-  .bd-pageheader {
-    padding-top: 60px;
-    padding-bottom: 60px;
-    font-size: 24px;
-    text-align: left;
-  }
-
-  .bd-pageheader h1 {
-    font-size: 60px;
-    line-height: 1;
-  }
-
-  .navbar-nav > li > a.nav-link {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-size: 14px;
-  }
-
-  .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-    margin-left: -15px;
-  }
-}
-
-@media (max-width: 767px) {
-  .hidden-xs {
-    display: none !important;
-  }
-
-  .navbar .container {
+@media (max-width: 600px) {
+  #top-menu .title {
     width: 100%;
     max-width: 100%;
+    text-align: center;
   }
-  .navbar .container,
-  .navbar .container .navbar-header {
-    padding: 0;
-    margin: 0;
+
+  #top-menu .title h2 {
+    padding: 15px;
   }
-}
 
-@media (max-width: 400px) {
-  code, kbd {
-    font-size: 60%;
+  #top-menu .menu-right {
+    float: left;
+    width: calc(100% - 50px);
+    text-align: center;
+    padding-right: 50px;
+    box-sizing: border-box;
   }
-}
 
-/**
-    * VH and VW units can cause issues on iOS devices: http://caniuse.com/#feat=viewport-units
-    *
-    * To overcome this, create media queries that target the width, height, and orientation of iOS devices.
-    * It isn't optimal, but there is really no other way to solve the problem. In this example, I am fixing
-    * the height of element '.scrollable-menu' —which is a full width and height cover image.
-    *
-    * iOS Resolution Quick Reference: http://www.iosres.com/
-    */
-
-.scrollable-menu {
-  height: 90vh;
-  width: 100vw;
-  overflow-x: hidden;
-  padding: 0 0 20px;
-}
-
-/**
- * iPad with portrait orientation.
- */
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
-  .scrollable-menu {
-    height: 1024px !important;
+  #top-menu .git-hub {
+    display: inline-block;
+    float: none !important;
+    margin: 15px 0;
   }
-}
 
-/**
- * iPad with landscape orientation.
- */
-@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
-  .scrollable-menu {
-    height: 768px !important;
+  #top-menu #mobile-top-menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 15px 30px 15px 10px;
   }
-}
 
-/**
- * iPhone 5
- * You can also target devices with aspect ratio.
- */
-@media screen and (device-aspect-ratio: 40/71) {
-  .scrollable-menu {
-    height: 500px !important;
+  #mobile-main-menu {
+    padding: 17px 15px;
   }
-}
 
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #888;
-}
+  #top-menu .top-menu-container {
+    top: 105px;
+  }
 
-.navbar-toggle:focus {
-  outline: 0
-}
+  #main-menu {
+    height: calc(100% - 105px);
+  }
 
-.navbar-toggle .icon-bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  border-radius: 1px
-}
-
-.navbar-toggle .icon-bar + .icon-bar {
-  margin-top: 4px
-}
-
-pre {
-  white-space: pre-wrap;       /* CSS 3 */
-  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;      /* Opera 4-6 */
-  white-space: -o-pre-wrap;    /* Opera 7 */
-  word-wrap: break-word;       /* Internet Explorer 5.5+ */
-}
-
-#getting-started {
-  padding: 0;
+  #main {
+    margin-top: 105px;
+  }
 }
