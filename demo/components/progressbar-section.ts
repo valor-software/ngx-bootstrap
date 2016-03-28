@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES, Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../ng2-bootstrap';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../ng2-bootstrap';
 import {ProgressbarDemo} from './progressbar/progressbar-demo';
 import {DemoSection} from './demo-section';
 
@@ -20,7 +20,7 @@ let html = templates[Ng2BootstrapConfig.theme];
 
 @Component({
   selector: 'progressbar-section',
-  directives: [DemoSection, ProgressbarDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, ProgressbarDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <progressbar-demo></progressbar-demo>

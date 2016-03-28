@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {PaginationDemo} from './pagination/pagination-demo';
 import {DemoSection} from './demo-section';
 
@@ -14,7 +13,7 @@ let html = require('!!prismjs?lang=markup!./pagination/pagination-demo.html');
 
 @Component({
   selector: 'pagination-section',
-  directives: [DemoSection, PaginationDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, PaginationDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <pagination-demo></pagination-demo>

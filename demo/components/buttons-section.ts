@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {ButtonsDemo} from './buttons/buttons-demo';
 import {DemoSection} from './demo-section';
 
@@ -14,7 +13,7 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
   selector: 'buttons-section',
-  directives: [DemoSection, ButtonsDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, ButtonsDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <buttons-demo></buttons-demo>

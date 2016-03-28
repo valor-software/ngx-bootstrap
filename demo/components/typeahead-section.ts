@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TypeaheadDemo} from './typeahead/typeahead-demo';
 import {DemoSection} from './demo-section';
 
@@ -14,7 +13,7 @@ let html = require('!!prismjs?lang=markup!./typeahead/typeahead-demo.html');
 
 @Component({
   selector: 'typeahead-section',
-  directives: [DemoSection, TypeaheadDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, TypeaheadDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <typeahead-demo></typeahead-demo>

@@ -1,9 +1,11 @@
 import {Component, Input} from 'angular2/core';
+import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 
 let template = require('./demo-section.template.html');
 
 @Component({
   selector: 'demo-section',
+  directives: [TAB_DIRECTIVES],
   template: template
 })
 

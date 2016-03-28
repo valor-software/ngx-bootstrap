@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {DatepickerDemo} from './datepicker/datepicker-demo';
 import {DemoSection} from './demo-section';
 
@@ -14,7 +13,7 @@ let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
 
 @Component({
   selector: 'datepicker-section',
-  directives: [DemoSection, DatepickerDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, DatepickerDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <datepicker-demo></datepicker-demo>

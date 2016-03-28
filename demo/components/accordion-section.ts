@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {AccordionDemo} from './accordion/accordion-demo';
 import {DemoSection} from './demo-section';
 
@@ -14,11 +13,11 @@ let html = require('!!prismjs?lang=markup!./accordion/accordion-demo.html');
 
 @Component({
   selector: 'accordion-section',
+  directives: [DemoSection, AccordionDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <accordion-demo></accordion-demo>
-    </demo-section>`,
-  directives: [DemoSection, AccordionDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
+    </demo-section>`
 })
 
 export class AccordionSection {

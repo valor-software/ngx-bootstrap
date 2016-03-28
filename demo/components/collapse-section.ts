@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
-import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {CollapseDemo} from './collapse/collapse-demo';
 import {DemoSection} from './demo-section';
 
@@ -14,7 +13,7 @@ let html = require('!!prismjs?lang=markup!./collapse/collapse-demo.html');
 
 @Component({
   selector: 'collapse-section',
-  directives: [DemoSection, CollapseDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DemoSection, CollapseDemo, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <collapse-demo></collapse-demo>
