@@ -4,6 +4,13 @@ import {
 } from 'angular2/core';
 import {IAttribute} from './common';
 
+export class ElemPosition {
+    width: number;
+    height: number;
+    top: number;
+    left: number;
+}
+
 export class PositionService {
   private get window():any {
     return window;
@@ -53,7 +60,7 @@ export class PositionService {
    * Provides read-only equivalent of jQuery's position function:
    * http://api.jquery.com/position/
    */
-  public position(nativeEl:any):{width: number, height: number, top: number, left: number} {
+  public position(nativeEl:any):ElemPosition {
     let elBCR = this.offset(nativeEl);
     let offsetParentBCR = {top: 0, left: 0};
     let offsetParentEl = this.parentOffsetEl(nativeEl);
@@ -76,7 +83,7 @@ export class PositionService {
    * Provides read-only equivalent of jQuery's offset function:
    * http://api.jquery.com/offset/
    */
-  public offset(nativeEl:any):{width: number, height: number, top: number, left: number} {
+  public offset(nativeEl:any):ElemPosition {
     let boundingClientRect = nativeEl.getBoundingClientRect();
     return {
       width: boundingClientRect.width || nativeEl.offsetWidth,
