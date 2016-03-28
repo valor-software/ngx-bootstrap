@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, ChangeDetectionStrategy} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
 import {TOOLTIP_DIRECTIVES} from '../../../ng2-bootstrap';
 
@@ -9,6 +9,7 @@ let template = require('./tooltip-demo.html');
   selector: 'tooltip-demo',
   template: template,
   directives: [TOOLTIP_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [`
     /* Specify styling for tooltip contents */
     .tooltip.customClass .tooltip-inner {
