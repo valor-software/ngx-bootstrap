@@ -1,5 +1,5 @@
 import {Directive, OnInit, Input, Output, EventEmitter, ElementRef, OnDestroy, HostBinding} from 'angular2/core';
-import {positionService} from '../position';
+import {positionService, ElemPosition} from '../position';
 
 export enum AffixStatus {AFFIX, AFFIX_TOP, AFFIX_BOTTOM}
 
@@ -24,17 +24,22 @@ export class Affix implements OnInit, OnDestroy {
     private isAffixedTop:boolean = true;
     @HostBinding('class.affix-bottom')
     private isAffixedBottom:boolean = true;
+    @HostBinding('style.top.px')
+    private top:number = null;
 
     @Output()
     public affixChange:EventEmitter<AffixStatusChange> = new EventEmitter(false);
 
     private status:AffixStatus = null;
     private body:HTMLBodyElement;
-    private debouncedCheckPosition:Function = Affix.debounce(() => this.checkPosition(), 10);
+    private window:Window;
+    private pinnedOffset:number = null;
+    private debouncedCheckPosition:Function = Affix.debounce(() => this.checkPosition(), 5);
     private eventListener:Function = (ev:UIEvent) => this.debouncedCheckPosition();
 
     constructor(private el:ElementRef) {
         this.body = el.nativeElement.ownerDocument.body;
+        this.window = el.nativeElement.ownerDocument.defaultView;
     }
 
     ngOnInit() {
@@ -53,10 +58,15 @@ export class Affix implements OnInit, OnDestroy {
             // Element is not visible
             return;
         }
+        let scrollHeight:number = Math.max(this.window.innerHeight, this.body.scrollHeight);
+        let nativeElemPos:ElemPosition = positionService.offset(this.el.nativeElement);
 
-        var newAffixStatus:AffixStatus = this.getState(this.affixOffsetTop/*, this.affixOffsetBottom*/);
+        let newAffixStatus:AffixStatus = this.getState(scrollHeight, nativeElemPos, this.affixOffsetTop, this.affixOffsetBottom);
 
         if (this.status !== newAffixStatus) {
+
+            this.top = newAffixStatus === AffixStatus.AFFIX_BOTTOM ? this.getPinnedOffset() : null;
+
             this.affixChange.emit(new AffixStatusChange(this.status, newAffixStatus));
             this.status = newAffixStatus;
             this.isAffix = false;
@@ -74,16 +84,58 @@ export class Affix implements OnInit, OnDestroy {
                     break;
             }
         }
+
+        if (newAffixStatus === AffixStatus.AFFIX_BOTTOM) {
+            this.top = scrollHeight - nativeElemPos.height - this.affixOffsetBottom;
+        }
     }
 
-    private getState(offsetTop:number/*, offsetBottom:number*/):AffixStatus {
-        var scrollTop = this.body.scrollTop;
+    private getState(scrollHeight:number, nativeElemPos:ElemPosition, offsetTop:number, offsetBottom:number):AffixStatus {
+        let scrollTop:number = this.body.scrollTop; // current scroll position in pixels from top
+        let targetHeight:number = this.window.innerHeight; // Height of the window / viewport area
 
-        if (scrollTop <= offsetTop) {
-            return AffixStatus.AFFIX_TOP;
-        } else {
+        if (offsetTop !== null && this.status === AffixStatus.AFFIX_TOP) {
+            if (scrollTop < offsetTop) {
+                return AffixStatus.AFFIX_TOP;
+            }
             return AffixStatus.AFFIX;
         }
+
+        if (this.status === AffixStatus.AFFIX_BOTTOM) {
+            if (offsetTop !== null) {
+                if (scrollTop + this.pinnedOffset <= nativeElemPos.top) {
+                    return AffixStatus.AFFIX;
+                }
+                return AffixStatus.AFFIX_BOTTOM;
+            }
+            if (scrollTop + targetHeight <= scrollHeight - offsetBottom) {
+                return AffixStatus.AFFIX;
+            }
+            return AffixStatus.AFFIX_BOTTOM;
+        }
+
+        if (offsetTop != null && scrollTop <= offsetTop) {
+            return AffixStatus.AFFIX_TOP;
+        }
+
+        let initializing:boolean = this.status === null;
+        let lowerEdgePosition:number  = initializing ? scrollTop + targetHeight : nativeElemPos.top + nativeElemPos.height;
+        if (offsetBottom != null && (lowerEdgePosition >= scrollHeight - offsetBottom)) {
+            return AffixStatus.AFFIX_BOTTOM;
+        }
+
+        return AffixStatus.AFFIX;
+    }
+
+    private getPinnedOffset():number {
+        if (this.pinnedOffset !== null) {
+            return this.pinnedOffset;
+        }
+        let scrollTop:number = this.body.scrollTop;
+        let position:ElemPosition = positionService.offset(this.el.nativeElement);
+
+        this.pinnedOffset = position.top - scrollTop;
+        return this.pinnedOffset;
     }
 
     private static debounce(func:Function, wait:number):Function {
