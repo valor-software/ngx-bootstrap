@@ -13,7 +13,7 @@
     <h3>Example</h3>
 
     <div class="item">
-      <demoComponentContent></demoComponentContent>
+      <ng-content></ng-content>
     </div>
   </div>
 
@@ -24,12 +24,12 @@
       <tabset>
         <tab heading="Markup">
           <pre class="language-html">
-            <code class="language-html" [innerHTML]="html" ngNonBindable></code>
+            <code class="language-html" [innerHTML]="html"></code>
           </pre>
         </tab>
         <tab heading="TypeScript">
           <pre class="language-typescript">
-            <code class="language-typescript" [innerHTML]="ts" ngNonBindable></code>
+            <code class="language-typescript" [innerHTML]="ts"></code>
           </pre>
         </tab>
       </tabset>

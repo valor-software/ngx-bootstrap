@@ -25,12 +25,12 @@ export module config {
     name: 'Accordion',
     component: AccordionSection
   }, {
-    path: '/alert',
-    name: 'Alert',
+    path: '/alerts',
+    name: 'Alerts',
     component: AlertSection
   }, {
-    path: '/button',
-    name: 'Button',
+    path: '/buttons',
+    name: 'Buttons',
     component: ButtonsSection
   }, {
     path: '/carousel',
@@ -45,8 +45,8 @@ export module config {
     name: 'Datepicker',
     component: DatepickerSection
   }, {
-    path: '/dropdown',
-    name: 'Dropdown',
+    path: '/dropdowns',
+    name: 'Dropdowns',
     component: DropdownSection
   }, {
     path: '/pagination',
