@@ -39,7 +39,6 @@ let gettingStarted = require('./getting-started.md');
 @Component({
   selector: 'app',
   template: `
-  <demo-header>Loading header</demo-header>
   <main class="bd-pageheader">
     <div class="container">
       <h1>ng2-bootstrap</h1>
@@ -51,6 +50,7 @@ let gettingStarted = require('./getting-started.md');
       </div>
     </div>
   </main>
+  <demo-header>Loading header</demo-header>
 
   <div class="container">
     <h1 id="overview" class="page-header">

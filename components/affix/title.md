@@ -1,0 +1,1 @@
+An example of the affix component can be seen on this page. The navigation bar at the top of the page uses the affix directive to switch between the affix-state ("fixed to top") and affix-top-state ("below purple header").

@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {
+  Affix,
   Collapse,
   DROPDOWN_DIRECTIVES,
   Ng2BootstrapConfig,
@@ -14,7 +15,8 @@ let components = [
 ];
 
 let template = `
-    <header class="navbar navbar-default navbar-fixed-top navbar-inner bg-faded">
+    <div class="navbar-container">
+    <header affix [affixOffsetTop]="311" class="navbar navbar-default navbar-inner bg-faded">
     <div class="container">
       <div class="navbar-header hidden-md-up">
         <button type="button" class="navbar-toggle navbar-toggler pull-right" (click)="isCollapsed = !isCollapsed">
@@ -46,7 +48,8 @@ let template = `
         </ul>
       </nav>
     </div>
-  </header>`;
+  </header>
+  </div>`;
 
 @Component({
   selector: 'demo-header',
@@ -54,7 +57,8 @@ let template = `
   directives: [
     CORE_DIRECTIVES,
     Collapse,
-    DROPDOWN_DIRECTIVES
+    DROPDOWN_DIRECTIVES,
+    Affix
   ]
 })
 export class DemoHeader {

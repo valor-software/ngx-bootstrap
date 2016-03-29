@@ -23,7 +23,6 @@ section {
 }
 
 .bd-pageheader {
-  margin-top: 51px;
 }
 
 .page-header {
@@ -38,6 +37,7 @@ section {
 
 .navbar {
   padding: 0;
+  z-index: 5;
 }
 
 .navbar-nav .nav-item {
@@ -94,7 +94,6 @@ section {
 }
 
 .bd-pageheader {
-  margin-bottom: 40px;
   font-size: 20px;
 }
 
@@ -135,11 +134,16 @@ section {
     padding-bottom: 60px;
     font-size: 24px;
     text-align: left;
+    height: 311px;
   }
 
   .bd-pageheader h1 {
     font-size: 60px;
     line-height: 1;
+  }
+
+  .navbar-container {
+    height: 82px; /* 30px + 52px navbar height */
   }
 
   .navbar-nav > li > a.nav-link {
@@ -150,6 +154,12 @@ section {
 
   .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
     margin-left: -15px;
+  }
+
+  .navbar.affix {
+      position: fixed;
+      top: 0;
+      width: 100%;
   }
 }
 
@@ -166,6 +176,15 @@ section {
   .navbar .container .navbar-header {
     padding: 0;
     margin: 0;
+  }
+  .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+  }
+
+  .bd-pageheader {
+      padding-top: 52px;
   }
 }
 
