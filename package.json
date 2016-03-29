@@ -99,6 +99,6 @@
     "typings": "0.7.9",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
-    "zone.js": "0.6.6"
+    "zone.js": "0.6.8"
   }
 }
