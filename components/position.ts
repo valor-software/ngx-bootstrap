@@ -1,7 +1,3 @@
-import {
-  Injectable,
-  ElementRef
-} from 'angular2/core';
 import {IAttribute} from './common';
 
 export class ElemPosition {
@@ -33,7 +29,6 @@ export class PositionService {
     return nativeEl.style[cssProp];
   }
 
-
   /**
    * Checks if a given element is statically positioned
    * @param nativeEl - raw DOM element
@@ -42,9 +37,9 @@ export class PositionService {
     return (this.getStyle(nativeEl, 'position') || 'static' ) === 'static';
   }
 
-
   /**
-   * returns the closest, non-statically positioned parentOffset of a given element
+   * returns the closest, non-statically positioned parentOffset of a given
+   * element
    * @param nativeEl
    */
   private parentOffsetEl(nativeEl:any) {
@@ -96,7 +91,7 @@ export class PositionService {
   /**
    * Provides coordinates for the targetEl in relation to hostEl
    */
-  public positionElements(hostEl:any, targetEl:any, positionStr:any, appendToBody:any):{top: number, left: number} {
+  public positionElements(hostEl:any, targetEl:any, positionStr:any, appendToBody:any):{top:number, left:number} {
     let positionStrParts = positionStr.split('-');
     let pos0 = positionStrParts[0];
     let pos1 = positionStrParts[1] || 'center';
@@ -105,7 +100,6 @@ export class PositionService {
       this.position(hostEl);
     let targetElWidth = targetEl.offsetWidth;
     let targetElHeight = targetEl.offsetHeight;
-
     let shiftWidth:IAttribute = {
       center: function () {
         return hostElPos.left + hostElPos.width / 2 - targetElWidth / 2;
@@ -130,7 +124,7 @@ export class PositionService {
       }
     };
 
-    let targetElPos:{top: number, left: number};
+    let targetElPos:{top:number, left:number};
     switch (pos0) {
       case 'right':
         targetElPos = {

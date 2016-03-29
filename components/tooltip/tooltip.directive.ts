@@ -1,17 +1,6 @@
-import {
-  Directive,
-  OnInit, Input, HostListener,
-  ElementRef, EventEmitter,
-  DynamicComponentLoader, ComponentRef,
-  Provider,
-  Injectable, forwardRef, ResolvedBinding, Injector
-} from 'angular2/core';
-import {NgClass, NgStyle} from 'angular2/common';
-
+import {Directive, OnInit, Input, HostListener, ElementRef, DynamicComponentLoader, ComponentRef, Provider, Injector} from 'angular2/core';
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainer} from './tooltip-container.component';
-
-import {IAttribute} from '../common';
 
 @Directive({selector: '[tooltip]'})
 export class Tooltip implements OnInit {
@@ -19,6 +8,7 @@ export class Tooltip implements OnInit {
   @Input('tooltipPlacement') public placement:string = 'top';
   @Input('tooltipIsOpen') public isOpen:boolean;
   @Input('tooltipEnable') public enable:boolean;
+  @Input('tooltipAnimation') public animation:boolean = true;
   @Input('tooltipAppendToBody') public appendToBody:boolean;
 
   private visible:boolean = false;
@@ -40,10 +30,11 @@ export class Tooltip implements OnInit {
       return;
     }
     this.visible = true;
-
     let options = new TooltipOptions({
       content: this.content,
-      placement: this.placement
+      placement: this.placement,
+      animation: this.animation,
+      hostEl: this.element
     });
 
     let binding = Injector.resolve([
@@ -53,7 +44,6 @@ export class Tooltip implements OnInit {
     this.tooltip = this.loader
       .loadNextToLocation(TooltipContainer, this.element, binding)
       .then((componentRef:ComponentRef) => {
-        componentRef.instance.position(this.element);
         return componentRef;
       });
   }
