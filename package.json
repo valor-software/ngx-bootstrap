@@ -62,6 +62,7 @@
     "es7-reflect-metadata": "1.6.0",
     "eslint-config-valorsoft": "0.0.9",
     "exports-loader": "0.6.3",
+    "font-awesome": "4.5.0",
     "file-loader": "0.8.5",
     "gh-pages": "0.11.0",
     "gulp": "3.9.1",
