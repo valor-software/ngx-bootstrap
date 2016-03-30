@@ -108,7 +108,7 @@ const config = {
             noEmitHelpers: false
           }
         },
-        exclude: [/\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
+        exclude: [/\.(spec|e2e)\.ts$/]
       }
     ],
     noParse: [

@@ -14,6 +14,7 @@ npm-debug.log
 /demo-build
 /dist
 /coverage
+/ts
 
 # ignore incline compiling
 /demo/**/*.js
