@@ -262,6 +262,11 @@ export class Typeahead implements OnInit {
     }
   }
 
+  @HostListener('blur', ['$event.target'])
+  onblur() {
+    this.hide();
+  }
+
   public changeModel(value:any) {
     let valueStr:string = ((typeof value === 'object' && this.typeaheadOptionField) ? value[this.typeaheadOptionField] : value).toString();
     this.cd.viewToModelUpdate(valueStr);
