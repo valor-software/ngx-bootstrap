@@ -15,7 +15,7 @@ import {Tab} from './tab.directive';
             [class.active]="tabz.active" [class.disabled]="tabz.disabled"
             (click)="tabz.active = true">
             <span [ngTransclude]="tabz.headingRef">{{tabz.heading}}</span>
-            <span [hidden]="!tabz.removable">
+            <span *ngIf="tabz.removable">
               <span (click)="$event.preventDefault(); removeTab(tabz);" class="glyphicon glyphicon-remove-circle"></span>
             </span>
           </a>

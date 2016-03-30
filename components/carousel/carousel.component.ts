@@ -10,20 +10,20 @@ export enum Direction {UNKNOWN, NEXT, PREV}
 
 const NAVIGATION:any = {
   [Ng2BootstrapTheme.BS4]: `
-    <a class="left carousel-control" (click)="prev()" [hidden]="!slides.length">
+    <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
       <span class="icon-prev" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    <a class="right carousel-control" (click)="next()" [hidden]="!slides.length">
+    <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
       <span class="icon-next" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
   `,
   [Ng2BootstrapTheme.BS3]: `
-    <a class="left carousel-control" (click)="prev()" [hidden]="!slides.length">
+    <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
       <span class="glyphicon glyphicon-chevron-left"></span>
     </a>
-    <a class="right carousel-control" (click)="next()" [hidden]="!slides.length">
+    <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
       <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
   `
@@ -36,7 +36,7 @@ const NAVIGATION:any = {
   directives: [NgFor],
   template: `
     <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
-      <ol class="carousel-indicators" [hidden]="slides.length <= 1">
+      <ol class="carousel-indicators" *ngIf="slides.length > 1">
          <li *ngFor="#slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>

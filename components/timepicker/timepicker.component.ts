@@ -59,7 +59,7 @@ function addMinutes(date:any, minutes:number) {
           <td><a (click)="incrementHours()" [ngClass]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
           <td>&nbsp;</td>
           <td><a (click)="incrementMinutes()" [ngClass]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
+          <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"></td>
         </tr>
         <tr>
           <td class="form-group" [ngClass]="{'has-error': invalidHours}">
@@ -69,13 +69,13 @@ function addMinutes(date:any, minutes:number) {
           <td class="form-group" [ngClass]="{'has-error': invalidMinutes}">
             <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
           </td>
-          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
+          <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian()}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>
         <tr class="text-center" [ngClass]="{hidden: !showSpinners}">
           <td><a (click)="decrementHours()" [ngClass]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
           <td>&nbsp;</td>
           <td><a (click)="decrementMinutes()" [ngClass]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-          <td [ngClass]="{hidden: !showMeridian}" [hidden]="!showMeridian"></td>
+          <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"></td>
         </tr>
       </tbody>
     </table>

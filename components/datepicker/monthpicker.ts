@@ -37,7 +37,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
 @Component({
   selector: 'monthpicker, [monthpicker]',
     template: `
-<table [hidden]="datePicker.datepickerMode!=='month'" role="grid">
+<table *ngIf="datePicker.datepickerMode==='month'" role="grid">
   <thead>
     <tr>
       <th>

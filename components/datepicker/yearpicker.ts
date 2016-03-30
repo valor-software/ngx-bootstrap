@@ -40,7 +40,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
 @Component({
   selector: 'yearpicker, [yearpicker]',
     template: `
-<table [hidden]="datePicker.datepickerMode!=='year'" role="grid">
+<table *ngIf="datePicker.datepickerMode==='year'" role="grid">
   <thead>
     <tr>
       <th>

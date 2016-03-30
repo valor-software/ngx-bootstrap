@@ -17,10 +17,10 @@
            [typeaheadOptionsLimit]="7"
            placeholder="Locations loaded with timeout"
            class="form-control">
-    <div [hidden]="typeaheadLoading!==true">
+    <div *ngIf="typeaheadLoading===true">
         <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
     </div>
-    <div [hidden]="typeaheadNoResults!==true" class="" style="">
+    <div *ngIf="typeaheadNoResults===true" class="" style="">
         <i class="glyphicon glyphicon-remove"></i> No Results Found
     </div>
 </div>

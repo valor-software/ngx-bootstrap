@@ -22,7 +22,7 @@
 <progressbar [animate]="false" [value]="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
 
 <small><em>Object (changes type based on value)</em></small>
-<progressbar class="progress-striped active" [value]="dynamic" [type]="type">{{type}} <i [hidden]="!showWarning">!!!
+<progressbar class="progress-striped active" [value]="dynamic" [type]="type">{{type}} <i *ngIf="showWarning">!!!
   Watch out !!!</i></progressbar>
 
 <hr/>
@@ -31,6 +31,6 @@
 </h3>
 <bs-progress>
   <bar *ngFor="#baz of stacked" [value]="baz.value" [type]="baz?.type">
-    <span [hidden]="baz.value < 5">{{baz?.value}}%</span>
+    <span *ngIf="baz.value > 5">{{baz?.value}}%</span>
   </bar>
 </bs-progress>
