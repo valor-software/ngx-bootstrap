@@ -1,12 +1,17 @@
-import {Directive, Input, HostBinding} from 'angular2/core';
+import {Directive, OnInit, ElementRef, Input, HostBinding} from 'angular2/core';
+import {AnimationBuilder} from 'angular2/animate';
 
-// todo: add animate
-// todo: add init and on change
+// TODO: remove ElementRef
+// TODO: add on change
 @Directive({selector: '[collapse]'})
-export class Collapse {
+export class Collapse implements OnInit {
+  private animation: any;
+
   // style
-  @HostBinding('style.height')
-  private height:string;
+  // @HostBinding('style.height')
+  // private height:string;
+  @HostBinding('style.display')
+  private display: string;
   // shown
   @HostBinding('class.in')
   @HostBinding('attr.aria-expanded')
@@ -21,6 +26,9 @@ export class Collapse {
   @HostBinding('class.collapsing')
   private isCollapsing:boolean = false;
 
+  @Input('transition-duration')
+  private transitionDuration: number = 500; // Duration in ms
+
   @Input()
   private set collapse(value:boolean) {
     this.isExpanded = value;
@@ -31,10 +39,15 @@ export class Collapse {
     return this.isExpanded;
   }
 
-  constructor() {
+  constructor(private _ab: AnimationBuilder, private _el: ElementRef) {
   }
 
-  toggle() {
+  ngOnInit(): void {
+    this.animation = this._ab.css();
+    this.animation.setDuration(this.transitionDuration);
+  }
+
+  public toggle() {
     if (this.isExpanded) {
       this.hide();
     } else {
@@ -42,30 +55,63 @@ export class Collapse {
     }
   }
 
-  hide() {
+  public hide() {
     this.isCollapse = false;
     this.isCollapsing = true;
 
     this.isExpanded = false;
     this.isCollapsed = true;
+
     setTimeout(() => {
-      this.height = '0';
-      this.isCollapse = true;
-      this.isCollapsing = false;
+      // this.height = '0';
+      // this.isCollapse = true;
+      // this.isCollapsing = false;
+      this.animation
+        .setFromStyles({
+          height: this._el.nativeElement.scrollHeight + 'px'
+        })
+        .setToStyles({
+          height: '0',
+          overflow: 'hidden'
+        });
+
+      this.animation.start(this._el.nativeElement).onComplete(() => {
+        if (this._el.nativeElement.offsetHeight === 0) {
+          this.display = 'none';
+        }
+
+        this.isCollapse = true;
+        this.isCollapsing = false;
+      });
     }, 4);
   }
 
-  show() {
+  public show() {
     this.isCollapse = false;
     this.isCollapsing = true;
 
     this.isExpanded = true;
     this.isCollapsed = false;
-    setTimeout(() => {
-      this.height = 'auto';
 
-      this.isCollapse = true;
-      this.isCollapsing = false;
+    this.display = '';
+
+    setTimeout(() => {
+      // this.height = 'auto';
+      // this.isCollapse = true;
+      // this.isCollapsing = false;
+      this.animation
+        .setFromStyles({
+          height: this._el.nativeElement.offsetHeight,
+          overflow: 'hidden'
+        })
+        .setToStyles({
+          height: this._el.nativeElement.scrollHeight + 'px'
+        });
+
+      this.animation.start(this._el.nativeElement).onComplete(() => {
+        this.isCollapse = true;
+        this.isCollapsing = false;
+      });
     }, 4);
   }
 }
