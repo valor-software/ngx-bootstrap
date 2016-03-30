@@ -59,7 +59,7 @@ export class BtnAccordionGroup implements OnInit {
     }
   }
   get isExpanded(): boolean { return this._isExpanded; }
-  
+
   @HostBinding('class')
   private mainClass: string;
   @HostBinding('style.padding')
