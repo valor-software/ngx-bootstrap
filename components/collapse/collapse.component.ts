@@ -1,5 +1,7 @@
 import {Directive, OnInit, ElementRef, Input, HostBinding} from 'angular2/core';
-import {AnimationBuilder} from 'angular2/animate';
+// fix: replace with // 'angular2/animate';
+// when https://github.com/angular/angular/issues/5984 will be fixed
+import {AnimationBuilder} from 'angular2/src/animate/animation_builder';
 
 // TODO: remove ElementRef
 // TODO: add on change
