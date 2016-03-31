@@ -84,14 +84,6 @@ Check [cdnjs](https://cdnjs.com/libraries/ng2-bootstrap) to include `ng2-bootstr
 
 *Hint*: you can just clone [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
 
-**Important**: angular2 5 min quickstart tutorial is using angular2 `0-beta.0`, ng2-bootstrap is already updated for `0-beta.3`, to avoid facing wierd issues, please update following dependecies in `package.json`
-```json
-  "dependencies": {
-    "angular2": "2.0.0-beta.3",
-    ...
-  }
-```
-
 If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/ts/latest/quickstart.html), just add one line
 ```html
 <!-- index.html -->
