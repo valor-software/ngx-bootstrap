@@ -1,3 +1,28 @@
+<a name="1.0.8"></a>
+## [1.0.8](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.7...v1.0.8) (2016-03-30)
+
+
+### Bug Fixes
+
+* use synchronous event emitters as a workaround for dehydrated detector issues (s ([9c9f290](https://github.com/valor-software/ng2-bootstrap/commit/9c9f290))
+* **build:** reduce typings pain ([686ef90](https://github.com/valor-software/ng2-bootstrap/commit/686ef90)), closes [#128](https://github.com/valor-software/ng2-bootstrap/issues/128) [#322](https://github.com/valor-software/ng2-bootstrap/issues/322)
+* **carousel:** Fix Typescript 7030 error ([128db51](https://github.com/valor-software/ng2-bootstrap/commit/128db51))
+* **demo:** including es6-shim and es6-promise (fixes #194) ([80b73b4](https://github.com/valor-software/ng2-bootstrap/commit/80b73b4)), closes [#194](https://github.com/valor-software/ng2-bootstrap/issues/194)
+* **dropdowns:** dropdown should close correctly when used in modals (fixes #267, fixes #221) ([a7a02ff](https://github.com/valor-software/ng2-bootstrap/commit/a7a02ff)), closes [#267](https://github.com/valor-software/ng2-bootstrap/issues/267) [#221](https://github.com/valor-software/ng2-bootstrap/issues/221)
+* **ie9,10:** usage of [hidden] replaced with *ngIf (fixes #238) ([260e963](https://github.com/valor-software/ng2-bootstrap/commit/260e963)), closes [#238](https://github.com/valor-software/ng2-bootstrap/issues/238)
+* **tooltip:** fix tooltip after upgrade to angular2 2.0.0-beta.12 ([87a57f5](https://github.com/valor-software/ng2-bootstrap/commit/87a57f5))
+* **tooltip:** updated for beta.12 (fixes #296, closes #332) ([413c2f1](https://github.com/valor-software/ng2-bootstrap/commit/413c2f1)), closes [#296](https://github.com/valor-software/ng2-bootstrap/issues/296) [#332](https://github.com/valor-software/ng2-bootstrap/issues/332)
+* **typeahead:** Fixed potential error if value of typeahead is undefined. Fixes #345 ([aeb2bc1](https://github.com/valor-software/ng2-bootstrap/commit/aeb2bc1)), closes [#345](https://github.com/valor-software/ng2-bootstrap/issues/345)
+* **typeahead:** Hide typeahead popup on blur. Fixes #351 ([9c6f257](https://github.com/valor-software/ng2-bootstrap/commit/9c6f257)), closes [#351](https://github.com/valor-software/ng2-bootstrap/issues/351)
+
+### Features
+
+* **collapse:** added animation, toggle\hide\show methods made public (closes #348, fixes #287) ([2625b29](https://github.com/valor-software/ng2-bootstrap/commit/2625b29)), closes [#348](https://github.com/valor-software/ng2-bootstrap/issues/348) [#287](https://github.com/valor-software/ng2-bootstrap/issues/287)
+* **datepicker:** Added functionality to add a custom class to specific dates. Supports empty cust ([0f6389f](https://github.com/valor-software/ng2-bootstrap/commit/0f6389f))
+* **package:** angular2 version updated to 2.0.0-beta.12 ([15c866f](https://github.com/valor-software/ng2-bootstrap/commit/15c866f))
+
+
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.6...v1.0.7) (2016-03-16)
 
