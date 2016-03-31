@@ -1,3 +1,13 @@
+<a name="1.0.9"></a>
+## [1.0.9](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.8...v1.0.9) (2016-03-31)
+
+
+### Bug Fixes
+
+* **collapse:** animate is not available for system.js ([b28fd5d](https://github.com/valor-software/ng2-bootstrap/commit/b28fd5d))
+
+
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.7...v1.0.8) (2016-03-30)
 
