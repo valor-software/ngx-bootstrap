@@ -1,18 +1,19 @@
-import { ElementRef, AfterViewChecked } from 'angular2/core';
+import { ChangeDetectorRef, ElementRef, AfterViewInit } from 'angular2/core';
 import { TooltipOptions } from './tooltip-options.class';
-export declare class TooltipContainer implements AfterViewChecked {
-    element: ElementRef;
+export declare class TooltipContainer implements AfterViewInit {
+    private element;
+    private cdr;
     private classMap;
-    private positionMap;
     private top;
     private left;
     private display;
     private content;
     private placement;
-    private appendToBody;
+    private popupClass;
+    private animation;
     private isOpen;
+    private appendToBody;
     private hostEl;
-    constructor(element: ElementRef, options: TooltipOptions);
-    ngAfterViewChecked(): void;
-    position(hostEl: ElementRef): void;
+    constructor(element: ElementRef, cdr: ChangeDetectorRef, options: TooltipOptions);
+    ngAfterViewInit(): void;
 }

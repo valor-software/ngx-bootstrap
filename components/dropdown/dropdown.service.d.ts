@@ -5,7 +5,6 @@ export declare const NONINPUT: string;
 import { Dropdown } from './dropdown.directive';
 export declare class DropdownService {
     private openScope;
-    private dropdownScope;
     private closeDropdownBind;
     private keybindFilterBind;
     open(dropdownScope: Dropdown): void;

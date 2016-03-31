@@ -41,6 +41,7 @@ export declare class Typeahead implements OnInit {
     private finalizeAsyncCall();
     ngOnInit(): void;
     onChange(e: KeyboardEvent): void;
+    onblur(): void;
     changeModel(value: any): void;
     show(matches: Array<any>): void;
     hide(): void;

@@ -360,7 +360,7 @@ webpackJsonp([2],[
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(234)("./" + name);
+	                __webpack_require__(244)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -3697,7 +3697,7 @@ webpackJsonp([2],[
 	    return _moment;
 	
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(250)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(205)(module)))
 
 /***/ },
 /* 2 */,
@@ -3713,35 +3713,35 @@ webpackJsonp([2],[
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	var accordion_1 = __webpack_require__(151);
-	var buttons_1 = __webpack_require__(153);
-	var carousel_1 = __webpack_require__(156);
+	var accordion_1 = __webpack_require__(157);
+	var buttons_1 = __webpack_require__(159);
+	var carousel_1 = __webpack_require__(162);
 	var collapse_1 = __webpack_require__(27);
-	var datepicker_1 = __webpack_require__(159);
-	var dropdown_1 = __webpack_require__(161);
-	var pagination_1 = __webpack_require__(164);
-	var progressbar_1 = __webpack_require__(166);
-	var rating_1 = __webpack_require__(168);
-	var tabs_1 = __webpack_require__(169);
-	var timepicker_1 = __webpack_require__(171);
-	var tooltip_1 = __webpack_require__(172);
-	var typeahead_1 = __webpack_require__(175);
-	__export(__webpack_require__(151));
-	__export(__webpack_require__(239));
-	__export(__webpack_require__(153));
-	__export(__webpack_require__(156));
-	__export(__webpack_require__(27));
+	var datepicker_1 = __webpack_require__(165);
+	var dropdown_1 = __webpack_require__(167);
+	var pagination_1 = __webpack_require__(170);
+	var progressbar_1 = __webpack_require__(172);
+	var rating_1 = __webpack_require__(174);
+	var tabs_1 = __webpack_require__(175);
+	var timepicker_1 = __webpack_require__(177);
+	var tooltip_1 = __webpack_require__(178);
+	var typeahead_1 = __webpack_require__(181);
+	__export(__webpack_require__(157));
+	__export(__webpack_require__(250));
 	__export(__webpack_require__(159));
-	__export(__webpack_require__(161));
-	__export(__webpack_require__(164));
-	__export(__webpack_require__(166));
-	__export(__webpack_require__(168));
-	__export(__webpack_require__(169));
-	__export(__webpack_require__(171));
+	__export(__webpack_require__(162));
+	__export(__webpack_require__(27));
+	__export(__webpack_require__(165));
+	__export(__webpack_require__(167));
+	__export(__webpack_require__(170));
 	__export(__webpack_require__(172));
+	__export(__webpack_require__(174));
 	__export(__webpack_require__(175));
+	__export(__webpack_require__(177));
+	__export(__webpack_require__(178));
+	__export(__webpack_require__(181));
 	__export(__webpack_require__(19));
-	__export(__webpack_require__(158));
+	__export(__webpack_require__(164));
 	__export(__webpack_require__(11));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = {
@@ -3765,7 +3765,42 @@ webpackJsonp([2],[
 
 /***/ },
 /* 9 */,
-/* 10 */,
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var lang_1 = __webpack_require__(2);
+	exports.DOM = null;
+	function setRootDomAdapter(adapter) {
+	    if (lang_1.isBlank(exports.DOM)) {
+	        exports.DOM = adapter;
+	    }
+	}
+	exports.setRootDomAdapter = setRootDomAdapter;
+	/* tslint:disable:requireParameterType */
+	/**
+	 * Provides DOM operations in an environment-agnostic way.
+	 */
+	var DomAdapter = (function () {
+	    function DomAdapter() {
+	    }
+	    Object.defineProperty(DomAdapter.prototype, "attrToPropMap", {
+	        /**
+	         * Maps attribute names to their corresponding property names for cases
+	         * where attribute name doesn't match property name.
+	         */
+	        get: function () { return this._attrToPropMap; },
+	        set: function (value) { this._attrToPropMap = value; },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    ;
+	    ;
+	    return DomAdapter;
+	})();
+	exports.DomAdapter = DomAdapter;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9tX2FkYXB0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbmd1bGFyMi9zcmMvcGxhdGZvcm0vZG9tL2RvbV9hZGFwdGVyLnRzIl0sIm5hbWVzIjpbInNldFJvb3REb21BZGFwdGVyIiwiRG9tQWRhcHRlciIsIkRvbUFkYXB0ZXIuY29uc3RydWN0b3IiLCJEb21BZGFwdGVyLmF0dHJUb1Byb3BNYXAiXSwibWFwcGluZ3MiOiJBQUFBLHFCQUE0QiwwQkFBMEIsQ0FBQyxDQUFBO0FBRTVDLFdBQUcsR0FBZSxJQUFJLENBQUM7QUFFbEMsMkJBQWtDLE9BQW1CO0lBQ25EQSxFQUFFQSxDQUFDQSxDQUFDQSxjQUFPQSxDQUFDQSxXQUFHQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQTtRQUNqQkEsV0FBR0EsR0FBR0EsT0FBT0EsQ0FBQ0E7SUFDaEJBLENBQUNBO0FBQ0hBLENBQUNBO0FBSmUseUJBQWlCLG9CQUloQyxDQUFBO0FBRUQseUNBQXlDO0FBQ3pDOztHQUVHO0FBQ0g7SUFBQUM7SUFnSUFDLENBQUNBO0lBOUdDRCxzQkFBSUEscUNBQWFBO1FBSmpCQTs7O1dBR0dBO2FBQ0hBLGNBQStDRSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQSxjQUFjQSxDQUFDQSxDQUFDQSxDQUFDQTthQUM1RUYsVUFBa0JBLEtBQThCQSxJQUFJRSxJQUFJQSxDQUFDQSxjQUFjQSxHQUFHQSxLQUFLQSxDQUFDQSxDQUFDQSxDQUFDQTs7O09BRE5GOzs7SUE4RzlFQSxpQkFBQ0E7QUFBREEsQ0FBQ0EsQUFoSUQsSUFnSUM7QUFoSXFCLGtCQUFVLGFBZ0kvQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtpc0JsYW5rLCBUeXBlfSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL2xhbmcnO1xuXG5leHBvcnQgdmFyIERPTTogRG9tQWRhcHRlciA9IG51bGw7XG5cbmV4cG9ydCBmdW5jdGlvbiBzZXRSb290RG9tQWRhcHRlcihhZGFwdGVyOiBEb21BZGFwdGVyKSB7XG4gIGlmIChpc0JsYW5rKERPTSkpIHtcbiAgICBET00gPSBhZGFwdGVyO1xuICB9XG59XG5cbi8qIHRzbGludDpkaXNhYmxlOnJlcXVpcmVQYXJhbWV0ZXJUeXBlICovXG4vKipcbiAqIFByb3ZpZGVzIERPTSBvcGVyYXRpb25zIGluIGFuIGVudmlyb25tZW50LWFnbm9zdGljIHdheS5cbiAqL1xuZXhwb3J0IGFic3RyYWN0IGNsYXNzIERvbUFkYXB0ZXIge1xuICBhYnN0cmFjdCBoYXNQcm9wZXJ0eShlbGVtZW50LCBuYW1lOiBzdHJpbmcpOiBib29sZWFuO1xuICBhYnN0cmFjdCBzZXRQcm9wZXJ0eShlbDogRWxlbWVudCwgbmFtZTogc3RyaW5nLCB2YWx1ZTogYW55KTtcbiAgYWJzdHJhY3QgZ2V0UHJvcGVydHkoZWw6IEVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IGFueTtcbiAgYWJzdHJhY3QgaW52b2tlKGVsOiBFbGVtZW50LCBtZXRob2ROYW1lOiBzdHJpbmcsIGFyZ3M6IGFueVtdKTogYW55O1xuXG4gIGFic3RyYWN0IGxvZ0Vycm9yKGVycm9yKTtcbiAgYWJzdHJhY3QgbG9nKGVycm9yKTtcbiAgYWJzdHJhY3QgbG9nR3JvdXAoZXJyb3IpO1xuICBhYnN0cmFjdCBsb2dHcm91cEVuZCgpO1xuXG4gIC8qKiBAZGVwcmVjYXRlZCAqL1xuICBhYnN0cmFjdCBnZXRYSFIoKTogVHlwZTtcblxuICAvKipcbiAgICogTWFwcyBhdHRyaWJ1dGUgbmFtZXMgdG8gdGhlaXIgY29ycmVzcG9uZGluZyBwcm9wZXJ0eSBuYW1lcyBmb3IgY2FzZXNcbiAgICogd2hlcmUgYXR0cmlidXRlIG5hbWUgZG9lc24ndCBtYXRjaCBwcm9wZXJ0eSBuYW1lLlxuICAgKi9cbiAgZ2V0IGF0dHJUb1Byb3BNYXAoKToge1trZXk6IHN0cmluZ106IHN0cmluZ30geyByZXR1cm4gdGhpcy5fYXR0clRvUHJvcE1hcDsgfTtcbiAgc2V0IGF0dHJUb1Byb3BNYXAodmFsdWU6IHtba2V5OiBzdHJpbmddOiBzdHJpbmd9KSB7IHRoaXMuX2F0dHJUb1Byb3BNYXAgPSB2YWx1ZTsgfTtcbiAgLyoqIEBpbnRlcm5hbCAqL1xuICBfYXR0clRvUHJvcE1hcDoge1trZXk6IHN0cmluZ106IHN0cmluZ307XG5cbiAgYWJzdHJhY3QgcGFyc2UodGVtcGxhdGVIdG1sOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBxdWVyeShzZWxlY3Rvcjogc3RyaW5nKTogYW55O1xuICBhYnN0cmFjdCBxdWVyeVNlbGVjdG9yKGVsLCBzZWxlY3Rvcjogc3RyaW5nKTogSFRNTEVsZW1lbnQ7XG4gIGFic3RyYWN0IHF1ZXJ5U2VsZWN0b3JBbGwoZWwsIHNlbGVjdG9yOiBzdHJpbmcpOiBhbnlbXTtcbiAgYWJzdHJhY3Qgb24oZWwsIGV2dCwgbGlzdGVuZXIpO1xuICBhYnN0cmFjdCBvbkFuZENhbmNlbChlbCwgZXZ0LCBsaXN0ZW5lcik6IEZ1bmN0aW9uO1xuICBhYnN0cmFjdCBkaXNwYXRjaEV2ZW50KGVsLCBldnQpO1xuICBhYnN0cmFjdCBjcmVhdGVNb3VzZUV2ZW50KGV2ZW50VHlwZSk6IGFueTtcbiAgYWJzdHJhY3QgY3JlYXRlRXZlbnQoZXZlbnRUeXBlOiBzdHJpbmcpOiBhbnk7XG4gIGFic3RyYWN0IHByZXZlbnREZWZhdWx0KGV2dCk7XG4gIGFic3RyYWN0IGlzUHJldmVudGVkKGV2dCk6IGJvb2xlYW47XG4gIGFic3RyYWN0IGdldElubmVySFRNTChlbCk6IHN0cmluZztcbiAgYWJzdHJhY3QgZ2V0T3V0ZXJIVE1MKGVsKTogc3RyaW5nO1xuICBhYnN0cmFjdCBub2RlTmFtZShub2RlKTogc3RyaW5nO1xuICBhYnN0cmFjdCBub2RlVmFsdWUobm9kZSk6IHN0cmluZztcbiAgYWJzdHJhY3QgdHlwZShub2RlKTogc3RyaW5nO1xuICBhYnN0cmFjdCBjb250ZW50KG5vZGUpOiBhbnk7XG4gIGFic3RyYWN0IGZpcnN0Q2hpbGQoZWwpOiBOb2RlO1xuICBhYnN0cmFjdCBuZXh0U2libGluZyhlbCk6IE5vZGU7XG4gIGFic3RyYWN0IHBhcmVudEVsZW1lbnQoZWwpOiBOb2RlO1xuICBhYnN0cmFjdCBjaGlsZE5vZGVzKGVsKTogTm9kZVtdO1xuICBhYnN0cmFjdCBjaGlsZE5vZGVzQXNMaXN0KGVsKTogTm9kZVtdO1xuICBhYnN0cmFjdCBjbGVhck5vZGVzKGVsKTtcbiAgYWJzdHJhY3QgYXBwZW5kQ2hpbGQoZWwsIG5vZGUpO1xuICBhYnN0cmFjdCByZW1vdmVDaGlsZChlbCwgbm9kZSk7XG4gIGFic3RyYWN0IHJlcGxhY2VDaGlsZChlbCwgbmV3Tm9kZSwgb2xkTm9kZSk7XG4gIGFic3RyYWN0IHJlbW92ZShlbCk6IE5vZGU7XG4gIGFic3RyYWN0IGluc2VydEJlZm9yZShlbCwgbm9kZSk7XG4gIGFic3RyYWN0IGluc2VydEFsbEJlZm9yZShlbCwgbm9kZXMpO1xuICBhYnN0cmFjdCBpbnNlcnRBZnRlcihlbCwgbm9kZSk7XG4gIGFic3RyYWN0IHNldElubmVySFRNTChlbCwgdmFsdWUpO1xuICBhYnN0cmFjdCBnZXRUZXh0KGVsKTogc3RyaW5nO1xuICBhYnN0cmFjdCBzZXRUZXh0KGVsLCB2YWx1ZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgZ2V0VmFsdWUoZWwpOiBzdHJpbmc7XG4gIGFic3RyYWN0IHNldFZhbHVlKGVsLCB2YWx1ZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgZ2V0Q2hlY2tlZChlbCk6IGJvb2xlYW47XG4gIGFic3RyYWN0IHNldENoZWNrZWQoZWwsIHZhbHVlOiBib29sZWFuKTtcbiAgYWJzdHJhY3QgY3JlYXRlQ29tbWVudCh0ZXh0OiBzdHJpbmcpOiBhbnk7XG4gIGFic3RyYWN0IGNyZWF0ZVRlbXBsYXRlKGh0bWwpOiBIVE1MRWxlbWVudDtcbiAgYWJzdHJhY3QgY3JlYXRlRWxlbWVudCh0YWdOYW1lLCBkb2M/KTogSFRNTEVsZW1lbnQ7XG4gIGFic3RyYWN0IGNyZWF0ZUVsZW1lbnROUyhuczogc3RyaW5nLCB0YWdOYW1lOiBzdHJpbmcsIGRvYz8pOiBFbGVtZW50O1xuICBhYnN0cmFjdCBjcmVhdGVUZXh0Tm9kZSh0ZXh0OiBzdHJpbmcsIGRvYz8pOiBUZXh0O1xuICBhYnN0cmFjdCBjcmVhdGVTY3JpcHRUYWcoYXR0ck5hbWU6IHN0cmluZywgYXR0clZhbHVlOiBzdHJpbmcsIGRvYz8pOiBIVE1MRWxlbWVudDtcbiAgYWJzdHJhY3QgY3JlYXRlU3R5bGVFbGVtZW50KGNzczogc3RyaW5nLCBkb2M/KTogSFRNTFN0eWxlRWxlbWVudDtcbiAgYWJzdHJhY3QgY3JlYXRlU2hhZG93Um9vdChlbCk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0U2hhZG93Um9vdChlbCk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0SG9zdChlbCk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0RGlzdHJpYnV0ZWROb2RlcyhlbCk6IE5vZGVbXTtcbiAgYWJzdHJhY3QgY2xvbmUgLyo8VCBleHRlbmRzIE5vZGU+Ki8gKG5vZGU6IE5vZGUgLypUKi8pOiBOb2RlIC8qVCovO1xuICBhYnN0cmFjdCBnZXRFbGVtZW50c0J5Q2xhc3NOYW1lKGVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IEhUTUxFbGVtZW50W107XG4gIGFic3RyYWN0IGdldEVsZW1lbnRzQnlUYWdOYW1lKGVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IEhUTUxFbGVtZW50W107XG4gIGFic3RyYWN0IGNsYXNzTGlzdChlbGVtZW50KTogYW55W107XG4gIGFic3RyYWN0IGFkZENsYXNzKGVsZW1lbnQsIGNsYXNzTmFtZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgcmVtb3ZlQ2xhc3MoZWxlbWVudCwgY2xhc3NOYW1lOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBoYXNDbGFzcyhlbGVtZW50LCBjbGFzc05hbWU6IHN0cmluZyk6IGJvb2xlYW47XG4gIGFic3RyYWN0IHNldFN0eWxlKGVsZW1lbnQsIHN0eWxlTmFtZTogc3RyaW5nLCBzdHlsZVZhbHVlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCByZW1vdmVTdHlsZShlbGVtZW50LCBzdHlsZU5hbWU6IHN0cmluZyk7XG4gIGFic3RyYWN0IGdldFN0eWxlKGVsZW1lbnQsIHN0eWxlTmFtZTogc3RyaW5nKTogc3RyaW5nO1xuICBhYnN0cmFjdCBoYXNTdHlsZShlbGVtZW50LCBzdHlsZU5hbWU6IHN0cmluZywgc3R5bGVWYWx1ZT86IHN0cmluZyk6IGJvb2xlYW47XG4gIGFic3RyYWN0IHRhZ05hbWUoZWxlbWVudCk6IHN0cmluZztcbiAgYWJzdHJhY3QgYXR0cmlidXRlTWFwKGVsZW1lbnQpOiBNYXA8c3RyaW5nLCBzdHJpbmc+O1xuICBhYnN0cmFjdCBoYXNBdHRyaWJ1dGUoZWxlbWVudCwgYXR0cmlidXRlOiBzdHJpbmcpOiBib29sZWFuO1xuICBhYnN0cmFjdCBoYXNBdHRyaWJ1dGVOUyhlbGVtZW50LCBuczogc3RyaW5nLCBhdHRyaWJ1dGU6IHN0cmluZyk6IGJvb2xlYW47XG4gIGFic3RyYWN0IGdldEF0dHJpYnV0ZShlbGVtZW50LCBhdHRyaWJ1dGU6IHN0cmluZyk6IHN0cmluZztcbiAgYWJzdHJhY3QgZ2V0QXR0cmlidXRlTlMoZWxlbWVudCwgbnM6IHN0cmluZywgYXR0cmlidXRlOiBzdHJpbmcpOiBzdHJpbmc7XG4gIGFic3RyYWN0IHNldEF0dHJpYnV0ZShlbGVtZW50LCBuYW1lOiBzdHJpbmcsIHZhbHVlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBzZXRBdHRyaWJ1dGVOUyhlbGVtZW50LCBuczogc3RyaW5nLCBuYW1lOiBzdHJpbmcsIHZhbHVlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCByZW1vdmVBdHRyaWJ1dGUoZWxlbWVudCwgYXR0cmlidXRlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCByZW1vdmVBdHRyaWJ1dGVOUyhlbGVtZW50LCBuczogc3RyaW5nLCBhdHRyaWJ1dGU6IHN0cmluZyk7XG4gIGFic3RyYWN0IHRlbXBsYXRlQXdhcmVSb290KGVsKTtcbiAgYWJzdHJhY3QgY3JlYXRlSHRtbERvY3VtZW50KCk6IEhUTUxEb2N1bWVudDtcbiAgYWJzdHJhY3QgZGVmYXVsdERvYygpOiBIVE1MRG9jdW1lbnQ7XG4gIGFic3RyYWN0IGdldEJvdW5kaW5nQ2xpZW50UmVjdChlbCk7XG4gIGFic3RyYWN0IGdldFRpdGxlKCk6IHN0cmluZztcbiAgYWJzdHJhY3Qgc2V0VGl0bGUobmV3VGl0bGU6IHN0cmluZyk7XG4gIGFic3RyYWN0IGVsZW1lbnRNYXRjaGVzKG4sIHNlbGVjdG9yOiBzdHJpbmcpOiBib29sZWFuO1xuICBhYnN0cmFjdCBpc1RlbXBsYXRlRWxlbWVudChlbDogYW55KTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNUZXh0Tm9kZShub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNDb21tZW50Tm9kZShub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNFbGVtZW50Tm9kZShub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaGFzU2hhZG93Um9vdChub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNTaGFkb3dSb290KG5vZGUpOiBib29sZWFuO1xuICBhYnN0cmFjdCBpbXBvcnRJbnRvRG9jIC8qPFQgZXh0ZW5kcyBOb2RlPiovIChub2RlOiBOb2RlIC8qVCovKTogTm9kZSAvKlQqLztcbiAgYWJzdHJhY3QgYWRvcHROb2RlIC8qPFQgZXh0ZW5kcyBOb2RlPiovIChub2RlOiBOb2RlIC8qVCovKTogTm9kZSAvKlQqLztcbiAgYWJzdHJhY3QgZ2V0SHJlZihlbGVtZW50KTogc3RyaW5nO1xuICBhYnN0cmFjdCBnZXRFdmVudEtleShldmVudCk6IHN0cmluZztcbiAgYWJzdHJhY3QgcmVzb2x2ZUFuZFNldEhyZWYoZWxlbWVudCwgYmFzZVVybDogc3RyaW5nLCBocmVmOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBzdXBwb3J0c0RPTUV2ZW50cygpOiBib29sZWFuO1xuICBhYnN0cmFjdCBzdXBwb3J0c05hdGl2ZVNoYWRvd0RPTSgpOiBib29sZWFuO1xuICBhYnN0cmFjdCBnZXRHbG9iYWxFdmVudFRhcmdldCh0YXJnZXQ6IHN0cmluZyk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0SGlzdG9yeSgpOiBIaXN0b3J5O1xuICBhYnN0cmFjdCBnZXRMb2NhdGlvbigpOiBMb2NhdGlvbjtcbiAgYWJzdHJhY3QgZ2V0QmFzZUhyZWYoKTogc3RyaW5nO1xuICBhYnN0cmFjdCByZXNldEJhc2VFbGVtZW50KCk6IHZvaWQ7XG4gIGFic3RyYWN0IGdldFVzZXJBZ2VudCgpOiBzdHJpbmc7XG4gIGFic3RyYWN0IHNldERhdGEoZWxlbWVudCwgbmFtZTogc3RyaW5nLCB2YWx1ZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgZ2V0Q29tcHV0ZWRTdHlsZShlbGVtZW50KTogYW55O1xuICBhYnN0cmFjdCBnZXREYXRhKGVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IHN0cmluZztcbiAgYWJzdHJhY3Qgc2V0R2xvYmFsVmFyKG5hbWU6IHN0cmluZywgdmFsdWU6IGFueSk7XG4gIGFic3RyYWN0IHJlcXVlc3RBbmltYXRpb25GcmFtZShjYWxsYmFjayk6IG51bWJlcjtcbiAgYWJzdHJhY3QgY2FuY2VsQW5pbWF0aW9uRnJhbWUoaWQpO1xuICBhYnN0cmFjdCBwZXJmb3JtYW5jZU5vdygpOiBudW1iZXI7XG4gIGFic3RyYWN0IGdldEFuaW1hdGlvblByZWZpeCgpOiBzdHJpbmc7XG4gIGFic3RyYWN0IGdldFRyYW5zaXRpb25FbmQoKTogc3RyaW5nO1xuICBhYnN0cmFjdCBzdXBwb3J0c0FuaW1hdGlvbigpOiBib29sZWFuO1xufVxuIl19
+
+/***/ },
 /* 11 */
 /***/ function(module, exports) {
 
@@ -3818,7 +3853,7 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var date_formatter_1 = __webpack_require__(242);
+	var date_formatter_1 = __webpack_require__(253);
 	var FORMAT_DAY = 'DD';
 	var FORMAT_MONTH = 'MMMM';
 	var FORMAT_YEAR = 'YYYY';
@@ -3855,7 +3890,7 @@ webpackJsonp([2],[
 	        this.stepYear = {};
 	        this.modes = ['day', 'month', 'year'];
 	        this.dateFormatter = new date_formatter_1.DateFormatter();
-	        this.update = new core_1.EventEmitter();
+	        this.update = new core_1.EventEmitter(false);
 	    }
 	    Object.defineProperty(DatePickerInner.prototype, "initDate", {
 	        get: function () {
@@ -3922,7 +3957,7 @@ webpackJsonp([2],[
 	        if (this.datepickerMode === 'month' && this.compareHandlerMonth) {
 	            return this.compareHandlerMonth(date1, date2);
 	        }
-	        if (this.datepickerMode === 'year' && this.compareHandlerMonth) {
+	        if (this.datepickerMode === 'year' && this.compareHandlerYear) {
 	            return this.compareHandlerYear(date1, date2);
 	        }
 	        return null;
@@ -3962,12 +3997,25 @@ webpackJsonp([2],[
 	    DatePickerInner.prototype.createDateObject = function (date, format) {
 	        var dateObject = {};
 	        dateObject.date = date;
+	        dateObject.date.setHours(0, 0, 0, 0);
 	        dateObject.label = this.dateFilter(date, format);
 	        dateObject.selected = this.compare(date, this.selectedDate) === 0;
 	        dateObject.disabled = this.isDisabled(date);
 	        dateObject.current = this.compare(date, new Date()) === 0;
+	        dateObject.customClass = this.getCustomClassForDate(dateObject.date);
 	        return dateObject;
 	    };
+	    DatePickerInner.prototype.getCustomClassForDate = function (date) {
+	        var _this = this;
+	        if (!this.customClass) {
+	            return '';
+	        }
+	        var customClassObject = this.customClass.find(function (customClass) {
+	            return customClass.date.valueOf() === date.valueOf() && customClass.mode === _this.datepickerMode;
+	        }, this);
+	        return customClassObject === undefined ? '' : customClassObject.clazz;
+	    };
+	    ;
 	    DatePickerInner.prototype.isDisabled = function (date) {
 	        return ((this.minDate && this.compare(date, this.minDate) < 0) ||
 	            (this.maxDate && this.compare(date, this.maxDate) > 0));
@@ -4092,7 +4140,7 @@ webpackJsonp([2],[
 	    ], DatePickerInner.prototype, "shortcutPropagation", void 0);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Array)
 	    ], DatePickerInner.prototype, "customClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
@@ -4114,7 +4162,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'datepicker-inner',
 	            events: ['update'],
-	            template: "\n    <div [hidden]=\"!datepickerMode\" class=\"well well-sm bg-faded p-a card\" role=\"application\" ><!--&lt;!&ndash;ng-keydown=\"keydown($event)\"&ndash;&gt;-->\n      <ng-content></ng-content>\n    </div>\n  ",
+	            template: "\n    <div *ngIf=\"datepickerMode\" class=\"well well-sm bg-faded p-a card\" role=\"application\" ><!--&lt;!&ndash;ng-keydown=\"keydown($event)\"&ndash;&gt;-->\n      <ng-content></ng-content>\n    </div>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass, common_1.NgModel]
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -4142,12 +4190,12 @@ webpackJsonp([2],[
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
 	var core_1 = __webpack_require__(3);
-	var dropdown_service_1 = __webpack_require__(246);
+	var dropdown_service_1 = __webpack_require__(257);
 	var Dropdown = (function () {
 	    function Dropdown(el, dropdownMenuList) {
 	        this.el = el;
-	        this.onToggle = new core_1.EventEmitter();
-	        this.isOpenChange = new core_1.EventEmitter();
+	        this.onToggle = new core_1.EventEmitter(false);
+	        this.isOpenChange = new core_1.EventEmitter(false);
 	        this.addClass = true;
 	    }
 	    Object.defineProperty(Dropdown.prototype, "isOpen", {
@@ -4574,8 +4622,8 @@ webpackJsonp([2],[
 	})(exports.Direction || (exports.Direction = {}));
 	var Direction = exports.Direction;
 	var NAVIGATION = (_a = {},
-	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n    <a class=\"left carousel-control\" (click)=\"prev()\" [hidden]=\"!slides.length\">\n      <span class=\"icon-prev\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control\" (click)=\"next()\" [hidden]=\"!slides.length\">\n      <span class=\"icon-next\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  ",
-	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n    <a class=\"left carousel-control\" (click)=\"prev()\" [hidden]=\"!slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-left\"></span>\n    </a>\n    <a class=\"right carousel-control\" (click)=\"next()\" [hidden]=\"!slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-right\"></span>\n    </a>\n  ",
+	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n    <a class=\"left carousel-control\" (click)=\"prev()\" *ngIf=\"slides.length\">\n      <span class=\"icon-prev\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"right carousel-control\" (click)=\"next()\" *ngIf=\"slides.length\">\n      <span class=\"icon-next\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  ",
+	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n    <a class=\"left carousel-control\" (click)=\"prev()\" *ngIf=\"slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-left\"></span>\n    </a>\n    <a class=\"right carousel-control\" (click)=\"next()\" *ngIf=\"slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-right\"></span>\n    </a>\n  ",
 	    _a
 	);
 	var Carousel = (function () {
@@ -4627,6 +4675,7 @@ webpackJsonp([2],[
 	                return this.slides[i];
 	            }
 	        }
+	        return null;
 	    };
 	    Carousel.prototype.getCurrentIndex = function () {
 	        return !this.currentSlide ? 0 : this.currentSlide.index;
@@ -4724,7 +4773,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'carousel',
 	            directives: [common_1.NgFor],
-	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" [hidden]=\"slides.length <= 1\">\n         <li *ngFor=\"#slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
+	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" *ngIf=\"slides.length > 1\">\n         <li *ngFor=\"#slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], Carousel);
@@ -4739,7 +4788,7 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var collapse_component_1 = __webpack_require__(241);
+	var collapse_component_1 = __webpack_require__(252);
 	exports.Collapse = collapse_component_1.Collapse;
 
 
@@ -4763,9 +4812,9 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var datepicker_inner_1 = __webpack_require__(17);
-	var daypicker_1 = __webpack_require__(243);
-	var monthpicker_1 = __webpack_require__(244);
-	var yearpicker_1 = __webpack_require__(245);
+	var daypicker_1 = __webpack_require__(254);
+	var monthpicker_1 = __webpack_require__(255);
+	var yearpicker_1 = __webpack_require__(256);
 	var DatePicker = (function () {
 	    function DatePicker(cd) {
 	        this.cd = cd;
@@ -4876,6 +4925,10 @@ webpackJsonp([2],[
 	    ], DatePicker.prototype, "shortcutPropagation", void 0);
 	    __decorate([
 	        core_1.Input(), 
+	        __metadata('design:type', Array)
+	    ], DatePicker.prototype, "customClass", void 0);
+	    __decorate([
+	        core_1.Input(), 
 	        __metadata('design:type', Date)
 	    ], DatePicker.prototype, "activeDate", null);
 	    __decorate([
@@ -4932,8 +4985,8 @@ webpackJsonp([2],[
 	        this.cd = cd;
 	        this.renderer = renderer;
 	        this.elementRef = elementRef;
-	        this.numPages = new core_1.EventEmitter();
-	        this.pageChanged = new core_1.EventEmitter();
+	        this.numPages = new core_1.EventEmitter(false);
+	        this.pageChanged = new core_1.EventEmitter(false);
 	        this.inited = false;
 	        this.onChange = function (_) {
 	        };
@@ -5247,9 +5300,9 @@ webpackJsonp([2],[
 	var Tab = (function () {
 	    function Tab(tabset) {
 	        this.tabset = tabset;
-	        this.select = new core_1.EventEmitter();
-	        this.deselect = new core_1.EventEmitter();
-	        this.removed = new core_1.EventEmitter();
+	        this.select = new core_1.EventEmitter(false);
+	        this.deselect = new core_1.EventEmitter(false);
+	        this.removed = new core_1.EventEmitter(false);
 	        this.addClass = true;
 	        this.tabset.addTab(this);
 	    }
@@ -5341,7 +5394,7 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var common_2 = __webpack_require__(158);
+	var common_2 = __webpack_require__(164);
 	var Tabset = (function () {
 	    function Tabset() {
 	        this.tabs = [];
@@ -5460,7 +5513,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'tabset',
 	            directives: [common_1.NgClass, common_2.NgTransclude],
-	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"#tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span [hidden]=\"!tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
+	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"#tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span *ngIf=\"tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], Tabset);
@@ -5489,28 +5542,29 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(19);
-	var tooltip_options_class_1 = __webpack_require__(173);
+	var tooltip_options_class_1 = __webpack_require__(179);
 	var TooltipContainer = (function () {
-	    function TooltipContainer(element, options) {
+	    function TooltipContainer(element, cdr, options) {
 	        this.element = element;
-	        Object.assign(this, options);
-	        this.classMap = { 'in': false };
-	        this.classMap[options.placement] = true;
-	    }
-	    TooltipContainer.prototype.ngAfterViewChecked = function () {
-	        if (this.hostEl !== null) {
-	            var p = position_1.positionService
-	                .positionElements(this.hostEl.nativeElement, this.element.nativeElement.children[0], this.placement, this.appendToBody);
-	            this.top = p.top + 'px';
-	            this.left = p.left + 'px';
-	            this.classMap['in'] = true;
-	        }
-	    };
-	    TooltipContainer.prototype.position = function (hostEl) {
-	        this.display = 'block';
+	        this.cdr = cdr;
 	        this.top = '-1000px';
 	        this.left = '-1000px';
-	        this.hostEl = hostEl;
+	        this.display = 'block';
+	        Object.assign(this, options);
+	        this.classMap = { 'in': false, 'fade': false };
+	        this.classMap[options.placement] = true;
+	    }
+	    TooltipContainer.prototype.ngAfterViewInit = function () {
+	        var _this = this;
+	        var p = position_1.positionService
+	            .positionElements(this.hostEl.nativeElement, this.element.nativeElement.children[0], this.placement, this.appendToBody);
+	        this.top = p.top + 'px';
+	        this.left = p.left + 'px';
+	        this.classMap.in = true;
+	        if (this.animation) {
+	            this.classMap.fade = true;
+	        }
+	        setTimeout(function () { return _this.cdr.markForCheck(); });
 	    };
 	    TooltipContainer = __decorate([
 	        core_1.Component({
@@ -5518,8 +5572,8 @@ webpackJsonp([2],[
 	            directives: [common_1.NgClass, common_1.NgStyle],
 	            template: "<div class=\"tooltip\" role=\"tooltip\"\n     [ngStyle]=\"{top: top, left: left, display: display}\"\n     [ngClass]=\"classMap\">\n      <div class=\"tooltip-arrow\"></div>\n      <div class=\"tooltip-inner\">\n        {{content}}\n      </div>\n    </div>"
 	        }),
-	        __param(1, core_1.Inject(tooltip_options_class_1.TooltipOptions)), 
-	        __metadata('design:paramtypes', [core_1.ElementRef, tooltip_options_class_1.TooltipOptions])
+	        __param(2, core_1.Inject(tooltip_options_class_1.TooltipOptions)), 
+	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.ChangeDetectorRef, tooltip_options_class_1.TooltipOptions])
 	    ], TooltipContainer);
 	    return TooltipContainer;
 	}());
@@ -5542,7 +5596,7 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var typeahead_utils_1 = __webpack_require__(176);
+	var typeahead_utils_1 = __webpack_require__(182);
 	var typeahead_options_class_1 = __webpack_require__(35);
 	var position_1 = __webpack_require__(19);
 	var ng2_bootstrap_config_1 = __webpack_require__(11);
@@ -5670,7 +5724,85 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 36 */,
+/* 36 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var di_1 = __webpack_require__(7);
+	var math_1 = __webpack_require__(58);
+	var dom_adapter_1 = __webpack_require__(10);
+	var BrowserDetails = (function () {
+	    function BrowserDetails() {
+	        this.elapsedTimeIncludesDelay = false;
+	        this.doesElapsedTimeIncludesDelay();
+	    }
+	    /**
+	     * Determines if `event.elapsedTime` includes transition delay in the current browser.  At this
+	     * time, Chrome and Opera seem to be the only browsers that include this.
+	     */
+	    BrowserDetails.prototype.doesElapsedTimeIncludesDelay = function () {
+	        var _this = this;
+	        var div = dom_adapter_1.DOM.createElement('div');
+	        dom_adapter_1.DOM.setAttribute(div, 'style', "position: absolute; top: -9999px; left: -9999px; width: 1px;\n      height: 1px; transition: all 1ms linear 1ms;");
+	        // Firefox requires that we wait for 2 frames for some reason
+	        this.raf(function (timestamp) {
+	            dom_adapter_1.DOM.on(div, 'transitionend', function (event) {
+	                var elapsed = math_1.Math.round(event.elapsedTime * 1000);
+	                _this.elapsedTimeIncludesDelay = elapsed == 2;
+	                dom_adapter_1.DOM.remove(div);
+	            });
+	            dom_adapter_1.DOM.setStyle(div, 'width', '2px');
+	        }, 2);
+	    };
+	    BrowserDetails.prototype.raf = function (callback, frames) {
+	        if (frames === void 0) { frames = 1; }
+	        var queue = new RafQueue(callback, frames);
+	        return function () { return queue.cancel(); };
+	    };
+	    BrowserDetails = __decorate([
+	        di_1.Injectable(), 
+	        __metadata('design:paramtypes', [])
+	    ], BrowserDetails);
+	    return BrowserDetails;
+	})();
+	exports.BrowserDetails = BrowserDetails;
+	var RafQueue = (function () {
+	    function RafQueue(callback, frames) {
+	        this.callback = callback;
+	        this.frames = frames;
+	        this._raf();
+	    }
+	    RafQueue.prototype._raf = function () {
+	        var _this = this;
+	        this.currentFrameId =
+	            dom_adapter_1.DOM.requestAnimationFrame(function (timestamp) { return _this._nextFrame(timestamp); });
+	    };
+	    RafQueue.prototype._nextFrame = function (timestamp) {
+	        this.frames--;
+	        if (this.frames > 0) {
+	            this._raf();
+	        }
+	        else {
+	            this.callback(timestamp);
+	        }
+	    };
+	    RafQueue.prototype.cancel = function () {
+	        dom_adapter_1.DOM.cancelAnimationFrame(this.currentFrameId);
+	        this.currentFrameId = null;
+	    };
+	    return RafQueue;
+	})();
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJvd3Nlcl9kZXRhaWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvYnJvd3Nlcl9kZXRhaWxzLnRzIl0sIm5hbWVzIjpbIkJyb3dzZXJEZXRhaWxzIiwiQnJvd3NlckRldGFpbHMuY29uc3RydWN0b3IiLCJCcm93c2VyRGV0YWlscy5kb2VzRWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5IiwiQnJvd3NlckRldGFpbHMucmFmIiwiUmFmUXVldWUiLCJSYWZRdWV1ZS5jb25zdHJ1Y3RvciIsIlJhZlF1ZXVlLl9yYWYiLCJSYWZRdWV1ZS5fbmV4dEZyYW1lIiwiUmFmUXVldWUuY2FuY2VsIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQSxtQkFBeUIsc0JBQXNCLENBQUMsQ0FBQTtBQUNoRCxxQkFBbUIsMEJBQTBCLENBQUMsQ0FBQTtBQUM5Qyw0QkFBa0IsdUNBQXVDLENBQUMsQ0FBQTtBQUUxRDtJQUlFQTtRQUZBQyw2QkFBd0JBLEdBQUdBLEtBQUtBLENBQUNBO1FBRWpCQSxJQUFJQSxDQUFDQSw0QkFBNEJBLEVBQUVBLENBQUNBO0lBQUNBLENBQUNBO0lBRXRERDs7O09BR0dBO0lBQ0hBLHFEQUE0QkEsR0FBNUJBO1FBQUFFLGlCQWFDQTtRQVpDQSxJQUFJQSxHQUFHQSxHQUFHQSxpQkFBR0EsQ0FBQ0EsYUFBYUEsQ0FBQ0EsS0FBS0EsQ0FBQ0EsQ0FBQ0E7UUFDbkNBLGlCQUFHQSxDQUFDQSxZQUFZQSxDQUFDQSxHQUFHQSxFQUFFQSxPQUFPQSxFQUFFQSxrSEFDZ0JBLENBQUNBLENBQUNBO1FBQ2pEQSw2REFBNkRBO1FBQzdEQSxJQUFJQSxDQUFDQSxHQUFHQSxDQUFDQSxVQUFDQSxTQUFjQTtZQUN0QkEsaUJBQUdBLENBQUNBLEVBQUVBLENBQUNBLEdBQUdBLEVBQUVBLGVBQWVBLEVBQUVBLFVBQUNBLEtBQVVBO2dCQUN0Q0EsSUFBSUEsT0FBT0EsR0FBR0EsV0FBSUEsQ0FBQ0EsS0FBS0EsQ0FBQ0EsS0FBS0EsQ0FBQ0EsV0FBV0EsR0FBR0EsSUFBSUEsQ0FBQ0EsQ0FBQ0E7Z0JBQ25EQSxLQUFJQSxDQUFDQSx3QkFBd0JBLEdBQUdBLE9BQU9BLElBQUlBLENBQUNBLENBQUNBO2dCQUM3Q0EsaUJBQUdBLENBQUNBLE1BQU1BLENBQUNBLEdBQUdBLENBQUNBLENBQUNBO1lBQ2xCQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUNIQSxpQkFBR0EsQ0FBQ0EsUUFBUUEsQ0FBQ0EsR0FBR0EsRUFBRUEsT0FBT0EsRUFBRUEsS0FBS0EsQ0FBQ0EsQ0FBQ0E7UUFDcENBLENBQUNBLEVBQUVBLENBQUNBLENBQUNBLENBQUNBO0lBQ1JBLENBQUNBO0lBRURGLDRCQUFHQSxHQUFIQSxVQUFJQSxRQUFrQkEsRUFBRUEsTUFBa0JBO1FBQWxCRyxzQkFBa0JBLEdBQWxCQSxVQUFrQkE7UUFDeENBLElBQUlBLEtBQUtBLEdBQWFBLElBQUlBLFFBQVFBLENBQUNBLFFBQVFBLEVBQUVBLE1BQU1BLENBQUNBLENBQUNBO1FBQ3JEQSxNQUFNQSxDQUFDQSxjQUFNQSxPQUFBQSxLQUFLQSxDQUFDQSxNQUFNQSxFQUFFQSxFQUFkQSxDQUFjQSxDQUFDQTtJQUM5QkEsQ0FBQ0E7SUE1QkhIO1FBQUNBLGVBQVVBLEVBQUVBOzt1QkE2QlpBO0lBQURBLHFCQUFDQTtBQUFEQSxDQUFDQSxBQTdCRCxJQTZCQztBQTVCWSxzQkFBYyxpQkE0QjFCLENBQUE7QUFFRDtJQUVFSSxrQkFBbUJBLFFBQWtCQSxFQUFTQSxNQUFjQTtRQUF6Q0MsYUFBUUEsR0FBUkEsUUFBUUEsQ0FBVUE7UUFBU0EsV0FBTUEsR0FBTkEsTUFBTUEsQ0FBUUE7UUFBSUEsSUFBSUEsQ0FBQ0EsSUFBSUEsRUFBRUEsQ0FBQ0E7SUFBQ0EsQ0FBQ0E7SUFDdEVELHVCQUFJQSxHQUFaQTtRQUFBRSxpQkFHQ0E7UUFGQ0EsSUFBSUEsQ0FBQ0EsY0FBY0E7WUFDZkEsaUJBQUdBLENBQUNBLHFCQUFxQkEsQ0FBQ0EsVUFBQ0EsU0FBaUJBLElBQUtBLE9BQUFBLEtBQUlBLENBQUNBLFVBQVVBLENBQUNBLFNBQVNBLENBQUNBLEVBQTFCQSxDQUEwQkEsQ0FBQ0EsQ0FBQ0E7SUFDbkZBLENBQUNBO0lBQ09GLDZCQUFVQSxHQUFsQkEsVUFBbUJBLFNBQWlCQTtRQUNsQ0csSUFBSUEsQ0FBQ0EsTUFBTUEsRUFBRUEsQ0FBQ0E7UUFDZEEsRUFBRUEsQ0FBQ0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsTUFBTUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7WUFDcEJBLElBQUlBLENBQUNBLElBQUlBLEVBQUVBLENBQUNBO1FBQ2RBLENBQUNBO1FBQUNBLElBQUlBLENBQUNBLENBQUNBO1lBQ05BLElBQUlBLENBQUNBLFFBQVFBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQzNCQSxDQUFDQTtJQUNIQSxDQUFDQTtJQUNESCx5QkFBTUEsR0FBTkE7UUFDRUksaUJBQUdBLENBQUNBLG9CQUFvQkEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsY0FBY0EsQ0FBQ0EsQ0FBQ0E7UUFDOUNBLElBQUlBLENBQUNBLGNBQWNBLEdBQUdBLElBQUlBLENBQUNBO0lBQzdCQSxDQUFDQTtJQUNISixlQUFDQTtBQUFEQSxDQUFDQSxBQW5CRCxJQW1CQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7SW5qZWN0YWJsZX0gZnJvbSAnYW5ndWxhcjIvc3JjL2NvcmUvZGknO1xuaW1wb3J0IHtNYXRofSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL21hdGgnO1xuaW1wb3J0IHtET019IGZyb20gJ2FuZ3VsYXIyL3NyYy9wbGF0Zm9ybS9kb20vZG9tX2FkYXB0ZXInO1xuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgQnJvd3NlckRldGFpbHMge1xuICBlbGFwc2VkVGltZUluY2x1ZGVzRGVsYXkgPSBmYWxzZTtcblxuICBjb25zdHJ1Y3RvcigpIHsgdGhpcy5kb2VzRWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5KCk7IH1cblxuICAvKipcbiAgICogRGV0ZXJtaW5lcyBpZiBgZXZlbnQuZWxhcHNlZFRpbWVgIGluY2x1ZGVzIHRyYW5zaXRpb24gZGVsYXkgaW4gdGhlIGN1cnJlbnQgYnJvd3Nlci4gIEF0IHRoaXNcbiAgICogdGltZSwgQ2hyb21lIGFuZCBPcGVyYSBzZWVtIHRvIGJlIHRoZSBvbmx5IGJyb3dzZXJzIHRoYXQgaW5jbHVkZSB0aGlzLlxuICAgKi9cbiAgZG9lc0VsYXBzZWRUaW1lSW5jbHVkZXNEZWxheSgpOiB2b2lkIHtcbiAgICB2YXIgZGl2ID0gRE9NLmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuICAgIERPTS5zZXRBdHRyaWJ1dGUoZGl2LCAnc3R5bGUnLCBgcG9zaXRpb246IGFic29sdXRlOyB0b3A6IC05OTk5cHg7IGxlZnQ6IC05OTk5cHg7IHdpZHRoOiAxcHg7XG4gICAgICBoZWlnaHQ6IDFweDsgdHJhbnNpdGlvbjogYWxsIDFtcyBsaW5lYXIgMW1zO2ApO1xuICAgIC8vIEZpcmVmb3ggcmVxdWlyZXMgdGhhdCB3ZSB3YWl0IGZvciAyIGZyYW1lcyBmb3Igc29tZSByZWFzb25cbiAgICB0aGlzLnJhZigodGltZXN0YW1wOiBhbnkpID0+IHtcbiAgICAgIERPTS5vbihkaXYsICd0cmFuc2l0aW9uZW5kJywgKGV2ZW50OiBhbnkpID0+IHtcbiAgICAgICAgdmFyIGVsYXBzZWQgPSBNYXRoLnJvdW5kKGV2ZW50LmVsYXBzZWRUaW1lICogMTAwMCk7XG4gICAgICAgIHRoaXMuZWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5ID0gZWxhcHNlZCA9PSAyO1xuICAgICAgICBET00ucmVtb3ZlKGRpdik7XG4gICAgICB9KTtcbiAgICAgIERPTS5zZXRTdHlsZShkaXYsICd3aWR0aCcsICcycHgnKTtcbiAgICB9LCAyKTtcbiAgfVxuXG4gIHJhZihjYWxsYmFjazogRnVuY3Rpb24sIGZyYW1lczogbnVtYmVyID0gMSk6IEZ1bmN0aW9uIHtcbiAgICB2YXIgcXVldWU6IFJhZlF1ZXVlID0gbmV3IFJhZlF1ZXVlKGNhbGxiYWNrLCBmcmFtZXMpO1xuICAgIHJldHVybiAoKSA9PiBxdWV1ZS5jYW5jZWwoKTtcbiAgfVxufVxuXG5jbGFzcyBSYWZRdWV1ZSB7XG4gIGN1cnJlbnRGcmFtZUlkOiBudW1iZXI7XG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBjYWxsYmFjazogRnVuY3Rpb24sIHB1YmxpYyBmcmFtZXM6IG51bWJlcikgeyB0aGlzLl9yYWYoKTsgfVxuICBwcml2YXRlIF9yYWYoKSB7XG4gICAgdGhpcy5jdXJyZW50RnJhbWVJZCA9XG4gICAgICAgIERPTS5yZXF1ZXN0QW5pbWF0aW9uRnJhbWUoKHRpbWVzdGFtcDogbnVtYmVyKSA9PiB0aGlzLl9uZXh0RnJhbWUodGltZXN0YW1wKSk7XG4gIH1cbiAgcHJpdmF0ZSBfbmV4dEZyYW1lKHRpbWVzdGFtcDogbnVtYmVyKSB7XG4gICAgdGhpcy5mcmFtZXMtLTtcbiAgICBpZiAodGhpcy5mcmFtZXMgPiAwKSB7XG4gICAgICB0aGlzLl9yYWYoKTtcbiAgICB9IGVsc2Uge1xuICAgICAgdGhpcy5jYWxsYmFjayh0aW1lc3RhbXApO1xuICAgIH1cbiAgfVxuICBjYW5jZWwoKSB7XG4gICAgRE9NLmNhbmNlbEFuaW1hdGlvbkZyYW1lKHRoaXMuY3VycmVudEZyYW1lSWQpO1xuICAgIHRoaXMuY3VycmVudEZyYW1lSWQgPSBudWxsO1xuICB9XG59XG4iXX0=
+
+/***/ },
 /* 37 */,
 /* 38 */,
 /* 39 */,
@@ -5678,17 +5810,361 @@ webpackJsonp([2],[
 /* 41 */,
 /* 42 */,
 /* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
+/* 44 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var lang_1 = __webpack_require__(2);
+	var math_1 = __webpack_require__(58);
+	var util_1 = __webpack_require__(203);
+	var collection_1 = __webpack_require__(5);
+	var dom_adapter_1 = __webpack_require__(10);
+	var Animation = (function () {
+	    /**
+	     * Stores the start time and starts the animation
+	     * @param element
+	     * @param data
+	     * @param browserDetails
+	     */
+	    function Animation(element, data, browserDetails) {
+	        var _this = this;
+	        this.element = element;
+	        this.data = data;
+	        this.browserDetails = browserDetails;
+	        /** functions to be called upon completion */
+	        this.callbacks = [];
+	        /** functions for removing event listeners */
+	        this.eventClearFunctions = [];
+	        /** flag used to track whether or not the animation has finished */
+	        this.completed = false;
+	        this._stringPrefix = '';
+	        this.startTime = lang_1.DateWrapper.toMillis(lang_1.DateWrapper.now());
+	        this._stringPrefix = dom_adapter_1.DOM.getAnimationPrefix();
+	        this.setup();
+	        this.wait(function (timestamp) { return _this.start(); });
+	    }
+	    Object.defineProperty(Animation.prototype, "totalTime", {
+	        /** total amount of time that the animation should take including delay */
+	        get: function () {
+	            var delay = this.computedDelay != null ? this.computedDelay : 0;
+	            var duration = this.computedDuration != null ? this.computedDuration : 0;
+	            return delay + duration;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Animation.prototype.wait = function (callback) {
+	        // Firefox requires 2 frames for some reason
+	        this.browserDetails.raf(callback, 2);
+	    };
+	    /**
+	     * Sets up the initial styles before the animation is started
+	     */
+	    Animation.prototype.setup = function () {
+	        if (this.data.fromStyles != null)
+	            this.applyStyles(this.data.fromStyles);
+	        if (this.data.duration != null)
+	            this.applyStyles({ 'transitionDuration': this.data.duration.toString() + 'ms' });
+	        if (this.data.delay != null)
+	            this.applyStyles({ 'transitionDelay': this.data.delay.toString() + 'ms' });
+	    };
+	    /**
+	     * After the initial setup has occurred, this method adds the animation styles
+	     */
+	    Animation.prototype.start = function () {
+	        this.addClasses(this.data.classesToAdd);
+	        this.addClasses(this.data.animationClasses);
+	        this.removeClasses(this.data.classesToRemove);
+	        if (this.data.toStyles != null)
+	            this.applyStyles(this.data.toStyles);
+	        var computedStyles = dom_adapter_1.DOM.getComputedStyle(this.element);
+	        this.computedDelay =
+	            math_1.Math.max(this.parseDurationString(computedStyles.getPropertyValue(this._stringPrefix + 'transition-delay')), this.parseDurationString(this.element.style.getPropertyValue(this._stringPrefix + 'transition-delay')));
+	        this.computedDuration = math_1.Math.max(this.parseDurationString(computedStyles.getPropertyValue(this._stringPrefix + 'transition-duration')), this.parseDurationString(this.element.style.getPropertyValue(this._stringPrefix + 'transition-duration')));
+	        this.addEvents();
+	    };
+	    /**
+	     * Applies the provided styles to the element
+	     * @param styles
+	     */
+	    Animation.prototype.applyStyles = function (styles) {
+	        var _this = this;
+	        collection_1.StringMapWrapper.forEach(styles, function (value, key) {
+	            var dashCaseKey = util_1.camelCaseToDashCase(key);
+	            if (lang_1.isPresent(dom_adapter_1.DOM.getStyle(_this.element, dashCaseKey))) {
+	                dom_adapter_1.DOM.setStyle(_this.element, dashCaseKey, value.toString());
+	            }
+	            else {
+	                dom_adapter_1.DOM.setStyle(_this.element, _this._stringPrefix + dashCaseKey, value.toString());
+	            }
+	        });
+	    };
+	    /**
+	     * Adds the provided classes to the element
+	     * @param classes
+	     */
+	    Animation.prototype.addClasses = function (classes) {
+	        for (var i = 0, len = classes.length; i < len; i++)
+	            dom_adapter_1.DOM.addClass(this.element, classes[i]);
+	    };
+	    /**
+	     * Removes the provided classes from the element
+	     * @param classes
+	     */
+	    Animation.prototype.removeClasses = function (classes) {
+	        for (var i = 0, len = classes.length; i < len; i++)
+	            dom_adapter_1.DOM.removeClass(this.element, classes[i]);
+	    };
+	    /**
+	     * Adds events to track when animations have finished
+	     */
+	    Animation.prototype.addEvents = function () {
+	        var _this = this;
+	        if (this.totalTime > 0) {
+	            this.eventClearFunctions.push(dom_adapter_1.DOM.onAndCancel(this.element, dom_adapter_1.DOM.getTransitionEnd(), function (event) { return _this.handleAnimationEvent(event); }));
+	        }
+	        else {
+	            this.handleAnimationCompleted();
+	        }
+	    };
+	    Animation.prototype.handleAnimationEvent = function (event) {
+	        var elapsedTime = math_1.Math.round(event.elapsedTime * 1000);
+	        if (!this.browserDetails.elapsedTimeIncludesDelay)
+	            elapsedTime += this.computedDelay;
+	        event.stopPropagation();
+	        if (elapsedTime >= this.totalTime)
+	            this.handleAnimationCompleted();
+	    };
+	    /**
+	     * Runs all animation callbacks and removes temporary classes
+	     */
+	    Animation.prototype.handleAnimationCompleted = function () {
+	        this.removeClasses(this.data.animationClasses);
+	        this.callbacks.forEach(function (callback) { return callback(); });
+	        this.callbacks = [];
+	        this.eventClearFunctions.forEach(function (fn) { return fn(); });
+	        this.eventClearFunctions = [];
+	        this.completed = true;
+	    };
+	    /**
+	     * Adds animation callbacks to be called upon completion
+	     * @param callback
+	     * @returns {Animation}
+	     */
+	    Animation.prototype.onComplete = function (callback) {
+	        if (this.completed) {
+	            callback();
+	        }
+	        else {
+	            this.callbacks.push(callback);
+	        }
+	        return this;
+	    };
+	    /**
+	     * Converts the duration string to the number of milliseconds
+	     * @param duration
+	     * @returns {number}
+	     */
+	    Animation.prototype.parseDurationString = function (duration) {
+	        var maxValue = 0;
+	        // duration must have at least 2 characters to be valid. (number + type)
+	        if (duration == null || duration.length < 2) {
+	            return maxValue;
+	        }
+	        else if (duration.substring(duration.length - 2) == 'ms') {
+	            var value = lang_1.NumberWrapper.parseInt(this.stripLetters(duration), 10);
+	            if (value > maxValue)
+	                maxValue = value;
+	        }
+	        else if (duration.substring(duration.length - 1) == 's') {
+	            var ms = lang_1.NumberWrapper.parseFloat(this.stripLetters(duration)) * 1000;
+	            var value = math_1.Math.floor(ms);
+	            if (value > maxValue)
+	                maxValue = value;
+	        }
+	        return maxValue;
+	    };
+	    /**
+	     * Strips the letters from the duration string
+	     * @param str
+	     * @returns {string}
+	     */
+	    Animation.prototype.stripLetters = function (str) {
+	        return lang_1.StringWrapper.replaceAll(str, lang_1.RegExpWrapper.create('[^0-9]+$', ''), '');
+	    };
+	    return Animation;
+	})();
+	exports.Animation = Animation;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5pbWF0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvYW5pbWF0aW9uLnRzIl0sIm5hbWVzIjpbIkFuaW1hdGlvbiIsIkFuaW1hdGlvbi5jb25zdHJ1Y3RvciIsIkFuaW1hdGlvbi50b3RhbFRpbWUiLCJBbmltYXRpb24ud2FpdCIsIkFuaW1hdGlvbi5zZXR1cCIsIkFuaW1hdGlvbi5zdGFydCIsIkFuaW1hdGlvbi5hcHBseVN0eWxlcyIsIkFuaW1hdGlvbi5hZGRDbGFzc2VzIiwiQW5pbWF0aW9uLnJlbW92ZUNsYXNzZXMiLCJBbmltYXRpb24uYWRkRXZlbnRzIiwiQW5pbWF0aW9uLmhhbmRsZUFuaW1hdGlvbkV2ZW50IiwiQW5pbWF0aW9uLmhhbmRsZUFuaW1hdGlvbkNvbXBsZXRlZCIsIkFuaW1hdGlvbi5vbkNvbXBsZXRlIiwiQW5pbWF0aW9uLnBhcnNlRHVyYXRpb25TdHJpbmciLCJBbmltYXRpb24uc3RyaXBMZXR0ZXJzIl0sIm1hcHBpbmdzIjoiQUFBQSxxQkFNTywwQkFBMEIsQ0FBQyxDQUFBO0FBQ2xDLHFCQUFtQiwwQkFBMEIsQ0FBQyxDQUFBO0FBQzlDLHFCQUFrQyxnQ0FBZ0MsQ0FBQyxDQUFBO0FBQ25FLDJCQUErQixnQ0FBZ0MsQ0FBQyxDQUFBO0FBQ2hFLDRCQUFrQix1Q0FBdUMsQ0FBQyxDQUFBO0FBSzFEO0lBNEJFQTs7Ozs7T0FLR0E7SUFDSEEsbUJBQW1CQSxPQUFvQkEsRUFBU0EsSUFBeUJBLEVBQ3REQSxjQUE4QkE7UUFuQ25EQyxpQkF3TENBO1FBdEpvQkEsWUFBT0EsR0FBUEEsT0FBT0EsQ0FBYUE7UUFBU0EsU0FBSUEsR0FBSkEsSUFBSUEsQ0FBcUJBO1FBQ3REQSxtQkFBY0EsR0FBZEEsY0FBY0EsQ0FBZ0JBO1FBbENqREEsNkNBQTZDQTtRQUM3Q0EsY0FBU0EsR0FBZUEsRUFBRUEsQ0FBQ0E7UUFXM0JBLDZDQUE2Q0E7UUFDN0NBLHdCQUFtQkEsR0FBZUEsRUFBRUEsQ0FB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QUN4RUEsRUFBRUEsQ0FBQ0EsQ0FBQ0EsUUFBUUEsSUFBSUEsSUFBSUEsSUFBSUEsUUFBUUEsQ0FBQ0EsTUFBTUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7WUFDNUNBLE1BQU1BLENBQUNBLFFBQVFBLENBQUNBO1FBQ2xCQSxDQUFDQTtRQUFDQSxJQUFJQSxDQUFDQSxFQUFFQSxDQUFDQSxDQUFDQSxRQUFRQSxDQUFDQSxTQUFTQSxDQUFDQSxRQUFRQSxDQUFDQSxNQUFNQSxHQUFHQSxDQUFDQSxDQUFDQSxJQUFJQSxJQUFJQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUMzREEsSUFBSUEsS0FBS0EsR0FBR0Esb0JBQWFBLENBQUNBLFFBQVFBLENBQUNBLElBQUlBLENBQUNBLFlBQVlBLENBQUNBLFFBQVFBLENBQUNBLEVBQUVBLEVBQUVBLENBQUNBLENBQUNBO1lBQ3BFQSxFQUFFQSxDQUFDQSxDQUFDQSxLQUFLQSxHQUFHQSxRQUFRQSxDQUFDQTtnQkFBQ0EsUUFBUUEsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDekNBLENBQUNBO1FBQUNBLElBQUlBLENBQUNBLEVBQUVBLENBQUNBLENBQUNBLFFBQVFBLENBQUNBLFNBQVNBLENBQUNBLFFBQVFBLENBQUNBLE1BQU1BLEdBQUdBLENBQUNBLENBQUNBLElBQUlBLEdBQUdBLENBQUNBLENBQUNBLENBQUNBO1lBQzFEQSxJQUFJQSxFQUFFQSxHQUFHQSxvQkFBYUEsQ0FBQ0EsVUFBVUEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsWUFBWUEsQ0FBQ0EsUUFBUUEsQ0FBQ0EsQ0FBQ0EsR0FBR0EsSUFBSUEsQ0FBQ0E7WUFDdEVBLElBQUlBLEtBQUtBLEdBQUdBLFdBQUlBLENBQUNBLEtBQUtBLENBQUNBLEVBQUVBLENBQUNBLENBQUNBO1lBQzNCQSxFQUFFQSxDQUFDQSxDQUFDQSxLQUFLQSxHQUFHQSxRQUFRQSxDQUFDQTtnQkFBQ0EsUUFBUUEsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDekNBLENBQUNBO1FBQ0RBLE1BQU1BLENBQUNBLFFBQVFBLENBQUNBO0lBQ2xCQSxDQUFDQTtJQUVEYjs7OztPQUlHQTtJQUNIQSxnQ0FBWUEsR0FBWkEsVUFBYUEsR0FBV0E7UUFDdEJjLE1BQU1BLENBQUNBLG9CQUFhQSxDQUFDQSxVQUFVQSxDQUFDQSxHQUFHQSxFQUFFQSxvQkFBYUEsQ0FBQ0EsTUFBTUEsQ0FBQ0EsVUFBVUEsRUFBRUEsRUFBRUEsQ0FBQ0EsRUFBRUEsRUFBRUEsQ0FBQ0EsQ0FBQ0E7SUFDakZBLENBQUNBO0lBQ0hkLGdCQUFDQTtBQUFEQSxDQUFDQSxBQXhMRCxJQXdMQztBQXhMWSxpQkFBUyxZQXdMckIsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7XG4gIERhdGVXcmFwcGVyLFxuICBTdHJpbmdXcmFwcGVyLFxuICBSZWdFeHBXcmFwcGVyLFxuICBOdW1iZXJXcmFwcGVyLFxuICBpc1ByZXNlbnRcbn0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9sYW5nJztcbmltcG9ydCB7TWF0aH0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9tYXRoJztcbmltcG9ydCB7Y2FtZWxDYXNlVG9EYXNoQ2FzZX0gZnJvbSAnYW5ndWxhcjIvc3JjL3BsYXRmb3JtL2RvbS91dGlsJztcbmltcG9ydCB7U3RyaW5nTWFwV3JhcHBlcn0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9jb2xsZWN0aW9uJztcbmltcG9ydCB7RE9NfSBmcm9tICdhbmd1bGFyMi9zcmMvcGxhdGZvcm0vZG9tL2RvbV9hZGFwdGVyJztcblxuaW1wb3J0IHtCcm93c2VyRGV0YWlsc30gZnJvbSAnLi9icm93c2VyX2RldGFpbHMnO1xuaW1wb3J0IHtDc3NBbmltYXRpb25PcHRpb25zfSBmcm9tICcuL2Nzc19hbmltYXRpb25fb3B0aW9ucyc7XG5cbmV4cG9ydCBjbGFzcyBBbmltYXRpb24ge1xuICAvKiogZnVuY3Rpb25zIHRvIGJlIGNhbGxlZCB1cG9uIGNvbXBsZXRpb24gKi9cbiAgY2FsbGJhY2tzOiBGdW5jdGlvbltdID0gW107XG5cbiAgLyoqIHRoZSBkdXJhdGlvbiAobXMpIG9mIHRoZSBhbmltYXRpb24gKHdoZXRoZXIgZnJvbSBDU1Mgb3IgbWFudWFsbHkgc2V0KSAqL1xuICBjb21wdXRlZER1cmF0aW9uOiBudW1iZXI7XG5cbiAgLyoqIHRoZSBhbmltYXRpb24gZGVsYXkgKG1zKSAod2hldGhlciBmcm9tIENTUyBvciBtYW51YWxseSBzZXQpICovXG4gIGNvbXB1dGVkRGVsYXk6IG51bWJlcjtcblxuICAvKiogdGltZXN0YW1wIG9mIHdoZW4gdGhlIGFuaW1hdGlvbiBzdGFydGVkICovXG4gIHN0YXJ0VGltZTogbnVtYmVyO1xuXG4gIC8qKiBmdW5jdGlvbnMgZm9yIHJlbW92aW5nIGV2ZW50IGxpc3RlbmVycyAqL1xuICBldmVudENsZWFyRnVuY3Rpb25zOiBGdW5jdGlvbltdID0gW107XG5cbiAgLyoqIGZsYWcgdXNlZCB0byB0cmFjayB3aGV0aGVyIG9yIG5vdCB0aGUgYW5pbWF0aW9uIGhhcyBmaW5pc2hlZCAqL1xuICBjb21wbGV0ZWQ6IGJvb2xlYW4gPSBmYWxzZTtcblxuICBwcml2YXRlIF9zdHJpbmdQcmVmaXg6IHN0cmluZyA9ICcnO1xuXG4gIC8qKiB0b3RhbCBhbW91bnQgb2YgdGltZSB0aGF0IHRoZSBhbmltYXRpb24gc2hvdWxkIHRha2UgaW5jbHVkaW5nIGRlbGF5ICovXG4gIGdldCB0b3RhbFRpbWUoKTogbnVtYmVyIHtcbiAgICBsZXQgZGVsYXkgPSB0aGlzLmNvbXB1dGVkRGVsYXkgIT0gbnVsbCA/IHRoaXMuY29tcHV0ZWREZWxheSA6IDA7XG4gICAgbGV0IGR1cmF0aW9uID0gdGhpcy5jb21wdXRlZER1cmF0aW9uICE9IG51bGwgPyB0aGlzLmNvbXB1dGVkRHVyYXRpb24gOiAwO1xuICAgIHJldHVybiBkZWxheSArIGR1cmF0aW9uO1xuICB9XG5cbiAgLyoqXG4gICAqIFN0b3JlcyB0aGUgc3RhcnQgdGltZSBhbmQgc3RhcnRzIHRoZSBhbmltYXRpb25cbiAgICogQHBhcmFtIGVsZW1lbnRcbiAgICogQHBhcmFtIGRhdGFcbiAgICogQHBhcmFtIGJyb3dzZXJEZXRhaWxzXG4gICAqL1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgZWxlbWVudDogSFRNTEVsZW1lbnQsIHB1YmxpYyBkYXRhOiBDc3NBbmltYXRpb25PcHRpb25zLFxuICAgICAgICAgICAgICBwdWJsaWMgYnJvd3NlckRldGFpbHM6IEJyb3dzZXJEZXRhaWxzKSB7XG4gICAgdGhpcy5zdGFydFRpbWUgPSBEYXRlV3JhcHBlci50b01pbGxpcyhEYXRlV3JhcHBlci5ub3coKSk7XG4gICAgdGhpcy5fc3RyaW5nUHJlZml4ID0gRE9NLmdldEFuaW1hdGlvblByZWZpeCgpO1xuICAgIHRoaXMuc2V0dXAoKTtcbiAgICB0aGlzLndhaXQoKHRpbWVzdGFtcDogYW55KSA9PiB0aGlzLnN0YXJ0KCkpO1xuICB9XG5cbiAgd2FpdChjYWxsYmFjazogRnVuY3Rpb24pIHtcbiAgICAvLyBGaXJlZm94IHJlcXVpcmVzIDIgZnJhbWVzIGZvciBzb21lIHJlYXNvblxuICAgIHRoaXMuYnJvd3NlckRldGFpbHMucmFmKGNhbGxiYWNrLCAyKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHVwIHRoZSBpbml0aWFsIHN0eWxlcyBiZWZvcmUgdGhlIGFuaW1hdGlvbiBpcyBzdGFydGVkXG4gICAqL1xuICBzZXR1cCgpOiB2b2lkIHtcbiAgICBpZiAodGhpcy5kYXRhLmZyb21TdHlsZXMgIT0gbnVsbCkgdGhpcy5hcHBseVN0eWxlcyh0aGlzLmRhdGEuZnJvbVN0eWxlcyk7XG4gICAgaWYgKHRoaXMuZGF0YS5kdXJhdGlvbiAhPSBudWxsKVxuICAgICAgdGhpcy5hcHBseVN0eWxlcyh7J3RyYW5zaXRpb25EdXJhdGlvbic6IHRoaXMuZGF0YS5kdXJhdGlvbi50b1N0cmluZygpICsgJ21zJ30pO1xuICAgIGlmICh0aGlzLmRhdGEuZGVsYXkgIT0gbnVsbClcbiAgICAgIHRoaXMuYXBwbHlTdHlsZXMoeyd0cmFuc2l0aW9uRGVsYXknOiB0aGlzLmRhdGEuZGVsYXkudG9TdHJpbmcoKSArICdtcyd9KTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBZnRlciB0aGUgaW5pdGlhbCBzZXR1cCBoYXMgb2NjdXJyZWQsIHRoaXMgbWV0aG9kIGFkZHMgdGhlIGFuaW1hdGlvbiBzdHlsZXNcbiAgICovXG4gIHN0YXJ0KCk6IHZvaWQge1xuICAgIHRoaXMuYWRkQ2xhc3Nlcyh0aGlzLmRhdGEuY2xhc3Nlc1RvQWRkKTtcbiAgICB0aGlzLmFkZENsYXNzZXModGhpcy5kYXRhLmFuaW1hdGlvbkNsYXNzZXMpO1xuICAgIHRoaXMucmVtb3ZlQ2xhc3Nlcyh0aGlzLmRhdGEuY2xhc3Nlc1RvUmVtb3ZlKTtcbiAgICBpZiAodGhpcy5kYXRhLnRvU3R5bGVzICE9IG51bGwpIHRoaXMuYXBwbHlTdHlsZXModGhpcy5kYXRhLnRvU3R5bGVzKTtcbiAgICB2YXIgY29tcHV0ZWRTdHlsZXMgPSBET00uZ2V0Q29tcHV0ZWRTdHlsZSh0aGlzLmVsZW1lbnQpO1xuICAgIHRoaXMuY29tcHV0ZWREZWxheSA9XG4gICAgICAgIE1hdGgubWF4KHRoaXMucGFyc2VEdXJhdGlvblN0cmluZyhcbiAgICAgICAgICAgICAgICAgICAgIGNvbXB1dGVkU3R5bGVzLmdldFByb3BlcnR5VmFsdWUodGhpcy5fc3RyaW5nUHJlZml4ICsgJ3RyYW5zaXRpb24tZGVsYXknKSksXG4gICAgICAgICAgICAgICAgIHRoaXMucGFyc2VEdXJhdGlvblN0cmluZyhcbiAgICAgICAgICAgICAgICAgICAgIHRoaXMuZWxlbWVudC5zdHlsZS5nZXRQcm9wZXJ0eVZhbHVlKHRoaXMuX3N0cmluZ1ByZWZpeCArICd0cmFuc2l0aW9uLWRlbGF5JykpKTtcbiAgICB0aGlzLmNvbXB1dGVkRHVyYXRpb24gPSBNYXRoLm1heCh0aGlzLnBhcnNlRHVyYXRpb25TdHJpbmcoY29tcHV0ZWRTdHlsZXMuZ2V0UHJvcGVydHlWYWx1ZShcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpcy5fc3RyaW5nUHJlZml4ICsgJ3RyYW5zaXRpb24tZHVyYXRpb24nKSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpcy5wYXJzZUR1cmF0aW9uU3RyaW5nKHRoaXMuZWxlbWVudC5zdHlsZS5nZXRQcm9wZXJ0eVZhbHVlKFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLl9zdHJpbmdQcmVmaXggKyAndHJhbnNpdGlvbi1kdXJhdGlvbicpKSk7XG4gICAgdGhpcy5hZGRFdmVudHMoKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBcHBsaWVzIHRoZSBwcm92aWRlZCBzdHlsZXMgdG8gdGhlIGVsZW1lbnRcbiAgICogQHBhcmFtIHN0eWxlc1xuICAgKi9cbiAgYXBwbHlTdHlsZXMoc3R5bGVzOiB7W2tleTogc3RyaW5nXTogYW55fSk6IHZvaWQge1xuICAgIFN0cmluZ01hcFdyYXBwZXIuZm9yRWFjaChzdHlsZXMsICh2YWx1ZTogYW55LCBrZXk6IHN0cmluZykgPT4ge1xuICAgICAgdmFyIGRhc2hDYXNlS2V5ID0gY2FtZWxDYXNlVG9EYXNoQ2FzZShrZXkpO1xuICAgICAgaWYgKGlzUHJlc2VudChET00uZ2V0U3R5bGUodGhpcy5lbGVtZW50LCBkYXNoQ2FzZUtleSkpKSB7XG4gICAgICAgIERPTS5zZXRTdHlsZSh0aGlzLmVsZW1lbnQsIGRhc2hDYXNlS2V5LCB2YWx1ZS50b1N0cmluZygpKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIERPTS5zZXRTdHlsZSh0aGlzLmVsZW1lbnQsIHRoaXMuX3N0cmluZ1ByZWZpeCArIGRhc2hDYXNlS2V5LCB2YWx1ZS50b1N0cmluZygpKTtcbiAgICAgIH1cbiAgICB9KTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBZGRzIHRoZSBwcm92aWRlZCBjbGFzc2VzIHRvIHRoZSBlbGVtZW50XG4gICAqIEBwYXJhbSBjbGFzc2VzXG4gICAqL1xuICBhZGRDbGFzc2VzKGNsYXNzZXM6IHN0cmluZ1tdKTogdm9pZCB7XG4gICAgZm9yIChsZXQgaSA9IDAsIGxlbiA9IGNsYXNzZXMubGVuZ3RoOyBpIDwgbGVuOyBpKyspIERPTS5hZGRDbGFzcyh0aGlzLmVsZW1lbnQsIGNsYXNzZXNbaV0pO1xuICB9XG5cbiAgLyoqXG4gICAqIFJlbW92ZXMgdGhlIHByb3ZpZGVkIGNsYXNzZXMgZnJvbSB0aGUgZWxlbWVudFxuICAgKiBAcGFyYW0gY2xhc3Nlc1xuICAgKi9cbiAgcmVtb3ZlQ2xhc3NlcyhjbGFzc2VzOiBzdHJpbmdbXSk6IHZvaWQge1xuICAgIGZvciAobGV0IGkgPSAwLCBsZW4gPSBjbGFzc2VzLmxlbmd0aDsgaSA8IGxlbjsgaSsrKSBET00ucmVtb3ZlQ2xhc3ModGhpcy5lbGVtZW50LCBjbGFzc2VzW2ldKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBZGRzIGV2ZW50cyB0byB0cmFjayB3aGVuIGFuaW1hdGlvbnMgaGF2ZSBmaW5pc2hlZFxuICAgKi9cbiAgYWRkRXZlbnRzKCk6IHZvaWQge1xuICAgIGlmICh0aGlzLnRvdGFsVGltZSA+IDApIHtcbiAgICAgIHRoaXMuZXZlbnRDbGVhckZ1bmN0aW9ucy5wdXNoKERPTS5vbkFuZENhbmNlbChcbiAgICAgICAgICB0aGlzLmVsZW1lbnQsIERPTS5nZXRUcmFuc2l0aW9uRW5kKCksIChldmVudDogYW55KSA9PiB0aGlzLmhhbmRsZUFuaW1hdGlvbkV2ZW50KGV2ZW50KSkpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmhhbmRsZUFuaW1hdGlvbkNvbXBsZXRlZCgpO1xuICAgIH1cbiAgfVxuXG4gIGhhbmRsZUFuaW1hdGlvbkV2ZW50KGV2ZW50OiBhbnkpOiB2b2lkIHtcbiAgICBsZXQgZWxhcHNlZFRpbWUgPSBNYXRoLnJvdW5kKGV2ZW50LmVsYXBzZWRUaW1lICogMTAwMCk7XG4gICAgaWYgKCF0aGlzLmJyb3dzZXJEZXRhaWxzLmVsYXBzZWRUaW1lSW5jbHVkZXNEZWxheSkgZWxhcHNlZFRpbWUgKz0gdGhpcy5jb21wdXRlZERlbGF5O1xuICAgIGV2ZW50LnN0b3BQcm9wYWdhdGlvbigpO1xuICAgIGlmIChlbGFwc2VkVGltZSA+PSB0aGlzLnRvdGFsVGltZSkgdGhpcy5oYW5kbGVBbmltYXRpb25Db21wbGV0ZWQoKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBSdW5zIGFsbCBhbmltYXRpb24gY2FsbGJhY2tzIGFuZCByZW1vdmVzIHRlbXBvcmFyeSBjbGFzc2VzXG4gICAqL1xuICBoYW5kbGVBbmltYXRpb25Db21wbGV0ZWQoKTogdm9pZCB7XG4gICAgdGhpcy5yZW1vdmVDbGFzc2VzKHRoaXMuZGF0YS5hbmltYXRpb25DbGFzc2VzKTtcbiAgICB0aGlzLmNhbGxiYWNrcy5mb3JFYWNoKGNhbGxiYWNrID0+IGNhbGxiYWNrKCkpO1xuICAgIHRoaXMuY2FsbGJhY2tzID0gW107XG4gICAgdGhpcy5ldmVudENsZWFyRnVuY3Rpb25zLmZvckVhY2goZm4gPT4gZm4oKSk7XG4gICAgdGhpcy5ldmVudENsZWFyRnVuY3Rpb25zID0gW107XG4gICAgdGhpcy5jb21wbGV0ZWQgPSB0cnVlO1xuICB9XG5cbiAgLyoqXG4gICAqIEFkZHMgYW5pbWF0aW9uIGNhbGxiYWNrcyB0byBiZSBjYWxsZWQgdXBvbiBjb21wbGV0aW9uXG4gICAqIEBwYXJhbSBjYWxsYmFja1xuICAgKiBAcmV0dXJucyB7QW5pbWF0aW9ufVxuICAgKi9cbiAgb25Db21wbGV0ZShjYWxsYmFjazogRnVuY3Rpb24pOiBBbmltYXRpb24ge1xuICAgIGlmICh0aGlzLmNvbXBsZXRlZCkge1xuICAgICAgY2FsbGJhY2soKTtcbiAgICB9IGVsc2Uge1xuICAgICAgdGhpcy5jYWxsYmFja3MucHVzaChjYWxsYmFjayk7XG4gICAgfVxuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIENvbnZlcnRzIHRoZSBkdXJhdGlvbiBzdHJpbmcgdG8gdGhlIG51bWJlciBvZiBtaWxsaXNlY29uZHNcbiAgICogQHBhcmFtIGR1cmF0aW9uXG4gICAqIEByZXR1cm5zIHtudW1iZXJ9XG4gICAqL1xuICBwYXJzZUR1cmF0aW9uU3RyaW5nKGR1cmF0aW9uOiBzdHJpbmcpOiBudW1iZXIge1xuICAgIHZhciBtYXhWYWx1ZSA9IDA7XG4gICAgLy8gZHVyYXRpb24gbXVzdCBoYXZlIGF0IGxlYXN0IDIgY2hhcmFjdGVycyB0byBiZSB2YWxpZC4gKG51bWJlciArIHR5cGUpXG4gICAgaWYgKGR1cmF0aW9uID09IG51bGwgfHwgZHVyYXRpb24ubGVuZ3RoIDwgMikge1xuICAgICAgcmV0dXJuIG1heFZhbHVlO1xuICAgIH0gZWxzZSBpZiAoZHVyYXRpb24uc3Vic3RyaW5nKGR1cmF0aW9uLmxlbmd0aCAtIDIpID09ICdtcycpIHtcbiAgICAgIGxldCB2YWx1ZSA9IE51bWJlcldyYXBwZXIucGFyc2VJbnQodGhpcy5zdHJpcExldHRlcnMoZHVyYXRpb24pLCAxMCk7XG4gICAgICBpZiAodmFsdWUgPiBtYXhWYWx1ZSkgbWF4VmFsdWUgPSB2YWx1ZTtcbiAgICB9IGVsc2UgaWYgKGR1cmF0aW9uLnN1YnN0cmluZyhkdXJhdGlvbi5sZW5ndGggLSAxKSA9PSAncycpIHtcbiAgICAgIGxldCBtcyA9IE51bWJlcldyYXBwZXIucGFyc2VGbG9hdCh0aGlzLnN0cmlwTGV0dGVycyhkdXJhdGlvbikpICogMTAwMDtcbiAgICAgIGxldCB2YWx1ZSA9IE1hdGguZmxvb3IobXMpO1xuICAgICAgaWYgKHZhbHVlID4gbWF4VmFsdWUpIG1heFZhbHVlID0gdmFsdWU7XG4gICAgfVxuICAgIHJldHVybiBtYXhWYWx1ZTtcbiAgfVxuXG4gIC8qKlxuICAgKiBTdHJpcHMgdGhlIGxldHRlcnMgZnJvbSB0aGUgZHVyYXRpb24gc3RyaW5nXG4gICAqIEBwYXJhbSBzdHJcbiAgICogQHJldHVybnMge3N0cmluZ31cbiAgICovXG4gIHN0cmlwTGV0dGVycyhzdHI6IHN0cmluZyk6IHN0cmluZyB7XG4gICAgcmV0dXJuIFN0cmluZ1dyYXBwZXIucmVwbGFjZUFsbChzdHIsIFJlZ0V4cFdyYXBwZXIuY3JlYXRlKCdbXjAtOV0rJCcsICcnKSwgJycpO1xuICB9XG59XG4iXX0=
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var di_1 = __webpack_require__(7);
+	var css_animation_builder_1 = __webpack_require__(46);
+	var browser_details_1 = __webpack_require__(36);
+	var AnimationBuilder = (function () {
+	    /**
+	     * Used for DI
+	     * @param browserDetails
+	     */
+	    function AnimationBuilder(browserDetails) {
+	        this.browserDetails = browserDetails;
+	    }
+	    /**
+	     * Creates a new CSS Animation
+	     * @returns {CssAnimationBuilder}
+	     */
+	    AnimationBuilder.prototype.css = function () { return new css_animation_builder_1.CssAnimationBuilder(this.browserDetails); };
+	    AnimationBuilder = __decorate([
+	        di_1.Injectable(), 
+	        __metadata('design:paramtypes', [browser_details_1.BrowserDetails])
+	    ], AnimationBuilder);
+	    return AnimationBuilder;
+	})();
+	exports.AnimationBuilder = AnimationBuilder;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5pbWF0aW9uX2J1aWxkZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJhbmd1bGFyMi9zcmMvYW5pbWF0ZS9hbmltYXRpb25fYnVpbGRlci50cyJdLCJuYW1lcyI6WyJBbmltYXRpb25CdWlsZGVyIiwiQW5pbWF0aW9uQnVpbGRlci5jb25zdHJ1Y3RvciIsIkFuaW1hdGlvbkJ1aWxkZXIuY3NzIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQSxtQkFBeUIsc0JBQXNCLENBQUMsQ0FBQTtBQUVoRCxzQ0FBa0MseUJBQXlCLENBQUMsQ0FBQTtBQUM1RCxnQ0FBNkIsbUJBQW1CLENBQUMsQ0FBQTtBQUVqRDtJQUVFQTs7O09BR0dBO0lBQ0hBLDBCQUFtQkEsY0FBOEJBO1FBQTlCQyxtQkFBY0EsR0FBZEEsY0FBY0EsQ0FBZ0JBO0lBQUdBLENBQUNBO0lBRXJERDs7O09BR0dBO0lBQ0hBLDhCQUFHQSxHQUFIQSxjQUE2QkUsTUFBTUEsQ0FBQ0EsSUFBSUEsMkNBQW1CQSxDQUFDQSxJQUFJQSxDQUFDQSxjQUFjQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQTtJQVpyRkY7UUFBQ0EsZUFBVUEsRUFBRUE7O3lCQWFaQTtJQUFEQSx1QkFBQ0E7QUFBREEsQ0FBQ0EsQUFiRCxJQWFDO0FBWlksd0JBQWdCLG1CQVk1QixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtJbmplY3RhYmxlfSBmcm9tICdhbmd1bGFyMi9zcmMvY29yZS9kaSc7XG5cbmltcG9ydCB7Q3NzQW5pbWF0aW9uQnVpbGRlcn0gZnJvbSAnLi9jc3NfYW5pbWF0aW9uX2J1aWxkZXInO1xuaW1wb3J0IHtCcm93c2VyRGV0YWlsc30gZnJvbSAnLi9icm93c2VyX2RldGFpbHMnO1xuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgQW5pbWF0aW9uQnVpbGRlciB7XG4gIC8qKlxuICAgKiBVc2VkIGZvciBESVxuICAgKiBAcGFyYW0gYnJvd3NlckRldGFpbHNcbiAgICovXG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBicm93c2VyRGV0YWlsczogQnJvd3NlckRldGFpbHMpIHt9XG5cbiAgLyoqXG4gICAqIENyZWF0ZXMgYSBuZXcgQ1NTIEFuaW1hdGlvblxuICAgKiBAcmV0dXJucyB7Q3NzQW5pbWF0aW9uQnVpbGRlcn1cbiAgICovXG4gIGNzcygpOiBDc3NBbmltYXRpb25CdWlsZGVyIHsgcmV0dXJuIG5ldyBDc3NBbmltYXRpb25CdWlsZGVyKHRoaXMuYnJvd3NlckRldGFpbHMpOyB9XG59XG4iXX0=
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var css_animation_options_1 = __webpack_require__(47);
+	var animation_1 = __webpack_require__(44);
+	var CssAnimationBuilder = (function () {
+	    /**
+	     * Accepts public properties for CssAnimationBuilder
+	     */
+	    function CssAnimationBuilder(browserDetails) {
+	        this.browserDetails = browserDetails;
+	        /** @type {CssAnimationOptions} */
+	        this.data = new css_animation_options_1.CssAnimationOptions();
+	    }
+	    /**
+	     * Adds a temporary class that will be removed at the end of the animation
+	     * @param className
+	     */
+	    CssAnimationBuilder.prototype.addAnimationClass = function (className) {
+	        this.data.animationClasses.push(className);
+	        return this;
+	    };
+	    /**
+	     * Adds a class that will remain on the element after the animation has finished
+	     * @param className
+	     */
+	    CssAnimationBuilder.prototype.addClass = function (className) {
+	        this.data.classesToAdd.push(className);
+	        return this;
+	    };
+	    /**
+	     * Removes a class from the element
+	     * @param className
+	     */
+	    CssAnimationBuilder.prototype.removeClass = function (className) {
+	        this.data.classesToRemove.push(className);
+	        return this;
+	    };
+	    /**
+	     * Sets the animation duration (and overrides any defined through CSS)
+	     * @param duration
+	     */
+	    CssAnimationBuilder.prototype.setDuration = function (duration) {
+	        this.data.duration = duration;
+	        return this;
+	    };
+	    /**
+	     * Sets the animation delay (and overrides any defined through CSS)
+	     * @param delay
+	     */
+	    CssAnimationBuilder.prototype.setDelay = function (delay) {
+	        this.data.delay = delay;
+	        return this;
+	    };
+	    /**
+	     * Sets styles for both the initial state and the destination state
+	     * @param from
+	     * @param to
+	     */
+	    CssAnimationBuilder.prototype.setStyles = function (from, to) {
+	        return this.setFromStyles(from).setToStyles(to);
+	    };
+	    /**
+	     * Sets the initial styles for the animation
+	     * @param from
+	     */
+	    CssAnimationBuilder.prototype.setFromStyles = function (from) {
+	        this.data.fromStyles = from;
+	        return this;
+	    };
+	    /**
+	     * Sets the destination styles for the animation
+	     * @param to
+	     */
+	    CssAnimationBuilder.prototype.setToStyles = function (to) {
+	        this.data.toStyles = to;
+	        return this;
+	    };
+	    /**
+	     * Starts the animation and returns a promise
+	     * @param element
+	     */
+	    CssAnimationBuilder.prototype.start = function (element) {
+	        return new animation_1.Animation(element, this.data, this.browserDetails);
+	    };
+	    return CssAnimationBuilder;
+	})();
+	exports.CssAnimationBuilder = CssAnimationBuilder;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzX2FuaW1hdGlvbl9idWlsZGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9idWlsZGVyLnRzIl0sIm5hbWVzIjpbIkNzc0FuaW1hdGlvbkJ1aWxkZXIiLCJDc3NBbmltYXRpb25CdWlsZGVyLmNvbnN0cnVjdG9yIiwiQ3NzQW5pbWF0aW9uQnVpbGRlci5hZGRBbmltYXRpb25DbGFzcyIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuYWRkQ2xhc3MiLCJDc3NBbmltYXRpb25CdWlsZGVyLnJlbW92ZUNsYXNzIiwiQ3NzQW5pbWF0aW9uQnVpbGRlci5zZXREdXJhdGlvbiIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuc2V0RGVsYXkiLCJDc3NBbmltYXRpb25CdWlsZGVyLnNldFN0eWxlcyIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuc2V0RnJvbVN0eWxlcyIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuc2V0VG9TdHlsZXMiLCJDc3NBbmltYXRpb25CdWlsZGVyLnN0YXJ0Il0sIm1hcHBpbmdzIjoiQUFBQSxzQ0FBa0MseUJBQXlCLENBQUMsQ0FBQTtBQUM1RCwwQkFBd0IsYUFBYSxDQUFDLENBQUE7QUFHdEM7SUFJRUE7O09BRUdBO0lBQ0hBLDZCQUFtQkEsY0FBOEJBO1FBQTlCQyxtQkFBY0EsR0FBZEEsY0FBY0EsQ0FBZ0JBO1FBTmpEQSxrQ0FBa0NBO1FBQ2xDQSxTQUFJQSxHQUF3QkEsSUFBSUEsMkNBQW1CQSxFQUFFQSxDQUFDQTtJQUtGQSxDQUFDQTtJQUVyREQ7OztPQUdHQTtJQUNIQSwrQ0FBaUJBLEdBQWpCQSxVQUFrQkEsU0FBaUJBO1FBQ2pDRSxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxnQkFBZ0JBLENBQUNBLElBQUlBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQzNDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVERjs7O09BR0dBO0lBQ0hBLHNDQUFRQSxHQUFSQSxVQUFTQSxTQUFpQkE7UUFDeEJHLElBQUlBLENBQUNBLElBQUlBLENBQUNBLFlBQVlBLENBQUNBLElBQUlBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQ3ZDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVESDs7O09BR0dBO0lBQ0hBLHlDQUFXQSxHQUFYQSxVQUFZQSxTQUFpQkE7UUFDM0JJLElBQUlBLENBQUNBLElBQUlBLENBQUNBLGVBQWVBLENBQUNBLElBQUlBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQzFDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVESjs7O09BR0dBO0lBQ0hBLHlDQUFXQSxHQUFYQSxVQUFZQSxRQUFnQkE7UUFDMUJLLElBQUlBLENBQUNBLElBQUlBLENBQUNBLFFBQVFBLEdBQUdBLFFBQVFBLENBQUNBO1FBQzlCQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVETDs7O09BR0dBO0lBQ0hBLHNDQUFRQSxHQUFSQSxVQUFTQSxLQUFhQTtRQUNwQk0sSUFBSUEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsS0FBS0EsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDeEJBLE1BQU1BLENBQUNBLElBQUlBLENBQUNBO0lBQ2RBLENBQUNBO0lBRUROOzs7O09BSUdBO0lBQ0hBLHVDQUFTQSxHQUFUQSxVQUFVQSxJQUEwQkEsRUFBRUEsRUFBd0JBO1FBQzVETyxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQSxhQUFhQSxDQUFDQSxJQUFJQSxDQUFDQSxDQUFDQSxXQUFXQSxDQUFDQSxFQUFFQSxDQUFDQSxDQUFDQTtJQUNsREEsQ0FBQ0E7SUFFRFA7OztPQUdHQTtJQUNIQSwyQ0FBYUEsR0FBYkEsVUFBY0EsSUFBMEJBO1FBQ3RDUSxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxVQUFVQSxHQUFHQSxJQUFJQSxDQUFDQTtRQUM1QkEsTUFBTUEsQ0FBQ0EsSUFBSUEsQ0FBQ0E7SUFDZEEsQ0FBQ0E7SUFFRFI7OztPQUdHQTtJQUNIQSx5Q0FBV0EsR0FBWEEsVUFBWUEsRUFBd0JBO1FBQ2xDUyxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxRQUFRQSxHQUFHQSxFQUFFQSxDQUFDQTtRQUN4QkEsTUFBTUEsQ0FBQ0EsSUFBSUEsQ0FBQ0E7SUFDZEEsQ0FBQ0E7SUFFRFQ7OztPQUdHQTtJQUNIQSxtQ0FBS0EsR0FBTEEsVUFBTUEsT0FBb0JBO1FBQ3hCVSxNQUFNQSxDQUFDQSxJQUFJQSxxQkFBU0EsQ0FBQ0EsT0FBT0EsRUFBRUEsSUFBSUEsQ0FBQ0EsSUFBSUEsRUFBRUEsSUFBSUEsQ0FBQ0EsY0FBY0EsQ0FBQ0EsQ0FBQ0E7SUFDaEVBLENBQUNBO0lBQ0hWLDBCQUFDQTtBQUFEQSxDQUFDQSxBQXhGRCxJQXdGQztBQXhGWSwyQkFBbUIsc0JBd0YvQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtDc3NBbmltYXRpb25PcHRpb25zfSBmcm9tICcuL2Nzc19hbmltYXRpb25fb3B0aW9ucyc7XG5pbXBvcnQge0FuaW1hdGlvbn0gZnJvbSAnLi9hbmltYXRpb24nO1xuaW1wb3J0IHtCcm93c2VyRGV0YWlsc30gZnJvbSAnLi9icm93c2VyX2RldGFpbHMnO1xuXG5leHBvcnQgY2xhc3MgQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gIC8qKiBAdHlwZSB7Q3NzQW5pbWF0aW9uT3B0aW9uc30gKi9cbiAgZGF0YTogQ3NzQW5pbWF0aW9uT3B0aW9ucyA9IG5ldyBDc3NBbmltYXRpb25PcHRpb25zKCk7XG5cbiAgLyoqXG4gICAqIEFjY2VwdHMgcHVibGljIHByb3BlcnRpZXMgZm9yIENzc0FuaW1hdGlvbkJ1aWxkZXJcbiAgICovXG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBicm93c2VyRGV0YWlsczogQnJvd3NlckRldGFpbHMpIHt9XG5cbiAgLyoqXG4gICAqIEFkZHMgYSB0ZW1wb3JhcnkgY2xhc3MgdGhhdCB3aWxsIGJlIHJlbW92ZWQgYXQgdGhlIGVuZCBvZiB0aGUgYW5pbWF0aW9uXG4gICAqIEBwYXJhbSBjbGFzc05hbWVcbiAgICovXG4gIGFkZEFuaW1hdGlvbkNsYXNzKGNsYXNzTmFtZTogc3RyaW5nKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmFuaW1hdGlvbkNsYXNzZXMucHVzaChjbGFzc05hbWUpO1xuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIEFkZHMgYSBjbGFzcyB0aGF0IHdpbGwgcmVtYWluIG9uIHRoZSBlbGVtZW50IGFmdGVyIHRoZSBhbmltYXRpb24gaGFzIGZpbmlzaGVkXG4gICAqIEBwYXJhbSBjbGFzc05hbWVcbiAgICovXG4gIGFkZENsYXNzKGNsYXNzTmFtZTogc3RyaW5nKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmNsYXNzZXNUb0FkZC5wdXNoKGNsYXNzTmFtZSk7XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogUmVtb3ZlcyBhIGNsYXNzIGZyb20gdGhlIGVsZW1lbnRcbiAgICogQHBhcmFtIGNsYXNzTmFtZVxuICAgKi9cbiAgcmVtb3ZlQ2xhc3MoY2xhc3NOYW1lOiBzdHJpbmcpOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuY2xhc3Nlc1RvUmVtb3ZlLnB1c2goY2xhc3NOYW1lKTtcbiAgICByZXR1cm4gdGhpcztcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHRoZSBhbmltYXRpb24gZHVyYXRpb24gKGFuZCBvdmVycmlkZXMgYW55IGRlZmluZWQgdGhyb3VnaCBDU1MpXG4gICAqIEBwYXJhbSBkdXJhdGlvblxuICAgKi9cbiAgc2V0RHVyYXRpb24oZHVyYXRpb246IG51bWJlcik6IENzc0FuaW1hdGlvbkJ1aWxkZXIge1xuICAgIHRoaXMuZGF0YS5kdXJhdGlvbiA9IGR1cmF0aW9uO1xuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIFNldHMgdGhlIGFuaW1hdGlvbiBkZWxheSAoYW5kIG92ZXJyaWRlcyBhbnkgZGVmaW5lZCB0aHJvdWdoIENTUylcbiAgICogQHBhcmFtIGRlbGF5XG4gICAqL1xuICBzZXREZWxheShkZWxheTogbnVtYmVyKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmRlbGF5ID0gZGVsYXk7XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyBzdHlsZXMgZm9yIGJvdGggdGhlIGluaXRpYWwgc3RhdGUgYW5kIHRoZSBkZXN0aW5hdGlvbiBzdGF0ZVxuICAgKiBAcGFyYW0gZnJvbVxuICAgKiBAcGFyYW0gdG9cbiAgICovXG4gIHNldFN0eWxlcyhmcm9tOiB7W2tleTogc3RyaW5nXTogYW55fSwgdG86IHtba2V5OiBzdHJpbmddOiBhbnl9KTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgcmV0dXJuIHRoaXMuc2V0RnJvbVN0eWxlcyhmcm9tKS5zZXRUb1N0eWxlcyh0byk7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyB0aGUgaW5pdGlhbCBzdHlsZXMgZm9yIHRoZSBhbmltYXRpb25cbiAgICogQHBhcmFtIGZyb21cbiAgICovXG4gIHNldEZyb21TdHlsZXMoZnJvbToge1trZXk6IHN0cmluZ106IGFueX0pOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuZnJvbVN0eWxlcyA9IGZyb207XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyB0aGUgZGVzdGluYXRpb24gc3R5bGVzIGZvciB0aGUgYW5pbWF0aW9uXG4gICAqIEBwYXJhbSB0b1xuICAgKi9cbiAgc2V0VG9TdHlsZXModG86IHtba2V5OiBzdHJpbmddOiBhbnl9KTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLnRvU3R5bGVzID0gdG87XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU3RhcnRzIHRoZSBhbmltYXRpb24gYW5kIHJldHVybnMgYSBwcm9taXNlXG4gICAqIEBwYXJhbSBlbGVtZW50XG4gICAqL1xuICBzdGFydChlbGVtZW50OiBIVE1MRWxlbWVudCk6IEFuaW1hdGlvbiB7XG4gICAgcmV0dXJuIG5ldyBBbmltYXRpb24oZWxlbWVudCwgdGhpcy5kYXRhLCB0aGlzLmJyb3dzZXJEZXRhaWxzKTtcbiAgfVxufVxuIl19
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	'use strict';var CssAnimationOptions = (function () {
+	    function CssAnimationOptions() {
+	        /** classes to be added to the element */
+	        this.classesToAdd = [];
+	        /** classes to be removed from the element */
+	        this.classesToRemove = [];
+	        /** classes to be added for the duration of the animation */
+	        this.animationClasses = [];
+	    }
+	    return CssAnimationOptions;
+	})();
+	exports.CssAnimationOptions = CssAnimationOptions;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzX2FuaW1hdGlvbl9vcHRpb25zLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9vcHRpb25zLnRzIl0sIm5hbWVzIjpbIkNzc0FuaW1hdGlvbk9wdGlvbnMiLCJDc3NBbmltYXRpb25PcHRpb25zLmNvbnN0cnVjdG9yIl0sIm1hcHBpbmdzIjoiQUFBQTtJQUFBQTtRQU9FQyx5Q0FBeUNBO1FBQ3pDQSxpQkFBWUEsR0FBYUEsRUFBRUEsQ0FBQ0E7UUFFNUJBLDZDQUE2Q0E7UUFDN0NBLG9CQUFlQSxHQUFhQSxFQUFFQSxDQUFDQTtRQUUvQkEsNERBQTREQTtRQUM1REEscUJBQWdCQSxHQUFhQSxFQUFFQSxDQUFDQTtJQU9sQ0EsQ0FBQ0E7SUFBREQsMEJBQUNBO0FBQURBLENBQUNBLEFBckJELElBcUJDO0FBckJZLDJCQUFtQixzQkFxQi9CLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQ3NzQW5pbWF0aW9uT3B0aW9ucyB7XG4gIC8qKiBpbml0aWFsIHN0eWxlcyBmb3IgdGhlIGVsZW1lbnQgKi9cbiAgZnJvbVN0eWxlczoge1trZXk6IHN0cmluZ106IGFueX07XG5cbiAgLyoqIGRlc3RpbmF0aW9uIHN0eWxlcyBmb3IgdGhlIGVsZW1lbnQgKi9cbiAgdG9TdHlsZXM6IHtba2V5OiBzdHJpbmddOiBhbnl9O1xuXG4gIC8qKiBjbGFzc2VzIHRvIGJlIGFkZGVkIHRvIHRoZSBlbGVtZW50ICovXG4gIGNsYXNzZXNUb0FkZDogc3RyaW5nW10gPSBbXTtcblxuICAvKiogY2xhc3NlcyB0byBiZSByZW1vdmVkIGZyb20gdGhlIGVsZW1lbnQgKi9cbiAgY2xhc3Nlc1RvUmVtb3ZlOiBzdHJpbmdbXSA9IFtdO1xuXG4gIC8qKiBjbGFzc2VzIHRvIGJlIGFkZGVkIGZvciB0aGUgZHVyYXRpb24gb2YgdGhlIGFuaW1hdGlvbiAqL1xuICBhbmltYXRpb25DbGFzc2VzOiBzdHJpbmdbXSA9IFtdO1xuXG4gIC8qKiBvdmVycmlkZSB0aGUgZHVyYXRpb24gb2YgdGhlIGFuaW1hdGlvbiAoaW4gbWlsbGlzZWNvbmRzKSAqL1xuICBkdXJhdGlvbjogbnVtYmVyO1xuXG4gIC8qKiBvdmVycmlkZSB0aGUgdHJhbnNpdGlvbiBkZWxheSAoaW4gbWlsbGlzZWNvbmRzKSAqL1xuICBkZWxheTogbnVtYmVyO1xufVxuIl19
+
+/***/ },
 /* 48 */,
 /* 49 */,
 /* 50 */,
 /* 51 */,
 /* 52 */,
 /* 53 */,
-/* 54 */
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var lang_1 = __webpack_require__(2);
+	exports.Math = lang_1.global.Math;
+	exports.NaN = typeof exports.NaN;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWF0aC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFuZ3VsYXIyL3NyYy9mYWNhZGUvbWF0aC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxxQkFBcUIsMEJBQTBCLENBQUMsQ0FBQTtBQUVyQyxZQUFJLEdBQUcsYUFBTSxDQUFDLElBQUksQ0FBQztBQUNuQixXQUFHLEdBQUcsT0FBTyxXQUFHLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge2dsb2JhbH0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9sYW5nJztcblxuZXhwb3J0IHZhciBNYXRoID0gZ2xvYmFsLk1hdGg7XG5leHBvcnQgdmFyIE5hTiA9IHR5cGVvZiBOYU47XG4iXX0=
+
+/***/ },
+/* 59 */,
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5765,7 +6241,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 55 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5828,7 +6304,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 56 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5935,7 +6411,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 57 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -5996,7 +6472,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 58 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6136,7 +6612,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 59 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6244,7 +6720,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 60 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6382,7 +6858,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 61 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6476,7 +6952,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 62 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6599,7 +7075,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 63 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6722,7 +7198,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 64 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6833,7 +7309,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 65 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6978,7 +7454,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 66 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7061,7 +7537,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 67 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7236,7 +7712,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 68 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7303,7 +7779,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 69 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7386,7 +7862,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 70 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7450,7 +7926,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 71 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7531,7 +8007,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 72 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7611,7 +8087,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 73 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7714,7 +8190,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 74 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7816,7 +8292,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 75 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7886,7 +8362,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 76 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7953,7 +8429,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 77 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8024,7 +8500,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 78 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8095,7 +8571,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 79 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8165,7 +8641,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 80 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8242,7 +8718,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 81 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8325,7 +8801,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 82 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8409,7 +8885,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 83 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8477,7 +8953,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 84 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8586,7 +9062,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 85 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8697,7 +9173,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 86 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8761,7 +9237,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 87 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8823,7 +9299,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 88 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8889,7 +9365,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 89 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8955,7 +9431,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 90 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9030,7 +9506,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 91 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9110,7 +9586,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 92 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9189,7 +9665,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 93 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9292,7 +9768,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 94 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9419,7 +9895,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 95 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9566,7 +10042,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 96 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9679,7 +10155,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 97 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9778,7 +10254,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 98 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9865,7 +10341,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 99 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9996,7 +10472,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 100 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10070,7 +10546,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 101 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10150,7 +10626,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 102 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10237,7 +10713,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 103 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10330,7 +10806,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 104 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10421,7 +10897,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 105 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10483,7 +10959,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 106 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10555,7 +11031,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 107 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10693,7 +11169,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 108 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10766,7 +11242,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 109 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10885,7 +11361,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 110 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10985,7 +11461,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 111 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11098,7 +11574,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 112 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11192,7 +11668,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 113 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11276,7 +11752,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 114 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11438,7 +11914,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 115 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11524,7 +12000,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 116 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11610,7 +12086,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 117 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11707,7 +12183,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 118 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11772,7 +12248,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 119 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11897,7 +12373,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 120 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11972,7 +12448,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 121 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12036,7 +12512,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 122 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12164,7 +12640,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 123 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12273,7 +12749,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 124 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12337,7 +12813,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 125 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12405,7 +12881,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 126 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12483,7 +12959,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 127 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12655,7 +13131,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 128 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12720,7 +13196,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 129 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12794,7 +13270,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 130 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12948,7 +13424,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 131 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13112,7 +13588,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 132 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13185,7 +13661,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 133 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13297,7 +13773,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 134 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13409,7 +13885,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 135 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13480,7 +13956,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 136 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13542,7 +14018,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 137 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13675,7 +14151,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 138 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13767,7 +14243,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 139 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13836,7 +14312,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 140 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13902,7 +14378,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 141 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14025,7 +14501,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 142 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14119,7 +14595,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 143 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14214,7 +14690,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 144 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14276,7 +14752,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 145 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14338,7 +14814,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 146 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14488,7 +14964,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 147 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14550,7 +15026,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 148 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14631,7 +15107,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 149 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14762,7 +15238,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 150 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14867,21 +15343,21 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 151 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var accordion_component_1 = __webpack_require__(25);
-	var accordion_group_component_1 = __webpack_require__(152);
+	var accordion_group_component_1 = __webpack_require__(158);
 	var accordion_component_2 = __webpack_require__(25);
 	exports.Accordion = accordion_component_2.Accordion;
-	var accordion_group_component_2 = __webpack_require__(152);
+	var accordion_group_component_2 = __webpack_require__(158);
 	exports.AccordionPanel = accordion_group_component_2.AccordionPanel;
 	exports.ACCORDION_DIRECTIVES = [accordion_component_1.Accordion, accordion_group_component_1.AccordionPanel];
 
 
 /***/ },
-/* 152 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14963,21 +15439,21 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 153 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var button_checkbox_component_1 = __webpack_require__(154);
-	var button_radio_component_1 = __webpack_require__(155);
-	var button_checkbox_component_2 = __webpack_require__(154);
+	var button_checkbox_component_1 = __webpack_require__(160);
+	var button_radio_component_1 = __webpack_require__(161);
+	var button_checkbox_component_2 = __webpack_require__(160);
 	exports.ButtonCheckbox = button_checkbox_component_2.ButtonCheckbox;
-	var button_radio_component_2 = __webpack_require__(155);
+	var button_radio_component_2 = __webpack_require__(161);
 	exports.ButtonRadio = button_radio_component_2.ButtonRadio;
 	exports.BUTTON_DIRECTIVES = [button_checkbox_component_1.ButtonCheckbox, button_radio_component_1.ButtonRadio];
 
 
 /***/ },
-/* 154 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15067,7 +15543,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 155 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15157,13 +15633,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 156 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var slide_component_1 = __webpack_require__(157);
+	var slide_component_1 = __webpack_require__(163);
 	var carousel_component_1 = __webpack_require__(26);
-	var slide_component_2 = __webpack_require__(157);
+	var slide_component_2 = __webpack_require__(163);
 	exports.Slide = slide_component_2.Slide;
 	var carousel_component_2 = __webpack_require__(26);
 	exports.Carousel = carousel_component_2.Carousel;
@@ -15171,7 +15647,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 157 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15228,7 +15704,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 158 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15276,13 +15752,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 159 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var datepicker_popup_1 = __webpack_require__(160);
+	var datepicker_popup_1 = __webpack_require__(166);
 	var datepicker_1 = __webpack_require__(28);
-	var datepicker_popup_2 = __webpack_require__(160);
+	var datepicker_popup_2 = __webpack_require__(166);
 	exports.DatePickerPopup = datepicker_popup_2.DatePickerPopup;
 	var datepicker_2 = __webpack_require__(28);
 	exports.DatePicker = datepicker_2.DatePicker;
@@ -15290,7 +15766,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 160 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15329,7 +15805,7 @@ webpackJsonp([2],[
 	    function PopupContainer(element, options) {
 	        this.element = element;
 	        this.showButtonBar = true;
-	        this.update1 = new core_1.EventEmitter();
+	        this.update1 = new core_1.EventEmitter(false);
 	        Object.assign(this, options);
 	        this.classMap = { 'in': false };
 	        this.classMap[options.placement] = true;
@@ -15454,24 +15930,24 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 161 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var dropdown_directive_1 = __webpack_require__(18);
-	var dropdown_menu_directive_1 = __webpack_require__(162);
-	var dropdown_toggle_directive_1 = __webpack_require__(163);
+	var dropdown_menu_directive_1 = __webpack_require__(168);
+	var dropdown_toggle_directive_1 = __webpack_require__(169);
 	var dropdown_directive_2 = __webpack_require__(18);
 	exports.Dropdown = dropdown_directive_2.Dropdown;
-	var dropdown_menu_directive_2 = __webpack_require__(162);
+	var dropdown_menu_directive_2 = __webpack_require__(168);
 	exports.DropdownMenu = dropdown_menu_directive_2.DropdownMenu;
-	var dropdown_toggle_directive_2 = __webpack_require__(163);
+	var dropdown_toggle_directive_2 = __webpack_require__(169);
 	exports.DropdownToggle = dropdown_toggle_directive_2.DropdownToggle;
 	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.Dropdown, dropdown_toggle_directive_1.DropdownToggle, dropdown_menu_directive_1.DropdownMenu];
 
 
 /***/ },
-/* 162 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15508,7 +15984,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 163 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15581,21 +16057,21 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 164 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var pagination_component_1 = __webpack_require__(29);
-	var pager_component_1 = __webpack_require__(165);
+	var pager_component_1 = __webpack_require__(171);
 	var pagination_component_2 = __webpack_require__(29);
 	exports.Pagination = pagination_component_2.Pagination;
-	var pager_component_2 = __webpack_require__(165);
+	var pager_component_2 = __webpack_require__(171);
 	exports.Pager = pager_component_2.Pager;
 	exports.PAGINATION_DIRECTIVES = [pagination_component_1.Pagination, pager_component_1.Pager];
 
 
 /***/ },
-/* 165 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15652,24 +16128,24 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 166 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var progress_directive_1 = __webpack_require__(20);
 	var bar_component_1 = __webpack_require__(30);
-	var progressbar_component_1 = __webpack_require__(167);
+	var progressbar_component_1 = __webpack_require__(173);
 	var progress_directive_2 = __webpack_require__(20);
 	exports.Progress = progress_directive_2.Progress;
 	var bar_component_2 = __webpack_require__(30);
 	exports.Bar = bar_component_2.Bar;
-	var progressbar_component_2 = __webpack_require__(167);
+	var progressbar_component_2 = __webpack_require__(173);
 	exports.Progressbar = progressbar_component_2.Progressbar;
 	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.Progress, bar_component_1.Bar, progressbar_component_1.Progressbar];
 
 
 /***/ },
-/* 167 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15718,33 +16194,33 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 168 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var rating_component_1 = __webpack_require__(247);
+	var rating_component_1 = __webpack_require__(258);
 	exports.Rating = rating_component_1.Rating;
 
 
 /***/ },
-/* 169 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var tab_directive_1 = __webpack_require__(31);
 	var tabset_component_1 = __webpack_require__(32);
-	var tab_heading_directive_1 = __webpack_require__(170);
+	var tab_heading_directive_1 = __webpack_require__(176);
 	var tab_directive_2 = __webpack_require__(31);
 	exports.Tab = tab_directive_2.Tab;
 	var tabset_component_2 = __webpack_require__(32);
 	exports.Tabset = tabset_component_2.Tabset;
-	var tab_heading_directive_2 = __webpack_require__(170);
+	var tab_heading_directive_2 = __webpack_require__(176);
 	exports.TabHeading = tab_heading_directive_2.TabHeading;
 	exports.TAB_DIRECTIVES = [tab_directive_1.Tab, tab_heading_directive_1.TabHeading, tabset_component_1.Tabset];
 
 
 /***/ },
-/* 170 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15774,22 +16250,22 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 171 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var timepicker_component_1 = __webpack_require__(248);
+	var timepicker_component_1 = __webpack_require__(259);
 	exports.Timepicker = timepicker_component_1.Timepicker;
 
 
 /***/ },
-/* 172 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var tooltip_directive_1 = __webpack_require__(174);
+	var tooltip_directive_1 = __webpack_require__(180);
 	var tooltip_container_component_1 = __webpack_require__(33);
-	var tooltip_directive_2 = __webpack_require__(174);
+	var tooltip_directive_2 = __webpack_require__(180);
 	exports.Tooltip = tooltip_directive_2.Tooltip;
 	var tooltip_container_component_2 = __webpack_require__(33);
 	exports.TooltipContainer = tooltip_container_component_2.TooltipContainer;
@@ -15797,7 +16273,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 173 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15825,7 +16301,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 174 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15839,26 +16315,28 @@ webpackJsonp([2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(3);
-	var tooltip_options_class_1 = __webpack_require__(173);
+	var tooltip_options_class_1 = __webpack_require__(179);
 	var tooltip_container_component_1 = __webpack_require__(33);
 	var Tooltip = (function () {
 	    function Tooltip(element, loader) {
 	        this.element = element;
 	        this.loader = loader;
 	        this.placement = 'top';
+	        this.animation = true;
 	        this.visible = false;
 	    }
 	    Tooltip.prototype.ngOnInit = function () {
 	    };
 	    Tooltip.prototype.show = function () {
-	        var _this = this;
 	        if (this.visible) {
 	            return;
 	        }
 	        this.visible = true;
 	        var options = new tooltip_options_class_1.TooltipOptions({
 	            content: this.content,
-	            placement: this.placement
+	            placement: this.placement,
+	            animation: this.animation,
+	            hostEl: this.element
 	        });
 	        var binding = core_1.Injector.resolve([
 	            new core_1.Provider(tooltip_options_class_1.TooltipOptions, { useValue: options })
@@ -15866,7 +16344,6 @@ webpackJsonp([2],[
 	        this.tooltip = this.loader
 	            .loadNextToLocation(tooltip_container_component_1.TooltipContainer, this.element, binding)
 	            .then(function (componentRef) {
-	            componentRef.instance.position(_this.element);
 	            return componentRef;
 	        });
 	    };
@@ -15897,6 +16374,10 @@ webpackJsonp([2],[
 	        __metadata('design:type', Boolean)
 	    ], Tooltip.prototype, "enable", void 0);
 	    __decorate([
+	        core_1.Input('tooltipAnimation'), 
+	        __metadata('design:type', Boolean)
+	    ], Tooltip.prototype, "animation", void 0);
+	    __decorate([
 	        core_1.Input('tooltipAppendToBody'), 
 	        __metadata('design:type', Boolean)
 	    ], Tooltip.prototype, "appendToBody", void 0);
@@ -15924,13 +16405,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 175 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var typeahead_directive_1 = __webpack_require__(177);
+	var typeahead_directive_1 = __webpack_require__(183);
 	var typeahead_container_component_1 = __webpack_require__(34);
-	var typeahead_directive_2 = __webpack_require__(177);
+	var typeahead_directive_2 = __webpack_require__(183);
 	exports.Typeahead = typeahead_directive_2.Typeahead;
 	var typeahead_container_component_2 = __webpack_require__(34);
 	exports.TypeaheadContainer = typeahead_container_component_2.TypeaheadContainer;
@@ -15940,11 +16421,11 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 176 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var latin_map_1 = __webpack_require__(249);
+	var latin_map_1 = __webpack_require__(260);
 	var TypeaheadUtils = (function () {
 	    function TypeaheadUtils() {
 	    }
@@ -15980,7 +16461,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 177 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15998,7 +16479,7 @@ webpackJsonp([2],[
 	function setProperty(renderer, elementRef, propName, propValue) {
 	    renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 	}
-	var typeahead_utils_1 = __webpack_require__(176);
+	var typeahead_utils_1 = __webpack_require__(182);
 	var typeahead_container_component_1 = __webpack_require__(34);
 	var typeahead_options_class_1 = __webpack_require__(35);
 	var Typeahead = (function () {
@@ -16007,9 +16488,9 @@ webpackJsonp([2],[
 	        this.element = element;
 	        this.renderer = renderer;
 	        this.loader = loader;
-	        this.typeaheadLoading = new core_1.EventEmitter();
-	        this.typeaheadNoResults = new core_1.EventEmitter();
-	        this.typeaheadOnSelect = new core_1.EventEmitter();
+	        this.typeaheadLoading = new core_1.EventEmitter(false);
+	        this.typeaheadNoResults = new core_1.EventEmitter(false);
+	        this.typeaheadOnSelect = new core_1.EventEmitter(false);
 	        this.typeaheadAsync = null;
 	        this.typeaheadLatinize = true;
 	        this.typeaheadSingleWords = true;
@@ -16051,27 +16532,28 @@ webpackJsonp([2],[
 	    };
 	    Typeahead.prototype.processMatches = function () {
 	        this._matches = [];
-	        if (this.cd.model.toString().length >= this.typeaheadMinLength) {
-	            var normalizedQuery = (this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-	            normalizedQuery = this.typeaheadSingleWords ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
-	            for (var i = 0; i < this.typeahead.length; i++) {
-	                var match = void 0;
-	                if (typeof this.typeahead[i] === 'object' &&
-	                    this.typeahead[i][this.typeaheadOptionField]) {
-	                    match = this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString()) : this.typeahead[i][this.typeaheadOptionField].toString();
-	                }
-	                if (typeof this.typeahead[i] === 'string') {
-	                    match = this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i].toString()) : this.typeahead[i].toString();
-	                }
-	                if (!match) {
-	                    console.log('Invalid match type', typeof this.typeahead[i], this.typeaheadOptionField);
-	                    continue;
-	                }
-	                if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
-	                    this._matches.push(this.typeahead[i]);
-	                    if (this._matches.length > this.typeaheadOptionsLimit - 1) {
-	                        break;
-	                    }
+	        if (!this.typeahead) {
+	            return;
+	        }
+	        var normalizedQuery = (this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
+	        normalizedQuery = this.typeaheadSingleWords ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
+	        for (var i = 0; i < this.typeahead.length; i++) {
+	            var match = void 0;
+	            if (typeof this.typeahead[i] === 'object' &&
+	                this.typeahead[i][this.typeaheadOptionField]) {
+	                match = this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString()) : this.typeahead[i][this.typeaheadOptionField].toString();
+	            }
+	            if (typeof this.typeahead[i] === 'string') {
+	                match = this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i].toString()) : this.typeahead[i].toString();
+	            }
+	            if (!match) {
+	                console.log('Invalid match type', typeof this.typeahead[i], this.typeaheadOptionField);
+	                continue;
+	            }
+	            if (this.testMatch(match.toLowerCase(), normalizedQuery)) {
+	                this._matches.push(this.typeahead[i]);
+	                if (this._matches.length > this.typeaheadOptionsLimit - 1) {
+	                    break;
 	                }
 	            }
 	        }
@@ -16124,12 +16606,10 @@ webpackJsonp([2],[
 	                if (typeof _this.typeahead === 'function') {
 	                    _this.typeahead().then(function (matches) {
 	                        _this._matches = [];
-	                        if (_this.cd.model.toString().length >= _this.typeaheadMinLength) {
-	                            for (var i = 0; i < matches.length; i++) {
-	                                _this._matches.push(matches[i]);
-	                                if (_this._matches.length > _this.typeaheadOptionsLimit - 1) {
-	                                    break;
-	                                }
+	                        for (var i = 0; i < matches.length; i++) {
+	                            _this._matches.push(matches[i]);
+	                            if (_this._matches.length > _this.typeaheadOptionsLimit - 1) {
+	                                break;
 	                            }
 	                        }
 	                        _this.finalizeAsyncCall();
@@ -16161,14 +16641,22 @@ webpackJsonp([2],[
 	                return;
 	            }
 	        }
-	        this.typeaheadLoading.emit(true);
-	        if (this.typeaheadAsync === true) {
-	            this.debouncer();
+	        if (this.cd.model.toString().length >= this.typeaheadMinLength) {
+	            this.typeaheadLoading.emit(true);
+	            if (this.typeaheadAsync === true) {
+	                this.debouncer();
+	            }
+	            if (this.typeaheadAsync === false) {
+	                this.processMatches();
+	                this.finalizeAsyncCall();
+	            }
 	        }
-	        if (this.typeaheadAsync === false) {
-	            this.processMatches();
-	            this.finalizeAsyncCall();
+	        else {
+	            this.hide();
 	        }
+	    };
+	    Typeahead.prototype.onblur = function () {
+	        this.hide();
 	    };
 	    Typeahead.prototype.changeModel = function (value) {
 	        var valueStr = ((typeof value === 'object' && this.typeaheadOptionField) ? value[this.typeaheadOptionField] : value).toString();
@@ -16295,6 +16783,12 @@ webpackJsonp([2],[
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
 	    ], Typeahead.prototype, "onChange", null);
+	    __decorate([
+	        core_1.HostListener('blur', ['$event.target']), 
+	        __metadata('design:type', Function), 
+	        __metadata('design:paramtypes', []), 
+	        __metadata('design:returntype', void 0)
+	    ], Typeahead.prototype, "onblur", null);
 	    Typeahead = __decorate([
 	        core_1.Directive({
 	            selector: 'typeahead[ngModel], [ngModel][typeahead]'
@@ -16307,12 +16801,6 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
 /* 184 */,
 /* 185 */,
 /* 186 */,
@@ -16332,10 +16820,41 @@ webpackJsonp([2],[
 /* 200 */,
 /* 201 */,
 /* 202 */,
-/* 203 */,
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var lang_1 = __webpack_require__(2);
+	var CAMEL_CASE_REGEXP = /([A-Z])/g;
+	var DASH_CASE_REGEXP = /-([a-z])/g;
+	function camelCaseToDashCase(input) {
+	    return lang_1.StringWrapper.replaceAllMapped(input, CAMEL_CASE_REGEXP, function (m) { return '-' + m[1].toLowerCase(); });
+	}
+	exports.camelCaseToDashCase = camelCaseToDashCase;
+	function dashCaseToCamelCase(input) {
+	    return lang_1.StringWrapper.replaceAllMapped(input, DASH_CASE_REGEXP, function (m) { return m[1].toUpperCase(); });
+	}
+	exports.dashCaseToCamelCase = dashCaseToCamelCase;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFuZ3VsYXIyL3NyYy9wbGF0Zm9ybS9kb20vdXRpbC50cyJdLCJuYW1lcyI6WyJjYW1lbENhc2VUb0Rhc2hDYXNlIiwiZGFzaENhc2VUb0NhbWVsQ2FzZSJdLCJtYXBwaW5ncyI6IkFBQUEscUJBQTRCLDBCQUEwQixDQUFDLENBQUE7QUFFdkQsSUFBSSxpQkFBaUIsR0FBRyxVQUFVLENBQUM7QUFDbkMsSUFBSSxnQkFBZ0IsR0FBRyxXQUFXLENBQUM7QUFHbkMsNkJBQW9DLEtBQWE7SUFDL0NBLE1BQU1BLENBQUNBLG9CQUFhQSxDQUFDQSxnQkFBZ0JBLENBQUNBLEtBQUtBLEVBQUVBLGlCQUFpQkEsRUFDeEJBLFVBQUNBLENBQUNBLElBQU9BLE1BQU1BLENBQUNBLEdBQUdBLEdBQUdBLENBQUNBLENBQUNBLENBQUNBLENBQUNBLENBQUNBLFdBQVdBLEVBQUVBLENBQUNBLENBQUNBLENBQUNBLENBQUNBLENBQUNBO0FBQ3JGQSxDQUFDQTtBQUhlLDJCQUFtQixzQkFHbEMsQ0FBQTtBQUVELDZCQUFvQyxLQUFhO0lBQy9DQyxNQUFNQSxDQUFDQSxvQkFBYUEsQ0FBQ0EsZ0JBQWdCQSxDQUFDQSxLQUFLQSxFQUFFQSxnQkFBZ0JBLEVBQ3ZCQSxVQUFDQSxDQUFDQSxJQUFPQSxNQUFNQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxXQUFXQSxFQUFFQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQTtBQUMvRUEsQ0FBQ0E7QUFIZSwyQkFBbUIsc0JBR2xDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1N0cmluZ1dyYXBwZXJ9IGZyb20gJ2FuZ3VsYXIyL3NyYy9mYWNhZGUvbGFuZyc7XG5cbnZhciBDQU1FTF9DQVNFX1JFR0VYUCA9IC8oW0EtWl0pL2c7XG52YXIgREFTSF9DQVNFX1JFR0VYUCA9IC8tKFthLXpdKS9nO1xuXG5cbmV4cG9ydCBmdW5jdGlvbiBjYW1lbENhc2VUb0Rhc2hDYXNlKGlucHV0OiBzdHJpbmcpOiBzdHJpbmcge1xuICByZXR1cm4gU3RyaW5nV3JhcHBlci5yZXBsYWNlQWxsTWFwcGVkKGlucHV0LCBDQU1FTF9DQVNFX1JFR0VYUCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAobSkgPT4geyByZXR1cm4gJy0nICsgbVsxXS50b0xvd2VyQ2FzZSgpOyB9KTtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIGRhc2hDYXNlVG9DYW1lbENhc2UoaW5wdXQ6IHN0cmluZyk6IHN0cmluZyB7XG4gIHJldHVybiBTdHJpbmdXcmFwcGVyLnJlcGxhY2VBbGxNYXBwZWQoaW5wdXQsIERBU0hfQ0FTRV9SRUdFWFAsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKG0pID0+IHsgcmV0dXJuIG1bMV0udG9VcHBlckNhc2UoKTsgfSk7XG59XG4iXX0=
+
+/***/ },
 /* 204 */,
 /* 205 */,
-/* 206 */,
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';var animation_1 = __webpack_require__(44);
+	exports.Animation = animation_1.Animation;
+	var animation_builder_1 = __webpack_require__(45);
+	exports.AnimationBuilder = animation_builder_1.AnimationBuilder;
+	var browser_details_1 = __webpack_require__(36);
+	exports.BrowserDetails = browser_details_1.BrowserDetails;
+	var css_animation_builder_1 = __webpack_require__(46);
+	exports.CssAnimationBuilder = css_animation_builder_1.CssAnimationBuilder;
+	var css_animation_options_1 = __webpack_require__(47);
+	exports.CssAnimationOptions = css_animation_options_1.CssAnimationOptions;
+	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5pbWF0ZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFuZ3VsYXIyL2FuaW1hdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMEJBQXdCLHlCQUF5QixDQUFDO0FBQTFDLDBDQUEwQztBQUNsRCxrQ0FBK0IsaUNBQWlDLENBQUM7QUFBekQsZ0VBQXlEO0FBQ2pFLGdDQUE2QiwrQkFBK0IsQ0FBQztBQUFyRCwwREFBcUQ7QUFDN0Qsc0NBQWtDLHFDQUFxQyxDQUFDO0FBQWhFLDBFQUFnRTtBQUN4RSxzQ0FBa0MscUNBQXFDLENBQUM7QUFBaEUsMEVBQWdFIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHtBbmltYXRpb259IGZyb20gJy4vc3JjL2FuaW1hdGUvYW5pbWF0aW9uJztcbmV4cG9ydCB7QW5pbWF0aW9uQnVpbGRlcn0gZnJvbSAnLi9zcmMvYW5pbWF0ZS9hbmltYXRpb25fYnVpbGRlcic7XG5leHBvcnQge0Jyb3dzZXJEZXRhaWxzfSBmcm9tICcuL3NyYy9hbmltYXRlL2Jyb3dzZXJfZGV0YWlscyc7XG5leHBvcnQge0Nzc0FuaW1hdGlvbkJ1aWxkZXJ9IGZyb20gJy4vc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9idWlsZGVyJztcbmV4cG9ydCB7Q3NzQW5pbWF0aW9uT3B0aW9uc30gZnJvbSAnLi9zcmMvYW5pbWF0ZS9jc3NfYW5pbWF0aW9uX29wdGlvbnMnO1xuIl19
+
+/***/ },
 /* 207 */,
 /* 208 */,
 /* 209 */,
@@ -16363,204 +16882,214 @@ webpackJsonp([2],[
 /* 231 */,
 /* 232 */,
 /* 233 */,
-/* 234 */
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 54,
-		"./af.js": 54,
-		"./ar": 58,
-		"./ar-ma": 55,
-		"./ar-ma.js": 55,
-		"./ar-sa": 56,
-		"./ar-sa.js": 56,
-		"./ar-tn": 57,
-		"./ar-tn.js": 57,
-		"./ar.js": 58,
-		"./az": 59,
-		"./az.js": 59,
-		"./be": 60,
-		"./be.js": 60,
-		"./bg": 61,
-		"./bg.js": 61,
-		"./bn": 62,
-		"./bn.js": 62,
-		"./bo": 63,
-		"./bo.js": 63,
-		"./br": 64,
-		"./br.js": 64,
-		"./bs": 65,
-		"./bs.js": 65,
-		"./ca": 66,
-		"./ca.js": 66,
-		"./cs": 67,
-		"./cs.js": 67,
-		"./cv": 68,
-		"./cv.js": 68,
-		"./cy": 69,
-		"./cy.js": 69,
-		"./da": 70,
-		"./da.js": 70,
-		"./de": 72,
-		"./de-at": 71,
-		"./de-at.js": 71,
-		"./de.js": 72,
-		"./dv": 73,
-		"./dv.js": 73,
-		"./el": 74,
-		"./el.js": 74,
-		"./en-au": 75,
-		"./en-au.js": 75,
-		"./en-ca": 76,
-		"./en-ca.js": 76,
-		"./en-gb": 77,
-		"./en-gb.js": 77,
-		"./en-ie": 78,
-		"./en-ie.js": 78,
-		"./en-nz": 79,
-		"./en-nz.js": 79,
-		"./eo": 80,
-		"./eo.js": 80,
-		"./es": 81,
-		"./es.js": 81,
-		"./et": 82,
-		"./et.js": 82,
-		"./eu": 83,
-		"./eu.js": 83,
-		"./fa": 84,
-		"./fa.js": 84,
-		"./fi": 85,
-		"./fi.js": 85,
-		"./fo": 86,
-		"./fo.js": 86,
-		"./fr": 89,
-		"./fr-ca": 87,
-		"./fr-ca.js": 87,
-		"./fr-ch": 88,
-		"./fr-ch.js": 88,
-		"./fr.js": 89,
-		"./fy": 90,
-		"./fy.js": 90,
-		"./gd": 91,
-		"./gd.js": 91,
-		"./gl": 92,
-		"./gl.js": 92,
-		"./he": 93,
-		"./he.js": 93,
-		"./hi": 94,
-		"./hi.js": 94,
-		"./hr": 95,
-		"./hr.js": 95,
-		"./hu": 96,
-		"./hu.js": 96,
-		"./hy-am": 97,
-		"./hy-am.js": 97,
-		"./id": 98,
-		"./id.js": 98,
-		"./is": 99,
-		"./is.js": 99,
-		"./it": 100,
-		"./it.js": 100,
-		"./ja": 101,
-		"./ja.js": 101,
-		"./jv": 102,
-		"./jv.js": 102,
-		"./ka": 103,
-		"./ka.js": 103,
-		"./kk": 104,
-		"./kk.js": 104,
-		"./km": 105,
-		"./km.js": 105,
-		"./ko": 106,
-		"./ko.js": 106,
-		"./lb": 107,
-		"./lb.js": 107,
-		"./lo": 108,
-		"./lo.js": 108,
-		"./lt": 109,
-		"./lt.js": 109,
-		"./lv": 110,
-		"./lv.js": 110,
-		"./me": 111,
-		"./me.js": 111,
-		"./mk": 112,
-		"./mk.js": 112,
-		"./ml": 113,
-		"./ml.js": 113,
-		"./mr": 114,
-		"./mr.js": 114,
-		"./ms": 116,
-		"./ms-my": 115,
-		"./ms-my.js": 115,
-		"./ms.js": 116,
-		"./my": 117,
-		"./my.js": 117,
-		"./nb": 118,
-		"./nb.js": 118,
-		"./ne": 119,
-		"./ne.js": 119,
-		"./nl": 120,
-		"./nl.js": 120,
-		"./nn": 121,
-		"./nn.js": 121,
-		"./pa-in": 122,
-		"./pa-in.js": 122,
-		"./pl": 123,
-		"./pl.js": 123,
-		"./pt": 125,
-		"./pt-br": 124,
-		"./pt-br.js": 124,
-		"./pt.js": 125,
-		"./ro": 126,
-		"./ro.js": 126,
-		"./ru": 127,
-		"./ru.js": 127,
-		"./se": 128,
-		"./se.js": 128,
-		"./si": 129,
-		"./si.js": 129,
-		"./sk": 130,
-		"./sk.js": 130,
-		"./sl": 131,
-		"./sl.js": 131,
-		"./sq": 132,
-		"./sq.js": 132,
-		"./sr": 134,
-		"./sr-cyrl": 133,
-		"./sr-cyrl.js": 133,
-		"./sr.js": 134,
-		"./sv": 135,
-		"./sv.js": 135,
-		"./sw": 136,
-		"./sw.js": 136,
-		"./ta": 137,
-		"./ta.js": 137,
-		"./te": 138,
-		"./te.js": 138,
-		"./th": 139,
-		"./th.js": 139,
-		"./tl-ph": 140,
-		"./tl-ph.js": 140,
-		"./tlh": 141,
-		"./tlh.js": 141,
-		"./tr": 142,
-		"./tr.js": 142,
-		"./tzl": 143,
-		"./tzl.js": 143,
-		"./tzm": 145,
-		"./tzm-latn": 144,
-		"./tzm-latn.js": 144,
-		"./tzm.js": 145,
-		"./uk": 146,
-		"./uk.js": 146,
-		"./uz": 147,
-		"./uz.js": 147,
-		"./vi": 148,
-		"./vi.js": 148,
-		"./zh-cn": 149,
-		"./zh-cn.js": 149,
-		"./zh-tw": 150,
-		"./zh-tw.js": 150
+		"./af": 60,
+		"./af.js": 60,
+		"./ar": 64,
+		"./ar-ma": 61,
+		"./ar-ma.js": 61,
+		"./ar-sa": 62,
+		"./ar-sa.js": 62,
+		"./ar-tn": 63,
+		"./ar-tn.js": 63,
+		"./ar.js": 64,
+		"./az": 65,
+		"./az.js": 65,
+		"./be": 66,
+		"./be.js": 66,
+		"./bg": 67,
+		"./bg.js": 67,
+		"./bn": 68,
+		"./bn.js": 68,
+		"./bo": 69,
+		"./bo.js": 69,
+		"./br": 70,
+		"./br.js": 70,
+		"./bs": 71,
+		"./bs.js": 71,
+		"./ca": 72,
+		"./ca.js": 72,
+		"./cs": 73,
+		"./cs.js": 73,
+		"./cv": 74,
+		"./cv.js": 74,
+		"./cy": 75,
+		"./cy.js": 75,
+		"./da": 76,
+		"./da.js": 76,
+		"./de": 78,
+		"./de-at": 77,
+		"./de-at.js": 77,
+		"./de.js": 78,
+		"./dv": 79,
+		"./dv.js": 79,
+		"./el": 80,
+		"./el.js": 80,
+		"./en-au": 81,
+		"./en-au.js": 81,
+		"./en-ca": 82,
+		"./en-ca.js": 82,
+		"./en-gb": 83,
+		"./en-gb.js": 83,
+		"./en-ie": 84,
+		"./en-ie.js": 84,
+		"./en-nz": 85,
+		"./en-nz.js": 85,
+		"./eo": 86,
+		"./eo.js": 86,
+		"./es": 87,
+		"./es.js": 87,
+		"./et": 88,
+		"./et.js": 88,
+		"./eu": 89,
+		"./eu.js": 89,
+		"./fa": 90,
+		"./fa.js": 90,
+		"./fi": 91,
+		"./fi.js": 91,
+		"./fo": 92,
+		"./fo.js": 92,
+		"./fr": 95,
+		"./fr-ca": 93,
+		"./fr-ca.js": 93,
+		"./fr-ch": 94,
+		"./fr-ch.js": 94,
+		"./fr.js": 95,
+		"./fy": 96,
+		"./fy.js": 96,
+		"./gd": 97,
+		"./gd.js": 97,
+		"./gl": 98,
+		"./gl.js": 98,
+		"./he": 99,
+		"./he.js": 99,
+		"./hi": 100,
+		"./hi.js": 100,
+		"./hr": 101,
+		"./hr.js": 101,
+		"./hu": 102,
+		"./hu.js": 102,
+		"./hy-am": 103,
+		"./hy-am.js": 103,
+		"./id": 104,
+		"./id.js": 104,
+		"./is": 105,
+		"./is.js": 105,
+		"./it": 106,
+		"./it.js": 106,
+		"./ja": 107,
+		"./ja.js": 107,
+		"./jv": 108,
+		"./jv.js": 108,
+		"./ka": 109,
+		"./ka.js": 109,
+		"./kk": 110,
+		"./kk.js": 110,
+		"./km": 111,
+		"./km.js": 111,
+		"./ko": 112,
+		"./ko.js": 112,
+		"./lb": 113,
+		"./lb.js": 113,
+		"./lo": 114,
+		"./lo.js": 114,
+		"./lt": 115,
+		"./lt.js": 115,
+		"./lv": 116,
+		"./lv.js": 116,
+		"./me": 117,
+		"./me.js": 117,
+		"./mk": 118,
+		"./mk.js": 118,
+		"./ml": 119,
+		"./ml.js": 119,
+		"./mr": 120,
+		"./mr.js": 120,
+		"./ms": 122,
+		"./ms-my": 121,
+		"./ms-my.js": 121,
+		"./ms.js": 122,
+		"./my": 123,
+		"./my.js": 123,
+		"./nb": 124,
+		"./nb.js": 124,
+		"./ne": 125,
+		"./ne.js": 125,
+		"./nl": 126,
+		"./nl.js": 126,
+		"./nn": 127,
+		"./nn.js": 127,
+		"./pa-in": 128,
+		"./pa-in.js": 128,
+		"./pl": 129,
+		"./pl.js": 129,
+		"./pt": 131,
+		"./pt-br": 130,
+		"./pt-br.js": 130,
+		"./pt.js": 131,
+		"./ro": 132,
+		"./ro.js": 132,
+		"./ru": 133,
+		"./ru.js": 133,
+		"./se": 134,
+		"./se.js": 134,
+		"./si": 135,
+		"./si.js": 135,
+		"./sk": 136,
+		"./sk.js": 136,
+		"./sl": 137,
+		"./sl.js": 137,
+		"./sq": 138,
+		"./sq.js": 138,
+		"./sr": 140,
+		"./sr-cyrl": 139,
+		"./sr-cyrl.js": 139,
+		"./sr.js": 140,
+		"./sv": 141,
+		"./sv.js": 141,
+		"./sw": 142,
+		"./sw.js": 142,
+		"./ta": 143,
+		"./ta.js": 143,
+		"./te": 144,
+		"./te.js": 144,
+		"./th": 145,
+		"./th.js": 145,
+		"./tl-ph": 146,
+		"./tl-ph.js": 146,
+		"./tlh": 147,
+		"./tlh.js": 147,
+		"./tr": 148,
+		"./tr.js": 148,
+		"./tzl": 149,
+		"./tzl.js": 149,
+		"./tzm": 151,
+		"./tzm-latn": 150,
+		"./tzm-latn.js": 150,
+		"./tzm.js": 151,
+		"./uk": 152,
+		"./uk.js": 152,
+		"./uz": 153,
+		"./uz.js": 153,
+		"./vi": 154,
+		"./vi.js": 154,
+		"./zh-cn": 155,
+		"./zh-cn.js": 155,
+		"./zh-tw": 156,
+		"./zh-tw.js": 156
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -16573,24 +17102,25 @@ webpackJsonp([2],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 234;
+	webpackContext.id = 244;
 
 
 /***/ },
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var alert_component_1 = __webpack_require__(240);
+	var alert_component_1 = __webpack_require__(251);
 	exports.Alert = alert_component_1.Alert;
 
 
 /***/ },
-/* 240 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16609,7 +17139,7 @@ webpackJsonp([2],[
 	var Alert = (function () {
 	    function Alert() {
 	        this.type = 'warning';
-	        this.close = new core_1.EventEmitter();
+	        this.close = new core_1.EventEmitter(false);
 	        this.classes = [];
 	    }
 	    Alert.prototype.ngOnInit = function () {
@@ -16659,7 +17189,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 241 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16673,12 +17203,16 @@ webpackJsonp([2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(3);
+	var animate_1 = __webpack_require__(206);
 	var Collapse = (function () {
-	    function Collapse() {
+	    function Collapse(_ab, _el) {
+	        this._ab = _ab;
+	        this._el = _el;
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
 	        this.isCollapse = true;
 	        this.isCollapsing = false;
+	        this.transitionDuration = 500;
 	    }
 	    Object.defineProperty(Collapse.prototype, "collapse", {
 	        get: function () {
@@ -16691,6 +17225,10 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
+	    Collapse.prototype.ngOnInit = function () {
+	        this.animation = this._ab.css();
+	        this.animation.setDuration(this.transitionDuration);
+	    };
 	    Collapse.prototype.toggle = function () {
 	        if (this.isExpanded) {
 	            this.hide();
@@ -16706,9 +17244,21 @@ webpackJsonp([2],[
 	        this.isExpanded = false;
 	        this.isCollapsed = true;
 	        setTimeout(function () {
-	            _this.height = '0';
-	            _this.isCollapse = true;
-	            _this.isCollapsing = false;
+	            _this.animation
+	                .setFromStyles({
+	                height: _this._el.nativeElement.scrollHeight + 'px'
+	            })
+	                .setToStyles({
+	                height: '0',
+	                overflow: 'hidden'
+	            });
+	            _this.animation.start(_this._el.nativeElement).onComplete(function () {
+	                if (_this._el.nativeElement.offsetHeight === 0) {
+	                    _this.display = 'none';
+	                }
+	                _this.isCollapse = true;
+	                _this.isCollapsing = false;
+	            });
 	        }, 4);
 	    };
 	    Collapse.prototype.show = function () {
@@ -16717,16 +17267,26 @@ webpackJsonp([2],[
 	        this.isCollapsing = true;
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
+	        this.display = '';
 	        setTimeout(function () {
-	            _this.height = 'auto';
-	            _this.isCollapse = true;
-	            _this.isCollapsing = false;
+	            _this.animation
+	                .setFromStyles({
+	                height: _this._el.nativeElement.offsetHeight,
+	                overflow: 'hidden'
+	            })
+	                .setToStyles({
+	                height: _this._el.nativeElement.scrollHeight + 'px'
+	            });
+	            _this.animation.start(_this._el.nativeElement).onComplete(function () {
+	                _this.isCollapse = true;
+	                _this.isCollapsing = false;
+	            });
 	        }, 4);
 	    };
 	    __decorate([
-	        core_1.HostBinding('style.height'), 
+	        core_1.HostBinding('style.display'), 
 	        __metadata('design:type', String)
-	    ], Collapse.prototype, "height", void 0);
+	    ], Collapse.prototype, "display", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.in'),
 	        core_1.HostBinding('attr.aria-expanded'), 
@@ -16745,13 +17305,17 @@ webpackJsonp([2],[
 	        __metadata('design:type', Boolean)
 	    ], Collapse.prototype, "isCollapsing", void 0);
 	    __decorate([
+	        core_1.Input('transition-duration'), 
+	        __metadata('design:type', Number)
+	    ], Collapse.prototype, "transitionDuration", void 0);
+	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean), 
 	        __metadata('design:paramtypes', [Boolean])
 	    ], Collapse.prototype, "collapse", null);
 	    Collapse = __decorate([
 	        core_1.Directive({ selector: '[collapse]' }), 
-	        __metadata('design:paramtypes', [])
+	        __metadata('design:paramtypes', [animate_1.AnimationBuilder, core_1.ElementRef])
 	    ], Collapse);
 	    return Collapse;
 	}());
@@ -16759,7 +17323,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 242 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16776,7 +17340,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 243 */
+/* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16796,13 +17360,13 @@ webpackJsonp([2],[
 	var TEMPLATE_OPTIONS = (_a = {},
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = {
 	        DAY_TITLE: "\n        <th *ngFor=\"#labelz of labels\" class=\"text-xs-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
-	        WEEK_ROW: "\n        <td [hidden]=\"!datePicker.showWeeks\" class=\"text-xs-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <!--  [ngClass]=\"dtz.customClass\" -->\n        <td *ngFor=\"#dtz of rowz\" class=\"text-xs-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-sm\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary || dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
+	        WEEK_ROW: "\n        <td *ngIf=\"datePicker.showWeeks\" class=\"text-xs-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <td *ngFor=\"#dtz of rowz\" class=\"text-xs-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-sm {{dtz.customClass}}\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary || dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
 	        ARROW_LEFT: '&lt;',
 	        ARROW_RIGHT: '&gt;'
 	    },
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = {
 	        DAY_TITLE: "\n        <th *ngFor=\"#labelz of labels\" class=\"text-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
-	        WEEK_ROW: "\n        <td [hidden]=\"!datePicker.showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <!--  [ngClass]=\"dtz.customClass\" -->\n        <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary, 'text-info': dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
+	        WEEK_ROW: "\n        <td *ngIf=\"datePicker.showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm {{dtz.customClass}}\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary, 'text-info': dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
 	        ARROW_LEFT: "\n    <i class=\"glyphicon glyphicon-chevron-left\"></i>\n    ",
 	        ARROW_RIGHT: "\n    <i class=\"glyphicon glyphicon-chevron-right\"></i>\n    "
 	    },
@@ -16884,7 +17448,7 @@ webpackJsonp([2],[
 	    DayPicker = __decorate([
 	        core_1.Component({
 	            selector: 'daypicker, [daypicker]',
-	            template: "\n<table [hidden]=\"datePicker.datepickerMode!=='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th [hidden]=\"!datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" #rowz=\"$implicit\" #index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
+	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" #rowz=\"$implicit\" #index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
 	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
@@ -16896,7 +17460,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 244 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16953,7 +17517,7 @@ webpackJsonp([2],[
 	    MonthPicker = __decorate([
 	        core_1.Component({
 	            selector: 'monthpicker, [monthpicker]',
-	            template: "\n<table [hidden]=\"datePicker.datepickerMode!=='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
+	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
 	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
@@ -16964,7 +17528,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 245 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -17021,7 +17585,7 @@ webpackJsonp([2],[
 	    YearPicker = __decorate([
 	        core_1.Component({
 	            selector: 'yearpicker, [yearpicker]',
-	            template: "\n<table [hidden]=\"datePicker.datepickerMode!=='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
+	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
 	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
@@ -17032,7 +17596,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 246 */
+/* 257 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -17047,10 +17611,10 @@ webpackJsonp([2],[
 	    }
 	    DropdownService.prototype.open = function (dropdownScope) {
 	        if (!this.openScope) {
-	            window.document.addEventListener('click', this.closeDropdownBind);
+	            window.document.addEventListener('click', this.closeDropdownBind, true);
 	            window.document.addEventListener('keydown', this.keybindFilterBind);
 	        }
-	        if (this.openScope && this.openScope !== this.dropdownScope) {
+	        if (this.openScope && this.openScope !== dropdownScope) {
 	            this.openScope.isOpen = false;
 	        }
 	        this.openScope = dropdownScope;
@@ -17060,7 +17624,7 @@ webpackJsonp([2],[
 	            return;
 	        }
 	        this.openScope = null;
-	        window.document.removeEventListener('click', this.closeDropdownBind);
+	        window.document.removeEventListener('click', this.closeDropdownBind, true);
 	        window.document.removeEventListener('keydown', this.keybindFilterBind);
 	    };
 	    DropdownService.prototype.closeDropdown = function (event) {
@@ -17107,7 +17671,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 247 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -17128,8 +17692,8 @@ webpackJsonp([2],[
 	var Rating = (function () {
 	    function Rating(cd) {
 	        this.cd = cd;
-	        this.onHover = new core_1.EventEmitter();
-	        this.onLeave = new core_1.EventEmitter();
+	        this.onHover = new core_1.EventEmitter(false);
+	        this.onLeave = new core_1.EventEmitter(false);
 	        this.onChange = function (_) {
 	        };
 	        this.onTouched = function () {
@@ -17251,7 +17815,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 248 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -17556,7 +18120,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'timepicker[ngModel]',
 	            directives: [common_1.NgClass],
-	            template: "\n    <table>\n      <tbody>\n        <tr class=\"text-center\" [ngClass]=\"{hidden: !showSpinners}\">\n          <td><a (click)=\"incrementHours()\" [ngClass]=\"{disabled: noIncrementHours()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a></td>\n          <td>&nbsp;</td>\n          <td><a (click)=\"incrementMinutes()\" [ngClass]=\"{disabled: noIncrementMinutes()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a></td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" [hidden]=\"!showMeridian\"></td>\n        </tr>\n        <tr>\n          <td class=\"form-group\" [ngClass]=\"{'has-error': invalidHours}\">\n            <input style=\"width:50px;\" type=\"text\" [(ngModel)]=\"hours\" (change)=\"updateHours()\" class=\"form-control text-center\" [readonly]=\"readonlyInput\" (blur)=\"hoursOnBlur($event)\" maxlength=\"2\">\n          </td>\n          <td>:</td>\n          <td class=\"form-group\" [ngClass]=\"{'has-error': invalidMinutes}\">\n            <input style=\"width:50px;\" type=\"text\" [(ngModel)]=\"minutes\" (change)=\"updateMinutes()\" class=\"form-control text-center\" [readonly]=\"readonlyInput\" (blur)=\"minutesOnBlur($event)\" maxlength=\"2\">\n          </td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" [hidden]=\"!showMeridian\"><button type=\"button\" [ngClass]=\"{disabled: noToggleMeridian()}\" class=\"btn btn-default text-center\" (click)=\"toggleMeridian()\">{{meridian}}</button></td>\n        </tr>\n        <tr class=\"text-center\" [ngClass]=\"{hidden: !showSpinners}\">\n          <td><a (click)=\"decrementHours()\" [ngClass]=\"{disabled: noDecrementHours()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a></td>\n          <td>&nbsp;</td>\n          <td><a (click)=\"decrementMinutes()\" [ngClass]=\"{disabled: noDecrementMinutes()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a></td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" [hidden]=\"!showMeridian\"></td>\n        </tr>\n      </tbody>\n    </table>\n  "
+	            template: "\n    <table>\n      <tbody>\n        <tr class=\"text-center\" [ngClass]=\"{hidden: !showSpinners}\">\n          <td><a (click)=\"incrementHours()\" [ngClass]=\"{disabled: noIncrementHours()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a></td>\n          <td>&nbsp;</td>\n          <td><a (click)=\"incrementMinutes()\" [ngClass]=\"{disabled: noIncrementMinutes()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a></td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" *ngIf=\"showMeridian\"></td>\n        </tr>\n        <tr>\n          <td class=\"form-group\" [ngClass]=\"{'has-error': invalidHours}\">\n            <input style=\"width:50px;\" type=\"text\" [(ngModel)]=\"hours\" (change)=\"updateHours()\" class=\"form-control text-center\" [readonly]=\"readonlyInput\" (blur)=\"hoursOnBlur($event)\" maxlength=\"2\">\n          </td>\n          <td>:</td>\n          <td class=\"form-group\" [ngClass]=\"{'has-error': invalidMinutes}\">\n            <input style=\"width:50px;\" type=\"text\" [(ngModel)]=\"minutes\" (change)=\"updateMinutes()\" class=\"form-control text-center\" [readonly]=\"readonlyInput\" (blur)=\"minutesOnBlur($event)\" maxlength=\"2\">\n          </td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" *ngIf=\"showMeridian\"><button type=\"button\" [ngClass]=\"{disabled: noToggleMeridian()}\" class=\"btn btn-default text-center\" (click)=\"toggleMeridian()\">{{meridian}}</button></td>\n        </tr>\n        <tr class=\"text-center\" [ngClass]=\"{hidden: !showSpinners}\">\n          <td><a (click)=\"decrementHours()\" [ngClass]=\"{disabled: noDecrementHours()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a></td>\n          <td>&nbsp;</td>\n          <td><a (click)=\"decrementMinutes()\" [ngClass]=\"{disabled: noDecrementMinutes()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a></td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" *ngIf=\"showMeridian\"></td>\n        </tr>\n      </tbody>\n    </table>\n  "
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
@@ -17567,7 +18131,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 249 */
+/* 260 */
 /***/ function(module, exports) {
 
 	"use strict";

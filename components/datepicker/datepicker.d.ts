@@ -19,8 +19,12 @@ export declare class DatePicker implements ControlValueAccessor {
     yearRange: number;
     onlyCurrentMonth: boolean;
     shortcutPropagation: boolean;
+    customClass: Array<{
+        date: Date;
+        mode: string;
+        clazz: string;
+    }>;
     activeDate: Date;
-    customClass: any;
     dateDisabled: any;
     constructor(cd: NgModel);
     private _now;

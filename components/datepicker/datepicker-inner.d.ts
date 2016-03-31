@@ -46,6 +46,7 @@ export declare class DatePickerInner implements OnInit {
     dateFilter(date: Date, format: string): string;
     private isActive(dateObject);
     private createDateObject(date, format);
+    private getCustomClassForDate(date);
     private isDisabled(date);
     private split(arr, size);
     fixTimeZone(date: Date): void;

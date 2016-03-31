@@ -6,6 +6,7 @@ export declare class Tooltip implements OnInit {
     placement: string;
     isOpen: boolean;
     enable: boolean;
+    animation: boolean;
     appendToBody: boolean;
     private visible;
     private tooltip;
