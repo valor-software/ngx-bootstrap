@@ -220,6 +220,14 @@ export class Typeahead implements OnInit {
     }
   }
 
+  @HostListener('keydown', ['$event'])
+  onKeydown(e:KeyboardEvent) {
+    // When typeahead container is visible, prevent submitting the form
+    if (this.container && e.keyCode === 13) {
+      e.preventDefault();
+    }
+  }
+
   @HostListener('keyup', ['$event'])
   onChange(e:KeyboardEvent) {
     if (this.container) {
