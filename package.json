@@ -18,6 +18,8 @@
     "pretest": "npm run lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
     "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular -v",
+    "preversion": "npm test",
+    "version": "npm run changelog && git add -A",
     "postversion": "git push origin master && git push --tags",
     "github-release": "conventional-github-releaser -p angular",
     "eslint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config",
@@ -46,10 +48,10 @@
     "moment": "2.12.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.12"
+    "angular2": "2.0.0-beta.13"
   },
   "devDependencies": {
-    "angular2": "2.0.0-beta.12",
+    "angular2": "2.0.0-beta.13",
     "async": "1.5.2",
     "balanced-match": "0.3.0",
     "bootstrap": "3.3.6",
