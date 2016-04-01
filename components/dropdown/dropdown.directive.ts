@@ -1,16 +1,14 @@
 import {
-  Directive,
-  OnInit, OnDestroy, Input, Output, HostBinding,
-  EventEmitter, ElementRef, ContentChildren,
-  Query, QueryList
+  Directive, OnInit, OnDestroy, Input, Output, HostBinding, EventEmitter,
+  ElementRef
 } from 'angular2/core';
-
 import {dropdownService, NONINPUT} from './dropdown.service';
 
 @Directive({selector: '[dropdown]'})
 export class Dropdown implements OnInit, OnDestroy {
   @HostBinding('class.open')
-  @Input() public get isOpen():boolean {
+  @Input()
+  public get isOpen():boolean {
     return this._isOpen;
   }
 
@@ -21,23 +19,25 @@ export class Dropdown implements OnInit, OnDestroy {
 
   @Output() public onToggle:EventEmitter<boolean> = new EventEmitter(false);
   @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter(false);
-  @HostBinding('class.dropdown') private addClass = true;
+  @HostBinding('class.dropdown') public addClass:boolean = true;
 
-
-  private _isOpen:boolean;
   // index of selected element
   public selectedOption:number;
   // drop menu html
   public menuEl:ElementRef;
   // drop down toggle element
   public toggleEl:ElementRef;
+  public el:ElementRef;
+  private _isOpen:boolean;
 
-  constructor(public el:ElementRef,
-              @Query('dropdownMenu', {descendants: false}) dropdownMenuList:QueryList<ElementRef>) {
+  public constructor(el:ElementRef) {
+    // @Query('dropdownMenu', {descendants: false})
+    // dropdownMenuList:QueryList<ElementRef>) {
+    this.el = el;
     // todo: bind to route change event
   }
 
-  public set isOpen(value) {
+  public set isOpen(value:boolean) {
     this._isOpen = !!value;
 
     // todo: implement after porting position
@@ -45,27 +45,28 @@ export class Dropdown implements OnInit, OnDestroy {
 
     }
 
-    // todo: $animate open<->close transitions, as soon as ng2Animate will be ready
+    // todo: $animate open<->close transitions, as soon as ng2Animate will be
+    // ready
     if (this.isOpen) {
       this.focusToggleElement();
       dropdownService.open(this);
     } else {
       dropdownService.close(this);
-      this.selectedOption = null;
+      this.selectedOption = void 0;
     }
     this.onToggle.emit(this.isOpen);
     this.isOpenChange.emit(this.isOpen);
     // todo: implement call to setIsOpen if set and function
   }
 
-  ngOnInit() {
+  public ngOnInit():void {
     this.autoClose = this.autoClose || NONINPUT;
     if (this.isOpen) {
       // todo: watch for event get-isOpen?
     }
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy():void {
     if (this.appendToBody && this.menuEl) {
       this.menuEl.nativeElement.remove();
     }
@@ -89,7 +90,7 @@ export class Dropdown implements OnInit, OnDestroy {
     return this.isOpen = arguments.length ? !!open : !this.isOpen;
   }
 
-  public focusDropdownEntry(keyCode:number) {
+  public focusDropdownEntry(keyCode:number):void {
     // If append to body is used.
     let hostEl = this.menuEl ?
       this.menuEl.nativeElement :
@@ -133,12 +134,14 @@ export class Dropdown implements OnInit, OnDestroy {
 
         this.selectedOption--;
         break;
+      default:
+        break;
     }
 
     elems[this.selectedOption].focus();
   }
 
-  public focusToggleElement() {
+  public focusToggleElement():void {
     if (this.toggleEl) {
       this.toggleEl.nativeElement.focus();
     }

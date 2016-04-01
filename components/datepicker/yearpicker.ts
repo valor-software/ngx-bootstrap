@@ -1,17 +1,9 @@
-import {
-  Component, Host,
-  OnInit, EventEmitter,
-  ElementRef, ViewContainerRef,
-  Self, Renderer
-} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES,
-   DefaultValueAccessor, NgIf, NgClass, NgModel
-} from 'angular2/common';
-
+import {Component, OnInit} from 'angular2/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 import {DatePickerInner} from './datepicker-inner';
 
-//write an interface for template options
+// write an interface for template options
 const TEMPLATE_OPTIONS:any = {
   bs4: {
     YEAR_BUTTON: `
@@ -38,8 +30,8 @@ const TEMPLATE_OPTIONS:any = {
 const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 
 @Component({
-  selector: 'yearpicker, [yearpicker]',
-    template: `
+  selector: 'yearpicker',
+  template: `
 <table *ngIf="datePicker.datepickerMode==='year'" role="grid">
   <thead>
     <tr>
@@ -78,23 +70,20 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
 export class YearPicker implements OnInit {
+  public datePicker:DatePickerInner;
   private title:string;
   private rows:Array<any> = [];
 
-  constructor(public datePicker:DatePickerInner) {
+  public constructor(datePicker:DatePickerInner) {
+    this.datePicker = datePicker;
   }
 
-  private getStartingYear(year:number) {
-    // todo: parseInt
-    return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
-  }
-
-  ngOnInit() {
+  public ngOnInit():void {
     let self = this;
 
     this.datePicker.stepYear = {years: this.datePicker.yearRange};
 
-    this.datePicker.setRefreshViewHandler(function () {
+    this.datePicker.setRefreshViewHandler(function ():void {
       let years:Array<any> = new Array(this.yearRange);
       let date:Date;
 
@@ -105,16 +94,20 @@ export class YearPicker implements OnInit {
         years[i].uid = this.uniqueId + '-' + i;
       }
 
-      self.title = [years[0].label, years[this.yearRange - 1].label].join(' - ');
+      self.title = [years[0].label,
+        years[this.yearRange - 1].label].join(' - ');
       self.rows = this.split(years, 5);
     }, 'year');
 
-    this.datePicker.setCompareHandler(function (date1:Date, date2:Date) {
+    this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
       return date1.getFullYear() - date2.getFullYear();
     }, 'year');
 
     this.datePicker.refreshView();
   }
 
-  // todo: key events implementation
+  private getStartingYear(year:number):number {
+    // todo: parseInt
+    return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
+  }
 }

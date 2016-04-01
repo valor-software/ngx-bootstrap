@@ -2,16 +2,16 @@ import {Component, OnInit, Input, Self} from 'angular2/core';
 import {NgClass, NgModel, ControlValueAccessor} from 'angular2/common';
 
 export interface ITimepickerConfig {
-  hourStep: number;
-  minuteStep: number;
-  showMeridian: boolean;
-  meridians?: any[];
-  readonlyInput: boolean;
-  mousewheel: boolean;
-  arrowkeys: boolean;
-  showSpinners: boolean;
-  min?: number;
-  max?: number;
+  hourStep:number;
+  minuteStep:number;
+  showMeridian:boolean;
+  meridians?:any[];
+  readonlyInput:boolean;
+  mousewheel:boolean;
+  arrowkeys:boolean;
+  showSpinners:boolean;
+  min?:number;
+  max?:number;
 }
 
 // todo: implement global configuration via DI
@@ -24,7 +24,7 @@ export const timepickerConfig:ITimepickerConfig = {
   hourStep: 1,
   minuteStep: 1,
   showMeridian: true,
-  meridians: null,
+  meridians: void 0,
   readonlyInput: false,
   mousewheel: true,
   arrowkeys: true,
@@ -37,20 +37,21 @@ function isDefined(value:any):boolean {
   return typeof value !== 'undefined';
 }
 
-function def(value:any, fn:Function, defaultValue:any) {
+function def(value:any, fn:Function, defaultValue:any):any {
   return fn(value) ? value : defaultValue;
 }
 
-function addMinutes(date:any, minutes:number) {
+function addMinutes(date:any, minutes:number):Date {
   let dt = new Date(date.getTime() + minutes * 60000);
   let newDate = new Date(date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
   return newDate;
 }
 
-// TODO: templateUrl
 @Component({
+  /* tslint:disable */
   selector: 'timepicker[ngModel]',
+  /* tslint:enable */
   directives: [NgClass],
   template: `
     <table>
@@ -82,35 +83,37 @@ function addMinutes(date:any, minutes:number) {
   `
 })
 export class Timepicker implements ControlValueAccessor, OnInit {
+  public cd:NgModel;
   // config
-  @Input() private hourStep:number;
-  @Input() private minuteStep:number;
-  @Input() private readonlyInput:boolean;
-  @Input() private mousewheel:boolean;
-  @Input() private arrowkeys:boolean;
-  @Input() private showSpinners:boolean;
-  @Input() private min:Date;
-  @Input() private max:Date;
-  @Input() private meridians:Array<string> = ['AM', 'PM']; // ??
+  @Input() public hourStep:number;
+  @Input() public minuteStep:number;
+  @Input() public readonlyInput:boolean;
+  @Input() public mousewheel:boolean;
+  @Input() public arrowkeys:boolean;
+  @Input() public showSpinners:boolean;
+  @Input() public min:Date;
+  @Input() public max:Date;
+  @Input() public meridians:Array<string> = ['AM', 'PM']; // ??
 
-  @Input() private get showMeridian() {
+  @Input()
+  public get showMeridian():boolean {
     return this._showMeridian;
   }
 
-  private set showMeridian(value:boolean) {
+  public set showMeridian(value:boolean) {
     this._showMeridian = value;
     // || !this.$error.time
-    //if (true) {
+    // if (true) {
     this.updateTemplate();
     return;
-    //}
+    // }
     // Evaluate from template
     /*let hours = this.getHoursFromTemplate();
-    let minutes = this.getMinutesFromTemplate();
-    if (isDefined(hours) && isDefined(minutes)) {
-      this.selected.setHours(hours);
-      this.refresh();
-    }*/
+     let minutes = this.getMinutesFromTemplate();
+     if (isDefined(hours) && isDefined(minutes)) {
+     this.selected.setHours(hours);
+     this.refresh();
+     }*/
   }
 
   // result value
@@ -139,26 +142,28 @@ export class Timepicker implements ControlValueAccessor, OnInit {
   private invalidHours:any;
   private invalidMinutes:any;
 
-  constructor(@Self() public cd:NgModel) {
+  public constructor(@Self() cd:NgModel) {
+    this.cd = cd;
     cd.valueAccessor = this;
   }
 
   // todo: add formatter value to Date object
-  ngOnInit() {
+  public ngOnInit():void {
     // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
-    this.meridians = def(this.meridians, isDefined, timepickerConfig.meridians) || ['AM', 'PM'];
+    this.meridians = def(this.meridians, isDefined, timepickerConfig.meridians) || ['AM',
+        'PM'];
     this.mousewheel = def(this.mousewheel, isDefined, timepickerConfig.mousewheel);
     if (this.mousewheel) {
-      this.setupMousewheelEvents();
+      // this.setupMousewheelEvents();
     }
     this.arrowkeys = def(this.arrowkeys, isDefined, timepickerConfig.arrowkeys);
     if (this.arrowkeys) {
-      this.setupArrowkeyEvents();
+      // this.setupArrowkeyEvents();
     }
 
     this.readonlyInput = def(this.readonlyInput, isDefined, timepickerConfig.readonlyInput);
 
-    this.setupInputEvents();
+    // this.setupInputEvents();
 
     this.hourStep = def(this.hourStep, isDefined, timepickerConfig.hourStep);
     this.minuteStep = def(this.minuteStep, isDefined, timepickerConfig.minuteStep);
@@ -169,7 +174,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     this.showSpinners = def(this.showSpinners, isDefined, timepickerConfig.showSpinners);
   }
 
-  writeValue(v:any) {
+  public writeValue(v:any):void {
     if (v === this.selected) {
       return;
     }
@@ -177,72 +182,18 @@ export class Timepicker implements ControlValueAccessor, OnInit {
       this.selected = v;
       return;
     }
-    this.selected = v ? new Date(v) : null;
+    this.selected = v ? new Date(v) : void 0;
   }
 
-  private refresh(type?:string) {
-    // this.makeValid();
-    this.updateTemplate();
-    this.cd.viewToModelUpdate(this.selected);
-  }
+  public onChange:any = () => {};
 
-  private updateTemplate(keyboardChange?:any) {
-    let hours = this.selected.getHours();
-    let minutes = this.selected.getMinutes();
+  public onTouched:any = () => {};
 
-    if (this.showMeridian) {
-      // Convert 24 to 12 hour system
-      hours = (hours === 0 || hours === 12) ? 12 : hours % 12;
-    }
+  public registerOnChange(fn:(_:any) => {}):void {this.onChange = fn;}
 
-    // this.hours = keyboardChange === 'h' ? hours : this.pad(hours);
-    // if (keyboardChange !== 'm') {
-    //  this.minutes = this.pad(minutes);
-    // }
-    this.hours = this.pad(hours);
-    this.minutes = this.pad(minutes);
-    this.meridian = this.selected.getHours() < 12 ? this.meridians[0] : this.meridians[1];
-  }
+  public registerOnTouched(fn:() => {}):void {this.onTouched = fn;}
 
-  private getHoursFromTemplate() {
-    let hours = parseInt(this.hours, 10);
-    let valid = this.showMeridian ? (hours > 0 && hours < 13) : (hours >= 0 && hours < 24);
-    if (!valid) {
-      return undefined;
-    }
-
-    if (this.showMeridian) {
-      if (hours === 12) {
-        hours = 0;
-      }
-      if (this.meridian === this.meridians[1]) {
-        hours = hours + 12;
-      }
-    }
-    return hours;
-  }
-
-  private getMinutesFromTemplate() {
-    let minutes = parseInt(this.minutes, 10);
-    return (minutes >= 0 && minutes < 60) ? minutes : undefined;
-  }
-
-  private pad(value:any) {
-    return (isDefined(value) && value.toString().length < 2) ? '0' + value : value.toString();
-  }
-
-
-  private setupMousewheelEvents() {
-  }
-
-  private setupArrowkeyEvents() {
-  }
-
-  private setupInputEvents() {
-
-  }
-
-  private updateHours() {
+  protected updateHours():void {
     if (this.readonlyInput) {
       return;
     }
@@ -260,11 +211,11 @@ export class Timepicker implements ControlValueAccessor, OnInit {
       // todo: validation?
       // invalidate(true);
     } else {
-      this.refresh('h');
+      this.refresh(/*'h'*/);
     }
   }
 
-  private hoursOnBlur(event:Event) {
+  protected hoursOnBlur(/*event:Event*/):void {
     if (this.readonlyInput) {
       return;
     }
@@ -275,7 +226,7 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     }
   }
 
-  private updateMinutes() {
+  protected updateMinutes():void {
     if (this.readonlyInput) {
       return;
     }
@@ -293,11 +244,11 @@ export class Timepicker implements ControlValueAccessor, OnInit {
       // todo: validation
       // invalidate(undefined, true);
     } else {
-      this.refresh('m');
+      this.refresh(/*'m'*/);
     }
   }
 
-  private minutesOnBlur(event:Event) {
+  protected minutesOnBlur(/*event:Event*/):void {
     if (this.readonlyInput) {
       return;
     }
@@ -307,85 +258,129 @@ export class Timepicker implements ControlValueAccessor, OnInit {
     }
   }
 
-  private noIncrementHours() {
-    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
-    return incrementedSelected > this.max ||
-      (incrementedSelected < this.selected && incrementedSelected < this.min);
-  }
-
-  private noDecrementHours() {
-    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
-    return decrementedSelected < this.min ||
-      (decrementedSelected > this.selected && decrementedSelected > this.max);
-  }
-
-  private noIncrementMinutes() {
-    let incrementedSelected = addMinutes(this.selected, this.minuteStep);
-    return incrementedSelected > this.max ||
-      (incrementedSelected < this.selected && incrementedSelected < this.min);
-  }
-
-  private noDecrementMinutes() {
-    let decrementedSelected = addMinutes(this.selected, -this.minuteStep);
-    return decrementedSelected < this.min ||
-      (decrementedSelected > this.selected && decrementedSelected > this.max);
-
-  }
-
-  private addMinutesToSelected(minutes:any) {
-    this.selected = addMinutes(this.selected, minutes);
-    this.refresh();
-  }
-
-  noToggleMeridian() {
-    if (this.selected.getHours() < 13) {
-      return addMinutes(this.selected, 12 * 60) > this.max;
-    } else {
-      return addMinutes(this.selected, -12 * 60) < this.min;
-    }
-  }
-
-  private incrementHours() {
+  protected incrementHours():void {
     if (!this.noIncrementHours()) {
       this.addMinutesToSelected(this.hourStep * 60);
     }
   }
 
-  private decrementHours() {
+  protected decrementHours():void {
     if (!this.noDecrementHours()) {
       this.addMinutesToSelected(-this.hourStep * 60);
     }
   }
 
-  private incrementMinutes() {
+  protected incrementMinutes():void {
     if (!this.noIncrementMinutes()) {
       this.addMinutesToSelected(this.minuteStep);
     }
   }
 
-  private decrementMinutes() {
+  protected decrementMinutes():void {
     if (!this.noDecrementMinutes()) {
       this.addMinutesToSelected(-this.minuteStep);
     }
   }
 
-  private toggleMeridian() {
+  protected toggleMeridian():void {
     if (!this.noToggleMeridian()) {
       let sign = this.selected.getHours() < 12 ? 1 : -1;
       this.addMinutesToSelected(12 * 60 * sign);
     }
   }
 
-  onChange = (_:any) => {
-  };
-  onTouched = () => {
-  };
-
-  registerOnChange(fn:(_:any) => {}):void {
-    this.onChange = fn;
+  private refresh(/*type?:string*/):void {
+    // this.makeValid();
+    this.updateTemplate();
+    this.cd.viewToModelUpdate(this.selected);
   }
 
-  registerOnTouched(fn:() => {}):void {
-    this.onTouched = fn;
+  private updateTemplate(/*keyboardChange?:any*/):void {
+    let hours = this.selected.getHours();
+    let minutes = this.selected.getMinutes();
+
+    if (this.showMeridian) {
+      // Convert 24 to 12 hour system
+      hours = (hours === 0 || hours === 12) ? 12 : hours % 12;
+    }
+
+    // this.hours = keyboardChange === 'h' ? hours : this.pad(hours);
+    // if (keyboardChange !== 'm') {
+    //  this.minutes = this.pad(minutes);
+    // }
+    this.hours = this.pad(hours);
+    this.minutes = this.pad(minutes);
+    this.meridian = this.selected.getHours() < 12
+      ? this.meridians[0]
+      : this.meridians[1];
+  }
+
+  private getHoursFromTemplate():number {
+    let hours = parseInt(this.hours, 10);
+    let valid = this.showMeridian
+      ? (hours > 0 && hours < 13)
+      : (hours >= 0 && hours < 24);
+    if (!valid) {
+      return void 0;
+    }
+
+    if (this.showMeridian) {
+      if (hours === 12) {
+        hours = 0;
+      }
+      if (this.meridian === this.meridians[1]) {
+        hours = hours + 12;
+      }
+    }
+    return hours;
+  }
+
+  private getMinutesFromTemplate():number {
+    let minutes = parseInt(this.minutes, 10);
+    return (minutes >= 0 && minutes < 60) ? minutes : undefined;
+  }
+
+  private pad(value:string|number):string {
+    return (isDefined(value) && value.toString().length < 2)
+      ? '0' + value
+      : value.toString();
+  }
+
+  private noIncrementHours():boolean {
+    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
+    return incrementedSelected > this.max ||
+      (incrementedSelected < this.selected && incrementedSelected < this.min);
+  }
+
+  private noDecrementHours():boolean {
+    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
+    return decrementedSelected < this.min ||
+      (decrementedSelected > this.selected && decrementedSelected > this.max);
+  }
+
+  private noIncrementMinutes():boolean {
+    let incrementedSelected = addMinutes(this.selected, this.minuteStep);
+    return incrementedSelected > this.max ||
+      (incrementedSelected < this.selected && incrementedSelected < this.min);
+  }
+
+  private noDecrementMinutes():boolean {
+    let decrementedSelected = addMinutes(this.selected, -this.minuteStep);
+    return decrementedSelected < this.min ||
+      (decrementedSelected > this.selected && decrementedSelected > this.max);
+
+  }
+
+  private addMinutesToSelected(minutes:any):void {
+    this.selected = addMinutes(this.selected, minutes);
+    this.refresh();
+  }
+
+  private noToggleMeridian():boolean {
+    if (this.selected.getHours() < 13) {
+      return addMinutes(this.selected, 12 * 60) > this.max;
+    } else {
+      return addMinutes(this.selected, -12 * 60) < this.min;
+    }
   }
 }

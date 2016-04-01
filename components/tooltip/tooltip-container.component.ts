@@ -1,4 +1,6 @@
-import {Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit} from 'angular2/core';
+import {
+  Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit
+} from 'angular2/core';
 import {NgClass, NgStyle} from 'angular2/common';
 import {positionService} from '../position';
 import {TooltipOptions} from './tooltip-options.class';
@@ -17,6 +19,7 @@ import {TooltipOptions} from './tooltip-options.class';
     </div>`
 })
 export class TooltipContainer implements AfterViewInit {
+  /* tslint:disable */
   private classMap:any;
   private top:string = '-1000px';
   private left:string = '-1000px';
@@ -28,16 +31,22 @@ export class TooltipContainer implements AfterViewInit {
   private isOpen:boolean;
   private appendToBody:boolean;
   private hostEl:ElementRef;
+  /* tslint:enable */
 
-  constructor(private element:ElementRef,
-              private cdr:ChangeDetectorRef,
-              @Inject(TooltipOptions) options:TooltipOptions) {
+  private element:ElementRef;
+  private cdr:ChangeDetectorRef;
+
+  public constructor(element:ElementRef,
+                     cdr:ChangeDetectorRef,
+                     @Inject(TooltipOptions) options:TooltipOptions) {
+    this.element = element;
+    this.cdr = cdr;
     Object.assign(this, options);
     this.classMap = {'in': false, 'fade': false};
     this.classMap[options.placement] = true;
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit():void {
     let p = positionService
       .positionElements(
         this.hostEl.nativeElement,

@@ -18,17 +18,17 @@ export class TabsDemo {
     {title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true}
   ];
 
-  public alertMe() {
-    setTimeout(function () {
+  public alertMe():void {
+    setTimeout(function ():void {
       alert('You\'ve selected the alert tab!');
     });
   };
 
-  public setActiveTab(index:number) {
+  public setActiveTab(index:number):void {
     this.tabs[index].active = true;
   };
 
-  public removeTabHandler(tab:any) {
+  public removeTabHandler(/*tab:any*/):void {
     console.log('Remove Tab handler');
   };
 }

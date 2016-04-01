@@ -8,16 +8,19 @@ const progressConfig = {
 
 // todo: progress element conflict with bootstrap.css
 // todo: need hack: replace host element with div
-@Directive({ selector: 'bs-progress, [progress]' })
+/* tslint:disable */
+@Directive({selector: 'bs-progress, [progress]'})
+/* tslint:enable */
 export class Progress implements OnInit {
   @Input() public animate:boolean;
 
   @HostBinding('attr.max')
-  @Input() public get max():number {
+  @Input()
+  public get max():number {
     return this._max;
   }
 
-  @HostBinding('class') private addClass = 'progress';
+  @HostBinding('class.progress') public addClass:boolean = true;
 
   public set max(v:number) {
     this._max = v;
@@ -30,23 +33,22 @@ export class Progress implements OnInit {
 
   private _max:number;
 
-  constructor() {
+  public constructor() {
   }
 
-  ngOnInit() {
+  public ngOnInit():void {
     this.animate = this.animate !== false;
     this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
   }
 
-
-  public addBar(bar:Bar) {
+  public addBar(bar:Bar):void {
     if (!this.animate) {
       bar.transition = 'none';
     }
     this.bars.push(bar);
   }
 
-  public removeBar(bar:Bar) {
+  public removeBar(bar:Bar):void {
     this.bars.splice(this.bars.indexOf(bar), 1);
   }
 }

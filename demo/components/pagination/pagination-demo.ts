@@ -11,18 +11,18 @@ let template = require('./pagination-demo.html');
   template: template
 })
 export class PaginationDemo {
-  private totalItems:number = 64;
-  private currentPage:number = 4;
+  public totalItems:number = 64;
+  public currentPage:number = 4;
 
-  private maxSize:number = 5;
-  private bigTotalItems:number = 175;
-  private bigCurrentPage:number = 1;
+  public maxSize:number = 5;
+  public bigTotalItems:number = 175;
+  public bigCurrentPage:number = 1;
 
-  private setPage(pageNo:number):void {
+  public setPage(pageNo:number):void {
     this.currentPage = pageNo;
   };
 
-  private pageChanged(event:any):void {
+  public pageChanged(event:any):void {
     console.log('Page changed to: ' + event.page);
     console.log('Number items per page: ' + event.itemsPerPage);
   };

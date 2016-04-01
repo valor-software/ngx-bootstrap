@@ -27,39 +27,28 @@ import {Tab} from './tab.directive';
   `
 })
 export class Tabset implements OnInit {
-  @Input() private get vertical() {
-    return this._vertical;
-  };
+  @Input()
+  public get vertical():boolean { return this._vertical;};
 
-  @Input() private get justified() {
-    return this._justified;
-  };
+  @Input()
+  public get justified():boolean { return this._justified;};
 
-  @Input() private get type() {
-    return this._type;
-  };
+  @Input()
+  public get type():string {return this._type;};
 
-  private set vertical(value) {
+  public set vertical(value:boolean) {
     this._vertical = value;
     this.setClassMap();
   }
 
-  private set justified(value) {
+  public set justified(value:boolean) {
     this._justified = value;
     this.setClassMap();
   }
 
-  private set type(value) {
+  public set type(value:string) {
     this._type = value;
     this.setClassMap();
-  }
-
-  private setClassMap() {
-    this.classMap = {
-      'nav-stacked': this.vertical,
-      'nav-justified': this.justified,
-      ['nav-' + (this.type || 'tabs')]: true
-    };
   }
 
   public tabs:Array<Tab> = [];
@@ -70,23 +59,23 @@ export class Tabset implements OnInit {
   private _type:string;
   private classMap:any = {};
 
-  constructor() {
+  public constructor() {
   }
 
-  ngOnInit() {
+  public ngOnInit():void {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy():void {
     this.isDestroyed = true;
   }
 
-  public addTab(tab:Tab) {
+  public addTab(tab:Tab):void {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active !== false;
   }
 
-  public removeTab(tab:Tab) {
+  public removeTab(tab:Tab):void {
     let index = this.tabs.indexOf(tab);
     if (index === -1 || this.isDestroyed) {
       return;
@@ -101,7 +90,7 @@ export class Tabset implements OnInit {
     this.tabs.splice(index, 1);
   }
 
-  private getClosestTabIndex (index:number):number {
+  private getClosestTabIndex(index:number):number {
     let tabsLength = this.tabs.length;
     if (!tabsLength) {
       return -1;
@@ -120,7 +109,7 @@ export class Tabset implements OnInit {
     return -1;
   }
 
-  private hasAvailableTabs (index:number) {
+  private hasAvailableTabs(index:number):boolean {
     let tabsLength = this.tabs.length;
     if (!tabsLength) {
       return false;
@@ -132,5 +121,13 @@ export class Tabset implements OnInit {
       }
     }
     return false;
+  }
+
+  private setClassMap():void {
+    this.classMap = {
+      'nav-stacked': this.vertical,
+      'nav-justified': this.justified,
+      ['nav-' + (this.type || 'tabs')]: true
+    };
   }
 }

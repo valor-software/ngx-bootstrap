@@ -1,10 +1,9 @@
 import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
-
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {DatePickerInner} from './datepicker-inner';
 
-//write an interface for template options
+// write an interface for template options
 const TEMPLATE_OPTIONS:any = {
   [Ng2BootstrapTheme.BS4]: {
     DAY_TITLE: `
@@ -53,7 +52,7 @@ const TEMPLATE_OPTIONS:any = {
 const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2BootstrapTheme.BS3];
 
 @Component({
-  selector: 'daypicker, [daypicker]',
+  selector: 'daypicker',
   template: `
 <table *ngIf="datePicker.datepickerMode==='day'" role="grid" aria-labelledby="uniqueId+'-title'" aria-activedescendant="activeDateId">
   <thead>
@@ -100,51 +99,29 @@ export class DayPicker implements OnInit {
   public title:string;
   public rows:Array<any> = [];
   public weekNumbers:Array<number> = [];
+  public datePicker:DatePickerInner;
 
-  constructor(public datePicker:DatePickerInner) {
+  public constructor(datePicker:DatePickerInner) {
+    this.datePicker = datePicker;
   }
 
   /*private getDaysInMonth(year:number, month:number) {
    return ((month === 1) && (year % 4 === 0) &&
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
-
-  private getDates(startDate:Date, n:number) {
-    let dates:Array<Date> = new Array(n);
-    let current = new Date(startDate.getTime());
-    let i = 0;
-    let date:Date;
-    while (i < n) {
-      date = new Date(current.getTime());
-      this.datePicker.fixTimeZone(date);
-      dates[i++] = date;
-      current.setDate(current.getDate() + 1);
-    }
-    return dates;
-  }
-
-  private getISO8601WeekNumber(date:Date):number {
-    let checkDate = new Date(date.getTime());
-    // Thursday
-    checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
-    let time = checkDate.getTime();
-    // Compare with Jan 1
-    checkDate.setMonth(0);
-    checkDate.setDate(1);
-    return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
-  }
-
-  ngOnInit() {
+  public ngOnInit():void {
     let self = this;
 
     this.datePicker.stepDay = {months: 1};
 
-    this.datePicker.setRefreshViewHandler(function () {
+    this.datePicker.setRefreshViewHandler(function ():void {
       let year = this.activeDate.getFullYear();
       let month = this.activeDate.getMonth();
       let firstDayOfMonth = new Date(year, month, 1);
       let difference = this.startingDay - firstDayOfMonth.getDay();
-      let numDisplayedFromPreviousMonth = (difference > 0) ? 7 - difference : -difference;
+      let numDisplayedFromPreviousMonth = (difference > 0)
+        ? 7 - difference
+        : -difference;
       let firstDate = new Date(firstDayOfMonth.getTime());
 
       if (numDisplayedFromPreviousMonth > 0) {
@@ -181,7 +158,7 @@ export class DayPicker implements OnInit {
       }
     }, 'day');
 
-    this.datePicker.setCompareHandler(function (date1:Date, date2:Date) {
+    this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
       let d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
       let d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
       return d1.getTime() - d2.getTime();
@@ -190,5 +167,29 @@ export class DayPicker implements OnInit {
     this.datePicker.refreshView();
   }
 
+  private getDates(startDate:Date, n:number):Array<Date> {
+    let dates:Array<Date> = new Array(n);
+    let current = new Date(startDate.getTime());
+    let i = 0;
+    let date:Date;
+    while (i < n) {
+      date = new Date(current.getTime());
+      this.datePicker.fixTimeZone(date);
+      dates[i++] = date;
+      current.setDate(current.getDate() + 1);
+    }
+    return dates;
+  }
+
+  private getISO8601WeekNumber(date:Date):number {
+    let checkDate = new Date(date.getTime());
+    // Thursday
+    checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
+    let time = checkDate.getTime();
+    // Compare with Jan 1
+    checkDate.setMonth(0);
+    checkDate.setDate(1);
+    return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
+  }
   // todo: key events implementation
 }
