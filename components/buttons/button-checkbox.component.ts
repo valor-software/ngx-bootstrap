@@ -1,8 +1,16 @@
 import { Directive, OnInit, Input, HostBinding, HostListener,
-  Self, Renderer, ElementRef } from 'angular2/core';
-import { ControlValueAccessor, NgModel } from 'angular2/common';
+  Self, Renderer, ElementRef, forwardRef, Provider } from 'angular2/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from 'angular2/common';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
 
-@Directive({ selector: '[btnCheckbox][ngModel]' })
+const CUSTOM_VALUE_ACCESSOR = CONST_EXPR(new Provider(NG_VALUE_ACCESSOR,
+  { useExisting: forwardRef(() => ButtonCheckbox), multi: true }));
+
+
+@Directive({
+  selector: '[btnCheckbox]',
+  providers: [CUSTOM_VALUE_ACCESSOR]
+})
 export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   @Input() private btnCheckboxTrue:any;
   @Input() private btnCheckboxFalse:any;
@@ -14,15 +22,12 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   @HostListener('click')
   private onClick() {
     this.toggle(!this.state);
-    this.cd.viewToModelUpdate(this.value);
+    this.onChange(this.value);
   }
 
   private value:any;
 
-  constructor(@Self() public cd:NgModel) {
-    // hack !
-    cd.valueAccessor = this;
-  }
+  constructor() { }
 
   public ngOnInit() {
     this.toggle(this.trueValue === this.value);

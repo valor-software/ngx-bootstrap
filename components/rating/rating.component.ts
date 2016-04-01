@@ -1,12 +1,16 @@
 import {
   Component,
   OnInit, Input, Output, HostListener,
-  Self, EventEmitter
+  Self, EventEmitter, forwardRef, Provider
 } from 'angular2/core';
-import { NgFor, ControlValueAccessor, NgModel } from 'angular2/common';
+import { NgFor, NG_VALUE_ACCESSOR, ControlValueAccessor } from 'angular2/common';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
+
+const CUSTOM_VALUE_ACCESSOR = CONST_EXPR(new Provider(NG_VALUE_ACCESSOR,
+  { useExisting: forwardRef(() => Rating), multi: true }));
 
 @Component({
-  selector: 'rating[ngModel]',
+  selector: 'rating',
   directives: [NgFor],
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
@@ -15,7 +19,8 @@ import { NgFor, ControlValueAccessor, NgModel } from 'angular2/common';
         <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
       </template>
     </span>
-  `
+  `,
+  providers: [CUSTOM_VALUE_ACCESSOR],
 })
 export class Rating implements ControlValueAccessor, OnInit {
   @Input() private max:number;
@@ -44,8 +49,7 @@ export class Rating implements ControlValueAccessor, OnInit {
     this.rate(this.value + sign);
   }
 
-  constructor(@Self() public cd:NgModel) {
-    cd.valueAccessor = this;
+  constructor() {
   }
 
   ngOnInit() {
@@ -87,7 +91,7 @@ export class Rating implements ControlValueAccessor, OnInit {
   private rate(value:number) {
     if (!this.readonly && value >= 0 && value <= this.range.length) {
       this.writeValue(value);
-      this.cd.viewToModelUpdate(value);
+      this.onChange(value);
     }
   }
 

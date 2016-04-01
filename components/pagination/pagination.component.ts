@@ -1,5 +1,8 @@
-import {Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer} from 'angular2/core';
-import {NgFor, NgIf, ControlValueAccessor, NgModel} from 'angular2/common';
+import {Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer,
+   Provider, forwardRef} from 'angular2/core';
+import {NgFor, NgIf, ControlValueAccessor, NG_VALUE_ACCESSOR} from 'angular2/common';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
+
 import {IAttribute} from '../common';
 
 // todo: extract base functionality classes
@@ -68,10 +71,14 @@ const PAGINATION_TEMPLATE = `
   </ul>
   `;
 
+const CUSTOM_VALUE_ACCESSOR = CONST_EXPR(new Provider(NG_VALUE_ACCESSOR,
+  { useExisting: forwardRef(() => Pagination), multi: true }));
+
 @Component({
-  selector: 'pagination[ngModel]',
+  selector: 'pagination',
   template: PAGINATION_TEMPLATE,
-  directives: [NgFor, NgIf]
+  directives: [NgFor, NgIf],
+  providers:[CUSTOM_VALUE_ACCESSOR]
 })
 export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
   @Input() public maxSize:number;
@@ -151,8 +158,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   private _page:number;
   private pages:Array<any>;
 
-  constructor(@Self() public cd:NgModel, public renderer:Renderer, public elementRef:ElementRef) {
-    cd.valueAccessor = this;
+  constructor(public renderer:Renderer, public elementRef:ElementRef) {
     this.config = this.config || paginationConfig;
   }
 
@@ -169,7 +175,6 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
-    this.page = this.cd.value;
     this.inited = true;
   }
 
@@ -189,7 +194,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
         target.blur();
       }
       this.writeValue(page);
-      this.cd.viewToModelUpdate(this.page);
+      this.onChange(this.page);
     }
   }
 

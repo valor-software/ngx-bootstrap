@@ -5,7 +5,7 @@ import {
   Self, Renderer
 } from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES,
-   DefaultValueAccessor, NgIf, NgClass, NgModel
+   DefaultValueAccessor, NgIf, NgClass
 } from 'angular2/common';
 
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
