@@ -1,6 +1,6 @@
 <div class='container-fluid'>
     <h4>Static arrays</h4>
-    <pre>Model: {{selected | json}}</pre>
+    <pre class="card card-block card-header">Model: {{selected | json}}</pre>
     <input [(ngModel)]="selected"
            [typeahead]="statesComplex"
            (typeaheadOnSelect)="typeaheadOnSelect($event)"
@@ -8,7 +8,7 @@
            class="form-control">
 
     <h4>Asynchronous results</h4>
-    <pre>Model: {{asyncSelected | json}}</pre>
+    <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>
     <input [(ngModel)]="asyncSelected"
            [typeahead]="getAsyncData(getContext())"
            (typeaheadLoading)="changeTypeaheadLoading($event)"
