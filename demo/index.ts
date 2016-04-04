@@ -1,21 +1,7 @@
-/// <reference path="../typings/browser.d.ts" />
-import {
-  Component, enableProdMode,
-} from 'angular2/core';
+import {Component, enableProdMode} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {bootstrap} from 'angular2/platform/browser';
-
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
-
-// todo: enable prod mod only for prod build
-enableProdMode();
-
-let w:any = window;
-if (w && w.__theme === 'bs4') {
-  Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
-}
-
-
 import {AccordionSection} from './components/accordion-section';
 import {AlertSection} from './components/alert-section';
 import {ButtonsSection} from './components/buttons-section';
@@ -30,8 +16,17 @@ import {TabsSection} from './components/tabs-section';
 import {TimepickerSection} from './components/timepicker-section';
 import {TooltipSection} from './components/tooltip-section';
 import {TypeaheadSection} from './components/typeahead-section';
-
 import {DemoHeader} from './components/demo-header';
+
+// todo: enable prod mod only for prod build
+// if (false) {
+enableProdMode();
+// }
+
+let w:any = window;
+if (w && w.__theme === 'bs4') {
+  Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
+}
 
 let gettingStarted = require('./getting-started.md');
 
@@ -108,7 +103,7 @@ let gettingStarted = require('./getting-started.md');
   ]
 })
 export class Demo {
-  private isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+  public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
 }
 
 bootstrap(Demo);

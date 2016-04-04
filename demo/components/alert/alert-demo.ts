@@ -11,7 +11,7 @@ let template = require('./alert-demo.html');
   directives: [Alert, CORE_DIRECTIVES]
 })
 export class AlertDemo {
-  alerts:Array<Object> = [
+  public alerts:Array<Object> = [
     {
       type: 'danger',
       msg: 'Oh snap! Change a few things up and try submitting again.'
@@ -23,11 +23,11 @@ export class AlertDemo {
     }
   ];
 
-  closeAlert(i:number) {
+  public closeAlert(i:number):void {
     this.alerts.splice(i, 1);
   }
 
-  addAlert() {
+  public addAlert():void {
     this.alerts.push({msg: 'Another alert!', type: 'warning', closable: true});
   }
 }

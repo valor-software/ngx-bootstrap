@@ -1,9 +1,11 @@
-import {Component, OnInit, OnDestroy, Input, HostBinding, Inject} from 'angular2/core';
+import {
+  Component, OnInit, OnDestroy, Input, HostBinding, Inject
+} from 'angular2/core';
 import {NgClass} from 'angular2/common';
-
 import {Collapse} from '../collapse';
 import {Accordion} from './accordion.component';
 
+/* tslint:disable:component-selector-name */
 @Component({
   selector: 'accordion-group, accordion-panel',
   directives: [Collapse, NgClass],
@@ -31,7 +33,8 @@ export class AccordionPanel implements OnInit, OnDestroy {
   @Input() public isDisabled:boolean;
 
   @HostBinding('class.panel-open')
-  @Input() public get isOpen():boolean {
+  @Input()
+  public get isOpen():boolean {
     return this._isOpen;
   }
 
@@ -43,20 +46,22 @@ export class AccordionPanel implements OnInit, OnDestroy {
   }
 
   private _isOpen:boolean;
+  private accordion:Accordion;
 
-  constructor(@Inject(Accordion) private accordion:Accordion) {
+  public constructor(@Inject(Accordion) accordion:Accordion) {
+    this.accordion = accordion;
   }
 
-  ngOnInit() {
+  public ngOnInit():any {
     this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy():any {
     this.accordion.removeGroup(this);
   }
 
-  public toggleOpen(event:MouseEvent) {
+  public toggleOpen(event:MouseEvent):any {
     event.preventDefault();
     if (!this.isDisabled) {
       this.isOpen = !this.isOpen;

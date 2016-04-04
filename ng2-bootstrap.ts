@@ -34,6 +34,7 @@ export * from './components/ng2-bootstrap-config';
 
 export default {
   directives: [
+    Alert,
     ACCORDION_DIRECTIVES,
     BUTTON_DIRECTIVES,
     CAROUSEL_DIRECTIVES,

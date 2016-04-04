@@ -1,19 +1,16 @@
 import {Component, Self, Input} from 'angular2/core';
 import {
-  CORE_DIRECTIVES,
-  FORM_DIRECTIVES,
-  ControlValueAccessor,
-  NgModel
+  CORE_DIRECTIVES, FORM_DIRECTIVES, ControlValueAccessor, NgModel
 } from 'angular2/common';
-
 import {DatePickerInner} from './datepicker-inner';
-//import {DatePickerPopup} from './datepicker-popup';
 import {DayPicker} from './daypicker';
 import {MonthPicker} from './monthpicker';
 import {YearPicker} from './yearpicker';
+// import {DatePickerPopup} from './datepicker-popup';
 
+/* tslint:disable:component-selector-name component-selector-type */
 @Component({
-  selector: 'datepicker[ngModel], [datepicker][ngModel]',
+  selector: 'datepicker[ngModel]',
   template: `
     <datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate($event)"
@@ -42,11 +39,11 @@ import {YearPicker} from './yearpicker';
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
     `,
-  directives: [DatePickerInner, DayPicker, MonthPicker, YearPicker, FORM_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [DatePickerInner, DayPicker, MonthPicker, YearPicker,
+    FORM_DIRECTIVES, CORE_DIRECTIVES]
 })
-
+/* tslint:enable:component-selector-name component-selector-type */
 export class DatePicker implements ControlValueAccessor {
-  private _activeDate:Date;
   @Input() public datepickerMode:string;
   @Input() public initDate:Date;
   @Input() public minDate:Date;
@@ -65,13 +62,19 @@ export class DatePicker implements ControlValueAccessor {
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
-  @Input() public get activeDate():Date {
-    return this._activeDate || this._now;
-  }
-  // todo: change type during implementation
+// todo: change type during implementation
   @Input() public dateDisabled:any;
 
-  constructor(@Self() public cd:NgModel) {
+  public cd:NgModel;
+  private _activeDate:Date;
+
+  @Input()
+  public get activeDate():Date {
+    return this._activeDate || this._now;
+  }
+
+  public constructor(@Self() cd:NgModel) {
+    this.cd = cd;
     // hack
     cd.valueAccessor = this;
   }
@@ -82,13 +85,13 @@ export class DatePicker implements ControlValueAccessor {
     this._activeDate = value;
   }
 
-  private onUpdate(event:any) {
+  public onUpdate(event:any):void {
     this.writeValue(event);
     this.cd.viewToModelUpdate(event);
   }
 
   // todo: support null value
-  writeValue(value:any) {
+  public writeValue(value:any):void {
     // todo: fix something sends here new date all the time
     // if (value) {
     //  if (typeof value !== 'Date') {
@@ -105,19 +108,13 @@ export class DatePicker implements ControlValueAccessor {
       return;
     }
 
-    this.activeDate = value ? new Date(value) : null;
+    this.activeDate = value ? new Date(value) : void 0;
   }
 
-  onChange = (_:any) => {
-  };
-  onTouched = () => {
-  };
+  public onChange:any = () => {};
+  public onTouched:any = () => {};
 
-  registerOnChange(fn:(_:any) => {}):void {
-    this.onChange = fn;
-  }
+  public registerOnChange(fn:(_:any) => {}):void { this.onChange = fn; }
 
-  registerOnTouched(fn:() => {}):void {
-    this.onTouched = fn;
-  }
+  public registerOnTouched(fn:() => {}):void { this.onTouched = fn; }
 }

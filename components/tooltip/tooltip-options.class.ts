@@ -7,7 +7,7 @@ export class TooltipOptions {
   public animation:boolean;
   public isOpen:boolean;
 
-  constructor(options:Object) {
+  public constructor(options:Object) {
     Object.assign(this, options);
   }
 }

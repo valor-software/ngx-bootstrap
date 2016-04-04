@@ -1,8 +1,5 @@
-import {
-  Component, View, OnInit
-} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
-
+import {Component} from 'angular2/core';
+import {CORE_DIRECTIVES} from 'angular2/common';
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 
 let name = 'Alerts';
@@ -17,18 +14,16 @@ let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
 let annotations = require('!!prismjs?lang=typescript!../../components/alert/annotation.md');
 
 export class DemoSectionConfig {
-  public doc: string;
-  public title: string;
-  public ts: string;
-  public html: string;
-  public annotations: string;
+  public doc:string;
+  public title:string;
+  public ts:string;
+  public html:string;
+  public annotations:string;
 }
 
 @Component({
   selector: 'demo-section',
-  properties: ['demoSection']
-})
-@View({
+  properties: ['demoSection'],
   template: `
   <br>
   <section id="${name.toLowerCase()}">
@@ -77,5 +72,5 @@ export class DemoSectionConfig {
   directives: [TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
 export class DemoSection {
-  private demoSection: DemoSectionConfig;
+  public demoSection:DemoSectionConfig;
 }

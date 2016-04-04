@@ -1,10 +1,10 @@
 import {Component} from 'angular2/core';
-import { CORE_DIRECTIVES } from 'angular2/common';
+import {CORE_DIRECTIVES} from 'angular2/common';
+import {
+  Ng2BootstrapConfig, Ng2BootstrapTheme, PROGRESSBAR_DIRECTIVES
+} from '../../../ng2-bootstrap';
 
 // switch bs3\bs4 templates
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../../ng2-bootstrap';
-
-import {PROGRESSBAR_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let templates:any = {
@@ -24,12 +24,12 @@ export class ProgressbarDemo {
   public type:string;
   public stacked:any[] = [];
 
-  constructor() {
+  public constructor() {
     this.random();
     this.randomStacked();
   }
 
-  private random() {
+  public random():void {
     let value = Math.floor((Math.random() * 100) + 1);
     let type:string;
 
@@ -48,7 +48,7 @@ export class ProgressbarDemo {
     this.type = type;
   };
 
-  private randomStacked() {
+  public randomStacked():void {
     let types = ['success', 'info', 'warning', 'danger'];
 
     this.stacked = [];

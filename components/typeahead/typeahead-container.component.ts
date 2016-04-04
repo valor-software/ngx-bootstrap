@@ -6,7 +6,6 @@ import {TypeaheadOptions} from './typeahead-options.class';
 import {positionService} from '../position';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 
-
 const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
   <div class="dropdown-menu"
@@ -43,6 +42,7 @@ const TEMPLATE:any = {
 export class TypeaheadContainer {
   public parent:Typeahead;
   public query:any;
+  public element:ElementRef;
   private _matches:Array<any> = [];
   private _field:string;
   private _active:any;
@@ -51,7 +51,8 @@ export class TypeaheadContainer {
   private display:string;
   private placement:string;
 
-  constructor(public element:ElementRef, options:TypeaheadOptions) {
+  public constructor(element:ElementRef, options:TypeaheadOptions) {
+    this.element = element;
     Object.assign(this, options);
   }
 
@@ -71,7 +72,7 @@ export class TypeaheadContainer {
     this._field = value;
   }
 
-  public position(hostEl:ElementRef) {
+  public position(hostEl:ElementRef):void {
     this.display = 'block';
     this.top = '0px';
     this.left = '0px';
@@ -83,44 +84,35 @@ export class TypeaheadContainer {
     this.left = p.left + 'px';
   }
 
-  public selectActiveMatch() {
+  public selectActiveMatch():void {
     this.selectMatch(this._active);
   }
 
-  public prevActiveMatch() {
+  public prevActiveMatch():void {
     let index = this.matches.indexOf(this._active);
-    this._active = this.matches[index - 1 < 0 ? this.matches.length - 1 : index - 1];
+    this._active = this.matches[index - 1 < 0
+      ? this.matches.length - 1
+      : index - 1];
   }
 
-  public nextActiveMatch() {
+  public nextActiveMatch():void {
     let index = this.matches.indexOf(this._active);
-    this._active = this.matches[index + 1 > this.matches.length - 1 ? 0 : index + 1];
+    this._active = this.matches[index + 1 > this.matches.length - 1
+      ? 0
+      : index + 1];
   }
 
-  private selectActive(value:any) {
+  protected selectActive(value:any):void {
     this._active = value;
   }
 
-  private isActive(value:any):boolean {
-    return this._active === value;
-  }
-
-  private selectMatch(value:any, e:Event = null) {
-    if (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    }
-
-    this.parent.changeModel(value);
-    this.parent.typeaheadOnSelect.emit({
-      item: value
-    });
-    return false;
-  }
-
-  private hightlight(item:any, query:string) {
-    let itemStr:string = (typeof item === 'object' && this._field ? item[this._field] : item).toString();
-    let itemStrHelper:string = (this.parent.typeaheadLatinize ? TypeaheadUtils.latinize(itemStr) : itemStr).toLowerCase();
+  protected hightlight(item:any, query:string):string {
+    let itemStr:string = (typeof item === 'object' && this._field
+      ? item[this._field]
+      : item).toString();
+    let itemStrHelper:string = (this.parent.typeaheadLatinize
+      ? TypeaheadUtils.latinize(itemStr)
+      : itemStr).toLowerCase();
     let startIdx:number;
     let tokenLen:number;
 
@@ -146,5 +138,22 @@ export class TypeaheadContainer {
     }
 
     return itemStr;
+  }
+
+  public isActive(value:any):boolean {
+    return this._active === value;
+  }
+
+  private selectMatch(value:any, e:Event = void 0):boolean {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    this.parent.changeModel(value);
+    this.parent.typeaheadOnSelect.emit({
+      item: value
+    });
+    return false;
   }
 }

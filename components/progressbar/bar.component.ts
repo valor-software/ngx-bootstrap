@@ -1,12 +1,11 @@
 import {Component, OnInit, OnDestroy, Input, Host} from 'angular2/core';
 import {NgClass, NgStyle} from 'angular2/common';
-
 import {Progress} from './progress.directive';
 
 // todo: number pipe
 // todo: use query from progress?
 @Component({
-  selector: 'bar, [bar]',
+  selector: 'bar',
   directives: [NgClass, NgStyle],
   template: `
   <div class="progress-bar"
@@ -17,14 +16,14 @@ import {Progress} from './progress.directive';
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
     [attr.aria-valuetext]="percent.toFixed(0) + '%'"
-    [attr.aria-valuemax]="max"
-    ><ng-content></ng-content></div>
+    [attr.aria-valuemax]="max"><ng-content></ng-content></div>
 `
 })
 export class Bar implements OnInit, OnDestroy {
   @Input() public type:string;
 
-  @Input() public get value():number {
+  @Input()
+  public get value():number {
     return this._value;
   }
 
@@ -38,24 +37,25 @@ export class Bar implements OnInit, OnDestroy {
 
   public percent:number = 0;
   public transition:string;
+  public progress:Progress;
 
   private _value:number;
-
-  constructor(@Host() public progress:Progress) {
+  public constructor(@Host() progress:Progress) {
+    this.progress = progress;
   }
 
-  ngOnInit() {
+  public ngOnInit():void {
     this.progress.addBar(this);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy():void {
     this.progress.removeBar(this);
   }
 
-  public recalculatePercentage() {
+  public recalculatePercentage():void {
     this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 
-    let totalPercentage = this.progress.bars.reduce(function (total, bar) {
+    let totalPercentage = this.progress.bars.reduce(function (total:number, bar:Bar):number {
       return total + bar.percent;
     }, 0);
 

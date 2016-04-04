@@ -1,30 +1,25 @@
 import {
-  Component, Directive,
-  OnInit, EventEmitter,
-  ComponentRef, ViewEncapsulation,
-  ElementRef, DynamicComponentLoader,
-  Self, Renderer, bind, Injector
+  Component, Directive, OnInit, EventEmitter, ComponentRef, ViewEncapsulation,
+  ElementRef, DynamicComponentLoader, Self, Renderer, bind, Injector
 } from 'angular2/core';
-
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
 } from 'angular2/common';
-
 import {IAttribute} from '../common';
 import {positionService} from '../position';
-
-//import {DatePickerInner} from './datepicker-inner';
-//import {DayPicker} from './daypicker';
-//import {MonthPicker} from './monthpicker';
-//import {YearPicker} from './yearpicker';
 import {DatePicker} from './datepicker';
+
+// import {DatePickerInner} from './datepicker-inner';
+// import {DayPicker} from './daypicker';
+// import {MonthPicker} from './monthpicker';
+// import {YearPicker} from './yearpicker';
 
 class PopupOptions {
   public placement:string;
   public animation:boolean;
   public isOpen:boolean;
 
-  constructor(options:Object) {
+  public constructor(options:Object) {
     Object.assign(this, options);
   }
 }
@@ -70,19 +65,26 @@ class PopupContainer {
   private left:string;
   private display:string;
   private placement:string;
+
+  // false positive
+  /* tslint:disable:no-unused-variable */
   private showButtonBar:boolean = true;
   private update1:EventEmitter<any> = new EventEmitter(false);
+  /* tslint:enable:no-unused-variable */
 
-  constructor(public element:ElementRef, options:PopupOptions) {
+  private element:ElementRef;
+
+  public constructor(element:ElementRef, options:PopupOptions) {
+    this.element = element;
     Object.assign(this, options);
     this.classMap = {'in': false};
     this.classMap[options.placement] = true;
   }
 
-  public onUpdate($event:any) {
+  public onUpdate($event:any):void {
     console.log('update', $event);
     if ($event) {
-      if (typeof $event !== 'Date') {
+      if ($event.toString() !== '[object Date]') {
         $event = new Date($event);
       }
 
@@ -91,7 +93,7 @@ class PopupContainer {
     }
   }
 
-  public position(hostEl:ElementRef) {
+  public position(hostEl:ElementRef):void {
     this.display = 'block';
     this.top = '0px';
     this.left = '0px';
@@ -102,11 +104,11 @@ class PopupContainer {
     this.top = p.top + 'px';
   }
 
-  private getText(key:string):string {
+  public getText(key:string):string {
     return (<IAttribute>this)[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
   }
 
-  private isDisabled(date:Date):boolean {
+  public isDisabled(/*date:Date*/):boolean {
     return false;
   }
 }
@@ -114,17 +116,26 @@ class PopupContainer {
 @Directive({
   selector: '[datepickerPopup][ngModel]',
   // prop -> datepickerPopup - format
-  properties: ['datepickerPopup', 'isOpen'],
-  host: {'(cupdate)': 'onUpdate1($event)'}
+  properties: ['datepickerPopup', 'isOpen']/*,
+   host: {'(cupdate)': 'onUpdate1($event)'}*/
 })
 export class DatePickerPopup implements OnInit {
+  public cd:NgModel;
+  public element:ElementRef;
+  public renderer:Renderer;
+  public loader:DynamicComponentLoader;
+
   private _activeDate:Date;
-  private placement:string = 'bottom';
   private _isOpen:boolean = false;
+  private placement:string = 'bottom';
   private popup:Promise<ComponentRef>;
 
-  constructor(@Self()
-              public cd:NgModel, public element:ElementRef, public renderer:Renderer, public loader:DynamicComponentLoader) {
+  public constructor(@Self() cd:NgModel, element:ElementRef,
+                     renderer:Renderer, loader:DynamicComponentLoader) {
+    this.cd = cd;
+    this.element = element;
+    this.renderer = renderer;
+    this.loader = loader;
     this.activeDate = cd.model;
   }
 
@@ -154,16 +165,29 @@ export class DatePickerPopup implements OnInit {
     }
   }
 
-  ngOnInit() {
+  public ngOnInit():void {
   }
 
-  private show(cb:Function) {
+  public hide(cb:Function):void {
+    if (this.popup) {
+      this.popup.then((componentRef:ComponentRef) => {
+        componentRef.dispose();
+        cb();
+        return componentRef;
+      });
+    } else {
+      cb();
+    }
+  }
+
+  private show(cb:Function):void {
     let options = new PopupOptions({
       placement: this.placement
     });
 
     let binding = Injector.resolve([
-      bind(PopupOptions).toValue(options)
+      bind(PopupOptions)
+        .toValue(options)
     ]);
 
     this.popup = this.loader
@@ -180,17 +204,5 @@ export class DatePickerPopup implements OnInit {
         cb();
         return componentRef;
       });
-  }
-
-  public hide(cb:Function) {
-    if (this.popup) {
-      this.popup.then((componentRef:ComponentRef) => {
-        componentRef.dispose();
-        cb();
-        return componentRef;
-      });
-    } else {
-      cb();
-    }
   }
 }

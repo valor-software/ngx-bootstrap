@@ -31,7 +31,7 @@ export class AccordionDemo {
     }
   ];
 
-  public addItem() {
+  public addItem():void {
     this.items.push(`Items ${this.items.length + 1}`);
   }
 }

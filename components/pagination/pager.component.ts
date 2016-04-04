@@ -1,6 +1,5 @@
 import {Component, OnInit, ElementRef, Renderer, Self} from 'angular2/core';
 import {NgModel, NgClass} from 'angular2/common';
-
 import {Pagination} from './pagination.component';
 
 const pagerConfig = {
@@ -21,6 +20,7 @@ const PAGER_TEMPLATE = `
   </ul>
 `;
 
+/* tslint:disable */
 @Component({
   selector: 'pager[ngModel]',
   template: PAGER_TEMPLATE,
@@ -31,17 +31,11 @@ const PAGER_TEMPLATE = `
     'previousText', 'nextText',
   ]
 })
+/* tslint:enable */
 export class Pager extends Pagination implements OnInit {
-  public config = pagerConfig;
+  public config:any = pagerConfig;
 
-  constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
+  public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     super(cd, renderer, elementRef);
   }
 }
-// todo: pager should support only this in/out
-//inputs: [
-//  'align',
-//  'totalItems', 'itemsPerPage',
-//  'previousText', 'nextText',
-//],
-//  outputs:['numPages', 'pageChanged'],

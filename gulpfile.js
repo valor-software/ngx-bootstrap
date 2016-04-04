@@ -5,10 +5,10 @@ const gulp = require('gulp');
 gulp.paths = {
   tssrc: [
     '**/*.ts',
+    '!**/*.d.ts',
     '!node_modules/**/*',
     '!bundles/**/*',
-    '!typings/**/*',
-    '!**/*.{ts,coffee}.js'],
+    '!typings/**/*'],
   jssrc: [
     '*.js',
     'gulp-tasks/*.js',
