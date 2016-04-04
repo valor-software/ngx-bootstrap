@@ -103,7 +103,7 @@
     "source-map-loader": "0.1.5",
     "systemjs-builder": "0.15.14",
     "ts-loader": "0.8.1",
-    "tslint": "3.6.0",
+    "tslint": "3.7.0",
     "typescript": "1.8.9",
     "typings": "0.7.12",
     "webpack": "1.12.14",
