@@ -1,15 +1,15 @@
 export declare class TypeaheadDemo {
-    private selected;
-    private asyncSelected;
-    private typeaheadLoading;
-    private typeaheadNoResults;
-    private states;
-    private statesComplex;
-    private getContext();
+    selected: string;
+    asyncSelected: string;
+    typeaheadLoading: boolean;
+    typeaheadNoResults: boolean;
+    states: Array<string>;
+    statesComplex: Array<any>;
     private _cache;
     private _prevContext;
-    private getAsyncData(context);
-    private changeTypeaheadLoading(e);
-    private changeTypeaheadNoResults(e);
-    private typeaheadOnSelect(e);
+    getContext(): any;
+    getAsyncData(context: any): Function;
+    changeTypeaheadLoading(e: boolean): void;
+    changeTypeaheadNoResults(e: boolean): void;
+    typeaheadOnSelect(e: any): void;
 }

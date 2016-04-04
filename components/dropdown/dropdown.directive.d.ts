@@ -1,18 +1,18 @@
-import { OnInit, OnDestroy, EventEmitter, ElementRef, QueryList } from 'angular2/core';
+import { OnInit, OnDestroy, EventEmitter, ElementRef } from 'angular2/core';
 export declare class Dropdown implements OnInit, OnDestroy {
-    el: ElementRef;
     isOpen: boolean;
     autoClose: string;
     keyboardNav: boolean;
     appendToBody: boolean;
     onToggle: EventEmitter<boolean>;
     isOpenChange: EventEmitter<boolean>;
-    private addClass;
-    private _isOpen;
+    addClass: boolean;
     selectedOption: number;
     menuEl: ElementRef;
     toggleEl: ElementRef;
-    constructor(el: ElementRef, dropdownMenuList: QueryList<ElementRef>);
+    el: ElementRef;
+    private _isOpen;
+    constructor(el: ElementRef);
     ngOnInit(): void;
     ngOnDestroy(): void;
     dropDownMenu: {

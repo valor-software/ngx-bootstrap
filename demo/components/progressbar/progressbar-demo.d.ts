@@ -5,6 +5,6 @@ export declare class ProgressbarDemo {
     type: string;
     stacked: any[];
     constructor();
-    private random();
-    private randomStacked();
+    random(): void;
+    randomStacked(): void;
 }

@@ -1,10 +1,9 @@
 import { OnInit } from 'angular2/core';
 import { Tab } from './tab.directive';
 export declare class Tabset implements OnInit {
-    private vertical;
-    private justified;
-    private type;
-    private setClassMap();
+    vertical: boolean;
+    justified: boolean;
+    type: string;
     tabs: Array<Tab>;
     private isDestroyed;
     private _vertical;
@@ -18,4 +17,5 @@ export declare class Tabset implements OnInit {
     removeTab(tab: Tab): void;
     private getClosestTabIndex(index);
     private hasAvailableTabs(index);
+    private setClassMap();
 }

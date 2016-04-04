@@ -1,6 +1,6 @@
 export declare class Progressbar {
-    private animate;
-    private max;
-    private type;
-    private value;
+    animate: boolean;
+    max: number;
+    type: string;
+    value: number;
 }

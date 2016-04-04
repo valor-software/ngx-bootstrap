@@ -2,9 +2,9 @@ import { ElementRef } from 'angular2/core';
 import { Typeahead } from './typeahead.directive';
 import { TypeaheadOptions } from './typeahead-options.class';
 export declare class TypeaheadContainer {
-    element: ElementRef;
     parent: Typeahead;
     query: any;
+    element: ElementRef;
     private _matches;
     private _field;
     private _active;
@@ -19,8 +19,8 @@ export declare class TypeaheadContainer {
     selectActiveMatch(): void;
     prevActiveMatch(): void;
     nextActiveMatch(): void;
-    private selectActive(value);
-    private isActive(value);
+    protected selectActive(value: any): void;
+    protected hightlight(item: any, query: string): string;
+    isActive(value: any): boolean;
     private selectMatch(value, e?);
-    private hightlight(item, query);
 }

@@ -360,7 +360,7 @@ webpackJsonp([2],[
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(244)("./" + name);
+	                __webpack_require__(245)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -3697,7 +3697,7 @@ webpackJsonp([2],[
 	    return _moment;
 	
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(203)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(204)(module)))
 
 /***/ },
 /* 2 */,
@@ -3714,38 +3714,40 @@ webpackJsonp([2],[
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	var accordion_1 = __webpack_require__(154);
-	var buttons_1 = __webpack_require__(156);
-	var carousel_1 = __webpack_require__(159);
+	var alert_1 = __webpack_require__(156);
+	var buttons_1 = __webpack_require__(157);
+	var carousel_1 = __webpack_require__(160);
 	var collapse_1 = __webpack_require__(27);
-	var datepicker_1 = __webpack_require__(162);
-	var dropdown_1 = __webpack_require__(164);
-	var pagination_1 = __webpack_require__(167);
-	var progressbar_1 = __webpack_require__(169);
-	var rating_1 = __webpack_require__(171);
-	var tabs_1 = __webpack_require__(172);
-	var timepicker_1 = __webpack_require__(174);
-	var tooltip_1 = __webpack_require__(175);
-	var typeahead_1 = __webpack_require__(178);
+	var datepicker_1 = __webpack_require__(163);
+	var dropdown_1 = __webpack_require__(165);
+	var pagination_1 = __webpack_require__(168);
+	var progressbar_1 = __webpack_require__(170);
+	var rating_1 = __webpack_require__(172);
+	var tabs_1 = __webpack_require__(173);
+	var timepicker_1 = __webpack_require__(175);
+	var tooltip_1 = __webpack_require__(176);
+	var typeahead_1 = __webpack_require__(179);
 	__export(__webpack_require__(154));
-	__export(__webpack_require__(250));
 	__export(__webpack_require__(156));
-	__export(__webpack_require__(159));
+	__export(__webpack_require__(157));
+	__export(__webpack_require__(160));
 	__export(__webpack_require__(27));
-	__export(__webpack_require__(162));
-	__export(__webpack_require__(164));
-	__export(__webpack_require__(167));
-	__export(__webpack_require__(169));
-	__export(__webpack_require__(171));
+	__export(__webpack_require__(163));
+	__export(__webpack_require__(165));
+	__export(__webpack_require__(168));
+	__export(__webpack_require__(170));
 	__export(__webpack_require__(172));
-	__export(__webpack_require__(174));
+	__export(__webpack_require__(173));
 	__export(__webpack_require__(175));
-	__export(__webpack_require__(178));
+	__export(__webpack_require__(176));
+	__export(__webpack_require__(179));
 	__export(__webpack_require__(19));
-	__export(__webpack_require__(161));
+	__export(__webpack_require__(162));
 	__export(__webpack_require__(11));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = {
 	    directives: [
+	        alert_1.Alert,
 	        accordion_1.ACCORDION_DIRECTIVES,
 	        buttons_1.BUTTON_DIRECTIVES,
 	        carousel_1.CAROUSEL_DIRECTIVES,
@@ -3867,22 +3869,7 @@ webpackJsonp([2],[
 	var ONLY_CURRENT_MONTH = false;
 	var STARTING_DAY = 0;
 	var YEAR_RANGE = 20;
-	var MIN_DATE = null;
-	var MAX_DATE = null;
 	var SHORTCUT_PROPAGATION = false;
-	var DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-	var KEYS = {
-	    13: 'enter',
-	    32: 'space',
-	    33: 'pageup',
-	    34: 'pagedown',
-	    35: 'end',
-	    36: 'home',
-	    37: 'left',
-	    38: 'up',
-	    39: 'right',
-	    40: 'down'
-	};
 	var DatePickerInner = (function () {
 	    function DatePickerInner() {
 	        this.stepDay = {};
@@ -3892,16 +3879,6 @@ webpackJsonp([2],[
 	        this.dateFormatter = new date_formatter_1.DateFormatter();
 	        this.update = new core_1.EventEmitter(false);
 	    }
-	    Object.defineProperty(DatePickerInner.prototype, "initDate", {
-	        get: function () {
-	            return this._initDate;
-	        },
-	        set: function (value) {
-	            this._initDate = value;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
 	    Object.defineProperty(DatePickerInner.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate;
@@ -3920,8 +3897,12 @@ webpackJsonp([2],[
 	        this.formatDayHeader = this.formatDayHeader || FORMAT_DAY_HEADER;
 	        this.formatDayTitle = this.formatDayTitle || FORMAT_DAY_TITLE;
 	        this.formatMonthTitle = this.formatMonthTitle || FORMAT_MONTH_TITLE;
-	        this.showWeeks = (this.showWeeks === undefined ? SHOW_WEEKS : this.showWeeks);
-	        this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined ? ONLY_CURRENT_MONTH : this.onlyCurrentMonth);
+	        this.showWeeks = (this.showWeeks === undefined
+	            ? SHOW_WEEKS
+	            : this.showWeeks);
+	        this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined
+	            ? ONLY_CURRENT_MONTH
+	            : this.onlyCurrentMonth);
 	        this.startingDay = this.startingDay || STARTING_DAY;
 	        this.yearRange = this.yearRange || YEAR_RANGE;
 	        this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;
@@ -3960,7 +3941,7 @@ webpackJsonp([2],[
 	        if (this.datepickerMode === 'year' && this.compareHandlerYear) {
 	            return this.compareHandlerYear(date1, date2);
 	        }
-	        return null;
+	        return void 0;
 	    };
 	    DatePickerInner.prototype.setRefreshViewHandler = function (handler, type) {
 	        if (type === 'day') {
@@ -4005,22 +3986,6 @@ webpackJsonp([2],[
 	        dateObject.customClass = this.getCustomClassForDate(dateObject.date);
 	        return dateObject;
 	    };
-	    DatePickerInner.prototype.getCustomClassForDate = function (date) {
-	        var _this = this;
-	        if (!this.customClass) {
-	            return '';
-	        }
-	        var customClassObject = this.customClass.find(function (customClass) {
-	            return customClass.date.valueOf() === date.valueOf() && customClass.mode === _this.datepickerMode;
-	        }, this);
-	        return customClassObject === undefined ? '' : customClassObject.clazz;
-	    };
-	    ;
-	    DatePickerInner.prototype.isDisabled = function (date) {
-	        return ((this.minDate && this.compare(date, this.minDate) < 0) ||
-	            (this.maxDate && this.compare(date, this.maxDate) > 0));
-	    };
-	    ;
 	    DatePickerInner.prototype.split = function (arr, size) {
 	        var arrays = [];
 	        while (arr.length > 0) {
@@ -4073,6 +4038,22 @@ webpackJsonp([2],[
 	        }
 	        this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) + direction];
 	        this.refreshView();
+	    };
+	    DatePickerInner.prototype.getCustomClassForDate = function (date) {
+	        var _this = this;
+	        if (!this.customClass) {
+	            return '';
+	        }
+	        var customClassObject = this.customClass
+	            .find(function (customClass) {
+	            return customClass.date.valueOf() === date.valueOf() &&
+	                customClass.mode === _this.datepickerMode;
+	        }, this);
+	        return customClassObject === undefined ? '' : customClassObject.clazz;
+	    };
+	    DatePickerInner.prototype.isDisabled = function (date) {
+	        return ((this.minDate && this.compare(date, this.minDate) < 0) ||
+	            (this.maxDate && this.compare(date, this.maxDate) > 0));
 	    };
 	    __decorate([
 	        core_1.Input(), 
@@ -4148,12 +4129,8 @@ webpackJsonp([2],[
 	    ], DatePickerInner.prototype, "dateDisabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "templateUrl", void 0);
-	    __decorate([
-	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "initDate", null);
+	    ], DatePickerInner.prototype, "initDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
@@ -4186,17 +4163,14 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var __param = (this && this.__param) || function (paramIndex, decorator) {
-	    return function (target, key) { decorator(target, key, paramIndex); }
-	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_service_1 = __webpack_require__(257);
 	var Dropdown = (function () {
-	    function Dropdown(el, dropdownMenuList) {
-	        this.el = el;
+	    function Dropdown(el) {
 	        this.onToggle = new core_1.EventEmitter(false);
 	        this.isOpenChange = new core_1.EventEmitter(false);
 	        this.addClass = true;
+	        this.el = el;
 	    }
 	    Object.defineProperty(Dropdown.prototype, "isOpen", {
 	        get: function () {
@@ -4212,7 +4186,7 @@ webpackJsonp([2],[
 	            }
 	            else {
 	                dropdown_service_1.dropdownService.close(this);
-	                this.selectedOption = null;
+	                this.selectedOption = void 0;
 	            }
 	            this.onToggle.emit(this.isOpen);
 	            this.isOpenChange.emit(this.isOpen);
@@ -4281,6 +4255,8 @@ webpackJsonp([2],[
 	                }
 	                this.selectedOption--;
 	                break;
+	            default:
+	                break;
 	        }
 	        elems[this.selectedOption].focus();
 	    };
@@ -4316,12 +4292,11 @@ webpackJsonp([2],[
 	    ], Dropdown.prototype, "isOpenChange", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.dropdown'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Dropdown.prototype, "addClass", void 0);
 	    Dropdown = __decorate([
-	        core_1.Directive({ selector: '[dropdown]' }),
-	        __param(1, core_1.Query('dropdownMenu', { descendants: false })), 
-	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.QueryList])
+	        core_1.Directive({ selector: '[dropdown]' }), 
+	        __metadata('design:paramtypes', [core_1.ElementRef])
 	    ], Dropdown);
 	    return Dropdown;
 	}());
@@ -4336,41 +4311,6 @@ webpackJsonp([2],[
 	var PositionService = (function () {
 	    function PositionService() {
 	    }
-	    Object.defineProperty(PositionService.prototype, "window", {
-	        get: function () {
-	            return window;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Object.defineProperty(PositionService.prototype, "document", {
-	        get: function () {
-	            return window.document;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    PositionService.prototype.getStyle = function (nativeEl, cssProp) {
-	        if (nativeEl.currentStyle) {
-	            return nativeEl.currentStyle[cssProp];
-	        }
-	        if (this.window.getComputedStyle) {
-	            return this.window.getComputedStyle(nativeEl)[cssProp];
-	        }
-	        return nativeEl.style[cssProp];
-	    };
-	    PositionService.prototype.isStaticPositioned = function (nativeEl) {
-	        return (this.getStyle(nativeEl, 'position') || 'static') === 'static';
-	    };
-	    PositionService.prototype.parentOffsetEl = function (nativeEl) {
-	        var offsetParent = nativeEl.offsetParent || this.document;
-	        while (offsetParent && offsetParent !== this.document &&
-	            this.isStaticPositioned(offsetParent)) {
-	            offsetParent = offsetParent.offsetParent;
-	        }
-	        return offsetParent || this.document;
-	    };
-	    ;
 	    PositionService.prototype.position = function (nativeEl) {
 	        var elBCR = this.offset(nativeEl);
 	        var offsetParentBCR = { top: 0, left: 0 };
@@ -4457,6 +4397,41 @@ webpackJsonp([2],[
 	        }
 	        return targetElPos;
 	    };
+	    Object.defineProperty(PositionService.prototype, "window", {
+	        get: function () {
+	            return window;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    Object.defineProperty(PositionService.prototype, "document", {
+	        get: function () {
+	            return window.document;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    PositionService.prototype.getStyle = function (nativeEl, cssProp) {
+	        if (nativeEl.currentStyle) {
+	            return nativeEl.currentStyle[cssProp];
+	        }
+	        if (this.window.getComputedStyle) {
+	            return this.window.getComputedStyle(nativeEl)[cssProp];
+	        }
+	        return nativeEl.style[cssProp];
+	    };
+	    PositionService.prototype.isStaticPositioned = function (nativeEl) {
+	        return (this.getStyle(nativeEl, 'position') || 'static') === 'static';
+	    };
+	    PositionService.prototype.parentOffsetEl = function (nativeEl) {
+	        var offsetParent = nativeEl.offsetParent || this.document;
+	        while (offsetParent && offsetParent !== this.document &&
+	            this.isStaticPositioned(offsetParent)) {
+	            offsetParent = offsetParent.offsetParent;
+	        }
+	        return offsetParent || this.document;
+	    };
+	    ;
 	    return PositionService;
 	}());
 	exports.PositionService = PositionService;
@@ -4484,7 +4459,7 @@ webpackJsonp([2],[
 	};
 	var Progress = (function () {
 	    function Progress() {
-	        this.addClass = 'progress';
+	        this.addClass = true;
 	        this.bars = [];
 	    }
 	    Object.defineProperty(Progress.prototype, "max", {
@@ -4523,8 +4498,8 @@ webpackJsonp([2],[
 	        __metadata('design:type', Number)
 	    ], Progress.prototype, "max", null);
 	    __decorate([
-	        core_1.HostBinding('class'), 
-	        __metadata('design:type', Object)
+	        core_1.HostBinding('class.progress'), 
+	        __metadata('design:type', Boolean)
 	    ], Progress.prototype, "addClass", void 0);
 	    Progress = __decorate([
 	        core_1.Directive({ selector: 'bs-progress, [progress]' }), 
@@ -4584,7 +4559,7 @@ webpackJsonp([2],[
 	    ], Accordion.prototype, "closeOthers", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.panel-group'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Accordion.prototype, "addClass", void 0);
 	    Accordion = __decorate([
 	        core_1.Component({
@@ -4649,10 +4624,65 @@ webpackJsonp([2],[
 	        if (direction === void 0) { direction = Direction.UNKNOWN; }
 	        var nextIndex = nextSlide.index;
 	        if (direction === Direction.UNKNOWN) {
-	            direction = nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
+	            direction = nextIndex > this.getCurrentIndex()
+	                ? Direction.NEXT
+	                : Direction.PREV;
 	        }
 	        if (nextSlide && nextSlide !== this.currentSlide) {
 	            this.goNext(nextSlide, direction);
+	        }
+	    };
+	    Carousel.prototype.play = function () {
+	        if (!this.isPlaying) {
+	            this.isPlaying = true;
+	            this.restartTimer();
+	        }
+	    };
+	    Carousel.prototype.pause = function () {
+	        if (!this.noPause) {
+	            this.isPlaying = false;
+	            this.resetTimer();
+	        }
+	    };
+	    Carousel.prototype.next = function () {
+	        var newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
+	        if (newIndex === 0 && this.noWrap) {
+	            this.pause();
+	            return;
+	        }
+	        return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
+	    };
+	    Carousel.prototype.prev = function () {
+	        var newIndex = this.getCurrentIndex() - 1 < 0
+	            ? this.slides.length - 1
+	            : this.getCurrentIndex() - 1;
+	        if (this.noWrap && newIndex === this.slides.length - 1) {
+	            this.pause();
+	            return;
+	        }
+	        return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
+	    };
+	    Carousel.prototype.addSlide = function (slide) {
+	        slide.index = this.slides.length;
+	        this.slides.push(slide);
+	        if (this.slides.length === 1 || slide.active) {
+	            this.select(this.slides[this.slides.length - 1]);
+	            if (this.slides.length === 1) {
+	                this.play();
+	            }
+	        }
+	        else {
+	            slide.active = false;
+	        }
+	    };
+	    Carousel.prototype.removeSlide = function (slide) {
+	        this.slides.splice(slide.index, 1);
+	        if (this.slides.length === 0) {
+	            this.currentSlide = void 0;
+	            return;
+	        }
+	        for (var i = 0; i < this.slides.length; i++) {
+	            this.slides[i].index = i;
 	        }
 	    };
 	    Carousel.prototype.goNext = function (slide, direction) {
@@ -4675,26 +4705,10 @@ webpackJsonp([2],[
 	                return this.slides[i];
 	            }
 	        }
-	        return null;
+	        return void 0;
 	    };
 	    Carousel.prototype.getCurrentIndex = function () {
 	        return !this.currentSlide ? 0 : this.currentSlide.index;
-	    };
-	    Carousel.prototype.next = function () {
-	        var newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
-	        if (newIndex === 0 && this.noWrap) {
-	            this.pause();
-	            return;
-	        }
-	        return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
-	    };
-	    Carousel.prototype.prev = function () {
-	        var newIndex = this.getCurrentIndex() - 1 < 0 ? this.slides.length - 1 : this.getCurrentIndex() - 1;
-	        if (this.noWrap && newIndex === this.slides.length - 1) {
-	            this.pause();
-	            return;
-	        }
-	        return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
 	    };
 	    Carousel.prototype.restartTimer = function () {
 	        var _this = this;
@@ -4715,42 +4729,7 @@ webpackJsonp([2],[
 	    Carousel.prototype.resetTimer = function () {
 	        if (this.currentInterval) {
 	            clearInterval(this.currentInterval);
-	            this.currentInterval = null;
-	        }
-	    };
-	    Carousel.prototype.play = function () {
-	        if (!this.isPlaying) {
-	            this.isPlaying = true;
-	            this.restartTimer();
-	        }
-	    };
-	    Carousel.prototype.pause = function () {
-	        if (!this.noPause) {
-	            this.isPlaying = false;
-	            this.resetTimer();
-	        }
-	    };
-	    Carousel.prototype.addSlide = function (slide) {
-	        slide.index = this.slides.length;
-	        this.slides.push(slide);
-	        if (this.slides.length === 1 || slide.active) {
-	            this.select(this.slides[this.slides.length - 1]);
-	            if (this.slides.length === 1) {
-	                this.play();
-	            }
-	        }
-	        else {
-	            slide.active = false;
-	        }
-	    };
-	    Carousel.prototype.removeSlide = function (slide) {
-	        this.slides.splice(slide.index, 1);
-	        if (this.slides.length === 0) {
-	            this.currentSlide = null;
-	            return;
-	        }
-	        for (var i = 0; i < this.slides.length; i++) {
-	            this.slides[i].index = i;
+	            this.currentInterval = void 0;
 	        }
 	    };
 	    __decorate([
@@ -4817,12 +4796,10 @@ webpackJsonp([2],[
 	var yearpicker_1 = __webpack_require__(256);
 	var DatePicker = (function () {
 	    function DatePicker(cd) {
-	        this.cd = cd;
 	        this._now = new Date();
-	        this.onChange = function (_) {
-	        };
-	        this.onTouched = function () {
-	        };
+	        this.onChange = function () { };
+	        this.onTouched = function () { };
+	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
 	    Object.defineProperty(DatePicker.prototype, "activeDate", {
@@ -4847,14 +4824,10 @@ webpackJsonp([2],[
 	            this.activeDate = value;
 	            return;
 	        }
-	        this.activeDate = value ? new Date(value) : null;
+	        this.activeDate = value ? new Date(value) : void 0;
 	    };
-	    DatePicker.prototype.registerOnChange = function (fn) {
-	        this.onChange = fn;
-	    };
-	    DatePicker.prototype.registerOnTouched = function (fn) {
-	        this.onTouched = fn;
-	    };
+	    DatePicker.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    DatePicker.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
@@ -4929,17 +4902,18 @@ webpackJsonp([2],[
 	    ], DatePicker.prototype, "customClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "activeDate", null);
-	    __decorate([
-	        core_1.Input(), 
 	        __metadata('design:type', Object)
 	    ], DatePicker.prototype, "dateDisabled", void 0);
+	    __decorate([
+	        core_1.Input(), 
+	        __metadata('design:type', Date)
+	    ], DatePicker.prototype, "activeDate", null);
 	    DatePicker = __decorate([
 	        core_1.Component({
-	            selector: 'datepicker[ngModel], [datepicker][ngModel]',
+	            selector: 'datepicker[ngModel]',
 	            template: "\n    <datepicker-inner [activeDate]=\"activeDate\"\n                      (update)=\"onUpdate($event)\"\n                      [datepickerMode]=\"datepickerMode\"\n                      [initDate]=\"initDate\"\n                      [minDate]=\"minDate\"\n                      [maxDate]=\"maxDate\"\n                      [minMode]=\"minMode\"\n                      [maxMode]=\"maxMode\"\n                      [showWeeks]=\"showWeeks\"\n                      [formatDay]=\"formatDay\"\n                      [formatMonth]=\"formatMonth\"\n                      [formatYear]=\"formatYear\"\n                      [formatDayHeader]=\"formatDayHeader\"\n                      [formatDayTitle]=\"formatDayTitle\"\n                      [formatMonthTitle]=\"formatMonthTitle\"\n                      [startingDay]=\"startingDay\"\n                      [yearRange]=\"yearRange\"\n                      [customClass]=\"customClass\"\n                      [dateDisabled]=\"dateDisabled\"\n                      [templateUrl]=\"templateUrl\"\n                      [onlyCurrentMonth]=\"onlyCurrentMonth\"\n                      [shortcutPropagation]=\"shortcutPropagation\">\n      <daypicker tabindex=\"0\"></daypicker>\n      <monthpicker tabindex=\"0\"></monthpicker>\n      <yearpicker tabindex=\"0\"></yearpicker>\n    </datepicker-inner>\n    ",
-	            directives: [datepicker_inner_1.DatePickerInner, daypicker_1.DayPicker, monthpicker_1.MonthPicker, yearpicker_1.YearPicker, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
+	            directives: [datepicker_inner_1.DatePickerInner, daypicker_1.DayPicker, monthpicker_1.MonthPicker, yearpicker_1.YearPicker,
+	                common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
@@ -4982,16 +4956,14 @@ webpackJsonp([2],[
 	var PAGINATION_TEMPLATE = "\n  <ul class=\"pagination\" [ngClass]=\"classMap\">\n    <li class=\"pagination-first page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(1, $event)\" [innerHTML]=\"getText('first')\"></a>\n    </li>\n\n    <li class=\"pagination-prev page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(page - 1, $event)\" [innerHTML]=\"getText('previous')\"></a>\n      </li>\n\n    <li *ngFor=\"#pg of pages\"\n        [class.active]=\"pg.active\"\n        [class.disabled]=\"disabled&&!pg.active\"\n        class=\"pagination-page page-item\">\n      <a class=\"page-link\" href (click)=\"selectPage(pg.number, $event)\" [innerHTML]=\"pg.text\"></a>\n    </li>\n\n    <li class=\"pagination-next page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(page + 1, $event)\" [innerHTML]=\"getText('next')\"></a></li>\n\n    <li class=\"pagination-last page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(totalPages, $event)\" [innerHTML]=\"getText('last')\"></a></li>\n  </ul>\n  ";
 	var Pagination = (function () {
 	    function Pagination(cd, renderer, elementRef) {
-	        this.cd = cd;
-	        this.renderer = renderer;
-	        this.elementRef = elementRef;
 	        this.numPages = new core_1.EventEmitter(false);
 	        this.pageChanged = new core_1.EventEmitter(false);
 	        this.inited = false;
-	        this.onChange = function (_) {
-	        };
-	        this.onTouched = function () {
-	        };
+	        this.onChange = function () { };
+	        this.onTouched = function () { };
+	        this.cd = cd;
+	        this.renderer = renderer;
+	        this.elementRef = elementRef;
 	        cd.valueAccessor = this;
 	        this.config = this.config || paginationConfig;
 	    }
@@ -5051,11 +5023,21 @@ webpackJsonp([2],[
 	    });
 	    Pagination.prototype.ngOnInit = function () {
 	        this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
-	        this.maxSize = typeof this.maxSize !== 'undefined' ? this.maxSize : paginationConfig.maxSize;
-	        this.rotate = typeof this.rotate !== 'undefined' ? this.rotate : paginationConfig.rotate;
-	        this.boundaryLinks = typeof this.boundaryLinks !== 'undefined' ? this.boundaryLinks : paginationConfig.boundaryLinks;
-	        this.directionLinks = typeof this.directionLinks !== 'undefined' ? this.directionLinks : paginationConfig.directionLinks;
-	        this.itemsPerPage = typeof this.itemsPerPage !== 'undefined' ? this.itemsPerPage : paginationConfig.itemsPerPage;
+	        this.maxSize = typeof this.maxSize !== 'undefined'
+	            ? this.maxSize
+	            : paginationConfig.maxSize;
+	        this.rotate = typeof this.rotate !== 'undefined'
+	            ? this.rotate
+	            : paginationConfig.rotate;
+	        this.boundaryLinks = typeof this.boundaryLinks !== 'undefined'
+	            ? this.boundaryLinks
+	            : paginationConfig.boundaryLinks;
+	        this.directionLinks = typeof this.directionLinks !== 'undefined'
+	            ? this.directionLinks
+	            : paginationConfig.directionLinks;
+	        this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
+	            ? this.itemsPerPage
+	            : paginationConfig.itemsPerPage;
 	        this.totalPages = this.calculateTotalPages();
 	        this.pages = this.getPages(this.page, this.totalPages);
 	        this.page = this.cd.value;
@@ -5065,6 +5047,17 @@ webpackJsonp([2],[
 	        this.page = value;
 	        this.pages = this.getPages(this.page, this.totalPages);
 	    };
+	    Pagination.prototype.getText = function (key) {
+	        return this[key + 'Text'] || paginationConfig[key + 'Text'];
+	    };
+	    Pagination.prototype.noPrevious = function () {
+	        return this.page === 1;
+	    };
+	    Pagination.prototype.noNext = function () {
+	        return this.page === this.totalPages;
+	    };
+	    Pagination.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    Pagination.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    Pagination.prototype.selectPage = function (page, event) {
 	        if (event) {
 	            event.preventDefault();
@@ -5078,18 +5071,9 @@ webpackJsonp([2],[
 	            this.cd.viewToModelUpdate(this.page);
 	        }
 	    };
-	    Pagination.prototype.getText = function (key) {
-	        return this[key + 'Text'] || paginationConfig[key + 'Text'];
-	    };
-	    Pagination.prototype.noPrevious = function () {
-	        return this.page === 1;
-	    };
-	    Pagination.prototype.noNext = function () {
-	        return this.page === this.totalPages;
-	    };
-	    Pagination.prototype.makePage = function (number, text, isActive) {
+	    Pagination.prototype.makePage = function (num, text, isActive) {
 	        return {
-	            number: number,
+	            number: num,
 	            text: text,
 	            active: isActive
 	        };
@@ -5113,8 +5097,8 @@ webpackJsonp([2],[
 	                endPage = Math.min(startPage + this.maxSize - 1, totalPages);
 	            }
 	        }
-	        for (var number = startPage; number <= endPage; number++) {
-	            var page = this.makePage(number, number.toString(), number === currentPage);
+	        for (var num = startPage; num <= endPage; num++) {
+	            var page = this.makePage(num, num.toString(), num === currentPage);
 	            pages.push(page);
 	        }
 	        if (isMaxSized && !this.rotate) {
@@ -5130,14 +5114,10 @@ webpackJsonp([2],[
 	        return pages;
 	    };
 	    Pagination.prototype.calculateTotalPages = function () {
-	        var totalPages = this.itemsPerPage < 1 ? 1 : Math.ceil(this.totalItems / this.itemsPerPage);
+	        var totalPages = this.itemsPerPage < 1
+	            ? 1
+	            : Math.ceil(this.totalItems / this.itemsPerPage);
 	        return Math.max(totalPages || 0, 1);
-	    };
-	    Pagination.prototype.registerOnChange = function (fn) {
-	        this.onChange = fn;
-	    };
-	    Pagination.prototype.registerOnTouched = function (fn) {
-	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
@@ -5185,7 +5165,7 @@ webpackJsonp([2],[
 	    ], Pagination.prototype, "pageChanged", void 0);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Number)
 	    ], Pagination.prototype, "itemsPerPage", null);
 	    __decorate([
 	        core_1.Input(), 
@@ -5227,8 +5207,8 @@ webpackJsonp([2],[
 	var progress_directive_1 = __webpack_require__(20);
 	var Bar = (function () {
 	    function Bar(progress) {
-	        this.progress = progress;
 	        this.percent = 0;
+	        this.progress = progress;
 	    }
 	    Object.defineProperty(Bar.prototype, "value", {
 	        get: function () {
@@ -5269,9 +5249,9 @@ webpackJsonp([2],[
 	    ], Bar.prototype, "value", null);
 	    Bar = __decorate([
 	        core_1.Component({
-	            selector: 'bar, [bar]',
+	            selector: 'bar',
 	            directives: [common_1.NgClass, common_1.NgStyle],
-	            template: "\n  <div class=\"progress-bar\"\n    style=\"min-width: 0;\"\n    role=\"progressbar\"\n    [ngClass]=\"type && 'progress-bar-' + type\"\n    [ngStyle]=\"{width: (percent < 100 ? percent : 100) + '%', transition: transition}\"\n    aria-valuemin=\"0\"\n    [attr.aria-valuenow]=\"value\"\n    [attr.aria-valuetext]=\"percent.toFixed(0) + '%'\"\n    [attr.aria-valuemax]=\"max\"\n    ><ng-content></ng-content></div>\n"
+	            template: "\n  <div class=\"progress-bar\"\n    style=\"min-width: 0;\"\n    role=\"progressbar\"\n    [ngClass]=\"type && 'progress-bar-' + type\"\n    [ngStyle]=\"{width: (percent < 100 ? percent : 100) + '%', transition: transition}\"\n    aria-valuemin=\"0\"\n    [attr.aria-valuenow]=\"value\"\n    [attr.aria-valuetext]=\"percent.toFixed(0) + '%'\"\n    [attr.aria-valuemax]=\"max\"><ng-content></ng-content></div>\n"
 	        }),
 	        __param(0, core_1.Host()), 
 	        __metadata('design:paramtypes', [progress_directive_1.Progress])
@@ -5299,11 +5279,11 @@ webpackJsonp([2],[
 	var tabset_component_1 = __webpack_require__(32);
 	var Tab = (function () {
 	    function Tab(tabset) {
-	        this.tabset = tabset;
 	        this.select = new core_1.EventEmitter(false);
 	        this.deselect = new core_1.EventEmitter(false);
 	        this.removed = new core_1.EventEmitter(false);
 	        this.addClass = true;
+	        this.tabset = tabset;
 	        this.tabset.addTab(this);
 	    }
 	    Object.defineProperty(Tab.prototype, "active", {
@@ -5330,9 +5310,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Tab.prototype.ngOnInit = function () {
-	        this.removable = !!this.removable;
-	    };
+	    Tab.prototype.ngOnInit = function () { this.removable = !!this.removable; };
 	    Tab.prototype.ngOnDestroy = function () {
 	        this.tabset.removeTab(this);
 	    };
@@ -5351,7 +5329,7 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.HostBinding('class.active'),
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Tab.prototype, "active", null);
 	    __decorate([
 	        core_1.Output(), 
@@ -5367,7 +5345,7 @@ webpackJsonp([2],[
 	    ], Tab.prototype, "removed", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.tab-pane'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Tab.prototype, "addClass", void 0);
 	    Tab = __decorate([
 	        core_1.Directive({ selector: 'tab, [tab]' }), 
@@ -5394,16 +5372,14 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var common_2 = __webpack_require__(161);
+	var common_2 = __webpack_require__(162);
 	var Tabset = (function () {
 	    function Tabset() {
 	        this.tabs = [];
 	        this.classMap = {};
 	    }
 	    Object.defineProperty(Tabset.prototype, "vertical", {
-	        get: function () {
-	            return this._vertical;
-	        },
+	        get: function () { return this._vertical; },
 	        set: function (value) {
 	            this._vertical = value;
 	            this.setClassMap();
@@ -5413,9 +5389,7 @@ webpackJsonp([2],[
 	    });
 	    ;
 	    Object.defineProperty(Tabset.prototype, "justified", {
-	        get: function () {
-	            return this._justified;
-	        },
+	        get: function () { return this._justified; },
 	        set: function (value) {
 	            this._justified = value;
 	            this.setClassMap();
@@ -5425,9 +5399,7 @@ webpackJsonp([2],[
 	    });
 	    ;
 	    Object.defineProperty(Tabset.prototype, "type", {
-	        get: function () {
-	            return this._type;
-	        },
+	        get: function () { return this._type; },
 	        set: function (value) {
 	            this._type = value;
 	            this.setClassMap();
@@ -5436,16 +5408,6 @@ webpackJsonp([2],[
 	        configurable: true
 	    });
 	    ;
-	    Tabset.prototype.setClassMap = function () {
-	        this.classMap = (_a = {
-	                'nav-stacked': this.vertical,
-	                'nav-justified': this.justified
-	            },
-	            _a['nav-' + (this.type || 'tabs')] = true,
-	            _a
-	        );
-	        var _a;
-	    };
 	    Tabset.prototype.ngOnInit = function () {
 	        this.type = this.type !== 'undefined' ? this.type : 'tabs';
 	    };
@@ -5497,17 +5459,27 @@ webpackJsonp([2],[
 	        }
 	        return false;
 	    };
+	    Tabset.prototype.setClassMap = function () {
+	        this.classMap = (_a = {
+	                'nav-stacked': this.vertical,
+	                'nav-justified': this.justified
+	            },
+	            _a['nav-' + (this.type || 'tabs')] = true,
+	            _a
+	        );
+	        var _a;
+	    };
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Tabset.prototype, "vertical", null);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Tabset.prototype, "justified", null);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', String)
 	    ], Tabset.prototype, "type", null);
 	    Tabset = __decorate([
 	        core_1.Component({
@@ -5542,14 +5514,14 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(19);
-	var tooltip_options_class_1 = __webpack_require__(176);
+	var tooltip_options_class_1 = __webpack_require__(177);
 	var TooltipContainer = (function () {
 	    function TooltipContainer(element, cdr, options) {
-	        this.element = element;
-	        this.cdr = cdr;
 	        this.top = '-1000px';
 	        this.left = '-1000px';
 	        this.display = 'block';
+	        this.element = element;
+	        this.cdr = cdr;
 	        Object.assign(this, options);
 	        this.classMap = { 'in': false, 'fade': false };
 	        this.classMap[options.placement] = true;
@@ -5596,7 +5568,7 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var typeahead_utils_1 = __webpack_require__(179);
+	var typeahead_utils_1 = __webpack_require__(180);
 	var typeahead_options_class_1 = __webpack_require__(35);
 	var position_1 = __webpack_require__(19);
 	var ng2_bootstrap_config_1 = __webpack_require__(11);
@@ -5607,8 +5579,8 @@ webpackJsonp([2],[
 	);
 	var TypeaheadContainer = (function () {
 	    function TypeaheadContainer(element, options) {
-	        this.element = element;
 	        this._matches = [];
+	        this.element = element;
 	        Object.assign(this, options);
 	    }
 	    Object.defineProperty(TypeaheadContainer.prototype, "matches", {
@@ -5645,33 +5617,26 @@ webpackJsonp([2],[
 	    };
 	    TypeaheadContainer.prototype.prevActiveMatch = function () {
 	        var index = this.matches.indexOf(this._active);
-	        this._active = this.matches[index - 1 < 0 ? this.matches.length - 1 : index - 1];
+	        this._active = this.matches[index - 1 < 0
+	            ? this.matches.length - 1
+	            : index - 1];
 	    };
 	    TypeaheadContainer.prototype.nextActiveMatch = function () {
 	        var index = this.matches.indexOf(this._active);
-	        this._active = this.matches[index + 1 > this.matches.length - 1 ? 0 : index + 1];
+	        this._active = this.matches[index + 1 > this.matches.length - 1
+	            ? 0
+	            : index + 1];
 	    };
 	    TypeaheadContainer.prototype.selectActive = function (value) {
 	        this._active = value;
 	    };
-	    TypeaheadContainer.prototype.isActive = function (value) {
-	        return this._active === value;
-	    };
-	    TypeaheadContainer.prototype.selectMatch = function (value, e) {
-	        if (e === void 0) { e = null; }
-	        if (e) {
-	            e.stopPropagation();
-	            e.preventDefault();
-	        }
-	        this.parent.changeModel(value);
-	        this.parent.typeaheadOnSelect.emit({
-	            item: value
-	        });
-	        return false;
-	    };
 	    TypeaheadContainer.prototype.hightlight = function (item, query) {
-	        var itemStr = (typeof item === 'object' && this._field ? item[this._field] : item).toString();
-	        var itemStrHelper = (this.parent.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(itemStr) : itemStr).toLowerCase();
+	        var itemStr = (typeof item === 'object' && this._field
+	            ? item[this._field]
+	            : item).toString();
+	        var itemStrHelper = (this.parent.typeaheadLatinize
+	            ? typeahead_utils_1.TypeaheadUtils.latinize(itemStr)
+	            : itemStr).toLowerCase();
 	        var startIdx;
 	        var tokenLen;
 	        if (typeof query === 'object') {
@@ -5693,6 +5658,21 @@ webpackJsonp([2],[
 	            }
 	        }
 	        return itemStr;
+	    };
+	    TypeaheadContainer.prototype.isActive = function (value) {
+	        return this._active === value;
+	    };
+	    TypeaheadContainer.prototype.selectMatch = function (value, e) {
+	        if (e === void 0) { e = void 0; }
+	        if (e) {
+	            e.stopPropagation();
+	            e.preventDefault();
+	        }
+	        this.parent.changeModel(value);
+	        this.parent.typeaheadOnSelect.emit({
+	            item: value
+	        });
+	        return false;
 	    };
 	    TypeaheadContainer = __decorate([
 	        core_1.Component({
@@ -5744,8 +5724,8 @@ webpackJsonp([2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var di_1 = __webpack_require__(7);
-	var css_animation_builder_1 = __webpack_require__(205);
-	var browser_details_1 = __webpack_require__(181);
+	var css_animation_builder_1 = __webpack_require__(206);
+	var browser_details_1 = __webpack_require__(182);
 	var AnimationBuilder = (function () {
 	    /**
 	     * Used for DI
@@ -15069,17 +15049,26 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var button_checkbox_component_1 = __webpack_require__(157);
-	var button_radio_component_1 = __webpack_require__(158);
-	var button_checkbox_component_2 = __webpack_require__(157);
+	var alert_component_1 = __webpack_require__(251);
+	exports.Alert = alert_component_1.Alert;
+
+
+/***/ },
+/* 157 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var button_checkbox_component_1 = __webpack_require__(158);
+	var button_radio_component_1 = __webpack_require__(159);
+	var button_checkbox_component_2 = __webpack_require__(158);
 	exports.ButtonCheckbox = button_checkbox_component_2.ButtonCheckbox;
-	var button_radio_component_2 = __webpack_require__(158);
+	var button_radio_component_2 = __webpack_require__(159);
 	exports.ButtonRadio = button_radio_component_2.ButtonRadio;
 	exports.BUTTON_DIRECTIVES = [button_checkbox_component_1.ButtonCheckbox, button_radio_component_1.ButtonRadio];
 
 
 /***/ },
-/* 157 */
+/* 158 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15099,10 +15088,10 @@ webpackJsonp([2],[
 	var common_1 = __webpack_require__(4);
 	var ButtonCheckbox = (function () {
 	    function ButtonCheckbox(cd) {
-	        this.cd = cd;
 	        this.state = false;
-	        this.onChange = function (_) { };
+	        this.onChange = function () { };
 	        this.onTouched = function () { };
+	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
 	    ButtonCheckbox.prototype.onClick = function () {
@@ -15114,14 +15103,18 @@ webpackJsonp([2],[
 	    };
 	    Object.defineProperty(ButtonCheckbox.prototype, "trueValue", {
 	        get: function () {
-	            return typeof this.btnCheckboxTrue !== 'undefined' ? this.btnCheckboxTrue : true;
+	            return typeof this.btnCheckboxTrue !== 'undefined'
+	                ? this.btnCheckboxTrue
+	                : true;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
 	    Object.defineProperty(ButtonCheckbox.prototype, "falseValue", {
 	        get: function () {
-	            return typeof this.btnCheckboxFalse !== 'undefined' ? this.btnCheckboxFalse : false;
+	            return typeof this.btnCheckboxFalse !== 'undefined'
+	                ? this.btnCheckboxFalse
+	                : false;
 	        },
 	        enumerable: true,
 	        configurable: true
@@ -15169,7 +15162,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 158 */
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15189,10 +15182,10 @@ webpackJsonp([2],[
 	var common_1 = __webpack_require__(4);
 	var ButtonRadio = (function () {
 	    function ButtonRadio(cd, el) {
+	        this.onChange = function () { };
+	        this.onTouched = function () { };
 	        this.cd = cd;
 	        this.el = el;
-	        this.onChange = function (_) { };
-	        this.onTouched = function () { };
 	        cd.valueAccessor = this;
 	    }
 	    Object.defineProperty(ButtonRadio.prototype, "isActive", {
@@ -15204,7 +15197,7 @@ webpackJsonp([2],[
 	    });
 	    ButtonRadio.prototype.onClick = function () {
 	        if (this.uncheckable && this.btnRadio === this.value) {
-	            return this.cd.viewToModelUpdate(null);
+	            return this.cd.viewToModelUpdate(void 0);
 	        }
 	        this.cd.viewToModelUpdate(this.btnRadio);
 	    };
@@ -15240,7 +15233,7 @@ webpackJsonp([2],[
 	    ], ButtonRadio.prototype, "uncheckable", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], ButtonRadio.prototype, "isActive", null);
 	    __decorate([
 	        core_1.HostListener('click'), 
@@ -15259,13 +15252,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 159 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var slide_component_1 = __webpack_require__(160);
+	var slide_component_1 = __webpack_require__(161);
 	var carousel_component_1 = __webpack_require__(26);
-	var slide_component_2 = __webpack_require__(160);
+	var slide_component_2 = __webpack_require__(161);
 	exports.Slide = slide_component_2.Slide;
 	var carousel_component_2 = __webpack_require__(26);
 	exports.Carousel = carousel_component_2.Carousel;
@@ -15273,7 +15266,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 160 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15290,8 +15283,8 @@ webpackJsonp([2],[
 	var carousel_component_1 = __webpack_require__(26);
 	var Slide = (function () {
 	    function Slide(carousel) {
-	        this.carousel = carousel;
 	        this.addClass = true;
+	        this.carousel = carousel;
 	    }
 	    Slide.prototype.ngOnInit = function () {
 	        this.carousel.addSlide(this);
@@ -15330,7 +15323,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 161 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15348,8 +15341,8 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var NgTransclude = (function () {
-	    function NgTransclude(viewRef) {
-	        this.viewRef = viewRef;
+	    function NgTransclude(_viewRef) {
+	        this.viewRef = _viewRef;
 	    }
 	    Object.defineProperty(NgTransclude.prototype, "ngTransclude", {
 	        get: function () {
@@ -15378,13 +15371,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var datepicker_popup_1 = __webpack_require__(163);
+	var datepicker_popup_1 = __webpack_require__(164);
 	var datepicker_1 = __webpack_require__(28);
-	var datepicker_popup_2 = __webpack_require__(163);
+	var datepicker_popup_2 = __webpack_require__(164);
 	exports.DatePickerPopup = datepicker_popup_2.DatePickerPopup;
 	var datepicker_2 = __webpack_require__(28);
 	exports.DatePicker = datepicker_2.DatePicker;
@@ -15392,7 +15385,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15429,9 +15422,9 @@ webpackJsonp([2],[
 	};
 	var PopupContainer = (function () {
 	    function PopupContainer(element, options) {
-	        this.element = element;
 	        this.showButtonBar = true;
 	        this.update1 = new core_1.EventEmitter(false);
+	        this.element = element;
 	        Object.assign(this, options);
 	        this.classMap = { 'in': false };
 	        this.classMap[options.placement] = true;
@@ -15439,7 +15432,7 @@ webpackJsonp([2],[
 	    PopupContainer.prototype.onUpdate = function ($event) {
 	        console.log('update', $event);
 	        if ($event) {
-	            if (typeof $event !== 'Date') {
+	            if ($event.toString() !== '[object Date]') {
 	                $event = new Date($event);
 	            }
 	            this.popupComp.activeDate = $event;
@@ -15456,7 +15449,7 @@ webpackJsonp([2],[
 	    PopupContainer.prototype.getText = function (key) {
 	        return this[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
 	    };
-	    PopupContainer.prototype.isDisabled = function (date) {
+	    PopupContainer.prototype.isDisabled = function () {
 	        return false;
 	    };
 	    PopupContainer = __decorate([
@@ -15473,12 +15466,12 @@ webpackJsonp([2],[
 	}());
 	var DatePickerPopup = (function () {
 	    function DatePickerPopup(cd, element, renderer, loader) {
+	        this._isOpen = false;
+	        this.placement = 'bottom';
 	        this.cd = cd;
 	        this.element = element;
 	        this.renderer = renderer;
 	        this.loader = loader;
-	        this.placement = 'bottom';
-	        this._isOpen = false;
 	        this.activeDate = cd.model;
 	    }
 	    Object.defineProperty(DatePickerPopup.prototype, "activeDate", {
@@ -15512,23 +15505,6 @@ webpackJsonp([2],[
 	    });
 	    DatePickerPopup.prototype.ngOnInit = function () {
 	    };
-	    DatePickerPopup.prototype.show = function (cb) {
-	        var _this = this;
-	        var options = new PopupOptions({
-	            placement: this.placement
-	        });
-	        var binding = core_1.Injector.resolve([
-	            core_1.bind(PopupOptions).toValue(options)
-	        ]);
-	        this.popup = this.loader
-	            .loadNextToLocation(PopupContainer, this.element, binding)
-	            .then(function (componentRef) {
-	            componentRef.instance.position(_this.element);
-	            componentRef.instance.popupComp = _this;
-	            cb();
-	            return componentRef;
-	        });
-	    };
 	    DatePickerPopup.prototype.hide = function (cb) {
 	        if (this.popup) {
 	            this.popup.then(function (componentRef) {
@@ -15541,11 +15517,28 @@ webpackJsonp([2],[
 	            cb();
 	        }
 	    };
+	    DatePickerPopup.prototype.show = function (cb) {
+	        var _this = this;
+	        var options = new PopupOptions({
+	            placement: this.placement
+	        });
+	        var binding = core_1.Injector.resolve([
+	            core_1.bind(PopupOptions)
+	                .toValue(options)
+	        ]);
+	        this.popup = this.loader
+	            .loadNextToLocation(PopupContainer, this.element, binding)
+	            .then(function (componentRef) {
+	            componentRef.instance.position(_this.element);
+	            componentRef.instance.popupComp = _this;
+	            cb();
+	            return componentRef;
+	        });
+	    };
 	    DatePickerPopup = __decorate([
 	        core_1.Directive({
 	            selector: '[datepickerPopup][ngModel]',
-	            properties: ['datepickerPopup', 'isOpen'],
-	            host: { '(cupdate)': 'onUpdate1($event)' }
+	            properties: ['datepickerPopup', 'isOpen']
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ElementRef, core_1.Renderer, core_1.DynamicComponentLoader])
@@ -15556,24 +15549,24 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var dropdown_directive_1 = __webpack_require__(18);
-	var dropdown_menu_directive_1 = __webpack_require__(165);
-	var dropdown_toggle_directive_1 = __webpack_require__(166);
+	var dropdown_menu_directive_1 = __webpack_require__(166);
+	var dropdown_toggle_directive_1 = __webpack_require__(167);
 	var dropdown_directive_2 = __webpack_require__(18);
 	exports.Dropdown = dropdown_directive_2.Dropdown;
-	var dropdown_menu_directive_2 = __webpack_require__(165);
+	var dropdown_menu_directive_2 = __webpack_require__(166);
 	exports.DropdownMenu = dropdown_menu_directive_2.DropdownMenu;
-	var dropdown_toggle_directive_2 = __webpack_require__(166);
+	var dropdown_toggle_directive_2 = __webpack_require__(167);
 	exports.DropdownToggle = dropdown_toggle_directive_2.DropdownToggle;
 	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.Dropdown, dropdown_toggle_directive_1.DropdownToggle, dropdown_menu_directive_1.DropdownMenu];
 
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15610,7 +15603,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15630,10 +15623,10 @@ webpackJsonp([2],[
 	var dropdown_directive_1 = __webpack_require__(18);
 	var DropdownToggle = (function () {
 	    function DropdownToggle(dropdown, el) {
-	        this.dropdown = dropdown;
-	        this.el = el;
 	        this.disabled = false;
 	        this.addClass = true;
+	        this.dropdown = dropdown;
+	        this.el = el;
 	    }
 	    DropdownToggle.prototype.ngOnInit = function () {
 	        this.dropdown.dropDownToggle = this;
@@ -15660,17 +15653,17 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.HostBinding('class.dropdown-toggle'),
 	        core_1.HostBinding('attr.aria-haspopup'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], DropdownToggle.prototype, "addClass", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.aria-expanded'), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], DropdownToggle.prototype, "isOpen", null);
 	    __decorate([
 	        core_1.HostListener('click', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [MouseEvent]), 
-	        __metadata('design:returntype', void 0)
+	        __metadata('design:returntype', Boolean)
 	    ], DropdownToggle.prototype, "toggleDropdown", null);
 	    DropdownToggle = __decorate([
 	        core_1.Directive({ selector: '[dropdownToggle]' }),
@@ -15683,21 +15676,21 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var pagination_component_1 = __webpack_require__(29);
-	var pager_component_1 = __webpack_require__(168);
+	var pager_component_1 = __webpack_require__(169);
 	var pagination_component_2 = __webpack_require__(29);
 	exports.Pagination = pagination_component_2.Pagination;
-	var pager_component_2 = __webpack_require__(168);
+	var pager_component_2 = __webpack_require__(169);
 	exports.Pager = pager_component_2.Pager;
 	exports.PAGINATION_DIRECTIVES = [pagination_component_1.Pagination, pager_component_1.Pager];
 
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15754,24 +15747,24 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var progress_directive_1 = __webpack_require__(20);
 	var bar_component_1 = __webpack_require__(30);
-	var progressbar_component_1 = __webpack_require__(170);
+	var progressbar_component_1 = __webpack_require__(171);
 	var progress_directive_2 = __webpack_require__(20);
 	exports.Progress = progress_directive_2.Progress;
 	var bar_component_2 = __webpack_require__(30);
 	exports.Bar = bar_component_2.Bar;
-	var progressbar_component_2 = __webpack_require__(170);
+	var progressbar_component_2 = __webpack_require__(171);
 	exports.Progressbar = progressbar_component_2.Progressbar;
 	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.Progress, bar_component_1.Bar, progressbar_component_1.Progressbar];
 
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15808,7 +15801,7 @@ webpackJsonp([2],[
 	    ], Progressbar.prototype, "value", void 0);
 	    Progressbar = __decorate([
 	        core_1.Component({
-	            selector: 'progressbar, [progressbar]',
+	            selector: 'progressbar',
 	            directives: [progress_directive_1.Progress, bar_component_1.Bar],
 	            template: "\n    <div progress [animate]=\"animate\" [max]=\"max\">\n      <bar [type]=\"type\" [value]=\"value\">\n          <ng-content></ng-content>\n      </bar>\n    </div>\n  "
 	        }), 
@@ -15820,7 +15813,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15829,24 +15822,24 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var tab_directive_1 = __webpack_require__(31);
 	var tabset_component_1 = __webpack_require__(32);
-	var tab_heading_directive_1 = __webpack_require__(173);
+	var tab_heading_directive_1 = __webpack_require__(174);
 	var tab_directive_2 = __webpack_require__(31);
 	exports.Tab = tab_directive_2.Tab;
 	var tabset_component_2 = __webpack_require__(32);
 	exports.Tabset = tabset_component_2.Tabset;
-	var tab_heading_directive_2 = __webpack_require__(173);
+	var tab_heading_directive_2 = __webpack_require__(174);
 	exports.TabHeading = tab_heading_directive_2.TabHeading;
 	exports.TAB_DIRECTIVES = [tab_directive_1.Tab, tab_heading_directive_1.TabHeading, tabset_component_1.Tabset];
 
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15863,11 +15856,10 @@ webpackJsonp([2],[
 	var tab_directive_1 = __webpack_require__(31);
 	var TabHeading = (function () {
 	    function TabHeading(templateRef, tab) {
-	        this.templateRef = templateRef;
 	        tab.headingRef = templateRef;
 	    }
 	    TabHeading = __decorate([
-	        core_1.Directive({ selector: '[tab-heading]' }), 
+	        core_1.Directive({ selector: '[tabHeading]' }), 
 	        __metadata('design:paramtypes', [core_1.TemplateRef, tab_directive_1.Tab])
 	    ], TabHeading);
 	    return TabHeading;
@@ -15876,7 +15868,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15885,13 +15877,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var tooltip_directive_1 = __webpack_require__(177);
+	var tooltip_directive_1 = __webpack_require__(178);
 	var tooltip_container_component_1 = __webpack_require__(33);
-	var tooltip_directive_2 = __webpack_require__(177);
+	var tooltip_directive_2 = __webpack_require__(178);
 	exports.Tooltip = tooltip_directive_2.Tooltip;
 	var tooltip_container_component_2 = __webpack_require__(33);
 	exports.TooltipContainer = tooltip_container_component_2.TooltipContainer;
@@ -15899,7 +15891,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15927,7 +15919,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15941,15 +15933,15 @@ webpackJsonp([2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(3);
-	var tooltip_options_class_1 = __webpack_require__(176);
+	var tooltip_options_class_1 = __webpack_require__(177);
 	var tooltip_container_component_1 = __webpack_require__(33);
 	var Tooltip = (function () {
 	    function Tooltip(element, loader) {
-	        this.element = element;
-	        this.loader = loader;
 	        this.placement = 'top';
 	        this.animation = true;
 	        this.visible = false;
+	        this.element = element;
+	        this.loader = loader;
 	    }
 	    Tooltip.prototype.ngOnInit = function () {
 	    };
@@ -16031,13 +16023,13 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var typeahead_directive_1 = __webpack_require__(180);
+	var typeahead_directive_1 = __webpack_require__(181);
 	var typeahead_container_component_1 = __webpack_require__(34);
-	var typeahead_directive_2 = __webpack_require__(180);
+	var typeahead_directive_2 = __webpack_require__(181);
 	exports.Typeahead = typeahead_directive_2.Typeahead;
 	var typeahead_container_component_2 = __webpack_require__(34);
 	exports.TypeaheadContainer = typeahead_container_component_2.TypeaheadContainer;
@@ -16047,7 +16039,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16087,7 +16079,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16102,29 +16094,149 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
+	var typeahead_utils_1 = __webpack_require__(180);
+	var typeahead_container_component_1 = __webpack_require__(34);
+	var typeahead_options_class_1 = __webpack_require__(35);
 	function setProperty(renderer, elementRef, propName, propValue) {
 	    renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 	}
-	var typeahead_utils_1 = __webpack_require__(179);
-	var typeahead_container_component_1 = __webpack_require__(34);
-	var typeahead_options_class_1 = __webpack_require__(35);
 	var Typeahead = (function () {
 	    function Typeahead(cd, element, renderer, loader) {
-	        this.cd = cd;
-	        this.element = element;
-	        this.renderer = renderer;
-	        this.loader = loader;
 	        this.typeaheadLoading = new core_1.EventEmitter(false);
 	        this.typeaheadNoResults = new core_1.EventEmitter(false);
 	        this.typeaheadOnSelect = new core_1.EventEmitter(false);
-	        this.typeaheadAsync = null;
+	        this.typeaheadAsync = void 0;
 	        this.typeaheadLatinize = true;
 	        this.typeaheadSingleWords = true;
 	        this.typeaheadWordDelimiters = ' ';
 	        this.typeaheadPhraseDelimiters = '\'"';
 	        this._matches = [];
 	        this.placement = 'bottom-left';
+	        this.cd = cd;
+	        this.element = element;
+	        this.renderer = renderer;
+	        this.loader = loader;
 	    }
+	    Typeahead.prototype.onChange = function (e) {
+	        if (this.container) {
+	            if (e.keyCode === 27) {
+	                this.hide();
+	                return;
+	            }
+	            if (e.keyCode === 38) {
+	                this.container.prevActiveMatch();
+	                return;
+	            }
+	            if (e.keyCode === 40) {
+	                this.container.nextActiveMatch();
+	                return;
+	            }
+	            if (e.keyCode === 13) {
+	                this.container.selectActiveMatch();
+	                return;
+	            }
+	        }
+	        if (this.cd.model.toString().length >= this.typeaheadMinLength) {
+	            this.typeaheadLoading.emit(true);
+	            if (this.typeaheadAsync === true) {
+	                this.debouncer();
+	            }
+	            if (this.typeaheadAsync === false) {
+	                this.processMatches();
+	                this.finalizeAsyncCall();
+	            }
+	        }
+	        else {
+	            this.hide();
+	        }
+	    };
+	    Typeahead.prototype.onBlur = function () {
+	        this.hide();
+	    };
+	    Typeahead.prototype.onKeydown = function (e) {
+	        if (this.container && e.keyCode === 13) {
+	            e.preventDefault();
+	        }
+	    };
+	    Typeahead.prototype.ngOnInit = function () {
+	        var _this = this;
+	        this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
+	        this.typeaheadMinLength = this.typeaheadMinLength || 1;
+	        this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
+	        if (this.typeaheadAsync === void 0 && typeof this.typeahead !== 'function') {
+	            this.typeaheadAsync = false;
+	        }
+	        if (typeof this.typeahead === 'function') {
+	            this.typeaheadAsync = true;
+	        }
+	        if (this.typeaheadAsync === true) {
+	            this.debouncer = this.debounce(function () {
+	                if (typeof _this.typeahead === 'function') {
+	                    _this.typeahead()
+	                        .then(function (matches) {
+	                        _this._matches = [];
+	                        for (var i = 0; i < matches.length; i++) {
+	                            _this._matches.push(matches[i]);
+	                            if (_this._matches.length > _this.typeaheadOptionsLimit - 1) {
+	                                break;
+	                            }
+	                        }
+	                        _this.finalizeAsyncCall();
+	                    });
+	                }
+	                if (typeof _this.typeahead === 'object' && _this.typeahead.length) {
+	                    _this.processMatches();
+	                    _this.finalizeAsyncCall();
+	                }
+	            }, 100);
+	        }
+	    };
+	    Typeahead.prototype.show = function (matches) {
+	        var _this = this;
+	        var options = new typeahead_options_class_1.TypeaheadOptions({
+	            placement: this.placement,
+	            animation: false
+	        });
+	        var binding = core_1.Injector.resolve([
+	            new core_1.Provider(typeahead_options_class_1.TypeaheadOptions, { useValue: options })
+	        ]);
+	        this.popup = this.loader
+	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainer, this.element, binding)
+	            .then(function (componentRef) {
+	            componentRef.instance.position(_this.element);
+	            _this.container = componentRef.instance;
+	            _this.container.parent = _this;
+	            var normalizedQuery = (_this.typeaheadLatinize
+	                ? typeahead_utils_1.TypeaheadUtils.latinize(_this.cd.model)
+	                : _this.cd.model).toString()
+	                .toLowerCase();
+	            _this.container.query = _this.typeaheadSingleWords
+	                ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, _this.typeaheadWordDelimiters, _this.typeaheadPhraseDelimiters)
+	                : normalizedQuery;
+	            _this.container.matches = matches;
+	            _this.container.field = _this.typeaheadOptionField;
+	            _this.element.nativeElement.focus();
+	            return componentRef;
+	        });
+	    };
+	    Typeahead.prototype.hide = function () {
+	        var _this = this;
+	        if (this.container) {
+	            this.popup.then(function (componentRef) {
+	                componentRef.dispose();
+	                _this.container = void 0;
+	                return componentRef;
+	            });
+	        }
+	    };
+	    Typeahead.prototype.changeModel = function (value) {
+	        var valueStr = ((typeof value === 'object' && this.typeaheadOptionField)
+	            ? value[this.typeaheadOptionField]
+	            : value).toString();
+	        this.cd.viewToModelUpdate(valueStr);
+	        setProperty(this.renderer, this.element, 'value', valueStr);
+	        this.hide();
+	    };
 	    Object.defineProperty(Typeahead.prototype, "matches", {
 	        get: function () {
 	            return this._matches;
@@ -16147,7 +16259,7 @@ webpackJsonp([2],[
 	                    timeout = setTimeout(later, wait - last);
 	                }
 	                else {
-	                    timeout = null;
+	                    timeout = void 0;
 	                    func.apply(this, args);
 	                }
 	            };
@@ -16161,16 +16273,25 @@ webpackJsonp([2],[
 	        if (!this.typeahead) {
 	            return;
 	        }
-	        var normalizedQuery = (this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-	        normalizedQuery = this.typeaheadSingleWords ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
+	        var normalizedQuery = (this.typeaheadLatinize
+	            ? typeahead_utils_1.TypeaheadUtils.latinize(this.cd.model)
+	            : this.cd.model).toString()
+	            .toLowerCase();
+	        normalizedQuery = this.typeaheadSingleWords
+	            ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+	            : normalizedQuery;
 	        for (var i = 0; i < this.typeahead.length; i++) {
 	            var match = void 0;
 	            if (typeof this.typeahead[i] === 'object' &&
 	                this.typeahead[i][this.typeaheadOptionField]) {
-	                match = this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString()) : this.typeahead[i][this.typeaheadOptionField].toString();
+	                match = this.typeaheadLatinize
+	                    ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString())
+	                    : this.typeahead[i][this.typeaheadOptionField].toString();
 	            }
 	            if (typeof this.typeahead[i] === 'string') {
-	                match = this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i].toString()) : this.typeahead[i].toString();
+	                match = this.typeaheadLatinize
+	                    ? typeahead_utils_1.TypeaheadUtils.latinize(this.typeahead[i].toString())
+	                    : this.typeahead[i].toString();
 	            }
 	            if (!match) {
 	                console.log('Invalid match type', typeof this.typeahead[i], this.typeaheadOptionField);
@@ -16208,119 +16329,17 @@ webpackJsonp([2],[
 	            return;
 	        }
 	        if (this.container && this._matches.length > 0) {
-	            var normalizedQuery = (this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-	            this.container.query = this.typeaheadSingleWords ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
+	            var normalizedQuery = (this.typeaheadLatinize
+	                ? typeahead_utils_1.TypeaheadUtils.latinize(this.cd.model)
+	                : this.cd.model).toString()
+	                .toLowerCase();
+	            this.container.query = this.typeaheadSingleWords
+	                ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+	                : normalizedQuery;
 	            this.container.matches = this._matches;
 	        }
 	        if (!this.container && this._matches.length > 0) {
 	            this.show(this._matches);
-	        }
-	    };
-	    Typeahead.prototype.ngOnInit = function () {
-	        var _this = this;
-	        this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
-	        this.typeaheadMinLength = this.typeaheadMinLength || 1;
-	        this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
-	        if (this.typeaheadAsync === null && typeof this.typeahead !== 'function') {
-	            this.typeaheadAsync = false;
-	        }
-	        if (typeof this.typeahead === 'function') {
-	            this.typeaheadAsync = true;
-	        }
-	        if (this.typeaheadAsync === true) {
-	            this.debouncer = this.debounce(function () {
-	                if (typeof _this.typeahead === 'function') {
-	                    _this.typeahead().then(function (matches) {
-	                        _this._matches = [];
-	                        for (var i = 0; i < matches.length; i++) {
-	                            _this._matches.push(matches[i]);
-	                            if (_this._matches.length > _this.typeaheadOptionsLimit - 1) {
-	                                break;
-	                            }
-	                        }
-	                        _this.finalizeAsyncCall();
-	                    });
-	                }
-	                if (typeof _this.typeahead === 'object' && _this.typeahead.length) {
-	                    _this.processMatches();
-	                    _this.finalizeAsyncCall();
-	                }
-	            }, 100);
-	        }
-	    };
-	    Typeahead.prototype.onChange = function (e) {
-	        if (this.container) {
-	            if (e.keyCode === 27) {
-	                this.hide();
-	                return;
-	            }
-	            if (e.keyCode === 38) {
-	                this.container.prevActiveMatch();
-	                return;
-	            }
-	            if (e.keyCode === 40) {
-	                this.container.nextActiveMatch();
-	                return;
-	            }
-	            if (e.keyCode === 13) {
-	                this.container.selectActiveMatch();
-	                return;
-	            }
-	        }
-	        if (this.cd.model.toString().length >= this.typeaheadMinLength) {
-	            this.typeaheadLoading.emit(true);
-	            if (this.typeaheadAsync === true) {
-	                this.debouncer();
-	            }
-	            if (this.typeaheadAsync === false) {
-	                this.processMatches();
-	                this.finalizeAsyncCall();
-	            }
-	        }
-	        else {
-	            this.hide();
-	        }
-	    };
-	    Typeahead.prototype.onblur = function () {
-	        this.hide();
-	    };
-	    Typeahead.prototype.changeModel = function (value) {
-	        var valueStr = ((typeof value === 'object' && this.typeaheadOptionField) ? value[this.typeaheadOptionField] : value).toString();
-	        this.cd.viewToModelUpdate(valueStr);
-	        setProperty(this.renderer, this.element, 'value', valueStr);
-	        this.hide();
-	    };
-	    Typeahead.prototype.show = function (matches) {
-	        var _this = this;
-	        var options = new typeahead_options_class_1.TypeaheadOptions({
-	            placement: this.placement,
-	            animation: false
-	        });
-	        var binding = core_1.Injector.resolve([
-	            new core_1.Provider(typeahead_options_class_1.TypeaheadOptions, { useValue: options })
-	        ]);
-	        this.popup = this.loader
-	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainer, this.element, binding)
-	            .then(function (componentRef) {
-	            componentRef.instance.position(_this.element);
-	            _this.container = componentRef.instance;
-	            _this.container.parent = _this;
-	            var normalizedQuery = (_this.typeaheadLatinize ? typeahead_utils_1.TypeaheadUtils.latinize(_this.cd.model) : _this.cd.model).toString().toLowerCase();
-	            _this.container.query = _this.typeaheadSingleWords ? typeahead_utils_1.TypeaheadUtils.tokenize(normalizedQuery, _this.typeaheadWordDelimiters, _this.typeaheadPhraseDelimiters) : normalizedQuery;
-	            _this.container.matches = matches;
-	            _this.container.field = _this.typeaheadOptionField;
-	            _this.element.nativeElement.focus();
-	            return componentRef;
-	        });
-	    };
-	    Typeahead.prototype.hide = function () {
-	        var _this = this;
-	        if (this.container) {
-	            this.popup.then(function (componentRef) {
-	                componentRef.dispose();
-	                _this.container = null;
-	                return componentRef;
-	            });
 	        }
 	    };
 	    __decorate([
@@ -16376,34 +16395,6 @@ webpackJsonp([2],[
 	        __metadata('design:type', String)
 	    ], Typeahead.prototype, "typeaheadPhraseDelimiters", void 0);
 	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadAppendToBody", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadEditable", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadFocusFirst", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Object)
-	    ], Typeahead.prototype, "typeaheadInputFormatter", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadSelectOnExact", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadSelectOnBlur", void 0);
-	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadFocusOnSelect", void 0);
-	    __decorate([
 	        core_1.HostListener('keyup', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
@@ -16414,10 +16405,16 @@ webpackJsonp([2],[
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onblur", null);
+	    ], Typeahead.prototype, "onBlur", null);
+	    __decorate([
+	        core_1.HostListener('keydown', ['$event']), 
+	        __metadata('design:type', Function), 
+	        __metadata('design:paramtypes', [KeyboardEvent]), 
+	        __metadata('design:returntype', void 0)
+	    ], Typeahead.prototype, "onKeydown", null);
 	    Typeahead = __decorate([
 	        core_1.Directive({
-	            selector: 'typeahead[ngModel], [ngModel][typeahead]'
+	            selector: '[typeahead][ngModel]'
 	        }), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ElementRef, core_1.Renderer, core_1.DynamicComponentLoader])
 	    ], Typeahead);
@@ -16427,7 +16424,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -16506,7 +16503,6 @@ webpackJsonp([2],[
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJvd3Nlcl9kZXRhaWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvYnJvd3Nlcl9kZXRhaWxzLnRzIl0sIm5hbWVzIjpbIkJyb3dzZXJEZXRhaWxzIiwiQnJvd3NlckRldGFpbHMuY29uc3RydWN0b3IiLCJCcm93c2VyRGV0YWlscy5kb2VzRWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5IiwiQnJvd3NlckRldGFpbHMucmFmIiwiUmFmUXVldWUiLCJSYWZRdWV1ZS5jb25zdHJ1Y3RvciIsIlJhZlF1ZXVlLl9yYWYiLCJSYWZRdWV1ZS5fbmV4dEZyYW1lIiwiUmFmUXVldWUuY2FuY2VsIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBQSxtQkFBeUIsc0JBQXNCLENBQUMsQ0FBQTtBQUNoRCxxQkFBbUIsMEJBQTBCLENBQUMsQ0FBQTtBQUM5Qyw0QkFBa0IsdUNBQXVDLENBQUMsQ0FBQTtBQUUxRDtJQUlFQTtRQUZBQyw2QkFBd0JBLEdBQUdBLEtBQUtBLENBQUNBO1FBRWpCQSxJQUFJQSxDQUFDQSw0QkFBNEJBLEVBQUVBLENBQUNBO0lBQUNBLENBQUNBO0lBRXRERDs7O09BR0dBO0lBQ0hBLHFEQUE0QkEsR0FBNUJBO1FBQUFFLGlCQWFDQTtRQVpDQSxJQUFJQSxHQUFHQSxHQUFHQSxpQkFBR0EsQ0FBQ0EsYUFBYUEsQ0FBQ0EsS0FBS0EsQ0FBQ0EsQ0FBQ0E7UUFDbkNBLGlCQUFHQSxDQUFDQSxZQUFZQSxDQUFDQSxHQUFHQSxFQUFFQSxPQUFPQSxFQUFFQSxrSEFDZ0JBLENBQUNBLENBQUNBO1FBQ2pEQSw2REFBNkRBO1FBQzdEQSxJQUFJQSxDQUFDQSxHQUFHQSxDQUFDQSxVQUFDQSxTQUFjQTtZQUN0QkEsaUJBQUdBLENBQUNBLEVBQUVBLENBQUNBLEdBQUdBLEVBQUVBLGVBQWVBLEVBQUVBLFVBQUNBLEtBQVVBO2dCQUN0Q0EsSUFBSUEsT0FBT0EsR0FBR0EsV0FBSUEsQ0FBQ0EsS0FBS0EsQ0FBQ0EsS0FBS0EsQ0FBQ0EsV0FBV0EsR0FBR0EsSUFBSUEsQ0FBQ0EsQ0FBQ0E7Z0JBQ25EQSxLQUFJQSxDQUFDQSx3QkFBd0JBLEdBQUdBLE9BQU9BLElBQUlBLENBQUNBLENBQUNBO2dCQUM3Q0EsaUJBQUdBLENBQUNBLE1BQU1BLENBQUNBLEdBQUdBLENBQUNBLENBQUNBO1lBQ2xCQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUNIQSxpQkFBR0EsQ0FBQ0EsUUFBUUEsQ0FBQ0EsR0FBR0EsRUFBRUEsT0FBT0EsRUFBRUEsS0FBS0EsQ0FBQ0EsQ0FBQ0E7UUFDcENBLENBQUNBLEVBQUVBLENBQUNBLENBQUNBLENBQUNBO0lBQ1JBLENBQUNBO0lBRURGLDRCQUFHQSxHQUFIQSxVQUFJQSxRQUFrQkEsRUFBRUEsTUFBa0JBO1FBQWxCRyxzQkFBa0JBLEdBQWxCQSxVQUFrQkE7UUFDeENBLElBQUlBLEtBQUtBLEdBQWFBLElBQUlBLFFBQVFBLENBQUNBLFFBQVFBLEVBQUVBLE1BQU1BLENBQUNBLENBQUNBO1FBQ3JEQSxNQUFNQSxDQUFDQSxjQUFNQSxPQUFBQSxLQUFLQSxDQUFDQSxNQUFNQSxFQUFFQSxFQUFkQSxDQUFjQSxDQUFDQTtJQUM5QkEsQ0FBQ0E7SUE1QkhIO1FBQUNBLGVBQVVBLEVBQUVBOzt1QkE2QlpBO0lBQURBLHFCQUFDQTtBQUFEQSxDQUFDQSxBQTdCRCxJQTZCQztBQTVCWSxzQkFBYyxpQkE0QjFCLENBQUE7QUFFRDtJQUVFSSxrQkFBbUJBLFFBQWtCQSxFQUFTQSxNQUFjQTtRQUF6Q0MsYUFBUUEsR0FBUkEsUUFBUUEsQ0FBVUE7UUFBU0EsV0FBTUEsR0FBTkEsTUFBTUEsQ0FBUUE7UUFBSUEsSUFBSUEsQ0FBQ0EsSUFBSUEsRUFBRUEsQ0FBQ0E7SUFBQ0EsQ0FBQ0E7SUFDdEVELHVCQUFJQSxHQUFaQTtRQUFBRSxpQkFHQ0E7UUFGQ0EsSUFBSUEsQ0FBQ0EsY0FBY0E7WUFDZkEsaUJBQUdBLENBQUNBLHFCQUFxQkEsQ0FBQ0EsVUFBQ0EsU0FBaUJBLElBQUtBLE9BQUFBLEtBQUlBLENBQUNBLFVBQVVBLENBQUNBLFNBQVNBLENBQUNBLEVBQTFCQSxDQUEwQkEsQ0FBQ0EsQ0FBQ0E7SUFDbkZBLENBQUNBO0lBQ09GLDZCQUFVQSxHQUFsQkEsVUFBbUJBLFNBQWlCQTtRQUNsQ0csSUFBSUEsQ0FBQ0EsTUFBTUEsRUFBRUEsQ0FBQ0E7UUFDZEEsRUFBRUEsQ0FBQ0EsQ0FBQ0EsSUFBSUEsQ0FBQ0EsTUFBTUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7WUFDcEJBLElBQUlBLENBQUNBLElBQUlBLEVBQUVBLENBQUNBO1FBQ2RBLENBQUNBO1FBQUNBLElBQUlBLENBQUNBLENBQUNBO1lBQ05BLElBQUlBLENBQUNBLFFBQVFBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQzNCQSxDQUFDQTtJQUNIQSxDQUFDQTtJQUNESCx5QkFBTUEsR0FBTkE7UUFDRUksaUJBQUdBLENBQUNBLG9CQUFvQkEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsY0FBY0EsQ0FBQ0EsQ0FBQ0E7UUFDOUNBLElBQUlBLENBQUNBLGNBQWNBLEdBQUdBLElBQUlBLENBQUNBO0lBQzdCQSxDQUFDQTtJQUNISixlQUFDQTtBQUFEQSxDQUFDQSxBQW5CRCxJQW1CQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7SW5qZWN0YWJsZX0gZnJvbSAnYW5ndWxhcjIvc3JjL2NvcmUvZGknO1xuaW1wb3J0IHtNYXRofSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL21hdGgnO1xuaW1wb3J0IHtET019IGZyb20gJ2FuZ3VsYXIyL3NyYy9wbGF0Zm9ybS9kb20vZG9tX2FkYXB0ZXInO1xuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgQnJvd3NlckRldGFpbHMge1xuICBlbGFwc2VkVGltZUluY2x1ZGVzRGVsYXkgPSBmYWxzZTtcblxuICBjb25zdHJ1Y3RvcigpIHsgdGhpcy5kb2VzRWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5KCk7IH1cblxuICAvKipcbiAgICogRGV0ZXJtaW5lcyBpZiBgZXZlbnQuZWxhcHNlZFRpbWVgIGluY2x1ZGVzIHRyYW5zaXRpb24gZGVsYXkgaW4gdGhlIGN1cnJlbnQgYnJvd3Nlci4gIEF0IHRoaXNcbiAgICogdGltZSwgQ2hyb21lIGFuZCBPcGVyYSBzZWVtIHRvIGJlIHRoZSBvbmx5IGJyb3dzZXJzIHRoYXQgaW5jbHVkZSB0aGlzLlxuICAgKi9cbiAgZG9lc0VsYXBzZWRUaW1lSW5jbHVkZXNEZWxheSgpOiB2b2lkIHtcbiAgICB2YXIgZGl2ID0gRE9NLmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuICAgIERPTS5zZXRBdHRyaWJ1dGUoZGl2LCAnc3R5bGUnLCBgcG9zaXRpb246IGFic29sdXRlOyB0b3A6IC05OTk5cHg7IGxlZnQ6IC05OTk5cHg7IHdpZHRoOiAxcHg7XG4gICAgICBoZWlnaHQ6IDFweDsgdHJhbnNpdGlvbjogYWxsIDFtcyBsaW5lYXIgMW1zO2ApO1xuICAgIC8vIEZpcmVmb3ggcmVxdWlyZXMgdGhhdCB3ZSB3YWl0IGZvciAyIGZyYW1lcyBmb3Igc29tZSByZWFzb25cbiAgICB0aGlzLnJhZigodGltZXN0YW1wOiBhbnkpID0+IHtcbiAgICAgIERPTS5vbihkaXYsICd0cmFuc2l0aW9uZW5kJywgKGV2ZW50OiBhbnkpID0+IHtcbiAgICAgICAgdmFyIGVsYXBzZWQgPSBNYXRoLnJvdW5kKGV2ZW50LmVsYXBzZWRUaW1lICogMTAwMCk7XG4gICAgICAgIHRoaXMuZWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5ID0gZWxhcHNlZCA9PSAyO1xuICAgICAgICBET00ucmVtb3ZlKGRpdik7XG4gICAgICB9KTtcbiAgICAgIERPTS5zZXRTdHlsZShkaXYsICd3aWR0aCcsICcycHgnKTtcbiAgICB9LCAyKTtcbiAgfVxuXG4gIHJhZihjYWxsYmFjazogRnVuY3Rpb24sIGZyYW1lczogbnVtYmVyID0gMSk6IEZ1bmN0aW9uIHtcbiAgICB2YXIgcXVldWU6IFJhZlF1ZXVlID0gbmV3IFJhZlF1ZXVlKGNhbGxiYWNrLCBmcmFtZXMpO1xuICAgIHJldHVybiAoKSA9PiBxdWV1ZS5jYW5jZWwoKTtcbiAgfVxufVxuXG5jbGFzcyBSYWZRdWV1ZSB7XG4gIGN1cnJlbnRGcmFtZUlkOiBudW1iZXI7XG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBjYWxsYmFjazogRnVuY3Rpb24sIHB1YmxpYyBmcmFtZXM6IG51bWJlcikgeyB0aGlzLl9yYWYoKTsgfVxuICBwcml2YXRlIF9yYWYoKSB7XG4gICAgdGhpcy5jdXJyZW50RnJhbWVJZCA9XG4gICAgICAgIERPTS5yZXF1ZXN0QW5pbWF0aW9uRnJhbWUoKHRpbWVzdGFtcDogbnVtYmVyKSA9PiB0aGlzLl9uZXh0RnJhbWUodGltZXN0YW1wKSk7XG4gIH1cbiAgcHJpdmF0ZSBfbmV4dEZyYW1lKHRpbWVzdGFtcDogbnVtYmVyKSB7XG4gICAgdGhpcy5mcmFtZXMtLTtcbiAgICBpZiAodGhpcy5mcmFtZXMgPiAwKSB7XG4gICAgICB0aGlzLl9yYWYoKTtcbiAgICB9IGVsc2Uge1xuICAgICAgdGhpcy5jYWxsYmFjayh0aW1lc3RhbXApO1xuICAgIH1cbiAgfVxuICBjYW5jZWwoKSB7XG4gICAgRE9NLmNhbmNlbEFuaW1hdGlvbkZyYW1lKHRoaXMuY3VycmVudEZyYW1lSWQpO1xuICAgIHRoaXMuY3VycmVudEZyYW1lSWQgPSBudWxsO1xuICB9XG59XG4iXX0=
 
 /***/ },
-/* 182 */,
 /* 183 */,
 /* 184 */,
 /* 185 */,
@@ -16525,7 +16521,8 @@ webpackJsonp([2],[
 /* 198 */,
 /* 199 */,
 /* 200 */,
-/* 201 */
+/* 201 */,
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';var lang_1 = __webpack_require__(2);
@@ -16542,14 +16539,14 @@ webpackJsonp([2],[
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFuZ3VsYXIyL3NyYy9wbGF0Zm9ybS9kb20vdXRpbC50cyJdLCJuYW1lcyI6WyJjYW1lbENhc2VUb0Rhc2hDYXNlIiwiZGFzaENhc2VUb0NhbWVsQ2FzZSJdLCJtYXBwaW5ncyI6IkFBQUEscUJBQTRCLDBCQUEwQixDQUFDLENBQUE7QUFFdkQsSUFBSSxpQkFBaUIsR0FBRyxVQUFVLENBQUM7QUFDbkMsSUFBSSxnQkFBZ0IsR0FBRyxXQUFXLENBQUM7QUFHbkMsNkJBQW9DLEtBQWE7SUFDL0NBLE1BQU1BLENBQUNBLG9CQUFhQSxDQUFDQSxnQkFBZ0JBLENBQUNBLEtBQUtBLEVBQUVBLGlCQUFpQkEsRUFDeEJBLFVBQUNBLENBQUNBLElBQU9BLE1BQU1BLENBQUNBLEdBQUdBLEdBQUdBLENBQUNBLENBQUNBLENBQUNBLENBQUNBLENBQUNBLFdBQVdBLEVBQUVBLENBQUNBLENBQUNBLENBQUNBLENBQUNBLENBQUNBO0FBQ3JGQSxDQUFDQTtBQUhlLDJCQUFtQixzQkFHbEMsQ0FBQTtBQUVELDZCQUFvQyxLQUFhO0lBQy9DQyxNQUFNQSxDQUFDQSxvQkFBYUEsQ0FBQ0EsZ0JBQWdCQSxDQUFDQSxLQUFLQSxFQUFFQSxnQkFBZ0JBLEVBQ3ZCQSxVQUFDQSxDQUFDQSxJQUFPQSxNQUFNQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxXQUFXQSxFQUFFQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQSxDQUFDQTtBQUMvRUEsQ0FBQ0E7QUFIZSwyQkFBbUIsc0JBR2xDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge1N0cmluZ1dyYXBwZXJ9IGZyb20gJ2FuZ3VsYXIyL3NyYy9mYWNhZGUvbGFuZyc7XG5cbnZhciBDQU1FTF9DQVNFX1JFR0VYUCA9IC8oW0EtWl0pL2c7XG52YXIgREFTSF9DQVNFX1JFR0VYUCA9IC8tKFthLXpdKS9nO1xuXG5cbmV4cG9ydCBmdW5jdGlvbiBjYW1lbENhc2VUb0Rhc2hDYXNlKGlucHV0OiBzdHJpbmcpOiBzdHJpbmcge1xuICByZXR1cm4gU3RyaW5nV3JhcHBlci5yZXBsYWNlQWxsTWFwcGVkKGlucHV0LCBDQU1FTF9DQVNFX1JFR0VYUCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAobSkgPT4geyByZXR1cm4gJy0nICsgbVsxXS50b0xvd2VyQ2FzZSgpOyB9KTtcbn1cblxuZXhwb3J0IGZ1bmN0aW9uIGRhc2hDYXNlVG9DYW1lbENhc2UoaW5wdXQ6IHN0cmluZyk6IHN0cmluZyB7XG4gIHJldHVybiBTdHJpbmdXcmFwcGVyLnJlcGxhY2VBbGxNYXBwZWQoaW5wdXQsIERBU0hfQ0FTRV9SRUdFWFAsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKG0pID0+IHsgcmV0dXJuIG1bMV0udG9VcHBlckNhc2UoKTsgfSk7XG59XG4iXX0=
 
 /***/ },
-/* 202 */,
 /* 203 */,
-/* 204 */
+/* 204 */,
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';var lang_1 = __webpack_require__(2);
 	var math_1 = __webpack_require__(55);
-	var util_1 = __webpack_require__(201);
+	var util_1 = __webpack_require__(202);
 	var collection_1 = __webpack_require__(5);
 	var dom_adapter_1 = __webpack_require__(10);
 	var Animation = (function () {
@@ -16731,11 +16728,11 @@ webpackJsonp([2],[
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5pbWF0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvYW5pbWF0aW9uLnRzIl0sIm5hbWVzIjpbIkFuaW1hdGlvbiIsIkFuaW1hdGlvbi5jb25zdHJ1Y3RvciIsIkFuaW1hdGlvbi50b3RhbFRpbWUiLCJBbmltYXRpb24ud2FpdCIsIkFuaW1hdGlvbi5zZXR1cCIsIkFuaW1hdGlvbi5zdGFydCIsIkFuaW1hdGlvbi5hcHBseVN0eWxlcyIsIkFuaW1hdGlvbi5hZGRDbGFzc2VzIiwiQW5pbWF0aW9uLnJlbW92ZUNsYXNzZXMiLCJBbmltYXRpb24uYWRkRXZlbnRzIiwiQW5pbWF0aW9uLmhhbmRsZUFuaW1hdGlvbkV2ZW50IiwiQW5pbWF0aW9uLmhhbmRsZUFuaW1hdGlvbkNvbXBsZXRlZCIsIkFuaW1hdGlvbi5vbkNvbXBsZXRlIiwiQW5pbWF0aW9uLnBhcnNlRHVyYXRpb25TdHJpbmciLCJBbmltYXRpb24uc3RyaXBMZXR0ZXJzIl0sIm1hcHBpbmdzIjoiQUFBQSxxQkFNTywwQkFBMEIsQ0FBQyxDQUFBO0FBQ2xDLHFCQUFtQiwwQkFBMEIsQ0FBQyxDQUFBO0FBQzlDLHFCQUFrQyxnQ0FBZ0MsQ0FBQyxDQUFBO0FBQ25FLDJCQUErQixnQ0FBZ0MsQ0FBQyxDQUFBO0FBQ2hFLDRCQUFrQix1Q0FBdUMsQ0FBQyxDQUFBO0FBSzFEO0lBNEJFQTs7Ozs7T0FLR0E7SUFDSEEsbUJBQW1CQSxPQUFvQkEsRUFBU0EsSUFBeUJBLEVBQ3REQSxjQUE4QkE7UUFuQ25EQyxpQkF3TENBO1FBdEpvQkEsWUFBT0EsR0FBUEEsT0FBT0EsQ0FBYUE7UUFBU0EsU0FBSUEsR0FBSkEsSUFBSUEsQ0FBcUJBO1FBQ3REQSxtQkFBY0EsR0FBZEEsY0FBY0EsQ0FBZ0JBO1FBbENqREEsNkNBQTZDQTtRQUM3Q0EsY0FBU0EsR0FBZUEsRUFBRUEsQ0FBQ0E7UUFXM0JBLDZDQUE2Q0E7UUFDN0NBLHdCQUFtQkEsR0FBZUEsRUFBRUEsQ0FB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QUN4RUEsRUFBRUEsQ0FBQ0EsQ0FBQ0EsUUFBUUEsSUFBSUEsSUFBSUEsSUFBSUEsUUFBUUEsQ0FBQ0EsTUFBTUEsR0FBR0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0EsQ0FBQ0E7WUFDNUNBLE1BQU1BLENBQUNBLFFBQVFBLENBQUNBO1FBQ2xCQSxDQUFDQTtRQUFDQSxJQUFJQSxDQUFDQSxFQUFFQSxDQUFDQSxDQUFDQSxRQUFRQSxDQUFDQSxTQUFTQSxDQUFDQSxRQUFRQSxDQUFDQSxNQUFNQSxHQUFHQSxDQUFDQSxDQUFDQSxJQUFJQSxJQUFJQSxDQUFDQSxDQUFDQSxDQUFDQTtZQUMzREEsSUFBSUEsS0FBS0EsR0FBR0Esb0JBQWFBLENBQUNBLFFBQVFBLENBQUNBLElBQUlBLENBQUNBLFlBQVlBLENBQUNBLFFBQVFBLENBQUNBLEVBQUVBLEVBQUVBLENBQUNBLENBQUNBO1lBQ3BFQSxFQUFFQSxDQUFDQSxDQUFDQSxLQUFLQSxHQUFHQSxRQUFRQSxDQUFDQTtnQkFBQ0EsUUFBUUEsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDekNBLENBQUNBO1FBQUNBLElBQUlBLENBQUNBLEVBQUVBLENBQUNBLENBQUNBLFFBQVFBLENBQUNBLFNBQVNBLENBQUNBLFFBQVFBLENBQUNBLE1BQU1BLEdBQUdBLENBQUNBLENBQUNBLElBQUlBLEdBQUdBLENBQUNBLENBQUNBLENBQUNBO1lBQzFEQSxJQUFJQSxFQUFFQSxHQUFHQSxvQkFBYUEsQ0FBQ0EsVUFBVUEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsWUFBWUEsQ0FBQ0EsUUFBUUEsQ0FBQ0EsQ0FBQ0EsR0FBR0EsSUFBSUEsQ0FBQ0E7WUFDdEVBLElBQUlBLEtBQUtBLEdBQUdBLFdBQUlBLENBQUNBLEtBQUtBLENBQUNBLEVBQUVBLENBQUNBLENBQUNBO1lBQzNCQSxFQUFFQSxDQUFDQSxDQUFDQSxLQUFLQSxHQUFHQSxRQUFRQSxDQUFDQTtnQkFBQ0EsUUFBUUEsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDekNBLENBQUNBO1FBQ0RBLE1BQU1BLENBQUNBLFFBQVFBLENBQUNBO0lBQ2xCQSxDQUFDQTtJQUVEYjs7OztPQUlHQTtJQUNIQSxnQ0FBWUEsR0FBWkEsVUFBYUEsR0FBV0E7UUFDdEJjLE1BQU1BLENBQUNBLG9CQUFhQSxDQUFDQSxVQUFVQSxDQUFDQSxHQUFHQSxFQUFFQSxvQkFBYUEsQ0FBQ0EsTUFBTUEsQ0FBQ0EsVUFBVUEsRUFBRUEsRUFBRUEsQ0FBQ0EsRUFBRUEsRUFBRUEsQ0FBQ0EsQ0FBQ0E7SUFDakZBLENBQUNBO0lBQ0hkLGdCQUFDQTtBQUFEQSxDQUFDQSxBQXhMRCxJQXdMQztBQXhMWSxpQkFBUyxZQXdMckIsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7XG4gIERhdGVXcmFwcGVyLFxuICBTdHJpbmdXcmFwcGVyLFxuICBSZWdFeHBXcmFwcGVyLFxuICBOdW1iZXJXcmFwcGVyLFxuICBpc1ByZXNlbnRcbn0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9sYW5nJztcbmltcG9ydCB7TWF0aH0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9tYXRoJztcbmltcG9ydCB7Y2FtZWxDYXNlVG9EYXNoQ2FzZX0gZnJvbSAnYW5ndWxhcjIvc3JjL3BsYXRmb3JtL2RvbS91dGlsJztcbmltcG9ydCB7U3RyaW5nTWFwV3JhcHBlcn0gZnJvbSAnYW5ndWxhcjIvc3JjL2ZhY2FkZS9jb2xsZWN0aW9uJztcbmltcG9ydCB7RE9NfSBmcm9tICdhbmd1bGFyMi9zcmMvcGxhdGZvcm0vZG9tL2RvbV9hZGFwdGVyJztcblxuaW1wb3J0IHtCcm93c2VyRGV0YWlsc30gZnJvbSAnLi9icm93c2VyX2RldGFpbHMnO1xuaW1wb3J0IHtDc3NBbmltYXRpb25PcHRpb25zfSBmcm9tICcuL2Nzc19hbmltYXRpb25fb3B0aW9ucyc7XG5cbmV4cG9ydCBjbGFzcyBBbmltYXRpb24ge1xuICAvKiogZnVuY3Rpb25zIHRvIGJlIGNhbGxlZCB1cG9uIGNvbXBsZXRpb24gKi9cbiAgY2FsbGJhY2tzOiBGdW5jdGlvbltdID0gW107XG5cbiAgLyoqIHRoZSBkdXJhdGlvbiAobXMpIG9mIHRoZSBhbmltYXRpb24gKHdoZXRoZXIgZnJvbSBDU1Mgb3IgbWFudWFsbHkgc2V0KSAqL1xuICBjb21wdXRlZER1cmF0aW9uOiBudW1iZXI7XG5cbiAgLyoqIHRoZSBhbmltYXRpb24gZGVsYXkgKG1zKSAod2hldGhlciBmcm9tIENTUyBvciBtYW51YWxseSBzZXQpICovXG4gIGNvbXB1dGVkRGVsYXk6IG51bWJlcjtcblxuICAvKiogdGltZXN0YW1wIG9mIHdoZW4gdGhlIGFuaW1hdGlvbiBzdGFydGVkICovXG4gIHN0YXJ0VGltZTogbnVtYmVyO1xuXG4gIC8qKiBmdW5jdGlvbnMgZm9yIHJlbW92aW5nIGV2ZW50IGxpc3RlbmVycyAqL1xuICBldmVudENsZWFyRnVuY3Rpb25zOiBGdW5jdGlvbltdID0gW107XG5cbiAgLyoqIGZsYWcgdXNlZCB0byB0cmFjayB3aGV0aGVyIG9yIG5vdCB0aGUgYW5pbWF0aW9uIGhhcyBmaW5pc2hlZCAqL1xuICBjb21wbGV0ZWQ6IGJvb2xlYW4gPSBmYWxzZTtcblxuICBwcml2YXRlIF9zdHJpbmdQcmVmaXg6IHN0cmluZyA9ICcnO1xuXG4gIC8qKiB0b3RhbCBhbW91bnQgb2YgdGltZSB0aGF0IHRoZSBhbmltYXRpb24gc2hvdWxkIHRha2UgaW5jbHVkaW5nIGRlbGF5ICovXG4gIGdldCB0b3RhbFRpbWUoKTogbnVtYmVyIHtcbiAgICBsZXQgZGVsYXkgPSB0aGlzLmNvbXB1dGVkRGVsYXkgIT0gbnVsbCA/IHRoaXMuY29tcHV0ZWREZWxheSA6IDA7XG4gICAgbGV0IGR1cmF0aW9uID0gdGhpcy5jb21wdXRlZER1cmF0aW9uICE9IG51bGwgPyB0aGlzLmNvbXB1dGVkRHVyYXRpb24gOiAwO1xuICAgIHJldHVybiBkZWxheSArIGR1cmF0aW9uO1xuICB9XG5cbiAgLyoqXG4gICAqIFN0b3JlcyB0aGUgc3RhcnQgdGltZSBhbmQgc3RhcnRzIHRoZSBhbmltYXRpb25cbiAgICogQHBhcmFtIGVsZW1lbnRcbiAgICogQHBhcmFtIGRhdGFcbiAgICogQHBhcmFtIGJyb3dzZXJEZXRhaWxzXG4gICAqL1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgZWxlbWVudDogSFRNTEVsZW1lbnQsIHB1YmxpYyBkYXRhOiBDc3NBbmltYXRpb25PcHRpb25zLFxuICAgICAgICAgICAgICBwdWJsaWMgYnJvd3NlckRldGFpbHM6IEJyb3dzZXJEZXRhaWxzKSB7XG4gICAgdGhpcy5zdGFydFRpbWUgPSBEYXRlV3JhcHBlci50b01pbGxpcyhEYXRlV3JhcHBlci5ub3coKSk7XG4gICAgdGhpcy5fc3RyaW5nUHJlZml4ID0gRE9NLmdldEFuaW1hdGlvblByZWZpeCgpO1xuICAgIHRoaXMuc2V0dXAoKTtcbiAgICB0aGlzLndhaXQoKHRpbWVzdGFtcDogYW55KSA9PiB0aGlzLnN0YXJ0KCkpO1xuICB9XG5cbiAgd2FpdChjYWxsYmFjazogRnVuY3Rpb24pIHtcbiAgICAvLyBGaXJlZm94IHJlcXVpcmVzIDIgZnJhbWVzIGZvciBzb21lIHJlYXNvblxuICAgIHRoaXMuYnJvd3NlckRldGFpbHMucmFmKGNhbGxiYWNrLCAyKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHVwIHRoZSBpbml0aWFsIHN0eWxlcyBiZWZvcmUgdGhlIGFuaW1hdGlvbiBpcyBzdGFydGVkXG4gICAqL1xuICBzZXR1cCgpOiB2b2lkIHtcbiAgICBpZiAodGhpcy5kYXRhLmZyb21TdHlsZXMgIT0gbnVsbCkgdGhpcy5hcHBseVN0eWxlcyh0aGlzLmRhdGEuZnJvbVN0eWxlcyk7XG4gICAgaWYgKHRoaXMuZGF0YS5kdXJhdGlvbiAhPSBudWxsKVxuICAgICAgdGhpcy5hcHBseVN0eWxlcyh7J3RyYW5zaXRpb25EdXJhdGlvbic6IHRoaXMuZGF0YS5kdXJhdGlvbi50b1N0cmluZygpICsgJ21zJ30pO1xuICAgIGlmICh0aGlzLmRhdGEuZGVsYXkgIT0gbnVsbClcbiAgICAgIHRoaXMuYXBwbHlTdHlsZXMoeyd0cmFuc2l0aW9uRGVsYXknOiB0aGlzLmRhdGEuZGVsYXkudG9TdHJpbmcoKSArICdtcyd9KTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBZnRlciB0aGUgaW5pdGlhbCBzZXR1cCBoYXMgb2NjdXJyZWQsIHRoaXMgbWV0aG9kIGFkZHMgdGhlIGFuaW1hdGlvbiBzdHlsZXNcbiAgICovXG4gIHN0YXJ0KCk6IHZvaWQge1xuICAgIHRoaXMuYWRkQ2xhc3Nlcyh0aGlzLmRhdGEuY2xhc3Nlc1RvQWRkKTtcbiAgICB0aGlzLmFkZENsYXNzZXModGhpcy5kYXRhLmFuaW1hdGlvbkNsYXNzZXMpO1xuICAgIHRoaXMucmVtb3ZlQ2xhc3Nlcyh0aGlzLmRhdGEuY2xhc3Nlc1RvUmVtb3ZlKTtcbiAgICBpZiAodGhpcy5kYXRhLnRvU3R5bGVzICE9IG51bGwpIHRoaXMuYXBwbHlTdHlsZXModGhpcy5kYXRhLnRvU3R5bGVzKTtcbiAgICB2YXIgY29tcHV0ZWRTdHlsZXMgPSBET00uZ2V0Q29tcHV0ZWRTdHlsZSh0aGlzLmVsZW1lbnQpO1xuICAgIHRoaXMuY29tcHV0ZWREZWxheSA9XG4gICAgICAgIE1hdGgubWF4KHRoaXMucGFyc2VEdXJhdGlvblN0cmluZyhcbiAgICAgICAgICAgICAgICAgICAgIGNvbXB1dGVkU3R5bGVzLmdldFByb3BlcnR5VmFsdWUodGhpcy5fc3RyaW5nUHJlZml4ICsgJ3RyYW5zaXRpb24tZGVsYXknKSksXG4gICAgICAgICAgICAgICAgIHRoaXMucGFyc2VEdXJhdGlvblN0cmluZyhcbiAgICAgICAgICAgICAgICAgICAgIHRoaXMuZWxlbWVudC5zdHlsZS5nZXRQcm9wZXJ0eVZhbHVlKHRoaXMuX3N0cmluZ1ByZWZpeCArICd0cmFuc2l0aW9uLWRlbGF5JykpKTtcbiAgICB0aGlzLmNvbXB1dGVkRHVyYXRpb24gPSBNYXRoLm1heCh0aGlzLnBhcnNlRHVyYXRpb25TdHJpbmcoY29tcHV0ZWRTdHlsZXMuZ2V0UHJvcGVydHlWYWx1ZShcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpcy5fc3RyaW5nUHJlZml4ICsgJ3RyYW5zaXRpb24tZHVyYXRpb24nKSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhpcy5wYXJzZUR1cmF0aW9uU3RyaW5nKHRoaXMuZWxlbWVudC5zdHlsZS5nZXRQcm9wZXJ0eVZhbHVlKFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLl9zdHJpbmdQcmVmaXggKyAndHJhbnNpdGlvbi1kdXJhdGlvbicpKSk7XG4gICAgdGhpcy5hZGRFdmVudHMoKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBcHBsaWVzIHRoZSBwcm92aWRlZCBzdHlsZXMgdG8gdGhlIGVsZW1lbnRcbiAgICogQHBhcmFtIHN0eWxlc1xuICAgKi9cbiAgYXBwbHlTdHlsZXMoc3R5bGVzOiB7W2tleTogc3RyaW5nXTogYW55fSk6IHZvaWQge1xuICAgIFN0cmluZ01hcFdyYXBwZXIuZm9yRWFjaChzdHlsZXMsICh2YWx1ZTogYW55LCBrZXk6IHN0cmluZykgPT4ge1xuICAgICAgdmFyIGRhc2hDYXNlS2V5ID0gY2FtZWxDYXNlVG9EYXNoQ2FzZShrZXkpO1xuICAgICAgaWYgKGlzUHJlc2VudChET00uZ2V0U3R5bGUodGhpcy5lbGVtZW50LCBkYXNoQ2FzZUtleSkpKSB7XG4gICAgICAgIERPTS5zZXRTdHlsZSh0aGlzLmVsZW1lbnQsIGRhc2hDYXNlS2V5LCB2YWx1ZS50b1N0cmluZygpKTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIERPTS5zZXRTdHlsZSh0aGlzLmVsZW1lbnQsIHRoaXMuX3N0cmluZ1ByZWZpeCArIGRhc2hDYXNlS2V5LCB2YWx1ZS50b1N0cmluZygpKTtcbiAgICAgIH1cbiAgICB9KTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBZGRzIHRoZSBwcm92aWRlZCBjbGFzc2VzIHRvIHRoZSBlbGVtZW50XG4gICAqIEBwYXJhbSBjbGFzc2VzXG4gICAqL1xuICBhZGRDbGFzc2VzKGNsYXNzZXM6IHN0cmluZ1tdKTogdm9pZCB7XG4gICAgZm9yIChsZXQgaSA9IDAsIGxlbiA9IGNsYXNzZXMubGVuZ3RoOyBpIDwgbGVuOyBpKyspIERPTS5hZGRDbGFzcyh0aGlzLmVsZW1lbnQsIGNsYXNzZXNbaV0pO1xuICB9XG5cbiAgLyoqXG4gICAqIFJlbW92ZXMgdGhlIHByb3ZpZGVkIGNsYXNzZXMgZnJvbSB0aGUgZWxlbWVudFxuICAgKiBAcGFyYW0gY2xhc3Nlc1xuICAgKi9cbiAgcmVtb3ZlQ2xhc3NlcyhjbGFzc2VzOiBzdHJpbmdbXSk6IHZvaWQge1xuICAgIGZvciAobGV0IGkgPSAwLCBsZW4gPSBjbGFzc2VzLmxlbmd0aDsgaSA8IGxlbjsgaSsrKSBET00ucmVtb3ZlQ2xhc3ModGhpcy5lbGVtZW50LCBjbGFzc2VzW2ldKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBBZGRzIGV2ZW50cyB0byB0cmFjayB3aGVuIGFuaW1hdGlvbnMgaGF2ZSBmaW5pc2hlZFxuICAgKi9cbiAgYWRkRXZlbnRzKCk6IHZvaWQge1xuICAgIGlmICh0aGlzLnRvdGFsVGltZSA+IDApIHtcbiAgICAgIHRoaXMuZXZlbnRDbGVhckZ1bmN0aW9ucy5wdXNoKERPTS5vbkFuZENhbmNlbChcbiAgICAgICAgICB0aGlzLmVsZW1lbnQsIERPTS5nZXRUcmFuc2l0aW9uRW5kKCksIChldmVudDogYW55KSA9PiB0aGlzLmhhbmRsZUFuaW1hdGlvbkV2ZW50KGV2ZW50KSkpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmhhbmRsZUFuaW1hdGlvbkNvbXBsZXRlZCgpO1xuICAgIH1cbiAgfVxuXG4gIGhhbmRsZUFuaW1hdGlvbkV2ZW50KGV2ZW50OiBhbnkpOiB2b2lkIHtcbiAgICBsZXQgZWxhcHNlZFRpbWUgPSBNYXRoLnJvdW5kKGV2ZW50LmVsYXBzZWRUaW1lICogMTAwMCk7XG4gICAgaWYgKCF0aGlzLmJyb3dzZXJEZXRhaWxzLmVsYXBzZWRUaW1lSW5jbHVkZXNEZWxheSkgZWxhcHNlZFRpbWUgKz0gdGhpcy5jb21wdXRlZERlbGF5O1xuICAgIGV2ZW50LnN0b3BQcm9wYWdhdGlvbigpO1xuICAgIGlmIChlbGFwc2VkVGltZSA+PSB0aGlzLnRvdGFsVGltZSkgdGhpcy5oYW5kbGVBbmltYXRpb25Db21wbGV0ZWQoKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBSdW5zIGFsbCBhbmltYXRpb24gY2FsbGJhY2tzIGFuZCByZW1vdmVzIHRlbXBvcmFyeSBjbGFzc2VzXG4gICAqL1xuICBoYW5kbGVBbmltYXRpb25Db21wbGV0ZWQoKTogdm9pZCB7XG4gICAgdGhpcy5yZW1vdmVDbGFzc2VzKHRoaXMuZGF0YS5hbmltYXRpb25DbGFzc2VzKTtcbiAgICB0aGlzLmNhbGxiYWNrcy5mb3JFYWNoKGNhbGxiYWNrID0+IGNhbGxiYWNrKCkpO1xuICAgIHRoaXMuY2FsbGJhY2tzID0gW107XG4gICAgdGhpcy5ldmVudENsZWFyRnVuY3Rpb25zLmZvckVhY2goZm4gPT4gZm4oKSk7XG4gICAgdGhpcy5ldmVudENsZWFyRnVuY3Rpb25zID0gW107XG4gICAgdGhpcy5jb21wbGV0ZWQgPSB0cnVlO1xuICB9XG5cbiAgLyoqXG4gICAqIEFkZHMgYW5pbWF0aW9uIGNhbGxiYWNrcyB0byBiZSBjYWxsZWQgdXBvbiBjb21wbGV0aW9uXG4gICAqIEBwYXJhbSBjYWxsYmFja1xuICAgKiBAcmV0dXJucyB7QW5pbWF0aW9ufVxuICAgKi9cbiAgb25Db21wbGV0ZShjYWxsYmFjazogRnVuY3Rpb24pOiBBbmltYXRpb24ge1xuICAgIGlmICh0aGlzLmNvbXBsZXRlZCkge1xuICAgICAgY2FsbGJhY2soKTtcbiAgICB9IGVsc2Uge1xuICAgICAgdGhpcy5jYWxsYmFja3MucHVzaChjYWxsYmFjayk7XG4gICAgfVxuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIENvbnZlcnRzIHRoZSBkdXJhdGlvbiBzdHJpbmcgdG8gdGhlIG51bWJlciBvZiBtaWxsaXNlY29uZHNcbiAgICogQHBhcmFtIGR1cmF0aW9uXG4gICAqIEByZXR1cm5zIHtudW1iZXJ9XG4gICAqL1xuICBwYXJzZUR1cmF0aW9uU3RyaW5nKGR1cmF0aW9uOiBzdHJpbmcpOiBudW1iZXIge1xuICAgIHZhciBtYXhWYWx1ZSA9IDA7XG4gICAgLy8gZHVyYXRpb24gbXVzdCBoYXZlIGF0IGxlYXN0IDIgY2hhcmFjdGVycyB0byBiZSB2YWxpZC4gKG51bWJlciArIHR5cGUpXG4gICAgaWYgKGR1cmF0aW9uID09IG51bGwgfHwgZHVyYXRpb24ubGVuZ3RoIDwgMikge1xuICAgICAgcmV0dXJuIG1heFZhbHVlO1xuICAgIH0gZWxzZSBpZiAoZHVyYXRpb24uc3Vic3RyaW5nKGR1cmF0aW9uLmxlbmd0aCAtIDIpID09ICdtcycpIHtcbiAgICAgIGxldCB2YWx1ZSA9IE51bWJlcldyYXBwZXIucGFyc2VJbnQodGhpcy5zdHJpcExldHRlcnMoZHVyYXRpb24pLCAxMCk7XG4gICAgICBpZiAodmFsdWUgPiBtYXhWYWx1ZSkgbWF4VmFsdWUgPSB2YWx1ZTtcbiAgICB9IGVsc2UgaWYgKGR1cmF0aW9uLnN1YnN0cmluZyhkdXJhdGlvbi5sZW5ndGggLSAxKSA9PSAncycpIHtcbiAgICAgIGxldCBtcyA9IE51bWJlcldyYXBwZXIucGFyc2VGbG9hdCh0aGlzLnN0cmlwTGV0dGVycyhkdXJhdGlvbikpICogMTAwMDtcbiAgICAgIGxldCB2YWx1ZSA9IE1hdGguZmxvb3IobXMpO1xuICAgICAgaWYgKHZhbHVlID4gbWF4VmFsdWUpIG1heFZhbHVlID0gdmFsdWU7XG4gICAgfVxuICAgIHJldHVybiBtYXhWYWx1ZTtcbiAgfVxuXG4gIC8qKlxuICAgKiBTdHJpcHMgdGhlIGxldHRlcnMgZnJvbSB0aGUgZHVyYXRpb24gc3RyaW5nXG4gICAqIEBwYXJhbSBzdHJcbiAgICogQHJldHVybnMge3N0cmluZ31cbiAgICovXG4gIHN0cmlwTGV0dGVycyhzdHI6IHN0cmluZyk6IHN0cmluZyB7XG4gICAgcmV0dXJuIFN0cmluZ1dyYXBwZXIucmVwbGFjZUFsbChzdHIsIFJlZ0V4cFdyYXBwZXIuY3JlYXRlKCdbXjAtOV0rJCcsICcnKSwgJycpO1xuICB9XG59XG4iXX0=
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';var css_animation_options_1 = __webpack_require__(206);
-	var animation_1 = __webpack_require__(204);
+	'use strict';var css_animation_options_1 = __webpack_require__(207);
+	var animation_1 = __webpack_require__(205);
 	var CssAnimationBuilder = (function () {
 	    /**
 	     * Accepts public properties for CssAnimationBuilder
@@ -16822,7 +16819,7 @@ webpackJsonp([2],[
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzX2FuaW1hdGlvbl9idWlsZGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9idWlsZGVyLnRzIl0sIm5hbWVzIjpbIkNzc0FuaW1hdGlvbkJ1aWxkZXIiLCJDc3NBbmltYXRpb25CdWlsZGVyLmNvbnN0cnVjdG9yIiwiQ3NzQW5pbWF0aW9uQnVpbGRlci5hZGRBbmltYXRpb25DbGFzcyIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuYWRkQ2xhc3MiLCJDc3NBbmltYXRpb25CdWlsZGVyLnJlbW92ZUNsYXNzIiwiQ3NzQW5pbWF0aW9uQnVpbGRlci5zZXREdXJhdGlvbiIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuc2V0RGVsYXkiLCJDc3NBbmltYXRpb25CdWlsZGVyLnNldFN0eWxlcyIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuc2V0RnJvbVN0eWxlcyIsIkNzc0FuaW1hdGlvbkJ1aWxkZXIuc2V0VG9TdHlsZXMiLCJDc3NBbmltYXRpb25CdWlsZGVyLnN0YXJ0Il0sIm1hcHBpbmdzIjoiQUFBQSxzQ0FBa0MseUJBQXlCLENBQUMsQ0FBQTtBQUM1RCwwQkFBd0IsYUFBYSxDQUFDLENBQUE7QUFHdEM7SUFJRUE7O09BRUdBO0lBQ0hBLDZCQUFtQkEsY0FBOEJBO1FBQTlCQyxtQkFBY0EsR0FBZEEsY0FBY0EsQ0FBZ0JBO1FBTmpEQSxrQ0FBa0NBO1FBQ2xDQSxTQUFJQSxHQUF3QkEsSUFBSUEsMkNBQW1CQSxFQUFFQSxDQUFDQTtJQUtGQSxDQUFDQTtJQUVyREQ7OztPQUdHQTtJQUNIQSwrQ0FBaUJBLEdBQWpCQSxVQUFrQkEsU0FBaUJBO1FBQ2pDRSxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxnQkFBZ0JBLENBQUNBLElBQUlBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQzNDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVERjs7O09BR0dBO0lBQ0hBLHNDQUFRQSxHQUFSQSxVQUFTQSxTQUFpQkE7UUFDeEJHLElBQUlBLENBQUNBLElBQUlBLENBQUNBLFlBQVlBLENBQUNBLElBQUlBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQ3ZDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVESDs7O09BR0dBO0lBQ0hBLHlDQUFXQSxHQUFYQSxVQUFZQSxTQUFpQkE7UUFDM0JJLElBQUlBLENBQUNBLElBQUlBLENBQUNBLGVBQWVBLENBQUNBLElBQUlBLENBQUNBLFNBQVNBLENBQUNBLENBQUNBO1FBQzFDQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVESjs7O09BR0dBO0lBQ0hBLHlDQUFXQSxHQUFYQSxVQUFZQSxRQUFnQkE7UUFDMUJLLElBQUlBLENBQUNBLElBQUlBLENBQUNBLFFBQVFBLEdBQUdBLFFBQVFBLENBQUNBO1FBQzlCQSxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQTtJQUNkQSxDQUFDQTtJQUVETDs7O09BR0dBO0lBQ0hBLHNDQUFRQSxHQUFSQSxVQUFTQSxLQUFhQTtRQUNwQk0sSUFBSUEsQ0FBQ0EsSUFBSUEsQ0FBQ0EsS0FBS0EsR0FBR0EsS0FBS0EsQ0FBQ0E7UUFDeEJBLE1BQU1BLENBQUNBLElBQUlBLENBQUNBO0lBQ2RBLENBQUNBO0lBRUROOzs7O09BSUdBO0lBQ0hBLHVDQUFTQSxHQUFUQSxVQUFVQSxJQUEwQkEsRUFBRUEsRUFBd0JBO1FBQzVETyxNQUFNQSxDQUFDQSxJQUFJQSxDQUFDQSxhQUFhQSxDQUFDQSxJQUFJQSxDQUFDQSxDQUFDQSxXQUFXQSxDQUFDQSxFQUFFQSxDQUFDQSxDQUFDQTtJQUNsREEsQ0FBQ0E7SUFFRFA7OztPQUdHQTtJQUNIQSwyQ0FBYUEsR0FBYkEsVUFBY0EsSUFBMEJBO1FBQ3RDUSxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxVQUFVQSxHQUFHQSxJQUFJQSxDQUFDQTtRQUM1QkEsTUFBTUEsQ0FBQ0EsSUFBSUEsQ0FBQ0E7SUFDZEEsQ0FBQ0E7SUFFRFI7OztPQUdHQTtJQUNIQSx5Q0FBV0EsR0FBWEEsVUFBWUEsRUFBd0JBO1FBQ2xDUyxJQUFJQSxDQUFDQSxJQUFJQSxDQUFDQSxRQUFRQSxHQUFHQSxFQUFFQSxDQUFDQTtRQUN4QkEsTUFBTUEsQ0FBQ0EsSUFBSUEsQ0FBQ0E7SUFDZEEsQ0FBQ0E7SUFFRFQ7OztPQUdHQTtJQUNIQSxtQ0FBS0EsR0FBTEEsVUFBTUEsT0FBb0JBO1FBQ3hCVSxNQUFNQSxDQUFDQSxJQUFJQSxxQkFBU0EsQ0FBQ0EsT0FBT0EsRUFBRUEsSUFBSUEsQ0FBQ0EsSUFBSUEsRUFBRUEsSUFBSUEsQ0FBQ0EsY0FBY0EsQ0FBQ0EsQ0FBQ0E7SUFDaEVBLENBQUNBO0lBQ0hWLDBCQUFDQTtBQUFEQSxDQUFDQSxBQXhGRCxJQXdGQztBQXhGWSwyQkFBbUIsc0JBd0YvQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtDc3NBbmltYXRpb25PcHRpb25zfSBmcm9tICcuL2Nzc19hbmltYXRpb25fb3B0aW9ucyc7XG5pbXBvcnQge0FuaW1hdGlvbn0gZnJvbSAnLi9hbmltYXRpb24nO1xuaW1wb3J0IHtCcm93c2VyRGV0YWlsc30gZnJvbSAnLi9icm93c2VyX2RldGFpbHMnO1xuXG5leHBvcnQgY2xhc3MgQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gIC8qKiBAdHlwZSB7Q3NzQW5pbWF0aW9uT3B0aW9uc30gKi9cbiAgZGF0YTogQ3NzQW5pbWF0aW9uT3B0aW9ucyA9IG5ldyBDc3NBbmltYXRpb25PcHRpb25zKCk7XG5cbiAgLyoqXG4gICAqIEFjY2VwdHMgcHVibGljIHByb3BlcnRpZXMgZm9yIENzc0FuaW1hdGlvbkJ1aWxkZXJcbiAgICovXG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBicm93c2VyRGV0YWlsczogQnJvd3NlckRldGFpbHMpIHt9XG5cbiAgLyoqXG4gICAqIEFkZHMgYSB0ZW1wb3JhcnkgY2xhc3MgdGhhdCB3aWxsIGJlIHJlbW92ZWQgYXQgdGhlIGVuZCBvZiB0aGUgYW5pbWF0aW9uXG4gICAqIEBwYXJhbSBjbGFzc05hbWVcbiAgICovXG4gIGFkZEFuaW1hdGlvbkNsYXNzKGNsYXNzTmFtZTogc3RyaW5nKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmFuaW1hdGlvbkNsYXNzZXMucHVzaChjbGFzc05hbWUpO1xuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIEFkZHMgYSBjbGFzcyB0aGF0IHdpbGwgcmVtYWluIG9uIHRoZSBlbGVtZW50IGFmdGVyIHRoZSBhbmltYXRpb24gaGFzIGZpbmlzaGVkXG4gICAqIEBwYXJhbSBjbGFzc05hbWVcbiAgICovXG4gIGFkZENsYXNzKGNsYXNzTmFtZTogc3RyaW5nKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmNsYXNzZXNUb0FkZC5wdXNoKGNsYXNzTmFtZSk7XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogUmVtb3ZlcyBhIGNsYXNzIGZyb20gdGhlIGVsZW1lbnRcbiAgICogQHBhcmFtIGNsYXNzTmFtZVxuICAgKi9cbiAgcmVtb3ZlQ2xhc3MoY2xhc3NOYW1lOiBzdHJpbmcpOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuY2xhc3Nlc1RvUmVtb3ZlLnB1c2goY2xhc3NOYW1lKTtcbiAgICByZXR1cm4gdGhpcztcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHRoZSBhbmltYXRpb24gZHVyYXRpb24gKGFuZCBvdmVycmlkZXMgYW55IGRlZmluZWQgdGhyb3VnaCBDU1MpXG4gICAqIEBwYXJhbSBkdXJhdGlvblxuICAgKi9cbiAgc2V0RHVyYXRpb24oZHVyYXRpb246IG51bWJlcik6IENzc0FuaW1hdGlvbkJ1aWxkZXIge1xuICAgIHRoaXMuZGF0YS5kdXJhdGlvbiA9IGR1cmF0aW9uO1xuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIFNldHMgdGhlIGFuaW1hdGlvbiBkZWxheSAoYW5kIG92ZXJyaWRlcyBhbnkgZGVmaW5lZCB0aHJvdWdoIENTUylcbiAgICogQHBhcmFtIGRlbGF5XG4gICAqL1xuICBzZXREZWxheShkZWxheTogbnVtYmVyKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmRlbGF5ID0gZGVsYXk7XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyBzdHlsZXMgZm9yIGJvdGggdGhlIGluaXRpYWwgc3RhdGUgYW5kIHRoZSBkZXN0aW5hdGlvbiBzdGF0ZVxuICAgKiBAcGFyYW0gZnJvbVxuICAgKiBAcGFyYW0gdG9cbiAgICovXG4gIHNldFN0eWxlcyhmcm9tOiB7W2tleTogc3RyaW5nXTogYW55fSwgdG86IHtba2V5OiBzdHJpbmddOiBhbnl9KTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgcmV0dXJuIHRoaXMuc2V0RnJvbVN0eWxlcyhmcm9tKS5zZXRUb1N0eWxlcyh0byk7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyB0aGUgaW5pdGlhbCBzdHlsZXMgZm9yIHRoZSBhbmltYXRpb25cbiAgICogQHBhcmFtIGZyb21cbiAgICovXG4gIHNldEZyb21TdHlsZXMoZnJvbToge1trZXk6IHN0cmluZ106IGFueX0pOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuZnJvbVN0eWxlcyA9IGZyb207XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyB0aGUgZGVzdGluYXRpb24gc3R5bGVzIGZvciB0aGUgYW5pbWF0aW9uXG4gICAqIEBwYXJhbSB0b1xuICAgKi9cbiAgc2V0VG9TdHlsZXModG86IHtba2V5OiBzdHJpbmddOiBhbnl9KTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLnRvU3R5bGVzID0gdG87XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU3RhcnRzIHRoZSBhbmltYXRpb24gYW5kIHJldHVybnMgYSBwcm9taXNlXG4gICAqIEBwYXJhbSBlbGVtZW50XG4gICAqL1xuICBzdGFydChlbGVtZW50OiBIVE1MRWxlbWVudCk6IEFuaW1hdGlvbiB7XG4gICAgcmV0dXJuIG5ldyBBbmltYXRpb24oZWxlbWVudCwgdGhpcy5kYXRhLCB0aGlzLmJyb3dzZXJEZXRhaWxzKTtcbiAgfVxufVxuIl19
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports) {
 
 	'use strict';var CssAnimationOptions = (function () {
@@ -16840,7 +16837,6 @@ webpackJsonp([2],[
 	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzX2FuaW1hdGlvbl9vcHRpb25zLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiYW5ndWxhcjIvc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9vcHRpb25zLnRzIl0sIm5hbWVzIjpbIkNzc0FuaW1hdGlvbk9wdGlvbnMiLCJDc3NBbmltYXRpb25PcHRpb25zLmNvbnN0cnVjdG9yIl0sIm1hcHBpbmdzIjoiQUFBQTtJQUFBQTtRQU9FQyx5Q0FBeUNBO1FBQ3pDQSxpQkFBWUEsR0FBYUEsRUFBRUEsQ0FBQ0E7UUFFNUJBLDZDQUE2Q0E7UUFDN0NBLG9CQUFlQSxHQUFhQSxFQUFFQSxDQUFDQTtRQUUvQkEsNERBQTREQTtRQUM1REEscUJBQWdCQSxHQUFhQSxFQUFFQSxDQUFDQTtJQU9sQ0EsQ0FBQ0E7SUFBREQsMEJBQUNBO0FBQURBLENBQUNBLEFBckJELElBcUJDO0FBckJZLDJCQUFtQixzQkFxQi9CLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQ3NzQW5pbWF0aW9uT3B0aW9ucyB7XG4gIC8qKiBpbml0aWFsIHN0eWxlcyBmb3IgdGhlIGVsZW1lbnQgKi9cbiAgZnJvbVN0eWxlczoge1trZXk6IHN0cmluZ106IGFueX07XG5cbiAgLyoqIGRlc3RpbmF0aW9uIHN0eWxlcyBmb3IgdGhlIGVsZW1lbnQgKi9cbiAgdG9TdHlsZXM6IHtba2V5OiBzdHJpbmddOiBhbnl9O1xuXG4gIC8qKiBjbGFzc2VzIHRvIGJlIGFkZGVkIHRvIHRoZSBlbGVtZW50ICovXG4gIGNsYXNzZXNUb0FkZDogc3RyaW5nW10gPSBbXTtcblxuICAvKiogY2xhc3NlcyB0byBiZSByZW1vdmVkIGZyb20gdGhlIGVsZW1lbnQgKi9cbiAgY2xhc3Nlc1RvUmVtb3ZlOiBzdHJpbmdbXSA9IFtdO1xuXG4gIC8qKiBjbGFzc2VzIHRvIGJlIGFkZGVkIGZvciB0aGUgZHVyYXRpb24gb2YgdGhlIGFuaW1hdGlvbiAqL1xuICBhbmltYXRpb25DbGFzc2VzOiBzdHJpbmdbXSA9IFtdO1xuXG4gIC8qKiBvdmVycmlkZSB0aGUgZHVyYXRpb24gb2YgdGhlIGFuaW1hdGlvbiAoaW4gbWlsbGlzZWNvbmRzKSAqL1xuICBkdXJhdGlvbjogbnVtYmVyO1xuXG4gIC8qKiBvdmVycmlkZSB0aGUgdHJhbnNpdGlvbiBkZWxheSAoaW4gbWlsbGlzZWNvbmRzKSAqL1xuICBkZWxheTogbnVtYmVyO1xufVxuIl19
 
 /***/ },
-/* 207 */,
 /* 208 */,
 /* 209 */,
 /* 210 */,
@@ -16877,7 +16873,8 @@ webpackJsonp([2],[
 /* 241 */,
 /* 242 */,
 /* 243 */,
-/* 244 */
+/* 244 */,
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
@@ -17087,24 +17084,15 @@ webpackJsonp([2],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 244;
+	webpackContext.id = 245;
 
 
 /***/ },
-/* 245 */,
 /* 246 */,
 /* 247 */,
 /* 248 */,
 /* 249 */,
-/* 250 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var alert_component_1 = __webpack_require__(251);
-	exports.Alert = alert_component_1.Alert;
-
-
-/***/ },
+/* 250 */,
 /* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -17191,13 +17179,13 @@ webpackJsonp([2],[
 	var animation_builder_1 = __webpack_require__(43);
 	var Collapse = (function () {
 	    function Collapse(_ab, _el) {
-	        this._ab = _ab;
-	        this._el = _el;
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
 	        this.isCollapse = true;
 	        this.isCollapsing = false;
 	        this.transitionDuration = 500;
+	        this._ab = _ab;
+	        this._el = _el;
 	    }
 	    Object.defineProperty(Collapse.prototype, "collapse", {
 	        get: function () {
@@ -17237,7 +17225,8 @@ webpackJsonp([2],[
 	                height: '0',
 	                overflow: 'hidden'
 	            });
-	            _this.animation.start(_this._el.nativeElement).onComplete(function () {
+	            _this.animation.start(_this._el.nativeElement)
+	                .onComplete(function () {
 	                if (_this._el.nativeElement.offsetHeight === 0) {
 	                    _this.display = 'none';
 	                }
@@ -17262,7 +17251,8 @@ webpackJsonp([2],[
 	                .setToStyles({
 	                height: _this._el.nativeElement.scrollHeight + 'px'
 	            });
-	            _this.animation.start(_this._el.nativeElement).onComplete(function () {
+	            _this.animation.start(_this._el.nativeElement)
+	                .onComplete(function () {
 	                _this.isCollapse = true;
 	                _this.isCollapsing = false;
 	            });
@@ -17290,7 +17280,7 @@ webpackJsonp([2],[
 	        __metadata('design:type', Boolean)
 	    ], Collapse.prototype, "isCollapsing", void 0);
 	    __decorate([
-	        core_1.Input('transition-duration'), 
+	        core_1.Input(), 
 	        __metadata('design:type', Number)
 	    ], Collapse.prototype, "transitionDuration", void 0);
 	    __decorate([
@@ -17360,32 +17350,11 @@ webpackJsonp([2],[
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme || ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3];
 	var DayPicker = (function () {
 	    function DayPicker(datePicker) {
-	        this.datePicker = datePicker;
 	        this.labels = [];
 	        this.rows = [];
 	        this.weekNumbers = [];
+	        this.datePicker = datePicker;
 	    }
-	    DayPicker.prototype.getDates = function (startDate, n) {
-	        var dates = new Array(n);
-	        var current = new Date(startDate.getTime());
-	        var i = 0;
-	        var date;
-	        while (i < n) {
-	            date = new Date(current.getTime());
-	            this.datePicker.fixTimeZone(date);
-	            dates[i++] = date;
-	            current.setDate(current.getDate() + 1);
-	        }
-	        return dates;
-	    };
-	    DayPicker.prototype.getISO8601WeekNumber = function (date) {
-	        var checkDate = new Date(date.getTime());
-	        checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
-	        var time = checkDate.getTime();
-	        checkDate.setMonth(0);
-	        checkDate.setDate(1);
-	        return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
-	    };
 	    DayPicker.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepDay = { months: 1 };
@@ -17394,7 +17363,9 @@ webpackJsonp([2],[
 	            var month = this.activeDate.getMonth();
 	            var firstDayOfMonth = new Date(year, month, 1);
 	            var difference = this.startingDay - firstDayOfMonth.getDay();
-	            var numDisplayedFromPreviousMonth = (difference > 0) ? 7 - difference : -difference;
+	            var numDisplayedFromPreviousMonth = (difference > 0)
+	                ? 7 - difference
+	                : -difference;
 	            var firstDate = new Date(firstDayOfMonth.getTime());
 	            if (numDisplayedFromPreviousMonth > 0) {
 	                firstDate.setDate(-numDisplayedFromPreviousMonth + 1);
@@ -17430,9 +17401,30 @@ webpackJsonp([2],[
 	        }, 'day');
 	        this.datePicker.refreshView();
 	    };
+	    DayPicker.prototype.getDates = function (startDate, n) {
+	        var dates = new Array(n);
+	        var current = new Date(startDate.getTime());
+	        var i = 0;
+	        var date;
+	        while (i < n) {
+	            date = new Date(current.getTime());
+	            this.datePicker.fixTimeZone(date);
+	            dates[i++] = date;
+	            current.setDate(current.getDate() + 1);
+	        }
+	        return dates;
+	    };
+	    DayPicker.prototype.getISO8601WeekNumber = function (date) {
+	        var checkDate = new Date(date.getTime());
+	        checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
+	        var time = checkDate.getTime();
+	        checkDate.setMonth(0);
+	        checkDate.setDate(1);
+	        return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
+	    };
 	    DayPicker = __decorate([
 	        core_1.Component({
-	            selector: 'daypicker, [daypicker]',
+	            selector: 'daypicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" #rowz=\"$implicit\" #index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
@@ -17473,8 +17465,8 @@ webpackJsonp([2],[
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 	var MonthPicker = (function () {
 	    function MonthPicker(datePicker) {
-	        this.datePicker = datePicker;
 	        this.rows = [];
+	        this.datePicker = datePicker;
 	    }
 	    MonthPicker.prototype.ngOnInit = function () {
 	        var self = this;
@@ -17501,7 +17493,7 @@ webpackJsonp([2],[
 	    };
 	    MonthPicker = __decorate([
 	        core_1.Component({
-	            selector: 'monthpicker, [monthpicker]',
+	            selector: 'monthpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
@@ -17541,12 +17533,9 @@ webpackJsonp([2],[
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
 	var YearPicker = (function () {
 	    function YearPicker(datePicker) {
-	        this.datePicker = datePicker;
 	        this.rows = [];
+	        this.datePicker = datePicker;
 	    }
-	    YearPicker.prototype.getStartingYear = function (year) {
-	        return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
-	    };
 	    YearPicker.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepYear = { years: this.datePicker.yearRange };
@@ -17559,7 +17548,8 @@ webpackJsonp([2],[
 	                years[i] = this.createDateObject(date, this.formatYear);
 	                years[i].uid = this.uniqueId + '-' + i;
 	            }
-	            self.title = [years[0].label, years[this.yearRange - 1].label].join(' - ');
+	            self.title = [years[0].label,
+	                years[this.yearRange - 1].label].join(' - ');
 	            self.rows = this.split(years, 5);
 	        }, 'year');
 	        this.datePicker.setCompareHandler(function (date1, date2) {
@@ -17567,9 +17557,12 @@ webpackJsonp([2],[
 	        }, 'year');
 	        this.datePicker.refreshView();
 	    };
+	    YearPicker.prototype.getStartingYear = function (year) {
+	        return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
+	    };
 	    YearPicker = __decorate([
 	        core_1.Component({
-	            selector: 'yearpicker, [yearpicker]',
+	            selector: 'yearpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
@@ -17608,7 +17601,7 @@ webpackJsonp([2],[
 	        if (this.openScope !== dropdownScope) {
 	            return;
 	        }
-	        this.openScope = null;
+	        this.openScope = void 0;
 	        window.document.removeEventListener('click', this.closeDropdownBind, true);
 	        window.document.removeEventListener('keydown', this.keybindFilterBind);
 	    };
@@ -17639,7 +17632,7 @@ webpackJsonp([2],[
 	    DropdownService.prototype.keybindFilter = function (event) {
 	        if (event.which === 27) {
 	            this.openScope.focusToggleElement();
-	            this.closeDropdown(null);
+	            this.closeDropdown(void 0);
 	            return;
 	        }
 	        if (this.openScope.keyboardNav && this.openScope.isOpen &&
@@ -17676,13 +17669,11 @@ webpackJsonp([2],[
 	var common_1 = __webpack_require__(4);
 	var Rating = (function () {
 	    function Rating(cd) {
-	        this.cd = cd;
 	        this.onHover = new core_1.EventEmitter(false);
 	        this.onLeave = new core_1.EventEmitter(false);
-	        this.onChange = function (_) {
-	        };
-	        this.onTouched = function () {
-	        };
+	        this.onChange = function () { };
+	        this.onTouched = function () { };
+	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
 	    Rating.prototype.onKeydown = function (event) {
@@ -17697,9 +17688,15 @@ webpackJsonp([2],[
 	    Rating.prototype.ngOnInit = function () {
 	        this.max = typeof this.max !== 'undefined' ? this.max : 5;
 	        this.readonly = this.readonly === true;
-	        this.stateOn = typeof this.stateOn !== 'undefined' ? this.stateOn : 'glyphicon-star';
-	        this.stateOff = typeof this.stateOff !== 'undefined' ? this.stateOff : 'glyphicon-star-empty';
-	        this.titles = typeof this.titles !== 'undefined' && this.titles.length > 0 ? this.titles : ['one', 'two', 'three', 'four', 'five'];
+	        this.stateOn = typeof this.stateOn !== 'undefined'
+	            ? this.stateOn
+	            : 'glyphicon-star';
+	        this.stateOff = typeof this.stateOff !== 'undefined'
+	            ? this.stateOff
+	            : 'glyphicon-star-empty';
+	        this.titles = typeof this.titles !== 'undefined' && this.titles.length > 0
+	            ? this.titles
+	            : ['one', 'two', 'three', 'four', 'five'];
 	        this.range = this.buildTemplateObjects(this.ratingStates, this.max);
 	    };
 	    Rating.prototype.writeValue = function (value) {
@@ -17711,6 +17708,18 @@ webpackJsonp([2],[
 	        this.preValue = value;
 	        this.value = value;
 	    };
+	    Rating.prototype.enter = function (value) {
+	        if (!this.readonly) {
+	            this.value = value;
+	            this.onHover.emit(value);
+	        }
+	    };
+	    Rating.prototype.reset = function () {
+	        this.value = this.preValue;
+	        this.onLeave.emit(this.value);
+	    };
+	    Rating.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    Rating.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    Rating.prototype.buildTemplateObjects = function (ratingStates, max) {
 	        ratingStates = ratingStates || [];
 	        var count = ratingStates.length || max;
@@ -17730,22 +17739,6 @@ webpackJsonp([2],[
 	            this.writeValue(value);
 	            this.cd.viewToModelUpdate(value);
 	        }
-	    };
-	    Rating.prototype.enter = function (value) {
-	        if (!this.readonly) {
-	            this.value = value;
-	            this.onHover.emit(value);
-	        }
-	    };
-	    Rating.prototype.reset = function () {
-	        this.value = this.preValue;
-	        this.onLeave.emit(this.value);
-	    };
-	    Rating.prototype.registerOnChange = function (fn) {
-	        this.onChange = fn;
-	    };
-	    Rating.prototype.registerOnTouched = function (fn) {
-	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
@@ -17822,7 +17815,7 @@ webpackJsonp([2],[
 	    hourStep: 1,
 	    minuteStep: 1,
 	    showMeridian: true,
-	    meridians: null,
+	    meridians: void 0,
 	    readonlyInput: false,
 	    mousewheel: true,
 	    arrowkeys: true,
@@ -17844,13 +17837,11 @@ webpackJsonp([2],[
 	}
 	var Timepicker = (function () {
 	    function Timepicker(cd) {
-	        this.cd = cd;
 	        this.meridians = ['AM', 'PM'];
 	        this._selected = new Date();
-	        this.onChange = function (_) {
-	        };
-	        this.onTouched = function () {
-	        };
+	        this.onChange = function () { };
+	        this.onTouched = function () { };
+	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
 	    Object.defineProperty(Timepicker.prototype, "showMeridian", {
@@ -17880,17 +17871,15 @@ webpackJsonp([2],[
 	        configurable: true
 	    });
 	    Timepicker.prototype.ngOnInit = function () {
-	        this.meridians = def(this.meridians, isDefined, exports.timepickerConfig.meridians) || ['AM', 'PM'];
+	        this.meridians = def(this.meridians, isDefined, exports.timepickerConfig.meridians) || ['AM',
+	            'PM'];
 	        this.mousewheel = def(this.mousewheel, isDefined, exports.timepickerConfig.mousewheel);
 	        if (this.mousewheel) {
-	            this.setupMousewheelEvents();
 	        }
 	        this.arrowkeys = def(this.arrowkeys, isDefined, exports.timepickerConfig.arrowkeys);
 	        if (this.arrowkeys) {
-	            this.setupArrowkeyEvents();
 	        }
 	        this.readonlyInput = def(this.readonlyInput, isDefined, exports.timepickerConfig.readonlyInput);
-	        this.setupInputEvents();
 	        this.hourStep = def(this.hourStep, isDefined, exports.timepickerConfig.hourStep);
 	        this.minuteStep = def(this.minuteStep, isDefined, exports.timepickerConfig.minuteStep);
 	        this.min = def(this.min, isDefined, exports.timepickerConfig.min);
@@ -17906,51 +17895,10 @@ webpackJsonp([2],[
 	            this.selected = v;
 	            return;
 	        }
-	        this.selected = v ? new Date(v) : null;
+	        this.selected = v ? new Date(v) : void 0;
 	    };
-	    Timepicker.prototype.refresh = function (type) {
-	        this.updateTemplate();
-	        this.cd.viewToModelUpdate(this.selected);
-	    };
-	    Timepicker.prototype.updateTemplate = function (keyboardChange) {
-	        var hours = this.selected.getHours();
-	        var minutes = this.selected.getMinutes();
-	        if (this.showMeridian) {
-	            hours = (hours === 0 || hours === 12) ? 12 : hours % 12;
-	        }
-	        this.hours = this.pad(hours);
-	        this.minutes = this.pad(minutes);
-	        this.meridian = this.selected.getHours() < 12 ? this.meridians[0] : this.meridians[1];
-	    };
-	    Timepicker.prototype.getHoursFromTemplate = function () {
-	        var hours = parseInt(this.hours, 10);
-	        var valid = this.showMeridian ? (hours > 0 && hours < 13) : (hours >= 0 && hours < 24);
-	        if (!valid) {
-	            return undefined;
-	        }
-	        if (this.showMeridian) {
-	            if (hours === 12) {
-	                hours = 0;
-	            }
-	            if (this.meridian === this.meridians[1]) {
-	                hours = hours + 12;
-	            }
-	        }
-	        return hours;
-	    };
-	    Timepicker.prototype.getMinutesFromTemplate = function () {
-	        var minutes = parseInt(this.minutes, 10);
-	        return (minutes >= 0 && minutes < 60) ? minutes : undefined;
-	    };
-	    Timepicker.prototype.pad = function (value) {
-	        return (isDefined(value) && value.toString().length < 2) ? '0' + value : value.toString();
-	    };
-	    Timepicker.prototype.setupMousewheelEvents = function () {
-	    };
-	    Timepicker.prototype.setupArrowkeyEvents = function () {
-	    };
-	    Timepicker.prototype.setupInputEvents = function () {
-	    };
+	    Timepicker.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    Timepicker.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    Timepicker.prototype.updateHours = function () {
 	        if (this.readonlyInput) {
 	            return;
@@ -17963,10 +17911,10 @@ webpackJsonp([2],[
 	        if (this.selected < this.min || this.selected > this.max) {
 	        }
 	        else {
-	            this.refresh('h');
+	            this.refresh();
 	        }
 	    };
-	    Timepicker.prototype.hoursOnBlur = function (event) {
+	    Timepicker.prototype.hoursOnBlur = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -17986,16 +17934,85 @@ webpackJsonp([2],[
 	        if (this.selected < this.min || this.selected > this.max) {
 	        }
 	        else {
-	            this.refresh('m');
+	            this.refresh();
 	        }
 	    };
-	    Timepicker.prototype.minutesOnBlur = function (event) {
+	    Timepicker.prototype.minutesOnBlur = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
 	        if (!this.invalidMinutes && parseInt(this.minutes, 10) < 10) {
 	            this.minutes = this.pad(this.minutes);
 	        }
+	    };
+	    Timepicker.prototype.incrementHours = function () {
+	        if (!this.noIncrementHours()) {
+	            this.addMinutesToSelected(this.hourStep * 60);
+	        }
+	    };
+	    Timepicker.prototype.decrementHours = function () {
+	        if (!this.noDecrementHours()) {
+	            this.addMinutesToSelected(-this.hourStep * 60);
+	        }
+	    };
+	    Timepicker.prototype.incrementMinutes = function () {
+	        if (!this.noIncrementMinutes()) {
+	            this.addMinutesToSelected(this.minuteStep);
+	        }
+	    };
+	    Timepicker.prototype.decrementMinutes = function () {
+	        if (!this.noDecrementMinutes()) {
+	            this.addMinutesToSelected(-this.minuteStep);
+	        }
+	    };
+	    Timepicker.prototype.toggleMeridian = function () {
+	        if (!this.noToggleMeridian()) {
+	            var sign = this.selected.getHours() < 12 ? 1 : -1;
+	            this.addMinutesToSelected(12 * 60 * sign);
+	        }
+	    };
+	    Timepicker.prototype.refresh = function () {
+	        this.updateTemplate();
+	        this.cd.viewToModelUpdate(this.selected);
+	    };
+	    Timepicker.prototype.updateTemplate = function () {
+	        var hours = this.selected.getHours();
+	        var minutes = this.selected.getMinutes();
+	        if (this.showMeridian) {
+	            hours = (hours === 0 || hours === 12) ? 12 : hours % 12;
+	        }
+	        this.hours = this.pad(hours);
+	        this.minutes = this.pad(minutes);
+	        this.meridian = this.selected.getHours() < 12
+	            ? this.meridians[0]
+	            : this.meridians[1];
+	    };
+	    Timepicker.prototype.getHoursFromTemplate = function () {
+	        var hours = parseInt(this.hours, 10);
+	        var valid = this.showMeridian
+	            ? (hours > 0 && hours < 13)
+	            : (hours >= 0 && hours < 24);
+	        if (!valid) {
+	            return void 0;
+	        }
+	        if (this.showMeridian) {
+	            if (hours === 12) {
+	                hours = 0;
+	            }
+	            if (this.meridian === this.meridians[1]) {
+	                hours = hours + 12;
+	            }
+	        }
+	        return hours;
+	    };
+	    Timepicker.prototype.getMinutesFromTemplate = function () {
+	        var minutes = parseInt(this.minutes, 10);
+	        return (minutes >= 0 && minutes < 60) ? minutes : undefined;
+	    };
+	    Timepicker.prototype.pad = function (value) {
+	        return (isDefined(value) && value.toString().length < 2)
+	            ? '0' + value
+	            : value.toString();
 	    };
 	    Timepicker.prototype.noIncrementHours = function () {
 	        var incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
@@ -18028,38 +18045,6 @@ webpackJsonp([2],[
 	        else {
 	            return addMinutes(this.selected, -12 * 60) < this.min;
 	        }
-	    };
-	    Timepicker.prototype.incrementHours = function () {
-	        if (!this.noIncrementHours()) {
-	            this.addMinutesToSelected(this.hourStep * 60);
-	        }
-	    };
-	    Timepicker.prototype.decrementHours = function () {
-	        if (!this.noDecrementHours()) {
-	            this.addMinutesToSelected(-this.hourStep * 60);
-	        }
-	    };
-	    Timepicker.prototype.incrementMinutes = function () {
-	        if (!this.noIncrementMinutes()) {
-	            this.addMinutesToSelected(this.minuteStep);
-	        }
-	    };
-	    Timepicker.prototype.decrementMinutes = function () {
-	        if (!this.noDecrementMinutes()) {
-	            this.addMinutesToSelected(-this.minuteStep);
-	        }
-	    };
-	    Timepicker.prototype.toggleMeridian = function () {
-	        if (!this.noToggleMeridian()) {
-	            var sign = this.selected.getHours() < 12 ? 1 : -1;
-	            this.addMinutesToSelected(12 * 60 * sign);
-	        }
-	    };
-	    Timepicker.prototype.registerOnChange = function (fn) {
-	        this.onChange = fn;
-	    };
-	    Timepicker.prototype.registerOnTouched = function (fn) {
-	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
@@ -18099,7 +18084,7 @@ webpackJsonp([2],[
 	    ], Timepicker.prototype, "meridians", void 0);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Object)
+	        __metadata('design:type', Boolean)
 	    ], Timepicker.prototype, "showMeridian", null);
 	    Timepicker = __decorate([
 	        core_1.Component({

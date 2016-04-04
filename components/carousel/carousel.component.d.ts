@@ -18,15 +18,15 @@ export declare class Carousel implements OnDestroy {
     private _interval;
     ngOnDestroy(): void;
     select(nextSlide: Slide, direction?: Direction): void;
+    play(): void;
+    pause(): void;
+    next(): any;
+    prev(): any;
+    addSlide(slide: Slide): void;
+    removeSlide(slide: Slide): void;
     private goNext(slide, direction);
     private getSlideByIndex(index);
     private getCurrentIndex();
-    private next();
-    private prev();
     private restartTimer();
     private resetTimer();
-    play(): void;
-    pause(): void;
-    addSlide(slide: Slide): void;
-    removeSlide(slide: Slide): void;
 }

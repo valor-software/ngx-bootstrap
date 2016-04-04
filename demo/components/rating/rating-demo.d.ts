@@ -1,12 +1,12 @@
 export declare class RatingDemo {
-    private x;
-    private y;
-    private max;
-    private rate;
-    private isReadonly;
-    private overStar;
-    private percent;
-    private ratingStates;
-    private hoveringOver(value);
-    private resetStar();
+    x: number;
+    y: number;
+    max: number;
+    rate: number;
+    isReadonly: boolean;
+    overStar: number;
+    percent: number;
+    ratingStates: any;
+    hoveringOver(value: number): void;
+    resetStar(): void;
 }

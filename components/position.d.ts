@@ -1,10 +1,5 @@
 export declare class PositionService {
-    private window;
-    private document;
-    private getStyle(nativeEl, cssProp);
-    private isStaticPositioned(nativeEl);
-    private parentOffsetEl(nativeEl);
-    position(nativeEl: any): {
+    position(nativeEl: HTMLElement): {
         width: number;
         height: number;
         top: number;
@@ -16,9 +11,14 @@ export declare class PositionService {
         top: number;
         left: number;
     };
-    positionElements(hostEl: any, targetEl: any, positionStr: any, appendToBody: any): {
+    positionElements(hostEl: HTMLElement, targetEl: HTMLElement, positionStr: string, appendToBody: boolean): {
         top: number;
         left: number;
     };
+    private window;
+    private document;
+    private getStyle(nativeEl, cssProp);
+    private isStaticPositioned(nativeEl);
+    private parentOffsetEl(nativeEl);
 }
 export declare const positionService: PositionService;

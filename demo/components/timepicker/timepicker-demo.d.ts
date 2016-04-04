@@ -1,11 +1,11 @@
 export declare class TimepickerDemo {
-    private hstep;
-    private mstep;
-    private ismeridian;
-    private mytime;
-    private options;
-    private toggleMode();
-    private update();
-    private changed();
-    private clear();
+    hstep: number;
+    mstep: number;
+    ismeridian: boolean;
+    mytime: Date;
+    options: any;
+    toggleMode(): void;
+    update(): void;
+    changed(): void;
+    clear(): void;
 }

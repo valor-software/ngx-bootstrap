@@ -1,9 +1,9 @@
 export declare class PaginationDemo {
-    private totalItems;
-    private currentPage;
-    private maxSize;
-    private bigTotalItems;
-    private bigCurrentPage;
-    private setPage(pageNo);
-    private pageChanged(event);
+    totalItems: number;
+    currentPage: number;
+    maxSize: number;
+    bigTotalItems: number;
+    bigCurrentPage: number;
+    setPage(pageNo: number): void;
+    pageChanged(event: any): void;
 }

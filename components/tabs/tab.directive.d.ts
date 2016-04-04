@@ -1,7 +1,6 @@
 import { OnDestroy, TemplateRef, EventEmitter } from 'angular2/core';
 import { Tabset } from './tabset.component';
 export declare class Tab implements OnDestroy {
-    tabset: Tabset;
     heading: string;
     disabled: boolean;
     removable: boolean;
@@ -9,9 +8,10 @@ export declare class Tab implements OnDestroy {
     select: EventEmitter<Tab>;
     deselect: EventEmitter<Tab>;
     removed: EventEmitter<Tab>;
-    private addClass;
-    private _active;
+    addClass: boolean;
     headingRef: TemplateRef;
+    tabset: Tabset;
+    private _active;
     constructor(tabset: Tabset);
     ngOnInit(): void;
     ngOnDestroy(): void;

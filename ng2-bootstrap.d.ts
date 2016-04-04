@@ -1,3 +1,4 @@
+import { Alert } from './components/alert';
 import { Collapse } from './components/collapse';
 import { Rating } from './components/rating';
 import { Timepicker } from './components/timepicker';
@@ -19,6 +20,6 @@ export * from './components/position';
 export * from './components/common';
 export * from './components/ng2-bootstrap-config';
 declare var _default: {
-    directives: (any[] | typeof Collapse | typeof Rating | typeof Timepicker)[];
+    directives: (typeof Alert | any[] | typeof Collapse | typeof Rating | typeof Timepicker)[];
 };
 export default _default;

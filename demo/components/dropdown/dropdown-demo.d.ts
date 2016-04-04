@@ -1,7 +1,9 @@
 export declare class DropdownDemo {
-    private disabled;
-    private status;
-    private items;
-    private toggled(open);
-    private toggleDropdown($event);
+    disabled: boolean;
+    status: {
+        isopen: boolean;
+    };
+    items: Array<string>;
+    toggled(open: boolean): void;
+    toggleDropdown($event: MouseEvent): void;
 }

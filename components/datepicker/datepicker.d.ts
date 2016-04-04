@@ -1,7 +1,5 @@
 import { ControlValueAccessor, NgModel } from 'angular2/common';
 export declare class DatePicker implements ControlValueAccessor {
-    cd: NgModel;
-    private _activeDate;
     datepickerMode: string;
     initDate: Date;
     minDate: Date;
@@ -24,14 +22,16 @@ export declare class DatePicker implements ControlValueAccessor {
         mode: string;
         clazz: string;
     }>;
-    activeDate: Date;
     dateDisabled: any;
+    cd: NgModel;
+    private _activeDate;
+    activeDate: Date;
     constructor(cd: NgModel);
     private _now;
-    private onUpdate(event);
+    onUpdate(event: any): void;
     writeValue(value: any): void;
-    onChange: (_: any) => void;
-    onTouched: () => void;
+    onChange: any;
+    onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
 }

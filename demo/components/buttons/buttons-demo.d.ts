@@ -1,5 +1,5 @@
 export declare class ButtonsDemo {
-    private singleModel;
-    private radioModel;
+    singleModel: string;
+    radioModel: string;
     checkModel: any;
 }

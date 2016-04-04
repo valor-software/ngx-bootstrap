@@ -5,14 +5,14 @@ export declare class ButtonRadio implements ControlValueAccessor, OnInit {
     el: ElementRef;
     private btnRadio;
     private uncheckable;
-    private isActive;
-    private onClick();
+    isActive: boolean;
+    onClick(): void;
     constructor(cd: NgModel, el: ElementRef);
     ngOnInit(): void;
     protected value: any;
     writeValue(value: any): void;
-    onChange: (_: any) => void;
-    onTouched: () => void;
+    onChange: any;
+    onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
 }

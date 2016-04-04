@@ -3,7 +3,7 @@ import { Bar } from './bar.component';
 export declare class Progress implements OnInit {
     animate: boolean;
     max: number;
-    private addClass;
+    addClass: boolean;
     bars: Array<any>;
     private _max;
     constructor();

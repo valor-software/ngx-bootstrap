@@ -6,5 +6,5 @@ export declare class NgTransclude {
     viewRef: ViewContainerRef;
     private _ngTransclude;
     private ngTransclude;
-    constructor(viewRef: ViewContainerRef);
+    constructor(_viewRef: ViewContainerRef);
 }

@@ -1,8 +1,8 @@
 export declare class CarouselDemo {
-    private myInterval;
-    private noWrapSlides;
-    private slides;
+    myInterval: number;
+    noWrapSlides: boolean;
+    slides: Array<any>;
     constructor();
-    private addSlide();
-    private removeSlide(index);
+    addSlide(): void;
+    removeSlide(index: number): void;
 }
