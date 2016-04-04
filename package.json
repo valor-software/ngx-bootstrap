@@ -103,7 +103,7 @@
     "ts-loader": "0.8.1",
     "tslint": "3.6.0",
     "typescript": "1.8.9",
-    "typings": "0.7.11",
+    "typings": "0.7.12",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.6.8"
