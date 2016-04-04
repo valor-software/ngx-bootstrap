@@ -20,6 +20,5 @@ webpack.config.js
 *.js.map
 !*.d.ts
 /components/**/*.ts
-/components/**/*.js.map
 !/components/**/*.d.ts
 

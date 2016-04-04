@@ -3,28 +3,38 @@
   "version": "1.0.10",
   "description": "angular2 bootstrap components",
   "scripts": {
-    "install:typings": "./node_modules/.bin/typings install",
-    "compile": "./node_modules/.bin/tsc",
-    "copy:src": "./node_modules/.bin/cpy ng2-bootstrap.ts \"components/*.ts\" ts --parents",
-    "clean:dist": "./node_modules/.bin/del bundles coverage demo-build typings",
-    "publish:gh-pages": "./gh-pages-publish.js",
-    "prepublish": "npm run install:typings && npm run compile && ./make.js",
-    "postpublish": "npm run build:prod && npm run publish:gh-pages",
-    "build:prod": "NODE_ENV=production ./node_modules/.bin/webpack --progress --color",
-    "build:dev": "./node_modules/.bin/webpack --progress --color",
-    "serve:dev": "./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
-    "serve:prod": "NODE_ENV=production ./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
-    "start": "npm run serve:dev",
-    "pretest": "npm run lint",
+    "flow.install:typings": "./node_modules/.bin/typings install",
+    "flow.compile": "npm run flow.install:typings && npm run flow.compile:common && npm run flow.compile:system ",
+    "flow.compile:common": "./node_modules/.bin/tsc",
+    "flow.compile:system": "./.config/bundle-system.js",
+
+    "flow.copy:src": "./node_modules/.bin/cpy ng2-bootstrap.ts \"components/*.ts\" ts --parents",
+    "flow.clean": "./node_modules/.bin/del bundles coverage demo-build typings \"components/**/*.+(js|d.ts|js.map)\" dist \"ng2-bootstrap.+(js|d.ts|js.map)\"",
+    "flow.deploy:gh-pages": "npm run flow.build:prod && ./node_modules/.bin/gh-pages -d demo-build",
+
+    "flow.eslint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config",
+    "flow.tslint": "./node_modules/.bin/gulp lint",
+    "flow.lint": "npm run flow.eslint && npm run flow.tslint",
+
+    "flow.changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular -v",
+    "flow.github-release": "conventional-github-releaser -p angular",
+
+    "flow.build:prod": "NODE_ENV=production ./node_modules/.bin/webpack --progress --color",
+    "flow.build:dev": "./node_modules/.bin/webpack --progress --color",
+    "flow.serve:dev": "./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
+    "flow.serve:prod": "NODE_ENV=production ./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
+
+    "prepublish": "npm run flow.clean && npm run flow.compile",
+    "postpublish": "npm run flow.deploy:gh-pages",
+
+    "start": "npm run flow.serve:dev",
+
+    "pretest": "npm run flow.lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
-    "changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular -v",
+
     "preversion": "npm test",
-    "version": "npm run changelog && git add -A",
-    "postversion": "git push origin master && git push --tags",
-    "github-release": "conventional-github-releaser -p angular",
-    "eslint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config",
-    "lint": "npm run eslint && npm run tslint",
-    "tslint": "./node_modules/.bin/gulp lint"
+    "version": "npm run flow.changelog && git add -A",
+    "postversion": "git push origin master && git push --tags"
   },
   "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
