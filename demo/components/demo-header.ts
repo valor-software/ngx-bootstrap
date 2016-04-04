@@ -1,10 +1,7 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {
-  Collapse,
-  DROPDOWN_DIRECTIVES,
-  Ng2BootstrapConfig,
-  Ng2BootstrapTheme
+  Collapse, DROPDOWN_DIRECTIVES, Ng2BootstrapConfig, Ng2BootstrapTheme
 } from '../../ng2-bootstrap';
 
 let components = [
@@ -62,7 +59,9 @@ export class DemoHeader {
   public isCollapsed:boolean = true;
   public prefix:string;
 
-  constructor() {
-    this.prefix = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4 ? 'index-bs4.html' : '';
+  public constructor() {
+    this.prefix = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4
+      ? 'index-bs4.html'
+      : '';
   }
 }

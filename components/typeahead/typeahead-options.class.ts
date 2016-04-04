@@ -2,7 +2,7 @@ export class TypeaheadOptions {
   public placement:string;
   public animation:boolean;
 
-  constructor(options:TypeaheadOptions) {
+  public constructor(options:TypeaheadOptions) {
     Object.assign(this, options);
   }
 }

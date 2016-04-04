@@ -1,7 +1,7 @@
 import {Directive, TemplateRef, ViewContainerRef, Inject} from 'angular2/core';
 
 export interface IAttribute {
-  [key: string]: any;
+  [key:string]:any;
 }
 
 @Directive({
@@ -9,7 +9,9 @@ export interface IAttribute {
   properties: ['ngTransclude']
 })
 export class NgTransclude {
-  private _ngTransclude: TemplateRef;
+  public viewRef:ViewContainerRef;
+
+  private _ngTransclude:TemplateRef;
 
   private set ngTransclude(templateRef:TemplateRef) {
     this._ngTransclude = templateRef;
@@ -18,10 +20,11 @@ export class NgTransclude {
     }
   }
 
-  private get ngTransclude() {
+  private get ngTransclude():TemplateRef {
     return this._ngTransclude;
   }
 
-  constructor(@Inject(ViewContainerRef) public viewRef:ViewContainerRef) {
+  public constructor(@Inject(ViewContainerRef) _viewRef:ViewContainerRef) {
+    this.viewRef = _viewRef;
   }
 }

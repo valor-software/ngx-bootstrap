@@ -1,55 +1,62 @@
-import { Directive, OnInit, Input, HostBinding, HostListener,
-  Self, Renderer, ElementRef } from 'angular2/core';
-import { ControlValueAccessor, NgModel } from 'angular2/common';
+import {
+  Directive, OnInit, Input, HostBinding, HostListener, Self
+} from 'angular2/core';
+import {ControlValueAccessor, NgModel} from 'angular2/common';
 
-@Directive({ selector: '[btnCheckbox][ngModel]' })
+@Directive({selector: '[btnCheckbox][ngModel]'})
 export class ButtonCheckbox implements ControlValueAccessor, OnInit {
-  @Input() private btnCheckboxTrue:any;
-  @Input() private btnCheckboxFalse:any;
+  public cd:NgModel;
+  @Input() public btnCheckboxTrue:any;
 
+  @Input() public btnCheckboxFalse:any;
   @HostBinding('class.active')
-  private state:boolean = false;
+  public state:boolean = false;
+
+  private value:any;
 
   // view -> model
   @HostListener('click')
-  private onClick() {
+  public onClick():void {
     this.toggle(!this.state);
     this.cd.viewToModelUpdate(this.value);
   }
 
-  private value:any;
-
-  constructor(@Self() public cd:NgModel) {
+  public constructor(@Self() cd:NgModel) {
+    this.cd = cd;
     // hack !
     cd.valueAccessor = this;
   }
 
-  public ngOnInit() {
+  public ngOnInit():any {
     this.toggle(this.trueValue === this.value);
   }
 
-  private get trueValue() {
-    return typeof this.btnCheckboxTrue !== 'undefined' ? this.btnCheckboxTrue : true;
+  private get trueValue():boolean {
+    return typeof this.btnCheckboxTrue !== 'undefined'
+      ? this.btnCheckboxTrue
+      : true;
   }
 
-  private get falseValue() {
-    return typeof this.btnCheckboxFalse !== 'undefined' ? this.btnCheckboxFalse : false;
+  private get falseValue():boolean {
+    return typeof this.btnCheckboxFalse !== 'undefined'
+      ? this.btnCheckboxFalse
+      : false;
   }
 
-  private toggle(state:boolean) {
+  public toggle(state:boolean):void {
     this.state = state;
     this.value = this.state ? this.trueValue : this.falseValue;
   }
 
   // ControlValueAccessor
   // model -> view
-  public writeValue(value:any) {
+  public writeValue(value:any):void {
     this.state = this.trueValue === value;
     this.value = value;
   }
 
-  protected onChange = (_:any) => {};
-  protected onTouched = () => {};
+  protected onChange:any = () => {};
+  protected onTouched:any = () => {};
 
   public registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;

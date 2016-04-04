@@ -1,23 +1,20 @@
 import {
-  Directive,
-  OnInit, OnDestroy, DoCheck,
-  Input, Output, HostListener, HostBinding,
-  TemplateRef, EventEmitter
+  Directive, OnDestroy, Input, Output, HostBinding, TemplateRef, EventEmitter
 } from 'angular2/core';
-import { NgClass } from 'angular2/common';
-import { NgTransclude, IAttribute } from '../common';
 import {Tabset} from './tabset.component';
 
-// TODO: templateUrl?
+/* tslint:disable */
 @Directive({selector: 'tab, [tab]'})
+/* tslint:enable */
 export class Tab implements OnDestroy {
   @Input() public heading:string;
   @Input() public disabled:boolean;
   @Input() public removable:boolean;
 
-  /** tab active state toogle */
+  /** tab active state toggle */
   @HostBinding('class.active')
-  @Input() public get active() {
+  @Input()
+  public get active():boolean {
     return this._active;
   }
 
@@ -25,7 +22,7 @@ export class Tab implements OnDestroy {
   @Output() public deselect:EventEmitter<Tab> = new EventEmitter(false);
   @Output() public removed:EventEmitter<Tab> = new EventEmitter(false);
 
-  public set active(active) {
+  public set active(active:boolean) {
     if (this.disabled && active || !active) {
       if (!active) {
         this._active = active;
@@ -44,20 +41,20 @@ export class Tab implements OnDestroy {
     });
   }
 
-  @HostBinding('class.tab-pane') private addClass = true;
+  @HostBinding('class.tab-pane') public addClass:boolean = true;
 
-  private _active:boolean;
   public headingRef:TemplateRef;
+  public tabset:Tabset;
+  private _active:boolean;
 
-  constructor(public tabset:Tabset) {
+  public constructor(tabset:Tabset) {
+    this.tabset = tabset;
     this.tabset.addTab(this);
   }
 
-  ngOnInit() {
-    this.removable = !!this.removable;
-  }
+  public ngOnInit():void {this.removable = !!this.removable;}
 
-  ngOnDestroy() {
+  public ngOnDestroy():void {
     this.tabset.removeTab(this);
   }
 }

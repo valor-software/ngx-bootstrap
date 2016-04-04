@@ -1,6 +1,5 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -12,18 +11,24 @@ let template = require('./typeahead-demo.html');
   template: template
 })
 export class TypeaheadDemo {
-  private selected:string = '';
-  private asyncSelected:string = '';
-  private typeaheadLoading:boolean = false;
-  private typeaheadNoResults:boolean = false;
-  private states:Array<string> = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
-    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa',
-    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-    'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
+  public selected:string = '';
+  public asyncSelected:string = '';
+  public typeaheadLoading:boolean = false;
+  public typeaheadNoResults:boolean = false;
+  public states:Array<string> = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
+    'California', 'Colorado',
+    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+    'Illinois', 'Indiana', 'Iowa',
+    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
+    'Michigan', 'Minnesota',
+    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+    'New Jersey', 'New Mexico',
+    'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon',
+    'Pennsylvania', 'Rhode Island',
+    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+    'Virginia', 'Washington',
     'West Virginia', 'Wisconsin', 'Wyoming'];
-  private statesComplex:Array<any> = [
+  public statesComplex:Array<any> = [
     {id: 1, name: 'Alabama'}, {id: 2, name: 'Alaska'}, {id: 3, name: 'Arizona'},
     {id: 4, name: 'Arkansas'}, {id: 5, name: 'California'},
     {id: 6, name: 'Colorado'}, {id: 7, name: 'Connecticut'},
@@ -50,14 +55,14 @@ export class TypeaheadDemo {
     {id: 49, name: 'West Virginia'}, {id: 50, name: 'Wisconsin'},
     {id: 51, name: 'Wyoming'}];
 
-  private getContext() {
-    return this;
-  }
-
   private _cache:any;
   private _prevContext:any;
 
-  private getAsyncData(context:any):Function {
+  public getContext():any {
+    return this;
+  }
+
+  public getAsyncData(context:any):Function {
     if (this._prevContext === context) {
       return this._cache;
     }
@@ -78,15 +83,15 @@ export class TypeaheadDemo {
     return this._cache;
   }
 
-  private changeTypeaheadLoading(e:boolean) {
+  public changeTypeaheadLoading(e:boolean):void {
     this.typeaheadLoading = e;
   }
 
-  private changeTypeaheadNoResults(e:boolean) {
+  public changeTypeaheadNoResults(e:boolean):void {
     this.typeaheadNoResults = e;
   }
 
-  private typeaheadOnSelect(e:any) {
+  public typeaheadOnSelect(e:any):void {
     console.log(`Selected value: ${e.item}`);
   }
 }

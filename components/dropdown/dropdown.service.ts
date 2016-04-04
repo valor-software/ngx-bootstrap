@@ -11,7 +11,7 @@ export class DropdownService {
   private closeDropdownBind:EventListener = this.closeDropdown.bind(this);
   private keybindFilterBind:EventListener = this.keybindFilter.bind(this);
 
-  public open(dropdownScope:Dropdown) {
+  public open(dropdownScope:Dropdown):void {
     if (!this.openScope) {
       window.document.addEventListener('click', this.closeDropdownBind, true);
       window.document.addEventListener('keydown', this.keybindFilterBind);
@@ -24,17 +24,17 @@ export class DropdownService {
     this.openScope = dropdownScope;
   }
 
-  public close(dropdownScope:Dropdown) {
+  public close(dropdownScope:Dropdown):void {
     if (this.openScope !== dropdownScope) {
       return;
     }
 
-    this.openScope = null;
+    this.openScope = void 0;
     window.document.removeEventListener('click', this.closeDropdownBind, true);
     window.document.removeEventListener('keydown', this.keybindFilterBind);
   }
 
-  private closeDropdown(event:MouseEvent) {
+  private closeDropdown(event:MouseEvent):void {
     if (!this.openScope) {
       return;
     }
@@ -64,10 +64,10 @@ export class DropdownService {
     this.openScope.isOpen = false;
   }
 
-  private keybindFilter(event:KeyboardEvent) {
+  private keybindFilter(event:KeyboardEvent):void {
     if (event.which === 27) {
       this.openScope.focusToggleElement();
-      this.closeDropdown(null);
+      this.closeDropdown(void 0);
       return;
     }
 

@@ -12,7 +12,7 @@
 </style>
 
 <div>
-  <pre>Selected date is: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
+  <pre class="card card-block card-header">Selected date is: <em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
   <h4>Inline</h4>
   <div style="display:inline-block; min-height:290px;">
     <datepicker [(ngModel)]="dt" [minDate]="minDate" [showWeeks]="true"></datepicker>

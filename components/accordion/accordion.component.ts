@@ -1,5 +1,4 @@
 import {Component, Input, HostBinding} from 'angular2/core';
-
 import {AccordionPanel} from './accordion-group.component';
 
 // todo: support template url
@@ -10,15 +9,17 @@ import {AccordionPanel} from './accordion-group.component';
 export class Accordion {
   @Input() public closeOthers:boolean;
 
+  /* tslint:disable:no-unused-variable */
   @HostBinding('class.panel-group')
-  private addClass = true;
+  private addClass:boolean = true;
+  /* tslint:enable:no-unused-variable */
 
-  constructor() {
+  public constructor() {
   }
 
   private groups:Array<AccordionPanel> = [];
 
-  public closeOtherPanels(openGroup:AccordionPanel) {
+  public closeOtherPanels(openGroup:AccordionPanel):void {
     if (!this.closeOthers) {
       return;
     }
@@ -30,11 +31,11 @@ export class Accordion {
     });
   }
 
-  public addGroup(group:AccordionPanel) {
+  public addGroup(group:AccordionPanel):void {
     this.groups.push(group);
   }
 
-  public removeGroup(group:AccordionPanel) {
+  public removeGroup(group:AccordionPanel):void {
     let index = this.groups.indexOf(group);
     if (index !== -1) {
       this.groups.splice(index, 1);

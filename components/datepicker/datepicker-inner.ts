@@ -2,40 +2,41 @@ import {Component, OnInit, EventEmitter, Input} from 'angular2/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel
 } from 'angular2/common';
-
 import {DateFormatter} from './date-formatter';
 
-const FORMAT_DAY:string = 'DD';
-const FORMAT_MONTH:string = 'MMMM';
-const FORMAT_YEAR:string = 'YYYY';
-const FORMAT_DAY_HEADER:string = 'dd';
-const FORMAT_DAY_TITLE:string = 'MMMM YYYY';
-const FORMAT_MONTH_TITLE:string = 'YYYY';
-const DATEPICKER_MODE:string = 'day';
-const MIN_MODE:string = 'day';
-const MAX_MODE:string = 'year';
-const SHOW_WEEKS:boolean = true;
-const ONLY_CURRENT_MONTH:boolean = false;
-const STARTING_DAY:number = 0;
-const YEAR_RANGE:number = 20;
-const MIN_DATE:Date = null;
-const MAX_DATE:Date = null;
-const SHORTCUT_PROPAGATION:boolean = false;
+const FORMAT_DAY = 'DD';
+const FORMAT_MONTH = 'MMMM';
+const FORMAT_YEAR = 'YYYY';
+const FORMAT_DAY_HEADER = 'dd';
+const FORMAT_DAY_TITLE = 'MMMM YYYY';
+const FORMAT_MONTH_TITLE = 'YYYY';
+const DATEPICKER_MODE = 'day';
+const MIN_MODE = 'day';
+const MAX_MODE = 'year';
+const SHOW_WEEKS = true;
+const ONLY_CURRENT_MONTH = false;
+const STARTING_DAY = 0;
+const YEAR_RANGE = 20;
+// const MIN_DATE:Date = void 0;
+// const MAX_DATE:Date = void 0;
+const SHORTCUT_PROPAGATION = false;
 
-const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+// const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-const KEYS = {
-  13: 'enter',
-  32: 'space',
-  33: 'pageup',
-  34: 'pagedown',
-  35: 'end',
-  36: 'home',
-  37: 'left',
-  38: 'up',
-  39: 'right',
-  40: 'down'
-};
+/*
+ const KEYS = {
+ 13: 'enter',
+ 32: 'space',
+ 33: 'pageup',
+ 34: 'pagedown',
+ 35: 'end',
+ 36: 'home',
+ 37: 'left',
+ 38: 'up',
+ 39: 'right',
+ 40: 'down'
+ };
+ */
 
 @Component({
   selector: 'datepicker-inner',
@@ -48,12 +49,28 @@ const KEYS = {
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
 })
 export class DatePickerInner implements OnInit {
-  @Input()
-  public datepickerMode:string;
-  @Input()
-  public startingDay:number;
-  @Input()
-  public yearRange:number;
+  @Input() public datepickerMode:string;
+  @Input() public startingDay:number;
+  @Input() public yearRange:number;
+
+  @Input() public minDate:Date;
+  @Input() public maxDate:Date;
+  @Input() public minMode:string;
+  @Input() public maxMode:string;
+  @Input() public showWeeks:boolean;
+  @Input() public formatDay:string;
+  @Input() public formatMonth:string;
+  @Input() public formatYear:string;
+  @Input() public formatDayHeader:string;
+  @Input() public formatDayTitle:string;
+  @Input() public formatMonthTitle:string;
+  @Input() public onlyCurrentMonth:boolean;
+  @Input() public shortcutPropagation:boolean;
+  @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
+  // todo: change type during implementation
+  @Input() public dateDisabled:any;
+  @Input() public initDate:Date;
+
   public stepDay:any = {};
   public stepMonth:any = {};
   public stepYear:any = {};
@@ -63,41 +80,7 @@ export class DatePickerInner implements OnInit {
   private uniqueId:string;
   private _activeDate:Date;
   private selectedDate:Date;
-  private _initDate:Date;
   private activeDateId:string;
-  @Input()
-  private minDate:Date;
-  @Input()
-  private maxDate:Date;
-  @Input()
-  private minMode:string;
-  @Input()
-  private maxMode:string;
-  @Input()
-  private showWeeks:boolean;
-  @Input()
-  private formatDay:string;
-  @Input()
-  private formatMonth:string;
-  @Input()
-  private formatYear:string;
-  @Input()
-  private formatDayHeader:string;
-  @Input()
-  private formatDayTitle:string;
-  @Input()
-  private formatMonthTitle:string;
-  @Input()
-  private onlyCurrentMonth:boolean;
-  @Input()
-  private shortcutPropagation:boolean;
-  @Input()
-  private customClass:Array<{date:Date, mode:string, clazz:string}>;
-  // todo: change type during implementation
-  @Input()
-  private dateDisabled:any;
-  @Input()
-  private templateUrl:string;
 
   private refreshViewHandlerDay:Function;
   private compareHandlerDay:Function;
@@ -108,34 +91,29 @@ export class DatePickerInner implements OnInit {
   private update:EventEmitter<Date> = new EventEmitter(false);
 
   @Input()
-  private get initDate():Date {
-    return this._initDate;
-  }
-
-  private set initDate(value:Date) {
-    this._initDate = value;
-  }
-
-  @Input()
-  private get activeDate():Date {
+  public get activeDate():Date {
     return this._activeDate;
   }
 
-  private set activeDate(value:Date) {
+  public set activeDate(value:Date) {
     this._activeDate = value;
     this.refreshView();
   }
 
   // todo: add formatter value to Date object
-  ngOnInit() {
+  public ngOnInit():void {
     this.formatDay = this.formatDay || FORMAT_DAY;
     this.formatMonth = this.formatMonth || FORMAT_MONTH;
     this.formatYear = this.formatYear || FORMAT_YEAR;
     this.formatDayHeader = this.formatDayHeader || FORMAT_DAY_HEADER;
     this.formatDayTitle = this.formatDayTitle || FORMAT_DAY_TITLE;
     this.formatMonthTitle = this.formatMonthTitle || FORMAT_MONTH_TITLE;
-    this.showWeeks = (this.showWeeks === undefined ? SHOW_WEEKS : this.showWeeks);
-    this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined ? ONLY_CURRENT_MONTH : this.onlyCurrentMonth);
+    this.showWeeks = (this.showWeeks === undefined
+      ? SHOW_WEEKS
+      : this.showWeeks);
+    this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined
+      ? ONLY_CURRENT_MONTH
+      : this.onlyCurrentMonth);
     this.startingDay = this.startingDay || STARTING_DAY;
     this.yearRange = this.yearRange || YEAR_RANGE;
     this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;
@@ -157,7 +135,7 @@ export class DatePickerInner implements OnInit {
     this.refreshView();
   }
 
-  public setCompareHandler(handler:Function, type:string) {
+  public setCompareHandler(handler:Function, type:string):void {
     if (type === 'day') {
       this.compareHandlerDay = handler;
     }
@@ -184,10 +162,10 @@ export class DatePickerInner implements OnInit {
       return this.compareHandlerYear(date1, date2);
     }
 
-    return null;
+    return void 0;
   }
 
-  public setRefreshViewHandler(handler:Function, type:string) {
+  public setRefreshViewHandler(handler:Function, type:string):void {
     if (type === 'day') {
       this.refreshViewHandlerDay = handler;
     }
@@ -201,7 +179,7 @@ export class DatePickerInner implements OnInit {
     }
   }
 
-  public refreshView() {
+  public refreshView():void {
     if (this.datepickerMode === 'day' && this.refreshViewHandlerDay) {
       this.refreshViewHandlerDay();
     }
@@ -219,7 +197,7 @@ export class DatePickerInner implements OnInit {
     return this.dateFormatter.format(date, format);
   }
 
-  private isActive(dateObject:any):boolean {
+  public isActive(dateObject:any):boolean {
     if (this.compare(dateObject.date, this.activeDate) === 0) {
       this.activeDateId = dateObject.uid;
       return true;
@@ -228,7 +206,7 @@ export class DatePickerInner implements OnInit {
     return false;
   }
 
-  private createDateObject(date:Date, format:string):any {
+  public createDateObject(date:Date, format:string):any {
     let dateObject:any = {};
     dateObject.date = date;
     dateObject.date.setHours(0, 0, 0, 0);
@@ -240,23 +218,7 @@ export class DatePickerInner implements OnInit {
     return dateObject;
   }
 
-  private getCustomClassForDate(date:Date) {
-    if (!this.customClass) {
-      return '';
-    }
-    var customClassObject:{date:Date, mode:string, clazz:string} = this.customClass.find(customClass => {
-      return customClass.date.valueOf() === date.valueOf() && customClass.mode === this.datepickerMode;
-    }, this);
-    return customClassObject === undefined ? '' : customClassObject.clazz;
-  };
-
-  private isDisabled(date:Date):boolean {
-    // todo: implement dateDisabled attribute
-    return ((this.minDate && this.compare(date, this.minDate) < 0) ||
-    (this.maxDate && this.compare(date, this.maxDate) > 0));
-  };
-
-  private split(arr:Array<any>, size:number) {
+  public split(arr:Array<any>, size:number):Array<any> {
     let arrays:Array<any> = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
@@ -268,14 +230,14 @@ export class DatePickerInner implements OnInit {
   // The bug depends on OS, browser, current timezone and current date
   // i.e.
   // var date = new Date(2014, 0, 1);
-  // console.log(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours());
-  // can result in "2013 11 31 23" because of the bug.
-  public fixTimeZone(date:Date) {
+  // console.log(date.getFullYear(), date.getMonth(), date.getDate(),
+  // date.getHours()); can result in "2013 11 31 23" because of the bug.
+  public fixTimeZone(date:Date):void {
     let hours = date.getHours();
     date.setHours(hours === 23 ? hours + 2 : 0);
   }
 
-  public select(date:Date) {
+  public select(date:Date):void {
     if (this.datepickerMode === this.minMode) {
       if (!this.activeDate) {
         this.activeDate = new Date(0, 0, 0, 0, 0, 0, 0);
@@ -292,7 +254,7 @@ export class DatePickerInner implements OnInit {
     this.refreshView();
   }
 
-  public move(direction:number) {
+  public move(direction:number):void {
     let expectedStep:any;
     if (this.datepickerMode === 'day') {
       expectedStep = this.stepDay;
@@ -315,7 +277,7 @@ export class DatePickerInner implements OnInit {
     }
   }
 
-  public toggleMode(direction:number) {
+  public toggleMode(direction:number):void {
     direction = direction || 1;
 
     if ((this.datepickerMode === this.maxMode && direction === 1) ||
@@ -327,5 +289,22 @@ export class DatePickerInner implements OnInit {
     this.refreshView();
   }
 
-  // todo: implement key events later
+  private getCustomClassForDate(date:Date):string {
+    if (!this.customClass) {
+      return '';
+    }
+    // todo: build a hash of custom classes, it will work faster
+    const customClassObject:{date:Date, mode:string, clazz:string} = this.customClass
+      .find((customClass:any) => {
+        return customClass.date.valueOf() === date.valueOf() &&
+          customClass.mode === this.datepickerMode;
+      }, this);
+    return customClassObject === undefined ? '' : customClassObject.clazz;
+  }
+
+  private isDisabled(date:Date):boolean {
+    // todo: implement dateDisabled attribute
+    return ((this.minDate && this.compare(date, this.minDate) < 0) ||
+    (this.maxDate && this.compare(date, this.maxDate) > 0));
+  }
 }
