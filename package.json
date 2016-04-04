@@ -7,31 +7,23 @@
     "flow.compile": "npm run flow.install:typings && npm run flow.compile:common && npm run flow.compile:system ",
     "flow.compile:common": "./node_modules/.bin/tsc",
     "flow.compile:system": "./.config/bundle-system.js",
-
     "flow.copy:src": "./node_modules/.bin/cpy ng2-bootstrap.ts \"components/*.ts\" ts --parents",
     "flow.clean": "./node_modules/.bin/del bundles coverage demo-build typings \"components/**/*.+(js|d.ts|js.map)\" dist \"ng2-bootstrap.+(js|d.ts|js.map)\"",
     "flow.deploy:gh-pages": "npm run flow.build:prod && ./node_modules/.bin/gh-pages -d demo-build",
-
     "flow.eslint": "./node_modules/.bin/eslint --ignore-path .gitignore  --ext js --fix . .config",
     "flow.tslint": "./node_modules/.bin/gulp lint",
     "flow.lint": "npm run flow.eslint && npm run flow.tslint",
-
     "flow.changelog": "./node_modules/.bin/conventional-changelog -i CHANGELOG.md -s -p angular -v",
     "flow.github-release": "conventional-github-releaser -p angular",
-
     "flow.build:prod": "NODE_ENV=production ./node_modules/.bin/webpack --progress --color",
     "flow.build:dev": "./node_modules/.bin/webpack --progress --color",
     "flow.serve:dev": "./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
     "flow.serve:prod": "NODE_ENV=production ./node_modules/.bin/webpack-dev-server --hot --inline --colors --display-error-details --display-cached",
-
     "prepublish": "npm run flow.clean && npm run flow.compile",
     "postpublish": "npm run flow.deploy:gh-pages",
-
     "start": "npm run flow.serve:dev",
-
     "pretest": "npm run flow.lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
-
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
     "postversion": "git push origin master && git push --tags"
@@ -113,7 +105,7 @@
     "ts-loader": "0.8.1",
     "tslint": "3.6.0",
     "typescript": "1.8.9",
-    "typings": "0.7.11",
+    "typings": "0.7.12",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.6.8"
