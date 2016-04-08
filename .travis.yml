@@ -7,7 +7,7 @@ before_install:
 - npm install -g npm@latest
 
 script:
-- npm run install:typings
+- npm run flow.install:typings
 - npm test
 
 addons:

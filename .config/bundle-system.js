@@ -14,14 +14,14 @@ const zlib = require('zlib');
 const async = require('async');
 const Builder = require('systemjs-builder');
 
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 const name = pkg.name;
-const targetFolder = 'bundles';
-
+const targetFolder = path.resolve('./bundles');
+console.log(targetFolder)
 async.waterfall([
   cleanBundlesFolder,
   getSystemJsBundleConfig,
-  buildSystemJs({mangle: false}),
+  buildSystemJs({minify: false, sourceMaps: true, mangle: false}),
   getSystemJsBundleConfig,
   buildSystemJs({minify: true, sourceMaps: true, mangle: false}),
   gzipSystemJsBundle
@@ -49,10 +49,11 @@ function getSystemJsBundleConfig(cb) {
   };
 
   config.meta = ['angular2', 'rxjs'].reduce((memo, currentValue) => {
-    memo[`${__dirname}/node_modules/${currentValue}/*`] = {build: false};
+    memo[path.resolve(`node_modules/${currentValue}/*`)] = {build: false};
     return memo;
   }, {});
   config.meta.moment = {build: false};
+  console.log(config.meta)
   return cb(null, config);
 }
 

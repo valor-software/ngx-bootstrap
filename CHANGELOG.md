@@ -1,3 +1,21 @@
+<a name="1.0.11"></a>
+## [1.0.11](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.10...v1.0.11) (2016-04-08)
+
+
+### Bug Fixes
+
+* **build:** generate source maps for systemjs bundles (fixes #367) ([81e16b7](https://github.com/valor-software/ng2-bootstrap/commit/81e16b7)), closes [#367](https://github.com/valor-software/ng2-bootstrap/issues/367)
+* **demo:** added card clasess to pre tags in bs4 demo ([0dfe7b2](https://github.com/valor-software/ng2-bootstrap/commit/0dfe7b2))
+* **lint:** added usage of tslint-config-valorsoft ([cad6af3](https://github.com/valor-software/ng2-bootstrap/commit/cad6af3))
+* **lint:** enable tslint and codelyzer (fixes #309) ([b60ce40](https://github.com/valor-software/ng2-bootstrap/commit/b60ce40)), closes [#309](https://github.com/valor-software/ng2-bootstrap/issues/309)
+* **typeahead:** prevent form submition when typeahead selected (fixes #359) ([4297410](https://github.com/valor-software/ng2-bootstrap/commit/4297410)), closes [#359](https://github.com/valor-software/ng2-bootstrap/issues/359)
+
+### Features
+
+* **package:** updated to angular2 beta.14 ([243585b](https://github.com/valor-software/ng2-bootstrap/commit/243585b))
+
+
+
 <a name="1.0.10"></a>
 ## [1.0.10](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.9...v1.0.10) (2016-04-01)
 
