@@ -47,15 +47,15 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
+    "angular2": "2.0.0-beta.14",
     "moment": "2.12.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.13"
+    "angular2": "2.0.0-beta.14"
   },
   "devDependencies": {
-    "angular2": "2.0.0-beta.13",
     "async": "1.5.2",
-    "balanced-match": "0.3.0",
+    "balanced-match": "0.4.0",
     "bootstrap": "3.3.6",
     "codelyzer": "0.0.12",
     "compression-webpack-plugin": "0.3.1",
@@ -69,7 +69,7 @@
     "es6-promise": "3.1.2",
     "es6-shim": "0.35.0",
     "es7-reflect-metadata": "1.6.0",
-    "eslint-config-valorsoft": "0.0.9",
+    "eslint-config-valorsoft": "0.0.10",
     "exports-loader": "0.6.3",
     "file-loader": "0.8.5",
     "gh-pages": "0.11.0",
@@ -86,7 +86,7 @@
     "karma-jasmine": "0.3.8",
     "karma-phantomjs-launcher": "1.0.0",
     "karma-sourcemap-loader": "0.3.7",
-    "karma-spec-reporter": "0.0.25",
+    "karma-spec-reporter": "0.0.26",
     "karma-webpack": "1.7.0",
     "lite-server": "2.2.0",
     "markdown-loader": "0.1.7",
@@ -108,6 +108,6 @@
     "typings": "0.7.12",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1",
-    "zone.js": "0.6.8"
+    "zone.js": "0.6.10"
   }
 }
