@@ -10,7 +10,8 @@ const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `
   <div class="dropdown-menu"
       [ngStyle]="{top: top, left: left, display: display}"
-      style="display: block">
+      style="display: block"
+      (mouseleave)="hideMenu()">
       <a href="#"
          *ngFor="#match of matches"
          class="dropdown-item"
@@ -23,7 +24,8 @@ const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS3]: `
   <ul class="dropdown-menu"
       [ngStyle]="{top: top, left: left, display: display}"
-      style="display: block">
+      style="display: block"
+      (mouseleave)="hideMenu()">
     <li *ngFor="#match of matches"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
@@ -155,5 +157,9 @@ export class TypeaheadContainer {
       item: value
     });
     return false;
+  }
+
+  private hideMenu():void {
+    this.parent.hide();
   }
 }

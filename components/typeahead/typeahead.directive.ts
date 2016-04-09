@@ -100,11 +100,6 @@ export class Typeahead implements OnInit {
     }
   }
 
-  @HostListener('blur', ['$event.target'])
-  protected onBlur():void {
-    this.hide();
-  }
-
   @HostListener('keydown', ['$event'])
   protected onKeydown(e:KeyboardEvent):void {
     // When typeahead container is visible, prevent submitting the form
