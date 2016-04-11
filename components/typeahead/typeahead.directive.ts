@@ -1,8 +1,10 @@
 import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
-  Renderer, DynamicComponentLoader, ComponentRef, Provider, Injector
+  Renderer, DynamicComponentLoader, ComponentRef, Provider, Injector, forwardRef
 } from 'angular2/core';
 import {NgModel} from 'angular2/common';
+import {NgControl} from 'angular2/src/common/forms/directives';
+import {CONST_EXPR} from 'angular2/src/facade/lang';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainer} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
@@ -12,8 +14,11 @@ function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, 
   renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 }
 
+const formControlBinding = CONST_EXPR(new Provider(NgModel, {useExisting: forwardRef(() => NgControl)}));
+
 @Directive({
-  selector: '[typeahead][ngModel]'
+  selector: '[typeahead][ngModel]',
+  bindings: [formControlBinding]
 })
 export class Typeahead implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter(false);
@@ -140,18 +145,18 @@ export class Typeahead implements OnInit {
       this.debouncer = this.debounce(() => {
         if (typeof this.typeahead === 'function') {
           this.typeahead()
-            .then((matches:any[]) => {
-              this._matches = [];
+              .then((matches:any[]) => {
+                this._matches = [];
 
-              for (let i = 0; i < matches.length; i++) {
-                this._matches.push(matches[i]);
-                if (this._matches.length > this.typeaheadOptionsLimit - 1) {
-                  break;
+                for (let i = 0; i < matches.length; i++) {
+                  this._matches.push(matches[i]);
+                  if (this._matches.length > this.typeaheadOptionsLimit - 1) {
+                    break;
+                  }
                 }
-              }
 
-              this.finalizeAsyncCall();
-            });
+                this.finalizeAsyncCall();
+              });
         }
 
         // source is array
@@ -174,24 +179,24 @@ export class Typeahead implements OnInit {
     ]);
 
     this.popup = this.loader
-      .loadNextToLocation(TypeaheadContainer, this.element, binding)
-      .then((componentRef:ComponentRef) => {
-        componentRef.instance.position(this.element);
-        this.container = componentRef.instance;
-        this.container.parent = this;
-        // This improves the speedas it won't have to be done for each list item
-        let normalizedQuery = (this.typeaheadLatinize
-          ? TypeaheadUtils.latinize(this.cd.model)
-          : this.cd.model).toString()
-          .toLowerCase();
-        this.container.query = this.typeaheadSingleWords
-          ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
-          : normalizedQuery;
-        this.container.matches = matches;
-        this.container.field = this.typeaheadOptionField;
-        this.element.nativeElement.focus();
-        return componentRef;
-      });
+        .loadNextToLocation(TypeaheadContainer, this.element, binding)
+        .then((componentRef:ComponentRef) => {
+          componentRef.instance.position(this.element);
+          this.container = componentRef.instance;
+          this.container.parent = this;
+          // This improves the speedas it won't have to be done for each list item
+          let normalizedQuery = (this.typeaheadLatinize
+              ? TypeaheadUtils.latinize(this.cd.model)
+              : this.cd.model).toString()
+              .toLowerCase();
+          this.container.query = this.typeaheadSingleWords
+              ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+              : normalizedQuery;
+          this.container.matches = matches;
+          this.container.field = this.typeaheadOptionField;
+          this.element.nativeElement.focus();
+          return componentRef;
+        });
   }
 
   public hide():void {
@@ -206,8 +211,8 @@ export class Typeahead implements OnInit {
 
   public changeModel(value:any):void {
     let valueStr:string = ((typeof value === 'object' && this.typeaheadOptionField)
-      ? value[this.typeaheadOptionField]
-      : value).toString();
+        ? value[this.typeaheadOptionField]
+        : value).toString();
     this.cd.viewToModelUpdate(valueStr);
     setProperty(this.renderer, this.element, 'value', valueStr);
     this.hide();
@@ -268,26 +273,26 @@ export class Typeahead implements OnInit {
     // If singleWords, break model here to not be doing extra work on each
     // iteration
     let normalizedQuery = (this.typeaheadLatinize
-      ? TypeaheadUtils.latinize(this.cd.model)
-      : this.cd.model).toString()
-      .toLowerCase();
+        ? TypeaheadUtils.latinize(this.cd.model)
+        : this.cd.model).toString()
+        .toLowerCase();
     normalizedQuery = this.typeaheadSingleWords
-      ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
-      : normalizedQuery;
+        ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+        : normalizedQuery;
     for (let i = 0; i < this.typeahead.length; i++) {
       let match:string;
 
       if (typeof this.typeahead[i] === 'object' &&
-        this.typeahead[i][this.typeaheadOptionField]) {
+          this.typeahead[i][this.typeaheadOptionField]) {
         match = this.typeaheadLatinize
-          ? TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString())
-          : this.typeahead[i][this.typeaheadOptionField].toString();
+            ? TypeaheadUtils.latinize(this.typeahead[i][this.typeaheadOptionField].toString())
+            : this.typeahead[i][this.typeaheadOptionField].toString();
       }
 
       if (typeof this.typeahead[i] === 'string') {
         match = this.typeaheadLatinize
-          ? TypeaheadUtils.latinize(this.typeahead[i].toString())
-          : this.typeahead[i].toString();
+            ? TypeaheadUtils.latinize(this.typeahead[i].toString())
+            : this.typeahead[i].toString();
       }
 
       if (!match) {
@@ -324,7 +329,7 @@ export class Typeahead implements OnInit {
   private finalizeAsyncCall():void {
     this.typeaheadLoading.emit(false);
     this.typeaheadNoResults.emit(this.cd.model.toString().length >=
-      this.typeaheadMinLength && this.matches.length <= 0);
+        this.typeaheadMinLength && this.matches.length <= 0);
 
     if (this.cd.model.toString().length <= 0 || this._matches.length <= 0) {
       this.hide();
@@ -334,12 +339,12 @@ export class Typeahead implements OnInit {
     if (this.container && this._matches.length > 0) {
       // This improves the speedas it won't have to be done for each list item
       let normalizedQuery = (this.typeaheadLatinize
-        ? TypeaheadUtils.latinize(this.cd.model)
-        : this.cd.model).toString()
-        .toLowerCase();
+          ? TypeaheadUtils.latinize(this.cd.model)
+          : this.cd.model).toString()
+          .toLowerCase();
       this.container.query = this.typeaheadSingleWords
-        ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
-        : normalizedQuery;
+          ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+          : normalizedQuery;
       this.container.matches = this._matches;
     }
 
