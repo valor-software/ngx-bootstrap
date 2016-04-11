@@ -106,7 +106,7 @@
     "tslint-config-valorsoft": "0.0.3",
     "typescript": "1.8.9",
     "typings": "0.7.12",
-    "webpack": "1.12.14",
+    "webpack": "1.12.15",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.6.10"
   }
