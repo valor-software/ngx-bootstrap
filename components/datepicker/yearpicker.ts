@@ -89,7 +89,7 @@ export class YearPicker implements OnInit {
 
       for (let i = 0, start = self.getStartingYear(this.activeDate.getFullYear()); i < this.yearRange; i++) {
         date = new Date(start + i, 0, 1);
-        this.fixTimeZone(date);
+        date = this.fixTimeZone(date);
         years[i] = this.createDateObject(date, this.formatYear);
         years[i].uid = this.uniqueId + '-' + i;
       }
