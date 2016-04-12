@@ -102,7 +102,8 @@ export class Typeahead implements OnInit {
 
   @HostListener('blur', ['$event.target'])
   protected onBlur():void {
-    this.hide();
+    // Allow typeahead container click event to be triggered requires a timeout
+    setTimeout(this.hide.bind(this), 10);
   }
 
   @HostListener('keydown', ['$event'])
