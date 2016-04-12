@@ -104,7 +104,7 @@
     "systemjs-builder": "0.15.14",
     "ts-loader": "0.8.2",
     "tslint-config-valorsoft": "0.0.3",
-    "typescript": "1.8.9",
+    "typescript": "1.8.10",
     "typings": "0.7.12",
     "webpack": "1.12.15",
     "webpack-dev-server": "1.14.1",
