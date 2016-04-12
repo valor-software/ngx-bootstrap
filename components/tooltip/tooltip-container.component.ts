@@ -58,7 +58,6 @@ export class TooltipContainer implements AfterViewInit {
     if (this.animation) {
       this.classMap.fade = true;
     }
-    // fix: why time out is really needed here?
-    setTimeout(() => this.cdr.markForCheck());
+    this.cdr.detectChanges();
   }
 }
