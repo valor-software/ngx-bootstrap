@@ -102,7 +102,7 @@ export class Typeahead implements OnInit {
 
   @HostListener('blur', ['$event.target'])
   protected onBlur():void {
-    this.hide();
+    setTimeout(() => this.hide(), 250);
   }
 
   @HostListener('keydown', ['$event'])
