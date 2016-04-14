@@ -57,7 +57,7 @@
     "async": "1.5.2",
     "balanced-match": "0.4.0",
     "bootstrap": "3.3.6",
-    "codelyzer": "0.0.12",
+    "codelyzer": "0.0.13",
     "compression-webpack-plugin": "0.3.1",
     "conventional-changelog": "1.1.0",
     "conventional-changelog-cli": "1.1.1",
