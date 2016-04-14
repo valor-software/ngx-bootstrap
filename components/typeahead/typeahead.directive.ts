@@ -21,7 +21,7 @@ export class Typeahead implements OnInit {
   @Output() public typeaheadOnSelect:EventEmitter<{item:any}> = new EventEmitter(false);
 
   @Input() public typeahead:any;
-  @Input() public typeaheadMinLength:number;
+  @Input() public typeaheadMinLength:number = void 0;
   @Input() public typeaheadWaitMs:number;
   @Input() public typeaheadOptionsLimit:number;
   @Input() public typeaheadOptionField:string;
@@ -100,6 +100,22 @@ export class Typeahead implements OnInit {
     }
   }
 
+  @HostListener('focus', ['$event.target'])
+  protected onFocus():void {
+    if (this.typeaheadMinLength === 0) {
+      this.typeaheadLoading.emit(true);
+
+      if (this.typeaheadAsync === true) {
+        this.debouncer();
+      }
+
+      if (this.typeaheadAsync === false) {
+        this.processMatches();
+        this.finalizeAsyncCall();
+      }
+    }
+  }
+
   @HostListener('blur', ['$event.target'])
   protected onBlur():void {
     // Allow typeahead container click event to be triggered requires a timeout
@@ -124,7 +140,7 @@ export class Typeahead implements OnInit {
 
   public ngOnInit():void {
     this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
-    this.typeaheadMinLength = this.typeaheadMinLength || 1;
+    this.typeaheadMinLength = this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
@@ -266,6 +282,13 @@ export class Typeahead implements OnInit {
       return;
     }
 
+    if (!this.cd.model) {
+      for (let i = 0; i < this.typeahead.length; i++) {
+        this._matches.push(this.typeahead[i]);
+      }
+      return;
+    }
+
     // If singleWords, break model here to not be doing extra work on each
     // iteration
     let normalizedQuery = (this.typeaheadLatinize
@@ -327,7 +350,7 @@ export class Typeahead implements OnInit {
     this.typeaheadNoResults.emit(this.cd.model.toString().length >=
       this.typeaheadMinLength && this.matches.length <= 0);
 
-    if (this.cd.model.toString().length <= 0 || this._matches.length <= 0) {
+    if (this._matches.length <= 0) {
       this.hide();
       return;
     }
