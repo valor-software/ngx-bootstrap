@@ -174,9 +174,9 @@ export class DayPicker implements OnInit {
     let date:Date;
     while (i < n) {
       date = new Date(current.getTime());
-      this.datePicker.fixTimeZone(date);
+      date = this.datePicker.fixTimeZone(date);
       dates[i++] = date;
-      current.setDate(current.getDate() + 1);
+      current = new Date(current.getFullYear(), current.getMonth(), current.getDate() + 1);
     }
     return dates;
   }

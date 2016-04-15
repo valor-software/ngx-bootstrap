@@ -1,3 +1,13 @@
+<a name="1.0.12"></a>
+## [1.0.12](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.11...v1.0.12) (2016-04-15)
+
+
+### Features
+
+* **deps:** upgrade to angular2 beta.15 ([00e6ad4](https://github.com/valor-software/ng2-bootstrap/commit/00e6ad4))
+
+
+
 <a name="1.0.11"></a>
 ## [1.0.11](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.10...v1.0.11) (2016-04-08)
 
