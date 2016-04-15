@@ -18,6 +18,7 @@ export declare class Typeahead implements OnInit {
     typeaheadWordDelimiters: string;
     typeaheadPhraseDelimiters: string;
     container: TypeaheadContainer;
+    isTypeaheadOptionsListActive: boolean;
     private debouncer;
     private _matches;
     private placement;

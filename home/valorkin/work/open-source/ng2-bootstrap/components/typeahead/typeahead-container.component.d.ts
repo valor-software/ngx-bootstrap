@@ -5,9 +5,10 @@ export declare class TypeaheadContainer {
     parent: Typeahead;
     query: any;
     element: ElementRef;
+    isFocused: boolean;
+    private _active;
     private _matches;
     private _field;
-    private _active;
     private top;
     private left;
     private display;
@@ -23,4 +24,5 @@ export declare class TypeaheadContainer {
     protected hightlight(item: any, query: string): string;
     isActive(value: any): boolean;
     private selectMatch(value, e?);
+    private focusLost();
 }

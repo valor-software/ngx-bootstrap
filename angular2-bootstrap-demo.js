@@ -5833,12 +5833,13 @@ webpackJsonp([1],[
 	var position_1 = __webpack_require__(19);
 	var ng2_bootstrap_config_1 = __webpack_require__(11);
 	var TEMPLATE = (_a = {},
-	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n  <div class=\"dropdown-menu\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      style=\"display: block\">\n      <a href=\"#\"\n         *ngFor=\"#match of matches\"\n         class=\"dropdown-item\"\n         (click)=\"selectMatch(match, $event)\"\n         (mouseenter)=\"selectActive(match)\"\n         [class.active]=\"isActive(match)\"\n         [innerHtml]=\"hightlight(match, query)\"></a>\n  </div>\n  ",
-	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      style=\"display: block\">\n    <li *ngFor=\"#match of matches\"\n        [class.active]=\"isActive(match)\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [innerHtml]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
+	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n  <div class=\"dropdown-menu\"\n       style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n      <a href=\"#\"\n         *ngFor=\"#match of matches\"\n         class=\"dropdown-item\"\n         (click)=\"selectMatch(match, $event)\"\n         (mouseenter)=\"selectActive(match)\"\n         [class.active]=\"isActive(match)\"\n         [innerHtml]=\"hightlight(match, query)\"></a>\n  </div>\n  ",
+	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n    <li *ngFor=\"#match of matches\"\n        [class.active]=\"isActive(match)\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [innerHtml]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
 	    _a
 	);
 	var TypeaheadContainer = (function () {
 	    function TypeaheadContainer(element, options) {
+	        this.isFocused = false;
 	        this._matches = [];
 	        this.element = element;
 	        Object.assign(this, options);
@@ -5888,6 +5889,7 @@ webpackJsonp([1],[
 	            : index + 1];
 	    };
 	    TypeaheadContainer.prototype.selectActive = function (value) {
+	        this.isFocused = true;
 	        this._active = value;
 	    };
 	    TypeaheadContainer.prototype.hightlight = function (item, query) {
@@ -5933,6 +5935,9 @@ webpackJsonp([1],[
 	            item: value
 	        });
 	        return false;
+	    };
+	    TypeaheadContainer.prototype.focusLost = function () {
+	        this.isFocused = false;
 	    };
 	    TypeaheadContainer = __decorate([
 	        core_1.Component({
@@ -17539,6 +17544,7 @@ webpackJsonp([1],[
 	        this.typeaheadSingleWords = true;
 	        this.typeaheadWordDelimiters = ' ';
 	        this.typeaheadPhraseDelimiters = '\'"';
+	        this.isTypeaheadOptionsListActive = false;
 	        this._matches = [];
 	        this.placement = 'bottom-left';
 	        this.cd = cd;
@@ -17580,11 +17586,27 @@ webpackJsonp([1],[
 	        }
 	    };
 	    Typeahead.prototype.onBlur = function () {
-	        this.hide();
+	        console.log('blur');
+	        if (this.container && !this.container.isFocused) {
+	            console.log('blur hide');
+	            this.hide();
+	        }
 	    };
 	    Typeahead.prototype.onKeydown = function (e) {
-	        if (this.container && e.keyCode === 13) {
+	        if (!this.container) {
+	            return;
+	        }
+	        if (e.keyCode === 13) {
 	            e.preventDefault();
+	            return;
+	        }
+	        if (e.shiftKey && e.keyCode === 9) {
+	            this.hide();
+	            return;
+	        }
+	        if (!e.shiftKey && e.keyCode === 9) {
+	            this.container.selectActiveMatch();
+	            return;
 	        }
 	    };
 	    Typeahead.prototype.ngOnInit = function () {
@@ -17623,11 +17645,12 @@ webpackJsonp([1],[
 	    Typeahead.prototype.show = function (matches) {
 	        var _this = this;
 	        var options = new typeahead_options_class_1.TypeaheadOptions({
+	            typeaheadRef: this,
 	            placement: this.placement,
 	            animation: false
 	        });
 	        var binding = core_1.Injector.resolve([
-	            new core_1.Provider(typeahead_options_class_1.TypeaheadOptions, { useValue: options })
+	            core_1.provide(typeahead_options_class_1.TypeaheadOptions, { useValue: options })
 	        ]);
 	        this.popup = this.loader
 	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainer, this.element, binding)
