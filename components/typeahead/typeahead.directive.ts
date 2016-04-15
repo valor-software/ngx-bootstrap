@@ -104,9 +104,7 @@ export class Typeahead implements OnInit {
 
   @HostListener('blur', ['$event.target'])
   protected onBlur():void {
-    console.log('blur')
     if (this.container && !this.container.isFocused) {
-      console.log('blur hide')
       this.hide();
     }
   }
