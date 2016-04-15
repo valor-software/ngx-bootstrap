@@ -49,7 +49,7 @@ export declare class DatePickerInner implements OnInit {
     isActive(dateObject: any): boolean;
     createDateObject(date: Date, format: string): any;
     split(arr: Array<any>, size: number): Array<any>;
-    fixTimeZone(date: Date): void;
+    fixTimeZone(date: Date): Date;
     select(date: Date): void;
     move(direction: number): void;
     toggleMode(direction: number): void;
