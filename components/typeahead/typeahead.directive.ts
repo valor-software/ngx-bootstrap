@@ -1,6 +1,6 @@
 import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
-  Renderer, DynamicComponentLoader, ComponentRef, Provider, Injector
+  Renderer, DynamicComponentLoader, ComponentRef, Injector, provide
 } from 'angular2/core';
 import {NgModel} from 'angular2/common';
 import {TypeaheadUtils} from './typeahead-utils';
@@ -41,11 +41,13 @@ export class Typeahead implements OnInit {
   // @Input() private typeaheadFocusOnSelect:boolean;
 
   public container:TypeaheadContainer;
+  public isTypeaheadOptionsListActive:boolean = false;
 
   private debouncer:Function;
   private _matches:Array<any> = [];
   private placement:string = 'bottom-left';
   private popup:Promise<ComponentRef>;
+
 
   private cd:NgModel;
   private element:ElementRef;
@@ -102,15 +104,36 @@ export class Typeahead implements OnInit {
 
   @HostListener('blur', ['$event.target'])
   protected onBlur():void {
-    // Allow typeahead container click event to be triggered requires a timeout
-    setTimeout(this.hide.bind(this), 10);
+    console.log('blur')
+    if (this.container && !this.container.isFocused) {
+      console.log('blur hide')
+      this.hide();
+    }
   }
 
   @HostListener('keydown', ['$event'])
   protected onKeydown(e:KeyboardEvent):void {
-    // When typeahead container is visible, prevent submitting the form
-    if (this.container && e.keyCode === 13) {
+    // no container - no problems
+    if (!this.container) {
+      return;
+    }
+
+    // if items is visible - prevent form submition
+    if (e.keyCode === 13) {
       e.preventDefault();
+      return;
+    }
+
+    // if shift + tab, close items list
+    if (e.shiftKey && e.keyCode === 9) {
+      this.hide();
+      return;
+    }
+
+    // if tab select current item
+    if (!e.shiftKey && e.keyCode === 9) {
+      this.container.selectActiveMatch();
+      return;
     }
   }
 
@@ -166,12 +189,13 @@ export class Typeahead implements OnInit {
 
   public show(matches:Array<any>):void {
     let options = new TypeaheadOptions({
+      typeaheadRef: this,
       placement: this.placement,
       animation: false
     });
 
     let binding = Injector.resolve([
-      new Provider(TypeaheadOptions, {useValue: options})
+      provide(TypeaheadOptions, {useValue: options})
     ]);
 
     this.popup = this.loader
