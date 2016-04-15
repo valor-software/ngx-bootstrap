@@ -73,6 +73,7 @@ const config = {
     historyApiFallback: true,
     contentBase: dest,
     //publicPath: dest,
+    outputPath: dest,
     watchOptions: {aggregateTimeout: 300, poll: 1000}
   },
 
