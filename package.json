@@ -61,7 +61,7 @@
     "conventional-changelog": "1.1.0",
     "conventional-changelog-cli": "1.1.1",
     "conventional-github-releaser": "1.1.1",
-    "copy-webpack-plugin": "2.0.1",
+    "copy-webpack-plugin": "2.1.1",
     "cpy-cli": "1.0.0",
     "del": "2.2.0",
     "del-cli": "0.2.0",
