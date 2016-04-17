@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, OnDestroy, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {NgTransclude} from '../common';
 import {Tab} from './tab.directive';
@@ -26,7 +26,7 @@ import {Tab} from './tab.directive';
     </div>
   `
 })
-export class Tabset implements OnInit {
+export class Tabset implements OnInit, OnDestroy {
   @Input()
   public get vertical():boolean { return this._vertical;};
 
@@ -58,6 +58,7 @@ export class Tabset implements OnInit {
   private _justified:boolean;
   private _type:string;
   private classMap:any = {};
+  private subscriptions : { [key:string]:any; } = {};
 
   public constructor() {
   }
@@ -67,10 +68,15 @@ export class Tabset implements OnInit {
   }
 
   public ngOnDestroy():void {
+    this.tabs.forEach((t: Tab) => {
+      this.subscriptions[t.key].unsubscribe();
+    } )
     this.isDestroyed = true;
   }
 
   public addTab(tab:Tab):void {
+    this.tabs.forEach((tab:Tab) => { tab.active = false;});
+    this.subscriptions[tab.key] = tab.select.subscribe((t: Tab) => {this.deactivateOtherTabs(t);});
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active !== false;
   }
@@ -85,9 +91,17 @@ export class Tabset implements OnInit {
       let newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }
-
+    this.subscriptions[tab.key].unsubscribe();
     tab.removed.emit(tab);
     this.tabs.splice(index, 1);
+  }
+
+  private deactivateOtherTabs(tab: Tab) {
+    this.tabs.forEach((otherTab:Tab) => {
+      if (otherTab != tab) {
+        otherTab.active = false;
+      }
+    });
   }
 
   private getClosestTabIndex(index:number):number {
@@ -130,4 +144,6 @@ export class Tabset implements OnInit {
       ['nav-' + (this.type || 'tabs')]: true
     };
   }
+
+
 }

@@ -2,6 +2,7 @@ import {
   Directive, OnDestroy, Input, Output, HostBinding, TemplateRef, EventEmitter
 } from 'angular2/core';
 import {Tabset} from './tabset.component';
+import {Guid} from '../common';
 
 /* tslint:disable */
 @Directive({selector: 'tab, [tab]'})
@@ -34,20 +35,17 @@ export class Tab implements OnDestroy {
 
     this._active = active;
     this.select.emit(this);
-    this.tabset.tabs.forEach((tab:Tab) => {
-      if (tab !== this) {
-        tab.active = false;
-      }
-    });
   }
 
   @HostBinding('class.tab-pane') public addClass:boolean = true;
 
   public headingRef:TemplateRef;
   public tabset:Tabset;
+  public key: string;
   private _active:boolean;
 
   public constructor(tabset:Tabset) {
+    this.key = Guid.newGuid();
     this.tabset = tabset;
     this.tabset.addTab(this);
   }
