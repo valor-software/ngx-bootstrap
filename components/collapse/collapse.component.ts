@@ -120,6 +120,7 @@ export class Collapse implements OnInit {
           .onComplete(() => {
             this.isCollapse = true;
             this.isCollapsing = false;
+            this._el.nativeElement.style.overflow = 'visible';
           });
       }, 4);
   }
