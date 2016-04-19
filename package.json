@@ -104,7 +104,7 @@
     "ts-loader": "0.8.2",
     "tslint-config-valorsoft": "0.0.4",
     "typescript": "1.8.10",
-    "typings": "0.7.12",
+    "typings": "0.8.0",
     "webpack": "1.12.15",
     "webpack-dev-server": "1.14.1",
     "zone.js": "0.6.11"
