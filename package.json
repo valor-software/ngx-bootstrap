@@ -48,7 +48,7 @@
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
     "angular2": "2.0.0-beta.15",
-    "moment": "2.12.0"
+    "moment": "2.13.0"
   },
   "peerDependencies": {
     "angular2": "2.0.0-beta.15"
@@ -59,8 +59,8 @@
     "bootstrap": "3.3.6",
     "compression-webpack-plugin": "0.3.1",
     "conventional-changelog-cli": "1.1.1",
-    "conventional-github-releaser": "1.1.1",
-    "copy-webpack-plugin": "2.0.1",
+    "conventional-github-releaser": "1.1.2",
+    "copy-webpack-plugin": "2.1.1",
     "cpy-cli": "1.0.0",
     "del-cli": "0.2.0",
     "es6-promise": "3.1.2",
@@ -74,7 +74,7 @@
     "gulp-size": "2.1.0",
     "gulp-tslint": "github:valorkin/gulp-tslint",
     "html-loader": "0.4.3",
-    "html-webpack-plugin": "2.15.0",
+    "html-webpack-plugin": "2.16.0",
     "istanbul-instrumenter-loader": "0.2.0",
     "jasmine": "2.4.1",
     "karma": "0.13.22",
@@ -102,9 +102,9 @@
     "ts-loader": "0.8.2",
     "tslint-config-valorsoft": "0.0.6",
     "typescript": "1.8.10",
-    "typings": "0.7.12",
-    "webpack": "1.12.15",
+    "typings": "0.8.1",
+    "webpack": "1.13.0",
     "webpack-dev-server": "1.14.1",
-    "zone.js": "0.6.11"
+    "zone.js": "0.6.12"
   }
 }
