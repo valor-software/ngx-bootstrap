@@ -1,5 +1,4 @@
 {
-  "version": "1.8.9",
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
