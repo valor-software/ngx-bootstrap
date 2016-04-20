@@ -1,10 +1,10 @@
 import {ElementRef} from 'angular2/core';
 
-export interface IDropdownMenuInterface {
+export interface DropdownMenuInterface {
   el: ElementRef;
   templateUrl: string;
 }
 
-export interface IDropdownToggleInterface {
+export interface DropdownToggleInterface {
   el: ElementRef;
 }

@@ -1,6 +1,6 @@
 import {Directive, TemplateRef, ViewContainerRef, Inject} from 'angular2/core';
 
-export interface IAttribute {
+export interface KeyAttribute {
   [key:string]:any;
 }
 

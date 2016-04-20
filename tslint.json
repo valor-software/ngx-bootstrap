@@ -1,4 +1,4 @@
 {
-  "extends": "./node_modules/tslint-config-valorsoft/tslint.json",
-  "rulesDirectory": "./node_modules/codelyzer/dist/src"
+  "extends": "tslint-config-valorsoft",
+  "rulesDirectory": "./node_modules/codelyzer"
 }

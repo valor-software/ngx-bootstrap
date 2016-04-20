@@ -33,9 +33,6 @@ export class Progress implements OnInit {
 
   private _max:number;
 
-  public constructor() {
-  }
-
   public ngOnInit():void {
     this.animate = this.animate !== false;
     this.max = typeof this.max === 'number' ? this.max : progressConfig.max;

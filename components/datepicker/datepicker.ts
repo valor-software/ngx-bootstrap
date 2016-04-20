@@ -65,6 +65,9 @@ export class DatePicker implements ControlValueAccessor {
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
+  public onChange:any = Function.prototype;
+  public onTouched:any = Function.prototype;
+
   public cd:NgModel;
   private _activeDate:Date;
 
@@ -110,9 +113,6 @@ export class DatePicker implements ControlValueAccessor {
 
     this.activeDate = value ? new Date(value) : void 0;
   }
-
-  public onChange:any = () => {};
-  public onTouched:any = () => {};
 
   public registerOnChange(fn:(_:any) => {}):void { this.onChange = fn; }
 
