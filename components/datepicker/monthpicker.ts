@@ -85,7 +85,7 @@ export class MonthPicker implements OnInit {
 
       for (let i = 0; i < 12; i++) {
         date = new Date(year, i, 1);
-        this.fixTimeZone(date);
+        date = this.fixTimeZone(date);
         months[i] = this.createDateObject(date, this.formatMonth);
         months[i].uid = this.uniqueId + '-' + i;
       }

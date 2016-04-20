@@ -1,3 +1,24 @@
+<a name="1.0.13"></a>
+## [1.0.13](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.12...v1.0.13) (2016-04-15)
+
+
+### Bug Fixes
+
+* **typeahead:** blur event handler should not prevent item selection ([847d375](https://github.com/valor-software/ng2-bootstrap/commit/847d375)), closes [#403](https://github.com/valor-software/ng2-bootstrap/issues/403) [#418](https://github.com/valor-software/ng2-bootstrap/issues/418) [#356](https://github.com/valor-software/ng2-bootstrap/issues/356)
+* **typeahead:** Blur hide with timeout, to allow other events to be triggered. (fixes #363) ([1a719d0](https://github.com/valor-software/ng2-bootstrap/commit/1a719d0)), closes [#363](https://github.com/valor-software/ng2-bootstrap/issues/363) [#395](https://github.com/valor-software/ng2-bootstrap/issues/395) [#389](https://github.com/valor-software/ng2-bootstrap/issues/389) [#363](https://github.com/valor-software/ng2-bootstrap/issues/363)
+
+
+
+<a name="1.0.12"></a>
+## [1.0.12](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.11...v1.0.12) (2016-04-15)
+
+
+### Features
+
+* **deps:** upgrade to angular2 beta.15 ([00e6ad4](https://github.com/valor-software/ng2-bootstrap/commit/00e6ad4))
+
+
+
 <a name="1.0.11"></a>
 ## [1.0.11](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.10...v1.0.11) (2016-04-08)
 

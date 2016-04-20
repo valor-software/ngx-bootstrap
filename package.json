@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "description": "angular2 bootstrap components",
   "scripts": {
     "flow.install:typings": "./node_modules/.bin/typings install",
@@ -47,22 +47,21 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
-    "angular2": "2.0.0-beta.14",
+    "angular2": "2.0.0-beta.15",
     "moment": "2.12.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.14"
+    "angular2": "2.0.0-beta.15"
   },
   "devDependencies": {
     "async": "1.5.2",
     "balanced-match": "0.4.0",
     "bootstrap": "3.3.6",
-    "codelyzer": "0.0.12",
     "compression-webpack-plugin": "0.3.1",
     "conventional-changelog": "1.1.0",
     "conventional-changelog-cli": "1.1.1",
     "conventional-github-releaser": "1.1.1",
-    "copy-webpack-plugin": "1.1.1",
+    "copy-webpack-plugin": "2.0.1",
     "cpy-cli": "1.0.0",
     "del": "2.2.0",
     "del-cli": "0.2.0",
@@ -75,7 +74,7 @@
     "gh-pages": "0.11.0",
     "gulp": "3.9.1",
     "gulp-size": "2.1.0",
-    "gulp-tslint": "4.3.4",
+    "gulp-tslint": "4.3.5",
     "html-loader": "0.4.3",
     "html-webpack-plugin": "2.15.0",
     "istanbul-instrumenter-loader": "0.2.0",
@@ -101,13 +100,13 @@
     "require-dir": "0.3.0",
     "rxjs": "5.0.0-beta.2",
     "source-map-loader": "0.1.5",
-    "systemjs-builder": "0.15.14",
-    "ts-loader": "0.8.1",
+    "systemjs-builder": "0.15.15",
+    "ts-loader": "0.8.2",
     "tslint-config-valorsoft": "0.0.3",
-    "typescript": "1.8.9",
+    "typescript": "1.8.10",
     "typings": "0.7.12",
-    "webpack": "1.12.14",
+    "webpack": "1.12.15",
     "webpack-dev-server": "1.14.1",
-    "zone.js": "0.6.10"
+    "zone.js": "0.6.11"
   }
 }
