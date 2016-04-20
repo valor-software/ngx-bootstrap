@@ -102,7 +102,7 @@
     "source-map-loader": "0.1.5",
     "systemjs-builder": "0.15.15",
     "ts-loader": "0.8.2",
-    "tslint-config-valorsoft": "0.0.4",
+    "tslint-config-valorsoft": "0.0.5",
     "typescript": "1.8.10",
     "typings": "0.7.12",
     "webpack": "1.12.15",
