@@ -139,6 +139,10 @@ export class TypeaheadContainer {
     return itemStr;
   }
 
+  protected focusLost():void {
+    this.isFocused = false;
+  }
+
   public isActive(value:any):boolean {
     return this._active === value;
   }
@@ -153,9 +157,5 @@ export class TypeaheadContainer {
       item: value
     });
     return false;
-  }
-
-  private focusLost():void {
-    this.isFocused = false;
   }
 }

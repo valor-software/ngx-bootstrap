@@ -27,8 +27,6 @@ export class Alert implements OnInit {
   private closed:boolean;
   private classes:Array<string> = [];
 
-  public constructor() {}
-
   public ngOnInit():any {
     this.classes[0] = `alert-${this.type}`;
     if (this.dismissible) {

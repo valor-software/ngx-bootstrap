@@ -50,7 +50,7 @@ export class DropdownService {
 
     if (event && this.openScope.autoClose === NONINPUT &&
       this.openScope.menuEl &&
-      /input|textarea/i.test((<any> event.target).tagName) &&
+      /input|textarea/i.test((event.target as any).tagName) &&
       this.openScope.menuEl.nativeElement.contains(event.target)) {
       return;
     }

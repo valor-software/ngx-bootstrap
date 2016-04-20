@@ -2,11 +2,11 @@ import {
   Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer
 } from 'angular2/core';
 import {NgFor, NgIf, ControlValueAccessor, NgModel} from 'angular2/common';
-import {IAttribute} from '../common';
+import {KeyAttribute} from '../common';
 
 // todo: extract base functionality classes
 // todo: expose an option to change default configuration
-export interface IPaginationConfig extends IAttribute {
+export interface PaginationConfig extends KeyAttribute {
   maxSize:number;
   itemsPerPage:number;
   // is navigation buttons visible
@@ -20,12 +20,12 @@ export interface IPaginationConfig extends IAttribute {
 
   rotate:boolean;
 }
-export interface IPageChangedEvent {
+export interface PageChangedEvent {
   itemsPerPage:number;
   page:number;
 }
 
-const paginationConfig:IPaginationConfig = {
+const paginationConfig:PaginationConfig = {
   maxSize: void 0,
   itemsPerPage: 10,
   boundaryLinks: false,
@@ -77,7 +77,7 @@ const PAGINATION_TEMPLATE = `
   directives: [NgFor, NgIf]
 })
 /* tslint:enable */
-export class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
+export class Pagination implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
   public config:any;
   @Input() public maxSize:number;
 
@@ -93,7 +93,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   @Input() public disabled:boolean;
 
   @Output() public numPages:EventEmitter<number> = new EventEmitter(false);
-  @Output() public pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
+  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter(false);
 
   @Input()
   public get itemsPerPage():number {
@@ -144,6 +144,9 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   public get page():number {
     return this._page;
   }
+
+  public onChange:any = Function.prototype;
+  public onTouched:any = Function.prototype;
 
   public cd:NgModel;
   public renderer:Renderer;
@@ -200,7 +203,7 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   }
 
   public getText(key:string):string {
-    return (<IAttribute>this)[key + 'Text'] || paginationConfig[key + 'Text'];
+    return (this as KeyAttribute)[key + 'Text'] || paginationConfig[key + 'Text'];
   }
 
   public noPrevious():boolean {
@@ -210,9 +213,6 @@ export class Pagination implements ControlValueAccessor, OnInit, IPaginationConf
   public noNext():boolean {
     return this.page === this.totalPages;
   }
-
-  public onChange:any = () => {};
-  public onTouched:any = () => {};
 
   public registerOnChange(fn:(_:any) => {}):void {this.onChange = fn;}
 

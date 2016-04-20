@@ -12,6 +12,9 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
   @HostBinding('class.active')
   public state:boolean = false;
 
+  protected onChange:any = Function.prototype;
+  protected onTouched:any = Function.prototype;
+
   private value:any;
 
   // view -> model
@@ -54,9 +57,6 @@ export class ButtonCheckbox implements ControlValueAccessor, OnInit {
     this.state = this.trueValue === value;
     this.value = value;
   }
-
-  protected onChange:any = () => {};
-  protected onTouched:any = () => {};
 
   public registerOnChange(fn:(_:any) => {}):void {
     this.onChange = fn;

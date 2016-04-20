@@ -1,12 +1,12 @@
 import {
-  Directive, OnInit, Input, HostListener, ElementRef, DynamicComponentLoader,
+  Directive, Input, HostListener, ElementRef, DynamicComponentLoader,
   ComponentRef, Provider, Injector
 } from 'angular2/core';
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainer} from './tooltip-container.component';
 
 @Directive({selector: '[tooltip]'})
-export class Tooltip implements OnInit {
+export class Tooltip {
   /* tslint:disable */
   @Input('tooltip') public content:string;
   @Input('tooltipPlacement') public placement:string = 'top';
@@ -25,9 +25,6 @@ export class Tooltip implements OnInit {
   public constructor(element:ElementRef, loader:DynamicComponentLoader) {
     this.element = element;
     this.loader = loader;
-  }
-
-  public ngOnInit():void {
   }
 
   // todo: filter triggers

@@ -28,6 +28,9 @@ export class Rating implements ControlValueAccessor, OnInit {
   @Output() public onHover:EventEmitter<number> = new EventEmitter(false);
   @Output() public onLeave:EventEmitter<number> = new EventEmitter(false);
 
+  public onChange:any = Function.prototype;
+  public onTouched:any = Function.prototype;
+
   public cd:NgModel;
   private range:Array<any>;
   private value:number;
@@ -88,10 +91,6 @@ export class Rating implements ControlValueAccessor, OnInit {
     this.value = this.preValue;
     this.onLeave.emit(this.value);
   }
-
-  public onChange:any = () => {};
-
-  public onTouched:any = () => {};
 
   public registerOnChange(fn:(_:any) => {}):void {this.onChange = fn;}
 

@@ -1,11 +1,11 @@
 import {
-  Component, Directive, OnInit, EventEmitter, ComponentRef, ViewEncapsulation,
+  Component, Directive, EventEmitter, ComponentRef, ViewEncapsulation,
   ElementRef, DynamicComponentLoader, Self, Renderer, bind, Injector
 } from 'angular2/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
 } from 'angular2/common';
-import {IAttribute} from '../common';
+import {KeyAttribute} from '../common';
 import {positionService} from '../position';
 import {DatePicker} from './datepicker';
 
@@ -24,7 +24,7 @@ class PopupOptions {
   }
 }
 
-const datePickerPopupConfig:IAttribute = {
+const datePickerPopupConfig:KeyAttribute = {
   datepickerPopup: 'YYYY-MM-dd',
   currentText: 'Today',
   clearText: 'Clear',
@@ -105,7 +105,7 @@ class PopupContainer {
   }
 
   public getText(key:string):string {
-    return (<IAttribute>this)[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
+    return (this as KeyAttribute)[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
   }
 
   public isDisabled(/*date:Date*/):boolean {
@@ -119,7 +119,7 @@ class PopupContainer {
   properties: ['datepickerPopup', 'isOpen']/*,
    host: {'(cupdate)': 'onUpdate1($event)'}*/
 })
-export class DatePickerPopup implements OnInit {
+export class DatePickerPopup {
   public cd:NgModel;
   public element:ElementRef;
   public renderer:Renderer;
@@ -163,9 +163,6 @@ export class DatePickerPopup implements OnInit {
     if (value === false) {
       this.hide(fn);
     }
-  }
-
-  public ngOnInit():void {
   }
 
   public hide(cb:Function):void {

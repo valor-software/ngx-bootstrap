@@ -48,7 +48,6 @@ export class Typeahead implements OnInit {
   private placement:string = 'bottom-left';
   private popup:Promise<ComponentRef>;
 
-
   private cd:NgModel;
   private element:ElementRef;
   private renderer:Renderer;
