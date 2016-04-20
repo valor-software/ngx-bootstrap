@@ -126,7 +126,7 @@ export class DatePickerInner implements OnInit {
 
     if (this.initDate) {
       this.activeDate = this.initDate;
-    } else {
+    } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
     }
     this.selectedDate = new Date(this.activeDate.valueOf());
