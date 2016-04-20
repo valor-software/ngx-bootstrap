@@ -90,7 +90,7 @@ export class Typeahead implements OnInit {
         this.debouncer();
       }
 
-      if (this.typeaheadAsync === false) {
+      if (!this.typeaheadAsync) {
         this.processMatches();
         this.finalizeAsyncCall();
       }
@@ -109,7 +109,7 @@ export class Typeahead implements OnInit {
         this.debouncer();
       }
 
-      if (this.typeaheadAsync === false) {
+      if (!this.typeaheadAsync) {
         this.processMatches();
         this.finalizeAsyncCall();
       }
@@ -283,7 +283,7 @@ export class Typeahead implements OnInit {
     }
 
     if (!this.cd.model) {
-      for (let i = 0; i < this.typeahead.length; i++) {
+      for (let i = 0; i < Math.min(this.typeaheadOptionsLimit, this.typeahead.length); i++) {
         this._matches.push(this.typeahead[i]);
       }
       return;
