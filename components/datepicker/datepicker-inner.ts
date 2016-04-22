@@ -126,12 +126,12 @@ export class DatePickerInner implements OnInit {
 
     if (this.initDate) {
       this.activeDate = this.initDate;
+      this.selectedDate = new Date(this.activeDate.valueOf());
+      this.update.emit(this.activeDate); //Only emit if selectedDate changed, otherwise datepicker already has correct value.
     } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
     }
-    this.selectedDate = new Date(this.activeDate.valueOf());
 
-    this.update.emit(this.activeDate);
     this.refreshView();
   }
 
@@ -150,6 +150,10 @@ export class DatePickerInner implements OnInit {
   }
 
   public compare(date1:Date, date2:Date):number {
+    if(date1=== undefined || date2 === undefined){
+      return undefined;
+    }
+
     if (this.datepickerMode === 'day' && this.compareHandlerDay) {
       return this.compareHandlerDay(date1, date2);
     }
