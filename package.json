@@ -60,7 +60,7 @@
     "compression-webpack-plugin": "0.3.1",
     "conventional-changelog-cli": "1.1.1",
     "conventional-github-releaser": "1.1.2",
-    "copy-webpack-plugin": "2.1.1",
+    "copy-webpack-plugin": "2.1.2",
     "cpy-cli": "1.0.0",
     "del-cli": "0.2.0",
     "es6-promise": "3.1.2",
