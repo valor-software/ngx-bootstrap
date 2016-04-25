@@ -43,10 +43,7 @@ export class Collapse implements OnInit {
   private _ab:AnimationBuilder;
   private _el:ElementRef;
 
-  public constructor(_ab:AnimationBuilder, _el:ElementRef) {
-    this._ab = _ab;
-    this._el = _el;
-
+  public constructor(private _ab:AnimationBuilder, private _el:ElementRef, private _renderer: Renderer) {
   }
 
   public ngOnInit():void {
@@ -120,7 +117,8 @@ export class Collapse implements OnInit {
           .onComplete(() => {
             this.isCollapse = true;
             this.isCollapsing = false;
-            this._el.nativeElement.style.overflow = 'visible';
+            this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
+            this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
           });
       }, 4);
   }
