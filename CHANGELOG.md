@@ -1,3 +1,20 @@
+<a name="1.0.14"></a>
+## [1.0.14](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.13...v1.0.14) (2016-04-26)
+
+
+### Bug Fixes
+
+* **accordion:** Panel isn't resizing after content has changed ([914ae1a](https://github.com/valor-software/ng2-bootstrap/commit/914ae1a)), closes [#454](https://github.com/valor-software/ng2-bootstrap/issues/454)
+* **collapse:** Setting overflow back to visible in Collapse (#433) ([5c9434e](https://github.com/valor-software/ng2-bootstrap/commit/5c9434e)), closes [#372](https://github.com/valor-software/ng2-bootstrap/issues/372)
+* **datepicker:** If the date was set by ngModel it will be overwritten by default value ([6321253](https://github.com/valor-software/ng2-bootstrap/commit/6321253))
+
+### Features
+
+* **package:** updated angular2 to 0-beta.16 ([cec9e7b](https://github.com/valor-software/ng2-bootstrap/commit/cec9e7b))
+* **typeahead:** show list of options on focuse when minLength=0 ([f1c1909](https://github.com/valor-software/ng2-bootstrap/commit/f1c1909)), closes [#187](https://github.com/valor-software/ng2-bootstrap/issues/187) [#413](https://github.com/valor-software/ng2-bootstrap/issues/413)
+
+
+
 <a name="1.0.13"></a>
 ## [1.0.13](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.12...v1.0.13) (2016-04-15)
 
