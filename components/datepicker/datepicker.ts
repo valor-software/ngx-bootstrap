@@ -73,7 +73,7 @@ export class DatePicker implements ControlValueAccessor {
 
   @Input()
   public get activeDate():Date {
-    return this._activeDate;
+    return this._activeDate || this._now;
   }
 
   public constructor(@Self() cd:NgModel) {
