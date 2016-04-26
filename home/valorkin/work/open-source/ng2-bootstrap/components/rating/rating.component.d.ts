@@ -12,6 +12,8 @@ export declare class Rating implements ControlValueAccessor, OnInit {
     }>;
     onHover: EventEmitter<number>;
     onLeave: EventEmitter<number>;
+    onChange: any;
+    onTouched: any;
     cd: NgModel;
     private range;
     private value;
@@ -22,8 +24,6 @@ export declare class Rating implements ControlValueAccessor, OnInit {
     writeValue(value: number): void;
     protected enter(value: number): void;
     protected reset(): void;
-    onChange: any;
-    onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
     private buildTemplateObjects(ratingStates, max);

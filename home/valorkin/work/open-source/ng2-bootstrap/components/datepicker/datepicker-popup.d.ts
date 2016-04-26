@@ -1,18 +1,17 @@
-import { OnInit, ElementRef, DynamicComponentLoader, Renderer } from 'angular2/core';
+import { DynamicComponentLoader, Renderer, ViewContainerRef } from 'angular2/core';
 import { NgModel } from 'angular2/common';
-export declare class DatePickerPopup implements OnInit {
+export declare class DatePickerPopup {
     cd: NgModel;
-    element: ElementRef;
+    viewContainerRef: ViewContainerRef;
     renderer: Renderer;
     loader: DynamicComponentLoader;
     private _activeDate;
     private _isOpen;
     private placement;
     private popup;
-    constructor(cd: NgModel, element: ElementRef, renderer: Renderer, loader: DynamicComponentLoader);
+    constructor(cd: NgModel, viewContainerRef: ViewContainerRef, renderer: Renderer, loader: DynamicComponentLoader);
     activeDate: Date;
     private isOpen;
-    ngOnInit(): void;
     hide(cb: Function): void;
     private show(cb);
 }

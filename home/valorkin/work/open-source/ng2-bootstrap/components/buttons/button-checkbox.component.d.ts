@@ -5,6 +5,8 @@ export declare class ButtonCheckbox implements ControlValueAccessor, OnInit {
     btnCheckboxTrue: any;
     btnCheckboxFalse: any;
     state: boolean;
+    protected onChange: any;
+    protected onTouched: any;
     private value;
     onClick(): void;
     constructor(cd: NgModel);
@@ -13,8 +15,6 @@ export declare class ButtonCheckbox implements ControlValueAccessor, OnInit {
     private falseValue;
     toggle(state: boolean): void;
     writeValue(value: any): void;
-    protected onChange: any;
-    protected onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
 }

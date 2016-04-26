@@ -1,7 +1,7 @@
 import { OnInit, ElementRef, EventEmitter, Renderer } from 'angular2/core';
 import { ControlValueAccessor, NgModel } from 'angular2/common';
-import { IAttribute } from '../common';
-export interface IPaginationConfig extends IAttribute {
+import { KeyAttribute } from '../common';
+export interface PaginationConfig extends KeyAttribute {
     maxSize: number;
     itemsPerPage: number;
     boundaryLinks: boolean;
@@ -12,11 +12,11 @@ export interface IPaginationConfig extends IAttribute {
     lastText: string;
     rotate: boolean;
 }
-export interface IPageChangedEvent {
+export interface PageChangedEvent {
     itemsPerPage: number;
     page: number;
 }
-export declare class Pagination implements ControlValueAccessor, OnInit, IPaginationConfig, IAttribute {
+export declare class Pagination implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
     config: any;
     maxSize: number;
     boundaryLinks: boolean;
@@ -28,11 +28,13 @@ export declare class Pagination implements ControlValueAccessor, OnInit, IPagina
     rotate: boolean;
     disabled: boolean;
     numPages: EventEmitter<number>;
-    pageChanged: EventEmitter<IPageChangedEvent>;
+    pageChanged: EventEmitter<PageChangedEvent>;
     itemsPerPage: number;
     totalItems: number;
     totalPages: number;
     page: number;
+    onChange: any;
+    onTouched: any;
     cd: NgModel;
     renderer: Renderer;
     elementRef: ElementRef;
@@ -49,8 +51,6 @@ export declare class Pagination implements ControlValueAccessor, OnInit, IPagina
     getText(key: string): string;
     noPrevious(): boolean;
     noNext(): boolean;
-    onChange: any;
-    onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
     private selectPage(page, event?);

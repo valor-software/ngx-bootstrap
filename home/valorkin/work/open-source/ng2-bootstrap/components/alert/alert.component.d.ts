@@ -6,7 +6,6 @@ export declare class Alert implements OnInit {
     close: EventEmitter<Alert>;
     private closed;
     private classes;
-    constructor();
     ngOnInit(): any;
     onClose(): void;
 }

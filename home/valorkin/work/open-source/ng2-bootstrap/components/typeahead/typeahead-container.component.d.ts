@@ -22,7 +22,7 @@ export declare class TypeaheadContainer {
     nextActiveMatch(): void;
     protected selectActive(value: any): void;
     protected hightlight(item: any, query: string): string;
+    protected focusLost(): void;
     isActive(value: any): boolean;
     private selectMatch(value, e?);
-    private focusLost();
 }

@@ -23,15 +23,15 @@ export declare class DatePicker implements ControlValueAccessor {
         clazz: string;
     }>;
     dateDisabled: any;
+    onChange: any;
+    onTouched: any;
     cd: NgModel;
+    private _now;
     private _activeDate;
     activeDate: Date;
     constructor(cd: NgModel);
-    private _now;
     onUpdate(event: any): void;
     writeValue(value: any): void;
-    onChange: any;
-    onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
 }

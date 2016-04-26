@@ -1,4 +1,4 @@
-import { EventEmitter, OnInit, ElementRef, Renderer, DynamicComponentLoader } from 'angular2/core';
+import { EventEmitter, OnInit, ElementRef, Renderer, DynamicComponentLoader, ViewContainerRef } from 'angular2/core';
 import { NgModel } from 'angular2/common';
 import { TypeaheadContainer } from './typeahead-container.component';
 export declare class Typeahead implements OnInit {
@@ -24,13 +24,15 @@ export declare class Typeahead implements OnInit {
     private placement;
     private popup;
     private cd;
+    private viewContainerRef;
     private element;
     private renderer;
     private loader;
     protected onChange(e: KeyboardEvent): void;
+    protected onFocus(): void;
     protected onBlur(): void;
     protected onKeydown(e: KeyboardEvent): void;
-    constructor(cd: NgModel, element: ElementRef, renderer: Renderer, loader: DynamicComponentLoader);
+    constructor(cd: NgModel, viewContainerRef: ViewContainerRef, element: ElementRef, renderer: Renderer, loader: DynamicComponentLoader);
     ngOnInit(): void;
     show(matches: Array<any>): void;
     hide(): void;

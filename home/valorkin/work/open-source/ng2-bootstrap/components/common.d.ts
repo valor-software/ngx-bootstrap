@@ -1,5 +1,5 @@
 import { ViewContainerRef } from 'angular2/core';
-export interface IAttribute {
+export interface KeyAttribute {
     [key: string]: any;
 }
 export declare class NgTransclude {

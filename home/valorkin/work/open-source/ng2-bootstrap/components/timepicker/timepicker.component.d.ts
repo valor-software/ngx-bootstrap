@@ -1,6 +1,6 @@
 import { OnInit } from 'angular2/core';
 import { NgModel, ControlValueAccessor } from 'angular2/common';
-export interface ITimepickerConfig {
+export interface TimepickerConfig {
     hourStep: number;
     minuteStep: number;
     showMeridian: boolean;
@@ -12,7 +12,7 @@ export interface ITimepickerConfig {
     min?: number;
     max?: number;
 }
-export declare const timepickerConfig: ITimepickerConfig;
+export declare const timepickerConfig: TimepickerConfig;
 export declare class Timepicker implements ControlValueAccessor, OnInit {
     cd: NgModel;
     hourStep: number;
@@ -25,6 +25,8 @@ export declare class Timepicker implements ControlValueAccessor, OnInit {
     max: Date;
     meridians: Array<string>;
     showMeridian: boolean;
+    onChange: any;
+    onTouched: any;
     private _selected;
     private _showMeridian;
     private meridian;
@@ -36,8 +38,6 @@ export declare class Timepicker implements ControlValueAccessor, OnInit {
     constructor(cd: NgModel);
     ngOnInit(): void;
     writeValue(v: any): void;
-    onChange: any;
-    onTouched: any;
     registerOnChange(fn: (_: any) => {}): void;
     registerOnTouched(fn: () => {}): void;
     protected updateHours(): void;

@@ -6,7 +6,6 @@ export declare class Progress implements OnInit {
     addClass: boolean;
     bars: Array<any>;
     private _max;
-    constructor();
     ngOnInit(): void;
     addBar(bar: Bar): void;
     removeBar(bar: Bar): void;
