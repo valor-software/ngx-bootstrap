@@ -40,9 +40,6 @@ export class Collapse implements OnInit {
     return this.isExpanded;
   }
 
-  private _ab:AnimationBuilder;
-  private _el:ElementRef;
-
   public constructor(private _ab:AnimationBuilder, private _el:ElementRef, private _renderer: Renderer) {
   }
 
