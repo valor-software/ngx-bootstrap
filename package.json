@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "angular2 bootstrap components",
   "scripts": {
     "flow.install:typings": "./node_modules/.bin/typings install",
