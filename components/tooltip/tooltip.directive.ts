@@ -1,6 +1,6 @@
 import {
-  Directive, Input, HostListener, ElementRef, DynamicComponentLoader,
-  ComponentRef, Provider, Injector
+  Directive, Input, HostListener, DynamicComponentLoader,
+  ComponentRef, Provider, ReflectiveInjector, ViewContainerRef
 } from 'angular2/core';
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainer} from './tooltip-container.component';
@@ -16,14 +16,14 @@ export class Tooltip {
   @Input('tooltipAppendToBody') public appendToBody:boolean;
   /* tslint:enable */
 
-  public element:ElementRef;
+  public viewContainerRef:ViewContainerRef;
   public loader:DynamicComponentLoader;
 
   private visible:boolean = false;
   private tooltip:Promise<ComponentRef>;
 
-  public constructor(element:ElementRef, loader:DynamicComponentLoader) {
-    this.element = element;
+  public constructor(viewContainerRef:ViewContainerRef, loader:DynamicComponentLoader) {
+    this.viewContainerRef = viewContainerRef;
     this.loader = loader;
   }
 
@@ -40,15 +40,15 @@ export class Tooltip {
       content: this.content,
       placement: this.placement,
       animation: this.animation,
-      hostEl: this.element
+      hostEl: this.viewContainerRef
     });
 
-    let binding = Injector.resolve([
+    let binding = ReflectiveInjector.resolve([
       new Provider(TooltipOptions, {useValue: options})
     ]);
 
     this.tooltip = this.loader
-      .loadNextToLocation(TooltipContainer, this.element, binding)
+      .loadNextToLocation(TooltipContainer, this.viewContainerRef, binding)
       .then((componentRef:ComponentRef) => {
         return componentRef;
       });
@@ -63,7 +63,7 @@ export class Tooltip {
     }
     this.visible = false;
     this.tooltip.then((componentRef:ComponentRef) => {
-      componentRef.dispose();
+      componentRef.destroy();
       return componentRef;
     });
   }

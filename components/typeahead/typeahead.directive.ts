@@ -1,6 +1,6 @@
 import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
-  Renderer, DynamicComponentLoader, ComponentRef, Injector, provide
+  Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
 } from 'angular2/core';
 import {NgModel} from 'angular2/common';
 import {TypeaheadUtils} from './typeahead-utils';
@@ -49,6 +49,7 @@ export class Typeahead implements OnInit {
   private popup:Promise<ComponentRef>;
 
   private cd:NgModel;
+  private viewContainerRef:ViewContainerRef;
   private element:ElementRef;
   private renderer:Renderer;
   private loader:DynamicComponentLoader;
@@ -150,10 +151,11 @@ export class Typeahead implements OnInit {
     }
   }
 
-  public constructor(cd:NgModel, element:ElementRef,
+  public constructor(cd:NgModel, viewContainerRef:ViewContainerRef, element:ElementRef,
                      renderer:Renderer, loader:DynamicComponentLoader) {
-    this.cd = cd;
     this.element = element;
+    this.cd = cd;
+    this.viewContainerRef = viewContainerRef;
     this.renderer = renderer;
     this.loader = loader;
   }
@@ -207,14 +209,14 @@ export class Typeahead implements OnInit {
       animation: false
     });
 
-    let binding = Injector.resolve([
+    let binding = ReflectiveInjector.resolve([
       provide(TypeaheadOptions, {useValue: options})
     ]);
 
     this.popup = this.loader
-      .loadNextToLocation(TypeaheadContainer, this.element, binding)
+      .loadNextToLocation(TypeaheadContainer, this.viewContainerRef, binding)
       .then((componentRef:ComponentRef) => {
-        componentRef.instance.position(this.element);
+        componentRef.instance.position(this.viewContainerRef);
         this.container = componentRef.instance;
         this.container.parent = this;
         // This improves the speedas it won't have to be done for each list item
@@ -235,7 +237,7 @@ export class Typeahead implements OnInit {
   public hide():void {
     if (this.container) {
       this.popup.then((componentRef:ComponentRef) => {
-        componentRef.dispose();
+        componentRef.destroy();
         this.container = void 0;
         return componentRef;
       });

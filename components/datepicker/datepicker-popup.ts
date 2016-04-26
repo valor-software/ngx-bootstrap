@@ -1,6 +1,6 @@
 import {
   Component, Directive, EventEmitter, ComponentRef, ViewEncapsulation,
-  ElementRef, DynamicComponentLoader, Self, Renderer, bind, Injector
+  ElementRef, DynamicComponentLoader, Self, Renderer, ReflectiveInjector, provide, ViewContainerRef
 } from 'angular2/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
@@ -121,7 +121,7 @@ class PopupContainer {
 })
 export class DatePickerPopup {
   public cd:NgModel;
-  public element:ElementRef;
+  public viewContainerRef:ViewContainerRef;
   public renderer:Renderer;
   public loader:DynamicComponentLoader;
 
@@ -130,10 +130,10 @@ export class DatePickerPopup {
   private placement:string = 'bottom';
   private popup:Promise<ComponentRef>;
 
-  public constructor(@Self() cd:NgModel, element:ElementRef,
+  public constructor(@Self() cd:NgModel, viewContainerRef:ViewContainerRef,
                      renderer:Renderer, loader:DynamicComponentLoader) {
     this.cd = cd;
-    this.element = element;
+    this.viewContainerRef = viewContainerRef;
     this.renderer = renderer;
     this.loader = loader;
     this.activeDate = cd.model;
@@ -168,7 +168,7 @@ export class DatePickerPopup {
   public hide(cb:Function):void {
     if (this.popup) {
       this.popup.then((componentRef:ComponentRef) => {
-        componentRef.dispose();
+        componentRef.destroy();
         cb();
         return componentRef;
       });
@@ -182,15 +182,14 @@ export class DatePickerPopup {
       placement: this.placement
     });
 
-    let binding = Injector.resolve([
-      bind(PopupOptions)
-        .toValue(options)
+    let binding = ReflectiveInjector.resolve([
+      provide(PopupOptions, {useValue: options})
     ]);
 
     this.popup = this.loader
-      .loadNextToLocation(PopupContainer, this.element, binding)
+      .loadNextToLocation(PopupContainer, this.viewContainerRef, binding)
       .then((componentRef:ComponentRef) => {
-        componentRef.instance.position(this.element);
+        componentRef.instance.position(this.viewContainerRef);
         componentRef.instance.popupComp = this;
         /*componentRef.instance.update1.observer({
          next: (newVal) => {
