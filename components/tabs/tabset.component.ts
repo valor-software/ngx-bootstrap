@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, Input} from 'angular2/core';
+import {Component, OnInit, OnDestroy, HostBinding, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {NgTransclude} from '../common';
 import {Tab} from './tab.directive';
@@ -35,6 +35,8 @@ export class Tabset implements OnInit, OnDestroy {
 
   @Input()
   public get type():string {return this._type;};
+
+  @HostBinding('class.tab-container') protected clazz:boolean = true;
 
   public set vertical(value:boolean) {
     this._vertical = value;
