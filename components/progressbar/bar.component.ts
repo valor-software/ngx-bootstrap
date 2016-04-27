@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, Input, Host} from 'angular2/core';
 import {NgClass, NgStyle} from 'angular2/common';
-import {Progress} from './progress.directive';
+import {ProgressDirective} from './progress.directive';
 
 // todo: number pipe
 // todo: use query from progress?
@@ -19,7 +19,7 @@ import {Progress} from './progress.directive';
     [attr.aria-valuemax]="max"><ng-content></ng-content></div>
 `
 })
-export class Bar implements OnInit, OnDestroy {
+export class BarComponent implements OnInit, OnDestroy {
   @Input() public type:string;
 
   @Input()
@@ -37,10 +37,10 @@ export class Bar implements OnInit, OnDestroy {
 
   public percent:number = 0;
   public transition:string;
-  public progress:Progress;
+  public progress:ProgressDirective;
 
   private _value:number;
-  public constructor(@Host() progress:Progress) {
+  public constructor(@Host() progress:ProgressDirective) {
     this.progress = progress;
   }
 
@@ -55,7 +55,7 @@ export class Bar implements OnInit, OnDestroy {
   public recalculatePercentage():void {
     this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 
-    let totalPercentage = this.progress.bars.reduce(function (total:number, bar:Bar):number {
+    let totalPercentage = this.progress.bars.reduce(function (total:number, bar:BarComponent):number {
       return total + bar.percent;
     }, 0);
 

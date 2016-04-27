@@ -1,8 +1,8 @@
-import {Tab} from './tabs/tab.directive';
-import {Tabset} from './tabs/tabset.component';
-import {TabHeading} from './tabs/tab-heading.directive';
+import {TabDirective} from './tabs/tab.directive';
+import {TabsetComponent} from './tabs/tabset.component';
+import {TabHeadingDirective} from './tabs/tab-heading.directive';
 
-export {Tab} from './tabs/tab.directive';
-export {Tabset} from './tabs/tabset.component';
-export {TabHeading} from './tabs/tab-heading.directive';
-export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
+export {TabDirective} from './tabs/tab.directive';
+export {TabsetComponent} from './tabs/tabset.component';
+export {TabHeadingDirective} from './tabs/tab-heading.directive';
+export const TAB_DIRECTIVES:Array<any> = [TabDirective, TabHeadingDirective, TabsetComponent];

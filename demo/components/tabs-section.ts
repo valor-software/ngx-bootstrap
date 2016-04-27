@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {TabsDemo} from './tabs/tabs-demo';
+import {TabsDemoComponent} from './tabs/tabs-demo';
 
 let name = 'Tabs';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tabs/tabs.ts';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
 
 @Component({
   selector: 'tabs-section',
-  directives: [TabsDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [TabsDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
   </section>
   `
 })
-export class TabsSection {
+export class TabsSectionComponent {
 }

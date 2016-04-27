@@ -10,7 +10,7 @@ let template = require('./carousel-demo.html');
   directives: [CAROUSEL_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: template
 })
-export class CarouselDemo {
+export class CarouselDemoComponent {
   public myInterval:number = 5000;
   public noWrapSlides:boolean = false;
   public slides:Array<any> = [];

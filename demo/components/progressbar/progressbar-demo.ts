@@ -17,7 +17,7 @@ let templates:any = {
   directives: [PROGRESSBAR_DIRECTIVES, CORE_DIRECTIVES],
   template: templates[Ng2BootstrapConfig.theme]
 })
-export class ProgressbarDemo {
+export class ProgressbarDemoComponent {
   public max:number = 200;
   public showWarning:boolean;
   public dynamic:number;

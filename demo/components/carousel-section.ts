@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {CarouselDemo} from './carousel/carousel-demo';
+import {CarouselDemoComponent} from './carousel/carousel-demo';
 
 let name = 'Carousel';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/carousel/';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./carousel/carousel-demo.html');
 
 @Component({
   selector: 'carousel-section',
-  directives: [CarouselDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [CarouselDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./carousel/carousel-demo.html');
   </section>
   `
 })
-export class CarouselSection {
+export class CarouselSectionComponent {
 }

@@ -10,7 +10,7 @@ let template = require('./typeahead-demo.html');
   directives: [TYPEAHEAD_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: template
 })
-export class TypeaheadDemo {
+export class TypeaheadDemoComponent {
   public selected:string = '';
   public asyncSelected:string = '';
   public typeaheadLoading:boolean = false;

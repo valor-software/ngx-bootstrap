@@ -1,6 +1,8 @@
 ### Usage
 ```typescript
 import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+// or
+import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';
 ```
 
 ```html

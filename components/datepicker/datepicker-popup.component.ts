@@ -7,7 +7,7 @@ import {
 } from 'angular2/common';
 import {KeyAttribute} from '../common';
 import {positionService} from '../position';
-import {DatePicker} from './datepicker';
+import {DatePickerComponent} from './datepicker.component';
 
 // import {DatePickerInner} from './datepicker-inner';
 // import {DayPicker} from './daypicker';
@@ -53,12 +53,11 @@ const datePickerPopupConfig:KeyAttribute = {
             <button type="button" class="btn btn-sm btn-success pull-right" (click)="close()">{{ getText('close') }}</button>
         </li>
     </ul>`,
-  directives: [NgClass, NgStyle, DatePicker, FORM_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [NgClass, NgStyle, DatePickerComponent, FORM_DIRECTIVES, CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
-
-class PopupContainer {
-  public popupComp:DatePickerPopup;
+class PopupContainerComponent {
+  public popupComp:DatePickerPopupDirective;
 
   private classMap:any;
   private top:string;
@@ -119,7 +118,7 @@ class PopupContainer {
   properties: ['datepickerPopup', 'isOpen']/*,
    host: {'(cupdate)': 'onUpdate1($event)'}*/
 })
-export class DatePickerPopup {
+export class DatePickerPopupDirective {
   public cd:NgModel;
   public viewContainerRef:ViewContainerRef;
   public renderer:Renderer;
@@ -187,7 +186,7 @@ export class DatePickerPopup {
     ]);
 
     this.popup = this.loader
-      .loadNextToLocation(PopupContainer, this.viewContainerRef, binding)
+      .loadNextToLocation(PopupContainerComponent, this.viewContainerRef, binding)
       .then((componentRef:ComponentRef) => {
         componentRef.instance.position(this.viewContainerRef);
         componentRef.instance.popupComp = this;

@@ -3,7 +3,7 @@
 import {Component, OnDestroy, Input} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {Slide} from './slide.component';
+import {SlideComponent} from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
 
@@ -43,7 +43,7 @@ const NAVIGATION:any = {
     </div>
   `
 })
-export class Carousel implements OnDestroy {
+export class CarouselComponent implements OnDestroy {
   @Input() public noWrap:boolean;
   @Input() public noPause:boolean;
   @Input() public noTransition:boolean;
@@ -58,18 +58,18 @@ export class Carousel implements OnDestroy {
     this.restartTimer();
   }
 
-  private slides:Array<Slide> = [];
+  private slides:Array<SlideComponent> = [];
   private currentInterval:any;
   private isPlaying:boolean;
   private destroyed:boolean = false;
-  private currentSlide:Slide;
+  private currentSlide:SlideComponent;
   private _interval:number;
 
   public ngOnDestroy():void {
     this.destroyed = true;
   }
 
-  public select(nextSlide:Slide, direction:Direction = Direction.UNKNOWN):void {
+  public select(nextSlide:SlideComponent, direction:Direction = Direction.UNKNOWN):void {
     let nextIndex = nextSlide.index;
     if (direction === Direction.UNKNOWN) {
       direction = nextIndex > this.getCurrentIndex()
@@ -122,7 +122,7 @@ export class Carousel implements OnDestroy {
     return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
   }
 
-  public addSlide(slide:Slide):void {
+  public addSlide(slide:SlideComponent):void {
     slide.index = this.slides.length;
     this.slides.push(slide);
     if (this.slides.length === 1 || slide.active) {
@@ -135,7 +135,7 @@ export class Carousel implements OnDestroy {
     }
   }
 
-  public removeSlide(slide:Slide):void {
+  public removeSlide(slide:SlideComponent):void {
     this.slides.splice(slide.index, 1);
 
     if (this.slides.length === 0) {
@@ -148,7 +148,7 @@ export class Carousel implements OnDestroy {
     }
   }
 
-  private goNext(slide:Slide, direction:Direction):void {
+  private goNext(slide:SlideComponent, direction:Direction):void {
     if (this.destroyed) {
       return;
     }

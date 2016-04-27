@@ -48,7 +48,7 @@ const SHORTCUT_PROPAGATION = false;
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
 })
-export class DatePickerInner implements OnInit {
+export class DatePickerInnerComponent implements OnInit {
   @Input() public datepickerMode:string;
   @Input() public startingDay:number;
   @Input() public yearRange:number;

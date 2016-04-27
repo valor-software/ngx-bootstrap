@@ -1,8 +1,8 @@
-import {Dropdown} from './dropdown/dropdown.directive';
-import {DropdownMenu} from './dropdown/dropdown-menu.directive';
-import {DropdownToggle} from './dropdown/dropdown-toggle.directive';
+import {DropdownDirective} from './dropdown/dropdown.directive';
+import {DropdownMenuDirective} from './dropdown/dropdown-menu.directive';
+import {DropdownToggleDirective} from './dropdown/dropdown-toggle.directive';
 
-export {Dropdown} from './dropdown/dropdown.directive';
-export {DropdownMenu} from './dropdown/dropdown-menu.directive';
-export {DropdownToggle} from './dropdown/dropdown-toggle.directive';
-export const DROPDOWN_DIRECTIVES: Array<any> = [Dropdown, DropdownToggle, DropdownMenu];
+export {DropdownDirective} from './dropdown/dropdown.directive';
+export {DropdownMenuDirective} from './dropdown/dropdown-menu.directive';
+export {DropdownToggleDirective} from './dropdown/dropdown-toggle.directive';
+export const DROPDOWN_DIRECTIVES: Array<any> = [DropdownDirective, DropdownToggleDirective, DropdownMenuDirective];

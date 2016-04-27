@@ -10,7 +10,7 @@ let template = require('./pagination-demo.html');
   directives: [PAGINATION_DIRECTIVES, FORM_DIRECTIVES, CORE_DIRECTIVES],
   template: template
 })
-export class PaginationDemo {
+export class PaginationDemoComponent {
   public totalItems:number = 64;
   public currentPage:number = 4;
 

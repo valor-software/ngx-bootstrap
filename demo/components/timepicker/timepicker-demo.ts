@@ -1,16 +1,16 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-import {Timepicker} from '../../../ng2-bootstrap';
+import {TimepickerComponent} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./timepicker-demo.html');
 
 @Component({
   selector: 'timepicker-demo',
-  directives: [Timepicker, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [TimepickerComponent, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: template
 })
-export class TimepickerDemo {
+export class TimepickerDemoComponent {
   public hstep:number = 1;
   public mstep:number = 15;
   public ismeridian:boolean = true;

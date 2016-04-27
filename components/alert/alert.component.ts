@@ -17,12 +17,12 @@ const ALERT_TEMPLATE = `
   directives: [NgIf, NgClass],
   template: ALERT_TEMPLATE
 })
-export class Alert implements OnInit {
+export class AlertComponent implements OnInit {
   @Input() public type:string = 'warning';
   @Input() public dismissible:boolean;
   @Input() public dismissOnTimeout:number;
 
-  @Output() public close:EventEmitter<Alert> = new EventEmitter(false);
+  @Output() public close:EventEmitter<AlertComponent> = new EventEmitter(false);
 
   private closed:boolean;
   private classes:Array<string> = [];

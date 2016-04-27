@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {DatepickerDemo} from './datepicker/datepicker-demo';
+import {DatepickerDemoComponent} from './datepicker/datepicker-demo';
 
 let name = 'Datepicker';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/datepicker/datepicker.ts';
@@ -58,7 +58,7 @@ let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
     </div>
   </section>
   `,
-  directives: [DatepickerDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [DatepickerDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class DatepickerSection {
+export class DatepickerSectionComponent {
 }

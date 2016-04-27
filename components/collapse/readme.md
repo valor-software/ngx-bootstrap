@@ -1,13 +1,15 @@
 ### Usage
 ```typescript
-import { Collapse } from 'ng2-bootstrap/ng2-bootstrap';
+import { CollapseDirective } from 'ng2-bootstrap/ng2-bootstrap';
+// or
+import { CollapseDirective } from 'ng2-bootstrap/components/collapse';
 ```
 
 ### Annotations
 ```typescript
 // class Collapse
 @Directive({ selector: '[collapse]' })
-export class Collapse {
+export class CollapseDirective {
   @Input() public set collapse(value:boolean) {}
 }
 ```

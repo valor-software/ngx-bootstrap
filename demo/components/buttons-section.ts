@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {ButtonsDemo} from './buttons/buttons-demo';
+import {ButtonsDemoComponent} from './buttons/buttons-demo';
 
 let name = 'Buttons';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/buttons/';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
   selector: 'buttons-section',
-  directives: [ButtonsDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [ButtonsDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
   </section>
   `
 })
-export class ButtonsSection {
+export class ButtonsSectionComponent {
 }

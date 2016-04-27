@@ -1,6 +1,6 @@
-import {Pagination} from './pagination/pagination.component';
-import {Pager} from './pagination/pager.component';
+import {PaginationComponent} from './pagination/pagination.component';
+import {PagerComponent} from './pagination/pager.component';
 
-export {Pagination} from './pagination/pagination.component';
-export {Pager} from './pagination/pager.component';
-export const PAGINATION_DIRECTIVES:Array<any> = [Pagination, Pager];
+export {PaginationComponent} from './pagination/pagination.component';
+export {PagerComponent} from './pagination/pager.component';
+export const PAGINATION_DIRECTIVES:Array<any> = [PaginationComponent, PagerComponent];

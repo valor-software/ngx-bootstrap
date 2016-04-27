@@ -3,10 +3,10 @@ import {
   ComponentRef, Provider, ReflectiveInjector, ViewContainerRef
 } from 'angular2/core';
 import {TooltipOptions} from './tooltip-options.class';
-import {TooltipContainer} from './tooltip-container.component';
+import {TooltipContainerComponent} from './tooltip-container.component';
 
 @Directive({selector: '[tooltip]'})
-export class Tooltip {
+export class TooltipDirective {
   /* tslint:disable */
   @Input('tooltip') public content:string;
   @Input('tooltipPlacement') public placement:string = 'top';
@@ -48,7 +48,7 @@ export class Tooltip {
     ]);
 
     this.tooltip = this.loader
-      .loadNextToLocation(TooltipContainer, this.viewContainerRef, binding)
+      .loadNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding)
       .then((componentRef:ComponentRef) => {
         return componentRef;
       });

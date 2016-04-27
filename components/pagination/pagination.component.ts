@@ -77,7 +77,7 @@ const PAGINATION_TEMPLATE = `
   directives: [NgFor, NgIf]
 })
 /* tslint:enable */
-export class Pagination implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
+export class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
   public config:any;
   @Input() public maxSize:number;
 

@@ -2,13 +2,13 @@ import {
   Component, OnInit, OnDestroy, Input, HostBinding, Inject
 } from 'angular2/core';
 import {NgClass} from 'angular2/common';
-import {Collapse} from '../collapse';
-import {Accordion} from './accordion.component';
+import {CollapseDirective} from '../collapse';
+import {AccordionComponent} from './accordion.component';
 
 /* tslint:disable:component-selector-name */
 @Component({
   selector: 'accordion-group, accordion-panel',
-  directives: [Collapse, NgClass],
+  directives: [CollapseDirective, NgClass],
   template: `
     <div class="panel" [ngClass]="panelClass">
       <div class="panel-heading" (click)="toggleOpen($event)">
@@ -27,7 +27,7 @@ import {Accordion} from './accordion.component';
     </div>
   `
 })
-export class AccordionPanel implements OnInit, OnDestroy {
+export class AccordionPanelComponent implements OnInit, OnDestroy {
   @Input() public heading:string;
   @Input() public panelClass:string;
   @Input() public isDisabled:boolean;
@@ -46,9 +46,9 @@ export class AccordionPanel implements OnInit, OnDestroy {
   }
 
   private _isOpen:boolean;
-  private accordion:Accordion;
+  private accordion:AccordionComponent;
 
-  public constructor(@Inject(Accordion) accordion:Accordion) {
+  public constructor(@Inject(AccordionComponent) accordion:AccordionComponent) {
     this.accordion = accordion;
   }
 

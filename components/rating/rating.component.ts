@@ -17,7 +17,7 @@ import {NgFor, ControlValueAccessor, NgModel} from 'angular2/common';
     </span>
   `
 })
-export class Rating implements ControlValueAccessor, OnInit {
+export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public max:number;
   @Input() public stateOn:string;
   @Input() public stateOff:string;

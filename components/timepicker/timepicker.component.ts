@@ -82,7 +82,7 @@ function addMinutes(date:any, minutes:number):Date {
     </table>
   `
 })
-export class Timepicker implements ControlValueAccessor, OnInit {
+export class TimepickerComponent implements ControlValueAccessor, OnInit {
   public cd:NgModel;
   // config
   @Input() public hourStep:number;

@@ -1,7 +1,7 @@
 import {Component, OnInit} from 'angular2/core';
 import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {DatePickerInner} from './datepicker-inner';
+import {DatePickerInnerComponent} from './datepicker-inner.component';
 
 // write an interface for template options
 const TEMPLATE_OPTIONS:any = {
@@ -93,15 +93,15 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class DayPicker implements OnInit {
+export class DayPickerComponent implements OnInit {
 
   public labels:Array<any> = [];
   public title:string;
   public rows:Array<any> = [];
   public weekNumbers:Array<number> = [];
-  public datePicker:DatePickerInner;
+  public datePicker:DatePickerInnerComponent;
 
-  public constructor(datePicker:DatePickerInner) {
+  public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 

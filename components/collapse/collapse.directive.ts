@@ -6,7 +6,7 @@ import {AnimationBuilder} from 'angular2/src/animate/animation_builder';
 // TODO: remove ElementRef
 // TODO: add on change
 @Directive({selector: '[collapse]'})
-export class Collapse implements OnInit {
+export class CollapseDirective implements OnInit {
   private animation:any;
 
   // style

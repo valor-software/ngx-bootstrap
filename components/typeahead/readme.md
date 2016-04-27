@@ -9,7 +9,7 @@ import { TYPEAHEAD_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 @Directive({
   selector: 'typeahead, [typeahead]'
 })
-export class Typeahead implements OnInit {
+export class TypeaheadDirective implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean>;
   @Output() public typeaheadNoResults:EventEmitter<boolean>;
   @Output() public typeaheadOnSelect:EventEmitter<{item: any}>;

@@ -18,7 +18,7 @@ import {TooltipOptions} from './tooltip-options.class';
       </div>
     </div>`
 })
-export class TooltipContainer implements AfterViewInit {
+export class TooltipContainerComponent implements AfterViewInit {
   /* tslint:disable */
   private classMap:any;
   private top:string = '-1000px';

@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {RatingDemo} from './rating/rating-demo';
+import {RatingDemoComponent} from './rating/rating-demo';
 
 let name = 'Rating';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating/rating.ts';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./rating/rating-demo.html');
 
 @Component({
   selector: 'rating-section',
-  directives: [RatingDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [RatingDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./rating/rating-demo.html');
   </section>
   `
 })
-export class RatingSection {
+export class RatingSectionComponent {
 }

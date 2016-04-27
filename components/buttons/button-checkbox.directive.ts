@@ -4,7 +4,7 @@ import {
 import {ControlValueAccessor, NgModel} from 'angular2/common';
 
 @Directive({selector: '[btnCheckbox][ngModel]'})
-export class ButtonCheckbox implements ControlValueAccessor, OnInit {
+export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   public cd:NgModel;
   @Input() public btnCheckboxTrue:any;
 

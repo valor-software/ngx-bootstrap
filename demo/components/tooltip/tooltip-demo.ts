@@ -23,7 +23,7 @@ let template = require('./tooltip-demo.html');
     }
   `]
 })
-export class TooltipDemo {
+export class TooltipDemoComponent {
   public dynamicTooltip:string = 'Hello, World!';
   public dynamicTooltipText:string = 'dynamic';
   public htmlTooltip:string = 'I\'ve been made <b>bold</b>!';

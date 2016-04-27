@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {TooltipDemo} from './tooltip/tooltip-demo';
+import {TooltipDemoComponent} from './tooltip/tooltip-demo';
 
 let name = 'Tooltip';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tooltip/tooltip.ts';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./tooltip/tooltip-demo.html');
 
 @Component({
   selector: 'tooltip-section',
-  directives: [TooltipDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [TooltipDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./tooltip/tooltip-demo.html');
   </section>
   `
 })
-export class TooltipSection {
+export class TooltipSectionComponent {
 }

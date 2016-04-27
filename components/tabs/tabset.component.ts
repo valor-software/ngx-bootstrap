@@ -1,12 +1,12 @@
 import {Component, OnInit, OnDestroy, HostBinding, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
-import {NgTransclude} from '../common';
-import {Tab} from './tab.directive';
+import {NgTranscludeDirective} from '../common';
+import {TabDirective} from './tab.directive';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  directives: [NgClass, NgTransclude],
+  directives: [NgClass, NgTranscludeDirective],
   template: `
     <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
         <li *ngFor="#tabz of tabs" class="nav-item"
@@ -26,7 +26,7 @@ import {Tab} from './tab.directive';
     </div>
   `
 })
-export class Tabset implements OnInit, OnDestroy {
+export class TabsetComponent implements OnInit, OnDestroy {
   @Input()
   public get vertical():boolean { return this._vertical;};
 
@@ -53,7 +53,7 @@ export class Tabset implements OnInit, OnDestroy {
     this.setClassMap();
   }
 
-  public tabs:Array<Tab> = [];
+  public tabs:Array<TabDirective> = [];
 
   private isDestroyed:boolean;
   private _vertical:boolean;
@@ -69,12 +69,12 @@ export class Tabset implements OnInit, OnDestroy {
     this.isDestroyed = true;
   }
 
-  public addTab(tab:Tab):void {
+  public addTab(tab:TabDirective):void {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active !== false;
   }
 
-  public removeTab(tab:Tab):void {
+  public removeTab(tab:TabDirective):void {
     let index = this.tabs.indexOf(tab);
     if (index === -1 || this.isDestroyed) {
       return;

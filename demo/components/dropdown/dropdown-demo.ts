@@ -10,7 +10,7 @@ let template = require('./dropdown-demo.html');
   directives: [DROPDOWN_DIRECTIVES, CORE_DIRECTIVES],
   template: template
 })
-export class DropdownDemo {
+export class DropdownDemoComponent {
   public disabled:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
   public items:Array<string> = ['The first choice!',

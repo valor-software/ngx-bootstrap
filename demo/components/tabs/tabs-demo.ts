@@ -11,7 +11,7 @@ let template = require('./tabs-demo.html');
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: template
 })
-export class TabsDemo {
+export class TabsDemoComponent {
   public tabs:Array<any> = [
     {title: 'Dynamic Title 1', content: 'Dynamic content 1'},
     {title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true},

@@ -12,7 +12,7 @@ let template = require('./datepicker-demo.html');
   template: template,
   directives: [DATEPICKER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
-export class DatepickerDemo {
+export class DatepickerDemoComponent {
   public dt:Date = new Date();
   public minDate:Date = void 0;
   public events:Array<any>;

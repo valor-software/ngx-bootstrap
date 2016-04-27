@@ -11,7 +11,7 @@ let template = require('./accordion-demo.html');
   template: template,
   directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
-export class AccordionDemo {
+export class AccordionDemoComponent {
   public oneAtATime:boolean = true;
   public items:Array<string> = ['Item 1', 'Item 2', 'Item 3'];
 

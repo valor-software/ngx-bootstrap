@@ -4,7 +4,7 @@ import {
 import {ControlValueAccessor, NgModel} from 'angular2/common';
 
 @Directive({selector: '[btnRadio][ngModel]'})
-export class ButtonRadio implements ControlValueAccessor, OnInit {
+export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   public cd:NgModel;
   public el:ElementRef;
 

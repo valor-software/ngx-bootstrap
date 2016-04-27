@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {TypeaheadDemo} from './typeahead/typeahead-demo';
+import {TypeaheadDemoComponent} from './typeahead/typeahead-demo';
 
 let name = 'Typeahead';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/typeahead/typeahead.ts';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./typeahead/typeahead-demo.html');
 
 @Component({
   selector: 'typeahead-section',
-  directives: [TypeaheadDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [TypeaheadDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./typeahead/typeahead-demo.html');
   </section>
   `
 })
-export class TypeaheadSection {
+export class TypeaheadSectionComponent {
 }

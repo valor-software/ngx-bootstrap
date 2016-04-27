@@ -71,6 +71,6 @@ export class DemoSectionConfig {
   `,
   directives: [TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class DemoSection {
+export class DemoSectionComponent {
   public demoSection:DemoSectionConfig;
 }

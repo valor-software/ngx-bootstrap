@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {
-  Collapse, DROPDOWN_DIRECTIVES, Ng2BootstrapConfig, Ng2BootstrapTheme
+  CollapseDirective, DROPDOWN_DIRECTIVES, Ng2BootstrapConfig, Ng2BootstrapTheme
 } from '../../ng2-bootstrap';
 
 let components = [
@@ -50,11 +50,11 @@ let template = `
   template: template,
   directives: [
     CORE_DIRECTIVES,
-    Collapse,
+    CollapseDirective,
     DROPDOWN_DIRECTIVES
   ]
 })
-export class DemoHeader {
+export class DemoHeaderComponent {
   public components:Array<string> = components;
   public isCollapsed:boolean = true;
   public prefix:string;

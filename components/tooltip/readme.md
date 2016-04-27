@@ -7,7 +7,7 @@ import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```typescript
 // class Tooltip implements OnInit
 @Directive({ selector: '[tooltip]' })
-export class Tooltip implements OnInit {
+export class TooltipDirective implements OnInit {
   @Input('tooltip') private content:string;
   @Input('tooltipPlacement') private placement:string = 'top';
   @Input('tooltipIsOpen') private isOpen:boolean;
