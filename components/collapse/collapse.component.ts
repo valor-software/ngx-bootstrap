@@ -1,4 +1,4 @@
-import {Directive, OnInit, ElementRef, Input, HostBinding} from 'angular2/core';
+import {Directive, OnInit, ElementRef, Input, HostBinding, Renderer} from 'angular2/core';
 import {AnimationBuilder} from 'angular2/src/animate/animation_builder';
 // fix: replace with // 'angular2/animate';
 // when https://github.com/angular/angular/issues/5984 will be fixed
@@ -42,11 +42,12 @@ export class Collapse implements OnInit {
 
   private _ab:AnimationBuilder;
   private _el:ElementRef;
+  private _renderer:Renderer;
 
-  public constructor(_ab:AnimationBuilder, _el:ElementRef) {
+  public constructor(_ab:AnimationBuilder, _el:ElementRef, _renderer: Renderer) {
     this._ab = _ab;
     this._el = _el;
-
+    this._renderer = _renderer;
   }
 
   public ngOnInit():void {
@@ -120,6 +121,8 @@ export class Collapse implements OnInit {
           .onComplete(() => {
             this.isCollapse = true;
             this.isCollapsing = false;
+            this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
+            this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
           });
       }, 4);
   }

@@ -58,7 +58,7 @@ export class TooltipContainer implements AfterViewInit {
     if (this.animation) {
       this.classMap.fade = true;
     }
-    
+
     this.cdr.detectChanges();
   }
 }

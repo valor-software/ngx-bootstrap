@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, OnDestroy, HostBinding, Input} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {NgTransclude} from '../common';
 import {Tab} from './tab.directive';
@@ -26,7 +26,7 @@ import {Tab} from './tab.directive';
     </div>
   `
 })
-export class Tabset implements OnInit {
+export class Tabset implements OnInit, OnDestroy {
   @Input()
   public get vertical():boolean { return this._vertical;};
 
@@ -35,6 +35,8 @@ export class Tabset implements OnInit {
 
   @Input()
   public get type():string {return this._type;};
+
+  @HostBinding('class.tab-container') protected clazz:boolean = true;
 
   public set vertical(value:boolean) {
     this._vertical = value;
@@ -58,9 +60,6 @@ export class Tabset implements OnInit {
   private _justified:boolean;
   private _type:string;
   private classMap:any = {};
-
-  public constructor() {
-  }
 
   public ngOnInit():void {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';

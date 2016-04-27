@@ -1,7 +1,5 @@
 import {Component, Self, Input} from 'angular2/core';
-import {
-  CORE_DIRECTIVES, FORM_DIRECTIVES, ControlValueAccessor, NgModel
-} from 'angular2/common';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, ControlValueAccessor, NgModel} from 'angular2/common';
 import {DatePickerInner} from './datepicker-inner';
 import {DayPicker} from './daypicker';
 import {MonthPicker} from './monthpicker';
@@ -65,7 +63,11 @@ export class DatePicker implements ControlValueAccessor {
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
+  public onChange:any = Function.prototype;
+  public onTouched:any = Function.prototype;
+
   public cd:NgModel;
+  private _now:Date = new Date();
   private _activeDate:Date;
 
   @Input()
@@ -78,8 +80,6 @@ export class DatePicker implements ControlValueAccessor {
     // hack
     cd.valueAccessor = this;
   }
-
-  private _now:Date = new Date();
 
   public set activeDate(value:Date) {
     this._activeDate = value;
@@ -110,9 +110,6 @@ export class DatePicker implements ControlValueAccessor {
 
     this.activeDate = value ? new Date(value) : void 0;
   }
-
-  public onChange:any = () => {};
-  public onTouched:any = () => {};
 
   public registerOnChange(fn:(_:any) => {}):void { this.onChange = fn; }
 

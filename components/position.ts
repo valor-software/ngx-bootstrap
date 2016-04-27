@@ -1,4 +1,4 @@
-import {IAttribute} from './common';
+import {KeyAttribute} from './common';
 
 export class PositionService {
   /**
@@ -50,7 +50,7 @@ export class PositionService {
       this.position(hostEl);
     let targetElWidth = targetEl.offsetWidth;
     let targetElHeight = targetEl.offsetHeight;
-    let shiftWidth:IAttribute = {
+    let shiftWidth:KeyAttribute = {
       center: function ():number {
         return hostElPos.left + hostElPos.width / 2 - targetElWidth / 2;
       },
@@ -62,7 +62,7 @@ export class PositionService {
       }
     };
 
-    let shiftHeight:IAttribute = {
+    let shiftHeight:KeyAttribute = {
       center: function ():number {
         return hostElPos.top + hostElPos.height / 2 - targetElHeight / 2;
       },
@@ -120,10 +120,10 @@ export class PositionService {
     }
 
     if (this.window.getComputedStyle) {
-      return (this.window.getComputedStyle(nativeEl) as IAttribute)[cssProp];
+      return (this.window.getComputedStyle(nativeEl) as KeyAttribute)[cssProp];
     }
     // finally try and get inline style
-    return (nativeEl.style as IAttribute)[cssProp];
+    return (nativeEl.style as KeyAttribute)[cssProp];
   }
 
   /**

@@ -8,14 +8,7 @@ gulp.paths = {
     '!**/*.d.ts',
     '!node_modules/**/*',
     '!bundles/**/*',
-    '!typings/**/*'],
-  jssrc: [
-    '*.js',
-    'gulp-tasks/*.js',
-    '!bundles/*.js',
-    '!ng2-bootstrap.js',
-    '!node_modules/**/*',
-    '!**/*.{ts,coffee}.js']
+    '!typings/**/*']
 };
 
 require('require-dir')('./gulp-tasks');
