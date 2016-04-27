@@ -1,4 +1,4 @@
-export declare class DemoHeader {
+export declare class DemoHeaderComponent {
     components: Array<string>;
     isCollapsed: boolean;
     prefix: string;

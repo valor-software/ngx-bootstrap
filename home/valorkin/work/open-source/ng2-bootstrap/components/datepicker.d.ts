@@ -1,3 +1,3 @@
-export { DatePickerPopup } from './datepicker/datepicker-popup';
-export { DatePicker } from './datepicker/datepicker';
+export { DatePickerPopupDirective } from './datepicker/datepicker-popup.component';
+export { DatePickerComponent } from './datepicker/datepicker.component';
 export declare const DATEPICKER_DIRECTIVES: Array<any>;

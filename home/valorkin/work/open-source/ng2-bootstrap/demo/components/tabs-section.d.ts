@@ -1,2 +1,2 @@
-export declare class TabsSection {
+export declare class TabsSectionComponent {
 }

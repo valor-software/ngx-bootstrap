@@ -1,2 +1,2 @@
-export declare class DatepickerSection {
+export declare class DatepickerSectionComponent {
 }

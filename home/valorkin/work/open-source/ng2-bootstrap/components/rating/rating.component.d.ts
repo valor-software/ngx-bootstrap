@@ -1,6 +1,6 @@
 import { OnInit, EventEmitter } from 'angular2/core';
 import { ControlValueAccessor, NgModel } from 'angular2/common';
-export declare class Rating implements ControlValueAccessor, OnInit {
+export declare class RatingComponent implements ControlValueAccessor, OnInit {
     max: number;
     stateOn: string;
     stateOff: string;

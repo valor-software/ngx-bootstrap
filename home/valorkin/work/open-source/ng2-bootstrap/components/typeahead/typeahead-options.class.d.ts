@@ -1,7 +1,7 @@
-import { Typeahead } from './typeahead.directive';
+import { TypeaheadDirective } from './typeahead.directive';
 export declare class TypeaheadOptions {
     placement: string;
     animation: boolean;
-    typeaheadRef: Typeahead;
+    typeaheadRef: TypeaheadDirective;
     constructor(options: TypeaheadOptions);
 }

@@ -1,6 +1,6 @@
 import { TemplateRef } from 'angular2/core';
-import { Tab } from './tab.directive';
-export declare class TabHeading {
+import { TabDirective } from './tab.directive';
+export declare class TabHeadingDirective {
     templateRef: TemplateRef;
-    constructor(templateRef: TemplateRef, tab: Tab);
+    constructor(templateRef: TemplateRef, tab: TabDirective);
 }

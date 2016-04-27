@@ -1,2 +1,2 @@
-export declare class AlertSection {
+export declare class AlertSectionComponent {
 }

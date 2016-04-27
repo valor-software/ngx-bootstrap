@@ -1,5 +1,5 @@
 import { OnInit, OnDestroy, EventEmitter, ElementRef } from 'angular2/core';
-export declare class Dropdown implements OnInit, OnDestroy {
+export declare class DropdownDirective implements OnInit, OnDestroy {
     isOpen: boolean;
     autoClose: string;
     keyboardNav: boolean;

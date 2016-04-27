@@ -1,6 +1,6 @@
 import { DynamicComponentLoader, Renderer, ViewContainerRef } from 'angular2/core';
 import { NgModel } from 'angular2/common';
-export declare class DatePickerPopup {
+export declare class DatePickerPopupDirective {
     cd: NgModel;
     viewContainerRef: ViewContainerRef;
     renderer: Renderer;

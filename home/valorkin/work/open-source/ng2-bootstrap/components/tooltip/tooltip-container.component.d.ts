@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, AfterViewInit } from 'angular2/core';
 import { TooltipOptions } from './tooltip-options.class';
-export declare class TooltipContainer implements AfterViewInit {
+export declare class TooltipContainerComponent implements AfterViewInit {
     private classMap;
     private top;
     private left;

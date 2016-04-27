@@ -4099,18 +4099,18 @@ webpackJsonp([2],[
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = {
 	    directives: [
-	        alert_1.Alert,
+	        alert_1.AlertComponent,
 	        accordion_1.ACCORDION_DIRECTIVES,
 	        buttons_1.BUTTON_DIRECTIVES,
 	        carousel_1.CAROUSEL_DIRECTIVES,
-	        collapse_1.Collapse,
+	        collapse_1.CollapseDirective,
 	        datepicker_1.DATEPICKER_DIRECTIVES,
 	        dropdown_1.DROPDOWN_DIRECTIVES,
 	        pagination_1.PAGINATION_DIRECTIVES,
 	        progressbar_1.PROGRESSBAR_DIRECTIVES,
-	        rating_1.Rating,
+	        rating_1.RatingComponent,
 	        tabs_1.TAB_DIRECTIVES,
-	        timepicker_1.Timepicker,
+	        timepicker_1.TimepickerComponent,
 	        tooltip_1.TOOLTIP_DIRECTIVES,
 	        typeahead_1.TYPEAHEAD_DIRECTIVES
 	    ]
@@ -4226,8 +4226,8 @@ webpackJsonp([2],[
 	var STARTING_DAY = 0;
 	var YEAR_RANGE = 20;
 	var SHORTCUT_PROPAGATION = false;
-	var DatePickerInner = (function () {
-	    function DatePickerInner() {
+	var DatePickerInnerComponent = (function () {
+	    function DatePickerInnerComponent() {
 	        this.stepDay = {};
 	        this.stepMonth = {};
 	        this.stepYear = {};
@@ -4235,7 +4235,7 @@ webpackJsonp([2],[
 	        this.dateFormatter = new date_formatter_1.DateFormatter();
 	        this.update = new core_1.EventEmitter(false);
 	    }
-	    Object.defineProperty(DatePickerInner.prototype, "activeDate", {
+	    Object.defineProperty(DatePickerInnerComponent.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate;
 	        },
@@ -4246,7 +4246,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DatePickerInner.prototype.ngOnInit = function () {
+	    DatePickerInnerComponent.prototype.ngOnInit = function () {
 	        this.formatDay = this.formatDay || FORMAT_DAY;
 	        this.formatMonth = this.formatMonth || FORMAT_MONTH;
 	        this.formatYear = this.formatYear || FORMAT_YEAR;
@@ -4276,7 +4276,7 @@ webpackJsonp([2],[
 	        }
 	        this.refreshView();
 	    };
-	    DatePickerInner.prototype.setCompareHandler = function (handler, type) {
+	    DatePickerInnerComponent.prototype.setCompareHandler = function (handler, type) {
 	        if (type === 'day') {
 	            this.compareHandlerDay = handler;
 	        }
@@ -4287,7 +4287,7 @@ webpackJsonp([2],[
 	            this.compareHandlerYear = handler;
 	        }
 	    };
-	    DatePickerInner.prototype.compare = function (date1, date2) {
+	    DatePickerInnerComponent.prototype.compare = function (date1, date2) {
 	        if (date1 === undefined || date2 === undefined) {
 	            return undefined;
 	        }
@@ -4302,7 +4302,7 @@ webpackJsonp([2],[
 	        }
 	        return void 0;
 	    };
-	    DatePickerInner.prototype.setRefreshViewHandler = function (handler, type) {
+	    DatePickerInnerComponent.prototype.setRefreshViewHandler = function (handler, type) {
 	        if (type === 'day') {
 	            this.refreshViewHandlerDay = handler;
 	        }
@@ -4313,7 +4313,7 @@ webpackJsonp([2],[
 	            this.refreshViewHandlerYear = handler;
 	        }
 	    };
-	    DatePickerInner.prototype.refreshView = function () {
+	    DatePickerInnerComponent.prototype.refreshView = function () {
 	        if (this.datepickerMode === 'day' && this.refreshViewHandlerDay) {
 	            this.refreshViewHandlerDay();
 	        }
@@ -4324,17 +4324,17 @@ webpackJsonp([2],[
 	            this.refreshViewHandlerYear();
 	        }
 	    };
-	    DatePickerInner.prototype.dateFilter = function (date, format) {
+	    DatePickerInnerComponent.prototype.dateFilter = function (date, format) {
 	        return this.dateFormatter.format(date, format);
 	    };
-	    DatePickerInner.prototype.isActive = function (dateObject) {
+	    DatePickerInnerComponent.prototype.isActive = function (dateObject) {
 	        if (this.compare(dateObject.date, this.activeDate) === 0) {
 	            this.activeDateId = dateObject.uid;
 	            return true;
 	        }
 	        return false;
 	    };
-	    DatePickerInner.prototype.createDateObject = function (date, format) {
+	    DatePickerInnerComponent.prototype.createDateObject = function (date, format) {
 	        var dateObject = {};
 	        dateObject.date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 	        dateObject.label = this.dateFilter(date, format);
@@ -4344,18 +4344,18 @@ webpackJsonp([2],[
 	        dateObject.customClass = this.getCustomClassForDate(dateObject.date);
 	        return dateObject;
 	    };
-	    DatePickerInner.prototype.split = function (arr, size) {
+	    DatePickerInnerComponent.prototype.split = function (arr, size) {
 	        var arrays = [];
 	        while (arr.length > 0) {
 	            arrays.push(arr.splice(0, size));
 	        }
 	        return arrays;
 	    };
-	    DatePickerInner.prototype.fixTimeZone = function (date) {
+	    DatePickerInnerComponent.prototype.fixTimeZone = function (date) {
 	        var hours = date.getHours();
 	        return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours === 23 ? hours + 2 : 0);
 	    };
-	    DatePickerInner.prototype.select = function (date) {
+	    DatePickerInnerComponent.prototype.select = function (date) {
 	        if (this.datepickerMode === this.minMode) {
 	            if (!this.activeDate) {
 	                this.activeDate = new Date(0, 0, 0, 0, 0, 0, 0);
@@ -4370,7 +4370,7 @@ webpackJsonp([2],[
 	        this.update.emit(this.activeDate);
 	        this.refreshView();
 	    };
-	    DatePickerInner.prototype.move = function (direction) {
+	    DatePickerInnerComponent.prototype.move = function (direction) {
 	        var expectedStep;
 	        if (this.datepickerMode === 'day') {
 	            expectedStep = this.stepDay;
@@ -4388,7 +4388,7 @@ webpackJsonp([2],[
 	            this.refreshView();
 	        }
 	    };
-	    DatePickerInner.prototype.toggleMode = function (direction) {
+	    DatePickerInnerComponent.prototype.toggleMode = function (direction) {
 	        direction = direction || 1;
 	        if ((this.datepickerMode === this.maxMode && direction === 1) ||
 	            (this.datepickerMode === this.minMode && direction === -1)) {
@@ -4397,7 +4397,7 @@ webpackJsonp([2],[
 	        this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) + direction];
 	        this.refreshView();
 	    };
-	    DatePickerInner.prototype.getCustomClassForDate = function (date) {
+	    DatePickerInnerComponent.prototype.getCustomClassForDate = function (date) {
 	        var _this = this;
 	        if (!this.customClass) {
 	            return '';
@@ -4409,91 +4409,91 @@ webpackJsonp([2],[
 	        }, this);
 	        return customClassObject === undefined ? '' : customClassObject.clazz;
 	    };
-	    DatePickerInner.prototype.isDisabled = function (date) {
+	    DatePickerInnerComponent.prototype.isDisabled = function (date) {
 	        return ((this.minDate && this.compare(date, this.minDate) < 0) ||
 	            (this.maxDate && this.compare(date, this.maxDate) > 0));
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "datepickerMode", void 0);
+	    ], DatePickerInnerComponent.prototype, "datepickerMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePickerInner.prototype, "startingDay", void 0);
+	    ], DatePickerInnerComponent.prototype, "startingDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePickerInner.prototype, "yearRange", void 0);
+	    ], DatePickerInnerComponent.prototype, "yearRange", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "minDate", void 0);
+	    ], DatePickerInnerComponent.prototype, "minDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "maxDate", void 0);
+	    ], DatePickerInnerComponent.prototype, "maxDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "minMode", void 0);
+	    ], DatePickerInnerComponent.prototype, "minMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "maxMode", void 0);
+	    ], DatePickerInnerComponent.prototype, "maxMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePickerInner.prototype, "showWeeks", void 0);
+	    ], DatePickerInnerComponent.prototype, "showWeeks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatDay", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatMonth", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatYear", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatYear", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatDayHeader", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatDayHeader", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatDayTitle", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatDayTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatMonthTitle", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatMonthTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePickerInner.prototype, "onlyCurrentMonth", void 0);
+	    ], DatePickerInnerComponent.prototype, "onlyCurrentMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePickerInner.prototype, "shortcutPropagation", void 0);
+	    ], DatePickerInnerComponent.prototype, "shortcutPropagation", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], DatePickerInner.prototype, "customClass", void 0);
+	    ], DatePickerInnerComponent.prototype, "customClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], DatePickerInner.prototype, "dateDisabled", void 0);
+	    ], DatePickerInnerComponent.prototype, "dateDisabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "initDate", void 0);
+	    ], DatePickerInnerComponent.prototype, "initDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "activeDate", null);
-	    DatePickerInner = __decorate([
+	    ], DatePickerInnerComponent.prototype, "activeDate", null);
+	    DatePickerInnerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'datepicker-inner',
 	            events: ['update'],
@@ -4501,10 +4501,10 @@ webpackJsonp([2],[
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass, common_1.NgModel]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DatePickerInner);
-	    return DatePickerInner;
+	    ], DatePickerInnerComponent);
+	    return DatePickerInnerComponent;
 	}());
-	exports.DatePickerInner = DatePickerInner;
+	exports.DatePickerInnerComponent = DatePickerInnerComponent;
 
 
 /***/ },
@@ -4523,14 +4523,14 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_service_1 = __webpack_require__(262);
-	var Dropdown = (function () {
-	    function Dropdown(el) {
+	var DropdownDirective = (function () {
+	    function DropdownDirective(el) {
 	        this.onToggle = new core_1.EventEmitter(false);
 	        this.isOpenChange = new core_1.EventEmitter(false);
 	        this.addClass = true;
 	        this.el = el;
 	    }
-	    Object.defineProperty(Dropdown.prototype, "isOpen", {
+	    Object.defineProperty(DropdownDirective.prototype, "isOpen", {
 	        get: function () {
 	            return this._isOpen;
 	        },
@@ -4550,17 +4550,17 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Dropdown.prototype.ngOnInit = function () {
+	    DropdownDirective.prototype.ngOnInit = function () {
 	        this.autoClose = this.autoClose || dropdown_service_1.NONINPUT;
 	        if (this.isOpen) {
 	        }
 	    };
-	    Dropdown.prototype.ngOnDestroy = function () {
+	    DropdownDirective.prototype.ngOnDestroy = function () {
 	        if (this.appendToBody && this.menuEl) {
 	            this.menuEl.nativeElement.remove();
 	        }
 	    };
-	    Object.defineProperty(Dropdown.prototype, "dropDownMenu", {
+	    Object.defineProperty(DropdownDirective.prototype, "dropDownMenu", {
 	        set: function (dropdownMenu) {
 	            this.menuEl = dropdownMenu.el;
 	            if (this.appendToBody) {
@@ -4570,17 +4570,17 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Dropdown.prototype, "dropDownToggle", {
+	    Object.defineProperty(DropdownDirective.prototype, "dropDownToggle", {
 	        set: function (dropdownToggle) {
 	            this.toggleEl = dropdownToggle.el;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Dropdown.prototype.toggle = function (open) {
+	    DropdownDirective.prototype.toggle = function (open) {
 	        return this.isOpen = arguments.length ? !!open : !this.isOpen;
 	    };
-	    Dropdown.prototype.focusDropdownEntry = function (keyCode) {
+	    DropdownDirective.prototype.focusDropdownEntry = function (keyCode) {
 	        var hostEl = this.menuEl ?
 	            this.menuEl.nativeElement :
 	            this.el.nativeElement.getElementsByTagName('ul')[0];
@@ -4616,7 +4616,7 @@ webpackJsonp([2],[
 	        }
 	        elems[this.selectedOption].focus();
 	    };
-	    Dropdown.prototype.focusToggleElement = function () {
+	    DropdownDirective.prototype.focusToggleElement = function () {
 	        if (this.toggleEl) {
 	            this.toggleEl.nativeElement.focus();
 	        }
@@ -4625,38 +4625,38 @@ webpackJsonp([2],[
 	        core_1.HostBinding('class.open'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "isOpen", null);
+	    ], DropdownDirective.prototype, "isOpen", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Dropdown.prototype, "autoClose", void 0);
+	    ], DropdownDirective.prototype, "autoClose", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "keyboardNav", void 0);
+	    ], DropdownDirective.prototype, "keyboardNav", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "appendToBody", void 0);
+	    ], DropdownDirective.prototype, "appendToBody", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Dropdown.prototype, "onToggle", void 0);
+	    ], DropdownDirective.prototype, "onToggle", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Dropdown.prototype, "isOpenChange", void 0);
+	    ], DropdownDirective.prototype, "isOpenChange", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.dropdown'), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "addClass", void 0);
-	    Dropdown = __decorate([
+	    ], DropdownDirective.prototype, "addClass", void 0);
+	    DropdownDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdown]' }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef])
-	    ], Dropdown);
-	    return Dropdown;
+	    ], DropdownDirective);
+	    return DropdownDirective;
 	}());
-	exports.Dropdown = Dropdown;
+	exports.DropdownDirective = DropdownDirective;
 
 
 /***/ },
@@ -4813,12 +4813,12 @@ webpackJsonp([2],[
 	    animate: true,
 	    max: 100
 	};
-	var Progress = (function () {
-	    function Progress() {
+	var ProgressDirective = (function () {
+	    function ProgressDirective() {
 	        this.addClass = true;
 	        this.bars = [];
 	    }
-	    Object.defineProperty(Progress.prototype, "max", {
+	    Object.defineProperty(ProgressDirective.prototype, "max", {
 	        get: function () {
 	            return this._max;
 	        },
@@ -4831,39 +4831,39 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Progress.prototype.ngOnInit = function () {
+	    ProgressDirective.prototype.ngOnInit = function () {
 	        this.animate = this.animate !== false;
 	        this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
 	    };
-	    Progress.prototype.addBar = function (bar) {
+	    ProgressDirective.prototype.addBar = function (bar) {
 	        if (!this.animate) {
 	            bar.transition = 'none';
 	        }
 	        this.bars.push(bar);
 	    };
-	    Progress.prototype.removeBar = function (bar) {
+	    ProgressDirective.prototype.removeBar = function (bar) {
 	        this.bars.splice(this.bars.indexOf(bar), 1);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Progress.prototype, "animate", void 0);
+	    ], ProgressDirective.prototype, "animate", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.max'),
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Progress.prototype, "max", null);
+	    ], ProgressDirective.prototype, "max", null);
 	    __decorate([
 	        core_1.HostBinding('class.progress'), 
 	        __metadata('design:type', Boolean)
-	    ], Progress.prototype, "addClass", void 0);
-	    Progress = __decorate([
+	    ], ProgressDirective.prototype, "addClass", void 0);
+	    ProgressDirective = __decorate([
 	        core_1.Directive({ selector: 'bs-progress, [progress]' }), 
 	        __metadata('design:paramtypes', [])
-	    ], Progress);
-	    return Progress;
+	    ], ProgressDirective);
+	    return ProgressDirective;
 	}());
-	exports.Progress = Progress;
+	exports.ProgressDirective = ProgressDirective;
 
 
 /***/ },
@@ -4887,12 +4887,12 @@ webpackJsonp([2],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(3);
-	var Accordion = (function () {
-	    function Accordion() {
+	var AccordionComponent = (function () {
+	    function AccordionComponent() {
 	        this.addClass = true;
 	        this.groups = [];
 	    }
-	    Accordion.prototype.closeOtherPanels = function (openGroup) {
+	    AccordionComponent.prototype.closeOtherPanels = function (openGroup) {
 	        if (!this.closeOthers) {
 	            return;
 	        }
@@ -4902,10 +4902,10 @@ webpackJsonp([2],[
 	            }
 	        });
 	    };
-	    Accordion.prototype.addGroup = function (group) {
+	    AccordionComponent.prototype.addGroup = function (group) {
 	        this.groups.push(group);
 	    };
-	    Accordion.prototype.removeGroup = function (group) {
+	    AccordionComponent.prototype.removeGroup = function (group) {
 	        var index = this.groups.indexOf(group);
 	        if (index !== -1) {
 	            this.groups.splice(index, 1);
@@ -4914,21 +4914,21 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Accordion.prototype, "closeOthers", void 0);
+	    ], AccordionComponent.prototype, "closeOthers", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.panel-group'), 
 	        __metadata('design:type', Boolean)
-	    ], Accordion.prototype, "addClass", void 0);
-	    Accordion = __decorate([
+	    ], AccordionComponent.prototype, "addClass", void 0);
+	    AccordionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion',
 	            template: "<ng-content></ng-content>"
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Accordion);
-	    return Accordion;
+	    ], AccordionComponent);
+	    return AccordionComponent;
 	}());
-	exports.Accordion = Accordion;
+	exports.AccordionComponent = AccordionComponent;
 
 
 /***/ },
@@ -4959,12 +4959,12 @@ webpackJsonp([2],[
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n    <a class=\"left carousel-control\" (click)=\"prev()\" *ngIf=\"slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-left\"></span>\n    </a>\n    <a class=\"right carousel-control\" (click)=\"next()\" *ngIf=\"slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-right\"></span>\n    </a>\n  ",
 	    _a
 	);
-	var Carousel = (function () {
-	    function Carousel() {
+	var CarouselComponent = (function () {
+	    function CarouselComponent() {
 	        this.slides = [];
 	        this.destroyed = false;
 	    }
-	    Object.defineProperty(Carousel.prototype, "interval", {
+	    Object.defineProperty(CarouselComponent.prototype, "interval", {
 	        get: function () {
 	            return this._interval;
 	        },
@@ -4975,10 +4975,10 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Carousel.prototype.ngOnDestroy = function () {
+	    CarouselComponent.prototype.ngOnDestroy = function () {
 	        this.destroyed = true;
 	    };
-	    Carousel.prototype.select = function (nextSlide, direction) {
+	    CarouselComponent.prototype.select = function (nextSlide, direction) {
 	        if (direction === void 0) { direction = Direction.UNKNOWN; }
 	        var nextIndex = nextSlide.index;
 	        if (direction === Direction.UNKNOWN) {
@@ -4990,19 +4990,19 @@ webpackJsonp([2],[
 	            this.goNext(nextSlide, direction);
 	        }
 	    };
-	    Carousel.prototype.play = function () {
+	    CarouselComponent.prototype.play = function () {
 	        if (!this.isPlaying) {
 	            this.isPlaying = true;
 	            this.restartTimer();
 	        }
 	    };
-	    Carousel.prototype.pause = function () {
+	    CarouselComponent.prototype.pause = function () {
 	        if (!this.noPause) {
 	            this.isPlaying = false;
 	            this.resetTimer();
 	        }
 	    };
-	    Carousel.prototype.next = function () {
+	    CarouselComponent.prototype.next = function () {
 	        var newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
 	        if (newIndex === 0 && this.noWrap) {
 	            this.pause();
@@ -5010,7 +5010,7 @@ webpackJsonp([2],[
 	        }
 	        return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
 	    };
-	    Carousel.prototype.prev = function () {
+	    CarouselComponent.prototype.prev = function () {
 	        var newIndex = this.getCurrentIndex() - 1 < 0
 	            ? this.slides.length - 1
 	            : this.getCurrentIndex() - 1;
@@ -5020,7 +5020,7 @@ webpackJsonp([2],[
 	        }
 	        return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
 	    };
-	    Carousel.prototype.addSlide = function (slide) {
+	    CarouselComponent.prototype.addSlide = function (slide) {
 	        slide.index = this.slides.length;
 	        this.slides.push(slide);
 	        if (this.slides.length === 1 || slide.active) {
@@ -5033,7 +5033,7 @@ webpackJsonp([2],[
 	            slide.active = false;
 	        }
 	    };
-	    Carousel.prototype.removeSlide = function (slide) {
+	    CarouselComponent.prototype.removeSlide = function (slide) {
 	        this.slides.splice(slide.index, 1);
 	        if (this.slides.length === 0) {
 	            this.currentSlide = void 0;
@@ -5043,7 +5043,7 @@ webpackJsonp([2],[
 	            this.slides[i].index = i;
 	        }
 	    };
-	    Carousel.prototype.goNext = function (slide, direction) {
+	    CarouselComponent.prototype.goNext = function (slide, direction) {
 	        if (this.destroyed) {
 	            return;
 	        }
@@ -5056,7 +5056,7 @@ webpackJsonp([2],[
 	        this.currentSlide = slide;
 	        this.restartTimer();
 	    };
-	    Carousel.prototype.getSlideByIndex = function (index) {
+	    CarouselComponent.prototype.getSlideByIndex = function (index) {
 	        var len = this.slides.length;
 	        for (var i = 0; i < len; ++i) {
 	            if (this.slides[i].index === index) {
@@ -5065,10 +5065,10 @@ webpackJsonp([2],[
 	        }
 	        return void 0;
 	    };
-	    Carousel.prototype.getCurrentIndex = function () {
+	    CarouselComponent.prototype.getCurrentIndex = function () {
 	        return !this.currentSlide ? 0 : this.currentSlide.index;
 	    };
-	    Carousel.prototype.restartTimer = function () {
+	    CarouselComponent.prototype.restartTimer = function () {
 	        var _this = this;
 	        this.resetTimer();
 	        var interval = +this.interval;
@@ -5084,7 +5084,7 @@ webpackJsonp([2],[
 	            }, interval);
 	        }
 	    };
-	    Carousel.prototype.resetTimer = function () {
+	    CarouselComponent.prototype.resetTimer = function () {
 	        if (this.currentInterval) {
 	            clearInterval(this.currentInterval);
 	            this.currentInterval = void 0;
@@ -5093,30 +5093,30 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Carousel.prototype, "noWrap", void 0);
+	    ], CarouselComponent.prototype, "noWrap", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Carousel.prototype, "noPause", void 0);
+	    ], CarouselComponent.prototype, "noPause", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Carousel.prototype, "noTransition", void 0);
+	    ], CarouselComponent.prototype, "noTransition", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Carousel.prototype, "interval", null);
-	    Carousel = __decorate([
+	    ], CarouselComponent.prototype, "interval", null);
+	    CarouselComponent = __decorate([
 	        core_1.Component({
 	            selector: 'carousel',
 	            directives: [common_1.NgFor],
 	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" *ngIf=\"slides.length > 1\">\n         <li *ngFor=\"#slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Carousel);
-	    return Carousel;
+	    ], CarouselComponent);
+	    return CarouselComponent;
 	}());
-	exports.Carousel = Carousel;
+	exports.CarouselComponent = CarouselComponent;
 	var _a;
 
 
@@ -5125,8 +5125,8 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var collapse_component_1 = __webpack_require__(257);
-	exports.Collapse = collapse_component_1.Collapse;
+	var collapse_directive_1 = __webpack_require__(257);
+	exports.CollapseDirective = collapse_directive_1.CollapseDirective;
 
 
 /***/ },
@@ -5148,19 +5148,19 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var datepicker_inner_1 = __webpack_require__(20);
-	var daypicker_1 = __webpack_require__(259);
-	var monthpicker_1 = __webpack_require__(260);
-	var yearpicker_1 = __webpack_require__(261);
-	var DatePicker = (function () {
-	    function DatePicker(cd) {
+	var datepicker_inner_component_1 = __webpack_require__(20);
+	var daypicker_component_1 = __webpack_require__(259);
+	var monthpicker_component_1 = __webpack_require__(260);
+	var yearpicker_component_1 = __webpack_require__(261);
+	var DatePickerComponent = (function () {
+	    function DatePickerComponent(cd) {
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
 	        this._now = new Date();
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    Object.defineProperty(DatePicker.prototype, "activeDate", {
+	    Object.defineProperty(DatePickerComponent.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate || this._now;
 	        },
@@ -5170,11 +5170,11 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DatePicker.prototype.onUpdate = function (event) {
+	    DatePickerComponent.prototype.onUpdate = function (event) {
 	        this.writeValue(event);
 	        this.cd.viewToModelUpdate(event);
 	    };
-	    DatePicker.prototype.writeValue = function (value) {
+	    DatePickerComponent.prototype.writeValue = function (value) {
 	        if (value === this._activeDate) {
 	            return;
 	        }
@@ -5184,101 +5184,101 @@ webpackJsonp([2],[
 	        }
 	        this.activeDate = value ? new Date(value) : void 0;
 	    };
-	    DatePicker.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    DatePicker.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    DatePickerComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    DatePickerComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "datepickerMode", void 0);
+	    ], DatePickerComponent.prototype, "datepickerMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "initDate", void 0);
+	    ], DatePickerComponent.prototype, "initDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "minDate", void 0);
+	    ], DatePickerComponent.prototype, "minDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "maxDate", void 0);
+	    ], DatePickerComponent.prototype, "maxDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "minMode", void 0);
+	    ], DatePickerComponent.prototype, "minMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "maxMode", void 0);
+	    ], DatePickerComponent.prototype, "maxMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePicker.prototype, "showWeeks", void 0);
+	    ], DatePickerComponent.prototype, "showWeeks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatDay", void 0);
+	    ], DatePickerComponent.prototype, "formatDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatMonth", void 0);
+	    ], DatePickerComponent.prototype, "formatMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatYear", void 0);
+	    ], DatePickerComponent.prototype, "formatYear", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatDayHeader", void 0);
+	    ], DatePickerComponent.prototype, "formatDayHeader", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatDayTitle", void 0);
+	    ], DatePickerComponent.prototype, "formatDayTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatMonthTitle", void 0);
+	    ], DatePickerComponent.prototype, "formatMonthTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePicker.prototype, "startingDay", void 0);
+	    ], DatePickerComponent.prototype, "startingDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePicker.prototype, "yearRange", void 0);
+	    ], DatePickerComponent.prototype, "yearRange", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePicker.prototype, "onlyCurrentMonth", void 0);
+	    ], DatePickerComponent.prototype, "onlyCurrentMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePicker.prototype, "shortcutPropagation", void 0);
+	    ], DatePickerComponent.prototype, "shortcutPropagation", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], DatePicker.prototype, "customClass", void 0);
+	    ], DatePickerComponent.prototype, "customClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], DatePicker.prototype, "dateDisabled", void 0);
+	    ], DatePickerComponent.prototype, "dateDisabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "activeDate", null);
-	    DatePicker = __decorate([
+	    ], DatePickerComponent.prototype, "activeDate", null);
+	    DatePickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'datepicker[ngModel]',
 	            template: "\n    <datepicker-inner [activeDate]=\"activeDate\"\n                      (update)=\"onUpdate($event)\"\n                      [datepickerMode]=\"datepickerMode\"\n                      [initDate]=\"initDate\"\n                      [minDate]=\"minDate\"\n                      [maxDate]=\"maxDate\"\n                      [minMode]=\"minMode\"\n                      [maxMode]=\"maxMode\"\n                      [showWeeks]=\"showWeeks\"\n                      [formatDay]=\"formatDay\"\n                      [formatMonth]=\"formatMonth\"\n                      [formatYear]=\"formatYear\"\n                      [formatDayHeader]=\"formatDayHeader\"\n                      [formatDayTitle]=\"formatDayTitle\"\n                      [formatMonthTitle]=\"formatMonthTitle\"\n                      [startingDay]=\"startingDay\"\n                      [yearRange]=\"yearRange\"\n                      [customClass]=\"customClass\"\n                      [dateDisabled]=\"dateDisabled\"\n                      [templateUrl]=\"templateUrl\"\n                      [onlyCurrentMonth]=\"onlyCurrentMonth\"\n                      [shortcutPropagation]=\"shortcutPropagation\">\n      <daypicker tabindex=\"0\"></daypicker>\n      <monthpicker tabindex=\"0\"></monthpicker>\n      <yearpicker tabindex=\"0\"></yearpicker>\n    </datepicker-inner>\n    ",
-	            directives: [datepicker_inner_1.DatePickerInner, daypicker_1.DayPicker, monthpicker_1.MonthPicker, yearpicker_1.YearPicker,
+	            directives: [datepicker_inner_component_1.DatePickerInnerComponent, daypicker_component_1.DayPickerComponent, monthpicker_component_1.MonthPickerComponent, yearpicker_component_1.YearPickerComponent,
 	                common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], DatePicker);
-	    return DatePicker;
+	    ], DatePickerComponent);
+	    return DatePickerComponent;
 	}());
-	exports.DatePicker = DatePicker;
+	exports.DatePickerComponent = DatePickerComponent;
 
 
 /***/ },
@@ -5312,8 +5312,8 @@ webpackJsonp([2],[
 	    rotate: true
 	};
 	var PAGINATION_TEMPLATE = "\n  <ul class=\"pagination\" [ngClass]=\"classMap\">\n    <li class=\"pagination-first page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(1, $event)\" [innerHTML]=\"getText('first')\"></a>\n    </li>\n\n    <li class=\"pagination-prev page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(page - 1, $event)\" [innerHTML]=\"getText('previous')\"></a>\n      </li>\n\n    <li *ngFor=\"#pg of pages\"\n        [class.active]=\"pg.active\"\n        [class.disabled]=\"disabled&&!pg.active\"\n        class=\"pagination-page page-item\">\n      <a class=\"page-link\" href (click)=\"selectPage(pg.number, $event)\" [innerHTML]=\"pg.text\"></a>\n    </li>\n\n    <li class=\"pagination-next page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(page + 1, $event)\" [innerHTML]=\"getText('next')\"></a></li>\n\n    <li class=\"pagination-last page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(totalPages, $event)\" [innerHTML]=\"getText('last')\"></a></li>\n  </ul>\n  ";
-	var Pagination = (function () {
-	    function Pagination(cd, renderer, elementRef) {
+	var PaginationComponent = (function () {
+	    function PaginationComponent(cd, renderer, elementRef) {
 	        this.numPages = new core_1.EventEmitter(false);
 	        this.pageChanged = new core_1.EventEmitter(false);
 	        this.onChange = Function.prototype;
@@ -5325,7 +5325,7 @@ webpackJsonp([2],[
 	        cd.valueAccessor = this;
 	        this.config = this.config || paginationConfig;
 	    }
-	    Object.defineProperty(Pagination.prototype, "itemsPerPage", {
+	    Object.defineProperty(PaginationComponent.prototype, "itemsPerPage", {
 	        get: function () {
 	            return this._itemsPerPage;
 	        },
@@ -5336,7 +5336,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Pagination.prototype, "totalItems", {
+	    Object.defineProperty(PaginationComponent.prototype, "totalItems", {
 	        get: function () {
 	            return this._totalItems;
 	        },
@@ -5347,7 +5347,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Pagination.prototype, "totalPages", {
+	    Object.defineProperty(PaginationComponent.prototype, "totalPages", {
 	        get: function () {
 	            return this._totalPages;
 	        },
@@ -5361,7 +5361,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Pagination.prototype, "page", {
+	    Object.defineProperty(PaginationComponent.prototype, "page", {
 	        get: function () {
 	            return this._page;
 	        },
@@ -5379,7 +5379,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Pagination.prototype.ngOnInit = function () {
+	    PaginationComponent.prototype.ngOnInit = function () {
 	        this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
 	        this.maxSize = typeof this.maxSize !== 'undefined'
 	            ? this.maxSize
@@ -5401,22 +5401,22 @@ webpackJsonp([2],[
 	        this.page = this.cd.value;
 	        this.inited = true;
 	    };
-	    Pagination.prototype.writeValue = function (value) {
+	    PaginationComponent.prototype.writeValue = function (value) {
 	        this.page = value;
 	        this.pages = this.getPages(this.page, this.totalPages);
 	    };
-	    Pagination.prototype.getText = function (key) {
+	    PaginationComponent.prototype.getText = function (key) {
 	        return this[key + 'Text'] || paginationConfig[key + 'Text'];
 	    };
-	    Pagination.prototype.noPrevious = function () {
+	    PaginationComponent.prototype.noPrevious = function () {
 	        return this.page === 1;
 	    };
-	    Pagination.prototype.noNext = function () {
+	    PaginationComponent.prototype.noNext = function () {
 	        return this.page === this.totalPages;
 	    };
-	    Pagination.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    Pagination.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
-	    Pagination.prototype.selectPage = function (page, event) {
+	    PaginationComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    PaginationComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    PaginationComponent.prototype.selectPage = function (page, event) {
 	        if (event) {
 	            event.preventDefault();
 	        }
@@ -5429,14 +5429,14 @@ webpackJsonp([2],[
 	            this.cd.viewToModelUpdate(this.page);
 	        }
 	    };
-	    Pagination.prototype.makePage = function (num, text, isActive) {
+	    PaginationComponent.prototype.makePage = function (num, text, isActive) {
 	        return {
 	            number: num,
 	            text: text,
 	            active: isActive
 	        };
 	    };
-	    Pagination.prototype.getPages = function (currentPage, totalPages) {
+	    PaginationComponent.prototype.getPages = function (currentPage, totalPages) {
 	        var pages = [];
 	        var startPage = 1;
 	        var endPage = totalPages;
@@ -5471,7 +5471,7 @@ webpackJsonp([2],[
 	        }
 	        return pages;
 	    };
-	    Pagination.prototype.calculateTotalPages = function () {
+	    PaginationComponent.prototype.calculateTotalPages = function () {
 	        var totalPages = this.itemsPerPage < 1
 	            ? 1
 	            : Math.ceil(this.totalItems / this.itemsPerPage);
@@ -5480,56 +5480,56 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Pagination.prototype, "maxSize", void 0);
+	    ], PaginationComponent.prototype, "maxSize", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "boundaryLinks", void 0);
+	    ], PaginationComponent.prototype, "boundaryLinks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "directionLinks", void 0);
+	    ], PaginationComponent.prototype, "directionLinks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "firstText", void 0);
+	    ], PaginationComponent.prototype, "firstText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "previousText", void 0);
+	    ], PaginationComponent.prototype, "previousText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "nextText", void 0);
+	    ], PaginationComponent.prototype, "nextText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "lastText", void 0);
+	    ], PaginationComponent.prototype, "lastText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "rotate", void 0);
+	    ], PaginationComponent.prototype, "rotate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "disabled", void 0);
+	    ], PaginationComponent.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Pagination.prototype, "numPages", void 0);
+	    ], PaginationComponent.prototype, "numPages", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Pagination.prototype, "pageChanged", void 0);
+	    ], PaginationComponent.prototype, "pageChanged", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Pagination.prototype, "itemsPerPage", null);
+	    ], PaginationComponent.prototype, "itemsPerPage", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Pagination.prototype, "totalItems", null);
-	    Pagination = __decorate([
+	    ], PaginationComponent.prototype, "totalItems", null);
+	    PaginationComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pagination[ngModel]',
 	            template: PAGINATION_TEMPLATE,
@@ -5537,10 +5537,10 @@ webpackJsonp([2],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.Renderer, core_1.ElementRef])
-	    ], Pagination);
-	    return Pagination;
+	    ], PaginationComponent);
+	    return PaginationComponent;
 	}());
-	exports.Pagination = Pagination;
+	exports.PaginationComponent = PaginationComponent;
 
 
 /***/ },
@@ -5563,12 +5563,12 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var progress_directive_1 = __webpack_require__(23);
-	var Bar = (function () {
-	    function Bar(progress) {
+	var BarComponent = (function () {
+	    function BarComponent(progress) {
 	        this.percent = 0;
 	        this.progress = progress;
 	    }
-	    Object.defineProperty(Bar.prototype, "value", {
+	    Object.defineProperty(BarComponent.prototype, "value", {
 	        get: function () {
 	            return this._value;
 	        },
@@ -5582,13 +5582,13 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Bar.prototype.ngOnInit = function () {
+	    BarComponent.prototype.ngOnInit = function () {
 	        this.progress.addBar(this);
 	    };
-	    Bar.prototype.ngOnDestroy = function () {
+	    BarComponent.prototype.ngOnDestroy = function () {
 	        this.progress.removeBar(this);
 	    };
-	    Bar.prototype.recalculatePercentage = function () {
+	    BarComponent.prototype.recalculatePercentage = function () {
 	        this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 	        var totalPercentage = this.progress.bars.reduce(function (total, bar) {
 	            return total + bar.percent;
@@ -5600,23 +5600,23 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Bar.prototype, "type", void 0);
+	    ], BarComponent.prototype, "type", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Bar.prototype, "value", null);
-	    Bar = __decorate([
+	    ], BarComponent.prototype, "value", null);
+	    BarComponent = __decorate([
 	        core_1.Component({
 	            selector: 'bar',
 	            directives: [common_1.NgClass, common_1.NgStyle],
 	            template: "\n  <div class=\"progress-bar\"\n    style=\"min-width: 0;\"\n    role=\"progressbar\"\n    [ngClass]=\"type && 'progress-bar-' + type\"\n    [ngStyle]=\"{width: (percent < 100 ? percent : 100) + '%', transition: transition}\"\n    aria-valuemin=\"0\"\n    [attr.aria-valuenow]=\"value\"\n    [attr.aria-valuetext]=\"percent.toFixed(0) + '%'\"\n    [attr.aria-valuemax]=\"max\"><ng-content></ng-content></div>\n"
 	        }),
 	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [progress_directive_1.Progress])
-	    ], Bar);
-	    return Bar;
+	        __metadata('design:paramtypes', [progress_directive_1.ProgressDirective])
+	    ], BarComponent);
+	    return BarComponent;
 	}());
-	exports.Bar = Bar;
+	exports.BarComponent = BarComponent;
 
 
 /***/ },
@@ -5635,8 +5635,8 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var tabset_component_1 = __webpack_require__(37);
-	var Tab = (function () {
-	    function Tab(tabset) {
+	var TabDirective = (function () {
+	    function TabDirective(tabset) {
 	        this.select = new core_1.EventEmitter(false);
 	        this.deselect = new core_1.EventEmitter(false);
 	        this.removed = new core_1.EventEmitter(false);
@@ -5644,7 +5644,7 @@ webpackJsonp([2],[
 	        this.tabset = tabset;
 	        this.tabset.addTab(this);
 	    }
-	    Object.defineProperty(Tab.prototype, "active", {
+	    Object.defineProperty(TabDirective.prototype, "active", {
 	        get: function () {
 	            return this._active;
 	        },
@@ -5668,50 +5668,50 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Tab.prototype.ngOnInit = function () { this.removable = !!this.removable; };
-	    Tab.prototype.ngOnDestroy = function () {
+	    TabDirective.prototype.ngOnInit = function () { this.removable = !!this.removable; };
+	    TabDirective.prototype.ngOnDestroy = function () {
 	        this.tabset.removeTab(this);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Tab.prototype, "heading", void 0);
+	    ], TabDirective.prototype, "heading", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "disabled", void 0);
+	    ], TabDirective.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "removable", void 0);
+	    ], TabDirective.prototype, "removable", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "active", null);
+	    ], TabDirective.prototype, "active", null);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Tab.prototype, "select", void 0);
+	    ], TabDirective.prototype, "select", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Tab.prototype, "deselect", void 0);
+	    ], TabDirective.prototype, "deselect", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Tab.prototype, "removed", void 0);
+	    ], TabDirective.prototype, "removed", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.tab-pane'), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "addClass", void 0);
-	    Tab = __decorate([
+	    ], TabDirective.prototype, "addClass", void 0);
+	    TabDirective = __decorate([
 	        core_1.Directive({ selector: 'tab, [tab]' }), 
-	        __metadata('design:paramtypes', [tabset_component_1.Tabset])
-	    ], Tab);
-	    return Tab;
+	        __metadata('design:paramtypes', [tabset_component_1.TabsetComponent])
+	    ], TabDirective);
+	    return TabDirective;
 	}());
-	exports.Tab = Tab;
+	exports.TabDirective = TabDirective;
 
 
 /***/ },
@@ -5731,13 +5731,13 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var common_2 = __webpack_require__(166);
-	var Tabset = (function () {
-	    function Tabset() {
+	var TabsetComponent = (function () {
+	    function TabsetComponent() {
 	        this.clazz = true;
 	        this.tabs = [];
 	        this.classMap = {};
 	    }
-	    Object.defineProperty(Tabset.prototype, "vertical", {
+	    Object.defineProperty(TabsetComponent.prototype, "vertical", {
 	        get: function () { return this._vertical; },
 	        set: function (value) {
 	            this._vertical = value;
@@ -5747,7 +5747,7 @@ webpackJsonp([2],[
 	        configurable: true
 	    });
 	    ;
-	    Object.defineProperty(Tabset.prototype, "justified", {
+	    Object.defineProperty(TabsetComponent.prototype, "justified", {
 	        get: function () { return this._justified; },
 	        set: function (value) {
 	            this._justified = value;
@@ -5757,7 +5757,7 @@ webpackJsonp([2],[
 	        configurable: true
 	    });
 	    ;
-	    Object.defineProperty(Tabset.prototype, "type", {
+	    Object.defineProperty(TabsetComponent.prototype, "type", {
 	        get: function () { return this._type; },
 	        set: function (value) {
 	            this._type = value;
@@ -5767,17 +5767,17 @@ webpackJsonp([2],[
 	        configurable: true
 	    });
 	    ;
-	    Tabset.prototype.ngOnInit = function () {
+	    TabsetComponent.prototype.ngOnInit = function () {
 	        this.type = this.type !== 'undefined' ? this.type : 'tabs';
 	    };
-	    Tabset.prototype.ngOnDestroy = function () {
+	    TabsetComponent.prototype.ngOnDestroy = function () {
 	        this.isDestroyed = true;
 	    };
-	    Tabset.prototype.addTab = function (tab) {
+	    TabsetComponent.prototype.addTab = function (tab) {
 	        this.tabs.push(tab);
 	        tab.active = this.tabs.length === 1 && tab.active !== false;
 	    };
-	    Tabset.prototype.removeTab = function (tab) {
+	    TabsetComponent.prototype.removeTab = function (tab) {
 	        var index = this.tabs.indexOf(tab);
 	        if (index === -1 || this.isDestroyed) {
 	            return;
@@ -5789,7 +5789,7 @@ webpackJsonp([2],[
 	        tab.removed.emit(tab);
 	        this.tabs.splice(index, 1);
 	    };
-	    Tabset.prototype.getClosestTabIndex = function (index) {
+	    TabsetComponent.prototype.getClosestTabIndex = function (index) {
 	        var tabsLength = this.tabs.length;
 	        if (!tabsLength) {
 	            return -1;
@@ -5806,7 +5806,7 @@ webpackJsonp([2],[
 	        }
 	        return -1;
 	    };
-	    Tabset.prototype.hasAvailableTabs = function (index) {
+	    TabsetComponent.prototype.hasAvailableTabs = function (index) {
 	        var tabsLength = this.tabs.length;
 	        if (!tabsLength) {
 	            return false;
@@ -5818,7 +5818,7 @@ webpackJsonp([2],[
 	        }
 	        return false;
 	    };
-	    Tabset.prototype.setClassMap = function () {
+	    TabsetComponent.prototype.setClassMap = function () {
 	        this.classMap = (_a = {
 	                'nav-stacked': this.vertical,
 	                'nav-justified': this.justified
@@ -5831,30 +5831,30 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tabset.prototype, "vertical", null);
+	    ], TabsetComponent.prototype, "vertical", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tabset.prototype, "justified", null);
+	    ], TabsetComponent.prototype, "justified", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Tabset.prototype, "type", null);
+	    ], TabsetComponent.prototype, "type", null);
 	    __decorate([
 	        core_1.HostBinding('class.tab-container'), 
 	        __metadata('design:type', Boolean)
-	    ], Tabset.prototype, "clazz", void 0);
-	    Tabset = __decorate([
+	    ], TabsetComponent.prototype, "clazz", void 0);
+	    TabsetComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tabset',
-	            directives: [common_1.NgClass, common_2.NgTransclude],
+	            directives: [common_1.NgClass, common_2.NgTranscludeDirective],
 	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"#tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span *ngIf=\"tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Tabset);
-	    return Tabset;
+	    ], TabsetComponent);
+	    return TabsetComponent;
 	}());
-	exports.Tabset = Tabset;
+	exports.TabsetComponent = TabsetComponent;
 
 
 /***/ },
@@ -5878,8 +5878,8 @@ webpackJsonp([2],[
 	var common_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(22);
 	var tooltip_options_class_1 = __webpack_require__(181);
-	var TooltipContainer = (function () {
-	    function TooltipContainer(element, cdr, options) {
+	var TooltipContainerComponent = (function () {
+	    function TooltipContainerComponent(element, cdr, options) {
 	        this.top = '-1000px';
 	        this.left = '-1000px';
 	        this.display = 'block';
@@ -5889,7 +5889,7 @@ webpackJsonp([2],[
 	        this.classMap = { 'in': false, 'fade': false };
 	        this.classMap[options.placement] = true;
 	    }
-	    TooltipContainer.prototype.ngAfterViewInit = function () {
+	    TooltipContainerComponent.prototype.ngAfterViewInit = function () {
 	        var p = position_1.positionService
 	            .positionElements(this.hostEl.nativeElement, this.element.nativeElement.children[0], this.placement, this.appendToBody);
 	        this.top = p.top + 'px';
@@ -5900,7 +5900,7 @@ webpackJsonp([2],[
 	        }
 	        this.cdr.detectChanges();
 	    };
-	    TooltipContainer = __decorate([
+	    TooltipContainerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tooltip-container',
 	            directives: [common_1.NgClass, common_1.NgStyle],
@@ -5908,10 +5908,10 @@ webpackJsonp([2],[
 	        }),
 	        __param(2, core_1.Inject(tooltip_options_class_1.TooltipOptions)), 
 	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.ChangeDetectorRef, tooltip_options_class_1.TooltipOptions])
-	    ], TooltipContainer);
-	    return TooltipContainer;
+	    ], TooltipContainerComponent);
+	    return TooltipContainerComponent;
 	}());
-	exports.TooltipContainer = TooltipContainer;
+	exports.TooltipContainerComponent = TooltipContainerComponent;
 
 
 /***/ },
@@ -5939,14 +5939,14 @@ webpackJsonp([2],[
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n    <li *ngFor=\"#match of matches\"\n        [class.active]=\"isActive(match)\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [innerHtml]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
 	    _a
 	);
-	var TypeaheadContainer = (function () {
-	    function TypeaheadContainer(element, options) {
+	var TypeaheadContainerComponent = (function () {
+	    function TypeaheadContainerComponent(element, options) {
 	        this.isFocused = false;
 	        this._matches = [];
 	        this.element = element;
 	        Object.assign(this, options);
 	    }
-	    Object.defineProperty(TypeaheadContainer.prototype, "matches", {
+	    Object.defineProperty(TypeaheadContainerComponent.prototype, "matches", {
 	        get: function () {
 	            return this._matches;
 	        },
@@ -5959,14 +5959,14 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(TypeaheadContainer.prototype, "field", {
+	    Object.defineProperty(TypeaheadContainerComponent.prototype, "field", {
 	        set: function (value) {
 	            this._field = value;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    TypeaheadContainer.prototype.position = function (hostEl) {
+	    TypeaheadContainerComponent.prototype.position = function (hostEl) {
 	        this.display = 'block';
 	        this.top = '0px';
 	        this.left = '0px';
@@ -5975,26 +5975,26 @@ webpackJsonp([2],[
 	        this.top = p.top + 'px';
 	        this.left = p.left + 'px';
 	    };
-	    TypeaheadContainer.prototype.selectActiveMatch = function () {
+	    TypeaheadContainerComponent.prototype.selectActiveMatch = function () {
 	        this.selectMatch(this._active);
 	    };
-	    TypeaheadContainer.prototype.prevActiveMatch = function () {
+	    TypeaheadContainerComponent.prototype.prevActiveMatch = function () {
 	        var index = this.matches.indexOf(this._active);
 	        this._active = this.matches[index - 1 < 0
 	            ? this.matches.length - 1
 	            : index - 1];
 	    };
-	    TypeaheadContainer.prototype.nextActiveMatch = function () {
+	    TypeaheadContainerComponent.prototype.nextActiveMatch = function () {
 	        var index = this.matches.indexOf(this._active);
 	        this._active = this.matches[index + 1 > this.matches.length - 1
 	            ? 0
 	            : index + 1];
 	    };
-	    TypeaheadContainer.prototype.selectActive = function (value) {
+	    TypeaheadContainerComponent.prototype.selectActive = function (value) {
 	        this.isFocused = true;
 	        this._active = value;
 	    };
-	    TypeaheadContainer.prototype.hightlight = function (item, query) {
+	    TypeaheadContainerComponent.prototype.hightlight = function (item, query) {
 	        var itemStr = (typeof item === 'object' && this._field
 	            ? item[this._field]
 	            : item).toString();
@@ -6023,13 +6023,13 @@ webpackJsonp([2],[
 	        }
 	        return itemStr;
 	    };
-	    TypeaheadContainer.prototype.focusLost = function () {
+	    TypeaheadContainerComponent.prototype.focusLost = function () {
 	        this.isFocused = false;
 	    };
-	    TypeaheadContainer.prototype.isActive = function (value) {
+	    TypeaheadContainerComponent.prototype.isActive = function (value) {
 	        return this._active === value;
 	    };
-	    TypeaheadContainer.prototype.selectMatch = function (value, e) {
+	    TypeaheadContainerComponent.prototype.selectMatch = function (value, e) {
 	        if (e === void 0) { e = void 0; }
 	        if (e) {
 	            e.stopPropagation();
@@ -6041,7 +6041,7 @@ webpackJsonp([2],[
 	        });
 	        return false;
 	    };
-	    TypeaheadContainer = __decorate([
+	    TypeaheadContainerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'typeahead-container',
 	            directives: [common_1.CORE_DIRECTIVES],
@@ -6049,10 +6049,10 @@ webpackJsonp([2],[
 	            encapsulation: core_1.ViewEncapsulation.None
 	        }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef, typeahead_options_class_1.TypeaheadOptions])
-	    ], TypeaheadContainer);
-	    return TypeaheadContainer;
+	    ], TypeaheadContainerComponent);
+	    return TypeaheadContainerComponent;
 	}());
-	exports.TypeaheadContainer = TypeaheadContainer;
+	exports.TypeaheadContainerComponent = TypeaheadContainerComponent;
 	var _a;
 
 
@@ -15653,10 +15653,10 @@ webpackJsonp([2],[
 	var accordion_component_1 = __webpack_require__(30);
 	var accordion_group_component_1 = __webpack_require__(159);
 	var accordion_component_2 = __webpack_require__(30);
-	exports.Accordion = accordion_component_2.Accordion;
+	exports.AccordionComponent = accordion_component_2.AccordionComponent;
 	var accordion_group_component_2 = __webpack_require__(159);
-	exports.AccordionPanel = accordion_group_component_2.AccordionPanel;
-	exports.ACCORDION_DIRECTIVES = [accordion_component_1.Accordion, accordion_group_component_1.AccordionPanel];
+	exports.AccordionPanelComponent = accordion_group_component_2.AccordionPanelComponent;
+	exports.ACCORDION_DIRECTIVES = [accordion_component_1.AccordionComponent, accordion_group_component_1.AccordionPanelComponent];
 
 
 /***/ },
@@ -15680,11 +15680,11 @@ webpackJsonp([2],[
 	var common_1 = __webpack_require__(4);
 	var collapse_1 = __webpack_require__(32);
 	var accordion_component_1 = __webpack_require__(30);
-	var AccordionPanel = (function () {
-	    function AccordionPanel(accordion) {
+	var AccordionPanelComponent = (function () {
+	    function AccordionPanelComponent(accordion) {
 	        this.accordion = accordion;
 	    }
-	    Object.defineProperty(AccordionPanel.prototype, "isOpen", {
+	    Object.defineProperty(AccordionPanelComponent.prototype, "isOpen", {
 	        get: function () {
 	            return this._isOpen;
 	        },
@@ -15697,14 +15697,14 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    AccordionPanel.prototype.ngOnInit = function () {
+	    AccordionPanelComponent.prototype.ngOnInit = function () {
 	        this.panelClass = this.panelClass || 'panel-default';
 	        this.accordion.addGroup(this);
 	    };
-	    AccordionPanel.prototype.ngOnDestroy = function () {
+	    AccordionPanelComponent.prototype.ngOnDestroy = function () {
 	        this.accordion.removeGroup(this);
 	    };
-	    AccordionPanel.prototype.toggleOpen = function (event) {
+	    AccordionPanelComponent.prototype.toggleOpen = function (event) {
 	        event.preventDefault();
 	        if (!this.isDisabled) {
 	            this.isOpen = !this.isOpen;
@@ -15713,32 +15713,32 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], AccordionPanel.prototype, "heading", void 0);
+	    ], AccordionPanelComponent.prototype, "heading", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], AccordionPanel.prototype, "panelClass", void 0);
+	    ], AccordionPanelComponent.prototype, "panelClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], AccordionPanel.prototype, "isDisabled", void 0);
+	    ], AccordionPanelComponent.prototype, "isDisabled", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.panel-open'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], AccordionPanel.prototype, "isOpen", null);
-	    AccordionPanel = __decorate([
+	    ], AccordionPanelComponent.prototype, "isOpen", null);
+	    AccordionPanelComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion-group, accordion-panel',
-	            directives: [collapse_1.Collapse, common_1.NgClass],
+	            directives: [collapse_1.CollapseDirective, common_1.NgClass],
 	            template: "\n    <div class=\"panel\" [ngClass]=\"panelClass\">\n      <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n        <h4 class=\"panel-title\">\n          <a href tabindex=\"0\" class=\"accordion-toggle\">\n            <span *ngIf=\"heading\" [ngClass]=\"{'text-muted': isDisabled}\">{{heading}}</span>\n            <ng-content select=\"[accordion-heading]\"></ng-content>\n          </a>\n        </h4>\n      </div>\n      <div class=\"panel-collapse collapse\" [collapse]=\"!isOpen\">\n        <div class=\"panel-body\">\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  "
 	        }),
-	        __param(0, core_1.Inject(accordion_component_1.Accordion)), 
-	        __metadata('design:paramtypes', [accordion_component_1.Accordion])
-	    ], AccordionPanel);
-	    return AccordionPanel;
+	        __param(0, core_1.Inject(accordion_component_1.AccordionComponent)), 
+	        __metadata('design:paramtypes', [accordion_component_1.AccordionComponent])
+	    ], AccordionPanelComponent);
+	    return AccordionPanelComponent;
 	}());
-	exports.AccordionPanel = AccordionPanel;
+	exports.AccordionPanelComponent = AccordionPanelComponent;
 
 
 /***/ },
@@ -15747,7 +15747,7 @@ webpackJsonp([2],[
 
 	"use strict";
 	var alert_component_1 = __webpack_require__(256);
-	exports.Alert = alert_component_1.Alert;
+	exports.AlertComponent = alert_component_1.AlertComponent;
 
 
 /***/ },
@@ -15755,13 +15755,13 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var button_checkbox_component_1 = __webpack_require__(162);
-	var button_radio_component_1 = __webpack_require__(163);
-	var button_checkbox_component_2 = __webpack_require__(162);
-	exports.ButtonCheckbox = button_checkbox_component_2.ButtonCheckbox;
-	var button_radio_component_2 = __webpack_require__(163);
-	exports.ButtonRadio = button_radio_component_2.ButtonRadio;
-	exports.BUTTON_DIRECTIVES = [button_checkbox_component_1.ButtonCheckbox, button_radio_component_1.ButtonRadio];
+	var button_checkbox_directive_ts_1 = __webpack_require__(162);
+	var button_radio_directive_ts_1 = __webpack_require__(163);
+	var button_checkbox_directive_ts_2 = __webpack_require__(162);
+	exports.ButtonCheckboxDirective = button_checkbox_directive_ts_2.ButtonCheckboxDirective;
+	var button_radio_directive_ts_2 = __webpack_require__(163);
+	exports.ButtonRadioDirective = button_radio_directive_ts_2.ButtonRadioDirective;
+	exports.BUTTON_DIRECTIVES = [button_checkbox_directive_ts_1.ButtonCheckboxDirective, button_radio_directive_ts_1.ButtonRadioDirective];
 
 
 /***/ },
@@ -15783,22 +15783,22 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var ButtonCheckbox = (function () {
-	    function ButtonCheckbox(cd) {
+	var ButtonCheckboxDirective = (function () {
+	    function ButtonCheckboxDirective(cd) {
 	        this.state = false;
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    ButtonCheckbox.prototype.onClick = function () {
+	    ButtonCheckboxDirective.prototype.onClick = function () {
 	        this.toggle(!this.state);
 	        this.cd.viewToModelUpdate(this.value);
 	    };
-	    ButtonCheckbox.prototype.ngOnInit = function () {
+	    ButtonCheckboxDirective.prototype.ngOnInit = function () {
 	        this.toggle(this.trueValue === this.value);
 	    };
-	    Object.defineProperty(ButtonCheckbox.prototype, "trueValue", {
+	    Object.defineProperty(ButtonCheckboxDirective.prototype, "trueValue", {
 	        get: function () {
 	            return typeof this.btnCheckboxTrue !== 'undefined'
 	                ? this.btnCheckboxTrue
@@ -15807,7 +15807,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(ButtonCheckbox.prototype, "falseValue", {
+	    Object.defineProperty(ButtonCheckboxDirective.prototype, "falseValue", {
 	        get: function () {
 	            return typeof this.btnCheckboxFalse !== 'undefined'
 	                ? this.btnCheckboxFalse
@@ -15816,46 +15816,46 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonCheckbox.prototype.toggle = function (state) {
+	    ButtonCheckboxDirective.prototype.toggle = function (state) {
 	        this.state = state;
 	        this.value = this.state ? this.trueValue : this.falseValue;
 	    };
-	    ButtonCheckbox.prototype.writeValue = function (value) {
+	    ButtonCheckboxDirective.prototype.writeValue = function (value) {
 	        this.state = this.trueValue === value;
 	        this.value = value;
 	    };
-	    ButtonCheckbox.prototype.registerOnChange = function (fn) {
+	    ButtonCheckboxDirective.prototype.registerOnChange = function (fn) {
 	        this.onChange = fn;
 	    };
-	    ButtonCheckbox.prototype.registerOnTouched = function (fn) {
+	    ButtonCheckboxDirective.prototype.registerOnTouched = function (fn) {
 	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], ButtonCheckbox.prototype, "btnCheckboxTrue", void 0);
+	    ], ButtonCheckboxDirective.prototype, "btnCheckboxTrue", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], ButtonCheckbox.prototype, "btnCheckboxFalse", void 0);
+	    ], ButtonCheckboxDirective.prototype, "btnCheckboxFalse", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'), 
 	        __metadata('design:type', Boolean)
-	    ], ButtonCheckbox.prototype, "state", void 0);
+	    ], ButtonCheckboxDirective.prototype, "state", void 0);
 	    __decorate([
 	        core_1.HostListener('click'), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], ButtonCheckbox.prototype, "onClick", null);
-	    ButtonCheckbox = __decorate([
+	    ], ButtonCheckboxDirective.prototype, "onClick", null);
+	    ButtonCheckboxDirective = __decorate([
 	        core_1.Directive({ selector: '[btnCheckbox][ngModel]' }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], ButtonCheckbox);
-	    return ButtonCheckbox;
+	    ], ButtonCheckboxDirective);
+	    return ButtonCheckboxDirective;
 	}());
-	exports.ButtonCheckbox = ButtonCheckbox;
+	exports.ButtonCheckboxDirective = ButtonCheckboxDirective;
 
 
 /***/ },
@@ -15877,31 +15877,31 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var ButtonRadio = (function () {
-	    function ButtonRadio(cd, el) {
+	var ButtonRadioDirective = (function () {
+	    function ButtonRadioDirective(cd, el) {
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
 	        this.cd = cd;
 	        this.el = el;
 	        cd.valueAccessor = this;
 	    }
-	    Object.defineProperty(ButtonRadio.prototype, "isActive", {
+	    Object.defineProperty(ButtonRadioDirective.prototype, "isActive", {
 	        get: function () {
 	            return this.btnRadio === this.value;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonRadio.prototype.onClick = function () {
+	    ButtonRadioDirective.prototype.onClick = function () {
 	        if (this.uncheckable && this.btnRadio === this.value) {
 	            return this.cd.viewToModelUpdate(void 0);
 	        }
 	        this.cd.viewToModelUpdate(this.btnRadio);
 	    };
-	    ButtonRadio.prototype.ngOnInit = function () {
+	    ButtonRadioDirective.prototype.ngOnInit = function () {
 	        this.uncheckable = typeof this.uncheckable !== 'undefined';
 	    };
-	    Object.defineProperty(ButtonRadio.prototype, "value", {
+	    Object.defineProperty(ButtonRadioDirective.prototype, "value", {
 	        get: function () {
 	            return this.cd.viewModel;
 	        },
@@ -15911,41 +15911,41 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonRadio.prototype.writeValue = function (value) {
+	    ButtonRadioDirective.prototype.writeValue = function (value) {
 	        this.value = value;
 	    };
-	    ButtonRadio.prototype.registerOnChange = function (fn) {
+	    ButtonRadioDirective.prototype.registerOnChange = function (fn) {
 	        this.onChange = fn;
 	    };
-	    ButtonRadio.prototype.registerOnTouched = function (fn) {
+	    ButtonRadioDirective.prototype.registerOnTouched = function (fn) {
 	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], ButtonRadio.prototype, "btnRadio", void 0);
+	    ], ButtonRadioDirective.prototype, "btnRadio", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], ButtonRadio.prototype, "uncheckable", void 0);
+	    ], ButtonRadioDirective.prototype, "uncheckable", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'), 
 	        __metadata('design:type', Boolean)
-	    ], ButtonRadio.prototype, "isActive", null);
+	    ], ButtonRadioDirective.prototype, "isActive", null);
 	    __decorate([
 	        core_1.HostListener('click'), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], ButtonRadio.prototype, "onClick", null);
-	    ButtonRadio = __decorate([
+	    ], ButtonRadioDirective.prototype, "onClick", null);
+	    ButtonRadioDirective = __decorate([
 	        core_1.Directive({ selector: '[btnRadio][ngModel]' }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ElementRef])
-	    ], ButtonRadio);
-	    return ButtonRadio;
+	    ], ButtonRadioDirective);
+	    return ButtonRadioDirective;
 	}());
-	exports.ButtonRadio = ButtonRadio;
+	exports.ButtonRadioDirective = ButtonRadioDirective;
 
 
 /***/ },
@@ -15956,10 +15956,10 @@ webpackJsonp([2],[
 	var slide_component_1 = __webpack_require__(165);
 	var carousel_component_1 = __webpack_require__(31);
 	var slide_component_2 = __webpack_require__(165);
-	exports.Slide = slide_component_2.Slide;
+	exports.SlideComponent = slide_component_2.SlideComponent;
 	var carousel_component_2 = __webpack_require__(31);
-	exports.Carousel = carousel_component_2.Carousel;
-	exports.CAROUSEL_DIRECTIVES = [carousel_component_1.Carousel, slide_component_1.Slide];
+	exports.CarouselComponent = carousel_component_2.CarouselComponent;
+	exports.CAROUSEL_DIRECTIVES = [carousel_component_1.CarouselComponent, slide_component_1.SlideComponent];
 
 
 /***/ },
@@ -15978,45 +15978,45 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var carousel_component_1 = __webpack_require__(31);
-	var Slide = (function () {
-	    function Slide(carousel) {
+	var SlideComponent = (function () {
+	    function SlideComponent(carousel) {
 	        this.addClass = true;
 	        this.carousel = carousel;
 	    }
-	    Slide.prototype.ngOnInit = function () {
+	    SlideComponent.prototype.ngOnInit = function () {
 	        this.carousel.addSlide(this);
 	    };
-	    Slide.prototype.ngOnDestroy = function () {
+	    SlideComponent.prototype.ngOnDestroy = function () {
 	        this.carousel.removeSlide(this);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Slide.prototype, "index", void 0);
+	    ], SlideComponent.prototype, "index", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Slide.prototype, "direction", void 0);
+	    ], SlideComponent.prototype, "direction", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Slide.prototype, "active", void 0);
+	    ], SlideComponent.prototype, "active", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.item'),
 	        core_1.HostBinding('class.carousel-item'), 
 	        __metadata('design:type', Boolean)
-	    ], Slide.prototype, "addClass", void 0);
-	    Slide = __decorate([
+	    ], SlideComponent.prototype, "addClass", void 0);
+	    SlideComponent = __decorate([
 	        core_1.Component({
 	            selector: 'slide',
 	            template: "\n    <div [class.active]=\"active\" class=\"item text-center\">\n      <ng-content></ng-content>\n    </div>\n  "
 	        }), 
-	        __metadata('design:paramtypes', [carousel_component_1.Carousel])
-	    ], Slide);
-	    return Slide;
+	        __metadata('design:paramtypes', [carousel_component_1.CarouselComponent])
+	    ], SlideComponent);
+	    return SlideComponent;
 	}());
-	exports.Slide = Slide;
+	exports.SlideComponent = SlideComponent;
 
 
 /***/ },
@@ -16037,11 +16037,11 @@ webpackJsonp([2],[
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
 	var core_1 = __webpack_require__(3);
-	var NgTransclude = (function () {
-	    function NgTransclude(_viewRef) {
+	var NgTranscludeDirective = (function () {
+	    function NgTranscludeDirective(_viewRef) {
 	        this.viewRef = _viewRef;
 	    }
-	    Object.defineProperty(NgTransclude.prototype, "ngTransclude", {
+	    Object.defineProperty(NgTranscludeDirective.prototype, "ngTransclude", {
 	        get: function () {
 	            return this._ngTransclude;
 	        },
@@ -16054,17 +16054,17 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    NgTransclude = __decorate([
+	    NgTranscludeDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[ngTransclude]',
 	            properties: ['ngTransclude']
 	        }),
 	        __param(0, core_1.Inject(core_1.ViewContainerRef)), 
 	        __metadata('design:paramtypes', [core_1.ViewContainerRef])
-	    ], NgTransclude);
-	    return NgTransclude;
+	    ], NgTranscludeDirective);
+	    return NgTranscludeDirective;
 	}());
-	exports.NgTransclude = NgTransclude;
+	exports.NgTranscludeDirective = NgTranscludeDirective;
 
 
 /***/ },
@@ -16072,13 +16072,13 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var datepicker_popup_1 = __webpack_require__(168);
-	var datepicker_1 = __webpack_require__(33);
-	var datepicker_popup_2 = __webpack_require__(168);
-	exports.DatePickerPopup = datepicker_popup_2.DatePickerPopup;
-	var datepicker_2 = __webpack_require__(33);
-	exports.DatePicker = datepicker_2.DatePicker;
-	exports.DATEPICKER_DIRECTIVES = [datepicker_1.DatePicker, datepicker_popup_1.DatePickerPopup];
+	var datepicker_popup_component_1 = __webpack_require__(168);
+	var datepicker_component_1 = __webpack_require__(33);
+	var datepicker_popup_component_2 = __webpack_require__(168);
+	exports.DatePickerPopupDirective = datepicker_popup_component_2.DatePickerPopupDirective;
+	var datepicker_component_2 = __webpack_require__(33);
+	exports.DatePickerComponent = datepicker_component_2.DatePickerComponent;
+	exports.DATEPICKER_DIRECTIVES = [datepicker_component_1.DatePickerComponent, datepicker_popup_component_1.DatePickerPopupDirective];
 
 
 /***/ },
@@ -16101,7 +16101,7 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(22);
-	var datepicker_1 = __webpack_require__(33);
+	var datepicker_component_1 = __webpack_require__(33);
 	var PopupOptions = (function () {
 	    function PopupOptions(options) {
 	        Object.assign(this, options);
@@ -16117,8 +16117,8 @@ webpackJsonp([2],[
 	    showButtonBar: true,
 	    onOpenFocus: true
 	};
-	var PopupContainer = (function () {
-	    function PopupContainer(element, options) {
+	var PopupContainerComponent = (function () {
+	    function PopupContainerComponent(element, options) {
 	        this.showButtonBar = true;
 	        this.update1 = new core_1.EventEmitter(false);
 	        this.element = element;
@@ -16126,7 +16126,7 @@ webpackJsonp([2],[
 	        this.classMap = { 'in': false };
 	        this.classMap[options.placement] = true;
 	    }
-	    PopupContainer.prototype.onUpdate = function ($event) {
+	    PopupContainerComponent.prototype.onUpdate = function ($event) {
 	        console.log('update', $event);
 	        if ($event) {
 	            if ($event.toString() !== '[object Date]') {
@@ -16135,7 +16135,7 @@ webpackJsonp([2],[
 	            this.popupComp.activeDate = $event;
 	        }
 	    };
-	    PopupContainer.prototype.position = function (hostEl) {
+	    PopupContainerComponent.prototype.position = function (hostEl) {
 	        this.display = 'block';
 	        this.top = '0px';
 	        this.left = '0px';
@@ -16143,26 +16143,26 @@ webpackJsonp([2],[
 	            .positionElements(hostEl.nativeElement, this.element.nativeElement.children[0], this.placement, false);
 	        this.top = p.top + 'px';
 	    };
-	    PopupContainer.prototype.getText = function (key) {
+	    PopupContainerComponent.prototype.getText = function (key) {
 	        return this[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
 	    };
-	    PopupContainer.prototype.isDisabled = function () {
+	    PopupContainerComponent.prototype.isDisabled = function () {
 	        return false;
 	    };
-	    PopupContainer = __decorate([
+	    PopupContainerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'popup-container',
 	            events: ['update1'],
 	            template: "\n    <ul class=\"dropdown-menu\"\n        style=\"display: block\"\n        [ngStyle]=\"{top: top, left: left, display: display}\"\n        [ngClass]=\"classMap\">\n        <li>\n             <datepicker (cupdate)=\"onUpdate($event)\" *ngIf=\"popupComp\" [(ngModel)]=\"popupComp.cd.model\" [show-weeks]=\"true\"></datepicker>\n        </li>\n        <li *ngIf=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n            <span class=\"btn-group pull-left\">\n                 <button type=\"button\" class=\"btn btn-sm btn-info\" (click)=\"select('today')\" ng-disabled=\"isDisabled('today')\">{{ getText('current') }}</button>\n                 <button type=\"button\" class=\"btn btn-sm btn-danger\" (click)=\"select(null)\">{{ getText('clear') }}</button>\n            </span>\n            <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" (click)=\"close()\">{{ getText('close') }}</button>\n        </li>\n    </ul>",
-	            directives: [common_1.NgClass, common_1.NgStyle, datepicker_1.DatePicker, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [common_1.NgClass, common_1.NgStyle, datepicker_component_1.DatePickerComponent, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            encapsulation: core_1.ViewEncapsulation.None
 	        }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef, PopupOptions])
-	    ], PopupContainer);
-	    return PopupContainer;
+	    ], PopupContainerComponent);
+	    return PopupContainerComponent;
 	}());
-	var DatePickerPopup = (function () {
-	    function DatePickerPopup(cd, viewContainerRef, renderer, loader) {
+	var DatePickerPopupDirective = (function () {
+	    function DatePickerPopupDirective(cd, viewContainerRef, renderer, loader) {
 	        this._isOpen = false;
 	        this.placement = 'bottom';
 	        this.cd = cd;
@@ -16171,7 +16171,7 @@ webpackJsonp([2],[
 	        this.loader = loader;
 	        this.activeDate = cd.model;
 	    }
-	    Object.defineProperty(DatePickerPopup.prototype, "activeDate", {
+	    Object.defineProperty(DatePickerPopupDirective.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate;
 	        },
@@ -16181,7 +16181,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(DatePickerPopup.prototype, "isOpen", {
+	    Object.defineProperty(DatePickerPopupDirective.prototype, "isOpen", {
 	        get: function () {
 	            return this._isOpen;
 	        },
@@ -16200,7 +16200,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DatePickerPopup.prototype.hide = function (cb) {
+	    DatePickerPopupDirective.prototype.hide = function (cb) {
 	        if (this.popup) {
 	            this.popup.then(function (componentRef) {
 	                componentRef.destroy();
@@ -16212,7 +16212,7 @@ webpackJsonp([2],[
 	            cb();
 	        }
 	    };
-	    DatePickerPopup.prototype.show = function (cb) {
+	    DatePickerPopupDirective.prototype.show = function (cb) {
 	        var _this = this;
 	        var options = new PopupOptions({
 	            placement: this.placement
@@ -16221,7 +16221,7 @@ webpackJsonp([2],[
 	            core_1.provide(PopupOptions, { useValue: options })
 	        ]);
 	        this.popup = this.loader
-	            .loadNextToLocation(PopupContainer, this.viewContainerRef, binding)
+	            .loadNextToLocation(PopupContainerComponent, this.viewContainerRef, binding)
 	            .then(function (componentRef) {
 	            componentRef.instance.position(_this.viewContainerRef);
 	            componentRef.instance.popupComp = _this;
@@ -16229,17 +16229,17 @@ webpackJsonp([2],[
 	            return componentRef;
 	        });
 	    };
-	    DatePickerPopup = __decorate([
+	    DatePickerPopupDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[datepickerPopup][ngModel]',
 	            properties: ['datepickerPopup', 'isOpen']
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ViewContainerRef, core_1.Renderer, core_1.DynamicComponentLoader])
-	    ], DatePickerPopup);
-	    return DatePickerPopup;
+	    ], DatePickerPopupDirective);
+	    return DatePickerPopupDirective;
 	}());
-	exports.DatePickerPopup = DatePickerPopup;
+	exports.DatePickerPopupDirective = DatePickerPopupDirective;
 
 
 /***/ },
@@ -16251,12 +16251,12 @@ webpackJsonp([2],[
 	var dropdown_menu_directive_1 = __webpack_require__(170);
 	var dropdown_toggle_directive_1 = __webpack_require__(171);
 	var dropdown_directive_2 = __webpack_require__(21);
-	exports.Dropdown = dropdown_directive_2.Dropdown;
+	exports.DropdownDirective = dropdown_directive_2.DropdownDirective;
 	var dropdown_menu_directive_2 = __webpack_require__(170);
-	exports.DropdownMenu = dropdown_menu_directive_2.DropdownMenu;
+	exports.DropdownMenuDirective = dropdown_menu_directive_2.DropdownMenuDirective;
 	var dropdown_toggle_directive_2 = __webpack_require__(171);
-	exports.DropdownToggle = dropdown_toggle_directive_2.DropdownToggle;
-	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.Dropdown, dropdown_toggle_directive_1.DropdownToggle, dropdown_menu_directive_1.DropdownMenu];
+	exports.DropdownToggleDirective = dropdown_toggle_directive_2.DropdownToggleDirective;
+	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective];
 
 
 /***/ },
@@ -16278,22 +16278,22 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_directive_1 = __webpack_require__(21);
-	var DropdownMenu = (function () {
-	    function DropdownMenu(dropdown, el) {
+	var DropdownMenuDirective = (function () {
+	    function DropdownMenuDirective(dropdown, el) {
 	        this.dropdown = dropdown;
 	        this.el = el;
 	    }
-	    DropdownMenu.prototype.ngOnInit = function () {
+	    DropdownMenuDirective.prototype.ngOnInit = function () {
 	        this.dropdown.dropDownMenu = this;
 	    };
-	    DropdownMenu = __decorate([
+	    DropdownMenuDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdownMenu]' }),
 	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [dropdown_directive_1.Dropdown, core_1.ElementRef])
-	    ], DropdownMenu);
-	    return DropdownMenu;
+	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
+	    ], DropdownMenuDirective);
+	    return DropdownMenuDirective;
 	}());
-	exports.DropdownMenu = DropdownMenu;
+	exports.DropdownMenuDirective = DropdownMenuDirective;
 
 
 /***/ },
@@ -16315,24 +16315,24 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_directive_1 = __webpack_require__(21);
-	var DropdownToggle = (function () {
-	    function DropdownToggle(dropdown, el) {
+	var DropdownToggleDirective = (function () {
+	    function DropdownToggleDirective(dropdown, el) {
 	        this.disabled = false;
 	        this.addClass = true;
 	        this.dropdown = dropdown;
 	        this.el = el;
 	    }
-	    DropdownToggle.prototype.ngOnInit = function () {
+	    DropdownToggleDirective.prototype.ngOnInit = function () {
 	        this.dropdown.dropDownToggle = this;
 	    };
-	    Object.defineProperty(DropdownToggle.prototype, "isOpen", {
+	    Object.defineProperty(DropdownToggleDirective.prototype, "isOpen", {
 	        get: function () {
 	            return this.dropdown.isOpen;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DropdownToggle.prototype.toggleDropdown = function (event) {
+	    DropdownToggleDirective.prototype.toggleDropdown = function (event) {
 	        event.stopPropagation();
 	        if (!this.disabled) {
 	            this.dropdown.toggle();
@@ -16343,30 +16343,30 @@ webpackJsonp([2],[
 	        core_1.HostBinding('class.disabled'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DropdownToggle.prototype, "disabled", void 0);
+	    ], DropdownToggleDirective.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.dropdown-toggle'),
 	        core_1.HostBinding('attr.aria-haspopup'), 
 	        __metadata('design:type', Boolean)
-	    ], DropdownToggle.prototype, "addClass", void 0);
+	    ], DropdownToggleDirective.prototype, "addClass", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.aria-expanded'), 
 	        __metadata('design:type', Boolean)
-	    ], DropdownToggle.prototype, "isOpen", null);
+	    ], DropdownToggleDirective.prototype, "isOpen", null);
 	    __decorate([
 	        core_1.HostListener('click', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [MouseEvent]), 
 	        __metadata('design:returntype', Boolean)
-	    ], DropdownToggle.prototype, "toggleDropdown", null);
-	    DropdownToggle = __decorate([
+	    ], DropdownToggleDirective.prototype, "toggleDropdown", null);
+	    DropdownToggleDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdownToggle]' }),
 	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [dropdown_directive_1.Dropdown, core_1.ElementRef])
-	    ], DropdownToggle);
-	    return DropdownToggle;
+	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
+	    ], DropdownToggleDirective);
+	    return DropdownToggleDirective;
 	}());
-	exports.DropdownToggle = DropdownToggle;
+	exports.DropdownToggleDirective = DropdownToggleDirective;
 
 
 /***/ },
@@ -16377,10 +16377,10 @@ webpackJsonp([2],[
 	var pagination_component_1 = __webpack_require__(34);
 	var pager_component_1 = __webpack_require__(173);
 	var pagination_component_2 = __webpack_require__(34);
-	exports.Pagination = pagination_component_2.Pagination;
+	exports.PaginationComponent = pagination_component_2.PaginationComponent;
 	var pager_component_2 = __webpack_require__(173);
-	exports.Pager = pager_component_2.Pager;
-	exports.PAGINATION_DIRECTIVES = [pagination_component_1.Pagination, pager_component_1.Pager];
+	exports.PagerComponent = pager_component_2.PagerComponent;
+	exports.PAGINATION_DIRECTIVES = [pagination_component_1.PaginationComponent, pager_component_1.PagerComponent];
 
 
 /***/ },
@@ -16415,13 +16415,13 @@ webpackJsonp([2],[
 	    align: true
 	};
 	var PAGER_TEMPLATE = "\n    <ul class=\"pager\">\n      <li [class.disabled]=\"noPrevious()\" [class.previous]=\"align\" [ngClass]=\"{'pull-right': align}\">\n        <a href (click)=\"selectPage(page - 1, $event)\">{{getText('previous')}}</a>\n      </li>\n      <li [class.disabled]=\"noNext()\" [class.next]=\"align\" [ngClass]=\"{'pull-right': align}\">\n        <a href (click)=\"selectPage(page + 1, $event)\">{{getText('next')}}</a>\n      </li>\n  </ul>\n";
-	var Pager = (function (_super) {
-	    __extends(Pager, _super);
-	    function Pager(cd, renderer, elementRef) {
+	var PagerComponent = (function (_super) {
+	    __extends(PagerComponent, _super);
+	    function PagerComponent(cd, renderer, elementRef) {
 	        _super.call(this, cd, renderer, elementRef);
 	        this.config = pagerConfig;
 	    }
-	    Pager = __decorate([
+	    PagerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pager[ngModel]',
 	            template: PAGER_TEMPLATE,
@@ -16434,10 +16434,10 @@ webpackJsonp([2],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.Renderer, core_1.ElementRef])
-	    ], Pager);
-	    return Pager;
-	}(pagination_component_1.Pagination));
-	exports.Pager = Pager;
+	    ], PagerComponent);
+	    return PagerComponent;
+	}(pagination_component_1.PaginationComponent));
+	exports.PagerComponent = PagerComponent;
 
 
 /***/ },
@@ -16449,12 +16449,12 @@ webpackJsonp([2],[
 	var bar_component_1 = __webpack_require__(35);
 	var progressbar_component_1 = __webpack_require__(175);
 	var progress_directive_2 = __webpack_require__(23);
-	exports.Progress = progress_directive_2.Progress;
+	exports.ProgressDirective = progress_directive_2.ProgressDirective;
 	var bar_component_2 = __webpack_require__(35);
-	exports.Bar = bar_component_2.Bar;
+	exports.BarComponent = bar_component_2.BarComponent;
 	var progressbar_component_2 = __webpack_require__(175);
-	exports.Progressbar = progressbar_component_2.Progressbar;
-	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.Progress, bar_component_1.Bar, progressbar_component_1.Progressbar];
+	exports.ProgressbarComponent = progressbar_component_2.ProgressbarComponent;
+	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.ProgressDirective, bar_component_1.BarComponent, progressbar_component_1.ProgressbarComponent];
 
 
 /***/ },
@@ -16474,36 +16474,36 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var progress_directive_1 = __webpack_require__(23);
 	var bar_component_1 = __webpack_require__(35);
-	var Progressbar = (function () {
-	    function Progressbar() {
+	var ProgressbarComponent = (function () {
+	    function ProgressbarComponent() {
 	    }
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Progressbar.prototype, "animate", void 0);
+	    ], ProgressbarComponent.prototype, "animate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Progressbar.prototype, "max", void 0);
+	    ], ProgressbarComponent.prototype, "max", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Progressbar.prototype, "type", void 0);
+	    ], ProgressbarComponent.prototype, "type", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Progressbar.prototype, "value", void 0);
-	    Progressbar = __decorate([
+	    ], ProgressbarComponent.prototype, "value", void 0);
+	    ProgressbarComponent = __decorate([
 	        core_1.Component({
 	            selector: 'progressbar',
-	            directives: [progress_directive_1.Progress, bar_component_1.Bar],
+	            directives: [progress_directive_1.ProgressDirective, bar_component_1.BarComponent],
 	            template: "\n    <div progress [animate]=\"animate\" [max]=\"max\">\n      <bar [type]=\"type\" [value]=\"value\">\n          <ng-content></ng-content>\n      </bar>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Progressbar);
-	    return Progressbar;
+	    ], ProgressbarComponent);
+	    return ProgressbarComponent;
 	}());
-	exports.Progressbar = Progressbar;
+	exports.ProgressbarComponent = ProgressbarComponent;
 
 
 /***/ },
@@ -16512,7 +16512,7 @@ webpackJsonp([2],[
 
 	"use strict";
 	var rating_component_1 = __webpack_require__(263);
-	exports.Rating = rating_component_1.Rating;
+	exports.RatingComponent = rating_component_1.RatingComponent;
 
 
 /***/ },
@@ -16524,12 +16524,12 @@ webpackJsonp([2],[
 	var tabset_component_1 = __webpack_require__(37);
 	var tab_heading_directive_1 = __webpack_require__(178);
 	var tab_directive_2 = __webpack_require__(36);
-	exports.Tab = tab_directive_2.Tab;
+	exports.TabDirective = tab_directive_2.TabDirective;
 	var tabset_component_2 = __webpack_require__(37);
-	exports.Tabset = tabset_component_2.Tabset;
+	exports.TabsetComponent = tabset_component_2.TabsetComponent;
 	var tab_heading_directive_2 = __webpack_require__(178);
-	exports.TabHeading = tab_heading_directive_2.TabHeading;
-	exports.TAB_DIRECTIVES = [tab_directive_1.Tab, tab_heading_directive_1.TabHeading, tabset_component_1.Tabset];
+	exports.TabHeadingDirective = tab_heading_directive_2.TabHeadingDirective;
+	exports.TAB_DIRECTIVES = [tab_directive_1.TabDirective, tab_heading_directive_1.TabHeadingDirective, tabset_component_1.TabsetComponent];
 
 
 /***/ },
@@ -16548,17 +16548,17 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var tab_directive_1 = __webpack_require__(36);
-	var TabHeading = (function () {
-	    function TabHeading(templateRef, tab) {
+	var TabHeadingDirective = (function () {
+	    function TabHeadingDirective(templateRef, tab) {
 	        tab.headingRef = templateRef;
 	    }
-	    TabHeading = __decorate([
+	    TabHeadingDirective = __decorate([
 	        core_1.Directive({ selector: '[tabHeading]' }), 
-	        __metadata('design:paramtypes', [core_1.TemplateRef, tab_directive_1.Tab])
-	    ], TabHeading);
-	    return TabHeading;
+	        __metadata('design:paramtypes', [core_1.TemplateRef, tab_directive_1.TabDirective])
+	    ], TabHeadingDirective);
+	    return TabHeadingDirective;
 	}());
-	exports.TabHeading = TabHeading;
+	exports.TabHeadingDirective = TabHeadingDirective;
 
 
 /***/ },
@@ -16567,7 +16567,7 @@ webpackJsonp([2],[
 
 	"use strict";
 	var timepicker_component_1 = __webpack_require__(264);
-	exports.Timepicker = timepicker_component_1.Timepicker;
+	exports.TimepickerComponent = timepicker_component_1.TimepickerComponent;
 
 
 /***/ },
@@ -16578,10 +16578,10 @@ webpackJsonp([2],[
 	var tooltip_directive_1 = __webpack_require__(182);
 	var tooltip_container_component_1 = __webpack_require__(38);
 	var tooltip_directive_2 = __webpack_require__(182);
-	exports.Tooltip = tooltip_directive_2.Tooltip;
+	exports.TooltipDirective = tooltip_directive_2.TooltipDirective;
 	var tooltip_container_component_2 = __webpack_require__(38);
-	exports.TooltipContainer = tooltip_container_component_2.TooltipContainer;
-	exports.TOOLTIP_DIRECTIVES = [tooltip_directive_1.Tooltip, tooltip_container_component_1.TooltipContainer];
+	exports.TooltipContainerComponent = tooltip_container_component_2.TooltipContainerComponent;
+	exports.TOOLTIP_DIRECTIVES = [tooltip_directive_1.TooltipDirective, tooltip_container_component_1.TooltipContainerComponent];
 
 
 /***/ },
@@ -16629,15 +16629,15 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var tooltip_options_class_1 = __webpack_require__(181);
 	var tooltip_container_component_1 = __webpack_require__(38);
-	var Tooltip = (function () {
-	    function Tooltip(viewContainerRef, loader) {
+	var TooltipDirective = (function () {
+	    function TooltipDirective(viewContainerRef, loader) {
 	        this.placement = 'top';
 	        this.animation = true;
 	        this.visible = false;
 	        this.viewContainerRef = viewContainerRef;
 	        this.loader = loader;
 	    }
-	    Tooltip.prototype.show = function () {
+	    TooltipDirective.prototype.show = function () {
 	        if (this.visible) {
 	            return;
 	        }
@@ -16652,12 +16652,12 @@ webpackJsonp([2],[
 	            new core_1.Provider(tooltip_options_class_1.TooltipOptions, { useValue: options })
 	        ]);
 	        this.tooltip = this.loader
-	            .loadNextToLocation(tooltip_container_component_1.TooltipContainer, this.viewContainerRef, binding)
+	            .loadNextToLocation(tooltip_container_component_1.TooltipContainerComponent, this.viewContainerRef, binding)
 	            .then(function (componentRef) {
 	            return componentRef;
 	        });
 	    };
-	    Tooltip.prototype.hide = function () {
+	    TooltipDirective.prototype.hide = function () {
 	        if (!this.visible) {
 	            return;
 	        }
@@ -16670,48 +16670,48 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input('tooltip'), 
 	        __metadata('design:type', String)
-	    ], Tooltip.prototype, "content", void 0);
+	    ], TooltipDirective.prototype, "content", void 0);
 	    __decorate([
 	        core_1.Input('tooltipPlacement'), 
 	        __metadata('design:type', String)
-	    ], Tooltip.prototype, "placement", void 0);
+	    ], TooltipDirective.prototype, "placement", void 0);
 	    __decorate([
 	        core_1.Input('tooltipIsOpen'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "isOpen", void 0);
+	    ], TooltipDirective.prototype, "isOpen", void 0);
 	    __decorate([
 	        core_1.Input('tooltipEnable'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "enable", void 0);
+	    ], TooltipDirective.prototype, "enable", void 0);
 	    __decorate([
 	        core_1.Input('tooltipAnimation'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "animation", void 0);
+	    ], TooltipDirective.prototype, "animation", void 0);
 	    __decorate([
 	        core_1.Input('tooltipAppendToBody'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "appendToBody", void 0);
+	    ], TooltipDirective.prototype, "appendToBody", void 0);
 	    __decorate([
 	        core_1.HostListener('focusin', ['$event', '$target']),
 	        core_1.HostListener('mouseenter', ['$event', '$target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Tooltip.prototype, "show", null);
+	    ], TooltipDirective.prototype, "show", null);
 	    __decorate([
 	        core_1.HostListener('focusout', ['$event', '$target']),
 	        core_1.HostListener('mouseleave', ['$event', '$target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Tooltip.prototype, "hide", null);
-	    Tooltip = __decorate([
+	    ], TooltipDirective.prototype, "hide", null);
+	    TooltipDirective = __decorate([
 	        core_1.Directive({ selector: '[tooltip]' }), 
 	        __metadata('design:paramtypes', [core_1.ViewContainerRef, core_1.DynamicComponentLoader])
-	    ], Tooltip);
-	    return Tooltip;
+	    ], TooltipDirective);
+	    return TooltipDirective;
 	}());
-	exports.Tooltip = Tooltip;
+	exports.TooltipDirective = TooltipDirective;
 
 
 /***/ },
@@ -16722,12 +16722,12 @@ webpackJsonp([2],[
 	var typeahead_directive_1 = __webpack_require__(185);
 	var typeahead_container_component_1 = __webpack_require__(39);
 	var typeahead_directive_2 = __webpack_require__(185);
-	exports.Typeahead = typeahead_directive_2.Typeahead;
+	exports.TypeaheadDirective = typeahead_directive_2.TypeaheadDirective;
 	var typeahead_container_component_2 = __webpack_require__(39);
-	exports.TypeaheadContainer = typeahead_container_component_2.TypeaheadContainer;
+	exports.TypeaheadContainerComponent = typeahead_container_component_2.TypeaheadContainerComponent;
 	var typeahead_options_class_1 = __webpack_require__(40);
 	exports.TypeaheadOptions = typeahead_options_class_1.TypeaheadOptions;
-	exports.TYPEAHEAD_DIRECTIVES = [typeahead_directive_1.Typeahead, typeahead_container_component_1.TypeaheadContainer];
+	exports.TYPEAHEAD_DIRECTIVES = [typeahead_directive_1.TypeaheadDirective, typeahead_container_component_1.TypeaheadContainerComponent];
 
 
 /***/ },
@@ -16792,8 +16792,8 @@ webpackJsonp([2],[
 	function setProperty(renderer, elementRef, propName, propValue) {
 	    renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 	}
-	var Typeahead = (function () {
-	    function Typeahead(cd, viewContainerRef, element, renderer, loader) {
+	var TypeaheadDirective = (function () {
+	    function TypeaheadDirective(cd, viewContainerRef, element, renderer, loader) {
 	        this.typeaheadLoading = new core_1.EventEmitter(false);
 	        this.typeaheadNoResults = new core_1.EventEmitter(false);
 	        this.typeaheadOnSelect = new core_1.EventEmitter(false);
@@ -16812,7 +16812,7 @@ webpackJsonp([2],[
 	        this.renderer = renderer;
 	        this.loader = loader;
 	    }
-	    Typeahead.prototype.onChange = function (e) {
+	    TypeaheadDirective.prototype.onChange = function (e) {
 	        if (this.container) {
 	            if (e.keyCode === 27) {
 	                this.hide();
@@ -16845,7 +16845,7 @@ webpackJsonp([2],[
 	            this.hide();
 	        }
 	    };
-	    Typeahead.prototype.onFocus = function () {
+	    TypeaheadDirective.prototype.onFocus = function () {
 	        if (this.typeaheadMinLength === 0) {
 	            this.typeaheadLoading.emit(true);
 	            if (this.typeaheadAsync === true) {
@@ -16857,12 +16857,12 @@ webpackJsonp([2],[
 	            }
 	        }
 	    };
-	    Typeahead.prototype.onBlur = function () {
+	    TypeaheadDirective.prototype.onBlur = function () {
 	        if (this.container && !this.container.isFocused) {
 	            this.hide();
 	        }
 	    };
-	    Typeahead.prototype.onKeydown = function (e) {
+	    TypeaheadDirective.prototype.onKeydown = function (e) {
 	        if (!this.container) {
 	            return;
 	        }
@@ -16879,7 +16879,7 @@ webpackJsonp([2],[
 	            return;
 	        }
 	    };
-	    Typeahead.prototype.ngOnInit = function () {
+	    TypeaheadDirective.prototype.ngOnInit = function () {
 	        var _this = this;
 	        this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
 	        this.typeaheadMinLength = this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
@@ -16912,7 +16912,7 @@ webpackJsonp([2],[
 	            }, 100);
 	        }
 	    };
-	    Typeahead.prototype.show = function (matches) {
+	    TypeaheadDirective.prototype.show = function (matches) {
 	        var _this = this;
 	        var options = new typeahead_options_class_1.TypeaheadOptions({
 	            typeaheadRef: this,
@@ -16923,7 +16923,7 @@ webpackJsonp([2],[
 	            core_1.provide(typeahead_options_class_1.TypeaheadOptions, { useValue: options })
 	        ]);
 	        this.popup = this.loader
-	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainer, this.viewContainerRef, binding)
+	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainerComponent, this.viewContainerRef, binding)
 	            .then(function (componentRef) {
 	            componentRef.instance.position(_this.viewContainerRef.element);
 	            _this.container = componentRef.instance;
@@ -16941,7 +16941,7 @@ webpackJsonp([2],[
 	            return componentRef;
 	        });
 	    };
-	    Typeahead.prototype.hide = function () {
+	    TypeaheadDirective.prototype.hide = function () {
 	        var _this = this;
 	        if (this.container) {
 	            this.popup.then(function (componentRef) {
@@ -16951,7 +16951,7 @@ webpackJsonp([2],[
 	            });
 	        }
 	    };
-	    Typeahead.prototype.changeModel = function (value) {
+	    TypeaheadDirective.prototype.changeModel = function (value) {
 	        var valueStr = ((typeof value === 'object' && this.typeaheadOptionField)
 	            ? value[this.typeaheadOptionField]
 	            : value).toString();
@@ -16959,14 +16959,14 @@ webpackJsonp([2],[
 	        setProperty(this.renderer, this.element, 'value', valueStr);
 	        this.hide();
 	    };
-	    Object.defineProperty(Typeahead.prototype, "matches", {
+	    Object.defineProperty(TypeaheadDirective.prototype, "matches", {
 	        get: function () {
 	            return this._matches;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Typeahead.prototype.debounce = function (func, wait) {
+	    TypeaheadDirective.prototype.debounce = function (func, wait) {
 	        var timeout;
 	        var args;
 	        var timestamp;
@@ -16990,7 +16990,7 @@ webpackJsonp([2],[
 	            }
 	        };
 	    };
-	    Typeahead.prototype.processMatches = function () {
+	    TypeaheadDirective.prototype.processMatches = function () {
 	        this._matches = [];
 	        if (!this.typeahead) {
 	            return;
@@ -17033,7 +17033,7 @@ webpackJsonp([2],[
 	            }
 	        }
 	    };
-	    Typeahead.prototype.testMatch = function (match, test) {
+	    TypeaheadDirective.prototype.testMatch = function (match, test) {
 	        var spaceLength;
 	        if (typeof test === 'object') {
 	            spaceLength = test.length;
@@ -17048,7 +17048,7 @@ webpackJsonp([2],[
 	            return match.indexOf(test) >= 0;
 	        }
 	    };
-	    Typeahead.prototype.finalizeAsyncCall = function () {
+	    TypeaheadDirective.prototype.finalizeAsyncCall = function () {
 	        this.typeaheadLoading.emit(false);
 	        this.typeaheadNoResults.emit(this.cd.model.toString().length >=
 	            this.typeaheadMinLength && this.matches.length <= 0);
@@ -17073,88 +17073,88 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Typeahead.prototype, "typeaheadLoading", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadLoading", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Typeahead.prototype, "typeaheadNoResults", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadNoResults", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Typeahead.prototype, "typeaheadOnSelect", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadOnSelect", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], Typeahead.prototype, "typeahead", void 0);
+	    ], TypeaheadDirective.prototype, "typeahead", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Typeahead.prototype, "typeaheadMinLength", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadMinLength", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Typeahead.prototype, "typeaheadWaitMs", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadWaitMs", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Typeahead.prototype, "typeaheadOptionsLimit", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadOptionsLimit", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Typeahead.prototype, "typeaheadOptionField", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadOptionField", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadAsync", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadAsync", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadLatinize", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadLatinize", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadSingleWords", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadSingleWords", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Typeahead.prototype, "typeaheadWordDelimiters", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadWordDelimiters", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Typeahead.prototype, "typeaheadPhraseDelimiters", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadPhraseDelimiters", void 0);
 	    __decorate([
 	        core_1.HostListener('keyup', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onChange", null);
+	    ], TypeaheadDirective.prototype, "onChange", null);
 	    __decorate([
 	        core_1.HostListener('focus', ['$event.target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onFocus", null);
+	    ], TypeaheadDirective.prototype, "onFocus", null);
 	    __decorate([
 	        core_1.HostListener('blur', ['$event.target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onBlur", null);
+	    ], TypeaheadDirective.prototype, "onBlur", null);
 	    __decorate([
 	        core_1.HostListener('keydown', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onKeydown", null);
-	    Typeahead = __decorate([
+	    ], TypeaheadDirective.prototype, "onKeydown", null);
+	    TypeaheadDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[typeahead][ngModel]'
 	        }), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ViewContainerRef, core_1.ElementRef, core_1.Renderer, core_1.DynamicComponentLoader])
-	    ], Typeahead);
-	    return Typeahead;
+	    ], TypeaheadDirective);
+	    return TypeaheadDirective;
 	}());
-	exports.Typeahead = Typeahead;
+	exports.TypeaheadDirective = TypeaheadDirective;
 
 
 /***/ },
@@ -17855,13 +17855,13 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var ALERT_TEMPLATE = "\n  <div class=\"alert\" role=\"alert\" [ngClass]=\"classes\" *ngIf=\"!closed\">\n    <button *ngIf=\"dismissible\" type=\"button\" class=\"close\" (click)=\"onClose()\" (touch)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n      <span class=\"sr-only\">Close</span>\n    </button>\n    <ng-content></ng-content>\n  </div>\n  ";
-	var Alert = (function () {
-	    function Alert() {
+	var AlertComponent = (function () {
+	    function AlertComponent() {
 	        this.type = 'warning';
 	        this.close = new core_1.EventEmitter(false);
 	        this.classes = [];
 	    }
-	    Alert.prototype.ngOnInit = function () {
+	    AlertComponent.prototype.ngOnInit = function () {
 	        var _this = this;
 	        this.classes[0] = "alert-" + this.type;
 	        if (this.dismissible) {
@@ -17874,37 +17874,37 @@ webpackJsonp([2],[
 	            setTimeout(function () { return _this.onClose(); }, this.dismissOnTimeout);
 	        }
 	    };
-	    Alert.prototype.onClose = function () {
+	    AlertComponent.prototype.onClose = function () {
 	        this.closed = true;
 	        this.close.emit(this);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Alert.prototype, "type", void 0);
+	    ], AlertComponent.prototype, "type", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Alert.prototype, "dismissible", void 0);
+	    ], AlertComponent.prototype, "dismissible", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Alert.prototype, "dismissOnTimeout", void 0);
+	    ], AlertComponent.prototype, "dismissOnTimeout", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Alert.prototype, "close", void 0);
-	    Alert = __decorate([
+	    ], AlertComponent.prototype, "close", void 0);
+	    AlertComponent = __decorate([
 	        core_1.Component({
 	            selector: 'alert',
 	            directives: [common_1.NgIf, common_1.NgClass],
 	            template: ALERT_TEMPLATE
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Alert);
-	    return Alert;
+	    ], AlertComponent);
+	    return AlertComponent;
 	}());
-	exports.Alert = Alert;
+	exports.AlertComponent = AlertComponent;
 
 
 /***/ },
@@ -17923,8 +17923,8 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var animation_builder_1 = __webpack_require__(48);
-	var Collapse = (function () {
-	    function Collapse(_ab, _el, _renderer) {
+	var CollapseDirective = (function () {
+	    function CollapseDirective(_ab, _el, _renderer) {
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
 	        this.isCollapse = true;
@@ -17934,7 +17934,7 @@ webpackJsonp([2],[
 	        this._el = _el;
 	        this._renderer = _renderer;
 	    }
-	    Object.defineProperty(Collapse.prototype, "collapse", {
+	    Object.defineProperty(CollapseDirective.prototype, "collapse", {
 	        get: function () {
 	            return this.isExpanded;
 	        },
@@ -17945,11 +17945,11 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Collapse.prototype.ngOnInit = function () {
+	    CollapseDirective.prototype.ngOnInit = function () {
 	        this.animation = this._ab.css();
 	        this.animation.setDuration(this.transitionDuration);
 	    };
-	    Collapse.prototype.toggle = function () {
+	    CollapseDirective.prototype.toggle = function () {
 	        if (this.isExpanded) {
 	            this.hide();
 	        }
@@ -17957,7 +17957,7 @@ webpackJsonp([2],[
 	            this.show();
 	        }
 	    };
-	    Collapse.prototype.hide = function () {
+	    CollapseDirective.prototype.hide = function () {
 	        var _this = this;
 	        this.isCollapse = false;
 	        this.isCollapsing = true;
@@ -17982,7 +17982,7 @@ webpackJsonp([2],[
 	            });
 	        }, 4);
 	    };
-	    Collapse.prototype.show = function () {
+	    CollapseDirective.prototype.show = function () {
 	        var _this = this;
 	        this.isCollapse = false;
 	        this.isCollapsing = true;
@@ -18010,40 +18010,40 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.HostBinding('style.display'), 
 	        __metadata('design:type', String)
-	    ], Collapse.prototype, "display", void 0);
+	    ], CollapseDirective.prototype, "display", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.in'),
 	        core_1.HostBinding('attr.aria-expanded'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isExpanded", void 0);
+	    ], CollapseDirective.prototype, "isExpanded", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.aria-hidden'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isCollapsed", void 0);
+	    ], CollapseDirective.prototype, "isCollapsed", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.collapse'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isCollapse", void 0);
+	    ], CollapseDirective.prototype, "isCollapse", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.collapsing'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isCollapsing", void 0);
+	    ], CollapseDirective.prototype, "isCollapsing", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Collapse.prototype, "transitionDuration", void 0);
+	    ], CollapseDirective.prototype, "transitionDuration", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean), 
 	        __metadata('design:paramtypes', [Boolean])
-	    ], Collapse.prototype, "collapse", null);
-	    Collapse = __decorate([
+	    ], CollapseDirective.prototype, "collapse", null);
+	    CollapseDirective = __decorate([
 	        core_1.Directive({ selector: '[collapse]' }), 
 	        __metadata('design:paramtypes', [animation_builder_1.AnimationBuilder, core_1.ElementRef, core_1.Renderer])
-	    ], Collapse);
-	    return Collapse;
+	    ], CollapseDirective);
+	    return CollapseDirective;
 	}());
-	exports.Collapse = Collapse;
+	exports.CollapseDirective = CollapseDirective;
 
 
 /***/ },
@@ -18080,7 +18080,7 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_config_1 = __webpack_require__(12);
-	var datepicker_inner_1 = __webpack_require__(20);
+	var datepicker_inner_component_1 = __webpack_require__(20);
 	var TEMPLATE_OPTIONS = (_a = {},
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = {
 	        DAY_TITLE: "\n        <th *ngFor=\"#labelz of labels\" class=\"text-xs-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
@@ -18097,14 +18097,14 @@ webpackJsonp([2],[
 	    _a
 	);
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme || ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3];
-	var DayPicker = (function () {
-	    function DayPicker(datePicker) {
+	var DayPickerComponent = (function () {
+	    function DayPickerComponent(datePicker) {
 	        this.labels = [];
 	        this.rows = [];
 	        this.weekNumbers = [];
 	        this.datePicker = datePicker;
 	    }
-	    DayPicker.prototype.ngOnInit = function () {
+	    DayPickerComponent.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepDay = { months: 1 };
 	        this.datePicker.setRefreshViewHandler(function () {
@@ -18150,7 +18150,7 @@ webpackJsonp([2],[
 	        }, 'day');
 	        this.datePicker.refreshView();
 	    };
-	    DayPicker.prototype.getDates = function (startDate, n) {
+	    DayPickerComponent.prototype.getDates = function (startDate, n) {
 	        var dates = new Array(n);
 	        var current = new Date(startDate.getTime());
 	        var i = 0;
@@ -18163,7 +18163,7 @@ webpackJsonp([2],[
 	        }
 	        return dates;
 	    };
-	    DayPicker.prototype.getISO8601WeekNumber = function (date) {
+	    DayPickerComponent.prototype.getISO8601WeekNumber = function (date) {
 	        var checkDate = new Date(date.getTime());
 	        checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
 	        var time = checkDate.getTime();
@@ -18171,17 +18171,17 @@ webpackJsonp([2],[
 	        checkDate.setDate(1);
 	        return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
 	    };
-	    DayPicker = __decorate([
+	    DayPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'daypicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" #rowz=\"$implicit\" #index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
-	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
-	    ], DayPicker);
-	    return DayPicker;
+	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
+	    ], DayPickerComponent);
+	    return DayPickerComponent;
 	}());
-	exports.DayPicker = DayPicker;
+	exports.DayPickerComponent = DayPickerComponent;
 	var _a;
 
 
@@ -18201,7 +18201,7 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var datepicker_inner_1 = __webpack_require__(20);
+	var datepicker_inner_component_1 = __webpack_require__(20);
 	var ng2_bootstrap_config_1 = __webpack_require__(12);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
@@ -18212,12 +18212,12 @@ webpackJsonp([2],[
 	    }
 	};
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
-	var MonthPicker = (function () {
-	    function MonthPicker(datePicker) {
+	var MonthPickerComponent = (function () {
+	    function MonthPickerComponent(datePicker) {
 	        this.rows = [];
 	        this.datePicker = datePicker;
 	    }
-	    MonthPicker.prototype.ngOnInit = function () {
+	    MonthPickerComponent.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepMonth = { years: 1 };
 	        this.datePicker.setRefreshViewHandler(function () {
@@ -18240,17 +18240,17 @@ webpackJsonp([2],[
 	        }, 'month');
 	        this.datePicker.refreshView();
 	    };
-	    MonthPicker = __decorate([
+	    MonthPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'monthpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
-	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
-	    ], MonthPicker);
-	    return MonthPicker;
+	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
+	    ], MonthPickerComponent);
+	    return MonthPickerComponent;
 	}());
-	exports.MonthPicker = MonthPicker;
+	exports.MonthPickerComponent = MonthPickerComponent;
 
 
 /***/ },
@@ -18270,7 +18270,7 @@ webpackJsonp([2],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_config_1 = __webpack_require__(12);
-	var datepicker_inner_1 = __webpack_require__(20);
+	var datepicker_inner_component_1 = __webpack_require__(20);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
 	        YEAR_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\"\n                [ngClass]=\"{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n          <span [ngClass]=\"{'text-success': dtz.current}\">{{dtz.label}}</span>\n        </button>\n    "
@@ -18280,12 +18280,12 @@ webpackJsonp([2],[
 	    }
 	};
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
-	var YearPicker = (function () {
-	    function YearPicker(datePicker) {
+	var YearPickerComponent = (function () {
+	    function YearPickerComponent(datePicker) {
 	        this.rows = [];
 	        this.datePicker = datePicker;
 	    }
-	    YearPicker.prototype.ngOnInit = function () {
+	    YearPickerComponent.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepYear = { years: this.datePicker.yearRange };
 	        this.datePicker.setRefreshViewHandler(function () {
@@ -18306,20 +18306,20 @@ webpackJsonp([2],[
 	        }, 'year');
 	        this.datePicker.refreshView();
 	    };
-	    YearPicker.prototype.getStartingYear = function (year) {
+	    YearPickerComponent.prototype.getStartingYear = function (year) {
 	        return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
 	    };
-	    YearPicker = __decorate([
+	    YearPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'yearpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
-	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
-	    ], YearPicker);
-	    return YearPicker;
+	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
+	    ], YearPickerComponent);
+	    return YearPickerComponent;
 	}());
-	exports.YearPicker = YearPicker;
+	exports.YearPickerComponent = YearPickerComponent;
 
 
 /***/ },
@@ -18416,8 +18416,8 @@ webpackJsonp([2],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var Rating = (function () {
-	    function Rating(cd) {
+	var RatingComponent = (function () {
+	    function RatingComponent(cd) {
 	        this.onHover = new core_1.EventEmitter(false);
 	        this.onLeave = new core_1.EventEmitter(false);
 	        this.onChange = Function.prototype;
@@ -18425,7 +18425,7 @@ webpackJsonp([2],[
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    Rating.prototype.onKeydown = function (event) {
+	    RatingComponent.prototype.onKeydown = function (event) {
 	        if ([37, 38, 39, 40].indexOf(event.which) === -1) {
 	            return;
 	        }
@@ -18434,7 +18434,7 @@ webpackJsonp([2],[
 	        var sign = event.which === 38 || event.which === 39 ? 1 : -1;
 	        this.rate(this.value + sign);
 	    };
-	    Rating.prototype.ngOnInit = function () {
+	    RatingComponent.prototype.ngOnInit = function () {
 	        this.max = typeof this.max !== 'undefined' ? this.max : 5;
 	        this.readonly = this.readonly === true;
 	        this.stateOn = typeof this.stateOn !== 'undefined'
@@ -18448,7 +18448,7 @@ webpackJsonp([2],[
 	            : ['one', 'two', 'three', 'four', 'five'];
 	        this.range = this.buildTemplateObjects(this.ratingStates, this.max);
 	    };
-	    Rating.prototype.writeValue = function (value) {
+	    RatingComponent.prototype.writeValue = function (value) {
 	        if (value % 1 !== value) {
 	            this.value = Math.round(value);
 	            this.preValue = value;
@@ -18457,19 +18457,19 @@ webpackJsonp([2],[
 	        this.preValue = value;
 	        this.value = value;
 	    };
-	    Rating.prototype.enter = function (value) {
+	    RatingComponent.prototype.enter = function (value) {
 	        if (!this.readonly) {
 	            this.value = value;
 	            this.onHover.emit(value);
 	        }
 	    };
-	    Rating.prototype.reset = function () {
+	    RatingComponent.prototype.reset = function () {
 	        this.value = this.preValue;
 	        this.onLeave.emit(this.value);
 	    };
-	    Rating.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    Rating.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
-	    Rating.prototype.buildTemplateObjects = function (ratingStates, max) {
+	    RatingComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    RatingComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    RatingComponent.prototype.buildTemplateObjects = function (ratingStates, max) {
 	        ratingStates = ratingStates || [];
 	        var count = ratingStates.length || max;
 	        var result = [];
@@ -18483,7 +18483,7 @@ webpackJsonp([2],[
 	        }
 	        return result;
 	    };
-	    Rating.prototype.rate = function (value) {
+	    RatingComponent.prototype.rate = function (value) {
 	        if (!this.readonly && value >= 0 && value <= this.range.length) {
 	            this.writeValue(value);
 	            this.cd.viewToModelUpdate(value);
@@ -18492,42 +18492,42 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Rating.prototype, "max", void 0);
+	    ], RatingComponent.prototype, "max", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Rating.prototype, "stateOn", void 0);
+	    ], RatingComponent.prototype, "stateOn", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Rating.prototype, "stateOff", void 0);
+	    ], RatingComponent.prototype, "stateOff", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Rating.prototype, "readonly", void 0);
+	    ], RatingComponent.prototype, "readonly", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], Rating.prototype, "titles", void 0);
+	    ], RatingComponent.prototype, "titles", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], Rating.prototype, "ratingStates", void 0);
+	    ], RatingComponent.prototype, "ratingStates", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Rating.prototype, "onHover", void 0);
+	    ], RatingComponent.prototype, "onHover", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Rating.prototype, "onLeave", void 0);
+	    ], RatingComponent.prototype, "onLeave", void 0);
 	    __decorate([
 	        core_1.HostListener('keydown', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
-	    ], Rating.prototype, "onKeydown", null);
-	    Rating = __decorate([
+	    ], RatingComponent.prototype, "onKeydown", null);
+	    RatingComponent = __decorate([
 	        core_1.Component({
 	            selector: 'rating[ngModel]',
 	            directives: [common_1.NgFor],
@@ -18535,10 +18535,10 @@ webpackJsonp([2],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], Rating);
-	    return Rating;
+	    ], RatingComponent);
+	    return RatingComponent;
 	}());
-	exports.Rating = Rating;
+	exports.RatingComponent = RatingComponent;
 
 
 /***/ },
@@ -18584,8 +18584,8 @@ webpackJsonp([2],[
 	    newDate.setHours(dt.getHours(), dt.getMinutes());
 	    return newDate;
 	}
-	var Timepicker = (function () {
-	    function Timepicker(cd) {
+	var TimepickerComponent = (function () {
+	    function TimepickerComponent(cd) {
 	        this.meridians = ['AM', 'PM'];
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
@@ -18593,7 +18593,7 @@ webpackJsonp([2],[
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    Object.defineProperty(Timepicker.prototype, "showMeridian", {
+	    Object.defineProperty(TimepickerComponent.prototype, "showMeridian", {
 	        get: function () {
 	            return this._showMeridian;
 	        },
@@ -18605,7 +18605,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Timepicker.prototype, "selected", {
+	    Object.defineProperty(TimepickerComponent.prototype, "selected", {
 	        get: function () {
 	            return this._selected;
 	        },
@@ -18619,7 +18619,7 @@ webpackJsonp([2],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Timepicker.prototype.ngOnInit = function () {
+	    TimepickerComponent.prototype.ngOnInit = function () {
 	        this.meridians = def(this.meridians, isDefined, exports.timepickerConfig.meridians) || ['AM',
 	            'PM'];
 	        this.mousewheel = def(this.mousewheel, isDefined, exports.timepickerConfig.mousewheel);
@@ -18636,7 +18636,7 @@ webpackJsonp([2],[
 	        this.showMeridian = def(this.showMeridian, isDefined, exports.timepickerConfig.showMeridian);
 	        this.showSpinners = def(this.showSpinners, isDefined, exports.timepickerConfig.showSpinners);
 	    };
-	    Timepicker.prototype.writeValue = function (v) {
+	    TimepickerComponent.prototype.writeValue = function (v) {
 	        if (v === this.selected) {
 	            return;
 	        }
@@ -18646,9 +18646,9 @@ webpackJsonp([2],[
 	        }
 	        this.selected = v ? new Date(v) : void 0;
 	    };
-	    Timepicker.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    Timepicker.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
-	    Timepicker.prototype.updateHours = function () {
+	    TimepickerComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    TimepickerComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    TimepickerComponent.prototype.updateHours = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -18663,7 +18663,7 @@ webpackJsonp([2],[
 	            this.refresh();
 	        }
 	    };
-	    Timepicker.prototype.hoursOnBlur = function () {
+	    TimepickerComponent.prototype.hoursOnBlur = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -18671,7 +18671,7 @@ webpackJsonp([2],[
 	            this.hours = this.pad(this.hours);
 	        }
 	    };
-	    Timepicker.prototype.updateMinutes = function () {
+	    TimepickerComponent.prototype.updateMinutes = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -18686,7 +18686,7 @@ webpackJsonp([2],[
 	            this.refresh();
 	        }
 	    };
-	    Timepicker.prototype.minutesOnBlur = function () {
+	    TimepickerComponent.prototype.minutesOnBlur = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -18694,37 +18694,37 @@ webpackJsonp([2],[
 	            this.minutes = this.pad(this.minutes);
 	        }
 	    };
-	    Timepicker.prototype.incrementHours = function () {
+	    TimepickerComponent.prototype.incrementHours = function () {
 	        if (!this.noIncrementHours()) {
 	            this.addMinutesToSelected(this.hourStep * 60);
 	        }
 	    };
-	    Timepicker.prototype.decrementHours = function () {
+	    TimepickerComponent.prototype.decrementHours = function () {
 	        if (!this.noDecrementHours()) {
 	            this.addMinutesToSelected(-this.hourStep * 60);
 	        }
 	    };
-	    Timepicker.prototype.incrementMinutes = function () {
+	    TimepickerComponent.prototype.incrementMinutes = function () {
 	        if (!this.noIncrementMinutes()) {
 	            this.addMinutesToSelected(this.minuteStep);
 	        }
 	    };
-	    Timepicker.prototype.decrementMinutes = function () {
+	    TimepickerComponent.prototype.decrementMinutes = function () {
 	        if (!this.noDecrementMinutes()) {
 	            this.addMinutesToSelected(-this.minuteStep);
 	        }
 	    };
-	    Timepicker.prototype.toggleMeridian = function () {
+	    TimepickerComponent.prototype.toggleMeridian = function () {
 	        if (!this.noToggleMeridian()) {
 	            var sign = this.selected.getHours() < 12 ? 1 : -1;
 	            this.addMinutesToSelected(12 * 60 * sign);
 	        }
 	    };
-	    Timepicker.prototype.refresh = function () {
+	    TimepickerComponent.prototype.refresh = function () {
 	        this.updateTemplate();
 	        this.cd.viewToModelUpdate(this.selected);
 	    };
-	    Timepicker.prototype.updateTemplate = function () {
+	    TimepickerComponent.prototype.updateTemplate = function () {
 	        var hours = this.selected.getHours();
 	        var minutes = this.selected.getMinutes();
 	        if (this.showMeridian) {
@@ -18736,7 +18736,7 @@ webpackJsonp([2],[
 	            ? this.meridians[0]
 	            : this.meridians[1];
 	    };
-	    Timepicker.prototype.getHoursFromTemplate = function () {
+	    TimepickerComponent.prototype.getHoursFromTemplate = function () {
 	        var hours = parseInt(this.hours, 10);
 	        var valid = this.showMeridian
 	            ? (hours > 0 && hours < 13)
@@ -18754,40 +18754,40 @@ webpackJsonp([2],[
 	        }
 	        return hours;
 	    };
-	    Timepicker.prototype.getMinutesFromTemplate = function () {
+	    TimepickerComponent.prototype.getMinutesFromTemplate = function () {
 	        var minutes = parseInt(this.minutes, 10);
 	        return (minutes >= 0 && minutes < 60) ? minutes : undefined;
 	    };
-	    Timepicker.prototype.pad = function (value) {
+	    TimepickerComponent.prototype.pad = function (value) {
 	        return (isDefined(value) && value.toString().length < 2)
 	            ? '0' + value
 	            : value.toString();
 	    };
-	    Timepicker.prototype.noIncrementHours = function () {
+	    TimepickerComponent.prototype.noIncrementHours = function () {
 	        var incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
 	        return incrementedSelected > this.max ||
 	            (incrementedSelected < this.selected && incrementedSelected < this.min);
 	    };
-	    Timepicker.prototype.noDecrementHours = function () {
+	    TimepickerComponent.prototype.noDecrementHours = function () {
 	        var decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
 	        return decrementedSelected < this.min ||
 	            (decrementedSelected > this.selected && decrementedSelected > this.max);
 	    };
-	    Timepicker.prototype.noIncrementMinutes = function () {
+	    TimepickerComponent.prototype.noIncrementMinutes = function () {
 	        var incrementedSelected = addMinutes(this.selected, this.minuteStep);
 	        return incrementedSelected > this.max ||
 	            (incrementedSelected < this.selected && incrementedSelected < this.min);
 	    };
-	    Timepicker.prototype.noDecrementMinutes = function () {
+	    TimepickerComponent.prototype.noDecrementMinutes = function () {
 	        var decrementedSelected = addMinutes(this.selected, -this.minuteStep);
 	        return decrementedSelected < this.min ||
 	            (decrementedSelected > this.selected && decrementedSelected > this.max);
 	    };
-	    Timepicker.prototype.addMinutesToSelected = function (minutes) {
+	    TimepickerComponent.prototype.addMinutesToSelected = function (minutes) {
 	        this.selected = addMinutes(this.selected, minutes);
 	        this.refresh();
 	    };
-	    Timepicker.prototype.noToggleMeridian = function () {
+	    TimepickerComponent.prototype.noToggleMeridian = function () {
 	        if (this.selected.getHours() < 13) {
 	            return addMinutes(this.selected, 12 * 60) > this.max;
 	        }
@@ -18798,44 +18798,44 @@ webpackJsonp([2],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Timepicker.prototype, "hourStep", void 0);
+	    ], TimepickerComponent.prototype, "hourStep", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Timepicker.prototype, "minuteStep", void 0);
+	    ], TimepickerComponent.prototype, "minuteStep", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "readonlyInput", void 0);
+	    ], TimepickerComponent.prototype, "readonlyInput", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "mousewheel", void 0);
+	    ], TimepickerComponent.prototype, "mousewheel", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "arrowkeys", void 0);
+	    ], TimepickerComponent.prototype, "arrowkeys", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "showSpinners", void 0);
+	    ], TimepickerComponent.prototype, "showSpinners", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], Timepicker.prototype, "min", void 0);
+	    ], TimepickerComponent.prototype, "min", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], Timepicker.prototype, "max", void 0);
+	    ], TimepickerComponent.prototype, "max", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], Timepicker.prototype, "meridians", void 0);
+	    ], TimepickerComponent.prototype, "meridians", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "showMeridian", null);
-	    Timepicker = __decorate([
+	    ], TimepickerComponent.prototype, "showMeridian", null);
+	    TimepickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'timepicker[ngModel]',
 	            directives: [common_1.NgClass],
@@ -18843,10 +18843,10 @@ webpackJsonp([2],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], Timepicker);
-	    return Timepicker;
+	    ], TimepickerComponent);
+	    return TimepickerComponent;
 	}());
-	exports.Timepicker = Timepicker;
+	exports.TimepickerComponent = TimepickerComponent;
 
 
 /***/ },

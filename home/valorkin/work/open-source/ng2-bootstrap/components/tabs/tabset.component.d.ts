@@ -1,11 +1,11 @@
 import { OnInit, OnDestroy } from 'angular2/core';
-import { Tab } from './tab.directive';
-export declare class Tabset implements OnInit, OnDestroy {
+import { TabDirective } from './tab.directive';
+export declare class TabsetComponent implements OnInit, OnDestroy {
     vertical: boolean;
     justified: boolean;
     type: string;
     protected clazz: boolean;
-    tabs: Array<Tab>;
+    tabs: Array<TabDirective>;
     private isDestroyed;
     private _vertical;
     private _justified;
@@ -13,8 +13,8 @@ export declare class Tabset implements OnInit, OnDestroy {
     private classMap;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    addTab(tab: Tab): void;
-    removeTab(tab: Tab): void;
+    addTab(tab: TabDirective): void;
+    removeTab(tab: TabDirective): void;
     private getClosestTabIndex(index);
     private hasAvailableTabs(index);
     private setClassMap();

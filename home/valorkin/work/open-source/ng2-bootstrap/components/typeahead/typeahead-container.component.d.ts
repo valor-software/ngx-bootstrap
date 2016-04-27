@@ -1,8 +1,8 @@
 import { ElementRef } from 'angular2/core';
-import { Typeahead } from './typeahead.directive';
+import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadOptions } from './typeahead-options.class';
-export declare class TypeaheadContainer {
-    parent: Typeahead;
+export declare class TypeaheadContainerComponent {
+    parent: TypeaheadDirective;
     query: any;
     element: ElementRef;
     isFocused: boolean;

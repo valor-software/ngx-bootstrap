@@ -37,39 +37,39 @@ webpackJsonp([1],[
 	    ng2_bootstrap_1.Ng2BootstrapConfig.theme = ng2_bootstrap_1.Ng2BootstrapTheme.BS4;
 	}
 	var gettingStarted = __webpack_require__(413);
-	var Demo = (function () {
-	    function Demo() {
+	var DemoComponent = (function () {
+	    function DemoComponent() {
 	        this.isBs3 = ng2_bootstrap_1.Ng2BootstrapConfig.theme === ng2_bootstrap_1.Ng2BootstrapTheme.BS3;
 	    }
-	    Demo = __decorate([
+	    DemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'app',
 	            template: "\n  <demo-header>Loading header</demo-header>\n  <main class=\"bd-pageheader\">\n    <div class=\"container\">\n      <h1>ng2-bootstrap</h1>\n      <p>Native Angular2 directives for Bootstrap</p>\n      <a class=\"btn btn-primary\" href=\"https://github.com/valor-software/ng2-bootstrap\">View on GitHub</a>\n      <div class=\"row\">\n        <div class=\"col-lg-1\"><iframe src=\"https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=star&count=true\" frameborder=\"0\" scrolling=\"0\" width=\"170px\" height=\"20px\"></iframe></div>\n        <div class=\"col-lg-1\"><iframe src=\"https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=fork&count=true\" frameborder=\"0\" scrolling=\"0\" width=\"170px\" height=\"20px\"></iframe></div>\n      </div>\n    </div>\n  </main>\n\n  <div class=\"container\">\n    <h1 id=\"overview\" class=\"page-header\">\n      ng2-bootstrap available with:\n      <a class=\"btn btn-default btn-secondary btn-lg\" [ngClass]=\"{active: isBs3}\" href=\"./\">Bootstrap 3</a>\n      <a class=\"btn btn-default btn-secondary btn-lg\" [ngClass]=\"{active: !isBs3}\" href=\"./index-bs4.html\">Bootstrap 4</a>\n    </h1>\n    \n    <section id=\"getting-started\">" + gettingStarted + "</section>\n\n    <accordion-section></accordion-section>\n    <alert-section></alert-section>\n    <buttons-section></buttons-section>\n    <carousel-section></carousel-section>\n    <collapse-section></collapse-section>\n    <datepicker-section></datepicker-section>\n    <dropdown-section></dropdown-section>\n    <pagination-section></pagination-section>\n    <progressbar-section></progressbar-section>\n    <rating-section></rating-section>\n    <tabs-section></tabs-section>\n    <timepicker-section></timepicker-section>\n    <tooltip-section></tooltip-section>\n    <typeahead-section></typeahead-section>\n  </div>\n\n  <footer class=\"footer\">\n    <div class=\"container\">\n      <p class=\"text-muted text-center\">\n        <a href=\"https://github.com/valor-software/ng2-bootstrap\">ng2-bootstrap</a> is maintained by <a href=\"https://github.com/valor-software\">valor-software</a>.\n      </p>\n    </div>\n  </footer>\n  ",
 	            directives: [
 	                common_1.CORE_DIRECTIVES,
-	                demo_header_1.DemoHeader,
-	                accordion_section_1.AccordionSection,
-	                alert_section_1.AlertSection,
-	                buttons_section_1.ButtonsSection,
-	                carousel_section_1.CarouselSection,
-	                collapse_section_1.CollapseSection,
-	                datepicker_section_1.DatepickerSection,
-	                dropdown_section_1.DropdownSection,
-	                pagination_section_1.PaginationSection,
-	                progressbar_section_1.ProgressbarSection,
-	                rating_section_1.RatingSection,
-	                tabs_section_1.TabsSection,
-	                timepicker_section_1.TimepickerSection,
-	                tooltip_section_1.TooltipSection,
-	                typeahead_section_1.TypeaheadSection
+	                demo_header_1.DemoHeaderComponent,
+	                accordion_section_1.AccordionSectionComponent,
+	                alert_section_1.AlertSectionComponent,
+	                buttons_section_1.ButtonsSectionComponent,
+	                carousel_section_1.CarouselSectionComponent,
+	                collapse_section_1.CollapseSectionComponent,
+	                datepicker_section_1.DatepickerSectionComponent,
+	                dropdown_section_1.DropdownSectionComponent,
+	                pagination_section_1.PaginationSectionComponent,
+	                progressbar_section_1.ProgressbarSectionComponent,
+	                rating_section_1.RatingSectionComponent,
+	                tabs_section_1.TabsSectionComponent,
+	                timepicker_section_1.TimepickerSectionComponent,
+	                tooltip_section_1.TooltipSectionComponent,
+	                typeahead_section_1.TypeaheadSectionComponent
 	            ]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Demo);
-	    return Demo;
+	    ], DemoComponent);
+	    return DemoComponent;
 	}());
-	exports.Demo = Demo;
-	browser_1.bootstrap(Demo);
+	exports.DemoComponent = DemoComponent;
+	browser_1.bootstrap(DemoComponent);
 
 
 /***/ },
@@ -4166,18 +4166,18 @@ webpackJsonp([1],[
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = {
 	    directives: [
-	        alert_1.Alert,
+	        alert_1.AlertComponent,
 	        accordion_1.ACCORDION_DIRECTIVES,
 	        buttons_1.BUTTON_DIRECTIVES,
 	        carousel_1.CAROUSEL_DIRECTIVES,
-	        collapse_1.Collapse,
+	        collapse_1.CollapseDirective,
 	        datepicker_1.DATEPICKER_DIRECTIVES,
 	        dropdown_1.DROPDOWN_DIRECTIVES,
 	        pagination_1.PAGINATION_DIRECTIVES,
 	        progressbar_1.PROGRESSBAR_DIRECTIVES,
-	        rating_1.Rating,
+	        rating_1.RatingComponent,
 	        tabs_1.TAB_DIRECTIVES,
-	        timepicker_1.Timepicker,
+	        timepicker_1.TimepickerComponent,
 	        tooltip_1.TOOLTIP_DIRECTIVES,
 	        typeahead_1.TYPEAHEAD_DIRECTIVES
 	    ]
@@ -6099,8 +6099,8 @@ webpackJsonp([1],[
 	var STARTING_DAY = 0;
 	var YEAR_RANGE = 20;
 	var SHORTCUT_PROPAGATION = false;
-	var DatePickerInner = (function () {
-	    function DatePickerInner() {
+	var DatePickerInnerComponent = (function () {
+	    function DatePickerInnerComponent() {
 	        this.stepDay = {};
 	        this.stepMonth = {};
 	        this.stepYear = {};
@@ -6108,7 +6108,7 @@ webpackJsonp([1],[
 	        this.dateFormatter = new date_formatter_1.DateFormatter();
 	        this.update = new core_1.EventEmitter(false);
 	    }
-	    Object.defineProperty(DatePickerInner.prototype, "activeDate", {
+	    Object.defineProperty(DatePickerInnerComponent.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate;
 	        },
@@ -6119,7 +6119,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DatePickerInner.prototype.ngOnInit = function () {
+	    DatePickerInnerComponent.prototype.ngOnInit = function () {
 	        this.formatDay = this.formatDay || FORMAT_DAY;
 	        this.formatMonth = this.formatMonth || FORMAT_MONTH;
 	        this.formatYear = this.formatYear || FORMAT_YEAR;
@@ -6149,7 +6149,7 @@ webpackJsonp([1],[
 	        }
 	        this.refreshView();
 	    };
-	    DatePickerInner.prototype.setCompareHandler = function (handler, type) {
+	    DatePickerInnerComponent.prototype.setCompareHandler = function (handler, type) {
 	        if (type === 'day') {
 	            this.compareHandlerDay = handler;
 	        }
@@ -6160,7 +6160,7 @@ webpackJsonp([1],[
 	            this.compareHandlerYear = handler;
 	        }
 	    };
-	    DatePickerInner.prototype.compare = function (date1, date2) {
+	    DatePickerInnerComponent.prototype.compare = function (date1, date2) {
 	        if (date1 === undefined || date2 === undefined) {
 	            return undefined;
 	        }
@@ -6175,7 +6175,7 @@ webpackJsonp([1],[
 	        }
 	        return void 0;
 	    };
-	    DatePickerInner.prototype.setRefreshViewHandler = function (handler, type) {
+	    DatePickerInnerComponent.prototype.setRefreshViewHandler = function (handler, type) {
 	        if (type === 'day') {
 	            this.refreshViewHandlerDay = handler;
 	        }
@@ -6186,7 +6186,7 @@ webpackJsonp([1],[
 	            this.refreshViewHandlerYear = handler;
 	        }
 	    };
-	    DatePickerInner.prototype.refreshView = function () {
+	    DatePickerInnerComponent.prototype.refreshView = function () {
 	        if (this.datepickerMode === 'day' && this.refreshViewHandlerDay) {
 	            this.refreshViewHandlerDay();
 	        }
@@ -6197,17 +6197,17 @@ webpackJsonp([1],[
 	            this.refreshViewHandlerYear();
 	        }
 	    };
-	    DatePickerInner.prototype.dateFilter = function (date, format) {
+	    DatePickerInnerComponent.prototype.dateFilter = function (date, format) {
 	        return this.dateFormatter.format(date, format);
 	    };
-	    DatePickerInner.prototype.isActive = function (dateObject) {
+	    DatePickerInnerComponent.prototype.isActive = function (dateObject) {
 	        if (this.compare(dateObject.date, this.activeDate) === 0) {
 	            this.activeDateId = dateObject.uid;
 	            return true;
 	        }
 	        return false;
 	    };
-	    DatePickerInner.prototype.createDateObject = function (date, format) {
+	    DatePickerInnerComponent.prototype.createDateObject = function (date, format) {
 	        var dateObject = {};
 	        dateObject.date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 	        dateObject.label = this.dateFilter(date, format);
@@ -6217,18 +6217,18 @@ webpackJsonp([1],[
 	        dateObject.customClass = this.getCustomClassForDate(dateObject.date);
 	        return dateObject;
 	    };
-	    DatePickerInner.prototype.split = function (arr, size) {
+	    DatePickerInnerComponent.prototype.split = function (arr, size) {
 	        var arrays = [];
 	        while (arr.length > 0) {
 	            arrays.push(arr.splice(0, size));
 	        }
 	        return arrays;
 	    };
-	    DatePickerInner.prototype.fixTimeZone = function (date) {
+	    DatePickerInnerComponent.prototype.fixTimeZone = function (date) {
 	        var hours = date.getHours();
 	        return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours === 23 ? hours + 2 : 0);
 	    };
-	    DatePickerInner.prototype.select = function (date) {
+	    DatePickerInnerComponent.prototype.select = function (date) {
 	        if (this.datepickerMode === this.minMode) {
 	            if (!this.activeDate) {
 	                this.activeDate = new Date(0, 0, 0, 0, 0, 0, 0);
@@ -6243,7 +6243,7 @@ webpackJsonp([1],[
 	        this.update.emit(this.activeDate);
 	        this.refreshView();
 	    };
-	    DatePickerInner.prototype.move = function (direction) {
+	    DatePickerInnerComponent.prototype.move = function (direction) {
 	        var expectedStep;
 	        if (this.datepickerMode === 'day') {
 	            expectedStep = this.stepDay;
@@ -6261,7 +6261,7 @@ webpackJsonp([1],[
 	            this.refreshView();
 	        }
 	    };
-	    DatePickerInner.prototype.toggleMode = function (direction) {
+	    DatePickerInnerComponent.prototype.toggleMode = function (direction) {
 	        direction = direction || 1;
 	        if ((this.datepickerMode === this.maxMode && direction === 1) ||
 	            (this.datepickerMode === this.minMode && direction === -1)) {
@@ -6270,7 +6270,7 @@ webpackJsonp([1],[
 	        this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) + direction];
 	        this.refreshView();
 	    };
-	    DatePickerInner.prototype.getCustomClassForDate = function (date) {
+	    DatePickerInnerComponent.prototype.getCustomClassForDate = function (date) {
 	        var _this = this;
 	        if (!this.customClass) {
 	            return '';
@@ -6282,91 +6282,91 @@ webpackJsonp([1],[
 	        }, this);
 	        return customClassObject === undefined ? '' : customClassObject.clazz;
 	    };
-	    DatePickerInner.prototype.isDisabled = function (date) {
+	    DatePickerInnerComponent.prototype.isDisabled = function (date) {
 	        return ((this.minDate && this.compare(date, this.minDate) < 0) ||
 	            (this.maxDate && this.compare(date, this.maxDate) > 0));
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "datepickerMode", void 0);
+	    ], DatePickerInnerComponent.prototype, "datepickerMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePickerInner.prototype, "startingDay", void 0);
+	    ], DatePickerInnerComponent.prototype, "startingDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePickerInner.prototype, "yearRange", void 0);
+	    ], DatePickerInnerComponent.prototype, "yearRange", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "minDate", void 0);
+	    ], DatePickerInnerComponent.prototype, "minDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "maxDate", void 0);
+	    ], DatePickerInnerComponent.prototype, "maxDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "minMode", void 0);
+	    ], DatePickerInnerComponent.prototype, "minMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "maxMode", void 0);
+	    ], DatePickerInnerComponent.prototype, "maxMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePickerInner.prototype, "showWeeks", void 0);
+	    ], DatePickerInnerComponent.prototype, "showWeeks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatDay", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatMonth", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatYear", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatYear", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatDayHeader", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatDayHeader", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatDayTitle", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatDayTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePickerInner.prototype, "formatMonthTitle", void 0);
+	    ], DatePickerInnerComponent.prototype, "formatMonthTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePickerInner.prototype, "onlyCurrentMonth", void 0);
+	    ], DatePickerInnerComponent.prototype, "onlyCurrentMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePickerInner.prototype, "shortcutPropagation", void 0);
+	    ], DatePickerInnerComponent.prototype, "shortcutPropagation", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], DatePickerInner.prototype, "customClass", void 0);
+	    ], DatePickerInnerComponent.prototype, "customClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], DatePickerInner.prototype, "dateDisabled", void 0);
+	    ], DatePickerInnerComponent.prototype, "dateDisabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "initDate", void 0);
+	    ], DatePickerInnerComponent.prototype, "initDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePickerInner.prototype, "activeDate", null);
-	    DatePickerInner = __decorate([
+	    ], DatePickerInnerComponent.prototype, "activeDate", null);
+	    DatePickerInnerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'datepicker-inner',
 	            events: ['update'],
@@ -6374,10 +6374,10 @@ webpackJsonp([1],[
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass, common_1.NgModel]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DatePickerInner);
-	    return DatePickerInner;
+	    ], DatePickerInnerComponent);
+	    return DatePickerInnerComponent;
 	}());
-	exports.DatePickerInner = DatePickerInner;
+	exports.DatePickerInnerComponent = DatePickerInnerComponent;
 
 
 /***/ },
@@ -6396,14 +6396,14 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_service_1 = __webpack_require__(262);
-	var Dropdown = (function () {
-	    function Dropdown(el) {
+	var DropdownDirective = (function () {
+	    function DropdownDirective(el) {
 	        this.onToggle = new core_1.EventEmitter(false);
 	        this.isOpenChange = new core_1.EventEmitter(false);
 	        this.addClass = true;
 	        this.el = el;
 	    }
-	    Object.defineProperty(Dropdown.prototype, "isOpen", {
+	    Object.defineProperty(DropdownDirective.prototype, "isOpen", {
 	        get: function () {
 	            return this._isOpen;
 	        },
@@ -6423,17 +6423,17 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Dropdown.prototype.ngOnInit = function () {
+	    DropdownDirective.prototype.ngOnInit = function () {
 	        this.autoClose = this.autoClose || dropdown_service_1.NONINPUT;
 	        if (this.isOpen) {
 	        }
 	    };
-	    Dropdown.prototype.ngOnDestroy = function () {
+	    DropdownDirective.prototype.ngOnDestroy = function () {
 	        if (this.appendToBody && this.menuEl) {
 	            this.menuEl.nativeElement.remove();
 	        }
 	    };
-	    Object.defineProperty(Dropdown.prototype, "dropDownMenu", {
+	    Object.defineProperty(DropdownDirective.prototype, "dropDownMenu", {
 	        set: function (dropdownMenu) {
 	            this.menuEl = dropdownMenu.el;
 	            if (this.appendToBody) {
@@ -6443,17 +6443,17 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Dropdown.prototype, "dropDownToggle", {
+	    Object.defineProperty(DropdownDirective.prototype, "dropDownToggle", {
 	        set: function (dropdownToggle) {
 	            this.toggleEl = dropdownToggle.el;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Dropdown.prototype.toggle = function (open) {
+	    DropdownDirective.prototype.toggle = function (open) {
 	        return this.isOpen = arguments.length ? !!open : !this.isOpen;
 	    };
-	    Dropdown.prototype.focusDropdownEntry = function (keyCode) {
+	    DropdownDirective.prototype.focusDropdownEntry = function (keyCode) {
 	        var hostEl = this.menuEl ?
 	            this.menuEl.nativeElement :
 	            this.el.nativeElement.getElementsByTagName('ul')[0];
@@ -6489,7 +6489,7 @@ webpackJsonp([1],[
 	        }
 	        elems[this.selectedOption].focus();
 	    };
-	    Dropdown.prototype.focusToggleElement = function () {
+	    DropdownDirective.prototype.focusToggleElement = function () {
 	        if (this.toggleEl) {
 	            this.toggleEl.nativeElement.focus();
 	        }
@@ -6498,38 +6498,38 @@ webpackJsonp([1],[
 	        core_1.HostBinding('class.open'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "isOpen", null);
+	    ], DropdownDirective.prototype, "isOpen", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Dropdown.prototype, "autoClose", void 0);
+	    ], DropdownDirective.prototype, "autoClose", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "keyboardNav", void 0);
+	    ], DropdownDirective.prototype, "keyboardNav", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "appendToBody", void 0);
+	    ], DropdownDirective.prototype, "appendToBody", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Dropdown.prototype, "onToggle", void 0);
+	    ], DropdownDirective.prototype, "onToggle", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Dropdown.prototype, "isOpenChange", void 0);
+	    ], DropdownDirective.prototype, "isOpenChange", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.dropdown'), 
 	        __metadata('design:type', Boolean)
-	    ], Dropdown.prototype, "addClass", void 0);
-	    Dropdown = __decorate([
+	    ], DropdownDirective.prototype, "addClass", void 0);
+	    DropdownDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdown]' }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef])
-	    ], Dropdown);
-	    return Dropdown;
+	    ], DropdownDirective);
+	    return DropdownDirective;
 	}());
-	exports.Dropdown = Dropdown;
+	exports.DropdownDirective = DropdownDirective;
 
 
 /***/ },
@@ -6686,12 +6686,12 @@ webpackJsonp([1],[
 	    animate: true,
 	    max: 100
 	};
-	var Progress = (function () {
-	    function Progress() {
+	var ProgressDirective = (function () {
+	    function ProgressDirective() {
 	        this.addClass = true;
 	        this.bars = [];
 	    }
-	    Object.defineProperty(Progress.prototype, "max", {
+	    Object.defineProperty(ProgressDirective.prototype, "max", {
 	        get: function () {
 	            return this._max;
 	        },
@@ -6704,39 +6704,39 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Progress.prototype.ngOnInit = function () {
+	    ProgressDirective.prototype.ngOnInit = function () {
 	        this.animate = this.animate !== false;
 	        this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
 	    };
-	    Progress.prototype.addBar = function (bar) {
+	    ProgressDirective.prototype.addBar = function (bar) {
 	        if (!this.animate) {
 	            bar.transition = 'none';
 	        }
 	        this.bars.push(bar);
 	    };
-	    Progress.prototype.removeBar = function (bar) {
+	    ProgressDirective.prototype.removeBar = function (bar) {
 	        this.bars.splice(this.bars.indexOf(bar), 1);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Progress.prototype, "animate", void 0);
+	    ], ProgressDirective.prototype, "animate", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.max'),
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Progress.prototype, "max", null);
+	    ], ProgressDirective.prototype, "max", null);
 	    __decorate([
 	        core_1.HostBinding('class.progress'), 
 	        __metadata('design:type', Boolean)
-	    ], Progress.prototype, "addClass", void 0);
-	    Progress = __decorate([
+	    ], ProgressDirective.prototype, "addClass", void 0);
+	    ProgressDirective = __decorate([
 	        core_1.Directive({ selector: 'bs-progress, [progress]' }), 
 	        __metadata('design:paramtypes', [])
-	    ], Progress);
-	    return Progress;
+	    ], ProgressDirective);
+	    return ProgressDirective;
 	}());
-	exports.Progress = Progress;
+	exports.ProgressDirective = ProgressDirective;
 
 
 /***/ },
@@ -7076,12 +7076,12 @@ webpackJsonp([1],[
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(3);
-	var Accordion = (function () {
-	    function Accordion() {
+	var AccordionComponent = (function () {
+	    function AccordionComponent() {
 	        this.addClass = true;
 	        this.groups = [];
 	    }
-	    Accordion.prototype.closeOtherPanels = function (openGroup) {
+	    AccordionComponent.prototype.closeOtherPanels = function (openGroup) {
 	        if (!this.closeOthers) {
 	            return;
 	        }
@@ -7091,10 +7091,10 @@ webpackJsonp([1],[
 	            }
 	        });
 	    };
-	    Accordion.prototype.addGroup = function (group) {
+	    AccordionComponent.prototype.addGroup = function (group) {
 	        this.groups.push(group);
 	    };
-	    Accordion.prototype.removeGroup = function (group) {
+	    AccordionComponent.prototype.removeGroup = function (group) {
 	        var index = this.groups.indexOf(group);
 	        if (index !== -1) {
 	            this.groups.splice(index, 1);
@@ -7103,21 +7103,21 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Accordion.prototype, "closeOthers", void 0);
+	    ], AccordionComponent.prototype, "closeOthers", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.panel-group'), 
 	        __metadata('design:type', Boolean)
-	    ], Accordion.prototype, "addClass", void 0);
-	    Accordion = __decorate([
+	    ], AccordionComponent.prototype, "addClass", void 0);
+	    AccordionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion',
 	            template: "<ng-content></ng-content>"
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Accordion);
-	    return Accordion;
+	    ], AccordionComponent);
+	    return AccordionComponent;
 	}());
-	exports.Accordion = Accordion;
+	exports.AccordionComponent = AccordionComponent;
 
 
 /***/ },
@@ -7148,12 +7148,12 @@ webpackJsonp([1],[
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n    <a class=\"left carousel-control\" (click)=\"prev()\" *ngIf=\"slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-left\"></span>\n    </a>\n    <a class=\"right carousel-control\" (click)=\"next()\" *ngIf=\"slides.length\">\n      <span class=\"glyphicon glyphicon-chevron-right\"></span>\n    </a>\n  ",
 	    _a
 	);
-	var Carousel = (function () {
-	    function Carousel() {
+	var CarouselComponent = (function () {
+	    function CarouselComponent() {
 	        this.slides = [];
 	        this.destroyed = false;
 	    }
-	    Object.defineProperty(Carousel.prototype, "interval", {
+	    Object.defineProperty(CarouselComponent.prototype, "interval", {
 	        get: function () {
 	            return this._interval;
 	        },
@@ -7164,10 +7164,10 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Carousel.prototype.ngOnDestroy = function () {
+	    CarouselComponent.prototype.ngOnDestroy = function () {
 	        this.destroyed = true;
 	    };
-	    Carousel.prototype.select = function (nextSlide, direction) {
+	    CarouselComponent.prototype.select = function (nextSlide, direction) {
 	        if (direction === void 0) { direction = Direction.UNKNOWN; }
 	        var nextIndex = nextSlide.index;
 	        if (direction === Direction.UNKNOWN) {
@@ -7179,19 +7179,19 @@ webpackJsonp([1],[
 	            this.goNext(nextSlide, direction);
 	        }
 	    };
-	    Carousel.prototype.play = function () {
+	    CarouselComponent.prototype.play = function () {
 	        if (!this.isPlaying) {
 	            this.isPlaying = true;
 	            this.restartTimer();
 	        }
 	    };
-	    Carousel.prototype.pause = function () {
+	    CarouselComponent.prototype.pause = function () {
 	        if (!this.noPause) {
 	            this.isPlaying = false;
 	            this.resetTimer();
 	        }
 	    };
-	    Carousel.prototype.next = function () {
+	    CarouselComponent.prototype.next = function () {
 	        var newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
 	        if (newIndex === 0 && this.noWrap) {
 	            this.pause();
@@ -7199,7 +7199,7 @@ webpackJsonp([1],[
 	        }
 	        return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
 	    };
-	    Carousel.prototype.prev = function () {
+	    CarouselComponent.prototype.prev = function () {
 	        var newIndex = this.getCurrentIndex() - 1 < 0
 	            ? this.slides.length - 1
 	            : this.getCurrentIndex() - 1;
@@ -7209,7 +7209,7 @@ webpackJsonp([1],[
 	        }
 	        return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
 	    };
-	    Carousel.prototype.addSlide = function (slide) {
+	    CarouselComponent.prototype.addSlide = function (slide) {
 	        slide.index = this.slides.length;
 	        this.slides.push(slide);
 	        if (this.slides.length === 1 || slide.active) {
@@ -7222,7 +7222,7 @@ webpackJsonp([1],[
 	            slide.active = false;
 	        }
 	    };
-	    Carousel.prototype.removeSlide = function (slide) {
+	    CarouselComponent.prototype.removeSlide = function (slide) {
 	        this.slides.splice(slide.index, 1);
 	        if (this.slides.length === 0) {
 	            this.currentSlide = void 0;
@@ -7232,7 +7232,7 @@ webpackJsonp([1],[
 	            this.slides[i].index = i;
 	        }
 	    };
-	    Carousel.prototype.goNext = function (slide, direction) {
+	    CarouselComponent.prototype.goNext = function (slide, direction) {
 	        if (this.destroyed) {
 	            return;
 	        }
@@ -7245,7 +7245,7 @@ webpackJsonp([1],[
 	        this.currentSlide = slide;
 	        this.restartTimer();
 	    };
-	    Carousel.prototype.getSlideByIndex = function (index) {
+	    CarouselComponent.prototype.getSlideByIndex = function (index) {
 	        var len = this.slides.length;
 	        for (var i = 0; i < len; ++i) {
 	            if (this.slides[i].index === index) {
@@ -7254,10 +7254,10 @@ webpackJsonp([1],[
 	        }
 	        return void 0;
 	    };
-	    Carousel.prototype.getCurrentIndex = function () {
+	    CarouselComponent.prototype.getCurrentIndex = function () {
 	        return !this.currentSlide ? 0 : this.currentSlide.index;
 	    };
-	    Carousel.prototype.restartTimer = function () {
+	    CarouselComponent.prototype.restartTimer = function () {
 	        var _this = this;
 	        this.resetTimer();
 	        var interval = +this.interval;
@@ -7273,7 +7273,7 @@ webpackJsonp([1],[
 	            }, interval);
 	        }
 	    };
-	    Carousel.prototype.resetTimer = function () {
+	    CarouselComponent.prototype.resetTimer = function () {
 	        if (this.currentInterval) {
 	            clearInterval(this.currentInterval);
 	            this.currentInterval = void 0;
@@ -7282,30 +7282,30 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Carousel.prototype, "noWrap", void 0);
+	    ], CarouselComponent.prototype, "noWrap", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Carousel.prototype, "noPause", void 0);
+	    ], CarouselComponent.prototype, "noPause", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Carousel.prototype, "noTransition", void 0);
+	    ], CarouselComponent.prototype, "noTransition", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Carousel.prototype, "interval", null);
-	    Carousel = __decorate([
+	    ], CarouselComponent.prototype, "interval", null);
+	    CarouselComponent = __decorate([
 	        core_1.Component({
 	            selector: 'carousel',
 	            directives: [common_1.NgFor],
 	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" *ngIf=\"slides.length > 1\">\n         <li *ngFor=\"#slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Carousel);
-	    return Carousel;
+	    ], CarouselComponent);
+	    return CarouselComponent;
 	}());
-	exports.Carousel = Carousel;
+	exports.CarouselComponent = CarouselComponent;
 	var _a;
 
 
@@ -7314,8 +7314,8 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var collapse_component_1 = __webpack_require__(257);
-	exports.Collapse = collapse_component_1.Collapse;
+	var collapse_directive_1 = __webpack_require__(257);
+	exports.CollapseDirective = collapse_directive_1.CollapseDirective;
 
 
 /***/ },
@@ -7337,19 +7337,19 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var datepicker_inner_1 = __webpack_require__(20);
-	var daypicker_1 = __webpack_require__(259);
-	var monthpicker_1 = __webpack_require__(260);
-	var yearpicker_1 = __webpack_require__(261);
-	var DatePicker = (function () {
-	    function DatePicker(cd) {
+	var datepicker_inner_component_1 = __webpack_require__(20);
+	var daypicker_component_1 = __webpack_require__(259);
+	var monthpicker_component_1 = __webpack_require__(260);
+	var yearpicker_component_1 = __webpack_require__(261);
+	var DatePickerComponent = (function () {
+	    function DatePickerComponent(cd) {
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
 	        this._now = new Date();
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    Object.defineProperty(DatePicker.prototype, "activeDate", {
+	    Object.defineProperty(DatePickerComponent.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate || this._now;
 	        },
@@ -7359,11 +7359,11 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DatePicker.prototype.onUpdate = function (event) {
+	    DatePickerComponent.prototype.onUpdate = function (event) {
 	        this.writeValue(event);
 	        this.cd.viewToModelUpdate(event);
 	    };
-	    DatePicker.prototype.writeValue = function (value) {
+	    DatePickerComponent.prototype.writeValue = function (value) {
 	        if (value === this._activeDate) {
 	            return;
 	        }
@@ -7373,101 +7373,101 @@ webpackJsonp([1],[
 	        }
 	        this.activeDate = value ? new Date(value) : void 0;
 	    };
-	    DatePicker.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    DatePicker.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    DatePickerComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    DatePickerComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "datepickerMode", void 0);
+	    ], DatePickerComponent.prototype, "datepickerMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "initDate", void 0);
+	    ], DatePickerComponent.prototype, "initDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "minDate", void 0);
+	    ], DatePickerComponent.prototype, "minDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "maxDate", void 0);
+	    ], DatePickerComponent.prototype, "maxDate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "minMode", void 0);
+	    ], DatePickerComponent.prototype, "minMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "maxMode", void 0);
+	    ], DatePickerComponent.prototype, "maxMode", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePicker.prototype, "showWeeks", void 0);
+	    ], DatePickerComponent.prototype, "showWeeks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatDay", void 0);
+	    ], DatePickerComponent.prototype, "formatDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatMonth", void 0);
+	    ], DatePickerComponent.prototype, "formatMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatYear", void 0);
+	    ], DatePickerComponent.prototype, "formatYear", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatDayHeader", void 0);
+	    ], DatePickerComponent.prototype, "formatDayHeader", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatDayTitle", void 0);
+	    ], DatePickerComponent.prototype, "formatDayTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], DatePicker.prototype, "formatMonthTitle", void 0);
+	    ], DatePickerComponent.prototype, "formatMonthTitle", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePicker.prototype, "startingDay", void 0);
+	    ], DatePickerComponent.prototype, "startingDay", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], DatePicker.prototype, "yearRange", void 0);
+	    ], DatePickerComponent.prototype, "yearRange", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePicker.prototype, "onlyCurrentMonth", void 0);
+	    ], DatePickerComponent.prototype, "onlyCurrentMonth", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DatePicker.prototype, "shortcutPropagation", void 0);
+	    ], DatePickerComponent.prototype, "shortcutPropagation", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], DatePicker.prototype, "customClass", void 0);
+	    ], DatePickerComponent.prototype, "customClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], DatePicker.prototype, "dateDisabled", void 0);
+	    ], DatePickerComponent.prototype, "dateDisabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], DatePicker.prototype, "activeDate", null);
-	    DatePicker = __decorate([
+	    ], DatePickerComponent.prototype, "activeDate", null);
+	    DatePickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'datepicker[ngModel]',
 	            template: "\n    <datepicker-inner [activeDate]=\"activeDate\"\n                      (update)=\"onUpdate($event)\"\n                      [datepickerMode]=\"datepickerMode\"\n                      [initDate]=\"initDate\"\n                      [minDate]=\"minDate\"\n                      [maxDate]=\"maxDate\"\n                      [minMode]=\"minMode\"\n                      [maxMode]=\"maxMode\"\n                      [showWeeks]=\"showWeeks\"\n                      [formatDay]=\"formatDay\"\n                      [formatMonth]=\"formatMonth\"\n                      [formatYear]=\"formatYear\"\n                      [formatDayHeader]=\"formatDayHeader\"\n                      [formatDayTitle]=\"formatDayTitle\"\n                      [formatMonthTitle]=\"formatMonthTitle\"\n                      [startingDay]=\"startingDay\"\n                      [yearRange]=\"yearRange\"\n                      [customClass]=\"customClass\"\n                      [dateDisabled]=\"dateDisabled\"\n                      [templateUrl]=\"templateUrl\"\n                      [onlyCurrentMonth]=\"onlyCurrentMonth\"\n                      [shortcutPropagation]=\"shortcutPropagation\">\n      <daypicker tabindex=\"0\"></daypicker>\n      <monthpicker tabindex=\"0\"></monthpicker>\n      <yearpicker tabindex=\"0\"></yearpicker>\n    </datepicker-inner>\n    ",
-	            directives: [datepicker_inner_1.DatePickerInner, daypicker_1.DayPicker, monthpicker_1.MonthPicker, yearpicker_1.YearPicker,
+	            directives: [datepicker_inner_component_1.DatePickerInnerComponent, daypicker_component_1.DayPickerComponent, monthpicker_component_1.MonthPickerComponent, yearpicker_component_1.YearPickerComponent,
 	                common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], DatePicker);
-	    return DatePicker;
+	    ], DatePickerComponent);
+	    return DatePickerComponent;
 	}());
-	exports.DatePicker = DatePicker;
+	exports.DatePickerComponent = DatePickerComponent;
 
 
 /***/ },
@@ -7501,8 +7501,8 @@ webpackJsonp([1],[
 	    rotate: true
 	};
 	var PAGINATION_TEMPLATE = "\n  <ul class=\"pagination\" [ngClass]=\"classMap\">\n    <li class=\"pagination-first page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(1, $event)\" [innerHTML]=\"getText('first')\"></a>\n    </li>\n\n    <li class=\"pagination-prev page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(page - 1, $event)\" [innerHTML]=\"getText('previous')\"></a>\n      </li>\n\n    <li *ngFor=\"#pg of pages\"\n        [class.active]=\"pg.active\"\n        [class.disabled]=\"disabled&&!pg.active\"\n        class=\"pagination-page page-item\">\n      <a class=\"page-link\" href (click)=\"selectPage(pg.number, $event)\" [innerHTML]=\"pg.text\"></a>\n    </li>\n\n    <li class=\"pagination-next page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(page + 1, $event)\" [innerHTML]=\"getText('next')\"></a></li>\n\n    <li class=\"pagination-last page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(totalPages, $event)\" [innerHTML]=\"getText('last')\"></a></li>\n  </ul>\n  ";
-	var Pagination = (function () {
-	    function Pagination(cd, renderer, elementRef) {
+	var PaginationComponent = (function () {
+	    function PaginationComponent(cd, renderer, elementRef) {
 	        this.numPages = new core_1.EventEmitter(false);
 	        this.pageChanged = new core_1.EventEmitter(false);
 	        this.onChange = Function.prototype;
@@ -7514,7 +7514,7 @@ webpackJsonp([1],[
 	        cd.valueAccessor = this;
 	        this.config = this.config || paginationConfig;
 	    }
-	    Object.defineProperty(Pagination.prototype, "itemsPerPage", {
+	    Object.defineProperty(PaginationComponent.prototype, "itemsPerPage", {
 	        get: function () {
 	            return this._itemsPerPage;
 	        },
@@ -7525,7 +7525,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Pagination.prototype, "totalItems", {
+	    Object.defineProperty(PaginationComponent.prototype, "totalItems", {
 	        get: function () {
 	            return this._totalItems;
 	        },
@@ -7536,7 +7536,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Pagination.prototype, "totalPages", {
+	    Object.defineProperty(PaginationComponent.prototype, "totalPages", {
 	        get: function () {
 	            return this._totalPages;
 	        },
@@ -7550,7 +7550,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Pagination.prototype, "page", {
+	    Object.defineProperty(PaginationComponent.prototype, "page", {
 	        get: function () {
 	            return this._page;
 	        },
@@ -7568,7 +7568,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Pagination.prototype.ngOnInit = function () {
+	    PaginationComponent.prototype.ngOnInit = function () {
 	        this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
 	        this.maxSize = typeof this.maxSize !== 'undefined'
 	            ? this.maxSize
@@ -7590,22 +7590,22 @@ webpackJsonp([1],[
 	        this.page = this.cd.value;
 	        this.inited = true;
 	    };
-	    Pagination.prototype.writeValue = function (value) {
+	    PaginationComponent.prototype.writeValue = function (value) {
 	        this.page = value;
 	        this.pages = this.getPages(this.page, this.totalPages);
 	    };
-	    Pagination.prototype.getText = function (key) {
+	    PaginationComponent.prototype.getText = function (key) {
 	        return this[key + 'Text'] || paginationConfig[key + 'Text'];
 	    };
-	    Pagination.prototype.noPrevious = function () {
+	    PaginationComponent.prototype.noPrevious = function () {
 	        return this.page === 1;
 	    };
-	    Pagination.prototype.noNext = function () {
+	    PaginationComponent.prototype.noNext = function () {
 	        return this.page === this.totalPages;
 	    };
-	    Pagination.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    Pagination.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
-	    Pagination.prototype.selectPage = function (page, event) {
+	    PaginationComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    PaginationComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    PaginationComponent.prototype.selectPage = function (page, event) {
 	        if (event) {
 	            event.preventDefault();
 	        }
@@ -7618,14 +7618,14 @@ webpackJsonp([1],[
 	            this.cd.viewToModelUpdate(this.page);
 	        }
 	    };
-	    Pagination.prototype.makePage = function (num, text, isActive) {
+	    PaginationComponent.prototype.makePage = function (num, text, isActive) {
 	        return {
 	            number: num,
 	            text: text,
 	            active: isActive
 	        };
 	    };
-	    Pagination.prototype.getPages = function (currentPage, totalPages) {
+	    PaginationComponent.prototype.getPages = function (currentPage, totalPages) {
 	        var pages = [];
 	        var startPage = 1;
 	        var endPage = totalPages;
@@ -7660,7 +7660,7 @@ webpackJsonp([1],[
 	        }
 	        return pages;
 	    };
-	    Pagination.prototype.calculateTotalPages = function () {
+	    PaginationComponent.prototype.calculateTotalPages = function () {
 	        var totalPages = this.itemsPerPage < 1
 	            ? 1
 	            : Math.ceil(this.totalItems / this.itemsPerPage);
@@ -7669,56 +7669,56 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Pagination.prototype, "maxSize", void 0);
+	    ], PaginationComponent.prototype, "maxSize", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "boundaryLinks", void 0);
+	    ], PaginationComponent.prototype, "boundaryLinks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "directionLinks", void 0);
+	    ], PaginationComponent.prototype, "directionLinks", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "firstText", void 0);
+	    ], PaginationComponent.prototype, "firstText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "previousText", void 0);
+	    ], PaginationComponent.prototype, "previousText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "nextText", void 0);
+	    ], PaginationComponent.prototype, "nextText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Pagination.prototype, "lastText", void 0);
+	    ], PaginationComponent.prototype, "lastText", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "rotate", void 0);
+	    ], PaginationComponent.prototype, "rotate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Pagination.prototype, "disabled", void 0);
+	    ], PaginationComponent.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Pagination.prototype, "numPages", void 0);
+	    ], PaginationComponent.prototype, "numPages", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Pagination.prototype, "pageChanged", void 0);
+	    ], PaginationComponent.prototype, "pageChanged", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Pagination.prototype, "itemsPerPage", null);
+	    ], PaginationComponent.prototype, "itemsPerPage", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Pagination.prototype, "totalItems", null);
-	    Pagination = __decorate([
+	    ], PaginationComponent.prototype, "totalItems", null);
+	    PaginationComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pagination[ngModel]',
 	            template: PAGINATION_TEMPLATE,
@@ -7726,10 +7726,10 @@ webpackJsonp([1],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.Renderer, core_1.ElementRef])
-	    ], Pagination);
-	    return Pagination;
+	    ], PaginationComponent);
+	    return PaginationComponent;
 	}());
-	exports.Pagination = Pagination;
+	exports.PaginationComponent = PaginationComponent;
 
 
 /***/ },
@@ -7752,12 +7752,12 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var progress_directive_1 = __webpack_require__(23);
-	var Bar = (function () {
-	    function Bar(progress) {
+	var BarComponent = (function () {
+	    function BarComponent(progress) {
 	        this.percent = 0;
 	        this.progress = progress;
 	    }
-	    Object.defineProperty(Bar.prototype, "value", {
+	    Object.defineProperty(BarComponent.prototype, "value", {
 	        get: function () {
 	            return this._value;
 	        },
@@ -7771,13 +7771,13 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Bar.prototype.ngOnInit = function () {
+	    BarComponent.prototype.ngOnInit = function () {
 	        this.progress.addBar(this);
 	    };
-	    Bar.prototype.ngOnDestroy = function () {
+	    BarComponent.prototype.ngOnDestroy = function () {
 	        this.progress.removeBar(this);
 	    };
-	    Bar.prototype.recalculatePercentage = function () {
+	    BarComponent.prototype.recalculatePercentage = function () {
 	        this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 	        var totalPercentage = this.progress.bars.reduce(function (total, bar) {
 	            return total + bar.percent;
@@ -7789,23 +7789,23 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Bar.prototype, "type", void 0);
+	    ], BarComponent.prototype, "type", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Bar.prototype, "value", null);
-	    Bar = __decorate([
+	    ], BarComponent.prototype, "value", null);
+	    BarComponent = __decorate([
 	        core_1.Component({
 	            selector: 'bar',
 	            directives: [common_1.NgClass, common_1.NgStyle],
 	            template: "\n  <div class=\"progress-bar\"\n    style=\"min-width: 0;\"\n    role=\"progressbar\"\n    [ngClass]=\"type && 'progress-bar-' + type\"\n    [ngStyle]=\"{width: (percent < 100 ? percent : 100) + '%', transition: transition}\"\n    aria-valuemin=\"0\"\n    [attr.aria-valuenow]=\"value\"\n    [attr.aria-valuetext]=\"percent.toFixed(0) + '%'\"\n    [attr.aria-valuemax]=\"max\"><ng-content></ng-content></div>\n"
 	        }),
 	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [progress_directive_1.Progress])
-	    ], Bar);
-	    return Bar;
+	        __metadata('design:paramtypes', [progress_directive_1.ProgressDirective])
+	    ], BarComponent);
+	    return BarComponent;
 	}());
-	exports.Bar = Bar;
+	exports.BarComponent = BarComponent;
 
 
 /***/ },
@@ -7824,8 +7824,8 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var tabset_component_1 = __webpack_require__(37);
-	var Tab = (function () {
-	    function Tab(tabset) {
+	var TabDirective = (function () {
+	    function TabDirective(tabset) {
 	        this.select = new core_1.EventEmitter(false);
 	        this.deselect = new core_1.EventEmitter(false);
 	        this.removed = new core_1.EventEmitter(false);
@@ -7833,7 +7833,7 @@ webpackJsonp([1],[
 	        this.tabset = tabset;
 	        this.tabset.addTab(this);
 	    }
-	    Object.defineProperty(Tab.prototype, "active", {
+	    Object.defineProperty(TabDirective.prototype, "active", {
 	        get: function () {
 	            return this._active;
 	        },
@@ -7857,50 +7857,50 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Tab.prototype.ngOnInit = function () { this.removable = !!this.removable; };
-	    Tab.prototype.ngOnDestroy = function () {
+	    TabDirective.prototype.ngOnInit = function () { this.removable = !!this.removable; };
+	    TabDirective.prototype.ngOnDestroy = function () {
 	        this.tabset.removeTab(this);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Tab.prototype, "heading", void 0);
+	    ], TabDirective.prototype, "heading", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "disabled", void 0);
+	    ], TabDirective.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "removable", void 0);
+	    ], TabDirective.prototype, "removable", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "active", null);
+	    ], TabDirective.prototype, "active", null);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Tab.prototype, "select", void 0);
+	    ], TabDirective.prototype, "select", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Tab.prototype, "deselect", void 0);
+	    ], TabDirective.prototype, "deselect", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Tab.prototype, "removed", void 0);
+	    ], TabDirective.prototype, "removed", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.tab-pane'), 
 	        __metadata('design:type', Boolean)
-	    ], Tab.prototype, "addClass", void 0);
-	    Tab = __decorate([
+	    ], TabDirective.prototype, "addClass", void 0);
+	    TabDirective = __decorate([
 	        core_1.Directive({ selector: 'tab, [tab]' }), 
-	        __metadata('design:paramtypes', [tabset_component_1.Tabset])
-	    ], Tab);
-	    return Tab;
+	        __metadata('design:paramtypes', [tabset_component_1.TabsetComponent])
+	    ], TabDirective);
+	    return TabDirective;
 	}());
-	exports.Tab = Tab;
+	exports.TabDirective = TabDirective;
 
 
 /***/ },
@@ -7920,13 +7920,13 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var common_2 = __webpack_require__(166);
-	var Tabset = (function () {
-	    function Tabset() {
+	var TabsetComponent = (function () {
+	    function TabsetComponent() {
 	        this.clazz = true;
 	        this.tabs = [];
 	        this.classMap = {};
 	    }
-	    Object.defineProperty(Tabset.prototype, "vertical", {
+	    Object.defineProperty(TabsetComponent.prototype, "vertical", {
 	        get: function () { return this._vertical; },
 	        set: function (value) {
 	            this._vertical = value;
@@ -7936,7 +7936,7 @@ webpackJsonp([1],[
 	        configurable: true
 	    });
 	    ;
-	    Object.defineProperty(Tabset.prototype, "justified", {
+	    Object.defineProperty(TabsetComponent.prototype, "justified", {
 	        get: function () { return this._justified; },
 	        set: function (value) {
 	            this._justified = value;
@@ -7946,7 +7946,7 @@ webpackJsonp([1],[
 	        configurable: true
 	    });
 	    ;
-	    Object.defineProperty(Tabset.prototype, "type", {
+	    Object.defineProperty(TabsetComponent.prototype, "type", {
 	        get: function () { return this._type; },
 	        set: function (value) {
 	            this._type = value;
@@ -7956,17 +7956,17 @@ webpackJsonp([1],[
 	        configurable: true
 	    });
 	    ;
-	    Tabset.prototype.ngOnInit = function () {
+	    TabsetComponent.prototype.ngOnInit = function () {
 	        this.type = this.type !== 'undefined' ? this.type : 'tabs';
 	    };
-	    Tabset.prototype.ngOnDestroy = function () {
+	    TabsetComponent.prototype.ngOnDestroy = function () {
 	        this.isDestroyed = true;
 	    };
-	    Tabset.prototype.addTab = function (tab) {
+	    TabsetComponent.prototype.addTab = function (tab) {
 	        this.tabs.push(tab);
 	        tab.active = this.tabs.length === 1 && tab.active !== false;
 	    };
-	    Tabset.prototype.removeTab = function (tab) {
+	    TabsetComponent.prototype.removeTab = function (tab) {
 	        var index = this.tabs.indexOf(tab);
 	        if (index === -1 || this.isDestroyed) {
 	            return;
@@ -7978,7 +7978,7 @@ webpackJsonp([1],[
 	        tab.removed.emit(tab);
 	        this.tabs.splice(index, 1);
 	    };
-	    Tabset.prototype.getClosestTabIndex = function (index) {
+	    TabsetComponent.prototype.getClosestTabIndex = function (index) {
 	        var tabsLength = this.tabs.length;
 	        if (!tabsLength) {
 	            return -1;
@@ -7995,7 +7995,7 @@ webpackJsonp([1],[
 	        }
 	        return -1;
 	    };
-	    Tabset.prototype.hasAvailableTabs = function (index) {
+	    TabsetComponent.prototype.hasAvailableTabs = function (index) {
 	        var tabsLength = this.tabs.length;
 	        if (!tabsLength) {
 	            return false;
@@ -8007,7 +8007,7 @@ webpackJsonp([1],[
 	        }
 	        return false;
 	    };
-	    Tabset.prototype.setClassMap = function () {
+	    TabsetComponent.prototype.setClassMap = function () {
 	        this.classMap = (_a = {
 	                'nav-stacked': this.vertical,
 	                'nav-justified': this.justified
@@ -8020,30 +8020,30 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tabset.prototype, "vertical", null);
+	    ], TabsetComponent.prototype, "vertical", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Tabset.prototype, "justified", null);
+	    ], TabsetComponent.prototype, "justified", null);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Tabset.prototype, "type", null);
+	    ], TabsetComponent.prototype, "type", null);
 	    __decorate([
 	        core_1.HostBinding('class.tab-container'), 
 	        __metadata('design:type', Boolean)
-	    ], Tabset.prototype, "clazz", void 0);
-	    Tabset = __decorate([
+	    ], TabsetComponent.prototype, "clazz", void 0);
+	    TabsetComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tabset',
-	            directives: [common_1.NgClass, common_2.NgTransclude],
+	            directives: [common_1.NgClass, common_2.NgTranscludeDirective],
 	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"#tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span *ngIf=\"tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Tabset);
-	    return Tabset;
+	    ], TabsetComponent);
+	    return TabsetComponent;
 	}());
-	exports.Tabset = Tabset;
+	exports.TabsetComponent = TabsetComponent;
 
 
 /***/ },
@@ -8067,8 +8067,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(22);
 	var tooltip_options_class_1 = __webpack_require__(181);
-	var TooltipContainer = (function () {
-	    function TooltipContainer(element, cdr, options) {
+	var TooltipContainerComponent = (function () {
+	    function TooltipContainerComponent(element, cdr, options) {
 	        this.top = '-1000px';
 	        this.left = '-1000px';
 	        this.display = 'block';
@@ -8078,7 +8078,7 @@ webpackJsonp([1],[
 	        this.classMap = { 'in': false, 'fade': false };
 	        this.classMap[options.placement] = true;
 	    }
-	    TooltipContainer.prototype.ngAfterViewInit = function () {
+	    TooltipContainerComponent.prototype.ngAfterViewInit = function () {
 	        var p = position_1.positionService
 	            .positionElements(this.hostEl.nativeElement, this.element.nativeElement.children[0], this.placement, this.appendToBody);
 	        this.top = p.top + 'px';
@@ -8089,7 +8089,7 @@ webpackJsonp([1],[
 	        }
 	        this.cdr.detectChanges();
 	    };
-	    TooltipContainer = __decorate([
+	    TooltipContainerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tooltip-container',
 	            directives: [common_1.NgClass, common_1.NgStyle],
@@ -8097,10 +8097,10 @@ webpackJsonp([1],[
 	        }),
 	        __param(2, core_1.Inject(tooltip_options_class_1.TooltipOptions)), 
 	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.ChangeDetectorRef, tooltip_options_class_1.TooltipOptions])
-	    ], TooltipContainer);
-	    return TooltipContainer;
+	    ], TooltipContainerComponent);
+	    return TooltipContainerComponent;
 	}());
-	exports.TooltipContainer = TooltipContainer;
+	exports.TooltipContainerComponent = TooltipContainerComponent;
 
 
 /***/ },
@@ -8128,14 +8128,14 @@ webpackJsonp([1],[
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n    <li *ngFor=\"#match of matches\"\n        [class.active]=\"isActive(match)\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [innerHtml]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
 	    _a
 	);
-	var TypeaheadContainer = (function () {
-	    function TypeaheadContainer(element, options) {
+	var TypeaheadContainerComponent = (function () {
+	    function TypeaheadContainerComponent(element, options) {
 	        this.isFocused = false;
 	        this._matches = [];
 	        this.element = element;
 	        Object.assign(this, options);
 	    }
-	    Object.defineProperty(TypeaheadContainer.prototype, "matches", {
+	    Object.defineProperty(TypeaheadContainerComponent.prototype, "matches", {
 	        get: function () {
 	            return this._matches;
 	        },
@@ -8148,14 +8148,14 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(TypeaheadContainer.prototype, "field", {
+	    Object.defineProperty(TypeaheadContainerComponent.prototype, "field", {
 	        set: function (value) {
 	            this._field = value;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    TypeaheadContainer.prototype.position = function (hostEl) {
+	    TypeaheadContainerComponent.prototype.position = function (hostEl) {
 	        this.display = 'block';
 	        this.top = '0px';
 	        this.left = '0px';
@@ -8164,26 +8164,26 @@ webpackJsonp([1],[
 	        this.top = p.top + 'px';
 	        this.left = p.left + 'px';
 	    };
-	    TypeaheadContainer.prototype.selectActiveMatch = function () {
+	    TypeaheadContainerComponent.prototype.selectActiveMatch = function () {
 	        this.selectMatch(this._active);
 	    };
-	    TypeaheadContainer.prototype.prevActiveMatch = function () {
+	    TypeaheadContainerComponent.prototype.prevActiveMatch = function () {
 	        var index = this.matches.indexOf(this._active);
 	        this._active = this.matches[index - 1 < 0
 	            ? this.matches.length - 1
 	            : index - 1];
 	    };
-	    TypeaheadContainer.prototype.nextActiveMatch = function () {
+	    TypeaheadContainerComponent.prototype.nextActiveMatch = function () {
 	        var index = this.matches.indexOf(this._active);
 	        this._active = this.matches[index + 1 > this.matches.length - 1
 	            ? 0
 	            : index + 1];
 	    };
-	    TypeaheadContainer.prototype.selectActive = function (value) {
+	    TypeaheadContainerComponent.prototype.selectActive = function (value) {
 	        this.isFocused = true;
 	        this._active = value;
 	    };
-	    TypeaheadContainer.prototype.hightlight = function (item, query) {
+	    TypeaheadContainerComponent.prototype.hightlight = function (item, query) {
 	        var itemStr = (typeof item === 'object' && this._field
 	            ? item[this._field]
 	            : item).toString();
@@ -8212,13 +8212,13 @@ webpackJsonp([1],[
 	        }
 	        return itemStr;
 	    };
-	    TypeaheadContainer.prototype.focusLost = function () {
+	    TypeaheadContainerComponent.prototype.focusLost = function () {
 	        this.isFocused = false;
 	    };
-	    TypeaheadContainer.prototype.isActive = function (value) {
+	    TypeaheadContainerComponent.prototype.isActive = function (value) {
 	        return this._active === value;
 	    };
-	    TypeaheadContainer.prototype.selectMatch = function (value, e) {
+	    TypeaheadContainerComponent.prototype.selectMatch = function (value, e) {
 	        if (e === void 0) { e = void 0; }
 	        if (e) {
 	            e.stopPropagation();
@@ -8230,7 +8230,7 @@ webpackJsonp([1],[
 	        });
 	        return false;
 	    };
-	    TypeaheadContainer = __decorate([
+	    TypeaheadContainerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'typeahead-container',
 	            directives: [common_1.CORE_DIRECTIVES],
@@ -8238,10 +8238,10 @@ webpackJsonp([1],[
 	            encapsulation: core_1.ViewEncapsulation.None
 	        }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef, typeahead_options_class_1.TypeaheadOptions])
-	    ], TypeaheadContainer);
-	    return TypeaheadContainer;
+	    ], TypeaheadContainerComponent);
+	    return TypeaheadContainerComponent;
 	}());
-	exports.TypeaheadContainer = TypeaheadContainer;
+	exports.TypeaheadContainerComponent = TypeaheadContainerComponent;
 	var _a;
 
 
@@ -18941,10 +18941,10 @@ webpackJsonp([1],[
 	var accordion_component_1 = __webpack_require__(30);
 	var accordion_group_component_1 = __webpack_require__(159);
 	var accordion_component_2 = __webpack_require__(30);
-	exports.Accordion = accordion_component_2.Accordion;
+	exports.AccordionComponent = accordion_component_2.AccordionComponent;
 	var accordion_group_component_2 = __webpack_require__(159);
-	exports.AccordionPanel = accordion_group_component_2.AccordionPanel;
-	exports.ACCORDION_DIRECTIVES = [accordion_component_1.Accordion, accordion_group_component_1.AccordionPanel];
+	exports.AccordionPanelComponent = accordion_group_component_2.AccordionPanelComponent;
+	exports.ACCORDION_DIRECTIVES = [accordion_component_1.AccordionComponent, accordion_group_component_1.AccordionPanelComponent];
 
 
 /***/ },
@@ -18968,11 +18968,11 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var collapse_1 = __webpack_require__(32);
 	var accordion_component_1 = __webpack_require__(30);
-	var AccordionPanel = (function () {
-	    function AccordionPanel(accordion) {
+	var AccordionPanelComponent = (function () {
+	    function AccordionPanelComponent(accordion) {
 	        this.accordion = accordion;
 	    }
-	    Object.defineProperty(AccordionPanel.prototype, "isOpen", {
+	    Object.defineProperty(AccordionPanelComponent.prototype, "isOpen", {
 	        get: function () {
 	            return this._isOpen;
 	        },
@@ -18985,14 +18985,14 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    AccordionPanel.prototype.ngOnInit = function () {
+	    AccordionPanelComponent.prototype.ngOnInit = function () {
 	        this.panelClass = this.panelClass || 'panel-default';
 	        this.accordion.addGroup(this);
 	    };
-	    AccordionPanel.prototype.ngOnDestroy = function () {
+	    AccordionPanelComponent.prototype.ngOnDestroy = function () {
 	        this.accordion.removeGroup(this);
 	    };
-	    AccordionPanel.prototype.toggleOpen = function (event) {
+	    AccordionPanelComponent.prototype.toggleOpen = function (event) {
 	        event.preventDefault();
 	        if (!this.isDisabled) {
 	            this.isOpen = !this.isOpen;
@@ -19001,32 +19001,32 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], AccordionPanel.prototype, "heading", void 0);
+	    ], AccordionPanelComponent.prototype, "heading", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], AccordionPanel.prototype, "panelClass", void 0);
+	    ], AccordionPanelComponent.prototype, "panelClass", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], AccordionPanel.prototype, "isDisabled", void 0);
+	    ], AccordionPanelComponent.prototype, "isDisabled", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.panel-open'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], AccordionPanel.prototype, "isOpen", null);
-	    AccordionPanel = __decorate([
+	    ], AccordionPanelComponent.prototype, "isOpen", null);
+	    AccordionPanelComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion-group, accordion-panel',
-	            directives: [collapse_1.Collapse, common_1.NgClass],
+	            directives: [collapse_1.CollapseDirective, common_1.NgClass],
 	            template: "\n    <div class=\"panel\" [ngClass]=\"panelClass\">\n      <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n        <h4 class=\"panel-title\">\n          <a href tabindex=\"0\" class=\"accordion-toggle\">\n            <span *ngIf=\"heading\" [ngClass]=\"{'text-muted': isDisabled}\">{{heading}}</span>\n            <ng-content select=\"[accordion-heading]\"></ng-content>\n          </a>\n        </h4>\n      </div>\n      <div class=\"panel-collapse collapse\" [collapse]=\"!isOpen\">\n        <div class=\"panel-body\">\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  "
 	        }),
-	        __param(0, core_1.Inject(accordion_component_1.Accordion)), 
-	        __metadata('design:paramtypes', [accordion_component_1.Accordion])
-	    ], AccordionPanel);
-	    return AccordionPanel;
+	        __param(0, core_1.Inject(accordion_component_1.AccordionComponent)), 
+	        __metadata('design:paramtypes', [accordion_component_1.AccordionComponent])
+	    ], AccordionPanelComponent);
+	    return AccordionPanelComponent;
 	}());
-	exports.AccordionPanel = AccordionPanel;
+	exports.AccordionPanelComponent = AccordionPanelComponent;
 
 
 /***/ },
@@ -19035,7 +19035,7 @@ webpackJsonp([1],[
 
 	"use strict";
 	var alert_component_1 = __webpack_require__(256);
-	exports.Alert = alert_component_1.Alert;
+	exports.AlertComponent = alert_component_1.AlertComponent;
 
 
 /***/ },
@@ -19043,13 +19043,13 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var button_checkbox_component_1 = __webpack_require__(162);
-	var button_radio_component_1 = __webpack_require__(163);
-	var button_checkbox_component_2 = __webpack_require__(162);
-	exports.ButtonCheckbox = button_checkbox_component_2.ButtonCheckbox;
-	var button_radio_component_2 = __webpack_require__(163);
-	exports.ButtonRadio = button_radio_component_2.ButtonRadio;
-	exports.BUTTON_DIRECTIVES = [button_checkbox_component_1.ButtonCheckbox, button_radio_component_1.ButtonRadio];
+	var button_checkbox_directive_ts_1 = __webpack_require__(162);
+	var button_radio_directive_ts_1 = __webpack_require__(163);
+	var button_checkbox_directive_ts_2 = __webpack_require__(162);
+	exports.ButtonCheckboxDirective = button_checkbox_directive_ts_2.ButtonCheckboxDirective;
+	var button_radio_directive_ts_2 = __webpack_require__(163);
+	exports.ButtonRadioDirective = button_radio_directive_ts_2.ButtonRadioDirective;
+	exports.BUTTON_DIRECTIVES = [button_checkbox_directive_ts_1.ButtonCheckboxDirective, button_radio_directive_ts_1.ButtonRadioDirective];
 
 
 /***/ },
@@ -19071,22 +19071,22 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var ButtonCheckbox = (function () {
-	    function ButtonCheckbox(cd) {
+	var ButtonCheckboxDirective = (function () {
+	    function ButtonCheckboxDirective(cd) {
 	        this.state = false;
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    ButtonCheckbox.prototype.onClick = function () {
+	    ButtonCheckboxDirective.prototype.onClick = function () {
 	        this.toggle(!this.state);
 	        this.cd.viewToModelUpdate(this.value);
 	    };
-	    ButtonCheckbox.prototype.ngOnInit = function () {
+	    ButtonCheckboxDirective.prototype.ngOnInit = function () {
 	        this.toggle(this.trueValue === this.value);
 	    };
-	    Object.defineProperty(ButtonCheckbox.prototype, "trueValue", {
+	    Object.defineProperty(ButtonCheckboxDirective.prototype, "trueValue", {
 	        get: function () {
 	            return typeof this.btnCheckboxTrue !== 'undefined'
 	                ? this.btnCheckboxTrue
@@ -19095,7 +19095,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(ButtonCheckbox.prototype, "falseValue", {
+	    Object.defineProperty(ButtonCheckboxDirective.prototype, "falseValue", {
 	        get: function () {
 	            return typeof this.btnCheckboxFalse !== 'undefined'
 	                ? this.btnCheckboxFalse
@@ -19104,46 +19104,46 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonCheckbox.prototype.toggle = function (state) {
+	    ButtonCheckboxDirective.prototype.toggle = function (state) {
 	        this.state = state;
 	        this.value = this.state ? this.trueValue : this.falseValue;
 	    };
-	    ButtonCheckbox.prototype.writeValue = function (value) {
+	    ButtonCheckboxDirective.prototype.writeValue = function (value) {
 	        this.state = this.trueValue === value;
 	        this.value = value;
 	    };
-	    ButtonCheckbox.prototype.registerOnChange = function (fn) {
+	    ButtonCheckboxDirective.prototype.registerOnChange = function (fn) {
 	        this.onChange = fn;
 	    };
-	    ButtonCheckbox.prototype.registerOnTouched = function (fn) {
+	    ButtonCheckboxDirective.prototype.registerOnTouched = function (fn) {
 	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], ButtonCheckbox.prototype, "btnCheckboxTrue", void 0);
+	    ], ButtonCheckboxDirective.prototype, "btnCheckboxTrue", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], ButtonCheckbox.prototype, "btnCheckboxFalse", void 0);
+	    ], ButtonCheckboxDirective.prototype, "btnCheckboxFalse", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'), 
 	        __metadata('design:type', Boolean)
-	    ], ButtonCheckbox.prototype, "state", void 0);
+	    ], ButtonCheckboxDirective.prototype, "state", void 0);
 	    __decorate([
 	        core_1.HostListener('click'), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], ButtonCheckbox.prototype, "onClick", null);
-	    ButtonCheckbox = __decorate([
+	    ], ButtonCheckboxDirective.prototype, "onClick", null);
+	    ButtonCheckboxDirective = __decorate([
 	        core_1.Directive({ selector: '[btnCheckbox][ngModel]' }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], ButtonCheckbox);
-	    return ButtonCheckbox;
+	    ], ButtonCheckboxDirective);
+	    return ButtonCheckboxDirective;
 	}());
-	exports.ButtonCheckbox = ButtonCheckbox;
+	exports.ButtonCheckboxDirective = ButtonCheckboxDirective;
 
 
 /***/ },
@@ -19165,31 +19165,31 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var ButtonRadio = (function () {
-	    function ButtonRadio(cd, el) {
+	var ButtonRadioDirective = (function () {
+	    function ButtonRadioDirective(cd, el) {
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
 	        this.cd = cd;
 	        this.el = el;
 	        cd.valueAccessor = this;
 	    }
-	    Object.defineProperty(ButtonRadio.prototype, "isActive", {
+	    Object.defineProperty(ButtonRadioDirective.prototype, "isActive", {
 	        get: function () {
 	            return this.btnRadio === this.value;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonRadio.prototype.onClick = function () {
+	    ButtonRadioDirective.prototype.onClick = function () {
 	        if (this.uncheckable && this.btnRadio === this.value) {
 	            return this.cd.viewToModelUpdate(void 0);
 	        }
 	        this.cd.viewToModelUpdate(this.btnRadio);
 	    };
-	    ButtonRadio.prototype.ngOnInit = function () {
+	    ButtonRadioDirective.prototype.ngOnInit = function () {
 	        this.uncheckable = typeof this.uncheckable !== 'undefined';
 	    };
-	    Object.defineProperty(ButtonRadio.prototype, "value", {
+	    Object.defineProperty(ButtonRadioDirective.prototype, "value", {
 	        get: function () {
 	            return this.cd.viewModel;
 	        },
@@ -19199,41 +19199,41 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    ButtonRadio.prototype.writeValue = function (value) {
+	    ButtonRadioDirective.prototype.writeValue = function (value) {
 	        this.value = value;
 	    };
-	    ButtonRadio.prototype.registerOnChange = function (fn) {
+	    ButtonRadioDirective.prototype.registerOnChange = function (fn) {
 	        this.onChange = fn;
 	    };
-	    ButtonRadio.prototype.registerOnTouched = function (fn) {
+	    ButtonRadioDirective.prototype.registerOnTouched = function (fn) {
 	        this.onTouched = fn;
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], ButtonRadio.prototype, "btnRadio", void 0);
+	    ], ButtonRadioDirective.prototype, "btnRadio", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], ButtonRadio.prototype, "uncheckable", void 0);
+	    ], ButtonRadioDirective.prototype, "uncheckable", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'), 
 	        __metadata('design:type', Boolean)
-	    ], ButtonRadio.prototype, "isActive", null);
+	    ], ButtonRadioDirective.prototype, "isActive", null);
 	    __decorate([
 	        core_1.HostListener('click'), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], ButtonRadio.prototype, "onClick", null);
-	    ButtonRadio = __decorate([
+	    ], ButtonRadioDirective.prototype, "onClick", null);
+	    ButtonRadioDirective = __decorate([
 	        core_1.Directive({ selector: '[btnRadio][ngModel]' }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ElementRef])
-	    ], ButtonRadio);
-	    return ButtonRadio;
+	    ], ButtonRadioDirective);
+	    return ButtonRadioDirective;
 	}());
-	exports.ButtonRadio = ButtonRadio;
+	exports.ButtonRadioDirective = ButtonRadioDirective;
 
 
 /***/ },
@@ -19244,10 +19244,10 @@ webpackJsonp([1],[
 	var slide_component_1 = __webpack_require__(165);
 	var carousel_component_1 = __webpack_require__(31);
 	var slide_component_2 = __webpack_require__(165);
-	exports.Slide = slide_component_2.Slide;
+	exports.SlideComponent = slide_component_2.SlideComponent;
 	var carousel_component_2 = __webpack_require__(31);
-	exports.Carousel = carousel_component_2.Carousel;
-	exports.CAROUSEL_DIRECTIVES = [carousel_component_1.Carousel, slide_component_1.Slide];
+	exports.CarouselComponent = carousel_component_2.CarouselComponent;
+	exports.CAROUSEL_DIRECTIVES = [carousel_component_1.CarouselComponent, slide_component_1.SlideComponent];
 
 
 /***/ },
@@ -19266,45 +19266,45 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var carousel_component_1 = __webpack_require__(31);
-	var Slide = (function () {
-	    function Slide(carousel) {
+	var SlideComponent = (function () {
+	    function SlideComponent(carousel) {
 	        this.addClass = true;
 	        this.carousel = carousel;
 	    }
-	    Slide.prototype.ngOnInit = function () {
+	    SlideComponent.prototype.ngOnInit = function () {
 	        this.carousel.addSlide(this);
 	    };
-	    Slide.prototype.ngOnDestroy = function () {
+	    SlideComponent.prototype.ngOnDestroy = function () {
 	        this.carousel.removeSlide(this);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Slide.prototype, "index", void 0);
+	    ], SlideComponent.prototype, "index", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Slide.prototype, "direction", void 0);
+	    ], SlideComponent.prototype, "direction", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Slide.prototype, "active", void 0);
+	    ], SlideComponent.prototype, "active", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.item'),
 	        core_1.HostBinding('class.carousel-item'), 
 	        __metadata('design:type', Boolean)
-	    ], Slide.prototype, "addClass", void 0);
-	    Slide = __decorate([
+	    ], SlideComponent.prototype, "addClass", void 0);
+	    SlideComponent = __decorate([
 	        core_1.Component({
 	            selector: 'slide',
 	            template: "\n    <div [class.active]=\"active\" class=\"item text-center\">\n      <ng-content></ng-content>\n    </div>\n  "
 	        }), 
-	        __metadata('design:paramtypes', [carousel_component_1.Carousel])
-	    ], Slide);
-	    return Slide;
+	        __metadata('design:paramtypes', [carousel_component_1.CarouselComponent])
+	    ], SlideComponent);
+	    return SlideComponent;
 	}());
-	exports.Slide = Slide;
+	exports.SlideComponent = SlideComponent;
 
 
 /***/ },
@@ -19325,11 +19325,11 @@ webpackJsonp([1],[
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
 	var core_1 = __webpack_require__(3);
-	var NgTransclude = (function () {
-	    function NgTransclude(_viewRef) {
+	var NgTranscludeDirective = (function () {
+	    function NgTranscludeDirective(_viewRef) {
 	        this.viewRef = _viewRef;
 	    }
-	    Object.defineProperty(NgTransclude.prototype, "ngTransclude", {
+	    Object.defineProperty(NgTranscludeDirective.prototype, "ngTransclude", {
 	        get: function () {
 	            return this._ngTransclude;
 	        },
@@ -19342,17 +19342,17 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    NgTransclude = __decorate([
+	    NgTranscludeDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[ngTransclude]',
 	            properties: ['ngTransclude']
 	        }),
 	        __param(0, core_1.Inject(core_1.ViewContainerRef)), 
 	        __metadata('design:paramtypes', [core_1.ViewContainerRef])
-	    ], NgTransclude);
-	    return NgTransclude;
+	    ], NgTranscludeDirective);
+	    return NgTranscludeDirective;
 	}());
-	exports.NgTransclude = NgTransclude;
+	exports.NgTranscludeDirective = NgTranscludeDirective;
 
 
 /***/ },
@@ -19360,13 +19360,13 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var datepicker_popup_1 = __webpack_require__(168);
-	var datepicker_1 = __webpack_require__(33);
-	var datepicker_popup_2 = __webpack_require__(168);
-	exports.DatePickerPopup = datepicker_popup_2.DatePickerPopup;
-	var datepicker_2 = __webpack_require__(33);
-	exports.DatePicker = datepicker_2.DatePicker;
-	exports.DATEPICKER_DIRECTIVES = [datepicker_1.DatePicker, datepicker_popup_1.DatePickerPopup];
+	var datepicker_popup_component_1 = __webpack_require__(168);
+	var datepicker_component_1 = __webpack_require__(33);
+	var datepicker_popup_component_2 = __webpack_require__(168);
+	exports.DatePickerPopupDirective = datepicker_popup_component_2.DatePickerPopupDirective;
+	var datepicker_component_2 = __webpack_require__(33);
+	exports.DatePickerComponent = datepicker_component_2.DatePickerComponent;
+	exports.DATEPICKER_DIRECTIVES = [datepicker_component_1.DatePickerComponent, datepicker_popup_component_1.DatePickerPopupDirective];
 
 
 /***/ },
@@ -19389,7 +19389,7 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var position_1 = __webpack_require__(22);
-	var datepicker_1 = __webpack_require__(33);
+	var datepicker_component_1 = __webpack_require__(33);
 	var PopupOptions = (function () {
 	    function PopupOptions(options) {
 	        Object.assign(this, options);
@@ -19405,8 +19405,8 @@ webpackJsonp([1],[
 	    showButtonBar: true,
 	    onOpenFocus: true
 	};
-	var PopupContainer = (function () {
-	    function PopupContainer(element, options) {
+	var PopupContainerComponent = (function () {
+	    function PopupContainerComponent(element, options) {
 	        this.showButtonBar = true;
 	        this.update1 = new core_1.EventEmitter(false);
 	        this.element = element;
@@ -19414,7 +19414,7 @@ webpackJsonp([1],[
 	        this.classMap = { 'in': false };
 	        this.classMap[options.placement] = true;
 	    }
-	    PopupContainer.prototype.onUpdate = function ($event) {
+	    PopupContainerComponent.prototype.onUpdate = function ($event) {
 	        console.log('update', $event);
 	        if ($event) {
 	            if ($event.toString() !== '[object Date]') {
@@ -19423,7 +19423,7 @@ webpackJsonp([1],[
 	            this.popupComp.activeDate = $event;
 	        }
 	    };
-	    PopupContainer.prototype.position = function (hostEl) {
+	    PopupContainerComponent.prototype.position = function (hostEl) {
 	        this.display = 'block';
 	        this.top = '0px';
 	        this.left = '0px';
@@ -19431,26 +19431,26 @@ webpackJsonp([1],[
 	            .positionElements(hostEl.nativeElement, this.element.nativeElement.children[0], this.placement, false);
 	        this.top = p.top + 'px';
 	    };
-	    PopupContainer.prototype.getText = function (key) {
+	    PopupContainerComponent.prototype.getText = function (key) {
 	        return this[key + 'Text'] || datePickerPopupConfig[key + 'Text'];
 	    };
-	    PopupContainer.prototype.isDisabled = function () {
+	    PopupContainerComponent.prototype.isDisabled = function () {
 	        return false;
 	    };
-	    PopupContainer = __decorate([
+	    PopupContainerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'popup-container',
 	            events: ['update1'],
 	            template: "\n    <ul class=\"dropdown-menu\"\n        style=\"display: block\"\n        [ngStyle]=\"{top: top, left: left, display: display}\"\n        [ngClass]=\"classMap\">\n        <li>\n             <datepicker (cupdate)=\"onUpdate($event)\" *ngIf=\"popupComp\" [(ngModel)]=\"popupComp.cd.model\" [show-weeks]=\"true\"></datepicker>\n        </li>\n        <li *ngIf=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n            <span class=\"btn-group pull-left\">\n                 <button type=\"button\" class=\"btn btn-sm btn-info\" (click)=\"select('today')\" ng-disabled=\"isDisabled('today')\">{{ getText('current') }}</button>\n                 <button type=\"button\" class=\"btn btn-sm btn-danger\" (click)=\"select(null)\">{{ getText('clear') }}</button>\n            </span>\n            <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" (click)=\"close()\">{{ getText('close') }}</button>\n        </li>\n    </ul>",
-	            directives: [common_1.NgClass, common_1.NgStyle, datepicker_1.DatePicker, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [common_1.NgClass, common_1.NgStyle, datepicker_component_1.DatePickerComponent, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            encapsulation: core_1.ViewEncapsulation.None
 	        }), 
 	        __metadata('design:paramtypes', [core_1.ElementRef, PopupOptions])
-	    ], PopupContainer);
-	    return PopupContainer;
+	    ], PopupContainerComponent);
+	    return PopupContainerComponent;
 	}());
-	var DatePickerPopup = (function () {
-	    function DatePickerPopup(cd, viewContainerRef, renderer, loader) {
+	var DatePickerPopupDirective = (function () {
+	    function DatePickerPopupDirective(cd, viewContainerRef, renderer, loader) {
 	        this._isOpen = false;
 	        this.placement = 'bottom';
 	        this.cd = cd;
@@ -19459,7 +19459,7 @@ webpackJsonp([1],[
 	        this.loader = loader;
 	        this.activeDate = cd.model;
 	    }
-	    Object.defineProperty(DatePickerPopup.prototype, "activeDate", {
+	    Object.defineProperty(DatePickerPopupDirective.prototype, "activeDate", {
 	        get: function () {
 	            return this._activeDate;
 	        },
@@ -19469,7 +19469,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(DatePickerPopup.prototype, "isOpen", {
+	    Object.defineProperty(DatePickerPopupDirective.prototype, "isOpen", {
 	        get: function () {
 	            return this._isOpen;
 	        },
@@ -19488,7 +19488,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DatePickerPopup.prototype.hide = function (cb) {
+	    DatePickerPopupDirective.prototype.hide = function (cb) {
 	        if (this.popup) {
 	            this.popup.then(function (componentRef) {
 	                componentRef.destroy();
@@ -19500,7 +19500,7 @@ webpackJsonp([1],[
 	            cb();
 	        }
 	    };
-	    DatePickerPopup.prototype.show = function (cb) {
+	    DatePickerPopupDirective.prototype.show = function (cb) {
 	        var _this = this;
 	        var options = new PopupOptions({
 	            placement: this.placement
@@ -19509,7 +19509,7 @@ webpackJsonp([1],[
 	            core_1.provide(PopupOptions, { useValue: options })
 	        ]);
 	        this.popup = this.loader
-	            .loadNextToLocation(PopupContainer, this.viewContainerRef, binding)
+	            .loadNextToLocation(PopupContainerComponent, this.viewContainerRef, binding)
 	            .then(function (componentRef) {
 	            componentRef.instance.position(_this.viewContainerRef);
 	            componentRef.instance.popupComp = _this;
@@ -19517,17 +19517,17 @@ webpackJsonp([1],[
 	            return componentRef;
 	        });
 	    };
-	    DatePickerPopup = __decorate([
+	    DatePickerPopupDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[datepickerPopup][ngModel]',
 	            properties: ['datepickerPopup', 'isOpen']
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ViewContainerRef, core_1.Renderer, core_1.DynamicComponentLoader])
-	    ], DatePickerPopup);
-	    return DatePickerPopup;
+	    ], DatePickerPopupDirective);
+	    return DatePickerPopupDirective;
 	}());
-	exports.DatePickerPopup = DatePickerPopup;
+	exports.DatePickerPopupDirective = DatePickerPopupDirective;
 
 
 /***/ },
@@ -19539,12 +19539,12 @@ webpackJsonp([1],[
 	var dropdown_menu_directive_1 = __webpack_require__(170);
 	var dropdown_toggle_directive_1 = __webpack_require__(171);
 	var dropdown_directive_2 = __webpack_require__(21);
-	exports.Dropdown = dropdown_directive_2.Dropdown;
+	exports.DropdownDirective = dropdown_directive_2.DropdownDirective;
 	var dropdown_menu_directive_2 = __webpack_require__(170);
-	exports.DropdownMenu = dropdown_menu_directive_2.DropdownMenu;
+	exports.DropdownMenuDirective = dropdown_menu_directive_2.DropdownMenuDirective;
 	var dropdown_toggle_directive_2 = __webpack_require__(171);
-	exports.DropdownToggle = dropdown_toggle_directive_2.DropdownToggle;
-	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.Dropdown, dropdown_toggle_directive_1.DropdownToggle, dropdown_menu_directive_1.DropdownMenu];
+	exports.DropdownToggleDirective = dropdown_toggle_directive_2.DropdownToggleDirective;
+	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective];
 
 
 /***/ },
@@ -19566,22 +19566,22 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_directive_1 = __webpack_require__(21);
-	var DropdownMenu = (function () {
-	    function DropdownMenu(dropdown, el) {
+	var DropdownMenuDirective = (function () {
+	    function DropdownMenuDirective(dropdown, el) {
 	        this.dropdown = dropdown;
 	        this.el = el;
 	    }
-	    DropdownMenu.prototype.ngOnInit = function () {
+	    DropdownMenuDirective.prototype.ngOnInit = function () {
 	        this.dropdown.dropDownMenu = this;
 	    };
-	    DropdownMenu = __decorate([
+	    DropdownMenuDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdownMenu]' }),
 	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [dropdown_directive_1.Dropdown, core_1.ElementRef])
-	    ], DropdownMenu);
-	    return DropdownMenu;
+	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
+	    ], DropdownMenuDirective);
+	    return DropdownMenuDirective;
 	}());
-	exports.DropdownMenu = DropdownMenu;
+	exports.DropdownMenuDirective = DropdownMenuDirective;
 
 
 /***/ },
@@ -19603,24 +19603,24 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_directive_1 = __webpack_require__(21);
-	var DropdownToggle = (function () {
-	    function DropdownToggle(dropdown, el) {
+	var DropdownToggleDirective = (function () {
+	    function DropdownToggleDirective(dropdown, el) {
 	        this.disabled = false;
 	        this.addClass = true;
 	        this.dropdown = dropdown;
 	        this.el = el;
 	    }
-	    DropdownToggle.prototype.ngOnInit = function () {
+	    DropdownToggleDirective.prototype.ngOnInit = function () {
 	        this.dropdown.dropDownToggle = this;
 	    };
-	    Object.defineProperty(DropdownToggle.prototype, "isOpen", {
+	    Object.defineProperty(DropdownToggleDirective.prototype, "isOpen", {
 	        get: function () {
 	            return this.dropdown.isOpen;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    DropdownToggle.prototype.toggleDropdown = function (event) {
+	    DropdownToggleDirective.prototype.toggleDropdown = function (event) {
 	        event.stopPropagation();
 	        if (!this.disabled) {
 	            this.dropdown.toggle();
@@ -19631,30 +19631,30 @@ webpackJsonp([1],[
 	        core_1.HostBinding('class.disabled'),
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], DropdownToggle.prototype, "disabled", void 0);
+	    ], DropdownToggleDirective.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.dropdown-toggle'),
 	        core_1.HostBinding('attr.aria-haspopup'), 
 	        __metadata('design:type', Boolean)
-	    ], DropdownToggle.prototype, "addClass", void 0);
+	    ], DropdownToggleDirective.prototype, "addClass", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.aria-expanded'), 
 	        __metadata('design:type', Boolean)
-	    ], DropdownToggle.prototype, "isOpen", null);
+	    ], DropdownToggleDirective.prototype, "isOpen", null);
 	    __decorate([
 	        core_1.HostListener('click', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [MouseEvent]), 
 	        __metadata('design:returntype', Boolean)
-	    ], DropdownToggle.prototype, "toggleDropdown", null);
-	    DropdownToggle = __decorate([
+	    ], DropdownToggleDirective.prototype, "toggleDropdown", null);
+	    DropdownToggleDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdownToggle]' }),
 	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [dropdown_directive_1.Dropdown, core_1.ElementRef])
-	    ], DropdownToggle);
-	    return DropdownToggle;
+	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
+	    ], DropdownToggleDirective);
+	    return DropdownToggleDirective;
 	}());
-	exports.DropdownToggle = DropdownToggle;
+	exports.DropdownToggleDirective = DropdownToggleDirective;
 
 
 /***/ },
@@ -19665,10 +19665,10 @@ webpackJsonp([1],[
 	var pagination_component_1 = __webpack_require__(34);
 	var pager_component_1 = __webpack_require__(173);
 	var pagination_component_2 = __webpack_require__(34);
-	exports.Pagination = pagination_component_2.Pagination;
+	exports.PaginationComponent = pagination_component_2.PaginationComponent;
 	var pager_component_2 = __webpack_require__(173);
-	exports.Pager = pager_component_2.Pager;
-	exports.PAGINATION_DIRECTIVES = [pagination_component_1.Pagination, pager_component_1.Pager];
+	exports.PagerComponent = pager_component_2.PagerComponent;
+	exports.PAGINATION_DIRECTIVES = [pagination_component_1.PaginationComponent, pager_component_1.PagerComponent];
 
 
 /***/ },
@@ -19703,13 +19703,13 @@ webpackJsonp([1],[
 	    align: true
 	};
 	var PAGER_TEMPLATE = "\n    <ul class=\"pager\">\n      <li [class.disabled]=\"noPrevious()\" [class.previous]=\"align\" [ngClass]=\"{'pull-right': align}\">\n        <a href (click)=\"selectPage(page - 1, $event)\">{{getText('previous')}}</a>\n      </li>\n      <li [class.disabled]=\"noNext()\" [class.next]=\"align\" [ngClass]=\"{'pull-right': align}\">\n        <a href (click)=\"selectPage(page + 1, $event)\">{{getText('next')}}</a>\n      </li>\n  </ul>\n";
-	var Pager = (function (_super) {
-	    __extends(Pager, _super);
-	    function Pager(cd, renderer, elementRef) {
+	var PagerComponent = (function (_super) {
+	    __extends(PagerComponent, _super);
+	    function PagerComponent(cd, renderer, elementRef) {
 	        _super.call(this, cd, renderer, elementRef);
 	        this.config = pagerConfig;
 	    }
-	    Pager = __decorate([
+	    PagerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pager[ngModel]',
 	            template: PAGER_TEMPLATE,
@@ -19722,10 +19722,10 @@ webpackJsonp([1],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.Renderer, core_1.ElementRef])
-	    ], Pager);
-	    return Pager;
-	}(pagination_component_1.Pagination));
-	exports.Pager = Pager;
+	    ], PagerComponent);
+	    return PagerComponent;
+	}(pagination_component_1.PaginationComponent));
+	exports.PagerComponent = PagerComponent;
 
 
 /***/ },
@@ -19737,12 +19737,12 @@ webpackJsonp([1],[
 	var bar_component_1 = __webpack_require__(35);
 	var progressbar_component_1 = __webpack_require__(175);
 	var progress_directive_2 = __webpack_require__(23);
-	exports.Progress = progress_directive_2.Progress;
+	exports.ProgressDirective = progress_directive_2.ProgressDirective;
 	var bar_component_2 = __webpack_require__(35);
-	exports.Bar = bar_component_2.Bar;
+	exports.BarComponent = bar_component_2.BarComponent;
 	var progressbar_component_2 = __webpack_require__(175);
-	exports.Progressbar = progressbar_component_2.Progressbar;
-	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.Progress, bar_component_1.Bar, progressbar_component_1.Progressbar];
+	exports.ProgressbarComponent = progressbar_component_2.ProgressbarComponent;
+	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.ProgressDirective, bar_component_1.BarComponent, progressbar_component_1.ProgressbarComponent];
 
 
 /***/ },
@@ -19762,36 +19762,36 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var progress_directive_1 = __webpack_require__(23);
 	var bar_component_1 = __webpack_require__(35);
-	var Progressbar = (function () {
-	    function Progressbar() {
+	var ProgressbarComponent = (function () {
+	    function ProgressbarComponent() {
 	    }
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Progressbar.prototype, "animate", void 0);
+	    ], ProgressbarComponent.prototype, "animate", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Progressbar.prototype, "max", void 0);
+	    ], ProgressbarComponent.prototype, "max", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Progressbar.prototype, "type", void 0);
+	    ], ProgressbarComponent.prototype, "type", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Progressbar.prototype, "value", void 0);
-	    Progressbar = __decorate([
+	    ], ProgressbarComponent.prototype, "value", void 0);
+	    ProgressbarComponent = __decorate([
 	        core_1.Component({
 	            selector: 'progressbar',
-	            directives: [progress_directive_1.Progress, bar_component_1.Bar],
+	            directives: [progress_directive_1.ProgressDirective, bar_component_1.BarComponent],
 	            template: "\n    <div progress [animate]=\"animate\" [max]=\"max\">\n      <bar [type]=\"type\" [value]=\"value\">\n          <ng-content></ng-content>\n      </bar>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Progressbar);
-	    return Progressbar;
+	    ], ProgressbarComponent);
+	    return ProgressbarComponent;
 	}());
-	exports.Progressbar = Progressbar;
+	exports.ProgressbarComponent = ProgressbarComponent;
 
 
 /***/ },
@@ -19800,7 +19800,7 @@ webpackJsonp([1],[
 
 	"use strict";
 	var rating_component_1 = __webpack_require__(263);
-	exports.Rating = rating_component_1.Rating;
+	exports.RatingComponent = rating_component_1.RatingComponent;
 
 
 /***/ },
@@ -19812,12 +19812,12 @@ webpackJsonp([1],[
 	var tabset_component_1 = __webpack_require__(37);
 	var tab_heading_directive_1 = __webpack_require__(178);
 	var tab_directive_2 = __webpack_require__(36);
-	exports.Tab = tab_directive_2.Tab;
+	exports.TabDirective = tab_directive_2.TabDirective;
 	var tabset_component_2 = __webpack_require__(37);
-	exports.Tabset = tabset_component_2.Tabset;
+	exports.TabsetComponent = tabset_component_2.TabsetComponent;
 	var tab_heading_directive_2 = __webpack_require__(178);
-	exports.TabHeading = tab_heading_directive_2.TabHeading;
-	exports.TAB_DIRECTIVES = [tab_directive_1.Tab, tab_heading_directive_1.TabHeading, tabset_component_1.Tabset];
+	exports.TabHeadingDirective = tab_heading_directive_2.TabHeadingDirective;
+	exports.TAB_DIRECTIVES = [tab_directive_1.TabDirective, tab_heading_directive_1.TabHeadingDirective, tabset_component_1.TabsetComponent];
 
 
 /***/ },
@@ -19836,17 +19836,17 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var tab_directive_1 = __webpack_require__(36);
-	var TabHeading = (function () {
-	    function TabHeading(templateRef, tab) {
+	var TabHeadingDirective = (function () {
+	    function TabHeadingDirective(templateRef, tab) {
 	        tab.headingRef = templateRef;
 	    }
-	    TabHeading = __decorate([
+	    TabHeadingDirective = __decorate([
 	        core_1.Directive({ selector: '[tabHeading]' }), 
-	        __metadata('design:paramtypes', [core_1.TemplateRef, tab_directive_1.Tab])
-	    ], TabHeading);
-	    return TabHeading;
+	        __metadata('design:paramtypes', [core_1.TemplateRef, tab_directive_1.TabDirective])
+	    ], TabHeadingDirective);
+	    return TabHeadingDirective;
 	}());
-	exports.TabHeading = TabHeading;
+	exports.TabHeadingDirective = TabHeadingDirective;
 
 
 /***/ },
@@ -19855,7 +19855,7 @@ webpackJsonp([1],[
 
 	"use strict";
 	var timepicker_component_1 = __webpack_require__(264);
-	exports.Timepicker = timepicker_component_1.Timepicker;
+	exports.TimepickerComponent = timepicker_component_1.TimepickerComponent;
 
 
 /***/ },
@@ -19866,10 +19866,10 @@ webpackJsonp([1],[
 	var tooltip_directive_1 = __webpack_require__(182);
 	var tooltip_container_component_1 = __webpack_require__(38);
 	var tooltip_directive_2 = __webpack_require__(182);
-	exports.Tooltip = tooltip_directive_2.Tooltip;
+	exports.TooltipDirective = tooltip_directive_2.TooltipDirective;
 	var tooltip_container_component_2 = __webpack_require__(38);
-	exports.TooltipContainer = tooltip_container_component_2.TooltipContainer;
-	exports.TOOLTIP_DIRECTIVES = [tooltip_directive_1.Tooltip, tooltip_container_component_1.TooltipContainer];
+	exports.TooltipContainerComponent = tooltip_container_component_2.TooltipContainerComponent;
+	exports.TOOLTIP_DIRECTIVES = [tooltip_directive_1.TooltipDirective, tooltip_container_component_1.TooltipContainerComponent];
 
 
 /***/ },
@@ -19917,15 +19917,15 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var tooltip_options_class_1 = __webpack_require__(181);
 	var tooltip_container_component_1 = __webpack_require__(38);
-	var Tooltip = (function () {
-	    function Tooltip(viewContainerRef, loader) {
+	var TooltipDirective = (function () {
+	    function TooltipDirective(viewContainerRef, loader) {
 	        this.placement = 'top';
 	        this.animation = true;
 	        this.visible = false;
 	        this.viewContainerRef = viewContainerRef;
 	        this.loader = loader;
 	    }
-	    Tooltip.prototype.show = function () {
+	    TooltipDirective.prototype.show = function () {
 	        if (this.visible) {
 	            return;
 	        }
@@ -19940,12 +19940,12 @@ webpackJsonp([1],[
 	            new core_1.Provider(tooltip_options_class_1.TooltipOptions, { useValue: options })
 	        ]);
 	        this.tooltip = this.loader
-	            .loadNextToLocation(tooltip_container_component_1.TooltipContainer, this.viewContainerRef, binding)
+	            .loadNextToLocation(tooltip_container_component_1.TooltipContainerComponent, this.viewContainerRef, binding)
 	            .then(function (componentRef) {
 	            return componentRef;
 	        });
 	    };
-	    Tooltip.prototype.hide = function () {
+	    TooltipDirective.prototype.hide = function () {
 	        if (!this.visible) {
 	            return;
 	        }
@@ -19958,48 +19958,48 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input('tooltip'), 
 	        __metadata('design:type', String)
-	    ], Tooltip.prototype, "content", void 0);
+	    ], TooltipDirective.prototype, "content", void 0);
 	    __decorate([
 	        core_1.Input('tooltipPlacement'), 
 	        __metadata('design:type', String)
-	    ], Tooltip.prototype, "placement", void 0);
+	    ], TooltipDirective.prototype, "placement", void 0);
 	    __decorate([
 	        core_1.Input('tooltipIsOpen'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "isOpen", void 0);
+	    ], TooltipDirective.prototype, "isOpen", void 0);
 	    __decorate([
 	        core_1.Input('tooltipEnable'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "enable", void 0);
+	    ], TooltipDirective.prototype, "enable", void 0);
 	    __decorate([
 	        core_1.Input('tooltipAnimation'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "animation", void 0);
+	    ], TooltipDirective.prototype, "animation", void 0);
 	    __decorate([
 	        core_1.Input('tooltipAppendToBody'), 
 	        __metadata('design:type', Boolean)
-	    ], Tooltip.prototype, "appendToBody", void 0);
+	    ], TooltipDirective.prototype, "appendToBody", void 0);
 	    __decorate([
 	        core_1.HostListener('focusin', ['$event', '$target']),
 	        core_1.HostListener('mouseenter', ['$event', '$target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Tooltip.prototype, "show", null);
+	    ], TooltipDirective.prototype, "show", null);
 	    __decorate([
 	        core_1.HostListener('focusout', ['$event', '$target']),
 	        core_1.HostListener('mouseleave', ['$event', '$target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Tooltip.prototype, "hide", null);
-	    Tooltip = __decorate([
+	    ], TooltipDirective.prototype, "hide", null);
+	    TooltipDirective = __decorate([
 	        core_1.Directive({ selector: '[tooltip]' }), 
 	        __metadata('design:paramtypes', [core_1.ViewContainerRef, core_1.DynamicComponentLoader])
-	    ], Tooltip);
-	    return Tooltip;
+	    ], TooltipDirective);
+	    return TooltipDirective;
 	}());
-	exports.Tooltip = Tooltip;
+	exports.TooltipDirective = TooltipDirective;
 
 
 /***/ },
@@ -20010,12 +20010,12 @@ webpackJsonp([1],[
 	var typeahead_directive_1 = __webpack_require__(185);
 	var typeahead_container_component_1 = __webpack_require__(39);
 	var typeahead_directive_2 = __webpack_require__(185);
-	exports.Typeahead = typeahead_directive_2.Typeahead;
+	exports.TypeaheadDirective = typeahead_directive_2.TypeaheadDirective;
 	var typeahead_container_component_2 = __webpack_require__(39);
-	exports.TypeaheadContainer = typeahead_container_component_2.TypeaheadContainer;
+	exports.TypeaheadContainerComponent = typeahead_container_component_2.TypeaheadContainerComponent;
 	var typeahead_options_class_1 = __webpack_require__(40);
 	exports.TypeaheadOptions = typeahead_options_class_1.TypeaheadOptions;
-	exports.TYPEAHEAD_DIRECTIVES = [typeahead_directive_1.Typeahead, typeahead_container_component_1.TypeaheadContainer];
+	exports.TYPEAHEAD_DIRECTIVES = [typeahead_directive_1.TypeaheadDirective, typeahead_container_component_1.TypeaheadContainerComponent];
 
 
 /***/ },
@@ -20080,8 +20080,8 @@ webpackJsonp([1],[
 	function setProperty(renderer, elementRef, propName, propValue) {
 	    renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 	}
-	var Typeahead = (function () {
-	    function Typeahead(cd, viewContainerRef, element, renderer, loader) {
+	var TypeaheadDirective = (function () {
+	    function TypeaheadDirective(cd, viewContainerRef, element, renderer, loader) {
 	        this.typeaheadLoading = new core_1.EventEmitter(false);
 	        this.typeaheadNoResults = new core_1.EventEmitter(false);
 	        this.typeaheadOnSelect = new core_1.EventEmitter(false);
@@ -20100,7 +20100,7 @@ webpackJsonp([1],[
 	        this.renderer = renderer;
 	        this.loader = loader;
 	    }
-	    Typeahead.prototype.onChange = function (e) {
+	    TypeaheadDirective.prototype.onChange = function (e) {
 	        if (this.container) {
 	            if (e.keyCode === 27) {
 	                this.hide();
@@ -20133,7 +20133,7 @@ webpackJsonp([1],[
 	            this.hide();
 	        }
 	    };
-	    Typeahead.prototype.onFocus = function () {
+	    TypeaheadDirective.prototype.onFocus = function () {
 	        if (this.typeaheadMinLength === 0) {
 	            this.typeaheadLoading.emit(true);
 	            if (this.typeaheadAsync === true) {
@@ -20145,12 +20145,12 @@ webpackJsonp([1],[
 	            }
 	        }
 	    };
-	    Typeahead.prototype.onBlur = function () {
+	    TypeaheadDirective.prototype.onBlur = function () {
 	        if (this.container && !this.container.isFocused) {
 	            this.hide();
 	        }
 	    };
-	    Typeahead.prototype.onKeydown = function (e) {
+	    TypeaheadDirective.prototype.onKeydown = function (e) {
 	        if (!this.container) {
 	            return;
 	        }
@@ -20167,7 +20167,7 @@ webpackJsonp([1],[
 	            return;
 	        }
 	    };
-	    Typeahead.prototype.ngOnInit = function () {
+	    TypeaheadDirective.prototype.ngOnInit = function () {
 	        var _this = this;
 	        this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
 	        this.typeaheadMinLength = this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
@@ -20200,7 +20200,7 @@ webpackJsonp([1],[
 	            }, 100);
 	        }
 	    };
-	    Typeahead.prototype.show = function (matches) {
+	    TypeaheadDirective.prototype.show = function (matches) {
 	        var _this = this;
 	        var options = new typeahead_options_class_1.TypeaheadOptions({
 	            typeaheadRef: this,
@@ -20211,7 +20211,7 @@ webpackJsonp([1],[
 	            core_1.provide(typeahead_options_class_1.TypeaheadOptions, { useValue: options })
 	        ]);
 	        this.popup = this.loader
-	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainer, this.viewContainerRef, binding)
+	            .loadNextToLocation(typeahead_container_component_1.TypeaheadContainerComponent, this.viewContainerRef, binding)
 	            .then(function (componentRef) {
 	            componentRef.instance.position(_this.viewContainerRef.element);
 	            _this.container = componentRef.instance;
@@ -20229,7 +20229,7 @@ webpackJsonp([1],[
 	            return componentRef;
 	        });
 	    };
-	    Typeahead.prototype.hide = function () {
+	    TypeaheadDirective.prototype.hide = function () {
 	        var _this = this;
 	        if (this.container) {
 	            this.popup.then(function (componentRef) {
@@ -20239,7 +20239,7 @@ webpackJsonp([1],[
 	            });
 	        }
 	    };
-	    Typeahead.prototype.changeModel = function (value) {
+	    TypeaheadDirective.prototype.changeModel = function (value) {
 	        var valueStr = ((typeof value === 'object' && this.typeaheadOptionField)
 	            ? value[this.typeaheadOptionField]
 	            : value).toString();
@@ -20247,14 +20247,14 @@ webpackJsonp([1],[
 	        setProperty(this.renderer, this.element, 'value', valueStr);
 	        this.hide();
 	    };
-	    Object.defineProperty(Typeahead.prototype, "matches", {
+	    Object.defineProperty(TypeaheadDirective.prototype, "matches", {
 	        get: function () {
 	            return this._matches;
 	        },
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Typeahead.prototype.debounce = function (func, wait) {
+	    TypeaheadDirective.prototype.debounce = function (func, wait) {
 	        var timeout;
 	        var args;
 	        var timestamp;
@@ -20278,7 +20278,7 @@ webpackJsonp([1],[
 	            }
 	        };
 	    };
-	    Typeahead.prototype.processMatches = function () {
+	    TypeaheadDirective.prototype.processMatches = function () {
 	        this._matches = [];
 	        if (!this.typeahead) {
 	            return;
@@ -20321,7 +20321,7 @@ webpackJsonp([1],[
 	            }
 	        }
 	    };
-	    Typeahead.prototype.testMatch = function (match, test) {
+	    TypeaheadDirective.prototype.testMatch = function (match, test) {
 	        var spaceLength;
 	        if (typeof test === 'object') {
 	            spaceLength = test.length;
@@ -20336,7 +20336,7 @@ webpackJsonp([1],[
 	            return match.indexOf(test) >= 0;
 	        }
 	    };
-	    Typeahead.prototype.finalizeAsyncCall = function () {
+	    TypeaheadDirective.prototype.finalizeAsyncCall = function () {
 	        this.typeaheadLoading.emit(false);
 	        this.typeaheadNoResults.emit(this.cd.model.toString().length >=
 	            this.typeaheadMinLength && this.matches.length <= 0);
@@ -20361,88 +20361,88 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Typeahead.prototype, "typeaheadLoading", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadLoading", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Typeahead.prototype, "typeaheadNoResults", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadNoResults", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Typeahead.prototype, "typeaheadOnSelect", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadOnSelect", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Object)
-	    ], Typeahead.prototype, "typeahead", void 0);
+	    ], TypeaheadDirective.prototype, "typeahead", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Typeahead.prototype, "typeaheadMinLength", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadMinLength", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Typeahead.prototype, "typeaheadWaitMs", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadWaitMs", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Typeahead.prototype, "typeaheadOptionsLimit", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadOptionsLimit", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Typeahead.prototype, "typeaheadOptionField", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadOptionField", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadAsync", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadAsync", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadLatinize", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadLatinize", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Typeahead.prototype, "typeaheadSingleWords", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadSingleWords", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Typeahead.prototype, "typeaheadWordDelimiters", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadWordDelimiters", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Typeahead.prototype, "typeaheadPhraseDelimiters", void 0);
+	    ], TypeaheadDirective.prototype, "typeaheadPhraseDelimiters", void 0);
 	    __decorate([
 	        core_1.HostListener('keyup', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onChange", null);
+	    ], TypeaheadDirective.prototype, "onChange", null);
 	    __decorate([
 	        core_1.HostListener('focus', ['$event.target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onFocus", null);
+	    ], TypeaheadDirective.prototype, "onFocus", null);
 	    __decorate([
 	        core_1.HostListener('blur', ['$event.target']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', []), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onBlur", null);
+	    ], TypeaheadDirective.prototype, "onBlur", null);
 	    __decorate([
 	        core_1.HostListener('keydown', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
-	    ], Typeahead.prototype, "onKeydown", null);
-	    Typeahead = __decorate([
+	    ], TypeaheadDirective.prototype, "onKeydown", null);
+	    TypeaheadDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[typeahead][ngModel]'
 	        }), 
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ViewContainerRef, core_1.ElementRef, core_1.Renderer, core_1.DynamicComponentLoader])
-	    ], Typeahead);
-	    return Typeahead;
+	    ], TypeaheadDirective);
+	    return TypeaheadDirective;
 	}());
-	exports.Typeahead = Typeahead;
+	exports.TypeaheadDirective = TypeaheadDirective;
 
 
 /***/ },
@@ -23831,13 +23831,13 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var ALERT_TEMPLATE = "\n  <div class=\"alert\" role=\"alert\" [ngClass]=\"classes\" *ngIf=\"!closed\">\n    <button *ngIf=\"dismissible\" type=\"button\" class=\"close\" (click)=\"onClose()\" (touch)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n      <span class=\"sr-only\">Close</span>\n    </button>\n    <ng-content></ng-content>\n  </div>\n  ";
-	var Alert = (function () {
-	    function Alert() {
+	var AlertComponent = (function () {
+	    function AlertComponent() {
 	        this.type = 'warning';
 	        this.close = new core_1.EventEmitter(false);
 	        this.classes = [];
 	    }
-	    Alert.prototype.ngOnInit = function () {
+	    AlertComponent.prototype.ngOnInit = function () {
 	        var _this = this;
 	        this.classes[0] = "alert-" + this.type;
 	        if (this.dismissible) {
@@ -23850,37 +23850,37 @@ webpackJsonp([1],[
 	            setTimeout(function () { return _this.onClose(); }, this.dismissOnTimeout);
 	        }
 	    };
-	    Alert.prototype.onClose = function () {
+	    AlertComponent.prototype.onClose = function () {
 	        this.closed = true;
 	        this.close.emit(this);
 	    };
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Alert.prototype, "type", void 0);
+	    ], AlertComponent.prototype, "type", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Alert.prototype, "dismissible", void 0);
+	    ], AlertComponent.prototype, "dismissible", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Alert.prototype, "dismissOnTimeout", void 0);
+	    ], AlertComponent.prototype, "dismissOnTimeout", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Alert.prototype, "close", void 0);
-	    Alert = __decorate([
+	    ], AlertComponent.prototype, "close", void 0);
+	    AlertComponent = __decorate([
 	        core_1.Component({
 	            selector: 'alert',
 	            directives: [common_1.NgIf, common_1.NgClass],
 	            template: ALERT_TEMPLATE
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], Alert);
-	    return Alert;
+	    ], AlertComponent);
+	    return AlertComponent;
 	}());
-	exports.Alert = Alert;
+	exports.AlertComponent = AlertComponent;
 
 
 /***/ },
@@ -23899,8 +23899,8 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var animation_builder_1 = __webpack_require__(48);
-	var Collapse = (function () {
-	    function Collapse(_ab, _el, _renderer) {
+	var CollapseDirective = (function () {
+	    function CollapseDirective(_ab, _el, _renderer) {
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
 	        this.isCollapse = true;
@@ -23910,7 +23910,7 @@ webpackJsonp([1],[
 	        this._el = _el;
 	        this._renderer = _renderer;
 	    }
-	    Object.defineProperty(Collapse.prototype, "collapse", {
+	    Object.defineProperty(CollapseDirective.prototype, "collapse", {
 	        get: function () {
 	            return this.isExpanded;
 	        },
@@ -23921,11 +23921,11 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Collapse.prototype.ngOnInit = function () {
+	    CollapseDirective.prototype.ngOnInit = function () {
 	        this.animation = this._ab.css();
 	        this.animation.setDuration(this.transitionDuration);
 	    };
-	    Collapse.prototype.toggle = function () {
+	    CollapseDirective.prototype.toggle = function () {
 	        if (this.isExpanded) {
 	            this.hide();
 	        }
@@ -23933,7 +23933,7 @@ webpackJsonp([1],[
 	            this.show();
 	        }
 	    };
-	    Collapse.prototype.hide = function () {
+	    CollapseDirective.prototype.hide = function () {
 	        var _this = this;
 	        this.isCollapse = false;
 	        this.isCollapsing = true;
@@ -23958,7 +23958,7 @@ webpackJsonp([1],[
 	            });
 	        }, 4);
 	    };
-	    Collapse.prototype.show = function () {
+	    CollapseDirective.prototype.show = function () {
 	        var _this = this;
 	        this.isCollapse = false;
 	        this.isCollapsing = true;
@@ -23986,40 +23986,40 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.HostBinding('style.display'), 
 	        __metadata('design:type', String)
-	    ], Collapse.prototype, "display", void 0);
+	    ], CollapseDirective.prototype, "display", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.in'),
 	        core_1.HostBinding('attr.aria-expanded'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isExpanded", void 0);
+	    ], CollapseDirective.prototype, "isExpanded", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.aria-hidden'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isCollapsed", void 0);
+	    ], CollapseDirective.prototype, "isCollapsed", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.collapse'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isCollapse", void 0);
+	    ], CollapseDirective.prototype, "isCollapse", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.collapsing'), 
 	        __metadata('design:type', Boolean)
-	    ], Collapse.prototype, "isCollapsing", void 0);
+	    ], CollapseDirective.prototype, "isCollapsing", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Collapse.prototype, "transitionDuration", void 0);
+	    ], CollapseDirective.prototype, "transitionDuration", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean), 
 	        __metadata('design:paramtypes', [Boolean])
-	    ], Collapse.prototype, "collapse", null);
-	    Collapse = __decorate([
+	    ], CollapseDirective.prototype, "collapse", null);
+	    CollapseDirective = __decorate([
 	        core_1.Directive({ selector: '[collapse]' }), 
 	        __metadata('design:paramtypes', [animation_builder_1.AnimationBuilder, core_1.ElementRef, core_1.Renderer])
-	    ], Collapse);
-	    return Collapse;
+	    ], CollapseDirective);
+	    return CollapseDirective;
 	}());
-	exports.Collapse = Collapse;
+	exports.CollapseDirective = CollapseDirective;
 
 
 /***/ },
@@ -24056,7 +24056,7 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_config_1 = __webpack_require__(12);
-	var datepicker_inner_1 = __webpack_require__(20);
+	var datepicker_inner_component_1 = __webpack_require__(20);
 	var TEMPLATE_OPTIONS = (_a = {},
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = {
 	        DAY_TITLE: "\n        <th *ngFor=\"#labelz of labels\" class=\"text-xs-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
@@ -24073,14 +24073,14 @@ webpackJsonp([1],[
 	    _a
 	);
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme || ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3];
-	var DayPicker = (function () {
-	    function DayPicker(datePicker) {
+	var DayPickerComponent = (function () {
+	    function DayPickerComponent(datePicker) {
 	        this.labels = [];
 	        this.rows = [];
 	        this.weekNumbers = [];
 	        this.datePicker = datePicker;
 	    }
-	    DayPicker.prototype.ngOnInit = function () {
+	    DayPickerComponent.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepDay = { months: 1 };
 	        this.datePicker.setRefreshViewHandler(function () {
@@ -24126,7 +24126,7 @@ webpackJsonp([1],[
 	        }, 'day');
 	        this.datePicker.refreshView();
 	    };
-	    DayPicker.prototype.getDates = function (startDate, n) {
+	    DayPickerComponent.prototype.getDates = function (startDate, n) {
 	        var dates = new Array(n);
 	        var current = new Date(startDate.getTime());
 	        var i = 0;
@@ -24139,7 +24139,7 @@ webpackJsonp([1],[
 	        }
 	        return dates;
 	    };
-	    DayPicker.prototype.getISO8601WeekNumber = function (date) {
+	    DayPickerComponent.prototype.getISO8601WeekNumber = function (date) {
 	        var checkDate = new Date(date.getTime());
 	        checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));
 	        var time = checkDate.getTime();
@@ -24147,17 +24147,17 @@ webpackJsonp([1],[
 	        checkDate.setDate(1);
 	        return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
 	    };
-	    DayPicker = __decorate([
+	    DayPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'daypicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" #rowz=\"$implicit\" #index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
-	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
-	    ], DayPicker);
-	    return DayPicker;
+	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
+	    ], DayPickerComponent);
+	    return DayPickerComponent;
 	}());
-	exports.DayPicker = DayPicker;
+	exports.DayPickerComponent = DayPickerComponent;
 	var _a;
 
 
@@ -24177,7 +24177,7 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var datepicker_inner_1 = __webpack_require__(20);
+	var datepicker_inner_component_1 = __webpack_require__(20);
 	var ng2_bootstrap_config_1 = __webpack_require__(12);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
@@ -24188,12 +24188,12 @@ webpackJsonp([1],[
 	    }
 	};
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
-	var MonthPicker = (function () {
-	    function MonthPicker(datePicker) {
+	var MonthPickerComponent = (function () {
+	    function MonthPickerComponent(datePicker) {
 	        this.rows = [];
 	        this.datePicker = datePicker;
 	    }
-	    MonthPicker.prototype.ngOnInit = function () {
+	    MonthPickerComponent.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepMonth = { years: 1 };
 	        this.datePicker.setRefreshViewHandler(function () {
@@ -24216,17 +24216,17 @@ webpackJsonp([1],[
 	        }, 'month');
 	        this.datePicker.refreshView();
 	    };
-	    MonthPicker = __decorate([
+	    MonthPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'monthpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
-	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
-	    ], MonthPicker);
-	    return MonthPicker;
+	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
+	    ], MonthPickerComponent);
+	    return MonthPickerComponent;
 	}());
-	exports.MonthPicker = MonthPicker;
+	exports.MonthPickerComponent = MonthPickerComponent;
 
 
 /***/ },
@@ -24246,7 +24246,7 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_config_1 = __webpack_require__(12);
-	var datepicker_inner_1 = __webpack_require__(20);
+	var datepicker_inner_component_1 = __webpack_require__(20);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
 	        YEAR_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\"\n                [ngClass]=\"{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n          <span [ngClass]=\"{'text-success': dtz.current}\">{{dtz.label}}</span>\n        </button>\n    "
@@ -24256,12 +24256,12 @@ webpackJsonp([1],[
 	    }
 	};
 	var CURRENT_THEME_TEMPLATE = TEMPLATE_OPTIONS[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] || TEMPLATE_OPTIONS.bs3;
-	var YearPicker = (function () {
-	    function YearPicker(datePicker) {
+	var YearPickerComponent = (function () {
+	    function YearPickerComponent(datePicker) {
 	        this.rows = [];
 	        this.datePicker = datePicker;
 	    }
-	    YearPicker.prototype.ngOnInit = function () {
+	    YearPickerComponent.prototype.ngOnInit = function () {
 	        var self = this;
 	        this.datePicker.stepYear = { years: this.datePicker.yearRange };
 	        this.datePicker.setRefreshViewHandler(function () {
@@ -24282,20 +24282,20 @@ webpackJsonp([1],[
 	        }, 'year');
 	        this.datePicker.refreshView();
 	    };
-	    YearPicker.prototype.getStartingYear = function (year) {
+	    YearPickerComponent.prototype.getStartingYear = function (year) {
 	        return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
 	    };
-	    YearPicker = __decorate([
+	    YearPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'yearpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
-	        __metadata('design:paramtypes', [datepicker_inner_1.DatePickerInner])
-	    ], YearPicker);
-	    return YearPicker;
+	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
+	    ], YearPickerComponent);
+	    return YearPickerComponent;
 	}());
-	exports.YearPicker = YearPicker;
+	exports.YearPickerComponent = YearPickerComponent;
 
 
 /***/ },
@@ -24392,8 +24392,8 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
-	var Rating = (function () {
-	    function Rating(cd) {
+	var RatingComponent = (function () {
+	    function RatingComponent(cd) {
 	        this.onHover = new core_1.EventEmitter(false);
 	        this.onLeave = new core_1.EventEmitter(false);
 	        this.onChange = Function.prototype;
@@ -24401,7 +24401,7 @@ webpackJsonp([1],[
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    Rating.prototype.onKeydown = function (event) {
+	    RatingComponent.prototype.onKeydown = function (event) {
 	        if ([37, 38, 39, 40].indexOf(event.which) === -1) {
 	            return;
 	        }
@@ -24410,7 +24410,7 @@ webpackJsonp([1],[
 	        var sign = event.which === 38 || event.which === 39 ? 1 : -1;
 	        this.rate(this.value + sign);
 	    };
-	    Rating.prototype.ngOnInit = function () {
+	    RatingComponent.prototype.ngOnInit = function () {
 	        this.max = typeof this.max !== 'undefined' ? this.max : 5;
 	        this.readonly = this.readonly === true;
 	        this.stateOn = typeof this.stateOn !== 'undefined'
@@ -24424,7 +24424,7 @@ webpackJsonp([1],[
 	            : ['one', 'two', 'three', 'four', 'five'];
 	        this.range = this.buildTemplateObjects(this.ratingStates, this.max);
 	    };
-	    Rating.prototype.writeValue = function (value) {
+	    RatingComponent.prototype.writeValue = function (value) {
 	        if (value % 1 !== value) {
 	            this.value = Math.round(value);
 	            this.preValue = value;
@@ -24433,19 +24433,19 @@ webpackJsonp([1],[
 	        this.preValue = value;
 	        this.value = value;
 	    };
-	    Rating.prototype.enter = function (value) {
+	    RatingComponent.prototype.enter = function (value) {
 	        if (!this.readonly) {
 	            this.value = value;
 	            this.onHover.emit(value);
 	        }
 	    };
-	    Rating.prototype.reset = function () {
+	    RatingComponent.prototype.reset = function () {
 	        this.value = this.preValue;
 	        this.onLeave.emit(this.value);
 	    };
-	    Rating.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    Rating.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
-	    Rating.prototype.buildTemplateObjects = function (ratingStates, max) {
+	    RatingComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    RatingComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    RatingComponent.prototype.buildTemplateObjects = function (ratingStates, max) {
 	        ratingStates = ratingStates || [];
 	        var count = ratingStates.length || max;
 	        var result = [];
@@ -24459,7 +24459,7 @@ webpackJsonp([1],[
 	        }
 	        return result;
 	    };
-	    Rating.prototype.rate = function (value) {
+	    RatingComponent.prototype.rate = function (value) {
 	        if (!this.readonly && value >= 0 && value <= this.range.length) {
 	            this.writeValue(value);
 	            this.cd.viewToModelUpdate(value);
@@ -24468,42 +24468,42 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Rating.prototype, "max", void 0);
+	    ], RatingComponent.prototype, "max", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Rating.prototype, "stateOn", void 0);
+	    ], RatingComponent.prototype, "stateOn", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', String)
-	    ], Rating.prototype, "stateOff", void 0);
+	    ], RatingComponent.prototype, "stateOff", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Rating.prototype, "readonly", void 0);
+	    ], RatingComponent.prototype, "readonly", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], Rating.prototype, "titles", void 0);
+	    ], RatingComponent.prototype, "titles", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], Rating.prototype, "ratingStates", void 0);
+	    ], RatingComponent.prototype, "ratingStates", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Rating.prototype, "onHover", void 0);
+	    ], RatingComponent.prototype, "onHover", void 0);
 	    __decorate([
 	        core_1.Output(), 
 	        __metadata('design:type', core_1.EventEmitter)
-	    ], Rating.prototype, "onLeave", void 0);
+	    ], RatingComponent.prototype, "onLeave", void 0);
 	    __decorate([
 	        core_1.HostListener('keydown', ['$event']), 
 	        __metadata('design:type', Function), 
 	        __metadata('design:paramtypes', [KeyboardEvent]), 
 	        __metadata('design:returntype', void 0)
-	    ], Rating.prototype, "onKeydown", null);
-	    Rating = __decorate([
+	    ], RatingComponent.prototype, "onKeydown", null);
+	    RatingComponent = __decorate([
 	        core_1.Component({
 	            selector: 'rating[ngModel]',
 	            directives: [common_1.NgFor],
@@ -24511,10 +24511,10 @@ webpackJsonp([1],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], Rating);
-	    return Rating;
+	    ], RatingComponent);
+	    return RatingComponent;
 	}());
-	exports.Rating = Rating;
+	exports.RatingComponent = RatingComponent;
 
 
 /***/ },
@@ -24560,8 +24560,8 @@ webpackJsonp([1],[
 	    newDate.setHours(dt.getHours(), dt.getMinutes());
 	    return newDate;
 	}
-	var Timepicker = (function () {
-	    function Timepicker(cd) {
+	var TimepickerComponent = (function () {
+	    function TimepickerComponent(cd) {
 	        this.meridians = ['AM', 'PM'];
 	        this.onChange = Function.prototype;
 	        this.onTouched = Function.prototype;
@@ -24569,7 +24569,7 @@ webpackJsonp([1],[
 	        this.cd = cd;
 	        cd.valueAccessor = this;
 	    }
-	    Object.defineProperty(Timepicker.prototype, "showMeridian", {
+	    Object.defineProperty(TimepickerComponent.prototype, "showMeridian", {
 	        get: function () {
 	            return this._showMeridian;
 	        },
@@ -24581,7 +24581,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Object.defineProperty(Timepicker.prototype, "selected", {
+	    Object.defineProperty(TimepickerComponent.prototype, "selected", {
 	        get: function () {
 	            return this._selected;
 	        },
@@ -24595,7 +24595,7 @@ webpackJsonp([1],[
 	        enumerable: true,
 	        configurable: true
 	    });
-	    Timepicker.prototype.ngOnInit = function () {
+	    TimepickerComponent.prototype.ngOnInit = function () {
 	        this.meridians = def(this.meridians, isDefined, exports.timepickerConfig.meridians) || ['AM',
 	            'PM'];
 	        this.mousewheel = def(this.mousewheel, isDefined, exports.timepickerConfig.mousewheel);
@@ -24612,7 +24612,7 @@ webpackJsonp([1],[
 	        this.showMeridian = def(this.showMeridian, isDefined, exports.timepickerConfig.showMeridian);
 	        this.showSpinners = def(this.showSpinners, isDefined, exports.timepickerConfig.showSpinners);
 	    };
-	    Timepicker.prototype.writeValue = function (v) {
+	    TimepickerComponent.prototype.writeValue = function (v) {
 	        if (v === this.selected) {
 	            return;
 	        }
@@ -24622,9 +24622,9 @@ webpackJsonp([1],[
 	        }
 	        this.selected = v ? new Date(v) : void 0;
 	    };
-	    Timepicker.prototype.registerOnChange = function (fn) { this.onChange = fn; };
-	    Timepicker.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
-	    Timepicker.prototype.updateHours = function () {
+	    TimepickerComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+	    TimepickerComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+	    TimepickerComponent.prototype.updateHours = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -24639,7 +24639,7 @@ webpackJsonp([1],[
 	            this.refresh();
 	        }
 	    };
-	    Timepicker.prototype.hoursOnBlur = function () {
+	    TimepickerComponent.prototype.hoursOnBlur = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -24647,7 +24647,7 @@ webpackJsonp([1],[
 	            this.hours = this.pad(this.hours);
 	        }
 	    };
-	    Timepicker.prototype.updateMinutes = function () {
+	    TimepickerComponent.prototype.updateMinutes = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -24662,7 +24662,7 @@ webpackJsonp([1],[
 	            this.refresh();
 	        }
 	    };
-	    Timepicker.prototype.minutesOnBlur = function () {
+	    TimepickerComponent.prototype.minutesOnBlur = function () {
 	        if (this.readonlyInput) {
 	            return;
 	        }
@@ -24670,37 +24670,37 @@ webpackJsonp([1],[
 	            this.minutes = this.pad(this.minutes);
 	        }
 	    };
-	    Timepicker.prototype.incrementHours = function () {
+	    TimepickerComponent.prototype.incrementHours = function () {
 	        if (!this.noIncrementHours()) {
 	            this.addMinutesToSelected(this.hourStep * 60);
 	        }
 	    };
-	    Timepicker.prototype.decrementHours = function () {
+	    TimepickerComponent.prototype.decrementHours = function () {
 	        if (!this.noDecrementHours()) {
 	            this.addMinutesToSelected(-this.hourStep * 60);
 	        }
 	    };
-	    Timepicker.prototype.incrementMinutes = function () {
+	    TimepickerComponent.prototype.incrementMinutes = function () {
 	        if (!this.noIncrementMinutes()) {
 	            this.addMinutesToSelected(this.minuteStep);
 	        }
 	    };
-	    Timepicker.prototype.decrementMinutes = function () {
+	    TimepickerComponent.prototype.decrementMinutes = function () {
 	        if (!this.noDecrementMinutes()) {
 	            this.addMinutesToSelected(-this.minuteStep);
 	        }
 	    };
-	    Timepicker.prototype.toggleMeridian = function () {
+	    TimepickerComponent.prototype.toggleMeridian = function () {
 	        if (!this.noToggleMeridian()) {
 	            var sign = this.selected.getHours() < 12 ? 1 : -1;
 	            this.addMinutesToSelected(12 * 60 * sign);
 	        }
 	    };
-	    Timepicker.prototype.refresh = function () {
+	    TimepickerComponent.prototype.refresh = function () {
 	        this.updateTemplate();
 	        this.cd.viewToModelUpdate(this.selected);
 	    };
-	    Timepicker.prototype.updateTemplate = function () {
+	    TimepickerComponent.prototype.updateTemplate = function () {
 	        var hours = this.selected.getHours();
 	        var minutes = this.selected.getMinutes();
 	        if (this.showMeridian) {
@@ -24712,7 +24712,7 @@ webpackJsonp([1],[
 	            ? this.meridians[0]
 	            : this.meridians[1];
 	    };
-	    Timepicker.prototype.getHoursFromTemplate = function () {
+	    TimepickerComponent.prototype.getHoursFromTemplate = function () {
 	        var hours = parseInt(this.hours, 10);
 	        var valid = this.showMeridian
 	            ? (hours > 0 && hours < 13)
@@ -24730,40 +24730,40 @@ webpackJsonp([1],[
 	        }
 	        return hours;
 	    };
-	    Timepicker.prototype.getMinutesFromTemplate = function () {
+	    TimepickerComponent.prototype.getMinutesFromTemplate = function () {
 	        var minutes = parseInt(this.minutes, 10);
 	        return (minutes >= 0 && minutes < 60) ? minutes : undefined;
 	    };
-	    Timepicker.prototype.pad = function (value) {
+	    TimepickerComponent.prototype.pad = function (value) {
 	        return (isDefined(value) && value.toString().length < 2)
 	            ? '0' + value
 	            : value.toString();
 	    };
-	    Timepicker.prototype.noIncrementHours = function () {
+	    TimepickerComponent.prototype.noIncrementHours = function () {
 	        var incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
 	        return incrementedSelected > this.max ||
 	            (incrementedSelected < this.selected && incrementedSelected < this.min);
 	    };
-	    Timepicker.prototype.noDecrementHours = function () {
+	    TimepickerComponent.prototype.noDecrementHours = function () {
 	        var decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
 	        return decrementedSelected < this.min ||
 	            (decrementedSelected > this.selected && decrementedSelected > this.max);
 	    };
-	    Timepicker.prototype.noIncrementMinutes = function () {
+	    TimepickerComponent.prototype.noIncrementMinutes = function () {
 	        var incrementedSelected = addMinutes(this.selected, this.minuteStep);
 	        return incrementedSelected > this.max ||
 	            (incrementedSelected < this.selected && incrementedSelected < this.min);
 	    };
-	    Timepicker.prototype.noDecrementMinutes = function () {
+	    TimepickerComponent.prototype.noDecrementMinutes = function () {
 	        var decrementedSelected = addMinutes(this.selected, -this.minuteStep);
 	        return decrementedSelected < this.min ||
 	            (decrementedSelected > this.selected && decrementedSelected > this.max);
 	    };
-	    Timepicker.prototype.addMinutesToSelected = function (minutes) {
+	    TimepickerComponent.prototype.addMinutesToSelected = function (minutes) {
 	        this.selected = addMinutes(this.selected, minutes);
 	        this.refresh();
 	    };
-	    Timepicker.prototype.noToggleMeridian = function () {
+	    TimepickerComponent.prototype.noToggleMeridian = function () {
 	        if (this.selected.getHours() < 13) {
 	            return addMinutes(this.selected, 12 * 60) > this.max;
 	        }
@@ -24774,44 +24774,44 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Timepicker.prototype, "hourStep", void 0);
+	    ], TimepickerComponent.prototype, "hourStep", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Number)
-	    ], Timepicker.prototype, "minuteStep", void 0);
+	    ], TimepickerComponent.prototype, "minuteStep", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "readonlyInput", void 0);
+	    ], TimepickerComponent.prototype, "readonlyInput", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "mousewheel", void 0);
+	    ], TimepickerComponent.prototype, "mousewheel", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "arrowkeys", void 0);
+	    ], TimepickerComponent.prototype, "arrowkeys", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "showSpinners", void 0);
+	    ], TimepickerComponent.prototype, "showSpinners", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], Timepicker.prototype, "min", void 0);
+	    ], TimepickerComponent.prototype, "min", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Date)
-	    ], Timepicker.prototype, "max", void 0);
+	    ], TimepickerComponent.prototype, "max", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Array)
-	    ], Timepicker.prototype, "meridians", void 0);
+	    ], TimepickerComponent.prototype, "meridians", void 0);
 	    __decorate([
 	        core_1.Input(), 
 	        __metadata('design:type', Boolean)
-	    ], Timepicker.prototype, "showMeridian", null);
-	    Timepicker = __decorate([
+	    ], TimepickerComponent.prototype, "showMeridian", null);
+	    TimepickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'timepicker[ngModel]',
 	            directives: [common_1.NgClass],
@@ -24819,10 +24819,10 @@ webpackJsonp([1],[
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
-	    ], Timepicker);
-	    return Timepicker;
+	    ], TimepickerComponent);
+	    return TimepickerComponent;
 	}());
-	exports.Timepicker = Timepicker;
+	exports.TimepickerComponent = TimepickerComponent;
 
 
 /***/ },
@@ -36107,7 +36107,7 @@ webpackJsonp([1],[
 /* 385 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ACCORDION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ACCORDION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/accordion'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Accordion</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'accordion'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> <span class=\"token template-string\" ><span class=\"token string\" >`&lt;ng-content>&lt;/ng-content>`</span></span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Accordion</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> closeOthers<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.panel-group'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> addClass <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// component AccordionGroup</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'accordion-group'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Collapse<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AccordionGroup</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> heading<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> panelClass<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> isDisabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.panel-open'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isOpen</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">// should be inside of Accordion element</span>\n  <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >private</span> accordion<span class=\"token punctuation\" >:</span>Accordion<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> ACCORDION_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Accordion<span class=\"token punctuation\" >,</span> AccordionGroup<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"accordion-properties\">Accordion properties</h3>\n<ul>\n<li><code>closeOthers</code> (<code>?boolean=false</code>) - if <code>true</code> expanding one item will close all others</li>\n</ul>\n<h3 id=\"accordion-group-properties\">Accordion Group properties</h3>\n<ul>\n<li><code>heading</code> (<code>?string=&#39;&#39;</code>) - clickable text in accordion&#39;s group header, check <code>accordion heading</code> below for using html in header</li>\n<li><code>isOpen</code> (<code>?boolean=false</code>) - is accordion group open or closed</li>\n<li><code>isDisabled</code> (<code>?boolean=false</code>) - if <code>true</code> disables accordion group</li>\n<li><code>panelClass</code> (<code>?string=&#39;panel-default&#39;</code>) - provides an ability to use Bootstrap&#39;s contextual panel classes (<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...). List of all available classes <a href=\"http://getbootstrap.com/components/#panels-alternatives\">link</a></li>\n</ul>\n<h3 id=\"accordion-heading\">Accordion heading</h3>\n<p>Instead of the <code>heading</code> attribute on the <code>accordion-group</code>, you can use an <code>accordion-heading</code> attribute on <code>any</code> element inside a group that will be used as the group&#39;s header template.</p>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ACCORDION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ACCORDION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/accordion'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Accordion</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'accordion'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> <span class=\"token template-string\" ><span class=\"token string\" >`&lt;ng-content>&lt;/ng-content>`</span></span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AccordionComponent</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> closeOthers<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.panel-group'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> addClass <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// component AccordionGroup</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'accordion-group'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Collapse<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AccordionGroupComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> heading<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> panelClass<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> isDisabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.panel-open'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isOpen</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">// should be inside of Accordion element</span>\n  <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >private</span> accordion<span class=\"token punctuation\" >:</span>Accordion<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> ACCORDION_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Accordion<span class=\"token punctuation\" >,</span> AccordionGroup<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"accordion-properties\">Accordion properties</h3>\n<ul>\n<li><code>closeOthers</code> (<code>?boolean=false</code>) - if <code>true</code> expanding one item will close all others</li>\n</ul>\n<h3 id=\"accordion-group-properties\">Accordion Group properties</h3>\n<ul>\n<li><code>heading</code> (<code>?string=&#39;&#39;</code>) - clickable text in accordion&#39;s group header, check <code>accordion heading</code> below for using html in header</li>\n<li><code>isOpen</code> (<code>?boolean=false</code>) - is accordion group open or closed</li>\n<li><code>isDisabled</code> (<code>?boolean=false</code>) - if <code>true</code> disables accordion group</li>\n<li><code>panelClass</code> (<code>?string=&#39;panel-default&#39;</code>) - provides an ability to use Bootstrap&#39;s contextual panel classes (<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...). List of all available classes <a href=\"http://getbootstrap.com/components/#panels-alternatives\">link</a></li>\n</ul>\n<h3 id=\"accordion-heading\">Accordion heading</h3>\n<p>Instead of the <code>heading</code> attribute on the <code>accordion-group</code>, you can use an <code>accordion-heading</code> attribute on <code>any</code> element inside a group that will be used as the group&#39;s header template.</p>\n";
 
 /***/ },
 /* 386 */
@@ -36119,7 +36119,7 @@ webpackJsonp([1],[
 /* 387 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> Alert <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Alert</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'alert'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgIf<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> ALERT_TEMPLATE\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Alert</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> dismissible<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> dismissOnTimeout<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> close<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Alert<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"alert-properties\">Alert properties</h3>\n<ul>\n<li><code>type</code> (<code>?:string=&#39;warning&#39;</code>) - provide one of the four supported contextual classes:\n<code>success</code>,<code>info</code>, <code>warning</code>, <code>danger</code></li>\n<li><code>dismissible</code> (<code>?:boolean=false</code>) - determines if an inline close button is displayed</li>\n<li><code>dismissOnTimeout</code> (<code>?number=0</code>) - number of milliseconds, if specified sets a timeout duration, after which the alert will be closed</li>\n</ul>\n<h3 id=\"alert-events\">Alert events</h3>\n<ul>\n<li><code>close</code> - fired when <code>alert</code> closed with inline button or by timeout, <code>$event</code> is an instance of <code>Alert</code> component</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> AlertComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> AlertComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/alert'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Alert</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'alert'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgIf<span class=\"token punctuation\" >,</span> NgClass<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> ALERT_TEMPLATE\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AlertComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> dismissible<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> dismissOnTimeout<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> close<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Alert<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"alert-properties\">Alert properties</h3>\n<ul>\n<li><code>type</code> (<code>?:string=&#39;warning&#39;</code>) - provide one of the four supported contextual classes:\n<code>success</code>,<code>info</code>, <code>warning</code>, <code>danger</code></li>\n<li><code>dismissible</code> (<code>?:boolean=false</code>) - determines if an inline close button is displayed</li>\n<li><code>dismissOnTimeout</code> (<code>?number=0</code>) - number of milliseconds, if specified sets a timeout duration, after which the alert will be closed</li>\n</ul>\n<h3 id=\"alert-events\">Alert events</h3>\n<ul>\n<li><code>close</code> - fired when <code>alert</code> closed with inline button or by timeout, <code>$event</code> is an instance of <code>Alert</code> component</li>\n</ul>\n";
 
 /***/ },
 /* 388 */
@@ -36131,7 +36131,7 @@ webpackJsonp([1],[
 /* 389 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>BUTTON_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ButtonRadio<span class=\"token punctuation\" >,</span> ButtonCheckbox <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component ButtonRadio</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[btnRadio][ngModel]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ButtonRadio</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> btnRadio<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> uncheckable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isActive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >HostListener</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'click'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >onClick</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n<span class=\"token comment\" spellcheck=\"true\">// component ButtonCheckbox</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[btnCheckbox][ngModel]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ButtonCheckbox</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> btnCheckboxTrue<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> btnCheckboxFalse<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> state<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostListener</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'click'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >onClick</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> BUTTON_DIRECTIVES <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>ButtonCheckbox<span class=\"token punctuation\" >,</span> ButtonRadio<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"radio-button-properties\">Radio button properties</h3>\n<ul>\n<li><code>btnRadio</code> (<code>string</code>) - radio button value, will be set to <code>ngModel</code></li>\n<li><code>uncheckable</code> (<code>?boolean=false</code>) - if <code>true</code> radio button can be unchecked and <code>null</code> will be set to <code>ngModel</code></li>\n</ul>\n<h3 id=\"checkbox-button-properties\">Checkbox button properties</h3>\n<ul>\n<li><code>btnCheckboxTrue</code> (<code>?any=true</code>) - truthy value, will be set to <code>ngModel</code></li>\n<li><code>btnCheckboxFalse</code> (<code>?any=false</code>) - falsy value, will be set to <code>ngModel</code></li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>BUTTON_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ButtonRadioComponent<span class=\"token punctuation\" >,</span> ButtonCheckboxComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component ButtonRadio</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[btnRadio][ngModel]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ButtonRadioComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> btnRadio<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> uncheckable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isActive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >HostListener</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'click'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >onClick</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n<span class=\"token comment\" spellcheck=\"true\">// component ButtonCheckbox</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[btnCheckbox][ngModel]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ButtonCheckboxComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> btnCheckboxTrue<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> btnCheckboxFalse<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> state<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostListener</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'click'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> <span class=\"token function\" >onClick</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> BUTTON_DIRECTIVES <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>ButtonCheckbox<span class=\"token punctuation\" >,</span> ButtonRadio<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"radio-button-properties\">Radio button properties</h3>\n<ul>\n<li><code>btnRadio</code> (<code>string</code>) - radio button value, will be set to <code>ngModel</code></li>\n<li><code>uncheckable</code> (<code>?boolean=false</code>) - if <code>true</code> radio button can be unchecked and <code>null</code> will be set to <code>ngModel</code></li>\n</ul>\n<h3 id=\"checkbox-button-properties\">Checkbox button properties</h3>\n<ul>\n<li><code>btnCheckboxTrue</code> (<code>?any=true</code>) - truthy value, will be set to <code>ngModel</code></li>\n<li><code>btnCheckboxFalse</code> (<code>?any=false</code>) - falsy value, will be set to <code>ngModel</code></li>\n</ul>\n";
 
 /***/ },
 /* 390 */
@@ -36143,7 +36143,7 @@ webpackJsonp([1],[
 /* 391 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CAROUSEL_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Carousel implements OnDestroy</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'carousel'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgFor<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Carousel</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnDestroy</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> noWrap<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> noPause<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> noTransition<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >interval</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// class Slide implements OnInit, OnDestroy</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'slide'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Slide</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> index<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> direction<span class=\"token punctuation\" >:</span>Direction<span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> active<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.item'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.carousel-item'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> addClass<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> CAROUSEL_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Carousel<span class=\"token punctuation\" >,</span> Slide<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"carousel-properties\">Carousel properties</h3>\n<ul>\n<li><code>interval</code> (<code>?number=5000</code>) - amount of time in milliseconds to delay between automatically cycling an item. If <code>false</code>, carousel will not automatically cycle</li>\n<li><code>noTransition</code> (<code>?boolean=false</code>) - if <code>true</code> will disable transitions on the carousel</li>\n<li><code>noPause</code> (<code>?boolean=false</code>) - if <code>true</code> will disable pausing on carousel mouse hover</li>\n<li><code>noWrap</code> (<code>?boolean=false</code>) - if <code>true</code> the carousel will not cycle continuously and will have hard stops (prevent looping)</li>\n<li><code>pause</code> (<em>not yet supported</em>) (<code>?string=&#39;hover&#39;</code>) - event group name which pauses the cycling of the carousel, if <code>hover</code> pauses on mouseenter and resumes on mouseleave</li>\n<li><code>keyboard</code> (<em>not yet supported</em>) (<code>?boolean=true</code>) - if <code>false</code> carousel will not react to keyboard events</li>\n<li><em>note</em>: swiping not yet supported</li>\n</ul>\n<h3 id=\"slide-properties\">Slide properties</h3>\n<ul>\n<li><code>active</code> (<code>?boolean=false</code>) - currently active slide</li>\n<li><code>index</code> (<code>?number</code>) - index of slide in carousel&#39;s slides</li>\n<li><code>direction</code> (<code>?string</code>) (<em>not yet supported</em>)</li>\n<li><code>actual</code> (<em>not yet supported</em>) (<code>?any</code>) - will be bind to slider context, to be used from template</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CAROUSEL_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CAROUSEL_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/carousel'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Carousel implements OnDestroy</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'carousel'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgFor<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >CarouselComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnDestroy</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> noWrap<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> noPause<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> noTransition<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >interval</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// class Slide implements OnInit, OnDestroy</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'slide'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >SlideComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> index<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> direction<span class=\"token punctuation\" >:</span>Direction<span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> active<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.item'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.carousel-item'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >private</span> addClass<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> CAROUSEL_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Carousel<span class=\"token punctuation\" >,</span> Slide<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"carousel-properties\">Carousel properties</h3>\n<ul>\n<li><code>interval</code> (<code>?number=5000</code>) - amount of time in milliseconds to delay between automatically cycling an item. If <code>false</code>, carousel will not automatically cycle</li>\n<li><code>noTransition</code> (<code>?boolean=false</code>) - if <code>true</code> will disable transitions on the carousel</li>\n<li><code>noPause</code> (<code>?boolean=false</code>) - if <code>true</code> will disable pausing on carousel mouse hover</li>\n<li><code>noWrap</code> (<code>?boolean=false</code>) - if <code>true</code> the carousel will not cycle continuously and will have hard stops (prevent looping)</li>\n<li><code>pause</code> (<em>not yet supported</em>) (<code>?string=&#39;hover&#39;</code>) - event group name which pauses the cycling of the carousel, if <code>hover</code> pauses on mouseenter and resumes on mouseleave</li>\n<li><code>keyboard</code> (<em>not yet supported</em>) (<code>?boolean=true</code>) - if <code>false</code> carousel will not react to keyboard events</li>\n<li><em>note</em>: swiping not yet supported</li>\n</ul>\n<h3 id=\"slide-properties\">Slide properties</h3>\n<ul>\n<li><code>active</code> (<code>?boolean=false</code>) - currently active slide</li>\n<li><code>index</code> (<code>?number</code>) - index of slide in carousel&#39;s slides</li>\n<li><code>direction</code> (<code>?string</code>) (<em>not yet supported</em>)</li>\n<li><code>actual</code> (<em>not yet supported</em>) (<code>?any</code>) - will be bind to slider context, to be used from template</li>\n</ul>\n";
 
 /***/ },
 /* 392 */
@@ -36155,7 +36155,7 @@ webpackJsonp([1],[
 /* 393 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> Collapse <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Collapse</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[collapse]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Collapse</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >set</span> <span class=\"token function\" >collapse</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"collapse-properties\">Collapse properties</h3>\n<ul>\n<li><code>collapse</code> (<code>boolean=false</code>) - if <code>false</code> collapse block will be expanded</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CollapseDirective <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CollapseDirective <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/collapse'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Collapse</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[collapse]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >CollapseDirective</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >set</span> <span class=\"token function\" >collapse</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"collapse-properties\">Collapse properties</h3>\n<ul>\n<li><code>collapse</code> (<code>boolean=false</code>) - if <code>false</code> collapse block will be expanded</li>\n</ul>\n";
 
 /***/ },
 /* 394 */
@@ -36179,7 +36179,7 @@ webpackJsonp([1],[
 /* 397 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> DROPDOWN_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<pre class=\"language-html\"><code class=\"language-html\"><span class=\"token comment\" spellcheck=\"true\">&lt;!-- dropdown directive marks a dropdown root element --></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >dropdown</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token comment\" spellcheck=\"true\">&lt;!-- click on dropdown-toggle toogles dropdown state, optional --></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >dropdownToggle</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token comment\" spellcheck=\"true\">&lt;!-- dropdown-menu holds content which will be shown --></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >dropdownMenu</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token comment\" spellcheck=\"true\">&lt;!-- this content will be shown if dropdown opened --></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// directive Dropdown</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[dropdown]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Dropdown</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.open'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isOpen</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> autoClose<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> keyboardNav<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// enum string: ['nonInput', always', 'outsideClick', 'disabled']</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> appendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> onToggle<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >boolean</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// directive DropdownToggle</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[dropdownToggle]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >DropdownToggle</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.disabled'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'attr.aria-expanded'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isOpen</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n  @<span class=\"token function\" >HostListener</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'click'</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'$event'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleDropdown</span><span class=\"token punctuation\" >(</span>event<span class=\"token punctuation\" >:</span>MouseEvent<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> DROPDOWN_DIRECTIVES<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Dropdown<span class=\"token punctuation\" >,</span> DropdownMenu<span class=\"token punctuation\" >,</span> DropdownToggle<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"dropdown-properties\">Dropdown properties</h3>\n<ul>\n<li><code>isOpen</code> (<code>?boolean=false</code>) - if <code>true</code> dropdown will be opened</li>\n<li><code>autoClose</code> (<code>?string=&#39;always&#39;</code>) - behaviour vary:<ul>\n<li><code>nonInput</code> - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an <code>input</code> or a <code>textarea</code>.</li>\n<li><code>always</code> - automatically closes the dropdown when any of its elements is clicked</li>\n<li><code>outsideClick</code> - closes the dropdown automatically only when the user clicks any element outside the dropdown</li>\n<li><code>disabled</code> - disables the auto close. You can then control the open/close status of the dropdown manually, by using <code>is-open</code>. Please notice that the dropdown will still close if the toggle is clicked, the <code>esc</code> key is pressed or another dropdown is open</li>\n</ul>\n</li>\n<li><code>keyboardNav</code> (<code>?boolean=false</code>) - if <code>true</code> will enable navigation of dropdown list elements with the arrow keys</li>\n<li><code>appendToBody</code> (<em>not yet tested</em>) (<code>?boolean=false</code>) - if <code>true</code> <code>dropdownMenu</code> content will be appended to the body. This is useful when the dropdown button is inside a div with <code>overflow: hidden</code>, and the menu would otherwise be hidden</li>\n</ul>\n<h3 id=\"dropdown-events\">Dropdown events</h3>\n<ul>\n<li><code>onToggle</code> - fired when <code>dropdown</code> toggles, <code>$event:boolean</code> equals dropdown <code>isOpen</code> state</li>\n</ul>\n<h3 id=\"dropdown-toggle-properties\">Dropdown toggle properties</h3>\n<ul>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> dropdown toggle will be disabled</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> DROPDOWN_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> DROPDOWN_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/dropdown'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<pre class=\"language-html\"><code class=\"language-html\"><span class=\"token comment\" spellcheck=\"true\">&lt;!-- dropdown directive marks a dropdown root element --></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >dropdown</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token comment\" spellcheck=\"true\">&lt;!-- click on dropdown-toggle toogles dropdown state, optional --></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >dropdownToggle</span><span class=\"token punctuation\" >></span></span><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token comment\" spellcheck=\"true\">&lt;!-- dropdown-menu holds content which will be shown --></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >dropdownMenu</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token comment\" spellcheck=\"true\">&lt;!-- this content will be shown if dropdown opened --></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// directive Dropdown</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[dropdown]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Dropdown</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.open'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isOpen</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> autoClose<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> keyboardNav<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// enum string: ['nonInput', always', 'outsideClick', 'disabled']</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> appendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> onToggle<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >boolean</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// directive DropdownToggle</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[dropdownToggle]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >DropdownToggle</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.disabled'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'attr.aria-expanded'</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >isOpen</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n  @<span class=\"token function\" >HostListener</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'click'</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'$event'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >)</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleDropdown</span><span class=\"token punctuation\" >(</span>event<span class=\"token punctuation\" >:</span>MouseEvent<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> DROPDOWN_DIRECTIVES<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Dropdown<span class=\"token punctuation\" >,</span> DropdownMenu<span class=\"token punctuation\" >,</span> DropdownToggle<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"dropdown-properties\">Dropdown properties</h3>\n<ul>\n<li><code>isOpen</code> (<code>?boolean=false</code>) - if <code>true</code> dropdown will be opened</li>\n<li><code>autoClose</code> (<code>?string=&#39;always&#39;</code>) - behaviour vary:<ul>\n<li><code>nonInput</code> - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an <code>input</code> or a <code>textarea</code>.</li>\n<li><code>always</code> - automatically closes the dropdown when any of its elements is clicked</li>\n<li><code>outsideClick</code> - closes the dropdown automatically only when the user clicks any element outside the dropdown</li>\n<li><code>disabled</code> - disables the auto close. You can then control the open/close status of the dropdown manually, by using <code>is-open</code>. Please notice that the dropdown will still close if the toggle is clicked, the <code>esc</code> key is pressed or another dropdown is open</li>\n</ul>\n</li>\n<li><code>keyboardNav</code> (<code>?boolean=false</code>) - if <code>true</code> will enable navigation of dropdown list elements with the arrow keys</li>\n<li><code>appendToBody</code> (<em>not yet tested</em>) (<code>?boolean=false</code>) - if <code>true</code> <code>dropdownMenu</code> content will be appended to the body. This is useful when the dropdown button is inside a div with <code>overflow: hidden</code>, and the menu would otherwise be hidden</li>\n</ul>\n<h3 id=\"dropdown-events\">Dropdown events</h3>\n<ul>\n<li><code>onToggle</code> - fired when <code>dropdown</code> toggles, <code>$event:boolean</code> equals dropdown <code>isOpen</code> state</li>\n</ul>\n<h3 id=\"dropdown-toggle-properties\">Dropdown toggle properties</h3>\n<ul>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> dropdown toggle will be disabled</li>\n</ul>\n";
 
 /***/ },
 /* 398 */
@@ -36191,7 +36191,7 @@ webpackJsonp([1],[
 /* 399 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> PAGINATION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Pagination</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'pagination[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> PAGINATION_TEMPLATE<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >,</span> NgFor<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Pagination</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit<span class=\"token punctuation\" >,</span> IPaginationConfig<span class=\"token punctuation\" >,</span> IAttribute <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> maxSize<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> boundaryLinks<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> directionLinks<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token comment\" spellcheck=\"true\">// labels</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> firstText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> previousText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> nextText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> lastText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> rotate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >itemsPerPage</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >totalItems</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> numPages<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >number</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> pageChanged<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>IPageChangedEvent<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'pager[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  inputs<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token string\" >'align'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'totalItems'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'itemsPerPage'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'previousText'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'nextText'</span><span class=\"token punctuation\" >,</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  outputs<span class=\"token punctuation\" >:</span><span class=\"token punctuation\" >[</span><span class=\"token string\" >'numPages'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'pageChanged'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> PAGER_TEMPLATE<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Pager</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >Pagination</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> PAGINATION_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Pagination<span class=\"token punctuation\" >,</span> Pager<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"pagination-properties\">Pagination properties</h3>\n<ul>\n<li><code>rotate</code> (<code>?boolean=true</code>) - if <code>true</code> current page will in the middle of pages list</li>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> pagination component will be disabled</li>\n<li><code>totalItems</code> (<code>number</code>) - total number of items in all pages</li>\n<li><code>itemsPerPage</code> (<code>?number=10</code>) - maximum number of items per page. If value less than 1 will display all items on one page</li>\n<li><code>maxSize</code> (<code>?number=undefined</code>) - limit number for page links in pager</li>\n<li><code>boundaryLinks</code> (<code>?boolean=true</code>) - if <code>false</code> first and last buttons will be hidden</li>\n<li><code>directionLinks</code> (<code>?boolean=true</code>) - if <code>false</code> previous and next buttons will be hidden</li>\n<li><code>previousText</code> (<code>?string=&#39;Previous&#39;</code>) - previous button text</li>\n<li><code>nextText</code> (<code>?string=&#39;Next&#39;</code>) - next button text</li>\n<li><code>firstText</code> (<code>?string=&#39;First&#39;</code>) - first button text</li>\n<li><code>lastText</code> (<code>?string=&#39;Last&#39;</code>) - last button text</li>\n</ul>\n<h3 id=\"pagination-events\">Pagination events</h3>\n<ul>\n<li><code>numPages</code> - fired when total pages count changes, <code>$event:number</code> equals to total pages count</li>\n<li><code>pageChanged</code> - fired when page was changed, <code>$event:{page, itemsPerPage}</code> equals to object with current page index and number of items per page</li>\n</ul>\n<h3 id=\"pager-properties\">Pager properties</h3>\n<ul>\n<li><code>align</code> (<code>?boolean=true</code>) - if <code>true</code> aligns each link to the sides of pager</li>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> pagination component will be disabled</li>\n<li><code>totalItems</code> (<code>number</code>) - total number of items in all pages</li>\n<li><code>itemsPerPage</code> (<code>?number=10</code>) - maximum number of items per page. If value less than 1 will display all items on one page</li>\n<li><code>previousText</code> (<code>?string=&#39;Previous&#39;</code>) - previous button text</li>\n<li><code>nextText</code> (<code>?string=&#39;Next&#39;</code>) - next button text</li>\n</ul>\n<h3 id=\"pager-events\">Pager events</h3>\n<ul>\n<li><code>numPages</code> - fired when total pages count changes, <code>$event:number</code> equals to total pages count</li>\n<li><code>pageChanged</code> - fired when page was changed, <code>$event:{page, itemsPerPage}</code> equals to object with current page index and number of items per page</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> PAGINATION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> PAGINATION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/pagination'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Pagination</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'pagination[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> PAGINATION_TEMPLATE<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >,</span> NgFor<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >PaginationComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit<span class=\"token punctuation\" >,</span> IPaginationConfig<span class=\"token punctuation\" >,</span> IAttribute <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> maxSize<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> boundaryLinks<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> directionLinks<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token comment\" spellcheck=\"true\">// labels</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> firstText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> previousText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> nextText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> lastText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> rotate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >itemsPerPage</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >totalItems</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> numPages<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >number</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> pageChanged<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>IPageChangedEvent<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'pager[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  inputs<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token string\" >'align'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'totalItems'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'itemsPerPage'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'previousText'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'nextText'</span><span class=\"token punctuation\" >,</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  outputs<span class=\"token punctuation\" >:</span><span class=\"token punctuation\" >[</span><span class=\"token string\" >'numPages'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'pageChanged'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> PAGER_TEMPLATE<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >PagerComponent</span> <span class=\"token keyword\" >extends</span> <span class=\"token class-name\" >Pagination</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> PAGINATION_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>PaginationComponent<span class=\"token punctuation\" >,</span> PagerComponent<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"pagination-properties\">Pagination properties</h3>\n<ul>\n<li><code>rotate</code> (<code>?boolean=true</code>) - if <code>true</code> current page will in the middle of pages list</li>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> pagination component will be disabled</li>\n<li><code>totalItems</code> (<code>number</code>) - total number of items in all pages</li>\n<li><code>itemsPerPage</code> (<code>?number=10</code>) - maximum number of items per page. If value less than 1 will display all items on one page</li>\n<li><code>maxSize</code> (<code>?number=undefined</code>) - limit number for page links in pager</li>\n<li><code>boundaryLinks</code> (<code>?boolean=true</code>) - if <code>false</code> first and last buttons will be hidden</li>\n<li><code>directionLinks</code> (<code>?boolean=true</code>) - if <code>false</code> previous and next buttons will be hidden</li>\n<li><code>previousText</code> (<code>?string=&#39;Previous&#39;</code>) - previous button text</li>\n<li><code>nextText</code> (<code>?string=&#39;Next&#39;</code>) - next button text</li>\n<li><code>firstText</code> (<code>?string=&#39;First&#39;</code>) - first button text</li>\n<li><code>lastText</code> (<code>?string=&#39;Last&#39;</code>) - last button text</li>\n</ul>\n<h3 id=\"pagination-events\">Pagination events</h3>\n<ul>\n<li><code>numPages</code> - fired when total pages count changes, <code>$event:number</code> equals to total pages count</li>\n<li><code>pageChanged</code> - fired when page was changed, <code>$event:{page, itemsPerPage}</code> equals to object with current page index and number of items per page</li>\n</ul>\n<h3 id=\"pager-properties\">Pager properties</h3>\n<ul>\n<li><code>align</code> (<code>?boolean=true</code>) - if <code>true</code> aligns each link to the sides of pager</li>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> pagination component will be disabled</li>\n<li><code>totalItems</code> (<code>number</code>) - total number of items in all pages</li>\n<li><code>itemsPerPage</code> (<code>?number=10</code>) - maximum number of items per page. If value less than 1 will display all items on one page</li>\n<li><code>previousText</code> (<code>?string=&#39;Previous&#39;</code>) - previous button text</li>\n<li><code>nextText</code> (<code>?string=&#39;Next&#39;</code>) - next button text</li>\n</ul>\n<h3 id=\"pager-events\">Pager events</h3>\n<ul>\n<li><code>numPages</code> - fired when total pages count changes, <code>$event:number</code> equals to total pages count</li>\n<li><code>pageChanged</code> - fired when page was changed, <code>$event:{page, itemsPerPage}</code> equals to object with current page index and number of items per page</li>\n</ul>\n";
 
 /***/ },
 /* 400 */
@@ -36203,7 +36203,7 @@ webpackJsonp([1],[
 /* 401 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> PROGRESSBAR_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Progress implements OnInit</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'bs-progress, [progress]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Progress</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> animate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'attr.max'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >max</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> addClass <span class=\"token operator\" >=</span> <span class=\"token string\" >'progress'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// class Bar implements OnInit, OnDestroy</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'bar, [bar]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >,</span> NgStyle<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Bar</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >value</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// class Progressbar</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'progressbar, [progressbar]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Progress<span class=\"token punctuation\" >,</span> Bar<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Progressbar</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> animate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"properties\">Properties</h3>\n<p><strong>Note</strong>: all components have same meaning of properties</p>\n<ul>\n<li><code>value</code> (<code>*number</code>) - current value of progress bar</li>\n<li><code>type</code> (<code>*string</code>) - provide one of the four supported contextual classes:\n<code>success</code>,<code>info</code>, <code>warning</code>, <code>danger</code></li>\n<li><code>max</code> (<code>?number=100</code>) - maximum total value of progress element</li>\n<li><code>animate</code> (<code>?boolean=true</code>) - if <code>true</code> changing <code>value</code> of progress bar will be animated (<em>note</em>: not supported by Bootstrap 4)</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> PROGRESSBAR_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Progress implements OnInit</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'bs-progress, [progress]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ProgressDirective</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> animate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'attr.max'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >max</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> addClass <span class=\"token operator\" >=</span> <span class=\"token string\" >'progress'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// class Bar implements OnInit, OnDestroy</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'bar, [bar]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >,</span> NgStyle<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >BarComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >value</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// class Progressbar</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'progressbar, [progressbar]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Progress<span class=\"token punctuation\" >,</span> Bar<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ProgressbarComponent</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> animate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"properties\">Properties</h3>\n<p><strong>Note</strong>: all components have same meaning of properties</p>\n<ul>\n<li><code>value</code> (<code>*number</code>) - current value of progress bar</li>\n<li><code>type</code> (<code>*string</code>) - provide one of the four supported contextual classes:\n<code>success</code>,<code>info</code>, <code>warning</code>, <code>danger</code></li>\n<li><code>max</code> (<code>?number=100</code>) - maximum total value of progress element</li>\n<li><code>animate</code> (<code>?boolean=true</code>) - if <code>true</code> changing <code>value</code> of progress bar will be animated (<em>note</em>: not supported by Bootstrap 4)</li>\n</ul>\n";
 
 /***/ },
 /* 402 */
@@ -36215,7 +36215,7 @@ webpackJsonp([1],[
 /* 403 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> Rating <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Rating implements on Init</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'rating[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgFor<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Rating</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> stateOn<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> stateOff<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> readonly<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> titles<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> ratingStates<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >}</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> onHover<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >number</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> onLeave<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >number</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"rating-properties\">Rating properties</h3>\n<ul>\n<li><code>max</code> (<code>?number=5</code>) - number of icons</li>\n<li><code>readonly</code> (<code>?boolean=false</code>) - if <code>true</code> will not react on any user events</li>\n<li><code>titles</code> (<code>?Array&lt;string&gt;</code>) - array of icons titles, default: (<code>[&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]</code>)</li>\n<li><code>stateOn</code> (<code>?string=&#39;glyphicon-star&#39;</code>) - selected icon class</li>\n<li><code>stateOff</code> (<code>?string=&#39;glyphicon-star-empty&#39;</code>) - unselected icon class</li>\n<li><code>ratingStates</code> (<code>?Array&lt;{stateOn:string, stateOff:string}&gt;</code>) - array of custom icons classes</li>\n</ul>\n<h3 id=\"rating-events\">Rating events</h3>\n<ul>\n<li><code>onHover</code> - fired when icon selected, <code>$event:number</code> equals to selected rating</li>\n<li><code>onLeave</code> - fired when icon selected, <code>$event:number</code> equals to previous rating value</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> RatingComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> RatingComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/rating'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Rating implements on Init</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'rating[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgFor<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >RatingComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> stateOn<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> stateOff<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> readonly<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> titles<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> ratingStates<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >}</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> onHover<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >number</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> onLeave<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >number</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"rating-properties\">Rating properties</h3>\n<ul>\n<li><code>max</code> (<code>?number=5</code>) - number of icons</li>\n<li><code>readonly</code> (<code>?boolean=false</code>) - if <code>true</code> will not react on any user events</li>\n<li><code>titles</code> (<code>?Array&lt;string&gt;</code>) - array of icons titles, default: (<code>[&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]</code>)</li>\n<li><code>stateOn</code> (<code>?string=&#39;glyphicon-star&#39;</code>) - selected icon class</li>\n<li><code>stateOff</code> (<code>?string=&#39;glyphicon-star-empty&#39;</code>) - unselected icon class</li>\n<li><code>ratingStates</code> (<code>?Array&lt;{stateOn:string, stateOff:string}&gt;</code>) - array of custom icons classes</li>\n</ul>\n<h3 id=\"rating-events\">Rating events</h3>\n<ul>\n<li><code>onHover</code> - fired when icon selected, <code>$event:number</code> equals to selected rating</li>\n<li><code>onLeave</code> - fired when icon selected, <code>$event:number</code> equals to previous rating value</li>\n</ul>\n";
 
 /***/ },
 /* 404 */
@@ -36227,7 +36227,7 @@ webpackJsonp([1],[
 /* 405 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TAB_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<pre class=\"language-html\"><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>tabset</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>tab</span> <span class=\"token attr-name\" >heading</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >'</span>Tab 1<span class=\"token punctuation\" >'</span></span><span class=\"token punctuation\" >></span></span>Tab 1 content<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>tab</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>tab</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>template</span> <span class=\"token attr-name\" >tab-heading</span><span class=\"token punctuation\" >></span></span>Tab 2<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>template</span><span class=\"token punctuation\" >></span></span>\n    Tab 2 content\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>tab</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>tabset</span><span class=\"token punctuation\" >></span></span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Tabset</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tabset'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >,</span> NgTransclude<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Tabset</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> vertical<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> justified<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// directive Tab</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tab, [tab]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Tab</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy<span class=\"token punctuation\" >,</span> DoCheck <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> heading<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> removable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">/** tab active state toogle */</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >active</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> select<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Tab<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> deselect<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Tab<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> removed<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Tab<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// directive TabHeading</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[tab-heading]'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TabHeading</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> TAB_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Tab<span class=\"token punctuation\" >,</span> TabHeading<span class=\"token punctuation\" >,</span> Tabset<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"tabset-properties\">Tabset properties</h3>\n<ul>\n<li><code>vertical</code> (<code>?boolean=false</code>) - if <code>true</code> tabs will be placed vertically</li>\n<li><code>justified</code> (<code>?boolean=false</code>) - if <code>true</code> tabs fill the container and have a consistent width</li>\n<li><code>type</code> (<code>?string=&#39;tabs&#39;</code>) - navigation context class: &#39;tabs&#39; or &#39;pills&#39;</li>\n</ul>\n<h3 id=\"tab-properties\">Tab properties</h3>\n<ul>\n<li><code>heading</code> (<code>string</code>) - tab header text</li>\n<li><code>active</code> (<code>?boolean=false</code>) - if tab is active equals true, or set <code>true</code> to activate tab</li>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> tab can not be activated</li>\n<li><code>removable</code> (<code>?boolean=false</code>) - if <code>true</code> tab can be removable, additional button will appear</li>\n</ul>\n<h3 id=\"tab-events\">Tab events</h3>\n<ul>\n<li><code>select</code> - fired when <code>tab</code> became active, <code>$event:Tab</code> equals to selected instance of <code>Tab</code> component</li>\n<li><code>deselect</code> - fired when <code>tab</code> became inactive, <code>$event:Tab</code> equals to deselected instance of <code>Tab</code> component</li>\n<li><code>removed</code> - fired before <code>tab</code> will be removed</li>\n</ul>\n<h3 id=\"tab-heading\">Tab heading</h3>\n<p>Should be used to mark <code>&lt;template&gt;</code> element as a template for tab heading</p>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TAB_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TAB_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/tabs'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<pre class=\"language-html\"><code class=\"language-html\"><span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>tabset</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>tab</span> <span class=\"token attr-name\" >heading</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >'</span>Tab 1<span class=\"token punctuation\" >'</span></span><span class=\"token punctuation\" >></span></span>Tab 1 content<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>tab</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>tab</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>template</span> <span class=\"token attr-name\" >tab-heading</span><span class=\"token punctuation\" >></span></span>Tab 2<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>template</span><span class=\"token punctuation\" >></span></span>\n    Tab 2 content\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>tab</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>tabset</span><span class=\"token punctuation\" >></span></span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Tabset</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tabset'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >,</span> NgTransclude<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TabsetComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> vertical<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> justified<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// directive Tab</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tab, [tab]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TabDirective</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span><span class=\"token punctuation\" >,</span> OnDestroy<span class=\"token punctuation\" >,</span> DoCheck <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> heading<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> removable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">/** tab active state toogle */</span>\n  @<span class=\"token function\" >HostBinding</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'class.active'</span><span class=\"token punctuation\" >)</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >active</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> select<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Tab<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> deselect<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Tab<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> removed<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span>Tab<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >EventEmitter</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >false</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// directive TabHeading</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[tab-heading]'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TabHeadingDirective</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >const</span> TAB_DIRECTIVES<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>Tab<span class=\"token punctuation\" >,</span> TabHeading<span class=\"token punctuation\" >,</span> Tabset<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"tabset-properties\">Tabset properties</h3>\n<ul>\n<li><code>vertical</code> (<code>?boolean=false</code>) - if <code>true</code> tabs will be placed vertically</li>\n<li><code>justified</code> (<code>?boolean=false</code>) - if <code>true</code> tabs fill the container and have a consistent width</li>\n<li><code>type</code> (<code>?string=&#39;tabs&#39;</code>) - navigation context class: &#39;tabs&#39; or &#39;pills&#39;</li>\n</ul>\n<h3 id=\"tab-properties\">Tab properties</h3>\n<ul>\n<li><code>heading</code> (<code>string</code>) - tab header text</li>\n<li><code>active</code> (<code>?boolean=false</code>) - if tab is active equals true, or set <code>true</code> to activate tab</li>\n<li><code>disabled</code> (<code>?boolean=false</code>) - if <code>true</code> tab can not be activated</li>\n<li><code>removable</code> (<code>?boolean=false</code>) - if <code>true</code> tab can be removable, additional button will appear</li>\n</ul>\n<h3 id=\"tab-events\">Tab events</h3>\n<ul>\n<li><code>select</code> - fired when <code>tab</code> became active, <code>$event:Tab</code> equals to selected instance of <code>Tab</code> component</li>\n<li><code>deselect</code> - fired when <code>tab</code> became inactive, <code>$event:Tab</code> equals to deselected instance of <code>Tab</code> component</li>\n<li><code>removed</code> - fired before <code>tab</code> will be removed</li>\n</ul>\n<h3 id=\"tab-heading\">Tab heading</h3>\n<p>Should be used to mark <code>&lt;template&gt;</code> element as a template for tab heading</p>\n";
 
 /***/ },
 /* 406 */
@@ -36239,7 +36239,7 @@ webpackJsonp([1],[
 /* 407 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> Timepicker <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Timepicker</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'timepicker[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Timepicker</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  <span class=\"token comment\" spellcheck=\"true\">// config</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> hourStep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> minuteStep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> readonlyInput<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> mousewheel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> arrowkeys<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> showSpinners<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> min<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> max<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> meridians<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'AM'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'PM'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">// ??</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >showMeridian</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"timepicker-properties\">Timepicker properties</h3>\n<ul>\n<li><code>vertical</code> (<code>?boolean=false</code>) - if <code>true</code> tabs will be placed vertically</li>\n<li><code>justified</code> (<code>?boolean=false</code>) - if <code>true</code> tabs fill the container and have a consistent width</li>\n<li><p><code>type</code> (<code>?string=&#39;tabs&#39;</code>) - navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n</li>\n<li><p><code>ngModel</code> (<code>*Date</code>) - binds to Date object</p>\n</li>\n<li><code>hourStep</code> (<code>?number=1</code>) - hours change step</li>\n<li><code>minuteStep</code> (<code>?number=1</code>) - minutes change step</li>\n<li><code>meridians</code> (<code>?Array&lt;string&gt; = [&#39;AM&#39;, &#39;PM&#39;];</code>) - meridian labels based on locale (<em>will be based later</em>)</li>\n<li><code>showMeridian</code> (<code>?boolean=true</code>) - if <code>true</code> works in 12H mode and displays AM/PM. If <code>false</code> works in 24H mode and hides AM/PM</li>\n<li><code>readonlyInput</code> (<code>?boolean=false</code>) - if <code>true</code> hours and minutes fields will be readonly</li>\n<li><code>mousewheel</code> (<code>?boolean=true</code>) - if <code>true</code> scroll inside hours and minutes inputs will change time</li>\n<li><code>arrowkeys</code> (<code>?boolean=true</code>) - if <code>true</code> up/down arrowkeys inside hours and minutes inputs will change time</li>\n<li><code>showSpinners</code> (<code>?boolean=true</code>) - if <code>true</code> spinner arrows above and below the inputs will be shown</li>\n<li><code>min</code> (<code>?Date:undefined</code>) - minimum time user can select</li>\n<li><code>max</code> (<code>?Date:undefined</code>) - maximum time user can select</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TimepickerComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token comment\" spellcheck=\"true\">// or</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TimepickerComponent <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/components/timepicker'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// component Timepicker</span>\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'timepicker[ngModel]'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>NgClass<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TimepickerComponent</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >ControlValueAccessor</span><span class=\"token punctuation\" >,</span> OnInit <span class=\"token punctuation\" >{</span>\n  <span class=\"token comment\" spellcheck=\"true\">// config</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> hourStep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> minuteStep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> readonlyInput<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> mousewheel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> arrowkeys<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> showSpinners<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> min<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> max<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> meridians<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'AM'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'PM'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span> <span class=\"token comment\" spellcheck=\"true\">// ??</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> <span class=\"token keyword\" >get</span> <span class=\"token function\" >showMeridian</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"timepicker-properties\">Timepicker properties</h3>\n<ul>\n<li><code>vertical</code> (<code>?boolean=false</code>) - if <code>true</code> tabs will be placed vertically</li>\n<li><code>justified</code> (<code>?boolean=false</code>) - if <code>true</code> tabs fill the container and have a consistent width</li>\n<li><p><code>type</code> (<code>?string=&#39;tabs&#39;</code>) - navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n</li>\n<li><p><code>ngModel</code> (<code>*Date</code>) - binds to Date object</p>\n</li>\n<li><code>hourStep</code> (<code>?number=1</code>) - hours change step</li>\n<li><code>minuteStep</code> (<code>?number=1</code>) - minutes change step</li>\n<li><code>meridians</code> (<code>?Array&lt;string&gt; = [&#39;AM&#39;, &#39;PM&#39;];</code>) - meridian labels based on locale (<em>will be based later</em>)</li>\n<li><code>showMeridian</code> (<code>?boolean=true</code>) - if <code>true</code> works in 12H mode and displays AM/PM. If <code>false</code> works in 24H mode and hides AM/PM</li>\n<li><code>readonlyInput</code> (<code>?boolean=false</code>) - if <code>true</code> hours and minutes fields will be readonly</li>\n<li><code>mousewheel</code> (<code>?boolean=true</code>) - if <code>true</code> scroll inside hours and minutes inputs will change time</li>\n<li><code>arrowkeys</code> (<code>?boolean=true</code>) - if <code>true</code> up/down arrowkeys inside hours and minutes inputs will change time</li>\n<li><code>showSpinners</code> (<code>?boolean=true</code>) - if <code>true</code> spinner arrows above and below the inputs will be shown</li>\n<li><code>min</code> (<code>?Date:undefined</code>) - minimum time user can select</li>\n<li><code>max</code> (<code>?Date:undefined</code>) - maximum time user can select</li>\n</ul>\n";
 
 /***/ },
 /* 408 */
@@ -36251,7 +36251,7 @@ webpackJsonp([1],[
 /* 409 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TOOLTIP_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Tooltip implements OnInit</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[tooltip]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Tooltip</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltip'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> content<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipPlacement'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> placement<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'top'</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipIsOpen'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> isOpen<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipEnable'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> enable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipAppendToBody'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> appendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"tooltip-properties\">Tooltip properties</h3>\n<ul>\n<li><code>tooltip</code> (<code>string</code>) - text of tooltip</li>\n<li><code>tooltipPlacement</code> (<code>?string=&#39;top&#39;</code>) - tooltip positioning instruction, supported positions: &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, &#39;right&#39;</li>\n<li><code>tooltipAnimation</code> (<code>?boolean=true</code>) - if <code>false</code> fade tooltip animation will be disabled</li>\n<li><code>tooltipPopupDelay</code> (<em>not implemented</em>) (<code>?numer=0</code>) - time in milliseconds before tooltip occurs</li>\n<li><code>tooltipTrigger</code> (<em>not implemented</em>) (<code>?Array&lt;string&gt;</code>) - array of event names which triggers tooltip opening</li>\n<li><code>tooltipEnable</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> tooltip is disabled and will not be shown</li>\n<li><code>tooltipAppendToBody</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> tooltip will be appended to body</li>\n<li><code>tooltipClass</code> (<em>not implemented</em>) (<code>?string</code>) - custom tooltip class applied to the tooltip container.</li>\n<li><code>tooltipIsOpen</code> (<code>?boolean=false</code>) - if <code>true</code> tooltip is currently visible</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TOOLTIP_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Tooltip implements OnInit</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[tooltip]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TooltipDirective</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltip'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> content<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipPlacement'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> placement<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'top'</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipIsOpen'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> isOpen<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipEnable'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> enable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipAppendToBody'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> appendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"tooltip-properties\">Tooltip properties</h3>\n<ul>\n<li><code>tooltip</code> (<code>string</code>) - text of tooltip</li>\n<li><code>tooltipPlacement</code> (<code>?string=&#39;top&#39;</code>) - tooltip positioning instruction, supported positions: &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, &#39;right&#39;</li>\n<li><code>tooltipAnimation</code> (<code>?boolean=true</code>) - if <code>false</code> fade tooltip animation will be disabled</li>\n<li><code>tooltipPopupDelay</code> (<em>not implemented</em>) (<code>?numer=0</code>) - time in milliseconds before tooltip occurs</li>\n<li><code>tooltipTrigger</code> (<em>not implemented</em>) (<code>?Array&lt;string&gt;</code>) - array of event names which triggers tooltip opening</li>\n<li><code>tooltipEnable</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> tooltip is disabled and will not be shown</li>\n<li><code>tooltipAppendToBody</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> tooltip will be appended to body</li>\n<li><code>tooltipClass</code> (<em>not implemented</em>) (<code>?string</code>) - custom tooltip class applied to the tooltip container.</li>\n<li><code>tooltipIsOpen</code> (<code>?boolean=false</code>) - if <code>true</code> tooltip is currently visible</li>\n</ul>\n";
 
 /***/ },
 /* 410 */
@@ -36263,7 +36263,7 @@ webpackJsonp([1],[
 /* 411 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TYPEAHEAD_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// directive Typeahead</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'typeahead, [typeahead]'</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >Typeahead</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadLoading<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >boolean</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadNoResults<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >boolean</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadOnSelect<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token punctuation\" >{</span>item<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >any</span><span class=\"token punctuation\" >}</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeahead<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadMinLength<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadWaitMs<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadOptionsLimit<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadOptionField<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadAsync<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >null</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadLatinize<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadSingleWords<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadWordDelimiters<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >' '</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadPhraseDelimiters<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'\\'\"'</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">// not yet implemented</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadAppendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadEditable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadFocusFirst<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadInputFormatter<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadSelectOnExact<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadSelectOnBlur<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadFocusOnSelect<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"typeahead-properties\">Typeahead properties</h3>\n<ul>\n<li><code>ngModel</code> (<code>string</code>) - binds to string user&#39;s input</li>\n<li><code>typeahead</code> (<code>any</code>) - options source, can be Array of strings or objects or function that return Promise for external matching process</li>\n<li><code>typeaheadMinLength</code> (<code>?number=1</code>) - minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit)</li>\n<li><code>typeaheadWaitMs</code> (<code>?number=0</code>) - minimal wait time after last character typed before typeahead kicks-in</li>\n<li><code>typeaheadOptionsLimit</code> (<code>?number=20</code>) - maximum length of options items list</li>\n<li><code>typeaheadOptionField</code> (<code>?string</code>) - name of field in array of states that contain options as objects, we use array item as option in case of this field is missing</li>\n<li><code>typeaheadAsync</code> (<code>?boolean</code>) - should be used only in case of <code>typeahead</code> attribute is array. If <code>true</code> - loading of options will be async, otherwise - sync. <code>true</code> make sense if options array is large.</li>\n<li><code>typeaheadLatinize</code> (<code>?boolean=true</code>) - match latin symbols. If <code>true</code> the word <code>súper</code> would match <code>super</code> and vice versa.</li>\n<li><code>typeaheadSingleWords</code> (<code>?boolean=true</code>) - break words with spaces. If <code>true</code> the text <code>&quot;exact phrase&quot; here match</code> would match with <code>match exact phrase here</code> but not with <code>phrase here exact match</code> (kind of &quot;google style&quot;).</li>\n<li><code>typeaheadWordDelimiters</code> (<code>?string=&quot; &quot;</code>) - should be used only in case <code>typeaheadSingleWords</code> attribute is <code>true</code>. Sets the word delimiter to break words. Defaults to space.</li>\n<li><code>typeaheadPhraseDelimiters</code> (<code>?string=&quot;&#39;\\&quot;&quot;</code>) - should be used only in case <code>typeaheadSingleWords</code> attribute is <code>true</code>. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes.</li>\n<li><code>typeaheadAppendToBody</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> the typeahead popup will be appended to $body instead of the parent element</li>\n<li><code>typeaheadEditable</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> restrict model values to the ones selected from the popup only will be provided</li>\n<li><code>typeaheadFocusFirst</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> the first match automatically will not be focused as you type</li>\n<li><code>typeaheadInputFormatter</code> (<em>not implemented</em>) (<code>?any</code>) - format the ng-model result after selection</li>\n<li><code>typeaheadSelectOnExact</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> automatically select an item when there is one option that exactly matches the user input</li>\n<li><code>typeaheadSelectOnBlur</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> select the currently highlighted match on blur</li>\n<li><code>typeaheadFocusOnSelect</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> don&#39;t focus the input element the typeahead directive is associated with on selection</li>\n</ul>\n<h3 id=\"typeahead-events\">Typeahead events</h3>\n<ul>\n<li><code>typeaheadLoading</code> - fired when &#39;busy&#39; state of this component was changed, fired on <code>async</code> mode only, returns <code>boolean</code></li>\n<li><code>typeaheadNoResults</code> - fired on every key event and returns <code>true</code> in case of matches are not detected</li>\n<li><code>typeaheadOnSelect</code> - fired when option was selected, return object with data of this option</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TYPEAHEAD_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// directive Typeahead</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'typeahead, [typeahead]'</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TypeaheadDirective</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadLoading<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >boolean</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadNoResults<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >boolean</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Output</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadOnSelect<span class=\"token punctuation\" >:</span>EventEmitter<span class=\"token operator\" >&lt;</span><span class=\"token punctuation\" >{</span>item<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >any</span><span class=\"token punctuation\" >}</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeahead<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadMinLength<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadWaitMs<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadOptionsLimit<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadOptionField<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadAsync<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >null</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadLatinize<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadSingleWords<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadWordDelimiters<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >' '</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >public</span> typeaheadPhraseDelimiters<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'\\'\"'</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">// not yet implemented</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadAppendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadEditable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadFocusFirst<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadInputFormatter<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadSelectOnExact<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadSelectOnBlur<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> typeaheadFocusOnSelect<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"typeahead-properties\">Typeahead properties</h3>\n<ul>\n<li><code>ngModel</code> (<code>string</code>) - binds to string user&#39;s input</li>\n<li><code>typeahead</code> (<code>any</code>) - options source, can be Array of strings or objects or function that return Promise for external matching process</li>\n<li><code>typeaheadMinLength</code> (<code>?number=1</code>) - minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit)</li>\n<li><code>typeaheadWaitMs</code> (<code>?number=0</code>) - minimal wait time after last character typed before typeahead kicks-in</li>\n<li><code>typeaheadOptionsLimit</code> (<code>?number=20</code>) - maximum length of options items list</li>\n<li><code>typeaheadOptionField</code> (<code>?string</code>) - name of field in array of states that contain options as objects, we use array item as option in case of this field is missing</li>\n<li><code>typeaheadAsync</code> (<code>?boolean</code>) - should be used only in case of <code>typeahead</code> attribute is array. If <code>true</code> - loading of options will be async, otherwise - sync. <code>true</code> make sense if options array is large.</li>\n<li><code>typeaheadLatinize</code> (<code>?boolean=true</code>) - match latin symbols. If <code>true</code> the word <code>súper</code> would match <code>super</code> and vice versa.</li>\n<li><code>typeaheadSingleWords</code> (<code>?boolean=true</code>) - break words with spaces. If <code>true</code> the text <code>&quot;exact phrase&quot; here match</code> would match with <code>match exact phrase here</code> but not with <code>phrase here exact match</code> (kind of &quot;google style&quot;).</li>\n<li><code>typeaheadWordDelimiters</code> (<code>?string=&quot; &quot;</code>) - should be used only in case <code>typeaheadSingleWords</code> attribute is <code>true</code>. Sets the word delimiter to break words. Defaults to space.</li>\n<li><code>typeaheadPhraseDelimiters</code> (<code>?string=&quot;&#39;\\&quot;&quot;</code>) - should be used only in case <code>typeaheadSingleWords</code> attribute is <code>true</code>. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes.</li>\n<li><code>typeaheadAppendToBody</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> the typeahead popup will be appended to $body instead of the parent element</li>\n<li><code>typeaheadEditable</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> restrict model values to the ones selected from the popup only will be provided</li>\n<li><code>typeaheadFocusFirst</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> the first match automatically will not be focused as you type</li>\n<li><code>typeaheadInputFormatter</code> (<em>not implemented</em>) (<code>?any</code>) - format the ng-model result after selection</li>\n<li><code>typeaheadSelectOnExact</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> automatically select an item when there is one option that exactly matches the user input</li>\n<li><code>typeaheadSelectOnBlur</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> select the currently highlighted match on blur</li>\n<li><code>typeaheadFocusOnSelect</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> don&#39;t focus the input element the typeahead directive is associated with on selection</li>\n</ul>\n<h3 id=\"typeahead-events\">Typeahead events</h3>\n<ul>\n<li><code>typeaheadLoading</code> - fired when &#39;busy&#39; state of this component was changed, fired on <code>async</code> mode only, returns <code>boolean</code></li>\n<li><code>typeaheadNoResults</code> - fired on every key event and returns <code>true</code> in case of matches are not detected</li>\n<li><code>typeaheadOnSelect</code> - fired when option was selected, return object with data of this option</li>\n</ul>\n";
 
 /***/ },
 /* 412 */
@@ -36371,85 +36371,85 @@ webpackJsonp([1],[
 /* 429 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> Component <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ACCORDION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./accordion-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'accordion-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>ACCORDION_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AccordionDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> oneAtATime<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Item 1'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Item 2'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Item 3'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> status<span class=\"token punctuation\" >:</span>Object <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n    isFirstOpen<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >,</span>\n    isFirstDisabled<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> groups<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>\n      title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Header - 1'</span><span class=\"token punctuation\" >,</span>\n      content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Body - 1'</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Header - 2'</span><span class=\"token punctuation\" >,</span>\n      content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Body - 2'</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >addItem</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>items<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token template-string\" ><span class=\"token string\" >`Items </span><span class=\"token interpolation\" ><span class=\"token interpolation-punctuation punctuation\" >${</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>items<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token interpolation-punctuation punctuation\" >}</span></span><span class=\"token string\" >`</span></span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> Component <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> ACCORDION_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./accordion-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'accordion-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>ACCORDION_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AccordionDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> oneAtATime<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Item 1'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Item 2'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Item 3'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> status<span class=\"token punctuation\" >:</span>Object <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n    isFirstOpen<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >,</span>\n    isFirstDisabled<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> groups<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>\n      title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Header - 1'</span><span class=\"token punctuation\" >,</span>\n      content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Body - 1'</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Header - 2'</span><span class=\"token punctuation\" >,</span>\n      content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Group Body - 2'</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >addItem</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>items<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token template-string\" ><span class=\"token string\" >`Items </span><span class=\"token interpolation\" ><span class=\"token interpolation-punctuation punctuation\" >${</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>items<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token interpolation-punctuation punctuation\" >}</span></span><span class=\"token string\" >`</span></span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 430 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Alert<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./alert-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'alert-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Alert<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AlertDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> alerts<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span>Object<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>\n      type<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'danger'</span><span class=\"token punctuation\" >,</span>\n      msg<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Oh snap! Change a few things up and try submitting again.'</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      type<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'success'</span><span class=\"token punctuation\" >,</span>\n      msg<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Well done! You successfully read this important alert message.'</span><span class=\"token punctuation\" >,</span>\n      closable<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >closeAlert</span><span class=\"token punctuation\" >(</span>i<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>alerts<span class=\"token punctuation\" >.</span><span class=\"token function\" >splice</span><span class=\"token punctuation\" >(</span>i<span class=\"token punctuation\" >,</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >addAlert</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>alerts<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>msg<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Another alert!'</span><span class=\"token punctuation\" >,</span> type<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >,</span> closable<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>AlertComponent<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./alert-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'alert-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>AlertComponent<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >AlertDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> alerts<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span>Object<span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>\n      type<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'danger'</span><span class=\"token punctuation\" >,</span>\n      msg<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Oh snap! Change a few things up and try submitting again.'</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>\n      type<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'success'</span><span class=\"token punctuation\" >,</span>\n      msg<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Well done! You successfully read this important alert message.'</span><span class=\"token punctuation\" >,</span>\n      closable<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >closeAlert</span><span class=\"token punctuation\" >(</span>i<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>alerts<span class=\"token punctuation\" >.</span><span class=\"token function\" >splice</span><span class=\"token punctuation\" >(</span>i<span class=\"token punctuation\" >,</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >addAlert</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>alerts<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>msg<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Another alert!'</span><span class=\"token punctuation\" >,</span> type<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >,</span> closable<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 431 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>BUTTON_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./buttons-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'buttons-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>BUTTON_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ButtonsDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> singleModel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'1'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> radioModel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'Middle'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> checkModel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>left<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >,</span> middle<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >,</span> right<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>BUTTON_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./buttons-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'buttons-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>BUTTON_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ButtonsDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> singleModel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'1'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> radioModel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'Middle'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> checkModel<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>left<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >,</span> middle<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >,</span> right<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 432 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CAROUSEL_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./carousel-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'carousel-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>CAROUSEL_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >CarouselDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> myInterval<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >5000</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> noWrapSlides<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> slides<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >for</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >let</span> i <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span> i <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >;</span> i<span class=\"token operator\" >++</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >addSlide</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >addSlide</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> newWidth <span class=\"token operator\" >=</span> <span class=\"token number\" >600</span> <span class=\"token operator\" >+</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n      image<span class=\"token punctuation\" >:</span> `<span class=\"token comment\" spellcheck=\"true\">//placekitten.com/${newWidth}/300`,</span>\n      text<span class=\"token punctuation\" >:</span> `$<span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >[</span><span class=\"token string\" >'More'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Extra'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Lots of'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Surplus'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >[</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >%</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >}</span>\n      $<span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >[</span><span class=\"token string\" >'Cats'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Kittys'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Felines'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Cutes'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >[</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >%</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >}</span>`\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >removeSlide</span><span class=\"token punctuation\" >(</span>index<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span><span class=\"token function\" >splice</span><span class=\"token punctuation\" >(</span>index<span class=\"token punctuation\" >,</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CAROUSEL_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./carousel-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'carousel-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>CAROUSEL_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >CarouselDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> myInterval<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >5000</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> noWrapSlides<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> slides<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >for</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >let</span> i <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span> i <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >;</span> i<span class=\"token operator\" >++</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >addSlide</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >addSlide</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> newWidth <span class=\"token operator\" >=</span> <span class=\"token number\" >600</span> <span class=\"token operator\" >+</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n      image<span class=\"token punctuation\" >:</span> `<span class=\"token comment\" spellcheck=\"true\">//placekitten.com/${newWidth}/300`,</span>\n      text<span class=\"token punctuation\" >:</span> `$<span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >[</span><span class=\"token string\" >'More'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Extra'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Lots of'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Surplus'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >[</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >%</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >}</span>\n      $<span class=\"token punctuation\" >{</span><span class=\"token punctuation\" >[</span><span class=\"token string\" >'Cats'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Kittys'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Felines'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Cutes'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >[</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span>length <span class=\"token operator\" >%</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >}</span>`\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >removeSlide</span><span class=\"token punctuation\" >(</span>index<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>slides<span class=\"token punctuation\" >.</span><span class=\"token function\" >splice</span><span class=\"token punctuation\" >(</span>index<span class=\"token punctuation\" >,</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 433 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Collapse<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./collapse-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'collapse-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Collapse<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >CollapseDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> isCollapsed<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CollapseDirective<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./collapse-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'collapse-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>CollapseDirective<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >CollapseDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> isCollapsed<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 434 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token operator\" >*</span> as moment from <span class=\"token string\" >'moment'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>DATEPICKER_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./datepicker-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'datepicker-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>DATEPICKER_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >DatepickerDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> dt<span class=\"token punctuation\" >:</span>Date <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> minDate<span class=\"token punctuation\" >:</span>Date <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> events<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> tomorrow<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> afterTomorrow<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> formats<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'DD-MM-YYYY'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'YYYY/MM/DD'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'DD.MM.YYYY'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'shortDate'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> format<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>formats<span class=\"token punctuation\" >[</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> dateOptions<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n    formatYear<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'YY'</span><span class=\"token punctuation\" >,</span>\n    startingDay<span class=\"token punctuation\" >:</span> <span class=\"token number\" >1</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> opened<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setDate</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>afterTomorrow <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setDate</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>minDate <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setDate</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>minDate<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >-</span> <span class=\"token number\" >1000</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n      <span class=\"token punctuation\" >{</span>date<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow<span class=\"token punctuation\" >,</span> status<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'full'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n      <span class=\"token punctuation\" >{</span>date<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>afterTomorrow<span class=\"token punctuation\" >,</span> status<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'partially'</span><span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >&amp;&amp;</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt<span class=\"token punctuation\" >.</span><span class=\"token function\" >getTime</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >||</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >getTime</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >today</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >d20090824</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token function\" >moment</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'2009-08-24'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'YYYY-MM-DD'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >toDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">// todo: implement custom class cases</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getDayClass</span><span class=\"token punctuation\" >(</span>date<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >,</span> mode<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>mode <span class=\"token operator\" >===</span> <span class=\"token string\" >'day'</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >let</span> dayToCheck <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span>date<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setHours</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n      <span class=\"token keyword\" >for</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >let</span> i <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span> i <span class=\"token operator\" >&lt;</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events<span class=\"token punctuation\" >.</span>length<span class=\"token punctuation\" >;</span> i<span class=\"token operator\" >++</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >let</span> currentDay <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events<span class=\"token punctuation\" >[</span>i<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >.</span>date<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setHours</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>dayToCheck <span class=\"token operator\" >===</span> currentDay<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n          <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events<span class=\"token punctuation\" >[</span>i<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >.</span>status<span class=\"token punctuation\" >;</span>\n        <span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token keyword\" >return</span> <span class=\"token string\" >''</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >disabled</span><span class=\"token punctuation\" >(</span>date<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >,</span> mode<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token punctuation\" >(</span> mode <span class=\"token operator\" >===</span> <span class=\"token string\" >'day'</span> <span class=\"token operator\" >&amp;&amp;</span> <span class=\"token punctuation\" >(</span> date<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDay</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >===</span> <span class=\"token number\" >0</span> <span class=\"token operator\" >||</span> date<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDay</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >===</span> <span class=\"token number\" >6</span> <span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >open</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>opened <span class=\"token operator\" >=</span> <span class=\"token operator\" >!</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>opened<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >clear</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleMin</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>minDate<span class=\"token punctuation\" >.</span><span class=\"token function\" >valueOf</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token keyword\" >import</span> <span class=\"token operator\" >*</span> as moment from <span class=\"token string\" >'moment'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>DATEPICKER_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./datepicker-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'datepicker-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>DATEPICKER_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >DatepickerDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> dt<span class=\"token punctuation\" >:</span>Date <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> minDate<span class=\"token punctuation\" >:</span>Date <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> events<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> tomorrow<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> afterTomorrow<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> formats<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'DD-MM-YYYY'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'YYYY/MM/DD'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'DD.MM.YYYY'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'shortDate'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> format<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>formats<span class=\"token punctuation\" >[</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> dateOptions<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n    formatYear<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'YY'</span><span class=\"token punctuation\" >,</span>\n    startingDay<span class=\"token punctuation\" >:</span> <span class=\"token number\" >1</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> opened<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setDate</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>afterTomorrow <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setDate</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>minDate <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setDate</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>minDate<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >-</span> <span class=\"token number\" >1000</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n      <span class=\"token punctuation\" >{</span>date<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tomorrow<span class=\"token punctuation\" >,</span> status<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'full'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n      <span class=\"token punctuation\" >{</span>date<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>afterTomorrow<span class=\"token punctuation\" >,</span> status<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'partially'</span><span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >&amp;&amp;</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt<span class=\"token punctuation\" >.</span><span class=\"token function\" >getTime</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >||</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >getTime</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >today</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >d20090824</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token function\" >moment</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'2009-08-24'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'YYYY-MM-DD'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >toDate</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token comment\" spellcheck=\"true\">// todo: implement custom class cases</span>\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getDayClass</span><span class=\"token punctuation\" >(</span>date<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >,</span> mode<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>mode <span class=\"token operator\" >===</span> <span class=\"token string\" >'day'</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >let</span> dayToCheck <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span>date<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setHours</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n      <span class=\"token keyword\" >for</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >let</span> i <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span> i <span class=\"token operator\" >&lt;</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events<span class=\"token punctuation\" >.</span>length<span class=\"token punctuation\" >;</span> i<span class=\"token operator\" >++</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token keyword\" >let</span> currentDay <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events<span class=\"token punctuation\" >[</span>i<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >.</span>date<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >setHours</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n        <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>dayToCheck <span class=\"token operator\" >===</span> currentDay<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n          <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>events<span class=\"token punctuation\" >[</span>i<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >.</span>status<span class=\"token punctuation\" >;</span>\n        <span class=\"token punctuation\" >}</span>\n      <span class=\"token punctuation\" >}</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token keyword\" >return</span> <span class=\"token string\" >''</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >disabled</span><span class=\"token punctuation\" >(</span>date<span class=\"token punctuation\" >:</span>Date<span class=\"token punctuation\" >,</span> mode<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token punctuation\" >(</span> mode <span class=\"token operator\" >===</span> <span class=\"token string\" >'day'</span> <span class=\"token operator\" >&amp;&amp;</span> <span class=\"token punctuation\" >(</span> date<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDay</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >===</span> <span class=\"token number\" >0</span> <span class=\"token operator\" >||</span> date<span class=\"token punctuation\" >.</span><span class=\"token function\" >getDay</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >===</span> <span class=\"token number\" >6</span> <span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >open</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>opened <span class=\"token operator\" >=</span> <span class=\"token operator\" >!</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>opened<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >clear</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleMin</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dt <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>minDate<span class=\"token punctuation\" >.</span><span class=\"token function\" >valueOf</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 435 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>DROPDOWN_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./dropdown-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'dropdown-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>DROPDOWN_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >DropdownDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> status<span class=\"token punctuation\" >:</span><span class=\"token punctuation\" >{</span>isopen<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >}</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>isopen<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'The first choice!'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'And another choice for you.'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'but wait! A third!'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggled</span><span class=\"token punctuation\" >(</span>open<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Dropdown is now: '</span><span class=\"token punctuation\" >,</span> open<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleDropdown</span><span class=\"token punctuation\" >(</span>$event<span class=\"token punctuation\" >:</span>MouseEvent<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    $event<span class=\"token punctuation\" >.</span><span class=\"token function\" >preventDefault</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    $event<span class=\"token punctuation\" >.</span><span class=\"token function\" >stopPropagation</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>status<span class=\"token punctuation\" >.</span>isopen <span class=\"token operator\" >=</span> <span class=\"token operator\" >!</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>status<span class=\"token punctuation\" >.</span>isopen<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>DROPDOWN_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./dropdown-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'dropdown-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>DROPDOWN_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >DropdownDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> disabled<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> status<span class=\"token punctuation\" >:</span><span class=\"token punctuation\" >{</span>isopen<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >}</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>isopen<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> items<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'The first choice!'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'And another choice for you.'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'but wait! A third!'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggled</span><span class=\"token punctuation\" >(</span>open<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Dropdown is now: '</span><span class=\"token punctuation\" >,</span> open<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleDropdown</span><span class=\"token punctuation\" >(</span>$event<span class=\"token punctuation\" >:</span>MouseEvent<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    $event<span class=\"token punctuation\" >.</span><span class=\"token function\" >preventDefault</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    $event<span class=\"token punctuation\" >.</span><span class=\"token function\" >stopPropagation</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>status<span class=\"token punctuation\" >.</span>isopen <span class=\"token operator\" >=</span> <span class=\"token operator\" >!</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>status<span class=\"token punctuation\" >.</span>isopen<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 436 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>PAGINATION_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./pagination-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'pagination-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>PAGINATION_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >PaginationDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> totalItems<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >64</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> currentPage<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> maxSize<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> bigTotalItems<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >175</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> bigCurrentPage<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >setPage</span><span class=\"token punctuation\" >(</span>pageNo<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>currentPage <span class=\"token operator\" >=</span> pageNo<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >pageChanged</span><span class=\"token punctuation\" >(</span>event<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Page changed to: '</span> <span class=\"token operator\" >+</span> event<span class=\"token punctuation\" >.</span>page<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Number items per page: '</span> <span class=\"token operator\" >+</span> event<span class=\"token punctuation\" >.</span>itemsPerPage<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>PAGINATION_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./pagination-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'pagination-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>PAGINATION_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >PaginationDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> totalItems<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >64</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> currentPage<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> maxSize<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> bigTotalItems<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >175</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> bigCurrentPage<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >setPage</span><span class=\"token punctuation\" >(</span>pageNo<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>currentPage <span class=\"token operator\" >=</span> pageNo<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >pageChanged</span><span class=\"token punctuation\" >(</span>event<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Page changed to: '</span> <span class=\"token operator\" >+</span> event<span class=\"token punctuation\" >.</span>page<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Number items per page: '</span> <span class=\"token operator\" >+</span> event<span class=\"token punctuation\" >.</span>itemsPerPage<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 437 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>\n  Ng2BootstrapConfig<span class=\"token punctuation\" >,</span> Ng2BootstrapTheme<span class=\"token punctuation\" >,</span> PROGRESSBAR_DIRECTIVES\n<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// switch bs3\\bs4 templates</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> templates<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token punctuation\" >[</span>Ng2BootstrapTheme<span class=\"token punctuation\" >.</span>BS3<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >:</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./progressbar-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >,</span>\n  <span class=\"token punctuation\" >[</span>Ng2BootstrapTheme<span class=\"token punctuation\" >.</span>BS4<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >:</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./progressbar-demo-bs4.html'</span><span class=\"token punctuation\" >)</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'progressbar-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>PROGRESSBAR_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> templates<span class=\"token punctuation\" >[</span>Ng2BootstrapConfig<span class=\"token punctuation\" >.</span>theme<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ProgressbarDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >200</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> showWarning<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> dynamic<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> stacked<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >randomStacked</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> value <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >100</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >let</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n\n    <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'success'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span> <span class=\"token keyword\" >else</span> <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >50</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'info'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span> <span class=\"token keyword\" >else</span> <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >75</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span> <span class=\"token keyword\" >else</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'danger'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>showWarning <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >(</span>type <span class=\"token operator\" >===</span> <span class=\"token string\" >'danger'</span> <span class=\"token operator\" >||</span> type <span class=\"token operator\" >===</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dynamic <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>type <span class=\"token operator\" >=</span> type<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >randomStacked</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> types <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'success'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'info'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'danger'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>stacked <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >let</span> total <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >for</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >let</span> i <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> n <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span> i <span class=\"token operator\" >&lt;</span> n<span class=\"token punctuation\" >;</span> i<span class=\"token operator\" >++</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >let</span> index <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      <span class=\"token keyword\" >let</span> value <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      total <span class=\"token operator\" >+</span><span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n      <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>stacked<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n        value<span class=\"token punctuation\" >:</span> value<span class=\"token punctuation\" >,</span>\n        max<span class=\"token punctuation\" >:</span> value<span class=\"token punctuation\" >,</span> <span class=\"token comment\" spellcheck=\"true\">// i !== (n - 1) ? value : 100,</span>\n        type<span class=\"token punctuation\" >:</span> types<span class=\"token punctuation\" >[</span>index<span class=\"token punctuation\" >]</span>\n      <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>\n  Ng2BootstrapConfig<span class=\"token punctuation\" >,</span> Ng2BootstrapTheme<span class=\"token punctuation\" >,</span> PROGRESSBAR_DIRECTIVES\n<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// switch bs3\\bs4 templates</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> templates<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token punctuation\" >[</span>Ng2BootstrapTheme<span class=\"token punctuation\" >.</span>BS3<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >:</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./progressbar-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >,</span>\n  <span class=\"token punctuation\" >[</span>Ng2BootstrapTheme<span class=\"token punctuation\" >.</span>BS4<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >:</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./progressbar-demo-bs4.html'</span><span class=\"token punctuation\" >)</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'progressbar-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>PROGRESSBAR_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> templates<span class=\"token punctuation\" >[</span>Ng2BootstrapConfig<span class=\"token punctuation\" >.</span>theme<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >ProgressbarDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >200</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> showWarning<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> dynamic<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> stacked<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token keyword\" >constructor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span><span class=\"token function\" >randomStacked</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> value <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >100</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >let</span> type<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n\n    <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'success'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span> <span class=\"token keyword\" >else</span> <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >50</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'info'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span> <span class=\"token keyword\" >else</span> <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >&lt;</span> <span class=\"token number\" >75</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span> <span class=\"token keyword\" >else</span> <span class=\"token punctuation\" >{</span>\n      type <span class=\"token operator\" >=</span> <span class=\"token string\" >'danger'</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>showWarning <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >(</span>type <span class=\"token operator\" >===</span> <span class=\"token string\" >'danger'</span> <span class=\"token operator\" >||</span> type <span class=\"token operator\" >===</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>dynamic <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>type <span class=\"token operator\" >=</span> type<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >randomStacked</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> types <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'success'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'info'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'warning'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'danger'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>stacked <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >let</span> total <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >for</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >let</span> i <span class=\"token operator\" >=</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span> n <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span> i <span class=\"token operator\" >&lt;</span> n<span class=\"token punctuation\" >;</span> i<span class=\"token operator\" >++</span><span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >let</span> index <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      <span class=\"token keyword\" >let</span> value <span class=\"token operator\" >=</span> Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >floor</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>Math<span class=\"token punctuation\" >.</span><span class=\"token function\" >random</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >*</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >+</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      total <span class=\"token operator\" >+</span><span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n      <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>stacked<span class=\"token punctuation\" >.</span><span class=\"token function\" >push</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n        value<span class=\"token punctuation\" >:</span> value<span class=\"token punctuation\" >,</span>\n        max<span class=\"token punctuation\" >:</span> value<span class=\"token punctuation\" >,</span> <span class=\"token comment\" spellcheck=\"true\">// i !== (n - 1) ? value : 100,</span>\n        type<span class=\"token punctuation\" >:</span> types<span class=\"token punctuation\" >[</span>index<span class=\"token punctuation\" >]</span>\n      <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 438 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Rating<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./rating-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'rating-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Rating<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >RatingDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> x<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> y<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> rate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >7</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> isReadonly<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> overStar<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> percent<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> ratingStates<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-ok-sign'</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-ok-circle'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-star'</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-star-empty'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-heart'</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-ban-circle'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-heart'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-off'</span><span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >hoveringOver</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>overStar <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>percent <span class=\"token operator\" >=</span> <span class=\"token number\" >100</span> <span class=\"token operator\" >*</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >/</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>max<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >resetStar</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>overStar <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>RatingComponent<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./rating-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'rating-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>RatingComponent<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >RatingDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> x<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> y<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> max<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> rate<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >7</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> isReadonly<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> overStar<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> percent<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> ratingStates<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-ok-sign'</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-ok-circle'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-star'</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-star-empty'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-heart'</span><span class=\"token punctuation\" >,</span> stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-ban-circle'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOn<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-heart'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>stateOff<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'glyphicon-off'</span><span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >hoveringOver</span><span class=\"token punctuation\" >(</span>value<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>overStar <span class=\"token operator\" >=</span> value<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>percent <span class=\"token operator\" >=</span> <span class=\"token number\" >100</span> <span class=\"token operator\" >*</span> <span class=\"token punctuation\" >(</span>value <span class=\"token operator\" >/</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>max<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >resetStar</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>overStar <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 439 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >,</span> ChangeDetectionStrategy<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TAB_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./tabs-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tabs-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TAB_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  changeDetection<span class=\"token punctuation\" >:</span> ChangeDetectionStrategy<span class=\"token punctuation\" >.</span>OnPush<span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TabsDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> tabs<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Title 1'</span><span class=\"token punctuation\" >,</span> content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic content 1'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Title 2'</span><span class=\"token punctuation\" >,</span> content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic content 2'</span><span class=\"token punctuation\" >,</span> disabled<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Title 3'</span><span class=\"token punctuation\" >,</span> content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic content 3'</span><span class=\"token punctuation\" >,</span> removable<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >alertMe</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token function\" >setTimeout</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >function</span> <span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token function\" >alert</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'You\\'ve selected the alert tab!'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >setActiveTab</span><span class=\"token punctuation\" >(</span>index<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tabs<span class=\"token punctuation\" >[</span>index<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >.</span>active <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >removeTabHandler</span><span class=\"token punctuation\" >(</span><span class=\"token comment\" spellcheck=\"true\">/*tab:any*/</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Remove Tab handler'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >,</span> ChangeDetectionStrategy<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TAB_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./tabs-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tabs-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TAB_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  changeDetection<span class=\"token punctuation\" >:</span> ChangeDetectionStrategy<span class=\"token punctuation\" >.</span>OnPush<span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TabsDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> tabs<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Title 1'</span><span class=\"token punctuation\" >,</span> content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic content 1'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Title 2'</span><span class=\"token punctuation\" >,</span> content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic content 2'</span><span class=\"token punctuation\" >,</span> disabled<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>title<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic Title 3'</span><span class=\"token punctuation\" >,</span> content<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Dynamic content 3'</span><span class=\"token punctuation\" >,</span> removable<span class=\"token punctuation\" >:</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >}</span>\n  <span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >alertMe</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token function\" >setTimeout</span><span class=\"token punctuation\" >(</span><span class=\"token keyword\" >function</span> <span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token function\" >alert</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'You\\'ve selected the alert tab!'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >setActiveTab</span><span class=\"token punctuation\" >(</span>index<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>tabs<span class=\"token punctuation\" >[</span>index<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >.</span>active <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >removeTabHandler</span><span class=\"token punctuation\" >(</span><span class=\"token comment\" spellcheck=\"true\">/*tab:any*/</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Remove Tab handler'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 440 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Timepicker<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./timepicker-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'timepicker-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>Timepicker<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TimepickerDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> hstep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> mstep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> ismeridian<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> mytime<span class=\"token punctuation\" >:</span>Date <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> options<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n    hstep<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span><span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >3</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n    mstep<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span><span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >]</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleMode</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>ismeridian <span class=\"token operator\" >=</span> <span class=\"token operator\" >!</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>ismeridian<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >update</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> d <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    d<span class=\"token punctuation\" >.</span><span class=\"token function\" >setHours</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >14</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    d<span class=\"token punctuation\" >.</span><span class=\"token function\" >setMinutes</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>mytime <span class=\"token operator\" >=</span> d<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >changed</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Time changed to: '</span> <span class=\"token operator\" >+</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>mytime<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >clear</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>mytime <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TimepickerComponent<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./timepicker-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'timepicker-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TimepickerComponent<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TimepickerDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> hstep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> mstep<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >number</span> <span class=\"token operator\" >=</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> ismeridian<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >true</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> mytime<span class=\"token punctuation\" >:</span>Date <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> options<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >{</span>\n    hstep<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span><span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >3</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n    mstep<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span><span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >]</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >toggleMode</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>ismeridian <span class=\"token operator\" >=</span> <span class=\"token operator\" >!</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>ismeridian<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >update</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >let</span> d <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Date</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    d<span class=\"token punctuation\" >.</span><span class=\"token function\" >setHours</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >14</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    d<span class=\"token punctuation\" >.</span><span class=\"token function\" >setMinutes</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>mytime <span class=\"token operator\" >=</span> d<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >changed</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'Time changed to: '</span> <span class=\"token operator\" >+</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>mytime<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >clear</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>mytime <span class=\"token operator\" >=</span> <span class=\"token keyword\" >void</span> <span class=\"token number\" >0</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 441 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >,</span> ChangeDetectionStrategy<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TOOLTIP_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./tooltip-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tooltip-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TOOLTIP_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  changeDetection<span class=\"token punctuation\" >:</span> ChangeDetectionStrategy<span class=\"token punctuation\" >.</span>OnPush<span class=\"token punctuation\" >,</span>\n  styles<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>`\n    <span class=\"token comment\" spellcheck=\"true\">/* Specify styling for tooltip contents */</span>\n    <span class=\"token punctuation\" >.</span>tooltip<span class=\"token punctuation\" >.</span>customClass <span class=\"token punctuation\" >.</span>tooltip<span class=\"token operator\" >-</span>inner <span class=\"token punctuation\" >{</span>\n        color<span class=\"token punctuation\" >:</span> #<span class=\"token number\" >880000</span><span class=\"token punctuation\" >;</span>\n        background<span class=\"token operator\" >-</span>color<span class=\"token punctuation\" >:</span> #ffff66<span class=\"token punctuation\" >;</span>\n        box<span class=\"token operator\" >-</span>shadow<span class=\"token punctuation\" >:</span> <span class=\"token number\" >0</span> 6px 12px <span class=\"token function\" >rgba</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span><span class=\"token punctuation\" >.</span><span class=\"token number\" >175</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n    <span class=\"token comment\" spellcheck=\"true\">/* Hide arrow */</span>\n    <span class=\"token punctuation\" >.</span>tooltip<span class=\"token punctuation\" >.</span>customClass <span class=\"token punctuation\" >.</span>tooltip<span class=\"token operator\" >-</span>arrow <span class=\"token punctuation\" >{</span>\n        display<span class=\"token punctuation\" >:</span> none<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n  `<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TooltipDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> dynamicTooltip<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'Hello, World!'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> dynamicTooltipText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'dynamic'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> htmlTooltip<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'I\\'ve been made &lt;b>bold&lt;/b>!'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >,</span> ChangeDetectionStrategy<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TOOLTIP_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./tooltip-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'tooltip-demo'</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template<span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TOOLTIP_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  changeDetection<span class=\"token punctuation\" >:</span> ChangeDetectionStrategy<span class=\"token punctuation\" >.</span>OnPush<span class=\"token punctuation\" >,</span>\n  styles<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>`\n    <span class=\"token comment\" spellcheck=\"true\">/* Specify styling for tooltip contents */</span>\n    <span class=\"token punctuation\" >.</span>tooltip<span class=\"token punctuation\" >.</span>customClass <span class=\"token punctuation\" >.</span>tooltip<span class=\"token operator\" >-</span>inner <span class=\"token punctuation\" >{</span>\n        color<span class=\"token punctuation\" >:</span> #<span class=\"token number\" >880000</span><span class=\"token punctuation\" >;</span>\n        background<span class=\"token operator\" >-</span>color<span class=\"token punctuation\" >:</span> #ffff66<span class=\"token punctuation\" >;</span>\n        box<span class=\"token operator\" >-</span>shadow<span class=\"token punctuation\" >:</span> <span class=\"token number\" >0</span> 6px 12px <span class=\"token function\" >rgba</span><span class=\"token punctuation\" >(</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span><span class=\"token number\" >0</span><span class=\"token punctuation\" >,</span><span class=\"token punctuation\" >.</span><span class=\"token number\" >175</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n    <span class=\"token comment\" spellcheck=\"true\">/* Hide arrow */</span>\n    <span class=\"token punctuation\" >.</span>tooltip<span class=\"token punctuation\" >.</span>customClass <span class=\"token punctuation\" >.</span>tooltip<span class=\"token operator\" >-</span>arrow <span class=\"token punctuation\" >{</span>\n        display<span class=\"token punctuation\" >:</span> none<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n  `<span class=\"token punctuation\" >]</span>\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TooltipDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> dynamicTooltip<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'Hello, World!'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> dynamicTooltipText<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'dynamic'</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> htmlTooltip<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'I\\'ve been made &lt;b>bold&lt;/b>!'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 442 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TYPEAHEAD_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./typeahead-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'typeahead-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TYPEAHEAD_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TypeaheadDemo</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> selected<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >''</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> asyncSelected<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >''</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> typeaheadLoading<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> typeaheadNoResults<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> states<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Alabama'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Alaska'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Arizona'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Arkansas'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'California'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Colorado'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Connecticut'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Delaware'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Florida'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Georgia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Hawaii'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Idaho'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Illinois'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Indiana'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Iowa'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Kansas'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Kentucky'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Louisiana'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Maine'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Maryland'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Massachusetts'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Michigan'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Minnesota'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Mississippi'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Missouri'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Montana'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Nebraska'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Nevada'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'New Hampshire'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'New Jersey'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'New Mexico'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'New York'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'North Dakota'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'North Carolina'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Ohio'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Oklahoma'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Oregon'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Pennsylvania'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Rhode Island'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'South Carolina'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'South Dakota'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Tennessee'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Texas'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Utah'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Vermont'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Virginia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Washington'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'West Virginia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Wisconsin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Wyoming'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> statesComplex<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Alabama'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Alaska'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >3</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Arizona'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Arkansas'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'California'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >6</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Colorado'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >7</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Connecticut'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >8</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Delaware'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >9</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Florida'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Georgia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >11</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hawaii'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >12</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Idaho'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >13</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Illinois'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >14</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Indiana'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Iowa'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >16</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Kansas'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >17</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Kentucky'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >18</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Louisiana'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >19</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Maine'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >21</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Maryland'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >22</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Massachusetts'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >23</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Michigan'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >24</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Minnesota'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Mississippi'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >26</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Missouri'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >27</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Montana'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >28</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Nebraska'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >29</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Nevada'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New Hampshire'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >31</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New Jersey'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >32</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New Mexico'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >33</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New York'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >34</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'North Dakota'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >35</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'North Carolina'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >36</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Ohio'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >37</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Oklahoma'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >38</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Oregon'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >39</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Pennsylvania'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >40</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Rhode Island'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >41</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'South Carolina'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >42</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'South Dakota'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >43</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Tennessee'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >44</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Texas'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >45</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Utah'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >46</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Vermont'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >47</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Virginia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >48</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Washington'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >49</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'West Virginia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >50</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Wisconsin'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >51</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Wyoming'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >private</span> _cache<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> _prevContext<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getContext</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getAsyncData</span><span class=\"token punctuation\" >(</span>context<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Function</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_prevContext <span class=\"token operator\" >===</span> context<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_cache<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_prevContext <span class=\"token operator\" >=</span> context<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >let</span> f<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Function</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >function</span> <span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span>Promise<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >let</span> p<span class=\"token punctuation\" >:</span>Promise<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Promise</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>resolve<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Function</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token function\" >setTimeout</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n          <span class=\"token keyword\" >let</span> query <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >RegExp</span><span class=\"token punctuation\" >(</span>context<span class=\"token punctuation\" >.</span>asyncSelected<span class=\"token punctuation\" >,</span> <span class=\"token string\" >'ig'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n          <span class=\"token keyword\" >return</span> <span class=\"token function\" >resolve</span><span class=\"token punctuation\" >(</span>context<span class=\"token punctuation\" >.</span>states<span class=\"token punctuation\" >.</span><span class=\"token function\" >filter</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>state<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n            <span class=\"token keyword\" >return</span> query<span class=\"token punctuation\" >.</span><span class=\"token function\" >test</span><span class=\"token punctuation\" >(</span>state<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n          <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n        <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >200</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      <span class=\"token keyword\" >return</span> p<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_cache <span class=\"token operator\" >=</span> f<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_cache<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >changeTypeaheadLoading</span><span class=\"token punctuation\" >(</span>e<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>typeaheadLoading <span class=\"token operator\" >=</span> e<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >changeTypeaheadNoResults</span><span class=\"token punctuation\" >(</span>e<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>typeaheadNoResults <span class=\"token operator\" >=</span> e<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >typeaheadOnSelect</span><span class=\"token punctuation\" >(</span>e<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token template-string\" ><span class=\"token string\" >`Selected value: </span><span class=\"token interpolation\" ><span class=\"token interpolation-punctuation punctuation\" >${</span>e<span class=\"token punctuation\" >.</span>item<span class=\"token interpolation-punctuation punctuation\" >}</span></span><span class=\"token string\" >`</span></span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
+	module.exports = "<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>Component<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/core'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'angular2/common'</span><span class=\"token punctuation\" >;</span>\n<span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span>TYPEAHEAD_DIRECTIVES<span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'../../../ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n\n<span class=\"token comment\" spellcheck=\"true\">// webpack html imports</span>\n<span class=\"token keyword\" >let</span> template <span class=\"token operator\" >=</span> <span class=\"token function\" >require</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'./typeahead-demo.html'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n\n@<span class=\"token function\" >Component</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span>\n  selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'typeahead-demo'</span><span class=\"token punctuation\" >,</span>\n  directives<span class=\"token punctuation\" >:</span> <span class=\"token punctuation\" >[</span>TYPEAHEAD_DIRECTIVES<span class=\"token punctuation\" >,</span> CORE_DIRECTIVES<span class=\"token punctuation\" >,</span> FORM_DIRECTIVES<span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >,</span>\n  template<span class=\"token punctuation\" >:</span> template\n<span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TypeaheadDemoComponent</span> <span class=\"token punctuation\" >{</span>\n  <span class=\"token keyword\" >public</span> selected<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >''</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> asyncSelected<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >''</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> typeaheadLoading<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> typeaheadNoResults<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >false</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> states<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span><span class=\"token string\" >'Alabama'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Alaska'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Arizona'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Arkansas'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'California'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Colorado'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Connecticut'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Delaware'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Florida'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Georgia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Hawaii'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Idaho'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Illinois'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Indiana'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Iowa'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Kansas'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Kentucky'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Louisiana'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Maine'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Maryland'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Massachusetts'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Michigan'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Minnesota'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Mississippi'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Missouri'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Montana'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Nebraska'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Nevada'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'New Hampshire'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'New Jersey'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'New Mexico'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'New York'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'North Dakota'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'North Carolina'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Ohio'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Oklahoma'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Oregon'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Pennsylvania'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Rhode Island'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'South Carolina'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'South Dakota'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Tennessee'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Texas'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Utah'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Vermont'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'Virginia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Washington'</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token string\" >'West Virginia'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Wisconsin'</span><span class=\"token punctuation\" >,</span> <span class=\"token string\" >'Wyoming'</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >public</span> statesComplex<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Array</span><span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >any</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token punctuation\" >[</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >1</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Alabama'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >2</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Alaska'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >3</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Arizona'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >4</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Arkansas'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >5</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'California'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >6</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Colorado'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >7</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Connecticut'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >8</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Delaware'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >9</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Florida'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >10</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Georgia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >11</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Hawaii'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >12</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Idaho'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >13</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Illinois'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >14</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Indiana'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >15</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Iowa'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >16</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Kansas'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >17</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Kentucky'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >18</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Louisiana'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >19</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Maine'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >21</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Maryland'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >22</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Massachusetts'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >23</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Michigan'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >24</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Minnesota'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >25</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Mississippi'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >26</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Missouri'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >27</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Montana'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >28</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Nebraska'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >29</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Nevada'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >30</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New Hampshire'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >31</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New Jersey'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >32</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New Mexico'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >33</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'New York'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >34</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'North Dakota'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >35</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'North Carolina'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >36</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Ohio'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >37</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Oklahoma'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >38</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Oregon'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >39</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Pennsylvania'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >40</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Rhode Island'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >41</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'South Carolina'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >42</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'South Dakota'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >43</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Tennessee'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >44</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Texas'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >45</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Utah'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >46</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Vermont'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >47</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Virginia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >48</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Washington'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >49</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'West Virginia'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >50</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Wisconsin'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span>\n    <span class=\"token punctuation\" >{</span>id<span class=\"token punctuation\" >:</span> <span class=\"token number\" >51</span><span class=\"token punctuation\" >,</span> name<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'Wyoming'</span><span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >]</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >private</span> _cache<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token keyword\" >private</span> _prevContext<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >;</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getContext</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >getAsyncData</span><span class=\"token punctuation\" >(</span>context<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Function</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >if</span> <span class=\"token punctuation\" >(</span><span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_prevContext <span class=\"token operator\" >===</span> context<span class=\"token punctuation\" >)</span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_cache<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span>\n\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_prevContext <span class=\"token operator\" >=</span> context<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >let</span> f<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Function</span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >function</span> <span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span>Promise<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n      <span class=\"token keyword\" >let</span> p<span class=\"token punctuation\" >:</span>Promise<span class=\"token operator\" >&lt;</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >[</span><span class=\"token punctuation\" >]</span><span class=\"token operator\" >></span> <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >Promise</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>resolve<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >Function</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n        <span class=\"token function\" >setTimeout</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n          <span class=\"token keyword\" >let</span> query <span class=\"token operator\" >=</span> <span class=\"token keyword\" >new</span> <span class=\"token class-name\" >RegExp</span><span class=\"token punctuation\" >(</span>context<span class=\"token punctuation\" >.</span>asyncSelected<span class=\"token punctuation\" >,</span> <span class=\"token string\" >'ig'</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n          <span class=\"token keyword\" >return</span> <span class=\"token function\" >resolve</span><span class=\"token punctuation\" >(</span>context<span class=\"token punctuation\" >.</span>states<span class=\"token punctuation\" >.</span><span class=\"token function\" >filter</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >(</span>state<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span> <span class=\"token operator\" >=</span><span class=\"token operator\" >></span> <span class=\"token punctuation\" >{</span>\n            <span class=\"token keyword\" >return</span> query<span class=\"token punctuation\" >.</span><span class=\"token function\" >test</span><span class=\"token punctuation\" >(</span>state<span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n          <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n        <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >,</span> <span class=\"token number\" >200</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n      <span class=\"token keyword\" >return</span> p<span class=\"token punctuation\" >;</span>\n    <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_cache <span class=\"token operator\" >=</span> f<span class=\"token punctuation\" >;</span>\n    <span class=\"token keyword\" >return</span> <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>_cache<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >changeTypeaheadLoading</span><span class=\"token punctuation\" >(</span>e<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>typeaheadLoading <span class=\"token operator\" >=</span> e<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >changeTypeaheadNoResults</span><span class=\"token punctuation\" >(</span>e<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    <span class=\"token keyword\" >this</span><span class=\"token punctuation\" >.</span>typeaheadNoResults <span class=\"token operator\" >=</span> e<span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n\n  <span class=\"token keyword\" >public</span> <span class=\"token function\" >typeaheadOnSelect</span><span class=\"token punctuation\" >(</span>e<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >any</span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >:</span><span class=\"token keyword\" >void</span> <span class=\"token punctuation\" >{</span>\n    console<span class=\"token punctuation\" >.</span><span class=\"token function\" >log</span><span class=\"token punctuation\" >(</span><span class=\"token template-string\" ><span class=\"token string\" >`Selected value: </span><span class=\"token interpolation\" ><span class=\"token interpolation-punctuation punctuation\" >${</span>e<span class=\"token punctuation\" >.</span>item<span class=\"token interpolation-punctuation punctuation\" >}</span></span><span class=\"token string\" >`</span></span><span class=\"token punctuation\" >)</span><span class=\"token punctuation\" >;</span>\n  <span class=\"token punctuation\" >}</span>\n<span class=\"token punctuation\" >}</span>\n"
 
 /***/ },
 /* 443 */
@@ -36575,20 +36575,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(386);
 	var ts = __webpack_require__(429);
 	var html = __webpack_require__(414);
-	var AccordionSection = (function () {
-	    function AccordionSection() {
+	var AccordionSectionComponent = (function () {
+	    function AccordionSectionComponent() {
 	    }
-	    AccordionSection = __decorate([
+	    AccordionSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion-section',
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n\n    <br/>\n\n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <accordion-demo></accordion-demo>\n      </div>\n    </div>\n    \n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n    \n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
-	            directives: [accordion_demo_1.AccordionDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
+	            directives: [accordion_demo_1.AccordionDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], AccordionSection);
-	    return AccordionSection;
+	    ], AccordionSectionComponent);
+	    return AccordionSectionComponent;
 	}());
-	exports.AccordionSection = AccordionSection;
+	exports.AccordionSectionComponent = AccordionSectionComponent;
 
 
 /***/ },
@@ -36609,8 +36609,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(443);
-	var AccordionDemo = (function () {
-	    function AccordionDemo() {
+	var AccordionDemoComponent = (function () {
+	    function AccordionDemoComponent() {
 	        this.oneAtATime = true;
 	        this.items = ['Item 1', 'Item 2', 'Item 3'];
 	        this.status = {
@@ -36628,20 +36628,20 @@ webpackJsonp([1],[
 	            }
 	        ];
 	    }
-	    AccordionDemo.prototype.addItem = function () {
+	    AccordionDemoComponent.prototype.addItem = function () {
 	        this.items.push("Items " + (this.items.length + 1));
 	    };
-	    AccordionDemo = __decorate([
+	    AccordionDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.ACCORDION_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], AccordionDemo);
-	    return AccordionDemo;
+	    ], AccordionDemoComponent);
+	    return AccordionDemoComponent;
 	}());
-	exports.AccordionDemo = AccordionDemo;
+	exports.AccordionDemoComponent = AccordionDemoComponent;
 
 
 /***/ },
@@ -36668,20 +36668,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(388);
 	var ts = __webpack_require__(430);
 	var html = __webpack_require__(415);
-	var AlertSection = (function () {
-	    function AlertSection() {
+	var AlertSectionComponent = (function () {
+	    function AlertSectionComponent() {
 	    }
-	    AlertSection = __decorate([
+	    AlertSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'alert-section',
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n\n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <alert-demo></alert-demo>\n      </div>\n    </div>\n    \n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n    \n    <br/>\n      \n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
-	            directives: [alert_demo_1.AlertDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
+	            directives: [alert_demo_1.AlertDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], AlertSection);
-	    return AlertSection;
+	    ], AlertSectionComponent);
+	    return AlertSectionComponent;
 	}());
-	exports.AlertSection = AlertSection;
+	exports.AlertSectionComponent = AlertSectionComponent;
 
 
 /***/ },
@@ -36702,8 +36702,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(444);
-	var AlertDemo = (function () {
-	    function AlertDemo() {
+	var AlertDemoComponent = (function () {
+	    function AlertDemoComponent() {
 	        this.alerts = [
 	            {
 	                type: 'danger',
@@ -36716,23 +36716,23 @@ webpackJsonp([1],[
 	            }
 	        ];
 	    }
-	    AlertDemo.prototype.closeAlert = function (i) {
+	    AlertDemoComponent.prototype.closeAlert = function (i) {
 	        this.alerts.splice(i, 1);
 	    };
-	    AlertDemo.prototype.addAlert = function () {
+	    AlertDemoComponent.prototype.addAlert = function () {
 	        this.alerts.push({ msg: 'Another alert!', type: 'warning', closable: true });
 	    };
-	    AlertDemo = __decorate([
+	    AlertDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'alert-demo',
 	            template: template,
-	            directives: [ng2_bootstrap_1.Alert, common_1.CORE_DIRECTIVES]
+	            directives: [ng2_bootstrap_1.AlertComponent, common_1.CORE_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], AlertDemo);
-	    return AlertDemo;
+	    ], AlertDemoComponent);
+	    return AlertDemoComponent;
 	}());
-	exports.AlertDemo = AlertDemo;
+	exports.AlertDemoComponent = AlertDemoComponent;
 
 
 /***/ },
@@ -36759,20 +36759,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(390);
 	var ts = __webpack_require__(431);
 	var html = __webpack_require__(416);
-	var ButtonsSection = (function () {
-	    function ButtonsSection() {
+	var ButtonsSectionComponent = (function () {
+	    function ButtonsSectionComponent() {
 	    }
-	    ButtonsSection = __decorate([
+	    ButtonsSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'buttons-section',
-	            directives: [buttons_demo_1.ButtonsDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [buttons_demo_1.ButtonsDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <buttons-demo></buttons-demo>\n      </div>\n    </div>\n\n    <br/>\n    \n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], ButtonsSection);
-	    return ButtonsSection;
+	    ], ButtonsSectionComponent);
+	    return ButtonsSectionComponent;
 	}());
-	exports.ButtonsSection = ButtonsSection;
+	exports.ButtonsSectionComponent = ButtonsSectionComponent;
 
 
 /***/ },
@@ -36793,23 +36793,23 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(445);
-	var ButtonsDemo = (function () {
-	    function ButtonsDemo() {
+	var ButtonsDemoComponent = (function () {
+	    function ButtonsDemoComponent() {
 	        this.singleModel = '1';
 	        this.radioModel = 'Middle';
 	        this.checkModel = { left: false, middle: true, right: false };
 	    }
-	    ButtonsDemo = __decorate([
+	    ButtonsDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'buttons-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.BUTTON_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], ButtonsDemo);
-	    return ButtonsDemo;
+	    ], ButtonsDemoComponent);
+	    return ButtonsDemoComponent;
 	}());
-	exports.ButtonsDemo = ButtonsDemo;
+	exports.ButtonsDemoComponent = ButtonsDemoComponent;
 
 
 /***/ },
@@ -36836,20 +36836,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(392);
 	var ts = __webpack_require__(432);
 	var html = __webpack_require__(417);
-	var CarouselSection = (function () {
-	    function CarouselSection() {
+	var CarouselSectionComponent = (function () {
+	    function CarouselSectionComponent() {
 	    }
-	    CarouselSection = __decorate([
+	    CarouselSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'carousel-section',
-	            directives: [carousel_demo_1.CarouselDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [carousel_demo_1.CarouselDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <carousel-demo></carousel-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], CarouselSection);
-	    return CarouselSection;
+	    ], CarouselSectionComponent);
+	    return CarouselSectionComponent;
 	}());
-	exports.CarouselSection = CarouselSection;
+	exports.CarouselSectionComponent = CarouselSectionComponent;
 
 
 /***/ },
@@ -36870,8 +36870,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(446);
-	var CarouselDemo = (function () {
-	    function CarouselDemo() {
+	var CarouselDemoComponent = (function () {
+	    function CarouselDemoComponent() {
 	        this.myInterval = 5000;
 	        this.noWrapSlides = false;
 	        this.slides = [];
@@ -36879,27 +36879,27 @@ webpackJsonp([1],[
 	            this.addSlide();
 	        }
 	    }
-	    CarouselDemo.prototype.addSlide = function () {
+	    CarouselDemoComponent.prototype.addSlide = function () {
 	        var newWidth = 600 + this.slides.length + 1;
 	        this.slides.push({
 	            image: "//placekitten.com/" + newWidth + "/300",
 	            text: ['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4] + "\n      " + ['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]
 	        });
 	    };
-	    CarouselDemo.prototype.removeSlide = function (index) {
+	    CarouselDemoComponent.prototype.removeSlide = function (index) {
 	        this.slides.splice(index, 1);
 	    };
-	    CarouselDemo = __decorate([
+	    CarouselDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'carousel-demo',
 	            directives: [ng2_bootstrap_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], CarouselDemo);
-	    return CarouselDemo;
+	    ], CarouselDemoComponent);
+	    return CarouselDemoComponent;
 	}());
-	exports.CarouselDemo = CarouselDemo;
+	exports.CarouselDemoComponent = CarouselDemoComponent;
 
 
 /***/ },
@@ -36926,20 +36926,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(394);
 	var ts = __webpack_require__(433);
 	var html = __webpack_require__(418);
-	var CollapseSection = (function () {
-	    function CollapseSection() {
+	var CollapseSectionComponent = (function () {
+	    function CollapseSectionComponent() {
 	    }
-	    CollapseSection = __decorate([
+	    CollapseSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'collapse-section',
-	            directives: [collapse_demo_1.CollapseDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [collapse_demo_1.CollapseDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <collapse-demo></collapse-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], CollapseSection);
-	    return CollapseSection;
+	    ], CollapseSectionComponent);
+	    return CollapseSectionComponent;
 	}());
-	exports.CollapseSection = CollapseSection;
+	exports.CollapseSectionComponent = CollapseSectionComponent;
 
 
 /***/ },
@@ -36959,21 +36959,21 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(3);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(447);
-	var CollapseDemo = (function () {
-	    function CollapseDemo() {
+	var CollapseDemoComponent = (function () {
+	    function CollapseDemoComponent() {
 	        this.isCollapsed = false;
 	    }
-	    CollapseDemo = __decorate([
+	    CollapseDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'collapse-demo',
-	            directives: [ng2_bootstrap_1.Collapse],
+	            directives: [ng2_bootstrap_1.CollapseDirective],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], CollapseDemo);
-	    return CollapseDemo;
+	    ], CollapseDemoComponent);
+	    return CollapseDemoComponent;
 	}());
-	exports.CollapseDemo = CollapseDemo;
+	exports.CollapseDemoComponent = CollapseDemoComponent;
 
 
 /***/ },
@@ -37000,20 +37000,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(396);
 	var ts = __webpack_require__(434);
 	var html = __webpack_require__(419);
-	var DatepickerSection = (function () {
-	    function DatepickerSection() {
+	var DatepickerSectionComponent = (function () {
+	    function DatepickerSectionComponent() {
 	    }
-	    DatepickerSection = __decorate([
+	    DatepickerSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'datepicker-section',
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <datepicker-demo></datepicker-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
-	            directives: [datepicker_demo_1.DatepickerDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
+	            directives: [datepicker_demo_1.DatepickerDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DatepickerSection);
-	    return DatepickerSection;
+	    ], DatepickerSectionComponent);
+	    return DatepickerSectionComponent;
 	}());
-	exports.DatepickerSection = DatepickerSection;
+	exports.DatepickerSectionComponent = DatepickerSectionComponent;
 
 
 /***/ },
@@ -37035,8 +37035,8 @@ webpackJsonp([1],[
 	var moment = __webpack_require__(1);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(448);
-	var DatepickerDemo = (function () {
-	    function DatepickerDemo() {
+	var DatepickerDemoComponent = (function () {
+	    function DatepickerDemoComponent() {
 	        this.dt = new Date();
 	        this.minDate = void 0;
 	        this.formats = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
@@ -37054,16 +37054,16 @@ webpackJsonp([1],[
 	            { date: this.afterTomorrow, status: 'partially' }
 	        ];
 	    }
-	    DatepickerDemo.prototype.getDate = function () {
+	    DatepickerDemoComponent.prototype.getDate = function () {
 	        return this.dt && this.dt.getTime() || new Date().getTime();
 	    };
-	    DatepickerDemo.prototype.today = function () {
+	    DatepickerDemoComponent.prototype.today = function () {
 	        this.dt = new Date();
 	    };
-	    DatepickerDemo.prototype.d20090824 = function () {
+	    DatepickerDemoComponent.prototype.d20090824 = function () {
 	        this.dt = moment('2009-08-24', 'YYYY-MM-DD').toDate();
 	    };
-	    DatepickerDemo.prototype.getDayClass = function (date, mode) {
+	    DatepickerDemoComponent.prototype.getDayClass = function (date, mode) {
 	        if (mode === 'day') {
 	            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 	            for (var i = 0; i < this.events.length; i++) {
@@ -37075,29 +37075,29 @@ webpackJsonp([1],[
 	        }
 	        return '';
 	    };
-	    DatepickerDemo.prototype.disabled = function (date, mode) {
+	    DatepickerDemoComponent.prototype.disabled = function (date, mode) {
 	        return (mode === 'day' && (date.getDay() === 0 || date.getDay() === 6));
 	    };
-	    DatepickerDemo.prototype.open = function () {
+	    DatepickerDemoComponent.prototype.open = function () {
 	        this.opened = !this.opened;
 	    };
-	    DatepickerDemo.prototype.clear = function () {
+	    DatepickerDemoComponent.prototype.clear = function () {
 	        this.dt = void 0;
 	    };
-	    DatepickerDemo.prototype.toggleMin = function () {
+	    DatepickerDemoComponent.prototype.toggleMin = function () {
 	        this.dt = new Date(this.minDate.valueOf());
 	    };
-	    DatepickerDemo = __decorate([
+	    DatepickerDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'datepicker-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.DATEPICKER_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DatepickerDemo);
-	    return DatepickerDemo;
+	    ], DatepickerDemoComponent);
+	    return DatepickerDemoComponent;
 	}());
-	exports.DatepickerDemo = DatepickerDemo;
+	exports.DatepickerDemoComponent = DatepickerDemoComponent;
 
 
 /***/ },
@@ -37123,29 +37123,29 @@ webpackJsonp([1],[
 	    'Rating', 'Tabs', 'Timepicker', 'Tooltip', 'Typeahead'
 	];
 	var template = "\n    <header class=\"navbar navbar-default navbar-fixed-top navbar-inner bg-faded\">\n    <div class=\"container\">\n      <div class=\"navbar-header hidden-md-up\">\n        <button type=\"button\" class=\"navbar-toggle navbar-toggler pull-right\" (click)=\"isCollapsed = !isCollapsed\">\n          <span class=\"sr-only\">Toggle navigation</span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n          <span class=\"icon-bar\"></span>\n        </button>\n        <a class=\"navbar-brand visible-xs\" href=\"{{prefix}}#\">ng2-bootstrap</a>\n      </div>\n      <nav class=\"hidden-xs hidden-xs-down\">\n        <ul class=\"nav navbar-nav\">\n          <li class=\"nav-item\"><a href=\"{{prefix}}#top\" role=\"button\" class=\"navbar-brand\">ng2-bootstrap</a></li>\n          <li class=\"nav-item dropdown\" dropdown>\n            <a role=\"button\" class=\"nav-link dropdownToggle\" dropdownToggle>Directives <b class=\"caret\"></b></a>\n            <ul class=\"dropdown-menu\">\n              <li *ngFor=\"#comp of components\"><a class=\"dropdown-item\" href=\"{{prefix}}#{{comp.toLowerCase()}}\">{{comp}}</a></li>\n            </ul>\n          </li>\n          <li class=\"nav-item\"><a class=\"nav-link\" href=\"{{prefix}}#getting-started\">Getting started</a></li>\n          <li class=\"nav-item\"><a class=\"nav-link\" href=\"{{prefix}}#migration\">Migration</a></li>\n        </ul>\n      </nav>\n      <nav class=\"visible-xs hidden-md-up\">\n        <ul class=\"nav nav-pills nav-stacked scrollable-menu\" [collapse]=\"isCollapsed\" (click)=\"isCollapsed = !isCollapsed; true\">\n          <li class=\"nav-item\"><a class=\"nav-link\" href=\"{{prefix}}#getting-started\">Getting started</a></li>\n          <li class=\"nav-item\"><a class=\"nav-link\" href=\"{{prefix}}#migration\">Migration</a></li>\n          <li *ngFor=\"#comp of components\" class=\"nav-item\"><a class=\"dropdown-item nav-link\" href=\"{{prefix}}#{{comp.toLowerCase()}}\">{{comp}}</a></li>\n        </ul>\n      </nav>\n    </div>\n  </header>";
-	var DemoHeader = (function () {
-	    function DemoHeader() {
+	var DemoHeaderComponent = (function () {
+	    function DemoHeaderComponent() {
 	        this.components = components;
 	        this.isCollapsed = true;
 	        this.prefix = ng2_bootstrap_1.Ng2BootstrapConfig.theme === ng2_bootstrap_1.Ng2BootstrapTheme.BS4
 	            ? 'index-bs4.html'
 	            : '';
 	    }
-	    DemoHeader = __decorate([
+	    DemoHeaderComponent = __decorate([
 	        core_1.Component({
 	            selector: 'demo-header',
 	            template: template,
 	            directives: [
 	                common_1.CORE_DIRECTIVES,
-	                ng2_bootstrap_1.Collapse,
+	                ng2_bootstrap_1.CollapseDirective,
 	                ng2_bootstrap_1.DROPDOWN_DIRECTIVES
 	            ]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DemoHeader);
-	    return DemoHeader;
+	    ], DemoHeaderComponent);
+	    return DemoHeaderComponent;
 	}());
-	exports.DemoHeader = DemoHeader;
+	exports.DemoHeaderComponent = DemoHeaderComponent;
 
 
 /***/ },
@@ -37172,20 +37172,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(398);
 	var ts = __webpack_require__(435);
 	var html = __webpack_require__(420);
-	var DropdownSection = (function () {
-	    function DropdownSection() {
+	var DropdownSectionComponent = (function () {
+	    function DropdownSectionComponent() {
 	    }
-	    DropdownSection = __decorate([
+	    DropdownSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'dropdown-section',
-	            directives: [dropdown_demo_1.DropdownDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [dropdown_demo_1.DropdownDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <dropdown-demo></dropdown-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DropdownSection);
-	    return DropdownSection;
+	    ], DropdownSectionComponent);
+	    return DropdownSectionComponent;
 	}());
-	exports.DropdownSection = DropdownSection;
+	exports.DropdownSectionComponent = DropdownSectionComponent;
 
 
 /***/ },
@@ -37206,32 +37206,32 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(449);
-	var DropdownDemo = (function () {
-	    function DropdownDemo() {
+	var DropdownDemoComponent = (function () {
+	    function DropdownDemoComponent() {
 	        this.disabled = false;
 	        this.status = { isopen: false };
 	        this.items = ['The first choice!',
 	            'And another choice for you.', 'but wait! A third!'];
 	    }
-	    DropdownDemo.prototype.toggled = function (open) {
+	    DropdownDemoComponent.prototype.toggled = function (open) {
 	        console.log('Dropdown is now: ', open);
 	    };
-	    DropdownDemo.prototype.toggleDropdown = function ($event) {
+	    DropdownDemoComponent.prototype.toggleDropdown = function ($event) {
 	        $event.preventDefault();
 	        $event.stopPropagation();
 	        this.status.isopen = !this.status.isopen;
 	    };
-	    DropdownDemo = __decorate([
+	    DropdownDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'dropdown-demo',
 	            directives: [ng2_bootstrap_1.DROPDOWN_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], DropdownDemo);
-	    return DropdownDemo;
+	    ], DropdownDemoComponent);
+	    return DropdownDemoComponent;
 	}());
-	exports.DropdownDemo = DropdownDemo;
+	exports.DropdownDemoComponent = DropdownDemoComponent;
 
 
 /***/ },
@@ -37258,20 +37258,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(400);
 	var ts = __webpack_require__(436);
 	var html = __webpack_require__(421);
-	var PaginationSection = (function () {
-	    function PaginationSection() {
+	var PaginationSectionComponent = (function () {
+	    function PaginationSectionComponent() {
 	    }
-	    PaginationSection = __decorate([
+	    PaginationSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pagination-section',
-	            directives: [pagination_demo_1.PaginationDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [pagination_demo_1.PaginationDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <pagination-demo></pagination-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], PaginationSection);
-	    return PaginationSection;
+	    ], PaginationSectionComponent);
+	    return PaginationSectionComponent;
 	}());
-	exports.PaginationSection = PaginationSection;
+	exports.PaginationSectionComponent = PaginationSectionComponent;
 
 
 /***/ },
@@ -37292,34 +37292,34 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(450);
-	var PaginationDemo = (function () {
-	    function PaginationDemo() {
+	var PaginationDemoComponent = (function () {
+	    function PaginationDemoComponent() {
 	        this.totalItems = 64;
 	        this.currentPage = 4;
 	        this.maxSize = 5;
 	        this.bigTotalItems = 175;
 	        this.bigCurrentPage = 1;
 	    }
-	    PaginationDemo.prototype.setPage = function (pageNo) {
+	    PaginationDemoComponent.prototype.setPage = function (pageNo) {
 	        this.currentPage = pageNo;
 	    };
 	    ;
-	    PaginationDemo.prototype.pageChanged = function (event) {
+	    PaginationDemoComponent.prototype.pageChanged = function (event) {
 	        console.log('Page changed to: ' + event.page);
 	        console.log('Number items per page: ' + event.itemsPerPage);
 	    };
 	    ;
-	    PaginationDemo = __decorate([
+	    PaginationDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'pagination-demo',
 	            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], PaginationDemo);
-	    return PaginationDemo;
+	    ], PaginationDemoComponent);
+	    return PaginationDemoComponent;
 	}());
-	exports.PaginationDemo = PaginationDemo;
+	exports.PaginationDemoComponent = PaginationDemoComponent;
 
 
 /***/ },
@@ -37351,20 +37351,20 @@ webpackJsonp([1],[
 	    _a
 	);
 	var html = templates[ng2_bootstrap_1.Ng2BootstrapConfig.theme];
-	var ProgressbarSection = (function () {
-	    function ProgressbarSection() {
+	var ProgressbarSectionComponent = (function () {
+	    function ProgressbarSectionComponent() {
 	    }
-	    ProgressbarSection = __decorate([
+	    ProgressbarSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'progressbar-section',
-	            directives: [progressbar_demo_1.ProgressbarDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [progressbar_demo_1.ProgressbarDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <progressbar-demo></progressbar-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], ProgressbarSection);
-	    return ProgressbarSection;
+	    ], ProgressbarSectionComponent);
+	    return ProgressbarSectionComponent;
 	}());
-	exports.ProgressbarSection = ProgressbarSection;
+	exports.ProgressbarSectionComponent = ProgressbarSectionComponent;
 	var _a;
 
 
@@ -37390,14 +37390,14 @@ webpackJsonp([1],[
 	    _a[ng2_bootstrap_1.Ng2BootstrapTheme.BS4] = __webpack_require__(451),
 	    _a
 	);
-	var ProgressbarDemo = (function () {
-	    function ProgressbarDemo() {
+	var ProgressbarDemoComponent = (function () {
+	    function ProgressbarDemoComponent() {
 	        this.max = 200;
 	        this.stacked = [];
 	        this.random();
 	        this.randomStacked();
 	    }
-	    ProgressbarDemo.prototype.random = function () {
+	    ProgressbarDemoComponent.prototype.random = function () {
 	        var value = Math.floor((Math.random() * 100) + 1);
 	        var type;
 	        if (value < 25) {
@@ -37417,7 +37417,7 @@ webpackJsonp([1],[
 	        this.type = type;
 	    };
 	    ;
-	    ProgressbarDemo.prototype.randomStacked = function () {
+	    ProgressbarDemoComponent.prototype.randomStacked = function () {
 	        var types = ['success', 'info', 'warning', 'danger'];
 	        this.stacked = [];
 	        var total = 0;
@@ -37433,17 +37433,17 @@ webpackJsonp([1],[
 	        }
 	    };
 	    ;
-	    ProgressbarDemo = __decorate([
+	    ProgressbarDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'progressbar-demo',
 	            directives: [ng2_bootstrap_1.PROGRESSBAR_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: templates[ng2_bootstrap_1.Ng2BootstrapConfig.theme]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], ProgressbarDemo);
-	    return ProgressbarDemo;
+	    ], ProgressbarDemoComponent);
+	    return ProgressbarDemoComponent;
 	}());
-	exports.ProgressbarDemo = ProgressbarDemo;
+	exports.ProgressbarDemoComponent = ProgressbarDemoComponent;
 	var _a;
 
 
@@ -37471,20 +37471,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(404);
 	var ts = __webpack_require__(438);
 	var html = __webpack_require__(424);
-	var RatingSection = (function () {
-	    function RatingSection() {
+	var RatingSectionComponent = (function () {
+	    function RatingSectionComponent() {
 	    }
-	    RatingSection = __decorate([
+	    RatingSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'rating-section',
-	            directives: [rating_demo_1.RatingDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [rating_demo_1.RatingDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <rating-demo></rating-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], RatingSection);
-	    return RatingSection;
+	    ], RatingSectionComponent);
+	    return RatingSectionComponent;
 	}());
-	exports.RatingSection = RatingSection;
+	exports.RatingSectionComponent = RatingSectionComponent;
 
 
 /***/ },
@@ -37505,8 +37505,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(453);
-	var RatingDemo = (function () {
-	    function RatingDemo() {
+	var RatingDemoComponent = (function () {
+	    function RatingDemoComponent() {
 	        this.x = 5;
 	        this.y = 2;
 	        this.max = 10;
@@ -37520,25 +37520,25 @@ webpackJsonp([1],[
 	            { stateOff: 'glyphicon-off' }
 	        ];
 	    }
-	    RatingDemo.prototype.hoveringOver = function (value) {
+	    RatingDemoComponent.prototype.hoveringOver = function (value) {
 	        this.overStar = value;
 	        this.percent = 100 * (value / this.max);
 	    };
 	    ;
-	    RatingDemo.prototype.resetStar = function () {
+	    RatingDemoComponent.prototype.resetStar = function () {
 	        this.overStar = void 0;
 	    };
-	    RatingDemo = __decorate([
+	    RatingDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'rating-demo',
-	            directives: [ng2_bootstrap_1.Rating, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [ng2_bootstrap_1.RatingComponent, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], RatingDemo);
-	    return RatingDemo;
+	    ], RatingDemoComponent);
+	    return RatingDemoComponent;
 	}());
-	exports.RatingDemo = RatingDemo;
+	exports.RatingDemoComponent = RatingDemoComponent;
 
 
 /***/ },
@@ -37565,20 +37565,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(406);
 	var ts = __webpack_require__(439);
 	var html = __webpack_require__(425);
-	var TabsSection = (function () {
-	    function TabsSection() {
+	var TabsSectionComponent = (function () {
+	    function TabsSectionComponent() {
 	    }
-	    TabsSection = __decorate([
+	    TabsSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tabs-section',
-	            directives: [tabs_demo_1.TabsDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [tabs_demo_1.TabsDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <tabs-demo></tabs-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TabsSection);
-	    return TabsSection;
+	    ], TabsSectionComponent);
+	    return TabsSectionComponent;
 	}());
-	exports.TabsSection = TabsSection;
+	exports.TabsSectionComponent = TabsSectionComponent;
 
 
 /***/ },
@@ -37599,29 +37599,29 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(454);
-	var TabsDemo = (function () {
-	    function TabsDemo() {
+	var TabsDemoComponent = (function () {
+	    function TabsDemoComponent() {
 	        this.tabs = [
 	            { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
 	            { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true },
 	            { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true }
 	        ];
 	    }
-	    TabsDemo.prototype.alertMe = function () {
+	    TabsDemoComponent.prototype.alertMe = function () {
 	        setTimeout(function () {
 	            alert('You\'ve selected the alert tab!');
 	        });
 	    };
 	    ;
-	    TabsDemo.prototype.setActiveTab = function (index) {
+	    TabsDemoComponent.prototype.setActiveTab = function (index) {
 	        this.tabs[index].active = true;
 	    };
 	    ;
-	    TabsDemo.prototype.removeTabHandler = function () {
+	    TabsDemoComponent.prototype.removeTabHandler = function () {
 	        console.log('Remove Tab handler');
 	    };
 	    ;
-	    TabsDemo = __decorate([
+	    TabsDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tabs-demo',
 	            directives: [ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
@@ -37629,10 +37629,10 @@ webpackJsonp([1],[
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TabsDemo);
-	    return TabsDemo;
+	    ], TabsDemoComponent);
+	    return TabsDemoComponent;
 	}());
-	exports.TabsDemo = TabsDemo;
+	exports.TabsDemoComponent = TabsDemoComponent;
 
 
 /***/ },
@@ -37659,20 +37659,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(408);
 	var ts = __webpack_require__(440);
 	var html = __webpack_require__(426);
-	var TimepickerSection = (function () {
-	    function TimepickerSection() {
+	var TimepickerSectionComponent = (function () {
+	    function TimepickerSectionComponent() {
 	    }
-	    TimepickerSection = __decorate([
+	    TimepickerSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'timepicker-section',
-	            directives: [timepicker_demo_1.TimepickerDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [timepicker_demo_1.TimepickerDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <timepicker-demo></timepicker-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TimepickerSection);
-	    return TimepickerSection;
+	    ], TimepickerSectionComponent);
+	    return TimepickerSectionComponent;
 	}());
-	exports.TimepickerSection = TimepickerSection;
+	exports.TimepickerSectionComponent = TimepickerSectionComponent;
 
 
 /***/ },
@@ -37693,8 +37693,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(455);
-	var TimepickerDemo = (function () {
-	    function TimepickerDemo() {
+	var TimepickerDemoComponent = (function () {
+	    function TimepickerDemoComponent() {
 	        this.hstep = 1;
 	        this.mstep = 15;
 	        this.ismeridian = true;
@@ -37704,36 +37704,36 @@ webpackJsonp([1],[
 	            mstep: [1, 5, 10, 15, 25, 30]
 	        };
 	    }
-	    TimepickerDemo.prototype.toggleMode = function () {
+	    TimepickerDemoComponent.prototype.toggleMode = function () {
 	        this.ismeridian = !this.ismeridian;
 	    };
 	    ;
-	    TimepickerDemo.prototype.update = function () {
+	    TimepickerDemoComponent.prototype.update = function () {
 	        var d = new Date();
 	        d.setHours(14);
 	        d.setMinutes(0);
 	        this.mytime = d;
 	    };
 	    ;
-	    TimepickerDemo.prototype.changed = function () {
+	    TimepickerDemoComponent.prototype.changed = function () {
 	        console.log('Time changed to: ' + this.mytime);
 	    };
 	    ;
-	    TimepickerDemo.prototype.clear = function () {
+	    TimepickerDemoComponent.prototype.clear = function () {
 	        this.mytime = void 0;
 	    };
 	    ;
-	    TimepickerDemo = __decorate([
+	    TimepickerDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'timepicker-demo',
-	            directives: [ng2_bootstrap_1.Timepicker, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
+	            directives: [ng2_bootstrap_1.TimepickerComponent, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TimepickerDemo);
-	    return TimepickerDemo;
+	    ], TimepickerDemoComponent);
+	    return TimepickerDemoComponent;
 	}());
-	exports.TimepickerDemo = TimepickerDemo;
+	exports.TimepickerDemoComponent = TimepickerDemoComponent;
 
 
 /***/ },
@@ -37760,20 +37760,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(410);
 	var ts = __webpack_require__(441);
 	var html = __webpack_require__(427);
-	var TooltipSection = (function () {
-	    function TooltipSection() {
+	var TooltipSectionComponent = (function () {
+	    function TooltipSectionComponent() {
 	    }
-	    TooltipSection = __decorate([
+	    TooltipSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tooltip-section',
-	            directives: [tooltip_demo_1.TooltipDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [tooltip_demo_1.TooltipDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <tooltip-demo></tooltip-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TooltipSection);
-	    return TooltipSection;
+	    ], TooltipSectionComponent);
+	    return TooltipSectionComponent;
 	}());
-	exports.TooltipSection = TooltipSection;
+	exports.TooltipSectionComponent = TooltipSectionComponent;
 
 
 /***/ },
@@ -37794,13 +37794,13 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(456);
-	var TooltipDemo = (function () {
-	    function TooltipDemo() {
+	var TooltipDemoComponent = (function () {
+	    function TooltipDemoComponent() {
 	        this.dynamicTooltip = 'Hello, World!';
 	        this.dynamicTooltipText = 'dynamic';
 	        this.htmlTooltip = 'I\'ve been made <b>bold</b>!';
 	    }
-	    TooltipDemo = __decorate([
+	    TooltipDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'tooltip-demo',
 	            template: template,
@@ -37809,10 +37809,10 @@ webpackJsonp([1],[
 	            styles: ["\n    /* Specify styling for tooltip contents */\n    .tooltip.customClass .tooltip-inner {\n        color: #880000;\n        background-color: #ffff66;\n        box-shadow: 0 6px 12px rgba(0,0,0,.175);\n    }\n    /* Hide arrow */\n    .tooltip.customClass .tooltip-arrow {\n        display: none;\n    }\n  "]
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TooltipDemo);
-	    return TooltipDemo;
+	    ], TooltipDemoComponent);
+	    return TooltipDemoComponent;
 	}());
-	exports.TooltipDemo = TooltipDemo;
+	exports.TooltipDemoComponent = TooltipDemoComponent;
 
 
 /***/ },
@@ -37839,20 +37839,20 @@ webpackJsonp([1],[
 	var titleDoc = __webpack_require__(412);
 	var ts = __webpack_require__(442);
 	var html = __webpack_require__(428);
-	var TypeaheadSection = (function () {
-	    function TypeaheadSection() {
+	var TypeaheadSectionComponent = (function () {
+	    function TypeaheadSectionComponent() {
 	    }
-	    TypeaheadSection = __decorate([
+	    TypeaheadSectionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'typeahead-section',
-	            directives: [typeahead_demo_1.TypeaheadDemo, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
+	            directives: [typeahead_demo_1.TypeaheadDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <typeahead-demo></typeahead-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TypeaheadSection);
-	    return TypeaheadSection;
+	    ], TypeaheadSectionComponent);
+	    return TypeaheadSectionComponent;
 	}());
-	exports.TypeaheadSection = TypeaheadSection;
+	exports.TypeaheadSectionComponent = TypeaheadSectionComponent;
 
 
 /***/ },
@@ -37873,8 +37873,8 @@ webpackJsonp([1],[
 	var common_1 = __webpack_require__(4);
 	var ng2_bootstrap_1 = __webpack_require__(8);
 	var template = __webpack_require__(457);
-	var TypeaheadDemo = (function () {
-	    function TypeaheadDemo() {
+	var TypeaheadDemoComponent = (function () {
+	    function TypeaheadDemoComponent() {
 	        this.selected = '';
 	        this.asyncSelected = '';
 	        this.typeaheadLoading = false;
@@ -37919,10 +37919,10 @@ webpackJsonp([1],[
 	            { id: 49, name: 'West Virginia' }, { id: 50, name: 'Wisconsin' },
 	            { id: 51, name: 'Wyoming' }];
 	    }
-	    TypeaheadDemo.prototype.getContext = function () {
+	    TypeaheadDemoComponent.prototype.getContext = function () {
 	        return this;
 	    };
-	    TypeaheadDemo.prototype.getAsyncData = function (context) {
+	    TypeaheadDemoComponent.prototype.getAsyncData = function (context) {
 	        if (this._prevContext === context) {
 	            return this._cache;
 	        }
@@ -37941,26 +37941,26 @@ webpackJsonp([1],[
 	        this._cache = f;
 	        return this._cache;
 	    };
-	    TypeaheadDemo.prototype.changeTypeaheadLoading = function (e) {
+	    TypeaheadDemoComponent.prototype.changeTypeaheadLoading = function (e) {
 	        this.typeaheadLoading = e;
 	    };
-	    TypeaheadDemo.prototype.changeTypeaheadNoResults = function (e) {
+	    TypeaheadDemoComponent.prototype.changeTypeaheadNoResults = function (e) {
 	        this.typeaheadNoResults = e;
 	    };
-	    TypeaheadDemo.prototype.typeaheadOnSelect = function (e) {
+	    TypeaheadDemoComponent.prototype.typeaheadOnSelect = function (e) {
 	        console.log("Selected value: " + e.item);
 	    };
-	    TypeaheadDemo = __decorate([
+	    TypeaheadDemoComponent = __decorate([
 	        core_1.Component({
 	            selector: 'typeahead-demo',
 	            directives: [ng2_bootstrap_1.TYPEAHEAD_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            template: template
 	        }), 
 	        __metadata('design:paramtypes', [])
-	    ], TypeaheadDemo);
-	    return TypeaheadDemo;
+	    ], TypeaheadDemoComponent);
+	    return TypeaheadDemoComponent;
 	}());
-	exports.TypeaheadDemo = TypeaheadDemo;
+	exports.TypeaheadDemoComponent = TypeaheadDemoComponent;
 
 
 /***/ }

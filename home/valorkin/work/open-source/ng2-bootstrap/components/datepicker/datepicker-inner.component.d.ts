@@ -1,5 +1,5 @@
 import { OnInit } from 'angular2/core';
-export declare class DatePickerInner implements OnInit {
+export declare class DatePickerInnerComponent implements OnInit {
     datepickerMode: string;
     startingDay: number;
     yearRange: number;

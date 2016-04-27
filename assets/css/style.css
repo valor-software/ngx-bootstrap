@@ -186,7 +186,7 @@ section {
     */
 
 .scrollable-menu {
-  height: 90vh !important;
+  height: 90vh;
   width: 100vw;
   overflow-x: hidden;
   padding: 0 0 20px;

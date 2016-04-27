@@ -1,4 +1,4 @@
-export declare class CarouselDemo {
+export declare class CarouselDemoComponent {
     myInterval: number;
     noWrapSlides: boolean;
     slides: Array<any>;

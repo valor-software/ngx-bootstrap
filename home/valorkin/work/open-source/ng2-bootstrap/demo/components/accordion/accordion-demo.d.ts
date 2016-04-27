@@ -1,4 +1,4 @@
-export declare class AccordionDemo {
+export declare class AccordionDemoComponent {
     oneAtATime: boolean;
     items: Array<string>;
     status: Object;

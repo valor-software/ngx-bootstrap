@@ -1,4 +1,4 @@
-export declare class PaginationDemo {
+export declare class PaginationDemoComponent {
     totalItems: number;
     currentPage: number;
     maxSize: number;

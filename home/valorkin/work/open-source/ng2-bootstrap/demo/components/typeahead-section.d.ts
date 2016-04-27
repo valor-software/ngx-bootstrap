@@ -1,2 +1,2 @@
-export declare class TypeaheadSection {
+export declare class TypeaheadSectionComponent {
 }

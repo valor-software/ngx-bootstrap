@@ -1,2 +1,2 @@
-export declare class AccordionSection {
+export declare class AccordionSectionComponent {
 }

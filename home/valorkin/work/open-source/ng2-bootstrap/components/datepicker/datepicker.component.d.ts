@@ -1,5 +1,5 @@
 import { ControlValueAccessor, NgModel } from 'angular2/common';
-export declare class DatePicker implements ControlValueAccessor {
+export declare class DatePickerComponent implements ControlValueAccessor {
     datepickerMode: string;
     initDate: Date;
     minDate: Date;

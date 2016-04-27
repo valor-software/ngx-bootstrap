@@ -1,9 +1,9 @@
 import { OnInit, EventEmitter } from 'angular2/core';
-export declare class Alert implements OnInit {
+export declare class AlertComponent implements OnInit {
     type: string;
     dismissible: boolean;
     dismissOnTimeout: number;
-    close: EventEmitter<Alert>;
+    close: EventEmitter<AlertComponent>;
     private closed;
     private classes;
     ngOnInit(): any;

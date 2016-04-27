@@ -1,4 +1,4 @@
-export declare class RatingDemo {
+export declare class RatingDemoComponent {
     x: number;
     y: number;
     max: number;

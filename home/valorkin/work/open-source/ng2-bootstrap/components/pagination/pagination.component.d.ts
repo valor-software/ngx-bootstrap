@@ -16,7 +16,7 @@ export interface PageChangedEvent {
     itemsPerPage: number;
     page: number;
 }
-export declare class Pagination implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
+export declare class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
     config: any;
     maxSize: number;
     boundaryLinks: boolean;

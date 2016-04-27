@@ -1,6 +1,6 @@
 import { OnInit, ElementRef, Renderer } from 'angular2/core';
 import { AnimationBuilder } from 'angular2/src/animate/animation_builder';
-export declare class Collapse implements OnInit {
+export declare class CollapseDirective implements OnInit {
     private animation;
     private display;
     private isExpanded;

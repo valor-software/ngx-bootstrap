@@ -1,5 +1,5 @@
 import { DynamicComponentLoader, ViewContainerRef } from 'angular2/core';
-export declare class Tooltip {
+export declare class TooltipDirective {
     content: string;
     placement: string;
     isOpen: boolean;

@@ -1,4 +1,4 @@
-export declare class Progressbar {
+export declare class ProgressbarComponent {
     animate: boolean;
     max: number;
     type: string;

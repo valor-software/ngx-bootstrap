@@ -1,6 +1,6 @@
 import { OnInit, ElementRef } from 'angular2/core';
 import { ControlValueAccessor, NgModel } from 'angular2/common';
-export declare class ButtonRadio implements ControlValueAccessor, OnInit {
+export declare class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     cd: NgModel;
     el: ElementRef;
     onChange: any;

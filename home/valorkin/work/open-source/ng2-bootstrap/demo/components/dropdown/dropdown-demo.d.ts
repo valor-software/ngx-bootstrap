@@ -1,4 +1,4 @@
-export declare class DropdownDemo {
+export declare class DropdownDemoComponent {
     disabled: boolean;
     status: {
         isopen: boolean;

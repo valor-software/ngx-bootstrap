@@ -1,1 +1,1 @@
-export { Collapse } from './collapse/collapse.component';
+export { CollapseDirective } from './collapse/collapse.directive';

@@ -1,11 +1,11 @@
 import { ElementRef, OnInit } from 'angular2/core';
-import { Dropdown } from './dropdown.directive';
-export declare class DropdownToggle implements OnInit {
+import { DropdownDirective } from './dropdown.directive';
+export declare class DropdownToggleDirective implements OnInit {
     disabled: boolean;
     addClass: boolean;
-    dropdown: Dropdown;
+    dropdown: DropdownDirective;
     el: ElementRef;
-    constructor(dropdown: Dropdown, el: ElementRef);
+    constructor(dropdown: DropdownDirective, el: ElementRef);
     ngOnInit(): void;
     isOpen: boolean;
     toggleDropdown(event: MouseEvent): boolean;

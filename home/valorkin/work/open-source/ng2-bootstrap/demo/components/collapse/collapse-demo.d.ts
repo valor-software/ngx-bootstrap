@@ -1,3 +1,3 @@
-export declare class CollapseDemo {
+export declare class CollapseDemoComponent {
     isCollapsed: boolean;
 }

@@ -1,4 +1,4 @@
-export declare class ProgressbarDemo {
+export declare class ProgressbarDemoComponent {
     max: number;
     showWarning: boolean;
     dynamic: number;

@@ -1,2 +1,2 @@
-export declare class CarouselSection {
+export declare class CarouselSectionComponent {
 }

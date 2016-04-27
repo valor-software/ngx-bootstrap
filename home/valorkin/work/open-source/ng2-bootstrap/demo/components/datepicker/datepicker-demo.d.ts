@@ -1,4 +1,4 @@
-export declare class DatepickerDemo {
+export declare class DatepickerDemoComponent {
     dt: Date;
     minDate: Date;
     events: Array<any>;

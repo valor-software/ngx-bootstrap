@@ -1,3 +1,3 @@
-export declare class Demo {
+export declare class DemoComponent {
     isBs3: boolean;
 }

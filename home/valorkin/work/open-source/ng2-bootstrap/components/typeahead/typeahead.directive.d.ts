@@ -1,7 +1,7 @@
 import { EventEmitter, OnInit, ElementRef, Renderer, DynamicComponentLoader, ViewContainerRef } from 'angular2/core';
 import { NgModel } from 'angular2/common';
-import { TypeaheadContainer } from './typeahead-container.component';
-export declare class Typeahead implements OnInit {
+import { TypeaheadContainerComponent } from './typeahead-container.component';
+export declare class TypeaheadDirective implements OnInit {
     typeaheadLoading: EventEmitter<boolean>;
     typeaheadNoResults: EventEmitter<boolean>;
     typeaheadOnSelect: EventEmitter<{
@@ -17,7 +17,7 @@ export declare class Typeahead implements OnInit {
     typeaheadSingleWords: boolean;
     typeaheadWordDelimiters: string;
     typeaheadPhraseDelimiters: string;
-    container: TypeaheadContainer;
+    container: TypeaheadContainerComponent;
     isTypeaheadOptionsListActive: boolean;
     private debouncer;
     private _matches;

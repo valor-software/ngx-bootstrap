@@ -1,2 +1,2 @@
-export declare class TooltipSection {
+export declare class TooltipSectionComponent {
 }

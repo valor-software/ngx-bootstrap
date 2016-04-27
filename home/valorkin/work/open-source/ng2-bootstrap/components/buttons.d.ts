@@ -1,3 +1,3 @@
-export { ButtonCheckbox } from './buttons/button-checkbox.component';
-export { ButtonRadio } from './buttons/button-radio.component';
+export { ButtonCheckboxDirective } from './buttons/button-checkbox.directive.ts';
+export { ButtonRadioDirective } from './buttons/button-radio.directive.ts';
 export declare const BUTTON_DIRECTIVES: Array<any>;

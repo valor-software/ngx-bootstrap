@@ -1,2 +1,2 @@
-export declare class CollapseSection {
+export declare class CollapseSectionComponent {
 }

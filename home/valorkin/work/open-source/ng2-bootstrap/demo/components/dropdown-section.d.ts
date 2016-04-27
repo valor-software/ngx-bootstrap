@@ -1,2 +1,2 @@
-export declare class DropdownSection {
+export declare class DropdownSectionComponent {
 }

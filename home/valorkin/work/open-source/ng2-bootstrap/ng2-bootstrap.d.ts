@@ -1,7 +1,7 @@
-import { Alert } from './components/alert';
-import { Collapse } from './components/collapse';
-import { Rating } from './components/rating';
-import { Timepicker } from './components/timepicker';
+import { AlertComponent } from './components/alert';
+import { CollapseDirective } from './components/collapse';
+import { RatingComponent } from './components/rating';
+import { TimepickerComponent } from './components/timepicker';
 export * from './components/accordion';
 export * from './components/alert';
 export * from './components/buttons';
@@ -20,6 +20,6 @@ export * from './components/position';
 export * from './components/common';
 export * from './components/ng2-bootstrap-config';
 declare var _default: {
-    directives: (typeof Alert | any[] | typeof Collapse | typeof Rating | typeof Timepicker)[];
+    directives: (typeof AlertComponent | any[] | typeof CollapseDirective | typeof RatingComponent | typeof TimepickerComponent)[];
 };
 export default _default;

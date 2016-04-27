@@ -13,7 +13,7 @@ export interface TimepickerConfig {
     max?: number;
 }
 export declare const timepickerConfig: TimepickerConfig;
-export declare class Timepicker implements ControlValueAccessor, OnInit {
+export declare class TimepickerComponent implements ControlValueAccessor, OnInit {
     cd: NgModel;
     hourStep: number;
     minuteStep: number;

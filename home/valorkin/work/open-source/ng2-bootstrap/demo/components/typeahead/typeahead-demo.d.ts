@@ -1,4 +1,4 @@
-export declare class TypeaheadDemo {
+export declare class TypeaheadDemoComponent {
     selected: string;
     asyncSelected: string;
     typeaheadLoading: boolean;

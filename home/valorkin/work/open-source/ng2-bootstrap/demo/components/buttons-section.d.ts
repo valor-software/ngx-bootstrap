@@ -1,2 +1,2 @@
-export declare class ButtonsSection {
+export declare class ButtonsSectionComponent {
 }

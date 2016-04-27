@@ -1,2 +1,2 @@
-export declare class RatingSection {
+export declare class RatingSectionComponent {
 }

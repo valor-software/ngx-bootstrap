@@ -1,13 +1,13 @@
 import { OnInit, OnDestroy } from 'angular2/core';
-import { Accordion } from './accordion.component';
-export declare class AccordionPanel implements OnInit, OnDestroy {
+import { AccordionComponent } from './accordion.component';
+export declare class AccordionPanelComponent implements OnInit, OnDestroy {
     heading: string;
     panelClass: string;
     isDisabled: boolean;
     isOpen: boolean;
     private _isOpen;
     private accordion;
-    constructor(accordion: Accordion);
+    constructor(accordion: AccordionComponent);
     ngOnInit(): any;
     ngOnDestroy(): any;
     toggleOpen(event: MouseEvent): any;

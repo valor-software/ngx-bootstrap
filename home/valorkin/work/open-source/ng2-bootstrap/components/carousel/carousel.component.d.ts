@@ -1,11 +1,11 @@
 import { OnDestroy } from 'angular2/core';
-import { Slide } from './slide.component';
+import { SlideComponent } from './slide.component';
 export declare enum Direction {
     UNKNOWN = 0,
     NEXT = 1,
     PREV = 2,
 }
-export declare class Carousel implements OnDestroy {
+export declare class CarouselComponent implements OnDestroy {
     noWrap: boolean;
     noPause: boolean;
     noTransition: boolean;
@@ -17,13 +17,13 @@ export declare class Carousel implements OnDestroy {
     private currentSlide;
     private _interval;
     ngOnDestroy(): void;
-    select(nextSlide: Slide, direction?: Direction): void;
+    select(nextSlide: SlideComponent, direction?: Direction): void;
     play(): void;
     pause(): void;
     next(): any;
     prev(): any;
-    addSlide(slide: Slide): void;
-    removeSlide(slide: Slide): void;
+    addSlide(slide: SlideComponent): void;
+    removeSlide(slide: SlideComponent): void;
     private goNext(slide, direction);
     private getSlideByIndex(index);
     private getCurrentIndex();

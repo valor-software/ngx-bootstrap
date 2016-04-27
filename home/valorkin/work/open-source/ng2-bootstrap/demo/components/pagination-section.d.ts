@@ -1,2 +1,2 @@
-export declare class PaginationSection {
+export declare class PaginationSectionComponent {
 }

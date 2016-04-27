@@ -1,2 +1,2 @@
-export declare class TimepickerSection {
+export declare class TimepickerSectionComponent {
 }
