@@ -3,6 +3,11 @@ import {
 } from 'angular2/core';
 import {NgFor, ControlValueAccessor, NgModel} from 'angular2/common';
 
+import {global} from 'angular2/src/facade/lang';
+/* tslint:disable */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+/* tslint:enable */
+
 @Component({
   /* tslint:disable */
   selector: 'rating[ngModel]',

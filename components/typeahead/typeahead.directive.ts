@@ -7,6 +7,11 @@ import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
 
+import {global} from 'angular2/src/facade/lang';
+/* tslint:disable */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+/* tslint:enable */
+
 // https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
 function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, propValue:any):void {
   renderer.setElementProperty(elementRef.nativeElement, propName, propValue);

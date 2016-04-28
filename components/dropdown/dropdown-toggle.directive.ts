@@ -3,6 +3,11 @@ import {
 } from 'angular2/core';
 import {DropdownDirective} from './dropdown.directive';
 
+import {global} from 'angular2/src/facade/lang';
+/* tslint:disable */
+const MouseEvent = (global as any).MouseEvent as MouseEvent;
+/* tslint:enable */
+
 @Directive({selector: '[dropdownToggle]'})
 export class DropdownToggleDirective implements OnInit {
   @HostBinding('class.disabled')
