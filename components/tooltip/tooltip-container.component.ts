@@ -44,6 +44,7 @@ export class TooltipContainer implements AfterViewInit {
     Object.assign(this, options);
     this.classMap = {'in': false, 'fade': false};
     this.classMap[options.placement] = true;
+    this.classMap['tooltip-' + options.placement] = true;
   }
 
   public ngAfterViewInit():void {
