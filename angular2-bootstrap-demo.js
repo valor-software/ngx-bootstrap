@@ -5209,9 +5209,10 @@ webpackJsonp([1],[
 /***/ },
 /* 11 */,
 /* 12 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var lang_1 = __webpack_require__(2);
 	(function (Ng2BootstrapTheme) {
 	    Ng2BootstrapTheme[Ng2BootstrapTheme["BS3"] = 1] = "BS3";
 	    Ng2BootstrapTheme[Ng2BootstrapTheme["BS4"] = 2] = "BS4";
@@ -5222,8 +5223,7 @@ webpackJsonp([1],[
 	    }
 	    Object.defineProperty(Ng2BootstrapConfig, "theme", {
 	        get: function () {
-	            var w = window;
-	            if (w && w.__theme === 'bs4') {
+	            if (lang_1.global && lang_1.global.__theme === 'bs4') {
 	                return Ng2BootstrapTheme.BS4;
 	            }
 	            return (this._theme || Ng2BootstrapTheme.BS3);
@@ -19043,13 +19043,13 @@ webpackJsonp([1],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var button_checkbox_directive_ts_1 = __webpack_require__(162);
-	var button_radio_directive_ts_1 = __webpack_require__(163);
-	var button_checkbox_directive_ts_2 = __webpack_require__(162);
-	exports.ButtonCheckboxDirective = button_checkbox_directive_ts_2.ButtonCheckboxDirective;
-	var button_radio_directive_ts_2 = __webpack_require__(163);
-	exports.ButtonRadioDirective = button_radio_directive_ts_2.ButtonRadioDirective;
-	exports.BUTTON_DIRECTIVES = [button_checkbox_directive_ts_1.ButtonCheckboxDirective, button_radio_directive_ts_1.ButtonRadioDirective];
+	var button_checkbox_directive_1 = __webpack_require__(162);
+	var button_radio_directive_1 = __webpack_require__(163);
+	var button_checkbox_directive_2 = __webpack_require__(162);
+	exports.ButtonCheckboxDirective = button_checkbox_directive_2.ButtonCheckboxDirective;
+	var button_radio_directive_2 = __webpack_require__(163);
+	exports.ButtonRadioDirective = button_radio_directive_2.ButtonRadioDirective;
+	exports.BUTTON_DIRECTIVES = [button_checkbox_directive_1.ButtonCheckboxDirective, button_radio_directive_1.ButtonRadioDirective];
 
 
 /***/ },
@@ -19603,6 +19603,8 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var dropdown_directive_1 = __webpack_require__(21);
+	var lang_1 = __webpack_require__(2);
+	var MouseEvent = lang_1.global.MouseEvent;
 	var DropdownToggleDirective = (function () {
 	    function DropdownToggleDirective(dropdown, el) {
 	        this.disabled = false;
@@ -19644,7 +19646,7 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.HostListener('click', ['$event']), 
 	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [MouseEvent]), 
+	        __metadata('design:paramtypes', [Object]), 
 	        __metadata('design:returntype', Boolean)
 	    ], DropdownToggleDirective.prototype, "toggleDropdown", null);
 	    DropdownToggleDirective = __decorate([
@@ -20077,6 +20079,8 @@ webpackJsonp([1],[
 	var typeahead_utils_1 = __webpack_require__(184);
 	var typeahead_container_component_1 = __webpack_require__(39);
 	var typeahead_options_class_1 = __webpack_require__(40);
+	var lang_1 = __webpack_require__(2);
+	var KeyboardEvent = lang_1.global.KeyboardEvent;
 	function setProperty(renderer, elementRef, propName, propValue) {
 	    renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 	}
@@ -20413,7 +20417,7 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.HostListener('keyup', ['$event']), 
 	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [KeyboardEvent]), 
+	        __metadata('design:paramtypes', [Object]), 
 	        __metadata('design:returntype', void 0)
 	    ], TypeaheadDirective.prototype, "onChange", null);
 	    __decorate([
@@ -20431,7 +20435,7 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.HostListener('keydown', ['$event']), 
 	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [KeyboardEvent]), 
+	        __metadata('design:paramtypes', [Object]), 
 	        __metadata('design:returntype', void 0)
 	    ], TypeaheadDirective.prototype, "onKeydown", null);
 	    TypeaheadDirective = __decorate([
@@ -24392,6 +24396,8 @@ webpackJsonp([1],[
 	};
 	var core_1 = __webpack_require__(3);
 	var common_1 = __webpack_require__(4);
+	var lang_1 = __webpack_require__(2);
+	var KeyboardEvent = lang_1.global.KeyboardEvent;
 	var RatingComponent = (function () {
 	    function RatingComponent(cd) {
 	        this.onHover = new core_1.EventEmitter(false);
@@ -24500,7 +24506,7 @@ webpackJsonp([1],[
 	    __decorate([
 	        core_1.HostListener('keydown', ['$event']), 
 	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [KeyboardEvent]), 
+	        __metadata('design:paramtypes', [Object]), 
 	        __metadata('design:returntype', void 0)
 	    ], RatingComponent.prototype, "onKeydown", null);
 	    RatingComponent = __decorate([
