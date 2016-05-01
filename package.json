@@ -55,7 +55,7 @@
   "devDependencies": {
     "angular2": "2.0.0-beta.16",
     "async": "1.5.2",
-    "balanced-match": "0.4.0",
+    "balanced-match": "0.4.1",
     "bootstrap": "3.3.6",
     "codecov": "1.0.1",
     "compression-webpack-plugin": "0.3.1",
