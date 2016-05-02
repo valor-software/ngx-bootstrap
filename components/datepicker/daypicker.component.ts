@@ -7,11 +7,11 @@ import {DatePickerInnerComponent} from './datepicker-inner.component';
 const TEMPLATE_OPTIONS:any = {
   [Ng2BootstrapTheme.BS4]: {
     DAY_TITLE: `
-        <th *ngFor="#labelz of labels" class="text-xs-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+        <th *ngFor="let labelz of labels" class="text-xs-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
     `,
     WEEK_ROW: `
         <td *ngIf="datePicker.showWeeks" class="text-xs-center h6"><em>{{ weekNumbers[index] }}</em></td>
-        <td *ngFor="#dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled}"
@@ -26,11 +26,11 @@ const TEMPLATE_OPTIONS:any = {
   },
   [Ng2BootstrapTheme.BS3]: {
     DAY_TITLE: `
-        <th *ngFor="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+        <th *ngFor="let labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
     `,
     WEEK_ROW: `
         <td *ngIf="datePicker.showWeeks" class="text-center h6"><em>{{ weekNumbers[index] }}</em></td>
-        <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-default btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"

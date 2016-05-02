@@ -51,7 +51,7 @@ const PAGINATION_TEMPLATE = `
       <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
       </li>
 
-    <li *ngFor="#pg of pages"
+    <li *ngFor="let pg of pages"
         [class.active]="pg.active"
         [class.disabled]="disabled&&!pg.active"
         class="pagination-page page-item">
