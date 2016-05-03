@@ -1,10 +1,10 @@
 import {
   Component, Directive, EventEmitter, ComponentRef, ViewEncapsulation,
   ElementRef, DynamicComponentLoader, Self, Renderer, ReflectiveInjector, provide, ViewContainerRef
-} from 'angular2/core';
+} from '@angular/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
-} from 'angular2/common';
+} from '@angular/common';
 import {KeyAttribute} from '../common';
 import {positionService} from '../position';
 import {DatePickerComponent} from './datepicker.component';
@@ -127,7 +127,7 @@ export class DatePickerPopupDirective {
   private _activeDate:Date;
   private _isOpen:boolean = false;
   private placement:string = 'bottom';
-  private popup:Promise<ComponentRef>;
+  private popup:Promise<ComponentRef<any>>;
 
   public constructor(@Self() cd:NgModel, viewContainerRef:ViewContainerRef,
                      renderer:Renderer, loader:DynamicComponentLoader) {
@@ -166,7 +166,7 @@ export class DatePickerPopupDirective {
 
   public hide(cb:Function):void {
     if (this.popup) {
-      this.popup.then((componentRef:ComponentRef) => {
+      this.popup.then((componentRef:ComponentRef<any>) => {
         componentRef.destroy();
         cb();
         return componentRef;
@@ -187,7 +187,7 @@ export class DatePickerPopupDirective {
 
     this.popup = this.loader
       .loadNextToLocation(PopupContainerComponent, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef) => {
+      .then((componentRef:ComponentRef<any>) => {
         componentRef.instance.position(this.viewContainerRef);
         componentRef.instance.popupComp = this;
         /*componentRef.instance.update1.observer({

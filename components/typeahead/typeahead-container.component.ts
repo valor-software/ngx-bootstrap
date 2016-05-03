@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewEncapsulation} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component, ElementRef, ViewEncapsulation} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadDirective} from './typeahead.directive';
 import {TypeaheadOptions} from './typeahead-options.class';
@@ -12,7 +12,7 @@ const TEMPLATE:any = {
       [ngStyle]="{top: top, left: left, display: display}"
       (mouseleave)="focusLost()">
       <a href="#"
-         *ngFor="#match of matches"
+         *ngFor="let match of matches"
          class="dropdown-item"
          (click)="selectMatch(match, $event)"
          (mouseenter)="selectActive(match)"
@@ -25,7 +25,7 @@ const TEMPLATE:any = {
       style="display: block"
       [ngStyle]="{top: top, left: left, display: display}"
       (mouseleave)="focusLost()">
-    <li *ngFor="#match of matches"
+    <li *ngFor=let match of matches"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [innerHtml]="hightlight(match, query)"></a>

@@ -1,7 +1,7 @@
 import {
   Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer
-} from 'angular2/core';
-import {NgFor, NgIf, ControlValueAccessor, NgModel} from 'angular2/common';
+} from '@angular/core';
+import {NgFor, NgIf, ControlValueAccessor, NgModel} from '@angular/common';
 import {KeyAttribute} from '../common';
 
 // todo: extract base functionality classes
@@ -51,7 +51,7 @@ const PAGINATION_TEMPLATE = `
       <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
       </li>
 
-    <li *ngFor="#pg of pages"
+    <li *ngFor="let pg of pages"
         [class.active]="pg.active"
         [class.disabled]="disabled&&!pg.active"
         class="pagination-page page-item">

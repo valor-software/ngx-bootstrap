@@ -1,7 +1,7 @@
 import {
   Directive, OnInit, OnDestroy, Input, Output, HostBinding, EventEmitter,
   ElementRef
-} from 'angular2/core';
+} from '@angular/core';
 import {dropdownService, NONINPUT} from './dropdown.service';
 
 @Directive({selector: '[dropdown]'})

@@ -1,7 +1,7 @@
 // todo: add animate
 
-import {Component, OnDestroy, Input} from 'angular2/core';
-import {NgFor} from 'angular2/common';
+import {Component, OnDestroy, Input} from '@angular/core';
+import {NgFor} from '@angular/common';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {SlideComponent} from './slide.component';
 
@@ -36,7 +36,7 @@ const NAVIGATION:any = {
   template: `
     <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
       <ol class="carousel-indicators" *ngIf="slides.length > 1">
-         <li *ngFor="#slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
+         <li *ngFor="let slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
       ${NAVIGATION[Ng2BootstrapConfig.theme]}

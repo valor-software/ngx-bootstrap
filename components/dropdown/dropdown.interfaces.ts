@@ -1,4 +1,4 @@
-import {ElementRef} from 'angular2/core';
+import {ElementRef} from '@angular/core';
 
 export interface DropdownMenuInterface {
   el: ElementRef;

@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
-import {NgIf, NgClass} from 'angular2/common';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {NgIf, NgClass} from '@angular/common';
 
 const ALERT_TEMPLATE = `
   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">

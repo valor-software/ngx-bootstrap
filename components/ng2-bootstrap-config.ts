@@ -1,4 +1,4 @@
-import {global} from 'angular2/src/facade/lang';
+import {global} from '@angular/core/src/facade/lang';
 
 export enum Ng2BootstrapTheme {BS3 = 1, BS4 = 2}
 

@@ -1,6 +1,6 @@
-import {Component, enableProdMode} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
-import {bootstrap} from 'angular2/platform/browser';
+import {Component, enableProdMode} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
 import {AccordionSectionComponent} from './components/accordion-section';
 import {AlertSectionComponent} from './components/alert-section';

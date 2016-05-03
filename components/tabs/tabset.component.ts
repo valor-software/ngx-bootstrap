@@ -1,5 +1,5 @@
-import {Component, OnInit, OnDestroy, HostBinding, Input} from 'angular2/core';
-import {NgClass} from 'angular2/common';
+import {Component, OnInit, OnDestroy, HostBinding, Input} from '@angular/core';
+import {NgClass} from '@angular/common';
 import {NgTranscludeDirective} from '../common';
 import {TabDirective} from './tab.directive';
 // todo: add active event to tab
@@ -9,7 +9,7 @@ import {TabDirective} from './tab.directive';
   directives: [NgClass, NgTranscludeDirective],
   template: `
     <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
-        <li *ngFor="#tabz of tabs" class="nav-item"
+        <li *ngFor="let tabz of tabs" class="nav-item"
           [class.active]="tabz.active" [class.disabled]="tabz.disabled">
           <a href class="nav-link"
             [class.active]="tabz.active" [class.disabled]="tabz.disabled"

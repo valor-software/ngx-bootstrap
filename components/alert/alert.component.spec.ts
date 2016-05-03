@@ -1,8 +1,9 @@
-import {it, beforeEach, injectAsync, TestComponentBuilder, ComponentFixture} from 'angular2/testing';
+import {it, beforeEach, injectAsync } from '@angular/core/testing';
+import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
 import {AlertComponent} from './alert.component';
 
 describe('Component: Alert', () => {
-    let fixture:ComponentFixture, context:any;
+    let fixture:ComponentFixture<any>, context:any;
     const overTemplate = `
                   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
                     <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
@@ -16,7 +17,7 @@ describe('Component: Alert', () => {
         return tcb
             .overrideTemplate(AlertComponent, overTemplate)
             .createAsync(AlertComponent)
-            .then((f:ComponentFixture) => {
+            .then((f:ComponentFixture<any>) => {
                 fixture = f;
                 context = fixture.debugElement.componentInstance;
             });
