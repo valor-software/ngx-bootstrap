@@ -83,7 +83,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
     </tr>
   </thead>
   <tbody>
-    <template ngFor [ngForOf]="rows" #rowz="$implicit" #index="index">
+    <template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
       <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
         ${CURRENT_THEME_TEMPLATE.WEEK_ROW}
       </tr>
