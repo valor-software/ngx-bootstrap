@@ -25,7 +25,7 @@ const TEMPLATE:any = {
       style="display: block"
       [ngStyle]="{top: top, left: left, display: display}"
       (mouseleave)="focusLost()">
-    <li *ngFor=let match of matches"
+    <li *ngFor="let match of matches"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [innerHtml]="hightlight(match, query)"></a>
