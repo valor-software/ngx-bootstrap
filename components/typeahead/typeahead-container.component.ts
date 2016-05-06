@@ -12,7 +12,7 @@ const TEMPLATE:any = {
       [ngStyle]="{top: top, left: left, display: display}"
       (mouseleave)="focusLost()">
       <a href="#"
-         *ngFor="#match of matches"
+         *ngFor="let match of matches"
          class="dropdown-item"
          (click)="selectMatch(match, $event)"
          (mouseenter)="selectActive(match)"
@@ -25,7 +25,7 @@ const TEMPLATE:any = {
       style="display: block"
       [ngStyle]="{top: top, left: left, display: display}"
       (mouseleave)="focusLost()">
-    <li *ngFor="#match of matches"
+    <li *ngFor="let match of matches"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1" [innerHtml]="hightlight(match, query)"></a>
