@@ -1,5 +1,24 @@
+// FIX: in order to update to rc.1 had to disable animation, sorry
 import {Directive, OnInit, ElementRef, Input, HostBinding, Renderer} from '@angular/core';
 import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
+
+// import {animation, style, animate, state, transition} from '@angular/core';
+
+/*@Directive({
+  selector: '[collapse]',
+  // templateUrl: 'app/panel.html',
+  // styleUrls: ['app/panel.css'],
+  animations: [
+    animation('active', [
+      state('void', style({ height: 0 })),
+      state('closed', style({ height: 0 })),
+      state('open', style({ height: '*' })),
+      transition('void => closed', [ animate(0) ]),
+      transition('closed => open', [ animate('350ms ease-out') ]),
+      transition('open => closed', [ animate('350ms ease-out') ])
+    ])
+  ]
+})*/
 // fix: replace with // '@angular/animate';
 // when https://github.com/angular/angular/issues/5984 will be fixed
 
@@ -7,7 +26,7 @@ import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_
 // TODO: add on change
 @Directive({selector: '[collapse]'})
 export class CollapseDirective implements OnInit {
-  private animation:any;
+  // private animation:any;
 
   // style
   // @HostBinding('style.height')
@@ -28,7 +47,7 @@ export class CollapseDirective implements OnInit {
   @HostBinding('class.collapsing')
   private isCollapsing:boolean = false;
 
-  @Input() private transitionDuration:number = 500; // Duration in ms
+  // @Input() private transitionDuration:number = 500; // Duration in ms
 
   @Input()
   private set collapse(value:boolean) {
@@ -39,7 +58,7 @@ export class CollapseDirective implements OnInit {
   private get collapse():boolean {
     return this.isExpanded;
   }
-
+  // private open: boolean;
   private _ab:AnimationBuilder;
   private _el:ElementRef;
   private _renderer:Renderer;
@@ -51,11 +70,12 @@ export class CollapseDirective implements OnInit {
   }
 
   public ngOnInit():void {
-    this.animation = this._ab.css();
-    this.animation.setDuration(this.transitionDuration);
+    // this.animation = this._ab.css();
+    // this.animation.setDuration(this.transitionDuration);
   }
 
   public toggle():void {
+    // this.open = !this.open;
     if (this.isExpanded) {
       this.hide();
     } else {
@@ -70,29 +90,32 @@ export class CollapseDirective implements OnInit {
     this.isExpanded = false;
     this.isCollapsed = true;
 
-    setTimeout(() => {
-        // this.height = '0';
-        // this.isCollapse = true;
-        // this.isCollapsing = false;
-        this.animation
-          .setFromStyles({
-            height: this._el.nativeElement.scrollHeight + 'px'
-          })
-          .setToStyles({
-            height: '0',
-            overflow: 'hidden'
-          });
+    this.isCollapse = true;
+    this.isCollapsing = false;
 
-        this.animation.start(this._el.nativeElement)
-          .onComplete(() => {
-            if (this._el.nativeElement.offsetHeight === 0) {
-              this.display = 'none';
-            }
+    /*  setTimeout(() => {
+          // this.height = '0';
+          // this.isCollapse = true;
+          // this.isCollapsing = false;
+          this.animation
+            .setFromStyles({
+              height: this._el.nativeElement.scrollHeight + 'px'
+            })
+            .setToStyles({
+              height: '0',
+              overflow: 'hidden'
+            });
 
-            this.isCollapse = true;
-            this.isCollapsing = false;
-          });
-      }, 4);
+          this.animation.start(this._el.nativeElement)
+            .onComplete(() => {
+              if (this._el.nativeElement.offsetHeight === 0) {
+                this.display = 'none';
+              }
+
+              this.isCollapse = true;
+              this.isCollapsing = false;
+            });
+        }, 4);*/
   }
 
   public show():void {
@@ -103,8 +126,12 @@ export class CollapseDirective implements OnInit {
     this.isCollapsed = false;
 
     this.display = '';
-
-    setTimeout(() => {
+    // this.height = 'auto';
+    this.isCollapse = true;
+    this.isCollapsing = false;
+    this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
+    this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
+    /*setTimeout(() => {
         // this.height = 'auto';
         // this.isCollapse = true;
         // this.isCollapsing = false;
@@ -124,6 +151,6 @@ export class CollapseDirective implements OnInit {
             this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
             this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
           });
-      }, 4);
+      }, 4);*/
   }
 }
