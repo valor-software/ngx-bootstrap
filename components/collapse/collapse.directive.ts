@@ -1,6 +1,6 @@
 // FIX: in order to update to rc.1 had to disable animation, sorry
 import {Directive, OnInit, ElementRef, Input, HostBinding, Renderer} from '@angular/core';
-import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
+// import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 
 // import {animation, style, animate, state, transition} from '@angular/core';
 
@@ -59,12 +59,12 @@ export class CollapseDirective implements OnInit {
     return this.isExpanded;
   }
   // private open: boolean;
-  private _ab:AnimationBuilder;
+  // private _ab:AnimationBuilder;
   private _el:ElementRef;
   private _renderer:Renderer;
 
-  public constructor(_ab:AnimationBuilder, _el:ElementRef, _renderer: Renderer) {
-    this._ab = _ab;
+  public constructor(/*_ab:AnimationBuilder, */_el:ElementRef, _renderer: Renderer) {
+    // this._ab = _ab;
     this._el = _el;
     this._renderer = _renderer;
   }
