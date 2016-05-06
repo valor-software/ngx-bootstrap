@@ -1,3 +1,21 @@
+<a name="1.0.16"></a>
+## [1.0.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.15...v1.0.16) (2016-05-06)
+
+
+### Bug Fixes
+
+* **build:** system.js bundler updated to rc.1([6945ad9](https://github.com/valor-software/ng2-bootstrap/commit/6945ad9))
+* **collapse:** had to disable animation in order to update to rc.1([3443495](https://github.com/valor-software/ng2-bootstrap/commit/3443495))
+* **collapse:** removed dependecy to animation builder([fed473f](https://github.com/valor-software/ng2-bootstrap/commit/fed473f))
+* **docs:** update to ButtonRadioDirective and ButtonCheckboxDirective ([#476](https://github.com/valor-software/ng2-bootstrap/issues/476))([2e2d79b](https://github.com/valor-software/ng2-bootstrap/commit/2e2d79b))
+
+
+### Features
+
+* **package:** upgrade ng2-bootstrap to rc.1 ([#481](https://github.com/valor-software/ng2-bootstrap/issues/481))([554be3d](https://github.com/valor-software/ng2-bootstrap/commit/554be3d)), closes [#482](https://github.com/valor-software/ng2-bootstrap/issues/482) [#472](https://github.com/valor-software/ng2-bootstrap/issues/472) [#477](https://github.com/valor-software/ng2-bootstrap/issues/477)
+
+
+
 <a name="1.0.15"></a>
 ## [1.0.15](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.14...v1.0.15) (2016-04-28)
 
