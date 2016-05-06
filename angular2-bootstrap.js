@@ -2,7 +2,7 @@ webpackJsonp([2],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(8);
+	module.exports = __webpack_require__(7);
 
 
 /***/ },
@@ -407,7 +407,7 @@ webpackJsonp([2],[
 	                module && module.exports) {
 	            try {
 	                oldLocale = globalLocale._abbr;
-	                __webpack_require__(250)("./" + name);
+	                __webpack_require__(259)("./" + name);
 	                // because defineLocale currently also sets the global locale, we
 	                // want to undo that for lazy loaded locales
 	                locale_locales__getSetGlobalLocale(oldLocale);
@@ -4049,7 +4049,7 @@ webpackJsonp([2],[
 	    return _moment;
 	
 	}));
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(207)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(209)(module)))
 
 /***/ },
 /* 2 */,
@@ -4057,45 +4057,44 @@ webpackJsonp([2],[
 /* 4 */,
 /* 5 */,
 /* 6 */,
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	var accordion_1 = __webpack_require__(158);
-	var alert_1 = __webpack_require__(160);
-	var buttons_1 = __webpack_require__(161);
-	var carousel_1 = __webpack_require__(164);
-	var collapse_1 = __webpack_require__(32);
-	var datepicker_1 = __webpack_require__(167);
-	var dropdown_1 = __webpack_require__(169);
-	var pagination_1 = __webpack_require__(172);
-	var progressbar_1 = __webpack_require__(174);
-	var rating_1 = __webpack_require__(176);
-	var tabs_1 = __webpack_require__(177);
-	var timepicker_1 = __webpack_require__(179);
-	var tooltip_1 = __webpack_require__(180);
-	var typeahead_1 = __webpack_require__(183);
-	__export(__webpack_require__(158));
-	__export(__webpack_require__(160));
+	var accordion_1 = __webpack_require__(159);
+	var alert_1 = __webpack_require__(161);
+	var buttons_1 = __webpack_require__(162);
+	var carousel_1 = __webpack_require__(165);
+	var collapse_1 = __webpack_require__(36);
+	var datepicker_1 = __webpack_require__(168);
+	var dropdown_1 = __webpack_require__(170);
+	var pagination_1 = __webpack_require__(173);
+	var progressbar_1 = __webpack_require__(175);
+	var rating_1 = __webpack_require__(177);
+	var tabs_1 = __webpack_require__(178);
+	var timepicker_1 = __webpack_require__(180);
+	var tooltip_1 = __webpack_require__(181);
+	var typeahead_1 = __webpack_require__(184);
+	__export(__webpack_require__(159));
 	__export(__webpack_require__(161));
-	__export(__webpack_require__(164));
-	__export(__webpack_require__(32));
-	__export(__webpack_require__(167));
-	__export(__webpack_require__(169));
-	__export(__webpack_require__(172));
-	__export(__webpack_require__(174));
-	__export(__webpack_require__(176));
+	__export(__webpack_require__(162));
+	__export(__webpack_require__(165));
+	__export(__webpack_require__(36));
+	__export(__webpack_require__(168));
+	__export(__webpack_require__(170));
+	__export(__webpack_require__(173));
+	__export(__webpack_require__(175));
 	__export(__webpack_require__(177));
-	__export(__webpack_require__(179));
+	__export(__webpack_require__(178));
 	__export(__webpack_require__(180));
-	__export(__webpack_require__(183));
-	__export(__webpack_require__(22));
-	__export(__webpack_require__(166));
-	__export(__webpack_require__(12));
+	__export(__webpack_require__(181));
+	__export(__webpack_require__(184));
+	__export(__webpack_require__(27));
+	__export(__webpack_require__(167));
+	__export(__webpack_require__(17));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = {
 	    directives: [
@@ -4118,50 +4117,20 @@ webpackJsonp([2],[
 
 
 /***/ },
+/* 8 */,
 /* 9 */,
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var lang_1 = __webpack_require__(2);
-	exports.DOM = null;
-	function setRootDomAdapter(adapter) {
-	    if (lang_1.isBlank(exports.DOM)) {
-	        exports.DOM = adapter;
-	    }
-	}
-	exports.setRootDomAdapter = setRootDomAdapter;
-	/* tslint:disable:requireParameterType */
-	/**
-	 * Provides DOM operations in an environment-agnostic way.
-	 */
-	var DomAdapter = (function () {
-	    function DomAdapter() {
-	    }
-	    Object.defineProperty(DomAdapter.prototype, "attrToPropMap", {
-	        /**
-	         * Maps attribute names to their corresponding property names for cases
-	         * where attribute name doesn't match property name.
-	         */
-	        get: function () { return this._attrToPropMap; },
-	        set: function (value) { this._attrToPropMap = value; },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    ;
-	    ;
-	    return DomAdapter;
-	}());
-	exports.DomAdapter = DomAdapter;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9tX2FkYXB0ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJkaWZmaW5nX3BsdWdpbl93cmFwcGVyLW91dHB1dF9wYXRoLTRubzNaUXZPLnRtcC9hbmd1bGFyMi9zcmMvcGxhdGZvcm0vZG9tL2RvbV9hZGFwdGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFBNEIsMEJBQTBCLENBQUMsQ0FBQTtBQUU1QyxXQUFHLEdBQWUsSUFBSSxDQUFDO0FBRWxDLDJCQUFrQyxPQUFtQjtJQUNuRCxFQUFFLENBQUMsQ0FBQyxjQUFPLENBQUMsV0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ2pCLFdBQUcsR0FBRyxPQUFPLENBQUM7SUFDaEIsQ0FBQztBQUNILENBQUM7QUFKZSx5QkFBaUIsb0JBSWhDLENBQUE7QUFFRCx5Q0FBeUM7QUFDekM7O0dBRUc7QUFDSDtJQUFBO0lBZ0lBLENBQUM7SUE5R0Msc0JBQUkscUNBQWE7UUFKakI7OztXQUdHO2FBQ0gsY0FBK0MsTUFBTSxDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsQ0FBQyxDQUFDO2FBQzVFLFVBQWtCLEtBQThCLElBQUksSUFBSSxDQUFDLGNBQWMsR0FBRyxLQUFLLENBQUMsQ0FBQyxDQUFDOzs7T0FETjs7O0lBOEc5RSxpQkFBQztBQUFELENBQUMsQUFoSUQsSUFnSUM7QUFoSXFCLGtCQUFVLGFBZ0kvQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtpc0JsYW5rLCBUeXBlfSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL2xhbmcnO1xuXG5leHBvcnQgdmFyIERPTTogRG9tQWRhcHRlciA9IG51bGw7XG5cbmV4cG9ydCBmdW5jdGlvbiBzZXRSb290RG9tQWRhcHRlcihhZGFwdGVyOiBEb21BZGFwdGVyKSB7XG4gIGlmIChpc0JsYW5rKERPTSkpIHtcbiAgICBET00gPSBhZGFwdGVyO1xuICB9XG59XG5cbi8qIHRzbGludDpkaXNhYmxlOnJlcXVpcmVQYXJhbWV0ZXJUeXBlICovXG4vKipcbiAqIFByb3ZpZGVzIERPTSBvcGVyYXRpb25zIGluIGFuIGVudmlyb25tZW50LWFnbm9zdGljIHdheS5cbiAqL1xuZXhwb3J0IGFic3RyYWN0IGNsYXNzIERvbUFkYXB0ZXIge1xuICBhYnN0cmFjdCBoYXNQcm9wZXJ0eShlbGVtZW50LCBuYW1lOiBzdHJpbmcpOiBib29sZWFuO1xuICBhYnN0cmFjdCBzZXRQcm9wZXJ0eShlbDogRWxlbWVudCwgbmFtZTogc3RyaW5nLCB2YWx1ZTogYW55KTtcbiAgYWJzdHJhY3QgZ2V0UHJvcGVydHkoZWw6IEVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IGFueTtcbiAgYWJzdHJhY3QgaW52b2tlKGVsOiBFbGVtZW50LCBtZXRob2ROYW1lOiBzdHJpbmcsIGFyZ3M6IGFueVtdKTogYW55O1xuXG4gIGFic3RyYWN0IGxvZ0Vycm9yKGVycm9yKTtcbiAgYWJzdHJhY3QgbG9nKGVycm9yKTtcbiAgYWJzdHJhY3QgbG9nR3JvdXAoZXJyb3IpO1xuICBhYnN0cmFjdCBsb2dHcm91cEVuZCgpO1xuXG4gIC8qKiBAZGVwcmVjYXRlZCAqL1xuICBhYnN0cmFjdCBnZXRYSFIoKTogVHlwZTtcblxuICAvKipcbiAgICogTWFwcyBhdHRyaWJ1dGUgbmFtZXMgdG8gdGhlaXIgY29ycmVzcG9uZGluZyBwcm9wZXJ0eSBuYW1lcyBmb3IgY2FzZXNcbiAgICogd2hlcmUgYXR0cmlidXRlIG5hbWUgZG9lc24ndCBtYXRjaCBwcm9wZXJ0eSBuYW1lLlxuICAgKi9cbiAgZ2V0IGF0dHJUb1Byb3BNYXAoKToge1trZXk6IHN0cmluZ106IHN0cmluZ30geyByZXR1cm4gdGhpcy5fYXR0clRvUHJvcE1hcDsgfTtcbiAgc2V0IGF0dHJUb1Byb3BNYXAodmFsdWU6IHtba2V5OiBzdHJpbmddOiBzdHJpbmd9KSB7IHRoaXMuX2F0dHJUb1Byb3BNYXAgPSB2YWx1ZTsgfTtcbiAgLyoqIEBpbnRlcm5hbCAqL1xuICBfYXR0clRvUHJvcE1hcDoge1trZXk6IHN0cmluZ106IHN0cmluZ307XG5cbiAgYWJzdHJhY3QgcGFyc2UodGVtcGxhdGVIdG1sOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBxdWVyeShzZWxlY3Rvcjogc3RyaW5nKTogYW55O1xuICBhYnN0cmFjdCBxdWVyeVNlbGVjdG9yKGVsLCBzZWxlY3Rvcjogc3RyaW5nKTogSFRNTEVsZW1lbnQ7XG4gIGFic3RyYWN0IHF1ZXJ5U2VsZWN0b3JBbGwoZWwsIHNlbGVjdG9yOiBzdHJpbmcpOiBhbnlbXTtcbiAgYWJzdHJhY3Qgb24oZWwsIGV2dCwgbGlzdGVuZXIpO1xuICBhYnN0cmFjdCBvbkFuZENhbmNlbChlbCwgZXZ0LCBsaXN0ZW5lcik6IEZ1bmN0aW9uO1xuICBhYnN0cmFjdCBkaXNwYXRjaEV2ZW50KGVsLCBldnQpO1xuICBhYnN0cmFjdCBjcmVhdGVNb3VzZUV2ZW50KGV2ZW50VHlwZSk6IGFueTtcbiAgYWJzdHJhY3QgY3JlYXRlRXZlbnQoZXZlbnRUeXBlOiBzdHJpbmcpOiBhbnk7XG4gIGFic3RyYWN0IHByZXZlbnREZWZhdWx0KGV2dCk7XG4gIGFic3RyYWN0IGlzUHJldmVudGVkKGV2dCk6IGJvb2xlYW47XG4gIGFic3RyYWN0IGdldElubmVySFRNTChlbCk6IHN0cmluZztcbiAgYWJzdHJhY3QgZ2V0T3V0ZXJIVE1MKGVsKTogc3RyaW5nO1xuICBhYnN0cmFjdCBub2RlTmFtZShub2RlKTogc3RyaW5nO1xuICBhYnN0cmFjdCBub2RlVmFsdWUobm9kZSk6IHN0cmluZztcbiAgYWJzdHJhY3QgdHlwZShub2RlKTogc3RyaW5nO1xuICBhYnN0cmFjdCBjb250ZW50KG5vZGUpOiBhbnk7XG4gIGFic3RyYWN0IGZpcnN0Q2hpbGQoZWwpOiBOb2RlO1xuICBhYnN0cmFjdCBuZXh0U2libGluZyhlbCk6IE5vZGU7XG4gIGFic3RyYWN0IHBhcmVudEVsZW1lbnQoZWwpOiBOb2RlO1xuICBhYnN0cmFjdCBjaGlsZE5vZGVzKGVsKTogTm9kZVtdO1xuICBhYnN0cmFjdCBjaGlsZE5vZGVzQXNMaXN0KGVsKTogTm9kZVtdO1xuICBhYnN0cmFjdCBjbGVhck5vZGVzKGVsKTtcbiAgYWJzdHJhY3QgYXBwZW5kQ2hpbGQoZWwsIG5vZGUpO1xuICBhYnN0cmFjdCByZW1vdmVDaGlsZChlbCwgbm9kZSk7XG4gIGFic3RyYWN0IHJlcGxhY2VDaGlsZChlbCwgbmV3Tm9kZSwgb2xkTm9kZSk7XG4gIGFic3RyYWN0IHJlbW92ZShlbCk6IE5vZGU7XG4gIGFic3RyYWN0IGluc2VydEJlZm9yZShlbCwgbm9kZSk7XG4gIGFic3RyYWN0IGluc2VydEFsbEJlZm9yZShlbCwgbm9kZXMpO1xuICBhYnN0cmFjdCBpbnNlcnRBZnRlcihlbCwgbm9kZSk7XG4gIGFic3RyYWN0IHNldElubmVySFRNTChlbCwgdmFsdWUpO1xuICBhYnN0cmFjdCBnZXRUZXh0KGVsKTogc3RyaW5nO1xuICBhYnN0cmFjdCBzZXRUZXh0KGVsLCB2YWx1ZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgZ2V0VmFsdWUoZWwpOiBzdHJpbmc7XG4gIGFic3RyYWN0IHNldFZhbHVlKGVsLCB2YWx1ZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgZ2V0Q2hlY2tlZChlbCk6IGJvb2xlYW47XG4gIGFic3RyYWN0IHNldENoZWNrZWQoZWwsIHZhbHVlOiBib29sZWFuKTtcbiAgYWJzdHJhY3QgY3JlYXRlQ29tbWVudCh0ZXh0OiBzdHJpbmcpOiBhbnk7XG4gIGFic3RyYWN0IGNyZWF0ZVRlbXBsYXRlKGh0bWwpOiBIVE1MRWxlbWVudDtcbiAgYWJzdHJhY3QgY3JlYXRlRWxlbWVudCh0YWdOYW1lLCBkb2M/KTogSFRNTEVsZW1lbnQ7XG4gIGFic3RyYWN0IGNyZWF0ZUVsZW1lbnROUyhuczogc3RyaW5nLCB0YWdOYW1lOiBzdHJpbmcsIGRvYz8pOiBFbGVtZW50O1xuICBhYnN0cmFjdCBjcmVhdGVUZXh0Tm9kZSh0ZXh0OiBzdHJpbmcsIGRvYz8pOiBUZXh0O1xuICBhYnN0cmFjdCBjcmVhdGVTY3JpcHRUYWcoYXR0ck5hbWU6IHN0cmluZywgYXR0clZhbHVlOiBzdHJpbmcsIGRvYz8pOiBIVE1MRWxlbWVudDtcbiAgYWJzdHJhY3QgY3JlYXRlU3R5bGVFbGVtZW50KGNzczogc3RyaW5nLCBkb2M/KTogSFRNTFN0eWxlRWxlbWVudDtcbiAgYWJzdHJhY3QgY3JlYXRlU2hhZG93Um9vdChlbCk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0U2hhZG93Um9vdChlbCk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0SG9zdChlbCk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0RGlzdHJpYnV0ZWROb2RlcyhlbCk6IE5vZGVbXTtcbiAgYWJzdHJhY3QgY2xvbmUgLyo8VCBleHRlbmRzIE5vZGU+Ki8gKG5vZGU6IE5vZGUgLypUKi8pOiBOb2RlIC8qVCovO1xuICBhYnN0cmFjdCBnZXRFbGVtZW50c0J5Q2xhc3NOYW1lKGVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IEhUTUxFbGVtZW50W107XG4gIGFic3RyYWN0IGdldEVsZW1lbnRzQnlUYWdOYW1lKGVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IEhUTUxFbGVtZW50W107XG4gIGFic3RyYWN0IGNsYXNzTGlzdChlbGVtZW50KTogYW55W107XG4gIGFic3RyYWN0IGFkZENsYXNzKGVsZW1lbnQsIGNsYXNzTmFtZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgcmVtb3ZlQ2xhc3MoZWxlbWVudCwgY2xhc3NOYW1lOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBoYXNDbGFzcyhlbGVtZW50LCBjbGFzc05hbWU6IHN0cmluZyk6IGJvb2xlYW47XG4gIGFic3RyYWN0IHNldFN0eWxlKGVsZW1lbnQsIHN0eWxlTmFtZTogc3RyaW5nLCBzdHlsZVZhbHVlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCByZW1vdmVTdHlsZShlbGVtZW50LCBzdHlsZU5hbWU6IHN0cmluZyk7XG4gIGFic3RyYWN0IGdldFN0eWxlKGVsZW1lbnQsIHN0eWxlTmFtZTogc3RyaW5nKTogc3RyaW5nO1xuICBhYnN0cmFjdCBoYXNTdHlsZShlbGVtZW50LCBzdHlsZU5hbWU6IHN0cmluZywgc3R5bGVWYWx1ZT86IHN0cmluZyk6IGJvb2xlYW47XG4gIGFic3RyYWN0IHRhZ05hbWUoZWxlbWVudCk6IHN0cmluZztcbiAgYWJzdHJhY3QgYXR0cmlidXRlTWFwKGVsZW1lbnQpOiBNYXA8c3RyaW5nLCBzdHJpbmc+O1xuICBhYnN0cmFjdCBoYXNBdHRyaWJ1dGUoZWxlbWVudCwgYXR0cmlidXRlOiBzdHJpbmcpOiBib29sZWFuO1xuICBhYnN0cmFjdCBoYXNBdHRyaWJ1dGVOUyhlbGVtZW50LCBuczogc3RyaW5nLCBhdHRyaWJ1dGU6IHN0cmluZyk6IGJvb2xlYW47XG4gIGFic3RyYWN0IGdldEF0dHJpYnV0ZShlbGVtZW50LCBhdHRyaWJ1dGU6IHN0cmluZyk6IHN0cmluZztcbiAgYWJzdHJhY3QgZ2V0QXR0cmlidXRlTlMoZWxlbWVudCwgbnM6IHN0cmluZywgYXR0cmlidXRlOiBzdHJpbmcpOiBzdHJpbmc7XG4gIGFic3RyYWN0IHNldEF0dHJpYnV0ZShlbGVtZW50LCBuYW1lOiBzdHJpbmcsIHZhbHVlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBzZXRBdHRyaWJ1dGVOUyhlbGVtZW50LCBuczogc3RyaW5nLCBuYW1lOiBzdHJpbmcsIHZhbHVlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCByZW1vdmVBdHRyaWJ1dGUoZWxlbWVudCwgYXR0cmlidXRlOiBzdHJpbmcpO1xuICBhYnN0cmFjdCByZW1vdmVBdHRyaWJ1dGVOUyhlbGVtZW50LCBuczogc3RyaW5nLCBhdHRyaWJ1dGU6IHN0cmluZyk7XG4gIGFic3RyYWN0IHRlbXBsYXRlQXdhcmVSb290KGVsKTtcbiAgYWJzdHJhY3QgY3JlYXRlSHRtbERvY3VtZW50KCk6IEhUTUxEb2N1bWVudDtcbiAgYWJzdHJhY3QgZGVmYXVsdERvYygpOiBIVE1MRG9jdW1lbnQ7XG4gIGFic3RyYWN0IGdldEJvdW5kaW5nQ2xpZW50UmVjdChlbCk7XG4gIGFic3RyYWN0IGdldFRpdGxlKCk6IHN0cmluZztcbiAgYWJzdHJhY3Qgc2V0VGl0bGUobmV3VGl0bGU6IHN0cmluZyk7XG4gIGFic3RyYWN0IGVsZW1lbnRNYXRjaGVzKG4sIHNlbGVjdG9yOiBzdHJpbmcpOiBib29sZWFuO1xuICBhYnN0cmFjdCBpc1RlbXBsYXRlRWxlbWVudChlbDogYW55KTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNUZXh0Tm9kZShub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNDb21tZW50Tm9kZShub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNFbGVtZW50Tm9kZShub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaGFzU2hhZG93Um9vdChub2RlKTogYm9vbGVhbjtcbiAgYWJzdHJhY3QgaXNTaGFkb3dSb290KG5vZGUpOiBib29sZWFuO1xuICBhYnN0cmFjdCBpbXBvcnRJbnRvRG9jIC8qPFQgZXh0ZW5kcyBOb2RlPiovIChub2RlOiBOb2RlIC8qVCovKTogTm9kZSAvKlQqLztcbiAgYWJzdHJhY3QgYWRvcHROb2RlIC8qPFQgZXh0ZW5kcyBOb2RlPiovIChub2RlOiBOb2RlIC8qVCovKTogTm9kZSAvKlQqLztcbiAgYWJzdHJhY3QgZ2V0SHJlZihlbGVtZW50KTogc3RyaW5nO1xuICBhYnN0cmFjdCBnZXRFdmVudEtleShldmVudCk6IHN0cmluZztcbiAgYWJzdHJhY3QgcmVzb2x2ZUFuZFNldEhyZWYoZWxlbWVudCwgYmFzZVVybDogc3RyaW5nLCBocmVmOiBzdHJpbmcpO1xuICBhYnN0cmFjdCBzdXBwb3J0c0RPTUV2ZW50cygpOiBib29sZWFuO1xuICBhYnN0cmFjdCBzdXBwb3J0c05hdGl2ZVNoYWRvd0RPTSgpOiBib29sZWFuO1xuICBhYnN0cmFjdCBnZXRHbG9iYWxFdmVudFRhcmdldCh0YXJnZXQ6IHN0cmluZyk6IGFueTtcbiAgYWJzdHJhY3QgZ2V0SGlzdG9yeSgpOiBIaXN0b3J5O1xuICBhYnN0cmFjdCBnZXRMb2NhdGlvbigpOiBMb2NhdGlvbjtcbiAgYWJzdHJhY3QgZ2V0QmFzZUhyZWYoKTogc3RyaW5nO1xuICBhYnN0cmFjdCByZXNldEJhc2VFbGVtZW50KCk6IHZvaWQ7XG4gIGFic3RyYWN0IGdldFVzZXJBZ2VudCgpOiBzdHJpbmc7XG4gIGFic3RyYWN0IHNldERhdGEoZWxlbWVudCwgbmFtZTogc3RyaW5nLCB2YWx1ZTogc3RyaW5nKTtcbiAgYWJzdHJhY3QgZ2V0Q29tcHV0ZWRTdHlsZShlbGVtZW50KTogYW55O1xuICBhYnN0cmFjdCBnZXREYXRhKGVsZW1lbnQsIG5hbWU6IHN0cmluZyk6IHN0cmluZztcbiAgYWJzdHJhY3Qgc2V0R2xvYmFsVmFyKG5hbWU6IHN0cmluZywgdmFsdWU6IGFueSk7XG4gIGFic3RyYWN0IHJlcXVlc3RBbmltYXRpb25GcmFtZShjYWxsYmFjayk6IG51bWJlcjtcbiAgYWJzdHJhY3QgY2FuY2VsQW5pbWF0aW9uRnJhbWUoaWQpO1xuICBhYnN0cmFjdCBwZXJmb3JtYW5jZU5vdygpOiBudW1iZXI7XG4gIGFic3RyYWN0IGdldEFuaW1hdGlvblByZWZpeCgpOiBzdHJpbmc7XG4gIGFic3RyYWN0IGdldFRyYW5zaXRpb25FbmQoKTogc3RyaW5nO1xuICBhYnN0cmFjdCBzdXBwb3J0c0FuaW1hdGlvbigpOiBib29sZWFuO1xufVxuIl19
-
-/***/ },
+/* 10 */,
 /* 11 */,
-/* 12 */
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var lang_1 = __webpack_require__(2);
+	var lang_1 = __webpack_require__(5);
 	(function (Ng2BootstrapTheme) {
 	    Ng2BootstrapTheme[Ng2BootstrapTheme["BS3"] = 1] = "BS3";
 	    Ng2BootstrapTheme[Ng2BootstrapTheme["BS4"] = 2] = "BS4";
@@ -4189,14 +4158,14 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4209,9 +4178,9 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var date_formatter_1 = __webpack_require__(258);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var date_formatter_1 = __webpack_require__(267);
 	var FORMAT_DAY = 'DD';
 	var FORMAT_MONTH = 'MMMM';
 	var FORMAT_YEAR = 'YYYY';
@@ -4508,7 +4477,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 21 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4521,8 +4490,8 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var dropdown_service_1 = __webpack_require__(262);
+	var core_1 = __webpack_require__(2);
+	var dropdown_service_1 = __webpack_require__(271);
 	var DropdownDirective = (function () {
 	    function DropdownDirective(el) {
 	        this.onToggle = new core_1.EventEmitter(false);
@@ -4660,7 +4629,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 22 */
+/* 27 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4795,7 +4764,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 23 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4808,7 +4777,7 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
+	var core_1 = __webpack_require__(2);
 	var progressConfig = {
 	    animate: true,
 	    max: 100
@@ -4867,13 +4836,12 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
 /* 29 */,
-/* 30 */
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4886,7 +4854,7 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
+	var core_1 = __webpack_require__(2);
 	var AccordionComponent = (function () {
 	    function AccordionComponent() {
 	        this.addClass = true;
@@ -4932,7 +4900,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 31 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -4945,9 +4913,9 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var ng2_bootstrap_config_1 = __webpack_require__(12);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var ng2_bootstrap_config_1 = __webpack_require__(17);
 	(function (Direction) {
 	    Direction[Direction["UNKNOWN"] = 0] = "UNKNOWN";
 	    Direction[Direction["NEXT"] = 1] = "NEXT";
@@ -5110,7 +5078,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'carousel',
 	            directives: [common_1.NgFor],
-	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" *ngIf=\"slides.length > 1\">\n         <li *ngFor=\"#slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
+	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" *ngIf=\"slides.length > 1\">\n         <li *ngFor=\"let slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], CarouselComponent);
@@ -5121,16 +5089,16 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 32 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var collapse_directive_1 = __webpack_require__(257);
+	var collapse_directive_1 = __webpack_require__(266);
 	exports.CollapseDirective = collapse_directive_1.CollapseDirective;
 
 
 /***/ },
-/* 33 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5146,12 +5114,12 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var datepicker_inner_component_1 = __webpack_require__(20);
-	var daypicker_component_1 = __webpack_require__(259);
-	var monthpicker_component_1 = __webpack_require__(260);
-	var yearpicker_component_1 = __webpack_require__(261);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var datepicker_inner_component_1 = __webpack_require__(25);
+	var daypicker_component_1 = __webpack_require__(268);
+	var monthpicker_component_1 = __webpack_require__(269);
+	var yearpicker_component_1 = __webpack_require__(270);
 	var DatePickerComponent = (function () {
 	    function DatePickerComponent(cd) {
 	        this.onChange = Function.prototype;
@@ -5282,7 +5250,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 34 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5298,8 +5266,8 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
 	var paginationConfig = {
 	    maxSize: void 0,
 	    itemsPerPage: 10,
@@ -5311,7 +5279,7 @@ webpackJsonp([2],[
 	    lastText: 'Last',
 	    rotate: true
 	};
-	var PAGINATION_TEMPLATE = "\n  <ul class=\"pagination\" [ngClass]=\"classMap\">\n    <li class=\"pagination-first page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(1, $event)\" [innerHTML]=\"getText('first')\"></a>\n    </li>\n\n    <li class=\"pagination-prev page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(page - 1, $event)\" [innerHTML]=\"getText('previous')\"></a>\n      </li>\n\n    <li *ngFor=\"#pg of pages\"\n        [class.active]=\"pg.active\"\n        [class.disabled]=\"disabled&&!pg.active\"\n        class=\"pagination-page page-item\">\n      <a class=\"page-link\" href (click)=\"selectPage(pg.number, $event)\" [innerHTML]=\"pg.text\"></a>\n    </li>\n\n    <li class=\"pagination-next page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(page + 1, $event)\" [innerHTML]=\"getText('next')\"></a></li>\n\n    <li class=\"pagination-last page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(totalPages, $event)\" [innerHTML]=\"getText('last')\"></a></li>\n  </ul>\n  ";
+	var PAGINATION_TEMPLATE = "\n  <ul class=\"pagination\" [ngClass]=\"classMap\">\n    <li class=\"pagination-first page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(1, $event)\" [innerHTML]=\"getText('first')\"></a>\n    </li>\n\n    <li class=\"pagination-prev page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noPrevious()||disabled\">\n      <a class=\"page-link\" href (click)=\"selectPage(page - 1, $event)\" [innerHTML]=\"getText('previous')\"></a>\n      </li>\n\n    <li *ngFor=\"let pg of pages\"\n        [class.active]=\"pg.active\"\n        [class.disabled]=\"disabled&&!pg.active\"\n        class=\"pagination-page page-item\">\n      <a class=\"page-link\" href (click)=\"selectPage(pg.number, $event)\" [innerHTML]=\"pg.text\"></a>\n    </li>\n\n    <li class=\"pagination-next page-item\"\n        *ngIf=\"directionLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(page + 1, $event)\" [innerHTML]=\"getText('next')\"></a></li>\n\n    <li class=\"pagination-last page-item\"\n        *ngIf=\"boundaryLinks\"\n        [class.disabled]=\"noNext()\">\n      <a class=\"page-link\" href (click)=\"selectPage(totalPages, $event)\" [innerHTML]=\"getText('last')\"></a></li>\n  </ul>\n  ";
 	var PaginationComponent = (function () {
 	    function PaginationComponent(cd, renderer, elementRef) {
 	        this.numPages = new core_1.EventEmitter(false);
@@ -5544,7 +5512,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 35 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5560,9 +5528,9 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var progress_directive_1 = __webpack_require__(23);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var progress_directive_1 = __webpack_require__(28);
 	var BarComponent = (function () {
 	    function BarComponent(progress) {
 	        this.percent = 0;
@@ -5620,7 +5588,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 36 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5633,8 +5601,8 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var tabset_component_1 = __webpack_require__(37);
+	var core_1 = __webpack_require__(2);
+	var tabset_component_1 = __webpack_require__(41);
 	var TabDirective = (function () {
 	    function TabDirective(tabset) {
 	        this.select = new core_1.EventEmitter(false);
@@ -5715,7 +5683,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 37 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5728,9 +5696,9 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var common_2 = __webpack_require__(166);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var common_2 = __webpack_require__(167);
 	var TabsetComponent = (function () {
 	    function TabsetComponent() {
 	        this.clazz = true;
@@ -5848,7 +5816,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'tabset',
 	            directives: [common_1.NgClass, common_2.NgTranscludeDirective],
-	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"#tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span *ngIf=\"tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
+	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"let tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span *ngIf=\"tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], TabsetComponent);
@@ -5858,7 +5826,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 38 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5874,10 +5842,10 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var position_1 = __webpack_require__(22);
-	var tooltip_options_class_1 = __webpack_require__(181);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var position_1 = __webpack_require__(27);
+	var tooltip_options_class_1 = __webpack_require__(182);
 	var TooltipContainerComponent = (function () {
 	    function TooltipContainerComponent(element, cdr, options) {
 	        this.top = '-1000px';
@@ -5915,7 +5883,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 39 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -5928,15 +5896,15 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var typeahead_utils_1 = __webpack_require__(184);
-	var typeahead_options_class_1 = __webpack_require__(40);
-	var position_1 = __webpack_require__(22);
-	var ng2_bootstrap_config_1 = __webpack_require__(12);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var typeahead_utils_1 = __webpack_require__(185);
+	var typeahead_options_class_1 = __webpack_require__(44);
+	var position_1 = __webpack_require__(27);
+	var ng2_bootstrap_config_1 = __webpack_require__(17);
 	var TEMPLATE = (_a = {},
-	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n  <div class=\"dropdown-menu\"\n       style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n      <a href=\"#\"\n         *ngFor=\"#match of matches\"\n         class=\"dropdown-item\"\n         (click)=\"selectMatch(match, $event)\"\n         (mouseenter)=\"selectActive(match)\"\n         [class.active]=\"isActive(match)\"\n         [innerHtml]=\"hightlight(match, query)\"></a>\n  </div>\n  ",
-	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n    <li *ngFor=\"#match of matches\"\n        [class.active]=\"isActive(match)\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [innerHtml]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
+	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = "\n  <div class=\"dropdown-menu\"\n       style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n      <a href=\"#\"\n         *ngFor=\"let match of matches\"\n         class=\"dropdown-item\"\n         (click)=\"selectMatch(match, $event)\"\n         (mouseenter)=\"selectActive(match)\"\n         [class.active]=\"isActive(match)\"\n         [innerHtml]=\"hightlight(match, query)\"></a>\n  </div>\n  ",
+	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = "\n  <ul class=\"dropdown-menu\"\n      style=\"display: block\"\n      [ngStyle]=\"{top: top, left: left, display: display}\"\n      (mouseleave)=\"focusLost()\">\n    <li *ngFor=\"let match of matches\"\n        [class.active]=\"isActive(match)\"\n        (mouseenter)=\"selectActive(match)\">\n        <a href=\"#\" (click)=\"selectMatch(match, $event)\" tabindex=\"-1\" [innerHtml]=\"hightlight(match, query)\"></a>\n    </li>\n  </ul>\n  ",
 	    _a
 	);
 	var TypeaheadContainerComponent = (function () {
@@ -6057,7 +6025,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 40 */
+/* 44 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6071,71 +6039,19 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var di_1 = __webpack_require__(7);
-	var css_animation_builder_1 = __webpack_require__(209);
-	var browser_details_1 = __webpack_require__(186);
-	var AnimationBuilder = (function () {
-	    /**
-	     * Used for DI
-	     * @param browserDetails
-	     */
-	    function AnimationBuilder(browserDetails) {
-	        this.browserDetails = browserDetails;
-	    }
-	    /**
-	     * Creates a new CSS Animation
-	     * @returns {CssAnimationBuilder}
-	     */
-	    AnimationBuilder.prototype.css = function () { return new css_animation_builder_1.CssAnimationBuilder(this.browserDetails); };
-	    AnimationBuilder = __decorate([
-	        di_1.Injectable(), 
-	        __metadata('design:paramtypes', [browser_details_1.BrowserDetails])
-	    ], AnimationBuilder);
-	    return AnimationBuilder;
-	}());
-	exports.AnimationBuilder = AnimationBuilder;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5pbWF0aW9uX2J1aWxkZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJkaWZmaW5nX3BsdWdpbl93cmFwcGVyLW91dHB1dF9wYXRoLTRubzNaUXZPLnRtcC9hbmd1bGFyMi9zcmMvYW5pbWF0ZS9hbmltYXRpb25fYnVpbGRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O0FBQUEsbUJBQXlCLHNCQUFzQixDQUFDLENBQUE7QUFFaEQsc0NBQWtDLHlCQUF5QixDQUFDLENBQUE7QUFDNUQsZ0NBQTZCLG1CQUFtQixDQUFDLENBQUE7QUFHakQ7SUFDRTs7O09BR0c7SUFDSCwwQkFBbUIsY0FBOEI7UUFBOUIsbUJBQWMsR0FBZCxjQUFjLENBQWdCO0lBQUcsQ0FBQztJQUVyRDs7O09BR0c7SUFDSCw4QkFBRyxHQUFILGNBQTZCLE1BQU0sQ0FBQyxJQUFJLDJDQUFtQixDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsQ0FBQyxDQUFDLENBQUM7SUFackY7UUFBQyxlQUFVLEVBQUU7O3dCQUFBO0lBYWIsdUJBQUM7QUFBRCxDQUFDLEFBWkQsSUFZQztBQVpZLHdCQUFnQixtQkFZNUIsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7SW5qZWN0YWJsZX0gZnJvbSAnYW5ndWxhcjIvc3JjL2NvcmUvZGknO1xuXG5pbXBvcnQge0Nzc0FuaW1hdGlvbkJ1aWxkZXJ9IGZyb20gJy4vY3NzX2FuaW1hdGlvbl9idWlsZGVyJztcbmltcG9ydCB7QnJvd3NlckRldGFpbHN9IGZyb20gJy4vYnJvd3Nlcl9kZXRhaWxzJztcblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIEFuaW1hdGlvbkJ1aWxkZXIge1xuICAvKipcbiAgICogVXNlZCBmb3IgRElcbiAgICogQHBhcmFtIGJyb3dzZXJEZXRhaWxzXG4gICAqL1xuICBjb25zdHJ1Y3RvcihwdWJsaWMgYnJvd3NlckRldGFpbHM6IEJyb3dzZXJEZXRhaWxzKSB7fVxuXG4gIC8qKlxuICAgKiBDcmVhdGVzIGEgbmV3IENTUyBBbmltYXRpb25cbiAgICogQHJldHVybnMge0Nzc0FuaW1hdGlvbkJ1aWxkZXJ9XG4gICAqL1xuICBjc3MoKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7IHJldHVybiBuZXcgQ3NzQW5pbWF0aW9uQnVpbGRlcih0aGlzLmJyb3dzZXJEZXRhaWxzKTsgfVxufVxuIl19
-
-/***/ },
+/* 48 */,
 /* 49 */,
 /* 50 */,
 /* 51 */,
 /* 52 */,
 /* 53 */,
 /* 54 */,
-/* 55 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var lang_1 = __webpack_require__(2);
-	exports.Math = lang_1.global.Math;
-	exports.NaN = typeof exports.NaN;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWF0aC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImRpZmZpbmdfcGx1Z2luX3dyYXBwZXItb3V0cHV0X3BhdGgtNG5vM1pRdk8udG1wL2FuZ3VsYXIyL3NyYy9mYWNhZGUvbWF0aC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBQXFCLDBCQUEwQixDQUFDLENBQUE7QUFFckMsWUFBSSxHQUFHLGFBQU0sQ0FBQyxJQUFJLENBQUM7QUFDbkIsV0FBRyxHQUFHLE9BQU8sV0FBRyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtnbG9iYWx9IGZyb20gJ2FuZ3VsYXIyL3NyYy9mYWNhZGUvbGFuZyc7XG5cbmV4cG9ydCB2YXIgTWF0aCA9IGdsb2JhbC5NYXRoO1xuZXhwb3J0IHZhciBOYU4gPSB0eXBlb2YgTmFOO1xuIl19
-
-/***/ },
+/* 55 */,
 /* 56 */,
-/* 57 */,
-/* 58 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6212,7 +6128,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 59 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6276,7 +6192,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 60 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6384,7 +6300,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 61 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6446,7 +6362,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 62 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6587,7 +6503,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 63 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6696,7 +6612,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 64 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6834,7 +6750,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 65 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -6928,7 +6844,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 66 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7051,7 +6967,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 67 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7174,7 +7090,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 68 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7286,7 +7202,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 69 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7433,7 +7349,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 70 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7518,7 +7434,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 71 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7693,7 +7609,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 72 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7760,7 +7676,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 73 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7844,7 +7760,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 74 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7908,7 +7824,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -7991,7 +7907,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8073,7 +7989,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 77 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8176,7 +8092,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 78 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8278,7 +8194,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 79 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8348,7 +8264,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 80 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8415,7 +8331,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 81 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8486,7 +8402,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 82 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8557,7 +8473,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 83 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8627,7 +8543,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 84 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8704,7 +8620,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 85 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8789,7 +8705,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 86 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8873,7 +8789,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 87 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -8943,7 +8859,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 88 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9053,7 +8969,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 89 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9164,7 +9080,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 90 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9228,7 +9144,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 91 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9292,7 +9208,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 92 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9360,7 +9276,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 93 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9428,7 +9344,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 94 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9505,7 +9421,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 95 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9585,7 +9501,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 96 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9666,7 +9582,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 97 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9769,7 +9685,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 98 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -9897,7 +9813,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 99 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10046,7 +9962,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 100 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10159,7 +10075,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 101 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10258,7 +10174,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 102 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10345,7 +10261,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 103 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10476,7 +10392,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 104 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10550,7 +10466,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 105 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10630,7 +10546,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 106 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10717,7 +10633,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 107 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10810,7 +10726,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 108 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10901,7 +10817,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 109 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -10963,7 +10879,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 110 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11035,7 +10951,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 111 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11127,7 +11043,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 112 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11267,7 +11183,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 113 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11341,7 +11257,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 114 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11461,7 +11377,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 115 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11562,7 +11478,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 116 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11677,7 +11593,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 117 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11771,7 +11687,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 118 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -11856,7 +11772,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 119 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12019,7 +11935,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 120 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12105,7 +12021,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 121 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12191,7 +12107,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 122 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12288,7 +12204,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 123 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12355,7 +12271,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 124 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12482,7 +12398,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 125 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12559,7 +12475,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 126 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12623,7 +12539,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 127 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12751,7 +12667,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 128 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12860,7 +12776,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 129 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12925,7 +12841,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 130 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -12994,7 +12910,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 131 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13073,7 +12989,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 132 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13252,7 +13168,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 133 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13317,7 +13233,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 134 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13392,7 +13308,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 135 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13546,7 +13462,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 136 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13712,7 +13628,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 137 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13786,7 +13702,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 138 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -13900,7 +13816,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 139 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14014,7 +13930,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 140 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14107,7 +14023,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 141 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14180,7 +14096,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 142 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14243,7 +14159,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 143 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14376,7 +14292,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 144 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14469,7 +14385,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 145 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14540,7 +14456,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 146 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14606,7 +14522,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 147 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14730,7 +14646,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 148 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14824,7 +14740,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 149 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14919,7 +14835,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 150 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -14981,7 +14897,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 151 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15043,7 +14959,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 152 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15193,7 +15109,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 153 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15255,7 +15171,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 154 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15338,7 +15254,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 155 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15410,7 +15326,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 156 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15541,7 +15457,7 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 157 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//! moment.js locale configuration
@@ -15646,21 +15562,23 @@ webpackJsonp([2],[
 	}));
 
 /***/ },
-/* 158 */
+/* 157 */,
+/* 158 */,
+/* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var accordion_component_1 = __webpack_require__(30);
-	var accordion_group_component_1 = __webpack_require__(159);
-	var accordion_component_2 = __webpack_require__(30);
+	var accordion_component_1 = __webpack_require__(34);
+	var accordion_group_component_1 = __webpack_require__(160);
+	var accordion_component_2 = __webpack_require__(34);
 	exports.AccordionComponent = accordion_component_2.AccordionComponent;
-	var accordion_group_component_2 = __webpack_require__(159);
+	var accordion_group_component_2 = __webpack_require__(160);
 	exports.AccordionPanelComponent = accordion_group_component_2.AccordionPanelComponent;
 	exports.ACCORDION_DIRECTIVES = [accordion_component_1.AccordionComponent, accordion_group_component_1.AccordionPanelComponent];
 
 
 /***/ },
-/* 159 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15676,10 +15594,10 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var collapse_1 = __webpack_require__(32);
-	var accordion_component_1 = __webpack_require__(30);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var collapse_1 = __webpack_require__(36);
+	var accordion_component_1 = __webpack_require__(34);
 	var AccordionPanelComponent = (function () {
 	    function AccordionPanelComponent(accordion) {
 	        this.accordion = accordion;
@@ -15742,30 +15660,30 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var alert_component_1 = __webpack_require__(256);
-	exports.AlertComponent = alert_component_1.AlertComponent;
-
-
-/***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var button_checkbox_directive_1 = __webpack_require__(162);
-	var button_radio_directive_1 = __webpack_require__(163);
-	var button_checkbox_directive_2 = __webpack_require__(162);
+	var alert_component_1 = __webpack_require__(265);
+	exports.AlertComponent = alert_component_1.AlertComponent;
+
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var button_checkbox_directive_1 = __webpack_require__(163);
+	var button_radio_directive_1 = __webpack_require__(164);
+	var button_checkbox_directive_2 = __webpack_require__(163);
 	exports.ButtonCheckboxDirective = button_checkbox_directive_2.ButtonCheckboxDirective;
-	var button_radio_directive_2 = __webpack_require__(163);
+	var button_radio_directive_2 = __webpack_require__(164);
 	exports.ButtonRadioDirective = button_radio_directive_2.ButtonRadioDirective;
 	exports.BUTTON_DIRECTIVES = [button_checkbox_directive_1.ButtonCheckboxDirective, button_radio_directive_1.ButtonRadioDirective];
 
 
 /***/ },
-/* 162 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15781,8 +15699,8 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
 	var ButtonCheckboxDirective = (function () {
 	    function ButtonCheckboxDirective(cd) {
 	        this.state = false;
@@ -15859,7 +15777,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 163 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15875,8 +15793,8 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
 	var ButtonRadioDirective = (function () {
 	    function ButtonRadioDirective(cd, el) {
 	        this.onChange = Function.prototype;
@@ -15949,21 +15867,21 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 164 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var slide_component_1 = __webpack_require__(165);
-	var carousel_component_1 = __webpack_require__(31);
-	var slide_component_2 = __webpack_require__(165);
+	var slide_component_1 = __webpack_require__(166);
+	var carousel_component_1 = __webpack_require__(35);
+	var slide_component_2 = __webpack_require__(166);
 	exports.SlideComponent = slide_component_2.SlideComponent;
-	var carousel_component_2 = __webpack_require__(31);
+	var carousel_component_2 = __webpack_require__(35);
 	exports.CarouselComponent = carousel_component_2.CarouselComponent;
 	exports.CAROUSEL_DIRECTIVES = [carousel_component_1.CarouselComponent, slide_component_1.SlideComponent];
 
 
 /***/ },
-/* 165 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15976,8 +15894,8 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var carousel_component_1 = __webpack_require__(31);
+	var core_1 = __webpack_require__(2);
+	var carousel_component_1 = __webpack_require__(35);
 	var SlideComponent = (function () {
 	    function SlideComponent(carousel) {
 	        this.addClass = true;
@@ -16020,7 +15938,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 166 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16036,7 +15954,7 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
+	var core_1 = __webpack_require__(2);
 	var NgTranscludeDirective = (function () {
 	    function NgTranscludeDirective(_viewRef) {
 	        this.viewRef = _viewRef;
@@ -16068,21 +15986,21 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var datepicker_popup_component_1 = __webpack_require__(168);
-	var datepicker_component_1 = __webpack_require__(33);
-	var datepicker_popup_component_2 = __webpack_require__(168);
+	var datepicker_popup_component_1 = __webpack_require__(169);
+	var datepicker_component_1 = __webpack_require__(37);
+	var datepicker_popup_component_2 = __webpack_require__(169);
 	exports.DatePickerPopupDirective = datepicker_popup_component_2.DatePickerPopupDirective;
-	var datepicker_component_2 = __webpack_require__(33);
+	var datepicker_component_2 = __webpack_require__(37);
 	exports.DatePickerComponent = datepicker_component_2.DatePickerComponent;
 	exports.DATEPICKER_DIRECTIVES = [datepicker_component_1.DatePickerComponent, datepicker_popup_component_1.DatePickerPopupDirective];
 
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16098,10 +16016,10 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var position_1 = __webpack_require__(22);
-	var datepicker_component_1 = __webpack_require__(33);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var position_1 = __webpack_require__(27);
+	var datepicker_component_1 = __webpack_require__(37);
 	var PopupOptions = (function () {
 	    function PopupOptions(options) {
 	        Object.assign(this, options);
@@ -16243,57 +16161,20 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 169 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var dropdown_directive_1 = __webpack_require__(21);
-	var dropdown_menu_directive_1 = __webpack_require__(170);
-	var dropdown_toggle_directive_1 = __webpack_require__(171);
-	var dropdown_directive_2 = __webpack_require__(21);
-	exports.DropdownDirective = dropdown_directive_2.DropdownDirective;
-	var dropdown_menu_directive_2 = __webpack_require__(170);
-	exports.DropdownMenuDirective = dropdown_menu_directive_2.DropdownMenuDirective;
-	var dropdown_toggle_directive_2 = __webpack_require__(171);
-	exports.DropdownToggleDirective = dropdown_toggle_directive_2.DropdownToggleDirective;
-	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective];
-
-
-/***/ },
 /* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var __param = (this && this.__param) || function (paramIndex, decorator) {
-	    return function (target, key) { decorator(target, key, paramIndex); }
-	};
-	var core_1 = __webpack_require__(3);
-	var dropdown_directive_1 = __webpack_require__(21);
-	var DropdownMenuDirective = (function () {
-	    function DropdownMenuDirective(dropdown, el) {
-	        this.dropdown = dropdown;
-	        this.el = el;
-	    }
-	    DropdownMenuDirective.prototype.ngOnInit = function () {
-	        this.dropdown.dropDownMenu = this;
-	    };
-	    DropdownMenuDirective = __decorate([
-	        core_1.Directive({ selector: '[dropdownMenu]' }),
-	        __param(0, core_1.Host()), 
-	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
-	    ], DropdownMenuDirective);
-	    return DropdownMenuDirective;
-	}());
-	exports.DropdownMenuDirective = DropdownMenuDirective;
+	var dropdown_directive_1 = __webpack_require__(26);
+	var dropdown_menu_directive_1 = __webpack_require__(171);
+	var dropdown_toggle_directive_1 = __webpack_require__(172);
+	var dropdown_directive_2 = __webpack_require__(26);
+	exports.DropdownDirective = dropdown_directive_2.DropdownDirective;
+	var dropdown_menu_directive_2 = __webpack_require__(171);
+	exports.DropdownMenuDirective = dropdown_menu_directive_2.DropdownMenuDirective;
+	var dropdown_toggle_directive_2 = __webpack_require__(172);
+	exports.DropdownToggleDirective = dropdown_toggle_directive_2.DropdownToggleDirective;
+	exports.DROPDOWN_DIRECTIVES = [dropdown_directive_1.DropdownDirective, dropdown_toggle_directive_1.DropdownToggleDirective, dropdown_menu_directive_1.DropdownMenuDirective];
 
 
 /***/ },
@@ -16313,9 +16194,46 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var dropdown_directive_1 = __webpack_require__(21);
-	var lang_1 = __webpack_require__(2);
+	var core_1 = __webpack_require__(2);
+	var dropdown_directive_1 = __webpack_require__(26);
+	var DropdownMenuDirective = (function () {
+	    function DropdownMenuDirective(dropdown, el) {
+	        this.dropdown = dropdown;
+	        this.el = el;
+	    }
+	    DropdownMenuDirective.prototype.ngOnInit = function () {
+	        this.dropdown.dropDownMenu = this;
+	    };
+	    DropdownMenuDirective = __decorate([
+	        core_1.Directive({ selector: '[dropdownMenu]' }),
+	        __param(0, core_1.Host()), 
+	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
+	    ], DropdownMenuDirective);
+	    return DropdownMenuDirective;
+	}());
+	exports.DropdownMenuDirective = DropdownMenuDirective;
+
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var __param = (this && this.__param) || function (paramIndex, decorator) {
+	    return function (target, key) { decorator(target, key, paramIndex); }
+	};
+	var core_1 = __webpack_require__(2);
+	var dropdown_directive_1 = __webpack_require__(26);
+	var lang_1 = __webpack_require__(5);
 	var MouseEvent = lang_1.global.MouseEvent;
 	var DropdownToggleDirective = (function () {
 	    function DropdownToggleDirective(dropdown, el) {
@@ -16372,21 +16290,21 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var pagination_component_1 = __webpack_require__(34);
-	var pager_component_1 = __webpack_require__(173);
-	var pagination_component_2 = __webpack_require__(34);
+	var pagination_component_1 = __webpack_require__(38);
+	var pager_component_1 = __webpack_require__(174);
+	var pagination_component_2 = __webpack_require__(38);
 	exports.PaginationComponent = pagination_component_2.PaginationComponent;
-	var pager_component_2 = __webpack_require__(173);
+	var pager_component_2 = __webpack_require__(174);
 	exports.PagerComponent = pager_component_2.PagerComponent;
 	exports.PAGINATION_DIRECTIVES = [pagination_component_1.PaginationComponent, pager_component_1.PagerComponent];
 
 
 /***/ },
-/* 173 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16407,9 +16325,9 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var pagination_component_1 = __webpack_require__(34);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var pagination_component_1 = __webpack_require__(38);
 	var pagerConfig = {
 	    itemsPerPage: 10,
 	    previousText: '« Previous',
@@ -16443,24 +16361,24 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 174 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var progress_directive_1 = __webpack_require__(23);
-	var bar_component_1 = __webpack_require__(35);
-	var progressbar_component_1 = __webpack_require__(175);
-	var progress_directive_2 = __webpack_require__(23);
+	var progress_directive_1 = __webpack_require__(28);
+	var bar_component_1 = __webpack_require__(39);
+	var progressbar_component_1 = __webpack_require__(176);
+	var progress_directive_2 = __webpack_require__(28);
 	exports.ProgressDirective = progress_directive_2.ProgressDirective;
-	var bar_component_2 = __webpack_require__(35);
+	var bar_component_2 = __webpack_require__(39);
 	exports.BarComponent = bar_component_2.BarComponent;
-	var progressbar_component_2 = __webpack_require__(175);
+	var progressbar_component_2 = __webpack_require__(176);
 	exports.ProgressbarComponent = progressbar_component_2.ProgressbarComponent;
 	exports.PROGRESSBAR_DIRECTIVES = [progress_directive_1.ProgressDirective, bar_component_1.BarComponent, progressbar_component_1.ProgressbarComponent];
 
 
 /***/ },
-/* 175 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16473,9 +16391,9 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var progress_directive_1 = __webpack_require__(23);
-	var bar_component_1 = __webpack_require__(35);
+	var core_1 = __webpack_require__(2);
+	var progress_directive_1 = __webpack_require__(28);
+	var bar_component_1 = __webpack_require__(39);
 	var ProgressbarComponent = (function () {
 	    function ProgressbarComponent() {
 	    }
@@ -16509,33 +16427,33 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var rating_component_1 = __webpack_require__(263);
-	exports.RatingComponent = rating_component_1.RatingComponent;
-
-
-/***/ },
 /* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var tab_directive_1 = __webpack_require__(36);
-	var tabset_component_1 = __webpack_require__(37);
-	var tab_heading_directive_1 = __webpack_require__(178);
-	var tab_directive_2 = __webpack_require__(36);
+	var rating_component_1 = __webpack_require__(272);
+	exports.RatingComponent = rating_component_1.RatingComponent;
+
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var tab_directive_1 = __webpack_require__(40);
+	var tabset_component_1 = __webpack_require__(41);
+	var tab_heading_directive_1 = __webpack_require__(179);
+	var tab_directive_2 = __webpack_require__(40);
 	exports.TabDirective = tab_directive_2.TabDirective;
-	var tabset_component_2 = __webpack_require__(37);
+	var tabset_component_2 = __webpack_require__(41);
 	exports.TabsetComponent = tabset_component_2.TabsetComponent;
-	var tab_heading_directive_2 = __webpack_require__(178);
+	var tab_heading_directive_2 = __webpack_require__(179);
 	exports.TabHeadingDirective = tab_heading_directive_2.TabHeadingDirective;
 	exports.TAB_DIRECTIVES = [tab_directive_1.TabDirective, tab_heading_directive_1.TabHeadingDirective, tabset_component_1.TabsetComponent];
 
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16548,8 +16466,8 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var tab_directive_1 = __webpack_require__(36);
+	var core_1 = __webpack_require__(2);
+	var tab_directive_1 = __webpack_require__(40);
 	var TabHeadingDirective = (function () {
 	    function TabHeadingDirective(templateRef, tab) {
 	        tab.headingRef = templateRef;
@@ -16564,26 +16482,12 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var timepicker_component_1 = __webpack_require__(264);
-	exports.TimepickerComponent = timepicker_component_1.TimepickerComponent;
-
-
-/***/ },
 /* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var tooltip_directive_1 = __webpack_require__(182);
-	var tooltip_container_component_1 = __webpack_require__(38);
-	var tooltip_directive_2 = __webpack_require__(182);
-	exports.TooltipDirective = tooltip_directive_2.TooltipDirective;
-	var tooltip_container_component_2 = __webpack_require__(38);
-	exports.TooltipContainerComponent = tooltip_container_component_2.TooltipContainerComponent;
-	exports.TOOLTIP_DIRECTIVES = [tooltip_directive_1.TooltipDirective, tooltip_container_component_1.TooltipContainerComponent];
+	var timepicker_component_1 = __webpack_require__(273);
+	exports.TimepickerComponent = timepicker_component_1.TimepickerComponent;
 
 
 /***/ },
@@ -16591,27 +16495,13 @@ webpackJsonp([2],[
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var core_1 = __webpack_require__(3);
-	var TooltipOptions = (function () {
-	    function TooltipOptions(options) {
-	        Object.assign(this, options);
-	    }
-	    TooltipOptions = __decorate([
-	        core_1.Injectable(), 
-	        __metadata('design:paramtypes', [Object])
-	    ], TooltipOptions);
-	    return TooltipOptions;
-	}());
-	exports.TooltipOptions = TooltipOptions;
+	var tooltip_directive_1 = __webpack_require__(183);
+	var tooltip_container_component_1 = __webpack_require__(42);
+	var tooltip_directive_2 = __webpack_require__(183);
+	exports.TooltipDirective = tooltip_directive_2.TooltipDirective;
+	var tooltip_container_component_2 = __webpack_require__(42);
+	exports.TooltipContainerComponent = tooltip_container_component_2.TooltipContainerComponent;
+	exports.TOOLTIP_DIRECTIVES = [tooltip_directive_1.TooltipDirective, tooltip_container_component_1.TooltipContainerComponent];
 
 
 /***/ },
@@ -16628,9 +16518,37 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var tooltip_options_class_1 = __webpack_require__(181);
-	var tooltip_container_component_1 = __webpack_require__(38);
+	var core_1 = __webpack_require__(2);
+	var TooltipOptions = (function () {
+	    function TooltipOptions(options) {
+	        Object.assign(this, options);
+	    }
+	    TooltipOptions = __decorate([
+	        core_1.Injectable(), 
+	        __metadata('design:paramtypes', [Object])
+	    ], TooltipOptions);
+	    return TooltipOptions;
+	}());
+	exports.TooltipOptions = TooltipOptions;
+
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+	    return c > 3 && r && Object.defineProperty(target, key, r), r;
+	};
+	var __metadata = (this && this.__metadata) || function (k, v) {
+	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+	};
+	var core_1 = __webpack_require__(2);
+	var tooltip_options_class_1 = __webpack_require__(182);
+	var tooltip_container_component_1 = __webpack_require__(42);
 	var TooltipDirective = (function () {
 	    function TooltipDirective(viewContainerRef, loader) {
 	        this.placement = 'top';
@@ -16717,27 +16635,27 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var typeahead_directive_1 = __webpack_require__(185);
-	var typeahead_container_component_1 = __webpack_require__(39);
-	var typeahead_directive_2 = __webpack_require__(185);
+	var typeahead_directive_1 = __webpack_require__(186);
+	var typeahead_container_component_1 = __webpack_require__(43);
+	var typeahead_directive_2 = __webpack_require__(186);
 	exports.TypeaheadDirective = typeahead_directive_2.TypeaheadDirective;
-	var typeahead_container_component_2 = __webpack_require__(39);
+	var typeahead_container_component_2 = __webpack_require__(43);
 	exports.TypeaheadContainerComponent = typeahead_container_component_2.TypeaheadContainerComponent;
-	var typeahead_options_class_1 = __webpack_require__(40);
+	var typeahead_options_class_1 = __webpack_require__(44);
 	exports.TypeaheadOptions = typeahead_options_class_1.TypeaheadOptions;
 	exports.TYPEAHEAD_DIRECTIVES = [typeahead_directive_1.TypeaheadDirective, typeahead_container_component_1.TypeaheadContainerComponent];
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var latin_map_1 = __webpack_require__(265);
+	var latin_map_1 = __webpack_require__(274);
 	var TypeaheadUtils = (function () {
 	    function TypeaheadUtils() {
 	    }
@@ -16773,7 +16691,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16786,12 +16704,12 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var typeahead_utils_1 = __webpack_require__(184);
-	var typeahead_container_component_1 = __webpack_require__(39);
-	var typeahead_options_class_1 = __webpack_require__(40);
-	var lang_1 = __webpack_require__(2);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var typeahead_utils_1 = __webpack_require__(185);
+	var typeahead_container_component_1 = __webpack_require__(43);
+	var typeahead_options_class_1 = __webpack_require__(44);
+	var lang_1 = __webpack_require__(5);
 	var KeyboardEvent = lang_1.global.KeyboardEvent;
 	function setProperty(renderer, elementRef, propName, propValue) {
 	    renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
@@ -17162,86 +17080,6 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 186 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
-	var __metadata = (this && this.__metadata) || function (k, v) {
-	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-	};
-	var di_1 = __webpack_require__(7);
-	var math_1 = __webpack_require__(55);
-	var dom_adapter_1 = __webpack_require__(10);
-	var BrowserDetails = (function () {
-	    function BrowserDetails() {
-	        this.elapsedTimeIncludesDelay = false;
-	        this.doesElapsedTimeIncludesDelay();
-	    }
-	    /**
-	     * Determines if `event.elapsedTime` includes transition delay in the current browser.  At this
-	     * time, Chrome and Opera seem to be the only browsers that include this.
-	     */
-	    BrowserDetails.prototype.doesElapsedTimeIncludesDelay = function () {
-	        var _this = this;
-	        var div = dom_adapter_1.DOM.createElement('div');
-	        dom_adapter_1.DOM.setAttribute(div, 'style', "position: absolute; top: -9999px; left: -9999px; width: 1px;\n      height: 1px; transition: all 1ms linear 1ms;");
-	        // Firefox requires that we wait for 2 frames for some reason
-	        this.raf(function (timestamp) {
-	            dom_adapter_1.DOM.on(div, 'transitionend', function (event) {
-	                var elapsed = math_1.Math.round(event.elapsedTime * 1000);
-	                _this.elapsedTimeIncludesDelay = elapsed == 2;
-	                dom_adapter_1.DOM.remove(div);
-	            });
-	            dom_adapter_1.DOM.setStyle(div, 'width', '2px');
-	        }, 2);
-	    };
-	    BrowserDetails.prototype.raf = function (callback, frames) {
-	        if (frames === void 0) { frames = 1; }
-	        var queue = new RafQueue(callback, frames);
-	        return function () { return queue.cancel(); };
-	    };
-	    BrowserDetails = __decorate([
-	        di_1.Injectable(), 
-	        __metadata('design:paramtypes', [])
-	    ], BrowserDetails);
-	    return BrowserDetails;
-	}());
-	exports.BrowserDetails = BrowserDetails;
-	var RafQueue = (function () {
-	    function RafQueue(callback, frames) {
-	        this.callback = callback;
-	        this.frames = frames;
-	        this._raf();
-	    }
-	    RafQueue.prototype._raf = function () {
-	        var _this = this;
-	        this.currentFrameId =
-	            dom_adapter_1.DOM.requestAnimationFrame(function (timestamp) { return _this._nextFrame(timestamp); });
-	    };
-	    RafQueue.prototype._nextFrame = function (timestamp) {
-	        this.frames--;
-	        if (this.frames > 0) {
-	            this._raf();
-	        }
-	        else {
-	            this.callback(timestamp);
-	        }
-	    };
-	    RafQueue.prototype.cancel = function () {
-	        dom_adapter_1.DOM.cancelAnimationFrame(this.currentFrameId);
-	        this.currentFrameId = null;
-	    };
-	    return RafQueue;
-	}());
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJvd3Nlcl9kZXRhaWxzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZGlmZmluZ19wbHVnaW5fd3JhcHBlci1vdXRwdXRfcGF0aC00bm8zWlF2Ty50bXAvYW5ndWxhcjIvc3JjL2FuaW1hdGUvYnJvd3Nlcl9kZXRhaWxzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFBQSxtQkFBeUIsc0JBQXNCLENBQUMsQ0FBQTtBQUNoRCxxQkFBbUIsMEJBQTBCLENBQUMsQ0FBQTtBQUM5Qyw0QkFBa0IsdUNBQXVDLENBQUMsQ0FBQTtBQUcxRDtJQUdFO1FBRkEsNkJBQXdCLEdBQUcsS0FBSyxDQUFDO1FBRWpCLElBQUksQ0FBQyw0QkFBNEIsRUFBRSxDQUFDO0lBQUMsQ0FBQztJQUV0RDs7O09BR0c7SUFDSCxxREFBNEIsR0FBNUI7UUFBQSxpQkFhQztRQVpDLElBQUksR0FBRyxHQUFHLGlCQUFHLENBQUMsYUFBYSxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ25DLGlCQUFHLENBQUMsWUFBWSxDQUFDLEdBQUcsRUFBRSxPQUFPLEVBQUUsa0hBQ2dCLENBQUMsQ0FBQztRQUNqRCw2REFBNkQ7UUFDN0QsSUFBSSxDQUFDLEdBQUcsQ0FBQyxVQUFDLFNBQWM7WUFDdEIsaUJBQUcsQ0FBQyxFQUFFLENBQUMsR0FBRyxFQUFFLGVBQWUsRUFBRSxVQUFDLEtBQVU7Z0JBQ3RDLElBQUksT0FBTyxHQUFHLFdBQUksQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDLFdBQVcsR0FBRyxJQUFJLENBQUMsQ0FBQztnQkFDbkQsS0FBSSxDQUFDLHdCQUF3QixHQUFHLE9BQU8sSUFBSSxDQUFDLENBQUM7Z0JBQzdDLGlCQUFHLENBQUMsTUFBTSxDQUFDLEdBQUcsQ0FBQyxDQUFDO1lBQ2xCLENBQUMsQ0FBQyxDQUFDO1lBQ0gsaUJBQUcsQ0FBQyxRQUFRLENBQUMsR0FBRyxFQUFFLE9BQU8sRUFBRSxLQUFLLENBQUMsQ0FBQztRQUNwQyxDQUFDLEVBQUUsQ0FBQyxDQUFDLENBQUM7SUFDUixDQUFDO0lBRUQsNEJBQUcsR0FBSCxVQUFJLFFBQWtCLEVBQUUsTUFBa0I7UUFBbEIsc0JBQWtCLEdBQWxCLFVBQWtCO1FBQ3hDLElBQUksS0FBSyxHQUFhLElBQUksUUFBUSxDQUFDLFFBQVEsRUFBRSxNQUFNLENBQUMsQ0FBQztRQUNyRCxNQUFNLENBQUMsY0FBTSxPQUFBLEtBQUssQ0FBQyxNQUFNLEVBQUUsRUFBZCxDQUFjLENBQUM7SUFDOUIsQ0FBQztJQTVCSDtRQUFDLGVBQVUsRUFBRTs7c0JBQUE7SUE2QmIscUJBQUM7QUFBRCxDQUFDLEFBNUJELElBNEJDO0FBNUJZLHNCQUFjLGlCQTRCMUIsQ0FBQTtBQUVEO0lBRUUsa0JBQW1CLFFBQWtCLEVBQVMsTUFBYztRQUF6QyxhQUFRLEdBQVIsUUFBUSxDQUFVO1FBQVMsV0FBTSxHQUFOLE1BQU0sQ0FBUTtRQUFJLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQztJQUFDLENBQUM7SUFDdEUsdUJBQUksR0FBWjtRQUFBLGlCQUdDO1FBRkMsSUFBSSxDQUFDLGNBQWM7WUFDZixpQkFBRyxDQUFDLHFCQUFxQixDQUFDLFVBQUMsU0FBaUIsSUFBSyxPQUFBLEtBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEVBQTFCLENBQTBCLENBQUMsQ0FBQztJQUNuRixDQUFDO0lBQ08sNkJBQVUsR0FBbEIsVUFBbUIsU0FBaUI7UUFDbEMsSUFBSSxDQUFDLE1BQU0sRUFBRSxDQUFDO1FBQ2QsRUFBRSxDQUFDLENBQUMsSUFBSSxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBQ3BCLElBQUksQ0FBQyxJQUFJLEVBQUUsQ0FBQztRQUNkLENBQUM7UUFBQyxJQUFJLENBQUMsQ0FBQztZQUNOLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLENBQUM7UUFDM0IsQ0FBQztJQUNILENBQUM7SUFDRCx5QkFBTSxHQUFOO1FBQ0UsaUJBQUcsQ0FBQyxvQkFBb0IsQ0FBQyxJQUFJLENBQUMsY0FBYyxDQUFDLENBQUM7UUFDOUMsSUFBSSxDQUFDLGNBQWMsR0FBRyxJQUFJLENBQUM7SUFDN0IsQ0FBQztJQUNILGVBQUM7QUFBRCxDQUFDLEFBbkJELElBbUJDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtJbmplY3RhYmxlfSBmcm9tICdhbmd1bGFyMi9zcmMvY29yZS9kaSc7XG5pbXBvcnQge01hdGh9IGZyb20gJ2FuZ3VsYXIyL3NyYy9mYWNhZGUvbWF0aCc7XG5pbXBvcnQge0RPTX0gZnJvbSAnYW5ndWxhcjIvc3JjL3BsYXRmb3JtL2RvbS9kb21fYWRhcHRlcic7XG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBCcm93c2VyRGV0YWlscyB7XG4gIGVsYXBzZWRUaW1lSW5jbHVkZXNEZWxheSA9IGZhbHNlO1xuXG4gIGNvbnN0cnVjdG9yKCkgeyB0aGlzLmRvZXNFbGFwc2VkVGltZUluY2x1ZGVzRGVsYXkoKTsgfVxuXG4gIC8qKlxuICAgKiBEZXRlcm1pbmVzIGlmIGBldmVudC5lbGFwc2VkVGltZWAgaW5jbHVkZXMgdHJhbnNpdGlvbiBkZWxheSBpbiB0aGUgY3VycmVudCBicm93c2VyLiAgQXQgdGhpc1xuICAgKiB0aW1lLCBDaHJvbWUgYW5kIE9wZXJhIHNlZW0gdG8gYmUgdGhlIG9ubHkgYnJvd3NlcnMgdGhhdCBpbmNsdWRlIHRoaXMuXG4gICAqL1xuICBkb2VzRWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5KCk6IHZvaWQge1xuICAgIHZhciBkaXYgPSBET00uY3JlYXRlRWxlbWVudCgnZGl2Jyk7XG4gICAgRE9NLnNldEF0dHJpYnV0ZShkaXYsICdzdHlsZScsIGBwb3NpdGlvbjogYWJzb2x1dGU7IHRvcDogLTk5OTlweDsgbGVmdDogLTk5OTlweDsgd2lkdGg6IDFweDtcbiAgICAgIGhlaWdodDogMXB4OyB0cmFuc2l0aW9uOiBhbGwgMW1zIGxpbmVhciAxbXM7YCk7XG4gICAgLy8gRmlyZWZveCByZXF1aXJlcyB0aGF0IHdlIHdhaXQgZm9yIDIgZnJhbWVzIGZvciBzb21lIHJlYXNvblxuICAgIHRoaXMucmFmKCh0aW1lc3RhbXA6IGFueSkgPT4ge1xuICAgICAgRE9NLm9uKGRpdiwgJ3RyYW5zaXRpb25lbmQnLCAoZXZlbnQ6IGFueSkgPT4ge1xuICAgICAgICB2YXIgZWxhcHNlZCA9IE1hdGgucm91bmQoZXZlbnQuZWxhcHNlZFRpbWUgKiAxMDAwKTtcbiAgICAgICAgdGhpcy5lbGFwc2VkVGltZUluY2x1ZGVzRGVsYXkgPSBlbGFwc2VkID09IDI7XG4gICAgICAgIERPTS5yZW1vdmUoZGl2KTtcbiAgICAgIH0pO1xuICAgICAgRE9NLnNldFN0eWxlKGRpdiwgJ3dpZHRoJywgJzJweCcpO1xuICAgIH0sIDIpO1xuICB9XG5cbiAgcmFmKGNhbGxiYWNrOiBGdW5jdGlvbiwgZnJhbWVzOiBudW1iZXIgPSAxKTogRnVuY3Rpb24ge1xuICAgIHZhciBxdWV1ZTogUmFmUXVldWUgPSBuZXcgUmFmUXVldWUoY2FsbGJhY2ssIGZyYW1lcyk7XG4gICAgcmV0dXJuICgpID0+IHF1ZXVlLmNhbmNlbCgpO1xuICB9XG59XG5cbmNsYXNzIFJhZlF1ZXVlIHtcbiAgY3VycmVudEZyYW1lSWQ6IG51bWJlcjtcbiAgY29uc3RydWN0b3IocHVibGljIGNhbGxiYWNrOiBGdW5jdGlvbiwgcHVibGljIGZyYW1lczogbnVtYmVyKSB7IHRoaXMuX3JhZigpOyB9XG4gIHByaXZhdGUgX3JhZigpIHtcbiAgICB0aGlzLmN1cnJlbnRGcmFtZUlkID1cbiAgICAgICAgRE9NLnJlcXVlc3RBbmltYXRpb25GcmFtZSgodGltZXN0YW1wOiBudW1iZXIpID0+IHRoaXMuX25leHRGcmFtZSh0aW1lc3RhbXApKTtcbiAgfVxuICBwcml2YXRlIF9uZXh0RnJhbWUodGltZXN0YW1wOiBudW1iZXIpIHtcbiAgICB0aGlzLmZyYW1lcy0tO1xuICAgIGlmICh0aGlzLmZyYW1lcyA+IDApIHtcbiAgICAgIHRoaXMuX3JhZigpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmNhbGxiYWNrKHRpbWVzdGFtcCk7XG4gICAgfVxuICB9XG4gIGNhbmNlbCgpIHtcbiAgICBET00uY2FuY2VsQW5pbWF0aW9uRnJhbWUodGhpcy5jdXJyZW50RnJhbWVJZCk7XG4gICAgdGhpcy5jdXJyZW50RnJhbWVJZCA9IG51bGw7XG4gIH1cbn1cbiJdfQ==
-
-/***/ },
 /* 187 */,
 /* 188 */,
 /* 189 */,
@@ -17260,325 +17098,12 @@ webpackJsonp([2],[
 /* 202 */,
 /* 203 */,
 /* 204 */,
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var lang_1 = __webpack_require__(2);
-	var CAMEL_CASE_REGEXP = /([A-Z])/g;
-	var DASH_CASE_REGEXP = /-([a-z])/g;
-	function camelCaseToDashCase(input) {
-	    return lang_1.StringWrapper.replaceAllMapped(input, CAMEL_CASE_REGEXP, function (m) { return '-' + m[1].toLowerCase(); });
-	}
-	exports.camelCaseToDashCase = camelCaseToDashCase;
-	function dashCaseToCamelCase(input) {
-	    return lang_1.StringWrapper.replaceAllMapped(input, DASH_CASE_REGEXP, function (m) { return m[1].toUpperCase(); });
-	}
-	exports.dashCaseToCamelCase = dashCaseToCamelCase;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImRpZmZpbmdfcGx1Z2luX3dyYXBwZXItb3V0cHV0X3BhdGgtNG5vM1pRdk8udG1wL2FuZ3VsYXIyL3NyYy9wbGF0Zm9ybS9kb20vdXRpbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEscUJBQTRCLDBCQUEwQixDQUFDLENBQUE7QUFFdkQsSUFBSSxpQkFBaUIsR0FBRyxVQUFVLENBQUM7QUFDbkMsSUFBSSxnQkFBZ0IsR0FBRyxXQUFXLENBQUM7QUFHbkMsNkJBQW9DLEtBQWE7SUFDL0MsTUFBTSxDQUFDLG9CQUFhLENBQUMsZ0JBQWdCLENBQUMsS0FBSyxFQUFFLGlCQUFpQixFQUN4QixVQUFDLENBQUMsSUFBTyxNQUFNLENBQUMsR0FBRyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxXQUFXLEVBQUUsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO0FBQ3JGLENBQUM7QUFIZSwyQkFBbUIsc0JBR2xDLENBQUE7QUFFRCw2QkFBb0MsS0FBYTtJQUMvQyxNQUFNLENBQUMsb0JBQWEsQ0FBQyxnQkFBZ0IsQ0FBQyxLQUFLLEVBQUUsZ0JBQWdCLEVBQ3ZCLFVBQUMsQ0FBQyxJQUFPLE1BQU0sQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsV0FBVyxFQUFFLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztBQUMvRSxDQUFDO0FBSGUsMkJBQW1CLHNCQUdsQyxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtTdHJpbmdXcmFwcGVyfSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL2xhbmcnO1xuXG52YXIgQ0FNRUxfQ0FTRV9SRUdFWFAgPSAvKFtBLVpdKS9nO1xudmFyIERBU0hfQ0FTRV9SRUdFWFAgPSAvLShbYS16XSkvZztcblxuXG5leHBvcnQgZnVuY3Rpb24gY2FtZWxDYXNlVG9EYXNoQ2FzZShpbnB1dDogc3RyaW5nKTogc3RyaW5nIHtcbiAgcmV0dXJuIFN0cmluZ1dyYXBwZXIucmVwbGFjZUFsbE1hcHBlZChpbnB1dCwgQ0FNRUxfQ0FTRV9SRUdFWFAsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKG0pID0+IHsgcmV0dXJuICctJyArIG1bMV0udG9Mb3dlckNhc2UoKTsgfSk7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBkYXNoQ2FzZVRvQ2FtZWxDYXNlKGlucHV0OiBzdHJpbmcpOiBzdHJpbmcge1xuICByZXR1cm4gU3RyaW5nV3JhcHBlci5yZXBsYWNlQWxsTWFwcGVkKGlucHV0LCBEQVNIX0NBU0VfUkVHRVhQLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIChtKSA9PiB7IHJldHVybiBtWzFdLnRvVXBwZXJDYXNlKCk7IH0pO1xufVxuIl19
-
-/***/ },
+/* 205 */,
 /* 206 */,
 /* 207 */,
-/* 208 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var lang_1 = __webpack_require__(2);
-	var math_1 = __webpack_require__(55);
-	var util_1 = __webpack_require__(205);
-	var collection_1 = __webpack_require__(5);
-	var dom_adapter_1 = __webpack_require__(10);
-	var Animation = (function () {
-	    /**
-	     * Stores the start time and starts the animation
-	     * @param element
-	     * @param data
-	     * @param browserDetails
-	     */
-	    function Animation(element, data, browserDetails) {
-	        var _this = this;
-	        this.element = element;
-	        this.data = data;
-	        this.browserDetails = browserDetails;
-	        /** functions to be called upon completion */
-	        this.callbacks = [];
-	        /** functions for removing event listeners */
-	        this.eventClearFunctions = [];
-	        /** flag used to track whether or not the animation has finished */
-	        this.completed = false;
-	        this._stringPrefix = '';
-	        this.startTime = lang_1.DateWrapper.toMillis(lang_1.DateWrapper.now());
-	        this._stringPrefix = dom_adapter_1.DOM.getAnimationPrefix();
-	        this.setup();
-	        this.wait(function (timestamp) { return _this.start(); });
-	    }
-	    Object.defineProperty(Animation.prototype, "totalTime", {
-	        /** total amount of time that the animation should take including delay */
-	        get: function () {
-	            var delay = this.computedDelay != null ? this.computedDelay : 0;
-	            var duration = this.computedDuration != null ? this.computedDuration : 0;
-	            return delay + duration;
-	        },
-	        enumerable: true,
-	        configurable: true
-	    });
-	    Animation.prototype.wait = function (callback) {
-	        // Firefox requires 2 frames for some reason
-	        this.browserDetails.raf(callback, 2);
-	    };
-	    /**
-	     * Sets up the initial styles before the animation is started
-	     */
-	    Animation.prototype.setup = function () {
-	        if (this.data.fromStyles != null)
-	            this.applyStyles(this.data.fromStyles);
-	        if (this.data.duration != null)
-	            this.applyStyles({ 'transitionDuration': this.data.duration.toString() + 'ms' });
-	        if (this.data.delay != null)
-	            this.applyStyles({ 'transitionDelay': this.data.delay.toString() + 'ms' });
-	    };
-	    /**
-	     * After the initial setup has occurred, this method adds the animation styles
-	     */
-	    Animation.prototype.start = function () {
-	        this.addClasses(this.data.classesToAdd);
-	        this.addClasses(this.data.animationClasses);
-	        this.removeClasses(this.data.classesToRemove);
-	        if (this.data.toStyles != null)
-	            this.applyStyles(this.data.toStyles);
-	        var computedStyles = dom_adapter_1.DOM.getComputedStyle(this.element);
-	        this.computedDelay =
-	            math_1.Math.max(this.parseDurationString(computedStyles.getPropertyValue(this._stringPrefix + 'transition-delay')), this.parseDurationString(this.element.style.getPropertyValue(this._stringPrefix + 'transition-delay')));
-	        this.computedDuration = math_1.Math.max(this.parseDurationString(computedStyles.getPropertyValue(this._stringPrefix + 'transition-duration')), this.parseDurationString(this.element.style.getPropertyValue(this._stringPrefix + 'transition-duration')));
-	        this.addEvents();
-	    };
-	    /**
-	     * Applies the provided styles to the element
-	     * @param styles
-	     */
-	    Animation.prototype.applyStyles = function (styles) {
-	        var _this = this;
-	        collection_1.StringMapWrapper.forEach(styles, function (value, key) {
-	            var dashCaseKey = util_1.camelCaseToDashCase(key);
-	            if (lang_1.isPresent(dom_adapter_1.DOM.getStyle(_this.element, dashCaseKey))) {
-	                dom_adapter_1.DOM.setStyle(_this.element, dashCaseKey, value.toString());
-	            }
-	            else {
-	                dom_adapter_1.DOM.setStyle(_this.element, _this._stringPrefix + dashCaseKey, value.toString());
-	            }
-	        });
-	    };
-	    /**
-	     * Adds the provided classes to the element
-	     * @param classes
-	     */
-	    Animation.prototype.addClasses = function (classes) {
-	        for (var i = 0, len = classes.length; i < len; i++)
-	            dom_adapter_1.DOM.addClass(this.element, classes[i]);
-	    };
-	    /**
-	     * Removes the provided classes from the element
-	     * @param classes
-	     */
-	    Animation.prototype.removeClasses = function (classes) {
-	        for (var i = 0, len = classes.length; i < len; i++)
-	            dom_adapter_1.DOM.removeClass(this.element, classes[i]);
-	    };
-	    /**
-	     * Adds events to track when animations have finished
-	     */
-	    Animation.prototype.addEvents = function () {
-	        var _this = this;
-	        if (this.totalTime > 0) {
-	            this.eventClearFunctions.push(dom_adapter_1.DOM.onAndCancel(this.element, dom_adapter_1.DOM.getTransitionEnd(), function (event) { return _this.handleAnimationEvent(event); }));
-	        }
-	        else {
-	            this.handleAnimationCompleted();
-	        }
-	    };
-	    Animation.prototype.handleAnimationEvent = function (event) {
-	        var elapsedTime = math_1.Math.round(event.elapsedTime * 1000);
-	        if (!this.browserDetails.elapsedTimeIncludesDelay)
-	            elapsedTime += this.computedDelay;
-	        event.stopPropagation();
-	        if (elapsedTime >= this.totalTime)
-	            this.handleAnimationCompleted();
-	    };
-	    /**
-	     * Runs all animation callbacks and removes temporary classes
-	     */
-	    Animation.prototype.handleAnimationCompleted = function () {
-	        this.removeClasses(this.data.animationClasses);
-	        this.callbacks.forEach(function (callback) { return callback(); });
-	        this.callbacks = [];
-	        this.eventClearFunctions.forEach(function (fn) { return fn(); });
-	        this.eventClearFunctions = [];
-	        this.completed = true;
-	    };
-	    /**
-	     * Adds animation callbacks to be called upon completion
-	     * @param callback
-	     * @returns {Animation}
-	     */
-	    Animation.prototype.onComplete = function (callback) {
-	        if (this.completed) {
-	            callback();
-	        }
-	        else {
-	            this.callbacks.push(callback);
-	        }
-	        return this;
-	    };
-	    /**
-	     * Converts the duration string to the number of milliseconds
-	     * @param duration
-	     * @returns {number}
-	     */
-	    Animation.prototype.parseDurationString = function (duration) {
-	        var maxValue = 0;
-	        // duration must have at least 2 characters to be valid. (number + type)
-	        if (duration == null || duration.length < 2) {
-	            return maxValue;
-	        }
-	        else if (duration.substring(duration.length - 2) == 'ms') {
-	            var value = lang_1.NumberWrapper.parseInt(this.stripLetters(duration), 10);
-	            if (value > maxValue)
-	                maxValue = value;
-	        }
-	        else if (duration.substring(duration.length - 1) == 's') {
-	            var ms = lang_1.NumberWrapper.parseFloat(this.stripLetters(duration)) * 1000;
-	            var value = math_1.Math.floor(ms);
-	            if (value > maxValue)
-	                maxValue = value;
-	        }
-	        return maxValue;
-	    };
-	    /**
-	     * Strips the letters from the duration string
-	     * @param str
-	     * @returns {string}
-	     */
-	    Animation.prototype.stripLetters = function (str) {
-	        return lang_1.StringWrapper.replaceAll(str, lang_1.RegExpWrapper.create('[^0-9]+$', ''), '');
-	    };
-	    return Animation;
-	}());
-	exports.Animation = Animation;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYW5pbWF0aW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZGlmZmluZ19wbHVnaW5fd3JhcHBlci1vdXRwdXRfcGF0aC00bm8zWlF2Ty50bXAvYW5ndWxhcjIvc3JjL2FuaW1hdGUvYW5pbWF0aW9uLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxxQkFNTywwQkFBMEIsQ0FBQyxDQUFBO0FBQ2xDLHFCQUFtQiwwQkFBMEIsQ0FBQyxDQUFBO0FBQzlDLHFCQUFrQyxnQ0FBZ0MsQ0FBQyxDQUFBO0FBQ25FLDJCQUErQixnQ0FBZ0MsQ0FBQyxDQUFBO0FBQ2hFLDRCQUFrQix1Q0FBdUMsQ0FBQyxDQUFBO0FBSzFEO0lBNEJFOzs7OztPQUtHO0lBQ0gsbUJBQW1CLE9BQW9CLEVBQVMsSUFBeUIsRUFDdEQsY0FBOEI7UUFuQ25ELGlCQXdMQztRQXRKb0IsWUFBTyxHQUFQLE9BQU8sQ0FBYTtRQUFTLFNBQUksR0FBSixJQUFJLENBQXFCO1FBQ3RELG1CQUFjLEdBQWQsY0FBYyxDQUFnQjtRQWxDakQsNkNBQTZDO1FBQzdDLGNBQVMsR0FBZSxFQUFFLENBQUM7UUFXM0IsNkNBQTZDO1FBQzdDLHdCQUFtQixHQUFlLEVBQUUsQ0FBQztRQUVyQyxtRUFBbUU7UUFDbkUsY0FBUyxHQUFZLEtBQUssQ0FBQztRQUVuQixrQkFBYSxHQUFXLEVBQUUsQ0FBQztRQWlCakMsSUFBSSxDQUFDLFNBQVMsR0FBRyxrQkFBVyxDQUFDLFFBQVEsQ0FBQyxrQkFBVyxDQUFDLEdBQUcsRUFBRSxDQUFDLENBQUM7UUFDekQsSUFBSSxDQUFDLGFBQWEsR0FBRyxpQkFBRyxDQUFDLGtCQUFrQixFQUFFLENBQUM7UUFDOUMsSUFBSSxDQUFDLEtBQUssRUFBRSxDQUFDO1FBQ2IsSUFBSSxDQUFDLElBQUksQ0FBQyxVQUFDLFNBQWMsSUFBSyxPQUFBLEtBQUksQ0FBQyxLQUFLLEVBQUUsRUFBWixDQUFZLENBQUMsQ0FBQztJQUM5QyxDQUFDO0lBbEJELHNCQUFJLGdDQUFTO1FBRGIsMEVBQTBFO2FBQzFFO1lBQ0UsSUFBSSxLQUFLLEdBQUcsSUFBSSxDQUFDLGFBQWEsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDLGFBQWEsR0FBRyxDQUFDLENBQUM7WUFDaEUsSUFBSSxRQUFRLEdBQUcsSUFBSSxDQUFDLGdCQUFnQixJQUFJLElBQUksR0FBRyxJQUFJLENBQUMsZ0JBQWdCLEdBQUcsQ0FBQyxDQUFDO1lBQ3pFLE1BQU0sQ0FBQyxLQUFLLEdBQUcsUUFBUSxDQUFDO1FBQzFCLENBQUM7OztPQUFBO0lBZ0JELHdCQUFJLEdBQUosVUFBSyxRQUFrQjtRQUNyQiw0Q0FBNEM7UUFDNUMsSUFBSSxDQUFDLGNBQWMsQ0FBQyxHQUFHLENBQUMsUUFBUSxFQUFFLENBQUMsQ0FBQyxDQUFDO0lBQ3ZDLENBQUM7SUFFRDs7T0FFRztJQUNILHlCQUFLLEdBQUw7UUFDRSxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLFVBQVUsSUFBSSxJQUFJLENBQUM7WUFBQyxJQUFJLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxDQUFDLENBQUM7UUFDekUsRUFBRSxDQUFDLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxRQUFRLElBQUksSUFBSSxDQUFDO1lBQzdCLElBQUksQ0FBQyxXQUFXLENBQUMsRUFBQyxvQkFBb0IsRUFBRSxJQUFJLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxRQUFRLEVBQUUsR0FBRyxJQUFJLEVBQUMsQ0FBQyxDQUFDO1FBQ2pGLEVBQUUsQ0FBQyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsS0FBSyxJQUFJLElBQUksQ0FBQztZQUMxQixJQUFJLENBQUMsV0FBVyxDQUFDLEVBQUMsaUJBQWlCLEVBQUUsSUFBSSxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsUUFBUSxFQUFFLEdBQUcsSUFBSSxFQUFDLENBQUMsQ0FBQztJQUM3RSxDQUFDO0lBRUQ7O09BRUc7SUFDSCx5QkFBSyxHQUFMO1FBQ0UsSUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDO1FBQ3hDLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDO1FBQzVDLElBQUksQ0FBQyxhQUFhLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxlQUFlLENBQUMsQ0FBQztRQUM5QyxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLFFBQVEsSUFBSSxJQUFJLENBQUM7WUFBQyxJQUFJLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLENBQUM7UUFDckUsSUFBSSxjQUFjLEdBQUcsaUJBQUcsQ0FBQyxnQkFBZ0IsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLENBQUM7UUFDeEQsSUFBSSxDQUFDLGFBQWE7WUFDZCxXQUFJLENBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxtQkFBbUIsQ0FDcEIsY0FBYyxDQUFDLGdCQUFnQixDQUFDLElBQUksQ0FBQyxhQUFhLEdBQUcsa0JBQWtCLENBQUMsQ0FBQyxFQUM3RSxJQUFJLENBQUMsbUJBQW1CLENBQ3BCLElBQUksQ0FBQyxPQUFPLENBQUMsS0FBSyxDQUFDLGdCQUFnQixDQUFDLElBQUksQ0FBQyxhQUFhLEdBQUcsa0JBQWtCLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFDaEcsSUFBSSxDQUFDLGdCQUFnQixHQUFHLFdBQUksQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLG1CQUFtQixDQUFDLGNBQWMsQ0FBQyxnQkFBZ0IsQ0FDcEQsSUFBSSxDQUFDLGFBQWEsR0FBRyxxQkFBcUIsQ0FBQyxDQUFDLEVBQ2hELElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLEtBQUssQ0FBQyxnQkFBZ0IsQ0FDeEQsSUFBSSxDQUFDLGFBQWEsR0FBRyxxQkFBcUIsQ0FBQyxDQUFDLENBQUMsQ0FBQztRQUNuRixJQUFJLENBQUMsU0FBUyxFQUFFLENBQUM7SUFDbkIsQ0FBQztJQUVEOzs7T0FHRztJQUNILCtCQUFXLEdBQVgsVUFBWSxNQUE0QjtRQUF4QyxpQkFTQztRQVJDLDZCQUFnQixDQUFDLE9BQU8sQ0FBQyxNQUFNLEVBQUUsVUFBQyxLQUFVLEVBQUUsR0FBVztZQUN2RCxJQUFJLFdBQVcsR0FBRywwQkFBbUIsQ0FBQyxHQUFHLENBQUMsQ0FBQztZQUMzQyxFQUFFLENBQUMsQ0FBQyxnQkFBUyxDQUFDLGlCQUFHLENBQUMsUUFBUSxDQUFDLEtBQUksQ0FBQyxPQUFPLEVBQUUsV0FBVyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUM7Z0JBQ3ZELGlCQUFHLENBQUMsUUFBUSxDQUFDLEtBQUksQ0FBQyxPQUFPLEVBQUUsV0FBVyxFQUFFLEtBQUssQ0FBQyxRQUFRLEVBQUUsQ0FBQyxDQUFDO1lBQzVELENBQUM7WUFBQyxJQUFJLENBQUMsQ0FBQztnQkFDTixpQkFBRyxDQUFDLFFBQVEsQ0FBQyxLQUFJLENBQUMsT0FBTyxFQUFFLEtBQUksQ0FBQyxhQUFhLEdBQUcsV0FBVyxFQUFFLEtBQUssQ0FBQyxRQUFRLEVBQUUsQ0FBQyxDQUFDO1lBQ2pGLENBQUM7UUFDSCxDQUFDLENBQUMsQ0FBQztJQUNMLENBQUM7SUFFRDs7O09BR0c7SUFDSCw4QkFBVSxHQUFWLFVBQVcsT0FBaUI7UUFDMUIsR0FBRyxDQUFDLENBQUMsSUFBSSxDQUFDLEdBQUcsQ0FBQyxFQUFFLEdBQUcsR0FBRyxPQUFPLENBQUMsTUFBTSxFQUFFLENBQUMsR0FBRyxHQUFHLEVBQUUsQ0FBQyxFQUFFO1lBQUUsaUJBQUcsQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLE9BQU8sRUFBRSxPQUFPLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUM3RixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsaUNBQWEsR0FBYixVQUFjLE9BQWlCO1FBQzdCLEdBQUcsQ0FBQyxDQUFDLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBRSxHQUFHLEdBQUcsT0FBTyxDQUFDLE1BQU0sRUFBRSxDQUFDLEdBQUcsR0FBRyxFQUFFLENBQUMsRUFBRTtZQUFFLGlCQUFHLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsT0FBTyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUM7SUFDaEcsQ0FBQztJQUVEOztPQUVHO0lBQ0gsNkJBQVMsR0FBVDtRQUFBLGlCQU9DO1FBTkMsRUFBRSxDQUFDLENBQUMsSUFBSSxDQUFDLFNBQVMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBQ3ZCLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxJQUFJLENBQUMsaUJBQUcsQ0FBQyxXQUFXLENBQ3pDLElBQUksQ0FBQyxPQUFPLEVBQUUsaUJBQUcsQ0FBQyxnQkFBZ0IsRUFBRSxFQUFFLFVBQUMsS0FBVSxJQUFLLE9BQUEsS0FBSSxDQUFDLG9CQUFvQixDQUFDLEtBQUssQ0FBQyxFQUFoQyxDQUFnQyxDQUFDLENBQUMsQ0FBQztRQUMvRixDQUFDO1FBQUMsSUFBSSxDQUFDLENBQUM7WUFDTixJQUFJLENBQUMsd0JBQXdCLEVBQUUsQ0FBQztRQUNsQyxDQUFDO0lBQ0gsQ0FBQztJQUVELHdDQUFvQixHQUFwQixVQUFxQixLQUFVO1FBQzdCLElBQUksV0FBVyxHQUFHLFdBQUksQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDLFdBQVcsR0FBRyxJQUFJLENBQUMsQ0FBQztRQUN2RCxFQUFFLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxjQUFjLENBQUMsd0JBQXdCLENBQUM7WUFBQyxXQUFXLElBQUksSUFBSSxDQUFDLGFBQWEsQ0FBQztRQUNyRixLQUFLLENBQUMsZUFBZSxFQUFFLENBQUM7UUFDeEIsRUFBRSxDQUFDLENBQUMsV0FBVyxJQUFJLElBQUksQ0FBQyxTQUFTLENBQUM7WUFBQyxJQUFJLENBQUMsd0JBQXdCLEVBQUUsQ0FBQztJQUNyRSxDQUFDO0lBRUQ7O09BRUc7SUFDSCw0Q0FBd0IsR0FBeEI7UUFDRSxJQUFJLENBQUMsYUFBYSxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsZ0JBQWdCLENBQUMsQ0FBQztRQUMvQyxJQUFJLENBQUMsU0FBUyxDQUFDLE9BQU8sQ0FBQyxVQUFBLFFBQVEsSUFBSSxPQUFBLFFBQVEsRUFBRSxFQUFWLENBQVUsQ0FBQyxDQUFDO1FBQy9DLElBQUksQ0FBQyxTQUFTLEdBQUcsRUFBRSxDQUFDO1FBQ3BCLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxPQUFPLENBQUMsVUFBQSxFQUFFLElBQUksT0FBQSxFQUFFLEVBQUUsRUFBSixDQUFJLENBQUMsQ0FBQztRQUM3QyxJQUFJLENBQUMsbUJBQW1CLEdBQUcsRUFBRSxDQUFDO1FBQzlCLElBQUksQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDO0lBQ3hCLENBQUM7SUFFRDs7OztPQUlHO0lBQ0gsOEJBQVUsR0FBVixVQUFXLFFBQWtCO1FBQzNCLEVBQUUsQ0FBQyxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQyxDQUFDO1lBQ25CLFFBQVEsRUFBRSxDQUFDO1FBQ2IsQ0FBQztRQUFDLElBQUksQ0FBQyxDQUFDO1lBQ04sSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLENBQUM7UUFDaEMsQ0FBQztRQUNELE1BQU0sQ0FBQyxJQUFJLENBQUM7SUFDZCxDQUFDO0lBRUQ7Ozs7T0FJRztJQUNILHVDQUFtQixHQUFuQixVQUFvQixRQUFnQjtRQUNsQyxJQUFJLFFBQVEsR0FBRyxDQUFDLENBQUM7UUFDakIsd0VBQXdFO1FBQ3hFLEVBQUUsQ0FBQyxDQUFDLFFBQVEsSUFBSSxJQUFJLElBQUksUUFBUSxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBQzVDLE1BQU0sQ0FBQyxRQUFRLENBQUM7UUFDbEIsQ0FBQztRQUFDLElBQUksQ0FBQyxFQUFFLENBQUMsQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLFFBQVEsQ0FBQyxNQUFNLEdBQUcsQ0FBQyxDQUFDLElBQUksSUFBSSxDQUFDLENBQUMsQ0FBQztZQUMzRCxJQUFJLEtBQUssR0FBRyxvQkFBYSxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUMsWUFBWSxDQUFDLFFBQVEsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDO1lBQ3BFLEVBQUUsQ0FBQyxDQUFDLEtBQUssR0FBRyxRQUFRLENBQUM7Z0JBQUMsUUFBUSxHQUFHLEtBQUssQ0FBQztRQUN6QyxDQUFDO1FBQUMsSUFBSSxDQUFDLEVBQUUsQ0FBQyxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUMsSUFBSSxHQUFHLENBQUMsQ0FBQyxDQUFDO1lBQzFELElBQUksRUFBRSxHQUFHLG9CQUFhLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQyxZQUFZLENBQUMsUUFBUSxDQUFDLENBQUMsR0FBRyxJQUFJLENBQUM7WUFDdEUsSUFBSSxLQUFLLEdBQUcsV0FBSSxDQUFDLEtBQUssQ0FBQyxFQUFFLENBQUMsQ0FBQztZQUMzQixFQUFFLENBQUMsQ0FBQyxLQUFLLEdBQUcsUUFBUSxDQUFDO2dCQUFDLFFBQVEsR0FBRyxLQUFLLENBQUM7UUFDekMsQ0FBQztRQUNELE1BQU0sQ0FBQyxRQUFRLENBQUM7SUFDbEIsQ0FBQztJQUVEOzs7O09BSUc7SUFDSCxnQ0FBWSxHQUFaLFVBQWEsR0FBVztRQUN0QixNQUFNLENBQUMsb0JBQWEsQ0FBQyxVQUFVLENBQUMsR0FBRyxFQUFFLG9CQUFhLENBQUMsTUFBTSxDQUFDLFVBQVUsRUFBRSxFQUFFLENBQUMsRUFBRSxFQUFFLENBQUMsQ0FBQztJQUNqRixDQUFDO0lBQ0gsZ0JBQUM7QUFBRCxDQUFDLEFBeExELElBd0xDO0FBeExZLGlCQUFTLFlBd0xyQixDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtcbiAgRGF0ZVdyYXBwZXIsXG4gIFN0cmluZ1dyYXBwZXIsXG4gIFJlZ0V4cFdyYXBwZXIsXG4gIE51bWJlcldyYXBwZXIsXG4gIGlzUHJlc2VudFxufSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL2xhbmcnO1xuaW1wb3J0IHtNYXRofSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL21hdGgnO1xuaW1wb3J0IHtjYW1lbENhc2VUb0Rhc2hDYXNlfSBmcm9tICdhbmd1bGFyMi9zcmMvcGxhdGZvcm0vZG9tL3V0aWwnO1xuaW1wb3J0IHtTdHJpbmdNYXBXcmFwcGVyfSBmcm9tICdhbmd1bGFyMi9zcmMvZmFjYWRlL2NvbGxlY3Rpb24nO1xuaW1wb3J0IHtET019IGZyb20gJ2FuZ3VsYXIyL3NyYy9wbGF0Zm9ybS9kb20vZG9tX2FkYXB0ZXInO1xuXG5pbXBvcnQge0Jyb3dzZXJEZXRhaWxzfSBmcm9tICcuL2Jyb3dzZXJfZGV0YWlscyc7XG5pbXBvcnQge0Nzc0FuaW1hdGlvbk9wdGlvbnN9IGZyb20gJy4vY3NzX2FuaW1hdGlvbl9vcHRpb25zJztcblxuZXhwb3J0IGNsYXNzIEFuaW1hdGlvbiB7XG4gIC8qKiBmdW5jdGlvbnMgdG8gYmUgY2FsbGVkIHVwb24gY29tcGxldGlvbiAqL1xuICBjYWxsYmFja3M6IEZ1bmN0aW9uW10gPSBbXTtcblxuICAvKiogdGhlIGR1cmF0aW9uIChtcykgb2YgdGhlIGFuaW1hdGlvbiAod2hldGhlciBmcm9tIENTUyBvciBtYW51YWxseSBzZXQpICovXG4gIGNvbXB1dGVkRHVyYXRpb246IG51bWJlcjtcblxuICAvKiogdGhlIGFuaW1hdGlvbiBkZWxheSAobXMpICh3aGV0aGVyIGZyb20gQ1NTIG9yIG1hbnVhbGx5IHNldCkgKi9cbiAgY29tcHV0ZWREZWxheTogbnVtYmVyO1xuXG4gIC8qKiB0aW1lc3RhbXAgb2Ygd2hlbiB0aGUgYW5pbWF0aW9uIHN0YXJ0ZWQgKi9cbiAgc3RhcnRUaW1lOiBudW1iZXI7XG5cbiAgLyoqIGZ1bmN0aW9ucyBmb3IgcmVtb3ZpbmcgZXZlbnQgbGlzdGVuZXJzICovXG4gIGV2ZW50Q2xlYXJGdW5jdGlvbnM6IEZ1bmN0aW9uW10gPSBbXTtcblxuICAvKiogZmxhZyB1c2VkIHRvIHRyYWNrIHdoZXRoZXIgb3Igbm90IHRoZSBhbmltYXRpb24gaGFzIGZpbmlzaGVkICovXG4gIGNvbXBsZXRlZDogYm9vbGVhbiA9IGZhbHNlO1xuXG4gIHByaXZhdGUgX3N0cmluZ1ByZWZpeDogc3RyaW5nID0gJyc7XG5cbiAgLyoqIHRvdGFsIGFtb3VudCBvZiB0aW1lIHRoYXQgdGhlIGFuaW1hdGlvbiBzaG91bGQgdGFrZSBpbmNsdWRpbmcgZGVsYXkgKi9cbiAgZ2V0IHRvdGFsVGltZSgpOiBudW1iZXIge1xuICAgIGxldCBkZWxheSA9IHRoaXMuY29tcHV0ZWREZWxheSAhPSBudWxsID8gdGhpcy5jb21wdXRlZERlbGF5IDogMDtcbiAgICBsZXQgZHVyYXRpb24gPSB0aGlzLmNvbXB1dGVkRHVyYXRpb24gIT0gbnVsbCA/IHRoaXMuY29tcHV0ZWREdXJhdGlvbiA6IDA7XG4gICAgcmV0dXJuIGRlbGF5ICsgZHVyYXRpb247XG4gIH1cblxuICAvKipcbiAgICogU3RvcmVzIHRoZSBzdGFydCB0aW1lIGFuZCBzdGFydHMgdGhlIGFuaW1hdGlvblxuICAgKiBAcGFyYW0gZWxlbWVudFxuICAgKiBAcGFyYW0gZGF0YVxuICAgKiBAcGFyYW0gYnJvd3NlckRldGFpbHNcbiAgICovXG4gIGNvbnN0cnVjdG9yKHB1YmxpYyBlbGVtZW50OiBIVE1MRWxlbWVudCwgcHVibGljIGRhdGE6IENzc0FuaW1hdGlvbk9wdGlvbnMsXG4gICAgICAgICAgICAgIHB1YmxpYyBicm93c2VyRGV0YWlsczogQnJvd3NlckRldGFpbHMpIHtcbiAgICB0aGlzLnN0YXJ0VGltZSA9IERhdGVXcmFwcGVyLnRvTWlsbGlzKERhdGVXcmFwcGVyLm5vdygpKTtcbiAgICB0aGlzLl9zdHJpbmdQcmVmaXggPSBET00uZ2V0QW5pbWF0aW9uUHJlZml4KCk7XG4gICAgdGhpcy5zZXR1cCgpO1xuICAgIHRoaXMud2FpdCgodGltZXN0YW1wOiBhbnkpID0+IHRoaXMuc3RhcnQoKSk7XG4gIH1cblxuICB3YWl0KGNhbGxiYWNrOiBGdW5jdGlvbikge1xuICAgIC8vIEZpcmVmb3ggcmVxdWlyZXMgMiBmcmFtZXMgZm9yIHNvbWUgcmVhc29uXG4gICAgdGhpcy5icm93c2VyRGV0YWlscy5yYWYoY2FsbGJhY2ssIDIpO1xuICB9XG5cbiAgLyoqXG4gICAqIFNldHMgdXAgdGhlIGluaXRpYWwgc3R5bGVzIGJlZm9yZSB0aGUgYW5pbWF0aW9uIGlzIHN0YXJ0ZWRcbiAgICovXG4gIHNldHVwKCk6IHZvaWQge1xuICAgIGlmICh0aGlzLmRhdGEuZnJvbVN0eWxlcyAhPSBudWxsKSB0aGlzLmFwcGx5U3R5bGVzKHRoaXMuZGF0YS5mcm9tU3R5bGVzKTtcbiAgICBpZiAodGhpcy5kYXRhLmR1cmF0aW9uICE9IG51bGwpXG4gICAgICB0aGlzLmFwcGx5U3R5bGVzKHsndHJhbnNpdGlvbkR1cmF0aW9uJzogdGhpcy5kYXRhLmR1cmF0aW9uLnRvU3RyaW5nKCkgKyAnbXMnfSk7XG4gICAgaWYgKHRoaXMuZGF0YS5kZWxheSAhPSBudWxsKVxuICAgICAgdGhpcy5hcHBseVN0eWxlcyh7J3RyYW5zaXRpb25EZWxheSc6IHRoaXMuZGF0YS5kZWxheS50b1N0cmluZygpICsgJ21zJ30pO1xuICB9XG5cbiAgLyoqXG4gICAqIEFmdGVyIHRoZSBpbml0aWFsIHNldHVwIGhhcyBvY2N1cnJlZCwgdGhpcyBtZXRob2QgYWRkcyB0aGUgYW5pbWF0aW9uIHN0eWxlc1xuICAgKi9cbiAgc3RhcnQoKTogdm9pZCB7XG4gICAgdGhpcy5hZGRDbGFzc2VzKHRoaXMuZGF0YS5jbGFzc2VzVG9BZGQpO1xuICAgIHRoaXMuYWRkQ2xhc3Nlcyh0aGlzLmRhdGEuYW5pbWF0aW9uQ2xhc3Nlcyk7XG4gICAgdGhpcy5yZW1vdmVDbGFzc2VzKHRoaXMuZGF0YS5jbGFzc2VzVG9SZW1vdmUpO1xuICAgIGlmICh0aGlzLmRhdGEudG9TdHlsZXMgIT0gbnVsbCkgdGhpcy5hcHBseVN0eWxlcyh0aGlzLmRhdGEudG9TdHlsZXMpO1xuICAgIHZhciBjb21wdXRlZFN0eWxlcyA9IERPTS5nZXRDb21wdXRlZFN0eWxlKHRoaXMuZWxlbWVudCk7XG4gICAgdGhpcy5jb21wdXRlZERlbGF5ID1cbiAgICAgICAgTWF0aC5tYXgodGhpcy5wYXJzZUR1cmF0aW9uU3RyaW5nKFxuICAgICAgICAgICAgICAgICAgICAgY29tcHV0ZWRTdHlsZXMuZ2V0UHJvcGVydHlWYWx1ZSh0aGlzLl9zdHJpbmdQcmVmaXggKyAndHJhbnNpdGlvbi1kZWxheScpKSxcbiAgICAgICAgICAgICAgICAgdGhpcy5wYXJzZUR1cmF0aW9uU3RyaW5nKFxuICAgICAgICAgICAgICAgICAgICAgdGhpcy5lbGVtZW50LnN0eWxlLmdldFByb3BlcnR5VmFsdWUodGhpcy5fc3RyaW5nUHJlZml4ICsgJ3RyYW5zaXRpb24tZGVsYXknKSkpO1xuICAgIHRoaXMuY29tcHV0ZWREdXJhdGlvbiA9IE1hdGgubWF4KHRoaXMucGFyc2VEdXJhdGlvblN0cmluZyhjb21wdXRlZFN0eWxlcy5nZXRQcm9wZXJ0eVZhbHVlKFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLl9zdHJpbmdQcmVmaXggKyAndHJhbnNpdGlvbi1kdXJhdGlvbicpKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLnBhcnNlRHVyYXRpb25TdHJpbmcodGhpcy5lbGVtZW50LnN0eWxlLmdldFByb3BlcnR5VmFsdWUoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXMuX3N0cmluZ1ByZWZpeCArICd0cmFuc2l0aW9uLWR1cmF0aW9uJykpKTtcbiAgICB0aGlzLmFkZEV2ZW50cygpO1xuICB9XG5cbiAgLyoqXG4gICAqIEFwcGxpZXMgdGhlIHByb3ZpZGVkIHN0eWxlcyB0byB0aGUgZWxlbWVudFxuICAgKiBAcGFyYW0gc3R5bGVzXG4gICAqL1xuICBhcHBseVN0eWxlcyhzdHlsZXM6IHtba2V5OiBzdHJpbmddOiBhbnl9KTogdm9pZCB7XG4gICAgU3RyaW5nTWFwV3JhcHBlci5mb3JFYWNoKHN0eWxlcywgKHZhbHVlOiBhbnksIGtleTogc3RyaW5nKSA9PiB7XG4gICAgICB2YXIgZGFzaENhc2VLZXkgPSBjYW1lbENhc2VUb0Rhc2hDYXNlKGtleSk7XG4gICAgICBpZiAoaXNQcmVzZW50KERPTS5nZXRTdHlsZSh0aGlzLmVsZW1lbnQsIGRhc2hDYXNlS2V5KSkpIHtcbiAgICAgICAgRE9NLnNldFN0eWxlKHRoaXMuZWxlbWVudCwgZGFzaENhc2VLZXksIHZhbHVlLnRvU3RyaW5nKCkpO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgRE9NLnNldFN0eWxlKHRoaXMuZWxlbWVudCwgdGhpcy5fc3RyaW5nUHJlZml4ICsgZGFzaENhc2VLZXksIHZhbHVlLnRvU3RyaW5nKCkpO1xuICAgICAgfVxuICAgIH0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEFkZHMgdGhlIHByb3ZpZGVkIGNsYXNzZXMgdG8gdGhlIGVsZW1lbnRcbiAgICogQHBhcmFtIGNsYXNzZXNcbiAgICovXG4gIGFkZENsYXNzZXMoY2xhc3Nlczogc3RyaW5nW10pOiB2b2lkIHtcbiAgICBmb3IgKGxldCBpID0gMCwgbGVuID0gY2xhc3Nlcy5sZW5ndGg7IGkgPCBsZW47IGkrKykgRE9NLmFkZENsYXNzKHRoaXMuZWxlbWVudCwgY2xhc3Nlc1tpXSk7XG4gIH1cblxuICAvKipcbiAgICogUmVtb3ZlcyB0aGUgcHJvdmlkZWQgY2xhc3NlcyBmcm9tIHRoZSBlbGVtZW50XG4gICAqIEBwYXJhbSBjbGFzc2VzXG4gICAqL1xuICByZW1vdmVDbGFzc2VzKGNsYXNzZXM6IHN0cmluZ1tdKTogdm9pZCB7XG4gICAgZm9yIChsZXQgaSA9IDAsIGxlbiA9IGNsYXNzZXMubGVuZ3RoOyBpIDwgbGVuOyBpKyspIERPTS5yZW1vdmVDbGFzcyh0aGlzLmVsZW1lbnQsIGNsYXNzZXNbaV0pO1xuICB9XG5cbiAgLyoqXG4gICAqIEFkZHMgZXZlbnRzIHRvIHRyYWNrIHdoZW4gYW5pbWF0aW9ucyBoYXZlIGZpbmlzaGVkXG4gICAqL1xuICBhZGRFdmVudHMoKTogdm9pZCB7XG4gICAgaWYgKHRoaXMudG90YWxUaW1lID4gMCkge1xuICAgICAgdGhpcy5ldmVudENsZWFyRnVuY3Rpb25zLnB1c2goRE9NLm9uQW5kQ2FuY2VsKFxuICAgICAgICAgIHRoaXMuZWxlbWVudCwgRE9NLmdldFRyYW5zaXRpb25FbmQoKSwgKGV2ZW50OiBhbnkpID0+IHRoaXMuaGFuZGxlQW5pbWF0aW9uRXZlbnQoZXZlbnQpKSk7XG4gICAgfSBlbHNlIHtcbiAgICAgIHRoaXMuaGFuZGxlQW5pbWF0aW9uQ29tcGxldGVkKCk7XG4gICAgfVxuICB9XG5cbiAgaGFuZGxlQW5pbWF0aW9uRXZlbnQoZXZlbnQ6IGFueSk6IHZvaWQge1xuICAgIGxldCBlbGFwc2VkVGltZSA9IE1hdGgucm91bmQoZXZlbnQuZWxhcHNlZFRpbWUgKiAxMDAwKTtcbiAgICBpZiAoIXRoaXMuYnJvd3NlckRldGFpbHMuZWxhcHNlZFRpbWVJbmNsdWRlc0RlbGF5KSBlbGFwc2VkVGltZSArPSB0aGlzLmNvbXB1dGVkRGVsYXk7XG4gICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKCk7XG4gICAgaWYgKGVsYXBzZWRUaW1lID49IHRoaXMudG90YWxUaW1lKSB0aGlzLmhhbmRsZUFuaW1hdGlvbkNvbXBsZXRlZCgpO1xuICB9XG5cbiAgLyoqXG4gICAqIFJ1bnMgYWxsIGFuaW1hdGlvbiBjYWxsYmFja3MgYW5kIHJlbW92ZXMgdGVtcG9yYXJ5IGNsYXNzZXNcbiAgICovXG4gIGhhbmRsZUFuaW1hdGlvbkNvbXBsZXRlZCgpOiB2b2lkIHtcbiAgICB0aGlzLnJlbW92ZUNsYXNzZXModGhpcy5kYXRhLmFuaW1hdGlvbkNsYXNzZXMpO1xuICAgIHRoaXMuY2FsbGJhY2tzLmZvckVhY2goY2FsbGJhY2sgPT4gY2FsbGJhY2soKSk7XG4gICAgdGhpcy5jYWxsYmFja3MgPSBbXTtcbiAgICB0aGlzLmV2ZW50Q2xlYXJGdW5jdGlvbnMuZm9yRWFjaChmbiA9PiBmbigpKTtcbiAgICB0aGlzLmV2ZW50Q2xlYXJGdW5jdGlvbnMgPSBbXTtcbiAgICB0aGlzLmNvbXBsZXRlZCA9IHRydWU7XG4gIH1cblxuICAvKipcbiAgICogQWRkcyBhbmltYXRpb24gY2FsbGJhY2tzIHRvIGJlIGNhbGxlZCB1cG9uIGNvbXBsZXRpb25cbiAgICogQHBhcmFtIGNhbGxiYWNrXG4gICAqIEByZXR1cm5zIHtBbmltYXRpb259XG4gICAqL1xuICBvbkNvbXBsZXRlKGNhbGxiYWNrOiBGdW5jdGlvbik6IEFuaW1hdGlvbiB7XG4gICAgaWYgKHRoaXMuY29tcGxldGVkKSB7XG4gICAgICBjYWxsYmFjaygpO1xuICAgIH0gZWxzZSB7XG4gICAgICB0aGlzLmNhbGxiYWNrcy5wdXNoKGNhbGxiYWNrKTtcbiAgICB9XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogQ29udmVydHMgdGhlIGR1cmF0aW9uIHN0cmluZyB0byB0aGUgbnVtYmVyIG9mIG1pbGxpc2Vjb25kc1xuICAgKiBAcGFyYW0gZHVyYXRpb25cbiAgICogQHJldHVybnMge251bWJlcn1cbiAgICovXG4gIHBhcnNlRHVyYXRpb25TdHJpbmcoZHVyYXRpb246IHN0cmluZyk6IG51bWJlciB7XG4gICAgdmFyIG1heFZhbHVlID0gMDtcbiAgICAvLyBkdXJhdGlvbiBtdXN0IGhhdmUgYXQgbGVhc3QgMiBjaGFyYWN0ZXJzIHRvIGJlIHZhbGlkLiAobnVtYmVyICsgdHlwZSlcbiAgICBpZiAoZHVyYXRpb24gPT0gbnVsbCB8fCBkdXJhdGlvbi5sZW5ndGggPCAyKSB7XG4gICAgICByZXR1cm4gbWF4VmFsdWU7XG4gICAgfSBlbHNlIGlmIChkdXJhdGlvbi5zdWJzdHJpbmcoZHVyYXRpb24ubGVuZ3RoIC0gMikgPT0gJ21zJykge1xuICAgICAgbGV0IHZhbHVlID0gTnVtYmVyV3JhcHBlci5wYXJzZUludCh0aGlzLnN0cmlwTGV0dGVycyhkdXJhdGlvbiksIDEwKTtcbiAgICAgIGlmICh2YWx1ZSA+IG1heFZhbHVlKSBtYXhWYWx1ZSA9IHZhbHVlO1xuICAgIH0gZWxzZSBpZiAoZHVyYXRpb24uc3Vic3RyaW5nKGR1cmF0aW9uLmxlbmd0aCAtIDEpID09ICdzJykge1xuICAgICAgbGV0IG1zID0gTnVtYmVyV3JhcHBlci5wYXJzZUZsb2F0KHRoaXMuc3RyaXBMZXR0ZXJzKGR1cmF0aW9uKSkgKiAxMDAwO1xuICAgICAgbGV0IHZhbHVlID0gTWF0aC5mbG9vcihtcyk7XG4gICAgICBpZiAodmFsdWUgPiBtYXhWYWx1ZSkgbWF4VmFsdWUgPSB2YWx1ZTtcbiAgICB9XG4gICAgcmV0dXJuIG1heFZhbHVlO1xuICB9XG5cbiAgLyoqXG4gICAqIFN0cmlwcyB0aGUgbGV0dGVycyBmcm9tIHRoZSBkdXJhdGlvbiBzdHJpbmdcbiAgICogQHBhcmFtIHN0clxuICAgKiBAcmV0dXJucyB7c3RyaW5nfVxuICAgKi9cbiAgc3RyaXBMZXR0ZXJzKHN0cjogc3RyaW5nKTogc3RyaW5nIHtcbiAgICByZXR1cm4gU3RyaW5nV3JhcHBlci5yZXBsYWNlQWxsKHN0ciwgUmVnRXhwV3JhcHBlci5jcmVhdGUoJ1teMC05XSskJywgJycpLCAnJyk7XG4gIH1cbn1cbiJdfQ==
-
-/***/ },
-/* 209 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';"use strict";
-	var css_animation_options_1 = __webpack_require__(210);
-	var animation_1 = __webpack_require__(208);
-	var CssAnimationBuilder = (function () {
-	    /**
-	     * Accepts public properties for CssAnimationBuilder
-	     */
-	    function CssAnimationBuilder(browserDetails) {
-	        this.browserDetails = browserDetails;
-	        /** @type {CssAnimationOptions} */
-	        this.data = new css_animation_options_1.CssAnimationOptions();
-	    }
-	    /**
-	     * Adds a temporary class that will be removed at the end of the animation
-	     * @param className
-	     */
-	    CssAnimationBuilder.prototype.addAnimationClass = function (className) {
-	        this.data.animationClasses.push(className);
-	        return this;
-	    };
-	    /**
-	     * Adds a class that will remain on the element after the animation has finished
-	     * @param className
-	     */
-	    CssAnimationBuilder.prototype.addClass = function (className) {
-	        this.data.classesToAdd.push(className);
-	        return this;
-	    };
-	    /**
-	     * Removes a class from the element
-	     * @param className
-	     */
-	    CssAnimationBuilder.prototype.removeClass = function (className) {
-	        this.data.classesToRemove.push(className);
-	        return this;
-	    };
-	    /**
-	     * Sets the animation duration (and overrides any defined through CSS)
-	     * @param duration
-	     */
-	    CssAnimationBuilder.prototype.setDuration = function (duration) {
-	        this.data.duration = duration;
-	        return this;
-	    };
-	    /**
-	     * Sets the animation delay (and overrides any defined through CSS)
-	     * @param delay
-	     */
-	    CssAnimationBuilder.prototype.setDelay = function (delay) {
-	        this.data.delay = delay;
-	        return this;
-	    };
-	    /**
-	     * Sets styles for both the initial state and the destination state
-	     * @param from
-	     * @param to
-	     */
-	    CssAnimationBuilder.prototype.setStyles = function (from, to) {
-	        return this.setFromStyles(from).setToStyles(to);
-	    };
-	    /**
-	     * Sets the initial styles for the animation
-	     * @param from
-	     */
-	    CssAnimationBuilder.prototype.setFromStyles = function (from) {
-	        this.data.fromStyles = from;
-	        return this;
-	    };
-	    /**
-	     * Sets the destination styles for the animation
-	     * @param to
-	     */
-	    CssAnimationBuilder.prototype.setToStyles = function (to) {
-	        this.data.toStyles = to;
-	        return this;
-	    };
-	    /**
-	     * Starts the animation and returns a promise
-	     * @param element
-	     */
-	    CssAnimationBuilder.prototype.start = function (element) {
-	        return new animation_1.Animation(element, this.data, this.browserDetails);
-	    };
-	    return CssAnimationBuilder;
-	}());
-	exports.CssAnimationBuilder = CssAnimationBuilder;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzX2FuaW1hdGlvbl9idWlsZGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZGlmZmluZ19wbHVnaW5fd3JhcHBlci1vdXRwdXRfcGF0aC00bm8zWlF2Ty50bXAvYW5ndWxhcjIvc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9idWlsZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxzQ0FBa0MseUJBQXlCLENBQUMsQ0FBQTtBQUM1RCwwQkFBd0IsYUFBYSxDQUFDLENBQUE7QUFHdEM7SUFJRTs7T0FFRztJQUNILDZCQUFtQixjQUE4QjtRQUE5QixtQkFBYyxHQUFkLGNBQWMsQ0FBZ0I7UUFOakQsa0NBQWtDO1FBQ2xDLFNBQUksR0FBd0IsSUFBSSwyQ0FBbUIsRUFBRSxDQUFDO0lBS0YsQ0FBQztJQUVyRDs7O09BR0c7SUFDSCwrQ0FBaUIsR0FBakIsVUFBa0IsU0FBaUI7UUFDakMsSUFBSSxDQUFDLElBQUksQ0FBQyxnQkFBZ0IsQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLENBQUM7UUFDM0MsTUFBTSxDQUFDLElBQUksQ0FBQztJQUNkLENBQUM7SUFFRDs7O09BR0c7SUFDSCxzQ0FBUSxHQUFSLFVBQVMsU0FBaUI7UUFDeEIsSUFBSSxDQUFDLElBQUksQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxDQUFDO1FBQ3ZDLE1BQU0sQ0FBQyxJQUFJLENBQUM7SUFDZCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gseUNBQVcsR0FBWCxVQUFZLFNBQWlCO1FBQzNCLElBQUksQ0FBQyxJQUFJLENBQUMsZUFBZSxDQUFDLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUMxQyxNQUFNLENBQUMsSUFBSSxDQUFDO0lBQ2QsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlDQUFXLEdBQVgsVUFBWSxRQUFnQjtRQUMxQixJQUFJLENBQUMsSUFBSSxDQUFDLFFBQVEsR0FBRyxRQUFRLENBQUM7UUFDOUIsTUFBTSxDQUFDLElBQUksQ0FBQztJQUNkLENBQUM7SUFFRDs7O09BR0c7SUFDSCxzQ0FBUSxHQUFSLFVBQVMsS0FBYTtRQUNwQixJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7UUFDeEIsTUFBTSxDQUFDLElBQUksQ0FBQztJQUNkLENBQUM7SUFFRDs7OztPQUlHO0lBQ0gsdUNBQVMsR0FBVCxVQUFVLElBQTBCLEVBQUUsRUFBd0I7UUFDNUQsTUFBTSxDQUFDLElBQUksQ0FBQyxhQUFhLENBQUMsSUFBSSxDQUFDLENBQUMsV0FBVyxDQUFDLEVBQUUsQ0FBQyxDQUFDO0lBQ2xELENBQUM7SUFFRDs7O09BR0c7SUFDSCwyQ0FBYSxHQUFiLFVBQWMsSUFBMEI7UUFDdEMsSUFBSSxDQUFDLElBQUksQ0FBQyxVQUFVLEdBQUcsSUFBSSxDQUFDO1FBQzVCLE1BQU0sQ0FBQyxJQUFJLENBQUM7SUFDZCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gseUNBQVcsR0FBWCxVQUFZLEVBQXdCO1FBQ2xDLElBQUksQ0FBQyxJQUFJLENBQUMsUUFBUSxHQUFHLEVBQUUsQ0FBQztRQUN4QixNQUFNLENBQUMsSUFBSSxDQUFDO0lBQ2QsQ0FBQztJQUVEOzs7T0FHRztJQUNILG1DQUFLLEdBQUwsVUFBTSxPQUFvQjtRQUN4QixNQUFNLENBQUMsSUFBSSxxQkFBUyxDQUFDLE9BQU8sRUFBRSxJQUFJLENBQUMsSUFBSSxFQUFFLElBQUksQ0FBQyxjQUFjLENBQUMsQ0FBQztJQUNoRSxDQUFDO0lBQ0gsMEJBQUM7QUFBRCxDQUFDLEFBeEZELElBd0ZDO0FBeEZZLDJCQUFtQixzQkF3Ri9CLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge0Nzc0FuaW1hdGlvbk9wdGlvbnN9IGZyb20gJy4vY3NzX2FuaW1hdGlvbl9vcHRpb25zJztcbmltcG9ydCB7QW5pbWF0aW9ufSBmcm9tICcuL2FuaW1hdGlvbic7XG5pbXBvcnQge0Jyb3dzZXJEZXRhaWxzfSBmcm9tICcuL2Jyb3dzZXJfZGV0YWlscyc7XG5cbmV4cG9ydCBjbGFzcyBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgLyoqIEB0eXBlIHtDc3NBbmltYXRpb25PcHRpb25zfSAqL1xuICBkYXRhOiBDc3NBbmltYXRpb25PcHRpb25zID0gbmV3IENzc0FuaW1hdGlvbk9wdGlvbnMoKTtcblxuICAvKipcbiAgICogQWNjZXB0cyBwdWJsaWMgcHJvcGVydGllcyBmb3IgQ3NzQW5pbWF0aW9uQnVpbGRlclxuICAgKi9cbiAgY29uc3RydWN0b3IocHVibGljIGJyb3dzZXJEZXRhaWxzOiBCcm93c2VyRGV0YWlscykge31cblxuICAvKipcbiAgICogQWRkcyBhIHRlbXBvcmFyeSBjbGFzcyB0aGF0IHdpbGwgYmUgcmVtb3ZlZCBhdCB0aGUgZW5kIG9mIHRoZSBhbmltYXRpb25cbiAgICogQHBhcmFtIGNsYXNzTmFtZVxuICAgKi9cbiAgYWRkQW5pbWF0aW9uQ2xhc3MoY2xhc3NOYW1lOiBzdHJpbmcpOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuYW5pbWF0aW9uQ2xhc3Nlcy5wdXNoKGNsYXNzTmFtZSk7XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogQWRkcyBhIGNsYXNzIHRoYXQgd2lsbCByZW1haW4gb24gdGhlIGVsZW1lbnQgYWZ0ZXIgdGhlIGFuaW1hdGlvbiBoYXMgZmluaXNoZWRcbiAgICogQHBhcmFtIGNsYXNzTmFtZVxuICAgKi9cbiAgYWRkQ2xhc3MoY2xhc3NOYW1lOiBzdHJpbmcpOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuY2xhc3Nlc1RvQWRkLnB1c2goY2xhc3NOYW1lKTtcbiAgICByZXR1cm4gdGhpcztcbiAgfVxuXG4gIC8qKlxuICAgKiBSZW1vdmVzIGEgY2xhc3MgZnJvbSB0aGUgZWxlbWVudFxuICAgKiBAcGFyYW0gY2xhc3NOYW1lXG4gICAqL1xuICByZW1vdmVDbGFzcyhjbGFzc05hbWU6IHN0cmluZyk6IENzc0FuaW1hdGlvbkJ1aWxkZXIge1xuICAgIHRoaXMuZGF0YS5jbGFzc2VzVG9SZW1vdmUucHVzaChjbGFzc05hbWUpO1xuICAgIHJldHVybiB0aGlzO1xuICB9XG5cbiAgLyoqXG4gICAqIFNldHMgdGhlIGFuaW1hdGlvbiBkdXJhdGlvbiAoYW5kIG92ZXJyaWRlcyBhbnkgZGVmaW5lZCB0aHJvdWdoIENTUylcbiAgICogQHBhcmFtIGR1cmF0aW9uXG4gICAqL1xuICBzZXREdXJhdGlvbihkdXJhdGlvbjogbnVtYmVyKTogQ3NzQW5pbWF0aW9uQnVpbGRlciB7XG4gICAgdGhpcy5kYXRhLmR1cmF0aW9uID0gZHVyYXRpb247XG4gICAgcmV0dXJuIHRoaXM7XG4gIH1cblxuICAvKipcbiAgICogU2V0cyB0aGUgYW5pbWF0aW9uIGRlbGF5IChhbmQgb3ZlcnJpZGVzIGFueSBkZWZpbmVkIHRocm91Z2ggQ1NTKVxuICAgKiBAcGFyYW0gZGVsYXlcbiAgICovXG4gIHNldERlbGF5KGRlbGF5OiBudW1iZXIpOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEuZGVsYXkgPSBkZWxheTtcbiAgICByZXR1cm4gdGhpcztcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHN0eWxlcyBmb3IgYm90aCB0aGUgaW5pdGlhbCBzdGF0ZSBhbmQgdGhlIGRlc3RpbmF0aW9uIHN0YXRlXG4gICAqIEBwYXJhbSBmcm9tXG4gICAqIEBwYXJhbSB0b1xuICAgKi9cbiAgc2V0U3R5bGVzKGZyb206IHtba2V5OiBzdHJpbmddOiBhbnl9LCB0bzoge1trZXk6IHN0cmluZ106IGFueX0pOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICByZXR1cm4gdGhpcy5zZXRGcm9tU3R5bGVzKGZyb20pLnNldFRvU3R5bGVzKHRvKTtcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHRoZSBpbml0aWFsIHN0eWxlcyBmb3IgdGhlIGFuaW1hdGlvblxuICAgKiBAcGFyYW0gZnJvbVxuICAgKi9cbiAgc2V0RnJvbVN0eWxlcyhmcm9tOiB7W2tleTogc3RyaW5nXTogYW55fSk6IENzc0FuaW1hdGlvbkJ1aWxkZXIge1xuICAgIHRoaXMuZGF0YS5mcm9tU3R5bGVzID0gZnJvbTtcbiAgICByZXR1cm4gdGhpcztcbiAgfVxuXG4gIC8qKlxuICAgKiBTZXRzIHRoZSBkZXN0aW5hdGlvbiBzdHlsZXMgZm9yIHRoZSBhbmltYXRpb25cbiAgICogQHBhcmFtIHRvXG4gICAqL1xuICBzZXRUb1N0eWxlcyh0bzoge1trZXk6IHN0cmluZ106IGFueX0pOiBDc3NBbmltYXRpb25CdWlsZGVyIHtcbiAgICB0aGlzLmRhdGEudG9TdHlsZXMgPSB0bztcbiAgICByZXR1cm4gdGhpcztcbiAgfVxuXG4gIC8qKlxuICAgKiBTdGFydHMgdGhlIGFuaW1hdGlvbiBhbmQgcmV0dXJucyBhIHByb21pc2VcbiAgICogQHBhcmFtIGVsZW1lbnRcbiAgICovXG4gIHN0YXJ0KGVsZW1lbnQ6IEhUTUxFbGVtZW50KTogQW5pbWF0aW9uIHtcbiAgICByZXR1cm4gbmV3IEFuaW1hdGlvbihlbGVtZW50LCB0aGlzLmRhdGEsIHRoaXMuYnJvd3NlckRldGFpbHMpO1xuICB9XG59XG4iXX0=
-
-/***/ },
-/* 210 */
-/***/ function(module, exports) {
-
-	'use strict';"use strict";
-	var CssAnimationOptions = (function () {
-	    function CssAnimationOptions() {
-	        /** classes to be added to the element */
-	        this.classesToAdd = [];
-	        /** classes to be removed from the element */
-	        this.classesToRemove = [];
-	        /** classes to be added for the duration of the animation */
-	        this.animationClasses = [];
-	    }
-	    return CssAnimationOptions;
-	}());
-	exports.CssAnimationOptions = CssAnimationOptions;
-	//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzX2FuaW1hdGlvbl9vcHRpb25zLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiZGlmZmluZ19wbHVnaW5fd3JhcHBlci1vdXRwdXRfcGF0aC00bm8zWlF2Ty50bXAvYW5ndWxhcjIvc3JjL2FuaW1hdGUvY3NzX2FuaW1hdGlvbl9vcHRpb25zLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQTtJQUFBO1FBT0UseUNBQXlDO1FBQ3pDLGlCQUFZLEdBQWEsRUFBRSxDQUFDO1FBRTVCLDZDQUE2QztRQUM3QyxvQkFBZSxHQUFhLEVBQUUsQ0FBQztRQUUvQiw0REFBNEQ7UUFDNUQscUJBQWdCLEdBQWEsRUFBRSxDQUFDO0lBT2xDLENBQUM7SUFBRCwwQkFBQztBQUFELENBQUMsQUFyQkQsSUFxQkM7QUFyQlksMkJBQW1CLHNCQXFCL0IsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBDc3NBbmltYXRpb25PcHRpb25zIHtcbiAgLyoqIGluaXRpYWwgc3R5bGVzIGZvciB0aGUgZWxlbWVudCAqL1xuICBmcm9tU3R5bGVzOiB7W2tleTogc3RyaW5nXTogYW55fTtcblxuICAvKiogZGVzdGluYXRpb24gc3R5bGVzIGZvciB0aGUgZWxlbWVudCAqL1xuICB0b1N0eWxlczoge1trZXk6IHN0cmluZ106IGFueX07XG5cbiAgLyoqIGNsYXNzZXMgdG8gYmUgYWRkZWQgdG8gdGhlIGVsZW1lbnQgKi9cbiAgY2xhc3Nlc1RvQWRkOiBzdHJpbmdbXSA9IFtdO1xuXG4gIC8qKiBjbGFzc2VzIHRvIGJlIHJlbW92ZWQgZnJvbSB0aGUgZWxlbWVudCAqL1xuICBjbGFzc2VzVG9SZW1vdmU6IHN0cmluZ1tdID0gW107XG5cbiAgLyoqIGNsYXNzZXMgdG8gYmUgYWRkZWQgZm9yIHRoZSBkdXJhdGlvbiBvZiB0aGUgYW5pbWF0aW9uICovXG4gIGFuaW1hdGlvbkNsYXNzZXM6IHN0cmluZ1tdID0gW107XG5cbiAgLyoqIG92ZXJyaWRlIHRoZSBkdXJhdGlvbiBvZiB0aGUgYW5pbWF0aW9uIChpbiBtaWxsaXNlY29uZHMpICovXG4gIGR1cmF0aW9uOiBudW1iZXI7XG5cbiAgLyoqIG92ZXJyaWRlIHRoZSB0cmFuc2l0aW9uIGRlbGF5IChpbiBtaWxsaXNlY29uZHMpICovXG4gIGRlbGF5OiBudW1iZXI7XG59XG4iXX0=
-
-/***/ },
+/* 208 */,
+/* 209 */,
+/* 210 */,
 /* 211 */,
 /* 212 */,
 /* 213 */,
@@ -17618,210 +17143,219 @@ webpackJsonp([2],[
 /* 247 */,
 /* 248 */,
 /* 249 */,
-/* 250 */
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./af": 58,
-		"./af.js": 58,
-		"./ar": 62,
-		"./ar-ma": 59,
-		"./ar-ma.js": 59,
-		"./ar-sa": 60,
-		"./ar-sa.js": 60,
-		"./ar-tn": 61,
-		"./ar-tn.js": 61,
-		"./ar.js": 62,
-		"./az": 63,
-		"./az.js": 63,
-		"./be": 64,
-		"./be.js": 64,
-		"./bg": 65,
-		"./bg.js": 65,
-		"./bn": 66,
-		"./bn.js": 66,
-		"./bo": 67,
-		"./bo.js": 67,
-		"./br": 68,
-		"./br.js": 68,
-		"./bs": 69,
-		"./bs.js": 69,
-		"./ca": 70,
-		"./ca.js": 70,
-		"./cs": 71,
-		"./cs.js": 71,
-		"./cv": 72,
-		"./cv.js": 72,
-		"./cy": 73,
-		"./cy.js": 73,
-		"./da": 74,
-		"./da.js": 74,
-		"./de": 76,
-		"./de-at": 75,
-		"./de-at.js": 75,
-		"./de.js": 76,
-		"./dv": 77,
-		"./dv.js": 77,
-		"./el": 78,
-		"./el.js": 78,
-		"./en-au": 79,
-		"./en-au.js": 79,
-		"./en-ca": 80,
-		"./en-ca.js": 80,
-		"./en-gb": 81,
-		"./en-gb.js": 81,
-		"./en-ie": 82,
-		"./en-ie.js": 82,
-		"./en-nz": 83,
-		"./en-nz.js": 83,
-		"./eo": 84,
-		"./eo.js": 84,
-		"./es": 85,
-		"./es.js": 85,
-		"./et": 86,
-		"./et.js": 86,
-		"./eu": 87,
-		"./eu.js": 87,
-		"./fa": 88,
-		"./fa.js": 88,
-		"./fi": 89,
-		"./fi.js": 89,
-		"./fo": 90,
-		"./fo.js": 90,
-		"./fr": 93,
-		"./fr-ca": 91,
-		"./fr-ca.js": 91,
-		"./fr-ch": 92,
-		"./fr-ch.js": 92,
-		"./fr.js": 93,
-		"./fy": 94,
-		"./fy.js": 94,
-		"./gd": 95,
-		"./gd.js": 95,
-		"./gl": 96,
-		"./gl.js": 96,
-		"./he": 97,
-		"./he.js": 97,
-		"./hi": 98,
-		"./hi.js": 98,
-		"./hr": 99,
-		"./hr.js": 99,
-		"./hu": 100,
-		"./hu.js": 100,
-		"./hy-am": 101,
-		"./hy-am.js": 101,
-		"./id": 102,
-		"./id.js": 102,
-		"./is": 103,
-		"./is.js": 103,
-		"./it": 104,
-		"./it.js": 104,
-		"./ja": 105,
-		"./ja.js": 105,
-		"./jv": 106,
-		"./jv.js": 106,
-		"./ka": 107,
-		"./ka.js": 107,
-		"./kk": 108,
-		"./kk.js": 108,
-		"./km": 109,
-		"./km.js": 109,
-		"./ko": 110,
-		"./ko.js": 110,
-		"./ky": 111,
-		"./ky.js": 111,
-		"./lb": 112,
-		"./lb.js": 112,
-		"./lo": 113,
-		"./lo.js": 113,
-		"./lt": 114,
-		"./lt.js": 114,
-		"./lv": 115,
-		"./lv.js": 115,
-		"./me": 116,
-		"./me.js": 116,
-		"./mk": 117,
-		"./mk.js": 117,
-		"./ml": 118,
-		"./ml.js": 118,
-		"./mr": 119,
-		"./mr.js": 119,
-		"./ms": 121,
-		"./ms-my": 120,
-		"./ms-my.js": 120,
-		"./ms.js": 121,
-		"./my": 122,
-		"./my.js": 122,
-		"./nb": 123,
-		"./nb.js": 123,
-		"./ne": 124,
-		"./ne.js": 124,
-		"./nl": 125,
-		"./nl.js": 125,
-		"./nn": 126,
-		"./nn.js": 126,
-		"./pa-in": 127,
-		"./pa-in.js": 127,
-		"./pl": 128,
-		"./pl.js": 128,
-		"./pt": 130,
-		"./pt-br": 129,
-		"./pt-br.js": 129,
-		"./pt.js": 130,
-		"./ro": 131,
-		"./ro.js": 131,
-		"./ru": 132,
-		"./ru.js": 132,
-		"./se": 133,
-		"./se.js": 133,
-		"./si": 134,
-		"./si.js": 134,
-		"./sk": 135,
-		"./sk.js": 135,
-		"./sl": 136,
-		"./sl.js": 136,
-		"./sq": 137,
-		"./sq.js": 137,
-		"./sr": 139,
-		"./sr-cyrl": 138,
-		"./sr-cyrl.js": 138,
-		"./sr.js": 139,
-		"./ss": 140,
-		"./ss.js": 140,
-		"./sv": 141,
-		"./sv.js": 141,
-		"./sw": 142,
-		"./sw.js": 142,
-		"./ta": 143,
-		"./ta.js": 143,
-		"./te": 144,
-		"./te.js": 144,
-		"./th": 145,
-		"./th.js": 145,
-		"./tl-ph": 146,
-		"./tl-ph.js": 146,
-		"./tlh": 147,
-		"./tlh.js": 147,
-		"./tr": 148,
-		"./tr.js": 148,
-		"./tzl": 149,
-		"./tzl.js": 149,
-		"./tzm": 151,
-		"./tzm-latn": 150,
-		"./tzm-latn.js": 150,
-		"./tzm.js": 151,
-		"./uk": 152,
-		"./uk.js": 152,
-		"./uz": 153,
-		"./uz.js": 153,
-		"./vi": 154,
-		"./vi.js": 154,
-		"./x-pseudo": 155,
-		"./x-pseudo.js": 155,
-		"./zh-cn": 156,
-		"./zh-cn.js": 156,
-		"./zh-tw": 157,
-		"./zh-tw.js": 157
+		"./af": 57,
+		"./af.js": 57,
+		"./ar": 61,
+		"./ar-ma": 58,
+		"./ar-ma.js": 58,
+		"./ar-sa": 59,
+		"./ar-sa.js": 59,
+		"./ar-tn": 60,
+		"./ar-tn.js": 60,
+		"./ar.js": 61,
+		"./az": 62,
+		"./az.js": 62,
+		"./be": 63,
+		"./be.js": 63,
+		"./bg": 64,
+		"./bg.js": 64,
+		"./bn": 65,
+		"./bn.js": 65,
+		"./bo": 66,
+		"./bo.js": 66,
+		"./br": 67,
+		"./br.js": 67,
+		"./bs": 68,
+		"./bs.js": 68,
+		"./ca": 69,
+		"./ca.js": 69,
+		"./cs": 70,
+		"./cs.js": 70,
+		"./cv": 71,
+		"./cv.js": 71,
+		"./cy": 72,
+		"./cy.js": 72,
+		"./da": 73,
+		"./da.js": 73,
+		"./de": 75,
+		"./de-at": 74,
+		"./de-at.js": 74,
+		"./de.js": 75,
+		"./dv": 76,
+		"./dv.js": 76,
+		"./el": 77,
+		"./el.js": 77,
+		"./en-au": 78,
+		"./en-au.js": 78,
+		"./en-ca": 79,
+		"./en-ca.js": 79,
+		"./en-gb": 80,
+		"./en-gb.js": 80,
+		"./en-ie": 81,
+		"./en-ie.js": 81,
+		"./en-nz": 82,
+		"./en-nz.js": 82,
+		"./eo": 83,
+		"./eo.js": 83,
+		"./es": 84,
+		"./es.js": 84,
+		"./et": 85,
+		"./et.js": 85,
+		"./eu": 86,
+		"./eu.js": 86,
+		"./fa": 87,
+		"./fa.js": 87,
+		"./fi": 88,
+		"./fi.js": 88,
+		"./fo": 89,
+		"./fo.js": 89,
+		"./fr": 92,
+		"./fr-ca": 90,
+		"./fr-ca.js": 90,
+		"./fr-ch": 91,
+		"./fr-ch.js": 91,
+		"./fr.js": 92,
+		"./fy": 93,
+		"./fy.js": 93,
+		"./gd": 94,
+		"./gd.js": 94,
+		"./gl": 95,
+		"./gl.js": 95,
+		"./he": 96,
+		"./he.js": 96,
+		"./hi": 97,
+		"./hi.js": 97,
+		"./hr": 98,
+		"./hr.js": 98,
+		"./hu": 99,
+		"./hu.js": 99,
+		"./hy-am": 100,
+		"./hy-am.js": 100,
+		"./id": 101,
+		"./id.js": 101,
+		"./is": 102,
+		"./is.js": 102,
+		"./it": 103,
+		"./it.js": 103,
+		"./ja": 104,
+		"./ja.js": 104,
+		"./jv": 105,
+		"./jv.js": 105,
+		"./ka": 106,
+		"./ka.js": 106,
+		"./kk": 107,
+		"./kk.js": 107,
+		"./km": 108,
+		"./km.js": 108,
+		"./ko": 109,
+		"./ko.js": 109,
+		"./ky": 110,
+		"./ky.js": 110,
+		"./lb": 111,
+		"./lb.js": 111,
+		"./lo": 112,
+		"./lo.js": 112,
+		"./lt": 113,
+		"./lt.js": 113,
+		"./lv": 114,
+		"./lv.js": 114,
+		"./me": 115,
+		"./me.js": 115,
+		"./mk": 116,
+		"./mk.js": 116,
+		"./ml": 117,
+		"./ml.js": 117,
+		"./mr": 118,
+		"./mr.js": 118,
+		"./ms": 120,
+		"./ms-my": 119,
+		"./ms-my.js": 119,
+		"./ms.js": 120,
+		"./my": 121,
+		"./my.js": 121,
+		"./nb": 122,
+		"./nb.js": 122,
+		"./ne": 123,
+		"./ne.js": 123,
+		"./nl": 124,
+		"./nl.js": 124,
+		"./nn": 125,
+		"./nn.js": 125,
+		"./pa-in": 126,
+		"./pa-in.js": 126,
+		"./pl": 127,
+		"./pl.js": 127,
+		"./pt": 129,
+		"./pt-br": 128,
+		"./pt-br.js": 128,
+		"./pt.js": 129,
+		"./ro": 130,
+		"./ro.js": 130,
+		"./ru": 131,
+		"./ru.js": 131,
+		"./se": 132,
+		"./se.js": 132,
+		"./si": 133,
+		"./si.js": 133,
+		"./sk": 134,
+		"./sk.js": 134,
+		"./sl": 135,
+		"./sl.js": 135,
+		"./sq": 136,
+		"./sq.js": 136,
+		"./sr": 138,
+		"./sr-cyrl": 137,
+		"./sr-cyrl.js": 137,
+		"./sr.js": 138,
+		"./ss": 139,
+		"./ss.js": 139,
+		"./sv": 140,
+		"./sv.js": 140,
+		"./sw": 141,
+		"./sw.js": 141,
+		"./ta": 142,
+		"./ta.js": 142,
+		"./te": 143,
+		"./te.js": 143,
+		"./th": 144,
+		"./th.js": 144,
+		"./tl-ph": 145,
+		"./tl-ph.js": 145,
+		"./tlh": 146,
+		"./tlh.js": 146,
+		"./tr": 147,
+		"./tr.js": 147,
+		"./tzl": 148,
+		"./tzl.js": 148,
+		"./tzm": 150,
+		"./tzm-latn": 149,
+		"./tzm-latn.js": 149,
+		"./tzm.js": 150,
+		"./uk": 151,
+		"./uk.js": 151,
+		"./uz": 152,
+		"./uz.js": 152,
+		"./vi": 153,
+		"./vi.js": 153,
+		"./x-pseudo": 154,
+		"./x-pseudo.js": 154,
+		"./zh-cn": 155,
+		"./zh-cn.js": 155,
+		"./zh-tw": 156,
+		"./zh-tw.js": 156
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -17834,16 +17368,16 @@ webpackJsonp([2],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 250;
+	webpackContext.id = 259;
 
 
 /***/ },
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -17856,8 +17390,8 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
 	var ALERT_TEMPLATE = "\n  <div class=\"alert\" role=\"alert\" [ngClass]=\"classes\" *ngIf=\"!closed\">\n    <button *ngIf=\"dismissible\" type=\"button\" class=\"close\" (click)=\"onClose()\" (touch)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n      <span class=\"sr-only\">Close</span>\n    </button>\n    <ng-content></ng-content>\n  </div>\n  ";
 	var AlertComponent = (function () {
 	    function AlertComponent() {
@@ -17912,7 +17446,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 257 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -17925,16 +17459,13 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var animation_builder_1 = __webpack_require__(48);
+	var core_1 = __webpack_require__(2);
 	var CollapseDirective = (function () {
-	    function CollapseDirective(_ab, _el, _renderer) {
+	    function CollapseDirective(_el, _renderer) {
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
 	        this.isCollapse = true;
 	        this.isCollapsing = false;
-	        this.transitionDuration = 500;
-	        this._ab = _ab;
 	        this._el = _el;
 	        this._renderer = _renderer;
 	    }
@@ -17950,8 +17481,6 @@ webpackJsonp([2],[
 	        configurable: true
 	    });
 	    CollapseDirective.prototype.ngOnInit = function () {
-	        this.animation = this._ab.css();
-	        this.animation.setDuration(this.transitionDuration);
 	    };
 	    CollapseDirective.prototype.toggle = function () {
 	        if (this.isExpanded) {
@@ -17962,54 +17491,23 @@ webpackJsonp([2],[
 	        }
 	    };
 	    CollapseDirective.prototype.hide = function () {
-	        var _this = this;
 	        this.isCollapse = false;
 	        this.isCollapsing = true;
 	        this.isExpanded = false;
 	        this.isCollapsed = true;
-	        setTimeout(function () {
-	            _this.animation
-	                .setFromStyles({
-	                height: _this._el.nativeElement.scrollHeight + 'px'
-	            })
-	                .setToStyles({
-	                height: '0',
-	                overflow: 'hidden'
-	            });
-	            _this.animation.start(_this._el.nativeElement)
-	                .onComplete(function () {
-	                if (_this._el.nativeElement.offsetHeight === 0) {
-	                    _this.display = 'none';
-	                }
-	                _this.isCollapse = true;
-	                _this.isCollapsing = false;
-	            });
-	        }, 4);
+	        this.isCollapse = true;
+	        this.isCollapsing = false;
 	    };
 	    CollapseDirective.prototype.show = function () {
-	        var _this = this;
 	        this.isCollapse = false;
 	        this.isCollapsing = true;
 	        this.isExpanded = true;
 	        this.isCollapsed = false;
 	        this.display = '';
-	        setTimeout(function () {
-	            _this.animation
-	                .setFromStyles({
-	                height: _this._el.nativeElement.offsetHeight,
-	                overflow: 'hidden'
-	            })
-	                .setToStyles({
-	                height: _this._el.nativeElement.scrollHeight + 'px'
-	            });
-	            _this.animation.start(_this._el.nativeElement)
-	                .onComplete(function () {
-	                _this.isCollapse = true;
-	                _this.isCollapsing = false;
-	                _this._renderer.setElementStyle(_this._el.nativeElement, 'overflow', 'visible');
-	                _this._renderer.setElementStyle(_this._el.nativeElement, 'height', 'auto');
-	            });
-	        }, 4);
+	        this.isCollapse = true;
+	        this.isCollapsing = false;
+	        this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
+	        this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
 	    };
 	    __decorate([
 	        core_1.HostBinding('style.display'), 
@@ -18034,16 +17532,12 @@ webpackJsonp([2],[
 	    ], CollapseDirective.prototype, "isCollapsing", void 0);
 	    __decorate([
 	        core_1.Input(), 
-	        __metadata('design:type', Number)
-	    ], CollapseDirective.prototype, "transitionDuration", void 0);
-	    __decorate([
-	        core_1.Input(), 
 	        __metadata('design:type', Boolean), 
 	        __metadata('design:paramtypes', [Boolean])
 	    ], CollapseDirective.prototype, "collapse", null);
 	    CollapseDirective = __decorate([
 	        core_1.Directive({ selector: '[collapse]' }), 
-	        __metadata('design:paramtypes', [animation_builder_1.AnimationBuilder, core_1.ElementRef, core_1.Renderer])
+	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
 	    ], CollapseDirective);
 	    return CollapseDirective;
 	}());
@@ -18051,7 +17545,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 258 */
+/* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18068,7 +17562,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 259 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18081,20 +17575,20 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var ng2_bootstrap_config_1 = __webpack_require__(12);
-	var datepicker_inner_component_1 = __webpack_require__(20);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var ng2_bootstrap_config_1 = __webpack_require__(17);
+	var datepicker_inner_component_1 = __webpack_require__(25);
 	var TEMPLATE_OPTIONS = (_a = {},
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS4] = {
-	        DAY_TITLE: "\n        <th *ngFor=\"#labelz of labels\" class=\"text-xs-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
-	        WEEK_ROW: "\n        <td *ngIf=\"datePicker.showWeeks\" class=\"text-xs-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <td *ngFor=\"#dtz of rowz\" class=\"text-xs-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-sm {{dtz.customClass}}\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary || dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
+	        DAY_TITLE: "\n        <th *ngFor=\"let labelz of labels\" class=\"text-xs-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
+	        WEEK_ROW: "\n        <td *ngIf=\"datePicker.showWeeks\" class=\"text-xs-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <td *ngFor=\"let dtz of rowz\" class=\"text-xs-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-sm {{dtz.customClass}}\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary || dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
 	        ARROW_LEFT: '&lt;',
 	        ARROW_RIGHT: '&gt;'
 	    },
 	    _a[ng2_bootstrap_config_1.Ng2BootstrapTheme.BS3] = {
-	        DAY_TITLE: "\n        <th *ngFor=\"#labelz of labels\" class=\"text-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
-	        WEEK_ROW: "\n        <td *ngIf=\"datePicker.showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm {{dtz.customClass}}\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary, 'text-info': dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
+	        DAY_TITLE: "\n        <th *ngFor=\"let labelz of labels\" class=\"text-center\"><small aria-label=\"labelz.full\"><b>{{labelz.abbr}}</b></small></th>\n    ",
+	        WEEK_ROW: "\n        <td *ngIf=\"datePicker.showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[index] }}</em></td>\n        <td *ngFor=\"let dtz of rowz\" class=\"text-center\" role=\"gridcell\" [id]=\"dtz.uid\">\n          <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm {{dtz.customClass}}\"\n                  *ngIf=\"!(datePicker.onlyCurrentMonth && dtz.secondary)\"\n                  [ngClass]=\"{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                  [disabled]=\"dtz.disabled\"\n                  (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n            <span [ngClass]=\"{'text-muted': dtz.secondary, 'text-info': dtz.current}\">{{dtz.label}}</span>\n          </button>\n        </td>\n    ",
 	        ARROW_LEFT: "\n    <i class=\"glyphicon glyphicon-chevron-left\"></i>\n    ",
 	        ARROW_RIGHT: "\n    <i class=\"glyphicon glyphicon-chevron-right\"></i>\n    "
 	    },
@@ -18178,7 +17672,7 @@ webpackJsonp([2],[
 	    DayPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'daypicker',
-	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" #rowz=\"$implicit\" #index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
+	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" let-rowz=\"$implicit\" let-index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
 	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
@@ -18190,7 +17684,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 260 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18203,10 +17697,10 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var datepicker_inner_component_1 = __webpack_require__(20);
-	var ng2_bootstrap_config_1 = __webpack_require__(12);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var datepicker_inner_component_1 = __webpack_require__(25);
+	var ng2_bootstrap_config_1 = __webpack_require__(17);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
 	        MONTH_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\"\n                [ngClass]=\"{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\"><span [ngClass]=\"{'text-success': dtz.current}\">{{dtz.label}}</span></button>\n    "
@@ -18247,7 +17741,7 @@ webpackJsonp([2],[
 	    MonthPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'monthpicker',
-	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
+	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let rowz of rows\">\n      <td *ngFor=\"let dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
 	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
@@ -18258,7 +17752,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 261 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18271,10 +17765,10 @@ webpackJsonp([2],[
 	var __metadata = (this && this.__metadata) || function (k, v) {
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var ng2_bootstrap_config_1 = __webpack_require__(12);
-	var datepicker_inner_component_1 = __webpack_require__(20);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var ng2_bootstrap_config_1 = __webpack_require__(17);
+	var datepicker_inner_component_1 = __webpack_require__(25);
 	var TEMPLATE_OPTIONS = {
 	    bs4: {
 	        YEAR_BUTTON: "\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\"\n                [ngClass]=\"{'btn-info': dtz.selected, 'btn-link': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled}\"\n                [disabled]=\"dtz.disabled\"\n                (click)=\"datePicker.select(dtz.date)\" tabindex=\"-1\">\n          <span [ngClass]=\"{'text-success': dtz.current}\">{{dtz.label}}</span>\n        </button>\n    "
@@ -18316,7 +17810,7 @@ webpackJsonp([2],[
 	    YearPickerComponent = __decorate([
 	        core_1.Component({
 	            selector: 'yearpicker',
-	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"#rowz of rows\">\n      <td *ngFor=\"#dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
+	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let rowz of rows\">\n      <td *ngFor=\"let dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
 	        }), 
 	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
@@ -18327,7 +17821,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 262 */
+/* 271 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18402,7 +17896,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 263 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18418,9 +17912,9 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
-	var lang_1 = __webpack_require__(2);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
+	var lang_1 = __webpack_require__(5);
 	var KeyboardEvent = lang_1.global.KeyboardEvent;
 	var RatingComponent = (function () {
 	    function RatingComponent(cd) {
@@ -18537,7 +18031,7 @@ webpackJsonp([2],[
 	        core_1.Component({
 	            selector: 'rating[ngModel]',
 	            directives: [common_1.NgFor],
-	            template: "\n    <span (mouseleave)=\"reset()\" (keydown)=\"onKeydown($event)\" tabindex=\"0\" role=\"slider\" aria-valuemin=\"0\" [attr.aria-valuemax]=\"range.length\" [attr.aria-valuenow]=\"value\">\n      <template ngFor #r [ngForOf]=\"range\" #index=\"index\">\n        <span class=\"sr-only\">({{ index < value ? '*' : ' ' }})</span>\n        <i (mouseenter)=\"enter(index + 1)\" (click)=\"rate(index + 1)\" class=\"glyphicon\" [ngClass]=\"index < value ? r.stateOn : r.stateOff\" [title]=\"r.title\" ></i>\n      </template>\n    </span>\n  "
+	            template: "\n    <span (mouseleave)=\"reset()\" (keydown)=\"onKeydown($event)\" tabindex=\"0\" role=\"slider\" aria-valuemin=\"0\" [attr.aria-valuemax]=\"range.length\" [attr.aria-valuenow]=\"value\">\n      <template ngFor let-r [ngForOf]=\"range\" let-index=\"index\">\n        <span class=\"sr-only\">({{ index < value ? '*' : ' ' }})</span>\n        <i (mouseenter)=\"enter(index + 1)\" (click)=\"rate(index + 1)\" class=\"glyphicon\" [ngClass]=\"index < value ? r.stateOn : r.stateOff\" [title]=\"r.title\" ></i>\n      </template>\n    </span>\n  "
 	        }),
 	        __param(0, core_1.Self()), 
 	        __metadata('design:paramtypes', [common_1.NgModel])
@@ -18548,7 +18042,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 264 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18564,8 +18058,8 @@ webpackJsonp([2],[
 	var __param = (this && this.__param) || function (paramIndex, decorator) {
 	    return function (target, key) { decorator(target, key, paramIndex); }
 	};
-	var core_1 = __webpack_require__(3);
-	var common_1 = __webpack_require__(4);
+	var core_1 = __webpack_require__(2);
+	var common_1 = __webpack_require__(3);
 	exports.timepickerConfig = {
 	    hourStep: 1,
 	    minuteStep: 1,
@@ -18856,7 +18350,7 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 265 */
+/* 274 */
 /***/ function(module, exports) {
 
 	"use strict";
