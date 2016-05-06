@@ -1,18 +1,18 @@
 import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
   Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
-} from 'angular2/core';
-import {NgModel} from 'angular2/common';
+} from '@angular/core';
+import {NgModel} from '@angular/common';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
 
-import {global} from 'angular2/src/facade/lang';
+import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
 
-// https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
+// https://github.com/angular/angular/blob/master/modules/@angular/src/core/forms/directives/shared.ts
 function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, propValue:any):void {
   renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 }
@@ -51,7 +51,7 @@ export class TypeaheadDirective implements OnInit {
   private debouncer:Function;
   private _matches:Array<any> = [];
   private placement:string = 'bottom-left';
-  private popup:Promise<ComponentRef>;
+  private popup:Promise<ComponentRef<any>>;
 
   private cd:NgModel;
   private viewContainerRef:ViewContainerRef;
@@ -220,7 +220,7 @@ export class TypeaheadDirective implements OnInit {
 
     this.popup = this.loader
       .loadNextToLocation(TypeaheadContainerComponent, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef) => {
+      .then((componentRef:ComponentRef<any>) => {
         componentRef.instance.position(this.viewContainerRef.element);
         this.container = componentRef.instance;
         this.container.parent = this;
@@ -241,7 +241,7 @@ export class TypeaheadDirective implements OnInit {
 
   public hide():void {
     if (this.container) {
-      this.popup.then((componentRef:ComponentRef) => {
+      this.popup.then((componentRef:ComponentRef<any>) => {
         componentRef.destroy();
         this.container = void 0;
         return componentRef;

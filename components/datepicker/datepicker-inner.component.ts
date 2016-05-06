@@ -1,7 +1,7 @@
-import {Component, OnInit, EventEmitter, Input} from 'angular2/core';
+import {Component, OnInit, EventEmitter, Input} from '@angular/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel
-} from 'angular2/common';
+} from '@angular/common';
 import {DateFormatter} from './date-formatter';
 
 const FORMAT_DAY = 'DD';

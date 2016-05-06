@@ -1,9 +1,9 @@
 import {
   Component, OnInit, Input, Output, HostListener, Self, EventEmitter
-} from 'angular2/core';
-import {NgFor, ControlValueAccessor, NgModel} from 'angular2/common';
+} from '@angular/core';
+import {NgFor, ControlValueAccessor, NgModel} from '@angular/common';
 
-import {global} from 'angular2/src/facade/lang';
+import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
@@ -15,7 +15,7 @@ const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
   directives: [NgFor],
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
-      <template ngFor #r [ngForOf]="range" #index="index">
+      <template ngFor let-r [ngForOf]="range" let-index="index">
         <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
         <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
       </template>

@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
+import {Component, OnInit} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 import {DatePickerInnerComponent} from './datepicker-inner.component';
 
@@ -59,8 +59,8 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="#rowz of rows">
-      <td *ngFor="#dtz of rowz" class="text-center" role="gridcell">
+    <tr *ngFor="let rowz of rows">
+      <td *ngFor="let dtz of rowz" class="text-center" role="gridcell">
       ${CURRENT_THEME_TEMPLATE.YEAR_BUTTON}
       </td>
     </tr>

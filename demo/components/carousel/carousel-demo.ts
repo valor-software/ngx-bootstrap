@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 import {CAROUSEL_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports

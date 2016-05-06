@@ -50,10 +50,18 @@
     "moment": "2.13.0"
   },
   "peerDependencies": {
-    "angular2": "2.0.0-beta.16"
+    "@angular/common": "^2.0.0-rc.1",
+    "@angular/compiler": "^2.0.0-rc.1",
+    "@angular/core": "^2.0.0-rc.1",
+    "@angular/platform-browser": "^2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.1"
   },
   "devDependencies": {
-    "angular2": "2.0.0-beta.16",
+    "@angular/common": "^2.0.0-rc.1",
+    "@angular/compiler": "^2.0.0-rc.1",
+    "@angular/core": "^2.0.0-rc.1",
+    "@angular/platform-browser": "^2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "^2.0.0-rc.1",
     "async": "1.5.2",
     "balanced-match": "0.4.0",
     "bootstrap": "3.3.6",

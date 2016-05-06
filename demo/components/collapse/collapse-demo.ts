@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {CollapseDirective} from '../../../ng2-bootstrap';
 
 // webpack html imports

@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
+import {Component, OnInit} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 import {DatePickerInnerComponent} from './datepicker-inner.component';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 
@@ -54,8 +54,8 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="#rowz of rows">
-      <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ngClass]="dtz.customClass">
+    <tr *ngFor="let rowz of rows">
+      <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ngClass]="dtz.customClass">
         ${CURRENT_THEME_TEMPLATE.MONTH_BUTTON}
       </td>
     </tr>

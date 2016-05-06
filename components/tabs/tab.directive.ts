@@ -1,6 +1,6 @@
 import {
   Directive, OnDestroy, Input, Output, HostBinding, TemplateRef, EventEmitter
-} from 'angular2/core';
+} from '@angular/core';
 import {TabsetComponent} from './tabset.component';
 
 /* tslint:disable */
@@ -43,7 +43,7 @@ export class TabDirective implements OnDestroy {
 
   @HostBinding('class.tab-pane') public addClass:boolean = true;
 
-  public headingRef:TemplateRef;
+  public headingRef:TemplateRef<any>;
   public tabset:TabsetComponent;
   private _active:boolean;
 

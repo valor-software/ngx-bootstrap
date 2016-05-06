@@ -1,7 +1,7 @@
 import {
   Directive, Input, HostListener, DynamicComponentLoader,
   ComponentRef, Provider, ReflectiveInjector, ViewContainerRef
-} from 'angular2/core';
+} from '@angular/core';
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainerComponent} from './tooltip-container.component';
 
@@ -20,7 +20,7 @@ export class TooltipDirective {
   public loader:DynamicComponentLoader;
 
   private visible:boolean = false;
-  private tooltip:Promise<ComponentRef>;
+  private tooltip:Promise<ComponentRef<any>>;
 
   public constructor(viewContainerRef:ViewContainerRef, loader:DynamicComponentLoader) {
     this.viewContainerRef = viewContainerRef;
@@ -49,7 +49,7 @@ export class TooltipDirective {
 
     this.tooltip = this.loader
       .loadNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef) => {
+      .then((componentRef:ComponentRef<any>) => {
         return componentRef;
       });
   }
@@ -62,7 +62,7 @@ export class TooltipDirective {
       return;
     }
     this.visible = false;
-    this.tooltip.then((componentRef:ComponentRef) => {
+    this.tooltip.then((componentRef:ComponentRef<any>) => {
       componentRef.destroy();
       return componentRef;
     });

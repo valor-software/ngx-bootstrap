@@ -1,7 +1,7 @@
 import {
   Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit
-} from 'angular2/core';
-import {NgClass, NgStyle} from 'angular2/common';
+} from '@angular/core';
+import {NgClass, NgStyle} from '@angular/common';
 import {positionService} from '../position';
 import {TooltipOptions} from './tooltip-options.class';
 
