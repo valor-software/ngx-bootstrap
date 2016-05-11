@@ -1,10 +1,6 @@
 language: node_js
 node_js:
-  - "5"
-  - "4"
-
-before_install:
-- npm install -g npm@latest
+  - "6"
 
 script:
 - npm run flow.install:typings
