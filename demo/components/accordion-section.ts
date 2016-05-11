@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {AccordionDemo} from './accordion/accordion-demo';
+import {AccordionDemoComponent} from './accordion/accordion-demo';
 
 let name = 'Accordion';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/accordion/';
@@ -56,7 +56,7 @@ let html = require('!!prismjs?lang=markup!./accordion/accordion-demo.html');
     </div>
   </section>
   `,
-  directives: [AccordionDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [AccordionDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class AccordionSection {
+export class AccordionSectionComponent {
 }

@@ -3,15 +3,15 @@ export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';
 export const NONINPUT = 'nonInput';
 
-import {Dropdown} from './dropdown.directive';
+import {DropdownDirective} from './dropdown.directive';
 
 export class DropdownService {
-  private openScope:Dropdown;
+  private openScope:DropdownDirective;
 
   private closeDropdownBind:EventListener = this.closeDropdown.bind(this);
   private keybindFilterBind:EventListener = this.keybindFilter.bind(this);
 
-  public open(dropdownScope:Dropdown):void {
+  public open(dropdownScope:DropdownDirective):void {
     if (!this.openScope) {
       window.document.addEventListener('click', this.closeDropdownBind, true);
       window.document.addEventListener('keydown', this.keybindFilterBind);
@@ -24,7 +24,7 @@ export class DropdownService {
     this.openScope = dropdownScope;
   }
 
-  public close(dropdownScope:Dropdown):void {
+  public close(dropdownScope:DropdownDirective):void {
     if (this.openScope !== dropdownScope) {
       return;
     }

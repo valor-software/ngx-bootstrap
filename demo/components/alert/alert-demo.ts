@@ -1,6 +1,6 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
-import {Alert} from '../../../ng2-bootstrap';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
+import {AlertComponent} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./alert-demo.html');
@@ -8,9 +8,9 @@ let template = require('./alert-demo.html');
 @Component({
   selector: 'alert-demo',
   template: template,
-  directives: [Alert, CORE_DIRECTIVES]
+  directives: [AlertComponent, CORE_DIRECTIVES]
 })
-export class AlertDemo {
+export class AlertDemoComponent {
   public alerts:Array<Object> = [
     {
       type: 'danger',

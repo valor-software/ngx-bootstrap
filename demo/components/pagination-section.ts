@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {PaginationDemo} from './pagination/pagination-demo';
+import {PaginationDemoComponent} from './pagination/pagination-demo';
 
 let name = 'Pagination';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/pagination/';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./pagination/pagination-demo.html');
 
 @Component({
   selector: 'pagination-section',
-  directives: [PaginationDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [PaginationDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./pagination/pagination-demo.html');
   </section>
   `
 })
-export class PaginationSection {
+export class PaginationSectionComponent {
 }

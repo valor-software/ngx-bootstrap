@@ -1,5 +1,5 @@
-import {Component, ChangeDetectionStrategy} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 import {TOOLTIP_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -23,7 +23,7 @@ let template = require('./tooltip-demo.html');
     }
   `]
 })
-export class TooltipDemo {
+export class TooltipDemoComponent {
   public dynamicTooltip:string = 'Hello, World!';
   public dynamicTooltipText:string = 'dynamic';
   public htmlTooltip:string = 'I\'ve been made <b>bold</b>!';

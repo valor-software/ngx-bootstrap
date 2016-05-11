@@ -1,6 +1,8 @@
 ### Usage
 ```typescript
-import { Rating } from 'ng2-bootstrap/ng2-bootstrap';
+import { RatingComponent } from 'ng2-bootstrap/ng2-bootstrap';
+// or
+import { RatingComponent } from 'ng2-bootstrap/components/rating';
 ```
 
 ### Annotations
@@ -10,7 +12,7 @@ import { Rating } from 'ng2-bootstrap/ng2-bootstrap';
   selector: 'rating[ngModel]',
   directives: [NgFor]
 })
-export class Rating implements ControlValueAccessor, OnInit {
+export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() private max:number;
   @Input() private stateOn:string;
   @Input() private stateOff:string;

@@ -1,13 +1,13 @@
 import {
   Component, Directive, EventEmitter, ComponentRef, ViewEncapsulation,
   ElementRef, DynamicComponentLoader, Self, Renderer, ReflectiveInjector, provide, ViewContainerRef
-} from 'angular2/core';
+} from '@angular/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
-} from 'angular2/common';
+} from '@angular/common';
 import {KeyAttribute} from '../common';
 import {positionService} from '../position';
-import {DatePicker} from './datepicker';
+import {DatePickerComponent} from './datepicker.component';
 
 // import {DatePickerInner} from './datepicker-inner';
 // import {DayPicker} from './daypicker';
@@ -53,12 +53,11 @@ const datePickerPopupConfig:KeyAttribute = {
             <button type="button" class="btn btn-sm btn-success pull-right" (click)="close()">{{ getText('close') }}</button>
         </li>
     </ul>`,
-  directives: [NgClass, NgStyle, DatePicker, FORM_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [NgClass, NgStyle, DatePickerComponent, FORM_DIRECTIVES, CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
-
-class PopupContainer {
-  public popupComp:DatePickerPopup;
+class PopupContainerComponent {
+  public popupComp:DatePickerPopupDirective;
 
   private classMap:any;
   private top:string;
@@ -119,7 +118,7 @@ class PopupContainer {
   properties: ['datepickerPopup', 'isOpen']/*,
    host: {'(cupdate)': 'onUpdate1($event)'}*/
 })
-export class DatePickerPopup {
+export class DatePickerPopupDirective {
   public cd:NgModel;
   public viewContainerRef:ViewContainerRef;
   public renderer:Renderer;
@@ -128,7 +127,7 @@ export class DatePickerPopup {
   private _activeDate:Date;
   private _isOpen:boolean = false;
   private placement:string = 'bottom';
-  private popup:Promise<ComponentRef>;
+  private popup:Promise<ComponentRef<any>>;
 
   public constructor(@Self() cd:NgModel, viewContainerRef:ViewContainerRef,
                      renderer:Renderer, loader:DynamicComponentLoader) {
@@ -167,7 +166,7 @@ export class DatePickerPopup {
 
   public hide(cb:Function):void {
     if (this.popup) {
-      this.popup.then((componentRef:ComponentRef) => {
+      this.popup.then((componentRef:ComponentRef<any>) => {
         componentRef.destroy();
         cb();
         return componentRef;
@@ -187,8 +186,8 @@ export class DatePickerPopup {
     ]);
 
     this.popup = this.loader
-      .loadNextToLocation(PopupContainer, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef) => {
+      .loadNextToLocation(PopupContainerComponent, this.viewContainerRef, binding)
+      .then((componentRef:ComponentRef<any>) => {
         componentRef.instance.position(this.viewContainerRef);
         componentRef.instance.popupComp = this;
         /*componentRef.instance.update1.observer({

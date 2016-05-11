@@ -1,5 +1,5 @@
-import {Directive, OnInit, Input, HostBinding} from 'angular2/core';
-import {Bar} from './bar.component';
+import {Directive, OnInit, Input, HostBinding} from '@angular/core';
+import {BarComponent} from './bar.component';
 
 const progressConfig = {
   animate: true,
@@ -11,7 +11,7 @@ const progressConfig = {
 /* tslint:disable */
 @Directive({selector: 'bs-progress, [progress]'})
 /* tslint:enable */
-export class Progress implements OnInit {
+export class ProgressDirective implements OnInit {
   @Input() public animate:boolean;
 
   @HostBinding('attr.max')
@@ -24,7 +24,7 @@ export class Progress implements OnInit {
 
   public set max(v:number) {
     this._max = v;
-    this.bars.forEach((bar:Bar) => {
+    this.bars.forEach((bar:BarComponent) => {
       bar.recalculatePercentage();
     });
   }
@@ -38,14 +38,14 @@ export class Progress implements OnInit {
     this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
   }
 
-  public addBar(bar:Bar):void {
+  public addBar(bar:BarComponent):void {
     if (!this.animate) {
       bar.transition = 'none';
     }
     this.bars.push(bar);
   }
 
-  public removeBar(bar:Bar):void {
+  public removeBar(bar:BarComponent):void {
     this.bars.splice(this.bars.indexOf(bar), 1);
   }
 }

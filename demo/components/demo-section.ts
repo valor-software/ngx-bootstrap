@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 
 let name = 'Alerts';
@@ -71,6 +71,6 @@ export class DemoSectionConfig {
   `,
   directives: [TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class DemoSection {
+export class DemoSectionComponent {
   public demoSection:DemoSectionConfig;
 }

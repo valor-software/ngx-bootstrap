@@ -1,15 +1,15 @@
 import {ACCORDION_DIRECTIVES} from './components/accordion';
-import {Alert} from './components/alert';
+import {AlertComponent} from './components/alert';
 import {BUTTON_DIRECTIVES} from './components/buttons';
 import {CAROUSEL_DIRECTIVES} from './components/carousel';
-import {Collapse} from './components/collapse';
+import {CollapseDirective} from './components/collapse';
 import {DATEPICKER_DIRECTIVES} from './components/datepicker';
 import {DROPDOWN_DIRECTIVES} from './components/dropdown';
 import {PAGINATION_DIRECTIVES} from './components/pagination';
 import {PROGRESSBAR_DIRECTIVES} from './components/progressbar';
-import {Rating} from './components/rating';
+import {RatingComponent} from './components/rating';
 import {TAB_DIRECTIVES} from './components/tabs';
-import {Timepicker} from './components/timepicker';
+import {TimepickerComponent} from './components/timepicker';
 import {TOOLTIP_DIRECTIVES} from './components/tooltip';
 import {TYPEAHEAD_DIRECTIVES} from './components/typeahead';
 
@@ -34,18 +34,18 @@ export * from './components/ng2-bootstrap-config';
 
 export default {
   directives: [
-    Alert,
+    AlertComponent,
     ACCORDION_DIRECTIVES,
     BUTTON_DIRECTIVES,
     CAROUSEL_DIRECTIVES,
-    Collapse,
+    CollapseDirective,
     DATEPICKER_DIRECTIVES,
     DROPDOWN_DIRECTIVES,
     PAGINATION_DIRECTIVES,
     PROGRESSBAR_DIRECTIVES,
-    Rating,
+    RatingComponent,
     TAB_DIRECTIVES,
-    Timepicker,
+    TimepickerComponent,
     TOOLTIP_DIRECTIVES,
     TYPEAHEAD_DIRECTIVES
   ]

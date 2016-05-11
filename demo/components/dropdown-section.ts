@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {DropdownDemo} from './dropdown/dropdown-demo';
+import {DropdownDemoComponent} from './dropdown/dropdown-demo';
 
 let name = 'Dropdowns';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/dropdown';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
 
 @Component({
   selector: 'dropdown-section',
-  directives: [DropdownDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [DropdownDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
   </section>
   `
 })
-export class DropdownSection {
+export class DropdownSectionComponent {
 }

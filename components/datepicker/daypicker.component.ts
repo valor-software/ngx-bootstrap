@@ -1,17 +1,17 @@
-import {Component, OnInit} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
+import {Component, OnInit} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {DatePickerInner} from './datepicker-inner';
+import {DatePickerInnerComponent} from './datepicker-inner.component';
 
 // write an interface for template options
 const TEMPLATE_OPTIONS:any = {
   [Ng2BootstrapTheme.BS4]: {
     DAY_TITLE: `
-        <th *ngFor="#labelz of labels" class="text-xs-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+        <th *ngFor="let labelz of labels" class="text-xs-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
     `,
     WEEK_ROW: `
         <td *ngIf="datePicker.showWeeks" class="text-xs-center h6"><em>{{ weekNumbers[index] }}</em></td>
-        <td *ngFor="#dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" class="text-xs-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-secondary': !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled}"
@@ -26,11 +26,11 @@ const TEMPLATE_OPTIONS:any = {
   },
   [Ng2BootstrapTheme.BS3]: {
     DAY_TITLE: `
-        <th *ngFor="#labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
+        <th *ngFor="let labelz of labels" class="text-center"><small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small></th>
     `,
     WEEK_ROW: `
         <td *ngIf="datePicker.showWeeks" class="text-center h6"><em>{{ weekNumbers[index] }}</em></td>
-        <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-default btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-info': dtz.selected, active: datePicker.isActive(dtz), disabled: dtz.disabled}"
@@ -83,7 +83,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
     </tr>
   </thead>
   <tbody>
-    <template ngFor [ngForOf]="rows" #rowz="$implicit" #index="index">
+    <template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
       <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
         ${CURRENT_THEME_TEMPLATE.WEEK_ROW}
       </tr>
@@ -93,15 +93,15 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class DayPicker implements OnInit {
+export class DayPickerComponent implements OnInit {
 
   public labels:Array<any> = [];
   public title:string;
   public rows:Array<any> = [];
   public weekNumbers:Array<number> = [];
-  public datePicker:DatePickerInner;
+  public datePicker:DatePickerInnerComponent;
 
-  public constructor(datePicker:DatePickerInner) {
+  public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 

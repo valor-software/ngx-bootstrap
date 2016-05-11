@@ -1,6 +1,6 @@
-import {ButtonCheckbox} from './buttons/button-checkbox.component';
-import {ButtonRadio} from './buttons/button-radio.component';
+import {ButtonCheckboxDirective} from './buttons/button-checkbox.directive';
+import {ButtonRadioDirective} from './buttons/button-radio.directive';
 
-export {ButtonCheckbox} from './buttons/button-checkbox.component';
-export {ButtonRadio} from './buttons/button-radio.component';
-export const BUTTON_DIRECTIVES:Array<any> = [ButtonCheckbox, ButtonRadio];
+export {ButtonCheckboxDirective} from './buttons/button-checkbox.directive';
+export {ButtonRadioDirective} from './buttons/button-radio.directive';
+export const BUTTON_DIRECTIVES:Array<any> = [ButtonCheckboxDirective, ButtonRadioDirective];

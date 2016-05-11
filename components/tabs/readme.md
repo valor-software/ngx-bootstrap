@@ -1,6 +1,8 @@
 ### Usage
 ```typescript
 import { TAB_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+// or
+import { TAB_DIRECTIVES } from 'ng2-bootstrap/components/tabs';
 ```
 
 ```html
@@ -20,7 +22,7 @@ import { TAB_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
   selector: 'tabset',
   directives: [NgClass, NgTransclude]
 })
-export class Tabset implements OnInit {
+export class TabsetComponent implements OnInit {
   @Input() public vertical:boolean;
   @Input() public justified:boolean;
   @Input() public type:string;
@@ -28,7 +30,7 @@ export class Tabset implements OnInit {
 
 // directive Tab
 @Directive({ selector: 'tab, [tab]' })
-export class Tab implements OnInit, OnDestroy, DoCheck {
+export class TabDirective implements OnInit, OnDestroy, DoCheck {
   @Input() public heading:string;
   @Input() public disabled:boolean;
   @Input() public removable:boolean;
@@ -44,7 +46,7 @@ export class Tab implements OnInit, OnDestroy, DoCheck {
 
 // directive TabHeading
 @Directive({selector: '[tab-heading]'})
-export class TabHeading {}
+export class TabHeadingDirective {}
 
 export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
 ```

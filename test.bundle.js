@@ -17,14 +17,18 @@ require('es6-promise');
 require('es6-shim');
 require('es7-reflect-metadata/dist/browser');
 
-require('zone.js');
+// require('zone.js');
+require('zone.js/dist/zone.js');
+require('zone.js/dist/long-stack-trace-zone.js');
+require('zone.js/dist/jasmine-patch.js');
+require('zone.js/dist/async-test.js');
 
-var testing = require('angular2/testing');
-var browser = require('angular2/platform/testing/browser');
+var testing = require('@angular/core/testing');
+var browser = require('@angular/platform-browser-dynamic/testing');
 
 testing.setBaseTestProviders(
-  browser.TEST_BROWSER_PLATFORM_PROVIDERS,
-  browser.TEST_BROWSER_APPLICATION_PROVIDERS);
+  browser.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
+  browser.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS);
 
 /*
  Ok, this is kinda crazy. We can use the the context method on

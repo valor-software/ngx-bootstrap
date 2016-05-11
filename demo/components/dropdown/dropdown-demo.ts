@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 import {DROPDOWN_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -10,7 +10,7 @@ let template = require('./dropdown-demo.html');
   directives: [DROPDOWN_DIRECTIVES, CORE_DIRECTIVES],
   template: template
 })
-export class DropdownDemo {
+export class DropdownDemoComponent {
   public disabled:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
   public items:Array<string> = ['The first choice!',

@@ -1,11 +1,11 @@
-import {Directive, ElementRef, Host, OnInit} from 'angular2/core';
-import {Dropdown} from './dropdown.directive';
+import {Directive, ElementRef, Host, OnInit} from '@angular/core';
+import {DropdownDirective} from './dropdown.directive';
 
 @Directive({selector: '[dropdownMenu]'})
-export class DropdownMenu implements OnInit {
-  public dropdown:Dropdown;
+export class DropdownMenuDirective implements OnInit {
+  public dropdown:DropdownDirective;
   public el:ElementRef;
-  public constructor(@Host() dropdown:Dropdown, el:ElementRef) {
+  public constructor(@Host() dropdown:DropdownDirective, el:ElementRef) {
     this.dropdown = dropdown;
     this.el = el;
   }

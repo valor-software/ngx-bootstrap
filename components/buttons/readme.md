@@ -2,13 +2,13 @@
 ```typescript
 import {BUTTON_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { ButtonRadio, ButtonCheckbox } from 'ng2-bootstrap/ng2-bootstrap';
+import { ButtonRadioDirective, ButtonCheckboxDirective } from 'ng2-bootstrap/ng2-bootstrap';
 ```
 ### Annotations
 ```typescript
-// component ButtonRadio
+// directive ButtonRadio
 @Directive({ selector: '[btnRadio][ngModel]' })
-export class ButtonRadio implements ControlValueAccessor, OnInit {
+export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   @Input() public btnRadio:string;
   @Input() public uncheckable:boolean;
 
@@ -18,9 +18,9 @@ export class ButtonRadio implements ControlValueAccessor, OnInit {
   @HostListener('click')
   private onClick() {}
 }
-// component ButtonCheckbox
+// directive ButtonCheckbox
 @Directive({ selector: '[btnCheckbox][ngModel]' })
-export class ButtonCheckbox implements ControlValueAccessor, OnInit {
+export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   @Input() private btnCheckboxTrue:any;
   @Input() private btnCheckboxFalse:any;
 

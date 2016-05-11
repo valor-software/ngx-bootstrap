@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, Self} from 'angular2/core';
-import {NgClass, NgModel, ControlValueAccessor} from 'angular2/common';
+import {Component, OnInit, Input, Self} from '@angular/core';
+import {NgClass, NgModel, ControlValueAccessor} from '@angular/common';
 
 export interface TimepickerConfig {
   hourStep:number;
@@ -82,7 +82,7 @@ function addMinutes(date:any, minutes:number):Date {
     </table>
   `
 })
-export class Timepicker implements ControlValueAccessor, OnInit {
+export class TimepickerComponent implements ControlValueAccessor, OnInit {
   public cd:NgModel;
   // config
   @Input() public hourStep:number;

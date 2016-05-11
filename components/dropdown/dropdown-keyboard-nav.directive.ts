@@ -1,14 +1,14 @@
-import {Directive, ElementRef, HostListener} from 'angular2/core';
-import {Dropdown} from './dropdown.directive';
+import {Directive, ElementRef, HostListener} from '@angular/core';
+import {DropdownDirective} from './dropdown.directive';
 
 @Directive({
   selector: '[dropdown][dropdownKeyboardNav]'
 })
-export class KeyboardNav {
-  private dd:Dropdown;
+export class KeyboardNavDirective {
+  private dd:DropdownDirective;
   private el:ElementRef;
 
-  public constructor(dd:Dropdown, el:ElementRef) {
+  public constructor(dd:DropdownDirective, el:ElementRef) {
     this.dd = dd;
     this.el = el;
     console.warn('keyboard-nav deprecated');

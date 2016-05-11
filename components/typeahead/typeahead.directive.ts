@@ -1,13 +1,18 @@
 import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
   Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
-} from 'angular2/core';
-import {NgModel} from 'angular2/common';
+} from '@angular/core';
+import {NgModel} from '@angular/common';
 import {TypeaheadUtils} from './typeahead-utils';
-import {TypeaheadContainer} from './typeahead-container.component';
+import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
 
-// https://github.com/angular/angular/blob/master/modules/angular2/src/core/forms/directives/shared.ts
+import {global} from '@angular/core/src/facade/lang';
+/* tslint:disable */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+/* tslint:enable */
+
+// https://github.com/angular/angular/blob/master/modules/@angular/src/core/forms/directives/shared.ts
 function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, propValue:any):void {
   renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
 }
@@ -15,7 +20,7 @@ function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, 
 @Directive({
   selector: '[typeahead][ngModel]'
 })
-export class Typeahead implements OnInit {
+export class TypeaheadDirective implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter(false);
   @Output() public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter(false);
   @Output() public typeaheadOnSelect:EventEmitter<{item:any}> = new EventEmitter(false);
@@ -40,13 +45,13 @@ export class Typeahead implements OnInit {
   // @Input() private typeaheadSelectOnBlur:boolean;
   // @Input() private typeaheadFocusOnSelect:boolean;
 
-  public container:TypeaheadContainer;
+  public container:TypeaheadContainerComponent;
   public isTypeaheadOptionsListActive:boolean = false;
 
   private debouncer:Function;
   private _matches:Array<any> = [];
   private placement:string = 'bottom-left';
-  private popup:Promise<ComponentRef>;
+  private popup:Promise<ComponentRef<any>>;
 
   private cd:NgModel;
   private viewContainerRef:ViewContainerRef;
@@ -214,8 +219,8 @@ export class Typeahead implements OnInit {
     ]);
 
     this.popup = this.loader
-      .loadNextToLocation(TypeaheadContainer, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef) => {
+      .loadNextToLocation(TypeaheadContainerComponent, this.viewContainerRef, binding)
+      .then((componentRef:ComponentRef<any>) => {
         componentRef.instance.position(this.viewContainerRef.element);
         this.container = componentRef.instance;
         this.container.parent = this;
@@ -236,7 +241,7 @@ export class Typeahead implements OnInit {
 
   public hide():void {
     if (this.container) {
-      this.popup.then((componentRef:ComponentRef) => {
+      this.popup.then((componentRef:ComponentRef<any>) => {
         componentRef.destroy();
         this.container = void 0;
         return componentRef;

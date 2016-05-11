@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -10,7 +10,7 @@ let template = require('./typeahead-demo.html');
   directives: [TYPEAHEAD_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: template
 })
-export class TypeaheadDemo {
+export class TypeaheadDemoComponent {
   public selected:string = '';
   public asyncSelected:string = '';
   public typeaheadLoading:boolean = false;

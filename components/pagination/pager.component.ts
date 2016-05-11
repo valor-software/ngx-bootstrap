@@ -1,6 +1,6 @@
-import {Component, OnInit, ElementRef, Renderer, Self} from 'angular2/core';
-import {NgModel, NgClass} from 'angular2/common';
-import {Pagination} from './pagination.component';
+import {Component, OnInit, ElementRef, Renderer, Self} from '@angular/core';
+import {NgModel, NgClass} from '@angular/common';
+import {PaginationComponent} from './pagination.component';
 
 const pagerConfig = {
   itemsPerPage: 10,
@@ -32,7 +32,7 @@ const PAGER_TEMPLATE = `
   ]
 })
 /* tslint:enable */
-export class Pager extends Pagination implements OnInit {
+export class PagerComponent extends PaginationComponent implements OnInit {
   public config:any = pagerConfig;
 
   public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {

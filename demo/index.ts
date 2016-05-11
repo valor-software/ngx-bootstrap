@@ -1,22 +1,22 @@
-import {Component, enableProdMode} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
-import {bootstrap} from 'angular2/platform/browser';
+import {Component, enableProdMode} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
+import {bootstrap} from '@angular/platform-browser-dynamic';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
-import {AccordionSection} from './components/accordion-section';
-import {AlertSection} from './components/alert-section';
-import {ButtonsSection} from './components/buttons-section';
-import {CarouselSection} from './components/carousel-section';
-import {CollapseSection} from './components/collapse-section';
-import {DatepickerSection} from './components/datepicker-section';
-import {DropdownSection} from './components/dropdown-section';
-import {PaginationSection} from './components/pagination-section';
-import {ProgressbarSection} from './components/progressbar-section';
-import {RatingSection} from './components/rating-section';
-import {TabsSection} from './components/tabs-section';
-import {TimepickerSection} from './components/timepicker-section';
-import {TooltipSection} from './components/tooltip-section';
-import {TypeaheadSection} from './components/typeahead-section';
-import {DemoHeader} from './components/demo-header';
+import {AccordionSectionComponent} from './components/accordion-section';
+import {AlertSectionComponent} from './components/alert-section';
+import {ButtonsSectionComponent} from './components/buttons-section';
+import {CarouselSectionComponent} from './components/carousel-section';
+import {CollapseSectionComponent} from './components/collapse-section';
+import {DatepickerSectionComponent} from './components/datepicker-section';
+import {DropdownSectionComponent} from './components/dropdown-section';
+import {PaginationSectionComponent} from './components/pagination-section';
+import {ProgressbarSectionComponent} from './components/progressbar-section';
+import {RatingSectionComponent} from './components/rating-section';
+import {TabsSectionComponent} from './components/tabs-section';
+import {TimepickerSectionComponent} from './components/timepicker-section';
+import {TooltipSectionComponent} from './components/tooltip-section';
+import {TypeaheadSectionComponent} from './components/typeahead-section';
+import {DemoHeaderComponent} from './components/demo-header';
 
 // todo: enable prod mod only for prod build
 // if (false) {
@@ -81,29 +81,29 @@ let gettingStarted = require('./getting-started.md');
   `,
   directives: [
     CORE_DIRECTIVES,
-    DemoHeader,
+    DemoHeaderComponent,
 
-    AccordionSection,
-    AlertSection,
-    ButtonsSection,
-    CarouselSection,
-    CollapseSection,
+    AccordionSectionComponent,
+    AlertSectionComponent,
+    ButtonsSectionComponent,
+    CarouselSectionComponent,
+    CollapseSectionComponent,
 
     // todo: fix it to much write value calls!!!
-    DatepickerSection,
+    DatepickerSectionComponent,
 
-    DropdownSection,
-    PaginationSection,
-    ProgressbarSection,
-    RatingSection,
-    TabsSection,
-    TimepickerSection,
-    TooltipSection,
-    TypeaheadSection
+    DropdownSectionComponent,
+    PaginationSectionComponent,
+    ProgressbarSectionComponent,
+    RatingSectionComponent,
+    TabsSectionComponent,
+    TimepickerSectionComponent,
+    TooltipSectionComponent,
+    TypeaheadSectionComponent
   ]
 })
-export class Demo {
+export class DemoComponent {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
 }
 
-bootstrap(Demo);
+bootstrap(DemoComponent);

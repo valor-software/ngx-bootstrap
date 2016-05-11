@@ -1,10 +1,10 @@
-import {Directive, TemplateRef} from 'angular2/core';
-import {Tab} from './tab.directive';
+import {Directive, TemplateRef} from '@angular/core';
+import {TabDirective} from './tab.directive';
 
 @Directive({selector: '[tabHeading]'})
-export class TabHeading {
-  public templateRef:TemplateRef;
-  public constructor(templateRef:TemplateRef, tab:Tab) {
+export class TabHeadingDirective {
+  public templateRef:TemplateRef<any>;
+  public constructor(templateRef:TemplateRef<any>, tab:TabDirective) {
     tab.headingRef = templateRef;
   }
 }

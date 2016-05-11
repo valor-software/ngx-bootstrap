@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 import {
   Ng2BootstrapConfig, Ng2BootstrapTheme, PROGRESSBAR_DIRECTIVES
 } from '../../../ng2-bootstrap';
@@ -17,7 +17,7 @@ let templates:any = {
   directives: [PROGRESSBAR_DIRECTIVES, CORE_DIRECTIVES],
   template: templates[Ng2BootstrapConfig.theme]
 })
-export class ProgressbarDemo {
+export class ProgressbarDemoComponent {
   public max:number = 200;
   public showWarning:boolean;
   public dynamic:number;

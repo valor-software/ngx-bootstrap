@@ -1,12 +1,12 @@
 import {
   Directive, OnDestroy, Input, Output, HostBinding, TemplateRef, EventEmitter
-} from 'angular2/core';
-import {Tabset} from './tabset.component';
+} from '@angular/core';
+import {TabsetComponent} from './tabset.component';
 
 /* tslint:disable */
 @Directive({selector: 'tab, [tab]'})
 /* tslint:enable */
-export class Tab implements OnDestroy {
+export class TabDirective implements OnDestroy {
   @Input() public heading:string;
   @Input() public disabled:boolean;
   @Input() public removable:boolean;
@@ -18,9 +18,9 @@ export class Tab implements OnDestroy {
     return this._active;
   }
 
-  @Output() public select:EventEmitter<Tab> = new EventEmitter(false);
-  @Output() public deselect:EventEmitter<Tab> = new EventEmitter(false);
-  @Output() public removed:EventEmitter<Tab> = new EventEmitter(false);
+  @Output() public select:EventEmitter<TabDirective> = new EventEmitter(false);
+  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter(false);
+  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter(false);
 
   public set active(active:boolean) {
     if (this.disabled && active || !active) {
@@ -34,7 +34,7 @@ export class Tab implements OnDestroy {
 
     this._active = active;
     this.select.emit(this);
-    this.tabset.tabs.forEach((tab:Tab) => {
+    this.tabset.tabs.forEach((tab:TabDirective) => {
       if (tab !== this) {
         tab.active = false;
       }
@@ -43,11 +43,11 @@ export class Tab implements OnDestroy {
 
   @HostBinding('class.tab-pane') public addClass:boolean = true;
 
-  public headingRef:TemplateRef;
-  public tabset:Tabset;
+  public headingRef:TemplateRef<any>;
+  public tabset:TabsetComponent;
   private _active:boolean;
 
-  public constructor(tabset:Tabset) {
+  public constructor(tabset:TabsetComponent) {
     this.tabset = tabset;
     this.tabset.addTab(this);
   }

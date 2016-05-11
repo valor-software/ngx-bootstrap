@@ -1,6 +1,8 @@
 ### Usage
 ```typescript
-import { Timepicker } from 'ng2-bootstrap/ng2-bootstrap';
+import { TimepickerComponent } from 'ng2-bootstrap/ng2-bootstrap';
+// or
+import { TimepickerComponent } from 'ng2-bootstrap/components/timepicker';
 ```
 
 ### Annotations
@@ -10,7 +12,7 @@ import { Timepicker } from 'ng2-bootstrap/ng2-bootstrap';
   selector: 'timepicker[ngModel]',
   directives: [NgClass]
 })
-export class Timepicker implements ControlValueAccessor, OnInit {
+export class TimepickerComponent implements ControlValueAccessor, OnInit {
   // config
   @Input() private hourStep:number;
   @Input() private minuteStep:number;

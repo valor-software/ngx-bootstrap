@@ -1,5 +1,5 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
 
 import * as moment from 'moment';
 import {DATEPICKER_DIRECTIVES} from '../../../ng2-bootstrap';
@@ -12,7 +12,7 @@ let template = require('./datepicker-demo.html');
   template: template,
   directives: [DATEPICKER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
-export class DatepickerDemo {
+export class DatepickerDemoComponent {
   public dt:Date = new Date();
   public minDate:Date = void 0;
   public events:Array<any>;

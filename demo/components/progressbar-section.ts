@@ -1,12 +1,12 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 import {
   TAB_DIRECTIVES,
   Ng2BootstrapConfig,
   Ng2BootstrapTheme
 } from '../../ng2-bootstrap';
-import {ProgressbarDemo} from './progressbar/progressbar-demo';
+import {ProgressbarDemoComponent} from './progressbar/progressbar-demo';
 
 let name = 'Progressbar';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/progressbar/';
@@ -24,7 +24,7 @@ let html = templates[Ng2BootstrapConfig.theme];
 
 @Component({
   selector: 'progressbar-section',
-  directives: [ProgressbarDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [ProgressbarDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -68,5 +68,5 @@ let html = templates[Ng2BootstrapConfig.theme];
   </section>
   `
 })
-export class ProgressbarSection {
+export class ProgressbarSectionComponent {
 }

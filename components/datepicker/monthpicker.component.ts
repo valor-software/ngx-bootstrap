@@ -1,6 +1,6 @@
-import {Component, OnInit} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from 'angular2/common';
-import {DatePickerInner} from './datepicker-inner';
+import {Component, OnInit} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
+import {DatePickerInnerComponent} from './datepicker-inner.component';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 
 // write an interface for template options
@@ -54,8 +54,8 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="#rowz of rows">
-      <td *ngFor="#dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ngClass]="dtz.customClass">
+    <tr *ngFor="let rowz of rows">
+      <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ngClass]="dtz.customClass">
         ${CURRENT_THEME_TEMPLATE.MONTH_BUTTON}
       </td>
     </tr>
@@ -64,12 +64,12 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass]
 })
-export class MonthPicker implements OnInit {
+export class MonthPickerComponent implements OnInit {
   public title:string;
   public rows:Array<any> = [];
-  public datePicker:DatePickerInner;
+  public datePicker:DatePickerInnerComponent;
 
-  public constructor(datePicker:DatePickerInner) {
+  public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 

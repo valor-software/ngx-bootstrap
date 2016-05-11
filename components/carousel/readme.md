@@ -1,6 +1,8 @@
 ### Usage
 ```typescript
 import { CAROUSEL_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+// or
+import { CAROUSEL_DIRECTIVES } from 'ng2-bootstrap/components/carousel';
 ```
 
 ### Annotations
@@ -10,7 +12,7 @@ import { CAROUSEL_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
   selector: 'carousel',
   directives: [NgFor]
 })
-export class Carousel implements OnDestroy {
+export class CarouselComponent implements OnDestroy {
   @Input() private noWrap:boolean;
   @Input() private noPause:boolean;
   @Input() private noTransition:boolean;
@@ -23,7 +25,7 @@ export class Carousel implements OnDestroy {
   selector: 'slide',
   directives: [NgClass]
 })
-export class Slide implements OnInit, OnDestroy {
+export class SlideComponent implements OnInit, OnDestroy {
   @Input() public index:number;
   @Input() public direction:Direction;
 

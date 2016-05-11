@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {AlertDemo} from './alert/alert-demo';
+import {AlertDemoComponent} from './alert/alert-demo';
 
 let name = 'Alerts';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts';
@@ -58,7 +58,7 @@ let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
     </div>
   </section>
   `,
-  directives: [AlertDemo, TAB_DIRECTIVES, CORE_DIRECTIVES]
+  directives: [AlertDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class AlertSection {
+export class AlertSectionComponent {
 }

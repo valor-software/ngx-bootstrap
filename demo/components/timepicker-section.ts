@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES} from 'angular2/common';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES} from '@angular/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {TimepickerDemo} from './timepicker/timepicker-demo';
+import {TimepickerDemoComponent} from './timepicker/timepicker-demo';
 
 let name = 'Timepicker';
 let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/timepicker/timepicker.ts';
@@ -16,7 +16,7 @@ let html = require('!!prismjs?lang=markup!./timepicker/timepicker-demo.html');
 
 @Component({
   selector: 'timepicker-section',
-  directives: [TimepickerDemo, TAB_DIRECTIVES, CORE_DIRECTIVES],
+  directives: [TimepickerDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES],
   template: `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
@@ -60,5 +60,5 @@ let html = require('!!prismjs?lang=markup!./timepicker/timepicker-demo.html');
   </section>
   `
 })
-export class TimepickerSection {
+export class TimepickerSectionComponent {
 }

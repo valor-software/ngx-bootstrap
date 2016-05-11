@@ -1,10 +1,15 @@
 import {
   Directive, ElementRef, Host, OnInit, Input, HostBinding, HostListener
-} from 'angular2/core';
-import {Dropdown} from './dropdown.directive';
+} from '@angular/core';
+import {DropdownDirective} from './dropdown.directive';
+
+import {global} from '@angular/core/src/facade/lang';
+/* tslint:disable */
+const MouseEvent = (global as any).MouseEvent as MouseEvent;
+/* tslint:enable */
 
 @Directive({selector: '[dropdownToggle]'})
-export class DropdownToggle implements OnInit {
+export class DropdownToggleDirective implements OnInit {
   @HostBinding('class.disabled')
   @Input() public disabled:boolean = false;
 
@@ -12,9 +17,9 @@ export class DropdownToggle implements OnInit {
   @HostBinding('attr.aria-haspopup')
   public addClass:boolean = true;
 
-  public dropdown:Dropdown;
+  public dropdown:DropdownDirective;
   public el:ElementRef;
-  public constructor(@Host() dropdown:Dropdown, el:ElementRef) {
+  public constructor(@Host() dropdown:DropdownDirective, el:ElementRef) {
     this.dropdown = dropdown;
     this.el = el;
   }

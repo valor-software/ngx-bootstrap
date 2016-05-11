@@ -1,10 +1,10 @@
-import {Component, Input} from 'angular2/core';
-import {Progress} from './progress.directive';
-import {Bar} from './bar.component';
+import {Component, Input} from '@angular/core';
+import {ProgressDirective} from './progress.directive';
+import {BarComponent} from './bar.component';
 
 @Component({
   selector: 'progressbar',
-  directives: [Progress, Bar],
+  directives: [ProgressDirective, BarComponent],
   template: `
     <div progress [animate]="animate" [max]="max">
       <bar [type]="type" [value]="value">
@@ -13,7 +13,7 @@ import {Bar} from './bar.component';
     </div>
   `
 })
-export class Progressbar {
+export class ProgressbarComponent {
   @Input() public animate:boolean;
   @Input() public max:number;
   @Input() public type:string;
