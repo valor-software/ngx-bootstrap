@@ -75,7 +75,7 @@
     "es6-promise": "3.1.2",
     "es6-shim": "0.35.0",
     "es7-reflect-metadata": "1.6.0",
-    "eslint-config-valorsoft": "0.0.10",
+    "eslint-config-valorsoft": "0.0.13",
     "exports-loader": "0.6.3",
     "file-loader": "0.8.5",
     "gh-pages": "0.11.0",
