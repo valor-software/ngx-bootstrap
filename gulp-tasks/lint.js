@@ -2,11 +2,13 @@
 
 const gulp = require('gulp');
 const tslint = require('gulp-tslint');
-const paths = gulp.paths;
+const gitignore = require('gitignore-to-glob')();
+
+gitignore.push('**/*.ts');
 
 gulp.task('tslint', () =>
   gulp
-    .src(paths.tssrc)
+    .src(gitignore)
     .pipe(tslint())
     .pipe(tslint.report('prose', {
       emitError: true,

@@ -150,8 +150,8 @@ export class DayPickerComponent implements OnInit {
 
       if (this.showWeeks) {
         self.weekNumbers = [];
-        let thursdayIndex = (4 + 7 - this.startingDay) % 7,
-          numWeeks = self.rows.length;
+        let thursdayIndex = (4 + 7 - this.startingDay) % 7;
+        let numWeeks = self.rows.length;
         for (let curWeek = 0; curWeek < numWeeks; curWeek++) {
           self.weekNumbers.push(self.getISO8601WeekNumber(self.rows[curWeek][thursdayIndex].date));
         }

@@ -3,7 +3,8 @@ import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testin
 import {AlertComponent} from './alert.component';
 
 describe('Component: Alert', () => {
-    let fixture:ComponentFixture<any>, context:any;
+    let fixture:ComponentFixture<any>;
+    let context:any;
     const overTemplate = `
                   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
                     <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
