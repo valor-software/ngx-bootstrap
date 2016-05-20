@@ -9,6 +9,7 @@ import {CarouselSectionComponent} from './components/carousel-section';
 import {CollapseSectionComponent} from './components/collapse-section';
 import {DatepickerSectionComponent} from './components/datepicker-section';
 import {DropdownSectionComponent} from './components/dropdown-section';
+import {ModalSectionComponent} from './components/modal-section';
 import {PaginationSectionComponent} from './components/pagination-section';
 import {ProgressbarSectionComponent} from './components/progressbar-section';
 import {RatingSectionComponent} from './components/rating-section';
@@ -33,8 +34,8 @@ let gettingStarted = require('./getting-started.md');
 @Component({
   selector: 'app',
   template: `
-  <demo-header>Loading header</demo-header>
-  <main class="bd-pageheader">
+  <!--<demo-header>Loading header</demo-header>-->
+<!--  <main class="bd-pageheader">
     <div class="container">
       <h1>ng2-bootstrap</h1>
       <p>Native Angular2 directives for Bootstrap</p>
@@ -44,16 +45,16 @@ let gettingStarted = require('./getting-started.md');
         <div class="col-lg-1"><iframe src="https://ghbtns.com/github-btn.html?user=valor-software&repo=ng2-bootstrap&type=fork&count=true" frameborder="0" scrolling="0" width="170px" height="20px"></iframe></div>
       </div>
     </div>
-  </main>
+  </main>-->
 
   <div class="container">
-    <h1 id="overview" class="page-header">
-      ng2-bootstrap available with:
-      <a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: isBs3}" href="./">Bootstrap 3</a>
-      <a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: !isBs3}" href="./index-bs4.html">Bootstrap 4</a>
-    </h1>
+    <!--<h1 id="overview" class="page-header">-->
+      <!--ng2-bootstrap available with:-->
+      <!--<a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: isBs3}" href="./">Bootstrap 3</a>-->
+      <!--<a class="btn btn-default btn-secondary btn-lg" [ngClass]="{active: !isBs3}" href="./index-bs4.html">Bootstrap 4</a>-->
+    <!--</h1>-->
     
-    <section id="getting-started">${gettingStarted}</section>
+    <!--<section id="getting-started">${gettingStarted}</section>-->
 
     <accordion-section></accordion-section>
     <alert-section></alert-section>
@@ -62,6 +63,7 @@ let gettingStarted = require('./getting-started.md');
     <collapse-section></collapse-section>
     <datepicker-section></datepicker-section>
     <dropdown-section></dropdown-section>
+    <modal-section></modal-section>
     <pagination-section></pagination-section>
     <progressbar-section></progressbar-section>
     <rating-section></rating-section>
@@ -71,35 +73,36 @@ let gettingStarted = require('./getting-started.md');
     <typeahead-section></typeahead-section>
   </div>
 
-  <footer class="footer">
-    <div class="container">
-      <p class="text-muted text-center">
-        <a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.
-      </p>
-    </div>
-  </footer>
+  <!--<footer class="footer">-->
+    <!--<div class="container">-->
+      <!--<p class="text-muted text-center">-->
+        <!--<a href="https://github.com/valor-software/ng2-bootstrap">ng2-bootstrap</a> is maintained by <a href="https://github.com/valor-software">valor-software</a>.-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</footer>-->
   `,
   directives: [
     CORE_DIRECTIVES,
-    DemoHeaderComponent,
+    // DemoHeaderComponent,
 
-    AccordionSectionComponent,
-    AlertSectionComponent,
-    ButtonsSectionComponent,
-    CarouselSectionComponent,
-    CollapseSectionComponent,
+    // AccordionSectionComponent,
+    // AlertSectionComponent,
+    // ButtonsSectionComponent,
+    // CarouselSectionComponent,
+    // CollapseSectionComponent,
 
     // todo: fix it to much write value calls!!!
-    DatepickerSectionComponent,
-
-    DropdownSectionComponent,
-    PaginationSectionComponent,
-    ProgressbarSectionComponent,
-    RatingSectionComponent,
-    TabsSectionComponent,
-    TimepickerSectionComponent,
-    TooltipSectionComponent,
-    TypeaheadSectionComponent
+    // DatepickerSectionComponent,
+    //
+    // DropdownSectionComponent,
+    ModalSectionComponent,
+    // PaginationSectionComponent,
+    // ProgressbarSectionComponent,
+    // RatingSectionComponent,
+    // TabsSectionComponent,
+    // TimepickerSectionComponent,
+    // TooltipSectionComponent,
+    // TypeaheadSectionComponent
   ]
 })
 export class DemoComponent {
