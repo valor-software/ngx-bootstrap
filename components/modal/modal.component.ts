@@ -1,17 +1,28 @@
 import {
-  Component, DynamicComponentLoader, ComponentRef, ReflectiveInjector, Provider, provide,
-  ViewContainerRef, ApplicationRef, AfterViewInit, ComponentResolver, ComponentFactory, ElementRef
+  Component,
+  DynamicComponentLoader,
+  ComponentRef,
+  ReflectiveInjector,
+  Provider,
+  ViewContainerRef,
+  ApplicationRef,
+  AfterViewInit,
+  ComponentResolver,
+  ComponentFactory,
+  ElementRef, Inject, Injector
 } from '@angular/core';
-
 import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
 import {modalConfig} from './modal-options.class';
+
+import {ComponentsHelper} from '../utils/components.helper';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
 
 @Component({
   selector: 'bs-modal',
-  template: '<span>hello world</span>'
+  template: '<span>hello world</span>',
+  // providers: [ComponentsHelper]
 })
 export class ModalComponent implements AfterViewInit {
   // seems like an Options
@@ -24,62 +35,19 @@ export class ModalComponent implements AfterViewInit {
   private backdrop:Promise<ComponentRef<ModalBackdropComponent>>;
 
   private element:ElementRef;
-  private loader:DynamicComponentLoader;
-  private viewContainerRef:ViewContainerRef;
-  private componentResolver:ComponentResolver;
-
-  public constructor(element:ElementRef, loader:DynamicComponentLoader, viewContainerRef:ViewContainerRef, componentResolver:ComponentResolver) {
+  private applicationRef:ApplicationRef;
+  private componentsHelper:ComponentsHelper;
+  public constructor(element:ElementRef, applicationRef:ApplicationRef, @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
     this.element = element;
-    this.loader = loader;
-    this.viewContainerRef = viewContainerRef;
-    this.componentResolver = componentResolver;
+    this.applicationRef = applicationRef;
+    this.componentsHelper = componentsHelper;
   }
 
   public ngAfterViewInit():any {
     this.showBackdrop();
   }
 
-
-
   public hide():void {
-  }
-
-  public appendToRoot_():Promise<ComponentRef<ModalBackdropComponent>> {
-    const viewContainerRef = this.viewContainerRef;
-
-    const options = new ModalBackdropOptions({animate: true});
-    let binding = ReflectiveInjector.resolve([
-      new Provider(ModalBackdropOptions, {useValue: options})
-    ]);
-
-    // const injector = ReflectiveInjector.resolveAndCreate([
-    //   provide(ModalBackdropOptions, {useValue: options})
-    // ]);
-
-    return this.loader
-    // .loadAsRoot(ModalBackdropComponent, document.body, injector)
-      .loadNextToLocation(ModalBackdropComponent, viewContainerRef, binding)
-      .then((componentRef:ComponentRef<any>) => {
-        return componentRef;
-      });
-  }
-
-  // todo: make this shit working
-  public appendToRoot():Promise<ComponentRef<ModalBackdropComponent>> {
-    return this.componentResolver
-      .resolveComponent(ModalBackdropComponent)
-      .then((componentFactory:ComponentFactory<ModalBackdropComponent>) => {
-        const viewContainerRef = this.viewContainerRef;
-        const options = new ModalBackdropOptions({animate: true});
-        let bindings = ReflectiveInjector.resolve([
-          new Provider(ModalBackdropOptions, {useValue: options})
-        ]);
-        const ctxInjector = viewContainerRef.parentInjector;
-
-        const childInjector = Array.isArray(bindings) && bindings.length > 0 ?
-          ReflectiveInjector.fromResolvedProviders(bindings, ctxInjector) : ctxInjector;
-        return viewContainerRef.createComponent(componentFactory, viewContainerRef.length, childInjector);
-      });
   }
 
   // todo: original show was calling a callback when done, but we can use promise
@@ -88,7 +56,8 @@ export class ModalComponent implements AfterViewInit {
     this.isShown = true;
     // todo: remove this
     if (this.isShown && modalConfig.backdrop) {
-      this.backdrop = this.appendToRoot();
+      this.backdrop = this.componentsHelper
+        .appendNextToRoot(ModalBackdropComponent, ModalBackdropOptions, new ModalBackdropOptions({animate: false}));
       this.backdrop.then((backdrop:ComponentRef<ModalBackdropComponent>) => {
         // Event.CLICK_DISMISS
         backdrop.instance.onClick

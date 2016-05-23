@@ -1,7 +1,7 @@
-import {Component, enableProdMode} from '@angular/core';
+import {Component, enableProdMode, ViewContainerRef, ApplicationRef} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme, BS_VIEW_PROVIDERS} from '../ng2-bootstrap';
 import {AccordionSectionComponent} from './components/accordion-section';
 import {AlertSectionComponent} from './components/alert-section';
 import {ButtonsSectionComponent} from './components/buttons-section';
@@ -107,6 +107,14 @@ let gettingStarted = require('./getting-started.md');
 })
 export class DemoComponent {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+
+  private viewContainerRef:ViewContainerRef;
+
+  public constructor(viewContainerRef:ViewContainerRef) {
+    console.log('hello demop')
+    // You need this small hack in order to catch application root view container ref
+    this.viewContainerRef = viewContainerRef;
+  }
 }
 
 bootstrap(DemoComponent);

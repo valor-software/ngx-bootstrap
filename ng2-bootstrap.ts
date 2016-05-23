@@ -14,6 +14,8 @@ import {TimepickerComponent} from './components/timepicker';
 import {TOOLTIP_DIRECTIVES} from './components/tooltip';
 import {TYPEAHEAD_DIRECTIVES} from './components/typeahead';
 
+import {ComponentsHelper} from './components/utils/components.helper';
+
 export * from './components/accordion';
 export * from './components/alert';
 export * from './components/buttons';
@@ -34,6 +36,8 @@ export * from './components/position';
 export * from './components/common';
 export * from './components/ng2-bootstrap-config';
 
+export const BS_VIEW_PROVIDERS: any[] = [{provide: ComponentsHelper, useClass:ComponentsHelper}];
+
 export default {
   directives: [
     AlertComponent,
@@ -51,5 +55,8 @@ export default {
     TimepickerComponent,
     TOOLTIP_DIRECTIVES,
     TYPEAHEAD_DIRECTIVES
+  ],
+  providers: [
+    ComponentsHelper
   ]
 };
