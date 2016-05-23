@@ -2,9 +2,8 @@
     <h4>Static arrays</h4>
     <pre class="card card-block card-header">Model: {{selected | json}}</pre>
     <input [(ngModel)]="selected"
-           [typeahead]="statesComplex"
+           [typeahead]="states"
            (typeaheadOnSelect)="typeaheadOnSelect($event)"
-           [typeaheadOptionField]="'name'"
            class="form-control">
 
     <h4>Asynchronous results</h4>
@@ -15,6 +14,7 @@
            (typeaheadNoResults)="changeTypeaheadNoResults($event)"
            (typeaheadOnSelect)="typeaheadOnSelect($event)"
            [typeaheadOptionsLimit]="7"
+           [typeaheadOptionField]="'name'"
            placeholder="Locations loaded with timeout"
            class="form-control">
     <div *ngIf="typeaheadLoading===true">

@@ -1,6 +1,6 @@
-import {Component} from 'angular2/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from 'angular2/common';
-import {Observable} from 'rxjs/Rx';
+import {Component} from '@angular/core';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
+import {Observable} from 'rxjs/Observable';
 
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
@@ -14,7 +14,7 @@ let template = require('./typeahead-demo.html');
 })
 export class TypeaheadDemoComponent {
   public selected:string = '';
-  private dataSource:Observable<any>;
+  public dataSource:Observable<any>;
   public asyncSelected:string = '';
   public typeaheadLoading:boolean = false;
   public typeaheadNoResults:boolean = false;
@@ -58,12 +58,12 @@ export class TypeaheadDemoComponent {
     {id: 49, name: 'West Virginia'}, {id: 50, name: 'Wisconsin'},
     {id: 51, name: 'Wyoming'}];
 
-  constructor() {
+  public constructor() {
     this.dataSource = Observable.create((observer:any) => {
       let query = new RegExp(this.asyncSelected, 'ig');
 
-      observer.next(this.states.filter((state:any) => {
-        return query.test(state);
+      observer.next(this.statesComplex.filter((state:any) => {
+        return query.test(state.name);
       }));
     });
   }
@@ -77,6 +77,6 @@ export class TypeaheadDemoComponent {
   }
 
   public typeaheadOnSelect(e:any):void {
-    console.log(`Selected value: ${e.item}`);
+    console.log('Selected value: ',e.item);
   }
 }

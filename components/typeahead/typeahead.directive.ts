@@ -7,7 +7,13 @@ import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
 
-import {Observable, Subject} from 'rxjs/Rx';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/toArray';;
+import {Observable} from 'rxjs/Observable';
 
 import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
@@ -55,70 +61,216 @@ export class TypeaheadDirective implements OnInit {
   private placement:string = 'bottom-left';
   private popup:Promise<ComponentRef<any>>;
 
-  constructor(private cd:NgModel,
-              private element:ElementRef,
-              private renderer:Renderer,
-              private loader:DynamicComponentLoader) {
-              private viewContainerRef:ViewContainerRef;
-  }
+  private cd:NgModel;
+  private viewContainerRef:ViewContainerRef;
+  private element:ElementRef;
+  private renderer:Renderer;
+  private loader:DynamicComponentLoader;
 
-  private asyncActions() {
-    let s = new Subject();
-    s.subscribe(() => {
-      this.typeahead
-        .subscribe(
-          (matches:string[]) => {
-            this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-            this.finalizeAsyncCall();
-          },
-          (err:any) => {
-            console.error(err);
-          }
-        );
-    });
-
-    this.keyUpEventEmitter
-      .debounceTime(100)
-      .subscribe(
-        () => {
-          s.next(null);
-        }
-      );
-  }
-
-  private syncActions() {
-    let syncSubject = new Subject();
-    syncSubject.subscribe(
-      (value:string) => {
-        let normalizedQuery = this.normalizeQuery(value);
-
-        Observable.fromArray(this.typeahead)
-          .map(option => this.prepareOption(value, option))
-          .filter((option:any) => {
-            return option && option.toLowerCase && this.testMatch(option.toLowerCase(), normalizedQuery);
-          })
-          .toArray()
-          .subscribe(
-            (matches:string[]) => {
-              this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-              this.finalizeAsyncCall();
-            },
-            (err:any) => {
-              console.error(err);
-            }
-          );
+  @HostListener('keyup', ['$event'])
+  protected onChange(e:any):void {
+    if (this.container) {
+      // esc
+      if (e.keyCode === 27) {
+        this.hide();
+        return;
       }
-    );
 
-    this.keyUpEventEmitter
-      .subscribe(syncSubject);
-  }
+      // up
+      if (e.keyCode === 38) {
+        this.container.prevActiveMatch();
+        return;
+      }
 
-  private prepareOption(value:string, option:any):any {
-    if (value.length < this.typeaheadMinLength) {
-      return Observable.empty();
+      // down
+      if (e.keyCode === 40) {
+        this.container.nextActiveMatch();
+        return;
+      }
+
+      // enter
+      if (e.keyCode === 13) {
+        this.container.selectActiveMatch();
+        return;
+      }
     }
 
+    if(e.target.value.trim().length >= this.typeaheadMinLength) {
+      this.typeaheadLoading.emit(true);
+      this.keyUpEventEmitter.emit(e.target.value);
+    } else {
+      this.typeaheadLoading.emit(false);
+      this.typeaheadNoResults.emit(false);
+      this.hide();
+    }
+  }
+
+  @HostListener('focus', ['$event.target'])
+  protected onFocus():void {
+    if (this.typeaheadMinLength === 0) {
+      console.log('focus');
+      this.typeaheadLoading.emit(true);
+      this.keyUpEventEmitter.emit('');
+    }
+  }
+
+  @HostListener('blur')
+  protected onBlur():void {
+    if (this.container && !this.container.isFocused) {
+      this.hide();
+    }
+  }
+
+  @HostListener('keydown', ['$event'])
+  protected onKeydown(e:KeyboardEvent):void {
+    // no container - no problems
+    if (!this.container) {
+      return;
+    }
+
+    // if items is visible - prevent form submition
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      return;
+    }
+
+    // if shift + tab, close items list
+    if (e.shiftKey && e.keyCode === 9) {
+      this.hide();
+      return;
+    }
+
+    // if tab select current item
+    if (!e.shiftKey && e.keyCode === 9) {
+      this.container.selectActiveMatch();
+      return;
+    }
+  }
+
+  public constructor(cd:NgModel, viewContainerRef:ViewContainerRef, element:ElementRef,
+                     renderer:Renderer, loader:DynamicComponentLoader) {
+    this.element = element;
+    this.cd = cd;
+    this.viewContainerRef = viewContainerRef;
+    this.renderer = renderer;
+    this.loader = loader;
+  }
+
+  public ngOnInit():void {
+    this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
+    this.typeaheadMinLength = this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
+    this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
+
+    // async should be false in case of array
+    if (this.typeaheadAsync === undefined && !(this.typeahead instanceof Observable)) {
+      this.typeaheadAsync = false;
+    }
+
+    if (this.typeahead instanceof Observable) {
+      this.typeaheadAsync = true;
+    }
+
+    if (this.typeaheadAsync) {
+      this.asyncActions();
+    } else {
+      this.syncActions();
+    }
+  }
+
+  public changeModel(value:any):void {
+    let valueStr:string = ((typeof value === 'object' && this.typeaheadOptionField)
+      ? value[this.typeaheadOptionField]
+      : value).toString();
+    this.cd.viewToModelUpdate(valueStr);
+    setProperty(this.renderer, this.element, 'value', valueStr);
+    this.hide();
+  }
+
+  public get matches():Array<any> {
+    return this._matches;
+  }
+
+  public show(matches:Array<any>):void {
+    let options = new TypeaheadOptions({
+      typeaheadRef: this,
+      placement: this.placement,
+      animation: false
+    });
+
+    let binding = ReflectiveInjector.resolve([
+      provide(TypeaheadOptions, {useValue: options})
+    ]);
+
+    this.popup = this.loader
+      .loadNextToLocation(TypeaheadContainerComponent, this.viewContainerRef, binding)
+      .then((componentRef:ComponentRef<any>) => {
+        componentRef.instance.position(this.viewContainerRef.element);
+        this.container = componentRef.instance;
+        this.container.parent = this;
+        // This improves the speedas it won't have to be done for each list item
+        let normalizedQuery = (this.typeaheadLatinize
+          ? TypeaheadUtils.latinize(this.cd.model)
+          : this.cd.model).toString()
+          .toLowerCase();
+        this.container.query = this.typeaheadSingleWords
+          ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+          : normalizedQuery;
+        this.container.matches = matches;
+        this.container.field = this.typeaheadOptionField;
+        this.element.nativeElement.focus();
+        return componentRef;
+      });
+  }
+
+  public hide():void {
+    if (this.container) {
+      this.popup.then((componentRef:ComponentRef<any>) => {
+        componentRef.destroy();
+        this.container = void 0;
+        return componentRef;
+      });
+    }
+  }
+
+  private asyncActions():void {
+    this.keyUpEventEmitter
+      .debounceTime(this.typeaheadWaitMs)
+      .mergeMap(() => this.typeahead)
+      .subscribe(
+      (matches:string[]) => {
+        this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+        this.finalizeAsyncCall();
+      },
+      (err:any) => {
+        console.error(err);
+      }
+    );
+  }
+
+  private syncActions():void {
+    this.keyUpEventEmitter
+      .debounceTime(this.typeaheadWaitMs)
+      .mergeMap((value:string) => {
+        let normalizedQuery = this.normalizeQuery(value);
+
+        return Observable.from(this.typeahead)
+          .filter((option:any) => {
+            return option && this.testMatch(this.prepareOption(option).toLowerCase(), normalizedQuery);
+          })
+          .toArray();
+      })
+      .subscribe(
+        (matches:string[]) => {
+          this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+          this.finalizeAsyncCall();
+        },
+        (err:any) => {
+          console.error(err);
+        }
+    );
+  }
+
+  private prepareOption(option:any):any {
     let match:any;
 
     if (typeof option === 'object' &&
@@ -150,11 +302,7 @@ export class TypeaheadDirective implements OnInit {
     return normalizedQuery;
   }
 
-  public get matches() {
-    return this._matches;
-  }
-
-  private testMatch(match:string, test:any) {
+  private testMatch(match:string, test:any):boolean {
     let spaceLength:number;
 
     if (typeof test === 'object') {
@@ -172,8 +320,7 @@ export class TypeaheadDirective implements OnInit {
 
   private finalizeAsyncCall():void {
     this.typeaheadLoading.emit(false);
-    this.typeaheadNoResults.emit(this.cd.model.toString().length >=
-      this.typeaheadMinLength && this.matches.length <= 0);
+    this.typeaheadNoResults.emit(this.matches.length <= 0);
 
     if (this._matches.length <= 0) {
       this.hide();
@@ -197,101 +344,4 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
-    this.typeaheadMinLength = this.typeaheadMinLength || 1;
-    this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
-
-    // async should be false in case of array
-    if (this.typeaheadAsync === null && !(this.typeahead instanceof Observable)) {
-      this.typeaheadAsync = false;
-    }
-
-    if (this.typeahead instanceof Observable) {
-      this.typeaheadAsync = true;
-    }
-
-    if (this.typeaheadAsync === true) {
-      this.asyncActions();
-    }
-
-    if (this.typeaheadAsync === false) {
-      this.syncActions();
-    }
-  }
-
-  @HostListener('keyup', ['$event'])
-  onChange(e:any) {
-    if (this.container) {
-      // esc
-      if (e.keyCode === 27) {
-        this.hide();
-        return;
-      }
-
-      // up
-      if (e.keyCode === 38) {
-        this.container.prevActiveMatch();
-        return;
-      }
-
-      // down
-      if (e.keyCode === 40) {
-        this.container.nextActiveMatch();
-        return;
-      }
-
-      // enter
-      if (e.keyCode === 13) {
-        this.container.selectActiveMatch();
-        return;
-      }
-    }
-
-    this.typeaheadLoading.emit(true);
-    this.keyUpEventEmitter.emit(e.target.value);
-  }
-
-  public changeModel(value:any) {
-    let valueStr:string = ((typeof value === 'object' && this.typeaheadOptionField) ? value[this.typeaheadOptionField] : value).toString();
-    this.cd.viewToModelUpdate(valueStr);
-    setProperty(this.renderer, this.element, 'value', valueStr);
-    this.hide();
-  }
-
-  show(matches:Array<any>) {
-    let options = new TypeaheadOptions({
-      placement: this.placement,
-      animation: false
-    });
-
-    let binding = Injector.resolve([
-      new Provider(TypeaheadOptions, {useValue: options})
-    ]);
-
-    this.popup = this.loader
-      .loadNextToLocation(TypeaheadContainer, this.element, binding)
-      .then((componentRef:ComponentRef) => {
-        componentRef.instance.position(this.element);
-        this.container = componentRef.instance;
-        this.container.parent = this;
-        // This improves the speedas it won't have to be done for each list item
-        let normalizedQuery = (this.typeaheadLatinize ? TypeaheadUtils.latinize(this.cd.model) : this.cd.model).toString().toLowerCase();
-        this.container.query = this.typeaheadSingleWords ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters) : normalizedQuery;
-        this.container.matches = matches;
-        this.container.field = this.typeaheadOptionField;
-        this.element.nativeElement.focus();
-        return componentRef;
-      });
-  }
-
-  hide() {
-    if (this.container) {
-      this.popup.then((componentRef:ComponentRef) => {
-        componentRef.dispose();
-        this.container = null;
-        return componentRef;
-      });
-    }
-  }
 }

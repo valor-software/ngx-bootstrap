@@ -7,7 +7,7 @@ import { TYPEAHEAD_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 ```typescript
 // directive Typeahead
 @Directive({
-  selector: 'typeahead, [typeahead]'
+  selector: '[typeahead][ngModel]'
 })
 export class TypeaheadDirective implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean>;
