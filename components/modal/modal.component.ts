@@ -35,11 +35,9 @@ export class ModalComponent implements AfterViewInit {
   private backdrop:Promise<ComponentRef<ModalBackdropComponent>>;
 
   private element:ElementRef;
-  private applicationRef:ApplicationRef;
   private componentsHelper:ComponentsHelper;
-  public constructor(element:ElementRef, applicationRef:ApplicationRef, @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
+  public constructor(element:ElementRef, @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
     this.element = element;
-    this.applicationRef = applicationRef;
     this.componentsHelper = componentsHelper;
   }
 
