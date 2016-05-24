@@ -131,10 +131,14 @@ export class DatePickerInnerComponent implements OnInit {
     } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
     }
-
+    //Need to refresh view on changes instead of init.
+    //this.refreshView();
+  }
+  
+  public ngOnChanges():void {
     this.refreshView();
   }
-
+  
   public setCompareHandler(handler:Function, type:string):void {
     if (type === 'day') {
       this.compareHandlerDay = handler;
