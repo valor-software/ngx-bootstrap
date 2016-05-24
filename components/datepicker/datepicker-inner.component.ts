@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit, EventEmitter, Input, OnChanges} from '@angular/core';
 import {
   CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel
 } from '@angular/common';
@@ -48,7 +48,7 @@ const SHORTCUT_PROPAGATION = false;
   `,
   directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
 })
-export class DatePickerInnerComponent implements OnInit {
+export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public datepickerMode:string;
   @Input() public startingDay:number;
   @Input() public yearRange:number;
@@ -97,7 +97,6 @@ export class DatePickerInnerComponent implements OnInit {
 
   public set activeDate(value:Date) {
     this._activeDate = value;
-    this.refreshView();
   }
 
   // todo: add formatter value to Date object
@@ -131,7 +130,10 @@ export class DatePickerInnerComponent implements OnInit {
     } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
     }
+  }
 
+  // this.refreshView should be called here to reflect the changes on the fly
+  public ngOnChanges():void {
     this.refreshView();
   }
 
