@@ -11,7 +11,7 @@ export class TooltipDirective {
   @Input('tooltip') public content:string;
   @Input('tooltipPlacement') public placement:string = 'top';
   @Input('tooltipIsOpen') public isOpen:boolean;
-  @Input('tooltipEnable') public enable:boolean;
+  @Input('tooltipEnable') public enable:boolean = true;
   @Input('tooltipAnimation') public animation:boolean = true;
   @Input('tooltipAppendToBody') public appendToBody:boolean;
   /* tslint:enable */
@@ -32,7 +32,7 @@ export class TooltipDirective {
   @HostListener('focusin', ['$event', '$target'])
   @HostListener('mouseenter', ['$event', '$target'])
   public show():void {
-    if (this.visible) {
+    if (this.visible || !this.enable) {
       return;
     }
     this.visible = true;
