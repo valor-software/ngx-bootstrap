@@ -4,8 +4,8 @@ import {CORE_DIRECTIVES} from '@angular/common';
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {ModalDemoComponent} from './modal/modal-demo';
 
-let name = 'Alerts';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts';
+let name = 'Modals';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/modal/modal.component.ts';
 
 // webpack html imports
 let doc = require('../../components/alert/readme.md');
