@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {RatingDemoComponent} from './rating/rating-demo';
 
 let name = 'Rating';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating/rating.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating/';
 
 // webpack html imports
 let doc = require('../../components/rating/readme.md');

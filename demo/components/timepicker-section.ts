@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TimepickerDemoComponent} from './timepicker/timepicker-demo';
 
 let name = 'Timepicker';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/timepicker/timepicker.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/timepicker/timepicker';
 
 // webpack html imports
 let doc = require('../../components/timepicker/readme.md');

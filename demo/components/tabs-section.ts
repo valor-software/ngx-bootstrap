@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TabsDemoComponent} from './tabs/tabs-demo';
 
 let name = 'Tabs';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tabs/tabs.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tabs/';
 
 // webpack html imports
 let doc = require('../../components/tabs/readme.md');

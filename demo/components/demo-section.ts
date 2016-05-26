@@ -3,7 +3,7 @@ import {CORE_DIRECTIVES} from '@angular/common';
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 
 let name = 'Alerts';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/';
 
 // webpack html imports
 let doc = require('../../components/alert/readme.md');
