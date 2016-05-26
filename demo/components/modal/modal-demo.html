@@ -1,10 +1,10 @@
 here will be a modal
-<div id="myModal" class="modal fade" bsModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div #myModal="modal" class="modal fade" bsModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="myModal.hide()">
           <span aria-hidden="true">×</span>
         </button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>

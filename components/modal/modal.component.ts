@@ -15,7 +15,10 @@ import {ComponentsHelper} from '../utils/components.helper';
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
 
-@Directive({selector: '[bsModal]'})
+@Directive({
+  selector: '[bsModal]',
+  exportAs: 'modal'
+})
 export class ModalDirective implements AfterViewInit {
   // seems like an Options
   public isAnimated:boolean = true;
@@ -26,9 +29,11 @@ export class ModalDirective implements AfterViewInit {
 
   public onShow:EventEmitter<ModalDirective> = new EventEmitter();
   public onShown:EventEmitter<ModalDirective> = new EventEmitter();
+  public onHide:EventEmitter<ModalDirective> = new EventEmitter();
+  public onHidden:EventEmitter<ModalDirective> = new EventEmitter();
 
+  protected _isShown:boolean = false;
   private ignoreBackdropClick:boolean;
-  private _isShown:boolean = false;
 
   // reference to backdrop component
   private backdrop:Promise<ComponentRef<ModalBackdropComponent>>;
@@ -60,6 +65,8 @@ export class ModalDirective implements AfterViewInit {
       return;
     }
 
+    this._isShown = true;
+
     // this._checkScrollbar()
     // this._setScrollbar()
     // todo: rewrite using global
@@ -89,16 +96,47 @@ export class ModalDirective implements AfterViewInit {
     });
   }
 
-  public hide():void {
+  public hide(event?:Event):void {
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.onHide.emit(this);
+
+    // todo: add an option to prevent hiding
+    if (!this._isShown) {
+      return;
+    }
+
+    this._isShown = false;
+
+    // this._setEscapeEvent();
+    // this._setResizeEvent();
+
+    // $(document).off(Event.FOCUSIN)
+
+    // todo: it can be done via `host`
+    this.element.nativeElement.classList.remove(ClassName.IN);
+
+    // $(this._element).off(Event.CLICK_DISMISS)
+    // $(this._dialog).off(Event.MOUSEDOWN_DISMISS)
+
+    if (this.isAnimated) {
+      setTimeout(TRANSITION_DURATION, () => this.hideModal());
+    } else {
+      this.hideModal();
+    }
   }
 
   private showElement(relatedTarget?:ViewContainerRef):void {
     // todo: what is this?
-    // if (!this._element.parentNode ||
-    //   (this._element.parentNode.nodeType !== Node.ELEMENT_NODE)) {
-    //   // don't move modals dom position
-    //   document.body.appendChild(this._element)
-    // }
+    if (!this.element.nativeElement.parentNode ||
+      (this.element.nativeElement.parentNode.nodeType !== Node.ELEMENT_NODE)) {
+      // don't move modals dom position
+      if (typeof document !== 'undefined') {
+        document.body.appendChild(this.element.nativeElement);
+      }
+    }
 
     // todo: it can be done via `host`
     this.renderer.setElementStyle(this.element.nativeElement, 'display', 'block');
@@ -132,11 +170,23 @@ export class ModalDirective implements AfterViewInit {
     }
   }
 
+  private hideModal():void {
+    this.renderer.setElementStyle(this.element.nativeElement, 'display', 'none');
+    this.renderer.setElementAttribute(this.element.nativeElement, 'aria-hidden', 'true');
+    console.log('hide')
+    this.showBackdrop(() => {
+      // todo: rewrite using global
+      if (typeof document !== 'undefined') {
+        document.body.classList.add(ClassName.OPEN);
+      }
+      // this._resetAdjustments();
+      // this._resetScrollbar();
+      this.onHidden.emit(this);
+    });
+  }
+
   // todo: original show was calling a callback when done, but we can use promise
   private showBackdrop(callback?:Function):void {
-    // todo: remove this
-    this._isShown = true;
-    // todo: remove this
     if (this._isShown && modalConfig.backdrop) {
       this.backdrop = this.componentsHelper
         .appendNextToRoot(
@@ -177,15 +227,11 @@ export class ModalDirective implements AfterViewInit {
           return;
         }
 
-        // if (!doAnimate) {
-        //   callback()
-        //   return
-        // }
+        if (!this.isAnimated) {
+          callback();
+          return;
+        }
 
-        // todo: enable end of animation, this is delay before showing modal window
-        // $(this._backdrop)
-        //   .one(Util.TRANSITION_END, callback)
-        //   .emulateTransitionEnd(BACKDROP_TRANSITION_DURATION)
         setTimeout(callback, BACKDROP_TRANSITION_DURATION);
       });
     } else if (!this._isShown && this.backdrop) {
