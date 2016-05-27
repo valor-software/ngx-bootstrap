@@ -15,11 +15,11 @@ export interface ModalOptions {
   show:boolean;
 }
 
-export const modalConfig:ModalOptions = {
-  backdrop : true,
-  keyboard : true,
-  focus    : true,
-  show     : true
+export const modalConfigDefaults:ModalOptions = {
+  backdrop: true,
+  keyboard: true,
+  focus: true,
+  show: true
 };
 
 export const ClassName:any = {
@@ -30,3 +30,9 @@ export const ClassName:any = {
   IN: 'in'
 };
 
+export const Selector:any = {
+  DIALOG: '.modal-dialog',
+  DATA_TOGGLE: '[data-toggle="modal"]',
+  DATA_DISMISS: '[data-dismiss="modal"]',
+  FIXED_CONTENT: '.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed'
+};

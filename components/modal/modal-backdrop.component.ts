@@ -15,7 +15,6 @@ export class ModalBackdropOptions {
   directives: [NgClass],
   template: `
 <div class="${ClassName.BACKDROP}"
-  (click)="onBackDropClick($event)"
   [class.${ClassName.IN}]="isShown"
   [class.${ClassName.FADE}]="isAnimated"></div>`
 })
@@ -26,10 +25,6 @@ export class ModalBackdropComponent {
 
   public constructor(options:ModalBackdropOptions) {
     this.isAnimated = options.animate;
-  }
-
-  public onBackDropClick($event:Event):void {
-    this.onClick.emit($event);
   }
 }
 

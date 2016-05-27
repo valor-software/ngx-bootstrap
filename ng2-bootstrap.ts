@@ -14,7 +14,7 @@ import {TimepickerComponent} from './components/timepicker';
 import {TOOLTIP_DIRECTIVES} from './components/tooltip';
 import {TYPEAHEAD_DIRECTIVES} from './components/typeahead';
 
-import {ComponentsHelper} from './components/utils/components.helper';
+import {ComponentsHelper} from './components/utils/components-helper.service';
 
 export * from './components/accordion';
 export * from './components/alert';
