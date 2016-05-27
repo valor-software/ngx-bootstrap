@@ -90,17 +90,15 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // todo: consider preventing default and stoping propogation
   @HostListener('keydown.esc') protected onEsc():void { this.hide(); }
-private eslist:any;
+  
   public constructor(element:ElementRef,
                      renderer:Renderer,
                      @Inject(DOCUMENT) document:any,
-                     @Inject(ComponentsHelper) componentsHelper:ComponentsHelper,
-                     @Query(Selector.DATA_DISMISS) elList: QueryList<ElementRef>) {
+                     @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
     this.element = element;
     this.renderer = renderer;
     this.document = document;
     this.componentsHelper = componentsHelper;
-    this.eslist = elList;
   }
 
   public ngOnDestroy():any {
