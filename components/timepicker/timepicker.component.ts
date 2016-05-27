@@ -199,16 +199,22 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
 
     let hours = this.getHoursFromTemplate();
     let minutes = this.getMinutesFromTemplate();
+    this.invalidHours = !isDefined(hours);
+    this.invalidMinutes = !isDefined(minutes);
 
-    if (!isDefined(hours) || !isDefined(minutes)) {
+    if (this.invalidHours || this.invalidMinutes) {
+       // TODO: needed a validation functionality.
+        return;
       // todo: validation?
       // invalidate(true);
     }
 
     this.selected.setHours(hours);
-    if (this.selected < this.min || this.selected > this.max) {
+    this.invalidHours = (this.selected < this.min || this.selected > this.max);
+    if (this.invalidHours) {
       // todo: validation?
       // invalidate(true);
+      return;
     } else {
       this.refresh(/*'h'*/);
     }
@@ -232,16 +238,22 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
 
     let minutes = this.getMinutesFromTemplate();
     let hours = this.getHoursFromTemplate();
+    this.invalidMinutes = !isDefined(minutes);
+    this.invalidHours = !isDefined(hours);
 
-    if (!isDefined(minutes) || !isDefined(hours)) {
+    if (this.invalidMinutes || this.invalidHours) {
+      // TODO: needed a validation functionality.
+       return;
       // todo: validation
       // invalidate(undefined, true);
     }
 
     this.selected.setMinutes(minutes);
-    if (this.selected < this.min || this.selected > this.max) {
+    this.invalidMinutes = (this.selected < this.min || this.selected > this.max);
+    if (this.invalidMinutes) {
       // todo: validation
       // invalidate(undefined, true);
+      return;
     } else {
       this.refresh(/*'m'*/);
     }
