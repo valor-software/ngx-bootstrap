@@ -63,7 +63,7 @@ webpackJsonp([1],[
 	                tooltip_section_1.TooltipSectionComponent,
 	                typeahead_section_1.TypeaheadSectionComponent
 	            ]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DemoComponent);
 	    return DemoComponent;
@@ -81,33 +81,33 @@ webpackJsonp([1],[
 	//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 	//! license : MIT
 	//! momentjs.com
-	
+
 	;(function (global, factory) {
 	     true ? module.exports = factory() :
 	    typeof define === 'function' && define.amd ? define(factory) :
 	    global.moment = factory()
 	}(this, function () { 'use strict';
-	
+
 	    var hookCallback;
-	
+
 	    function utils_hooks__hooks () {
 	        return hookCallback.apply(null, arguments);
 	    }
-	
+
 	    // This is done to register the method called with moment()
 	    // without creating circular dependencies.
 	    function setHookCallback (callback) {
 	        hookCallback = callback;
 	    }
-	
+
 	    function isArray(input) {
 	        return input instanceof Array || Object.prototype.toString.call(input) === '[object Array]';
 	    }
-	
+
 	    function isDate(input) {
 	        return input instanceof Date || Object.prototype.toString.call(input) === '[object Date]';
 	    }
-	
+
 	    function map(arr, fn) {
 	        var res = [], i;
 	        for (i = 0; i < arr.length; ++i) {
@@ -115,33 +115,33 @@ webpackJsonp([1],[
 	        }
 	        return res;
 	    }
-	
+
 	    function hasOwnProp(a, b) {
 	        return Object.prototype.hasOwnProperty.call(a, b);
 	    }
-	
+
 	    function extend(a, b) {
 	        for (var i in b) {
 	            if (hasOwnProp(b, i)) {
 	                a[i] = b[i];
 	            }
 	        }
-	
+
 	        if (hasOwnProp(b, 'toString')) {
 	            a.toString = b.toString;
 	        }
-	
+
 	        if (hasOwnProp(b, 'valueOf')) {
 	            a.valueOf = b.valueOf;
 	        }
-	
+
 	        return a;
 	    }
-	
+
 	    function create_utc__createUTC (input, format, locale, strict) {
 	        return createLocalOrUTC(input, format, locale, strict, true).utc();
 	    }
-	
+
 	    function defaultParsingFlags() {
 	        // We need to deep clone this object.
 	        return {
@@ -159,14 +159,14 @@ webpackJsonp([1],[
 	            meridiem        : null
 	        };
 	    }
-	
+
 	    function getParsingFlags(m) {
 	        if (m._pf == null) {
 	            m._pf = defaultParsingFlags();
 	        }
 	        return m._pf;
 	    }
-	
+
 	    var some;
 	    if (Array.prototype.some) {
 	        some = Array.prototype.some;
@@ -174,17 +174,17 @@ webpackJsonp([1],[
 	        some = function (fun) {
 	            var t = Object(this);
 	            var len = t.length >>> 0;
-	
+
 	            for (var i = 0; i < len; i++) {
 	                if (i in t && fun.call(this, t[i], i, t)) {
 	                    return true;
 	                }
 	            }
-	
+
 	            return false;
 	        };
 	    }
-	
+
 	    function valid__isValid(m) {
 	        if (m._isValid == null) {
 	            var flags = getParsingFlags(m);
@@ -200,7 +200,7 @@ webpackJsonp([1],[
 	                !flags.invalidFormat &&
 	                !flags.userInvalidated &&
 	                (!flags.meridiem || (flags.meridiem && parsedParts));
-	
+
 	            if (m._strict) {
 	                m._isValid = m._isValid &&
 	                    flags.charsLeftOver === 0 &&
@@ -210,7 +210,7 @@ webpackJsonp([1],[
 	        }
 	        return m._isValid;
 	    }
-	
+
 	    function valid__createInvalid (flags) {
 	        var m = create_utc__createUTC(NaN);
 	        if (flags != null) {
@@ -219,21 +219,21 @@ webpackJsonp([1],[
 	        else {
 	            getParsingFlags(m).userInvalidated = true;
 	        }
-	
+
 	        return m;
 	    }
-	
+
 	    function isUndefined(input) {
 	        return input === void 0;
 	    }
-	
+
 	    // Plugins that add properties should also add the key here (null value),
 	    // so we can properly clone ourselves.
 	    var momentProperties = utils_hooks__hooks.momentProperties = [];
-	
+
 	    function copyConfig(to, from) {
 	        var i, prop, val;
-	
+
 	        if (!isUndefined(from._isAMomentObject)) {
 	            to._isAMomentObject = from._isAMomentObject;
 	        }
@@ -264,7 +264,7 @@ webpackJsonp([1],[
 	        if (!isUndefined(from._locale)) {
 	            to._locale = from._locale;
 	        }
-	
+
 	        if (momentProperties.length > 0) {
 	            for (i in momentProperties) {
 	                prop = momentProperties[i];
@@ -274,12 +274,12 @@ webpackJsonp([1],[
 	                }
 	            }
 	        }
-	
+
 	        return to;
 	    }
-	
+
 	    var updateInProgress = false;
-	
+
 	    // Moment prototype object
 	    function Moment(config) {
 	        copyConfig(this, config);
@@ -292,11 +292,11 @@ webpackJsonp([1],[
 	            updateInProgress = false;
 	        }
 	    }
-	
+
 	    function isMoment (obj) {
 	        return obj instanceof Moment || (obj != null && obj._isAMomentObject != null);
 	    }
-	
+
 	    function absFloor (number) {
 	        if (number < 0) {
 	            return Math.ceil(number);
@@ -304,18 +304,18 @@ webpackJsonp([1],[
 	            return Math.floor(number);
 	        }
 	    }
-	
+
 	    function toInt(argumentForCoercion) {
 	        var coercedNumber = +argumentForCoercion,
 	            value = 0;
-	
+
 	        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
 	            value = absFloor(coercedNumber);
 	        }
-	
+
 	        return value;
 	    }
-	
+
 	    // compare two arrays, return the number of differences
 	    function compareArrays(array1, array2, dontConvert) {
 	        var len = Math.min(array1.length, array2.length),
@@ -330,17 +330,17 @@ webpackJsonp([1],[
 	        }
 	        return diffs + lengthDiff;
 	    }
-	
+
 	    function warn(msg) {
 	        if (utils_hooks__hooks.suppressDeprecationWarnings === false &&
 	                (typeof console !==  'undefined') && console.warn) {
 	            console.warn('Deprecation warning: ' + msg);
 	        }
 	    }
-	
+
 	    function deprecate(msg, fn) {
 	        var firstTime = true;
-	
+
 	        return extend(function () {
 	            if (utils_hooks__hooks.deprecationHandler != null) {
 	                utils_hooks__hooks.deprecationHandler(null, msg);
@@ -352,9 +352,9 @@ webpackJsonp([1],[
 	            return fn.apply(this, arguments);
 	        }, fn);
 	    }
-	
+
 	    var deprecations = {};
-	
+
 	    function deprecateSimple(name, msg) {
 	        if (utils_hooks__hooks.deprecationHandler != null) {
 	            utils_hooks__hooks.deprecationHandler(name, msg);
@@ -364,18 +364,18 @@ webpackJsonp([1],[
 	            deprecations[name] = true;
 	        }
 	    }
-	
+
 	    utils_hooks__hooks.suppressDeprecationWarnings = false;
 	    utils_hooks__hooks.deprecationHandler = null;
-	
+
 	    function isFunction(input) {
 	        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
 	    }
-	
+
 	    function isObject(input) {
 	        return Object.prototype.toString.call(input) === '[object Object]';
 	    }
-	
+
 	    function locale_set__set (config) {
 	        var prop, i;
 	        for (i in config) {
@@ -391,7 +391,7 @@ webpackJsonp([1],[
 	        // number + (possibly) stuff coming from _ordinalParseLenient.
 	        this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + (/\d{1,2}/).source);
 	    }
-	
+
 	    function mergeConfigs(parentConfig, childConfig) {
 	        var res = extend({}, parentConfig), prop;
 	        for (prop in childConfig) {
@@ -409,15 +409,15 @@ webpackJsonp([1],[
 	        }
 	        return res;
 	    }
-	
+
 	    function Locale(config) {
 	        if (config != null) {
 	            this.set(config);
 	        }
 	    }
-	
+
 	    var keys;
-	
+
 	    if (Object.keys) {
 	        keys = Object.keys;
 	    } else {
@@ -431,21 +431,21 @@ webpackJsonp([1],[
 	            return res;
 	        };
 	    }
-	
+
 	    // internal storage for locale config files
 	    var locales = {};
 	    var globalLocale;
-	
+
 	    function normalizeLocale(key) {
 	        return key ? key.toLowerCase().replace('_', '-') : key;
 	    }
-	
+
 	    // pick the locale from the array
 	    // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
 	    // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
 	    function chooseLocale(names) {
 	        var i = 0, j, next, locale, split;
-	
+
 	        while (i < names.length) {
 	            split = normalizeLocale(names[i]).split('-');
 	            j = split.length;
@@ -466,7 +466,7 @@ webpackJsonp([1],[
 	        }
 	        return null;
 	    }
-	
+
 	    function loadLocale(name) {
 	        var oldLocale = null;
 	        // TODO: Find a better way to register and load all the locales in Node
@@ -482,7 +482,7 @@ webpackJsonp([1],[
 	        }
 	        return locales[name];
 	    }
-	
+
 	    // This function will load locale and then set the global locale.  If
 	    // no arguments are passed in, it will simply return the current global
 	    // locale key.
@@ -495,16 +495,16 @@ webpackJsonp([1],[
 	            else {
 	                data = defineLocale(key, values);
 	            }
-	
+
 	            if (data) {
 	                // moment.duration._locale = moment._locale = data;
 	                globalLocale = data;
 	            }
 	        }
-	
+
 	        return globalLocale._abbr;
 	    }
-	
+
 	    function defineLocale (name, config) {
 	        if (config !== null) {
 	            config.abbr = name;
@@ -524,10 +524,10 @@ webpackJsonp([1],[
 	                }
 	            }
 	            locales[name] = new Locale(config);
-	
+
 	            // backwards compat for now: also set the locale
 	            locale_locales__getSetGlobalLocale(name);
-	
+
 	            return locales[name];
 	        } else {
 	            // useful for testing
@@ -535,7 +535,7 @@ webpackJsonp([1],[
 	            return null;
 	        }
 	    }
-	
+
 	    function updateLocale(name, config) {
 	        if (config != null) {
 	            var locale;
@@ -545,7 +545,7 @@ webpackJsonp([1],[
 	            locale = new Locale(config);
 	            locale.parentLocale = locales[name];
 	            locales[name] = locale;
-	
+
 	            // backwards compat for now: also set the locale
 	            locale_locales__getSetGlobalLocale(name);
 	        } else {
@@ -560,19 +560,19 @@ webpackJsonp([1],[
 	        }
 	        return locales[name];
 	    }
-	
+
 	    // returns locale data
 	    function locale_locales__getLocale (key) {
 	        var locale;
-	
+
 	        if (key && key._locale && key._locale._abbr) {
 	            key = key._locale._abbr;
 	        }
-	
+
 	        if (!key) {
 	            return globalLocale;
 	        }
-	
+
 	        if (!isArray(key)) {
 	            //short-circuit everything else
 	            locale = loadLocale(key);
@@ -581,30 +581,30 @@ webpackJsonp([1],[
 	            }
 	            key = [key];
 	        }
-	
+
 	        return chooseLocale(key);
 	    }
-	
+
 	    function locale_locales__listLocales() {
 	        return keys(locales);
 	    }
-	
+
 	    var aliases = {};
-	
+
 	    function addUnitAlias (unit, shorthand) {
 	        var lowerCase = unit.toLowerCase();
 	        aliases[lowerCase] = aliases[lowerCase + 's'] = aliases[shorthand] = unit;
 	    }
-	
+
 	    function normalizeUnits(units) {
 	        return typeof units === 'string' ? aliases[units] || aliases[units.toLowerCase()] : undefined;
 	    }
-	
+
 	    function normalizeObjectUnits(inputObject) {
 	        var normalizedInput = {},
 	            normalizedProp,
 	            prop;
-	
+
 	        for (prop in inputObject) {
 	            if (hasOwnProp(inputObject, prop)) {
 	                normalizedProp = normalizeUnits(prop);
@@ -613,10 +613,10 @@ webpackJsonp([1],[
 	                }
 	            }
 	        }
-	
+
 	        return normalizedInput;
 	    }
-	
+
 	    function makeGetSet (unit, keepTime) {
 	        return function (value) {
 	            if (value != null) {
@@ -628,20 +628,20 @@ webpackJsonp([1],[
 	            }
 	        };
 	    }
-	
+
 	    function get_set__get (mom, unit) {
 	        return mom.isValid() ?
 	            mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
 	    }
-	
+
 	    function get_set__set (mom, unit, value) {
 	        if (mom.isValid()) {
 	            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
 	        }
 	    }
-	
+
 	    // MOMENTS
-	
+
 	    function getSet (units, value) {
 	        var unit;
 	        if (typeof units === 'object') {
@@ -656,7 +656,7 @@ webpackJsonp([1],[
 	        }
 	        return this;
 	    }
-	
+
 	    function zeroFill(number, targetLength, forceSign) {
 	        var absNumber = '' + Math.abs(number),
 	            zerosToFill = targetLength - absNumber.length,
@@ -664,15 +664,15 @@ webpackJsonp([1],[
 	        return (sign ? (forceSign ? '+' : '') : '-') +
 	            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
 	    }
-	
+
 	    var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
-	
+
 	    var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
-	
+
 	    var formatFunctions = {};
-	
+
 	    var formatTokenFunctions = {};
-	
+
 	    // token:    'M'
 	    // padded:   ['MM', 2]
 	    // ordinal:  'Mo'
@@ -698,17 +698,17 @@ webpackJsonp([1],[
 	            };
 	        }
 	    }
-	
+
 	    function removeFormattingTokens(input) {
 	        if (input.match(/\[[\s\S]/)) {
 	            return input.replace(/^\[|\]$/g, '');
 	        }
 	        return input.replace(/\\/g, '');
 	    }
-	
+
 	    function makeFormatFunction(format) {
 	        var array = format.match(formattingTokens), i, length;
-	
+
 	        for (i = 0, length = array.length; i < length; i++) {
 	            if (formatTokenFunctions[array[i]]) {
 	                array[i] = formatTokenFunctions[array[i]];
@@ -716,7 +716,7 @@ webpackJsonp([1],[
 	                array[i] = removeFormattingTokens(array[i]);
 	            }
 	        }
-	
+
 	        return function (mom) {
 	            var output = '', i;
 	            for (i = 0; i < length; i++) {
@@ -725,36 +725,36 @@ webpackJsonp([1],[
 	            return output;
 	        };
 	    }
-	
+
 	    // format date using native date object
 	    function formatMoment(m, format) {
 	        if (!m.isValid()) {
 	            return m.localeData().invalidDate();
 	        }
-	
+
 	        format = expandFormat(format, m.localeData());
 	        formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
-	
+
 	        return formatFunctions[format](m);
 	    }
-	
+
 	    function expandFormat(format, locale) {
 	        var i = 5;
-	
+
 	        function replaceLongDateFormatTokens(input) {
 	            return locale.longDateFormat(input) || input;
 	        }
-	
+
 	        localFormattingTokens.lastIndex = 0;
 	        while (i >= 0 && localFormattingTokens.test(format)) {
 	            format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
 	            localFormattingTokens.lastIndex = 0;
 	            i -= 1;
 	        }
-	
+
 	        return format;
 	    }
-	
+
 	    var match1         = /\d/;            //       0 - 9
 	    var match2         = /\d\d/;          //      00 - 99
 	    var match3         = /\d{3}/;         //     000 - 999
@@ -766,49 +766,49 @@ webpackJsonp([1],[
 	    var match1to3      = /\d{1,3}/;       //       0 - 999
 	    var match1to4      = /\d{1,4}/;       //       0 - 9999
 	    var match1to6      = /[+-]?\d{1,6}/;  // -999999 - 999999
-	
+
 	    var matchUnsigned  = /\d+/;           //       0 - inf
 	    var matchSigned    = /[+-]?\d+/;      //    -inf - inf
-	
+
 	    var matchOffset    = /Z|[+-]\d\d:?\d\d/gi; // +00:00 -00:00 +0000 -0000 or Z
 	    var matchShortOffset = /Z|[+-]\d\d(?::?\d\d)?/gi; // +00 -00 +00:00 -00:00 +0000 -0000 or Z
-	
+
 	    var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
-	
+
 	    // any word (or two) characters or numbers including two/three word month in arabic.
 	    // includes scottish gaelic two word and hyphenated months
 	    var matchWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i;
-	
-	
+
+
 	    var regexes = {};
-	
+
 	    function addRegexToken (token, regex, strictRegex) {
 	        regexes[token] = isFunction(regex) ? regex : function (isStrict, localeData) {
 	            return (isStrict && strictRegex) ? strictRegex : regex;
 	        };
 	    }
-	
+
 	    function getParseRegexForToken (token, config) {
 	        if (!hasOwnProp(regexes, token)) {
 	            return new RegExp(unescapeFormat(token));
 	        }
-	
+
 	        return regexes[token](config._strict, config._locale);
 	    }
-	
+
 	    // Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
 	    function unescapeFormat(s) {
 	        return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
 	            return p1 || p2 || p3 || p4;
 	        }));
 	    }
-	
+
 	    function regexEscape(s) {
 	        return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 	    }
-	
+
 	    var tokens = {};
-	
+
 	    function addParseToken (token, callback) {
 	        var i, func = callback;
 	        if (typeof token === 'string') {
@@ -823,20 +823,20 @@ webpackJsonp([1],[
 	            tokens[token[i]] = func;
 	        }
 	    }
-	
+
 	    function addWeekParseToken (token, callback) {
 	        addParseToken(token, function (input, array, config, token) {
 	            config._w = config._w || {};
 	            callback(input, config._w, config, token);
 	        });
 	    }
-	
+
 	    function addTimeToArrayFromToken(token, input, config) {
 	        if (input != null && hasOwnProp(tokens, token)) {
 	            tokens[token](input, config._a, config, token);
 	        }
 	    }
-	
+
 	    var YEAR = 0;
 	    var MONTH = 1;
 	    var DATE = 2;
@@ -846,9 +846,9 @@ webpackJsonp([1],[
 	    var MILLISECOND = 6;
 	    var WEEK = 7;
 	    var WEEKDAY = 8;
-	
+
 	    var indexOf;
-	
+
 	    if (Array.prototype.indexOf) {
 	        indexOf = Array.prototype.indexOf;
 	    } else {
@@ -863,31 +863,31 @@ webpackJsonp([1],[
 	            return -1;
 	        };
 	    }
-	
+
 	    function daysInMonth(year, month) {
 	        return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('M', ['MM', 2], 'Mo', function () {
 	        return this.month() + 1;
 	    });
-	
+
 	    addFormatToken('MMM', 0, 0, function (format) {
 	        return this.localeData().monthsShort(this, format);
 	    });
-	
+
 	    addFormatToken('MMMM', 0, 0, function (format) {
 	        return this.localeData().months(this, format);
 	    });
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('month', 'M');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('M',    match1to2);
 	    addRegexToken('MM',   match1to2, match2);
 	    addRegexToken('MMM',  function (isStrict, locale) {
@@ -896,11 +896,11 @@ webpackJsonp([1],[
 	    addRegexToken('MMMM', function (isStrict, locale) {
 	        return locale.monthsRegex(isStrict);
 	    });
-	
+
 	    addParseToken(['M', 'MM'], function (input, array) {
 	        array[MONTH] = toInt(input) - 1;
 	    });
-	
+
 	    addParseToken(['MMM', 'MMMM'], function (input, array, config, token) {
 	        var month = config._locale.monthsParse(input, token, config._strict);
 	        // if we didn't find a month name, mark the date as invalid.
@@ -910,22 +910,22 @@ webpackJsonp([1],[
 	            getParsingFlags(config).invalidMonth = input;
 	        }
 	    });
-	
+
 	    // LOCALES
-	
+
 	    var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/;
 	    var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
 	    function localeMonths (m, format) {
 	        return isArray(this._months) ? this._months[m.month()] :
 	            this._months[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
 	    }
-	
+
 	    var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
 	    function localeMonthsShort (m, format) {
 	        return isArray(this._monthsShort) ? this._monthsShort[m.month()] :
 	            this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
 	    }
-	
+
 	    function units_month__handleStrictParse(monthName, format, strict) {
 	        var i, ii, mom, llc = monthName.toLocaleLowerCase();
 	        if (!this._monthsParse) {
@@ -939,7 +939,7 @@ webpackJsonp([1],[
 	                this._longMonthsParse[i] = this.months(mom, '').toLocaleLowerCase();
 	            }
 	        }
-	
+
 	        if (strict) {
 	            if (format === 'MMM') {
 	                ii = indexOf.call(this._shortMonthsParse, llc);
@@ -966,20 +966,20 @@ webpackJsonp([1],[
 	            }
 	        }
 	    }
-	
+
 	    function localeMonthsParse (monthName, format, strict) {
 	        var i, mom, regex;
-	
+
 	        if (this._monthsParseExact) {
 	            return units_month__handleStrictParse.call(this, monthName, format, strict);
 	        }
-	
+
 	        if (!this._monthsParse) {
 	            this._monthsParse = [];
 	            this._longMonthsParse = [];
 	            this._shortMonthsParse = [];
 	        }
-	
+
 	        // TODO: add sorting
 	        // Sorting makes sure if one month (or abbr) is a prefix of another
 	        // see sorting in computeMonthsParse
@@ -1004,17 +1004,17 @@ webpackJsonp([1],[
 	            }
 	        }
 	    }
-	
+
 	    // MOMENTS
-	
+
 	    function setMonth (mom, value) {
 	        var dayOfMonth;
-	
+
 	        if (!mom.isValid()) {
 	            // No op
 	            return mom;
 	        }
-	
+
 	        if (typeof value === 'string') {
 	            if (/^\d+$/.test(value)) {
 	                value = toInt(value);
@@ -1026,12 +1026,12 @@ webpackJsonp([1],[
 	                }
 	            }
 	        }
-	
+
 	        dayOfMonth = Math.min(mom.date(), daysInMonth(mom.year(), value));
 	        mom._d['set' + (mom._isUTC ? 'UTC' : '') + 'Month'](value, dayOfMonth);
 	        return mom;
 	    }
-	
+
 	    function getSetMonth (value) {
 	        if (value != null) {
 	            setMonth(this, value);
@@ -1041,11 +1041,11 @@ webpackJsonp([1],[
 	            return get_set__get(this, 'Month');
 	        }
 	    }
-	
+
 	    function getDaysInMonth () {
 	        return daysInMonth(this.year(), this.month());
 	    }
-	
+
 	    var defaultMonthsShortRegex = matchWord;
 	    function monthsShortRegex (isStrict) {
 	        if (this._monthsParseExact) {
@@ -1062,7 +1062,7 @@ webpackJsonp([1],[
 	                this._monthsShortStrictRegex : this._monthsShortRegex;
 	        }
 	    }
-	
+
 	    var defaultMonthsRegex = matchWord;
 	    function monthsRegex (isStrict) {
 	        if (this._monthsParseExact) {
@@ -1079,12 +1079,12 @@ webpackJsonp([1],[
 	                this._monthsStrictRegex : this._monthsRegex;
 	        }
 	    }
-	
+
 	    function computeMonthsParse () {
 	        function cmpLenRev(a, b) {
 	            return b.length - a.length;
 	        }
-	
+
 	        var shortPieces = [], longPieces = [], mixedPieces = [],
 	            i, mom;
 	        for (i = 0; i < 12; i++) {
@@ -1105,17 +1105,17 @@ webpackJsonp([1],[
 	            longPieces[i] = regexEscape(longPieces[i]);
 	            mixedPieces[i] = regexEscape(mixedPieces[i]);
 	        }
-	
+
 	        this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
 	        this._monthsShortRegex = this._monthsRegex;
 	        this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
 	        this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
 	    }
-	
+
 	    function checkOverflow (m) {
 	        var overflow;
 	        var a = m._a;
-	
+
 	        if (a && getParsingFlags(m).overflow === -2) {
 	            overflow =
 	                a[MONTH]       < 0 || a[MONTH]       > 11  ? MONTH :
@@ -1125,7 +1125,7 @@ webpackJsonp([1],[
 	                a[SECOND]      < 0 || a[SECOND]      > 59  ? SECOND :
 	                a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND :
 	                -1;
-	
+
 	            if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
 	                overflow = DATE;
 	            }
@@ -1135,20 +1135,20 @@ webpackJsonp([1],[
 	            if (getParsingFlags(m)._overflowWeekday && overflow === -1) {
 	                overflow = WEEKDAY;
 	            }
-	
+
 	            getParsingFlags(m).overflow = overflow;
 	        }
-	
+
 	        return m;
 	    }
-	
+
 	    // iso 8601 regex
 	    // 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
 	    var extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;
 	    var basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;
-	
+
 	    var tzRegex = /Z|[+-]\d\d(?::?\d\d)?/;
-	
+
 	    var isoDates = [
 	        ['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/],
 	        ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/],
@@ -1163,7 +1163,7 @@ webpackJsonp([1],[
 	        ['GGGG[W]WW', /\d{4}W\d{2}/, false],
 	        ['YYYYDDD', /\d{7}/]
 	    ];
-	
+
 	    // iso time formats and regexes
 	    var isoTimes = [
 	        ['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/],
@@ -1176,19 +1176,19 @@ webpackJsonp([1],[
 	        ['HHmm', /\d\d\d\d/],
 	        ['HH', /\d\d/]
 	    ];
-	
+
 	    var aspNetJsonRegex = /^\/?Date\((\-?\d+)/i;
-	
+
 	    // date from iso format
 	    function configFromISO(config) {
 	        var i, l,
 	            string = config._i,
 	            match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string),
 	            allowTime, dateFormat, timeFormat, tzFormat;
-	
+
 	        if (match) {
 	            getParsingFlags(config).iso = true;
-	
+
 	            for (i = 0, l = isoDates.length; i < l; i++) {
 	                if (isoDates[i][1].exec(match[1])) {
 	                    dateFormat = isoDates[i][0];
@@ -1231,23 +1231,23 @@ webpackJsonp([1],[
 	            config._isValid = false;
 	        }
 	    }
-	
+
 	    // date from iso format or fallback
 	    function configFromString(config) {
 	        var matched = aspNetJsonRegex.exec(config._i);
-	
+
 	        if (matched !== null) {
 	            config._d = new Date(+matched[1]);
 	            return;
 	        }
-	
+
 	        configFromISO(config);
 	        if (config._isValid === false) {
 	            delete config._isValid;
 	            utils_hooks__hooks.createFromInputFallback(config);
 	        }
 	    }
-	
+
 	    utils_hooks__hooks.createFromInputFallback = deprecate(
 	        'moment construction falls back to js Date. This is ' +
 	        'discouraged and will be removed in upcoming major ' +
@@ -1257,56 +1257,56 @@ webpackJsonp([1],[
 	            config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
 	        }
 	    );
-	
+
 	    function createDate (y, m, d, h, M, s, ms) {
 	        //can't just apply() to create a date:
 	        //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
 	        var date = new Date(y, m, d, h, M, s, ms);
-	
+
 	        //the date constructor remaps years 0-99 to 1900-1999
 	        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
 	            date.setFullYear(y);
 	        }
 	        return date;
 	    }
-	
+
 	    function createUTCDate (y) {
 	        var date = new Date(Date.UTC.apply(null, arguments));
-	
+
 	        //the Date.UTC function remaps years 0-99 to 1900-1999
 	        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
 	            date.setUTCFullYear(y);
 	        }
 	        return date;
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('Y', 0, 0, function () {
 	        var y = this.year();
 	        return y <= 9999 ? '' + y : '+' + y;
 	    });
-	
+
 	    addFormatToken(0, ['YY', 2], 0, function () {
 	        return this.year() % 100;
 	    });
-	
+
 	    addFormatToken(0, ['YYYY',   4],       0, 'year');
 	    addFormatToken(0, ['YYYYY',  5],       0, 'year');
 	    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('year', 'y');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('Y',      matchSigned);
 	    addRegexToken('YY',     match1to2, match2);
 	    addRegexToken('YYYY',   match1to4, match4);
 	    addRegexToken('YYYYY',  match1to6, match6);
 	    addRegexToken('YYYYYY', match1to6, match6);
-	
+
 	    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
 	    addParseToken('YYYY', function (input, array) {
 	        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
@@ -1317,48 +1317,48 @@ webpackJsonp([1],[
 	    addParseToken('Y', function (input, array) {
 	        array[YEAR] = parseInt(input, 10);
 	    });
-	
+
 	    // HELPERS
-	
+
 	    function daysInYear(year) {
 	        return isLeapYear(year) ? 366 : 365;
 	    }
-	
+
 	    function isLeapYear(year) {
 	        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 	    }
-	
+
 	    // HOOKS
-	
+
 	    utils_hooks__hooks.parseTwoDigitYear = function (input) {
 	        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
 	    };
-	
+
 	    // MOMENTS
-	
+
 	    var getSetYear = makeGetSet('FullYear', true);
-	
+
 	    function getIsLeapYear () {
 	        return isLeapYear(this.year());
 	    }
-	
+
 	    // start-of-first-week - start-of-year
 	    function firstWeekOffset(year, dow, doy) {
 	        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
 	            fwd = 7 + dow - doy,
 	            // first-week day local weekday -- which local weekday is fwd
 	            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
-	
+
 	        return -fwdlw + fwd - 1;
 	    }
-	
+
 	    //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
 	    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
 	        var localWeekday = (7 + weekday - dow) % 7,
 	            weekOffset = firstWeekOffset(year, dow, doy),
 	            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
 	            resYear, resDayOfYear;
-	
+
 	        if (dayOfYear <= 0) {
 	            resYear = year - 1;
 	            resDayOfYear = daysInYear(resYear) + dayOfYear;
@@ -1369,18 +1369,18 @@ webpackJsonp([1],[
 	            resYear = year;
 	            resDayOfYear = dayOfYear;
 	        }
-	
+
 	        return {
 	            year: resYear,
 	            dayOfYear: resDayOfYear
 	        };
 	    }
-	
+
 	    function weekOfYear(mom, dow, doy) {
 	        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
 	            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
 	            resWeek, resYear;
-	
+
 	        if (week < 1) {
 	            resYear = mom.year() - 1;
 	            resWeek = week + weeksInYear(resYear, dow, doy);
@@ -1391,19 +1391,19 @@ webpackJsonp([1],[
 	            resYear = mom.year();
 	            resWeek = week;
 	        }
-	
+
 	        return {
 	            week: resWeek,
 	            year: resYear
 	        };
 	    }
-	
+
 	    function weeksInYear(year, dow, doy) {
 	        var weekOffset = firstWeekOffset(year, dow, doy),
 	            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
 	        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
 	    }
-	
+
 	    // Pick the first defined of two or three arguments.
 	    function defaults(a, b, c) {
 	        if (a != null) {
@@ -1414,7 +1414,7 @@ webpackJsonp([1],[
 	        }
 	        return c;
 	    }
-	
+
 	    function currentDateArray(config) {
 	        // hooks is actually the exported moment object
 	        var nowValue = new Date(utils_hooks__hooks.now());
@@ -1423,38 +1423,38 @@ webpackJsonp([1],[
 	        }
 	        return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
 	    }
-	
+
 	    // convert an array to a date.
 	    // the array should mirror the parameters below
 	    // note: all values past the year are optional and will default to the lowest possible value.
 	    // [year, month, day , hour, minute, second, millisecond]
 	    function configFromArray (config) {
 	        var i, date, input = [], currentDate, yearToUse;
-	
+
 	        if (config._d) {
 	            return;
 	        }
-	
+
 	        currentDate = currentDateArray(config);
-	
+
 	        //compute day of the year from weeks and weekdays
 	        if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
 	            dayOfYearFromWeekInfo(config);
 	        }
-	
+
 	        //if the day of the year is set, figure out what it is
 	        if (config._dayOfYear) {
 	            yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
-	
+
 	            if (config._dayOfYear > daysInYear(yearToUse)) {
 	                getParsingFlags(config)._overflowDayOfYear = true;
 	            }
-	
+
 	            date = createUTCDate(yearToUse, 0, config._dayOfYear);
 	            config._a[MONTH] = date.getUTCMonth();
 	            config._a[DATE] = date.getUTCDate();
 	        }
-	
+
 	        // Default to current date.
 	        // * if no year, month, day of month are given, default to today
 	        // * if day of month is given, default month and year
@@ -1463,12 +1463,12 @@ webpackJsonp([1],[
 	        for (i = 0; i < 3 && config._a[i] == null; ++i) {
 	            config._a[i] = input[i] = currentDate[i];
 	        }
-	
+
 	        // Zero out whatever was not defaulted, including time
 	        for (; i < 7; i++) {
 	            config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
 	        }
-	
+
 	        // Check for 24:00:00.000
 	        if (config._a[HOUR] === 24 &&
 	                config._a[MINUTE] === 0 &&
@@ -1477,27 +1477,27 @@ webpackJsonp([1],[
 	            config._nextDay = true;
 	            config._a[HOUR] = 0;
 	        }
-	
+
 	        config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
 	        // Apply timezone offset from input. The actual utcOffset can be changed
 	        // with parseZone.
 	        if (config._tzm != null) {
 	            config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
 	        }
-	
+
 	        if (config._nextDay) {
 	            config._a[HOUR] = 24;
 	        }
 	    }
-	
+
 	    function dayOfYearFromWeekInfo(config) {
 	        var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
-	
+
 	        w = config._w;
 	        if (w.GG != null || w.W != null || w.E != null) {
 	            dow = 1;
 	            doy = 4;
-	
+
 	            // TODO: We need to take the current isoWeekYear, but that depends on
 	            // how we interpret now (local, utc, fixed offset). So create
 	            // a now version of current config (take local/utc/offset flags, and
@@ -1511,10 +1511,10 @@ webpackJsonp([1],[
 	        } else {
 	            dow = config._locale._week.dow;
 	            doy = config._locale._week.doy;
-	
+
 	            weekYear = defaults(w.gg, config._a[YEAR], weekOfYear(local__createLocal(), dow, doy).year);
 	            week = defaults(w.w, 1);
-	
+
 	            if (w.d != null) {
 	                // weekday -- low day numbers are considered next week
 	                weekday = w.d;
@@ -1542,10 +1542,10 @@ webpackJsonp([1],[
 	            config._dayOfYear = temp.dayOfYear;
 	        }
 	    }
-	
+
 	    // constant that refers to the ISO standard
 	    utils_hooks__hooks.ISO_8601 = function () {};
-	
+
 	    // date from string and format string
 	    function configFromStringAndFormat(config) {
 	        // TODO: Move this to another part of the creation flow to prevent circular deps
@@ -1553,18 +1553,18 @@ webpackJsonp([1],[
 	            configFromISO(config);
 	            return;
 	        }
-	
+
 	        config._a = [];
 	        getParsingFlags(config).empty = true;
-	
+
 	        // This array is used to make a Date, either with `new Date` or `Date.UTC`
 	        var string = '' + config._i,
 	            i, parsedInput, tokens, token, skipped,
 	            stringLength = string.length,
 	            totalParsedInputLength = 0;
-	
+
 	        tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];
-	
+
 	        for (i = 0; i < tokens.length; i++) {
 	            token = tokens[i];
 	            parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
@@ -1592,33 +1592,33 @@ webpackJsonp([1],[
 	                getParsingFlags(config).unusedTokens.push(token);
 	            }
 	        }
-	
+
 	        // add remaining unparsed input length to the string
 	        getParsingFlags(config).charsLeftOver = stringLength - totalParsedInputLength;
 	        if (string.length > 0) {
 	            getParsingFlags(config).unusedInput.push(string);
 	        }
-	
+
 	        // clear _12h flag if hour is <= 12
 	        if (getParsingFlags(config).bigHour === true &&
 	                config._a[HOUR] <= 12 &&
 	                config._a[HOUR] > 0) {
 	            getParsingFlags(config).bigHour = undefined;
 	        }
-	
+
 	        getParsingFlags(config).parsedDateParts = config._a.slice(0);
 	        getParsingFlags(config).meridiem = config._meridiem;
 	        // handle meridiem
 	        config._a[HOUR] = meridiemFixWrap(config._locale, config._a[HOUR], config._meridiem);
-	
+
 	        configFromArray(config);
 	        checkOverflow(config);
 	    }
-	
-	
+
+
 	    function meridiemFixWrap (locale, hour, meridiem) {
 	        var isPm;
-	
+
 	        if (meridiem == null) {
 	            // nothing to do
 	            return hour;
@@ -1640,22 +1640,22 @@ webpackJsonp([1],[
 	            return hour;
 	        }
 	    }
-	
+
 	    // date from string and array of format strings
 	    function configFromStringAndArray(config) {
 	        var tempConfig,
 	            bestMoment,
-	
+
 	            scoreToBeat,
 	            i,
 	            currentScore;
-	
+
 	        if (config._f.length === 0) {
 	            getParsingFlags(config).invalidFormat = true;
 	            config._d = new Date(NaN);
 	            return;
 	        }
-	
+
 	        for (i = 0; i < config._f.length; i++) {
 	            currentScore = 0;
 	            tempConfig = copyConfig({}, config);
@@ -1664,41 +1664,41 @@ webpackJsonp([1],[
 	            }
 	            tempConfig._f = config._f[i];
 	            configFromStringAndFormat(tempConfig);
-	
+
 	            if (!valid__isValid(tempConfig)) {
 	                continue;
 	            }
-	
+
 	            // if there is any input that was not parsed add a penalty for that format
 	            currentScore += getParsingFlags(tempConfig).charsLeftOver;
-	
+
 	            //or tokens
 	            currentScore += getParsingFlags(tempConfig).unusedTokens.length * 10;
-	
+
 	            getParsingFlags(tempConfig).score = currentScore;
-	
+
 	            if (scoreToBeat == null || currentScore < scoreToBeat) {
 	                scoreToBeat = currentScore;
 	                bestMoment = tempConfig;
 	            }
 	        }
-	
+
 	        extend(config, bestMoment || tempConfig);
 	    }
-	
+
 	    function configFromObject(config) {
 	        if (config._d) {
 	            return;
 	        }
-	
+
 	        var i = normalizeObjectUnits(config._i);
 	        config._a = map([i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond], function (obj) {
 	            return obj && parseInt(obj, 10);
 	        });
-	
+
 	        configFromArray(config);
 	    }
-	
+
 	    function createFromConfig (config) {
 	        var res = new Moment(checkOverflow(prepareConfig(config)));
 	        if (res._nextDay) {
@@ -1706,24 +1706,24 @@ webpackJsonp([1],[
 	            res.add(1, 'd');
 	            res._nextDay = undefined;
 	        }
-	
+
 	        return res;
 	    }
-	
+
 	    function prepareConfig (config) {
 	        var input = config._i,
 	            format = config._f;
-	
+
 	        config._locale = config._locale || locale_locales__getLocale(config._l);
-	
+
 	        if (input === null || (format === undefined && input === '')) {
 	            return valid__createInvalid({nullInput: true});
 	        }
-	
+
 	        if (typeof input === 'string') {
 	            config._i = input = config._locale.preparse(input);
 	        }
-	
+
 	        if (isMoment(input)) {
 	            return new Moment(checkOverflow(input));
 	        } else if (isArray(format)) {
@@ -1735,14 +1735,14 @@ webpackJsonp([1],[
 	        } else {
 	            configFromInput(config);
 	        }
-	
+
 	        if (!valid__isValid(config)) {
 	            config._d = null;
 	        }
-	
+
 	        return config;
 	    }
-	
+
 	    function configFromInput(config) {
 	        var input = config._i;
 	        if (input === undefined) {
@@ -1765,10 +1765,10 @@ webpackJsonp([1],[
 	            utils_hooks__hooks.createFromInputFallback(config);
 	        }
 	    }
-	
+
 	    function createLocalOrUTC (input, format, locale, strict, isUTC) {
 	        var c = {};
-	
+
 	        if (typeof(locale) === 'boolean') {
 	            strict = locale;
 	            locale = undefined;
@@ -1781,14 +1781,14 @@ webpackJsonp([1],[
 	        c._i = input;
 	        c._f = format;
 	        c._strict = strict;
-	
+
 	        return createFromConfig(c);
 	    }
-	
+
 	    function local__createLocal (input, format, locale, strict) {
 	        return createLocalOrUTC(input, format, locale, strict, false);
 	    }
-	
+
 	    var prototypeMin = deprecate(
 	         'moment().min is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548',
 	         function () {
@@ -1800,7 +1800,7 @@ webpackJsonp([1],[
 	             }
 	         }
 	     );
-	
+
 	    var prototypeMax = deprecate(
 	        'moment().max is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548',
 	        function () {
@@ -1812,7 +1812,7 @@ webpackJsonp([1],[
 	            }
 	        }
 	    );
-	
+
 	    // Pick a moment m from moments so that m[fn](other) is true for all
 	    // other. This relies on the function fn to be transitive.
 	    //
@@ -1834,24 +1834,24 @@ webpackJsonp([1],[
 	        }
 	        return res;
 	    }
-	
+
 	    // TODO: Use [].sort instead?
 	    function min () {
 	        var args = [].slice.call(arguments, 0);
-	
+
 	        return pickBy('isBefore', args);
 	    }
-	
+
 	    function max () {
 	        var args = [].slice.call(arguments, 0);
-	
+
 	        return pickBy('isAfter', args);
 	    }
-	
+
 	    var now = function () {
 	        return Date.now ? Date.now() : +(new Date());
 	    };
-	
+
 	    function Duration (duration) {
 	        var normalizedInput = normalizeObjectUnits(duration),
 	            years = normalizedInput.year || 0,
@@ -1863,7 +1863,7 @@ webpackJsonp([1],[
 	            minutes = normalizedInput.minute || 0,
 	            seconds = normalizedInput.second || 0,
 	            milliseconds = normalizedInput.millisecond || 0;
-	
+
 	        // representation for dateAddRemove
 	        this._milliseconds = +milliseconds +
 	            seconds * 1e3 + // 1000
@@ -1879,20 +1879,20 @@ webpackJsonp([1],[
 	        this._months = +months +
 	            quarters * 3 +
 	            years * 12;
-	
+
 	        this._data = {};
-	
+
 	        this._locale = locale_locales__getLocale();
-	
+
 	        this._bubble();
 	    }
-	
+
 	    function isDuration (obj) {
 	        return obj instanceof Duration;
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    function offset (token, separator) {
 	        addFormatToken(token, 0, 0, function () {
 	            var offset = this.utcOffset();
@@ -1904,35 +1904,35 @@ webpackJsonp([1],[
 	            return sign + zeroFill(~~(offset / 60), 2) + separator + zeroFill(~~(offset) % 60, 2);
 	        });
 	    }
-	
+
 	    offset('Z', ':');
 	    offset('ZZ', '');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('Z',  matchShortOffset);
 	    addRegexToken('ZZ', matchShortOffset);
 	    addParseToken(['Z', 'ZZ'], function (input, array, config) {
 	        config._useUTC = true;
 	        config._tzm = offsetFromString(matchShortOffset, input);
 	    });
-	
+
 	    // HELPERS
-	
+
 	    // timezone chunker
 	    // '+10:00' > ['10',  '00']
 	    // '-1530'  > ['-15', '30']
 	    var chunkOffset = /([\+\-]|\d\d)/gi;
-	
+
 	    function offsetFromString(matcher, string) {
 	        var matches = ((string || '').match(matcher) || []);
 	        var chunk   = matches[matches.length - 1] || [];
 	        var parts   = (chunk + '').match(chunkOffset) || ['-', 0, 0];
 	        var minutes = +(parts[1] * 60) + toInt(parts[2]);
-	
+
 	        return parts[0] === '+' ? minutes : -minutes;
 	    }
-	
+
 	    // Return a moment from input, that is local/utc/zone equivalent to model.
 	    function cloneWithOffset(input, model) {
 	        var res, diff;
@@ -1947,21 +1947,21 @@ webpackJsonp([1],[
 	            return local__createLocal(input).local();
 	        }
 	    }
-	
+
 	    function getDateOffset (m) {
 	        // On Firefox.24 Date#getTimezoneOffset returns a floating point.
 	        // https://github.com/moment/moment/pull/1871
 	        return -Math.round(m._d.getTimezoneOffset() / 15) * 15;
 	    }
-	
+
 	    // HOOKS
-	
+
 	    // This function will be called whenever a moment is mutated.
 	    // It is intended to keep the offset in sync with the timezone.
 	    utils_hooks__hooks.updateOffset = function () {};
-	
+
 	    // MOMENTS
-	
+
 	    // keepLocalTime = true means only change the timezone, without
 	    // affecting the local hour. So 5:31:26 +0300 --[utcOffset(2, true)]-->
 	    // 5:31:26 +0200 It is possible that 5:31:26 doesn't exist with offset
@@ -2006,37 +2006,37 @@ webpackJsonp([1],[
 	            return this._isUTC ? offset : getDateOffset(this);
 	        }
 	    }
-	
+
 	    function getSetZone (input, keepLocalTime) {
 	        if (input != null) {
 	            if (typeof input !== 'string') {
 	                input = -input;
 	            }
-	
+
 	            this.utcOffset(input, keepLocalTime);
-	
+
 	            return this;
 	        } else {
 	            return -this.utcOffset();
 	        }
 	    }
-	
+
 	    function setOffsetToUTC (keepLocalTime) {
 	        return this.utcOffset(0, keepLocalTime);
 	    }
-	
+
 	    function setOffsetToLocal (keepLocalTime) {
 	        if (this._isUTC) {
 	            this.utcOffset(0, keepLocalTime);
 	            this._isUTC = false;
-	
+
 	            if (keepLocalTime) {
 	                this.subtract(getDateOffset(this), 'm');
 	            }
 	        }
 	        return this;
 	    }
-	
+
 	    function setOffsetToParsedOffset () {
 	        if (this._tzm) {
 	            this.utcOffset(this._tzm);
@@ -2045,33 +2045,33 @@ webpackJsonp([1],[
 	        }
 	        return this;
 	    }
-	
+
 	    function hasAlignedHourOffset (input) {
 	        if (!this.isValid()) {
 	            return false;
 	        }
 	        input = input ? local__createLocal(input).utcOffset() : 0;
-	
+
 	        return (this.utcOffset() - input) % 60 === 0;
 	    }
-	
+
 	    function isDaylightSavingTime () {
 	        return (
 	            this.utcOffset() > this.clone().month(0).utcOffset() ||
 	            this.utcOffset() > this.clone().month(5).utcOffset()
 	        );
 	    }
-	
+
 	    function isDaylightSavingTimeShifted () {
 	        if (!isUndefined(this._isDSTShifted)) {
 	            return this._isDSTShifted;
 	        }
-	
+
 	        var c = {};
-	
+
 	        copyConfig(c, this);
 	        c = prepareConfig(c);
-	
+
 	        if (c._a) {
 	            var other = c._isUTC ? create_utc__createUTC(c._a) : local__createLocal(c._a);
 	            this._isDSTShifted = this.isValid() &&
@@ -2079,30 +2079,30 @@ webpackJsonp([1],[
 	        } else {
 	            this._isDSTShifted = false;
 	        }
-	
+
 	        return this._isDSTShifted;
 	    }
-	
+
 	    function isLocal () {
 	        return this.isValid() ? !this._isUTC : false;
 	    }
-	
+
 	    function isUtcOffset () {
 	        return this.isValid() ? this._isUTC : false;
 	    }
-	
+
 	    function isUtc () {
 	        return this.isValid() ? this._isUTC && this._offset === 0 : false;
 	    }
-	
+
 	    // ASP.NET json date format regex
 	    var aspNetRegex = /^(\-)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?\d*)?$/;
-	
+
 	    // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
 	    // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
 	    // and further modified to allow for strings containing both week and day
 	    var isoRegex = /^(-)?P(?:(-?[0-9,.]*)Y)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)W)?(?:(-?[0-9,.]*)D)?(?:T(?:(-?[0-9,.]*)H)?(?:(-?[0-9,.]*)M)?(?:(-?[0-9,.]*)S)?)?$/;
-	
+
 	    function create__createDuration (input, key) {
 	        var duration = input,
 	            // matching against regexp is expensive, do it on demand
@@ -2110,7 +2110,7 @@ webpackJsonp([1],[
 	            sign,
 	            ret,
 	            diffRes;
-	
+
 	        if (isDuration(input)) {
 	            duration = {
 	                ms : input._milliseconds,
@@ -2149,23 +2149,23 @@ webpackJsonp([1],[
 	            duration = {};
 	        } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
 	            diffRes = momentsDifference(local__createLocal(duration.from), local__createLocal(duration.to));
-	
+
 	            duration = {};
 	            duration.ms = diffRes.milliseconds;
 	            duration.M = diffRes.months;
 	        }
-	
+
 	        ret = new Duration(duration);
-	
+
 	        if (isDuration(input) && hasOwnProp(input, '_locale')) {
 	            ret._locale = input._locale;
 	        }
-	
+
 	        return ret;
 	    }
-	
+
 	    create__createDuration.fn = Duration.prototype;
-	
+
 	    function parseIso (inp, sign) {
 	        // We'd normally use ~~inp for this, but unfortunately it also
 	        // converts floats to ints.
@@ -2174,27 +2174,27 @@ webpackJsonp([1],[
 	        // apply sign while we're at it
 	        return (isNaN(res) ? 0 : res) * sign;
 	    }
-	
+
 	    function positiveMomentsDifference(base, other) {
 	        var res = {milliseconds: 0, months: 0};
-	
+
 	        res.months = other.month() - base.month() +
 	            (other.year() - base.year()) * 12;
 	        if (base.clone().add(res.months, 'M').isAfter(other)) {
 	            --res.months;
 	        }
-	
+
 	        res.milliseconds = +other - +(base.clone().add(res.months, 'M'));
-	
+
 	        return res;
 	    }
-	
+
 	    function momentsDifference(base, other) {
 	        var res;
 	        if (!(base.isValid() && other.isValid())) {
 	            return {milliseconds: 0, months: 0};
 	        }
-	
+
 	        other = cloneWithOffset(other, base);
 	        if (base.isBefore(other)) {
 	            res = positiveMomentsDifference(base, other);
@@ -2203,10 +2203,10 @@ webpackJsonp([1],[
 	            res.milliseconds = -res.milliseconds;
 	            res.months = -res.months;
 	        }
-	
+
 	        return res;
 	    }
-	
+
 	    function absRound (number) {
 	        if (number < 0) {
 	            return Math.round(-1 * number) * -1;
@@ -2214,7 +2214,7 @@ webpackJsonp([1],[
 	            return Math.round(number);
 	        }
 	    }
-	
+
 	    // TODO: remove 'name' arg after deprecation is removed
 	    function createAdder(direction, name) {
 	        return function (val, period) {
@@ -2224,26 +2224,26 @@ webpackJsonp([1],[
 	                deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period).');
 	                tmp = val; val = period; period = tmp;
 	            }
-	
+
 	            val = typeof val === 'string' ? +val : val;
 	            dur = create__createDuration(val, period);
 	            add_subtract__addSubtract(this, dur, direction);
 	            return this;
 	        };
 	    }
-	
+
 	    function add_subtract__addSubtract (mom, duration, isAdding, updateOffset) {
 	        var milliseconds = duration._milliseconds,
 	            days = absRound(duration._days),
 	            months = absRound(duration._months);
-	
+
 	        if (!mom.isValid()) {
 	            // No op
 	            return;
 	        }
-	
+
 	        updateOffset = updateOffset == null ? true : updateOffset;
-	
+
 	        if (milliseconds) {
 	            mom._d.setTime(mom._d.valueOf() + milliseconds * isAdding);
 	        }
@@ -2257,10 +2257,10 @@ webpackJsonp([1],[
 	            utils_hooks__hooks.updateOffset(mom, days || months);
 	        }
 	    }
-	
+
 	    var add_subtract__add      = createAdder(1, 'add');
 	    var add_subtract__subtract = createAdder(-1, 'subtract');
-	
+
 	    function moment_calendar__calendar (time, formats) {
 	        // We want to compare the start of today, vs this.
 	        // Getting start-of-today depends on whether we're local/utc/offset or not.
@@ -2273,16 +2273,16 @@ webpackJsonp([1],[
 	                diff < 1 ? 'sameDay' :
 	                diff < 2 ? 'nextDay' :
 	                diff < 7 ? 'nextWeek' : 'sameElse';
-	
+
 	        var output = formats && (isFunction(formats[format]) ? formats[format]() : formats[format]);
-	
+
 	        return this.format(output || this.localeData().calendar(format, this, local__createLocal(now)));
 	    }
-	
+
 	    function clone () {
 	        return new Moment(this);
 	    }
-	
+
 	    function isAfter (input, units) {
 	        var localInput = isMoment(input) ? input : local__createLocal(input);
 	        if (!(this.isValid() && localInput.isValid())) {
@@ -2295,7 +2295,7 @@ webpackJsonp([1],[
 	            return localInput.valueOf() < this.clone().startOf(units).valueOf();
 	        }
 	    }
-	
+
 	    function isBefore (input, units) {
 	        var localInput = isMoment(input) ? input : local__createLocal(input);
 	        if (!(this.isValid() && localInput.isValid())) {
@@ -2308,13 +2308,13 @@ webpackJsonp([1],[
 	            return this.clone().endOf(units).valueOf() < localInput.valueOf();
 	        }
 	    }
-	
+
 	    function isBetween (from, to, units, inclusivity) {
 	        inclusivity = inclusivity || '()';
 	        return (inclusivity[0] === '(' ? this.isAfter(from, units) : !this.isBefore(from, units)) &&
 	            (inclusivity[1] === ')' ? this.isBefore(to, units) : !this.isAfter(to, units));
 	    }
-	
+
 	    function isSame (input, units) {
 	        var localInput = isMoment(input) ? input : local__createLocal(input),
 	            inputMs;
@@ -2329,34 +2329,34 @@ webpackJsonp([1],[
 	            return this.clone().startOf(units).valueOf() <= inputMs && inputMs <= this.clone().endOf(units).valueOf();
 	        }
 	    }
-	
+
 	    function isSameOrAfter (input, units) {
 	        return this.isSame(input, units) || this.isAfter(input,units);
 	    }
-	
+
 	    function isSameOrBefore (input, units) {
 	        return this.isSame(input, units) || this.isBefore(input,units);
 	    }
-	
+
 	    function diff (input, units, asFloat) {
 	        var that,
 	            zoneDelta,
 	            delta, output;
-	
+
 	        if (!this.isValid()) {
 	            return NaN;
 	        }
-	
+
 	        that = cloneWithOffset(input, this);
-	
+
 	        if (!that.isValid()) {
 	            return NaN;
 	        }
-	
+
 	        zoneDelta = (that.utcOffset() - this.utcOffset()) * 6e4;
-	
+
 	        units = normalizeUnits(units);
-	
+
 	        if (units === 'year' || units === 'month' || units === 'quarter') {
 	            output = monthDiff(this, that);
 	            if (units === 'quarter') {
@@ -2375,14 +2375,14 @@ webpackJsonp([1],[
 	        }
 	        return asFloat ? output : absFloor(output);
 	    }
-	
+
 	    function monthDiff (a, b) {
 	        // difference in months
 	        var wholeMonthDiff = ((b.year() - a.year()) * 12) + (b.month() - a.month()),
 	            // b is in (anchor - 1 month, anchor + 1 month)
 	            anchor = a.clone().add(wholeMonthDiff, 'months'),
 	            anchor2, adjust;
-	
+
 	        if (b - anchor < 0) {
 	            anchor2 = a.clone().add(wholeMonthDiff - 1, 'months');
 	            // linear across the month
@@ -2392,18 +2392,18 @@ webpackJsonp([1],[
 	            // linear across the month
 	            adjust = (b - anchor) / (anchor2 - anchor);
 	        }
-	
+
 	        //check for negative zero, return zero if negative zero
 	        return -(wholeMonthDiff + adjust) || 0;
 	    }
-	
+
 	    utils_hooks__hooks.defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
 	    utils_hooks__hooks.defaultFormatUtc = 'YYYY-MM-DDTHH:mm:ss[Z]';
-	
+
 	    function toString () {
 	        return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
 	    }
-	
+
 	    function moment_format__toISOString () {
 	        var m = this.clone().utc();
 	        if (0 < m.year() && m.year() <= 9999) {
@@ -2417,7 +2417,7 @@ webpackJsonp([1],[
 	            return formatMoment(m, 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
 	        }
 	    }
-	
+
 	    function format (inputString) {
 	        if (!inputString) {
 	            inputString = this.isUtc() ? utils_hooks__hooks.defaultFormatUtc : utils_hooks__hooks.defaultFormat;
@@ -2425,7 +2425,7 @@ webpackJsonp([1],[
 	        var output = formatMoment(this, inputString);
 	        return this.localeData().postformat(output);
 	    }
-	
+
 	    function from (time, withoutSuffix) {
 	        if (this.isValid() &&
 	                ((isMoment(time) && time.isValid()) ||
@@ -2435,11 +2435,11 @@ webpackJsonp([1],[
 	            return this.localeData().invalidDate();
 	        }
 	    }
-	
+
 	    function fromNow (withoutSuffix) {
 	        return this.from(local__createLocal(), withoutSuffix);
 	    }
-	
+
 	    function to (time, withoutSuffix) {
 	        if (this.isValid() &&
 	                ((isMoment(time) && time.isValid()) ||
@@ -2449,17 +2449,17 @@ webpackJsonp([1],[
 	            return this.localeData().invalidDate();
 	        }
 	    }
-	
+
 	    function toNow (withoutSuffix) {
 	        return this.to(local__createLocal(), withoutSuffix);
 	    }
-	
+
 	    // If passed a locale key, it will set the locale for this
 	    // instance.  Otherwise, it will return the locale configuration
 	    // variables for this instance.
 	    function locale (key) {
 	        var newLocaleData;
-	
+
 	        if (key === undefined) {
 	            return this._locale._abbr;
 	        } else {
@@ -2470,7 +2470,7 @@ webpackJsonp([1],[
 	            return this;
 	        }
 	    }
-	
+
 	    var lang = deprecate(
 	        'moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.',
 	        function (key) {
@@ -2481,11 +2481,11 @@ webpackJsonp([1],[
 	            }
 	        }
 	    );
-	
+
 	    function localeData () {
 	        return this._locale;
 	    }
-	
+
 	    function startOf (units) {
 	        units = normalizeUnits(units);
 	        // the following switch intentionally omits break keywords
@@ -2513,7 +2513,7 @@ webpackJsonp([1],[
 	        case 'second':
 	            this.milliseconds(0);
 	        }
-	
+
 	        // weeks are a special case
 	        if (units === 'week') {
 	            this.weekday(0);
@@ -2521,46 +2521,46 @@ webpackJsonp([1],[
 	        if (units === 'isoWeek') {
 	            this.isoWeekday(1);
 	        }
-	
+
 	        // quarters are also special
 	        if (units === 'quarter') {
 	            this.month(Math.floor(this.month() / 3) * 3);
 	        }
-	
+
 	        return this;
 	    }
-	
+
 	    function endOf (units) {
 	        units = normalizeUnits(units);
 	        if (units === undefined || units === 'millisecond') {
 	            return this;
 	        }
-	
+
 	        // 'date' is an alias for 'day', so it should be considered as such.
 	        if (units === 'date') {
 	            units = 'day';
 	        }
-	
+
 	        return this.startOf(units).add(1, (units === 'isoWeek' ? 'week' : units)).subtract(1, 'ms');
 	    }
-	
+
 	    function to_type__valueOf () {
 	        return this._d.valueOf() - ((this._offset || 0) * 60000);
 	    }
-	
+
 	    function unix () {
 	        return Math.floor(this.valueOf() / 1000);
 	    }
-	
+
 	    function toDate () {
 	        return this._offset ? new Date(this.valueOf()) : this._d;
 	    }
-	
+
 	    function toArray () {
 	        var m = this;
 	        return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond()];
 	    }
-	
+
 	    function toObject () {
 	        var m = this;
 	        return {
@@ -2573,24 +2573,24 @@ webpackJsonp([1],[
 	            milliseconds: m.milliseconds()
 	        };
 	    }
-	
+
 	    function toJSON () {
 	        // new Date(NaN).toJSON() === null
 	        return this.isValid() ? this.toISOString() : null;
 	    }
-	
+
 	    function moment_valid__isValid () {
 	        return valid__isValid(this);
 	    }
-	
+
 	    function parsingFlags () {
 	        return extend({}, getParsingFlags(this));
 	    }
-	
+
 	    function invalidAt () {
 	        return getParsingFlags(this).overflow;
 	    }
-	
+
 	    function creationData() {
 	        return {
 	            input: this._i,
@@ -2600,33 +2600,33 @@ webpackJsonp([1],[
 	            strict: this._strict
 	        };
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken(0, ['gg', 2], 0, function () {
 	        return this.weekYear() % 100;
 	    });
-	
+
 	    addFormatToken(0, ['GG', 2], 0, function () {
 	        return this.isoWeekYear() % 100;
 	    });
-	
+
 	    function addWeekYearFormatToken (token, getter) {
 	        addFormatToken(0, [token, token.length], 0, getter);
 	    }
-	
+
 	    addWeekYearFormatToken('gggg',     'weekYear');
 	    addWeekYearFormatToken('ggggg',    'weekYear');
 	    addWeekYearFormatToken('GGGG',  'isoWeekYear');
 	    addWeekYearFormatToken('GGGGG', 'isoWeekYear');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('weekYear', 'gg');
 	    addUnitAlias('isoWeekYear', 'GG');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('G',      matchSigned);
 	    addRegexToken('g',      matchSigned);
 	    addRegexToken('GG',     match1to2, match2);
@@ -2635,17 +2635,17 @@ webpackJsonp([1],[
 	    addRegexToken('gggg',   match1to4, match4);
 	    addRegexToken('GGGGG',  match1to6, match6);
 	    addRegexToken('ggggg',  match1to6, match6);
-	
+
 	    addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'], function (input, week, config, token) {
 	        week[token.substr(0, 2)] = toInt(input);
 	    });
-	
+
 	    addWeekParseToken(['gg', 'GG'], function (input, week, config, token) {
 	        week[token] = utils_hooks__hooks.parseTwoDigitYear(input);
 	    });
-	
+
 	    // MOMENTS
-	
+
 	    function getSetWeekYear (input) {
 	        return getSetWeekYearHelper.call(this,
 	                input,
@@ -2654,21 +2654,21 @@ webpackJsonp([1],[
 	                this.localeData()._week.dow,
 	                this.localeData()._week.doy);
 	    }
-	
+
 	    function getSetISOWeekYear (input) {
 	        return getSetWeekYearHelper.call(this,
 	                input, this.isoWeek(), this.isoWeekday(), 1, 4);
 	    }
-	
+
 	    function getISOWeeksInYear () {
 	        return weeksInYear(this.year(), 1, 4);
 	    }
-	
+
 	    function getWeeksInYear () {
 	        var weekInfo = this.localeData()._week;
 	        return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
 	    }
-	
+
 	    function getSetWeekYearHelper(input, week, weekday, dow, doy) {
 	        var weeksTarget;
 	        if (input == null) {
@@ -2681,144 +2681,144 @@ webpackJsonp([1],[
 	            return setWeekAll.call(this, input, week, weekday, dow, doy);
 	        }
 	    }
-	
+
 	    function setWeekAll(weekYear, week, weekday, dow, doy) {
 	        var dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy),
 	            date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
-	
+
 	        this.year(date.getUTCFullYear());
 	        this.month(date.getUTCMonth());
 	        this.date(date.getUTCDate());
 	        return this;
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('Q', 0, 'Qo', 'quarter');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('quarter', 'Q');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('Q', match1);
 	    addParseToken('Q', function (input, array) {
 	        array[MONTH] = (toInt(input) - 1) * 3;
 	    });
-	
+
 	    // MOMENTS
-	
+
 	    function getSetQuarter (input) {
 	        return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('w', ['ww', 2], 'wo', 'week');
 	    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('week', 'w');
 	    addUnitAlias('isoWeek', 'W');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('w',  match1to2);
 	    addRegexToken('ww', match1to2, match2);
 	    addRegexToken('W',  match1to2);
 	    addRegexToken('WW', match1to2, match2);
-	
+
 	    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
 	        week[token.substr(0, 1)] = toInt(input);
 	    });
-	
+
 	    // HELPERS
-	
+
 	    // LOCALES
-	
+
 	    function localeWeek (mom) {
 	        return weekOfYear(mom, this._week.dow, this._week.doy).week;
 	    }
-	
+
 	    var defaultLocaleWeek = {
 	        dow : 0, // Sunday is the first day of the week.
 	        doy : 6  // The week that contains Jan 1st is the first week of the year.
 	    };
-	
+
 	    function localeFirstDayOfWeek () {
 	        return this._week.dow;
 	    }
-	
+
 	    function localeFirstDayOfYear () {
 	        return this._week.doy;
 	    }
-	
+
 	    // MOMENTS
-	
+
 	    function getSetWeek (input) {
 	        var week = this.localeData().week(this);
 	        return input == null ? week : this.add((input - week) * 7, 'd');
 	    }
-	
+
 	    function getSetISOWeek (input) {
 	        var week = weekOfYear(this, 1, 4).week;
 	        return input == null ? week : this.add((input - week) * 7, 'd');
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('D', ['DD', 2], 'Do', 'date');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('date', 'D');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('D',  match1to2);
 	    addRegexToken('DD', match1to2, match2);
 	    addRegexToken('Do', function (isStrict, locale) {
 	        return isStrict ? locale._ordinalParse : locale._ordinalParseLenient;
 	    });
-	
+
 	    addParseToken(['D', 'DD'], DATE);
 	    addParseToken('Do', function (input, array) {
 	        array[DATE] = toInt(input.match(match1to2)[0], 10);
 	    });
-	
+
 	    // MOMENTS
-	
+
 	    var getSetDayOfMonth = makeGetSet('Date', true);
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('d', 0, 'do', 'day');
-	
+
 	    addFormatToken('dd', 0, 0, function (format) {
 	        return this.localeData().weekdaysMin(this, format);
 	    });
-	
+
 	    addFormatToken('ddd', 0, 0, function (format) {
 	        return this.localeData().weekdaysShort(this, format);
 	    });
-	
+
 	    addFormatToken('dddd', 0, 0, function (format) {
 	        return this.localeData().weekdays(this, format);
 	    });
-	
+
 	    addFormatToken('e', 0, 0, 'weekday');
 	    addFormatToken('E', 0, 0, 'isoWeekday');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('day', 'd');
 	    addUnitAlias('weekday', 'e');
 	    addUnitAlias('isoWeekday', 'E');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('d',    match1to2);
 	    addRegexToken('e',    match1to2);
 	    addRegexToken('E',    match1to2);
@@ -2831,7 +2831,7 @@ webpackJsonp([1],[
 	    addRegexToken('dddd',   function (isStrict, locale) {
 	        return locale.weekdaysRegex(isStrict);
 	    });
-	
+
 	    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
 	        var weekday = config._locale.weekdaysParse(input, token, config._strict);
 	        // if we didn't get a weekday name, mark the date as invalid
@@ -2841,55 +2841,55 @@ webpackJsonp([1],[
 	            getParsingFlags(config).invalidWeekday = input;
 	        }
 	    });
-	
+
 	    addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
 	        week[token] = toInt(input);
 	    });
-	
+
 	    // HELPERS
-	
+
 	    function parseWeekday(input, locale) {
 	        if (typeof input !== 'string') {
 	            return input;
 	        }
-	
+
 	        if (!isNaN(input)) {
 	            return parseInt(input, 10);
 	        }
-	
+
 	        input = locale.weekdaysParse(input);
 	        if (typeof input === 'number') {
 	            return input;
 	        }
-	
+
 	        return null;
 	    }
-	
+
 	    // LOCALES
-	
+
 	    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 	    function localeWeekdays (m, format) {
 	        return isArray(this._weekdays) ? this._weekdays[m.day()] :
 	            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
 	    }
-	
+
 	    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
 	    function localeWeekdaysShort (m) {
 	        return this._weekdaysShort[m.day()];
 	    }
-	
+
 	    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
 	    function localeWeekdaysMin (m) {
 	        return this._weekdaysMin[m.day()];
 	    }
-	
+
 	    function day_of_week__handleStrictParse(weekdayName, format, strict) {
 	        var i, ii, mom, llc = weekdayName.toLocaleLowerCase();
 	        if (!this._weekdaysParse) {
 	            this._weekdaysParse = [];
 	            this._shortWeekdaysParse = [];
 	            this._minWeekdaysParse = [];
-	
+
 	            for (i = 0; i < 7; ++i) {
 	                mom = create_utc__createUTC([2000, 1]).day(i);
 	                this._minWeekdaysParse[i] = this.weekdaysMin(mom, '').toLocaleLowerCase();
@@ -2897,7 +2897,7 @@ webpackJsonp([1],[
 	                this._weekdaysParse[i] = this.weekdays(mom, '').toLocaleLowerCase();
 	            }
 	        }
-	
+
 	        if (strict) {
 	            if (format === 'dddd') {
 	                ii = indexOf.call(this._weekdaysParse, llc);
@@ -2946,24 +2946,24 @@ webpackJsonp([1],[
 	            }
 	        }
 	    }
-	
+
 	    function localeWeekdaysParse (weekdayName, format, strict) {
 	        var i, mom, regex;
-	
+
 	        if (this._weekdaysParseExact) {
 	            return day_of_week__handleStrictParse.call(this, weekdayName, format, strict);
 	        }
-	
+
 	        if (!this._weekdaysParse) {
 	            this._weekdaysParse = [];
 	            this._minWeekdaysParse = [];
 	            this._shortWeekdaysParse = [];
 	            this._fullWeekdaysParse = [];
 	        }
-	
+
 	        for (i = 0; i < 7; i++) {
 	            // make the regex if we don't have it already
-	
+
 	            mom = create_utc__createUTC([2000, 1]).day(i);
 	            if (strict && !this._fullWeekdaysParse[i]) {
 	                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
@@ -2986,9 +2986,9 @@ webpackJsonp([1],[
 	            }
 	        }
 	    }
-	
+
 	    // MOMENTS
-	
+
 	    function getSetDayOfWeek (input) {
 	        if (!this.isValid()) {
 	            return input != null ? this : NaN;
@@ -3001,7 +3001,7 @@ webpackJsonp([1],[
 	            return day;
 	        }
 	    }
-	
+
 	    function getSetLocaleDayOfWeek (input) {
 	        if (!this.isValid()) {
 	            return input != null ? this : NaN;
@@ -3009,7 +3009,7 @@ webpackJsonp([1],[
 	        var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
 	        return input == null ? weekday : this.add(input - weekday, 'd');
 	    }
-	
+
 	    function getSetISODayOfWeek (input) {
 	        if (!this.isValid()) {
 	            return input != null ? this : NaN;
@@ -3019,7 +3019,7 @@ webpackJsonp([1],[
 	        // as a setter, sunday should belong to the previous week.
 	        return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
 	    }
-	
+
 	    var defaultWeekdaysRegex = matchWord;
 	    function weekdaysRegex (isStrict) {
 	        if (this._weekdaysParseExact) {
@@ -3036,7 +3036,7 @@ webpackJsonp([1],[
 	                this._weekdaysStrictRegex : this._weekdaysRegex;
 	        }
 	    }
-	
+
 	    var defaultWeekdaysShortRegex = matchWord;
 	    function weekdaysShortRegex (isStrict) {
 	        if (this._weekdaysParseExact) {
@@ -3053,7 +3053,7 @@ webpackJsonp([1],[
 	                this._weekdaysShortStrictRegex : this._weekdaysShortRegex;
 	        }
 	    }
-	
+
 	    var defaultWeekdaysMinRegex = matchWord;
 	    function weekdaysMinRegex (isStrict) {
 	        if (this._weekdaysParseExact) {
@@ -3070,13 +3070,13 @@ webpackJsonp([1],[
 	                this._weekdaysMinStrictRegex : this._weekdaysMinRegex;
 	        }
 	    }
-	
-	
+
+
 	    function computeWeekdaysParse () {
 	        function cmpLenRev(a, b) {
 	            return b.length - a.length;
 	        }
-	
+
 	        var minPieces = [], shortPieces = [], longPieces = [], mixedPieces = [],
 	            i, mom, minp, shortp, longp;
 	        for (i = 0; i < 7; i++) {
@@ -3103,104 +3103,104 @@ webpackJsonp([1],[
 	            longPieces[i] = regexEscape(longPieces[i]);
 	            mixedPieces[i] = regexEscape(mixedPieces[i]);
 	        }
-	
+
 	        this._weekdaysRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
 	        this._weekdaysShortRegex = this._weekdaysRegex;
 	        this._weekdaysMinRegex = this._weekdaysRegex;
-	
+
 	        this._weekdaysStrictRegex = new RegExp('^(' + longPieces.join('|') + ')', 'i');
 	        this._weekdaysShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')', 'i');
 	        this._weekdaysMinStrictRegex = new RegExp('^(' + minPieces.join('|') + ')', 'i');
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('dayOfYear', 'DDD');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('DDD',  match1to3);
 	    addRegexToken('DDDD', match3);
 	    addParseToken(['DDD', 'DDDD'], function (input, array, config) {
 	        config._dayOfYear = toInt(input);
 	    });
-	
+
 	    // HELPERS
-	
+
 	    // MOMENTS
-	
+
 	    function getSetDayOfYear (input) {
 	        var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
 	        return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
 	    }
-	
+
 	    // FORMATTING
-	
+
 	    function hFormat() {
 	        return this.hours() % 12 || 12;
 	    }
-	
+
 	    function kFormat() {
 	        return this.hours() || 24;
 	    }
-	
+
 	    addFormatToken('H', ['HH', 2], 0, 'hour');
 	    addFormatToken('h', ['hh', 2], 0, hFormat);
 	    addFormatToken('k', ['kk', 2], 0, kFormat);
-	
+
 	    addFormatToken('hmm', 0, 0, function () {
 	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
 	    });
-	
+
 	    addFormatToken('hmmss', 0, 0, function () {
 	        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
 	            zeroFill(this.seconds(), 2);
 	    });
-	
+
 	    addFormatToken('Hmm', 0, 0, function () {
 	        return '' + this.hours() + zeroFill(this.minutes(), 2);
 	    });
-	
+
 	    addFormatToken('Hmmss', 0, 0, function () {
 	        return '' + this.hours() + zeroFill(this.minutes(), 2) +
 	            zeroFill(this.seconds(), 2);
 	    });
-	
+
 	    function meridiem (token, lowercase) {
 	        addFormatToken(token, 0, 0, function () {
 	            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
 	        });
 	    }
-	
+
 	    meridiem('a', true);
 	    meridiem('A', false);
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('hour', 'h');
-	
+
 	    // PARSING
-	
+
 	    function matchMeridiem (isStrict, locale) {
 	        return locale._meridiemParse;
 	    }
-	
+
 	    addRegexToken('a',  matchMeridiem);
 	    addRegexToken('A',  matchMeridiem);
 	    addRegexToken('H',  match1to2);
 	    addRegexToken('h',  match1to2);
 	    addRegexToken('HH', match1to2, match2);
 	    addRegexToken('hh', match1to2, match2);
-	
+
 	    addRegexToken('hmm', match3to4);
 	    addRegexToken('hmmss', match5to6);
 	    addRegexToken('Hmm', match3to4);
 	    addRegexToken('Hmmss', match5to6);
-	
+
 	    addParseToken(['H', 'HH'], HOUR);
 	    addParseToken(['a', 'A'], function (input, array, config) {
 	        config._isPm = config._locale.isPM(input);
@@ -3236,15 +3236,15 @@ webpackJsonp([1],[
 	        array[MINUTE] = toInt(input.substr(pos1, 2));
 	        array[SECOND] = toInt(input.substr(pos2));
 	    });
-	
+
 	    // LOCALES
-	
+
 	    function localeIsPM (input) {
 	        // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
 	        // Using charAt should be more compatible.
 	        return ((input + '').toLowerCase().charAt(0) === 'p');
 	    }
-	
+
 	    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
 	    function localeMeridiem (hours, minutes, isLower) {
 	        if (hours > 11) {
@@ -3253,62 +3253,62 @@ webpackJsonp([1],[
 	            return isLower ? 'am' : 'AM';
 	        }
 	    }
-	
-	
+
+
 	    // MOMENTS
-	
+
 	    // Setting the hour should keep the time, because the user explicitly
 	    // specified which hour he wants. So trying to maintain the same hour (in
 	    // a new timezone) makes sense. Adding/subtracting hours does not follow
 	    // this rule.
 	    var getSetHour = makeGetSet('Hours', true);
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('m', ['mm', 2], 0, 'minute');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('minute', 'm');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('m',  match1to2);
 	    addRegexToken('mm', match1to2, match2);
 	    addParseToken(['m', 'mm'], MINUTE);
-	
+
 	    // MOMENTS
-	
+
 	    var getSetMinute = makeGetSet('Minutes', false);
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('s', ['ss', 2], 0, 'second');
-	
+
 	    // ALIASES
-	
+
 	    addUnitAlias('second', 's');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('s',  match1to2);
 	    addRegexToken('ss', match1to2, match2);
 	    addParseToken(['s', 'ss'], SECOND);
-	
+
 	    // MOMENTS
-	
+
 	    var getSetSecond = makeGetSet('Seconds', false);
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('S', 0, 0, function () {
 	        return ~~(this.millisecond() / 100);
 	    });
-	
+
 	    addFormatToken(0, ['SS', 2], 0, function () {
 	        return ~~(this.millisecond() / 10);
 	    });
-	
+
 	    addFormatToken(0, ['SSS', 3], 0, 'millisecond');
 	    addFormatToken(0, ['SSSS', 4], 0, function () {
 	        return this.millisecond() * 10;
@@ -3328,51 +3328,51 @@ webpackJsonp([1],[
 	    addFormatToken(0, ['SSSSSSSSS', 9], 0, function () {
 	        return this.millisecond() * 1000000;
 	    });
-	
-	
+
+
 	    // ALIASES
-	
+
 	    addUnitAlias('millisecond', 'ms');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('S',    match1to3, match1);
 	    addRegexToken('SS',   match1to3, match2);
 	    addRegexToken('SSS',  match1to3, match3);
-	
+
 	    var token;
 	    for (token = 'SSSS'; token.length <= 9; token += 'S') {
 	        addRegexToken(token, matchUnsigned);
 	    }
-	
+
 	    function parseMs(input, array) {
 	        array[MILLISECOND] = toInt(('0.' + input) * 1000);
 	    }
-	
+
 	    for (token = 'S'; token.length <= 9; token += 'S') {
 	        addParseToken(token, parseMs);
 	    }
 	    // MOMENTS
-	
+
 	    var getSetMillisecond = makeGetSet('Milliseconds', false);
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('z',  0, 0, 'zoneAbbr');
 	    addFormatToken('zz', 0, 0, 'zoneName');
-	
+
 	    // MOMENTS
-	
+
 	    function getZoneAbbr () {
 	        return this._isUTC ? 'UTC' : '';
 	    }
-	
+
 	    function getZoneName () {
 	        return this._isUTC ? 'Coordinated Universal Time' : '';
 	    }
-	
+
 	    var momentPrototype__proto = Moment.prototype;
-	
+
 	    momentPrototype__proto.add               = add_subtract__add;
 	    momentPrototype__proto.calendar          = moment_calendar__calendar;
 	    momentPrototype__proto.clone             = clone;
@@ -3410,47 +3410,47 @@ webpackJsonp([1],[
 	    momentPrototype__proto.unix              = unix;
 	    momentPrototype__proto.valueOf           = to_type__valueOf;
 	    momentPrototype__proto.creationData      = creationData;
-	
+
 	    // Year
 	    momentPrototype__proto.year       = getSetYear;
 	    momentPrototype__proto.isLeapYear = getIsLeapYear;
-	
+
 	    // Week Year
 	    momentPrototype__proto.weekYear    = getSetWeekYear;
 	    momentPrototype__proto.isoWeekYear = getSetISOWeekYear;
-	
+
 	    // Quarter
 	    momentPrototype__proto.quarter = momentPrototype__proto.quarters = getSetQuarter;
-	
+
 	    // Month
 	    momentPrototype__proto.month       = getSetMonth;
 	    momentPrototype__proto.daysInMonth = getDaysInMonth;
-	
+
 	    // Week
 	    momentPrototype__proto.week           = momentPrototype__proto.weeks        = getSetWeek;
 	    momentPrototype__proto.isoWeek        = momentPrototype__proto.isoWeeks     = getSetISOWeek;
 	    momentPrototype__proto.weeksInYear    = getWeeksInYear;
 	    momentPrototype__proto.isoWeeksInYear = getISOWeeksInYear;
-	
+
 	    // Day
 	    momentPrototype__proto.date       = getSetDayOfMonth;
 	    momentPrototype__proto.day        = momentPrototype__proto.days             = getSetDayOfWeek;
 	    momentPrototype__proto.weekday    = getSetLocaleDayOfWeek;
 	    momentPrototype__proto.isoWeekday = getSetISODayOfWeek;
 	    momentPrototype__proto.dayOfYear  = getSetDayOfYear;
-	
+
 	    // Hour
 	    momentPrototype__proto.hour = momentPrototype__proto.hours = getSetHour;
-	
+
 	    // Minute
 	    momentPrototype__proto.minute = momentPrototype__proto.minutes = getSetMinute;
-	
+
 	    // Second
 	    momentPrototype__proto.second = momentPrototype__proto.seconds = getSetSecond;
-	
+
 	    // Millisecond
 	    momentPrototype__proto.millisecond = momentPrototype__proto.milliseconds = getSetMillisecond;
-	
+
 	    // Offset
 	    momentPrototype__proto.utcOffset            = getSetOffset;
 	    momentPrototype__proto.utc                  = setOffsetToUTC;
@@ -3463,27 +3463,27 @@ webpackJsonp([1],[
 	    momentPrototype__proto.isUtcOffset          = isUtcOffset;
 	    momentPrototype__proto.isUtc                = isUtc;
 	    momentPrototype__proto.isUTC                = isUtc;
-	
+
 	    // Timezone
 	    momentPrototype__proto.zoneAbbr = getZoneAbbr;
 	    momentPrototype__proto.zoneName = getZoneName;
-	
+
 	    // Deprecations
 	    momentPrototype__proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
 	    momentPrototype__proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
 	    momentPrototype__proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
 	    momentPrototype__proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779', getSetZone);
-	
+
 	    var momentPrototype = momentPrototype__proto;
-	
+
 	    function moment__createUnix (input) {
 	        return local__createLocal(input * 1000);
 	    }
-	
+
 	    function moment__createInZone () {
 	        return local__createLocal.apply(null, arguments).parseZone();
 	    }
-	
+
 	    var defaultCalendar = {
 	        sameDay : '[Today at] LT',
 	        nextDay : '[Tomorrow at] LT',
@@ -3492,12 +3492,12 @@ webpackJsonp([1],[
 	        lastWeek : '[Last] dddd [at] LT',
 	        sameElse : 'L'
 	    };
-	
+
 	    function locale_calendar__calendar (key, mom, now) {
 	        var output = this._calendar[key];
 	        return isFunction(output) ? output.call(mom, now) : output;
 	    }
-	
+
 	    var defaultLongDateFormat = {
 	        LTS  : 'h:mm:ss A',
 	        LT   : 'h:mm A',
@@ -3506,39 +3506,39 @@ webpackJsonp([1],[
 	        LLL  : 'MMMM D, YYYY h:mm A',
 	        LLLL : 'dddd, MMMM D, YYYY h:mm A'
 	    };
-	
+
 	    function longDateFormat (key) {
 	        var format = this._longDateFormat[key],
 	            formatUpper = this._longDateFormat[key.toUpperCase()];
-	
+
 	        if (format || !formatUpper) {
 	            return format;
 	        }
-	
+
 	        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
 	            return val.slice(1);
 	        });
-	
+
 	        return this._longDateFormat[key];
 	    }
-	
+
 	    var defaultInvalidDate = 'Invalid date';
-	
+
 	    function invalidDate () {
 	        return this._invalidDate;
 	    }
-	
+
 	    var defaultOrdinal = '%d';
 	    var defaultOrdinalParse = /\d{1,2}/;
-	
+
 	    function ordinal (number) {
 	        return this._ordinal.replace('%d', number);
 	    }
-	
+
 	    function preParsePostFormat (string) {
 	        return string;
 	    }
-	
+
 	    var defaultRelativeTime = {
 	        future : 'in %s',
 	        past   : '%s ago',
@@ -3554,21 +3554,21 @@ webpackJsonp([1],[
 	        y  : 'a year',
 	        yy : '%d years'
 	    };
-	
+
 	    function relative__relativeTime (number, withoutSuffix, string, isFuture) {
 	        var output = this._relativeTime[string];
 	        return (isFunction(output)) ?
 	            output(number, withoutSuffix, string, isFuture) :
 	            output.replace(/%d/i, number);
 	    }
-	
+
 	    function pastFuture (diff, output) {
 	        var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
 	        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
 	    }
-	
+
 	    var prototype__proto = Locale.prototype;
-	
+
 	    prototype__proto._calendar       = defaultCalendar;
 	    prototype__proto.calendar        = locale_calendar__calendar;
 	    prototype__proto._longDateFormat = defaultLongDateFormat;
@@ -3584,7 +3584,7 @@ webpackJsonp([1],[
 	    prototype__proto.relativeTime    = relative__relativeTime;
 	    prototype__proto.pastFuture      = pastFuture;
 	    prototype__proto.set             = locale_set__set;
-	
+
 	    // Month
 	    prototype__proto.months            =        localeMonths;
 	    prototype__proto._months           = defaultLocaleMonths;
@@ -3595,13 +3595,13 @@ webpackJsonp([1],[
 	    prototype__proto.monthsRegex       = monthsRegex;
 	    prototype__proto._monthsShortRegex = defaultMonthsShortRegex;
 	    prototype__proto.monthsShortRegex  = monthsShortRegex;
-	
+
 	    // Week
 	    prototype__proto.week = localeWeek;
 	    prototype__proto._week = defaultLocaleWeek;
 	    prototype__proto.firstDayOfYear = localeFirstDayOfYear;
 	    prototype__proto.firstDayOfWeek = localeFirstDayOfWeek;
-	
+
 	    // Day of Week
 	    prototype__proto.weekdays       =        localeWeekdays;
 	    prototype__proto._weekdays      = defaultLocaleWeekdays;
@@ -3610,37 +3610,37 @@ webpackJsonp([1],[
 	    prototype__proto.weekdaysShort  =        localeWeekdaysShort;
 	    prototype__proto._weekdaysShort = defaultLocaleWeekdaysShort;
 	    prototype__proto.weekdaysParse  =        localeWeekdaysParse;
-	
+
 	    prototype__proto._weekdaysRegex      = defaultWeekdaysRegex;
 	    prototype__proto.weekdaysRegex       =        weekdaysRegex;
 	    prototype__proto._weekdaysShortRegex = defaultWeekdaysShortRegex;
 	    prototype__proto.weekdaysShortRegex  =        weekdaysShortRegex;
 	    prototype__proto._weekdaysMinRegex   = defaultWeekdaysMinRegex;
 	    prototype__proto.weekdaysMinRegex    =        weekdaysMinRegex;
-	
+
 	    // Hours
 	    prototype__proto.isPM = localeIsPM;
 	    prototype__proto._meridiemParse = defaultLocaleMeridiemParse;
 	    prototype__proto.meridiem = localeMeridiem;
-	
+
 	    function lists__get (format, index, field, setter) {
 	        var locale = locale_locales__getLocale();
 	        var utc = create_utc__createUTC().set(setter, index);
 	        return locale[field](utc, format);
 	    }
-	
+
 	    function listMonthsImpl (format, index, field) {
 	        if (typeof format === 'number') {
 	            index = format;
 	            format = undefined;
 	        }
-	
+
 	        format = format || '';
-	
+
 	        if (index != null) {
 	            return lists__get(format, index, field, 'month');
 	        }
-	
+
 	        var i;
 	        var out = [];
 	        for (i = 0; i < 12; i++) {
@@ -3648,7 +3648,7 @@ webpackJsonp([1],[
 	        }
 	        return out;
 	    }
-	
+
 	    // ()
 	    // (5)
 	    // (fmt, 5)
@@ -3663,28 +3663,28 @@ webpackJsonp([1],[
 	                index = format;
 	                format = undefined;
 	            }
-	
+
 	            format = format || '';
 	        } else {
 	            format = localeSorted;
 	            index = format;
 	            localeSorted = false;
-	
+
 	            if (typeof format === 'number') {
 	                index = format;
 	                format = undefined;
 	            }
-	
+
 	            format = format || '';
 	        }
-	
+
 	        var locale = locale_locales__getLocale(),
 	            shift = localeSorted ? locale._week.dow : 0;
-	
+
 	        if (index != null) {
 	            return lists__get(format, (index + shift) % 7, field, 'day');
 	        }
-	
+
 	        var i;
 	        var out = [];
 	        for (i = 0; i < 7; i++) {
@@ -3692,27 +3692,27 @@ webpackJsonp([1],[
 	        }
 	        return out;
 	    }
-	
+
 	    function lists__listMonths (format, index) {
 	        return listMonthsImpl(format, index, 'months');
 	    }
-	
+
 	    function lists__listMonthsShort (format, index) {
 	        return listMonthsImpl(format, index, 'monthsShort');
 	    }
-	
+
 	    function lists__listWeekdays (localeSorted, format, index) {
 	        return listWeekdaysImpl(localeSorted, format, index, 'weekdays');
 	    }
-	
+
 	    function lists__listWeekdaysShort (localeSorted, format, index) {
 	        return listWeekdaysImpl(localeSorted, format, index, 'weekdaysShort');
 	    }
-	
+
 	    function lists__listWeekdaysMin (localeSorted, format, index) {
 	        return listWeekdaysImpl(localeSorted, format, index, 'weekdaysMin');
 	    }
-	
+
 	    locale_locales__getSetGlobalLocale('en', {
 	        ordinalParse: /\d{1,2}(th|st|nd|rd)/,
 	        ordinal : function (number) {
@@ -3724,50 +3724,50 @@ webpackJsonp([1],[
 	            return number + output;
 	        }
 	    });
-	
+
 	    // Side effect imports
 	    utils_hooks__hooks.lang = deprecate('moment.lang is deprecated. Use moment.locale instead.', locale_locales__getSetGlobalLocale);
 	    utils_hooks__hooks.langData = deprecate('moment.langData is deprecated. Use moment.localeData instead.', locale_locales__getLocale);
-	
+
 	    var mathAbs = Math.abs;
-	
+
 	    function duration_abs__abs () {
 	        var data           = this._data;
-	
+
 	        this._milliseconds = mathAbs(this._milliseconds);
 	        this._days         = mathAbs(this._days);
 	        this._months       = mathAbs(this._months);
-	
+
 	        data.milliseconds  = mathAbs(data.milliseconds);
 	        data.seconds       = mathAbs(data.seconds);
 	        data.minutes       = mathAbs(data.minutes);
 	        data.hours         = mathAbs(data.hours);
 	        data.months        = mathAbs(data.months);
 	        data.years         = mathAbs(data.years);
-	
+
 	        return this;
 	    }
-	
+
 	    function duration_add_subtract__addSubtract (duration, input, value, direction) {
 	        var other = create__createDuration(input, value);
-	
+
 	        duration._milliseconds += direction * other._milliseconds;
 	        duration._days         += direction * other._days;
 	        duration._months       += direction * other._months;
-	
+
 	        return duration._bubble();
 	    }
-	
+
 	    // supports only 2.0-style add(1, 's') or add(duration)
 	    function duration_add_subtract__add (input, value) {
 	        return duration_add_subtract__addSubtract(this, input, value, 1);
 	    }
-	
+
 	    // supports only 2.0-style subtract(1, 's') or subtract(duration)
 	    function duration_add_subtract__subtract (input, value) {
 	        return duration_add_subtract__addSubtract(this, input, value, -1);
 	    }
-	
+
 	    function absCeil (number) {
 	        if (number < 0) {
 	            return Math.floor(number);
@@ -3775,14 +3775,14 @@ webpackJsonp([1],[
 	            return Math.ceil(number);
 	        }
 	    }
-	
+
 	    function bubble () {
 	        var milliseconds = this._milliseconds;
 	        var days         = this._days;
 	        var months       = this._months;
 	        var data         = this._data;
 	        var seconds, minutes, hours, years, monthsFromDays;
-	
+
 	        // if we have a mix of positive and negative values, bubble down first
 	        // check: https://github.com/moment/moment/issues/2166
 	        if (!((milliseconds >= 0 && days >= 0 && months >= 0) ||
@@ -3791,56 +3791,56 @@ webpackJsonp([1],[
 	            days = 0;
 	            months = 0;
 	        }
-	
+
 	        // The following code bubbles up values, see the tests for
 	        // examples of what that means.
 	        data.milliseconds = milliseconds % 1000;
-	
+
 	        seconds           = absFloor(milliseconds / 1000);
 	        data.seconds      = seconds % 60;
-	
+
 	        minutes           = absFloor(seconds / 60);
 	        data.minutes      = minutes % 60;
-	
+
 	        hours             = absFloor(minutes / 60);
 	        data.hours        = hours % 24;
-	
+
 	        days += absFloor(hours / 24);
-	
+
 	        // convert days to months
 	        monthsFromDays = absFloor(daysToMonths(days));
 	        months += monthsFromDays;
 	        days -= absCeil(monthsToDays(monthsFromDays));
-	
+
 	        // 12 months -> 1 year
 	        years = absFloor(months / 12);
 	        months %= 12;
-	
+
 	        data.days   = days;
 	        data.months = months;
 	        data.years  = years;
-	
+
 	        return this;
 	    }
-	
+
 	    function daysToMonths (days) {
 	        // 400 years have 146097 days (taking into account leap year rules)
 	        // 400 years have 12 months === 4800
 	        return days * 4800 / 146097;
 	    }
-	
+
 	    function monthsToDays (months) {
 	        // the reverse of daysToMonths
 	        return months * 146097 / 4800;
 	    }
-	
+
 	    function as (units) {
 	        var days;
 	        var months;
 	        var milliseconds = this._milliseconds;
-	
+
 	        units = normalizeUnits(units);
-	
+
 	        if (units === 'month' || units === 'year') {
 	            days   = this._days   + milliseconds / 864e5;
 	            months = this._months + daysToMonths(days);
@@ -3860,7 +3860,7 @@ webpackJsonp([1],[
 	            }
 	        }
 	    }
-	
+
 	    // TODO: Use this.as('ms')?
 	    function duration_as__valueOf () {
 	        return (
@@ -3870,13 +3870,13 @@ webpackJsonp([1],[
 	            toInt(this._months / 12) * 31536e6
 	        );
 	    }
-	
+
 	    function makeAs (alias) {
 	        return function () {
 	            return this.as(alias);
 	        };
 	    }
-	
+
 	    var asMilliseconds = makeAs('ms');
 	    var asSeconds      = makeAs('s');
 	    var asMinutes      = makeAs('m');
@@ -3885,18 +3885,18 @@ webpackJsonp([1],[
 	    var asWeeks        = makeAs('w');
 	    var asMonths       = makeAs('M');
 	    var asYears        = makeAs('y');
-	
+
 	    function duration_get__get (units) {
 	        units = normalizeUnits(units);
 	        return this[units + 's']();
 	    }
-	
+
 	    function makeGetter(name) {
 	        return function () {
 	            return this._data[name];
 	        };
 	    }
-	
+
 	    var milliseconds = makeGetter('milliseconds');
 	    var seconds      = makeGetter('seconds');
 	    var minutes      = makeGetter('minutes');
@@ -3904,11 +3904,11 @@ webpackJsonp([1],[
 	    var days         = makeGetter('days');
 	    var months       = makeGetter('months');
 	    var years        = makeGetter('years');
-	
+
 	    function weeks () {
 	        return absFloor(this.days() / 7);
 	    }
-	
+
 	    var round = Math.round;
 	    var thresholds = {
 	        s: 45,  // seconds to minute
@@ -3917,12 +3917,12 @@ webpackJsonp([1],[
 	        d: 26,  // days to month
 	        M: 11   // months to year
 	    };
-	
+
 	    // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
 	    function substituteTimeAgo(string, number, withoutSuffix, isFuture, locale) {
 	        return locale.relativeTime(number || 1, !!withoutSuffix, string, isFuture);
 	    }
-	
+
 	    function duration_humanize__relativeTime (posNegDuration, withoutSuffix, locale) {
 	        var duration = create__createDuration(posNegDuration).abs();
 	        var seconds  = round(duration.as('s'));
@@ -3931,7 +3931,7 @@ webpackJsonp([1],[
 	        var days     = round(duration.as('d'));
 	        var months   = round(duration.as('M'));
 	        var years    = round(duration.as('y'));
-	
+
 	        var a = seconds < thresholds.s && ['s', seconds]  ||
 	                minutes <= 1           && ['m']           ||
 	                minutes < thresholds.m && ['mm', minutes] ||
@@ -3942,13 +3942,13 @@ webpackJsonp([1],[
 	                months  <= 1           && ['M']           ||
 	                months  < thresholds.M && ['MM', months]  ||
 	                years   <= 1           && ['y']           || ['yy', years];
-	
+
 	        a[2] = withoutSuffix;
 	        a[3] = +posNegDuration > 0;
 	        a[4] = locale;
 	        return substituteTimeAgo.apply(null, a);
 	    }
-	
+
 	    // This function allows you to set a threshold for relative time strings
 	    function duration_humanize__getSetRelativeTimeThreshold (threshold, limit) {
 	        if (thresholds[threshold] === undefined) {
@@ -3960,20 +3960,20 @@ webpackJsonp([1],[
 	        thresholds[threshold] = limit;
 	        return true;
 	    }
-	
+
 	    function humanize (withSuffix) {
 	        var locale = this.localeData();
 	        var output = duration_humanize__relativeTime(this, !withSuffix, locale);
-	
+
 	        if (withSuffix) {
 	            output = locale.pastFuture(+this, output);
 	        }
-	
+
 	        return locale.postformat(output);
 	    }
-	
+
 	    var iso_string__abs = Math.abs;
-	
+
 	    function iso_string__toISOString() {
 	        // for ISO strings we do not use the normal bubbling rules:
 	        //  * milliseconds bubble up until they become hours
@@ -3986,18 +3986,18 @@ webpackJsonp([1],[
 	        var days         = iso_string__abs(this._days);
 	        var months       = iso_string__abs(this._months);
 	        var minutes, hours, years;
-	
+
 	        // 3600 seconds -> 60 minutes -> 1 hour
 	        minutes           = absFloor(seconds / 60);
 	        hours             = absFloor(minutes / 60);
 	        seconds %= 60;
 	        minutes %= 60;
-	
+
 	        // 12 months -> 1 year
 	        years  = absFloor(months / 12);
 	        months %= 12;
-	
-	
+
+
 	        // inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
 	        var Y = years;
 	        var M = months;
@@ -4006,13 +4006,13 @@ webpackJsonp([1],[
 	        var m = minutes;
 	        var s = seconds;
 	        var total = this.asSeconds();
-	
+
 	        if (!total) {
 	            // this is the same as C#'s (Noda) and python (isodate)...
 	            // but not other JS (goog.date)
 	            return 'P0D';
 	        }
-	
+
 	        return (total < 0 ? '-' : '') +
 	            'P' +
 	            (Y ? Y + 'Y' : '') +
@@ -4023,9 +4023,9 @@ webpackJsonp([1],[
 	            (m ? m + 'M' : '') +
 	            (s ? s + 'S' : '');
 	    }
-	
+
 	    var duration_prototype__proto = Duration.prototype;
-	
+
 	    duration_prototype__proto.abs            = duration_abs__abs;
 	    duration_prototype__proto.add            = duration_add_subtract__add;
 	    duration_prototype__proto.subtract       = duration_add_subtract__subtract;
@@ -4055,20 +4055,20 @@ webpackJsonp([1],[
 	    duration_prototype__proto.toJSON         = iso_string__toISOString;
 	    duration_prototype__proto.locale         = locale;
 	    duration_prototype__proto.localeData     = localeData;
-	
+
 	    // Deprecations
 	    duration_prototype__proto.toIsoString = deprecate('toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)', iso_string__toISOString);
 	    duration_prototype__proto.lang = lang;
-	
+
 	    // Side effect imports
-	
+
 	    // FORMATTING
-	
+
 	    addFormatToken('X', 0, 0, 'unix');
 	    addFormatToken('x', 0, 0, 'valueOf');
-	
+
 	    // PARSING
-	
+
 	    addRegexToken('x', matchSigned);
 	    addRegexToken('X', matchTimestamp);
 	    addParseToken('X', function (input, array, config) {
@@ -4077,14 +4077,14 @@ webpackJsonp([1],[
 	    addParseToken('x', function (input, array, config) {
 	        config._d = new Date(toInt(input));
 	    });
-	
+
 	    // Side effect imports
-	
-	
+
+
 	    utils_hooks__hooks.version = '2.13.0';
-	
+
 	    setHookCallback(local__createLocal);
-	
+
 	    utils_hooks__hooks.fn                    = momentPrototype;
 	    utils_hooks__hooks.min                   = min;
 	    utils_hooks__hooks.max                   = max;
@@ -4110,11 +4110,11 @@ webpackJsonp([1],[
 	    utils_hooks__hooks.normalizeUnits        = normalizeUnits;
 	    utils_hooks__hooks.relativeTimeThreshold = duration_humanize__getSetRelativeTimeThreshold;
 	    utils_hooks__hooks.prototype             = momentPrototype;
-	
+
 	    var _moment = utils_hooks__hooks;
-	
+
 	    return _moment;
-	
+
 	}));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(209)(module)))
 
@@ -6333,83 +6333,83 @@ webpackJsonp([1],[
 	            (this.maxDate && this.compare(date, this.maxDate) > 0));
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "datepickerMode", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], DatePickerInnerComponent.prototype, "startingDay", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], DatePickerInnerComponent.prototype, "yearRange", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerInnerComponent.prototype, "minDate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerInnerComponent.prototype, "maxDate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "minMode", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "maxMode", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DatePickerInnerComponent.prototype, "showWeeks", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "formatDay", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "formatMonth", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "formatYear", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "formatDayHeader", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "formatDayTitle", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerInnerComponent.prototype, "formatMonthTitle", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DatePickerInnerComponent.prototype, "onlyCurrentMonth", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DatePickerInnerComponent.prototype, "shortcutPropagation", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Array)
 	    ], DatePickerInnerComponent.prototype, "customClass", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Object)
 	    ], DatePickerInnerComponent.prototype, "dateDisabled", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerInnerComponent.prototype, "initDate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerInnerComponent.prototype, "activeDate", null);
 	    DatePickerInnerComponent = __decorate([
@@ -6418,7 +6418,7 @@ webpackJsonp([1],[
 	            events: ['update'],
 	            template: "\n    <div *ngIf=\"datepickerMode\" class=\"well well-sm bg-faded p-a card\" role=\"application\" ><!--&lt;!&ndash;ng-keydown=\"keydown($event)\"&ndash;&gt;-->\n      <ng-content></ng-content>\n    </div>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass, common_1.NgModel]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DatePickerInnerComponent);
 	    return DatePickerInnerComponent;
@@ -6542,35 +6542,35 @@ webpackJsonp([1],[
 	    };
 	    __decorate([
 	        core_1.HostBinding('class.open'),
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DropdownDirective.prototype, "isOpen", null);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DropdownDirective.prototype, "autoClose", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DropdownDirective.prototype, "keyboardNav", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DropdownDirective.prototype, "appendToBody", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], DropdownDirective.prototype, "onToggle", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], DropdownDirective.prototype, "isOpenChange", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.dropdown'), 
+	        core_1.HostBinding('class.dropdown'),
 	        __metadata('design:type', Boolean)
 	    ], DropdownDirective.prototype, "addClass", void 0);
 	    DropdownDirective = __decorate([
-	        core_1.Directive({ selector: '[dropdown]' }), 
+	        core_1.Directive({ selector: '[dropdown]' }),
 	        __metadata('design:paramtypes', [core_1.ElementRef])
 	    ], DropdownDirective);
 	    return DropdownDirective;
@@ -6764,20 +6764,20 @@ webpackJsonp([1],[
 	        this.bars.splice(this.bars.indexOf(bar), 1);
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], ProgressDirective.prototype, "animate", void 0);
 	    __decorate([
 	        core_1.HostBinding('attr.max'),
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], ProgressDirective.prototype, "max", null);
 	    __decorate([
-	        core_1.HostBinding('class.progress'), 
+	        core_1.HostBinding('class.progress'),
 	        __metadata('design:type', Boolean)
 	    ], ProgressDirective.prototype, "addClass", void 0);
 	    ProgressDirective = __decorate([
-	        core_1.Directive({ selector: 'bs-progress, [progress]' }), 
+	        core_1.Directive({ selector: 'bs-progress, [progress]' }),
 	        __metadata('design:paramtypes', [])
 	    ], ProgressDirective);
 	    return ProgressDirective;
@@ -7198,18 +7198,18 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], AccordionComponent.prototype, "closeOthers", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.panel-group'), 
+	        core_1.HostBinding('class.panel-group'),
 	        __metadata('design:type', Boolean)
 	    ], AccordionComponent.prototype, "addClass", void 0);
 	    AccordionComponent = __decorate([
 	        core_1.Component({
 	            selector: 'accordion',
 	            template: "<ng-content></ng-content>"
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], AccordionComponent);
 	    return AccordionComponent;
@@ -7377,19 +7377,19 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], CarouselComponent.prototype, "noWrap", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], CarouselComponent.prototype, "noPause", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], CarouselComponent.prototype, "noTransition", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], CarouselComponent.prototype, "interval", null);
 	    CarouselComponent = __decorate([
@@ -7397,7 +7397,7 @@ webpackJsonp([1],[
 	            selector: 'carousel',
 	            directives: [common_1.NgFor],
 	            template: "\n    <div (mouseenter)=\"pause()\" (mouseleave)=\"play()\" class=\"carousel slide\">\n      <ol class=\"carousel-indicators\" *ngIf=\"slides.length > 1\">\n         <li *ngFor=\"let slidez of slides\" [class.active]=\"slidez.active === true\" (click)=\"select(slidez)\"></li>\n      </ol>\n      <div class=\"carousel-inner\"><ng-content></ng-content></div>\n      " + NAVIGATION[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme] + "\n    </div>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], CarouselComponent);
 	    return CarouselComponent;
@@ -7473,83 +7473,83 @@ webpackJsonp([1],[
 	    DatePickerComponent.prototype.registerOnChange = function (fn) { this.onChange = fn; };
 	    DatePickerComponent.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "datepickerMode", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerComponent.prototype, "initDate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerComponent.prototype, "minDate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerComponent.prototype, "maxDate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "minMode", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "maxMode", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DatePickerComponent.prototype, "showWeeks", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "formatDay", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "formatMonth", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "formatYear", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "formatDayHeader", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "formatDayTitle", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], DatePickerComponent.prototype, "formatMonthTitle", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], DatePickerComponent.prototype, "startingDay", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], DatePickerComponent.prototype, "yearRange", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DatePickerComponent.prototype, "onlyCurrentMonth", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DatePickerComponent.prototype, "shortcutPropagation", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Array)
 	    ], DatePickerComponent.prototype, "customClass", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Object)
 	    ], DatePickerComponent.prototype, "dateDisabled", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], DatePickerComponent.prototype, "activeDate", null);
 	    DatePickerComponent = __decorate([
@@ -7559,7 +7559,7 @@ webpackJsonp([1],[
 	            directives: [datepicker_inner_component_1.DatePickerInnerComponent, daypicker_component_1.DayPickerComponent, monthpicker_component_1.MonthPickerComponent, yearpicker_component_1.YearPickerComponent,
 	                common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES]
 	        }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel])
 	    ], DatePickerComponent);
 	    return DatePickerComponent;
@@ -7764,55 +7764,55 @@ webpackJsonp([1],[
 	        return Math.max(totalPages || 0, 1);
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], PaginationComponent.prototype, "maxSize", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], PaginationComponent.prototype, "boundaryLinks", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], PaginationComponent.prototype, "directionLinks", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], PaginationComponent.prototype, "firstText", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], PaginationComponent.prototype, "previousText", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], PaginationComponent.prototype, "nextText", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], PaginationComponent.prototype, "lastText", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], PaginationComponent.prototype, "rotate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], PaginationComponent.prototype, "disabled", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], PaginationComponent.prototype, "numPages", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], PaginationComponent.prototype, "pageChanged", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], PaginationComponent.prototype, "itemsPerPage", null);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], PaginationComponent.prototype, "totalItems", null);
 	    PaginationComponent = __decorate([
@@ -7821,7 +7821,7 @@ webpackJsonp([1],[
 	            template: PAGINATION_TEMPLATE,
 	            directives: [common_1.NgFor, common_1.NgIf]
 	        }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.Renderer, core_1.ElementRef])
 	    ], PaginationComponent);
 	    return PaginationComponent;
@@ -7884,11 +7884,11 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], BarComponent.prototype, "type", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], BarComponent.prototype, "value", null);
 	    BarComponent = __decorate([
@@ -7897,7 +7897,7 @@ webpackJsonp([1],[
 	            directives: [common_1.NgClass, common_1.NgStyle],
 	            template: "\n  <div class=\"progress-bar\"\n    style=\"min-width: 0;\"\n    role=\"progressbar\"\n    [ngClass]=\"type && 'progress-bar-' + type\"\n    [ngStyle]=\"{width: (percent < 100 ? percent : 100) + '%', transition: transition}\"\n    aria-valuemin=\"0\"\n    [attr.aria-valuenow]=\"value\"\n    [attr.aria-valuetext]=\"percent.toFixed(0) + '%'\"\n    [attr.aria-valuemax]=\"max\"><ng-content></ng-content></div>\n"
 	        }),
-	        __param(0, core_1.Host()), 
+	        __param(0, core_1.Host()),
 	        __metadata('design:paramtypes', [progress_directive_1.ProgressDirective])
 	    ], BarComponent);
 	    return BarComponent;
@@ -7959,40 +7959,40 @@ webpackJsonp([1],[
 	        this.tabset.removeTab(this);
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], TabDirective.prototype, "heading", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TabDirective.prototype, "disabled", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TabDirective.prototype, "removable", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'),
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TabDirective.prototype, "active", null);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], TabDirective.prototype, "select", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], TabDirective.prototype, "deselect", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], TabDirective.prototype, "removed", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.tab-pane'), 
+	        core_1.HostBinding('class.tab-pane'),
 	        __metadata('design:type', Boolean)
 	    ], TabDirective.prototype, "addClass", void 0);
 	    TabDirective = __decorate([
-	        core_1.Directive({ selector: 'tab, [tab]' }), 
+	        core_1.Directive({ selector: 'tab, [tab]' }),
 	        __metadata('design:paramtypes', [tabset_component_1.TabsetComponent])
 	    ], TabDirective);
 	    return TabDirective;
@@ -8115,19 +8115,19 @@ webpackJsonp([1],[
 	        var _a;
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TabsetComponent.prototype, "vertical", null);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TabsetComponent.prototype, "justified", null);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], TabsetComponent.prototype, "type", null);
 	    __decorate([
-	        core_1.HostBinding('class.tab-container'), 
+	        core_1.HostBinding('class.tab-container'),
 	        __metadata('design:type', Boolean)
 	    ], TabsetComponent.prototype, "clazz", void 0);
 	    TabsetComponent = __decorate([
@@ -8135,7 +8135,7 @@ webpackJsonp([1],[
 	            selector: 'tabset',
 	            directives: [common_1.NgClass, common_2.NgTranscludeDirective],
 	            template: "\n    <ul class=\"nav\" [ngClass]=\"classMap\" (click)=\"$event.preventDefault()\">\n        <li *ngFor=\"let tabz of tabs\" class=\"nav-item\"\n          [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\">\n          <a href class=\"nav-link\"\n            [class.active]=\"tabz.active\" [class.disabled]=\"tabz.disabled\"\n            (click)=\"tabz.active = true\">\n            <span [ngTransclude]=\"tabz.headingRef\">{{tabz.heading}}</span>\n            <span *ngIf=\"tabz.removable\">\n              <span (click)=\"$event.preventDefault(); removeTab(tabz);\" class=\"glyphicon glyphicon-remove-circle\"></span>\n            </span>\n          </a>\n        </li>\n    </ul>\n    <div class=\"tab-content\">\n      <ng-content></ng-content>\n    </div>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TabsetComponent);
 	    return TabsetComponent;
@@ -8192,7 +8192,7 @@ webpackJsonp([1],[
 	            directives: [common_1.NgClass, common_1.NgStyle],
 	            template: "<div class=\"tooltip\" role=\"tooltip\"\n     [ngStyle]=\"{top: top, left: left, display: display}\"\n     [ngClass]=\"classMap\">\n      <div class=\"tooltip-arrow\"></div>\n      <div class=\"tooltip-inner\">\n        {{content}}\n      </div>\n    </div>"
 	        }),
-	        __param(2, core_1.Inject(tooltip_options_class_1.TooltipOptions)), 
+	        __param(2, core_1.Inject(tooltip_options_class_1.TooltipOptions)),
 	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.ChangeDetectorRef, tooltip_options_class_1.TooltipOptions])
 	    ], TooltipContainerComponent);
 	    return TooltipContainerComponent;
@@ -8333,7 +8333,7 @@ webpackJsonp([1],[
 	            directives: [common_1.CORE_DIRECTIVES],
 	            template: TEMPLATE[ng2_bootstrap_config_1.Ng2BootstrapConfig.theme],
 	            encapsulation: core_1.ViewEncapsulation.None
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [core_1.ElementRef, typeahead_options_class_1.TypeaheadOptions])
 	    ], TypeaheadContainerComponent);
 	    return TypeaheadContainerComponent;
@@ -8811,7 +8811,7 @@ webpackJsonp([1],[
 	var core_1 = __webpack_require__(2);
 	var exceptions_1 = __webpack_require__(258);
 	var collection_1 = __webpack_require__(24);
-	exports.EVENT_MANAGER_PLUGINS = 
+	exports.EVENT_MANAGER_PLUGINS =
 	/*@ts2dart_const*/ new core_1.OpaqueToken("EventManagerPlugins");
 	var EventManager = (function () {
 	    function EventManager(plugins, _zone) {
@@ -8973,14 +8973,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : afrikaans (af)
 	//! author : Werner Mollentze : https://github.com/wernerm
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var af = moment.defineLocale('af', {
 	        months : 'Januarie_Februarie_Maart_April_Mei_Junie_Julie_Augustus_September_Oktober_November_Desember'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Aug_Sep_Okt_Nov_Des'.split('_'),
@@ -9038,9 +9038,9 @@ webpackJsonp([1],[
 	            doy : 4  // Die week wat die 4de Januarie bevat is die eerste week van die jaar.
 	        }
 	    });
-	
+
 	    return af;
-	
+
 	}));
 
 /***/ },
@@ -9051,14 +9051,14 @@ webpackJsonp([1],[
 	//! locale : Moroccan Arabic (ar-ma)
 	//! author : ElFadili Yassine : https://github.com/ElFadiliY
 	//! author : Abdel Said : https://github.com/abdelsaid
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ar_ma = moment.defineLocale('ar-ma', {
 	        months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
 	        monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
@@ -9102,9 +9102,9 @@ webpackJsonp([1],[
 	            doy : 12  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ar_ma;
-	
+
 	}));
 
 /***/ },
@@ -9114,14 +9114,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Arabic Saudi Arabia (ar-sa)
 	//! author : Suhail Alkowaileet : https://github.com/xsoh
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '١',
 	        '2': '٢',
@@ -9145,7 +9145,7 @@ webpackJsonp([1],[
 	        '٩': '9',
 	        '٠': '0'
 	    };
-	
+
 	    var ar_sa = moment.defineLocale('ar-sa', {
 	        months : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
 	        monthsShort : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
@@ -9210,9 +9210,9 @@ webpackJsonp([1],[
 	            doy : 12  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ar_sa;
-	
+
 	}));
 
 /***/ },
@@ -9221,14 +9221,14 @@ webpackJsonp([1],[
 
 	//! moment.js locale configuration
 	//! locale  : Tunisian Arabic (ar-tn)
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ar_tn = moment.defineLocale('ar-tn', {
 	        months: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
 	        monthsShort: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
@@ -9272,9 +9272,9 @@ webpackJsonp([1],[
 	            doy: 4 // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return ar_tn;
-	
+
 	}));
 
 /***/ },
@@ -9286,14 +9286,14 @@ webpackJsonp([1],[
 	//! Author: Abdel Said: https://github.com/abdelsaid
 	//! Changes in months, weekdays: Ahmed Elkhatib
 	//! Native plural forms: forabi https://github.com/forabi
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '١',
 	        '2': '٢',
@@ -9348,7 +9348,7 @@ webpackJsonp([1],[
 	        'تشرين الثاني نوفمبر',
 	        'كانون الأول ديسمبر'
 	    ];
-	
+
 	    var ar = moment.defineLocale('ar', {
 	        months : months,
 	        monthsShort : months,
@@ -9413,9 +9413,9 @@ webpackJsonp([1],[
 	            doy : 12  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ar;
-	
+
 	}));
 
 /***/ },
@@ -9425,14 +9425,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : azerbaijani (az)
 	//! author : topchiyev : https://github.com/topchiyev
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var suffixes = {
 	        1: '-inci',
 	        5: '-inci',
@@ -9453,7 +9453,7 @@ webpackJsonp([1],[
 	        60: '-ıncı',
 	        90: '-ıncı'
 	    };
-	
+
 	    var az = moment.defineLocale('az', {
 	        months : 'yanvar_fevral_mart_aprel_may_iyun_iyul_avqust_sentyabr_oktyabr_noyabr_dekabr'.split('_'),
 	        monthsShort : 'yan_fev_mar_apr_may_iyn_iyl_avq_sen_okt_noy_dek'.split('_'),
@@ -9522,9 +9522,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return az;
-	
+
 	}));
 
 /***/ },
@@ -9536,14 +9536,14 @@ webpackJsonp([1],[
 	//! author : Dmitry Demidov : https://github.com/demidov91
 	//! author: Praleska: http://praleska.pro/
 	//! Author : Menelion Elensúle : https://github.com/Oire
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function plural(word, num) {
 	        var forms = word.split('_');
 	        return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
@@ -9566,7 +9566,7 @@ webpackJsonp([1],[
 	            return number + ' ' + plural(format[key], +number);
 	        }
 	    }
-	
+
 	    var be = moment.defineLocale('be', {
 	        months : {
 	            format: 'студзеня_лютага_сакавіка_красавіка_траўня_чэрвеня_ліпеня_жніўня_верасня_кастрычніка_лістапада_снежня'.split('_'),
@@ -9660,9 +9660,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return be;
-	
+
 	}));
 
 /***/ },
@@ -9672,14 +9672,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : bulgarian (bg)
 	//! author : Krasen Borisov : https://github.com/kraz
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var bg = moment.defineLocale('bg', {
 	        months : 'януари_февруари_март_април_май_юни_юли_август_септември_октомври_ноември_декември'.split('_'),
 	        monthsShort : 'янр_фев_мар_апр_май_юни_юли_авг_сеп_окт_ное_дек'.split('_'),
@@ -9754,9 +9754,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return bg;
-	
+
 	}));
 
 /***/ },
@@ -9766,14 +9766,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Bengali (bn)
 	//! author : Kaushik Gandhi : https://github.com/kaushikgandhi
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '১',
 	        '2': '২',
@@ -9798,7 +9798,7 @@ webpackJsonp([1],[
 	        '৯': '9',
 	        '০': '0'
 	    };
-	
+
 	    var bn = moment.defineLocale('bn', {
 	        months : 'জানুয়ারী_ফেবুয়ারী_মার্চ_এপ্রিল_মে_জুন_জুলাই_অগাস্ট_সেপ্টেম্বর_অক্টোবর_নভেম্বর_ডিসেম্বর'.split('_'),
 	        monthsShort : 'জানু_ফেব_মার্চ_এপর_মে_জুন_জুল_অগ_সেপ্ট_অক্টো_নভ_ডিসেম্'.split('_'),
@@ -9877,9 +9877,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return bn;
-	
+
 	}));
 
 /***/ },
@@ -9889,14 +9889,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : tibetan (bo)
 	//! author : Thupten N. Chakrishar : https://github.com/vajradog
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '༡',
 	        '2': '༢',
@@ -9921,7 +9921,7 @@ webpackJsonp([1],[
 	        '༩': '9',
 	        '༠': '0'
 	    };
-	
+
 	    var bo = moment.defineLocale('bo', {
 	        months : 'ཟླ་བ་དང་པོ_ཟླ་བ་གཉིས་པ_ཟླ་བ་གསུམ་པ_ཟླ་བ་བཞི་པ_ཟླ་བ་ལྔ་པ_ཟླ་བ་དྲུག་པ_ཟླ་བ་བདུན་པ_ཟླ་བ་བརྒྱད་པ_ཟླ་བ་དགུ་པ_ཟླ་བ་བཅུ་པ_ཟླ་བ་བཅུ་གཅིག་པ_ཟླ་བ་བཅུ་གཉིས་པ'.split('_'),
 	        monthsShort : 'ཟླ་བ་དང་པོ_ཟླ་བ་གཉིས་པ_ཟླ་བ་གསུམ་པ_ཟླ་བ་བཞི་པ_ཟླ་བ་ལྔ་པ_ཟླ་བ་དྲུག་པ_ཟླ་བ་བདུན་པ_ཟླ་བ་བརྒྱད་པ_ཟླ་བ་དགུ་པ_ཟླ་བ་བཅུ་པ_ཟླ་བ་བཅུ་གཅིག་པ_ཟླ་བ་བཅུ་གཉིས་པ'.split('_'),
@@ -10000,9 +10000,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return bo;
-	
+
 	}));
 
 /***/ },
@@ -10012,14 +10012,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : breton (br)
 	//! author : Jean-Baptiste Le Duigou : https://github.com/jbleduigou
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function relativeTimeWithMutation(number, withoutSuffix, key) {
 	        var format = {
 	            'mm': 'munutenn',
@@ -10063,7 +10063,7 @@ webpackJsonp([1],[
 	        }
 	        return mutationTable[text.charAt(0)] + text.substring(1);
 	    }
-	
+
 	    var br = moment.defineLocale('br', {
 	        months : 'Genver_C\'hwevrer_Meurzh_Ebrel_Mae_Mezheven_Gouere_Eost_Gwengolo_Here_Du_Kerzu'.split('_'),
 	        monthsShort : 'Gen_C\'hwe_Meu_Ebr_Mae_Eve_Gou_Eos_Gwe_Her_Du_Ker'.split('_'),
@@ -10112,9 +10112,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return br;
-	
+
 	}));
 
 /***/ },
@@ -10125,14 +10125,14 @@ webpackJsonp([1],[
 	//! locale : bosnian (bs)
 	//! author : Nedim Cholich : https://github.com/frontyard
 	//! based on (hr) translation by Bojan Marković
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
@@ -10185,7 +10185,7 @@ webpackJsonp([1],[
 	            return result;
 	        }
 	    }
-	
+
 	    var bs = moment.defineLocale('bs', {
 	        months : 'januar_februar_mart_april_maj_juni_juli_august_septembar_oktobar_novembar_decembar'.split('_'),
 	        monthsShort : 'jan._feb._mar._apr._maj._jun._jul._aug._sep._okt._nov._dec.'.split('_'),
@@ -10259,9 +10259,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return bs;
-	
+
 	}));
 
 /***/ },
@@ -10271,14 +10271,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : catalan (ca)
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ca = moment.defineLocale('ca', {
 	        months : 'gener_febrer_març_abril_maig_juny_juliol_agost_setembre_octubre_novembre_desembre'.split('_'),
 	        monthsShort : 'gen._febr._mar._abr._mai._jun._jul._ag._set._oct._nov._des.'.split('_'),
@@ -10344,9 +10344,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return ca;
-	
+
 	}));
 
 /***/ },
@@ -10356,14 +10356,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : czech (cs)
 	//! author : petrbela : https://github.com/petrbela
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var months = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split('_'),
 	        monthsShort = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_');
 	    function plural(n) {
@@ -10421,7 +10421,7 @@ webpackJsonp([1],[
 	            break;
 	        }
 	    }
-	
+
 	    var cs = moment.defineLocale('cs', {
 	        months : months,
 	        monthsShort : monthsShort,
@@ -10519,9 +10519,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return cs;
-	
+
 	}));
 
 /***/ },
@@ -10531,14 +10531,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : chuvash (cv)
 	//! author : Anatoly Mironov : https://github.com/mirontoli
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var cv = moment.defineLocale('cv', {
 	        months : 'кӑрлач_нарӑс_пуш_ака_май_ҫӗртме_утӑ_ҫурла_авӑн_юпа_чӳк_раштав'.split('_'),
 	        monthsShort : 'кӑр_нар_пуш_ака_май_ҫӗр_утӑ_ҫур_авн_юпа_чӳк_раш'.split('_'),
@@ -10586,9 +10586,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return cv;
-	
+
 	}));
 
 /***/ },
@@ -10598,14 +10598,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Welsh (cy)
 	//! author : Robert Allen
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var cy = moment.defineLocale('cy', {
 	        months: 'Ionawr_Chwefror_Mawrth_Ebrill_Mai_Mehefin_Gorffennaf_Awst_Medi_Hydref_Tachwedd_Rhagfyr'.split('_'),
 	        monthsShort: 'Ion_Chwe_Maw_Ebr_Mai_Meh_Gor_Aws_Med_Hyd_Tach_Rhag'.split('_'),
@@ -10670,9 +10670,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return cy;
-	
+
 	}));
 
 /***/ },
@@ -10682,14 +10682,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : danish (da)
 	//! author : Ulrik Nielsen : https://github.com/mrbase
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var da = moment.defineLocale('da', {
 	        months : 'januar_februar_marts_april_maj_juni_juli_august_september_oktober_november_december'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec'.split('_'),
@@ -10734,9 +10734,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return da;
-	
+
 	}));
 
 /***/ },
@@ -10749,14 +10749,14 @@ webpackJsonp([1],[
 	//! author: Menelion Elensúle: https://github.com/Oire
 	//! author : Martin Groller : https://github.com/MadMG
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var format = {
 	            'm': ['eine Minute', 'einer Minute'],
@@ -10770,7 +10770,7 @@ webpackJsonp([1],[
 	        };
 	        return withoutSuffix ? format[key][0] : format[key][1];
 	    }
-	
+
 	    var de_at = moment.defineLocale('de-at', {
 	        months : 'Jänner_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
 	        monthsShort : 'Jän._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
@@ -10817,9 +10817,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return de_at;
-	
+
 	}));
 
 /***/ },
@@ -10831,14 +10831,14 @@ webpackJsonp([1],[
 	//! author : lluchs : https://github.com/lluchs
 	//! author: Menelion Elensúle: https://github.com/Oire
 	//! author : Mikolaj Dadela : https://github.com/mik01aj
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var format = {
 	            'm': ['eine Minute', 'einer Minute'],
@@ -10852,7 +10852,7 @@ webpackJsonp([1],[
 	        };
 	        return withoutSuffix ? format[key][0] : format[key][1];
 	    }
-	
+
 	    var de = moment.defineLocale('de', {
 	        months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
 	        monthsShort : 'Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
@@ -10899,9 +10899,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return de;
-	
+
 	}));
 
 /***/ },
@@ -10911,14 +10911,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : dhivehi (dv)
 	//! author : Jawish Hameed : https://github.com/jawish
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var months = [
 	        'ޖެނުއަރީ',
 	        'ފެބްރުއަރީ',
@@ -10941,7 +10941,7 @@ webpackJsonp([1],[
 	        'ހުކުރު',
 	        'ހޮނިހިރު'
 	    ];
-	
+
 	    var dv = moment.defineLocale('dv', {
 	        months : months,
 	        monthsShort : months,
@@ -10949,7 +10949,7 @@ webpackJsonp([1],[
 	        weekdaysShort : weekdays,
 	        weekdaysMin : 'އާދި_ހޯމަ_އަން_ބުދަ_ބުރާ_ހުކު_ހޮނި'.split('_'),
 	        longDateFormat : {
-	
+
 	            LT : 'HH:mm',
 	            LTS : 'HH:mm:ss',
 	            L : 'D/M/YYYY',
@@ -11002,9 +11002,9 @@ webpackJsonp([1],[
 	            doy : 12  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return dv;
-	
+
 	}));
 
 /***/ },
@@ -11014,18 +11014,18 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : modern greek (el)
 	//! author : Aggelos Karalias : https://github.com/mehiel
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
+
 	    function isFunction(input) {
 	        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
 	    }
-	
-	
+
+
 	    var el = moment.defineLocale('el', {
 	        monthsNominativeEl : 'Ιανουάριος_Φεβρουάριος_Μάρτιος_Απρίλιος_Μάιος_Ιούνιος_Ιούλιος_Αύγουστος_Σεπτέμβριος_Οκτώβριος_Νοέμβριος_Δεκέμβριος'.split('_'),
 	        monthsGenitiveEl : 'Ιανουαρίου_Φεβρουαρίου_Μαρτίου_Απριλίου_Μαΐου_Ιουνίου_Ιουλίου_Αυγούστου_Σεπτεμβρίου_Οκτωβρίου_Νοεμβρίου_Δεκεμβρίου'.split('_'),
@@ -11104,9 +11104,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4st is the first week of the year.
 	        }
 	    });
-	
+
 	    return el;
-	
+
 	}));
 
 /***/ },
@@ -11115,14 +11115,14 @@ webpackJsonp([1],[
 
 	//! moment.js locale configuration
 	//! locale : australian english (en-au)
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var en_au = moment.defineLocale('en-au', {
 	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -11174,9 +11174,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return en_au;
-	
+
 	}));
 
 /***/ },
@@ -11186,14 +11186,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : canadian english (en-ca)
 	//! author : Jonathan Abourbih : https://github.com/jonbca
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var en_ca = moment.defineLocale('en-ca', {
 	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -11241,9 +11241,9 @@ webpackJsonp([1],[
 	            return number + output;
 	        }
 	    });
-	
+
 	    return en_ca;
-	
+
 	}));
 
 /***/ },
@@ -11253,14 +11253,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : great britain english (en-gb)
 	//! author : Chris Gedrim : https://github.com/chrisgedrim
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var en_gb = moment.defineLocale('en-gb', {
 	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -11312,9 +11312,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return en_gb;
-	
+
 	}));
 
 /***/ },
@@ -11324,14 +11324,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Irish english (en-ie)
 	//! author : Chris Cartlidge : https://github.com/chriscartlidge
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var en_ie = moment.defineLocale('en-ie', {
 	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -11383,9 +11383,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return en_ie;
-	
+
 	}));
 
 /***/ },
@@ -11394,14 +11394,14 @@ webpackJsonp([1],[
 
 	//! moment.js locale configuration
 	//! locale : New Zealand english (en-nz)
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var en_nz = moment.defineLocale('en-nz', {
 	        months : 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_'),
@@ -11453,9 +11453,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return en_nz;
-	
+
 	}));
 
 /***/ },
@@ -11467,14 +11467,14 @@ webpackJsonp([1],[
 	//! author : Colin Dean : https://github.com/colindean
 	//! komento: Mi estas malcerta se mi korekte traktis akuzativojn en tiu traduko.
 	//!          Se ne, bonvolu korekti kaj avizi min por ke mi povas lerni!
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var eo = moment.defineLocale('eo', {
 	        months : 'januaro_februaro_marto_aprilo_majo_junio_julio_aŭgusto_septembro_oktobro_novembro_decembro'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aŭg_sep_okt_nov_dec'.split('_'),
@@ -11530,9 +11530,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return eo;
-	
+
 	}));
 
 /***/ },
@@ -11542,17 +11542,17 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : spanish (es)
 	//! author : Julio Napurí : https://github.com/julionc
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
 	        monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-	
+
 	    var es = moment.defineLocale('es', {
 	        months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
 	        monthsShort : function (m, format) {
@@ -11615,9 +11615,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return es;
-	
+
 	}));
 
 /***/ },
@@ -11628,14 +11628,14 @@ webpackJsonp([1],[
 	//! locale : estonian (et)
 	//! author : Henry Kehlmann : https://github.com/madhenry
 	//! improvements : Illimar Tambek : https://github.com/ragulka
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var format = {
 	            's' : ['mõne sekundi', 'mõni sekund', 'paar sekundit'],
@@ -11654,7 +11654,7 @@ webpackJsonp([1],[
 	        }
 	        return isFuture ? format[key][0] : format[key][1];
 	    }
-	
+
 	    var et = moment.defineLocale('et', {
 	        months        : 'jaanuar_veebruar_märts_aprill_mai_juuni_juuli_august_september_oktoober_november_detsember'.split('_'),
 	        monthsShort   : 'jaan_veebr_märts_apr_mai_juuni_juuli_aug_sept_okt_nov_dets'.split('_'),
@@ -11699,9 +11699,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return et;
-	
+
 	}));
 
 /***/ },
@@ -11711,14 +11711,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : euskara (eu)
 	//! author : Eneko Illarramendi : https://github.com/eillarra
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var eu = moment.defineLocale('eu', {
 	        months : 'urtarrila_otsaila_martxoa_apirila_maiatza_ekaina_uztaila_abuztua_iraila_urria_azaroa_abendua'.split('_'),
 	        monthsShort : 'urt._ots._mar._api._mai._eka._uzt._abu._ira._urr._aza._abe.'.split('_'),
@@ -11769,9 +11769,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return eu;
-	
+
 	}));
 
 /***/ },
@@ -11781,14 +11781,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Persian (fa)
 	//! author : Ebrahim Byagowi : https://github.com/ebraminio
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '۱',
 	        '2': '۲',
@@ -11812,7 +11812,7 @@ webpackJsonp([1],[
 	        '۹': '9',
 	        '۰': '0'
 	    };
-	
+
 	    var fa = moment.defineLocale('fa', {
 	        months : 'ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر'.split('_'),
 	        monthsShort : 'ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر'.split('_'),
@@ -11879,9 +11879,9 @@ webpackJsonp([1],[
 	            doy : 12 // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return fa;
-	
+
 	}));
 
 /***/ },
@@ -11891,14 +11891,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : finnish (fi)
 	//! author : Tarmo Aidantausta : https://github.com/bleadof
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksan yhdeksän'.split(' '),
 	        numbersFuture = [
 	            'nolla', 'yhden', 'kahden', 'kolmen', 'neljän', 'viiden', 'kuuden',
@@ -11941,7 +11941,7 @@ webpackJsonp([1],[
 	    function verbalNumber(number, isFuture) {
 	        return number < 10 ? (isFuture ? numbersFuture[number] : numbersPast[number]) : number;
 	    }
-	
+
 	    var fi = moment.defineLocale('fi', {
 	        months : 'tammikuu_helmikuu_maaliskuu_huhtikuu_toukokuu_kesäkuu_heinäkuu_elokuu_syyskuu_lokakuu_marraskuu_joulukuu'.split('_'),
 	        monthsShort : 'tammi_helmi_maalis_huhti_touko_kesä_heinä_elo_syys_loka_marras_joulu'.split('_'),
@@ -11990,9 +11990,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return fi;
-	
+
 	}));
 
 /***/ },
@@ -12002,14 +12002,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : faroese (fo)
 	//! author : Ragnar Johannesen : https://github.com/ragnar123
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var fo = moment.defineLocale('fo', {
 	        months : 'januar_februar_mars_apríl_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_'),
@@ -12054,9 +12054,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return fo;
-	
+
 	}));
 
 /***/ },
@@ -12066,14 +12066,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : canadian french (fr-ca)
 	//! author : Jonathan Abourbih : https://github.com/jonbca
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var fr_ca = moment.defineLocale('fr-ca', {
 	        months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
 	        monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -12118,9 +12118,9 @@ webpackJsonp([1],[
 	            return number + (number === 1 ? 'er' : 'e');
 	        }
 	    });
-	
+
 	    return fr_ca;
-	
+
 	}));
 
 /***/ },
@@ -12130,14 +12130,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : swiss french (fr)
 	//! author : Gaspard Bucher : https://github.com/gaspard
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var fr_ch = moment.defineLocale('fr-ch', {
 	        months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
 	        monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -12186,9 +12186,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return fr_ch;
-	
+
 	}));
 
 /***/ },
@@ -12198,14 +12198,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : french (fr)
 	//! author : John Fischer : https://github.com/jfroffice
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var fr = moment.defineLocale('fr', {
 	        months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
 	        monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
@@ -12254,9 +12254,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return fr;
-	
+
 	}));
 
 /***/ },
@@ -12266,17 +12266,17 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : frisian (fy)
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var monthsShortWithDots = 'jan._feb._mrt._apr._mai_jun._jul._aug._sep._okt._nov._des.'.split('_'),
 	        monthsShortWithoutDots = 'jan_feb_mrt_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_');
-	
+
 	    var fy = moment.defineLocale('fy', {
 	        months : 'jannewaris_febrewaris_maart_april_maaie_juny_july_augustus_septimber_oktober_novimber_desimber'.split('_'),
 	        monthsShort : function (m, format) {
@@ -12331,9 +12331,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return fy;
-	
+
 	}));
 
 /***/ },
@@ -12343,26 +12343,26 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : great britain scottish gealic (gd)
 	//! author : Jon Ashdown : https://github.com/jonashdown
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var months = [
 	        'Am Faoilleach', 'An Gearran', 'Am Màrt', 'An Giblean', 'An Cèitean', 'An t-Ògmhios', 'An t-Iuchar', 'An Lùnastal', 'An t-Sultain', 'An Dàmhair', 'An t-Samhain', 'An Dùbhlachd'
 	    ];
-	
+
 	    var monthsShort = ['Faoi', 'Gear', 'Màrt', 'Gibl', 'Cèit', 'Ògmh', 'Iuch', 'Lùn', 'Sult', 'Dàmh', 'Samh', 'Dùbh'];
-	
+
 	    var weekdays = ['Didòmhnaich', 'Diluain', 'Dimàirt', 'Diciadain', 'Diardaoin', 'Dihaoine', 'Disathairne'];
-	
+
 	    var weekdaysShort = ['Did', 'Dil', 'Dim', 'Dic', 'Dia', 'Dih', 'Dis'];
-	
+
 	    var weekdaysMin = ['Dò', 'Lu', 'Mà', 'Ci', 'Ar', 'Ha', 'Sa'];
-	
+
 	    var gd = moment.defineLocale('gd', {
 	        months : months,
 	        monthsShort : monthsShort,
@@ -12411,9 +12411,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return gd;
-	
+
 	}));
 
 /***/ },
@@ -12423,14 +12423,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : galician (gl)
 	//! author : Juan G. Hurtado : https://github.com/juanghurtado
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var gl = moment.defineLocale('gl', {
 	        months : 'Xaneiro_Febreiro_Marzo_Abril_Maio_Xuño_Xullo_Agosto_Setembro_Outubro_Novembro_Decembro'.split('_'),
 	        monthsShort : 'Xan._Feb._Mar._Abr._Mai._Xuñ._Xul._Ago._Set._Out._Nov._Dec.'.split('_'),
@@ -12492,9 +12492,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return gl;
-	
+
 	}));
 
 /***/ },
@@ -12506,14 +12506,14 @@ webpackJsonp([1],[
 	//! author : Tomer Cohen : https://github.com/tomer
 	//! author : Moshe Simantov : https://github.com/DevelopmentIL
 	//! author : Tal Ater : https://github.com/TalAter
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var he = moment.defineLocale('he', {
 	        months : 'ינואר_פברואר_מרץ_אפריל_מאי_יוני_יולי_אוגוסט_ספטמבר_אוקטובר_נובמבר_דצמבר'.split('_'),
 	        monthsShort : 'ינו׳_פבר׳_מרץ_אפר׳_מאי_יוני_יולי_אוג׳_ספט׳_אוק׳_נוב׳_דצמ׳'.split('_'),
@@ -12595,9 +12595,9 @@ webpackJsonp([1],[
 	            }
 	        }
 	    });
-	
+
 	    return he;
-	
+
 	}));
 
 /***/ },
@@ -12607,14 +12607,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : hindi (hi)
 	//! author : Mayank Singhal : https://github.com/mayanksinghal
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '१',
 	        '2': '२',
@@ -12639,7 +12639,7 @@ webpackJsonp([1],[
 	        '९': '9',
 	        '०': '0'
 	    };
-	
+
 	    var hi = moment.defineLocale('hi', {
 	        months : 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split('_'),
 	        monthsShort : 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split('_'),
@@ -12723,9 +12723,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return hi;
-	
+
 	}));
 
 /***/ },
@@ -12735,14 +12735,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : hrvatski (hr)
 	//! author : Bojan Marković : https://github.com/bmarkovic
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function translate(number, withoutSuffix, key) {
 	        var result = number + ' ';
 	        switch (key) {
@@ -12795,7 +12795,7 @@ webpackJsonp([1],[
 	            return result;
 	        }
 	    }
-	
+
 	    var hr = moment.defineLocale('hr', {
 	        months : {
 	            format: 'siječnja_veljače_ožujka_travnja_svibnja_lipnja_srpnja_kolovoza_rujna_listopada_studenoga_prosinca'.split('_'),
@@ -12872,9 +12872,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return hr;
-	
+
 	}));
 
 /***/ },
@@ -12884,14 +12884,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : hungarian (hu)
 	//! author : Adam Brunner : https://github.com/adambrunner
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var weekEndings = 'vasárnap hétfőn kedden szerdán csütörtökön pénteken szombaton'.split(' ');
 	    function translate(number, withoutSuffix, key, isFuture) {
 	        var num = number,
@@ -12925,7 +12925,7 @@ webpackJsonp([1],[
 	    function week(isFuture) {
 	        return (isFuture ? '' : '[múlt] ') + '[' + weekEndings[this.day()] + '] LT[-kor]';
 	    }
-	
+
 	    var hu = moment.defineLocale('hu', {
 	        months : 'január_február_március_április_május_június_július_augusztus_szeptember_október_november_december'.split('_'),
 	        monthsShort : 'jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split('_'),
@@ -12985,9 +12985,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return hu;
-	
+
 	}));
 
 /***/ },
@@ -12997,14 +12997,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Armenian (hy-am)
 	//! author : Armendarabyan : https://github.com/armendarabyan
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var hy_am = moment.defineLocale('hy-am', {
 	        months : {
 	            format: 'հունվարի_փետրվարի_մարտի_ապրիլի_մայիսի_հունիսի_հուլիսի_օգոստոսի_սեպտեմբերի_հոկտեմբերի_նոյեմբերի_դեկտեմբերի'.split('_'),
@@ -13084,9 +13084,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return hy_am;
-	
+
 	}));
 
 /***/ },
@@ -13097,14 +13097,14 @@ webpackJsonp([1],[
 	//! locale : Bahasa Indonesia (id)
 	//! author : Mohammad Satrio Utomo : https://github.com/tyok
 	//! reference: http://id.wikisource.org/wiki/Pedoman_Umum_Ejaan_Bahasa_Indonesia_yang_Disempurnakan
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var id = moment.defineLocale('id', {
 	        months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_November_Desember'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nov_Des'.split('_'),
@@ -13171,9 +13171,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return id;
-	
+
 	}));
 
 /***/ },
@@ -13183,14 +13183,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : icelandic (is)
 	//! author : Hinrik Örn Sigurðsson : https://github.com/hinrik
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function plural(n) {
 	        if (n % 100 === 11) {
 	            return true;
@@ -13257,7 +13257,7 @@ webpackJsonp([1],[
 	            return result + (withoutSuffix || isFuture ? 'ár' : 'ári');
 	        }
 	    }
-	
+
 	    var is = moment.defineLocale('is', {
 	        months : 'janúar_febrúar_mars_apríl_maí_júní_júlí_ágúst_september_október_nóvember_desember'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_maí_jún_júl_ágú_sep_okt_nóv_des'.split('_'),
@@ -13302,9 +13302,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return is;
-	
+
 	}));
 
 /***/ },
@@ -13315,14 +13315,14 @@ webpackJsonp([1],[
 	//! locale : italian (it)
 	//! author : Lorenzo : https://github.com/aliem
 	//! author: Mattia Larentis: https://github.com/nostalgiaz
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var it = moment.defineLocale('it', {
 	        months : 'gennaio_febbraio_marzo_aprile_maggio_giugno_luglio_agosto_settembre_ottobre_novembre_dicembre'.split('_'),
 	        monthsShort : 'gen_feb_mar_apr_mag_giu_lug_ago_set_ott_nov_dic'.split('_'),
@@ -13376,9 +13376,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return it;
-	
+
 	}));
 
 /***/ },
@@ -13388,14 +13388,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : japanese (ja)
 	//! author : LI Long : https://github.com/baryon
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ja = moment.defineLocale('ja', {
 	        months : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
 	        monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -13456,9 +13456,9 @@ webpackJsonp([1],[
 	            yy : '%d年'
 	        }
 	    });
-	
+
 	    return ja;
-	
+
 	}));
 
 /***/ },
@@ -13469,14 +13469,14 @@ webpackJsonp([1],[
 	//! locale : Boso Jowo (jv)
 	//! author : Rony Lantip : https://github.com/lantip
 	//! reference: http://jv.wikipedia.org/wiki/Basa_Jawa
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var jv = moment.defineLocale('jv', {
 	        months : 'Januari_Februari_Maret_April_Mei_Juni_Juli_Agustus_September_Oktober_Nopember_Desember'.split('_'),
 	        monthsShort : 'Jan_Feb_Mar_Apr_Mei_Jun_Jul_Ags_Sep_Okt_Nop_Des'.split('_'),
@@ -13543,9 +13543,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return jv;
-	
+
 	}));
 
 /***/ },
@@ -13555,14 +13555,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Georgian (ka)
 	//! author : Irakli Janiashvili : https://github.com/irakli-janiashvili
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ka = moment.defineLocale('ka', {
 	        months : {
 	            standalone: 'იანვარი_თებერვალი_მარტი_აპრილი_მაისი_ივნისი_ივლისი_აგვისტო_სექტემბერი_ოქტომბერი_ნოემბერი_დეკემბერი'.split('_'),
@@ -13636,9 +13636,9 @@ webpackJsonp([1],[
 	            doy : 7
 	        }
 	    });
-	
+
 	    return ka;
-	
+
 	}));
 
 /***/ },
@@ -13648,14 +13648,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : kazakh (kk)
 	//! authors : Nurlan Rakhimzhanov : https://github.com/nurlan
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var suffixes = {
 	        0: '-ші',
 	        1: '-ші',
@@ -13678,7 +13678,7 @@ webpackJsonp([1],[
 	        90: '-шы',
 	        100: '-ші'
 	    };
-	
+
 	    var kk = moment.defineLocale('kk', {
 	        months : 'қаңтар_ақпан_наурыз_сәуір_мамыр_маусым_шілде_тамыз_қыркүйек_қазан_қараша_желтоқсан'.split('_'),
 	        monthsShort : 'қаң_ақп_нау_сәу_мам_мау_шіл_там_қыр_қаз_қар_жел'.split('_'),
@@ -13727,9 +13727,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return kk;
-	
+
 	}));
 
 /***/ },
@@ -13739,14 +13739,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : khmer (km)
 	//! author : Kruy Vanna : https://github.com/kruyvanna
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var km = moment.defineLocale('km', {
 	        months: 'មករា_កុម្ភៈ_មីនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split('_'),
 	        monthsShort: 'មករា_កុម្ភៈ_មីនា_មេសា_ឧសភា_មិថុនា_កក្កដា_សីហា_កញ្ញា_តុលា_វិច្ឆិកា_ធ្នូ'.split('_'),
@@ -13789,9 +13789,9 @@ webpackJsonp([1],[
 	            doy: 4 // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return km;
-	
+
 	}));
 
 /***/ },
@@ -13805,14 +13805,14 @@ webpackJsonp([1],[
 	//!
 	//! - Kyungwook, Park : https://github.com/kyungw00k
 	//! - Jeeeyul Lee <jeeeyul@gmail.com>
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ko = moment.defineLocale('ko', {
 	        months : '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
 	        monthsShort : '1월_2월_3월_4월_5월_6월_7월_8월_9월_10월_11월_12월'.split('_'),
@@ -13861,9 +13861,9 @@ webpackJsonp([1],[
 	            return hour < 12 ? '오전' : '오후';
 	        }
 	    });
-	
+
 	    return ko;
-	
+
 	}));
 
 /***/ },
@@ -13873,15 +13873,15 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : kyrgyz (ky)
 	//! author : Chyngyz Arystan uulu : https://github.com/chyngyz
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
-	
+
+
+
 	    var suffixes = {
 	        0: '-чү',
 	        1: '-чи',
@@ -13904,7 +13904,7 @@ webpackJsonp([1],[
 	        90: '-чу',
 	        100: '-чү'
 	    };
-	
+
 	    var ky = moment.defineLocale('ky', {
 	        months : 'январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь'.split('_'),
 	        monthsShort : 'янв_фев_март_апр_май_июнь_июль_авг_сен_окт_ноя_дек'.split('_'),
@@ -13953,9 +13953,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ky;
-	
+
 	}));
 
 /***/ },
@@ -13965,14 +13965,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Luxembourgish (lb)
 	//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var format = {
 	            'm': ['eng Minutt', 'enger Minutt'],
@@ -14037,7 +14037,7 @@ webpackJsonp([1],[
 	            return eifelerRegelAppliesToNumber(number);
 	        }
 	    }
-	
+
 	    var lb = moment.defineLocale('lb', {
 	        months: 'Januar_Februar_Mäerz_Abrëll_Mee_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
 	        monthsShort: 'Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
@@ -14093,9 +14093,9 @@ webpackJsonp([1],[
 	            doy: 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return lb;
-	
+
 	}));
 
 /***/ },
@@ -14105,14 +14105,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : lao (lo)
 	//! author : Ryan Hart : https://github.com/ryanhart2
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var lo = moment.defineLocale('lo', {
 	        months : 'ມັງກອນ_ກຸມພາ_ມີນາ_ເມສາ_ພຶດສະພາ_ມິຖຸນາ_ກໍລະກົດ_ສິງຫາ_ກັນຍາ_ຕຸລາ_ພະຈິກ_ທັນວາ'.split('_'),
 	        monthsShort : 'ມັງກອນ_ກຸມພາ_ມີນາ_ເມສາ_ພຶດສະພາ_ມິຖຸນາ_ກໍລະກົດ_ສິງຫາ_ກັນຍາ_ຕຸລາ_ພະຈິກ_ທັນວາ'.split('_'),
@@ -14167,9 +14167,9 @@ webpackJsonp([1],[
 	            return 'ທີ່' + number;
 	        }
 	    });
-	
+
 	    return lo;
-	
+
 	}));
 
 /***/ },
@@ -14179,14 +14179,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Lithuanian (lt)
 	//! author : Mindaugas Mozūras : https://github.com/mmozuras
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var units = {
 	        'm' : 'minutė_minutės_minutę',
 	        'mm': 'minutės_minučių_minutes',
@@ -14287,9 +14287,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return lt;
-	
+
 	}));
 
 /***/ },
@@ -14300,14 +14300,14 @@ webpackJsonp([1],[
 	//! locale : latvian (lv)
 	//! author : Kristaps Karlsons : https://github.com/skakri
 	//! author : Jānis Elmeris : https://github.com/JanisE
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var units = {
 	        'm': 'minūtes_minūtēm_minūte_minūtes'.split('_'),
 	        'mm': 'minūtes_minūtēm_minūte_minūtes'.split('_'),
@@ -14342,7 +14342,7 @@ webpackJsonp([1],[
 	    function relativeSeconds(number, withoutSuffix) {
 	        return withoutSuffix ? 'dažas sekundes' : 'dažām sekundēm';
 	    }
-	
+
 	    var lv = moment.defineLocale('lv', {
 	        months : 'janvāris_februāris_marts_aprīlis_maijs_jūnijs_jūlijs_augusts_septembris_oktobris_novembris_decembris'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_mai_jūn_jūl_aug_sep_okt_nov_dec'.split('_'),
@@ -14388,9 +14388,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return lv;
-	
+
 	}));
 
 /***/ },
@@ -14400,14 +14400,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Montenegrin (me)
 	//! author : Miodrag Nikač <miodrag@restartit.me> : https://github.com/miodragnikac
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var translator = {
 	        words: { //Different grammatical cases
 	            m: ['jedan minut', 'jednog minuta'],
@@ -14430,7 +14430,7 @@ webpackJsonp([1],[
 	            }
 	        }
 	    };
-	
+
 	    var me = moment.defineLocale('me', {
 	        months: 'januar_februar_mart_april_maj_jun_jul_avgust_septembar_oktobar_novembar_decembar'.split('_'),
 	        monthsShort: 'jan._feb._mar._apr._maj_jun_jul_avg._sep._okt._nov._dec.'.split('_'),
@@ -14450,7 +14450,7 @@ webpackJsonp([1],[
 	        calendar: {
 	            sameDay: '[danas u] LT',
 	            nextDay: '[sjutra u] LT',
-	
+
 	            nextWeek: function () {
 	                switch (this.day()) {
 	                case 0:
@@ -14503,9 +14503,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return me;
-	
+
 	}));
 
 /***/ },
@@ -14515,14 +14515,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : macedonian (mk)
 	//! author : Borislav Mickov : https://github.com/B0k0
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var mk = moment.defineLocale('mk', {
 	        months : 'јануари_февруари_март_април_мај_јуни_јули_август_септември_октомври_ноември_декември'.split('_'),
 	        monthsShort : 'јан_фев_мар_апр_мај_јун_јул_авг_сеп_окт_ное_дек'.split('_'),
@@ -14597,9 +14597,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return mk;
-	
+
 	}));
 
 /***/ },
@@ -14609,14 +14609,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : malayalam (ml)
 	//! author : Floyd Pink : https://github.com/floydpink
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ml = moment.defineLocale('ml', {
 	        months : 'ജനുവരി_ഫെബ്രുവരി_മാർച്ച്_ഏപ്രിൽ_മേയ്_ജൂൺ_ജൂലൈ_ഓഗസ്റ്റ്_സെപ്റ്റംബർ_ഒക്ടോബർ_നവംബർ_ഡിസംബർ'.split('_'),
 	        monthsShort : 'ജനു._ഫെബ്രു._മാർ._ഏപ്രി._മേയ്_ജൂൺ_ജൂലൈ._ഓഗ._സെപ്റ്റ._ഒക്ടോ._നവം._ഡിസം.'.split('_'),
@@ -14682,9 +14682,9 @@ webpackJsonp([1],[
 	            }
 	        }
 	    });
-	
+
 	    return ml;
-	
+
 	}));
 
 /***/ },
@@ -14695,14 +14695,14 @@ webpackJsonp([1],[
 	//! locale : Marathi (mr)
 	//! author : Harshad Kale : https://github.com/kalehv
 	//! author : Vivek Athalye : https://github.com/vnathalye
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '१',
 	        '2': '२',
@@ -14727,7 +14727,7 @@ webpackJsonp([1],[
 	        '९': '9',
 	        '०': '0'
 	    };
-	
+
 	    function relativeTimeMr(number, withoutSuffix, string, isFuture)
 	    {
 	        var output = '';
@@ -14763,7 +14763,7 @@ webpackJsonp([1],[
 	        }
 	        return output.replace(/%d/i, number);
 	    }
-	
+
 	    var mr = moment.defineLocale('mr', {
 	        months : 'जानेवारी_फेब्रुवारी_मार्च_एप्रिल_मे_जून_जुलै_ऑगस्ट_सप्टेंबर_ऑक्टोबर_नोव्हेंबर_डिसेंबर'.split('_'),
 	        monthsShort: 'जाने._फेब्रु._मार्च._एप्रि._मे._जून._जुलै._ऑग._सप्टें._ऑक्टो._नोव्हें._डिसें.'.split('_'),
@@ -14845,9 +14845,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return mr;
-	
+
 	}));
 
 /***/ },
@@ -14857,14 +14857,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Bahasa Malaysia (ms-MY)
 	//! author : Weldan Jamili : https://github.com/weldan
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ms_my = moment.defineLocale('ms-my', {
 	        months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
 	        monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
@@ -14931,9 +14931,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ms_my;
-	
+
 	}));
 
 /***/ },
@@ -14943,14 +14943,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Bahasa Malaysia (ms-MY)
 	//! author : Weldan Jamili : https://github.com/weldan
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var ms = moment.defineLocale('ms', {
 	        months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
 	        monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
@@ -15017,9 +15017,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ms;
-	
+
 	}));
 
 /***/ },
@@ -15029,14 +15029,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Burmese (my)
 	//! author : Squar team, mysquar.com
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '၁',
 	        '2': '၂',
@@ -15060,14 +15060,14 @@ webpackJsonp([1],[
 	        '၉': '9',
 	        '၀': '0'
 	    };
-	
+
 	    var my = moment.defineLocale('my', {
 	        months: 'ဇန်နဝါရီ_ဖေဖော်ဝါရီ_မတ်_ဧပြီ_မေ_ဇွန်_ဇူလိုင်_သြဂုတ်_စက်တင်ဘာ_အောက်တိုဘာ_နိုဝင်ဘာ_ဒီဇင်ဘာ'.split('_'),
 	        monthsShort: 'ဇန်_ဖေ_မတ်_ပြီ_မေ_ဇွန်_လိုင်_သြ_စက်_အောက်_နို_ဒီ'.split('_'),
 	        weekdays: 'တနင်္ဂနွေ_တနင်္လာ_အင်္ဂါ_ဗုဒ္ဓဟူး_ကြာသပတေး_သောကြာ_စနေ'.split('_'),
 	        weekdaysShort: 'နွေ_လာ_ဂါ_ဟူး_ကြာ_သော_နေ'.split('_'),
 	        weekdaysMin: 'နွေ_လာ_ဂါ_ဟူး_ကြာ_သော_နေ'.split('_'),
-	
+
 	        longDateFormat: {
 	            LT: 'HH:mm',
 	            LTS: 'HH:mm:ss',
@@ -15114,9 +15114,9 @@ webpackJsonp([1],[
 	            doy: 4 // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return my;
-	
+
 	}));
 
 /***/ },
@@ -15127,14 +15127,14 @@ webpackJsonp([1],[
 	//! locale : norwegian bokmål (nb)
 	//! authors : Espen Hovlandsdal : https://github.com/rexxars
 	//!           Sigurd Gartmann : https://github.com/sigurdga
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var nb = moment.defineLocale('nb', {
 	        months : 'januar_februar_mars_april_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
 	        monthsShort : 'jan._feb._mars_april_mai_juni_juli_aug._sep._okt._nov._des.'.split('_'),
@@ -15181,9 +15181,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return nb;
-	
+
 	}));
 
 /***/ },
@@ -15193,14 +15193,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : nepali/nepalese
 	//! author : suvash : https://github.com/suvash
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '१',
 	        '2': '२',
@@ -15225,7 +15225,7 @@ webpackJsonp([1],[
 	        '९': '9',
 	        '०': '0'
 	    };
-	
+
 	    var ne = moment.defineLocale('ne', {
 	        months : 'जनवरी_फेब्रुवरी_मार्च_अप्रिल_मई_जुन_जुलाई_अगष्ट_सेप्टेम्बर_अक्टोबर_नोभेम्बर_डिसेम्बर'.split('_'),
 	        monthsShort : 'जन._फेब्रु._मार्च_अप्रि._मई_जुन_जुलाई._अग._सेप्ट._अक्टो._नोभे._डिसे.'.split('_'),
@@ -15308,9 +15308,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ne;
-	
+
 	}));
 
 /***/ },
@@ -15320,17 +15320,17 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : dutch (nl)
 	//! author : Joris Röling : https://github.com/jjupiter
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
 	        monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
-	
+
 	    var nl = moment.defineLocale('nl', {
 	        months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
 	        monthsShort : function (m, format) {
@@ -15385,9 +15385,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return nl;
-	
+
 	}));
 
 /***/ },
@@ -15397,14 +15397,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : norwegian nynorsk (nn)
 	//! author : https://github.com/mechuwind
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var nn = moment.defineLocale('nn', {
 	        months : 'januar_februar_mars_april_mai_juni_juli_august_september_oktober_november_desember'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_mai_jun_jul_aug_sep_okt_nov_des'.split('_'),
@@ -15449,9 +15449,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return nn;
-	
+
 	}));
 
 /***/ },
@@ -15461,14 +15461,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : punjabi india (pa-in)
 	//! author : Harpreet Singh : https://github.com/harpreetkhalsagtbit
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '੧',
 	        '2': '੨',
@@ -15493,7 +15493,7 @@ webpackJsonp([1],[
 	        '੯': '9',
 	        '੦': '0'
 	    };
-	
+
 	    var pa_in = moment.defineLocale('pa-in', {
 	        // There are months name as per Nanakshahi Calender but they are not used as rigidly in modern Punjabi.
 	        months : 'ਜਨਵਰੀ_ਫ਼ਰਵਰੀ_ਮਾਰਚ_ਅਪ੍ਰੈਲ_ਮਈ_ਜੂਨ_ਜੁਲਾਈ_ਅਗਸਤ_ਸਤੰਬਰ_ਅਕਤੂਬਰ_ਨਵੰਬਰ_ਦਸੰਬਰ'.split('_'),
@@ -15577,9 +15577,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return pa_in;
-	
+
 	}));
 
 /***/ },
@@ -15589,14 +15589,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : polish (pl)
 	//! author : Rafal Hirsz : https://github.com/evoL
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
 	        monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
 	    function plural(n) {
@@ -15619,7 +15619,7 @@ webpackJsonp([1],[
 	            return result + (plural(number) ? 'lata' : 'lat');
 	        }
 	    }
-	
+
 	    var pl = moment.defineLocale('pl', {
 	        months : function (momentToFormat, format) {
 	            if (format === '') {
@@ -15686,9 +15686,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return pl;
-	
+
 	}));
 
 /***/ },
@@ -15698,14 +15698,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : brazilian portuguese (pt-br)
 	//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var pt_br = moment.defineLocale('pt-br', {
 	        months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
 	        monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
@@ -15751,9 +15751,9 @@ webpackJsonp([1],[
 	        ordinalParse: /\d{1,2}º/,
 	        ordinal : '%dº'
 	    });
-	
+
 	    return pt_br;
-	
+
 	}));
 
 /***/ },
@@ -15763,14 +15763,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : portuguese (pt)
 	//! author : Jefferson : https://github.com/jalex79
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var pt = moment.defineLocale('pt', {
 	        months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
 	        monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
@@ -15820,9 +15820,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return pt;
-	
+
 	}));
 
 /***/ },
@@ -15833,14 +15833,14 @@ webpackJsonp([1],[
 	//! locale : romanian (ro)
 	//! author : Vlad Gurdiga : https://github.com/gurdiga
 	//! author : Valentin Agachi : https://github.com/avaly
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function relativeTimeWithPlural(number, withoutSuffix, key) {
 	        var format = {
 	                'mm': 'minute',
@@ -15855,7 +15855,7 @@ webpackJsonp([1],[
 	        }
 	        return number + separator + format[key];
 	    }
-	
+
 	    var ro = moment.defineLocale('ro', {
 	        months : 'ianuarie_februarie_martie_aprilie_mai_iunie_iulie_august_septembrie_octombrie_noiembrie_decembrie'.split('_'),
 	        monthsShort : 'ian._febr._mart._apr._mai_iun._iul._aug._sept._oct._nov._dec.'.split('_'),
@@ -15899,9 +15899,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ro;
-	
+
 	}));
 
 /***/ },
@@ -15913,14 +15913,14 @@ webpackJsonp([1],[
 	//! author : Viktorminator : https://github.com/Viktorminator
 	//! Author : Menelion Elensúle : https://github.com/Oire
 	//! author : Коренберг Марк : https://github.com/socketpair
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function plural(word, num) {
 	        var forms = word.split('_');
 	        return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
@@ -15941,7 +15941,7 @@ webpackJsonp([1],[
 	        }
 	    }
 	    var monthsParse = [/^янв/i, /^фев/i, /^мар/i, /^апр/i, /^ма[йя]/i, /^июн/i, /^июл/i, /^авг/i, /^сен/i, /^окт/i, /^ноя/i, /^дек/i];
-	
+
 	    // http://new.gramota.ru/spravka/rules/139-prop : § 103
 	    // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
 	    // CLDR data:          http://www.unicode.org/cldr/charts/28/summary/ru.html#1753
@@ -16078,9 +16078,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ru;
-	
+
 	}));
 
 /***/ },
@@ -16090,15 +16090,15 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Northern Sami (se)
 	//! authors : Bård Rolstad Henriksen : https://github.com/karamell
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
-	
+
+
+
 	    var se = moment.defineLocale('se', {
 	        months : 'ođđajagemánnu_guovvamánnu_njukčamánnu_cuoŋománnu_miessemánnu_geassemánnu_suoidnemánnu_borgemánnu_čakčamánnu_golggotmánnu_skábmamánnu_juovlamánnu'.split('_'),
 	        monthsShort : 'ođđj_guov_njuk_cuo_mies_geas_suoi_borg_čakč_golg_skáb_juov'.split('_'),
@@ -16143,9 +16143,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return se;
-	
+
 	}));
 
 /***/ },
@@ -16155,14 +16155,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Sinhalese (si)
 	//! author : Sampath Sitinamaluwa : https://github.com/sampathsris
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    /*jshint -W100*/
 	    var si = moment.defineLocale('si', {
 	        months : 'ජනවාරි_පෙබරවාරි_මාර්තු_අප්‍රේල්_මැයි_ජූනි_ජූලි_අගෝස්තු_සැප්තැම්බර්_ඔක්තෝබර්_නොවැම්බර්_දෙසැම්බර්'.split('_'),
@@ -16218,9 +16218,9 @@ webpackJsonp([1],[
 	            }
 	        }
 	    });
-	
+
 	    return si;
-	
+
 	}));
 
 /***/ },
@@ -16231,14 +16231,14 @@ webpackJsonp([1],[
 	//! locale : slovak (sk)
 	//! author : Martin Minka : https://github.com/k2s
 	//! based on work of petrbela : https://github.com/petrbela
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var months = 'január_február_marec_apríl_máj_jún_júl_august_september_október_november_december'.split('_'),
 	        monthsShort = 'jan_feb_mar_apr_máj_jún_júl_aug_sep_okt_nov_dec'.split('_');
 	    function plural(n) {
@@ -16296,7 +16296,7 @@ webpackJsonp([1],[
 	            break;
 	        }
 	    }
-	
+
 	    var sk = moment.defineLocale('sk', {
 	        months : months,
 	        monthsShort : monthsShort,
@@ -16372,9 +16372,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return sk;
-	
+
 	}));
 
 /***/ },
@@ -16384,14 +16384,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : slovenian (sl)
 	//! author : Robert Sedovšek : https://github.com/sedovsek
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var result = number + ' ';
 	        switch (key) {
@@ -16462,7 +16462,7 @@ webpackJsonp([1],[
 	            return result;
 	        }
 	    }
-	
+
 	    var sl = moment.defineLocale('sl', {
 	        months : 'januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december'.split('_'),
 	        monthsShort : 'jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.'.split('_'),
@@ -16482,7 +16482,7 @@ webpackJsonp([1],[
 	        calendar : {
 	            sameDay  : '[danes ob] LT',
 	            nextDay  : '[jutri ob] LT',
-	
+
 	            nextWeek : function () {
 	                switch (this.day()) {
 	                case 0:
@@ -16538,9 +16538,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return sl;
-	
+
 	}));
 
 /***/ },
@@ -16552,14 +16552,14 @@ webpackJsonp([1],[
 	//! author : Flakërim Ismani : https://github.com/flakerimi
 	//! author: Menelion Elensúle: https://github.com/Oire (tests)
 	//! author : Oerd Cukalla : https://github.com/oerd (fixes)
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var sq = moment.defineLocale('sq', {
 	        months : 'Janar_Shkurt_Mars_Prill_Maj_Qershor_Korrik_Gusht_Shtator_Tetor_Nëntor_Dhjetor'.split('_'),
 	        monthsShort : 'Jan_Shk_Mar_Pri_Maj_Qer_Kor_Gus_Sht_Tet_Nën_Dhj'.split('_'),
@@ -16612,9 +16612,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return sq;
-	
+
 	}));
 
 /***/ },
@@ -16624,14 +16624,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Serbian-cyrillic (sr-cyrl)
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var translator = {
 	        words: { //Different grammatical cases
 	            m: ['један минут', 'једне минуте'],
@@ -16654,7 +16654,7 @@ webpackJsonp([1],[
 	            }
 	        }
 	    };
-	
+
 	    var sr_cyrl = moment.defineLocale('sr-cyrl', {
 	        months: 'јануар_фебруар_март_април_мај_јун_јул_август_септембар_октобар_новембар_децембар'.split('_'),
 	        monthsShort: 'јан._феб._мар._апр._мај_јун_јул_авг._сеп._окт._нов._дец.'.split('_'),
@@ -16726,9 +16726,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return sr_cyrl;
-	
+
 	}));
 
 /***/ },
@@ -16738,14 +16738,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Serbian-latin (sr)
 	//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var translator = {
 	        words: { //Different grammatical cases
 	            m: ['jedan minut', 'jedne minute'],
@@ -16768,7 +16768,7 @@ webpackJsonp([1],[
 	            }
 	        }
 	    };
-	
+
 	    var sr = moment.defineLocale('sr', {
 	        months: 'januar_februar_mart_april_maj_jun_jul_avgust_septembar_oktobar_novembar_decembar'.split('_'),
 	        monthsShort: 'jan._feb._mar._apr._maj_jun_jul_avg._sep._okt._nov._dec.'.split('_'),
@@ -16840,9 +16840,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return sr;
-	
+
 	}));
 
 /***/ },
@@ -16852,15 +16852,15 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : siSwati (ss)
 	//! author : Nicolai Davies<mail@nicolai.io> : https://github.com/nicolaidavies
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
-	
+
+
+
 	    var ss = moment.defineLocale('ss', {
 	        months : "Bhimbidvwane_Indlovana_Indlov'lenkhulu_Mabasa_Inkhwekhweti_Inhlaba_Kholwane_Ingci_Inyoni_Imphala_Lweti_Ingongoni".split('_'),
 	        monthsShort : 'Bhi_Ina_Inu_Mab_Ink_Inh_Kho_Igc_Iny_Imp_Lwe_Igo'.split('_'),
@@ -16933,9 +16933,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return ss;
-	
+
 	}));
 
 /***/ },
@@ -16945,14 +16945,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : swedish (sv)
 	//! author : Jens Alm : https://github.com/ulmus
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var sv = moment.defineLocale('sv', {
 	        months : 'januari_februari_mars_april_maj_juni_juli_augusti_september_oktober_november_december'.split('_'),
 	        monthsShort : 'jan_feb_mar_apr_maj_jun_jul_aug_sep_okt_nov_dec'.split('_'),
@@ -17006,9 +17006,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return sv;
-	
+
 	}));
 
 /***/ },
@@ -17018,14 +17018,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : swahili (sw)
 	//! author : Fahad Kassim : https://github.com/fadsel
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var sw = moment.defineLocale('sw', {
 	        months : 'Januari_Februari_Machi_Aprili_Mei_Juni_Julai_Agosti_Septemba_Oktoba_Novemba_Desemba'.split('_'),
 	        monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ago_Sep_Okt_Nov_Des'.split('_'),
@@ -17069,9 +17069,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return sw;
-	
+
 	}));
 
 /***/ },
@@ -17081,14 +17081,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : tamil (ta)
 	//! author : Arjunkumar Krishnamoorthy : https://github.com/tk120404
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var symbolMap = {
 	        '1': '௧',
 	        '2': '௨',
@@ -17112,7 +17112,7 @@ webpackJsonp([1],[
 	        '௯': '9',
 	        '௦': '0'
 	    };
-	
+
 	    var ta = moment.defineLocale('ta', {
 	        months : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split('_'),
 	        monthsShort : 'ஜனவரி_பிப்ரவரி_மார்ச்_ஏப்ரல்_மே_ஜூன்_ஜூலை_ஆகஸ்ட்_செப்டெம்பர்_அக்டோபர்_நவம்பர்_டிசம்பர்'.split('_'),
@@ -17202,9 +17202,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return ta;
-	
+
 	}));
 
 /***/ },
@@ -17214,14 +17214,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : telugu (te)
 	//! author : Krishna Chaitanya Thota : https://github.com/kcthota
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var te = moment.defineLocale('te', {
 	        months : 'జనవరి_ఫిబ్రవరి_మార్చి_ఏప్రిల్_మే_జూన్_జూలై_ఆగస్టు_సెప్టెంబర్_అక్టోబర్_నవంబర్_డిసెంబర్'.split('_'),
 	        monthsShort : 'జన._ఫిబ్ర._మార్చి_ఏప్రి._మే_జూన్_జూలై_ఆగ._సెప్._అక్టో._నవ._డిసె.'.split('_'),
@@ -17295,9 +17295,9 @@ webpackJsonp([1],[
 	            doy : 6  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return te;
-	
+
 	}));
 
 /***/ },
@@ -17307,14 +17307,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : thai (th)
 	//! author : Kridsada Thanabulpong : https://github.com/sirn
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var th = moment.defineLocale('th', {
 	        months : 'มกราคม_กุมภาพันธ์_มีนาคม_เมษายน_พฤษภาคม_มิถุนายน_กรกฎาคม_สิงหาคม_กันยายน_ตุลาคม_พฤศจิกายน_ธันวาคม'.split('_'),
 	        monthsShort : 'มกรา_กุมภา_มีนา_เมษา_พฤษภา_มิถุนา_กรกฎา_สิงหา_กันยา_ตุลา_พฤศจิกา_ธันวา'.split('_'),
@@ -17366,9 +17366,9 @@ webpackJsonp([1],[
 	            yy : '%d ปี'
 	        }
 	    });
-	
+
 	    return th;
-	
+
 	}));
 
 /***/ },
@@ -17378,14 +17378,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Tagalog/Filipino (tl-ph)
 	//! author : Dan Hagman
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var tl_ph = moment.defineLocale('tl-ph', {
 	        months : 'Enero_Pebrero_Marso_Abril_Mayo_Hunyo_Hulyo_Agosto_Setyembre_Oktubre_Nobyembre_Disyembre'.split('_'),
 	        monthsShort : 'Ene_Peb_Mar_Abr_May_Hun_Hul_Ago_Set_Okt_Nob_Dis'.split('_'),
@@ -17432,9 +17432,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return tl_ph;
-	
+
 	}));
 
 /***/ },
@@ -17444,16 +17444,16 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Klingon (tlh)
 	//! author : Dominika Kruk : https://github.com/amaranthrose
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var numbersNouns = 'pagh_wa’_cha’_wej_loS_vagh_jav_Soch_chorgh_Hut'.split('_');
-	
+
 	    function translateFuture(output) {
 	        var time = output;
 	        time = (output.indexOf('jaj') !== -1) ?
@@ -17465,7 +17465,7 @@ webpackJsonp([1],[
 	    	time + ' pIq';
 	        return time;
 	    }
-	
+
 	    function translatePast(output) {
 	        var time = output;
 	        time = (output.indexOf('jaj') !== -1) ?
@@ -17477,7 +17477,7 @@ webpackJsonp([1],[
 	    	time + ' ret';
 	        return time;
 	    }
-	
+
 	    function translate(number, withoutSuffix, string, isFuture) {
 	        var numberNoun = numberAsNoun(number);
 	        switch (string) {
@@ -17493,7 +17493,7 @@ webpackJsonp([1],[
 	                return numberNoun + ' DIS';
 	        }
 	    }
-	
+
 	    function numberAsNoun(number) {
 	        var hundred = Math.floor((number % 1000) / 100),
 	    	ten = Math.floor((number % 100) / 10),
@@ -17510,7 +17510,7 @@ webpackJsonp([1],[
 	        }
 	        return (word === '') ? 'pagh' : word;
 	    }
-	
+
 	    var tlh = moment.defineLocale('tlh', {
 	        months : 'tera’ jar wa’_tera’ jar cha’_tera’ jar wej_tera’ jar loS_tera’ jar vagh_tera’ jar jav_tera’ jar Soch_tera’ jar chorgh_tera’ jar Hut_tera’ jar wa’maH_tera’ jar wa’maH wa’_tera’ jar wa’maH cha’'.split('_'),
 	        monthsShort : 'jar wa’_jar cha’_jar wej_jar loS_jar vagh_jar jav_jar Soch_jar chorgh_jar Hut_jar wa’maH_jar wa’maH wa’_jar wa’maH cha’'.split('_'),
@@ -17556,9 +17556,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return tlh;
-	
+
 	}));
 
 /***/ },
@@ -17569,14 +17569,14 @@ webpackJsonp([1],[
 	//! locale : turkish (tr)
 	//! authors : Erhan Gundogan : https://github.com/erhangundogan,
 	//!           Burak Yiğit Kaya: https://github.com/BYK
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var suffixes = {
 	        1: '\'inci',
 	        5: '\'inci',
@@ -17597,7 +17597,7 @@ webpackJsonp([1],[
 	        60: '\'ıncı',
 	        90: '\'ıncı'
 	    };
-	
+
 	    var tr = moment.defineLocale('tr', {
 	        months : 'Ocak_Şubat_Mart_Nisan_Mayıs_Haziran_Temmuz_Ağustos_Eylül_Ekim_Kasım_Aralık'.split('_'),
 	        monthsShort : 'Oca_Şub_Mar_Nis_May_Haz_Tem_Ağu_Eyl_Eki_Kas_Ara'.split('_'),
@@ -17650,9 +17650,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return tr;
-	
+
 	}));
 
 /***/ },
@@ -17662,15 +17662,15 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : talossan (tzl)
 	//! author : Robin van der Vliet : https://github.com/robin0van0der0v with the help of Iustì Canun
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
-	
+
+
+
 	    // After the year there should be a slash and the amount of years since December 26, 1979 in Roman numerals.
 	    // This is currently too difficult (maybe even impossible) to add.
 	    var tzl = moment.defineLocale('tzl', {
@@ -17728,7 +17728,7 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    function processRelativeTime(number, withoutSuffix, key, isFuture) {
 	        var format = {
 	            's': ['viensas secunds', '\'iensas secunds'],
@@ -17745,9 +17745,9 @@ webpackJsonp([1],[
 	        };
 	        return isFuture ? format[key][0] : (withoutSuffix ? format[key][0] : format[key][1]);
 	    }
-	
+
 	    return tzl;
-	
+
 	}));
 
 /***/ },
@@ -17757,14 +17757,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Morocco Central Atlas Tamaziɣt in Latin (tzm-latn)
 	//! author : Abdel Said : https://github.com/abdelsaid
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var tzm_latn = moment.defineLocale('tzm-latn', {
 	        months : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
 	        monthsShort : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
@@ -17807,9 +17807,9 @@ webpackJsonp([1],[
 	            doy : 12  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return tzm_latn;
-	
+
 	}));
 
 /***/ },
@@ -17819,14 +17819,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : Morocco Central Atlas Tamaziɣt (tzm)
 	//! author : Abdel Said : https://github.com/abdelsaid
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var tzm = moment.defineLocale('tzm', {
 	        months : 'ⵉⵏⵏⴰⵢⵔ_ⴱⵕⴰⵢⵕ_ⵎⴰⵕⵚ_ⵉⴱⵔⵉⵔ_ⵎⴰⵢⵢⵓ_ⵢⵓⵏⵢⵓ_ⵢⵓⵍⵢⵓⵣ_ⵖⵓⵛⵜ_ⵛⵓⵜⴰⵏⴱⵉⵔ_ⴽⵟⵓⴱⵕ_ⵏⵓⵡⴰⵏⴱⵉⵔ_ⴷⵓⵊⵏⴱⵉⵔ'.split('_'),
 	        monthsShort : 'ⵉⵏⵏⴰⵢⵔ_ⴱⵕⴰⵢⵕ_ⵎⴰⵕⵚ_ⵉⴱⵔⵉⵔ_ⵎⴰⵢⵢⵓ_ⵢⵓⵏⵢⵓ_ⵢⵓⵍⵢⵓⵣ_ⵖⵓⵛⵜ_ⵛⵓⵜⴰⵏⴱⵉⵔ_ⴽⵟⵓⴱⵕ_ⵏⵓⵡⴰⵏⴱⵉⵔ_ⴷⵓⵊⵏⴱⵉⵔ'.split('_'),
@@ -17869,9 +17869,9 @@ webpackJsonp([1],[
 	            doy : 12  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return tzm;
-	
+
 	}));
 
 /***/ },
@@ -17882,14 +17882,14 @@ webpackJsonp([1],[
 	//! locale : ukrainian (uk)
 	//! author : zemlanin : https://github.com/zemlanin
 	//! Author : Menelion Elensúle : https://github.com/Oire
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    function plural(word, num) {
 	        var forms = word.split('_');
 	        return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
@@ -17930,7 +17930,7 @@ webpackJsonp([1],[
 	            return str + 'о' + (this.hours() === 11 ? 'б' : '') + '] LT';
 	        };
 	    }
-	
+
 	    var uk = moment.defineLocale('uk', {
 	        months : {
 	            'format': 'січня_лютого_березня_квітня_травня_червня_липня_серпня_вересня_жовтня_листопада_грудня'.split('_'),
@@ -18019,9 +18019,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 1st is the first week of the year.
 	        }
 	    });
-	
+
 	    return uk;
-	
+
 	}));
 
 /***/ },
@@ -18031,14 +18031,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : uzbek (uz)
 	//! author : Sardor Muminov : https://github.com/muminoff
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var uz = moment.defineLocale('uz', {
 	        months : 'январ_феврал_март_апрел_май_июн_июл_август_сентябр_октябр_ноябр_декабр'.split('_'),
 	        monthsShort : 'янв_фев_мар_апр_май_июн_июл_авг_сен_окт_ноя_дек'.split('_'),
@@ -18081,9 +18081,9 @@ webpackJsonp([1],[
 	            doy : 7  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return uz;
-	
+
 	}));
 
 /***/ },
@@ -18093,14 +18093,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : vietnamese (vi)
 	//! author : Bang Nguyen : https://github.com/bangnk
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var vi = moment.defineLocale('vi', {
 	        months : 'tháng 1_tháng 2_tháng 3_tháng 4_tháng 5_tháng 6_tháng 7_tháng 8_tháng 9_tháng 10_tháng 11_tháng 12'.split('_'),
 	        monthsShort : 'Th01_Th02_Th03_Th04_Th05_Th06_Th07_Th08_Th09_Th10_Th11_Th12'.split('_'),
@@ -18164,9 +18164,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return vi;
-	
+
 	}));
 
 /***/ },
@@ -18176,14 +18176,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : pseudo (x-pseudo)
 	//! author : Andrew Hood : https://github.com/andrewhood125
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var x_pseudo = moment.defineLocale('x-pseudo', {
 	        months : 'J~áñúá~rý_F~ébrú~árý_~Márc~h_Áp~ríl_~Máý_~Júñé~_Júl~ý_Áú~gúst~_Sép~témb~ér_Ó~ctób~ér_Ñ~óvém~bér_~Décé~mbér'.split('_'),
 	        monthsShort : 'J~áñ_~Féb_~Már_~Ápr_~Máý_~Júñ_~Júl_~Áúg_~Sép_~Óct_~Ñóv_~Déc'.split('_'),
@@ -18236,9 +18236,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return x_pseudo;
-	
+
 	}));
 
 /***/ },
@@ -18249,14 +18249,14 @@ webpackJsonp([1],[
 	//! locale : chinese (zh-cn)
 	//! author : suupic : https://github.com/suupic
 	//! author : Zeno Zeng : https://github.com/zenozeng
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var zh_cn = moment.defineLocale('zh-cn', {
 	        months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
 	        monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -18367,9 +18367,9 @@ webpackJsonp([1],[
 	            doy : 4  // The week that contains Jan 4th is the first week of the year.
 	        }
 	    });
-	
+
 	    return zh_cn;
-	
+
 	}));
 
 /***/ },
@@ -18379,14 +18379,14 @@ webpackJsonp([1],[
 	//! moment.js locale configuration
 	//! locale : traditional chinese (zh-tw)
 	//! author : Ben : https://github.com/ben-lin
-	
+
 	;(function (global, factory) {
 	    true ? factory(__webpack_require__(1)) :
 	   typeof define === 'function' && define.amd ? define(['moment'], factory) :
 	   factory(global.moment)
 	}(this, function (moment) { 'use strict';
-	
-	
+
+
 	    var zh_tw = moment.defineLocale('zh-tw', {
 	        months : '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
 	        monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
@@ -18472,9 +18472,9 @@ webpackJsonp([1],[
 	            yy : '%d年'
 	        }
 	    });
-	
+
 	    return zh_tw;
-	
+
 	}));
 
 /***/ },
@@ -18545,20 +18545,20 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], AccordionPanelComponent.prototype, "heading", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], AccordionPanelComponent.prototype, "panelClass", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], AccordionPanelComponent.prototype, "isDisabled", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.panel-open'),
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], AccordionPanelComponent.prototype, "isOpen", null);
 	    AccordionPanelComponent = __decorate([
@@ -18567,7 +18567,7 @@ webpackJsonp([1],[
 	            directives: [collapse_1.CollapseDirective, common_1.NgClass],
 	            template: "\n    <div class=\"panel\" [ngClass]=\"panelClass\">\n      <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n        <h4 class=\"panel-title\">\n          <a href tabindex=\"0\" class=\"accordion-toggle\">\n            <span *ngIf=\"heading\" [ngClass]=\"{'text-muted': isDisabled}\">{{heading}}</span>\n            <ng-content select=\"[accordion-heading]\"></ng-content>\n          </a>\n        </h4>\n      </div>\n      <div class=\"panel-collapse collapse\" [collapse]=\"!isOpen\">\n        <div class=\"panel-body\">\n          <ng-content></ng-content>\n        </div>\n      </div>\n    </div>\n  "
 	        }),
-	        __param(0, core_1.Inject(accordion_component_1.AccordionComponent)), 
+	        __param(0, core_1.Inject(accordion_component_1.AccordionComponent)),
 	        __metadata('design:paramtypes', [accordion_component_1.AccordionComponent])
 	    ], AccordionPanelComponent);
 	    return AccordionPanelComponent;
@@ -18665,26 +18665,26 @@ webpackJsonp([1],[
 	        this.onTouched = fn;
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Object)
 	    ], ButtonCheckboxDirective.prototype, "btnCheckboxTrue", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Object)
 	    ], ButtonCheckboxDirective.prototype, "btnCheckboxFalse", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.active'), 
+	        core_1.HostBinding('class.active'),
 	        __metadata('design:type', Boolean)
 	    ], ButtonCheckboxDirective.prototype, "state", void 0);
 	    __decorate([
-	        core_1.HostListener('click'), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
+	        core_1.HostListener('click'),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', []),
 	        __metadata('design:returntype', void 0)
 	    ], ButtonCheckboxDirective.prototype, "onClick", null);
 	    ButtonCheckboxDirective = __decorate([
 	        core_1.Directive({ selector: '[btnCheckbox][ngModel]' }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel])
 	    ], ButtonCheckboxDirective);
 	    return ButtonCheckboxDirective;
@@ -18755,26 +18755,26 @@ webpackJsonp([1],[
 	        this.onTouched = fn;
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], ButtonRadioDirective.prototype, "btnRadio", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], ButtonRadioDirective.prototype, "uncheckable", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.active'), 
+	        core_1.HostBinding('class.active'),
 	        __metadata('design:type', Boolean)
 	    ], ButtonRadioDirective.prototype, "isActive", null);
 	    __decorate([
-	        core_1.HostListener('click'), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
+	        core_1.HostListener('click'),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', []),
 	        __metadata('design:returntype', void 0)
 	    ], ButtonRadioDirective.prototype, "onClick", null);
 	    ButtonRadioDirective = __decorate([
 	        core_1.Directive({ selector: '[btnRadio][ngModel]' }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ElementRef])
 	    ], ButtonRadioDirective);
 	    return ButtonRadioDirective;
@@ -18824,28 +18824,28 @@ webpackJsonp([1],[
 	        this.carousel.removeSlide(this);
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], SlideComponent.prototype, "index", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], SlideComponent.prototype, "direction", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.active'),
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], SlideComponent.prototype, "active", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.item'),
-	        core_1.HostBinding('class.carousel-item'), 
+	        core_1.HostBinding('class.carousel-item'),
 	        __metadata('design:type', Boolean)
 	    ], SlideComponent.prototype, "addClass", void 0);
 	    SlideComponent = __decorate([
 	        core_1.Component({
 	            selector: 'slide',
 	            template: "\n    <div [class.active]=\"active\" class=\"item text-center\">\n      <ng-content></ng-content>\n    </div>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [carousel_component_1.CarouselComponent])
 	    ], SlideComponent);
 	    return SlideComponent;
@@ -18893,7 +18893,7 @@ webpackJsonp([1],[
 	            selector: '[ngTransclude]',
 	            properties: ['ngTransclude']
 	        }),
-	        __param(0, core_1.Inject(core_1.ViewContainerRef)), 
+	        __param(0, core_1.Inject(core_1.ViewContainerRef)),
 	        __metadata('design:paramtypes', [core_1.ViewContainerRef])
 	    ], NgTranscludeDirective);
 	    return NgTranscludeDirective;
@@ -18990,7 +18990,7 @@ webpackJsonp([1],[
 	            template: "\n    <ul class=\"dropdown-menu\"\n        style=\"display: block\"\n        [ngStyle]=\"{top: top, left: left, display: display}\"\n        [ngClass]=\"classMap\">\n        <li>\n             <datepicker (cupdate)=\"onUpdate($event)\" *ngIf=\"popupComp\" [(ngModel)]=\"popupComp.cd.model\" [show-weeks]=\"true\"></datepicker>\n        </li>\n        <li *ngIf=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n            <span class=\"btn-group pull-left\">\n                 <button type=\"button\" class=\"btn btn-sm btn-info\" (click)=\"select('today')\" ng-disabled=\"isDisabled('today')\">{{ getText('current') }}</button>\n                 <button type=\"button\" class=\"btn btn-sm btn-danger\" (click)=\"select(null)\">{{ getText('clear') }}</button>\n            </span>\n            <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" (click)=\"close()\">{{ getText('close') }}</button>\n        </li>\n    </ul>",
 	            directives: [common_1.NgClass, common_1.NgStyle, datepicker_component_1.DatePickerComponent, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            encapsulation: core_1.ViewEncapsulation.None
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [core_1.ElementRef, PopupOptions])
 	    ], PopupContainerComponent);
 	    return PopupContainerComponent;
@@ -19068,7 +19068,7 @@ webpackJsonp([1],[
 	            selector: '[datepickerPopup][ngModel]',
 	            properties: ['datepickerPopup', 'isOpen']
 	        }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ViewContainerRef, core_1.Renderer, core_1.DynamicComponentLoader])
 	    ], DatePickerPopupDirective);
 	    return DatePickerPopupDirective;
@@ -19122,7 +19122,7 @@ webpackJsonp([1],[
 	    };
 	    DropdownMenuDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdownMenu]' }),
-	        __param(0, core_1.Host()), 
+	        __param(0, core_1.Host()),
 	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
 	    ], DropdownMenuDirective);
 	    return DropdownMenuDirective;
@@ -19177,27 +19177,27 @@ webpackJsonp([1],[
 	    };
 	    __decorate([
 	        core_1.HostBinding('class.disabled'),
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], DropdownToggleDirective.prototype, "disabled", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.dropdown-toggle'),
-	        core_1.HostBinding('attr.aria-haspopup'), 
+	        core_1.HostBinding('attr.aria-haspopup'),
 	        __metadata('design:type', Boolean)
 	    ], DropdownToggleDirective.prototype, "addClass", void 0);
 	    __decorate([
-	        core_1.HostBinding('attr.aria-expanded'), 
+	        core_1.HostBinding('attr.aria-expanded'),
 	        __metadata('design:type', Boolean)
 	    ], DropdownToggleDirective.prototype, "isOpen", null);
 	    __decorate([
-	        core_1.HostListener('click', ['$event']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [Object]), 
+	        core_1.HostListener('click', ['$event']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', [Object]),
 	        __metadata('design:returntype', Boolean)
 	    ], DropdownToggleDirective.prototype, "toggleDropdown", null);
 	    DropdownToggleDirective = __decorate([
 	        core_1.Directive({ selector: '[dropdownToggle]' }),
-	        __param(0, core_1.Host()), 
+	        __param(0, core_1.Host()),
 	        __metadata('design:paramtypes', [dropdown_directive_1.DropdownDirective, core_1.ElementRef])
 	    ], DropdownToggleDirective);
 	    return DropdownToggleDirective;
@@ -19268,7 +19268,7 @@ webpackJsonp([1],[
 	                'previousText', 'nextText',
 	            ]
 	        }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.Renderer, core_1.ElementRef])
 	    ], PagerComponent);
 	    return PagerComponent;
@@ -19314,19 +19314,19 @@ webpackJsonp([1],[
 	    function ProgressbarComponent() {
 	    }
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], ProgressbarComponent.prototype, "animate", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], ProgressbarComponent.prototype, "max", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], ProgressbarComponent.prototype, "type", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], ProgressbarComponent.prototype, "value", void 0);
 	    ProgressbarComponent = __decorate([
@@ -19334,7 +19334,7 @@ webpackJsonp([1],[
 	            selector: 'progressbar',
 	            directives: [progress_directive_1.ProgressDirective, bar_component_1.BarComponent],
 	            template: "\n    <div progress [animate]=\"animate\" [max]=\"max\">\n      <bar [type]=\"type\" [value]=\"value\">\n          <ng-content></ng-content>\n      </bar>\n    </div>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], ProgressbarComponent);
 	    return ProgressbarComponent;
@@ -19389,7 +19389,7 @@ webpackJsonp([1],[
 	        tab.headingRef = templateRef;
 	    }
 	    TabHeadingDirective = __decorate([
-	        core_1.Directive({ selector: '[tabHeading]' }), 
+	        core_1.Directive({ selector: '[tabHeading]' }),
 	        __metadata('design:paramtypes', [core_1.TemplateRef, tab_directive_1.TabDirective])
 	    ], TabHeadingDirective);
 	    return TabHeadingDirective;
@@ -19440,7 +19440,7 @@ webpackJsonp([1],[
 	        Object.assign(this, options);
 	    }
 	    TooltipOptions = __decorate([
-	        core_1.Injectable(), 
+	        core_1.Injectable(),
 	        __metadata('design:paramtypes', [Object])
 	    ], TooltipOptions);
 	    return TooltipOptions;
@@ -19504,45 +19504,45 @@ webpackJsonp([1],[
 	        });
 	    };
 	    __decorate([
-	        core_1.Input('tooltip'), 
+	        core_1.Input('tooltip'),
 	        __metadata('design:type', String)
 	    ], TooltipDirective.prototype, "content", void 0);
 	    __decorate([
-	        core_1.Input('tooltipPlacement'), 
+	        core_1.Input('tooltipPlacement'),
 	        __metadata('design:type', String)
 	    ], TooltipDirective.prototype, "placement", void 0);
 	    __decorate([
-	        core_1.Input('tooltipIsOpen'), 
+	        core_1.Input('tooltipIsOpen'),
 	        __metadata('design:type', Boolean)
 	    ], TooltipDirective.prototype, "isOpen", void 0);
 	    __decorate([
-	        core_1.Input('tooltipEnable'), 
+	        core_1.Input('tooltipEnable'),
 	        __metadata('design:type', Boolean)
 	    ], TooltipDirective.prototype, "enable", void 0);
 	    __decorate([
-	        core_1.Input('tooltipAnimation'), 
+	        core_1.Input('tooltipAnimation'),
 	        __metadata('design:type', Boolean)
 	    ], TooltipDirective.prototype, "animation", void 0);
 	    __decorate([
-	        core_1.Input('tooltipAppendToBody'), 
+	        core_1.Input('tooltipAppendToBody'),
 	        __metadata('design:type', Boolean)
 	    ], TooltipDirective.prototype, "appendToBody", void 0);
 	    __decorate([
 	        core_1.HostListener('focusin', ['$event', '$target']),
-	        core_1.HostListener('mouseenter', ['$event', '$target']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
+	        core_1.HostListener('mouseenter', ['$event', '$target']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', []),
 	        __metadata('design:returntype', void 0)
 	    ], TooltipDirective.prototype, "show", null);
 	    __decorate([
 	        core_1.HostListener('focusout', ['$event', '$target']),
-	        core_1.HostListener('mouseleave', ['$event', '$target']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
+	        core_1.HostListener('mouseleave', ['$event', '$target']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', []),
 	        __metadata('design:returntype', void 0)
 	    ], TooltipDirective.prototype, "hide", null);
 	    TooltipDirective = __decorate([
-	        core_1.Directive({ selector: '[tooltip]' }), 
+	        core_1.Directive({ selector: '[tooltip]' }),
 	        __metadata('design:paramtypes', [core_1.ViewContainerRef, core_1.DynamicComponentLoader])
 	    ], TooltipDirective);
 	    return TooltipDirective;
@@ -19909,85 +19909,85 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], TypeaheadDirective.prototype, "typeaheadLoading", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], TypeaheadDirective.prototype, "typeaheadNoResults", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], TypeaheadDirective.prototype, "typeaheadOnSelect", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Object)
 	    ], TypeaheadDirective.prototype, "typeahead", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], TypeaheadDirective.prototype, "typeaheadMinLength", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], TypeaheadDirective.prototype, "typeaheadWaitMs", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], TypeaheadDirective.prototype, "typeaheadOptionsLimit", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], TypeaheadDirective.prototype, "typeaheadOptionField", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TypeaheadDirective.prototype, "typeaheadAsync", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TypeaheadDirective.prototype, "typeaheadLatinize", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TypeaheadDirective.prototype, "typeaheadSingleWords", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], TypeaheadDirective.prototype, "typeaheadWordDelimiters", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], TypeaheadDirective.prototype, "typeaheadPhraseDelimiters", void 0);
 	    __decorate([
-	        core_1.HostListener('keyup', ['$event']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [Object]), 
+	        core_1.HostListener('keyup', ['$event']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', [Object]),
 	        __metadata('design:returntype', void 0)
 	    ], TypeaheadDirective.prototype, "onChange", null);
 	    __decorate([
-	        core_1.HostListener('focus', ['$event.target']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
+	        core_1.HostListener('focus', ['$event.target']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', []),
 	        __metadata('design:returntype', void 0)
 	    ], TypeaheadDirective.prototype, "onFocus", null);
 	    __decorate([
-	        core_1.HostListener('blur', ['$event.target']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', []), 
+	        core_1.HostListener('blur', ['$event.target']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', []),
 	        __metadata('design:returntype', void 0)
 	    ], TypeaheadDirective.prototype, "onBlur", null);
 	    __decorate([
-	        core_1.HostListener('keydown', ['$event']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [Object]), 
+	        core_1.HostListener('keydown', ['$event']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', [Object]),
 	        __metadata('design:returntype', void 0)
 	    ], TypeaheadDirective.prototype, "onKeydown", null);
 	    TypeaheadDirective = __decorate([
 	        core_1.Directive({
 	            selector: '[typeahead][ngModel]'
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [common_1.NgModel, core_1.ViewContainerRef, core_1.ElementRef, core_1.Renderer, core_1.DynamicComponentLoader])
 	    ], TypeaheadDirective);
 	    return TypeaheadDirective;
@@ -21040,7 +21040,7 @@ webpackJsonp([1],[
 	exports.disableDebugTools = tools_1.disableDebugTools;
 	var by_1 = __webpack_require__(420);
 	exports.By = by_1.By;
-	exports.BROWSER_PLATFORM_MARKER = 
+	exports.BROWSER_PLATFORM_MARKER =
 	/*@ts2dart_const*/ new core_1.OpaqueToken('BrowserPlatformMarker');
 	/**
 	 * A set of providers to initialize the Angular platform in a web browser.
@@ -21069,7 +21069,7 @@ webpackJsonp([1],[
 	 *
 	 * Used automatically by `bootstrap`, or can be passed to {@link PlatformRef.application}.
 	 */
-	exports.BROWSER_APP_COMMON_PROVIDERS = 
+	exports.BROWSER_APP_COMMON_PROVIDERS =
 	/*@ts2dart_const*/ [
 	    core_1.APPLICATION_COMMON_PROVIDERS,
 	    common_1.FORM_PROVIDERS,
@@ -24074,19 +24074,19 @@ webpackJsonp([1],[
 	        this.close.emit(this);
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], AlertComponent.prototype, "type", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], AlertComponent.prototype, "dismissible", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], AlertComponent.prototype, "dismissOnTimeout", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], AlertComponent.prototype, "close", void 0);
 	    AlertComponent = __decorate([
@@ -24094,7 +24094,7 @@ webpackJsonp([1],[
 	            selector: 'alert',
 	            directives: [common_1.NgIf, common_1.NgClass],
 	            template: ALERT_TEMPLATE
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], AlertComponent);
 	    return AlertComponent;
@@ -24167,33 +24167,33 @@ webpackJsonp([1],[
 	        this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
 	    };
 	    __decorate([
-	        core_1.HostBinding('style.display'), 
+	        core_1.HostBinding('style.display'),
 	        __metadata('design:type', String)
 	    ], CollapseDirective.prototype, "display", void 0);
 	    __decorate([
 	        core_1.HostBinding('class.in'),
-	        core_1.HostBinding('attr.aria-expanded'), 
+	        core_1.HostBinding('attr.aria-expanded'),
 	        __metadata('design:type', Boolean)
 	    ], CollapseDirective.prototype, "isExpanded", void 0);
 	    __decorate([
-	        core_1.HostBinding('attr.aria-hidden'), 
+	        core_1.HostBinding('attr.aria-hidden'),
 	        __metadata('design:type', Boolean)
 	    ], CollapseDirective.prototype, "isCollapsed", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.collapse'), 
+	        core_1.HostBinding('class.collapse'),
 	        __metadata('design:type', Boolean)
 	    ], CollapseDirective.prototype, "isCollapse", void 0);
 	    __decorate([
-	        core_1.HostBinding('class.collapsing'), 
+	        core_1.HostBinding('class.collapsing'),
 	        __metadata('design:type', Boolean)
 	    ], CollapseDirective.prototype, "isCollapsing", void 0);
 	    __decorate([
-	        core_1.Input(), 
-	        __metadata('design:type', Boolean), 
+	        core_1.Input(),
+	        __metadata('design:type', Boolean),
 	        __metadata('design:paramtypes', [Boolean])
 	    ], CollapseDirective.prototype, "collapse", null);
 	    CollapseDirective = __decorate([
-	        core_1.Directive({ selector: '[collapse]' }), 
+	        core_1.Directive({ selector: '[collapse]' }),
 	        __metadata('design:paramtypes', [core_1.ElementRef, core_1.Renderer])
 	    ], CollapseDirective);
 	    return CollapseDirective;
@@ -24331,7 +24331,7 @@ webpackJsonp([1],[
 	            selector: 'daypicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='day'\" role=\"grid\" aria-labelledby=\"uniqueId+'-title'\" aria-activedescendant=\"activeDateId\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-left\" (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_LEFT + "\n        </button>\n      </th>\n      <th [attr.colspan]=\"5 + datePicker.showWeeks\">\n        <button [id]=\"datePicker.uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-secondary btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-secondary btn-sm pull-right\" (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n        " + CURRENT_THEME_TEMPLATE.ARROW_RIGHT + "\n        </button>\n      </th>\n    </tr>\n    <tr>\n      <th *ngIf=\"datePicker.showWeeks\"></th>\n      " + CURRENT_THEME_TEMPLATE.DAY_TITLE + "\n    </tr>\n  </thead>\n  <tbody>\n    <template ngFor [ngForOf]=\"rows\" let-rowz=\"$implicit\" let-index=\"index\">\n      <tr *ngIf=\"!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)\">\n        " + CURRENT_THEME_TEMPLATE.WEEK_ROW + "\n      </tr>\n    </template>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
 	    ], DayPickerComponent);
 	    return DayPickerComponent;
@@ -24400,7 +24400,7 @@ webpackJsonp([1],[
 	            selector: 'monthpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='month'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button></th>\n      <th>\n        <button [id]=\"uniqueId + '-title'\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let rowz of rows\">\n      <td *ngFor=\"let dtz of rowz\" class=\"text-center\" role=\"gridcell\" id=\"{{dtz.uid}}\" [ngClass]=\"dtz.customClass\">\n        " + CURRENT_THEME_TEMPLATE.MONTH_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
 	    ], MonthPickerComponent);
 	    return MonthPickerComponent;
@@ -24469,7 +24469,7 @@ webpackJsonp([1],[
 	            selector: 'yearpicker',
 	            template: "\n<table *ngIf=\"datePicker.datepickerMode==='year'\" role=\"grid\">\n  <thead>\n    <tr>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-left\"\n                (click)=\"datePicker.move(-1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-left\"></i>\n        </button>\n      </th>\n      <th colspan=\"3\">\n        <button [id]=\"uniqueId + '-title'\" role=\"heading\"\n                type=\"button\" class=\"btn btn-default btn-sm\"\n                (click)=\"datePicker.toggleMode()\"\n                [disabled]=\"datePicker.datepickerMode === datePicker.maxMode\"\n                [ngClass]=\"{disabled: datePicker.datepickerMode === datePicker.maxMode}\" tabindex=\"-1\" style=\"width:100%;\">\n          <strong>{{title}}</strong>\n        </button>\n      </th>\n      <th>\n        <button type=\"button\" class=\"btn btn-default btn-sm pull-right\"\n                (click)=\"datePicker.move(1)\" tabindex=\"-1\">\n          <i class=\"glyphicon glyphicon-chevron-right\"></i>\n        </button>\n      </th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let rowz of rows\">\n      <td *ngFor=\"let dtz of rowz\" class=\"text-center\" role=\"gridcell\">\n      " + CURRENT_THEME_TEMPLATE.YEAR_BUTTON + "\n      </td>\n    </tr>\n  </tbody>\n</table>\n  ",
 	            directives: [common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.NgClass]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [datepicker_inner_component_1.DatePickerInnerComponent])
 	    ], YearPickerComponent);
 	    return YearPickerComponent;
@@ -24647,41 +24647,41 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], RatingComponent.prototype, "max", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], RatingComponent.prototype, "stateOn", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', String)
 	    ], RatingComponent.prototype, "stateOff", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], RatingComponent.prototype, "readonly", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Array)
 	    ], RatingComponent.prototype, "titles", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Array)
 	    ], RatingComponent.prototype, "ratingStates", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], RatingComponent.prototype, "onHover", void 0);
 	    __decorate([
-	        core_1.Output(), 
+	        core_1.Output(),
 	        __metadata('design:type', core_1.EventEmitter)
 	    ], RatingComponent.prototype, "onLeave", void 0);
 	    __decorate([
-	        core_1.HostListener('keydown', ['$event']), 
-	        __metadata('design:type', Function), 
-	        __metadata('design:paramtypes', [Object]), 
+	        core_1.HostListener('keydown', ['$event']),
+	        __metadata('design:type', Function),
+	        __metadata('design:paramtypes', [Object]),
 	        __metadata('design:returntype', void 0)
 	    ], RatingComponent.prototype, "onKeydown", null);
 	    RatingComponent = __decorate([
@@ -24690,7 +24690,7 @@ webpackJsonp([1],[
 	            directives: [common_1.NgFor],
 	            template: "\n    <span (mouseleave)=\"reset()\" (keydown)=\"onKeydown($event)\" tabindex=\"0\" role=\"slider\" aria-valuemin=\"0\" [attr.aria-valuemax]=\"range.length\" [attr.aria-valuenow]=\"value\">\n      <template ngFor let-r [ngForOf]=\"range\" let-index=\"index\">\n        <span class=\"sr-only\">({{ index < value ? '*' : ' ' }})</span>\n        <i (mouseenter)=\"enter(index + 1)\" (click)=\"rate(index + 1)\" class=\"glyphicon\" [ngClass]=\"index < value ? r.stateOn : r.stateOff\" [title]=\"r.title\" ></i>\n      </template>\n    </span>\n  "
 	        }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel])
 	    ], RatingComponent);
 	    return RatingComponent;
@@ -24953,43 +24953,43 @@ webpackJsonp([1],[
 	        }
 	    };
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], TimepickerComponent.prototype, "hourStep", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Number)
 	    ], TimepickerComponent.prototype, "minuteStep", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TimepickerComponent.prototype, "readonlyInput", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TimepickerComponent.prototype, "mousewheel", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TimepickerComponent.prototype, "arrowkeys", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TimepickerComponent.prototype, "showSpinners", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], TimepickerComponent.prototype, "min", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Date)
 	    ], TimepickerComponent.prototype, "max", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Array)
 	    ], TimepickerComponent.prototype, "meridians", void 0);
 	    __decorate([
-	        core_1.Input(), 
+	        core_1.Input(),
 	        __metadata('design:type', Boolean)
 	    ], TimepickerComponent.prototype, "showMeridian", null);
 	    TimepickerComponent = __decorate([
@@ -24998,7 +24998,7 @@ webpackJsonp([1],[
 	            directives: [common_1.NgClass],
 	            template: "\n    <table>\n      <tbody>\n        <tr class=\"text-center\" [ngClass]=\"{hidden: !showSpinners}\">\n          <td><a (click)=\"incrementHours()\" [ngClass]=\"{disabled: noIncrementHours()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a></td>\n          <td>&nbsp;</td>\n          <td><a (click)=\"incrementMinutes()\" [ngClass]=\"{disabled: noIncrementMinutes()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-up\"></span></a></td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" *ngIf=\"showMeridian\"></td>\n        </tr>\n        <tr>\n          <td class=\"form-group\" [ngClass]=\"{'has-error': invalidHours}\">\n            <input style=\"width:50px;\" type=\"text\" [(ngModel)]=\"hours\" (change)=\"updateHours()\" class=\"form-control text-center\" [readonly]=\"readonlyInput\" (blur)=\"hoursOnBlur($event)\" maxlength=\"2\">\n          </td>\n          <td>:</td>\n          <td class=\"form-group\" [ngClass]=\"{'has-error': invalidMinutes}\">\n            <input style=\"width:50px;\" type=\"text\" [(ngModel)]=\"minutes\" (change)=\"updateMinutes()\" class=\"form-control text-center\" [readonly]=\"readonlyInput\" (blur)=\"minutesOnBlur($event)\" maxlength=\"2\">\n          </td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" *ngIf=\"showMeridian\"><button type=\"button\" [ngClass]=\"{disabled: noToggleMeridian()}\" class=\"btn btn-default text-center\" (click)=\"toggleMeridian()\">{{meridian}}</button></td>\n        </tr>\n        <tr class=\"text-center\" [ngClass]=\"{hidden: !showSpinners}\">\n          <td><a (click)=\"decrementHours()\" [ngClass]=\"{disabled: noDecrementHours()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a></td>\n          <td>&nbsp;</td>\n          <td><a (click)=\"decrementMinutes()\" [ngClass]=\"{disabled: noDecrementMinutes()}\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-chevron-down\"></span></a></td>\n          <td [ngClass]=\"{hidden: !showMeridian}\" *ngIf=\"showMeridian\"></td>\n        </tr>\n      </tbody>\n    </table>\n  "
 	        }),
-	        __param(0, core_1.Self()), 
+	        __param(0, core_1.Self()),
 	        __metadata('design:paramtypes', [common_1.NgModel])
 	    ], TimepickerComponent);
 	    return TimepickerComponent;
@@ -29719,7 +29719,7 @@ webpackJsonp([1],[
 	var dom_tokens_1 = __webpack_require__(208);
 	var dom_adapter_1 = __webpack_require__(16);
 	var util_1 = __webpack_require__(343);
-	var NAMESPACE_URIS = 
+	var NAMESPACE_URIS =
 	/*@ts2dart_const*/
 	{ 'xlink': 'http://www.w3.org/1999/xlink', 'svg': 'http://www.w3.org/2000/svg' };
 	var TEMPLATE_COMMENT_TEXT = 'template bindings={}';
@@ -30075,7 +30075,7 @@ webpackJsonp([1],[
 	var lang_1 = __webpack_require__(13);
 	var exceptions_1 = __webpack_require__(258);
 	var hammer_common_1 = __webpack_require__(421);
-	exports.HAMMER_GESTURE_CONFIG = 
+	exports.HAMMER_GESTURE_CONFIG =
 	/*@ts2dart_const*/ new core_1.OpaqueToken("HammerGestureConfig");
 	var HammerGestureConfig = (function () {
 	    function HammerGestureConfig() {
@@ -30473,7 +30473,7 @@ webpackJsonp([1],[
 	 * A set of providers that provide `RuntimeCompiler` and its dependencies to use for
 	 * template compilation.
 	 */
-	exports.COMPILER_PROVIDERS = 
+	exports.COMPILER_PROVIDERS =
 	/*@ts2dart_const*/ [
 	    lexer_1.Lexer,
 	    parser_1.Parser,
@@ -33325,7 +33325,7 @@ webpackJsonp([1],[
 	 * NOTE: We don't yet support querying for types or events.
 	 * NOTE: This schema is auto extracted from `schema_extractor.ts` located in the test folder.
 	 */
-	var SCHEMA = 
+	var SCHEMA =
 	/*@ts2dart_const*/ ([
 	    '*|%classList,className,id,innerHTML,*beforecopy,*beforecut,*beforepaste,*copy,*cut,*paste,*search,*selectstart,*webkitfullscreenchange,*webkitfullscreenerror,*wheel,outerHTML,#scrollLeft,#scrollTop',
 	    '^*|accessKey,contentEditable,dir,!draggable,!hidden,innerText,lang,*abort,*autocomplete,*autocompleteerror,*beforecopy,*beforecut,*beforepaste,*blur,*cancel,*canplay,*canplaythrough,*change,*click,*close,*contextmenu,*copy,*cuechange,*cut,*dblclick,*drag,*dragend,*dragenter,*dragleave,*dragover,*dragstart,*drop,*durationchange,*emptied,*ended,*error,*focus,*input,*invalid,*keydown,*keypress,*keyup,*load,*loadeddata,*loadedmetadata,*loadstart,*message,*mousedown,*mouseenter,*mouseleave,*mousemove,*mouseout,*mouseover,*mouseup,*mousewheel,*mozfullscreenchange,*mozfullscreenerror,*mozpointerlockchange,*mozpointerlockerror,*paste,*pause,*play,*playing,*progress,*ratechange,*reset,*resize,*scroll,*search,*seeked,*seeking,*select,*selectstart,*show,*stalled,*submit,*suspend,*timeupdate,*toggle,*volumechange,*waiting,*webglcontextcreationerror,*webglcontextlost,*webglcontextrestored,*webkitfullscreenchange,*webkitfullscreenerror,*wheel,outerText,!spellcheck,%style,#tabIndex,title,!translate',
@@ -33583,103 +33583,103 @@ webpackJsonp([1],[
 	/*
 	  This is a limited shim for ShadowDOM css styling.
 	  https://dvcs.w3.org/hg/webcomponents/raw-file/tip/spec/shadow/index.html#styles
-	
+
 	  The intention here is to support only the styling features which can be
 	  relatively simply implemented. The goal is to allow users to avoid the
 	  most obvious pitfalls and do so without compromising performance significantly.
 	  For ShadowDOM styling that's not covered here, a set of best practices
 	  can be provided that should allow users to accomplish more complex styling.
-	
+
 	  The following is a list of specific ShadowDOM styling features and a brief
 	  discussion of the approach used to shim.
-	
+
 	  Shimmed features:
-	
+
 	  * :host, :host-context: ShadowDOM allows styling of the shadowRoot's host
 	  element using the :host rule. To shim this feature, the :host styles are
 	  reformatted and prefixed with a given scope name and promoted to a
 	  document level stylesheet.
 	  For example, given a scope name of .foo, a rule like this:
-	
+
 	    :host {
 	        background: red;
 	      }
 	    }
-	
+
 	  becomes:
-	
+
 	    .foo {
 	      background: red;
 	    }
-	
+
 	  * encapsultion: Styles defined within ShadowDOM, apply only to
 	  dom inside the ShadowDOM. Polymer uses one of two techniques to implement
 	  this feature.
-	
+
 	  By default, rules are prefixed with the host element tag name
 	  as a descendant selector. This ensures styling does not leak out of the 'top'
 	  of the element's ShadowDOM. For example,
-	
+
 	  div {
 	      font-weight: bold;
 	    }
-	
+
 	  becomes:
-	
+
 	  x-foo div {
 	      font-weight: bold;
 	    }
-	
+
 	  becomes:
-	
-	
+
+
 	  Alternatively, if WebComponents.ShadowCSS.strictStyling is set to true then
 	  selectors are scoped by adding an attribute selector suffix to each
 	  simple selector that contains the host element tag name. Each element
 	  in the element's ShadowDOM template is also given the scope attribute.
 	  Thus, these rules match only elements that have the scope attribute.
 	  For example, given a scope name of x-foo, a rule like this:
-	
+
 	    div {
 	      font-weight: bold;
 	    }
-	
+
 	  becomes:
-	
+
 	    div[x-foo] {
 	      font-weight: bold;
 	    }
-	
+
 	  Note that elements that are dynamically added to a scope must have the scope
 	  selector added to them manually.
-	
+
 	  * upper/lower bound encapsulation: Styles which are defined outside a
 	  shadowRoot should not cross the ShadowDOM boundary and should not apply
 	  inside a shadowRoot.
-	
+
 	  This styling behavior is not emulated. Some possible ways to do this that
 	  were rejected due to complexity and/or performance concerns include: (1) reset
 	  every possible property for every possible selector for a given scope name;
 	  (2) re-implement css in javascript.
-	
+
 	  As an alternative, users should make sure to use selectors
 	  specific to the scope in which they are working.
-	
+
 	  * ::distributed: This behavior is not emulated. It's often not necessary
 	  to style the contents of a specific insertion point and instead, descendants
 	  of the host element can be styled selectively. Users can also create an
 	  extra node around an insertion point and style that node's contents
 	  via descendent selectors. For example, with a shadowRoot like this:
-	
+
 	    <style>
 	      ::content(div) {
 	        background: red;
 	      }
 	    </style>
 	    <content></content>
-	
+
 	  could become:
-	
+
 	    <style>
 	      / *@polyfill .content-container div * /
 	      ::content(div) {
@@ -33689,7 +33689,7 @@ webpackJsonp([1],[
 	    <div class="content-container">
 	      <content></content>
 	    </div>
-	
+
 	  Note the use of @polyfill in the comment above a ShadowDOM specific style
 	  declaration. This is a directive to the styling shim to use the selector
 	  in comments in lieu of the next selector when running under polyfill.
@@ -35168,12 +35168,12 @@ webpackJsonp([1],[
 	var platform_browser_1 = __webpack_require__(412);
 	var core_1 = __webpack_require__(2);
 	var core_private_1 = __webpack_require__(405);
-	exports.CACHED_TEMPLATE_PROVIDER = 
+	exports.CACHED_TEMPLATE_PROVIDER =
 	/*@ts2dart_const*/ [{ provide: compiler_1.XHR, useClass: xhr_cache_1.CachedXHR }];
 	/**
 	 * An array of providers that should be passed into `application()` when bootstrapping a component.
 	 */
-	exports.BROWSER_APP_DYNAMIC_PROVIDERS = 
+	exports.BROWSER_APP_DYNAMIC_PROVIDERS =
 	/*@ts2dart_const*/ [
 	    platform_browser_1.BROWSER_APP_COMMON_PROVIDERS,
 	    compiler_1.COMPILER_PROVIDERS,
@@ -36083,7 +36083,7 @@ webpackJsonp([1],[
 	 * when all templates
 	 * have been precompiled offline.
 	 */
-	exports.BROWSER_APP_STATIC_PROVIDERS = 
+	exports.BROWSER_APP_STATIC_PROVIDERS =
 	/*@ts2dart_const*/ browser_common_1.BROWSER_APP_COMMON_PROVIDERS;
 	function browserStaticPlatform() {
 	    if (lang_1.isBlank(core_1.getPlatform())) {
@@ -36348,7 +36348,7 @@ webpackJsonp([1],[
 /* 454 */
 /***/ function(module, exports) {
 
-	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TOOLTIP_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Tooltip implements OnInit</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[tooltip]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TooltipDirective</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltip'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> content<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipPlacement'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> placement<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'top'</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipIsOpen'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> isOpen<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipEnable'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> enable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipAppendToBody'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> appendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"tooltip-properties\">Tooltip properties</h3>\n<ul>\n<li><code>tooltip</code> (<code>string</code>) - text of tooltip</li>\n<li><code>tooltipPlacement</code> (<code>?string=&#39;top&#39;</code>) - tooltip positioning instruction, supported positions: &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, &#39;right&#39;</li>\n<li><code>tooltipAnimation</code> (<code>?boolean=true</code>) - if <code>false</code> fade tooltip animation will be disabled</li>\n<li><code>tooltipPopupDelay</code> (<em>not implemented</em>) (<code>?numer=0</code>) - time in milliseconds before tooltip occurs</li>\n<li><code>tooltipTrigger</code> (<em>not implemented</em>) (<code>?Array&lt;string&gt;</code>) - array of event names which triggers tooltip opening</li>\n<li><code>tooltipEnable</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> tooltip is disabled and will not be shown</li>\n<li><code>tooltipAppendToBody</code> (<em>not implemented</em>) (<code>?boolean=false</code>) - if <code>true</code> tooltip will be appended to body</li>\n<li><code>tooltipClass</code> (<em>not implemented</em>) (<code>?string</code>) - custom tooltip class applied to the tooltip container.</li>\n<li><code>tooltipIsOpen</code> (<code>?boolean=false</code>) - if <code>true</code> tooltip is currently visible</li>\n</ul>\n";
+	module.exports = "<h3 id=\"usage\">Usage</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token keyword\" >import</span> <span class=\"token punctuation\" >{</span> TOOLTIP_DIRECTIVES <span class=\"token punctuation\" >}</span> from <span class=\"token string\" >'ng2-bootstrap/ng2-bootstrap'</span><span class=\"token punctuation\" >;</span>\n</code></pre>\n<h3 id=\"annotations\">Annotations</h3>\n<pre class=\"language-typescript\"><code class=\"language-typescript\"><span class=\"token comment\" spellcheck=\"true\">// class Tooltip implements OnInit</span>\n@<span class=\"token function\" >Directive</span><span class=\"token punctuation\" >(</span><span class=\"token punctuation\" >{</span> selector<span class=\"token punctuation\" >:</span> <span class=\"token string\" >'[tooltip]'</span> <span class=\"token punctuation\" >}</span><span class=\"token punctuation\" >)</span>\n<span class=\"token keyword\" >export</span> <span class=\"token keyword\" >class</span> <span class=\"token class-name\" >TooltipDirective</span> <span class=\"token keyword\" >implements</span> <span class=\"token class-name\" >OnInit</span> <span class=\"token punctuation\" >{</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltip'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> content<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipPlacement'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> placement<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span> <span class=\"token operator\" >=</span> <span class=\"token string\" >'top'</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipIsOpen'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> isOpen<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipEnable'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> enable<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipAppendToBody'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> appendToBody<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >boolean</span><span class=\"token punctuation\" >;</span>\n  @<span class=\"token function\" >Input</span><span class=\"token punctuation\" >(</span><span class=\"token string\" >'tooltipHtml'</span><span class=\"token punctuation\" >)</span> <span class=\"token keyword\" >private</span> htmlContent<span class=\"token punctuation\" >:</span><span class=\"token keyword\" >string</span><span class=\"token punctuation\" >;</span>\n<span class=\"token punctuation\" >}</span>\n</code></pre>\n<h3 id=\"tooltip-properties\">Tooltip properties</h3>\n<ul>\n<li><code>tooltip</code> (<code>string</code>) - text of tooltip</li>\n<li><code>tooltipPlacement</code> (<code>?string=&#39;top&#39;</code>) - tooltip positioning instruction, supported positions: &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, &#39;right&#39;</li>\n<li><code>tooltipAnimation</code> (<code>?boolean=true</code>) - if <code>false</code> fade tooltip animation will be disabled</li>\n<li><code>tooltipPopupDelay</code> (<em>not implemented</em>) (<code>?numer=0</code>) - time in milliseconds before tooltip occurs</li>\n<li><code>tooltipTrigger</code> (<em>not implemented</em>) (<code>?Array&lt;string&gt;</code>) - array of event names which triggers tooltip opening</li>\n<li><code>tooltipEnable</code> (<em>not implemented</em>) (<code>?boolean=true</code>) - if <code>false</code> tooltip is disabled and will not be shown</li>\n<li><code>tooltipAppendToBody</code> (<code>?boolean=false</code>) - if <code>true</code> tooltip will be appended to body</li>\n<li><code>tooltipClass</code> (<em>not implemented</em>) (<code>?string</code>) - custom tooltip class applied to the tooltip container.</li>\n<li><code>tooltipIsOpen</code> (<code>?boolean=false</code>) - if <code>true</code> tooltip is currently visible</li>\n<li><code>tooltipHtml</code> (<code>string</code>) - tooltip with html content</li>\n</ul>\n";
 
 /***/ },
 /* 455 */
@@ -36456,7 +36456,7 @@ webpackJsonp([1],[
 /* 472 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Dynamic Tooltip Text<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[(ngModel)]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>dynamicTooltipText<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Dynamic Tooltip Popup Text<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[(ngModel)]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>dynamicTooltip<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span>\n  Pellentesque <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[tooltip]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>dynamicTooltip<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>{{dynamicTooltipText}}<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>,\n  sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in\n  aliquam. Tincidunt lobortis feugiat vivamus at\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>left<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>On the Left!<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>left<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span> eget\n  arcu dictum varius duis at consectetur lorem. Vitae elementum curabitur\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>right<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>On the Right!<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>right<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n  nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egestas\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>bottom<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>On the Bottom!<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>bottom<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n  pharetra convallis posuere morbi leo urna,\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[tooltipAnimation]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>false<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>I don<span class=\"token punctuation\" >'</span>t fade. :-(<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>fading<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n  at elementum eu, facilisis sed odio morbi quis commodo odio. In cursus\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPopupDelay</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >'</span>1000<span class=\"token punctuation\" >'</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >'</span>appears with delay<span class=\"token punctuation\" >'</span></span><span class=\"token punctuation\" >></span></span>delayed<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span> turpis massa tincidunt dui ut.\n  nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egestas\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span>\n  I can even contain HTML. <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipHtml</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>htmlTooltip<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>Check me out!<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span>\n  I can have a custom class. <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>I can have a custom class applied to me!<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipClass</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>customClass<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>Check me out!<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>form</span> <span class=\"token attr-name\" >role</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Or use custom triggers, like focus: <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >value</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>Click me!<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>See? Now click away...<span class=\"token punctuation\" >\"</span></span>  <span class=\"token attr-name\" >tooltipTrigger</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>focus<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>right<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >ngClass</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>{<span class=\"token punctuation\" >'</span>has-error<span class=\"token punctuation\" >'</span> : !inputModel}<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Disable tooltips conditionally:<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >ngModel</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>inputModel<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >placeholder</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>Hover over this for a tooltip until this is filled<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>Enter something in this input field to disable this tooltip<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>top<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltipTrigger</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>mouseenter<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltipEnable</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>!inputModel<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>form</span><span class=\"token punctuation\" >></span></span>\n"
+	module.exports = "<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Dynamic Tooltip Text<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[(ngModel)]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>dynamicTooltipText<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Dynamic Tooltip Popup Text<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[(ngModel)]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>dynamicTooltip<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span>\n  Pellentesque <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[tooltip]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>dynamicTooltip<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>{{dynamicTooltipText}}<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>,\n  sit amet venenatis urna cursus eget nunc scelerisque viverra mauris, in\n  aliquam. Tincidunt lobortis feugiat vivamus at\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>left<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>On the Left!<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>left<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span> eget\n  arcu dictum varius duis at consectetur lorem. Vitae elementum curabitur\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>right<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>On the Right!<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>right<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n  nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egestas\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>bottom<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>On the Bottom!<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>bottom<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n  pharetra convallis posuere morbi leo urna,\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >[tooltipAnimation]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>false<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>I don<span class=\"token punctuation\" >'</span>t fade. :-(<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>fading<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n  at elementum eu, facilisis sed odio morbi quis commodo odio. In cursus\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPopupDelay</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >'</span>1000<span class=\"token punctuation\" >'</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >'</span>appears with delay<span class=\"token punctuation\" >'</span></span><span class=\"token punctuation\" >></span></span>delayed<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span> turpis massa tincidunt dui ut.\n  nunc sed velit dignissim sodales ut eu sem integer vitae. Turpis egestas\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span>\n  I can even contain HTML. <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip [tooltipHtml]</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>htmlTooltip<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>Check me out!<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>p</span><span class=\"token punctuation\" >></span></span>\n  I can have a custom class. <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>a</span> <span class=\"token attr-name\" >href</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>#<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>I can have a custom class applied to me!<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipClass</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>customClass<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>Check me out!<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>a</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>p</span><span class=\"token punctuation\" >></span></span>\n\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>form</span> <span class=\"token attr-name\" >role</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Or use custom triggers, like focus: <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >value</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>Click me!<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>See? Now click away...<span class=\"token punctuation\" >\"</span></span>  <span class=\"token attr-name\" >tooltipTrigger</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>focus<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>right<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>div</span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-group<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >ngClass</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>{<span class=\"token punctuation\" >'</span>has-error<span class=\"token punctuation\" >'</span> : !inputModel}<span class=\"token punctuation\" >\"</span></span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>label</span><span class=\"token punctuation\" >></span></span>Disable tooltips conditionally:<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>label</span><span class=\"token punctuation\" >></span></span>\n    <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;</span>input</span> <span class=\"token attr-name\" >type</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>text<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >ngModel</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>inputModel<span class=\"token punctuation\" >\"</span></span> <span class=\"token attr-name\" >class</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>form-control<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >placeholder</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>Hover over this for a tooltip until this is filled<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltip</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>Enter something in this input field to disable this tooltip<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltipPlacement</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>top<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltipTrigger</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>mouseenter<span class=\"token punctuation\" >\"</span></span>\n           <span class=\"token attr-name\" >tooltipEnable</span><span class=\"token attr-value\" ><span class=\"token punctuation\" >=</span><span class=\"token punctuation\" >\"</span>!inputModel<span class=\"token punctuation\" >\"</span></span> <span class=\"token punctuation\" >/></span></span>\n  <span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>div</span><span class=\"token punctuation\" >></span></span>\n<span class=\"token tag\" ><span class=\"token tag\" ><span class=\"token punctuation\" >&lt;/</span>form</span><span class=\"token punctuation\" >></span></span>\n"
 
 /***/ },
 /* 473 */
@@ -36681,7 +36681,7 @@ webpackJsonp([1],[
 	            selector: 'accordion-section',
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n\n    <br/>\n\n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <accordion-demo></accordion-demo>\n      </div>\n    </div>\n    \n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n    \n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
 	            directives: [accordion_demo_1.AccordionDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], AccordionSectionComponent);
 	    return AccordionSectionComponent;
@@ -36734,7 +36734,7 @@ webpackJsonp([1],[
 	            selector: 'accordion-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.ACCORDION_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], AccordionDemoComponent);
 	    return AccordionDemoComponent;
@@ -36774,7 +36774,7 @@ webpackJsonp([1],[
 	            selector: 'alert-section',
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n\n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <alert-demo></alert-demo>\n      </div>\n    </div>\n    \n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n    \n    <br/>\n      \n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
 	            directives: [alert_demo_1.AlertDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], AlertSectionComponent);
 	    return AlertSectionComponent;
@@ -36825,7 +36825,7 @@ webpackJsonp([1],[
 	            selector: 'alert-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.AlertComponent, common_1.CORE_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], AlertDemoComponent);
 	    return AlertDemoComponent;
@@ -36865,7 +36865,7 @@ webpackJsonp([1],[
 	            selector: 'buttons-section',
 	            directives: [buttons_demo_1.ButtonsDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <buttons-demo></buttons-demo>\n      </div>\n    </div>\n\n    <br/>\n    \n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], ButtonsSectionComponent);
 	    return ButtonsSectionComponent;
@@ -36902,7 +36902,7 @@ webpackJsonp([1],[
 	            selector: 'buttons-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.BUTTON_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], ButtonsDemoComponent);
 	    return ButtonsDemoComponent;
@@ -36942,7 +36942,7 @@ webpackJsonp([1],[
 	            selector: 'carousel-section',
 	            directives: [carousel_demo_1.CarouselDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <carousel-demo></carousel-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], CarouselSectionComponent);
 	    return CarouselSectionComponent;
@@ -36992,7 +36992,7 @@ webpackJsonp([1],[
 	            selector: 'carousel-demo',
 	            directives: [ng2_bootstrap_1.CAROUSEL_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], CarouselDemoComponent);
 	    return CarouselDemoComponent;
@@ -37032,7 +37032,7 @@ webpackJsonp([1],[
 	            selector: 'collapse-section',
 	            directives: [collapse_demo_1.CollapseDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <collapse-demo></collapse-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], CollapseSectionComponent);
 	    return CollapseSectionComponent;
@@ -37066,7 +37066,7 @@ webpackJsonp([1],[
 	            selector: 'collapse-demo',
 	            directives: [ng2_bootstrap_1.CollapseDirective],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], CollapseDemoComponent);
 	    return CollapseDemoComponent;
@@ -37106,7 +37106,7 @@ webpackJsonp([1],[
 	            selector: 'datepicker-section',
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <datepicker-demo></datepicker-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  ",
 	            directives: [datepicker_demo_1.DatepickerDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DatepickerSectionComponent);
 	    return DatepickerSectionComponent;
@@ -37190,7 +37190,7 @@ webpackJsonp([1],[
 	            selector: 'datepicker-demo',
 	            template: template,
 	            directives: [ng2_bootstrap_1.DATEPICKER_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DatepickerDemoComponent);
 	    return DatepickerDemoComponent;
@@ -37238,7 +37238,7 @@ webpackJsonp([1],[
 	                ng2_bootstrap_1.CollapseDirective,
 	                ng2_bootstrap_1.DROPDOWN_DIRECTIVES
 	            ]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DemoHeaderComponent);
 	    return DemoHeaderComponent;
@@ -37278,7 +37278,7 @@ webpackJsonp([1],[
 	            selector: 'dropdown-section',
 	            directives: [dropdown_demo_1.DropdownDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <dropdown-demo></dropdown-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DropdownSectionComponent);
 	    return DropdownSectionComponent;
@@ -37324,7 +37324,7 @@ webpackJsonp([1],[
 	            selector: 'dropdown-demo',
 	            directives: [ng2_bootstrap_1.DROPDOWN_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], DropdownDemoComponent);
 	    return DropdownDemoComponent;
@@ -37364,7 +37364,7 @@ webpackJsonp([1],[
 	            selector: 'pagination-section',
 	            directives: [pagination_demo_1.PaginationDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <pagination-demo></pagination-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], PaginationSectionComponent);
 	    return PaginationSectionComponent;
@@ -37412,7 +37412,7 @@ webpackJsonp([1],[
 	            selector: 'pagination-demo',
 	            directives: [ng2_bootstrap_1.PAGINATION_DIRECTIVES, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], PaginationDemoComponent);
 	    return PaginationDemoComponent;
@@ -37457,7 +37457,7 @@ webpackJsonp([1],[
 	            selector: 'progressbar-section',
 	            directives: [progressbar_demo_1.ProgressbarDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <progressbar-demo></progressbar-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], ProgressbarSectionComponent);
 	    return ProgressbarSectionComponent;
@@ -37536,7 +37536,7 @@ webpackJsonp([1],[
 	            selector: 'progressbar-demo',
 	            directives: [ng2_bootstrap_1.PROGRESSBAR_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: templates[ng2_bootstrap_1.Ng2BootstrapConfig.theme]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], ProgressbarDemoComponent);
 	    return ProgressbarDemoComponent;
@@ -37577,7 +37577,7 @@ webpackJsonp([1],[
 	            selector: 'rating-section',
 	            directives: [rating_demo_1.RatingDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <rating-demo></rating-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], RatingSectionComponent);
 	    return RatingSectionComponent;
@@ -37631,7 +37631,7 @@ webpackJsonp([1],[
 	            selector: 'rating-demo',
 	            directives: [ng2_bootstrap_1.RatingComponent, common_1.FORM_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], RatingDemoComponent);
 	    return RatingDemoComponent;
@@ -37671,7 +37671,7 @@ webpackJsonp([1],[
 	            selector: 'tabs-section',
 	            directives: [tabs_demo_1.TabsDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <tabs-demo></tabs-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TabsSectionComponent);
 	    return TabsSectionComponent;
@@ -37725,7 +37725,7 @@ webpackJsonp([1],[
 	            directives: [ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TabsDemoComponent);
 	    return TabsDemoComponent;
@@ -37765,7 +37765,7 @@ webpackJsonp([1],[
 	            selector: 'timepicker-section',
 	            directives: [timepicker_demo_1.TimepickerDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <timepicker-demo></timepicker-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TimepickerSectionComponent);
 	    return TimepickerSectionComponent;
@@ -37826,7 +37826,7 @@ webpackJsonp([1],[
 	            selector: 'timepicker-demo',
 	            directives: [ng2_bootstrap_1.TimepickerComponent, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TimepickerDemoComponent);
 	    return TimepickerDemoComponent;
@@ -37866,7 +37866,7 @@ webpackJsonp([1],[
 	            selector: 'tooltip-section',
 	            directives: [tooltip_demo_1.TooltipDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <tooltip-demo></tooltip-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TooltipSectionComponent);
 	    return TooltipSectionComponent;
@@ -37905,7 +37905,7 @@ webpackJsonp([1],[
 	            directives: [ng2_bootstrap_1.TOOLTIP_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            changeDetection: core_1.ChangeDetectionStrategy.OnPush,
 	            styles: ["\n    /* Specify styling for tooltip contents */\n    .tooltip.customClass .tooltip-inner {\n        color: #880000;\n        background-color: #ffff66;\n        box-shadow: 0 6px 12px rgba(0,0,0,.175);\n    }\n    /* Hide arrow */\n    .tooltip.customClass .tooltip-arrow {\n        display: none;\n    }\n  "]
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TooltipDemoComponent);
 	    return TooltipDemoComponent;
@@ -37945,7 +37945,7 @@ webpackJsonp([1],[
 	            selector: 'typeahead-section',
 	            directives: [typeahead_demo_1.TypeaheadDemoComponent, ng2_bootstrap_1.TAB_DIRECTIVES, common_1.CORE_DIRECTIVES],
 	            template: "\n  <section id=\"" + name.toLowerCase() + "\">\n    <h1>" + name + "<small>(<a href=\"" + src + "\">src</a>)</small></h1>\n\n    <hr>\n\n    <div class=\"description\">" + titleDoc + "</div>\n    \n    <br/>\n    \n    <div class=\"example\">\n      <h2>Example</h2>\n      <div class=\"card card-block panel panel-default panel-body\">\n        <typeahead-demo></typeahead-demo>\n      </div>\n    </div>\n\n    <br/>\n\n    <div class=\"markup\">\n      <tabset>\n        <tab heading=\"Markup\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-html\"><code class=\"language-html\" ngNonBindable>" + html + "</code></pre>\n          </div>\n        </tab>\n        <tab heading=\"TypeScript\">\n          <div class=\"card card-block panel panel-default panel-body\">\n            <pre class=\"language-typescript\"><code class=\"language-typescript\" ngNonBindable>" + ts + "</code></pre>\n          </div>\n        </tab>\n      </tabset>\n    </div>\n\n    <br/>\n\n    <div class=\"api\">\n      <h2>API</h2>\n      <div class=\"card card-block panel panel-default panel-body\">" + doc + "</div>\n    </div>\n  </section>\n  "
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TypeaheadSectionComponent);
 	    return TypeaheadSectionComponent;
@@ -38053,7 +38053,7 @@ webpackJsonp([1],[
 	            selector: 'typeahead-demo',
 	            directives: [ng2_bootstrap_1.TYPEAHEAD_DIRECTIVES, common_1.CORE_DIRECTIVES, common_1.FORM_DIRECTIVES],
 	            template: template
-	        }), 
+	        }),
 	        __metadata('design:paramtypes', [])
 	    ], TypeaheadDemoComponent);
 	    return TypeaheadDemoComponent;
