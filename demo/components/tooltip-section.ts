@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TooltipDemoComponent} from './tooltip/tooltip-demo';
 
 let name = 'Tooltip';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tooltip/tooltip.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tooltip/';
 
 // webpack html imports
 let doc = require('../../components/tooltip/readme.md');

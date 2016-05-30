@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {TypeaheadDemoComponent} from './typeahead/typeahead-demo';
 
 let name = 'Typeahead';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/typeahead/typeahead.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/typeahead/typeahead';
 
 // webpack html imports
 let doc = require('../../components/typeahead/readme.md');

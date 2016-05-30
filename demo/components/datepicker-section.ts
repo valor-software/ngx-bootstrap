@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {DatepickerDemoComponent} from './datepicker/datepicker-demo';
 
 let name = 'Datepicker';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/datepicker/datepicker.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/datepicker/';
 
 // webpack html imports
 let doc = require('../../components/datepicker/readme.md');
