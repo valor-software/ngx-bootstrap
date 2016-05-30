@@ -9,6 +9,7 @@ import {TooltipContainerComponent} from './tooltip-container.component';
 export class TooltipDirective {
   /* tslint:disable */
   @Input('tooltip') public content:string;
+  @Input('tooltipHtml') public htmlContent:string;
   @Input('tooltipPlacement') public placement:string = 'top';
   @Input('tooltipIsOpen') public isOpen:boolean;
   @Input('tooltipEnable') public enable:boolean = true;
@@ -38,6 +39,8 @@ export class TooltipDirective {
     this.visible = true;
     let options = new TooltipOptions({
       content: this.content,
+      appendToBody: this.appendToBody,
+      htmlContent: this.htmlContent,
       placement: this.placement,
       animation: this.animation,
       hostEl: this.viewContainerRef.element
