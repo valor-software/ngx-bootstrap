@@ -14,7 +14,8 @@
 * **modals:** added declarative modals component ([#564](https://github.com/valor-software/ng2-bootstrap/issues/564)) ([1d0903f](https://github.com/valor-software/ng2-bootstrap/commit/1d0903f)), closes [#29](https://github.com/valor-software/ng2-bootstrap/issues/29)
 * **tooltip:** adds implementation to tooltipEnable ([#517](https://github.com/valor-software/ng2-bootstrap/issues/517)) ([1470892](https://github.com/valor-software/ng2-bootstrap/commit/1470892))
 
-
+### Breaking changes
+* Added view provider required by **modals** (see modals docs for more information)
 
 <a name="1.0.16"></a>
 ## [1.0.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.15...v1.0.16) (2016-05-06)
