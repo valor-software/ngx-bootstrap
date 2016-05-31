@@ -113,11 +113,11 @@ And update your `app.component.ts` to have following content:
 
 ```ts
 import {Component} from 'angular2/core';
-import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
+import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'my-app',
-  directives: [Alert],
+  directives: [AlertComponent],
   template: `<alert type="info">ng2-bootstrap hello world!</alert>`
 })
 export class AppComponent {
