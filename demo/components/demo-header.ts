@@ -6,7 +6,7 @@ import {
 
 let components = [
   'Accordion', 'Alerts', 'Buttons', 'Carousel', 'Collapse', 'Datepicker',
-  'Dropdowns', /*'Modal',*/ 'Pagination', /*'Popover',*/ 'Progressbar',
+  'Dropdowns', 'Modals', 'Pagination', /*'Popover',*/ 'Progressbar',
   'Rating', 'Tabs', 'Timepicker', 'Tooltip', 'Typeahead'
 ];
 

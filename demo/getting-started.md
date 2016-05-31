@@ -1,9 +1,5 @@
 # Getting started
 
-### First of all, Welcome!
-
-**80%** of baseline functionality is ready in Angular2
-
 ### Dependencies
 This module consists of native Angular2 components and directives, no jQuery or Bootstrap javascript is required.
 
@@ -17,11 +13,11 @@ Plus this module plays nice with Bootstrap CSS [v3](http://getbootstrap.com/css/
 
 ### Installation
 
-Currently preferable way to install this module is `npm`:
-
 ```bash
 npm install --save ng2-bootstrap
 ```
+
+
 
 Have fun!
 
