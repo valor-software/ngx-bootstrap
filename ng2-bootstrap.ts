@@ -18,6 +18,7 @@ import {ComponentsHelper} from './components/utils/components-helper.service';
 
 export * from './components/accordion';
 export * from './components/alert';
+export * from './components/btnaccordion';
 export * from './components/buttons';
 export * from './components/carousel';
 export * from './components/collapse';
