@@ -5,6 +5,7 @@ import {CAROUSEL_DIRECTIVES} from './components/carousel';
 import {CollapseDirective} from './components/collapse';
 import {DATEPICKER_DIRECTIVES} from './components/datepicker';
 import {DROPDOWN_DIRECTIVES} from './components/dropdown';
+import {MODAL_DIRECTVES} from './components/modal';
 import {PAGINATION_DIRECTIVES} from './components/pagination';
 import {PROGRESSBAR_DIRECTIVES} from './components/progressbar';
 import {RatingComponent} from './components/rating';
@@ -13,12 +14,15 @@ import {TimepickerComponent} from './components/timepicker';
 import {TOOLTIP_DIRECTIVES} from './components/tooltip';
 import {TYPEAHEAD_DIRECTIVES} from './components/typeahead';
 
+import {ComponentsHelper} from './components/utils/components-helper.service';
+
 export * from './components/accordion';
 export * from './components/alert';
 export * from './components/buttons';
 export * from './components/carousel';
 export * from './components/collapse';
 export * from './components/datepicker';
+export * from './components/modal';
 export * from './components/dropdown';
 export * from './components/pagination';
 export * from './components/progressbar';
@@ -32,6 +36,8 @@ export * from './components/position';
 export * from './components/common';
 export * from './components/ng2-bootstrap-config';
 
+export const BS_VIEW_PROVIDERS: any[] = [{provide: ComponentsHelper, useClass:ComponentsHelper}];
+
 export default {
   directives: [
     AlertComponent,
@@ -41,6 +47,7 @@ export default {
     CollapseDirective,
     DATEPICKER_DIRECTIVES,
     DROPDOWN_DIRECTIVES,
+    MODAL_DIRECTVES,
     PAGINATION_DIRECTIVES,
     PROGRESSBAR_DIRECTIVES,
     RatingComponent,
@@ -48,5 +55,8 @@ export default {
     TimepickerComponent,
     TOOLTIP_DIRECTIVES,
     TYPEAHEAD_DIRECTIVES
+  ],
+  providers: [
+    ComponentsHelper
   ]
 };

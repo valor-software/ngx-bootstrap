@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {AlertDemoComponent} from './alert/alert-demo';
 
 let name = 'Alerts';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/alert.ts';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert/';
 
 // webpack html imports
 let doc = require('../../components/alert/readme.md');

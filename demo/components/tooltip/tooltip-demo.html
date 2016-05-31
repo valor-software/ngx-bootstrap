@@ -38,11 +38,11 @@
 
   <div class="form-group" ngClass="{'has-error' : !inputModel}">
     <label>Disable tooltips conditionally:</label>
-    <input type="text" ngModel="inputModel" class="form-control"
+    <input type="text" [(ngModel)]="inputModel" class="form-control"
            placeholder="Hover over this for a tooltip until this is filled"
            tooltip="Enter something in this input field to disable this tooltip"
            tooltipPlacement="top"
            tooltipTrigger="mouseenter"
-           tooltipEnable="!inputModel" />
+           [tooltipEnable]="!inputModel || inputModel.length==0" />
   </div>
 </form>

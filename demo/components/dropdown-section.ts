@@ -5,7 +5,7 @@ import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
 import {DropdownDemoComponent} from './dropdown/dropdown-demo';
 
 let name = 'Dropdowns';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/dropdown';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/dropdown/';
 
 // webpack html imports
 let doc = require('../../components/dropdown/readme.md');

@@ -50,12 +50,12 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 ```
 ```js
   /* src/app/home/home.ts */
-  import {Alert, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+  import {AlertComponent, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
   ...
   @Component({
     directives: [
       ...
-      Alert, DATEPICKER_DIRECTIVES
+      AlertComponent, DATEPICKER_DIRECTIVES
       ]
   })
   export class Home {
@@ -136,7 +136,7 @@ And you are ready to go! :)
 - [x] Collapse
 - [+-] Datepicker (Datepicker popup not implemented)
 - [x] Dropdown
-- [ ] Modal (in progress...)
+- [x] Modal
 - [x] Pagination
 - [ ] Popover
 - [x] Progressbar

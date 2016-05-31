@@ -53,7 +53,8 @@ export class ProgressbarDemoComponent {
 
     this.stacked = [];
     let total = 0;
-    for (let i = 0, n = Math.floor((Math.random() * 4) + 1); i < n; i++) {
+    let n = Math.floor((Math.random() * 4) + 1);
+    for (let i = 0; i < n; i++) {
       let index = Math.floor((Math.random() * 4));
       let value = Math.floor((Math.random() * 30) + 1);
       total += value;

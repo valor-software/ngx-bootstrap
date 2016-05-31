@@ -1,4 +1,4 @@
-import {Component, enableProdMode} from '@angular/core';
+import {Component, enableProdMode, ViewContainerRef} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
@@ -9,6 +9,7 @@ import {CarouselSectionComponent} from './components/carousel-section';
 import {CollapseSectionComponent} from './components/collapse-section';
 import {DatepickerSectionComponent} from './components/datepicker-section';
 import {DropdownSectionComponent} from './components/dropdown-section';
+import {ModalSectionComponent} from './components/modal-section';
 import {PaginationSectionComponent} from './components/pagination-section';
 import {ProgressbarSectionComponent} from './components/progressbar-section';
 import {RatingSectionComponent} from './components/rating-section';
@@ -62,6 +63,7 @@ let gettingStarted = require('./getting-started.md');
     <collapse-section></collapse-section>
     <datepicker-section></datepicker-section>
     <dropdown-section></dropdown-section>
+    <modal-section></modal-section>
     <pagination-section></pagination-section>
     <progressbar-section></progressbar-section>
     <rating-section></rating-section>
@@ -91,8 +93,9 @@ let gettingStarted = require('./getting-started.md');
 
     // todo: fix it to much write value calls!!!
     DatepickerSectionComponent,
-
+    //
     DropdownSectionComponent,
+    ModalSectionComponent,
     PaginationSectionComponent,
     ProgressbarSectionComponent,
     RatingSectionComponent,
@@ -104,6 +107,13 @@ let gettingStarted = require('./getting-started.md');
 })
 export class DemoComponent {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+
+  private viewContainerRef:ViewContainerRef;
+
+  public constructor(viewContainerRef:ViewContainerRef) {
+    // You need this small hack in order to catch application root view container ref
+    this.viewContainerRef = viewContainerRef;
+  }
 }
 
 bootstrap(DemoComponent);

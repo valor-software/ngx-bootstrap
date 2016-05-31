@@ -2,21 +2,19 @@ import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 
 import {TAB_DIRECTIVES} from '../../ng2-bootstrap';
-import {DatepickerDemoComponent} from './datepicker/datepicker-demo';
+import {ModalDemoComponent} from './modal/modal-demo';
 
-let name = 'Datepicker';
-let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/datepicker/';
+let name = 'Modals';
+let src = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/modal/';
 
 // webpack html imports
-let doc = require('../../components/datepicker/readme.md');
-let titleDoc = require('../../components/datepicker/title.md');
+let doc = require('../../components/modal/readme.md');
+let titleDoc = require('../../components/modal/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./datepicker/datepicker-demo.ts');
-let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
+let ts = require('!!prismjs?lang=typescript!./modal/modal-demo.ts');
+let html = require('!!prismjs?lang=markup!./modal/modal-demo.html');
 
-@Component({
-  selector: 'datepicker-section',
-  template: `
+const template = `
   <section id="${name.toLowerCase()}">
     <h1>${name}<small>(<a href="${src}">src</a>)</small></h1>
 
@@ -25,14 +23,14 @@ let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
     <div class="description">${titleDoc}</div>
     
     <br/>
-    
+
     <div class="example">
       <h2>Example</h2>
       <div class="card card-block panel panel-default panel-body">
-        <datepicker-demo></datepicker-demo>
+        <modal-demo></modal-demo>
       </div>
     </div>
-
+    
     <br/>
 
     <div class="markup">
@@ -49,16 +47,20 @@ let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
         </tab>
       </tabset>
     </div>
-
+    
     <br/>
-
+      
     <div class="api">
       <h2>API</h2>
       <div class="card card-block panel panel-default panel-body">${doc}</div>
     </div>
   </section>
-  `,
-  directives: [DatepickerDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES]
+  `;
+
+@Component({
+  selector: 'modal-section',
+  template: template,
+  directives: [ModalDemoComponent, TAB_DIRECTIVES, CORE_DIRECTIVES]
 })
-export class DatepickerSectionComponent {
+export class ModalSectionComponent {
 }

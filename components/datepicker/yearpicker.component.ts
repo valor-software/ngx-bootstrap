@@ -86,8 +86,9 @@ export class YearPickerComponent implements OnInit {
     this.datePicker.setRefreshViewHandler(function ():void {
       let years:Array<any> = new Array(this.yearRange);
       let date:Date;
+      let start = self.getStartingYear(this.activeDate.getFullYear());
 
-      for (let i = 0, start = self.getStartingYear(this.activeDate.getFullYear()); i < this.yearRange; i++) {
+      for (let i = 0; i < this.yearRange; i++) {
         date = new Date(start + i, 0, 1);
         date = this.fixTimeZone(date);
         years[i] = this.createDateObject(date, this.formatYear);
