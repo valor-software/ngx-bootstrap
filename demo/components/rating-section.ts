@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 
 import {RatingDemoComponent} from './rating/rating-demo';
-import {DemoSection} from './demo-section';
+import {DemoSectionComponent} from './demo-section';
 
 // webpack html imports
 let doc = require('../../components/rating/readme.md');
@@ -13,17 +13,17 @@ let html = require('!!prismjs?lang=markup!./rating/rating-demo.html');
 
 @Component({
   selector: 'rating-section',
-  directives: [DemoSection, RatingDemo, CORE_DIRECTIVES],
+  directives: [DemoSectionComponent, RatingDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <rating-demo></rating-demo>
     </demo-section>`
 })
-
-  private name:string = 'Rating';
-  private src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating';
-  private html:string = html;
-  private ts:string = ts;
-  private titleDoc:string = titleDoc;
-  private doc:string = doc;
+export class RatingSectionComponent {
+  public name:string = 'Rating';
+  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating';
+  public html:string = html;
+  public ts:string = ts;
+  public titleDoc:string = titleDoc;
+  public doc:string = doc;
 }

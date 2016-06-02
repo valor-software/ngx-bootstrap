@@ -369,7 +369,7 @@ body {
 
 #content li a,
 #content p a {
-  color: #0808df;
+  /*color: #0808df;*/
   text-decoration: none;
 }
 

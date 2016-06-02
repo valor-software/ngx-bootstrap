@@ -1,80 +1,83 @@
-import {GettingStartedSection} from './components/getting-started/getting-started';
-import {AccordionSection} from './components/accordion-section';
-import {AlertSection} from './components/alert-section';
-import {ButtonsSection} from './components/buttons-section';
-import {CarouselSection} from './components/carousel-section';
-import {CollapseSection} from './components/collapse-section';
-import {DatepickerSection} from './components/datepicker-section';
-import {DropdownSection} from './components/dropdown-section';
-import {PaginationSection} from './components/pagination-section';
-import {ProgressbarSection} from './components/progressbar-section';
-import {RatingSection} from './components/rating-section';
-import {TabsSection} from './components/tabs-section';
-import {TimepickerSection} from './components/timepicker-section';
-import {TooltipSection} from './components/tooltip-section';
-import {TypeaheadSection} from './components/typeahead-section';
+import {GettingStartedSectionComponent} from './components/getting-started/getting-started';
+import {AccordionSectionComponent} from './components/accordion-section';
+import {AlertSectionComponent} from './components/alert-section';
+import {ButtonsSectionComponent} from './components/buttons-section';
+import {CarouselSectionComponent} from './components/carousel-section';
+import {CollapseSectionComponent} from './components/collapse-section';
+import {DatepickerSectionComponent} from './components/datepicker-section';
+import {DropdownSectionComponent} from './components/dropdown-section';
+import {PaginationSectionComponent} from './components/pagination-section';
+import {ProgressbarSectionComponent} from './components/progressbar-section';
+import {RatingSectionComponent} from './components/rating-section';
+import {TabsSectionComponent} from './components/tabs-section';
+import {TimepickerSectionComponent} from './components/timepicker-section';
+import {TooltipSectionComponent} from './components/tooltip-section';
+import {TypeaheadSectionComponent} from './components/typeahead-section';
+import {ModalSectionComponent} from './components/modal-section';
 
-export module config {
-  export let routes = [{
-    path: '/getting-started',
-    name: 'Getting started',
-    component: GettingStartedSection,
-    useAsDefault: true
-  }, {
-    path: '/accordion',
-    name: 'Accordion',
-    component: AccordionSection
-  }, {
-    path: '/alerts',
-    name: 'Alerts',
-    component: AlertSection
-  }, {
-    path: '/buttons',
-    name: 'Buttons',
-    component: ButtonsSection
-  }, {
-    path: '/carousel',
-    name: 'Carousel',
-    component: CarouselSection
-  }, {
-    path: '/collapse',
-    name: 'Collapse',
-    component: CollapseSection
-  }, {
-    path: '/datepicker',
-    name: 'Datepicker',
-    component: DatepickerSection
-  }, {
-    path: '/dropdowns',
-    name: 'Dropdowns',
-    component: DropdownSection
-  }, {
-    path: '/pagination',
-    name: 'Pagination',
-    component: PaginationSection
-  }, {
-    path: '/progressbar',
-    name: 'Progressbar',
-    component: ProgressbarSection
-  }, {
-    path: '/rating',
-    name: 'Rating',
-    component: RatingSection
-  }, {
-    path: '/tabs',
-    name: 'Tabs',
-    component: TabsSection
-  }, {
-    path: '/timepicker',
-    name: 'Timepicker',
-    component: TimepickerSection
-  }, {
-    path: '/tooltip',
-    name: 'Tooltip',
-    component: TooltipSection
-  }, {
-    path: '/typeahead',
-    name: 'Typeahead',
-    component: TypeaheadSection
-  }];
-}
+export const routes = [{
+  path: '/getting-started',
+  name: 'Getting started',
+  component: GettingStartedSectionComponent,
+  useAsDefault: true
+}, {
+  path: '/accordion',
+  name: 'Accordion',
+  component: AccordionSectionComponent
+}, {
+  path: '/alerts',
+  name: 'Alerts',
+  component: AlertSectionComponent
+}, {
+  path: '/buttons',
+  name: 'Buttons',
+  component: ButtonsSectionComponent
+}, {
+  path: '/carousel',
+  name: 'Carousel',
+  component: CarouselSectionComponent
+}, {
+  path: '/collapse',
+  name: 'Collapse',
+  component: CollapseSectionComponent
+}, {
+  path: '/datepicker',
+  name: 'Datepicker',
+  component: DatepickerSectionComponent
+}, {
+  path: '/dropdowns',
+  name: 'Dropdowns',
+  component: DropdownSectionComponent
+}, {
+  path: '/modals',
+  name: 'Modals',
+  component: ModalSectionComponent
+}, {
+  path: '/pagination',
+  name: 'Pagination',
+  component: PaginationSectionComponent
+}, {
+  path: '/progressbar',
+  name: 'Progressbar',
+  component: ProgressbarSectionComponent
+}, {
+  path: '/rating',
+  name: 'Rating',
+  component: RatingSectionComponent
+}, {
+  path: '/tabs',
+  name: 'Tabs',
+  component: TabsSectionComponent
+}, {
+  path: '/timepicker',
+  name: 'Timepicker',
+  component: TimepickerSectionComponent
+}, {
+  path: '/tooltip',
+  name: 'Tooltip',
+  component: TooltipSectionComponent
+}, {
+  path: '/typeahead',
+  name: 'Typeahead',
+  component: TypeaheadSectionComponent
+}];

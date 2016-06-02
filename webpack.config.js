@@ -52,10 +52,9 @@ const config = {
       'es6-promise',
       'zone.js',
       'reflect-metadata',
-      '@angular/common',
-      '@angular/core'
+      // '@angular/common',
+      // '@angular/core'
     ],
-    'angular2-bootstrap': ['ng2-bootstrap'],
     'angular2-bootstrap-demo': 'demo'
   },
 

@@ -1,8 +1,8 @@
-import {Component, Inject} from 'angular2/core';
-import {RouterLink, Router} from 'angular2/router';
+import {Component, Inject} from '@angular/core';
+import {RouterLink, Router} from '@angular/router-deprecated';
 
-import {config} from './../../config';
-import {SearchFilter} from './search-filter.pipe';
+import {routes} from './../../config';
+import {SearchFilterPipe} from './search-filter.pipe';
 
 // webpack html imports
 let template = require('./main-menu.template.html');
@@ -11,15 +11,15 @@ let template = require('./main-menu.template.html');
   selector: 'main-menu',
   template: template,
   directives: [RouterLink],
-  pipes: [SearchFilter]
+  pipes: [SearchFilterPipe]
 })
 
 export class MainMenuComponent {
-  private routes:any = config.routes;
-  private router:Router;
-  private search:any = {};
+  public routes:any = routes;
+  public router:Router;
+  public search:any = {};
 
-  constructor(@Inject(Router) router:Router) {
+  public constructor(@Inject(Router) router:Router) {
     this.router = router;
   }
 }

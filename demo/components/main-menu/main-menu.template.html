@@ -3,13 +3,13 @@
     <input type="text" name="search" placeholder="Search..." [(ngModel)]="search.text"/>
   </div>
   <div class="main-menu-container">
-    <div class="menu-content">
+    <div class="menu-content" *ngIf="routes && routes.length">
       <div class="section"
-           *ngFor="#route of routes | SearchFilter:search.text"
+           *ngFor="let route of routes | SearchFilter:search.text"
            [class.active]="router.isRouteActive(router.generate([route.name]))">
         <h3 [routerLink]="[route.name]">{{route.name}}</h3>
 
-        <div class="item">
+<!--        <div class="item">
           <h4>
             <span [routerLink]="[route.name]">Example</span>
           </h4>
@@ -25,7 +25,7 @@
           <h4>
             <span [routerLink]="[route.name]">Properties</span>
           </h4>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>

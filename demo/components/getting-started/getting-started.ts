@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 
 let name = 'First of all, Welcome!';
 
@@ -14,11 +14,10 @@ let readingDocumentation = require('./reading-documentation.md');
   selector: 'accordion-section',
   template: template
 })
-
-export class GettingStartedSection {
-  private name:string = name;
-  private desc:string = desc;
-  private dependencies:string = dependencies;
-  private installation:string = installation;
-  private readingDocumentation:string = readingDocumentation;
+export class GettingStartedSectionComponent {
+  public name:string = name;
+  public desc:string = desc;
+  public dependencies:string = dependencies;
+  public installation:string = installation;
+  public readingDocumentation:string = readingDocumentation;
 }
