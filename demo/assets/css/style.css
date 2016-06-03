@@ -18,15 +18,15 @@ body {
   z-index: 2;
 }
 
-#top-menu > div:not(.menu-right) {
+#top-menu > div:not(.logo) {
   float: left;
 }
 
-#top-menu .menu-right {
+#top-menu .logo {
   float: right;
 }
 
-#top-menu .menu-right > div {
+#top-menu .logo > div {
   float: left;
 }
 
@@ -78,16 +78,6 @@ body {
   height: 50px;
 }
 
-#top-menu .git-hub {
-  margin: 22px 0;
-}
-
-#top-menu .git-hub iframe {
-  height: 20px;
-  width: 95px;
-}
-
-#mobile-top-menu,
 #mobile-main-menu {
   display: none;
   cursor: pointer;
@@ -97,12 +87,7 @@ body {
   padding: 24px 15px;
 }
 
-#mobile-top-menu {
-  padding: 24px 30px 24px 10px;
-}
-
-#mobile-main-menu img,
-#mobile-top-menu img {
+#mobile-main-menu img {
   height: 16px;
 }
 
@@ -132,7 +117,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 1;
+  z-index: 999;
   -webkit-transition: left .5s ease;
   -moz-transition: left .5s ease;
   -ms-transition: left .5s ease;
@@ -512,11 +497,25 @@ body {
 
 @media (max-width: 1020px) {
   #top-menu {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
     border-bottom: 1px solid #191924;
   }
 
+  #top-menu #mobile-main-menu {
+    order: 0;
+  }
+
+  #top-menu .title {
+    order: 1;
+    width: calc(100% - 95px);
+    text-align: center;
+    min-width: 1px;
+  }
+
   #top-menu .logo {
-    display: none;
+    order: 2;
   }
 
   #top-menu .top-menu-container {
@@ -527,11 +526,6 @@ body {
     top: 67px;
     margin: 0;
     max-height: 0;
-  }
-
-  #top-menu .title {
-    max-width: 300px;
-    min-width: 1px;
   }
 
   #top-menu .top-menu-container ul {
@@ -547,13 +541,17 @@ body {
     padding: 10px 10px;
   }
 
-  #mobile-top-menu,
   #mobile-main-menu {
     display: inline-block;
   }
 
   #main-menu {
     left: -100%;
+    height: calc(100% - 69px);
+  }
+
+  .isOpenMenu #main-menu {
+    left: 0;
   }
 
   #main {
@@ -563,35 +561,12 @@ body {
 }
 
 @media (max-width: 600px) {
-  #top-menu .title {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-  }
-
   #top-menu .title h2 {
     padding: 15px;
   }
 
-  #top-menu .menu-right {
-    float: left;
-    width: calc(100% - 50px);
-    text-align: center;
-    padding-right: 50px;
-    box-sizing: border-box;
-  }
-
-  #top-menu .git-hub {
-    display: inline-block;
-    float: none !important;
-    margin: 15px 0;
-  }
-
-  #top-menu #mobile-top-menu {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 15px 30px 15px 10px;
+  #top-menu .logo {
+    margin: 0 15px 0 0;
   }
 
   #mobile-main-menu {
@@ -603,7 +578,7 @@ body {
   }
 
   #main-menu {
-    height: calc(100% - 105px);
+    height: calc(100% - 55px);
   }
 
   #main {
