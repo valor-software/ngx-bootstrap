@@ -24,6 +24,7 @@ import {Directive, OnInit, ElementRef, Input, HostBinding, Renderer} from '@angu
 
 // TODO: remove ElementRef
 // TODO: add on change
+// TODO: #576 add callbacks: expanding, expanded, collapsing, collapsed
 @Directive({selector: '[collapse]'})
 export class CollapseDirective implements OnInit {
   // private animation:any;
@@ -93,6 +94,8 @@ export class CollapseDirective implements OnInit {
     this.isCollapse = true;
     this.isCollapsing = false;
 
+    this.display = 'none';
+
     /*  setTimeout(() => {
           // this.height = '0';
           // this.isCollapse = true;
@@ -125,7 +128,7 @@ export class CollapseDirective implements OnInit {
     this.isExpanded = true;
     this.isCollapsed = false;
 
-    this.display = '';
+    this.display = 'block';
     // this.height = 'auto';
     this.isCollapse = true;
     this.isCollapsing = false;
