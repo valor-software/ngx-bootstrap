@@ -48,7 +48,7 @@ export const DROPDOWN_DIRECTIVES: Array<any> = [Dropdown, DropdownMenu, Dropdown
 
 ### Dropdown properties
 - `isOpen` (`?boolean=false`) - if `true` dropdown will be opened
-- `autoClose` (`?string='always'`) - behaviour vary:
+- `autoClose` (`?string='nonInput'`) - behaviour vary:
     * `nonInput` - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an `input` or a `textarea`.
     * `always` - automatically closes the dropdown when any of its elements is clicked
     * `outsideClick` - closes the dropdown automatically only when the user clicks any element outside the dropdown
