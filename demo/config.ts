@@ -16,7 +16,7 @@ import {TypeaheadSectionComponent} from './components/typeahead-section';
 import {ModalSectionComponent} from './components/modal-section';
 
 export const routes = [{
-  path: '/getting-started',
+  path: '/',
   name: 'Getting started',
   component: GettingStartedSectionComponent,
   useAsDefault: true

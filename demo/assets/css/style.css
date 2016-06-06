@@ -285,8 +285,8 @@ body {
   width: calc(100% - 270px);
   height: 100%;
   float: right;
-  margin-top: 65px;
-  padding: 30px 30px 0;
+  margin-top: 35px;
+  padding: 15px;
   box-sizing: border-box;
 }
 
@@ -296,12 +296,13 @@ body {
 }
 
 #main .content-header h2 {
-  font-size: 34px;
+  /*font-size: 34px;*/
   font-weight: 700;
   color: #1d1d2b;
   text-transform: uppercase;
+  margin-top: 35px;
   margin-bottom: 20px;
-  line-height: 23px;
+  /*line-height: 23px;*/
 }
 
 #main .content-header h2 a {
@@ -325,7 +326,7 @@ body {
 
 #main .content-box {
   margin-top: 20px;
-  padding: 30px;
+  padding: 15px;
   box-sizing: border-box;
   background-color: #fff;
   margin-bottom: 30px;
@@ -581,7 +582,7 @@ body {
     height: calc(100% - 55px);
   }
 
-  #main {
-    margin-top: 105px;
-  }
+  /*#main {*/
+    /*margin-top: 105px;*/
+  /*}*/
 }

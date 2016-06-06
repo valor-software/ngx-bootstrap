@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
 
-let name = 'First of all, Welcome!';
+let name = `Native Angular 2 directives for bootstrap`;
 
 // webpack html imports
 let template = require('./getting-started.template.html');
 
-let desc = require('./description.md');
+let desc = `
+`;
 let dependencies = require('./dependencies.md');
 let installation = require('./installation.md');
 let readingDocumentation = require('./reading-documentation.md');
