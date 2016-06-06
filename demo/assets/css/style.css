@@ -15,7 +15,7 @@ body {
   left: 0;
   right: 0;
   background-color: #1d1d2b;
-  z-index: 2;
+  z-index: 9;
 }
 
 #top-menu > div:not(.logo) {
