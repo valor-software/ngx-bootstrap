@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/collapse/readme.md');
 let titleDoc = require('../../components/collapse/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./collapse/collapse-demo.ts');
-let html = require('!!prismjs?lang=markup!./collapse/collapse-demo.html');
+let ts = require('!!raw?lang=typescript!./collapse/collapse-demo.ts');
+let html = require('!!raw?lang=markup!./collapse/collapse-demo.html');
 
 @Component({
   selector: 'collapse-section',

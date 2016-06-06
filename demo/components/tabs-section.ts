@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/tabs/readme.md');
 let titleDoc = require('../../components/tabs/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./tabs/tabs-demo.ts');
-let html = require('!!prismjs?lang=markup!./tabs/tabs-demo.html');
+let ts = require('!!raw?lang=typescript!./tabs/tabs-demo.ts');
+let html = require('!!raw?lang=markup!./tabs/tabs-demo.html');
 
 @Component({
   selector: 'tabs-section',

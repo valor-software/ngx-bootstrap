@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/typeahead/readme.md');
 let titleDoc = require('../../components/typeahead/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./typeahead/typeahead-demo.ts');
-let html = require('!!prismjs?lang=markup!./typeahead/typeahead-demo.html');
+let ts = require('!!raw?lang=typescript!./typeahead/typeahead-demo.ts');
+let html = require('!!raw?lang=markup!./typeahead/typeahead-demo.html');
 
 @Component({
   selector: 'typeahead-section',

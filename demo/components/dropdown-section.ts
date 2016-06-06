@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/dropdown/readme.md');
 let titleDoc = require('../../components/dropdown/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./dropdown/dropdown-demo.ts');
-let html = require('!!prismjs?lang=markup!./dropdown/dropdown-demo.html');
+let ts = require('!!raw?lang=typescript!./dropdown/dropdown-demo.ts');
+let html = require('!!raw?lang=markup!./dropdown/dropdown-demo.html');
 
 @Component({
   selector: 'dropdown-section',

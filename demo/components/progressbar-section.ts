@@ -9,11 +9,11 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/progressbar/readme.md');
 let titleDoc = require('../../components/progressbar/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./progressbar/progressbar-demo.ts');
+let ts = require('!!raw?lang=typescript!./progressbar/progressbar-demo.ts');
 
 let templates:any = {
-  [Ng2BootstrapTheme.BS3]: require('!!prismjs?lang=markup!./progressbar/progressbar-demo.html'),
-  [Ng2BootstrapTheme.BS4]: require('!!prismjs?lang=markup!./progressbar/progressbar-demo-bs4.html')
+  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./progressbar/progressbar-demo.html'),
+  [Ng2BootstrapTheme.BS4]: require('!!raw?lang=markup!./progressbar/progressbar-demo-bs4.html')
 };
 
 let html = templates[Ng2BootstrapConfig.theme];

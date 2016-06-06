@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/accordion/readme.md');
 let titleDoc = require('../../components/accordion/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./accordion/accordion-demo.ts');
-let html = require('!!prismjs?lang=markup!./accordion/accordion-demo.html');
+let ts = require('!!raw!./accordion/accordion-demo.ts');
+let html = require('!!raw!./accordion/accordion-demo.html');
 
 @Component({
   selector: 'accordion-section',

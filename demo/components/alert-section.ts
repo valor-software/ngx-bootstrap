@@ -7,8 +7,8 @@ import {DemoSectionComponent} from './demo-section';
 // webpack html imports
 let doc = require('../../components/alert/readme.md');
 let titleDoc = require('../../components/alert/title.md');
-let ts = require('!!prismjs?lang=typescript!./alert/alert-demo.ts');
-let html = require('!!prismjs?lang=markup!./alert/alert-demo.html');
+let ts = require('!!raw?lang=typescript!./alert/alert-demo.ts');
+let html = require('!!raw?lang=markup!./alert/alert-demo.html');
 
 @Component({
   selector: 'alert-section',

@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/modal/readme.md');
 let titleDoc = require('../../components/modal/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./modal/modal-demo.ts');
-let html = require('!!prismjs?lang=markup!./modal/modal-demo.html');
+let ts = require('!!raw?lang=typescript!./modal/modal-demo.ts');
+let html = require('!!raw?lang=markup!./modal/modal-demo.html');
 
 @Component({
   selector: 'modal-section',

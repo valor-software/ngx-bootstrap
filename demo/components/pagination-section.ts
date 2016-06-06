@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/pagination/readme.md');
 let titleDoc = require('../../components/pagination/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./pagination/pagination-demo.ts');
-let html = require('!!prismjs?lang=markup!./pagination/pagination-demo.html');
+let ts = require('!!raw?lang=typescript!./pagination/pagination-demo.ts');
+let html = require('!!raw?lang=markup!./pagination/pagination-demo.html');
 
 @Component({
   selector: 'pagination-section',

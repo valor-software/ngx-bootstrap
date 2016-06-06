@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/datepicker/readme.md');
 let titleDoc = require('../../components/datepicker/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./datepicker/datepicker-demo.ts');
-let html = require('!!prismjs?lang=markup!./datepicker/datepicker-demo.html');
+let ts = require('!!raw?lang=typescript!./datepicker/datepicker-demo.ts');
+let html = require('!!raw?lang=markup!./datepicker/datepicker-demo.html');
 
 @Component({
   selector: 'datepicker-section',
