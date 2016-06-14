@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { MODAL_DIRECTVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { MODAL_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { MODAL_DIRECTVES } from 'ng2-bootstrap/components/modal';
+import { MODAL_DIRECTIVES } from 'ng2-bootstrap/components/modal';
 ```
 
 ### Annotations
