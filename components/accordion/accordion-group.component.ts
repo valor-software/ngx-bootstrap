@@ -32,6 +32,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   @Input() public panelClass:string;
   @Input() public isDisabled:boolean;
 
+  // Questionable, maybe .panel-open should be on child div.panel element?
   @HostBinding('class.panel-open')
   @Input()
   public get isOpen():boolean {
