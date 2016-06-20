@@ -1,9 +1,6 @@
-import {
-  Component, enableProdMode, ViewContainerRef, AfterContentInit
-} from '@angular/core';
-import {
-  RouterOutlet, RouteConfig, ROUTER_PROVIDERS, Router
-} from '@angular/router-deprecated';
+import {Component, enableProdMode, ViewContainerRef} from '@angular/core';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
+import {RouterOutlet, RouteConfig, ROUTER_PROVIDERS} from '@angular/router-deprecated';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
 import {MainMenuComponent} from './components/main-menu/main-menu.component';
 import {TopMenuComponent} from './components/top-menu/top-menu.component';
@@ -55,7 +52,10 @@ export class DemoComponent implements AfterContentInit {
   }
 }
 
-bootstrap(DemoComponent, [ROUTER_PROVIDERS,
+bootstrap(DemoComponent, [
+  ROUTER_PROVIDERS,
+  disableDeprecatedForms(),
+  provideForms(),
   {provide: APP_BASE_HREF, useValue: '/'},
-  {provide: LocationStrategy, useClass: HashLocationStrategy}]);
-
+  {provide: LocationStrategy, useClass: HashLocationStrategy}
+]);
