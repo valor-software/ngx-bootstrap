@@ -18,10 +18,18 @@ const pkg = require('../package.json');
 const name = pkg.name;
 const targetFolder = path.resolve('./bundles');
 
+cleanBundlesFolder();
+
 async.waterfall([
-  cleanBundlesFolder,
   getSystemJsBundleConfig,
   buildSystemJs({minify: false, sourceMaps: true, mangle: false}),
+], err => {
+  if (err) {
+    throw err;
+  }
+});
+
+async.waterfall([
   getSystemJsBundleConfig,
   buildSystemJs({minify: true, sourceMaps: true, mangle: false}),
   gzipSystemJsBundle
