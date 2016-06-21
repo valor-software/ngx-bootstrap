@@ -13,6 +13,9 @@ const html = `
          [disabled]="tab.disabled"
          [active]="tab.active"
          [removable]="tab.removable"
+         (select)="_select($event)"
+         (deselect)="_deselect($event)"
+         (removed)="_removed($event)"
          [heading]="tab.title">{{ tab.content }}</tab>
   </tabset>
 `;
@@ -47,20 +50,21 @@ describe('Component: Tabs', () => {
   let fixture:ComponentFixture<any>;
   let context:any;
   let element:any;
-  let comp:any;
 
   beforeEachProviders(() => [
     TestComponentBuilder
   ]);
 
   beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    comp = tcb;
     return tcb
       .overrideTemplate(TestTabsetComponent, html)
       .createAsync(TestTabsetComponent)
       .then((f:ComponentFixture<any>) => {
         fixture = f;
         context = fixture.componentInstance;
+        spyOn(context, '_select');
+        spyOn(context, '_deselect');
+        spyOn(context, '_removed');
         element = fixture.nativeElement;
         fixture.detectChanges();
       });
@@ -140,7 +144,27 @@ describe('Component: Tabs', () => {
     expect(element.querySelector('ul.nav')).toHaveCssClass('nav-justified');
   });
 
-  xit('should emit select on tab select');
+  it('should emit select/deselect', () => {
+    const tabTitles = getTabTitles(element);
+    (tabTitles[1] as HTMLAnchorElement).click();
+    fixture.detectChanges();
+
+    expect(context._deselect).toHaveBeenCalled();
+    expect(context._select).toHaveBeenCalledWith(jasmine.objectContaining({
+      heading: 'tab1'
+    }));
+  });
+
+  it('should emit remove on remove tab', () => {
+    const tabTitles = getTabTitles(element);
+    const el = (tabTitles[3] as HTMLAnchorElement).querySelectorAll('span span.glyphicon-remove-circle')[0];
+    (el as HTMLSpanElement).click();
+    fixture.detectChanges();
+
+    expect(context._removed).toHaveBeenCalledWith(jasmine.objectContaining({
+      heading: 'tab3'
+    }));
+  });
 });
 
 @Component({
@@ -157,4 +181,16 @@ class TestTabsetComponent {
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
+
+  public _select(e:TabDirective):TabDirective {
+    return e;
+  }
+
+  public _deselect(e:TabDirective):TabDirective {
+    return e;
+  }
+
+  public _removed(e:TabDirective):TabDirective {
+    return e;
+  }
 }
