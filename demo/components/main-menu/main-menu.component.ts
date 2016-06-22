@@ -20,10 +20,10 @@ export class MainMenuComponent {
   public routes:any = routes;
   public router:Router;
   public search:any = {};
-  public hash: string = '';
+  public hash:string = '';
 
   public constructor(@Inject(Router) router:Router) {
     this.router = router;
-    this.router.subscribe((hash:string)=>this.hash = hash);
+    this.router.subscribe((hash:any)=>this.hash = hash.instruction.urlPath);
   }
 }
