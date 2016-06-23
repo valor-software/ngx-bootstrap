@@ -153,9 +153,11 @@ export class TypeaheadContainerComponent {
       e.preventDefault();
     }
     this.parent.changeModel(value);
-    this.parent.typeaheadOnSelect.emit({
-      item: value
-    });
+    setTimeout(() =>
+      this.parent.typeaheadOnSelect.emit({
+        item: value
+      }), 0
+    );
     return false;
   }
 }
