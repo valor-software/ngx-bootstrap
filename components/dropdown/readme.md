@@ -35,7 +35,7 @@ export class Dropdown implements OnInit, OnDestroy {
 @Directive({ selector: '[dropdownToggle]' })
 export class DropdownToggle implements OnInit {
   @HostBinding('class.disabled')
-  @Input() public disabled:boolean = false;
+  @Input() public isDisabled:boolean = false;
 
   @HostBinding('attr.aria-expanded')
   public get isOpen() {}
@@ -60,4 +60,4 @@ export const DROPDOWN_DIRECTIVES: Array<any> = [Dropdown, DropdownMenu, Dropdown
 - `onToggle` - fired when `dropdown` toggles, `$event:boolean` equals dropdown `isOpen` state
 
 ### Dropdown toggle properties
-- `disabled` (`?boolean=false`) - if `true` dropdown toggle will be disabled
+- `isDisabled` (`?boolean=false`) - if `true` dropdown toggle will be disabled

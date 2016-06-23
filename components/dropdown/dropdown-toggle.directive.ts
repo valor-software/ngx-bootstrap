@@ -11,7 +11,7 @@ const MouseEvent = (global as any).MouseEvent as MouseEvent;
 @Directive({selector: '[dropdownToggle]'})
 export class DropdownToggleDirective implements OnInit {
   @HostBinding('class.disabled')
-  @Input() public disabled:boolean = false;
+  @Input() public isDisabled:boolean = false;
 
   @HostBinding('class.dropdown-toggle')
   @HostBinding('attr.aria-haspopup')
@@ -37,7 +37,7 @@ export class DropdownToggleDirective implements OnInit {
   public toggleDropdown(event:MouseEvent):boolean {
     event.stopPropagation();
 
-    if (!this.disabled) {
+    if (!this.isDisabled) {
       this.dropdown.toggle();
     }
     return false;
