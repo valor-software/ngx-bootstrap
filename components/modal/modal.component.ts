@@ -76,7 +76,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   @HostListener('click', ['$event'])
   protected onClick(event:any):void {
-    if (event.target === this.element.nativeElement) {
+    if (this.config.backdrop !== 'static' &&
+        event.target === this.element.nativeElement) {
       this.hide(event);
     }
   }
