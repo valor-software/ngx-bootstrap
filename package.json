@@ -75,7 +75,7 @@
     "es7-reflect-metadata": "1.6.0",
     "eslint-config-valorsoft": "0.0.16",
     "exports-loader": "0.6.3",
-    "file-loader": "0.8.5",
+    "file-loader": "0.9.0",
     "gh-pages": "0.11.0",
     "gitignore-to-glob": "0.2.1",
     "gulp": "3.9.1",
