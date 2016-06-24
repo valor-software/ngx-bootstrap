@@ -3,20 +3,19 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": false,
-    "declaration": true,
-    "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
     "noImplicitAny": true,
-    "listFiles": false,
-    "noLib": false
+    "declaration": false
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "./typings/browser.d.ts",
+    "./typings/index.d.ts",
+    "./demo/custom-typings.d.ts",
     "./ng2-bootstrap.ts"
   ]
 }

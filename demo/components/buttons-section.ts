@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/buttons/readme.md');
 let titleDoc = require('../../components/buttons/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./buttons/buttons-demo.ts');
-let html = require('!!prismjs?lang=markup!./buttons/buttons-demo.html');
+let ts = require('!!raw?lang=typescript!./buttons/buttons-demo.ts');
+let html = require('!!raw?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
   selector: 'buttons-section',

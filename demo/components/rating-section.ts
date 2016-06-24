@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/rating/readme.md');
 let titleDoc = require('../../components/rating/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./rating/rating-demo.ts');
-let html = require('!!prismjs?lang=markup!./rating/rating-demo.html');
+let ts = require('!!raw?lang=typescript!./rating/rating-demo.ts');
+let html = require('!!raw?lang=markup!./rating/rating-demo.html');
 
 @Component({
   selector: 'rating-section',

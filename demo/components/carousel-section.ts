@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/carousel/readme.md');
 let titleDoc = require('../../components/carousel/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./carousel/carousel-demo.ts');
-let html = require('!!prismjs?lang=markup!./carousel/carousel-demo.html');
+let ts = require('!!raw?lang=typescript!./carousel/carousel-demo.ts');
+let html = require('!!raw?lang=markup!./carousel/carousel-demo.html');
 
 @Component({
   selector: 'carousel-section',

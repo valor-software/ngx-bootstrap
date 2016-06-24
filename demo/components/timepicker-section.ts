@@ -8,8 +8,8 @@ import {DemoSectionComponent} from './demo-section';
 let doc = require('../../components/timepicker/readme.md');
 let titleDoc = require('../../components/timepicker/title.md');
 
-let ts = require('!!prismjs?lang=typescript!./timepicker/timepicker-demo.ts');
-let html = require('!!prismjs?lang=markup!./timepicker/timepicker-demo.html');
+let ts = require('!!raw?lang=typescript!./timepicker/timepicker-demo.ts');
+let html = require('!!raw?lang=markup!./timepicker/timepicker-demo.html');
 
 @Component({
   selector: 'timepicker-section',

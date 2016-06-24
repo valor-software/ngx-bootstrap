@@ -28,7 +28,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public stateOff:string;
   @Input() public readonly:boolean;
   @Input() public titles:Array<string>;
-  @Input() public ratingStates:Array<{stateOn:string, stateOff:string}>;
+  @Input() public ratingStates:{stateOn:string, stateOff:string}[];
 
   @Output() public onHover:EventEmitter<number> = new EventEmitter(false);
   @Output() public onLeave:EventEmitter<number> = new EventEmitter(false);

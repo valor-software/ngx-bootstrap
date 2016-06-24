@@ -23,14 +23,10 @@
     <div class="item">
       <tabset>
         <tab heading="Markup">
-          <pre class="language-html">
-            <code class="language-html" [innerHTML]="html"></code>
-          </pre>
+          <pre class="prettyprint linenums lang-html">{{html}}</pre>
         </tab>
         <tab heading="TypeScript">
-          <pre class="language-typescript">
-            <code class="language-typescript" [innerHTML]="ts"></code>
-          </pre>
+          <pre class="prettyprint linenums lang-js">{{ts}}</pre>
         </tab>
       </tabset>
     </div>
@@ -39,6 +35,6 @@
   <div id="api" class="section">
     <h3>Api</h3>
 
-    <div class="item list-container" [innerHTML]="doc"></div>
+    <div class="item list-container" [innerHTML]="doc" ngNonBindable></div>
   </div>
 </div>

@@ -20,11 +20,11 @@ const html = `
   </tabset>
 `;
 
-function getTabTitles(nativeEl:HTMLElement):NodeList {
+function getTabTitles(nativeEl:HTMLElement):NodeListOf<Element> {
   return nativeEl.querySelectorAll('.nav-link');
 }
 
-function getTabContent(nativeEl:HTMLElement):NodeList {
+function getTabContent(nativeEl:HTMLElement):NodeListOf<Element> {
   return nativeEl.querySelectorAll('.tab-content .tab-pane');
 }
 
