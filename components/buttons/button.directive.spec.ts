@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {it, beforeEach, beforeEachProviders, injectAsync, expect} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
-import {ButtonCheckboxDirective} from './button-checkbox.directive';
-import {ButtonRadioDirective} from './button-radio.directive';
+// import {ButtonCheckboxDirective} from './button-checkbox.directive';
+// import {ButtonRadioDirective} from './button-radio.directive';
+import {BUTTON_DIRECTIVES} from '../buttons';
+import {NgModel} from '@angular/common';
 
 const html = `
   <div>
@@ -150,14 +152,14 @@ describe('Directive: Buttons', () => {
       delete context.radioModel;
       expect(context.radioModel).toBeUndefined();
 
-      btn.children[2].click();
+      (btn.children[2] as HTMLElement).click();
       fixture.detectChanges();
       expect(context.radioModel).toEqual('Right');
       expect(btn.children[0]).not.toHaveCssClass('active');
       expect(btn.children[1]).not.toHaveCssClass('active');
       expect(btn.children[2]).toHaveCssClass('active');
 
-      btn.children[1].click();
+      (btn.children[1] as HTMLElement).click();
       fixture.detectChanges();
       expect(context.radioModel).toEqual('Middle');
       expect(btn.children[0]).not.toHaveCssClass('active');
@@ -172,7 +174,7 @@ describe('Directive: Buttons', () => {
       expect(btn.children[1]).toHaveCssClass('active');
       expect(btn.children[2]).not.toHaveCssClass('active');
 
-      btn.children[1].click();
+      (btn.children[1] as HTMLElement).click();
       fixture.detectChanges();
       expect(context.radioModel).toEqual('Middle');
       expect(btn.children[0]).not.toHaveCssClass('active');
@@ -191,7 +193,7 @@ describe('Directive: Buttons', () => {
       expect(btn.children[1]).toHaveCssClass('active');
       expect(btn.children[3]).not.toHaveCssClass('active');
 
-      btn.children[3].click();
+      (btn.children[3] as HTMLElement).click();
       fixture.detectChanges();
       expect(btn.children[1]).toHaveCssClass('active');
       expect(btn.children[3]).not.toHaveCssClass('active');
@@ -201,14 +203,14 @@ describe('Directive: Buttons', () => {
       let btn = element.querySelector('.btn-group.radioUncheckable');
       expect(context.radioUncheckableModel).toBeUndefined();
 
-      btn.children[0].click();
+      (btn.children[0] as HTMLElement).click();
       fixture.detectChanges();
       expect(context.radioUncheckableModel).toEqual('Left');
       expect(btn.children[0]).toHaveCssClass('active');
       expect(btn.children[1]).not.toHaveCssClass('active');
       expect(btn.children[2]).not.toHaveCssClass('active');
 
-      btn.children[0].click();
+      (btn.children[0] as HTMLElement).click();
       fixture.detectChanges();
       expect(context.radioUncheckableModel).toBeNull();
       expect(btn.children[0]).not.toHaveCssClass('active');
@@ -220,7 +222,7 @@ describe('Directive: Buttons', () => {
 
 @Component({
   selector: 'buttons-test',
-  directives: [ButtonCheckboxDirective, ButtonRadioDirective],
+  directives: [BUTTON_DIRECTIVES, NgModel],
   template: ''
 })
 
