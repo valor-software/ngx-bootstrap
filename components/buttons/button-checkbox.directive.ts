@@ -3,6 +3,8 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NgModel} from '@angular/common';
 
+// TODO: config: activeClass - Class to apply to the checked buttons.
+
 @Directive({selector: '[btnCheckbox][ngModel]'})
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   public cd:NgModel;
