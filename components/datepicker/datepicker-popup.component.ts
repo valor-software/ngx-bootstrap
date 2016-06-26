@@ -2,9 +2,8 @@ import {
   Component, Directive, EventEmitter, ComponentRef, ViewEncapsulation,
   ElementRef, DynamicComponentLoader, Self, Renderer, ReflectiveInjector, provide, ViewContainerRef
 } from '@angular/core';
-import {
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel, NgStyle
-} from '@angular/common';
+import {CORE_DIRECTIVES, NgClass, NgStyle} from '@angular/common';
+import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
 import {KeyAttribute} from '../common';
 import {positionService} from '../position';
 import {DatePickerComponent} from './datepicker.component';

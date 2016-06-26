@@ -1,5 +1,6 @@
 import {Component, Self, Input} from '@angular/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, ControlValueAccessor, NgModel} from '@angular/common';
+import {CORE_DIRECTIVES} from '@angular/common';
+import {FORM_DIRECTIVES, ControlValueAccessor, NgModel} from '@angular/forms';
 import {DatePickerInnerComponent} from './datepicker-inner.component';
 import {DayPickerComponent} from './daypicker.component';
 import {MonthPickerComponent} from './monthpicker.component';
