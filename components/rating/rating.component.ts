@@ -1,7 +1,8 @@
 import {
   Component, OnInit, Input, Output, HostListener, Self, EventEmitter
 } from '@angular/core';
-import {NgFor, ControlValueAccessor, NgModel} from '@angular/common';
+import {NgFor} from '@angular/common';
+import {ControlValueAccessor, NgModel} from '@angular/forms';
 
 import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */

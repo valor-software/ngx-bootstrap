@@ -2,7 +2,7 @@ import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
   Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
 } from '@angular/core';
-import {NgModel} from '@angular/common';
+import {NgModel} from '@angular/forms';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
