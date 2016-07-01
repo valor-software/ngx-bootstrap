@@ -37,9 +37,9 @@ function expectOpenPanels(nativeEl:HTMLElement, openPanelsDef:boolean[]):void {
   expect(panels.length).toBe(openPanelsDef.length);
   for (let i = 0; i < panels.length; i++) {
     if (openPanelsDef[i]) {
-      expect(panels[i]).toHaveCssClass('panel-open');
+      expect(panels[i].classList).toContain('panel-open');
     } else {
-      expect(panels[i]).not.toHaveCssClass('panel-open');
+      expect(panels[i].classList).not.toContain('panel-open');
     }
   }
 }
