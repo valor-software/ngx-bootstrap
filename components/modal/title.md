@@ -6,11 +6,11 @@ Base specifications: [bootstrap 3](http://getbootstrap.com/javascript/#modals) o
 - Don't forget to add view provider
 
 ```typescript
-import {MODAL_DIRECTVES, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
+import {MODAL_DIRECTIVES, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'modal-demo',
-  directives: [MODAL_DIRECTVES],
+  directives: [MODAL_DIRECTIVES],
   viewProviders:[BS_VIEW_PROVIDERS],
   template: template
 })

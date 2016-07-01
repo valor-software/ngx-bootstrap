@@ -5,7 +5,7 @@ import {CAROUSEL_DIRECTIVES} from './components/carousel';
 import {CollapseDirective} from './components/collapse';
 import {DATEPICKER_DIRECTIVES} from './components/datepicker';
 import {DROPDOWN_DIRECTIVES} from './components/dropdown';
-import {MODAL_DIRECTVES} from './components/modal';
+import {MODAL_DIRECTIVES} from './components/modal';
 import {PAGINATION_DIRECTIVES} from './components/pagination';
 import {PROGRESSBAR_DIRECTIVES} from './components/progressbar';
 import {RatingComponent} from './components/rating';
@@ -47,7 +47,7 @@ export default {
     CollapseDirective,
     DATEPICKER_DIRECTIVES,
     DROPDOWN_DIRECTIVES,
-    MODAL_DIRECTVES,
+    MODAL_DIRECTIVES,
     PAGINATION_DIRECTIVES,
     PROGRESSBAR_DIRECTIVES,
     RatingComponent,
