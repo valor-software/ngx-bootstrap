@@ -1,35 +1,63 @@
 import {Component} from '@angular/core';
-import {it, beforeEach, beforeEachProviders, inject, expect} from '@angular/core/testing';
+import {
+  it,
+  // tick,
+  inject,
+  expect,
+  // fakeAsync,
+  beforeEach,
+  beforeEachProviders
+  // discardPeriodicTasks
+} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {NgModel} from '@angular/common';
 import {CAROUSEL_DIRECTIVES} from '../carousel';
-// import {CarouselComponent} from './carousel.component';
-// import {SlideComponent} from './slide.component';
 
 const html = `
-  <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
-    <slide *ngFor="let slide of slides; let index=index"
-           [active]="slide.active">
-      <img [src]="slide.image" style="margin:auto;">
-      <div class="carousel-caption">
-        <h4>Slide {{index}}</h4>
-        <p>{{slide.text}}</p>
-      </div>
-    </slide>
-  </carousel>
+  <div id="c1">
+    <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
+      <slide *ngFor="let slide of slides; let index=index"
+             [active]="slide.active">
+        <img [src]="slide.image" style="margin:auto;">
+        <div class="carousel-caption">
+          <h4>Slide {{index}}</h4>
+          <p>{{slide.text}}</p>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+  
+  <div id="c2">
+    <carousel>
+      <slide>slide1</slide>
+      <slide>slide2</slide>
+    </carousel>
+  </div>
 `;
 
-/**
- * 1) if we set an active slide via model changes, .active class remains on a current slide.
- * 2) if we have only one slide, we shouldn't show prev/next nav buttons
- *
- *
- */
+function expectActiveSlides(nativeEl:HTMLDivElement, active:boolean[]):void {
+  const slideElms = nativeEl.querySelectorAll('.carousel-item');
+  const indicatorElms = nativeEl.querySelectorAll('ol.carousel-indicators > li');
+
+  expect(slideElms.length).toBe(active.length);
+  expect(indicatorElms.length).toBe(active.length);
+
+  for (let i = 0; i < active.length; i++) {
+    if (active[i]) {
+      expect(slideElms[i]).toHaveCssClass('active');
+      expect(indicatorElms[i]).toHaveCssClass('active');
+    } else {
+      expect(slideElms[i]).not.toHaveCssClass('active');
+      expect(indicatorElms[i]).not.toHaveCssClass('active');
+    }
+  }
+}
 
 describe('Component: Carousel', () => {
   let fixture:ComponentFixture<any>;
   let context:any;
   let element:any;
+  let clean:any;
 
   beforeEachProviders(() => [
     TestComponentBuilder
@@ -42,25 +70,21 @@ describe('Component: Carousel', () => {
       .then((f:ComponentFixture<any>) => {
         fixture = f;
         context = fixture.componentInstance;
-        element = fixture.nativeElement;
+        element = fixture.nativeElement.querySelector('#c1');
+        clean = fixture.nativeElement.querySelector('#c2');
         fixture.detectChanges();
       });
   }));
 
   it('should set first slide as active by default', () => {
-    let slide = element.querySelector('slide');
-    expect(slide).toHaveCssClass('active');
-    expect(slide.children[0]).toHaveCssClass('active');
+    expectActiveSlides(element, [true, false, false]);
   });
 
-  it('should be able to select a slide via model changes', () => {
+  // TODO:
+  xit('should be able to select a slide via model changes', () => {
     context.slides[2].active = true;
     fixture.detectChanges();
-    let slides = element.querySelectorAll('slide');
-    // TODO:
-    // expect(slides[0]).not.toHaveCssClass('active');
-    expect(slides[1]).not.toHaveCssClass('active');
-    expect(slides[2]).toHaveCssClass('active');
+    expectActiveSlides(element, [false, false, true]);
   });
 
   it('should create next/prev nav button', () => {
@@ -75,33 +99,110 @@ describe('Component: Carousel', () => {
     expect(indicators.length).toBe(3);
   });
 
-  it('should hide navigation when only one slide', () => {
+  // TODO:
+  xit('should hide navigation when only one slide', () => {
     context.slides.splice(0, 2);
     fixture.detectChanges();
     expect(context.slides.length).toBe(1);
     let indicators = element.querySelectorAll('ol.carousel-indicators > li');
     expect(indicators.length).toBe(0);
-    // TODO:
-    // let prev = element.querySelectorAll('a.left');
-    // expect(prev.length).toBe(0);
-    // let next = element.querySelectorAll('a.right');
-    // expect(next.length).toBe(0);
+    let prev = element.querySelectorAll('a.left');
+    expect(prev.length).toBe(0);
+    let next = element.querySelectorAll('a.right');
+    expect(next.length).toBe(0);
   });
 
-  it('should disable prev button when slide index is 0 and noWrap is truthy', () => {
+  // TODO:
+  xit('should disable prev button when slide index is 0 and noWrap is truthy', () => {
     context.noWrapSlides = true;
     fixture.detectChanges();
+    let prev = element.querySelector('a.left');
+    expect(prev).toHaveCssClass('disabled');
+  });
 
-    // console.log(element.querySelectorAll('slide'));
-    // let prev = element.querySelector('a.left');
+  // TODO:
+  xit('should disable next button when last slide is active and noWrap is truthy', () => {
+    context.noWrapSlides = true;
+    context.slides[2].active = true;
+    fixture.detectChanges();
     let next = element.querySelector('a.right');
-    // prev.click()
+    expect(next).toHaveCssClass('disabled');
+  });
+
+  it('should change slide on indicator click', () => {
+    let indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    expectActiveSlides(element, [true, false, false]);
+    indicators[2].click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, false, true]);
+    indicators[1].click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, true, false]);
+  });
+
+  it('should change slide on carousel control click', () => {
+    const prev = element.querySelector('a.left');
+    const next = element.querySelector('a.right');
     next.click();
     fixture.detectChanges();
-    // console.log(prev);
-    // console.log(element.querySelectorAll('slide'));
+    expectActiveSlides(element, [false, true, false]);
+    prev.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [true, false, false]);
+  });
 
-    // expect(navPrev.hasClass('disabled')).toBe(true);
+  // it('should change slide on time passage (default)', fakeAsync(() => {
+  //   expectActiveSlides(clean, [true, false]);
+  //   tick(6000);
+  //   fixture.detectChanges();
+  //   expectActiveSlides(clean, [false, true]);
+  //   discardPeriodicTasks();
+  // }));
+  //
+  // it('should change slide on time passage', fakeAsync(() => {
+  //   expectActiveSlides(element, [true, false, false]);
+  //   tick(6000);
+  //   fixture.detectChanges();
+  //   expectActiveSlides(element, [false, true, false]);
+  //   discardPeriodicTasks();
+  // }));
+
+  it('should wrap slide changes by default', () => {
+    const prev = element.querySelector('a.left');
+    const next = element.querySelector('a.right');
+    expectActiveSlides(element, [true, false, false]);
+    next.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, true, false]);
+    next.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, false, true]);
+    next.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [true, false, false]);
+    prev.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, false, true]);
+  });
+
+  it('should not wrap slide changes if noWrap == true', () => {
+    context.noWrapSlides = true;
+    fixture.detectChanges();
+    const prev = element.querySelector('a.left');
+    const next = element.querySelector('a.right');
+    expectActiveSlides(element, [true, false, false]);
+    prev.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [true, false, false]);
+    next.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, true, false]);
+    next.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, false, true]);
+    next.click();
+    fixture.detectChanges();
+    expectActiveSlides(element, [false, false, true]);
   });
 });
 

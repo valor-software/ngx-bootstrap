@@ -28,8 +28,8 @@ const html = `
   </accordion>
 `;
 
-function getPanels(element:HTMLElement):HTMLDivElement[] {
-  return Array.from(element.querySelectorAll('accordion-group') as HTMLDivElement[]);
+function getPanels(element:HTMLElement):Element[] {
+  return Array.from(element.querySelectorAll('accordion-group'));
 }
 
 function expectOpenPanels(nativeEl:HTMLElement, openPanelsDef:boolean[]):void {
