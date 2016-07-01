@@ -1,46 +1,46 @@
 import {Component} from '@angular/core';
-import {it, beforeEach, beforeEachProviders, injectAsync, expect} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {addProviders, inject, async} from '@angular/core/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 // import {ButtonCheckboxDirective} from './button-checkbox.directive';
 // import {ButtonRadioDirective} from './button-radio.directive';
 import {BUTTON_DIRECTIVES} from '../buttons';
-import {NgModel} from '@angular/common';
+import {NgModel} from '@angular/forms';
 
 const html = `
   <div>
     <button id="default" [(ngModel)]="singleModel" btnCheckbox>
       Default
     </button>
-    
+
     <button id="disabled" disabled [(ngModel)]="singleModel" btnCheckbox>
       Disabled
     </button>
-    
+
     <button id="custom" type="button" class="btn btn-primary"
             [(ngModel)]="singleModel" btnCheckbox
             btnCheckboxTrue="1" btnCheckboxFalse="0">
       Single Toggle
     </button>
-    
+
     <div class="btn-group checkbox">
       <label class="btn btn-primary" [(ngModel)]="checkModel.left" btnCheckbox>Left</label>
       <label class="btn btn-primary" [(ngModel)]="checkModel.middle" btnCheckbox>Middle</label>
       <label class="btn btn-primary" [(ngModel)]="checkModel.right" btnCheckbox>Right</label>
     </div>
-    
+
     <div class="btn-group radio">
       <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Left">Left</label>
       <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Middle">Middle</label>
       <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Right">Right</label>
       <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="1" disabled>Disabled</label>
     </div>
-    
+
     <div class="btn-group radioUncheckable">
       <label class="btn btn-success" [(ngModel)]="radioUncheckableModel" btnRadio="Left" uncheckable>Left</label>
       <label class="btn btn-success" [(ngModel)]="radioUncheckableModel" btnRadio="Middle" uncheckable>Middle</label>
       <label class="btn btn-success" [(ngModel)]="radioUncheckableModel" btnRadio="Right" uncheckable>Right</label>
     </div>
-  </div> 
+  </div>
 `;
 
 describe('Directive: Buttons', () => {
@@ -48,11 +48,11 @@ describe('Directive: Buttons', () => {
   let context:any;
   let element:any;
 
-  beforeEachProviders(() => [
+  addProviders(() => [
     TestComponentBuilder
   ]);
 
-  beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .overrideTemplate(TestButtonsComponent, html)
       .createAsync(TestButtonsComponent)
@@ -62,7 +62,7 @@ describe('Directive: Buttons', () => {
         element = fixture.nativeElement;
         fixture.detectChanges();
       });
-  }));
+  })));
 
   describe('checkbox', () => {
     it('should work correctly with default model values', () => {

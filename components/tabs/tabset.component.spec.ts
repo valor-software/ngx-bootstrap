@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {it, beforeEach, beforeEachProviders, injectAsync, expect} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {addProviders, inject, async} from '@angular/core/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {TabsetComponent} from './tabset.component';
 import {TabDirective} from './tab.directive';
 import {TabHeadingDirective} from './tab-heading.directive';
@@ -51,11 +51,11 @@ describe('Component: Tabs', () => {
   let context:any;
   let element:any;
 
-  beforeEachProviders(() => [
+  addProviders(() => [
     TestComponentBuilder
   ]);
 
-  beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .overrideTemplate(TestTabsetComponent, html)
       .createAsync(TestTabsetComponent)
@@ -68,7 +68,7 @@ describe('Component: Tabs', () => {
         element = fixture.nativeElement;
         fixture.detectChanges();
       });
-  }));
+  })));
 
   it('should select first tab as active by default', () => {
     expectActiveTabs(element, [true, false, false, false]);

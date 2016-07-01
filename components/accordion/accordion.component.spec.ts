@@ -1,30 +1,30 @@
 import {Component} from '@angular/core';
-import {it, beforeEach, beforeEachProviders, injectAsync, expect} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {addProviders, inject, async} from '@angular/core/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {AccordionComponent} from './accordion.component';
 import {AccordionPanelComponent} from './accordion-group.component';
 
 const html = `
   <accordion [closeOthers]="oneAtATime">
-  
+
     <accordion-group heading="Panel 1"
                      [isOpen]="panels[0].isOpen"
                      [isDisabled]="panels[0].isDisabled">
       Content of panel 1
     </accordion-group>
-    
+
     <accordion-group heading="Panel 2"
                      [isOpen]="panels[1].isOpen"
                      [isDisabled]="panels[1].isDisabled">
       Content of panel 2
     </accordion-group>
-    
+
     <accordion-group heading="Panel 3"
                      [isOpen]="panels[2].isOpen"
                      [isDisabled]="panels[2].isDisabled">
       Content of panel 3
     </accordion-group>
-    
+
   </accordion>
 `;
 
@@ -53,11 +53,11 @@ describe('Component: Accordion', () => {
   let context:any;
   let element:any;
 
-  beforeEachProviders(() => [
+  addProviders(() => [
     TestComponentBuilder
   ]);
 
-  beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .overrideTemplate(TestAccordionComponent, html)
       .createAsync(TestAccordionComponent)
@@ -67,7 +67,7 @@ describe('Component: Accordion', () => {
         element = fixture.nativeElement;
         fixture.detectChanges();
       });
-  }));
+  })));
 
   it('should have no open panels', () => {
     expectOpenPanels(element, [false, false, false]);

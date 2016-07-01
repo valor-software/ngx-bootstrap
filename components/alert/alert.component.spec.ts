@@ -1,5 +1,5 @@
-import {it, beforeEach, injectAsync } from '@angular/core/testing';
-import { TestComponentBuilder, ComponentFixture } from '@angular/compiler/testing';
+import {it, beforeEach, inject, async} from '@angular/core/testing';
+import { TestComponentBuilder, ComponentFixture } from '@angular/core/testing';
 import {AlertComponent} from './alert.component';
 
 describe('Component: Alert', () => {
@@ -14,7 +14,7 @@ describe('Component: Alert', () => {
                   </div>
             `;
 
-    beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+    beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
         return tcb
             .overrideTemplate(AlertComponent, overTemplate)
             .createAsync(AlertComponent)
@@ -22,7 +22,7 @@ describe('Component: Alert', () => {
                 fixture = f;
                 context = fixture.debugElement.componentInstance;
             });
-    }));
+    })));
 
     it('should have a default type alert-warning', () => {
         context.ngOnInit();
