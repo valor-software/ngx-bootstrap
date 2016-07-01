@@ -48,9 +48,7 @@ describe('Directive: Buttons', () => {
   let context:any;
   let element:any;
 
-  addProviders(() => [
-    TestComponentBuilder
-  ]);
+  beforeEach(() => addProviders(() => [TestComponentBuilder]);
 
   beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb

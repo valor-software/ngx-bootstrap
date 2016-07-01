@@ -26,6 +26,7 @@
     "start": "npm run flow.serve:dev",
     "pretest": "npm run flow.lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
+    "test:watch": "NODE_ENV=test ./node_modules/.bin/karma start --auto-watch --no-single-run",
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
     "postversion": "git push origin development && git push --tags"
