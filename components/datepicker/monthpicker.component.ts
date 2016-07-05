@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass} from '@angular/common';
+import {CORE_DIRECTIVES, NgClass} from '@angular/common';
+import {FORM_DIRECTIVES} from '@angular/forms';
 import {DatePickerInnerComponent} from './datepicker-inner.component';
 import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
 
