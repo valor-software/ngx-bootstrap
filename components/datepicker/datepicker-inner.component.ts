@@ -1,7 +1,6 @@
 import {Component, OnInit, EventEmitter, Input, OnChanges} from '@angular/core';
-import {
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel
-} from '@angular/common';
+import {CORE_DIRECTIVES, NgClass} from '@angular/common';
+import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
 import {DateFormatter} from './date-formatter';
 
 const FORMAT_DAY = 'DD';

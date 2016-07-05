@@ -1,5 +1,6 @@
 import {Component, OnInit, ElementRef, Renderer, Self} from '@angular/core';
-import {NgModel, NgClass} from '@angular/common';
+import {NgClass} from '@angular/common';
+import {NgModel} from '@angular/forms';
 import {PaginationComponent} from './pagination.component';
 
 const pagerConfig = {

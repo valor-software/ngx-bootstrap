@@ -6,7 +6,7 @@
     "typedoc": "typedoc",
     "flow.docs": "npm run typedoc -- --exclude '**/*.spec.ts' ./components/",
     "flow.install:typings": "./node_modules/.bin/typings install",
-    "flow.compile": "npm run flow.install:typings && npm run flow.compile:common && npm run flow.compile:system ",
+    "flow.compile": "npm run flow.install:typings && npm run flow.compile:common && npm run flow.compile:system",
     "flow.compile:common": "./node_modules/.bin/tsc -d",
     "flow.compile:system": "./.config/bundle-system.js",
     "flow.copy:src": "./node_modules/.bin/cpy ng2-bootstrap.ts \"components/*.ts\" ts --parents",
@@ -26,6 +26,7 @@
     "start": "npm run flow.serve:dev",
     "pretest": "npm run flow.lint",
     "test": "NODE_ENV=test ./node_modules/.bin/karma start",
+    "test:watch": "NODE_ENV=test ./node_modules/.bin/karma start --auto-watch --no-single-run",
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
     "postversion": "git push origin development && git push --tags"
@@ -52,16 +53,18 @@
     "moment": "2.13.0"
   },
   "peerDependencies": {
-    "@angular/common": "2.0.0-rc.3",
-    "@angular/compiler": "2.0.0-rc.3",
-    "@angular/core": "2.0.0-rc.3"
+    "@angular/common": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "0.2.0"
   },
   "devDependencies": {
-    "@angular/common": "2.0.0-rc.3",
-    "@angular/compiler": "2.0.0-rc.3",
-    "@angular/core": "2.0.0-rc.3",
-    "@angular/platform-browser": "2.0.0-rc.3",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.3",
+    "@angular/common": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "0.2.0",
+    "@angular/platform-browser": "2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@angular/router-deprecated": "2.0.0-rc.2",
     "async": "1.5.2",
     "bootstrap": "3.3.6",

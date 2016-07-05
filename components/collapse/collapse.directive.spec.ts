@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {it, beforeEach, beforeEachProviders, injectAsync, expect} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {/*addProviders, */inject, async} from '@angular/core/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {CollapseDirective} from './collapse.directive';
 
 const template = `
@@ -26,11 +26,10 @@ describe('Directive: Collapse', () => {
   let element:any;
   let context:any;
 
-  beforeEachProviders(() => [
-    TestComponentBuilder
-  ]);
+  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders([TestComponentBuilder]));
 
-  beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .createAsync(TestCollapseComponent)
       .then((f:ComponentFixture<any>) => {
@@ -39,18 +38,18 @@ describe('Directive: Collapse', () => {
         element = fixture.nativeElement.querySelector('.collapse');
         context = fixture.componentInstance;
       });
-  }));
+  })));
 
   it('should have collapse class', () => {
     let div = fixture.nativeElement.querySelector('div');
-    expect(div).toHaveCssClass('collapse');
+    expect(div.classList).toContain('collapse');
   });
 
   it('should add/remove in class on toggle', () => {
-    expect(element).toHaveCssClass('in');
+    expect(element.classList).toContain('in');
     context.isCollapsed = true;
     fixture.detectChanges();
-    expect(element).not.toHaveCssClass('in');
+    expect(element.classList).not.toContain('in');
   });
 
   it('should be hidden on initialization if isCollapsed = true', () => {

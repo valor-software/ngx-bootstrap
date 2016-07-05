@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {it, beforeEach, beforeEachProviders, injectAsync, expect} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
+import {/*addProviders, */inject, async} from '@angular/core/testing';
+import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {TabsetComponent} from './tabset.component';
 import {TabDirective} from './tab.directive';
 import {TabHeadingDirective} from './tab-heading.directive';
@@ -37,11 +37,11 @@ function expectActiveTabs(nativeEl:HTMLElement, active:boolean[]):void {
 
   for (let i = 0; i < active.length; i++) {
     if (active[i]) {
-      expect(tabTitles[i]).toHaveCssClass('active');
-      expect(tabContent[i]).toHaveCssClass('active');
+      expect(tabTitles[i].classList).toContain('active');
+      expect(tabContent[i].classList).toContain('active');
     } else {
-      expect(tabTitles[i]).not.toHaveCssClass('active');
-      expect(tabContent[i]).not.toHaveCssClass('active');
+      expect(tabTitles[i].classList).not.toContain('active');
+      expect(tabContent[i].classList).not.toContain('active');
     }
   }
 }
@@ -51,11 +51,10 @@ describe('Component: Tabs', () => {
   let context:any;
   let element:any;
 
-  beforeEachProviders(() => [
-    TestComponentBuilder
-  ]);
+  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders([TestComponentBuilder]));
 
-  beforeEach(injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .overrideTemplate(TestTabsetComponent, html)
       .createAsync(TestTabsetComponent)
@@ -68,7 +67,7 @@ describe('Component: Tabs', () => {
         element = fixture.nativeElement;
         fixture.detectChanges();
       });
-  }));
+  })));
 
   it('should select first tab as active by default', () => {
     expectActiveTabs(element, [true, false, false, false]);
@@ -131,17 +130,17 @@ describe('Component: Tabs', () => {
   });
 
   it('should add class nav-stacked for vertical mode', () => {
-    expect(element.querySelectorAll('ul.nav')[0]).not.toHaveCssClass('nav-stacked');
+    expect(element.querySelectorAll('ul.nav')[0].classList).not.toContain('nav-stacked');
     context.isVertical = true;
     fixture.detectChanges();
-    expect(element.querySelectorAll('ul.nav')[0]).toHaveCssClass('nav-stacked');
+    expect(element.querySelectorAll('ul.nav')[0].classList).toContain('nav-stacked');
   });
 
   it('should add class nav-justified for justified', () => {
-    expect(element.querySelector('ul.nav')).not.toHaveCssClass('nav-justified');
+    expect(element.querySelector('ul.nav').classList).not.toContain('nav-justified');
     context.isJustified = true;
     fixture.detectChanges();
-    expect(element.querySelector('ul.nav')).toHaveCssClass('nav-justified');
+    expect(element.querySelector('ul.nav').classList).toContain('nav-justified');
   });
 
   it('should emit select/deselect', () => {

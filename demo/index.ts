@@ -1,6 +1,7 @@
 import {
   Component, enableProdMode, ViewContainerRef, AfterContentInit
 } from '@angular/core';
+import {disableDeprecatedForms, provideForms} from '@angular/forms';
 import {
   RouterOutlet, RouteConfig, ROUTER_PROVIDERS, Router
 } from '@angular/router-deprecated';
@@ -56,6 +57,7 @@ export class DemoComponent implements AfterContentInit {
 }
 
 bootstrap(DemoComponent, [ROUTER_PROVIDERS,
+  disableDeprecatedForms(),
+  provideForms(),
   {provide: APP_BASE_HREF, useValue: '/'},
   {provide: LocationStrategy, useClass: HashLocationStrategy}]);
-
