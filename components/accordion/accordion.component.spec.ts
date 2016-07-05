@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {addProviders, inject, async} from '@angular/core/testing';
+import {/*addProviders, */inject, async} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {AccordionComponent} from './accordion.component';
 import {AccordionPanelComponent} from './accordion-group.component';
@@ -28,8 +28,8 @@ const html = `
   </accordion>
 `;
 
-function getPanels(element:HTMLElement):HTMLDivElement[] {
-  return Array.from(element.querySelectorAll('accordion-group') as HTMLDivElement[]);
+function getPanels(element:HTMLElement):Element[] {
+  return Array.from(element.querySelectorAll('accordion-group'));
 }
 
 function expectOpenPanels(nativeEl:HTMLElement, openPanelsDef:boolean[]):void {
@@ -53,7 +53,8 @@ describe('Component: Accordion', () => {
   let context:any;
   let element:any;
 
-  beforeEach(addProviders(() => [TestComponentBuilder  ]));
+  // beforeEach(addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders([TestComponentBuilder]));
 
   beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb

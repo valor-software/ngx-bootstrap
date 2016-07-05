@@ -55,7 +55,7 @@ xdescribe('Directive: Buttons', () => {
   beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .overrideTemplate(TestButtonsComponent, html)
-      .overrideProviders(providerArr)
+      .overrideProviders(TestButtonsComponent, providerArr)
       .createAsync(TestButtonsComponent)
       .then((f:ComponentFixture<any>) => {
         fixture = f;

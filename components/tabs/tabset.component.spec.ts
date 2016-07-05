@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {addProviders, inject, async} from '@angular/core/testing';
+import {/*addProviders, */inject, async} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {TabsetComponent} from './tabset.component';
 import {TabDirective} from './tab.directive';
@@ -51,7 +51,8 @@ describe('Component: Tabs', () => {
   let context:any;
   let element:any;
 
-  beforeEach(() => addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders([TestComponentBuilder]));
 
   beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb

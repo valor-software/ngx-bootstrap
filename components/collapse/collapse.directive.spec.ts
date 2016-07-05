@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {addProviders, inject, async} from '@angular/core/testing';
+import {/*addProviders, */inject, async} from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
 import {CollapseDirective} from './collapse.directive';
 
@@ -26,7 +26,8 @@ describe('Directive: Collapse', () => {
   let element:any;
   let context:any;
 
-  beforeEach(() => addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
+  // beforeEach(() => addProviders([TestComponentBuilder]));
 
   beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
