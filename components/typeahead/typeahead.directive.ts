@@ -143,15 +143,9 @@ export class TypeaheadDirective implements OnInit {
       return;
     }
 
-    // if shift + tab, close items list
-    if (e.shiftKey && e.keyCode === 9) {
+    // if tab default browser behavior will select next input field, and therefore we should close the items list
+    if (e.keyCode === 9) {
       this.hide();
-      return;
-    }
-
-    // if tab select current item
-    if (!e.shiftKey && e.keyCode === 9) {
-      this.container.selectActiveMatch();
       return;
     }
   }
