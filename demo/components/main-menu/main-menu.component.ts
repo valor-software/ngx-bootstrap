@@ -1,5 +1,5 @@
-import {Component, Inject} from '@angular/core';
-import {RouterLink, Router} from '@angular/router-deprecated';
+import {Component} from '@angular/core';
+import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
 
 import {routes} from './../../config';
 import {SearchFilterPipe} from './search-filter.pipe';
@@ -10,20 +10,26 @@ let template = require('./main-menu.template.html');
 
 @Component({
   selector: 'main-menu',
-  template: template,
-  directives: [RouterLink],
+  template,
+  directives: [ROUTER_DIRECTIVES],
   pipes: [SearchFilterPipe]
 })
 
 export class MainMenuComponent {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
   public routes:any = routes;
-  public router:Router;
   public search:any = {};
   public hash:string = '';
 
-  public constructor(@Inject(Router) router:Router) {
-    this.router = router;
-    this.router.subscribe((hash:any)=>this.hash = hash.instruction.urlPath);
+  constructor(private router:Router) {
+    this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationEnd) {
+        this.hash = event.url;
+      }
+    });
+  }
+
+  isActive(link:string):boolean {
+    return this.hash.substring(1) === link;
   }
 }
