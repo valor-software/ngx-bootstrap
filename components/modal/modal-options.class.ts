@@ -13,6 +13,10 @@ export interface ModalOptions {
    * Shows the modal when initialized.
    */
   show:boolean;
+  /**
+   * Ignore the backdrop click
+   */
+   ignoreBackdropClick:boolean;
 }
 
 export const modalConfigDefaults:ModalOptions = {
