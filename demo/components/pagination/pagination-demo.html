@@ -14,7 +14,7 @@
   <hr class="visible-md visible-xs hidden-lg-up">
   <div class="col-lg-6" style="margin-top: 10px;">
     <h4>Pager</h4>
-    <pager [totalItems]="totalItems" [(ngModel)]="currentPage" onPageChanged="pageChanged($event)"></pager>
+    <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pager>
 
     <hr/>
     <h4>Limit the maximum visible buttons</h4>
