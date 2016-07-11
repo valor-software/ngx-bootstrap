@@ -7,14 +7,14 @@ import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
 
+import {Observable} from 'rxjs/Rx';
+
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
-
-import {Observable} from 'rxjs/Observable';
 
 import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
