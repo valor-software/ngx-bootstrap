@@ -56,8 +56,7 @@
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
     "@angular/core": "2.0.0-rc.4",
-    "@angular/forms": "0.2.0",
-    "@angular/router": "3.0.0-beta.2"
+    "@angular/forms": "0.2.0"
   },
   "devDependencies": {
     "@angular/common": "2.0.0-rc.4",
