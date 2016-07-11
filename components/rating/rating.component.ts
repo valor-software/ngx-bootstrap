@@ -31,8 +31,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public titles:Array<string>;
   @Input() public ratingStates:{stateOn:string, stateOff:string}[];
 
-  @Output() public onHover:EventEmitter<number> = new EventEmitter(false);
-  @Output() public onLeave:EventEmitter<number> = new EventEmitter(false);
+  @Output() public onHover:EventEmitter<number> = new EventEmitter<number>(false);
+  @Output() public onLeave:EventEmitter<number> = new EventEmitter<number>(false);
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;

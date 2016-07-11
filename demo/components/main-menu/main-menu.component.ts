@@ -21,7 +21,7 @@ export class MainMenuComponent {
   public search:any = {};
   public hash:string = '';
 
-  constructor(private router:Router) {
+  public constructor(private router:Router) {
     this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd) {
         this.hash = event.url;
@@ -29,7 +29,7 @@ export class MainMenuComponent {
     });
   }
 
-  isActive(link:string):boolean {
+  public isActive(link:string):boolean {
     return this.hash.substring(1) === link;
   }
 }

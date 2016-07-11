@@ -35,10 +35,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this._config = this.getConfig(conf);
   };
 
-  @Output() public onShow:EventEmitter<ModalDirective> = new EventEmitter();
-  @Output() public onShown:EventEmitter<ModalDirective> = new EventEmitter();
-  @Output() public onHide:EventEmitter<ModalDirective> = new EventEmitter();
-  @Output() public onHidden:EventEmitter<ModalDirective> = new EventEmitter();
+  @Output() public onShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public onShown:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public onHide:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public onHidden:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   public get config():ModalOptions {
     return this._config;
