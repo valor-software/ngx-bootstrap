@@ -11,6 +11,7 @@ test.bundle.js
 coverage
 
 # demo build
+doc
 demo
 demo-build
 webpack.config.js
@@ -18,6 +19,7 @@ webpack.config.js
 #typescript sources
 *.ts
 *.js.map
+!/bundles/*.js.map
 !*.d.ts
 /components/**/*.ts
 !/components/**/*.d.ts

@@ -1,4 +1,8 @@
 {
   "extends": "tslint-config-valorsoft",
-  "rulesDirectory": "./node_modules/codelyzer"
+  "rulesDirectory": "./node_modules/codelyzer",
+  "rules": {
+    "component-selector-name": [false, ""],
+    "no-constructor-vars": false
+  }
 }

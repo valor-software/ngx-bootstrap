@@ -1,7 +1,6 @@
 import {Component, OnInit, EventEmitter, Input, OnChanges} from '@angular/core';
-import {
-  CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgModel
-} from '@angular/common';
+import {CORE_DIRECTIVES, NgClass} from '@angular/common';
+import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
 import {DateFormatter} from './date-formatter';
 
 const FORMAT_DAY = 'DD';
@@ -88,7 +87,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   private compareHandlerMonth:Function;
   private refreshViewHandlerYear:Function;
   private compareHandlerYear:Function;
-  private update:EventEmitter<Date> = new EventEmitter(false);
+  private update:EventEmitter<Date> = new EventEmitter<Date>(false);
 
   @Input()
   public get activeDate():Date {

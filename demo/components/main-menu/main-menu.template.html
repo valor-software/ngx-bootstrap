@@ -1,0 +1,36 @@
+<div id="main-menu">
+  <div class="menu-search">
+    <input type="text" name="search" placeholder="Search..." [(ngModel)]="search.text"/>
+  </div>
+  <div class="main-menu-container">
+    <div class="menu-content" *ngIf="routes && routes.length">
+      <div class="section">
+        <h3 *ngIf="isBs3"><a href="./index-bs4.html#{{hash}}">View in Bootstrap 4</a></h3>
+        <h3 *ngIf="!isBs3"><a href="./#{{hash}}">View in Bootstrap 3</a></h3>
+      </div>
+      <div class="section"
+           *ngFor="let route of routes | SearchFilter:search.text"
+           [class.active]="isActive(route.path)">
+        <h3 [routerLink]="[route.path]">{{route.data[0]}}</h3>
+
+<!--        <div class="item">
+          <h4>
+            <span [routerLink]="[route.name]">Example</span>
+          </h4>
+        </div>
+
+        <div class="item">
+          <h4>
+            <span [routerLink]="[route.name]">Api</span>
+          </h4>
+        </div>
+
+        <div class="item">
+          <h4>
+            <span [routerLink]="[route.name]">Properties</span>
+          </h4>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

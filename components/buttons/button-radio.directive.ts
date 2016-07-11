@@ -1,7 +1,10 @@
 import {
   Directive, OnInit, Input, HostBinding, HostListener, Self, ElementRef
 } from '@angular/core';
-import {ControlValueAccessor, NgModel} from '@angular/common';
+import {ControlValueAccessor, NgModel} from '@angular/forms';
+
+// TODO: if uncheckable, null should be set to ngModel
+// if disabled, button should not be checkable
 
 @Directive({selector: '[btnRadio][ngModel]'})
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {

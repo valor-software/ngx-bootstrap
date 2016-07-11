@@ -1,6 +1,6 @@
 import {
   Directive, OnInit, OnDestroy, Input, Output, HostBinding, EventEmitter,
-  ElementRef
+  ElementRef, ChangeDetectorRef
 } from '@angular/core';
 import {dropdownService, NONINPUT} from './dropdown.service';
 
@@ -17,8 +17,8 @@ export class DropdownDirective implements OnInit, OnDestroy {
   // enum string: ['always', 'outsideClick', 'disabled']
   @Input() public appendToBody:boolean;
 
-  @Output() public onToggle:EventEmitter<boolean> = new EventEmitter(false);
-  @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter(false);
+  @Output() public onToggle:EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter<boolean>(false);
   @HostBinding('class.dropdown') public addClass:boolean = true;
 
   // index of selected element
@@ -30,10 +30,13 @@ export class DropdownDirective implements OnInit, OnDestroy {
   public el:ElementRef;
   private _isOpen:boolean;
 
-  public constructor(el:ElementRef) {
+  private _changeDetector: ChangeDetectorRef;
+
+  public constructor(el:ElementRef, ref:ChangeDetectorRef) {
     // @Query('dropdownMenu', {descendants: false})
     // dropdownMenuList:QueryList<ElementRef>) {
     this.el = el;
+    this._changeDetector = ref;
     // todo: bind to route change event
   }
 
@@ -56,6 +59,7 @@ export class DropdownDirective implements OnInit, OnDestroy {
     }
     this.onToggle.emit(this.isOpen);
     this.isOpenChange.emit(this.isOpen);
+    this._changeDetector.markForCheck();
     // todo: implement call to setIsOpen if set and function
   }
 

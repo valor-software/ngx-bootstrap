@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES} from '@angular/common';
+import {CORE_DIRECTIVES} from '@angular/common';
+import {FORM_DIRECTIVES} from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
@@ -12,6 +15,7 @@ let template = require('./typeahead-demo.html');
 })
 export class TypeaheadDemoComponent {
   public selected:string = '';
+  public dataSource:Observable<any>;
   public asyncSelected:string = '';
   public typeaheadLoading:boolean = false;
   public typeaheadNoResults:boolean = false;
@@ -55,32 +59,14 @@ export class TypeaheadDemoComponent {
     {id: 49, name: 'West Virginia'}, {id: 50, name: 'Wisconsin'},
     {id: 51, name: 'Wyoming'}];
 
-  private _cache:any;
-  private _prevContext:any;
+  public constructor() {
+    this.dataSource = Observable.create((observer:any) => {
+      let query = new RegExp(this.asyncSelected, 'ig');
 
-  public getContext():any {
-    return this;
-  }
-
-  public getAsyncData(context:any):Function {
-    if (this._prevContext === context) {
-      return this._cache;
-    }
-
-    this._prevContext = context;
-    let f:Function = function ():Promise<string[]> {
-      let p:Promise<string[]> = new Promise((resolve:Function) => {
-        setTimeout(() => {
-          let query = new RegExp(context.asyncSelected, 'ig');
-          return resolve(context.states.filter((state:any) => {
-            return query.test(state);
-          }));
-        }, 200);
-      });
-      return p;
-    };
-    this._cache = f;
-    return this._cache;
+      observer.next(this.statesComplex.filter((state:any) => {
+        return query.test(state.name);
+      }));
+    });
   }
 
   public changeTypeaheadLoading(e:boolean):void {
@@ -92,6 +78,6 @@ export class TypeaheadDemoComponent {
   }
 
   public typeaheadOnSelect(e:any):void {
-    console.log(`Selected value: ${e.item}`);
+    console.log('Selected value: ',e.item);
   }
 }
