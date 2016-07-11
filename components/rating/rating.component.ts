@@ -1,7 +1,8 @@
 import {
   Component, OnInit, Input, Output, HostListener, Self, EventEmitter
 } from '@angular/core';
-import {NgFor, ControlValueAccessor, NgModel} from '@angular/common';
+import {NgFor} from '@angular/common';
+import {ControlValueAccessor, NgModel} from '@angular/forms';
 
 import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
@@ -30,8 +31,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public titles:Array<string>;
   @Input() public ratingStates:{stateOn:string, stateOff:string}[];
 
-  @Output() public onHover:EventEmitter<number> = new EventEmitter(false);
-  @Output() public onLeave:EventEmitter<number> = new EventEmitter(false);
+  @Output() public onHover:EventEmitter<number> = new EventEmitter<number>(false);
+  @Output() public onLeave:EventEmitter<number> = new EventEmitter<number>(false);
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;

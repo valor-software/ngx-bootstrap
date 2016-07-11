@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { CORE_DIRECTIVES, FORM_DIRECTIVES } from '@angular/common';
+import { CORE_DIRECTIVES} from '@angular/common';
+import { FORM_DIRECTIVES } from '@angular/forms';
 
 import { ACCORDION_DIRECTIVES } from '../../../ng2-bootstrap';
 

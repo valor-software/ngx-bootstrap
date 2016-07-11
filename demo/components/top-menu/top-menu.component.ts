@@ -1,5 +1,5 @@
 import {Component, Renderer, Inject, AfterViewInit} from '@angular/core';
-import {RouterLink, Router} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
 import {DOCUMENT} from '@angular/platform-browser';
 
 // webpack html imports
@@ -7,24 +7,26 @@ let template = require('./top-menu.template.html');
 
 @Component({
   selector: 'top-menu',
-  template: template,
-  directives: [RouterLink]
+  template,
+  directives: [ROUTER_DIRECTIVES]
 })
 export class TopMenuComponent implements AfterViewInit {
   public isShown:boolean = false;
 
   private renderer:Renderer;
   private document:any;
-  private router: Router;
 
-  public constructor(renderer:Renderer, @Inject(DOCUMENT) document:any, router: Router) {
+  public constructor(renderer:Renderer, @Inject(DOCUMENT) document:any, private router:Router) {
     this.renderer = renderer;
     this.document = document;
-    this.router = router;
   }
 
   public ngAfterViewInit():any {
-    this.router.subscribe(()=> {this.toggle(false);});
+    this.router.events.subscribe((event:any) => {
+      if (event instanceof NavigationEnd) {
+        this.toggle(false);
+      }
+    });
   }
 
   public toggle(isShown?:boolean):void {
