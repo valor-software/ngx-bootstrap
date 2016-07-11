@@ -7,7 +7,7 @@
     "flow.docs": "npm run typedoc -- --exclude '**/*.spec.ts' ./components/",
     "flow.install:typings": "./node_modules/.bin/typings install",
     "flow.compile": "npm run flow.install:typings && npm run flow.compile:common && npm run flow.compile:system",
-    "flow.compile:common": "./node_modules/.bin/tsc -d",
+    "flow.compile:common": "./node_modules/.bin/tsc -p tsconfig.publish.json",
     "flow.compile:system": "./.config/bundle-system.js",
     "flow.copy:src": "./node_modules/.bin/cpy ng2-bootstrap.ts \"components/*.ts\" ts --parents",
     "flow.clean": "./node_modules/.bin/del bundles coverage demo-build typings \"components/**/*.+(js|d.ts|js.map)\" dist \"ng2-bootstrap.+(js|d.ts|js.map)\"",
