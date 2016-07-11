@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "moment": "registry:npm/moment#2.10.5+20160211003958",
-    "webpack": "registry:npm/webpack#1.12.9+20160219013405"
+    "webpack": "registry:npm/webpack#1.12.9+20160418172948"
   },
   "devDependencies": {},
   "globalDependencies": {

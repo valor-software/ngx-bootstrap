@@ -32,8 +32,8 @@
 
 ### BREAKING CHANGES
 
-* dropdown: * dropdown property `disabled` renamed to `isDisabled`
-
+* dropdown: dropdown property `disabled` renamed to `isDisabled`
+* ng2-bootstrap: missprint MODAL_DIRECTVES renamed to MODAL_DIRECTIVES
 
 
 <a name="1.0.17"></a>
