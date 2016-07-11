@@ -84,7 +84,7 @@
     "gulp": "3.9.1",
     "gulp-size": "2.1.0",
     "gulp-tslint": "5.0.0",
-    "lite-server": "2.2.0",
+    "lite-server": "2.2.2",
     "marked": "0.3.5",
     "ng2-webpack-config": "github:valor-software/ng2-webpack-config",
     "pre-commit": "1.1.3",
