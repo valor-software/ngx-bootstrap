@@ -75,9 +75,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   @HostListener('click', ['$event'])
   protected onClick(event:any):void {
-    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static') {
-      this.hide(event);
+    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this.element.nativeElement) {
+      return;
     }
+
+    this.hide(event);
   }
 
   // todo: consider preventing default and stopping propagation

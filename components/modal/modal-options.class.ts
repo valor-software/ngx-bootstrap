@@ -2,28 +2,29 @@ export interface ModalOptions {
   /**
    *  Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click.
    */
-  backdrop:boolean | 'static';
+  backdrop?:boolean | 'static';
   /**
    * Closes the modal when escape key is pressed.
    */
-  keyboard:boolean;
+  keyboard?:boolean;
 
-  focus:boolean;
+  focus?:boolean;
   /**
    * Shows the modal when initialized.
    */
-  show:boolean;
+  show?:boolean;
   /**
    * Ignore the backdrop click
    */
-   ignoreBackdropClick:boolean;
+  ignoreBackdropClick?:boolean;
 }
 
 export const modalConfigDefaults:ModalOptions = {
   backdrop: true,
   keyboard: true,
   focus: true,
-  show: true
+  show: true,
+  ignoreBackdropClick: false
 };
 
 export const ClassName:any = {
