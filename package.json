@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "angular2 bootstrap components",
   "scripts": {
     "typedoc": "typedoc",
