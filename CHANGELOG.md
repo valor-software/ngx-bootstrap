@@ -1,3 +1,63 @@
+<a name="1.0.22"></a>
+## [1.0.22](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.21...v1.0.22) (2016-07-12)
+
+
+
+<a name="1.0.21"></a>
+## [1.0.21](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.20...v1.0.21) (2016-07-12)
+
+
+
+<a name="1.0.20"></a>
+## [1.0.20](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.19...v1.0.20) (2016-07-11)
+
+
+### Bug Fixes
+
+* **package:** removed peer dependency to router ([c661772](https://github.com/valor-software/ng2-bootstrap/commit/c661772))
+
+
+
+<a name="1.0.19"></a>
+## [1.0.19](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.17...v1.0.19) (2016-07-11)
+
+
+### Bug Fixes
+
+* **build:** emit helpers ([4771f6f](https://github.com/valor-software/ng2-bootstrap/commit/4771f6f))
+* **build:** fixed prod build webpack config ([753cc67](https://github.com/valor-software/ng2-bootstrap/commit/753cc67))
+* **demo:** add "dropdownMenu" ([#580](https://github.com/valor-software/ng2-bootstrap/issues/580)) ([686a96e](https://github.com/valor-software/ng2-bootstrap/commit/686a96e))
+* **docs:** fix typo ([#612](https://github.com/valor-software/ng2-bootstrap/issues/612)) ([7ddd532](https://github.com/valor-software/ng2-bootstrap/commit/7ddd532)), closes [#612](https://github.com/valor-software/ng2-bootstrap/issues/612)
+* **docs:** nonInput is by default ([#581](https://github.com/valor-software/ng2-bootstrap/issues/581)) ([b23ced0](https://github.com/valor-software/ng2-bootstrap/commit/b23ced0))
+* **dropdown:** explicitly markForCheck() ([#566](https://github.com/valor-software/ng2-bootstrap/issues/566)) ([0ce4328](https://github.com/valor-software/ng2-bootstrap/commit/0ce4328))
+* **dropdown:** prop disabled renamed to isDisabled  ([#615](https://github.com/valor-software/ng2-bootstrap/issues/615)) ([8a1d6f8](https://github.com/valor-software/ng2-bootstrap/commit/8a1d6f8))
+* **header-component:** fix style ([ccfe948](https://github.com/valor-software/ng2-bootstrap/commit/ccfe948))
+* **modal:** don't hide on out click if backdrop === 'static' ([#629](https://github.com/valor-software/ng2-bootstrap/issues/629)) ([df85712](https://github.com/valor-software/ng2-bootstrap/commit/df85712))
+* **modal:** fix typo in MODAL_DIRECTIVES ([#630](https://github.com/valor-software/ng2-bootstrap/issues/630)) ([8c4c125](https://github.com/valor-software/ng2-bootstrap/commit/8c4c125)), closes [#630](https://github.com/valor-software/ng2-bootstrap/issues/630)
+* **modals:** modal backdrop and onclick events handling ([b39b856](https://github.com/valor-software/ng2-bootstrap/commit/b39b856)), closes [#687](https://github.com/valor-software/ng2-bootstrap/issues/687) [#703](https://github.com/valor-software/ng2-bootstrap/issues/703) [#708](https://github.com/valor-software/ng2-bootstrap/issues/708)
+* **package:** include js map files in bundles ([1ffd2b4](https://github.com/valor-software/ng2-bootstrap/commit/1ffd2b4)), closes [#632](https://github.com/valor-software/ng2-bootstrap/issues/632)
+* **readme:** alert component name fixed ([e9a1d04](https://github.com/valor-software/ng2-bootstrap/commit/e9a1d04)), closes [#552](https://github.com/valor-software/ng2-bootstrap/issues/552)
+* **style:** fix top menu z-index ([e70e578](https://github.com/valor-software/ng2-bootstrap/commit/e70e578))
+* **tests:** fix failing test for buttons and accordion ([8ea9c10](https://github.com/valor-software/ng2-bootstrap/commit/8ea9c10))
+* **typeahead:** removed incorrect behavior to do ENTER behavior on TAB. TAB should simply skip to next field as expected. ([#715](https://github.com/valor-software/ng2-bootstrap/issues/715)) ([758ad1b](https://github.com/valor-software/ng2-bootstrap/commit/758ad1b)), closes [#686](https://github.com/valor-software/ng2-bootstrap/issues/686) [#490](https://github.com/valor-software/ng2-bootstrap/issues/490) [#689](https://github.com/valor-software/ng2-bootstrap/issues/689)
+
+
+### Features
+
+* **demo:** new build process with ng2-webpack-config ([5c8fcf1](https://github.com/valor-software/ng2-bootstrap/commit/5c8fcf1))
+* **docs:** added modals section ([6ab3a07](https://github.com/valor-software/ng2-bootstrap/commit/6ab3a07))
+* **docs:** applied new docs style ([d84211a](https://github.com/valor-software/ng2-bootstrap/commit/d84211a))
+* **docs:** menues and contents updated ([2155df6](https://github.com/valor-software/ng2-bootstrap/commit/2155df6))
+* **package:** angular updated to rc3, fix hash (active route) ([#636](https://github.com/valor-software/ng2-bootstrap/issues/636)) ([70a84cf](https://github.com/valor-software/ng2-bootstrap/commit/70a84cf)), closes [#636](https://github.com/valor-software/ng2-bootstrap/issues/636)
+* **typeahead:** rxjs version ([#584](https://github.com/valor-software/ng2-bootstrap/issues/584)) ([48b8abb](https://github.com/valor-software/ng2-bootstrap/commit/48b8abb)), closes [#536](https://github.com/valor-software/ng2-bootstrap/issues/536) [#637](https://github.com/valor-software/ng2-bootstrap/issues/637)
+
+
+### BREAKING CHANGES
+
+* dropdown: * dropdown property `disabled` renamed to `isDisabled`
+* ng2-bootstrap: misprint MODAL_DIRECTVES renamed to MODAL_DIRECTIVES
+
+
 <a name="1.0.17"></a>
 ## [1.0.17](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.16...v1.0.17) (2016-05-31)
 

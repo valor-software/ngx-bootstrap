@@ -35,10 +35,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this._config = this.getConfig(conf);
   };
 
-  @Output() public onShow:EventEmitter<ModalDirective> = new EventEmitter();
-  @Output() public onShown:EventEmitter<ModalDirective> = new EventEmitter();
-  @Output() public onHide:EventEmitter<ModalDirective> = new EventEmitter();
-  @Output() public onHidden:EventEmitter<ModalDirective> = new EventEmitter();
+  @Output() public onShow:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public onShown:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public onHide:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output() public onHidden:EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   public get config():ModalOptions {
     return this._config;
@@ -59,7 +59,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected _isShown:boolean = false;
 
   private isBodyOverflowing:boolean = false;
-  private ignoreBackdropClick:boolean = false;
   private originalBodyPadding:number = 0;
   private scrollbarWidth:number = 0;
 
@@ -76,10 +75,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   @HostListener('click', ['$event'])
   protected onClick(event:any):void {
-    if (this.config.backdrop !== 'static' &&
-        event.target === this.element.nativeElement) {
-      this.hide(event);
+    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this.element.nativeElement) {
+      return;
     }
+
+    this.hide(event);
   }
 
   // todo: consider preventing default and stopping propagation
@@ -107,7 +107,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     // this._backdrop            = null
     this._isShown = void 0;
     this.isBodyOverflowing = void 0;
-    this.ignoreBackdropClick = void 0;
     this.originalBodyPadding = void 0;
     this.scrollbarWidth = void 0;
 
@@ -226,7 +225,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // todo: original show was calling a callback when done, but we can use promise
   private showBackdrop(callback?:Function):void {
-    if (this._isShown && modalConfigDefaults.backdrop) {
+    if (this._isShown && this.config.backdrop) {
       this.backdrop = this.componentsHelper
         .appendNextToRoot(
           ModalBackdropComponent,

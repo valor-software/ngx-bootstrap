@@ -7,13 +7,14 @@ import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
 
+import {Observable} from 'rxjs/Rx';
+
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/toArray';;
-import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/toArray';
 
 import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
@@ -29,9 +30,9 @@ function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, 
   selector: '[typeahead][ngModel]'
 })
 export class TypeaheadDirective implements OnInit {
-  @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter(false);
-  @Output() public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter(false);
-  @Output() public typeaheadOnSelect:EventEmitter<{item:any}> = new EventEmitter(false);
+  @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  @Output() public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  @Output() public typeaheadOnSelect:EventEmitter<{item:any}> = new EventEmitter<{item:any}>(false);
 
   @Input() public typeahead:any;
   @Input() public typeaheadMinLength:number = void 0;
@@ -95,7 +96,7 @@ export class TypeaheadDirective implements OnInit {
       }
     }
 
-    if(e.target.value.trim().length >= this.typeaheadMinLength) {
+    if (e.target.value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
@@ -134,15 +135,9 @@ export class TypeaheadDirective implements OnInit {
       return;
     }
 
-    // if shift + tab, close items list
-    if (e.shiftKey && e.keyCode === 9) {
+    // if tab default browser behavior will select next input field, and therefore we should close the items list
+    if (e.keyCode === 9) {
       this.hide();
-      return;
-    }
-
-    // if tab select current item
-    if (!e.shiftKey && e.keyCode === 9) {
-      this.container.selectActiveMatch();
       return;
     }
   }
@@ -237,14 +232,14 @@ export class TypeaheadDirective implements OnInit {
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap(() => this.typeahead)
       .subscribe(
-      (matches:string[]) => {
-        this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-        this.finalizeAsyncCall();
-      },
-      (err:any) => {
-        console.error(err);
-      }
-    );
+        (matches:string[]) => {
+          this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+          this.finalizeAsyncCall();
+        },
+        (err:any) => {
+          console.error(err);
+        }
+      );
   }
 
   private syncActions():void {
@@ -267,7 +262,7 @@ export class TypeaheadDirective implements OnInit {
         (err:any) => {
           console.error(err);
         }
-    );
+      );
   }
 
   private prepareOption(option:any):any {

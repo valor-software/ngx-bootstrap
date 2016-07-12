@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": false,
+    "noEmitHelpers": false,
+    "noImplicitAny": true,
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "./typings/index.d.ts",
+    "./demo/custom-typings.d.ts",
+    "./ng2-bootstrap.ts"
+  ]
+}

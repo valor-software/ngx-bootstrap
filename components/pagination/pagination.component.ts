@@ -93,8 +93,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
 
   @Input() public disabled:boolean;
 
-  @Output() public numPages:EventEmitter<number> = new EventEmitter(false);
-  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter(false);
+  @Output() public numPages:EventEmitter<number> = new EventEmitter<number>(false);
+  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>(false);
 
   @Input()
   public get itemsPerPage():number {
