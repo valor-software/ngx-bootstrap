@@ -5,7 +5,9 @@ import {
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainerComponent} from './tooltip-container.component';
 
+/* tslint:disable */
 @Directive({selector: '[tooltip], [tooltipHtml]'})
+/* tslint:enable */
 export class TooltipDirective {
   /* tslint:disable */
   @Input('tooltip') public content:string;
