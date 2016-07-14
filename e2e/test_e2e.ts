@@ -1,11 +1,9 @@
 /**
-Simple test to check header text on all pages
+ * Simple test to check header text on all pages
  */
 'use strict';
-
 const leftPanelTests = require('../e2e/LeftPanelTests.ts');
 const headerText = $('.content-header>h2');
-let leftPanel = new leftPanelTests();
 browser.executeScript('window.name = "NG_ENABLE_DEBUG_INFO!"');
 
 describe('MainPage Test', () => {
@@ -14,8 +12,8 @@ describe('MainPage Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'NATIVE ANGULAR 2 DIRECTIVES FOR BOOTSTRAP';
@@ -34,8 +32,8 @@ describe('Accordion Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'ACCORDION';
@@ -49,8 +47,8 @@ describe('Alerts Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'ALERTS';
@@ -64,8 +62,8 @@ describe('Buttons Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'BUTTONS';
@@ -76,12 +74,12 @@ describe('Buttons Test', () => {
 describe('Carousel Test', () => {
   beforeAll(() => {
     browser.get('#/carousel');
-    //browser.ignoreSynchronization = true; //without this option current test is failed with tag "Timed out waiting..."
+    // browser.ignoreSynchronization = true; //without this option current test is failed with tag "Timed out waiting..."
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'CAROUSEL';
@@ -95,8 +93,8 @@ describe('Collapse Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'COLLAPSE';
@@ -110,8 +108,8 @@ describe('Datepicker Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'DATEPICKER';
@@ -125,8 +123,8 @@ describe('Dropdowns Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'DROPDOWNS';
@@ -140,8 +138,8 @@ describe('Modals Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'MODALS';
@@ -155,8 +153,8 @@ describe('Pagination Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'PAGINATION';
@@ -170,8 +168,8 @@ describe('Progressbar Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'PROGRESSBAR';
@@ -185,8 +183,8 @@ describe('Rating Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'RATING';
@@ -200,8 +198,8 @@ describe('Tabs Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'TABS';
@@ -215,8 +213,8 @@ describe('Timepicker Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'TIMEPICKER';
@@ -230,8 +228,8 @@ describe('Tooltip Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'TOOLTIP';
@@ -245,12 +243,11 @@ describe('Typeahead Test', () => {
     browser.manage().window().maximize();
   });
   afterAll(() => {
-    leftPanel.checkLeftPanelMaxi();
-    leftPanel.checkLeftPanelMini();
+    leftPanelTests.checkLeftPanelMaxi();
+    leftPanelTests.checkLeftPanelMini();
   });
   it('Header text test', () => {
     let expectedHeaderText = 'TYPEAHEAD';
     expect(headerText.getText()).toBe(expectedHeaderText);
   });
 });
-
