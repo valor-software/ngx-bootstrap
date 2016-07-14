@@ -65,7 +65,7 @@ export class DatePickerComponent implements ControlValueAccessor {
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(null);
+  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
@@ -94,7 +94,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.cd.viewToModelUpdate(event);
   }
 
-  public onSelectionDone(event: Date) {
+  public onSelectionDone(event: Date): void {
     this.selectionDone.emit(event);
   }
 

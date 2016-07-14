@@ -70,7 +70,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public dateDisabled:any;
   @Input() public initDate:Date;
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(null);
+  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public stepDay:any = {};
   public stepMonth:any = {};
