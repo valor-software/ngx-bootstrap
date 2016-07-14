@@ -6,7 +6,7 @@
 const menuLeftMaxi = $('.main-menu-container');
 const menuLeftMini = $('#mobile-main-menu');
 const obj = {
-  checkLeftPanelMini: () => {
+  checkLeftPanelMini: ():void => {
     browser.manage().window().setSize(800, 600);
     browser.sleep(1000);
     expect((menuLeftMini).isDisplayed()).toBeTruthy();
