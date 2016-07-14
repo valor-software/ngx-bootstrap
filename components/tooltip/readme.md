@@ -9,12 +9,13 @@ import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/components/tooltip';
 ```typescript
 // class Tooltip implements OnInit
 @Directive({ selector: '[tooltip]' })
-export class TooltipDirective implements OnInit {
+export class TooltipDirective {
   @Input('tooltip') private content:string;
   @Input('tooltipPlacement') private placement:string = 'top';
   @Input('tooltipIsOpen') private isOpen:boolean;
   @Input('tooltipEnable') private enable:boolean;
   @Input('tooltipAppendToBody') private appendToBody:boolean;
+  @Input('tooltipClass') public popupClass:string;
 }
 ```
 
@@ -26,5 +27,5 @@ export class TooltipDirective implements OnInit {
   - `tooltipTrigger` (*not implemented*) (`?Array<string>`) - array of event names which triggers tooltip opening
   - `tooltipEnable` (`?boolean=true`) - if `false` tooltip is disabled and will not be shown
   - `tooltipAppendToBody` (*not implemented*) (`?boolean=false`) - if `true` tooltip will be appended to body
-  - `tooltipClass` (*not implemented*) (`?string`) - custom tooltip class applied to the tooltip container.
+  - `tooltipClass` (`?string`) - custom tooltip class applied to the tooltip container
   - `tooltipIsOpen` (`?boolean=false`) - if `true` tooltip is currently visible

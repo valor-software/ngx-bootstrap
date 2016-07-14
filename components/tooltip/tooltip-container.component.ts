@@ -66,6 +66,10 @@ export class TooltipContainerComponent implements AfterViewInit {
       this.classMap.fade = true;
     }
 
+    if (this.popupClass) {
+      this.classMap[this.popupClass] = true;
+    }
+
     this.cdr.detectChanges();
   }
 }
