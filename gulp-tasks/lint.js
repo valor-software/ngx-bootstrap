@@ -9,12 +9,13 @@ gitignore.push('**/*.ts');
 gulp.task('tslint', () =>
   gulp
     .src(gitignore)
-    .pipe(tslint())
-    .pipe(tslint.report('prose', {
+    .pipe(tslint({
+      formatter: 'verbose',
       emitError: true,
       summarizeFailureOutput: true,
       reportLimit: 50
     }))
+    .pipe(tslint.report())
 );
 
 gulp.task('lint', ['tslint']);

@@ -3,6 +3,9 @@
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
     "component-selector-name": [false, ""],
-    "no-constructor-vars": false
+    "no-constructor-vars": false,
+    "ordered-imports": false,
+    "import-destructuring-spacing": false,
+    "only-arrow-functions": false
   }
 }
