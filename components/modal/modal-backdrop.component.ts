@@ -29,4 +29,3 @@ export class ModalBackdropComponent {
     this.element = element;
   }
 }
-

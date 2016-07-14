@@ -22,9 +22,9 @@ const targetFolder = path.resolve('./bundles');
 async.waterfall([
   cleanBundlesFolder,
   getSystemJsBundleConfig,
-  buildSystemJs({minify: false, sourceMaps: true, mangle: false}),
+  buildSystemJs({minify: false, sourceMaps: true, mangle: false, noEmitHelpers: false, declaration: true}),
   getSystemJsBundleConfig,
-  buildSystemJs({minify: true, sourceMaps: true, mangle: false}),
+  buildSystemJs({minify: true, sourceMaps: true, mangle: false, noEmitHelpers: false, declaration: true}),
   gzipSystemJsBundle
 ], err => {
   if (err) {

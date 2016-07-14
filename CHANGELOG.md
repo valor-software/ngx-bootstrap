@@ -1,9 +1,31 @@
-<a name="1.0.18"></a>
-## [1.0.18](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.17...v1.0.18) (2016-07-11)
+<a name="1.0.22"></a>
+## [1.0.22](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.21...v1.0.22) (2016-07-12)
+
+
+
+<a name="1.0.21"></a>
+## [1.0.21](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.20...v1.0.21) (2016-07-12)
+
+
+
+<a name="1.0.20"></a>
+## [1.0.20](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.19...v1.0.20) (2016-07-11)
 
 
 ### Bug Fixes
 
+* **package:** removed peer dependency to router ([c661772](https://github.com/valor-software/ng2-bootstrap/commit/c661772))
+
+
+
+<a name="1.0.19"></a>
+## [1.0.19](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.17...v1.0.19) (2016-07-11)
+
+
+### Bug Fixes
+
+* **build:** emit helpers ([4771f6f](https://github.com/valor-software/ng2-bootstrap/commit/4771f6f))
+* **build:** fixed prod build webpack config ([753cc67](https://github.com/valor-software/ng2-bootstrap/commit/753cc67))
 * **demo:** add "dropdownMenu" ([#580](https://github.com/valor-software/ng2-bootstrap/issues/580)) ([686a96e](https://github.com/valor-software/ng2-bootstrap/commit/686a96e))
 * **docs:** fix typo ([#612](https://github.com/valor-software/ng2-bootstrap/issues/612)) ([7ddd532](https://github.com/valor-software/ng2-bootstrap/commit/7ddd532)), closes [#612](https://github.com/valor-software/ng2-bootstrap/issues/612)
 * **docs:** nonInput is by default ([#581](https://github.com/valor-software/ng2-bootstrap/issues/581)) ([b23ced0](https://github.com/valor-software/ng2-bootstrap/commit/b23ced0))
@@ -33,7 +55,7 @@
 ### BREAKING CHANGES
 
 * dropdown: * dropdown property `disabled` renamed to `isDisabled`
-
+* ng2-bootstrap: misprint MODAL_DIRECTVES renamed to MODAL_DIRECTIVES
 
 
 <a name="1.0.17"></a>
