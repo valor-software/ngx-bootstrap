@@ -16,7 +16,6 @@ import {
   Output
 } from '@angular/core';
 import {global} from '@angular/core/src/facade/lang';
-import {DOCUMENT} from '@angular/platform-browser';
 import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
 import {modalConfigDefaults, ClassName, ModalOptions, Selector} from './modal-options.class';
 import {ComponentsHelper} from '../utils/components-helper.service';
@@ -67,7 +66,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   private element:ElementRef;
   private renderer:Renderer;
-  private document:any;
+  private get document():any {
+    return this.componentsHelper.getDocument();
+  };
   private componentsHelper:ComponentsHelper;
 
   /** Host element manipulations */
@@ -92,11 +93,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   public constructor(element:ElementRef,
                      renderer:Renderer,
-                     @Inject(DOCUMENT) document:any,
                      @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
     this.element = element;
     this.renderer = renderer;
-    this.document = document;
     this.componentsHelper = componentsHelper;
   }
 
@@ -109,8 +108,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.isBodyOverflowing = void 0;
     this.originalBodyPadding = void 0;
     this.scrollbarWidth = void 0;
-
-    this.document = void 0;
   }
 
   public ngAfterViewInit():any {
