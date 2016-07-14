@@ -1,3 +1,21 @@
+<a name="1.0.23"></a>
+## [1.0.23](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.22...v1.0.23) (2016-07-14)
+
+
+### Bug Fixes
+
+* **build:** fix rxjs typings issues on build ([b4267aa](https://github.com/valor-software/ng2-bootstrap/commit/b4267aa))
+* **dropdown:** Add the dropdown-menu class to dropdown menus ([1bc316f](https://github.com/valor-software/ng2-bootstrap/commit/1bc316f)), closes [#541](https://github.com/valor-software/ng2-bootstrap/issues/541) [#732](https://github.com/valor-software/ng2-bootstrap/issues/732)
+* **modal:** injected DOCUMENT token is undefined ([48a9aa7](https://github.com/valor-software/ng2-bootstrap/commit/48a9aa7)), closes [#575](https://github.com/valor-software/ng2-bootstrap/issues/575)
+* **typeahead:** Added form support ([#723](https://github.com/valor-software/ng2-bootstrap/issues/723)) ([fa54e46](https://github.com/valor-software/ng2-bootstrap/commit/fa54e46))
+
+
+### Features
+
+* **datepicker:** add emitting event when datepicker selection is done ([#733](https://github.com/valor-software/ng2-bootstrap/issues/733)) ([53c7fd1](https://github.com/valor-software/ng2-bootstrap/commit/53c7fd1))
+
+
+
 <a name="1.0.22"></a>
 ## [1.0.22](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.21...v1.0.22) (2016-07-12)
 
