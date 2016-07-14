@@ -2,7 +2,7 @@
  * Created by vs on 7/12/16.
  * This test is checks left panel appearing/disappearing at differ windows sizes
  */
-'use strict';
+// 'use strict';
 const menuLeftMaxi = $('.main-menu-container');
 const menuLeftMini = $('#mobile-main-menu');
 const obj = {
