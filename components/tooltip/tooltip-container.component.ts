@@ -13,7 +13,9 @@ import {TooltipOptions} from './tooltip-options.class';
      [ngStyle]="{top: top, left: left, display: display}"
      [ngClass]="classMap">
       <div class="tooltip-arrow"></div>
-      <div class="tooltip-inner">
+      <div class="tooltip-inner" *ngIf="htmlContent" [innerHTML]="htmlContent">
+      </div>
+      <div class="tooltip-inner" *ngIf="!htmlContent">
         {{content}}
       </div>
     </div>`
