@@ -1,5 +1,4 @@
-import {Component, ElementRef} from '@angular/core';
-import {NgClass} from '@angular/common';
+import {Component, ElementRef, Renderer} from '@angular/core';
 import {ClassName} from './modal-options.class';
 
 export class ModalBackdropOptions {
@@ -12,20 +11,37 @@ export class ModalBackdropOptions {
 
 @Component({
   selector: 'bs-modal-backdrop',
-  directives: [NgClass],
-  template: `
-<div class="${ClassName.BACKDROP}"
-  [class.${ClassName.IN}]="isShown"
-  [class.${ClassName.FADE}]="isAnimated"></div>`
+  template: '',
+  host: {'class': `${ClassName.BACKDROP}`}
 })
 export class ModalBackdropComponent {
-  public isAnimated:boolean = true;
-  public isShown:boolean = false;
+  public get isAnimated():boolean{
+    return this._isAnimated;
+  }
+
+  public set isAnimated(value:boolean) {
+    this._isAnimated = value;
+    this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, value);
+  }
+
+  public get isShown():boolean{
+    return this._isShown;
+  }
+
+  public set isShown(value:boolean) {
+    this._isShown = value;
+    this.renderer.setElementClass(this.element.nativeElement, `${ClassName.IN}`, value);
+  }
 
   public element:ElementRef;
+  public renderer: Renderer;
 
-  public constructor(options:ModalBackdropOptions, element:ElementRef) {
-    this.isAnimated = options.animate;
+  private _isAnimated:boolean;
+  private _isShown:boolean = false;
+
+  public constructor(options:ModalBackdropOptions, element:ElementRef, renderer: Renderer) {
     this.element = element;
+    this.renderer = renderer;
+    this.isAnimated = options.animate !== false;
   }
 }
