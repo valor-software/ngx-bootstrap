@@ -84,9 +84,7 @@ export const routes:RouterConfig = [
     component: TypeaheadSectionComponent
   }, {
     path: '**',
-    redirectTo: '',
-    data: ['Getting started'],
-    component: GettingStartedSectionComponent
+    redirectTo: '/'
   }
 ];
 

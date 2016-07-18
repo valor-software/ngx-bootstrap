@@ -10,26 +10,9 @@
       </div>
       <div class="section"
            *ngFor="let route of routes | SearchFilter:search.text"
-           [class.active]="isActive(route.path)">
-        <h3 [routerLink]="[route.path]">{{route.data[0]}}</h3>
-
-<!--        <div class="item">
-          <h4>
-            <span [routerLink]="[route.name]">Example</span>
-          </h4>
-        </div>
-
-        <div class="item">
-          <h4>
-            <span [routerLink]="[route.name]">Api</span>
-          </h4>
-        </div>
-
-        <div class="item">
-          <h4>
-            <span [routerLink]="[route.name]">Properties</span>
-          </h4>
-        </div>-->
+           [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="[route.path]"><h3>{{route.data[0]}}</h3></a>
       </div>
     </div>
   </div>
