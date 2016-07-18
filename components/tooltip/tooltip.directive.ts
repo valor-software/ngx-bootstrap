@@ -1,6 +1,6 @@
 import {
   Directive, Input, HostListener, DynamicComponentLoader,
-  ComponentRef, Provider, ReflectiveInjector, ViewContainerRef
+  ComponentRef, Provider, ReflectiveInjector, ViewContainerRef, TemplateRef
 } from '@angular/core';
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainerComponent} from './tooltip-container.component';
@@ -11,7 +11,7 @@ import {TooltipContainerComponent} from './tooltip-container.component';
 export class TooltipDirective {
   /* tslint:disable */
   @Input('tooltip') public content:string;
-  @Input('tooltipHtml') public htmlContent:string;
+  @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
   @Input('tooltipPlacement') public placement:string = 'top';
   @Input('tooltipIsOpen') public isOpen:boolean;
   @Input('tooltipEnable') public enable:boolean = true;

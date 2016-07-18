@@ -26,6 +26,15 @@
   I can even contain HTML. <a href="#" [tooltipHtml]="htmlTooltip">Check me out!</a>
 </p>
 
+<template #toolTipTemplate>
+  <h3>Tool tip custom content</h3>
+  <h4>defined inside a template</h4>
+</template>
+
+<p>
+  Or use a TemplateRef. <a href="#" [tooltipHtml]="toolTipTemplate">Check me out!</a>
+<p>
+
 <p>
   I can have a custom class. <a href="#" tooltip="I can have a custom class applied to me!" tooltipClass="customClass">Check me out!</a>
 </p>

@@ -7,7 +7,7 @@ export class TooltipOptions {
   public animation:boolean;
   public isOpen:boolean;
   public content:string;
-  public htmlContent:string;
+  public htmlContent:any;
 
   public constructor(options:Object) {
     Object.assign(this, options);

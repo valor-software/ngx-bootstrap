@@ -1,5 +1,5 @@
 import {
-  Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit
+  Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit, TemplateRef
 } from '@angular/core';
 import {NgClass, NgStyle} from '@angular/common';
 import {positionService} from '../position';
@@ -14,8 +14,13 @@ import {TooltipOptions} from './tooltip-options.class';
      [ngClass]="classMap">
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner"
-           *ngIf="htmlContent" 
+           *ngIf="htmlContent && !isTemplate" 
            innerHtml="{{htmlContent}}">
+      </div>
+      <div class="tooltip-inner"
+           *ngIf="htmlContent && isTemplate">
+        <template [ngTemplateOutlet]="htmlContent">
+        </template>
       </div>
       <div class="tooltip-inner"
            *ngIf="content">
@@ -30,7 +35,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   private left:string = '-1000px';
   private display:string = 'block';
   private content:string;
-  private htmlContent:string;
+  private htmlContent:string | TemplateRef<any>;
   private placement:string;
   private popupClass:string;
   private animation:boolean;
@@ -71,5 +76,9 @@ export class TooltipContainerComponent implements AfterViewInit {
     }
 
     this.cdr.detectChanges();
+  }
+
+  get isTemplate() {
+    return this.htmlContent instanceof TemplateRef;
   }
 }
