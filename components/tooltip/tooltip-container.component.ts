@@ -19,7 +19,8 @@ import {TooltipOptions} from './tooltip-options.class';
       </div>
       <div class="tooltip-inner"
            *ngIf="htmlContent && isTemplate">
-        <template [ngTemplateOutlet]="htmlContent">
+        <template [ngTemplateOutlet]="htmlContent"
+                  [ngOutletContext]="{model: context}">
         </template>
       </div>
       <div class="tooltip-inner"
@@ -42,6 +43,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   private isOpen:boolean;
   private appendToBody:boolean;
   private hostEl:ElementRef;
+  private context:any;
   /* tslint:enable */
 
   private element:ElementRef;
@@ -78,7 +80,7 @@ export class TooltipContainerComponent implements AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  get isTemplate() {
+  public get isTemplate():boolean {
     return this.htmlContent instanceof TemplateRef;
   }
 }

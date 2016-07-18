@@ -18,6 +18,7 @@ export class TooltipDirective {
   @Input('tooltipAnimation') public animation:boolean = true;
   @Input('tooltipAppendToBody') public appendToBody:boolean;
   @Input('tooltipClass') public popupClass:string;
+  @Input('tooltipContext') public tooltipContext:any;
   /* tslint:enable */
 
   public viewContainerRef:ViewContainerRef;
@@ -46,7 +47,8 @@ export class TooltipDirective {
       placement: this.placement,
       animation: this.animation,
       hostEl: this.viewContainerRef.element,
-      popupClass: this.popupClass
+      popupClass: this.popupClass,
+      context: this.tooltipContext
     });
 
     let binding = ReflectiveInjector.resolve([

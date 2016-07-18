@@ -8,6 +8,7 @@ export class TooltipOptions {
   public isOpen:boolean;
   public content:string;
   public htmlContent:any;
+  public context:any;
 
   public constructor(options:Object) {
     Object.assign(this, options);

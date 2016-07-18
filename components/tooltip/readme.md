@@ -17,6 +17,7 @@ export class TooltipDirective {
   @Input('tooltipEnable') private enable:boolean;
   @Input('tooltipAppendToBody') private appendToBody:boolean;
   @Input('tooltipClass') public popupClass:string;
+  @Input('tooltipContext') public tooltipContext:any;
 }
 ```
 
@@ -31,3 +32,4 @@ export class TooltipDirective {
   - `tooltipAppendToBody` (*not implemented*) (`?boolean=false`) - if `true` tooltip will be appended to body
   - `tooltipClass` (`?string`) - custom tooltip class applied to the tooltip container
   - `tooltipIsOpen` (`?boolean=false`) - if `true` tooltip is currently visible
+  - `tooltipContext` (`any`) - if a template is used for the content, then this property can be used to specify a context for that template. The template variable exposed is called 'model'.
