@@ -106,7 +106,6 @@ export class TypeaheadDirective implements OnInit {
   @HostListener('focus', ['$event.target'])
   protected onFocus():void {
     if (this.typeaheadMinLength === 0) {
-      console.log('focus');
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit('');
     }

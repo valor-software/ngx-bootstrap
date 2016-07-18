@@ -41,7 +41,7 @@ export class TypeaheadDirective implements OnInit {
 ### Typeahead properties
 
   - `ngModel` (`string`) - binds to string user's input
-  - `typeahead` (`any`) - options source, can be Array of strings or objects or function that return Promise for external matching process
+  - `typeahead` (`any`) - options source, can be Array of strings, objects or an Observable for external matching process
   - `typeaheadMinLength` (`?number=1`) - minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit)
   - `typeaheadWaitMs` (`?number=0`) - minimal wait time after last character typed before typeahead kicks-in
   - `typeaheadOptionsLimit` (`?number=20`) - maximum length of options items list

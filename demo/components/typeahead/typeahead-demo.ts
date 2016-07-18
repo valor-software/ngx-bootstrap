@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
 import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
@@ -67,12 +68,19 @@ export class TypeaheadDemoComponent {
 
   public constructor() {
     this.dataSource = Observable.create((observer:any) => {
-      let query = new RegExp(this.asyncSelected, 'ig');
+      // Runs on every search
+      observer.next(this.asyncSelected);
+    }).mergeMap((token:string) => this.getStatesAsObservable(token));
+  }
 
-      observer.next(this.statesComplex.filter((state:any) => {
+  public getStatesAsObservable(token:string):Observable<any> {
+    let query = new RegExp(token, 'ig');
+
+    return Observable.of(
+      this.statesComplex.filter((state:any) => {
         return query.test(state.name);
-      }));
-    });
+      })
+    );
   }
 
   public changeTypeaheadLoading(e:boolean):void {
