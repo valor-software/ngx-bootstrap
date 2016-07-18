@@ -2,10 +2,12 @@ import {
   Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
   Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
 } from '@angular/core';
-import {NgModel} from '@angular/forms';
+import {NgControl, FormControl} from '@angular/forms';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
+
+import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
@@ -14,20 +16,15 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 
-import {Observable} from 'rxjs/Observable';
-
 import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
 
-// https://github.com/angular/angular/blob/master/modules/@angular/src/core/forms/directives/shared.ts
-function setProperty(renderer:Renderer, elementRef:ElementRef, propName:string, propValue:any):void {
-  renderer.setElementProperty(elementRef.nativeElement, propName, propValue);
-}
-
 @Directive({
-  selector: '[typeahead][ngModel]'
+  /* tslint:disable */
+  selector: '[typeahead][ngModel],[typeahead][formControlName]'
+  /* tslint:enable */
 })
 export class TypeaheadDirective implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter<boolean>(false);
@@ -62,7 +59,7 @@ export class TypeaheadDirective implements OnInit {
   private placement:string = 'bottom-left';
   private popup:Promise<ComponentRef<any>>;
 
-  private cd:NgModel;
+  private ngControl:NgControl;
   private viewContainerRef:ViewContainerRef;
   private element:ElementRef;
   private renderer:Renderer;
@@ -109,7 +106,6 @@ export class TypeaheadDirective implements OnInit {
   @HostListener('focus', ['$event.target'])
   protected onFocus():void {
     if (this.typeaheadMinLength === 0) {
-      console.log('focus');
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit('');
     }
@@ -142,10 +138,10 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  public constructor(cd:NgModel, viewContainerRef:ViewContainerRef, element:ElementRef,
+  public constructor(control:NgControl, viewContainerRef:ViewContainerRef, element:ElementRef,
                      renderer:Renderer, loader:DynamicComponentLoader) {
     this.element = element;
-    this.cd = cd;
+    this.ngControl = control;
     this.viewContainerRef = viewContainerRef;
     this.renderer = renderer;
     this.loader = loader;
@@ -176,8 +172,8 @@ export class TypeaheadDirective implements OnInit {
     let valueStr:string = ((typeof value === 'object' && this.typeaheadOptionField)
       ? value[this.typeaheadOptionField]
       : value).toString();
-    this.cd.viewToModelUpdate(valueStr);
-    setProperty(this.renderer, this.element, 'value', valueStr);
+    this.ngControl.viewToModelUpdate(valueStr);
+    (this.ngControl.control as FormControl).updateValue(valueStr);
     this.hide();
   }
 
@@ -204,8 +200,8 @@ export class TypeaheadDirective implements OnInit {
         this.container.parent = this;
         // This improves the speedas it won't have to be done for each list item
         let normalizedQuery = (this.typeaheadLatinize
-          ? TypeaheadUtils.latinize(this.cd.model)
-          : this.cd.model).toString()
+          ? TypeaheadUtils.latinize(this.ngControl.control.value)
+          : this.ngControl.control.value).toString()
           .toLowerCase();
         this.container.query = this.typeaheadSingleWords
           ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
@@ -325,8 +321,8 @@ export class TypeaheadDirective implements OnInit {
     if (this.container && this._matches.length > 0) {
       // This improves the speedas it won't have to be done for each list item
       let normalizedQuery = (this.typeaheadLatinize
-        ? TypeaheadUtils.latinize(this.cd.model)
-        : this.cd.model).toString()
+        ? TypeaheadUtils.latinize(this.ngControl.control.value)
+        : this.ngControl.control.value).toString()
         .toLowerCase();
       this.container.query = this.typeaheadSingleWords
         ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)

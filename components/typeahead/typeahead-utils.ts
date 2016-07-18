@@ -4,6 +4,9 @@ export class TypeaheadUtils {
   public static latinMap:any = latinMap;
 
   public static latinize(str:string):string {
+    if(!str) {
+      return '';
+    }
     return str.replace(/[^A-Za-z0-9\[\] ]/g, function (a:string):string {
       return TypeaheadUtils.latinMap[a] || a;
     });

@@ -22,14 +22,11 @@ export class MainMenuComponent {
   public hash:string = '';
 
   public constructor(private router:Router) {
+    this.routes = this.routes.filter((v:any) => v.path !== '**');
     this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd) {
         this.hash = event.url;
       }
     });
-  }
-
-  public isActive(link:string):boolean {
-    return this.hash.substring(1) === link;
   }
 }

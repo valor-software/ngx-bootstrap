@@ -4,7 +4,7 @@ import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap';
 import {MainMenuComponent} from './components/main-menu/main-menu.component';
 import {TopMenuComponent} from './components/top-menu/top-menu.component';
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {APP_BASE_HREF, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {APP_ROUTER_PROVIDERS} from './config';
 import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
 
@@ -56,6 +56,5 @@ bootstrap(DemoComponent, [
   APP_ROUTER_PROVIDERS,
   disableDeprecatedForms(),
   provideForms(),
-  {provide: APP_BASE_HREF, useValue: '/'},
   {provide: LocationStrategy, useClass: HashLocationStrategy}
 ]);

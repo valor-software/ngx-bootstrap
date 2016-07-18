@@ -13,7 +13,12 @@ import {TooltipOptions} from './tooltip-options.class';
      [ngStyle]="{top: top, left: left, display: display}"
      [ngClass]="classMap">
       <div class="tooltip-arrow"></div>
-      <div class="tooltip-inner">
+      <div class="tooltip-inner"
+           *ngIf="htmlContent" 
+           innerHtml="{{htmlContent}}">
+      </div>
+      <div class="tooltip-inner"
+           *ngIf="content">
         {{content}}
       </div>
     </div>`
@@ -25,6 +30,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   private left:string = '-1000px';
   private display:string = 'block';
   private content:string;
+  private htmlContent:string;
   private placement:string;
   private popupClass:string;
   private animation:boolean;
@@ -58,6 +64,10 @@ export class TooltipContainerComponent implements AfterViewInit {
     this.classMap.in = true;
     if (this.animation) {
       this.classMap.fade = true;
+    }
+
+    if (this.popupClass) {
+      this.classMap[this.popupClass] = true;
     }
 
     this.cdr.detectChanges();
