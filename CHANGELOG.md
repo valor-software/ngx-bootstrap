@@ -1,3 +1,19 @@
+<a name="1.0.24"></a>
+## [1.0.24](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.23...v1.0.24) (2016-07-18)
+
+
+### Bug Fixes
+
+* **modals:** fixed modals fade in animation ([2b95c95](https://github.com/valor-software/ng2-bootstrap/commit/2b95c95)), closes [#687](https://github.com/valor-software/ng2-bootstrap/issues/687)
+
+
+### Features
+
+* **tooltip:** add implementation for tooltipClass ([#664](https://github.com/valor-software/ng2-bootstrap/issues/664)) ([fa4475a](https://github.com/valor-software/ng2-bootstrap/commit/fa4475a))
+* **tooltip:** tooltip html content ([#724](https://github.com/valor-software/ng2-bootstrap/issues/724)) ([9070125](https://github.com/valor-software/ng2-bootstrap/commit/9070125))
+
+
+
 <a name="1.0.23"></a>
 ## [1.0.23](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.22...v1.0.23) (2016-07-14)
 
