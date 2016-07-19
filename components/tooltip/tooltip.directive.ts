@@ -1,6 +1,6 @@
 import {
   Directive, Input, HostListener, DynamicComponentLoader,
-  ComponentRef, Provider, ReflectiveInjector, ViewContainerRef
+  ComponentRef, Provider, ReflectiveInjector, ViewContainerRef, TemplateRef
 } from '@angular/core';
 import {TooltipOptions} from './tooltip-options.class';
 import {TooltipContainerComponent} from './tooltip-container.component';
@@ -11,13 +11,14 @@ import {TooltipContainerComponent} from './tooltip-container.component';
 export class TooltipDirective {
   /* tslint:disable */
   @Input('tooltip') public content:string;
-  @Input('tooltipHtml') public htmlContent:string;
+  @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
   @Input('tooltipPlacement') public placement:string = 'top';
   @Input('tooltipIsOpen') public isOpen:boolean;
   @Input('tooltipEnable') public enable:boolean = true;
   @Input('tooltipAnimation') public animation:boolean = true;
   @Input('tooltipAppendToBody') public appendToBody:boolean;
   @Input('tooltipClass') public popupClass:string;
+  @Input('tooltipContext') public tooltipContext:any;
   /* tslint:enable */
 
   public viewContainerRef:ViewContainerRef;
@@ -46,7 +47,8 @@ export class TooltipDirective {
       placement: this.placement,
       animation: this.animation,
       hostEl: this.viewContainerRef.element,
-      popupClass: this.popupClass
+      popupClass: this.popupClass,
+      context: this.tooltipContext
     });
 
     let binding = ReflectiveInjector.resolve([
