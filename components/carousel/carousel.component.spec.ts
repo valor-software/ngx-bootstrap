@@ -1,13 +1,11 @@
 import {Component} from '@angular/core';
 import {
   it,
-  // tick,
-  inject,
   expect,
-  // fakeAsync,
+  inject,
+  fakeAsync,
   beforeEach,
-  beforeEachProviders
-  // discardPeriodicTasks
+  discardPeriodicTasks
 } from '@angular/core/testing';
 import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
 import {NgModel} from '@angular/common';
@@ -44,11 +42,11 @@ function expectActiveSlides(nativeEl:HTMLDivElement, active:boolean[]):void {
 
   for (let i = 0; i < active.length; i++) {
     if (active[i]) {
-      expect(slideElms[i]).toHaveCssClass('active');
-      expect(indicatorElms[i]).toHaveCssClass('active');
+      expect(slideElms[i].classList).toContain('active');
+      expect(indicatorElms[i].classList).toContain('active');
     } else {
-      expect(slideElms[i]).not.toHaveCssClass('active');
-      expect(indicatorElms[i]).not.toHaveCssClass('active');
+      expect(slideElms[i].classList).not.toContain('active');
+      expect(indicatorElms[i].classList).not.toContain('active');
     }
   }
 }
@@ -59,22 +57,19 @@ describe('Component: Carousel', () => {
   let element:any;
   let clean:any;
 
-  beforeEachProviders(() => [
-    TestComponentBuilder
-  ]);
-
-  beforeEach(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  beforeEach(fakeAsync(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
     return tcb
       .overrideTemplate(TestCarouselComponent, html)
       .createAsync(TestCarouselComponent)
       .then((f:ComponentFixture<any>) => {
         fixture = f;
         context = fixture.componentInstance;
+        fixture.detectChanges();
         element = fixture.nativeElement.querySelector('#c1');
         clean = fixture.nativeElement.querySelector('#c2');
-        fixture.detectChanges();
+        discardPeriodicTasks();
       });
-  }));
+  })));
 
   it('should set first slide as active by default', () => {
     expectActiveSlides(element, [true, false, false]);
@@ -156,15 +151,6 @@ describe('Component: Carousel', () => {
   //   tick(6000);
   //   fixture.detectChanges();
   //   expectActiveSlides(clean, [false, true]);
-  //   discardPeriodicTasks();
-  // }));
-  //
-  // it('should change slide on time passage', fakeAsync(() => {
-  //   expectActiveSlides(element, [true, false, false]);
-  //   tick(6000);
-  //   fixture.detectChanges();
-  //   expectActiveSlides(element, [false, true, false]);
-  //   discardPeriodicTasks();
   // }));
 
   it('should wrap slide changes by default', () => {
