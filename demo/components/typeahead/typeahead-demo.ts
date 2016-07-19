@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES} from '@angular/forms';
+import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
 
@@ -10,10 +11,16 @@ let template = require('./typeahead-demo.html');
 
 @Component({
   selector: 'typeahead-demo',
-  directives: [TYPEAHEAD_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [TYPEAHEAD_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
   template: template
 })
 export class TypeaheadDemoComponent {
+  public stateCtrl:FormControl = new FormControl();
+
+  public myForm:FormGroup= new FormGroup({
+    state: this.stateCtrl
+  });
+
   public selected:string = '';
   public dataSource:Observable<any>;
   public asyncSelected:string = '';
@@ -61,12 +68,19 @@ export class TypeaheadDemoComponent {
 
   public constructor() {
     this.dataSource = Observable.create((observer:any) => {
-      let query = new RegExp(this.asyncSelected, 'ig');
+      // Runs on every search
+      observer.next(this.asyncSelected);
+    }).mergeMap((token:string) => this.getStatesAsObservable(token));
+  }
 
-      observer.next(this.statesComplex.filter((state:any) => {
+  public getStatesAsObservable(token:string):Observable<any> {
+    let query = new RegExp(token, 'ig');
+
+    return Observable.of(
+      this.statesComplex.filter((state:any) => {
         return query.test(state.name);
-      }));
-    });
+      })
+    );
   }
 
   public changeTypeaheadLoading(e:boolean):void {

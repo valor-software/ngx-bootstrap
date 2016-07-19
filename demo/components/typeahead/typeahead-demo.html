@@ -1,26 +1,44 @@
 <div class='container-fluid'>
-    <h4>Static arrays</h4>
-    <pre class="card card-block card-header">Model: {{selected | json}}</pre>
-    <input [(ngModel)]="selected"
-           [typeahead]="states"
-           (typeaheadOnSelect)="typeaheadOnSelect($event)"
-           class="form-control">
+  <!-- Static arrays -->
+  <h4>Static arrays</h4>
+  <pre class="card card-block card-header">Model: {{selected | json}}</pre>
+  <input [(ngModel)]="selected"
+         [typeahead]="states"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         class="form-control">
 
-    <h4>Asynchronous results</h4>
-    <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>
-    <input [(ngModel)]="asyncSelected"
-           [typeahead]="dataSource"
-           (typeaheadLoading)="changeTypeaheadLoading($event)"
-           (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+  <!-- Asynchronous results -->
+  <h4>Asynchronous results</h4>
+  <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>
+  <input [(ngModel)]="asyncSelected"
+         [typeahead]="dataSource"
+         (typeaheadLoading)="changeTypeaheadLoading($event)"
+         (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         [typeaheadOptionsLimit]="7"
+         [typeaheadOptionField]="'name'"
+         placeholder="Locations loaded with timeout"
+         class="form-control">
+  <div *ngIf="typeaheadLoading===true">
+    <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
+  </div>
+  <div *ngIf="typeaheadNoResults===true" class="" style="">
+    <i class="glyphicon glyphicon-remove"></i> No Results Found
+  </div>
+
+  <!--Typeahead inside a form-->
+  <h4>Typeahead inside a form</h4>
+  <pre class="card card-block card-header">Model: {{myForm.value.state | json}}</pre>
+  <form [formGroup]="myForm">
+    <input formControlName="state"
+           [typeahead]="states"
            (typeaheadOnSelect)="typeaheadOnSelect($event)"
            [typeaheadOptionsLimit]="7"
            [typeaheadOptionField]="'name'"
-           placeholder="Locations loaded with timeout"
+           [typeaheadMinLength]="0"
+           placeholder="Typeahead inside a form"
            class="form-control">
-    <div *ngIf="typeaheadLoading===true">
-        <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
-    </div>
-    <div *ngIf="typeaheadNoResults===true" class="" style="">
-        <i class="glyphicon glyphicon-remove"></i> No Results Found
-    </div>
+  </form>
+
+
 </div>

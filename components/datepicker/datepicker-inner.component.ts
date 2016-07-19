@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Input, OnChanges} from '@angular/core';
+import {Component, OnInit, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {CORE_DIRECTIVES, NgClass} from '@angular/common';
 import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
 import {DateFormatter} from './date-formatter';
@@ -70,6 +70,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public dateDisabled:any;
   @Input() public initDate:Date;
 
+  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+
   public stepDay:any = {};
   public stepMonth:any = {};
   public stepYear:any = {};
@@ -87,7 +89,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   private compareHandlerMonth:Function;
   private refreshViewHandlerYear:Function;
   private compareHandlerYear:Function;
-  private update:EventEmitter<Date> = new EventEmitter(false);
+  private update:EventEmitter<Date> = new EventEmitter<Date>(false);
 
   @Input()
   public get activeDate():Date {
@@ -248,6 +250,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       }
 
       this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      this.selectionDone.emit(this.activeDate);
     } else {
       this.activeDate = date;
       this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];

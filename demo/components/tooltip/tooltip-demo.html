@@ -23,8 +23,17 @@
 </p>
 
 <p>
-  I can even contain HTML. <a href="#" tooltipHtml="htmlTooltip">Check me out!</a>
+  I can even contain HTML. <a href="#" [tooltipHtml]="htmlTooltip">Check me out!</a>
 </p>
+
+<template #toolTipTemplate let-model="model">
+  <h4>Tool tip custom content defined inside a template</h4>
+  <h5>With context binding: {{model.text}}</h5>
+</template>
+
+<p>
+  Or use a TemplateRef. <a href="#" [tooltipHtml]="toolTipTemplate" [tooltipContext]="tooltipModel">Check me out!</a>
+<p>
 
 <p>
   I can have a custom class. <a href="#" tooltip="I can have a custom class applied to me!" tooltipClass="customClass">Check me out!</a>

@@ -3,6 +3,8 @@ import {
   Injectable, ReflectiveInjector, Provider, Injector
 } from '@angular/core';
 
+import {DOCUMENT} from '@angular/platform-browser';
+
 /**
  * Components helper class to easily work with
  * allows to:
@@ -13,12 +15,16 @@ export class ComponentsHelper {
 
   private applicationRef:ApplicationRef;
   private componentResolver:ComponentResolver;
-  private injector: Injector;
+  private injector:Injector;
 
-  public constructor(applicationRef:ApplicationRef, componentResolver:ComponentResolver, injector: Injector) {
+  public constructor(applicationRef:ApplicationRef, componentResolver:ComponentResolver, injector:Injector) {
     this.applicationRef = applicationRef;
     this.componentResolver = componentResolver;
     this.injector = injector;
+  }
+
+  public getDocument():any {
+    return this.injector.get(DOCUMENT);
   }
 
   /**

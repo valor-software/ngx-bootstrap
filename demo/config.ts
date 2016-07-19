@@ -15,69 +15,79 @@ import {TooltipSectionComponent} from './components/tooltip-section';
 import {TypeaheadSectionComponent} from './components/typeahead-section';
 import {ModalSectionComponent} from './components/modal-section';
 
-export const routes = [{
-  path: '/',
-  name: 'Getting started',
-  component: GettingStartedSectionComponent,
-  useAsDefault: true
-}, {
-  path: '/accordion',
-  name: 'Accordion',
-  component: AccordionSectionComponent
-}, {
-  path: '/alerts',
-  name: 'Alerts',
-  component: AlertSectionComponent
-}, {
-  path: '/buttons',
-  name: 'Buttons',
-  component: ButtonsSectionComponent
-}, {
-  path: '/carousel',
-  name: 'Carousel',
-  component: CarouselSectionComponent
-}, {
-  path: '/collapse',
-  name: 'Collapse',
-  component: CollapseSectionComponent
-}, {
-  path: '/datepicker',
-  name: 'Datepicker',
-  component: DatepickerSectionComponent
-}, {
-  path: '/dropdowns',
-  name: 'Dropdowns',
-  component: DropdownSectionComponent
-}, {
-  path: '/modals',
-  name: 'Modals',
-  component: ModalSectionComponent
-}, {
-  path: '/pagination',
-  name: 'Pagination',
-  component: PaginationSectionComponent
-}, {
-  path: '/progressbar',
-  name: 'Progressbar',
-  component: ProgressbarSectionComponent
-}, {
-  path: '/rating',
-  name: 'Rating',
-  component: RatingSectionComponent
-}, {
-  path: '/tabs',
-  name: 'Tabs',
-  component: TabsSectionComponent
-}, {
-  path: '/timepicker',
-  name: 'Timepicker',
-  component: TimepickerSectionComponent
-}, {
-  path: '/tooltip',
-  name: 'Tooltip',
-  component: TooltipSectionComponent
-}, {
-  path: '/typeahead',
-  name: 'Typeahead',
-  component: TypeaheadSectionComponent
-}];
+import {provideRouter, RouterConfig} from '@angular/router';
+
+export const routes:RouterConfig = [
+  {
+    path: '',
+    data: ['Getting started'],
+    component: GettingStartedSectionComponent
+  }, {
+    path: 'accordion',
+    data: ['Accordion'],
+    component: AccordionSectionComponent
+  }, {
+    path: 'alerts',
+    data: ['Alerts'],
+    component: AlertSectionComponent
+  }, {
+    path: 'buttons',
+    data: ['Buttons'],
+    component: ButtonsSectionComponent
+  }, {
+    path: 'carousel',
+    data: ['Carousel'],
+    component: CarouselSectionComponent
+  }, {
+    path: 'collapse',
+    data: ['Collapse'],
+    component: CollapseSectionComponent
+  }, {
+    path: 'datepicker',
+    data: ['Datepicker'],
+    component: DatepickerSectionComponent
+  }, {
+    path: 'dropdowns',
+    data: ['Dropdowns'],
+    component: DropdownSectionComponent
+  }, {
+    path: 'modals',
+    data: ['Modals'],
+    component: ModalSectionComponent
+  }, {
+    path: 'pagination',
+    data: ['Pagination'],
+    component: PaginationSectionComponent
+  }, {
+    path: 'progressbar',
+    data: ['Progressbar'],
+    component: ProgressbarSectionComponent
+  }, {
+    path: 'rating',
+    data: ['Rating'],
+    component: RatingSectionComponent
+  }, {
+    path: 'tabs',
+    data: ['Tabs'],
+    component: TabsSectionComponent
+  }, {
+    path: 'timepicker',
+    data: ['Timepicker'],
+    component: TimepickerSectionComponent
+  }, {
+    path: 'tooltip',
+    data: ['Tooltip'],
+    component: TooltipSectionComponent
+  }, {
+    path: 'typeahead',
+    data: ['Typeahead'],
+    component: TypeaheadSectionComponent
+  }, {
+    path: '**',
+    redirectTo: '/'
+  }
+];
+
+export const APP_ROUTER_PROVIDERS = [
+  provideRouter(routes)
+];

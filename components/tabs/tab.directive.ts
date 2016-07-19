@@ -18,9 +18,9 @@ export class TabDirective implements OnDestroy {
     return this._active;
   }
 
-  @Output() public select:EventEmitter<TabDirective> = new EventEmitter(false);
-  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter(false);
-  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter(false);
+  @Output() public select:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
+  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
+  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
 
   public set active(active:boolean) {
     if (this.disabled && active || !active) {
