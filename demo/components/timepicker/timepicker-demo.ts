@@ -15,6 +15,7 @@ export class TimepickerDemoComponent {
   public hstep:number = 1;
   public mstep:number = 15;
   public ismeridian:boolean = true;
+  public isEnabled:boolean = true;
 
   public mytime:Date = new Date();
   public options:any = {
