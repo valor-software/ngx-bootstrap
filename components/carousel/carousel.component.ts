@@ -1,6 +1,6 @@
 // todo: add animate
 
-import {Component, OnDestroy, Input} from '@angular/core';
+import {Component, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {SlideComponent} from './slide.component';
@@ -60,16 +60,28 @@ export class CarouselComponent implements OnDestroy {
     return this._interval;
   }
 
+  @Output() public slideChanged:EventEmitter<number> = new EventEmitter<number>();
+
   public set interval(value:number) {
     this._interval = value;
     this.restartTimer();
+  }
+
+  private get currentSlide():SlideComponent {
+    return this._currentSlide;
+  }
+
+  private set currentSlide(value:SlideComponent) {
+    this._currentSlide = value;
+    let index = value ? value.index : -1;
+    this.slideChanged.emit(index);
   }
 
   private slides:Array<SlideComponent> = [];
   private currentInterval:any;
   private isPlaying:boolean;
   private destroyed:boolean = false;
-  private currentSlide:SlideComponent;
+  private _currentSlide:SlideComponent;
   private _interval:number;
 
   public ngOnDestroy():void {

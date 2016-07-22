@@ -12,12 +12,14 @@ import { CAROUSEL_DIRECTIVES } from 'ng2-bootstrap/components/carousel';
   selector: 'carousel',
   directives: [NgFor]
 })
-export class CarouselComponent implements OnDestroy {
+export class CarouselComponent implements OnDestroy { 
   @Input() private noWrap:boolean;
   @Input() private noPause:boolean;
   @Input() private noTransition:boolean;
 
   @Input() public get interval():number {}
+
+  @Output() public slideChanged:EventEmitter<number> = new EventEmitter<number>();
 }
 
 // class Slide implements OnInit, OnDestroy
@@ -48,6 +50,10 @@ export const CAROUSEL_DIRECTIVES:Array<any> = [Carousel, Slide];
 - `pause` (*not yet supported*) (`?string='hover'`) - event group name which pauses the cycling of the carousel, if `hover` pauses on mouseenter and resumes on mouseleave
 - `keyboard` (*not yet supported*) (`?boolean=true`) - if `false` carousel will not react to keyboard events
 - *note*: swiping not yet supported
+
+### Carousel events
+
+- `slideChanged` (`number`) - fired when the current active slide is changed, `$event` is the active slide index
 
 ### Slide properties
 - `active` (`?boolean=false`) - currently active slide
