@@ -1,5 +1,5 @@
 import {
-  Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef,
+  Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef, TemplateRef,
   Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
 } from '@angular/core';
 import {NgControl, FormControl} from '@angular/forms';
@@ -41,6 +41,7 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadSingleWords:boolean = true;
   @Input() public typeaheadWordDelimiters:string = ' ';
   @Input() public typeaheadPhraseDelimiters:string = '\'"';
+  @Input() public typeaheadItemTemplate:TemplateRef<any>;
 
   // not yet implemented
   // @Input() private typeaheadAppendToBody:boolean;
