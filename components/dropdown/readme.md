@@ -37,6 +37,9 @@ export class DropdownToggle implements OnInit {
   @HostBinding('class.disabled')
   @Input() public isDisabled:boolean = false;
 
+  @HostBinding('class.dropdown-toggle')
+  @Input() public addToggleClass:boolean = false;
+
   @HostBinding('attr.aria-expanded')
   public get isOpen() {}
   @HostListener('click', ['$event'])
@@ -61,3 +64,4 @@ export const DROPDOWN_DIRECTIVES: Array<any> = [Dropdown, DropdownMenu, Dropdown
 
 ### Dropdown toggle properties
 - `isDisabled` (`?boolean=false`) - if `true` dropdown toggle will be disabled
+- `addToggleClass` (`?boolean=false`) - if `true` the `dropdown-toggle` class will be added to the element
