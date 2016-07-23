@@ -64,6 +64,70 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
   }
 ```
 
+### With webpack and bootstrap-sass: [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
+- Install `ng2-bootstrap` and loaders for webpack
+```bash
+  npm install --save-dev sass-loader css-to-string-loader  resolve-url-loader file-loader url-loader node-sass
+  npm install --save bootstrap-sass ng2-bootstrap
+```
+
+ - Add loaders to `webpack.common.js`:
+```javascript
+      /**config/webpack.common.js*/
+      {
+        test: /\.sass$/,
+        loaders: ['css-to-string-loader', 'css-loader', 'resolve-url', 'sass-loader?indentedSyntax=true&sourceMap']
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['css-to-string-loader', 'css-loader', 'resolve-url', 'sass-loader?indentedSyntax=false&sourceMap']
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file" },
+```
+ - Rename `src/app/app.style.scss` to `src/app/app.style.scss` and add the following line to `src/app/app.styles.scss`:
+```scss
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+```
+ - Change file `src/app/app.component.ts` to use `.scss` instead of `.css` file:
+```javascript
+/* src/app/app.component.ts */
+...
+  styleUrls: [
+    './app.style.scss'
+  ],
+...
+```
+ - To use directives from `ng2-bootstrap` we can simply import them into a component, for example `home.component.ts`:
+```ts
+/* src/app/home/home.component.ts */
+
+import { AlertComponent, DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+....
+directives: [
+  XLarge,
+  AlertComponent,
+  DATEPICKER_DIRECTIVES
+],
+...
+
+export class Home {
+  // Set our default values
+  localState = { value: '' };
+  date: Date = new Date();
+...
+```
+
+ - In `home.template.html` we add:
+``` html
+<!-- src/app/home/home.template.html -->
+<alert type="info">Hello from ng2-bootstrap  {{ date.toDateString() }}</alert>
+<div style="display:inline-block; min-height:290px;">
+  <datepicker [(ngModel)]="date" showWeeks="true"></datepicker>
+</div>
+```
+
+Now you should be able to use ng2-bootstrap directives, styles from Bootstrap and also Glyphicons.
 ### With gulp and system.js: [pkozlowski-opensource/ng2-play](https://github.com/pkozlowski-opensource/ng2-play) or [mgechev/angular2-seed](https://github.com/mgechev/angular2-seed)
 - *hint*: see `quickstart` section below for samples
 - just add link to `ng2-bootstrap` `system.js` bundle to `index.html` like in [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
