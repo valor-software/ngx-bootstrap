@@ -1,4 +1,6 @@
-<timepicker [(ngModel)]="mytime" (change)="changed()" [hourStep]="hstep" [minuteStep]="mstep" [showMeridian]="ismeridian"></timepicker>
+<timepicker [(ngModel)]="mytime" (change)="changed()" [hourStep]="hstep" 
+            [minuteStep]="mstep" [showMeridian]="ismeridian" 
+            [readonlyInput]="!isEnabled"></timepicker>
 
 <pre class="alert alert-info">Time is: {{mytime}}</pre>
 
@@ -20,5 +22,6 @@
 <hr>
 
 <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+<button type="button" class="btn btn-info" (click)="isEnabled=!isEnabled">Enable / Disable input</button>
 <button type="button" class="btn btn-primary" (click)="update()">Set to 14:00</button>
 <button type="button" class="btn btn-danger" (click)="clear()">Clear</button>
