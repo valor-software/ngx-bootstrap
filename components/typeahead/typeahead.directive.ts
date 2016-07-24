@@ -169,9 +169,7 @@ export class TypeaheadDirective implements OnInit {
   }
 
   public changeModel(value:any):void {
-    let valueStr:string = ((typeof value === 'object' && this.typeaheadOptionField)
-      ? value[this.typeaheadOptionField]
-      : value).toString();
+    let valueStr:string = TypeaheadUtils.getValueFromObject(value, this.typeaheadOptionField);
     this.ngControl.viewToModelUpdate(valueStr);
     (this.ngControl.control as FormControl).updateValue(valueStr);
     this.hide();
@@ -262,22 +260,8 @@ export class TypeaheadDirective implements OnInit {
   }
 
   private prepareOption(option:any):any {
-    let match:any;
-
-    if (typeof option === 'object' &&
-      option[this.typeaheadOptionField]) {
-      match = this.typeaheadLatinize ?
-        TypeaheadUtils.latinize(option[this.typeaheadOptionField].toString()) :
-        option[this.typeaheadOptionField].toString();
-    }
-
-    if (typeof option === 'string') {
-      match = this.typeaheadLatinize ?
-        TypeaheadUtils.latinize(option.toString()) :
-        option.toString();
-    }
-
-    return match;
+    let match:string = TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField);
+    return this.typeaheadLatinize ? TypeaheadUtils.latinize(match) : match;
   }
 
   private normalizeQuery(value:string):any {
