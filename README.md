@@ -73,14 +73,10 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 
  - Add loaders to `webpack.common.js`:
 ```javascript
-      /**config/webpack.common.js*/
+      /* config/webpack.common.js */
       {
-        test: /\.sass$/,
-        loaders: ['css-to-string-loader', 'css-loader', 'resolve-url', 'sass-loader?indentedSyntax=true&sourceMap']
-      },
-      {
-        test: /\.scss$/,
-        loaders: ['css-to-string-loader', 'css-loader', 'resolve-url', 'sass-loader?indentedSyntax=false&sourceMap']
+        test: /\.(sass|scss)$/,
+        loaders: ['css-to-string-loader', 'css-loader?sourceMap', 'resolve-url', 'sass-loader?sourceMap']
       },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&minetype=application/font-woff" },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file" },
