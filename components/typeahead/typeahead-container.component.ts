@@ -108,9 +108,7 @@ export class TypeaheadContainerComponent {
   }
 
   protected hightlight(item:any, query:string):string {
-    let itemStr:string = (typeof item === 'object' && this._field
-      ? item[this._field]
-      : item).toString();
+    let itemStr:string = TypeaheadUtils.getValueFromObject(item, this._field);
     let itemStrHelper:string = (this.parent.typeaheadLatinize
       ? TypeaheadUtils.latinize(itemStr)
       : itemStr).toLowerCase();

@@ -38,4 +38,26 @@ export class TypeaheadUtils {
 
     return result;
   }
+
+  public static getValueFromObject(object: any, option: string):string {
+    if (!option || typeof object !== 'object') {
+      return object.toString();
+    }
+
+    if (option.endsWith('()')) {
+      let functionName = option.slice(0, option.length - 2);
+      return object[functionName]().toString();
+    }
+
+    let properties:string = option.replace(/\[(\w+)\]/g, '.$1')
+                                  .replace(/^\./, '');
+    let propertiesArray:Array<string> = properties.split('.');
+
+    for (let property of propertiesArray) {
+      if (property in object) {
+        object = object[property];
+      }
+    }
+    return object.toString();
+  }
 }
