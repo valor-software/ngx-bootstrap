@@ -21,6 +21,7 @@ export class TypeaheadDemoComponent {
     state: this.stateCtrl
   });
 
+  public customSelected:string = '';
   public selected:string = '';
   public dataSource:Observable<any>;
   public asyncSelected:string = '';

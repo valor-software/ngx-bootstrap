@@ -7,6 +7,19 @@
          (typeaheadOnSelect)="typeaheadOnSelect($event)"
          class="form-control">
 
+  <!-- Custom item template -->
+  <template #customItemTemplate let-model="item" let-index="index">
+    <h5>This is: {{model | json}} Index: {{ index }}</h5>
+  </template>
+  <h4>Custom item template</h4>
+  <pre class="card card-block card-header">Model: {{customSelected | json}}</pre>
+  <input [(ngModel)]="customSelected"
+         [typeahead]="statesComplex"
+         [typeaheadItemTemplate]="customItemTemplate"
+         [typeaheadOptionField]="'name'"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         class="form-control">
+
   <!-- Asynchronous results -->
   <h4>Asynchronous results</h4>
   <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>

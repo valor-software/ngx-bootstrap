@@ -26,6 +26,7 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadSingleWords:boolean = true;
   @Input() public typeaheadWordDelimiters:string = ' ';
   @Input() public typeaheadPhraseDelimiters:string = '\'"';
+  @Input() public typeaheadItemTemplate:TemplateRef<any>;
 
   // not yet implemented
   @Input() private typeaheadAppendToBody:boolean;
@@ -51,6 +52,7 @@ export class TypeaheadDirective implements OnInit {
   - `typeaheadSingleWords` (`?boolean=true`) - break words with spaces. If `true` the text `"exact phrase" here match` would match with `match exact phrase here` but not with `phrase here exact match` (kind of "google style").
   - `typeaheadWordDelimiters` (`?string=" "`) - should be used only in case `typeaheadSingleWords` attribute is `true`. Sets the word delimiter to break words. Defaults to space.
   - `typeaheadPhraseDelimiters` (`?string="'\""`) - should be used only in case `typeaheadSingleWords` attribute is `true`. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes.
+  - `typeaheadItemTemplate` (`?TemplateRef`) - used to specify a custom item template. Template variables exposed are called `item` and `index`;
   - `typeaheadAppendToBody` (*not implemented*) (`?boolean=false`) - if `true` the typeahead popup will be appended to $body instead of the parent element
   - `typeaheadEditable` (*not implemented*) (`?boolean=true`) - if `false` restrict model values to the ones selected from the popup only will be provided
   - `typeaheadFocusFirst` (*not implemented*) (`?boolean=true`) - if `false` the first match automatically will not be focused as you type
