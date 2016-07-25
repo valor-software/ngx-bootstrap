@@ -20,7 +20,10 @@ import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';
 ### Annotations
 ```typescript
 // directive Dropdown
-@Directive({ selector: '[dropdown]' })
+@Directive({
+  selector: '[dropdown]',
+  exportAs: 'bs-dropdown'
+})
 export class Dropdown implements OnInit, OnDestroy {
   @HostBinding('class.open')
   @Input() public get isOpen():boolean {}
@@ -32,7 +35,10 @@ export class Dropdown implements OnInit, OnDestroy {
 }
 
 // directive DropdownToggle
-@Directive({ selector: '[dropdownToggle]' })
+@Directive({ 
+  selector: '[dropdownToggle]',
+  exportAs: 'bs-dropdown-toggle'
+})
 export class DropdownToggle implements OnInit {
   @HostBinding('class.disabled')
   @Input() public isDisabled:boolean = false;
