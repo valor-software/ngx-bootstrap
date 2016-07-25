@@ -8,7 +8,10 @@ import {global} from '@angular/core/src/facade/lang';
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
 /* tslint:enable */
 
-@Directive({selector: '[dropdownToggle]'})
+@Directive({
+  selector: '[dropdownToggle]',
+  exportAs: 'dropdown-toggle'
+})
 export class DropdownToggleDirective implements OnInit {
   @HostBinding('class.disabled')
   @Input() public isDisabled:boolean = false;
