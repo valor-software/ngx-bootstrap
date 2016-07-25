@@ -3,7 +3,7 @@ import {DropdownDirective} from './dropdown.directive';
 
 @Directive({
   selector: '[dropdownMenu]',
-  exportAs: 'dropdown-menu'
+  exportAs: 'bs-dropdown-menu'
 })
 export class DropdownMenuDirective implements OnInit {
   public dropdown:DropdownDirective;

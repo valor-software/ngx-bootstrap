@@ -6,7 +6,7 @@ import {dropdownService, NONINPUT} from './dropdown.service';
 
 @Directive({
   selector: '[dropdown]',
-  exportAs: 'dropdown'
+  exportAs: 'bs-dropdown'
 })
 export class DropdownDirective implements OnInit, OnDestroy {
   @HostBinding('class.open')

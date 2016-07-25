@@ -10,7 +10,7 @@ const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 @Directive({
   selector: '[dropdownToggle]',
-  exportAs: 'dropdown-toggle'
+  exportAs: 'bn-dropdown-toggle'
 })
 export class DropdownToggleDirective implements OnInit {
   @HostBinding('class.disabled')
