@@ -4,7 +4,10 @@ import {
 } from '@angular/core';
 import {dropdownService, NONINPUT} from './dropdown.service';
 
-@Directive({selector: '[dropdown]'})
+@Directive({
+  selector: '[dropdown]',
+  exportAs: 'bs-dropdown'
+})
 export class DropdownDirective implements OnInit, OnDestroy {
   @HostBinding('class.open')
   @Input()
