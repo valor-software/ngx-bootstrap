@@ -4,7 +4,7 @@ import {CarouselComponent, Direction} from './carousel.component';
 @Component({
   selector: 'slide',
   template: `
-    <div [class.active]="active" class="item text-center">
+    <div [class.active]="active" class="item">
       <ng-content></ng-content>
     </div>
   `
