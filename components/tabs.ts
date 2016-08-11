@@ -5,4 +5,7 @@ import {TabHeadingDirective} from './tabs/tab-heading.directive';
 export {TabDirective} from './tabs/tab.directive';
 export {TabsetComponent} from './tabs/tabset.component';
 export {TabHeadingDirective} from './tabs/tab-heading.directive';
+export {TabsModule} from './tabs/tabs.module';
+
+/** @deprecated */
 export const TAB_DIRECTIVES:Array<any> = [TabDirective, TabHeadingDirective, TabsetComponent];
