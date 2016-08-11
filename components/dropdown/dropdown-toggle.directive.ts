@@ -3,9 +3,9 @@ import {
 } from '@angular/core';
 import {DropdownDirective} from './dropdown.directive';
 
-import {global} from '@angular/core/src/facade/lang';
+import {Type} from '@angular/core';
 /* tslint:disable */
-const MouseEvent = (global as any).MouseEvent as MouseEvent;
+const MouseEvent = (Type as any).MouseEvent as MouseEvent;
 /* tslint:enable */
 
 @Directive({

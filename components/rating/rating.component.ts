@@ -4,9 +4,9 @@ import {
 import {NgFor} from '@angular/common';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
 
-import {global} from '@angular/core/src/facade/lang';
+import {Type} from '@angular/core';
 /* tslint:disable */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+const KeyboardEvent = (Type as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
 
 @Component({
