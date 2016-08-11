@@ -30,7 +30,6 @@ import {YearPickerComponent} from './yearpicker.component';
                       [yearRange]="yearRange"
                       [customClass]="customClass"
                       [dateDisabled]="dateDisabled"
-                      [templateUrl]="templateUrl"
                       [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation"
                       (selectionDone)="onSelectionDone($event)">
