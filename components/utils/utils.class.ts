@@ -1,4 +1,4 @@
-import {global} from '@angular/core/src/facade/lang';
+import {Type} from '@angular/core';
 
 export class Utils {
   public static reflow(element:any):void {
@@ -13,7 +13,7 @@ export class Utils {
     let view = elem.ownerDocument.defaultView;
 
     if (!view || !view.opener) {
-      view = global;
+      view = Type;
     }
 
     return view.getComputedStyle(elem);
