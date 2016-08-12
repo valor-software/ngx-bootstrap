@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-import { ButtonsModule } from './buttons.module'
+import { ButtonsModule } from './buttons.module';
 
 const html = `
   <div>
