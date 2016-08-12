@@ -1,5 +1,4 @@
 import {Component, OnInit, ElementRef, Renderer, Self} from '@angular/core';
-import {NgClass} from '@angular/common';
 import {NgModel} from '@angular/forms';
 import {PaginationComponent} from './pagination.component';
 
@@ -25,7 +24,6 @@ const PAGER_TEMPLATE = `
 @Component({
   selector: 'pager[ngModel]',
   template: PAGER_TEMPLATE,
-  directives: [NgClass],
   inputs: [
     'align',
     'totalItems', 'itemsPerPage',
