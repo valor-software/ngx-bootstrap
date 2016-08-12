@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
 
-import {routes} from './../../config';
+import {routes} from './../../router.config';
 import {SearchFilterPipe} from './search-filter.pipe';
 import {Ng2BootstrapTheme, Ng2BootstrapConfig} from '../../../components/ng2-bootstrap-config';
 
