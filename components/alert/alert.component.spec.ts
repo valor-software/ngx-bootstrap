@@ -1,28 +1,28 @@
-import { inject, async } from '@angular/core/testing';
-import { TestComponentBuilder, ComponentFixture } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { AlertModule } from './alert.module';
 import { AlertComponent } from './alert.component';
 
-xdescribe('Component: Alert', () => {
-  let fixture:ComponentFixture<any>;
+describe('Component: Alert', () => {
+  let fixture:ComponentFixture<TestAlertComponent>;
   let context:any;
   const overTemplate = `
-                  <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
-                    <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                  </div>
-            `;
+    <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
+      <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+      </button>
+    </div>
+  `;
 
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .overrideTemplate(AlertComponent, overTemplate)
-      .createAsync(AlertComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        context = fixture.debugElement.componentInstance;
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule]});
+    TestBed.overrideComponent(TestAlertComponent, {set: {template: overTemplate}});
+    fixture = TestBed.createComponent(TestAlertComponent);
+    context = fixture.debugElement.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should have a default type alert-warning', () => {
     context.ngOnInit();
@@ -55,3 +55,11 @@ xdescribe('Component: Alert', () => {
     expect(context.closed).toBeTruthy();
   });
 });
+
+@Component({
+  selector: 'alert-test',
+  template: ''
+})
+
+class TestAlertComponent extends AlertComponent {
+}

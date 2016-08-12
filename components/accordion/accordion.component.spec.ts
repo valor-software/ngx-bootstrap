@@ -48,7 +48,7 @@ function hasTitle(element:HTMLElement, str:string):boolean {
 }
 
 describe('Component: Accordion', () => {
-  let fixture:ComponentFixture<any>;
+  let fixture:ComponentFixture<TestAccordionComponent>;
   let context:any;
   let element:any;
 
