@@ -21,7 +21,7 @@ class TestCollapseComponent {
 // TODO: - add animate
 //       - check callbacks have been called or not called (expanding, expanded, collapsing, collapsed)
 
-describe('Directive: Collapse', () => {
+xdescribe('Directive: Collapse', () => {
   let fixture:ComponentFixture<any>;
   let element:any;
   let context:any;

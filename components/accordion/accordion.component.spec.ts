@@ -1,8 +1,7 @@
-import {Component} from '@angular/core';
-import {/*addProviders, */inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-import {AccordionComponent} from './accordion.component';
-import {AccordionPanelComponent} from './accordion-group.component';
+import { Component } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { AccordionModule } from './accordion.module';
 
 const html = `
   <accordion [closeOthers]="oneAtATime">
@@ -53,20 +52,14 @@ describe('Component: Accordion', () => {
   let context:any;
   let element:any;
 
-  // beforeEach(addProviders(() => [TestComponentBuilder]));
-  // beforeEach(() => addProviders([TestComponentBuilder]));
-
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .overrideTemplate(TestAccordionComponent, html)
-      .createAsync(TestAccordionComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        context = fixture.componentInstance;
-        element = fixture.nativeElement;
-        fixture.detectChanges();
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({declarations: [TestAccordionComponent], imports: [AccordionModule]});
+    TestBed.overrideComponent(TestAccordionComponent, {set: {template: html}});
+    fixture = TestBed.createComponent(TestAccordionComponent);
+    context = fixture.componentInstance;
+    element = fixture.nativeElement;
+    fixture.detectChanges();
+  });
 
   it('should have no open panels', () => {
     expectOpenPanels(element, [false, false, false]);
@@ -147,7 +140,6 @@ describe('Component: Accordion', () => {
 
 @Component({
   selector: 'accordion-test',
-  directives: [AccordionPanelComponent, AccordionComponent],
   template: ''
 })
 

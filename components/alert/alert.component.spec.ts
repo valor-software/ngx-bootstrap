@@ -2,7 +2,7 @@ import { inject, async } from '@angular/core/testing';
 import { TestComponentBuilder, ComponentFixture } from '@angular/core/testing';
 import { AlertComponent } from './alert.component';
 
-describe('Component: Alert', () => {
+xdescribe('Component: Alert', () => {
   let fixture:ComponentFixture<any>;
   let context:any;
   const overTemplate = `

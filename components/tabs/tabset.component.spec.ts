@@ -46,7 +46,7 @@ function expectActiveTabs(nativeEl:HTMLElement, active:boolean[]):void {
   }
 }
 
-describe('Component: Tabs', () => {
+xdescribe('Component: Tabs', () => {
   let fixture:ComponentFixture<any>;
   let context:any;
   let element:any;
