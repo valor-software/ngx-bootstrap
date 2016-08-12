@@ -1,15 +1,13 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {
-  it,
-  expect,
   inject,
   fakeAsync,
-  beforeEach,
-  discardPeriodicTasks
+  discardPeriodicTasks,
+  TestComponentBuilder,
+  ComponentFixture
 } from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/compiler/testing';
-import {NgModel} from '@angular/common';
-import {CAROUSEL_DIRECTIVES} from '../carousel';
+import { NgModel } from '@angular/common';
+import { CAROUSEL_DIRECTIVES } from '../carousel';
 
 const html = `
   <div id="c1">
@@ -112,7 +110,7 @@ describe('Component: Carousel', () => {
     context.noWrapSlides = true;
     fixture.detectChanges();
     let prev = element.querySelector('a.left');
-    expect(prev).toHaveCssClass('disabled');
+    expect(prev.classList).toContain('disabled');
   });
 
   // TODO:
@@ -121,7 +119,7 @@ describe('Component: Carousel', () => {
     context.slides[2].active = true;
     fixture.detectChanges();
     let next = element.querySelector('a.right');
-    expect(next).toHaveCssClass('disabled');
+    expect(next.classList).toContain('disabled');
   });
 
   it('should change slide on indicator click', () => {
