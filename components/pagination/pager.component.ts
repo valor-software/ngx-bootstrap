@@ -1,5 +1,4 @@
 import {Component, OnInit, ElementRef, Renderer, Self} from '@angular/core';
-import {NgClass} from '@angular/common';
 import {NgModel} from '@angular/forms';
 import {PaginationComponent} from './pagination.component';
 
@@ -24,8 +23,7 @@ const PAGER_TEMPLATE = `
 /* tslint:disable */
 @Component({
   selector: 'pager[ngModel]',
-  template: PAGER_TEMPLATE,
-  directives: [NgClass]
+  template: PAGER_TEMPLATE
 })
 /* tslint:enable */
 export class PagerComponent extends PaginationComponent implements OnInit {

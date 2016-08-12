@@ -1,14 +1,11 @@
 import {
   Component, OnInit, OnDestroy, Input, HostBinding, Inject
 } from '@angular/core';
-import {NgClass} from '@angular/common';
-import {CollapseDirective} from '../collapse';
 import {AccordionComponent} from './accordion.component';
 
 /* tslint:disable:component-selector-name */
 @Component({
   selector: 'accordion-group, accordion-panel',
-  directives: [CollapseDirective, NgClass],
   template: `
     <div class="panel" [ngClass]="panelClass">
       <div class="panel-heading" (click)="toggleOpen($event)">

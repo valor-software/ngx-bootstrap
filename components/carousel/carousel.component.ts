@@ -1,7 +1,6 @@
 // todo: add animate
 
 import {Component, OnDestroy, Input} from '@angular/core';
-import {NgFor} from '@angular/common';
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
 import {SlideComponent} from './slide.component';
 
@@ -39,7 +38,6 @@ const NAVIGATION:any = {
  */
 @Component({
   selector: 'carousel',
-  directives: [NgFor],
   template: `
     <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
       <ol class="carousel-indicators" *ngIf="slides.length > 1">

@@ -1,7 +1,6 @@
 import {
   Component, OnInit, Input, Output, HostListener, Self, EventEmitter
 } from '@angular/core';
-import {NgFor} from '@angular/common';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
 
 import {global} from '@angular/core/src/facade/lang';
@@ -13,7 +12,6 @@ const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
   /* tslint:disable */
   selector: 'rating[ngModel]',
   /* tslint:enable */
-  directives: [NgFor],
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
       <template ngFor let-r [ngForOf]="range" let-index="index">

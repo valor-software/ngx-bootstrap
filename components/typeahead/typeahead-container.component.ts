@@ -1,5 +1,4 @@
 import {Component, ElementRef, ViewEncapsulation, TemplateRef} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
 import {TypeaheadUtils} from './typeahead-utils';
 import {TypeaheadDirective} from './typeahead.directive';
 import {TypeaheadOptions} from './typeahead-options.class';
@@ -61,7 +60,6 @@ const TEMPLATE:any = {
 };
 @Component({
   selector: 'typeahead-container',
-  directives: [CORE_DIRECTIVES],
   template: TEMPLATE[Ng2BootstrapConfig.theme],
   encapsulation: ViewEncapsulation.None
 })

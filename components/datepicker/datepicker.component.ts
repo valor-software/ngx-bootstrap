@@ -1,11 +1,5 @@
 import {Component, Self, Input, Output, EventEmitter} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES, ControlValueAccessor, NgModel} from '@angular/forms';
-import {DatePickerInnerComponent} from './datepicker-inner.component';
-import {DayPickerComponent} from './daypicker.component';
-import {MonthPickerComponent} from './monthpicker.component';
-import {YearPickerComponent} from './yearpicker.component';
-// import {DatePickerPopup} from './datepicker-popup';
+import {ControlValueAccessor, NgModel} from '@angular/forms';
 
 /* tslint:disable:component-selector-name component-selector-type */
 @Component({
@@ -37,9 +31,7 @@ import {YearPickerComponent} from './yearpicker.component';
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
-    `,
-  directives: [DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent,
-    FORM_DIRECTIVES, CORE_DIRECTIVES]
+    `
 })
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {

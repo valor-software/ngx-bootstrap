@@ -1,5 +1,4 @@
 import {Component, OnInit, Input, Self} from '@angular/core';
-import {NgClass} from '@angular/common';
 import {NgModel, ControlValueAccessor} from '@angular/forms';
 
 export interface TimepickerConfig {
@@ -53,7 +52,6 @@ function addMinutes(date:any, minutes:number):Date {
   /* tslint:disable */
   selector: 'timepicker[ngModel]',
   /* tslint:enable */
-  directives: [NgClass],
   template: `
     <table>
       <tbody>
