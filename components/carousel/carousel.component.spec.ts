@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import {
-  inject,
-  fakeAsync,
-  discardPeriodicTasks,
-  TestComponentBuilder,
-  ComponentFixture
-} from '@angular/core/testing';
-import { NgModel } from '@angular/common';
-import { CAROUSEL_DIRECTIVES } from '../carousel';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { CarouselModule } from './carousel.module';
 
 const html = `
   <div id="c1">
@@ -49,25 +43,38 @@ function expectActiveSlides(nativeEl:HTMLDivElement, active:boolean[]):void {
   }
 }
 
-xdescribe('Component: Carousel', () => {
+describe('Component: Carousel', () => {
   let fixture:ComponentFixture<any>;
-  let context:any;
+  let context:TestCarouselComponent;
   let element:any;
   let clean:any;
 
-  beforeEach(fakeAsync(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .overrideTemplate(TestCarouselComponent, html)
-      .createAsync(TestCarouselComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        context = fixture.componentInstance;
-        fixture.detectChanges();
-        element = fixture.nativeElement.querySelector('#c1');
-        clean = fixture.nativeElement.querySelector('#c2');
-        discardPeriodicTasks();
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestCarouselComponent],
+      imports: [CarouselModule]
+    });
+    TestBed.overrideComponent(TestCarouselComponent, {set: {template: html}});
+    fixture = TestBed.createComponent(TestCarouselComponent);
+    context = fixture.componentInstance;
+    element = fixture.nativeElement.querySelector('#c1');
+    clean = fixture.nativeElement.querySelector('#c2');
+    fixture.detectChanges();
+  });
+
+  // beforeEach(fakeAsync(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  //   return tcb
+  //     .overrideTemplate(TestCarouselComponent, html)
+  //     .createAsync(TestCarouselComponent)
+  //     .then((f:ComponentFixture<any>) => {
+  //       fixture = f;
+  //       context = fixture.componentInstance;
+  //       fixture.detectChanges();
+  //       element = fixture.nativeElement.querySelector('#c1');
+  //       clean = fixture.nativeElement.querySelector('#c2');
+  //       discardPeriodicTasks();
+  //     });
+  // })));
 
   it('should set first slide as active by default', () => {
     expectActiveSlides(element, [true, false, false]);
@@ -192,7 +199,6 @@ xdescribe('Component: Carousel', () => {
 
 @Component({
   selector: 'carousel-test',
-  directives: [CAROUSEL_DIRECTIVES, NgModel],
   template: ''
 })
 
