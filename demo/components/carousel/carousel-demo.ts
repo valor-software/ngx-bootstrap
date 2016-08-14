@@ -34,4 +34,8 @@ export class CarouselDemoComponent {
   public removeSlide(index:number):void {
     this.slides.splice(index, 1);
   }
+
+  public slideChanged(index: number):void {
+    console.log(`Slide changed ${index}`);
+  }
 }
