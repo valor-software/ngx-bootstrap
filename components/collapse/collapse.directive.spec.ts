@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {/*addProviders, */inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-import {CollapseDirective} from './collapse.directive';
+import { Component } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { CollapseModule } from './collapse.module';
 
 const template = `
   <div [collapse]="isCollapsed">
@@ -12,8 +12,7 @@ const template = `
 
 @Component({
   selector: 'collapse-test',
-  template,
-  directives: [CollapseDirective]
+  template
 })
 class TestCollapseComponent {
 }
@@ -21,24 +20,21 @@ class TestCollapseComponent {
 // TODO: - add animate
 //       - check callbacks have been called or not called (expanding, expanded, collapsing, collapsed)
 
-xdescribe('Directive: Collapse', () => {
-  let fixture:ComponentFixture<any>;
+describe('Directive: Collapse', () => {
+  let fixture:ComponentFixture<TestCollapseComponent>;
   let element:any;
   let context:any;
 
-  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
-  // beforeEach(() => addProviders([TestComponentBuilder]));
-
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .createAsync(TestCollapseComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        fixture.detectChanges();
-        element = fixture.nativeElement.querySelector('.collapse');
-        context = fixture.componentInstance;
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestCollapseComponent],
+      imports: [CollapseModule]
+    });
+    fixture = TestBed.createComponent(TestCollapseComponent);
+    fixture.detectChanges();
+    context = fixture.componentInstance;
+    element = fixture.nativeElement.querySelector('.collapse');
+  });
 
   it('should have collapse class', () => {
     let div = fixture.nativeElement.querySelector('div');
