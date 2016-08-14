@@ -80,7 +80,7 @@
     "file-loader": "0.9.0",
     "gh-pages": "0.11.0",
     "gitignore-to-glob": "0.2.1",
-    "google-code-prettify": "1.0.1",
+    "google-code-prettify": "1.0.4",
     "gulp": "3.9.1",
     "gulp-size": "2.1.0",
     "gulp-tslint": "6.0.1",
