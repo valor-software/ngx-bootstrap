@@ -30,7 +30,7 @@ const PAGER_TEMPLATE = `
 /* tslint:enable */
 export class PagerComponent extends PaginationComponent implements OnInit {
   public config:any = pagerConfig;
-  
+
   @Input() public align: boolean;
 
   public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
