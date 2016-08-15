@@ -1,8 +1,6 @@
 import { Component, ViewContainerRef, AfterContentInit } from '@angular/core';
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap';
-import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { TopMenuComponent } from './components/top-menu/top-menu.component';
-import { ROUTER_DIRECTIVES, Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 let w:any = window;
 
@@ -14,8 +12,7 @@ let template = require('./demo.template.html');
 
 @Component({
   selector: 'demo',
-  template,
-  directives: [ROUTER_DIRECTIVES, TopMenuComponent, MainMenuComponent]
+  template
 })
 
 export class DemoComponent implements AfterContentInit {

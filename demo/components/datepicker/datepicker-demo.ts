@@ -1,17 +1,12 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES} from '@angular/forms';
-
+import { Component } from '@angular/core';
 import * as moment from 'moment';
-import {DATEPICKER_DIRECTIVES} from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./datepicker-demo.html');
 
 @Component({
   selector: 'datepicker-demo',
-  template: template,
-  directives: [DATEPICKER_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  template: template
 })
 export class DatepickerDemoComponent {
   public dt:Date = new Date();
@@ -36,9 +31,11 @@ export class DatepickerDemoComponent {
       {date: this.afterTomorrow, status: 'partially'}
     ];
   }
+
   public getDate():number {
     return this.dt && this.dt.getTime() || new Date().getTime();
   }
+
   public today():void {
     this.dt = new Date();
   }

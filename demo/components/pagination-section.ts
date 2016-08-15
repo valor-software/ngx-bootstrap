@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {PaginationDemoComponent} from './pagination/pagination-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/pagination/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./pagination/pagination-demo.html');
 
 @Component({
   selector: 'pagination-section',
-  directives: [DemoSectionComponent, PaginationDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <pagination-demo></pagination-demo>

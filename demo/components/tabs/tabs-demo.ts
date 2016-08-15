@@ -1,13 +1,10 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {TAB_DIRECTIVES} from '../../../ng2-bootstrap';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 // webpack html imports
 let template = require('./tabs-demo.html');
 
 @Component({
   selector: 'tabs-demo',
-  directives: [TAB_DIRECTIVES, CORE_DIRECTIVES],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: template
 })
