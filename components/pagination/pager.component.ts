@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, Renderer, Self} from '@angular/core';
+import {Component, OnInit, ElementRef, Renderer, Self, Input} from '@angular/core';
 import {NgClass} from '@angular/common';
 import {NgModel} from '@angular/forms';
 import {PaginationComponent} from './pagination.component';
@@ -25,16 +25,13 @@ const PAGER_TEMPLATE = `
 @Component({
   selector: 'pager[ngModel]',
   template: PAGER_TEMPLATE,
-  directives: [NgClass],
-  inputs: [
-    'align',
-    'totalItems', 'itemsPerPage',
-    'previousText', 'nextText',
-  ]
+  directives: [NgClass]
 })
 /* tslint:enable */
 export class PagerComponent extends PaginationComponent implements OnInit {
   public config:any = pagerConfig;
+  
+  @Input() public align: boolean;
 
   public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     super(cd, renderer, elementRef);
