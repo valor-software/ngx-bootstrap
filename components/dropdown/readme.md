@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { DROPDOWN_DIRECTIVES } from 'ng2-bootstrap/components/dropdown';
+import { DropdownModule } from 'ng2-bootstrap/components/dropdown';
 ```
 
 ```html
@@ -51,8 +51,6 @@ export class DropdownToggle implements OnInit {
   @HostListener('click', ['$event'])
   public toggleDropdown(event:MouseEvent) {}
 }
-
-export const DROPDOWN_DIRECTIVES: Array<any> = [Dropdown, DropdownMenu, DropdownToggle];
 ```
 
 ### Dropdown properties

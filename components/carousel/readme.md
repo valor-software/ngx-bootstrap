@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { CAROUSEL_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { CAROUSEL_DIRECTIVES } from 'ng2-bootstrap/components/carousel';
+import { CarouselModule } from 'ng2-bootstrap/components/carousel';
 ```
 
 ### Annotations
@@ -36,8 +36,6 @@ export class SlideComponent implements OnInit, OnDestroy {
   @HostBinding('class.carousel-item')
   private addClass:boolean = true;
 }
-
-export const CAROUSEL_DIRECTIVES:Array<any> = [Carousel, Slide];
 ```
 
 ### Carousel properties

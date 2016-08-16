@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { TimepickerComponent } from 'ng2-bootstrap/ng2-bootstrap';
+import { TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { TimepickerComponent } from 'ng2-bootstrap/components/timepicker';
+import { TimepickerModule } from 'ng2-bootstrap/components/timepicker';
 ```
 
 ### Annotations
