@@ -4,7 +4,6 @@
   "rules": {
     "component-selector-name": [false, ""],
     "import-destructuring-spacing": false,
-    "only-arrow-functions": false,
-    "no-constructor-vars": false
+    "only-arrow-functions": false
   }
 }
