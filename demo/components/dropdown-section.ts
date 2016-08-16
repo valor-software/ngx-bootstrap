@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {DropdownDemoComponent} from './dropdown/dropdown-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/dropdown/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./dropdown/dropdown-demo.html');
 
 @Component({
   selector: 'dropdown-section',
-  directives: [DemoSectionComponent, DropdownDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <dropdown-demo></dropdown-demo>

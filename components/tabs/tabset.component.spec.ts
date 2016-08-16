@@ -1,9 +1,7 @@
-import {Component} from '@angular/core';
-import {/*addProviders, */inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-import {TabsetComponent} from './tabset.component';
-import {TabDirective} from './tab.directive';
-import {TabHeadingDirective} from './tab-heading.directive';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { TabsModule } from './tabs.module';
 
 const html = `
   <tabset [justified]="isJustified"
@@ -20,15 +18,15 @@ const html = `
   </tabset>
 `;
 
-function getTabTitles(nativeEl:HTMLElement):NodeListOf<Element> {
+function getTabTitles(nativeEl: HTMLElement): NodeListOf<Element> {
   return nativeEl.querySelectorAll('.nav-link');
 }
 
-function getTabContent(nativeEl:HTMLElement):NodeListOf<Element> {
+function getTabContent(nativeEl: HTMLElement): NodeListOf<Element> {
   return nativeEl.querySelectorAll('.tab-content .tab-pane');
 }
 
-function expectActiveTabs(nativeEl:HTMLElement, active:boolean[]):void {
+function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
   const tabTitles = getTabTitles(nativeEl);
   const tabContent = getTabContent(nativeEl);
 
@@ -47,34 +45,46 @@ function expectActiveTabs(nativeEl:HTMLElement, active:boolean[]):void {
 }
 
 describe('Component: Tabs', () => {
-  let fixture:ComponentFixture<any>;
-  let context:any;
-  let element:any;
+  let fixture: ComponentFixture<any>;
+  let context: any;
+  let element: any;
 
-  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
-  // beforeEach(() => addProviders([TestComponentBuilder]));
+  // beforeEach(async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+  //   return tcb
+  //     .overrideTemplate(TestTabsetComponent, html)
+  //     .createAsync(TestTabsetComponent)
+  //     .then((f: ComponentFixture<any>) => {
+  //       fixture = f;
+  //       context = fixture.componentInstance;
+  //       spyOn(context, '_select');
+  //       spyOn(context, '_deselect');
+  //       spyOn(context, '_removed');
+  //       element = fixture.nativeElement;
+  //       fixture.detectChanges();
+  //     });
+  // })));
 
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .overrideTemplate(TestTabsetComponent, html)
-      .createAsync(TestTabsetComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        context = fixture.componentInstance;
-        spyOn(context, '_select');
-        spyOn(context, '_deselect');
-        spyOn(context, '_removed');
-        element = fixture.nativeElement;
-        fixture.detectChanges();
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestTabsetComponent],
+      imports: [TabsModule]
+    });
+    TestBed.overrideComponent(TestTabsetComponent, {set: {template: html}});
+    fixture = TestBed.createComponent(TestTabsetComponent);
+    context = fixture.componentInstance;
+    spyOn(context, '_select');
+    spyOn(context, '_deselect');
+    spyOn(context, '_removed');
+    element = fixture.nativeElement;
+    fixture.detectChanges();
+  });
 
   it('should select first tab as active by default', () => {
     expectActiveTabs(element, [true, false, false, false]);
   });
 
   it('should set tab header', () => {
-    const str:string = 'test title';
+    const str: string = 'test title';
     context.tabs[1].title = str;
     fixture.detectChanges();
     const tabTitles = getTabTitles(element);
@@ -167,29 +177,28 @@ describe('Component: Tabs', () => {
 });
 
 @Component({
-  selector: 'accordion-test',
-  directives: [TabsetComponent, TabDirective, TabHeadingDirective],
+  selector: 'tabs-test',
   template: ''
 })
 
 class TestTabsetComponent {
-  public isVertical:Boolean = false;
-  public isJustified:Boolean = false;
-  public tabs:Array<any> = [
+  public isVertical: Boolean = false;
+  public isJustified: Boolean = false;
+  public tabs: Array<any> = [
     {title: 'tab1', content: 'tab1 content'},
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
 
-  public _select(e:TabDirective):TabDirective {
+  public _select(e: TabsModule): TabsModule {
     return e;
   }
 
-  public _deselect(e:TabDirective):TabDirective {
+  public _deselect(e: TabsModule): TabsModule {
     return e;
   }
 
-  public _removed(e:TabDirective):TabDirective {
+  public _removed(e: TabsModule): TabsModule {
     return e;
   }
 }

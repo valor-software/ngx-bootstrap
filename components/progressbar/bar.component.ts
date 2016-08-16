@@ -1,12 +1,11 @@
-import {Component, OnInit, OnDestroy, Input, Host} from '@angular/core';
-import {NgClass, NgStyle} from '@angular/common';
+import {Component, Host, Input, OnDestroy, OnInit} from '@angular/core';
+
 import {ProgressDirective} from './progress.directive';
 
 // todo: number pipe
 // todo: use query from progress?
 @Component({
   selector: 'bar',
-  directives: [NgClass, NgStyle],
   template: `
   <div class="progress-bar"
     style="min-width: 0;"

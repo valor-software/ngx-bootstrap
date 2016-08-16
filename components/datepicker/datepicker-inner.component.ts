@@ -1,6 +1,5 @@
-import {Component, OnInit, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {CORE_DIRECTIVES, NgClass} from '@angular/common';
-import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+
 import {DateFormatter} from './date-formatter';
 
 const FORMAT_DAY = 'DD';
@@ -39,13 +38,11 @@ const SHORTCUT_PROPAGATION = false;
 
 @Component({
   selector: 'datepicker-inner',
-  events: ['update'],
   template: `
     <div *ngIf="datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
       <ng-content></ng-content>
     </div>
-  `,
-  directives: [FORM_DIRECTIVES, CORE_DIRECTIVES, NgClass, NgModel]
+  `
 })
 export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public datepickerMode:string;
@@ -89,6 +86,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   private compareHandlerMonth:Function;
   private refreshViewHandlerYear:Function;
   private compareHandlerYear:Function;
+
+  @Output()
   private update:EventEmitter<Date> = new EventEmitter<Date>(false);
 
   @Input()

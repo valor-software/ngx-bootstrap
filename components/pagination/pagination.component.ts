@@ -1,8 +1,8 @@
 import {
-  Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self
 } from '@angular/core';
-import {NgFor, NgIf} from '@angular/common';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
+
 import {KeyAttribute} from '../common';
 
 // todo: extract base functionality classes
@@ -75,7 +75,6 @@ const PAGINATION_TEMPLATE = `
 @Component({
   selector: 'pagination[ngModel]',
   template: PAGINATION_TEMPLATE,
-  directives: [NgFor, NgIf]
 })
 /* tslint:enable */
 export class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {

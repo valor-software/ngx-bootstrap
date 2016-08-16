@@ -1,12 +1,10 @@
-import {Component, OnInit, OnDestroy, HostBinding, Input} from '@angular/core';
-import {NgClass} from '@angular/common';
-import {NgTranscludeDirective} from '../common';
+import {Component, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
+
 import {TabDirective} from './tab.directive';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  directives: [NgClass, NgTranscludeDirective],
   template: `
     <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
         <li *ngFor="let tabz of tabs" class="nav-item"

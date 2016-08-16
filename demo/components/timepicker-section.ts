@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {TimepickerDemoComponent} from './timepicker/timepicker-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/timepicker/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./timepicker/timepicker-demo.html');
 
 @Component({
   selector: 'timepicker-section',
-  directives: [DemoSectionComponent, TimepickerDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <timepicker-demo></timepicker-demo>

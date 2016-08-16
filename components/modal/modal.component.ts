@@ -3,23 +3,24 @@
 // todo: original modal had resize events
 
 import {
-  ComponentRef,
   AfterViewInit,
-  ElementRef,
-  Inject,
-  EventEmitter,
-  Renderer,
+  ComponentRef,
   Directive,
+  ElementRef,
+  EventEmitter,
   HostListener,
+  Inject,
   Input,
   OnDestroy,
-  Output
+  Output,
+  Renderer
 } from '@angular/core';
 import {global} from '@angular/core/src/facade/lang';
-import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
-import {modalConfigDefaults, ClassName, ModalOptions, Selector} from './modal-options.class';
+
 import {ComponentsHelper} from '../utils/components-helper.service';
 import {Utils} from '../utils/utils.class';
+import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
+import {ClassName, modalConfigDefaults, ModalOptions, Selector} from './modal-options.class';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
