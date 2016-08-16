@@ -1,7 +1,8 @@
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TypeaheadDirective} from './typeahead.directive';
+import {NgModule} from '@angular/core';
+
 import {TypeaheadContainerComponent} from './typeahead-container.component';
+import {TypeaheadDirective} from './typeahead.directive';
 
 @NgModule({
     imports: [CommonModule],

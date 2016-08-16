@@ -1,4 +1,5 @@
-import {Component, ElementRef, Renderer} from '@angular/core';
+import {Component, ElementRef, HostBinding, Renderer} from '@angular/core';
+
 import {ClassName} from './modal-options.class';
 
 export class ModalBackdropOptions {
@@ -11,10 +12,11 @@ export class ModalBackdropOptions {
 
 @Component({
   selector: 'bs-modal-backdrop',
-  template: '',
-  host: {'class': `${ClassName.BACKDROP}`}
+  template: ''
 })
 export class ModalBackdropComponent {
+  @HostBinding('class') public backdropClasses:string = ClassName.BACKDROP;
+
   public get isAnimated():boolean{
     return this._isAnimated;
   }

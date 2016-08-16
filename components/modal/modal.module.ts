@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+
 import {ModalBackdropComponent} from './modal-backdrop.component';
 import {ModalDirective} from './modal.component';
 

@@ -1,4 +1,4 @@
-import {Component, Self, Input, Output, EventEmitter} from '@angular/core';
+import {Component, EventEmitter, Input, Output, Self} from '@angular/core';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
 
 /* tslint:disable:component-selector-name component-selector-type */

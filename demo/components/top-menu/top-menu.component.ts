@@ -1,6 +1,6 @@
-import { Component, Renderer, Inject, AfterViewInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { AfterViewInit, Component, Inject, Renderer } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 
 // webpack html imports
 let template = require('./top-menu.template.html');

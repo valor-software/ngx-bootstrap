@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { AlertComponent } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { AlertComponent } from 'ng2-bootstrap/components/alert';
+import { AlertModule } from 'ng2-bootstrap/components/alert';
 ```
 
 ### Annotations
@@ -10,7 +10,6 @@ import { AlertComponent } from 'ng2-bootstrap/components/alert';
 // class Alert
 @Component({
   selector: 'alert',
-  directives: [NgIf, NgClass],
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {

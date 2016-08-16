@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router} from '@angular/router';
 
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../../components/ng2-bootstrap-config';
 import { routes } from './../../router.config';
 import { SearchFilterPipe } from './search-filter.pipe';
-import { Ng2BootstrapTheme, Ng2BootstrapConfig } from '../../../components/ng2-bootstrap-config';
 
 // webpack html imports
 let template = require('./main-menu.template.html');

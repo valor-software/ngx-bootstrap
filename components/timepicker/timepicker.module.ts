@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import  { TimepickerComponent } from './timepicker.component';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import  { TimepickerComponent } from './timepicker.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule],

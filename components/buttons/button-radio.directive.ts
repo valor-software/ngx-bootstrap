@@ -1,5 +1,5 @@
 import {
-  Directive, OnInit, Input, HostBinding, HostListener, Self, ElementRef
+  Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Self
 } from '@angular/core';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
 

@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { TYPEAHEAD_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { TYPEAHEAD_DIRECTIVES } from 'ng2-bootstrap/components/typeahead';
+import { TypeaheadModule } from 'ng2-bootstrap/components/typeahead';
 ```
 
 ### Annotations
