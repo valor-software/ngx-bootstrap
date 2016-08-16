@@ -1,11 +1,12 @@
 import {
-  Directive, Input, Output, HostListener, EventEmitter, OnInit, ElementRef, TemplateRef,
-  Renderer, DynamicComponentLoader, ComponentRef, ReflectiveInjector, provide, ViewContainerRef
+  ComponentRef, Directive, DynamicComponentLoader, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
+  provide, ReflectiveInjector, Renderer, TemplateRef, ViewContainerRef
 } from '@angular/core';
-import {NgControl, FormControl} from '@angular/forms';
-import {TypeaheadUtils} from './typeahead-utils';
+import {FormControl, NgControl} from '@angular/forms';
+
 import {TypeaheadContainerComponent} from './typeahead-container.component';
 import {TypeaheadOptions} from './typeahead-options.class';
+import {TypeaheadUtils} from './typeahead-utils';
 
 import {Observable} from 'rxjs/Observable';
 

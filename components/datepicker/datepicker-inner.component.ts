@@ -1,4 +1,5 @@
-import {Component, OnInit, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+
 import {DateFormatter} from './date-formatter';
 
 const FORMAT_DAY = 'DD';

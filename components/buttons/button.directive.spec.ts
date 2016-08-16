@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { ButtonsModule } from './buttons.module';
 

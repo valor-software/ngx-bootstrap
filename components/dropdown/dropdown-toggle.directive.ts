@@ -1,9 +1,10 @@
 import {
-  Directive, ElementRef, Host, OnInit, Input, HostBinding, HostListener
+  Directive, ElementRef, Host, HostBinding, HostListener, Input, OnInit
 } from '@angular/core';
+import {global} from '@angular/core/src/facade/lang';
+
 import {DropdownDirective} from './dropdown.directive';
 
-import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
 /* tslint:enable */

@@ -1,8 +1,8 @@
 // FIX: in order to update to rc.1 had to disable animation, sorry
-import {Directive, OnInit, ElementRef, Input, Output, HostBinding, Renderer, EventEmitter} from '@angular/core';
+import {Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, Renderer} from '@angular/core';
 // import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 
-// import {animation, style, animate, state, transition} from '@angular/core';
+// import {animate, animation, state, style, transition} from '@angular/core';
 
 /*@Directive({
  selector: '[collapse]',

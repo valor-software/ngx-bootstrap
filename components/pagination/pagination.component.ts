@@ -1,7 +1,8 @@
 import {
-  Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self
 } from '@angular/core';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
+
 import {KeyAttribute} from '../common';
 
 // todo: extract base functionality classes

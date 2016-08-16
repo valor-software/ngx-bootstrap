@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 

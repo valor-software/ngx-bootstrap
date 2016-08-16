@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertModule } from './alert.module';
 import { AlertComponent } from './alert.component';
+import { AlertModule } from './alert.module';
 
 describe('Component: Alert', () => {
   let fixture:ComponentFixture<TestAlertComponent>;

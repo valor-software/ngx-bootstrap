@@ -1,7 +1,8 @@
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {SlideComponent} from './slide.component';
+import {NgModule} from '@angular/core';
+
 import {CarouselComponent} from './carousel.component';
+import {SlideComponent} from './slide.component';
 
 @NgModule({
     imports: [CommonModule],

@@ -1,6 +1,7 @@
 import {
-  Directive, OnDestroy, Input, Output, HostBinding, TemplateRef, EventEmitter
+  Directive, EventEmitter, HostBinding, Input, OnDestroy, Output, TemplateRef
 } from '@angular/core';
+
 import {TabsetComponent} from './tabset.component';
 
 /* tslint:disable */
