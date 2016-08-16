@@ -1,12 +1,10 @@
-import {Component} from '@angular/core';
-import {CollapseDirective} from '../../../ng2-bootstrap';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let template = require('./collapse-demo.html');
 
 @Component({
   selector: 'collapse-demo',
-  directives: [CollapseDirective],
   template: template
 })
 export class CollapseDemoComponent {

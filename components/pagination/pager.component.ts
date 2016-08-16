@@ -23,12 +23,7 @@ const PAGER_TEMPLATE = `
 /* tslint:disable */
 @Component({
   selector: 'pager[ngModel]',
-  template: PAGER_TEMPLATE,
-  inputs: [
-    'align',
-    'totalItems', 'itemsPerPage',
-    'previousText', 'nextText',
-  ]
+  template: PAGER_TEMPLATE
 })
 /* tslint:enable */
 export class PagerComponent extends PaginationComponent implements OnInit {

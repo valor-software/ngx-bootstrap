@@ -1,23 +1,23 @@
-import {GettingStartedSectionComponent} from './components/getting-started/getting-started';
-import {AccordionSectionComponent} from './components/accordion-section';
-import {AlertSectionComponent} from './components/alert-section';
-import {ButtonsSectionComponent} from './components/buttons-section';
-import {CarouselSectionComponent} from './components/carousel-section';
-import {CollapseSectionComponent} from './components/collapse-section';
-import {DatepickerSectionComponent} from './components/datepicker-section';
-import {DropdownSectionComponent} from './components/dropdown-section';
-import {PaginationSectionComponent} from './components/pagination-section';
-import {ProgressbarSectionComponent} from './components/progressbar-section';
-import {RatingSectionComponent} from './components/rating-section';
-import {TabsSectionComponent} from './components/tabs-section';
-import {TimepickerSectionComponent} from './components/timepicker-section';
-import {TooltipSectionComponent} from './components/tooltip-section';
-import {TypeaheadSectionComponent} from './components/typeahead-section';
-import {ModalSectionComponent} from './components/modal-section';
+import { GettingStartedSectionComponent } from './components/getting-started/getting-started';
+import { AccordionSectionComponent } from './components/accordion-section';
+import { AlertSectionComponent } from './components/alert-section';
+import { ButtonsSectionComponent } from './components/buttons-section';
+import { CarouselSectionComponent } from './components/carousel-section';
+import { CollapseSectionComponent } from './components/collapse-section';
+import { DatepickerSectionComponent } from './components/datepicker-section';
+import { DropdownSectionComponent } from './components/dropdown-section';
+import { PaginationSectionComponent } from './components/pagination-section';
+import { ProgressbarSectionComponent } from './components/progressbar-section';
+import { RatingSectionComponent } from './components/rating-section';
+import { TabsSectionComponent } from './components/tabs-section';
+import { TimepickerSectionComponent } from './components/timepicker-section';
+import { TooltipSectionComponent } from './components/tooltip-section';
+import { TypeaheadSectionComponent } from './components/typeahead-section';
+import { ModalSectionComponent } from './components/modal-section';
 
-import {provideRouter, RouterConfig} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-export const routes:RouterConfig = [
+export const routes:Routes = [
   {
     path: '',
     data: ['Getting started'],
@@ -88,6 +88,4 @@ export const routes:RouterConfig = [
   }
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes)
-];
+export const routing = RouterModule.forRoot(routes, {useHash: true});

@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {TooltipDemoComponent} from './tooltip/tooltip-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/tooltip/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./tooltip/tooltip-demo.html');
 
 @Component({
   selector: 'tooltip-section',
-  directives: [DemoSectionComponent, TooltipDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <tooltip-demo></tooltip-demo>

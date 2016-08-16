@@ -1,16 +1,11 @@
 import { Component } from '@angular/core';
-import { CORE_DIRECTIVES} from '@angular/common';
-import { FORM_DIRECTIVES } from '@angular/forms';
-
-import { ACCORDION_DIRECTIVES } from '../../../ng2-bootstrap';
 
 // webpack html imports
 let template = require('./accordion-demo.html');
 
 @Component({
   selector: 'accordion-demo',
-  template: template,
-  directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES]
+  template: template
 })
 export class AccordionDemoComponent {
   public oneAtATime:boolean = true;

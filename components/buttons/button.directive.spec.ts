@@ -1,11 +1,8 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {disableDeprecatedForms, provideForms, FORM_DIRECTIVES} from '@angular/forms';
-import {inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-// import {ButtonCheckboxDirective} from './button-checkbox.directive';
-// import {ButtonRadioDirective} from './button-radio.directive';
-import {BUTTON_DIRECTIVES} from '../buttons';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+
+import { ButtonsModule } from './buttons.module';
 
 const html = `
   <div>
@@ -44,36 +41,32 @@ const html = `
   </div>
 `;
 
-xdescribe('Directive: Buttons', () => {
-  let fixture:ComponentFixture<any>;
+describe('Directive: Buttons', () => {
+  let fixture:ComponentFixture<TestButtonsComponent>;
   let context:any;
   let element:any;
-  let providerArr: any[];
 
-  beforeEach(() => { providerArr = [disableDeprecatedForms(), provideForms()]; });
-
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .overrideTemplate(TestButtonsComponent, html)
-      .overrideProviders(TestButtonsComponent, providerArr)
-      .createAsync(TestButtonsComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        context = fixture.componentInstance;
-        element = fixture.nativeElement;
-        fixture.detectChanges();
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestButtonsComponent],
+      imports: [ButtonsModule, FormsModule]
+    });
+    TestBed.overrideComponent(TestButtonsComponent, {set: {template: html}});
+    fixture = TestBed.createComponent(TestButtonsComponent);
+    context = fixture.componentInstance;
+    element = fixture.nativeElement;
+    fixture.detectChanges();
+  });
 
   describe('checkbox', () => {
-    it('should work correctly with default model values', () => {
+    xit('should work correctly with default model values', () => {
       expect(element.querySelector('#default').classList).not.toContain('active');
       context.singleModel = true;
       fixture.detectChanges();
       expect(element.querySelector('#default').classList).toContain('active');
     });
 
-    it('should bind custom model values', () => {
+    xit('should bind custom model values', () => {
       expect(element.querySelector('#custom').classList).not.toContain('active');
       context.singleModel = '1';
       fixture.detectChanges();
@@ -126,7 +119,7 @@ xdescribe('Directive: Buttons', () => {
       expect(btn.classList).not.toContain('active');
     });
 
-    it('should work for btn-group', () => {
+    xit('should work for btn-group', () => {
       let btn = element.querySelector('.btn-group.checkbox');
       expect(btn.children[0].classList).not.toContain('active');
       expect(btn.children[1].classList).toContain('active');
@@ -223,7 +216,6 @@ xdescribe('Directive: Buttons', () => {
 
 @Component({
   selector: 'buttons-test',
-  directives: [BUTTON_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: ''
 })
 

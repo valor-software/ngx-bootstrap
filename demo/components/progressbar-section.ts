@@ -1,9 +1,6 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
+import { Component } from '@angular/core';
 
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../../ng2-bootstrap';
-import {ProgressbarDemoComponent} from './progressbar/progressbar-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../ng2-bootstrap';
 
 // webpack html imports
 let doc = require('../../components/progressbar/readme.md');
@@ -20,7 +17,6 @@ let html = templates[Ng2BootstrapConfig.theme];
 
 @Component({
   selector: 'progressbar-section',
-  directives: [DemoSectionComponent, ProgressbarDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <progressbar-demo></progressbar-demo>
