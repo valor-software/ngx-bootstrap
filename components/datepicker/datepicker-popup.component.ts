@@ -1,7 +1,7 @@
 import {CORE_DIRECTIVES, NgClass, NgStyle} from '@angular/common';
 import {
-  Component, ComponentRef, Directive, DynamicComponentLoader, ElementRef, EventEmitter, provide, ReflectiveInjector,
-  Renderer, Self, ViewContainerRef, ViewEncapsulation
+  Component, ComponentRef, Directive, DynamicComponentLoader, ElementRef, EventEmitter, Output, provide,
+  ReflectiveInjector, Renderer, Self, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
 import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
 
@@ -36,7 +36,6 @@ const datePickerPopupConfig:KeyAttribute = {
 
 @Component({
   selector: 'popup-container',
-  events: ['update1'],
   template: `
     <ul class="dropdown-menu"
         style="display: block"
@@ -68,6 +67,8 @@ class PopupContainerComponent {
   // false positive
   /* tslint:disable:no-unused-variable */
   private showButtonBar:boolean = true;
+
+  @Output()
   private update1:EventEmitter<any> = new EventEmitter(false);
   /* tslint:enable:no-unused-variable */
 
