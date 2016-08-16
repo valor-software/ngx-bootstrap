@@ -29,10 +29,30 @@ import { DemoSectionComponent } from './components/demo-section';
 import { DemoComponent } from './app.component';
 import { routing } from './router.config';
 
+import { AccordionSectionComponent } from './components/accordion-section';
+import { AlertSectionComponent } from './components/alert-section';
+import { ButtonsSectionComponent } from './components/buttons-section';
+import { CarouselSectionComponent } from './components/carousel-section';
+import { CollapseSectionComponent } from './components/collapse-section';
+import { DatepickerSectionComponent } from './components/datepicker-section';
+import { DropdownSectionComponent } from './components/dropdown-section';
+import { ModalSectionComponent } from './components/modal-section';
+import { PaginationSectionComponent } from './components/pagination-section';
+import { ProgressbarSectionComponent } from './components/progressbar-section';
+import { RatingSectionComponent } from './components/rating-section';
+import { TabsSectionComponent } from './components/tabs-section';
+import { TimepickerSectionComponent } from './components/timepicker-section';
+import { TooltipSectionComponent } from './components/tooltip-section';
+import { TypeaheadSectionComponent } from './components/typeahead-section';
+
 @NgModule({
   declarations: [
     DemoComponent,
+    DemoSectionComponent,
     GettingStartedSectionComponent,
+    MainMenuComponent,
+    TopMenuComponent,
+
     AccordionDemoComponent,
     AlertDemoComponent,
     ButtonsDemoComponent,
@@ -48,9 +68,22 @@ import { routing } from './router.config';
     TimepickerDemoComponent,
     TooltipDemoComponent,
     TypeaheadDemoComponent,
-    MainMenuComponent,
-    TopMenuComponent,
-    DemoSectionComponent
+
+    AccordionSectionComponent,
+    AlertSectionComponent,
+    ButtonsSectionComponent,
+    CarouselSectionComponent,
+    CollapseSectionComponent,
+    DatepickerSectionComponent,
+    DropdownSectionComponent,
+    ModalSectionComponent,
+    PaginationSectionComponent,
+    ProgressbarSectionComponent,
+    RatingSectionComponent,
+    TabsSectionComponent,
+    TimepickerSectionComponent,
+    TooltipSectionComponent,
+    TypeaheadSectionComponent
   ],
   imports: [
     BrowserModule,
