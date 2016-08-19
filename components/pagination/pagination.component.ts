@@ -1,8 +1,8 @@
 import {
   Component, OnInit, Input, Output, ElementRef, EventEmitter, Self, Renderer
 } from '@angular/core';
-import {ControlValueAccessor, NgModel} from '@angular/forms';
-import {KeyAttribute} from '../common';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { KeyAttribute } from '../common';
 
 // todo: extract base functionality classes
 // todo: expose an option to change default configuration
@@ -78,6 +78,7 @@ const PAGINATION_TEMPLATE = `
 /* tslint:enable */
 export class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
   public config:any;
+  @Input() public align:boolean;
   @Input() public maxSize:number;
 
   @Input() public boundaryLinks:boolean;
@@ -213,9 +214,13 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     return this.page === this.totalPages;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void {this.onChange = fn;}
+  public registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
 
-  public registerOnTouched(fn:() => {}):void {this.onTouched = fn;}
+  public registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
 
   private selectPage(page:number, event?:MouseEvent):void {
     if (event) {
