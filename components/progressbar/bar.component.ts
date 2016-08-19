@@ -1,4 +1,5 @@
-import {Component, OnInit, OnDestroy, Input, Host} from '@angular/core';
+import {Component, Host, Input, OnDestroy, OnInit} from '@angular/core';
+
 import {ProgressDirective} from './progress.directive';
 
 // todo: number pipe

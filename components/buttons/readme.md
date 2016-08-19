@@ -1,12 +1,8 @@
 ### Usage
 ```typescript
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { ButtonsModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/components/buttons';
-
-import { ButtonRadioDirective, ButtonCheckboxDirective } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { ButtonRadioDirective, ButtonCheckboxDirective } from 'ng2-bootstrap/components/buttons';
+import { ButtonsModule } from 'ng2-bootstrap/components/buttons';
 ```
 ### Annotations
 ```typescript
@@ -34,8 +30,6 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   @HostListener('click')
   private onClick() {}
 }
-
-export const BUTTON_DIRECTIVES = [ButtonCheckbox, ButtonRadio];
 ```
 
 ### Radio button properties

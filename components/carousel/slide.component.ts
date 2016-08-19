@@ -1,4 +1,5 @@
-import {Component, OnInit, OnDestroy, Input, HostBinding} from '@angular/core';
+import {Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+
 import {CarouselComponent, Direction} from './carousel.component';
 
 @Component({

@@ -1,7 +1,8 @@
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TooltipDirective} from './tooltip.directive';
+import {NgModule} from '@angular/core';
+
 import {TooltipContainerComponent} from './tooltip-container.component';
+import {TooltipDirective} from './tooltip.directive';
 
 @NgModule({
     imports: [CommonModule],

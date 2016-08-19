@@ -1,6 +1,7 @@
 import {
-  Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit, TemplateRef
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, TemplateRef
 } from '@angular/core';
+
 import {positionService} from '../position';
 import {TooltipOptions} from './tooltip-options.class';
 

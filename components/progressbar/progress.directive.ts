@@ -1,4 +1,5 @@
-import {Directive, OnInit, Input, HostBinding} from '@angular/core';
+import {Directive, HostBinding, Input, OnInit} from '@angular/core';
+
 import {BarComponent} from './bar.component';
 
 const progressConfig = {

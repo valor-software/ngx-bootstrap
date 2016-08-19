@@ -1,9 +1,9 @@
 import {
-  Component, OnInit, Input, Output, HostListener, Self, EventEmitter
+  Component, EventEmitter, HostListener, Input, OnInit, Output, Self
 } from '@angular/core';
+import {global} from '@angular/core/src/facade/lang';
 import {ControlValueAccessor, NgModel} from '@angular/forms';
 
-import {global} from '@angular/core/src/facade/lang';
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */

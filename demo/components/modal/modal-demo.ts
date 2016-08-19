@@ -1,8 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
 
 // todo: change to ng2-bootstrap
-import {BS_VIEW_PROVIDERS} from '../../../ng2-bootstrap';
 import {ModalDirective} from '../../../components/modal/modal.component';
+import {BS_VIEW_PROVIDERS} from '../../../ng2-bootstrap';
 // webpack html imports
 let template = require('./modal-demo.html');
 
