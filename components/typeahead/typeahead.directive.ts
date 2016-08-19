@@ -1,6 +1,6 @@
 import {
-  ComponentRef, Directive, DynamicComponentLoader, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
-  provide, ReflectiveInjector, Renderer, TemplateRef, ViewContainerRef
+  ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
+  ReflectiveInjector, Renderer, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import {FormControl, NgControl} from '@angular/forms';
 
@@ -18,6 +18,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 
 import {global} from '@angular/core/src/facade/lang';
+import { ComponentsHelper } from '../utils/components-helper.service';
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
@@ -59,13 +60,13 @@ export class TypeaheadDirective implements OnInit {
   private keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
   private _matches:Array<string>;
   private placement:string = 'bottom-left';
-  private popup:Promise<ComponentRef<any>>;
+  private popup:ComponentRef<TypeaheadContainerComponent>;
 
   private ngControl:NgControl;
   private viewContainerRef:ViewContainerRef;
   private element:ElementRef;
   private renderer:Renderer;
-  private loader:DynamicComponentLoader;
+  private componentsHelper:ComponentsHelper;
 
   @HostListener('keyup', ['$event'])
   protected onChange(e:any):void {
@@ -141,12 +142,12 @@ export class TypeaheadDirective implements OnInit {
   }
 
   public constructor(control:NgControl, viewContainerRef:ViewContainerRef, element:ElementRef,
-                     renderer:Renderer, loader:DynamicComponentLoader) {
+                     renderer:Renderer, componentsHelper:ComponentsHelper) {
     this.element = element;
     this.ngControl = control;
     this.viewContainerRef = viewContainerRef;
     this.renderer = renderer;
-    this.loader = loader;
+    this.componentsHelper = componentsHelper;
   }
 
   public ngOnInit():void {
@@ -173,7 +174,7 @@ export class TypeaheadDirective implements OnInit {
   public changeModel(value:any):void {
     let valueStr:string = TypeaheadUtils.getValueFromObject(value, this.typeaheadOptionField);
     this.ngControl.viewToModelUpdate(valueStr);
-    (this.ngControl.control as FormControl).updateValue(valueStr);
+    (this.ngControl.control as FormControl).setValue(valueStr);
     this.hide();
   }
 
@@ -189,37 +190,32 @@ export class TypeaheadDirective implements OnInit {
     });
 
     let binding = ReflectiveInjector.resolve([
-      provide(TypeaheadOptions, {useValue: options})
+      {provide: TypeaheadOptions, useValue: options}
     ]);
 
-    this.popup = this.loader
-      .loadNextToLocation(TypeaheadContainerComponent, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef<any>) => {
-        componentRef.instance.position(this.viewContainerRef.element);
-        this.container = componentRef.instance;
-        this.container.parent = this;
-        // This improves the speedas it won't have to be done for each list item
-        let normalizedQuery = (this.typeaheadLatinize
-          ? TypeaheadUtils.latinize(this.ngControl.control.value)
-          : this.ngControl.control.value).toString()
-          .toLowerCase();
-        this.container.query = this.typeaheadSingleWords
-          ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
-          : normalizedQuery;
-        this.container.matches = matches;
-        this.container.field = this.typeaheadOptionField;
-        this.element.nativeElement.focus();
-        return componentRef;
-      });
+    this.popup = this.componentsHelper
+      .appendNextToLocation(TypeaheadContainerComponent, this.viewContainerRef, binding);
+
+    this.popup.instance.position(this.viewContainerRef.element);
+    this.container = this.popup.instance;
+    this.container.parent = this;
+    // This improves the speedas it won't have to be done for each list item
+    let normalizedQuery = (this.typeaheadLatinize
+      ? TypeaheadUtils.latinize(this.ngControl.control.value)
+      : this.ngControl.control.value).toString()
+      .toLowerCase();
+    this.container.query = this.typeaheadSingleWords
+      ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+      : normalizedQuery;
+    this.container.matches = matches;
+    this.container.field = this.typeaheadOptionField;
+    this.element.nativeElement.focus();
   }
 
   public hide():void {
     if (this.container) {
-      this.popup.then((componentRef:ComponentRef<any>) => {
-        componentRef.destroy();
-        this.container = void 0;
-        return componentRef;
-      });
+      this.popup.destroy();
+      this.container = void 0;
     }
   }
 
