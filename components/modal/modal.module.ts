@@ -5,6 +5,7 @@ import {ModalDirective} from './modal.component';
 
 @NgModule({
     declarations: [ModalBackdropComponent, ModalDirective],
-    exports: [ModalBackdropComponent, ModalDirective]
+    exports: [ModalBackdropComponent, ModalDirective],
+    entryComponents: [ModalBackdropComponent]
 })
 export class ModalModule {}

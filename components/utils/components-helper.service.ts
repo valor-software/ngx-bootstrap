@@ -1,7 +1,7 @@
 import {
-  ApplicationRef, ComponentFactory, ComponentRef, ComponentResolver, Injectable, Injector, Provider, ReflectiveInjector,
-  Type, ViewContainerRef
+  ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable, Injector, ReflectiveInjector, ViewContainerRef
 } from '@angular/core';
+import { ConcreteType } from '@angular/core/src/facade/lang';
 import {DOCUMENT} from '@angular/platform-browser';
 
 /**
@@ -13,12 +13,14 @@ import {DOCUMENT} from '@angular/platform-browser';
 export class ComponentsHelper {
 
   private applicationRef:ApplicationRef;
-  private componentResolver:ComponentResolver;
+  private componentFactoryResolver:ComponentFactoryResolver;
   private injector:Injector;
 
-  public constructor(applicationRef:ApplicationRef, componentResolver:ComponentResolver, injector:Injector) {
+  public constructor(applicationRef:ApplicationRef,
+                     componentFactoryResolver:ComponentFactoryResolver,
+                     injector:Injector) {
     this.applicationRef = applicationRef;
-    this.componentResolver = componentResolver;
+    this.componentFactoryResolver = componentFactoryResolver;
     this.injector = injector;
   }
 
@@ -62,21 +64,20 @@ export class ComponentsHelper {
    * @param ComponentOptionsClass - options class
    * @param options - instance of options
    * @param _viewContainerRef - optional instance of ViewContainerRef
-   * @returns {Promise<ComponentRef<T>>} - returns a promise with ComponentRef<T>
+   * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
-  public appendNextToRoot<T extends Type,N>(ComponentClass:T, ComponentOptionsClass:N, options:any, _viewContainerRef?:ViewContainerRef):Promise<ComponentRef<any>> {
-    return this.componentResolver
-      .resolveComponent(ComponentClass)
-      .then((componentFactory:ComponentFactory<T>) => {
-        const viewContainerRef = _viewContainerRef || this.getRootViewContainerRef();
-        let bindings = ReflectiveInjector.resolve([
-          new Provider(ComponentOptionsClass, {useValue: options})
-        ]);
-        const ctxInjector = viewContainerRef.parentInjector;
-
-        const childInjector = Array.isArray(bindings) && bindings.length > 0 ?
-          ReflectiveInjector.fromResolvedProviders(bindings, ctxInjector) : ctxInjector;
-        return viewContainerRef.createComponent(componentFactory, viewContainerRef.length, childInjector);
-      });
+  public appendNextToRoot<T,N>(ComponentClass: ConcreteType<T>,
+                               ComponentOptionsClass: N,
+                               options: any,
+                               _viewContainerRef?: ViewContainerRef): ComponentRef<T> {
+    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(ComponentClass);
+    let viewContainerRef = _viewContainerRef || this.getRootViewContainerRef();
+    let bindings = ReflectiveInjector.resolve([
+      {provide: ComponentOptionsClass, useValue: options}
+    ]);
+    let ctxInjector = viewContainerRef.parentInjector;
+    let childInjector = Array.isArray(bindings) && bindings.length > 0 ?
+      ReflectiveInjector.fromResolvedProviders(bindings, ctxInjector) : ctxInjector;
+    return viewContainerRef.createComponent(componentFactory, viewContainerRef.length, childInjector);
   }
 }
