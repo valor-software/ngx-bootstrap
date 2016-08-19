@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { TAB_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { TAB_DIRECTIVES } from 'ng2-bootstrap/components/tabs';
+import { TabsModule } from 'ng2-bootstrap/components/tabs';
 ```
 
 ```html
@@ -47,8 +47,6 @@ export class TabDirective implements OnInit, OnDestroy, DoCheck {
 // directive TabHeading
 @Directive({selector: '[tab-heading]'})
 export class TabHeadingDirective {}
-
-export const TAB_DIRECTIVES:Array<any> = [Tab, TabHeading, Tabset];
 ```
 
 ### Tabset properties

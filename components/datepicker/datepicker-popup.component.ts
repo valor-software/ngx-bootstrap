@@ -1,12 +1,14 @@
-import {
-  Component, Directive, EventEmitter, ComponentRef, ViewEncapsulation,
-  ElementRef, DynamicComponentLoader, Self, Renderer, ReflectiveInjector, provide, ViewContainerRef
-} from '@angular/core';
 import {CORE_DIRECTIVES, NgClass, NgStyle} from '@angular/common';
+import {
+  Component, ComponentRef, Directive, ElementRef, EventEmitter, Output,
+  ReflectiveInjector, Renderer, Self, ViewContainerRef, ViewEncapsulation
+} from '@angular/core';
 import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
+
 import {KeyAttribute} from '../common';
 import {positionService} from '../position';
 import {DatePickerComponent} from './datepicker.component';
+import { ComponentsHelper } from '../utils/components-helper.service';
 
 // import {DatePickerInner} from './datepicker-inner';
 // import {DayPicker} from './daypicker';
@@ -35,7 +37,6 @@ const datePickerPopupConfig:KeyAttribute = {
 
 @Component({
   selector: 'popup-container',
-  events: ['update1'],
   template: `
     <ul class="dropdown-menu"
         style="display: block"
@@ -67,6 +68,8 @@ class PopupContainerComponent {
   // false positive
   /* tslint:disable:no-unused-variable */
   private showButtonBar:boolean = true;
+
+  @Output()
   private update1:EventEmitter<any> = new EventEmitter(false);
   /* tslint:enable:no-unused-variable */
 
@@ -121,19 +124,19 @@ export class DatePickerPopupDirective {
   public cd:NgModel;
   public viewContainerRef:ViewContainerRef;
   public renderer:Renderer;
-  public loader:DynamicComponentLoader;
+  public componentsHelper:ComponentsHelper;
 
   private _activeDate:Date;
   private _isOpen:boolean = false;
   private placement:string = 'bottom';
-  private popup:Promise<ComponentRef<any>>;
+  private popup:ComponentRef<PopupContainerComponent>;
 
   public constructor(@Self() cd:NgModel, viewContainerRef:ViewContainerRef,
-                     renderer:Renderer, loader:DynamicComponentLoader) {
+                     renderer:Renderer, componentsHelper:ComponentsHelper) {
     this.cd = cd;
     this.viewContainerRef = viewContainerRef;
     this.renderer = renderer;
-    this.loader = loader;
+    this.componentsHelper = componentsHelper;
     this.activeDate = cd.model;
   }
 
@@ -165,14 +168,9 @@ export class DatePickerPopupDirective {
 
   public hide(cb:Function):void {
     if (this.popup) {
-      this.popup.then((componentRef:ComponentRef<any>) => {
-        componentRef.destroy();
-        cb();
-        return componentRef;
-      });
-    } else {
-      cb();
+      this.popup.destroy();
     }
+    cb();
   }
 
   private show(cb:Function):void {
@@ -181,22 +179,18 @@ export class DatePickerPopupDirective {
     });
 
     let binding = ReflectiveInjector.resolve([
-      provide(PopupOptions, {useValue: options})
+      {provide: PopupOptions, useValue: options}
     ]);
 
-    this.popup = this.loader
-      .loadNextToLocation(PopupContainerComponent, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef<any>) => {
-        componentRef.instance.position(this.viewContainerRef);
-        componentRef.instance.popupComp = this;
-        /*componentRef.instance.update1.observer({
-         next: (newVal) => {
-         setProperty(this.renderer, this.elementRef, 'value', newVal);
-         }
-         });*/
+    this.popup = this.componentsHelper.appendNextToLocation(PopupContainerComponent, this.viewContainerRef, binding);
+    this.popup.instance.position(this.viewContainerRef.element);
+    this.popup.instance.popupComp = this;
+    /*componentRef.instance.update1.observer({
+     next: (newVal) => {
+     setProperty(this.renderer, this.elementRef, 'value', newVal);
+     }
+     });*/
 
-        cb();
-        return componentRef;
-      });
+    cb();
   }
 }

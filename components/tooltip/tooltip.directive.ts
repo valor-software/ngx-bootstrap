@@ -1,9 +1,10 @@
 import {
-  Directive, Input, HostListener, DynamicComponentLoader,
-  ComponentRef, Provider, ReflectiveInjector, ViewContainerRef, TemplateRef
+  ComponentRef, Directive, HostListener, Input, ReflectiveInjector, TemplateRef, ViewContainerRef
 } from '@angular/core';
-import {TooltipOptions} from './tooltip-options.class';
+
 import {TooltipContainerComponent} from './tooltip-container.component';
+import {TooltipOptions} from './tooltip-options.class';
+import {ComponentsHelper} from '../utils/components-helper.service';
 
 /* tslint:disable */
 @Directive({selector: '[tooltip], [tooltipHtml]'})
@@ -22,14 +23,14 @@ export class TooltipDirective {
   /* tslint:enable */
 
   public viewContainerRef:ViewContainerRef;
-  public loader:DynamicComponentLoader;
+  public componentsHelper:ComponentsHelper;
 
   private visible:boolean = false;
-  private tooltip:Promise<ComponentRef<any>>;
+  private tooltip:ComponentRef<any>;
 
-  public constructor(viewContainerRef:ViewContainerRef, loader:DynamicComponentLoader) {
+  public constructor(viewContainerRef:ViewContainerRef, componentsHelper:ComponentsHelper) {
     this.viewContainerRef = viewContainerRef;
-    this.loader = loader;
+    this.componentsHelper = componentsHelper;
   }
 
   // todo: filter triggers
@@ -52,14 +53,11 @@ export class TooltipDirective {
     });
 
     let binding = ReflectiveInjector.resolve([
-      new Provider(TooltipOptions, {useValue: options})
+      {provide: TooltipOptions, useValue: options}
     ]);
 
-    this.tooltip = this.loader
-      .loadNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding)
-      .then((componentRef:ComponentRef<any>) => {
-        return componentRef;
-      });
+    this.tooltip = this.componentsHelper
+      .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
   }
 
   // params event, target
@@ -70,9 +68,6 @@ export class TooltipDirective {
       return;
     }
     this.visible = false;
-    this.tooltip.then((componentRef:ComponentRef<any>) => {
-      componentRef.destroy();
-      return componentRef;
-    });
+    this.tooltip.destroy();
   }
 }

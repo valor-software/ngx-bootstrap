@@ -1,13 +1,12 @@
 import {
-  Component, ChangeDetectorRef, ElementRef, Inject, AfterViewInit, TemplateRef
+  AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, TemplateRef
 } from '@angular/core';
-import {NgClass, NgStyle} from '@angular/common';
+
 import {positionService} from '../position';
 import {TooltipOptions} from './tooltip-options.class';
 
 @Component({
   selector: 'tooltip-container',
-  directives: [NgClass, NgStyle],
   // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<div class="tooltip" role="tooltip"
      [ngStyle]="{top: top, left: left, display: display}"

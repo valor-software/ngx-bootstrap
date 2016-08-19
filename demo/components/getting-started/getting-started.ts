@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 let name = `Native Angular 2 directives for bootstrap`;
 

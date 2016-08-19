@@ -3,23 +3,24 @@
 // todo: original modal had resize events
 
 import {
-  ComponentRef,
   AfterViewInit,
-  ElementRef,
-  Inject,
-  EventEmitter,
-  Renderer,
+  ComponentRef,
   Directive,
+  ElementRef,
+  EventEmitter,
   HostListener,
+  Injector,
   Input,
   OnDestroy,
-  Output
+  Output,
+  Renderer
 } from '@angular/core';
 import {global} from '@angular/core/src/facade/lang';
-import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
-import {modalConfigDefaults, ClassName, ModalOptions, Selector} from './modal-options.class';
+
 import {ComponentsHelper} from '../utils/components-helper.service';
 import {Utils} from '../utils/utils.class';
+import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
+import {ClassName, modalConfigDefaults, ModalOptions, Selector} from './modal-options.class';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -62,14 +63,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   private scrollbarWidth:number = 0;
 
   // reference to backdrop component
-  private backdrop:Promise<ComponentRef<ModalBackdropComponent>>;
+  private backdrop:ComponentRef<ModalBackdropComponent>;
 
-  private element:ElementRef;
-  private renderer:Renderer;
   private get document():any {
     return this.componentsHelper.getDocument();
   };
-  private componentsHelper:ComponentsHelper;
 
   /** Host element manipulations */
   // @HostBinding(`class.${ClassName.IN}`) private _addClassIn:boolean;
@@ -91,12 +89,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  public constructor(element:ElementRef,
-                     renderer:Renderer,
-                     @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
-    this.element = element;
-    this.renderer = renderer;
-    this.componentsHelper = componentsHelper;
+  public constructor(private element:ElementRef,
+                     private renderer:Renderer,
+                     private injector:Injector,
+                     private componentsHelper:ComponentsHelper) {
   }
 
   public ngOnDestroy():any {
@@ -227,43 +223,40 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         .appendNextToRoot(
           ModalBackdropComponent,
           ModalBackdropOptions,
-          new ModalBackdropOptions({animate: false}));
+          new ModalBackdropOptions({animate: false}),
+          this.injector);
 
-      this.backdrop.then((backdrop:ComponentRef<ModalBackdropComponent>) => {
-        if (this.isAnimated) {
-          backdrop.instance.isAnimated = this.isAnimated;
-          Utils.reflow(backdrop.instance.element.nativeElement);
-        }
+      if (this.isAnimated) {
+        this.backdrop.instance.isAnimated = this.isAnimated;
+        Utils.reflow(this.backdrop.instance.element.nativeElement);
+      }
 
-        backdrop.instance.isShown = true;
-        if (!callback) {
-          return;
-        }
+      this.backdrop.instance.isShown = true;
+      if (!callback) {
+        return;
+      }
 
-        if (!this.isAnimated) {
-          callback();
-          return;
-        }
+      if (!this.isAnimated) {
+        callback();
+        return;
+      }
 
-        setTimeout(callback, BACKDROP_TRANSITION_DURATION);
-      });
+      setTimeout(callback, BACKDROP_TRANSITION_DURATION);
     } else if (!this._isShown && this.backdrop) {
-      this.backdrop.then((backdrop:ComponentRef<ModalBackdropComponent>) => {
-        backdrop.instance.isShown = false;
+      this.backdrop.instance.isShown = false;
 
-        let callbackRemove = () => {
-          this.removeBackdrop();
-          if (callback) {
-            callback();
-          }
-        };
-
-        if (backdrop.instance.isAnimated) {
-          setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
-        } else {
-          callbackRemove();
+      let callbackRemove = () => {
+        this.removeBackdrop();
+        if (callback) {
+          callback();
         }
-      });
+      };
+
+      if (this.backdrop.instance.isAnimated) {
+        setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
+      } else {
+        callbackRemove();
+      }
     } else if (callback) {
       callback();
     }
@@ -271,10 +264,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   private removeBackdrop():void {
     if (this.backdrop) {
-      this.backdrop.then((backdrop:ComponentRef<ModalBackdropComponent>) => {
-        backdrop.destroy();
-        this.backdrop = void 0;
-      });
+      this.backdrop.destroy();
+      this.backdrop = void 0;
     }
   }
 
