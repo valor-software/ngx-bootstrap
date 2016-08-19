@@ -9,7 +9,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Inject,
+  Injector,
   Input,
   OnDestroy,
   Output,
@@ -65,12 +65,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // reference to backdrop component
   private backdrop:ComponentRef<ModalBackdropComponent>;
 
-  private element:ElementRef;
-  private renderer:Renderer;
   private get document():any {
     return this.componentsHelper.getDocument();
   };
-  private componentsHelper:ComponentsHelper;
 
   /** Host element manipulations */
   // @HostBinding(`class.${ClassName.IN}`) private _addClassIn:boolean;
@@ -92,12 +89,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  public constructor(element:ElementRef,
-                     renderer:Renderer,
-                     @Inject(ComponentsHelper) componentsHelper:ComponentsHelper) {
-    this.element = element;
-    this.renderer = renderer;
-    this.componentsHelper = componentsHelper;
+  public constructor(private element:ElementRef,
+                     private renderer:Renderer,
+                     private injector:Injector,
+                     private componentsHelper:ComponentsHelper) {
   }
 
   public ngOnDestroy():any {
@@ -228,7 +223,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         .appendNextToRoot(
           ModalBackdropComponent,
           ModalBackdropOptions,
-          new ModalBackdropOptions({animate: false}));
+          new ModalBackdropOptions({animate: false}),
+          this.injector);
 
       if (this.isAnimated) {
         this.backdrop.instance.isAnimated = this.isAnimated;
