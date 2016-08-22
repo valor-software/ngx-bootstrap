@@ -83,7 +83,7 @@
     "google-code-prettify": "1.0.1",
     "gulp": "3.9.1",
     "gulp-size": "2.1.0",
-    "gulp-tslint": "6.0.1",
+    "gulp-tslint": "6.1.0",
     "lite-server": "2.2.2",
     "marked": "0.3.5",
     "ng2-webpack-config": "0.0.4",
