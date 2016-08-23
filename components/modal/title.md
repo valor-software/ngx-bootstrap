@@ -6,7 +6,7 @@ Base specifications: [bootstrap 3](http://getbootstrap.com/javascript/#modals) o
 - Don't forget to add view provider
 
 ```typescript
-import {ModalModule, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
+import {ModalModule} from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
   imports: [ModalModule]
@@ -14,7 +14,6 @@ import {ModalModule, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'modal-demo',
-  viewProviders:[BS_VIEW_PROVIDERS],
   template: template
 })
 

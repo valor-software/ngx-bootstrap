@@ -1,7 +1,7 @@
-import {Component, ElementRef, OnInit, Renderer, Self} from '@angular/core';
-import {NgModel} from '@angular/forms';
+import { Component, ElementRef, OnInit, Renderer, Self } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
-import {PaginationComponent} from './pagination.component';
+import { PaginationComponent } from './pagination.component';
 
 const pagerConfig = {
   itemsPerPage: 10,

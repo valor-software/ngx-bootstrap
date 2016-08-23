@@ -9,10 +9,12 @@ import {DatePickerComponent} from './datepicker.component';
 import {DayPickerComponent} from './daypicker.component';
 import {MonthPickerComponent} from './monthpicker.component';
 import {YearPickerComponent} from './yearpicker.component';
+import {ComponentsHelper} from '../utils/components-helper.service';
 
 @NgModule({
     imports: [CommonModule, FormsModule],
     declarations: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent],
-    exports: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent]
+    exports: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent],
+    providers: [ComponentsHelper]
 })
 export class DatepickerModule {}
