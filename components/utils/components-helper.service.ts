@@ -1,8 +1,8 @@
 import {
   ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable, Injector, ReflectiveInjector, ViewContainerRef,
-  ResolvedReflectiveProvider
+  ResolvedReflectiveProvider, Type
 } from '@angular/core';
-import { ConcreteType, isPresent } from '@angular/core/src/facade/lang';
+import { isPresent } from '@angular/core/src/facade/lang';
 import {DOCUMENT} from '@angular/platform-browser';
 
 /**
@@ -62,7 +62,7 @@ export class ComponentsHelper {
    * @param providers - optional array of providers
    * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
-  public appendNextToLocation<T>(ComponentClass: ConcreteType<T>,
+  public appendNextToLocation<T>(ComponentClass: Type<T>,
                                  location: ViewContainerRef,
                                  providers?: ResolvedReflectiveProvider[]): ComponentRef<T> {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(ComponentClass);
@@ -82,7 +82,7 @@ export class ComponentsHelper {
    * @param contextInjector - injector to resolve root view container (any injector except root injector will fit)
    * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
-  public appendNextToRoot<T>(ComponentClass: ConcreteType<T>,
+  public appendNextToRoot<T>(ComponentClass: Type<T>,
                              ComponentOptionsClass: any,
                              options: any,
                              contextInjector: Injector): ComponentRef<T> {
