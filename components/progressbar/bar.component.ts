@@ -1,6 +1,6 @@
-import {Component, Host, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, Host, Input, OnDestroy, OnInit } from '@angular/core';
 
-import {ProgressDirective} from './progress.directive';
+import { ProgressDirective } from './progress.directive';
 
 // todo: number pipe
 // todo: use query from progress?
@@ -39,6 +39,7 @@ export class BarComponent implements OnInit, OnDestroy {
   public progress:ProgressDirective;
 
   private _value:number;
+
   public constructor(@Host() progress:ProgressDirective) {
     this.progress = progress;
   }

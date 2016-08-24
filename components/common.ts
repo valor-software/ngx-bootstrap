@@ -3,30 +3,30 @@ import {
 } from '@angular/core';
 
 export interface KeyAttribute {
-  [key: string]: any;
+  [key:string]:any;
 }
 
 @Directive({
   selector: '[ngTransclude]'
 })
 export class NgTranscludeDirective {
-  public viewRef: ViewContainerRef;
+  public viewRef:ViewContainerRef;
 
-  private _ngTransclude: TemplateRef<any>;
+  private _ngTransclude:TemplateRef<any>;
 
   @Input()
-  private set ngTransclude(templateRef: TemplateRef<any>) {
+  private set ngTransclude(templateRef:TemplateRef<any>) {
     this._ngTransclude = templateRef;
     if (templateRef) {
       this.viewRef.createEmbeddedView(templateRef);
     }
   }
 
-  private get ngTransclude(): TemplateRef<any> {
+  private get ngTransclude():TemplateRef<any> {
     return this._ngTransclude;
   }
 
-  public constructor(@Inject(ViewContainerRef) _viewRef: ViewContainerRef) {
+  public constructor(@Inject(ViewContainerRef) _viewRef:ViewContainerRef) {
     this.viewRef = _viewRef;
   }
 }

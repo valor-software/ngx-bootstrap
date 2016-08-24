@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let template = require('./alert-demo.html');

@@ -1,6 +1,6 @@
-import {Component, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 
-import {TabDirective} from './tab.directive';
+import { TabDirective } from './tab.directive';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
@@ -26,13 +26,19 @@ import {TabDirective} from './tab.directive';
 })
 export class TabsetComponent implements OnInit, OnDestroy {
   @Input()
-  public get vertical():boolean { return this._vertical;};
+  public get vertical():boolean {
+    return this._vertical;
+  };
 
   @Input()
-  public get justified():boolean { return this._justified;};
+  public get justified():boolean {
+    return this._justified;
+  };
 
   @Input()
-  public get type():string {return this._type;};
+  public get type():string {
+    return this._type;
+  };
 
   @HostBinding('class.tab-container') protected clazz:boolean = true;
 

@@ -1,10 +1,10 @@
-import {Component, ElementRef, TemplateRef, ViewEncapsulation} from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewEncapsulation } from '@angular/core';
 
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {positionService} from '../position';
-import {TypeaheadOptions} from './typeahead-options.class';
-import {TypeaheadUtils} from './typeahead-utils';
-import {TypeaheadDirective} from './typeahead.directive';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
+import { positionService } from '../position';
+import { TypeaheadOptions } from './typeahead-options.class';
+import { TypeaheadUtils } from './typeahead-utils';
+import { TypeaheadDirective } from './typeahead.directive';
 
 const TEMPLATE:any = {
   [Ng2BootstrapTheme.BS4]: `

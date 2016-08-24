@@ -1,6 +1,6 @@
-import {Component, HostBinding, Input} from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
-import {AccordionPanelComponent} from './accordion-group.component';
+import { AccordionPanelComponent } from './accordion-group.component';
 
 // todo: support template url
 @Component({

@@ -2,7 +2,7 @@ import {
   Directive, EventEmitter, HostBinding, Input, OnDestroy, Output, TemplateRef
 } from '@angular/core';
 
-import {TabsetComponent} from './tabset.component';
+import { TabsetComponent } from './tabset.component';
 
 /* tslint:disable */
 @Directive({selector: 'tab, [tab]'})
@@ -53,7 +53,9 @@ export class TabDirective implements OnDestroy {
     this.tabset.addTab(this);
   }
 
-  public ngOnInit():void {this.removable = !!this.removable;}
+  public ngOnInit():void {
+    this.removable = !!this.removable;
+  }
 
   public ngOnDestroy():void {
     this.tabset.removeTab(this);

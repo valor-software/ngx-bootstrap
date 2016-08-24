@@ -15,12 +15,12 @@ import {
   Output,
   Renderer
 } from '@angular/core';
-import {global} from '@angular/core/src/facade/lang';
+import { global } from '@angular/core/src/facade/lang';
 
-import {ComponentsHelper} from '../utils/components-helper.service';
-import {Utils} from '../utils/utils.class';
-import {ModalBackdropComponent, ModalBackdropOptions} from './modal-backdrop.component';
-import {ClassName, modalConfigDefaults, ModalOptions, Selector} from './modal-options.class';
+import { ComponentsHelper } from '../utils/components-helper.service';
+import { Utils } from '../utils/utils.class';
+import { ModalBackdropComponent, ModalBackdropOptions } from './modal-backdrop.component';
+import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modal-options.class';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;

@@ -2,16 +2,11 @@ import {
   Component, ComponentRef, Directive, ElementRef, EventEmitter, Input, Output,
   ReflectiveInjector, Renderer, Self, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
-import {NgModel} from '@angular/forms';
+import { NgModel } from '@angular/forms';
 
-import {KeyAttribute} from '../common';
-import {positionService} from '../position';
+import { KeyAttribute } from '../common';
+import { positionService } from '../position';
 import { ComponentsHelper } from '../utils/components-helper.service';
-
-// import {DatePickerInner} from './datepicker-inner';
-// import {DayPicker} from './daypicker';
-// import {MonthPicker} from './monthpicker';
-// import {YearPicker} from './yearpicker';
 
 class PopupOptions {
   public placement:string;
@@ -113,8 +108,8 @@ class PopupContainerComponent {
 
 @Directive({
   selector: '[datepickerPopup][ngModel]'/*,
-  // prop -> datepickerPopup - format
-  host: {'(cupdate)': 'onUpdate1($event)'}*/
+   // prop -> datepickerPopup - format
+   host: {'(cupdate)': 'onUpdate1($event)'}*/
 })
 export class DatePickerPopupDirective {
   public cd:NgModel;

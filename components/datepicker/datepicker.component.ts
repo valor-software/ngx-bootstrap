@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, Output, Self} from '@angular/core';
-import {ControlValueAccessor, NgModel} from '@angular/forms';
+import { Component, EventEmitter, Input, Output, Self } from '@angular/core';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 /* tslint:disable:component-selector-name component-selector-type */
 @Component({
@@ -56,7 +56,7 @@ export class DatePickerComponent implements ControlValueAccessor {
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
@@ -85,7 +85,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.cd.viewToModelUpdate(event);
   }
 
-  public onSelectionDone(event: Date): void {
+  public onSelectionDone(event:Date):void {
     this.selectionDone.emit(event);
   }
 
@@ -110,7 +110,11 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.activeDate = value ? new Date(value) : void 0;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void { this.onChange = fn; }
+  public registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
 
-  public registerOnTouched(fn:() => {}):void { this.onTouched = fn; }
+  public registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
 }

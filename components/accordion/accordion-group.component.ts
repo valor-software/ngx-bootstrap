@@ -2,7 +2,7 @@ import {
   Component, HostBinding, Inject, Input, OnDestroy, OnInit
 } from '@angular/core';
 
-import {AccordionComponent} from './accordion.component';
+import { AccordionComponent } from './accordion.component';
 
 /* tslint:disable:component-selector-name */
 @Component({

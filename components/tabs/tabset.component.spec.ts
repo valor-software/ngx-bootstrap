@@ -18,15 +18,15 @@ const html = `
   </tabset>
 `;
 
-function getTabTitles(nativeEl: HTMLElement): NodeListOf<Element> {
+function getTabTitles(nativeEl:HTMLElement):NodeListOf<Element> {
   return nativeEl.querySelectorAll('.nav-link');
 }
 
-function getTabContent(nativeEl: HTMLElement): NodeListOf<Element> {
+function getTabContent(nativeEl:HTMLElement):NodeListOf<Element> {
   return nativeEl.querySelectorAll('.tab-content .tab-pane');
 }
 
-function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
+function expectActiveTabs(nativeEl:HTMLElement, active:boolean[]):void {
   const tabTitles = getTabTitles(nativeEl);
   const tabContent = getTabContent(nativeEl);
 
@@ -45,9 +45,9 @@ function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
 }
 
 describe('Component: Tabs', () => {
-  let fixture: ComponentFixture<any>;
-  let context: any;
-  let element: any;
+  let fixture:ComponentFixture<any>;
+  let context:any;
+  let element:any;
 
   // beforeEach(async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
   //   return tcb
@@ -84,7 +84,7 @@ describe('Component: Tabs', () => {
   });
 
   it('should set tab header', () => {
-    const str: string = 'test title';
+    const str:string = 'test title';
     context.tabs[1].title = str;
     fixture.detectChanges();
     const tabTitles = getTabTitles(element);
@@ -182,23 +182,23 @@ describe('Component: Tabs', () => {
 })
 
 class TestTabsetComponent {
-  public isVertical: Boolean = false;
-  public isJustified: Boolean = false;
-  public tabs: Array<any> = [
+  public isVertical:Boolean = false;
+  public isJustified:Boolean = false;
+  public tabs:Array<any> = [
     {title: 'tab1', content: 'tab1 content'},
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
 
-  public _select(e: TabsModule): TabsModule {
+  public _select(e:TabsModule):TabsModule {
     return e;
   }
 
-  public _deselect(e: TabsModule): TabsModule {
+  public _deselect(e:TabsModule):TabsModule {
     return e;
   }
 
-  public _removed(e: TabsModule): TabsModule {
+  public _removed(e:TabsModule):TabsModule {
     return e;
   }
 }

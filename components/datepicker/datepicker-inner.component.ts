@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
-import {DateFormatter} from './date-formatter';
+import { DateFormatter } from './date-formatter';
 
 const FORMAT_DAY = 'DD';
 const FORMAT_MONTH = 'MMMM';
@@ -67,7 +67,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public dateDisabled:any;
   @Input() public initDate:Date;
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public stepDay:any = {};
   public stepMonth:any = {};
@@ -152,7 +152,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   public compare(date1:Date, date2:Date):number {
-    if(date1=== undefined || date2 === undefined) {
+    if (date1 === undefined || date2 === undefined) {
       return undefined;
     }
 

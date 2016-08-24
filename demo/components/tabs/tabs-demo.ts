@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy , Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 // webpack html imports
 let template = require('./tabs-demo.html');

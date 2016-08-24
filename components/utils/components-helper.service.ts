@@ -3,7 +3,7 @@ import {
   ResolvedReflectiveProvider
 } from '@angular/core';
 import { ConcreteType, isPresent } from '@angular/core/src/facade/lang';
-import {DOCUMENT} from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/platform-browser';
 
 /**
  * Components helper class to easily work with
@@ -39,7 +39,7 @@ export class ComponentsHelper {
    * ```
    * @returns {ViewContainerRef} - application root view component ref
    */
-  public getRootViewContainerRef(injector: Injector):ViewContainerRef {
+  public getRootViewContainerRef(injector:Injector):ViewContainerRef {
     // The only way for now (by @mhevery)
     // https://github.com/angular/angular/issues/6446#issuecomment-173459525
     // this is a class of application bootstrap component (like my-app)
@@ -62,9 +62,9 @@ export class ComponentsHelper {
    * @param providers - optional array of providers
    * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
-  public appendNextToLocation<T>(ComponentClass: ConcreteType<T>,
-                                 location: ViewContainerRef,
-                                 providers?: ResolvedReflectiveProvider[]): ComponentRef<T> {
+  public appendNextToLocation<T>(ComponentClass:ConcreteType<T>,
+                                 location:ViewContainerRef,
+                                 providers?:ResolvedReflectiveProvider[]):ComponentRef<T> {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(ComponentClass);
     let parentInjector = location.parentInjector;
     let childInjector = isPresent(providers) && providers.length > 0 ?
@@ -82,10 +82,10 @@ export class ComponentsHelper {
    * @param contextInjector - injector to resolve root view container (any injector except root injector will fit)
    * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
-  public appendNextToRoot<T>(ComponentClass: ConcreteType<T>,
-                             ComponentOptionsClass: any,
-                             options: any,
-                             contextInjector: Injector): ComponentRef<T> {
+  public appendNextToRoot<T>(ComponentClass:ConcreteType<T>,
+                             ComponentOptionsClass:any,
+                             options:any,
+                             contextInjector:Injector):ComponentRef<T> {
     let location = this.getRootViewContainerRef(contextInjector);
     let providers = ReflectiveInjector.resolve([
       {provide: ComponentOptionsClass, useValue: options}

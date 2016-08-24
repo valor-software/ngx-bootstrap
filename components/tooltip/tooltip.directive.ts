@@ -2,9 +2,9 @@ import {
   ComponentRef, Directive, HostListener, Input, ReflectiveInjector, TemplateRef, ViewContainerRef
 } from '@angular/core';
 
-import {TooltipContainerComponent} from './tooltip-container.component';
-import {TooltipOptions} from './tooltip-options.class';
-import {ComponentsHelper} from '../utils/components-helper.service';
+import { TooltipContainerComponent } from './tooltip-container.component';
+import { TooltipOptions } from './tooltip-options.class';
+import { ComponentsHelper } from '../utils/components-helper.service';
 
 /* tslint:disable */
 @Directive({selector: '[tooltip], [tooltipHtml]'})

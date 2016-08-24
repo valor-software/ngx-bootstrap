@@ -1,6 +1,6 @@
-import {Directive, ElementRef, Host, HostBinding, OnInit} from '@angular/core';
+import { Directive, ElementRef, Host, HostBinding, OnInit } from '@angular/core';
 
-import {DropdownDirective} from './dropdown.directive';
+import { DropdownDirective } from './dropdown.directive';
 
 @Directive({
   selector: '[dropdownMenu]',

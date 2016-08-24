@@ -1,9 +1,9 @@
 import {
   Directive, ElementRef, Host, HostBinding, HostListener, Input, OnInit
 } from '@angular/core';
-import {global} from '@angular/core/src/facade/lang';
+import { global } from '@angular/core/src/facade/lang';
 
-import {DropdownDirective} from './dropdown.directive';
+import { DropdownDirective } from './dropdown.directive';
 
 /* tslint:disable */
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
@@ -25,6 +25,7 @@ export class DropdownToggleDirective implements OnInit {
 
   public dropdown:DropdownDirective;
   public el:ElementRef;
+
   public constructor(@Host() dropdown:DropdownDirective, el:ElementRef) {
     this.dropdown = dropdown;
     this.el = el;

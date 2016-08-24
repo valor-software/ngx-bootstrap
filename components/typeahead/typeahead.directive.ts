@@ -2,13 +2,13 @@ import {
   ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
   ReflectiveInjector, Renderer, TemplateRef, ViewContainerRef
 } from '@angular/core';
-import {FormControl, NgControl} from '@angular/forms';
+import { FormControl, NgControl } from '@angular/forms';
 
-import {TypeaheadContainerComponent} from './typeahead-container.component';
-import {TypeaheadOptions} from './typeahead-options.class';
-import {TypeaheadUtils} from './typeahead-utils';
+import { TypeaheadContainerComponent } from './typeahead-container.component';
+import { TypeaheadOptions } from './typeahead-options.class';
+import { TypeaheadUtils } from './typeahead-utils';
 
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
@@ -17,7 +17,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 
-import {global} from '@angular/core/src/facade/lang';
+import { global } from '@angular/core/src/facade/lang';
 import { ComponentsHelper } from '../utils/components-helper.service';
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;

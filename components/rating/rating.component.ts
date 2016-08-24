@@ -1,8 +1,8 @@
 import {
   Component, EventEmitter, HostListener, Input, OnInit, Output, Self
 } from '@angular/core';
-import {global} from '@angular/core/src/facade/lang';
-import {ControlValueAccessor, NgModel} from '@angular/forms';
+import { global } from '@angular/core/src/facade/lang';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 /* tslint:disable */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
@@ -96,9 +96,13 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.onLeave.emit(this.value);
   }
 
-  public registerOnChange(fn:(_:any) => {}):void {this.onChange = fn;}
+  public registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
 
-  public registerOnTouched(fn:() => {}):void {this.onTouched = fn;}
+  public registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
 
   private buildTemplateObjects(ratingStates:Array<any>, max:number):Array<any> {
     ratingStates = ratingStates || [];

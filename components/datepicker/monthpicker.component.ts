@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Ng2BootstrapConfig} from '../ng2-bootstrap-config';
-import {DatePickerInnerComponent} from './datepicker-inner.component';
+import { Ng2BootstrapConfig } from '../ng2-bootstrap-config';
+import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 // write an interface for template options
 const TEMPLATE_OPTIONS:any = {

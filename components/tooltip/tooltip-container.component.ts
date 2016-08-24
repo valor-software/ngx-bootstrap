@@ -2,8 +2,8 @@ import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, TemplateRef
 } from '@angular/core';
 
-import {positionService} from '../position';
-import {TooltipOptions} from './tooltip-options.class';
+import { positionService } from '../position';
+import { TooltipOptions } from './tooltip-options.class';
 
 @Component({
   selector: 'tooltip-container',

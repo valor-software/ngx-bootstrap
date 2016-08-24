@@ -1,9 +1,10 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import {CollapseDirective} from './collapse.directive';
+import { CollapseDirective } from './collapse.directive';
 
 @NgModule({
-    declarations: [CollapseDirective],
-    exports: [CollapseDirective]
+  declarations: [CollapseDirective],
+  exports: [CollapseDirective]
 })
-export class CollapseModule {}
+export class CollapseModule {
+}

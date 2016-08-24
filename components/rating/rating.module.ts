@@ -1,11 +1,12 @@
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import {RatingComponent} from './rating.component';
+import { RatingComponent } from './rating.component';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [RatingComponent],
-    exports: [RatingComponent]
+  imports: [CommonModule],
+  declarations: [RatingComponent],
+  exports: [RatingComponent]
 })
-export class RatingModule {}
+export class RatingModule {
+}

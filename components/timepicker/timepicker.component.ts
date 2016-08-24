@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, Self} from '@angular/core';
-import {ControlValueAccessor, NgModel} from '@angular/forms';
+import { Component, Input, OnInit, Self } from '@angular/core';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 export interface TimepickerConfig {
   hourStep:number;
@@ -187,9 +187,13 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     this.selected = v ? new Date(v) : void 0;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void {this.onChange = fn;}
+  public registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
 
-  public registerOnTouched(fn:() => {}):void {this.onTouched = fn;}
+  public registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
 
   protected updateHours():void {
     if (this.readonlyInput) {
@@ -202,8 +206,8 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     this.invalidMinutes = !isDefined(minutes);
 
     if (this.invalidHours || this.invalidMinutes) {
-       // TODO: needed a validation functionality.
-        return;
+      // TODO: needed a validation functionality.
+      return;
       // todo: validation?
       // invalidate(true);
     }
@@ -242,7 +246,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
 
     if (this.invalidMinutes || this.invalidHours) {
       // TODO: needed a validation functionality.
-       return;
+      return;
       // todo: validation
       // invalidate(undefined, true);
     }

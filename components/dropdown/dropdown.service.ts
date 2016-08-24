@@ -3,7 +3,7 @@ export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';
 export const NONINPUT = 'nonInput';
 
-import {DropdownDirective} from './dropdown.directive';
+import { DropdownDirective } from './dropdown.directive';
 
 export class DropdownService {
   private openScope:DropdownDirective;

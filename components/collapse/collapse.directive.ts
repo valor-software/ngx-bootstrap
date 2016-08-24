@@ -1,5 +1,5 @@
 // FIX: in order to update to rc.1 had to disable animation, sorry
-import {Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, Renderer} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, Renderer } from '@angular/core';
 // import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 
 // import {animate, animation, state, style, transition} from '@angular/core';

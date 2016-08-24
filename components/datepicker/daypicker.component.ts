@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {DatePickerInnerComponent} from './datepicker-inner.component';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
+import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 // write an interface for template options
 const TEMPLATE_OPTIONS:any = {
@@ -190,5 +190,6 @@ export class DayPickerComponent implements OnInit {
     checkDate.setDate(1);
     return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
   }
+
   // todo: key events implementation
 }

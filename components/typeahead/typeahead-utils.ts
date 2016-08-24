@@ -1,10 +1,10 @@
-import {latinMap} from './latin-map';
+import { latinMap } from './latin-map';
 
 export class TypeaheadUtils {
   public static latinMap:any = latinMap;
 
   public static latinize(str:string):string {
-    if(!str) {
+    if (!str) {
       return '';
     }
     return str.replace(/[^A-Za-z0-9\[\] ]/g, function (a:string):string {
@@ -39,7 +39,7 @@ export class TypeaheadUtils {
     return result;
   }
 
-  public static getValueFromObject(object: any, option: string):string {
+  public static getValueFromObject(object:any, option:string):string {
     if (!option || typeof object !== 'object') {
       return object.toString();
     }
@@ -50,7 +50,7 @@ export class TypeaheadUtils {
     }
 
     let properties:string = option.replace(/\[(\w+)\]/g, '.$1')
-                                  .replace(/^\./, '');
+      .replace(/^\./, '');
     let propertiesArray:Array<string> = properties.split('.');
 
     for (let property of propertiesArray) {
