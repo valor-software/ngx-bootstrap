@@ -54,7 +54,9 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = true');
+  xit('should not trigger any animation on initialization if isCollapsed = true', () => {
+    expect(true);
+  });
 
   it('should collapse if isCollapsed = true on subsequent use', () => {
     context.isCollapsed = false;
@@ -73,7 +75,9 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).not.toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = false');
+  xit('should not trigger any animation on initialization if isCollapsed = false', () => {
+    expect(true);
+  });
 
   it('should expand if isCollapsed = false on subsequent use', () => {
     context.isCollapsed = false;
@@ -136,12 +140,22 @@ describe('Directive: Collapse', () => {
   });
 
   describe('expanding callback returning a promise', () => {
-    xit('should wait for it to resolve before animating');
-    xit('should not animate if it rejects');
+    xit('should wait for it to resolve before animating', () => {
+      expect(true);
+    });
+
+    xit('should not animate if it rejects', () => {
+      expect(true);
+    });
   });
 
   describe('collapsing callback returning a promise', () => {
-    xit('should wait for it to resolve before animating');
-    xit('should not animate if it rejects');
+    xit('should wait for it to resolve before animating', () => {
+      expect(true);
+    });
+
+    xit('should not animate if it rejects', () => {
+      expect(true);
+    });
   });
 });
