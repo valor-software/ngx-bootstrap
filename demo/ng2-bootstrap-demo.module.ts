@@ -48,17 +48,19 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
 
 @NgModule({
   declarations: [
+    DemoComponent,
+    DemoSectionComponent,
+    GettingStartedSectionComponent,
+    MainMenuComponent,
+    TopMenuComponent,
+
     AccordionDemoComponent,
     AlertDemoComponent,
     ButtonsDemoComponent,
     CarouselDemoComponent,
     CollapseDemoComponent,
     DatepickerDemoComponent,
-    DemoComponent,
-    DemoSectionComponent,
     DropdownDemoComponent,
-    GettingStartedSectionComponent,
-    MainMenuComponent,
     ModalDemoComponent,
     PaginationDemoComponent,
     ProgressbarDemoComponent,
@@ -66,7 +68,6 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
     TabsDemoComponent,
     TimepickerDemoComponent,
     TooltipDemoComponent,
-    TopMenuComponent,
     TypeaheadDemoComponent,
 
     AccordionSectionComponent,
