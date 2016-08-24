@@ -6,7 +6,7 @@ export interface KeyAttribute {
 
 @Directive({
   selector: '[ngTransclude]',
-  properties: ['ngTransclude']
+  inputs: ['ngTransclude']
 })
 export class NgTranscludeDirective {
   public viewRef: ViewContainerRef;
