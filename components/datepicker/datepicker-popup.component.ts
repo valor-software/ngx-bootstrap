@@ -1,13 +1,11 @@
-import {CORE_DIRECTIVES, NgClass, NgStyle} from '@angular/common';
 import {
-  Component, ComponentRef, Directive, ElementRef, EventEmitter, Output,
+  Component, ComponentRef, Directive, ElementRef, EventEmitter, Input, Output,
   ReflectiveInjector, Renderer, Self, ViewContainerRef, ViewEncapsulation
 } from '@angular/core';
-import {FORM_DIRECTIVES, NgModel} from '@angular/forms';
+import {NgModel} from '@angular/forms';
 
 import {KeyAttribute} from '../common';
 import {positionService} from '../position';
-import {DatePickerComponent} from './datepicker.component';
 import { ComponentsHelper } from '../utils/components-helper.service';
 
 // import {DatePickerInner} from './datepicker-inner';
@@ -53,7 +51,6 @@ const datePickerPopupConfig:KeyAttribute = {
             <button type="button" class="btn btn-sm btn-success pull-right" (click)="close()">{{ getText('close') }}</button>
         </li>
     </ul>`,
-  directives: [NgClass, NgStyle, DatePickerComponent, FORM_DIRECTIVES, CORE_DIRECTIVES],
   encapsulation: ViewEncapsulation.None
 })
 class PopupContainerComponent {
@@ -115,10 +112,9 @@ class PopupContainerComponent {
 }
 
 @Directive({
-  selector: '[datepickerPopup][ngModel]',
+  selector: '[datepickerPopup][ngModel]'/*,
   // prop -> datepickerPopup - format
-  properties: ['datepickerPopup', 'isOpen']/*,
-   host: {'(cupdate)': 'onUpdate1($event)'}*/
+  host: {'(cupdate)': 'onUpdate1($event)'}*/
 })
 export class DatePickerPopupDirective {
   public cd:NgModel;
@@ -152,6 +148,7 @@ export class DatePickerPopupDirective {
     return this._isOpen;
   }
 
+  @Input()
   private set isOpen(value:boolean) {
     let fn = () => {
       this._isOpen = value;
