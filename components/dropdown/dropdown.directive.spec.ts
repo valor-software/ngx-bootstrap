@@ -13,7 +13,7 @@ const defaultHtml = `
   </div>
 `;
 
-describe('Directive: dropdown', () => {
+describe('Directive: Dropdown', () => {
 
   it('should be closed by default', () => {
     TestBed.configureTestingModule({
@@ -285,7 +285,28 @@ describe('Directive: dropdown', () => {
       expect(element.querySelector('.dropdown').classList).toContain('open');
     });
 
-    it('should add dropdown-toggle class if addToggleClass is true', () => {
+    it('should have dropdown-toggle class by default', () => {
+      const html = `
+      <div dropdown>
+        <button dropdownToggle>Dropdown</button>
+        <ul dropdownMenu>
+          <li><a href="#">One</a></li>
+          <li><a href="#">Two</a></li>
+        </ul>
+      </div>
+    `;
+      TestBed.configureTestingModule({
+        declarations: [TestDropdownComponent],
+        imports: [DropdownModule]
+      });
+      TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
+      let fixture = TestBed.createComponent(TestDropdownComponent);
+      fixture.detectChanges();
+      const element = fixture.nativeElement;
+      expect(element.querySelector('button').classList).toContain('dropdown-toggle');
+    });
+
+    it('should not add dropdown-toggle class if addToggleClass is false', () => {
       const html = `
       <div dropdown>
         <button dropdownToggle [addToggleClass]="addToggleClass">Dropdown</button>
@@ -303,12 +324,7 @@ describe('Directive: dropdown', () => {
       let fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
       const element = fixture.nativeElement;
-      const context = fixture.componentInstance;
-      fixture.detectChanges();
       expect(element.querySelector('button').classList).not.toContain('dropdown-toggle');
-      context.addToggleClass = true;
-      fixture.detectChanges();
-      expect(element.querySelector('button').classList).toContain('dropdown-toggle');
     });
   });
 });
