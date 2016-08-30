@@ -33,14 +33,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, IPagin
 
 @Component({
   selector: 'pager[ngModel]',
-  inputs: [
-    'align',
-    'totalItems', 'itemsPerPage',
-    'previousText', 'nextText',
-  ],
-  outputs:['numPages', 'pageChanged'],
-  template: PAGER_TEMPLATE,
-  directives: [NgClass]
+  template: PAGER_TEMPLATE
 })
 export class PagerComponent extends Pagination {}
 ```

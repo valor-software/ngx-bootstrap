@@ -9,20 +9,7 @@ import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 ```typescript
 // component DatePicker
 @Component({
-  selector: 'datepicker[ngModel], [datepicker][ngModel]',
-  properties: [
-    'datepickerMode',
-    'minDate', 'maxDate',
-    'dateDisabled', 'activeDate',
-    'showWeeks', 'startingDay',
-    'initDate',
-    'minMode', 'maxMode',
-    'formatDay', 'formatMonth', 'formatYear',
-    'formatDayHeader', 'formatDayTitle', 'formatMonthTitle',
-    'yearRange',
-    'shortcutPropagation',
-    'onlyCurrentMonth'
-  ]
+  selector: 'datepicker[ngModel], [datepicker][ngModel]'
 })
 ```
 

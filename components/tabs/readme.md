@@ -19,8 +19,7 @@ import { TabsModule } from 'ng2-bootstrap/components/tabs';
 ```typescript
 // component Tabset
 @Component({
-  selector: 'tabset',
-  directives: [NgClass, NgTransclude]
+  selector: 'tabset'
 })
 export class TabsetComponent implements OnInit {
   @Input() public vertical:boolean;

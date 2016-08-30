@@ -9,8 +9,7 @@ import { TimepickerModule } from 'ng2-bootstrap/components/timepicker';
 ```typescript
 // component Timepicker
 @Component({
-  selector: 'timepicker[ngModel]',
-  directives: [NgClass]
+  selector: 'timepicker[ngModel]'
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
   // config

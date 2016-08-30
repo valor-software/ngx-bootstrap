@@ -9,8 +9,7 @@ import { RatingModule } from 'ng2-bootstrap/components/rating';
 ```typescript
 // class Rating implements on Init
 @Component({
-  selector: 'rating[ngModel]',
-  directives: [NgFor]
+  selector: 'rating[ngModel]'
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() private max:number;

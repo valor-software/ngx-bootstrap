@@ -9,8 +9,7 @@ import { CarouselModule } from 'ng2-bootstrap/components/carousel';
 ```typescript
 // class Carousel implements OnDestroy
 @Component({
-  selector: 'carousel',
-  directives: [NgFor]
+  selector: 'carousel'
 })
 export class CarouselComponent implements OnDestroy {
   @Input() private noWrap:boolean;
@@ -22,8 +21,7 @@ export class CarouselComponent implements OnDestroy {
 
 // class Slide implements OnInit, OnDestroy
 @Component({
-  selector: 'slide',
-  directives: [NgClass]
+  selector: 'slide'
 })
 export class SlideComponent implements OnInit, OnDestroy {
   @Input() public index:number;

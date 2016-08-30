@@ -20,8 +20,7 @@ export class ProgressDirective implements OnInit {
 
 // class Bar implements OnInit, OnDestroy
 @Component({
-  selector: 'bar, [bar]',
-  directives: [NgClass, NgStyle]
+  selector: 'bar, [bar]'
 })
 export class BarComponent implements OnInit, OnDestroy {
   @Input() public type:string;
@@ -30,8 +29,7 @@ export class BarComponent implements OnInit, OnDestroy {
 
 // class Progressbar
 @Component({
-  selector: 'progressbar, [progressbar]',
-  directives: [Progress, Bar]
+  selector: 'progressbar, [progressbar]'
 })
 export class ProgressbarComponent {
   @Input() private animate:boolean;
