@@ -1,12 +1,7 @@
 import {
   Component, EventEmitter, HostListener, Input, OnInit, Output, Self
 } from '@angular/core';
-import { Type } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
-
-/* tslint:disable */
-const KeyboardEvent = (Type as any).KeyboardEvent as KeyboardEvent;
-/* tslint:enable */
 
 @Component({
   /* tslint:disable */
