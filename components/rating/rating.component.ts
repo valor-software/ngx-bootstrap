@@ -3,6 +3,10 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
+/* tslint:disable */
+const KeyboardEvent = (window as any).KeyboardEvent as KeyboardEvent;
+/* tslint:enable */
+
 @Component({
   /* tslint:disable */
   selector: 'rating[ngModel]',

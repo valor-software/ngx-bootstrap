@@ -11,7 +11,7 @@ export class Utils {
     let view = elem.ownerDocument.defaultView;
 
     if (!view || !view.opener) {
-      view = window;
+      view = (window as any);
     }
 
     return view.getComputedStyle(elem);

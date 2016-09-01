@@ -301,7 +301,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   /** Scroll bar tricks */
 
   private checkScrollbar():void {
-    this.isBodyOverflowing = this.document.body.clientWidth < window.innerWidth;
+    this.isBodyOverflowing = this.document.body.clientWidth < (window as any).innerWidth;
     this.scrollbarWidth = this.getScrollbarWidth();
   }
 

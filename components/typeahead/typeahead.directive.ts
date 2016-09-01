@@ -19,6 +19,10 @@ import 'rxjs/add/operator/toArray';
 
 import { ComponentsHelper } from '../utils/components-helper.service';
 
+/* tslint:disable */
+const KeyboardEvent = (window as any).KeyboardEvent as KeyboardEvent;
+/* tslint:enable */
+
 @Directive({
   /* tslint:disable */
   selector: '[typeahead][ngModel],[typeahead][formControlName]'

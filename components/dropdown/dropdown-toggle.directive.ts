@@ -4,6 +4,10 @@ import {
 
 import { DropdownDirective } from './dropdown.directive';
 
+/* tslint:disable */
+const MouseEvent = (window as any).MouseEvent as MouseEvent;
+/* tslint:enable */
+
 @Directive({
   selector: '[dropdownToggle]',
   exportAs: 'bs-dropdown-toggle'

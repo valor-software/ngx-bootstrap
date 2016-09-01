@@ -5,7 +5,7 @@ export class Ng2BootstrapConfig {
 
   public static get theme():Ng2BootstrapTheme {
     // hack as for now
-    if ((window as any).__theme === 'bs4') {
+    if (window && (window as any).__theme === 'bs4') {
       return Ng2BootstrapTheme.BS4;
     }
     return (this._theme || Ng2BootstrapTheme.BS3);
