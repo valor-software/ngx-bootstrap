@@ -1,5 +1,5 @@
 import {
-  Directive, Inject, Input, TemplateRef, ViewContainerRef
+  Directive, Input, TemplateRef, ViewContainerRef
 } from '@angular/core';
 
 export interface KeyAttribute {
@@ -26,7 +26,7 @@ export class NgTranscludeDirective {
     return this._ngTransclude;
   }
 
-  public constructor(@Inject(ViewContainerRef) _viewRef:ViewContainerRef) {
+  public constructor(private _viewRef:ViewContainerRef) {
     this.viewRef = _viewRef;
   }
 }
