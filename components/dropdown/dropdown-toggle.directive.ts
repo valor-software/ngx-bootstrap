@@ -18,7 +18,7 @@ export class DropdownToggleDirective implements OnInit {
   @Input() public isDisabled:boolean = false;
 
   @HostBinding('class.dropdown-toggle')
-  @Input() public addToggleClass:boolean = false;
+  @Input() public addToggleClass:boolean = true;
 
   @HostBinding('attr.aria-haspopup')
   public addClass:boolean = true;
