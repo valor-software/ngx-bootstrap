@@ -1,9 +1,7 @@
-import {Component} from '@angular/core';
-import {/*addProviders, */inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-import {TabsetComponent} from './tabset.component';
-import {TabDirective} from './tab.directive';
-import {TabHeadingDirective} from './tab-heading.directive';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { TabsModule } from './tabs.module';
 
 const html = `
   <tabset [justified]="isJustified"
@@ -51,23 +49,35 @@ describe('Component: Tabs', () => {
   let context:any;
   let element:any;
 
-  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
-  // beforeEach(() => addProviders([TestComponentBuilder]));
+  // beforeEach(async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+  //   return tcb
+  //     .overrideTemplate(TestTabsetComponent, html)
+  //     .createAsync(TestTabsetComponent)
+  //     .then((f: ComponentFixture<any>) => {
+  //       fixture = f;
+  //       context = fixture.componentInstance;
+  //       spyOn(context, '_select');
+  //       spyOn(context, '_deselect');
+  //       spyOn(context, '_removed');
+  //       element = fixture.nativeElement;
+  //       fixture.detectChanges();
+  //     });
+  // })));
 
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .overrideTemplate(TestTabsetComponent, html)
-      .createAsync(TestTabsetComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        context = fixture.componentInstance;
-        spyOn(context, '_select');
-        spyOn(context, '_deselect');
-        spyOn(context, '_removed');
-        element = fixture.nativeElement;
-        fixture.detectChanges();
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestTabsetComponent],
+      imports: [TabsModule]
+    });
+    TestBed.overrideComponent(TestTabsetComponent, {set: {template: html}});
+    fixture = TestBed.createComponent(TestTabsetComponent);
+    context = fixture.componentInstance;
+    spyOn(context, '_select');
+    spyOn(context, '_deselect');
+    spyOn(context, '_removed');
+    element = fixture.nativeElement;
+    fixture.detectChanges();
+  });
 
   it('should select first tab as active by default', () => {
     expectActiveTabs(element, [true, false, false, false]);
@@ -167,8 +177,7 @@ describe('Component: Tabs', () => {
 });
 
 @Component({
-  selector: 'accordion-test',
-  directives: [TabsetComponent, TabDirective, TabHeadingDirective],
+  selector: 'tabs-test',
   template: ''
 })
 
@@ -181,15 +190,15 @@ class TestTabsetComponent {
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
 
-  public _select(e:TabDirective):TabDirective {
+  public _select(e:TabsModule):TabsModule {
     return e;
   }
 
-  public _deselect(e:TabDirective):TabDirective {
+  public _deselect(e:TabsModule):TabsModule {
     return e;
   }
 
-  public _removed(e:TabDirective):TabDirective {
+  public _removed(e:TabsModule):TabsModule {
     return e;
   }
 }

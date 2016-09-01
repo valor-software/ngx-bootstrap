@@ -1,5 +1,6 @@
-import {Directive, ElementRef, HostListener} from '@angular/core';
-import {DropdownDirective} from './dropdown.directive';
+import { Directive, ElementRef, HostListener } from '@angular/core';
+
+import { DropdownDirective } from './dropdown.directive';
 
 @Directive({
   selector: '[dropdown][dropdownKeyboardNav]'
@@ -51,7 +52,8 @@ export class KeyboardNavDirective {
 
         this.dd.selectedOption--;
         break;
-      default: break;
+      default:
+        break;
     }
     elems[this.dd.selectedOption].nativeElement.focus();
   }

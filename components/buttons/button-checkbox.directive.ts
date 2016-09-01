@@ -1,7 +1,7 @@
 import {
-  Directive, OnInit, Input, HostBinding, HostListener, Self
+  Directive, HostBinding, HostListener, Input, OnInit, Self
 } from '@angular/core';
-import {ControlValueAccessor, NgModel} from '@angular/forms';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 // TODO: config: activeClass - Class to apply to the checked buttons.
 

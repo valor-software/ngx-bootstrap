@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {AccordionDemoComponent} from './accordion/accordion-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/accordion/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw!./accordion/accordion-demo.html');
 
 @Component({
   selector: 'accordion-section',
-  directives: [DemoSectionComponent, AccordionDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <accordion-demo></accordion-demo>

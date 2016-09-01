@@ -1,7 +1,7 @@
 import {
-  Directive, OnInit, Input, HostBinding, HostListener, Self, ElementRef
+  Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Self
 } from '@angular/core';
-import {ControlValueAccessor, NgModel} from '@angular/forms';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 // TODO: if uncheckable, null should be set to ngModel
 // if disabled, button should not be checkable

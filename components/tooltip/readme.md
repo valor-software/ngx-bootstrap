@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/components/tooltip';
+import { TooltipModule } from 'ng2-bootstrap/components/tooltip';
 ```
 
 ### Annotations
@@ -11,16 +11,19 @@ import { TOOLTIP_DIRECTIVES } from 'ng2-bootstrap/components/tooltip';
 @Directive({ selector: '[tooltip]' })
 export class TooltipDirective {
   @Input('tooltip') private content:string;
+  @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
   @Input('tooltipPlacement') private placement:string = 'top';
   @Input('tooltipIsOpen') private isOpen:boolean;
   @Input('tooltipEnable') private enable:boolean;
   @Input('tooltipAppendToBody') private appendToBody:boolean;
   @Input('tooltipClass') public popupClass:string;
+  @Input('tooltipContext') public tooltipContext:any;
 }
 ```
 
 ### Tooltip properties
   - `tooltip` (`string`) - text of tooltip
+  - `tooltipHtml` (`string|TempalteRef`) - tooltip custom html content, defined as string or template reference
   - `tooltipPlacement` (`?string='top'`) - tooltip positioning instruction, supported positions: 'top', 'bottom', 'left', 'right'
   - `tooltipAnimation` (`?boolean=true`) - if `false` fade tooltip animation will be disabled
   - `tooltipPopupDelay` (*not implemented*) (`?numer=0`) - time in milliseconds before tooltip occurs
@@ -29,3 +32,4 @@ export class TooltipDirective {
   - `tooltipAppendToBody` (*not implemented*) (`?boolean=false`) - if `true` tooltip will be appended to body
   - `tooltipClass` (`?string`) - custom tooltip class applied to the tooltip container
   - `tooltipIsOpen` (`?boolean=false`) - if `true` tooltip is currently visible
+  - `tooltipContext` (`any`) - if a template is used for the content, then this property can be used to specify a context for that template. The template variable exposed is called 'model'.

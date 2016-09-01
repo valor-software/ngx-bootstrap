@@ -1,9 +1,9 @@
 // todo: add animate
 
-import {Component, OnDestroy, Input} from '@angular/core';
-import {NgFor} from '@angular/common';
-import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
-import {SlideComponent} from './slide.component';
+import { Component, Input, OnDestroy } from '@angular/core';
+
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
+import { SlideComponent } from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
 
@@ -30,9 +30,15 @@ const NAVIGATION:any = {
 
 // todo:
 // (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
+/**
+ * Problems:
+ * 1) if we set an active slide via model changes, .active class remains on a current slide.
+ * 2) if we have only one slide, we shouldn't show prev/next nav buttons
+ * 3) if first or last slide is active and noWrap is true, there should be "disabled" class on the nav buttons.
+ * 4) default interval should be equal 5000
+ */
 @Component({
   selector: 'carousel',
-  directives: [NgFor],
   template: `
     <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
       <ol class="carousel-indicators" *ngIf="slides.length > 1">

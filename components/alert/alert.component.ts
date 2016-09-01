@@ -1,5 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {NgIf, NgClass} from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 const ALERT_TEMPLATE = `
   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
@@ -14,7 +13,6 @@ const ALERT_TEMPLATE = `
 // TODO: templateUrl
 @Component({
   selector: 'alert',
-  directives: [NgIf, NgClass],
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {

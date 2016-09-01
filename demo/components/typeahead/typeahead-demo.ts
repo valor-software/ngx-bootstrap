@@ -1,26 +1,24 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
-import {TYPEAHEAD_DIRECTIVES} from '../../../ng2-bootstrap';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 // webpack html imports
 let template = require('./typeahead-demo.html');
 
 @Component({
   selector: 'typeahead-demo',
-  directives: [TYPEAHEAD_DIRECTIVES, CORE_DIRECTIVES, FORM_DIRECTIVES, REACTIVE_FORM_DIRECTIVES],
   template: template
 })
 export class TypeaheadDemoComponent {
   public stateCtrl:FormControl = new FormControl();
 
-  public myForm:FormGroup= new FormGroup({
+  public myForm:FormGroup = new FormGroup({
     state: this.stateCtrl
   });
 
+  public customSelected:string = '';
   public selected:string = '';
   public dataSource:Observable<any>;
   public asyncSelected:string = '';
@@ -92,6 +90,6 @@ export class TypeaheadDemoComponent {
   }
 
   public typeaheadOnSelect(e:any):void {
-    console.log('Selected value: ',e.item);
+    console.log('Selected value: ', e.item);
   }
 }

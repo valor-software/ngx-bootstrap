@@ -1,10 +1,13 @@
 import {
-  Directive, OnInit, OnDestroy, Input, Output, HostBinding, EventEmitter,
-  ElementRef, ChangeDetectorRef
+  ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output
 } from '@angular/core';
-import {dropdownService, NONINPUT} from './dropdown.service';
 
-@Directive({selector: '[dropdown]'})
+import { dropdownService, NONINPUT } from './dropdown.service';
+
+@Directive({
+  selector: '[dropdown]',
+  exportAs: 'bs-dropdown'
+})
 export class DropdownDirective implements OnInit, OnDestroy {
   @HostBinding('class.open')
   @Input()
@@ -30,7 +33,7 @@ export class DropdownDirective implements OnInit, OnDestroy {
   public el:ElementRef;
   private _isOpen:boolean;
 
-  private _changeDetector: ChangeDetectorRef;
+  private _changeDetector:ChangeDetectorRef;
 
   public constructor(el:ElementRef, ref:ChangeDetectorRef) {
     // @Query('dropdownMenu', {descendants: false})

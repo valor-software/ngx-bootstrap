@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {ButtonsDemoComponent} from './buttons/buttons-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/buttons/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./buttons/buttons-demo.html');
 
 @Component({
   selector: 'buttons-section',
-  directives: [DemoSectionComponent, ButtonsDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <buttons-demo></buttons-demo>

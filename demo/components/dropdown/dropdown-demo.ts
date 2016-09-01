@@ -1,13 +1,10 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {DROPDOWN_DIRECTIVES} from '../../../ng2-bootstrap';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let template = require('./dropdown-demo.html');
 
 @Component({
   selector: 'dropdown-demo',
-  directives: [DROPDOWN_DIRECTIVES, CORE_DIRECTIVES],
   template: template
 })
 export class DropdownDemoComponent {

@@ -1,34 +1,35 @@
 // FIX: in order to update to rc.1 had to disable animation, sorry
-import {Directive, OnInit, ElementRef, Input, HostBinding, Renderer} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, Renderer } from '@angular/core';
 // import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
 
-// import {animation, style, animate, state, transition} from '@angular/core';
+// import {animate, animation, state, style, transition} from '@angular/core';
 
 /*@Directive({
-  selector: '[collapse]',
-  // templateUrl: 'app/panel.html',
-  // styleUrls: ['app/panel.css'],
-  animations: [
-    animation('active', [
-      state('void', style({ height: 0 })),
-      state('closed', style({ height: 0 })),
-      state('open', style({ height: '*' })),
-      transition('void => closed', [ animate(0) ]),
-      transition('closed => open', [ animate('350ms ease-out') ]),
-      transition('open => closed', [ animate('350ms ease-out') ])
-    ])
-  ]
-})*/
+ selector: '[collapse]',
+ // templateUrl: 'app/panel.html',
+ // styleUrls: ['app/panel.css'],
+ animations: [
+ animation('active', [
+ state('void', style({ height: 0 })),
+ state('closed', style({ height: 0 })),
+ state('open', style({ height: '*' })),
+ transition('void => closed', [ animate(0) ]),
+ transition('closed => open', [ animate('350ms ease-out') ]),
+ transition('open => closed', [ animate('350ms ease-out') ])
+ ])
+ ]
+ })*/
 // fix: replace with // '@angular/animate';
 // when https://github.com/angular/angular/issues/5984 will be fixed
 
 // TODO: remove ElementRef
 // TODO: add on change
-// TODO: #576 add callbacks: expanding, expanded, collapsing, collapsed
+// TODO: #576 add callbacks: expanding, collapsing after adding animation
 @Directive({selector: '[collapse]'})
 export class CollapseDirective implements OnInit {
   // private animation:any;
-
+  @Output() public collapsed:EventEmitter<any> = new EventEmitter<any>(false);
+  @Output() public expanded:EventEmitter<any> = new EventEmitter<any>(false);
   // style
   // @HostBinding('style.height')
   // private height:string;
@@ -59,12 +60,13 @@ export class CollapseDirective implements OnInit {
   private get collapse():boolean {
     return this.isExpanded;
   }
+
   // private open: boolean;
   // private _ab:AnimationBuilder;
   private _el:ElementRef;
   private _renderer:Renderer;
 
-  public constructor(/*_ab:AnimationBuilder, */_el:ElementRef, _renderer: Renderer) {
+  public constructor(/*_ab:AnimationBuilder, */_el:ElementRef, _renderer:Renderer) {
     // this._ab = _ab;
     this._el = _el;
     this._renderer = _renderer;
@@ -95,30 +97,31 @@ export class CollapseDirective implements OnInit {
     this.isCollapsing = false;
 
     this.display = 'none';
+    this.collapsed.emit(this);
 
     /*  setTimeout(() => {
-          // this.height = '0';
-          // this.isCollapse = true;
-          // this.isCollapsing = false;
-          this.animation
-            .setFromStyles({
-              height: this._el.nativeElement.scrollHeight + 'px'
-            })
-            .setToStyles({
-              height: '0',
-              overflow: 'hidden'
-            });
+     // this.height = '0';
+     // this.isCollapse = true;
+     // this.isCollapsing = false;
+     this.animation
+     .setFromStyles({
+     height: this._el.nativeElement.scrollHeight + 'px'
+     })
+     .setToStyles({
+     height: '0',
+     overflow: 'hidden'
+     });
 
-          this.animation.start(this._el.nativeElement)
-            .onComplete(() => {
-              if (this._el.nativeElement.offsetHeight === 0) {
-                this.display = 'none';
-              }
+     this.animation.start(this._el.nativeElement)
+     .onComplete(() => {
+     if (this._el.nativeElement.offsetHeight === 0) {
+     this.display = 'none';
+     }
 
-              this.isCollapse = true;
-              this.isCollapsing = false;
-            });
-        }, 4);*/
+     this.isCollapse = true;
+     this.isCollapsing = false;
+     });
+     }, 4);*/
   }
 
   public show():void {
@@ -134,26 +137,27 @@ export class CollapseDirective implements OnInit {
     this.isCollapsing = false;
     this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
     this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
+    this.expanded.emit(this);
     /*setTimeout(() => {
-        // this.height = 'auto';
-        // this.isCollapse = true;
-        // this.isCollapsing = false;
-        this.animation
-          .setFromStyles({
-            height: this._el.nativeElement.offsetHeight,
-            overflow: 'hidden'
-          })
-          .setToStyles({
-            height: this._el.nativeElement.scrollHeight + 'px'
-          });
+     // this.height = 'auto';
+     // this.isCollapse = true;
+     // this.isCollapsing = false;
+     this.animation
+     .setFromStyles({
+     height: this._el.nativeElement.offsetHeight,
+     overflow: 'hidden'
+     })
+     .setToStyles({
+     height: this._el.nativeElement.scrollHeight + 'px'
+     });
 
-        this.animation.start(this._el.nativeElement)
-          .onComplete(() => {
-            this.isCollapse = true;
-            this.isCollapsing = false;
-            this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
-            this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
-          });
-      }, 4);*/
+     this.animation.start(this._el.nativeElement)
+     .onComplete(() => {
+     this.isCollapse = true;
+     this.isCollapsing = false;
+     this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
+     this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
+     });
+     }, 4);*/
   }
 }

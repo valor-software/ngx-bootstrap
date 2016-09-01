@@ -1,11 +1,5 @@
-import {Component, Self, Input, Output, EventEmitter} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES, ControlValueAccessor, NgModel} from '@angular/forms';
-import {DatePickerInnerComponent} from './datepicker-inner.component';
-import {DayPickerComponent} from './daypicker.component';
-import {MonthPickerComponent} from './monthpicker.component';
-import {YearPickerComponent} from './yearpicker.component';
-// import {DatePickerPopup} from './datepicker-popup';
+import { Component, EventEmitter, Input, Output, Self } from '@angular/core';
+import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 /* tslint:disable:component-selector-name component-selector-type */
 @Component({
@@ -30,7 +24,6 @@ import {YearPickerComponent} from './yearpicker.component';
                       [yearRange]="yearRange"
                       [customClass]="customClass"
                       [dateDisabled]="dateDisabled"
-                      [templateUrl]="templateUrl"
                       [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation"
                       (selectionDone)="onSelectionDone($event)">
@@ -38,9 +31,7 @@ import {YearPickerComponent} from './yearpicker.component';
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
-    `,
-  directives: [DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent,
-    FORM_DIRECTIVES, CORE_DIRECTIVES]
+    `
 })
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
@@ -65,7 +56,7 @@ export class DatePickerComponent implements ControlValueAccessor {
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
@@ -94,7 +85,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.cd.viewToModelUpdate(event);
   }
 
-  public onSelectionDone(event: Date): void {
+  public onSelectionDone(event:Date):void {
     this.selectionDone.emit(event);
   }
 
@@ -119,7 +110,11 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.activeDate = value ? new Date(value) : void 0;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void { this.onChange = fn; }
+  public registerOnChange(fn:(_:any) => {}):void {
+    this.onChange = fn;
+  }
 
-  public registerOnTouched(fn:() => {}):void { this.onTouched = fn; }
+  public registerOnTouched(fn:() => {}):void {
+    this.onTouched = fn;
+  }
 }

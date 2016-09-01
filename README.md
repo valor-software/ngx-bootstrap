@@ -5,11 +5,12 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 
 [![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
 [![Build Status](https://travis-ci.org/valor-software/ng2-bootstrap.svg?branch=master)](https://travis-ci.org/valor-software/ng2-bootstrap)
-[![Code Climate](https://codeclimate.com/github/valor-software/ng2-bootstrap/badges/gpa.svg)](https://codeclimate.com/github/valor-software/ng2-bootstrap)
+[![codecov](https://codecov.io/gh/valor-software/ng2-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ng2-bootstrap)
+[![slack](https://img.shields.io/badge/join-slack-brightgreen.svg)](https://www.hamsterpad.com/chat/ng2)
 [![Join the chat at https://gitter.im/valor-software/ng2-bootstrap](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/valor-software/ng2-bootstrap?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://david-dm.org/valor-software/ng2-bootstrap.svg)](https://david-dm.org/valor-software/ng2-bootstrap)
-[![devDependency Status](https://david-dm.org/valor-software/ng2-bootstrap/dev-status.svg)](https://david-dm.org/valor-software/ng2-bootstrap#info=devDependencies)
-
+[![NPM](https://nodei.co/npm/ng2-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/anymatch/)
+[![NPM](https://nodei.co/npm-dl/ng2-bootstrap.png?height=3&months=9)](https://nodei.co/npm-dl/anymatch/)
 [![Throughput Graph](https://graphs.waffle.io/valor-software/ng2-bootstrap/throughput.svg)](https://waffle.io/valor-software/ng2-bootstrap/metrics)
 
 
@@ -49,14 +50,24 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
   </div>
 ```
 ```js
+  /* src/app/main.ts */
+  import { AlertModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+  ...
+  @NgModule({
+    imports: [
+      ...
+      AlertModule,
+      DatepickerModule
+    ]
+    ...
+  })
+  export class AppModule {
+  }
+
   /* src/app/home/home.ts */
-  import {AlertComponent, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
   ...
   @Component({
-    directives: [
-      ...
-      AlertComponent, DATEPICKER_DIRECTIVES
-      ]
+    templateUrl: 'src/app/home/home.html'
   })
   export class Home {
     date: Date = new Date();
@@ -109,15 +120,30 @@ As for now `datepicker` is using `moment.js` to format date, so please update `s
   });
 ```
 
+Add Ng2BootstrapModule as imported module in your application module `app.module.ts`
+
+```ts
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AppComponent }  from './app.component';
+
+@NgModule({
+  imports:      [ BrowserModule, Ng2BootstrapModule ],
+  declarations: [ AppComponent ],
+  bootstrap:    [ AppComponent ]
+})
+export class AppModule { }
+```
+
 And update your `app.component.ts` to have following content:
 
 ```ts
 import {Component} from 'angular2/core';
-import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'my-app',
-  directives: [AlertComponent],
   template: `<alert type="info">ng2-bootstrap hello world!</alert>`
 })
 export class AppComponent {

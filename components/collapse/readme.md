@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { CollapseDirective } from 'ng2-bootstrap/ng2-bootstrap';
+import { CollapseModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { CollapseDirective } from 'ng2-bootstrap/components/collapse';
+import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 ```
 
 ### Annotations

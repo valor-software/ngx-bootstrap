@@ -1,6 +1,6 @@
 <p>
   <button type="button" class="btn btn-primary btn-sm"
-          (click)="status.open = !status.open">Toggle last panel
+          (click)="group.isOpen = !group.isOpen">Toggle last panel
   </button>
   <button type="button" class="btn btn-primary btn-sm"
           (click)="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel
@@ -28,7 +28,7 @@
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>
     <div *ngFor="let item of items">{{item}}</div>
   </accordion-group>
-  <accordion-group let group [isOpen]="status.open">
+  <accordion-group #group [isOpen]="status.open">
     <div accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"

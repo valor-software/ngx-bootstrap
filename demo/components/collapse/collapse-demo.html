@@ -2,6 +2,9 @@
         (click)="isCollapsed = !isCollapsed">Toggle collapse
 </button>
 <hr>
-<div [collapse]="isCollapsed" class="card card-block card-header">
+<div (collapsed)="collapsed($event)"
+     (expanded)="expanded($event)"
+     [collapse]="isCollapsed"
+     class="card card-block card-header">
   <div class="well well-lg">Some content</div>
 </div>
