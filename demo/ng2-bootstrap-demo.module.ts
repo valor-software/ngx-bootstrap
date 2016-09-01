@@ -25,6 +25,7 @@ import {
 import { DemoSectionComponent } from './components/demo-section';
 import { GettingStartedSectionComponent } from './components/getting-started/getting-started';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
+import { SearchFilterPipe } from './components/main-menu/search-filter.pipe';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 
 import { DemoComponent } from './app.component';
@@ -53,6 +54,7 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
     GettingStartedSectionComponent,
     MainMenuComponent,
     TopMenuComponent,
+    SearchFilterPipe,
 
     AccordionDemoComponent,
     AlertDemoComponent,
