@@ -17,10 +17,10 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 
-import { Type } from '@angular/core';
 import { ComponentsHelper } from '../utils/components-helper.service';
+
 /* tslint:disable */
-const KeyboardEvent = (Type as any).KeyboardEvent as KeyboardEvent;
+const KeyboardEvent = (window as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
 
 @Directive({

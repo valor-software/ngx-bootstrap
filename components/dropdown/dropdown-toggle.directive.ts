@@ -1,12 +1,11 @@
 import {
   Directive, ElementRef, Host, HostBinding, HostListener, Input, OnInit
 } from '@angular/core';
-import { Type } from '@angular/core';
 
 import { DropdownDirective } from './dropdown.directive';
 
 /* tslint:disable */
-const MouseEvent = (Type as any).MouseEvent as MouseEvent;
+const MouseEvent = (window as any).MouseEvent as MouseEvent;
 /* tslint:enable */
 
 @Directive({

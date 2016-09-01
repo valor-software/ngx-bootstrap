@@ -1,5 +1,3 @@
-import { Type } from '@angular/core';
-
 export class Utils {
   public static reflow(element:any):void {
     new Function('bs', 'return bs')(element.offsetHeight);
@@ -13,7 +11,7 @@ export class Utils {
     let view = elem.ownerDocument.defaultView;
 
     if (!view || !view.opener) {
-      view = Type;
+      view = (window as any);
     }
 
     return view.getComputedStyle(elem);

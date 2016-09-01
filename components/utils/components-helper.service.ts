@@ -1,6 +1,6 @@
 import {
-  ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable, Injector, ReflectiveInjector, ViewContainerRef,
-  ResolvedReflectiveProvider, Type
+  ApplicationRef, ComponentFactoryResolver, ComponentRef, Injectable, Injector, ReflectiveInjector,
+  ResolvedReflectiveProvider, Type, ViewContainerRef
 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 
@@ -66,8 +66,14 @@ export class ComponentsHelper {
                                  providers?:ResolvedReflectiveProvider[]):ComponentRef<T> {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(ComponentClass);
     let parentInjector = location.parentInjector;
-    let childInjector = providers !== undefined && providers.length > 0 ?
-      ReflectiveInjector.fromResolvedProviders(providers, parentInjector) : parentInjector;
+    let childInjector: Injector;
+
+    if (providers && providers.length > 0) {
+      childInjector = ReflectiveInjector.fromResolvedProviders(providers, parentInjector);
+    } else {
+      childInjector = parentInjector;
+    }
+
     return location.createComponent(componentFactory, location.length, childInjector);
   }
 

@@ -15,7 +15,6 @@ import {
   Output,
   Renderer
 } from '@angular/core';
-import { Type } from '@angular/core';
 
 import { ComponentsHelper } from '../utils/components-helper.service';
 import { Utils } from '../utils/utils.class';
@@ -302,8 +301,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   /** Scroll bar tricks */
 
   private checkScrollbar():void {
-    // this._isBodyOverflowing = document.body.clientWidth < window.innerWidth
-    this.isBodyOverflowing = this.document.body.clientWidth < (Type as any).innerWidth;
+    this.isBodyOverflowing = this.document.body.clientWidth < (window as any).innerWidth;
     this.scrollbarWidth = this.getScrollbarWidth();
   }
 
