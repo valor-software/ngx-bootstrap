@@ -145,18 +145,7 @@ export class TypeaheadContainerComponent {
     let startIdx:number;
     let tokenLen:number;
     // Replaces the capture string with the same string inside of a "strong" tag
-    if (typeof query === 'object') {
-      let queryLen:number = query.length;
-      for (let i = 0; i < queryLen; i += 1) {
-        // query[i] is already latinized and lower case
-        startIdx = itemStrHelper.indexOf(query[i]);
-        tokenLen = query[i].length;
-        if (startIdx >= 0 && tokenLen > 0) {
-          itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
-          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + ' '.repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
-        }
-      }
-    } else if (query) {
+    if (query) {
       // query is already latinized and lower case
       startIdx = itemStrHelper.indexOf(query);
       tokenLen = query.length;
