@@ -3,20 +3,6 @@ Modals are streamlined, but flexible, dialog prompts with the minimum required f
 Base specifications: [bootstrap 3](http://getbootstrap.com/javascript/#modals) or [bootstrap 4](http://v4-alpha.getbootstrap.com/components/modal/)
 
 ### **Important notes**:
-- Don't forget to add view provider
-
-```typescript
-import {MODAL_DIRECTIVES, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
-
-@Component({
-  selector: 'modal-demo',
-  directives: [MODAL_DIRECTIVES],
-  viewProviders:[BS_VIEW_PROVIDERS],
-  template: template
-})
-
-```
-
 - Don't forget to add `hack` to your application root component ([why?](https://github.com/angular/angular/issues/6446#issuecomment-173459525))
 
 ```typescript

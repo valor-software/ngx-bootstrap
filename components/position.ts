@@ -1,4 +1,4 @@
-import {KeyAttribute} from './common';
+import { KeyAttribute } from './common';
 
 export class PositionService {
   /**

@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/components/accordion';
+import { AccordionModule } from 'ng2-bootstrap/components/accordion';
 ```
 
 ### Annotations
@@ -22,7 +22,6 @@ export class AccordionComponent {
 // component AccordionGroup
 @Component({
   selector: 'accordion-group',
-  directives: [Collapse, NgClass]
 })
 export class AccordionGroupComponent implements OnInit, OnDestroy {
   @Input() public heading:string;
@@ -35,8 +34,6 @@ export class AccordionGroupComponent implements OnInit, OnDestroy {
   // should be inside of Accordion element
   constructor(private accordion:Accordion) {}
 }
-
-export const ACCORDION_DIRECTIVES:Array<any> = [Accordion, AccordionGroup];
 ```
 
 ### Accordion properties

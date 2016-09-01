@@ -1,4 +1,4 @@
-import {TypeaheadDirective}from './typeahead.directive';
+import { TypeaheadDirective }from './typeahead.directive';
 
 export class TypeaheadOptions {
   public placement:string;

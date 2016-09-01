@@ -1,14 +1,10 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES} from '@angular/forms';
-import {PAGINATION_DIRECTIVES} from '../../../ng2-bootstrap';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let template = require('./pagination-demo.html');
 
 @Component({
   selector: 'pagination-demo',
-  directives: [PAGINATION_DIRECTIVES, FORM_DIRECTIVES, CORE_DIRECTIVES],
   template: template
 })
 export class PaginationDemoComponent {

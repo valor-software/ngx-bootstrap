@@ -1,10 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {ProgressDirective} from './progress.directive';
-import {BarComponent} from './bar.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'progressbar',
-  directives: [ProgressDirective, BarComponent],
   template: `
     <div progress [animate]="animate" [max]="max">
       <bar [type]="type" [value]="value">

@@ -1,14 +1,10 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-import {FORM_DIRECTIVES} from '@angular/forms';
-import {TimepickerComponent} from '../../../ng2-bootstrap';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let template = require('./timepicker-demo.html');
 
 @Component({
   selector: 'timepicker-demo',
-  directives: [TimepickerComponent, CORE_DIRECTIVES, FORM_DIRECTIVES],
   template: template
 })
 export class TimepickerDemoComponent {

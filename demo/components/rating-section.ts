@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {RatingDemoComponent} from './rating/rating-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/rating/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./rating/rating-demo.html');
 
 @Component({
   selector: 'rating-section',
-  directives: [DemoSectionComponent, RatingDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <rating-demo></rating-demo>

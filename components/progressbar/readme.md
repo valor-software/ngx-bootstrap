@@ -1,8 +1,8 @@
 ### Usage
 ```typescript
-import { PROGRESSBAR_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { ProgressbarModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { PROGRESSBAR_DIRECTIVES } from 'ng2-bootstrap/components/progressbar';
+import { ProgressbarModule } from 'ng2-bootstrap/components/progressbar';
 ```
 
 ### Annotations
@@ -20,8 +20,7 @@ export class ProgressDirective implements OnInit {
 
 // class Bar implements OnInit, OnDestroy
 @Component({
-  selector: 'bar, [bar]',
-  directives: [NgClass, NgStyle]
+  selector: 'bar, [bar]'
 })
 export class BarComponent implements OnInit, OnDestroy {
   @Input() public type:string;
@@ -30,8 +29,7 @@ export class BarComponent implements OnInit, OnDestroy {
 
 // class Progressbar
 @Component({
-  selector: 'progressbar, [progressbar]',
-  directives: [Progress, Bar]
+  selector: 'progressbar, [progressbar]'
 })
 export class ProgressbarComponent {
   @Input() private animate:boolean;

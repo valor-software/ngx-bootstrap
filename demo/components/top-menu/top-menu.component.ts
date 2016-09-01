@@ -1,14 +1,13 @@
-import {Component, Renderer, Inject, AfterViewInit} from '@angular/core';
-import {ROUTER_DIRECTIVES, Router, NavigationEnd} from '@angular/router';
-import {DOCUMENT} from '@angular/platform-browser';
+import { AfterViewInit, Component, Inject, Renderer } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 
 // webpack html imports
 let template = require('./top-menu.template.html');
 
 @Component({
   selector: 'top-menu',
-  template,
-  directives: [ROUTER_DIRECTIVES]
+  template
 })
 export class TopMenuComponent implements AfterViewInit {
   public isShown:boolean = false;

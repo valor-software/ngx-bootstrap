@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {/*addProviders, */inject, async} from '@angular/core/testing';
-import {TestComponentBuilder, ComponentFixture} from '@angular/core/testing';
-import {CollapseDirective} from './collapse.directive';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CollapseModule } from './collapse.module';
 
 const template = `
   <div [collapse]="isCollapsed">
@@ -12,8 +12,7 @@ const template = `
 
 @Component({
   selector: 'collapse-test',
-  template,
-  directives: [CollapseDirective]
+  template
 })
 class TestCollapseComponent {
 }
@@ -22,23 +21,20 @@ class TestCollapseComponent {
 //       - check callbacks have been called or not called (expanding, expanded, collapsing, collapsed)
 
 describe('Directive: Collapse', () => {
-  let fixture:ComponentFixture<any>;
+  let fixture:ComponentFixture<TestCollapseComponent>;
   let element:any;
   let context:any;
 
-  // beforeEach(() => addProviders(() => [TestComponentBuilder]));
-  // beforeEach(() => addProviders([TestComponentBuilder]));
-
-  beforeEach(async(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb
-      .createAsync(TestCollapseComponent)
-      .then((f:ComponentFixture<any>) => {
-        fixture = f;
-        fixture.detectChanges();
-        element = fixture.nativeElement.querySelector('.collapse');
-        context = fixture.componentInstance;
-      });
-  })));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestCollapseComponent],
+      imports: [CollapseModule]
+    });
+    fixture = TestBed.createComponent(TestCollapseComponent);
+    fixture.detectChanges();
+    context = fixture.componentInstance;
+    element = fixture.nativeElement.querySelector('.collapse');
+  });
 
   it('should have collapse class', () => {
     let div = fixture.nativeElement.querySelector('div');
@@ -58,7 +54,9 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = true');
+  xit('should not trigger any animation on initialization if isCollapsed = true', () => {
+    expect(true);
+  });
 
   it('should collapse if isCollapsed = true on subsequent use', () => {
     context.isCollapsed = false;
@@ -77,7 +75,9 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).not.toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = false');
+  xit('should not trigger any animation on initialization if isCollapsed = false', () => {
+    expect(true);
+  });
 
   it('should expand if isCollapsed = false on subsequent use', () => {
     context.isCollapsed = false;
@@ -140,12 +140,22 @@ describe('Directive: Collapse', () => {
   });
 
   describe('expanding callback returning a promise', () => {
-    xit('should wait for it to resolve before animating');
-    xit('should not animate if it rejects');
+    xit('should wait for it to resolve before animating', () => {
+      expect(true);
+    });
+
+    xit('should not animate if it rejects', () => {
+      expect(true);
+    });
   });
 
   describe('collapsing callback returning a promise', () => {
-    xit('should wait for it to resolve before animating');
-    xit('should not animate if it rejects');
+    xit('should wait for it to resolve before animating', () => {
+      expect(true);
+    });
+
+    xit('should not animate if it rejects', () => {
+      expect(true);
+    });
   });
 });

@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {AlertDemoComponent} from './alert/alert-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/alert/readme.md');
@@ -12,7 +8,6 @@ let html = require('!!raw?lang=markup!./alert/alert-demo.html');
 
 @Component({
   selector: 'alert-section',
-  directives: [DemoSectionComponent, AlertDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <alert-demo></alert-demo>

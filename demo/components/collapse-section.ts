@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {CollapseDemoComponent} from './collapse/collapse-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/collapse/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./collapse/collapse-demo.html');
 
 @Component({
   selector: 'collapse-section',
-  directives: [DemoSectionComponent, CollapseDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <collapse-demo></collapse-demo>

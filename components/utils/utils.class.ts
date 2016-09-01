@@ -1,4 +1,4 @@
-import {global} from '@angular/core/src/facade/lang';
+import { global } from '@angular/core/src/facade/lang';
 
 export class Utils {
   public static reflow(element:any):void {

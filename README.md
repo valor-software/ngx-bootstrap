@@ -50,14 +50,24 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
   </div>
 ```
 ```js
+  /* src/app/main.ts */
+  import { AlertModule, DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+  ...
+  @NgModule({
+    imports: [
+      ...
+      AlertModule,
+      DatepickerModule
+    ]
+    ...
+  })
+  export class AppModule {
+  }
+
   /* src/app/home/home.ts */
-  import {AlertComponent, DATEPICKER_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
   ...
   @Component({
-    directives: [
-      ...
-      AlertComponent, DATEPICKER_DIRECTIVES
-      ]
+    templateUrl: 'src/app/home/home.html'
   })
   export class Home {
     date: Date = new Date();
@@ -110,15 +120,30 @@ As for now `datepicker` is using `moment.js` to format date, so please update `s
   });
 ```
 
+Add Ng2BootstrapModule as imported module in your application module `app.module.ts`
+
+```ts
+import { NgModule }      from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AppComponent }  from './app.component';
+
+@NgModule({
+  imports:      [ BrowserModule, Ng2BootstrapModule ],
+  declarations: [ AppComponent ],
+  bootstrap:    [ AppComponent ]
+})
+export class AppModule { }
+```
+
 And update your `app.component.ts` to have following content:
 
 ```ts
 import {Component} from 'angular2/core';
-import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector: 'my-app',
-  directives: [AlertComponent],
   template: `<alert type="info">ng2-bootstrap hello world!</alert>`
 })
 export class AppComponent {

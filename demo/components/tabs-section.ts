@@ -1,8 +1,4 @@
-import {Component} from '@angular/core';
-import {CORE_DIRECTIVES} from '@angular/common';
-
-import {TabsDemoComponent} from './tabs/tabs-demo';
-import {DemoSectionComponent} from './demo-section';
+import { Component } from '@angular/core';
 
 // webpack html imports
 let doc = require('../../components/tabs/readme.md');
@@ -13,7 +9,6 @@ let html = require('!!raw?lang=markup!./tabs/tabs-demo.html');
 
 @Component({
   selector: 'tabs-section',
-  directives: [DemoSectionComponent, TabsDemoComponent, CORE_DIRECTIVES],
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <tabs-demo></tabs-demo>

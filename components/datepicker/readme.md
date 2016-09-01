@@ -1,32 +1,16 @@
 ### Usage
 ```typescript
-import { DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/components/datepicker';
+import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 ```
 
 ### Annotations
 ```typescript
 // component DatePicker
 @Component({
-  selector: 'datepicker[ngModel], [datepicker][ngModel]',
-  properties: [
-    'datepickerMode',
-    'minDate', 'maxDate',
-    'dateDisabled', 'activeDate',
-    'showWeeks', 'startingDay',
-    'initDate',
-    'minMode', 'maxMode',
-    'formatDay', 'formatMonth', 'formatYear',
-    'formatDayHeader', 'formatDayTitle', 'formatMonthTitle',
-    'yearRange',
-    'shortcutPropagation',
-    'onlyCurrentMonth'
-  ]
+  selector: 'datepicker[ngModel], [datepicker][ngModel]'
 })
-
-
-export const DATEPICKER_DIRECTIVES:Array<any> = [DatePicker];
 ```
 
 ### Date picker properties
