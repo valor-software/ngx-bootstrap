@@ -1,11 +1,11 @@
 import {
   Component, EventEmitter, HostListener, Input, OnInit, Output, Self
 } from '@angular/core';
-import { global } from '@angular/core/src/facade/lang';
+import { Type } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 /* tslint:disable */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+const KeyboardEvent = (Type as any).KeyboardEvent as KeyboardEvent;
 /* tslint:enable */
 
 @Component({

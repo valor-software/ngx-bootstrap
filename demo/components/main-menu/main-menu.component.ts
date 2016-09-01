@@ -3,15 +3,13 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../../components/ng2-bootstrap-config';
 import { routes } from './../../router.config';
-import { SearchFilterPipe } from './search-filter.pipe';
 
 // webpack html imports
 let template = require('./main-menu.template.html');
 
 @Component({
   selector: 'main-menu',
-  template,
-  pipes: [SearchFilterPipe]
+  template
 })
 
 export class MainMenuComponent {
