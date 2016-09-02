@@ -66,8 +66,11 @@ export class ComponentsHelper {
                                  providers?:ResolvedReflectiveProvider[]):ComponentRef<T> {
     let componentFactory = this.componentFactoryResolver.resolveComponentFactory(ComponentClass);
     let parentInjector = location.parentInjector;
-    let childInjector = providers !== undefined && providers.length > 0 ?
-      ReflectiveInjector.fromResolvedProviders(providers, parentInjector) : parentInjector;
+    let childInjector: Injector = parentInjector;
+    if (providers && providers.length > 0) {
+      childInjector = ReflectiveInjector.fromResolvedProviders(providers, parentInjector);
+    }
+
     return location.createComponent(componentFactory, location.length, childInjector);
   }
 
