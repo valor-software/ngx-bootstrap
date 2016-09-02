@@ -15,12 +15,13 @@ import {
   Output,
   Renderer
 } from '@angular/core';
-import { global } from '@angular/core/src/facade/lang';
 
 import { ComponentsHelper } from '../utils/components-helper.service';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent, ModalBackdropOptions } from './modal-backdrop.component';
 import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modal-options.class';
+
+import { window } from '../utils/facade/browser';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -302,8 +303,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   /** Scroll bar tricks */
 
   private checkScrollbar():void {
-    // this._isBodyOverflowing = document.body.clientWidth < window.innerWidth
-    this.isBodyOverflowing = this.document.body.clientWidth < (global as any).innerWidth;
+    this.isBodyOverflowing = this.document.body.clientWidth < window.innerWidth;
     this.scrollbarWidth = this.getScrollbarWidth();
   }
 
