@@ -7,7 +7,7 @@ import { RatingComponent } from './rating.component';
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [RatingComponent],
-  exports: [RatingComponent]
+  exports: [FormsModule, RatingComponent]
 })
 export class RatingModule {
 }

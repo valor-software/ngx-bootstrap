@@ -13,8 +13,10 @@ import { ComponentsHelper } from '../utils/components-helper.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  declarations: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent],
-  exports: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent],
+  declarations: [DatePickerComponent, DatePickerInnerComponent, DatePickerPopupDirective, DayPickerComponent,
+                 MonthPickerComponent, YearPickerComponent],
+  exports: [DatePickerComponent, DatePickerInnerComponent, DatePickerPopupDirective, DayPickerComponent, FormsModule,
+            MonthPickerComponent, YearPickerComponent],
   providers: [ComponentsHelper]
 })
 export class DatepickerModule {

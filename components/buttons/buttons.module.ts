@@ -7,7 +7,7 @@ import { ButtonRadioDirective } from './button-radio.directive';
 @NgModule({
   imports: [FormsModule],
   declarations: [ButtonCheckboxDirective, ButtonRadioDirective],
-  exports: [ButtonCheckboxDirective, ButtonRadioDirective]
+  exports: [ButtonCheckboxDirective, ButtonRadioDirective, FormsModule]
 })
 export class ButtonsModule {
 }

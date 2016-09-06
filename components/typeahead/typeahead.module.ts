@@ -8,8 +8,8 @@ import { ComponentsHelper } from '../utils/components-helper.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  declarations: [TypeaheadDirective, TypeaheadContainerComponent],
-  exports: [TypeaheadDirective, TypeaheadContainerComponent],
+  declarations: [TypeaheadContainerComponent, TypeaheadDirective],
+  exports: [FormsModule, TypeaheadContainerComponent, TypeaheadDirective],
   providers: [ComponentsHelper],
   entryComponents: [TypeaheadContainerComponent]
 })
