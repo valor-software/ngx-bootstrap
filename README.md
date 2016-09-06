@@ -120,17 +120,17 @@ As for now `datepicker` is using `moment.js` to format date, so please update `s
   });
 ```
 
-Add Ng2BootstrapModule as imported module in your application module `app.module.ts`
+Add BsCoreModule as imported module in your application module `app.module.ts`
 
 ```ts
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { BsCoreModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { AppComponent }  from './app.component';
 
 @NgModule({
-  imports:      [ BrowserModule, Ng2BootstrapModule ],
+  imports:      [ BrowserModule, BsCoreModule ],
   declarations: [ AppComponent ],
   bootstrap:    [ AppComponent ]
 })
