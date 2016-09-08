@@ -7,7 +7,7 @@ import { ProgressDirective } from './progress.directive';
 @Component({
   selector: 'bar',
   template: `
-  <div class="progress-bar"
+  <div class="progress-bar {{animate ? ' active' : ''}}"
     style="min-width: 0;"
     role="progressbar"
     [ngClass]="type && 'progress-bar-' + type"
@@ -20,6 +20,7 @@ import { ProgressDirective } from './progress.directive';
 })
 export class BarComponent implements OnInit, OnDestroy {
   @Input() public type:string;
+  @Input() public animate:boolean;
 
   @Input()
   public get value():number {
