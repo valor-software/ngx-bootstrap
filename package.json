@@ -91,7 +91,7 @@
     "reflect-metadata": "0.1.8",
     "require-dir": "0.3.0",
     "rxjs": "5.0.0-beta.11",
-    "systemjs-builder": "0.15.30",
+    "systemjs-builder": "0.15.31",
     "tslint-config-valorsoft": "1.1.1",
     "typedoc": "0.4.5",
     "typescript": "1.8.10",
