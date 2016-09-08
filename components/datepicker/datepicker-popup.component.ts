@@ -8,7 +8,7 @@ import { KeyAttribute } from '../common';
 import { positionService } from '../position';
 import { ComponentsHelper } from '../utils/components-helper.service';
 
-class PopupOptions {
+export class PopupOptions {
   public placement:string;
   public animation:boolean;
   public isOpen:boolean;
@@ -36,7 +36,7 @@ const datePickerPopupConfig:KeyAttribute = {
         [ngStyle]="{top: top, left: left, display: display}"
         [ngClass]="classMap">
         <li>
-             <datepicker (cupdate)="onUpdate($event)" *ngIf="popupComp" [(ngModel)]="popupComp.cd.model" [show-weeks]="true"></datepicker>
+             <datepicker (selectionDone)="onUpdate($event)" *ngIf="popupComp" [(ngModel)]="popupComp.cd.model" [showWeeks]="true"></datepicker>
         </li>
         <li *ngIf="showButtonBar" style="padding:10px 9px 2px">
             <span class="btn-group pull-left">
@@ -48,7 +48,7 @@ const datePickerPopupConfig:KeyAttribute = {
     </ul>`,
   encapsulation: ViewEncapsulation.None
 })
-class PopupContainerComponent {
+export class PopupContainerComponent {
   public popupComp:DatePickerPopupDirective;
 
   private classMap:any;
