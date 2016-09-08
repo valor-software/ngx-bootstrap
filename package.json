@@ -49,9 +49,6 @@
     "url": "https://github.com/valor-software/ng2-bootstrap/issues"
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
-  "dependencies": {
-    "moment": "2.14.1"
-  },
   "peerDependencies": {
     "@angular/common": "2.0.0-rc.6",
     "@angular/compiler": "2.0.0-rc.6",

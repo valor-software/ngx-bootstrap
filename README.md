@@ -104,22 +104,6 @@ If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/t
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 ```
 
-As for now `datepicker` is using `moment.js` to format date, so please update `system.js` config to contain mapping:
-```html
-<!-- index.html -->
-  System.config({
-    packages: {
-      app: {
-        format: 'register',
-        defaultExtension: 'js'
-      }
-    },
-    map: {
-      moment: 'node_modules/moment/moment.js'
-    }
-  });
-```
-
 Add Ng2BootstrapModule as imported module in your application module `app.module.ts`
 
 ```ts

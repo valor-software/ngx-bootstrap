@@ -6,17 +6,6 @@
 npm install --save ng2-bootstrap
 ```
 
-Additionally you will need `moment.js` typings if you are planning to work with datepicker
-
-```bash
-# install typings globally
-npm install -g typings
-# init typings if you don't have typings.json yet
-typings init
-# and install moment.js typings
-typings install moment --save
-```
-
 ### How to use it with webpack?
 
 Please refer to [readme](https://github.com/valor-software/ng2-bootstrap#with-webpack-angularclassangular2-webpack-starter)
