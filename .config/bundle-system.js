@@ -34,7 +34,7 @@ async.waterfall([
 
 function getSystemJsBundleConfig(cb) {
   const config = {
-    baseURL: path.resolve('.'),
+    baseURL: path.resolve('..'),
     transpiler: 'typescript',
     typescriptOptions: {
       module: 'cjs'
