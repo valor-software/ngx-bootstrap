@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'progressbar',
   template: `
     <div progress [animate]="animate" [max]="max">
-      <bar [type]="type" [value]="value">
+      <bar [type]="type" [value]="value" [animate]="animate">
           <ng-content></ng-content>
       </bar>
     </div>
