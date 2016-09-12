@@ -40,14 +40,14 @@ function getSystemJsBundleConfig(cb) {
       module: 'cjs'
     },
     map: {
-      typescript: path.resolve('node_modules/typescript/lib/typescript.js'),
-      '@angular/core': path.resolve('node_modules/@angular/core/index.js'),
-      '@angular/common': path.resolve('node_modules/@angular/common/index.js'),
-      '@angular/compiler': path.resolve('node_modules/@angular/compiler/index.js'),
-      '@angular/forms': path.resolve('node_modules/@angular/forms/index.js'),
-      '@angular/platform-browser': path.resolve('node_modules/@angular/platform-browser/index.js'),
-      '@angular/platform-browser-dynamic': path.resolve('node_modules/@angular/platform-browser-dynamic/'),
-      rxjs: path.resolve('node_modules/rxjs')
+      typescript: './node_modules/typescript/lib/typescript',
+      '@angular/core': './node_modules/@angular/core/index',
+      '@angular/common': './node_modules/@angular/common/index',
+      '@angular/compiler': './node_modules/@angular/compiler/index',
+      '@angular/forms': './node_modules/@angular/forms/index',
+      '@angular/platform-browser': './node_modules/@angular/platform-browser/index',
+      '@angular/platform-browser-dynamic': './node_modules/@angular/platform-browser-dynamic/',
+      rxjs: './node_modules/rxjs'
     },
     paths: {
       '*': '*.js'
@@ -56,7 +56,7 @@ function getSystemJsBundleConfig(cb) {
 
   config.meta = ['@angular/common','@angular/compiler','@angular/core', '@angular/forms',
     '@angular/platform-browser','@angular/platform-browser-dynamic', 'rxjs'].reduce((memo, currentValue) => {
-    memo[path.resolve(`node_modules/${currentValue}/*`)] = {build: false};
+    memo[`./node_modules/${currentValue}/*`] = {build: false};
     return memo;
   }, {});
   config.meta.moment = {build: false};
@@ -83,7 +83,11 @@ function buildSystemJs(options) {
     return builder
       .bundle([name, name].join('/'), dest, options)
       .then(() => cb())
-      .catch(cb);
+      .catch((err) => {
+        console.log('Build error!');
+        console.log(err);
+        cb();
+      });
   };
 }
 
