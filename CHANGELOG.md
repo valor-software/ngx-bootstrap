@@ -1,3 +1,18 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.1...v1.1.2) (2016-09-12)
+
+
+### Bug Fixes
+
+* **datepicker:** removed popup stub ([d1a7d09](https://github.com/valor-software/ng2-bootstrap/commit/d1a7d09))
+
+
+### Features
+
+* **forms:**  add export of FormsModule where [ngModel] selector is present ([#931](https://github.com/valor-software/ng2-bootstrap/issues/931)) ([b5c8448](https://github.com/valor-software/ng2-bootstrap/commit/b5c8448)), closes [#929](https://github.com/valor-software/ng2-bootstrap/issues/929) [#929](https://github.com/valor-software/ng2-bootstrap/issues/929)
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.0...v1.1.1) (2016-09-02)
 
