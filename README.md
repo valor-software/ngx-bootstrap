@@ -29,7 +29,7 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 *Hint*: simpliest way to add styles is a CDN:
 ```html
 <!-- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 ### With system.js: [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
@@ -90,7 +90,7 @@ npm i ng2-bootstrap --save
 Check [cdnjs](https://cdnjs.com/libraries/ng2-bootstrap) to include `ng2-bootstrap` as `system.js` bundle
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/x.x.x/ng2-bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 ## Quick start
@@ -101,7 +101,7 @@ If you are following [Angular2 5 min quickstart guide](https://angular.io/docs/t
 ```html
 <!-- index.html -->
 <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 As for now `datepicker` is using `moment.js` to format date, so please update `system.js` config to contain mapping:
