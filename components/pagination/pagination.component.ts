@@ -75,6 +75,7 @@ const PAGINATION_TEMPLATE = `
 @Component({
   selector: 'pagination[ngModel]',
   template: PAGINATION_TEMPLATE,
+  providers: [NgModel]
 })
 /* tslint:enable */
 export class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {

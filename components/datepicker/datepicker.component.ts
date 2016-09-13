@@ -31,7 +31,8 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
-    `
+    `,
+  providers: [NgModel]
 })
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {

@@ -24,7 +24,8 @@ const PAGER_TEMPLATE = `
 /* tslint:disable */
 @Component({
   selector: 'pager[ngModel]',
-  template: PAGER_TEMPLATE
+  template: PAGER_TEMPLATE,
+  providers: [NgModel]
 })
 /* tslint:enable */
 export class PagerComponent extends PaginationComponent implements OnInit {
