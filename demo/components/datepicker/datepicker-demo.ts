@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as moment from 'moment';
 
 // webpack html imports
 let template = require('./datepicker-demo.html');
@@ -41,7 +40,7 @@ export class DatepickerDemoComponent {
   }
 
   public d20090824():void {
-    this.dt = moment('2009-08-24', 'YYYY-MM-DD').toDate();
+    this.dt = new Date('Aug 24, 2009');
   }
 
   // todo: implement custom class cases

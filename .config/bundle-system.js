@@ -59,7 +59,6 @@ function getSystemJsBundleConfig(cb) {
     memo[`./node_modules/${currentValue}/*`] = {build: false};
     return memo;
   }, {});
-  config.meta.moment = {build: false};
   return cb(null, config);
 }
 
