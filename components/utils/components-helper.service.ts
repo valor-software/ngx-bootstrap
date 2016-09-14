@@ -38,13 +38,20 @@ export class ComponentsHelper {
    * ```
    * @returns {ViewContainerRef} - application root view component ref
    */
-  public getRootViewContainerRef(injector:Injector):ViewContainerRef {
+  public getRootViewContainerRef(_injector:Injector):ViewContainerRef {
     // The only way for now (by @mhevery)
     // https://github.com/angular/angular/issues/6446#issuecomment-173459525
     // this is a class of application bootstrap component (like my-app)
     const classOfRootComponent = this.applicationRef.componentTypes[0];
     // this is an instance of application bootstrap component
-    const appInstance = injector.get(classOfRootComponent);
+    let appInstance:any;
+    let injector:any = _injector as any;
+    while (!appInstance) {
+      appInstance = injector.get(classOfRootComponent, false);
+      if (!appInstance && injector.parentInjector) {
+        injector = injector.parentInjector;
+      }
+    }
     return appInstance.viewContainerRef;
   }
 
