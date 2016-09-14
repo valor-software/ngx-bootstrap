@@ -79,7 +79,8 @@ function addMinutes(date:any, minutes:number):Date {
         </tr>
       </tbody>
     </table>
-  `
+  `,
+  providers: [NgModel]
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
   public cd:NgModel;

@@ -14,7 +14,8 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
         <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
       </template>
     </span>
-  `
+  `,
+  providers: [NgModel]
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public max:number;
