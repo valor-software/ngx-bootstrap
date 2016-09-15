@@ -53,19 +53,19 @@
     "moment": "2.15.0"
   },
   "peerDependencies": {
-    "@angular/common": "2.0.0-rc.7",
-    "@angular/compiler": "2.0.0-rc.7",
-    "@angular/core": "2.0.0-rc.7",
-    "@angular/forms": "2.0.0-rc.7"
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0"
   },
   "devDependencies": {
-    "@angular/common": "2.0.0-rc.7",
-    "@angular/compiler": "2.0.0-rc.7",
-    "@angular/core": "2.0.0-rc.7",
-    "@angular/forms": "2.0.0-rc.7",
-    "@angular/platform-browser": "2.0.0-rc.7",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.7",
-    "@angular/router": "3.0.0-rc.3",
+    "@angular/common": "2.0.0",
+    "@angular/compiler": "2.0.0",
+    "@angular/core": "2.0.0",
+    "@angular/forms": "2.0.0",
+    "@angular/platform-browser": "2.0.0",
+    "@angular/platform-browser-dynamic": "2.0.0",
+    "@angular/router": "3.0.0",
     "async": "2.0.1",
     "bootstrap": "3.3.7",
     "codecov": "1.0.1",
