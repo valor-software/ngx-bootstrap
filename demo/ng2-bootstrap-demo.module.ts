@@ -12,6 +12,7 @@ import {
   CollapseDemoComponent,
   DatepickerDemoComponent,
   DropdownDemoComponent,
+  SliderDemoComponent,
   ModalDemoComponent,
   PaginationDemoComponent,
   ProgressbarDemoComponent,
@@ -46,6 +47,7 @@ import { TabsSectionComponent } from './components/tabs-section';
 import { TimepickerSectionComponent } from './components/timepicker-section';
 import { TooltipSectionComponent } from './components/tooltip-section';
 import { TypeaheadSectionComponent } from './components/typeahead-section';
+import { SliderSectionComponent } from './components/slider-section';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
     TopMenuComponent,
     SearchFilterPipe,
 
+    SliderDemoComponent,
     AccordionDemoComponent,
     AlertDemoComponent,
     ButtonsDemoComponent,
@@ -86,6 +89,7 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
     TabsSectionComponent,
     TimepickerSectionComponent,
     TooltipSectionComponent,
+    SliderSectionComponent,
     TypeaheadSectionComponent
   ],
   imports: [
