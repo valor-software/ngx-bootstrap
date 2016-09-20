@@ -46,7 +46,7 @@ export class SliderComponent implements AfterViewInit {
   private mouseUpReference: any;
   private mouseMoveReference: any;
 
-  protected ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     if (this.orientation === 'vertical') {
       this.stylePos = 'top';
       this.mousePos = 'pageY';
