@@ -6,13 +6,13 @@ import { SliderHelpers } from './slider.helpers';
   template: `
     <div #sliderElem (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
       <div class='slider-track'>
-        <div #trackLow class='slider-track-low'></div>
-        <div #trackSelection class='slider-selection'></div>
-        <div #trackHigh class='slider-track-high'></div>
+        <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
+        <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none' || selection === 'after')}"></div>
+        <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
       
-      <div #minHandle class='slider-handle min-slider-handle round' role='slider'></div>
-      <div #maxHandle class='slider-handle max-slider-handle round hide' role='slider'></div>
+      <div #minHandle class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
+      <div #maxHandle class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
     </div>
   `
 })
@@ -20,14 +20,11 @@ export class SliderComponent implements AfterViewInit {
   @Input() public animate: boolean;
   @Input() public enabled: boolean = true;
   @Input() public reversed: boolean;
-  @Input() public max: number = 100;
-  @Input() public min: number = 0;
-  @Input() public step: number = 1;
   @Input() public selection: string = 'before';
   @Input() public touchCapable: boolean = true;
+  @Input() public handleType: string = 'round';
   @Input() public type: string = 'slider';
   @Input() public orientation: string = 'horizontal';
-  @Input() public value: Array<number>;
   @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
@@ -45,6 +42,10 @@ export class SliderComponent implements AfterViewInit {
   private over: boolean;
   private mouseUpReference: any;
   private mouseMoveReference: any;
+  private _value: Array<number>;
+  private _max: number = 100;
+  private _min: number = 0;
+  private _step: number = 1;
 
   public ngAfterViewInit(): void {
     if (this.orientation === 'vertical') {
@@ -56,59 +57,97 @@ export class SliderComponent implements AfterViewInit {
       this.mousePos = 'pageX';
       this.sizePos = 'offsetWidth';
     }
+    console.log(this.value, this._value);
+
     if (!Array.isArray(this.value)) {
-      this.value = [(this.value as number)];
+      this._value = [(this.value as number)];
     }
-    console.log('view', typeof this.value, this.value);
-    this.setValue(this.value[0]/*, false, false*/);
+    console.log(this.value, this._value);
+    this.value = this.value[0];// , false, false*/);
   }
 
-  public getValue(): any {
-    return this.value;
+  @Input()
+  public get max(): number {
+    return this._max;
+  }
+  public set max(val: number) {
+    this._max = val;
+    if (this.value) {
+      this.value = this.value[0];
+      this.layout();
+    }
+  }
+  @Input()
+  public get min(): number {
+    return this._min;
   }
 
-  public setValue(val: number/*, triggerSlideEvent: boolean, triggerChangeEvent: boolean*/): void {
-    console.log('val ', val);
+  public set min(val: number) {
+    this._min = val;
+    if (this.value) {
+      this.value = this.value[0];
+      this.layout();
+    }
+  }
+
+  @Input()
+  public get step(): number {
+    return this._step;
+  }
+
+  public set step(val: number) {
+    this._step = val;
+    if (this.value) {
+      this.value = this.value[0];
+      this.layout();
+    }
+  }
+
+  @Input()
+  public get value(): any {
+    return this._value;
+  }
+  public set value(val: any/*, triggerSlideEvent: boolean, triggerChangeEvent: boolean*/) {
     if (!val) {
       val = 0;
     }
 
     // const oldValue = this.getValue();
-    this.value = SliderHelpers.validateInputValue(val);
+    this._value = SliderHelpers.validateInputValue(val);
 
     if (this.type === 'range') {
-      this.value[0] = this.applyPrecision(this.value[0]);
-      this.value[1] = this.applyPrecision(this.value[1]);
+      this._value[0] = this.applyPrecision(this._value[0]);
+      this._value[1] = this.applyPrecision(this._value[1]);
 
-      this.value[0] = Math.max(this.min, Math.min(this.max, this.value[0]));
-      this.value[1] = Math.max(this.min, Math.min(this.max, this.value[1]));
+      this._value[0] = Math.max(this.min, Math.min(this.max, this._value[0]));
+      this._value[1] = Math.max(this.min, Math.min(this.max, this._value[1]));
     } else {
       val = this.applyPrecision(val);
-      this.value = [Math.max(this.min, Math.min(this.max, val))];
+      this._value = [Math.max(this.min, Math.min(this.max, val))];
 
       this.maxHandle.nativeElement.className += ' hide';
       if (this.selection === 'after') {
-        this.value[1] = this.max;
+        this._value[1] = this.max;
       } else {
-        this.value[1] = this.min;
+        this._value[1] = this.min;
       }
     }
 
     if (this.max > this.min) {
       this.percentage = [
-        this.toPercentage(this.value[0]),
-        this.toPercentage(this.value[1]),
+        this.toPercentage(this._value[0]),
+        this.toPercentage(this._value[1]),
         this.step * 100 / (this.max - this.min)
       ];
     } else {
       this.percentage = [0, 0, 100];
     }
-    console.log(this.value);
+    console.log(this._value);
     this.layout();
 
     /*
      FIXME
-     let newValue = this.type === 'range' ? this.value : this.value[0];
+     let newValue = this.type === 'range' ? this._value : this._value[0];
 
      if(triggerSlideEvent === true) {
      this.trigger('slide', newValue);
@@ -172,7 +211,7 @@ export class SliderComponent implements AfterViewInit {
 
     // this._trigger('slideStart', newValue);
 
-    this.setValue(newValue/*, false, true*/);
+    this.value = newValue; // , false, true);
 
     SliderHelpers.pauseEvent(event);
 
@@ -191,7 +230,7 @@ export class SliderComponent implements AfterViewInit {
     this.layout();
 
     const val = this.calculateValue(true);
-    this.setValue(val/*, true, true*/);
+    this.value = val;// , true, true*/);
 
     return false;
   }
@@ -216,7 +255,7 @@ export class SliderComponent implements AfterViewInit {
     }
     const val = this.calculateValue(true);
     console.log(val);
-    this.setValue(val/*, true, true*/);
+    this.value = val; // , true, true*/);
     // this._trigger('slideStop', val);
 
     return false;

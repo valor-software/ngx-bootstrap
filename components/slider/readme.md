@@ -22,5 +22,5 @@ import { SliderModule } from 'ng2-bootstrap/components/slider';
   - `touchCapable` (`?boolean=true`) - is the slider touch capable
   - `enabled` (`?boolean=true`) - is slider enabled
   - `reversed` (`?boolean=false`) - reverse values of slider
-  - `selection` (`?string=before`) - choose witch side to color: `before`, `after` (not supported yet)
+  - `selection` (`?string=before`) - choose witch side to color: `none`, `before`, `after` (not supported yet)
   - `animate` (`?boolean=true`) - if `true` changing `value` of slider will be animated (not supported yet)
