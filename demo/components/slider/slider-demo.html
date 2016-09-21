@@ -4,7 +4,7 @@
     <slider [value]="50" orientation="vertical" selection="after"></slider>
   </div>
   <div class="col-sm-3">
-    <slider [value]="50" selection="after"></slider>
+    <slider [value]="50"></slider>
   </div>
 </div>
 
@@ -17,14 +17,13 @@
 </h3>
 <slider ngClass="colored" [max]="max" [min]="min" [step]="step" [value]="dynamic"></slider>
 
-<!--hr/>
+<hr/>
 <h3>Range
-  <button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>
   <button type="button" class="btn btn-sm btn-primary" (click)="changeMax()">Change max</button>
   <button type="button" class="btn btn-sm btn-primary" (click)="changeMin()">Change min</button>
   <button type="button" class="btn btn-sm btn-primary" (click)="toggleStep()">Toggle step</button>
 </h3>
-<slider ngClass="colored" [type]="range" [max]="max" [min]="min" [step]="step" [value]="[10, 100]"></slider-->
+<slider ngClass="colored" selection="all" type="range" [max]="max" [min]="min" [step]="step" [value]="[20, 100]"></slider>
 
 <hr/>
 <h3>Handles</h3>
@@ -34,5 +33,3 @@
   <slider ngClass="slider3" [value]="50" [step]="10"></slider>
   <slider ngClass="slider4" [value]="50" handleType="custom"></slider>
 </div>
-
-

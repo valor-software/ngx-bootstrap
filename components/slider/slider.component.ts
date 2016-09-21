@@ -33,7 +33,7 @@ export class SliderComponent implements AfterViewInit {
   @ViewChild('trackLow') private trackLow: ElementRef;
   private offset: any;
   private dragged: number;
-  private percentage: any;
+  private percentage: Array<number> = [];
   private size: any;
   private stylePos: string;
   private mousePos: string;
@@ -62,7 +62,7 @@ export class SliderComponent implements AfterViewInit {
     }
 
     if (!Array.isArray(this._value)) {
-      this._value = [this._value];
+      this._value = [this._value as number];
     }
 
     this.value = this._value;
@@ -75,7 +75,7 @@ export class SliderComponent implements AfterViewInit {
   public set max(val: number) {
     this._max = val;
     if (this._value) {
-      this.value = this.value[0];
+      this.value = this.value;
       this.layout();
     }
   }
@@ -87,7 +87,7 @@ export class SliderComponent implements AfterViewInit {
   public set min(val: number) {
     this._min = val;
     if (this._value) {
-      this.value = this.value[0];
+      this.value = this.value;
       this.layout();
     }
   }
@@ -100,7 +100,7 @@ export class SliderComponent implements AfterViewInit {
   public set step(val: number) {
     this._step = val;
     if (this._value) {
-      this.value = this.value[0];
+      this.value = this.value;
       this.layout();
     }
   }
@@ -110,7 +110,7 @@ export class SliderComponent implements AfterViewInit {
     return this.type === 'range' ? this._value : this._value[0];
   }
 
-  public set value(val: any/*, triggerSlideEvent: boolean, triggerChangeEvent: boolean*/) {
+  public set value(val: any) {
     if (!val) {
       val = 0;
     }
@@ -173,10 +173,9 @@ export class SliderComponent implements AfterViewInit {
 
     this.offset = this.calculateOffset(this.sliderElem.nativeElement);
     this.size = this.sliderElem.nativeElement[this.sizePos];
-    // console.log(this.sliderElem, this.sizePos, this.sliderElem.nativeElement[this.sizePos]);
 
     const percentage = this.getPercentage(event);
-
+    console.log('onMouseDown', percentage, this.type);
     if (this.type === 'range') {
       const diff1: number = Math.abs(this.percentage[0] - percentage);
       const diff2: number = Math.abs(this.percentage[1] - percentage);
@@ -441,9 +440,10 @@ export class SliderComponent implements AfterViewInit {
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'height', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
       this.renderer.setElementStyle(this.trackHigh.nativeElement, 'bottom', '0');
-      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'height', (Math.abs(positionPercentages[0] - positionPercentages[1])) + '%');
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'height', (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) +'%');
 
     } else {
+      console.log(positionPercentages);
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'left', '0');
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'width', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
 
@@ -451,7 +451,7 @@ export class SliderComponent implements AfterViewInit {
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'width', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
       this.renderer.setElementStyle(this.trackHigh.nativeElement, 'right', '0');
-      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'width', (Math.abs(positionPercentages[0] - positionPercentages[1])) + '%');
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'width', (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) +'%');
 
       /*
        let offset_min = this.tooltip_min.getBoundingClientRect();
@@ -529,6 +529,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private adjustPercentageForRangeSliders(percentage: number): void {
+    console.log('adjustPercentageForRangeSliders', percentage);
     if (this.type === 'range') {
       let precision = SliderHelpers.getNumDigitsAfterDecimalPlace(percentage);
       precision = precision ? precision - 1 : 0;
@@ -602,6 +603,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private applyPrecision(val: number): number {
+    console.log('val', val);
     const precision = SliderHelpers.getNumDigitsAfterDecimalPlace(this.step);
     return SliderHelpers.applyToFixedAndParseFloat(val, precision);
   }
