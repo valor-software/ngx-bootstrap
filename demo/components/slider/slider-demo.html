@@ -1,6 +1,38 @@
 <h3>Static</h3>
 <div class="row">
-  <div class="col-sm-4">
-    <slider [value]="50" [step]="10"></slider>
+  <div class="col-sm-1">
+    <slider [value]="50" orientation="vertical" selection="after"></slider>
+  </div>
+  <div class="col-sm-3">
+    <slider [value]="50" selection="after"></slider>
   </div>
 </div>
+
+<hr/>
+<h3>Dynamic
+  <button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="changeMax()">Change max</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="changeMin()">Change min</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="toggleStep()">Toggle step</button>
+</h3>
+<slider ngClass="colored" [max]="max" [min]="min" [step]="step" [value]="dynamic"></slider>
+
+<!--hr/>
+<h3>Range
+  <button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="changeMax()">Change max</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="changeMin()">Change min</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="toggleStep()">Toggle step</button>
+</h3>
+<slider ngClass="colored" [type]="range" [max]="max" [min]="min" [step]="step" [value]="[10, 100]"></slider-->
+
+<hr/>
+<h3>Handles</h3>
+<div class="sliders-block">
+  <slider ngClass="slider1" [value]="50" handleType="square"></slider>
+  <slider ngClass="slider2" selection="after" [value]="50" handleType="triangle"></slider>
+  <slider ngClass="slider3" [value]="50" [step]="10"></slider>
+  <slider ngClass="slider4" [value]="50" handleType="custom"></slider>
+</div>
+
+

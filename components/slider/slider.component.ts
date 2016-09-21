@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild, AfterViewInit, Renderer } from '@angular/core';
 import { SliderHelpers } from './slider.helpers';
 
 @Component({
@@ -6,13 +6,13 @@ import { SliderHelpers } from './slider.helpers';
   template: `
     <div #sliderElem (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
       <div class='slider-track'>
-        <div #trackLow class='slider-track-low'></div>
-        <div #trackSelection class='slider-selection'></div>
-        <div #trackHigh class='slider-track-high'></div>
+        <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
+        <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
+        <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
       
-      <div #minHandle class='slider-handle min-slider-handle round' role='slider'></div>
-      <div #maxHandle class='slider-handle max-slider-handle round hide' role='slider'></div>
+      <div #minHandle class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
+      <div #maxHandle class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
     </div>
   `
 })
@@ -20,14 +20,11 @@ export class SliderComponent implements AfterViewInit {
   @Input() public animate: boolean;
   @Input() public enabled: boolean = true;
   @Input() public reversed: boolean;
-  @Input() public max: number = 100;
-  @Input() public min: number = 0;
-  @Input() public step: number = 1;
   @Input() public selection: string = 'before';
   @Input() public touchCapable: boolean = true;
+  @Input() public handleType: string = 'round';
   @Input() public type: string = 'slider';
   @Input() public orientation: string = 'horizontal';
-  @Input() public value: Array<number>;
   @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
@@ -45,6 +42,13 @@ export class SliderComponent implements AfterViewInit {
   private over: boolean;
   private mouseUpReference: any;
   private mouseMoveReference: any;
+  private eventRemoveCallback: any = {};
+  private _value: Array<number>;
+  private _max: number = 100;
+  private _min: number = 0;
+  private _step: number = 1;
+
+  public constructor(private renderer: Renderer) {}
 
   public ngAfterViewInit(): void {
     if (this.orientation === 'vertical') {
@@ -56,59 +60,100 @@ export class SliderComponent implements AfterViewInit {
       this.mousePos = 'pageX';
       this.sizePos = 'offsetWidth';
     }
-    if (!Array.isArray(this.value)) {
-      this.value = [(this.value as number)];
+
+    if (!Array.isArray(this._value)) {
+      this._value = [this._value];
     }
-    console.log('view', typeof this.value, this.value);
-    this.setValue(this.value[0]/*, false, false*/);
+
+    this.value = this._value;
   }
 
-  public getValue(): any {
-    return this.value;
+  @Input()
+  public get max(): number {
+    return this._max;
+  }
+  public set max(val: number) {
+    this._max = val;
+    if (this._value) {
+      this.value = this.value[0];
+      this.layout();
+    }
+  }
+  @Input()
+  public get min(): number {
+    return this._min;
   }
 
-  public setValue(val: number/*, triggerSlideEvent: boolean, triggerChangeEvent: boolean*/): void {
-    console.log('val ', val);
+  public set min(val: number) {
+    this._min = val;
+    if (this._value) {
+      this.value = this.value[0];
+      this.layout();
+    }
+  }
+
+  @Input()
+  public get step(): number {
+    return this._step;
+  }
+
+  public set step(val: number) {
+    this._step = val;
+    if (this._value) {
+      this.value = this.value[0];
+      this.layout();
+    }
+  }
+
+  @Input()
+  public get value(): any {
+    return this.type === 'range' ? this._value : this._value[0];
+  }
+
+  public set value(val: any/*, triggerSlideEvent: boolean, triggerChangeEvent: boolean*/) {
     if (!val) {
       val = 0;
     }
+    if (this.type === 'slider' && Array.isArray(val)) {
+      val = val[0];
+    }
 
     // const oldValue = this.getValue();
-    this.value = SliderHelpers.validateInputValue(val);
+    this._value = SliderHelpers.validateInputValue(val);
 
     if (this.type === 'range') {
-      this.value[0] = this.applyPrecision(this.value[0]);
-      this.value[1] = this.applyPrecision(this.value[1]);
+      this._value[0] = this.applyPrecision(this._value[0]);
+      this._value[1] = this.applyPrecision(this._value[1]);
 
-      this.value[0] = Math.max(this.min, Math.min(this.max, this.value[0]));
-      this.value[1] = Math.max(this.min, Math.min(this.max, this.value[1]));
+      this._value[0] = Math.max(this.min, Math.min(this.max, this._value[0]));
+      this._value[1] = Math.max(this.min, Math.min(this.max, this._value[1]));
+      this.renderer.setElementClass(this.maxHandle.nativeElement, 'hide', false);
     } else {
       val = this.applyPrecision(val);
-      this.value = [Math.max(this.min, Math.min(this.max, val))];
+      this._value = [Math.max(this.min, Math.min(this.max, val))];
 
-      this.maxHandle.nativeElement.className += ' hide';
+      this.renderer.setElementClass(this.maxHandle.nativeElement, 'hide', true);
       if (this.selection === 'after') {
-        this.value[1] = this.max;
+        this._value[1] = this.max;
       } else {
-        this.value[1] = this.min;
+        this._value[1] = this.min;
       }
     }
 
     if (this.max > this.min) {
       this.percentage = [
-        this.toPercentage(this.value[0]),
-        this.toPercentage(this.value[1]),
+        this.toPercentage(this._value[0]),
+        this.toPercentage(this._value[1]),
         this.step * 100 / (this.max - this.min)
       ];
     } else {
       this.percentage = [0, 0, 100];
     }
-    console.log(this.value);
     this.layout();
 
     /*
      FIXME
-     let newValue = this.type === 'range' ? this.value : this.value[0];
+     let newValue = this.type === 'range' ? this._value : this._value[0];
 
      if(triggerSlideEvent === true) {
      this.trigger('slide', newValue);
@@ -128,6 +173,7 @@ export class SliderComponent implements AfterViewInit {
 
     this.offset = this.calculateOffset(this.sliderElem.nativeElement);
     this.size = this.sliderElem.nativeElement[this.sizePos];
+    // console.log(this.sliderElem, this.sizePos, this.sliderElem.nativeElement[this.sizePos]);
 
     const percentage = this.getPercentage(event);
 
@@ -139,40 +185,42 @@ export class SliderComponent implements AfterViewInit {
     } else {
       this.dragged = 0;
     }
-    console.log(percentage, this.size, this.sizePos);
     this.percentage[this.dragged] = percentage;
     this.layout();
 
     this.mouseMoveReference = this.onMouseMove.bind(this);
     this.mouseUpReference = this.onMouseUp.bind(this);
 
-    if (this.touchCapable) {
-      document.removeEventListener('touchmove', this.mouseMoveReference, false);
-      document.removeEventListener('touchend', this.mouseUpReference, false);
+    if (this.eventRemoveCallback['touchmove']) {
+      this.eventRemoveCallback['touchmove']();
     }
 
-    if (this.mouseMoveReference) {
-      document.removeEventListener('mousemove', this.mouseMoveReference, false);
+    if (this.eventRemoveCallback['touchend']) {
+      this.eventRemoveCallback['touchend']();
     }
-    if (this.mouseUpReference) {
-      document.removeEventListener('mouseup', this.mouseUpReference, false);
+
+    if (this.eventRemoveCallback['mousemove']) {
+      this.eventRemoveCallback['mousemove']();
+    }
+    if (this.eventRemoveCallback['mouseup']) {
+      this.eventRemoveCallback['mouseup']();
     }
 
     if (this.touchCapable) {
       // Touch: Bind touch events:
-      document.addEventListener('touchmove', this.mouseMoveReference, false);
-      document.addEventListener('touchend', this.mouseUpReference, false);
+      this.eventRemoveCallback['touchmove'] = this.renderer.listenGlobal('document', 'touchmove', this.mouseMoveReference);
+      this.eventRemoveCallback['touchend'] = this.renderer.listenGlobal('document', 'touchend', this.mouseUpReference);
     }
     // Bind mouse events:
-    document.addEventListener('mousemove', this.mouseMoveReference, false);
-    document.addEventListener('mouseup', this.mouseUpReference, false);
+    this.eventRemoveCallback['mousemove'] = this.renderer.listenGlobal('document', 'mousemove', this.mouseMoveReference);
+    this.eventRemoveCallback['mouseup'] = this.renderer.listenGlobal('document', 'mouseup', this.mouseUpReference);
 
     this.inDrag = true;
     const newValue = this.calculateValue(false);
 
     // this._trigger('slideStart', newValue);
 
-    this.setValue(newValue/*, false, true*/);
+    this.value = newValue; // , false, true);
 
     SliderHelpers.pauseEvent(event);
 
@@ -191,7 +239,7 @@ export class SliderComponent implements AfterViewInit {
     this.layout();
 
     const val = this.calculateValue(true);
-    this.setValue(val/*, true, true*/);
+    this.value = val;// , true, true*/);
 
     return false;
   }
@@ -201,22 +249,29 @@ export class SliderComponent implements AfterViewInit {
     if (!this.enabled) {
       return false;
     }
-    if (this.touchCapable) {
-      // Touch: Unbind touch event handlers:
-      document.removeEventListener('touchmove', this.mouseMoveReference, false);
-      document.removeEventListener('touchend', this.mouseUpReference, false);
+
+    if (this.eventRemoveCallback['touchmove']) {
+      this.eventRemoveCallback['touchmove']();
     }
-    // Unbind mouse event handlers:
-    document.removeEventListener('mousemove', this.mouseMoveReference, false);
-    document.removeEventListener('mouseup', this.mouseUpReference, false);
+
+    if (this.eventRemoveCallback['touchend']) {
+      this.eventRemoveCallback['touchend']();
+    }
+
+    if (this.eventRemoveCallback['mousemove']) {
+      this.eventRemoveCallback['mousemove']();
+    }
+    if (this.eventRemoveCallback['mouseup']) {
+      this.eventRemoveCallback['mouseup']();
+    }
 
     this.inDrag = false;
     if (this.over === false) {
       // this.hideTooltip();
     }
     const val = this.calculateValue(true);
-    console.log(val);
-    this.setValue(val/*, true, true*/);
+
+    this.value = val; // , true, true*/);
     // this._trigger('slideStop', val);
 
     return false;
@@ -231,9 +286,8 @@ export class SliderComponent implements AfterViewInit {
       positionPercentages = [this.percentage[0], this.percentage[1]];
     }
 
-    this.minHandle.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
-
-    this.maxHandle.nativeElement.style[this.stylePos] = positionPercentages[1] + '%';
+    this.renderer.setElementStyle(this.minHandle.nativeElement, this.stylePos, positionPercentages[0] + '%');
+    this.renderer.setElementStyle(this.maxHandle.nativeElement, this.stylePos, positionPercentages[1] + '%');
 
     /* Position highlight range elements */
     /*
@@ -380,23 +434,24 @@ export class SliderComponent implements AfterViewInit {
      }*/
 
     if (this.orientation === 'vertical') {
-      this.trackLow.nativeElement.style.top = '0';
-      this.trackLow.nativeElement.style.height = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+      this.renderer.setElementStyle(this.trackLow.nativeElement, 'top', '0');
+      this.renderer.setElementStyle(this.trackLow.nativeElement, 'height', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
 
-      this.trackSelection.nativeElement.style.top = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
-      this.trackSelection.nativeElement.style.height = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+      this.renderer.setElementStyle(this.trackSelection.nativeElement, 'top', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
+      this.renderer.setElementStyle(this.trackSelection.nativeElement, 'height', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
-      this.trackHigh.nativeElement.style.bottom = '0';
-      this.trackHigh.nativeElement.style.height = (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) + '%';
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'bottom', '0');
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'height', (Math.abs(positionPercentages[0] - positionPercentages[1])) + '%');
+
     } else {
-      this.trackLow.nativeElement.style.left = '0';
-      this.trackLow.nativeElement.style.width = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
+      this.renderer.setElementStyle(this.trackLow.nativeElement, 'left', '0');
+      this.renderer.setElementStyle(this.trackLow.nativeElement, 'width', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
 
-      this.trackSelection.nativeElement.style.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
-      this.trackSelection.nativeElement.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+      this.renderer.setElementStyle(this.trackSelection.nativeElement, 'left', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
+      this.renderer.setElementStyle(this.trackSelection.nativeElement, 'width', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
-      this.trackHigh.nativeElement.style.right = '0';
-      this.trackHigh.nativeElement.style.width = (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) + '%';
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'right', '0');
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'width', (Math.abs(positionPercentages[0] - positionPercentages[1])) + '%');
 
       /*
        let offset_min = this.tooltip_min.getBoundingClientRect();
@@ -511,6 +566,7 @@ export class SliderComponent implements AfterViewInit {
 
   private calculateValue(snapToClosestTick: boolean): any {
     let val: any;
+
     if (this.type === 'range') {
       val = [this.min, this.max];
       if (this.percentage[0] !== 0) {
