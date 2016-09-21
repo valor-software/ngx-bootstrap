@@ -1,47 +1,26 @@
 ### Usage
 ```typescript
-import { ProgressbarModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { SliderModule } from 'ng2-bootstrap/ng2-bootstrap';
 // or
-import { ProgressbarModule } from 'ng2-bootstrap/components/progressbar';
+import { SliderModule } from 'ng2-bootstrap/components/slider';
 ```
 
 ### Annotations
 ```typescript
-// class Progress implements OnInit
-@Directive({ selector: 'bs-progress, [progress]' })
-export class ProgressDirective implements OnInit {
-  @Input() public animate:boolean;
-
-  @HostBinding('attr.max')
-  @Input() public get max():number {}
-
-  @HostBinding('class') private addClass = 'progress';
-}
-
-// class Bar implements OnInit, OnDestroy
-@Component({
-  selector: 'bar, [bar]'
-})
-export class BarComponent implements OnInit, OnDestroy {
-  @Input() public type:string;
-  @Input() public get value():number
-}
-
-// class Progressbar
-@Component({
-  selector: 'progressbar, [progressbar]'
-})
-export class ProgressbarComponent {
-  @Input() private animate:boolean;
-  @Input() private max:number;
-  @Input() private type:string;
-  @Input() private value:number;
-}```
+// What here ?
+```
 
 ### Properties
 **Note**: all components have same meaning of properties
-  - `value` (`*number`) - current value of progress bar
-  - `type` (`*string`) - provide one of the four supported contextual classes:
-  `success`,`info`, `warning`, `danger`
-  - `max` (`?number=100`) - maximum total value of progress element
-  - `animate` (`?boolean=true`) - if `true` changing `value` of progress bar will be animated (*note*: not supported by Bootstrap 4)
+  - `value` (`*number`) - current value of slider
+  - `type` (`*string`) - provide one of the two supported contextual classes:
+  `slider`,`range`  (range not supported yet)
+  - `orientation` (`*string`) - current orientation of slider: `horizontal`, `vertical`
+  - `max` (`?number=100`) - maximum total value of slider
+  - `min` (`?number=0`) - minimum value of slider
+  - `step` (`?number=1`) - value of step
+  - `touchCapable` (`?boolean=true`) - is the slider touch capable
+  - `enabled` (`?boolean=true`) - is slider enabled
+  - `reversed` (`?boolean=false`) - reverse values of slider
+  - `selection` (`?string=before`) - choose witch side to color: `before`, `after` (not supported yet)
+  - `animate` (`?boolean=true`) - if `true` changing `value` of slider will be animated (not supported yet)
