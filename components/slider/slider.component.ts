@@ -57,12 +57,10 @@ export class SliderComponent implements AfterViewInit {
       this.mousePos = 'pageX';
       this.sizePos = 'offsetWidth';
     }
-    console.log(this.value, this._value);
 
     if (!Array.isArray(this.value)) {
       this._value = [(this.value as number)];
     }
-    console.log(this.value, this._value);
     this.value = this.value[0];// , false, false*/);
   }
 
@@ -142,7 +140,6 @@ export class SliderComponent implements AfterViewInit {
     } else {
       this.percentage = [0, 0, 100];
     }
-    console.log(this._value);
     this.layout();
 
     /*
@@ -178,7 +175,6 @@ export class SliderComponent implements AfterViewInit {
     } else {
       this.dragged = 0;
     }
-    console.log(percentage, this.size, this.sizePos);
     this.percentage[this.dragged] = percentage;
     this.layout();
 
@@ -435,7 +431,7 @@ export class SliderComponent implements AfterViewInit {
       this.trackSelection.nativeElement.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
 
       this.trackHigh.nativeElement.style.right = '0';
-      this.trackHigh.nativeElement.style.width = (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) + '%';
+      this.trackHigh.nativeElement.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
 
       /*
        let offset_min = this.tooltip_min.getBoundingClientRect();
