@@ -24,5 +24,8 @@
   "files": [
     "./demo/custom-typings.d.ts",
     "./ng2-bootstrap.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "factories"
+  }
 }

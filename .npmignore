@@ -39,3 +39,4 @@ webpack.config.js
 /components/**/*.ts
 !/components/**/*.d.ts
 
+factories

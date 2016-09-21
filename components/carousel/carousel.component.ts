@@ -7,27 +7,6 @@ import { SlideComponent } from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
 
-const NAVIGATION:any = {
-  [Ng2BootstrapTheme.BS4]: `
-    <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
-      <span class="icon-prev" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
-      <span class="icon-next" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  `,
-  [Ng2BootstrapTheme.BS3]: `
-    <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-  `
-};
-
 // todo:
 // (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
 /**
@@ -45,7 +24,14 @@ const NAVIGATION:any = {
          <li *ngFor="let slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
-      ${NAVIGATION[Ng2BootstrapConfig.theme]}
+      <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
+        <span class="icon-prev" aria-hidden="true"></span>
+        <span *ngIf="isBS4" class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
+        <span class="icon-next" aria-hidden="true"></span>
+        <span *ngIf="isBS4" class="sr-only">Next</span>
+      </a>
     </div>
   `
 })
@@ -70,6 +56,10 @@ export class CarouselComponent implements OnDestroy {
   private destroyed:boolean = false;
   private currentSlide:SlideComponent;
   private _interval:number;
+
+  public get isBS4():boolean {
+    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
+  }
 
   public ngOnDestroy():void {
     this.destroyed = true;
