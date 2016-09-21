@@ -9,7 +9,8 @@ let titleDoc = require('../../components/slider/title.md');
 let ts = require('!!raw?lang=typescript!./slider/slider-demo.ts');
 
 let templates: any = {
-  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./slider/slider-demo.html')
+  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./slider/slider-demo.html'),
+  [Ng2BootstrapTheme.BS4]: require('!!raw?lang=markup!./slider/slider-demo.html')
 };
 
 let html = templates[Ng2BootstrapConfig.theme];

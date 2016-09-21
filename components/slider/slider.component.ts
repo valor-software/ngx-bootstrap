@@ -28,7 +28,7 @@ export class SliderComponent implements AfterViewInit {
   @Input() public type: string = 'slider';
   @Input() public orientation: string = 'horizontal';
   @Input() public value: Array<number>;
-  // @ViewChild('sliderElem') private sliderElem: ElementRef;
+  @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
   @ViewChild('trackHigh') private trackHigh: ElementRef;
@@ -46,7 +46,7 @@ export class SliderComponent implements AfterViewInit {
   private mouseUpReference: any;
   private mouseMoveReference: any;
 
-  protected ngAfterViewInit(): void {
+  public ngAfterViewInit(): void {
     if (this.orientation === 'vertical') {
       this.stylePos = 'top';
       this.mousePos = 'pageY';
@@ -126,9 +126,8 @@ export class SliderComponent implements AfterViewInit {
       return false;
     }
 
-    this.offset = this.calculateOffset(event.target);
-    this.size = (event.target as any)[this.sizePos];
-    console.log('onMouseDown');
+    this.offset = this.calculateOffset(this.sliderElem.nativeElement);
+    this.size = this.sliderElem.nativeElement[this.sizePos];
 
     const percentage = this.getPercentage(event);
 
@@ -140,7 +139,7 @@ export class SliderComponent implements AfterViewInit {
     } else {
       this.dragged = 0;
     }
-
+    console.log(percentage, this.size, this.sizePos);
     this.percentage[this.dragged] = percentage;
     this.layout();
 
