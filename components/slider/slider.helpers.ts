@@ -19,6 +19,7 @@ export class SliderHelpers {
   }
 
   public static applyToFixedAndParseFloat(num: number, toFixedInput: number): number {
+    console.log(num, toFixedInput);
     const truncatedNum = num.toFixed(toFixedInput);
     return parseFloat(truncatedNum);
   }
@@ -31,9 +32,9 @@ export class SliderHelpers {
     }
   }
 
-  public static validateInputValue(val: any): any {
+  public static validateInputValue(val: any): Array<number> {
     if (typeof val === 'number') {
-      return val;
+      return [val];
     } else if (Array.isArray(val)) {
       SliderHelpers.validateArray(val);
       return val;
