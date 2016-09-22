@@ -4,15 +4,26 @@ import { SliderHelpers } from './slider.helpers';
 @Component({
   selector: 'slider',
   template: `
-    <div #sliderElem (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
+    <div #sliderElem (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
       <div class='slider-track'>
         <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
         <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
         <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
-      
-      <div #minHandle class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
-      <div #maxHandle class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
+      <div #tooltipMain class="tooltip tooltip-main {{ tooltip_position }}" role="presentation">
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner">Current value: {{ value }}</div>
+      </div>
+      <div #tooltipMin class="tooltip tooltip-min {{ tooltip_position }}" role="presentation">
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner"></div>
+      </div>
+      <div #tooltipMax class="tooltip tooltip-max {{ tooltip_position }}" role="presentation">
+        <div class="tooltip-arrow"></div>
+        <div class="tooltip-inner"></div>
+      </div>
+      <div #minHandle (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
+      <div #maxHandle (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
     </div>
   `
 })
@@ -25,12 +36,17 @@ export class SliderComponent implements AfterViewInit {
   @Input() public handleType: string = 'round';
   @Input() public type: string = 'slider';
   @Input() public orientation: string = 'horizontal';
+  @Input() public tooltip_position: string = 'top';
+  @Input() public tooltip: string = 'hover';
   @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
   @ViewChild('trackHigh') private trackHigh: ElementRef;
   @ViewChild('trackSelection') private trackSelection: ElementRef;
   @ViewChild('trackLow') private trackLow: ElementRef;
+  @ViewChild('tooltipMain') private tooltipMain: ElementRef;
+  @ViewChild('tooltipMin') private tooltipMin: ElementRef;
+  @ViewChild('tooltipMax') private tooltipMax: ElementRef;
   private offset: any;
   private dragged: number;
   private percentage: Array<number> = [];
@@ -48,7 +64,8 @@ export class SliderComponent implements AfterViewInit {
   private _min: number = 0;
   private _step: number = 1;
 
-  public constructor(private renderer: Renderer) {}
+  public constructor(private renderer: Renderer) {
+  }
 
   public ngAfterViewInit(): void {
     if (this.orientation === 'vertical') {
@@ -72,6 +89,7 @@ export class SliderComponent implements AfterViewInit {
   public get max(): number {
     return this._max;
   }
+
   public set max(val: number) {
     this._max = val;
     if (this._value) {
@@ -79,6 +97,7 @@ export class SliderComponent implements AfterViewInit {
       this.layout();
     }
   }
+
   @Input()
   public get min(): number {
     return this._min;
@@ -166,6 +185,16 @@ export class SliderComponent implements AfterViewInit {
      }*/
   }
 
+  protected showTooltip(): void {
+    this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
+    this.over = true;
+  }
+
+  protected hideTooltip(): void {
+    this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
+    this.over = false;
+  }
+
   protected onMouseDown(event: Event): boolean {
     if (!this.enabled) {
       return false;
@@ -175,7 +204,6 @@ export class SliderComponent implements AfterViewInit {
     this.size = this.sliderElem.nativeElement[this.sizePos];
 
     const percentage = this.getPercentage(event);
-    console.log('onMouseDown', percentage, this.type);
     if (this.type === 'range') {
       const diff1: number = Math.abs(this.percentage[0] - percentage);
       const diff2: number = Math.abs(this.percentage[1] - percentage);
@@ -227,7 +255,6 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private onMouseMove(event: Event): boolean {
-    console.log('onMouseMove');
     if (!this.enabled) {
       return false;
     }
@@ -237,14 +264,12 @@ export class SliderComponent implements AfterViewInit {
     this.percentage[this.dragged] = percentage;
     this.layout();
 
-    const val = this.calculateValue(true);
-    this.value = val;// , true, true*/);
+    this.value = this.calculateValue(true);
 
     return false;
   }
 
   private onMouseUp(): boolean {
-    console.log('onMouseUp');
     if (!this.enabled) {
       return false;
     }
@@ -266,12 +291,10 @@ export class SliderComponent implements AfterViewInit {
 
     this.inDrag = false;
     if (this.over === false) {
-      // this.hideTooltip();
+      this.hideTooltip();
     }
-    const val = this.calculateValue(true);
 
-    this.value = val; // , true, true*/);
-    // this._trigger('slideStop', val);
+    this.value = this.calculateValue(true);
 
     return false;
   }
@@ -288,6 +311,7 @@ export class SliderComponent implements AfterViewInit {
     this.renderer.setElementStyle(this.minHandle.nativeElement, this.stylePos, positionPercentages[0] + '%');
     this.renderer.setElementStyle(this.maxHandle.nativeElement, this.stylePos, positionPercentages[1] + '%');
 
+    this.setTooltipPosition();
     /* Position highlight range elements */
     /*
      if (this.rangeHighlightElements.length > 0 && Array.isArray(this.options.rangeHighlights) && this.options.rangeHighlights.length > 0) {
@@ -405,20 +429,20 @@ export class SliderComponent implements AfterViewInit {
      let innerTooltipMaxText = SliderHelpers.formatter(this.value[1]);
      this._setText(this.tooltipInner_max, innerTooltipMaxText);
 
-     this.tooltip_min.style[this.stylePos] = positionPercentages[0] + '%';
+     this.tooltipMin.style[this.stylePos] = positionPercentages[0] + '%';
 
      if (this.orientation === 'vertical') {
-     this._css(this.tooltip_min, 'margin-top', -this.tooltip_min.offsetHeight / 2 + 'px');
+     this._css(this.tooltipMin, 'margin-top', -this.tooltipMin.offsetHeight / 2 + 'px');
      } else {
-     this._css(this.tooltip_min, 'margin-left', -this.tooltip_min.offsetWidth / 2 + 'px');
+     this._css(this.tooltipMin, 'margin-left', -this.tooltipMin.offsetWidth / 2 + 'px');
      }
 
-     this.tooltip_max.style[this.stylePos] = positionPercentages[1] + '%';
+     this.tooltipMax.style[this.stylePos] = positionPercentages[1] + '%';
 
      if (this.orientation === 'vertical') {
-     this._css(this.tooltip_max, 'margin-top', -this.tooltip_max.offsetHeight / 2 + 'px');
+     this._css(this.tooltipMax, 'margin-top', -this.tooltipMax.offsetHeight / 2 + 'px');
      } else {
-     this._css(this.tooltip_max, 'margin-left', -this.tooltip_max.offsetWidth / 2 + 'px');
+     this._css(this.tooltipMax, 'margin-left', -this.tooltipMax.offsetWidth / 2 + 'px');
      }
      } else {
      formattedTooltipVal = SliderHelpers.formatter(this.value[0]);
@@ -440,10 +464,8 @@ export class SliderComponent implements AfterViewInit {
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'height', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
       this.renderer.setElementStyle(this.trackHigh.nativeElement, 'bottom', '0');
-      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'height', (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) +'%');
-
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'height', (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) + '%');
     } else {
-      console.log(positionPercentages);
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'left', '0');
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'width', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
 
@@ -451,35 +473,34 @@ export class SliderComponent implements AfterViewInit {
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'width', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
       this.renderer.setElementStyle(this.trackHigh.nativeElement, 'right', '0');
-      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'width', (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) +'%');
+      this.renderer.setElementStyle(this.trackHigh.nativeElement, 'width', (100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1])) + '%');
 
-      /*
-       let offset_min = this.tooltip_min.getBoundingClientRect();
-       let offset_max = this.tooltip_max.getBoundingClientRect();
+      let offset_min = this.tooltipMin.nativeElement.getBoundingClientRect();
+      let offset_max = this.tooltipMax.nativeElement.getBoundingClientRect();
 
-       if (this.options.tooltip_position === 'bottom') {
-       if (offset_min.right > offset_max.left) {
-       this._removeClass(this.tooltip_max, 'bottom');
-       this._addClass(this.tooltip_max, 'top');
-       this.tooltip_max.style.top = '';
-       this.tooltip_max.style.bottom = 22 + 'px';
-       } else {
-       this._removeClass(this.tooltip_max, 'top');
-       this._addClass(this.tooltip_max, 'bottom');
-       this.tooltip_max.style.top = this.tooltip_min.style.top;
-       this.tooltip_max.style.bottom = '';
-       }
-       } else {
-       if (offset_min.right > offset_max.left) {
-       this._removeClass(this.tooltip_max, 'top');
-       this._addClass(this.tooltip_max, 'bottom');
-       this.tooltip_max.style.top = 18 + 'px';
-       } else {
-       this._removeClass(this.tooltip_max, 'bottom');
-       this._addClass(this.tooltip_max, 'top');
-       this.tooltip_max.style.top = this.tooltip_min.style.top;
-       }
-       }*/
+      if (this.tooltip_position === 'bottom') {
+        if (offset_min.right > offset_max.left) {
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
+          this.tooltipMax.nativeElement.style.top = '';
+          this.tooltipMax.nativeElement.style.bottom = 22 + 'px';
+        } else {
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', false);
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', true);
+          this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
+          this.tooltipMax.nativeElement.style.bottom = '';
+        }
+      } else {
+        if (offset_min.right > offset_max.left) {
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', false);
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', true);
+          this.tooltipMax.nativeElement.style.top = 18 + 'px';
+        } else {
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
+          this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
+          this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
+        }
+      }
     }
   }
 
@@ -529,7 +550,6 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private adjustPercentageForRangeSliders(percentage: number): void {
-    console.log('adjustPercentageForRangeSliders', percentage);
     if (this.type === 'range') {
       let precision = SliderHelpers.getNumDigitsAfterDecimalPlace(percentage);
       precision = precision ? precision - 1 : 0;
@@ -545,25 +565,25 @@ export class SliderComponent implements AfterViewInit {
   }
 
   /*
-  private createHighlightRange(start: number, end: number) {
-    if (this.isHighlightRange(start, end)) {
-      if (start > end) {
-        return {'start': end, 'size': start - end};
-      }
-      return {'start': start, 'size': end - start};
-    }
-    return undefined;
-  }
+   private createHighlightRange(start: number, end: number) {
+   if (this.isHighlightRange(start, end)) {
+   if (start > end) {
+   return {'start': end, 'size': start - end};
+   }
+   return {'start': start, 'size': end - start};
+   }
+   return undefined;
+   }
 
-  private isHighlightRange(start: number, end: number) {
-    if (0 <= start && start <= 100 && 0 <= end && end <= 100) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
-  */
+   private isHighlightRange(start: number, end: number) {
+   if (0 <= start && start <= 100 && 0 <= end && end <= 100) {
+   return true;
+   }
+   else {
+   return false;
+   }
+   }
+   */
 
   private calculateValue(snapToClosestTick: boolean): any {
     let val: any;
@@ -603,7 +623,6 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private applyPrecision(val: number): number {
-    console.log('val', val);
     const precision = SliderHelpers.getNumDigitsAfterDecimalPlace(this.step);
     return SliderHelpers.applyToFixedAndParseFloat(val, precision);
   }
@@ -666,4 +685,25 @@ export class SliderComponent implements AfterViewInit {
     }
   }
 
+  private setTooltipPosition(): void {
+    const tooltips = [this.tooltipMain, this.tooltipMin, this.tooltipMax];
+    if (this.orientation === 'vertical') {
+      const tooltipPos = this.tooltip_position || 'right';
+      const oppositeSide = (tooltipPos === 'left') ? 'right' : 'left';
+      tooltips.forEach((tooltip: ElementRef) => {
+        this.renderer.setElementClass(tooltip.nativeElement, tooltipPos, true);
+        tooltip.nativeElement.style[oppositeSide] = '100%';
+      });
+    } else if(this.tooltip_position === 'bottom') {
+      tooltips.forEach((tooltip: ElementRef) => {
+        this.renderer.setElementClass(tooltip.nativeElement, 'bottom', true);
+        tooltip.nativeElement.style.top = 22 + 'px';
+      });
+    } else {
+      tooltips.forEach((tooltip: ElementRef) => {
+        this.renderer.setElementClass(tooltip.nativeElement, 'top', true);
+        tooltip.nativeElement.style.top = -tooltip.nativeElement.style.outerHeight - 14 + 'px';
+      });
+    }
+  }
 }
