@@ -10,17 +10,17 @@ import { SliderHelpers } from './slider.helpers';
         <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
         <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
-      <div #tooltipMain class="tooltip tooltip-main {{ tooltip_position }}" role="presentation">
+      <div #tooltipMain class="tooltip tooltip-main {{ tooltipPosition }}" role="presentation">
         <div class="tooltip-arrow"></div>
-        <div class="tooltip-inner">Current value: {{ value }}</div>
+        <div #tooltipMainInner class="tooltip-inner">Current value: {{ value }}</div>
       </div>
-      <div #tooltipMin class="tooltip tooltip-min {{ tooltip_position }}" role="presentation">
+      <div #tooltipMin class="tooltip tooltip-min {{ tooltipPosition }}" role="presentation">
         <div class="tooltip-arrow"></div>
-        <div class="tooltip-inner"></div>
+        <div #tooltipMinInner class="tooltip-inner"></div>
       </div>
-      <div #tooltipMax class="tooltip tooltip-max {{ tooltip_position }}" role="presentation">
+      <div #tooltipMax class="tooltip tooltip-max {{ tooltipPosition }}" role="presentation">
         <div class="tooltip-arrow"></div>
-        <div class="tooltip-inner"></div>
+        <div #tooltipMaxInner class="tooltip-inner"></div>
       </div>
       <div #minHandle (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
       <div #maxHandle (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
@@ -36,8 +36,9 @@ export class SliderComponent implements AfterViewInit {
   @Input() public handleType: string = 'round';
   @Input() public type: string = 'slider';
   @Input() public orientation: string = 'horizontal';
-  @Input() public tooltip_position: string = 'top';
-  @Input() public tooltip: string = 'hover';
+  @Input() public tooltipPosition: string = 'top';
+  @Input() public tooltipSplit: boolean;
+  @Input() public tooltipMode: string = 'hover';
   @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
@@ -45,8 +46,11 @@ export class SliderComponent implements AfterViewInit {
   @ViewChild('trackSelection') private trackSelection: ElementRef;
   @ViewChild('trackLow') private trackLow: ElementRef;
   @ViewChild('tooltipMain') private tooltipMain: ElementRef;
+  @ViewChild('tooltipMainInner') private tooltipMainInner: ElementRef;
   @ViewChild('tooltipMin') private tooltipMin: ElementRef;
+  @ViewChild('tooltipMinInner') private tooltipMinInner: ElementRef;
   @ViewChild('tooltipMax') private tooltipMax: ElementRef;
+  @ViewChild('tooltipMaxInner') private tooltipMaxInner: ElementRef;
   private offset: any;
   private dragged: number;
   private percentage: Array<number> = [];
@@ -72,10 +76,16 @@ export class SliderComponent implements AfterViewInit {
       this.stylePos = 'top';
       this.mousePos = 'pageY';
       this.sizePos = 'offsetHeight';
+      if(this.tooltipPosition === 'top' || this.tooltipPosition === 'bottom') {
+        this.tooltipPosition = 'right';
+      }
     } else {
       this.stylePos = 'left';
       this.mousePos = 'pageX';
       this.sizePos = 'offsetWidth';
+      if(this.tooltipPosition === 'left' || this.tooltipPosition === 'right') {
+        this.tooltipPosition = 'top';
+      }
     }
 
     if (!Array.isArray(this._value)) {
@@ -186,12 +196,25 @@ export class SliderComponent implements AfterViewInit {
   }
 
   protected showTooltip(): void {
-    this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
+    if (this.tooltipSplit) {
+      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
+      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', true);
+      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', true);
+
+    } else {
+      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
+      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', false);
+      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', false);
+    }
     this.over = true;
   }
 
-  protected hideTooltip(): void {
-    this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
+  protected hideTooltip(force: boolean = false): void {
+    if ((!this.inDrag && this.tooltipMode !== 'always') || force) {
+      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
+      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', false);
+      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', false);
+    }
     this.over = false;
   }
 
@@ -302,6 +325,10 @@ export class SliderComponent implements AfterViewInit {
   private layout(): void {
     let positionPercentages: Array<number>;
 
+    if (this.tooltipMode === 'always') {
+      this.showTooltip();
+    }
+
     if (this.reversed) {
       positionPercentages = [100 - this.percentage[0], this.type === 'range' ? 100 - this.percentage[1] : this.percentage[1]];
     } else {
@@ -403,58 +430,53 @@ export class SliderComponent implements AfterViewInit {
      }
      */
 
-    /*
-     let formattedTooltipVal;
-     if (this.type === 'range') {
-     formattedTooltipVal = SliderHelpers.formatter(this.value);
-     this._setText(this.tooltipInner, formattedTooltipVal);
+    let formattedTooltipVal: string  = SliderHelpers.formatter(this.value);
+    this.setText(this.tooltipMainInner.nativeElement, formattedTooltipVal);
+    if (this.type === 'range') {
+      this.tooltipMain.nativeElement.style[this.stylePos] = (positionPercentages[1] + positionPercentages[0]) / 2 + '%';
 
-     this.tooltip.style[this.stylePos] = (positionPercentages[1] + positionPercentages[0])/2 + '%';
+      if (this.orientation === 'vertical') {
+        this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
+      } else {
+        this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-left', -this.tooltipMain.nativeElement.offsetWidth / 2 + 'px');
+      }
 
-     if (this.orientation === 'vertical') {
-     this._css(this.tooltip, 'margin-top', -this.tooltip.offsetHeight / 2 + 'px');
-     } else {
-     this._css(this.tooltip, 'margin-left', -this.tooltip.offsetWidth / 2 + 'px');
-     }
+      if (this.orientation === 'vertical') {
+        this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
+      } else {
+        this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-left', -this.tooltipMain.nativeElement.offsetWidth / 2 + 'px');
+      }
 
-     if (this.orientation === 'vertical') {
-     this._css(this.tooltip, 'margin-top', -this.tooltip.offsetHeight / 2 + 'px');
-     } else {
-     this._css(this.tooltip, 'margin-left', -this.tooltip.offsetWidth / 2 + 'px');
-     }
+      let innerTooltipMinText = SliderHelpers.formatter(this.value[0]);
+      this.setText(this.tooltipMinInner.nativeElement, innerTooltipMinText);
 
-     let innerTooltipMinText = SliderHelpers.formatter(this.value[0]);
-     this._setText(this.tooltipInner_min, innerTooltipMinText);
+      let innerTooltipMaxText = SliderHelpers.formatter(this.value[1]);
+      this.setText(this.tooltipMaxInner.nativeElement, innerTooltipMaxText);
 
-     let innerTooltipMaxText = SliderHelpers.formatter(this.value[1]);
-     this._setText(this.tooltipInner_max, innerTooltipMaxText);
+      this.tooltipMin.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
 
-     this.tooltipMin.style[this.stylePos] = positionPercentages[0] + '%';
+      if (this.orientation === 'vertical') {
+        this.renderer.setElementStyle(this.tooltipMin.nativeElement, 'margin-top', -this.tooltipMin.nativeElement.offsetHeight / 2 + 'px');
+      } else {
+        this.renderer.setElementStyle(this.tooltipMin.nativeElement, 'margin-left', -this.tooltipMin.nativeElement.offsetWidth / 2 + 'px');
+      }
 
-     if (this.orientation === 'vertical') {
-     this._css(this.tooltipMin, 'margin-top', -this.tooltipMin.offsetHeight / 2 + 'px');
-     } else {
-     this._css(this.tooltipMin, 'margin-left', -this.tooltipMin.offsetWidth / 2 + 'px');
-     }
+      this.tooltipMax.nativeElement.style[this.stylePos] = positionPercentages[1] + '%';
 
-     this.tooltipMax.style[this.stylePos] = positionPercentages[1] + '%';
+      if (this.orientation === 'vertical') {
+        this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'margin-top', -this.tooltipMax.nativeElement.offsetHeight / 2 + 'px');
+      } else {
+        this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'margin-left', -this.tooltipMax.nativeElement.offsetWidth / 2 + 'px');
+      }
 
-     if (this.orientation === 'vertical') {
-     this._css(this.tooltipMax, 'margin-top', -this.tooltipMax.offsetHeight / 2 + 'px');
-     } else {
-     this._css(this.tooltipMax, 'margin-left', -this.tooltipMax.offsetWidth / 2 + 'px');
-     }
-     } else {
-     formattedTooltipVal = SliderHelpers.formatter(this.value[0]);
-     this._setText(this.tooltipInner, formattedTooltipVal);
-
-     this.tooltip.style[this.stylePos] = positionPercentages[0] + '%';
-     if (this.orientation === 'vertical') {
-     this._css(this.tooltip, 'margin-top', -this.tooltip.offsetHeight / 2 + 'px');
-     } else {
-     this._css(this.tooltip, 'margin-left', -this.tooltip.offsetWidth / 2 + 'px');
-     }
-     }*/
+    } else {
+      this.tooltipMain.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
+      if (this.orientation === 'vertical') {
+        this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
+      } else {
+        this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-left', -this.tooltipMain.nativeElement.offsetWidth / 2 + 'px');
+      }
+    }
 
     if (this.orientation === 'vertical') {
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'top', '0');
@@ -478,7 +500,7 @@ export class SliderComponent implements AfterViewInit {
       let offset_min = this.tooltipMin.nativeElement.getBoundingClientRect();
       let offset_max = this.tooltipMax.nativeElement.getBoundingClientRect();
 
-      if (this.tooltip_position === 'bottom') {
+      if (this.tooltipPosition === 'bottom') {
         if (offset_min.right > offset_max.left) {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
@@ -501,6 +523,14 @@ export class SliderComponent implements AfterViewInit {
           this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
         }
       }
+    }
+  }
+
+  private setText(element: any, text: string): void {
+    if (typeof element.textContent !== 'undefined') {
+      element.textContent = text;
+    } else if (typeof element.innerText !== 'undefined') {
+      element.innerText = text;
     }
   }
 
@@ -688,13 +718,13 @@ export class SliderComponent implements AfterViewInit {
   private setTooltipPosition(): void {
     const tooltips = [this.tooltipMain, this.tooltipMin, this.tooltipMax];
     if (this.orientation === 'vertical') {
-      const tooltipPos = this.tooltip_position || 'right';
+      const tooltipPos = this.tooltipPosition || 'right';
       const oppositeSide = (tooltipPos === 'left') ? 'right' : 'left';
       tooltips.forEach((tooltip: ElementRef) => {
         this.renderer.setElementClass(tooltip.nativeElement, tooltipPos, true);
         tooltip.nativeElement.style[oppositeSide] = '100%';
       });
-    } else if(this.tooltip_position === 'bottom') {
+    } else if (this.tooltipPosition === 'bottom') {
       tooltips.forEach((tooltip: ElementRef) => {
         this.renderer.setElementClass(tooltip.nativeElement, 'bottom', true);
         tooltip.nativeElement.style.top = 22 + 'px';

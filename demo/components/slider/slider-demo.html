@@ -23,13 +23,35 @@
   <button type="button" class="btn btn-sm btn-primary" (click)="changeMin()">Change min</button>
   <button type="button" class="btn btn-sm btn-primary" (click)="toggleStep()">Toggle step</button>
 </h3>
-<slider ngClass="colored" selection="all" type="range" [max]="max" [min]="min" [step]="step" [value]="[20, 100]"></slider>
+<div class="sliders-block">
+  <slider ngClass="colored" selection="all" type="range" [max]="max" [min]="min" [step]="step"
+          [value]="[20, 100]"></slider>
+  <br><br>
+  <slider ngClass="colored" type="range" tooltipSplit="true" [value]="[50, 80]"></slider>
+</div>
 
 <hr/>
 <h3>Handles</h3>
 <div class="sliders-block">
   <slider ngClass="slider1" [value]="50" handleType="square"></slider>
+  <br><br>
   <slider ngClass="slider2" selection="after" [value]="50" handleType="triangle"></slider>
+  <br><br>
   <slider ngClass="slider3" [value]="50" [step]="10"></slider>
+  <br><br>
   <slider ngClass="slider4" [value]="50" handleType="custom"></slider>
+</div>
+
+<hr/>
+<h3>Tooltips</h3>
+<div class="row">
+  <div class="col-sm-2">
+    <slider [value]="20" tooltipPosition="bottom"></slider>
+    <br><br><br>
+    <slider [value]="70" tooltipMode="always"></slider>
+  </div>
+  <div class="col-sm-2">
+    <slider [value]="20" tooltipPosition="left" orientation="vertical"></slider>
+    <slider [value]="70" orientation="vertical"></slider>
+  </div>
 </div>
