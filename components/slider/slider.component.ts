@@ -22,8 +22,8 @@ import { SliderHelpers } from './slider.helpers';
         <div class="tooltip-arrow"></div>
         <div #tooltipMaxInner class="tooltip-inner"></div>
       </div>
-      <div #minHandle (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
-      <div #maxHandle (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
+      <div #minHandle tabindex="0" (keydown)="keydown(0, $event)" (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
+      <div #maxHandle tabindex="0" (keydown)="keydown(1, $event)" (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
     </div>
   `
 })
@@ -76,14 +76,14 @@ export class SliderComponent implements AfterViewInit {
       this.stylePos = 'top';
       this.mousePos = 'pageY';
       this.sizePos = 'offsetHeight';
-      if(this.tooltipPosition === 'top' || this.tooltipPosition === 'bottom') {
+      if (this.tooltipPosition === 'top' || this.tooltipPosition === 'bottom') {
         this.tooltipPosition = 'right';
       }
     } else {
       this.stylePos = 'left';
       this.mousePos = 'pageX';
       this.sizePos = 'offsetWidth';
-      if(this.tooltipPosition === 'left' || this.tooltipPosition === 'right') {
+      if (this.tooltipPosition === 'left' || this.tooltipPosition === 'right') {
         this.tooltipPosition = 'top';
       }
     }
@@ -277,6 +277,48 @@ export class SliderComponent implements AfterViewInit {
     return true;
   }
 
+  protected keydown(handleIdx: number, ev: Event): boolean {
+    if (!this.enabled) {
+      return false;
+    }
+
+    let dir: number;
+    switch ((ev as any).keyCode) {
+      case 37: // left
+      case 40: // down
+        dir = -1;
+        break;
+      case 39: // right
+      case 38: // up
+        dir = 1;
+        break;
+      default: return;
+    }
+
+    // use natural arrow keys instead of from min to max
+    const ifVerticalAndNotReversed = (this.orientation === 'vertical' && !this.reversed);
+    const ifHorizontalAndReversed = (this.orientation === 'horizontal' && this.reversed);
+
+    if (ifVerticalAndNotReversed || ifHorizontalAndReversed) {
+      dir = -dir;
+    }
+
+    let val: any;
+    if (this.type === 'range') {
+      val = this.value[handleIdx] + dir * this.step;
+      val = [(!handleIdx) ? val : this.value[0],
+        ( handleIdx) ? val : this.value[1]];
+    } else {
+      val = this.value + dir * this.step;
+    }
+
+    this.value = val;
+
+    SliderHelpers.pauseEvent(ev);
+
+    return false;
+  }
+
   private onMouseMove(event: Event): boolean {
     if (!this.enabled) {
       return false;
@@ -430,7 +472,7 @@ export class SliderComponent implements AfterViewInit {
      }
      */
 
-    let formattedTooltipVal: string  = SliderHelpers.formatter(this.value);
+    let formattedTooltipVal: string = SliderHelpers.formatter(this.value);
     this.setText(this.tooltipMainInner.nativeElement, formattedTooltipVal);
     if (this.type === 'range') {
       this.tooltipMain.nativeElement.style[this.stylePos] = (positionPercentages[1] + positionPercentages[0]) / 2 + '%';
