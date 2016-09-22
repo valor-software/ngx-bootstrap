@@ -33,6 +33,7 @@ export class TabDirective implements OnInit, OnDestroy, DoCheck {
   @Input() public heading:string;
   @Input() public disabled:boolean;
   @Input() public removable:boolean;
+  @Input() public index:number = 0;
 
   /** tab active state toogle */
   @HostBinding('class.active')
@@ -58,6 +59,7 @@ export class TabHeadingDirective {}
   - `active` (`?boolean=false`) - if tab is active equals true, or set `true` to activate tab
   - `disabled` (`?boolean=false`) - if `true` tab can not be activated
   - `removable` (`?boolean=false`) - if `true` tab can be removable, additional button will appear
+  - `index` (`?number=0`) - tab order in which they are displayed
 
 ### Tab events
   - `select` - fired when `tab` became active, `$event:Tab` equals to selected instance of `Tab` component

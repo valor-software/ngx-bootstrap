@@ -20,7 +20,7 @@
          (removed)="removeTabHandler(tabz)">
       {{tabz?.content}}
     </tab>
-    <tab (select)="alertMe()">
+    <tab (select)="alertMe()" [index]="99">
       <template tabHeading>
         <i class="glyphicon glyphicon-bell"></i> Alert!
       </template>
