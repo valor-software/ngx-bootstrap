@@ -98,7 +98,7 @@
     "systemjs-builder": "0.15.31",
     "tslint-config-valorsoft": "1.1.1",
     "typedoc": "0.4.5",
-    "typescript": "2.0.2",
+    "typescript": "2.0.3",
     "zone.js": "0.6.23"
   }
 }
