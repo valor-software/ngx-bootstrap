@@ -10,6 +10,12 @@ import { SliderHelpers } from './slider.helpers';
         <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
         <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
+      <div #sliderLabelsContainer class="slider-tick-label-container" [ngClass]="{hide: labels.length === 0}">
+        <div *ngFor="let label of labels" class="slider-tick-label">{{ label }}</div>
+      </div>
+      <div #sliderTicksContainer class="slider-tick-container" [ngClass]="{hide: ticks.length === 0}">
+        <div *ngFor="let tick of ticks" class="slider-tick {{ handleType }}"></div>
+      </div>
       <div #tooltipMain class="tooltip tooltip-main {{ tooltipPosition }}" role="presentation">
         <div class="tooltip-arrow"></div>
         <div #tooltipMainInner class="tooltip-inner">Current value: {{ value }}</div>
@@ -39,6 +45,10 @@ export class SliderComponent implements AfterViewInit {
   @Input() public tooltipPosition: string = 'top';
   @Input() public tooltipSplit: boolean;
   @Input() public tooltipMode: string = 'hover';
+  @Input() public ticks: Array<number> = [];
+  @Input() public ticksPositions: Array<number> = [];
+  @Input() public ticksLabels: Array<string> = [];
+  @Input() public ticksSnapBounds: number = 0;
   @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
@@ -51,6 +61,8 @@ export class SliderComponent implements AfterViewInit {
   @ViewChild('tooltipMinInner') private tooltipMinInner: ElementRef;
   @ViewChild('tooltipMax') private tooltipMax: ElementRef;
   @ViewChild('tooltipMaxInner') private tooltipMaxInner: ElementRef;
+  @ViewChild('sliderTicksContainer') private sliderTicksContainer: ElementRef;
+  @ViewChild('sliderLabelsContainer') private sliderLabelsContainer: ElementRef;
   private offset: any;
   private dragged: number;
   private percentage: Array<number> = [];
@@ -63,7 +75,7 @@ export class SliderComponent implements AfterViewInit {
   private mouseUpReference: any;
   private mouseMoveReference: any;
   private eventRemoveCallback: any = {};
-  private _value: Array<number>;
+  private _value: Array<number> = [0, 0];
   private _max: number = 100;
   private _min: number = 0;
   private _step: number = 1;
@@ -140,6 +152,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   public set value(val: any) {
+    // debugger;
     if (!val) {
       val = 0;
     }
@@ -292,7 +305,8 @@ export class SliderComponent implements AfterViewInit {
       case 38: // up
         dir = 1;
         break;
-      default: return;
+      default:
+        return;
     }
 
     // use natural arrow keys instead of from min to max
@@ -365,6 +379,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private layout(): void {
+    // debugger;
     let positionPercentages: Array<number>;
 
     if (this.tooltipMode === 'always') {
@@ -381,96 +396,71 @@ export class SliderComponent implements AfterViewInit {
     this.renderer.setElementStyle(this.maxHandle.nativeElement, this.stylePos, positionPercentages[1] + '%');
 
     this.setTooltipPosition();
-    /* Position highlight range elements */
-    /*
-     if (this.rangeHighlightElements.length > 0 && Array.isArray(this.options.rangeHighlights) && this.options.rangeHighlights.length > 0) {
-     for (let i = 0; i < this.options.rangeHighlights.length; i++) {
-     let startPercent = this._toPercentage(this.options.rangeHighlights[i].start);
-     let endPercent = this._toPercentage(this.options.rangeHighlights[i].end);
-
-     let currentRange = this.createHighlightRange(startPercent, endPercent);
-
-     if (currentRange) {
-     if (this.orientation === 'vertical') {
-     this.rangeHighlightElements[i].style.top = `${currentRange.start}%`;
-     this.rangeHighlightElements[i].style.height = `${currentRange.size}%`;
-     } else {
-     this.rangeHighlightElements[i].style.left = `${currentRange.start}%`;
-     this.rangeHighlightElements[i].style.width = `${currentRange.size}%`;
-     }
-     } else {
-     this.rangeHighlightElements[i].style.display = 'none';
-     }
-     }
-     }*/
 
     /* Position ticks and labels */
-    /*
-     if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
+    if (Array.isArray(this.ticks) && this.ticks.length > 0) {
+      let styleSize = this.orientation === 'vertical' ? 'height' : 'width';
+      let styleMargin = this.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
+      let labelSize = this.size / (this.ticks.length - 1);
 
-     let styleSize = this.orientation === 'vertical' ? 'height' : 'width';
-     let styleMargin = this.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
-     let labelSize = this.size / (this.options.ticks.length - 1);
+      if (this.sliderTicksContainer) {
+        let extraMargin = 0;
+        if (this.ticksPositions.length === 0) {
+          if (this.orientation !== 'vertical') {
+            this.sliderTicksContainer.nativeElement.style[styleMargin] = -labelSize / 2 + 'px';
+          }
 
-     if (this.tickLabelContainer) {
-     let extraMargin = 0;
-     if (this.options.ticks_positions.length === 0) {
-     if (this.orientation !== 'vertical') {
-     this.tickLabelContainer.style[styleMargin] = -labelSize/2 + 'px';
-     }
+          extraMargin = this.sliderTicksContainer.nativeElement.offsetHeight;
+        } else {
+          // Chidren are position absolute, calculate height by finding the max offsetHeight of a child
+          for (let i = 0; i < this.sliderTicksContainer.nativeElement.childNodes.length; i++) {
+            if (this.sliderTicksContainer.nativeElement.childNodes[i].offsetHeight > extraMargin) {
+              extraMargin = this.sliderTicksContainer.nativeElement.childNodes[i].offsetHeight;
+            }
+          }
+        }
+        if (this.orientation === 'horizontal') {
+          this.sliderElem.nativeElement.style.marginBottom = extraMargin + 'px';
+        }
+      }
 
-     extraMargin = this.tickLabelContainer.offsetHeight;
-     } else {
-     // Chidren are position absolute, calculate height by finding the max offsetHeight of a child
-     for (i = 0 ; i < this.tickLabelContainer.childNodes.length; i++) {
-     if (this.tickLabelContainer.childNodes[i].offsetHeight > extraMargin) {
-     extraMargin = this.tickLabelContainer.childNodes[i].offsetHeight;
-     }
-     }
-     }
-     if (this.orientation === 'horizontal') {
-     this.sliderElem.nativeElement.style.marginBottom = extraMargin + 'px';
-     }
-     }
+      for (let i = 0; i < this.ticks.length; i++) {
+        const tick = this.sliderTicksContainer.nativeElement.childNodes[i];
+        const label = this.sliderLabelsContainer.nativeElement.childNodes[i];
+        let percentage: number = this.ticksPositions[i] || this.toPercentage(this.ticks[i]);
 
-     for (let i = 0; i < this.options.ticks.length; i++) {
+        if (this.reversed) {
+          percentage = 100 - percentage;
+        }
 
-     let percentage = this.options.ticks_positions[i] || this._toPercentage(this.options.ticks[i]);
+        tick.style[this.stylePos] = percentage + '%';
 
-     if (this.reversed) {
-     percentage = 100 - percentage;
-     }
+        // Set class labels to denote whether ticks are in the selection
+        this.renderer.setElementClass(this.ticks[i], 'in-selection', false);
+        if (this.type !== 'range') {
+          if (this.selection === 'after' && percentage >= positionPercentages[0]) {
+            this.renderer.setElementClass(tick, 'in-selection', true);
+          } else if (this.selection === 'before' && percentage <= positionPercentages[0]) {
+            this.renderer.setElementClass(tick, 'in-selection', true);
+          }
+        } else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
+          this.renderer.setElementClass(tick, 'in-selection', true);
+        }
 
-     this.ticks[i].style[this.stylePos] = percentage + '%';
+        if (label) {
+          label.style[styleSize] = labelSize + 'px';
 
-     // Set class labels to denote whether ticks are in the selection
-     this._removeClass(this.ticks[i], 'in-selection');
-     if (this.type !== 'range') {
-     if (this.options.selection === 'after' && percentage >= positionPercentages[0]){
-     this._addClass(this.ticks[i], 'in-selection');
-     } else if (this.options.selection === 'before' && percentage <= positionPercentages[0]) {
-     this._addClass(this.ticks[i], 'in-selection');
-     }
-     } else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
-     this._addClass(this.ticks[i], 'in-selection');
-     }
-
-     if (this.tickLabels[i]) {
-     this.tickLabels[i].style[styleSize] = labelSize + 'px';
-
-     if (this.orientation !== 'vertical' && this.options.ticks_positions[i] !== undefined) {
-     this.tickLabels[i].style.position = 'absolute';
-     this.tickLabels[i].style[this.stylePos] = percentage + '%';
-     this.tickLabels[i].style[styleMargin] = -labelSize/2 + 'px';
-     } else if (this.orientation === 'vertical') {
-     this.tickLabels[i].style['marginLeft'] =  this.sliderElem.nativeElement.offsetWidth + 'px';
-     this.tickLabelContainer.style['marginTop'] = this.sliderElem.nativeElement.offsetWidth / 2 * -1 + 'px';
-     }
-     }
-     }
-
-     }
-     */
+          if (this.orientation !== 'vertical' && this.ticksPositions[i] !== undefined) {
+            label.style.position = 'absolute';
+            label.style[this.stylePos] = percentage + '%';
+            label.style[styleMargin] = -labelSize / 2 + 'px';
+          } else if (this.orientation === 'vertical') {
+            label.style['marginLeft'] = this.sliderElem.nativeElement.offsetWidth + 'px';
+            this.sliderTicksContainer.nativeElement.style['marginTop'] = this.sliderElem.nativeElement.offsetWidth / 2 * -1 + 'px';
+          }
+        }
+      }
+    }
 
     let formattedTooltipVal: string = SliderHelpers.formatter(this.value);
     this.setText(this.tooltipMainInner.nativeElement, formattedTooltipVal);
