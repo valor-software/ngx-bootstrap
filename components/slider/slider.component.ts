@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, Renderer } from '@angular/core';
+import { Component, Input, ElementRef, QueryList, ViewChild, ViewChildren, AfterViewInit, Renderer, OnInit } from '@angular/core';
 import { SliderHelpers } from './slider.helpers';
 
 @Component({
@@ -10,11 +10,12 @@ import { SliderHelpers } from './slider.helpers';
         <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
         <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
-      <div #sliderLabelsContainer class="slider-tick-label-container" [ngClass]="{hide: labels.length === 0}">
-        <div *ngFor="let label of labels" class="slider-tick-label">{{ label }}</div>
+      
+      <div class="slider-tick-label-container" [ngClass]="{hide: labels.length === 0}">
+        <div #labelElements *ngFor="let label of ticksLabels" class="slider-tick-label">{{ label }}</div>
       </div>
-      <div #sliderTicksContainer class="slider-tick-container" [ngClass]="{hide: ticks.length === 0}">
-        <div *ngFor="let tick of ticks" class="slider-tick {{ handleType }}"></div>
+      <div class="slider-tick-container" [ngClass]="{hide: ticks.length === 0}">
+        <div #tickElements *ngFor="let tick of ticks" class="slider-tick {{ handleType }}">&nbsp;</div>
       </div>
       <div #tooltipMain class="tooltip tooltip-main {{ tooltipPosition }}" role="presentation">
         <div class="tooltip-arrow"></div>
@@ -33,7 +34,7 @@ import { SliderHelpers } from './slider.helpers';
     </div>
   `
 })
-export class SliderComponent implements AfterViewInit {
+export class SliderComponent implements OnInit, AfterViewInit {
   @Input() public animate: boolean;
   @Input() public enabled: boolean = true;
   @Input() public reversed: boolean;
@@ -45,9 +46,9 @@ export class SliderComponent implements AfterViewInit {
   @Input() public tooltipPosition: string = 'top';
   @Input() public tooltipSplit: boolean;
   @Input() public tooltipMode: string = 'hover';
-  @Input() public ticks: Array<number> = [];
-  @Input() public ticksPositions: Array<number> = [];
-  @Input() public ticksLabels: Array<string> = [];
+  @Input() public ticks: Array<number> = [5, 30, 50];
+  @Input() public ticksPositions: Array<number> = [0, 30, 100];
+  @Input() public ticksLabels: Array<string> = ['one', 'two', 'tree'];
   @Input() public ticksSnapBounds: number = 0;
   @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
@@ -61,10 +62,14 @@ export class SliderComponent implements AfterViewInit {
   @ViewChild('tooltipMinInner') private tooltipMinInner: ElementRef;
   @ViewChild('tooltipMax') private tooltipMax: ElementRef;
   @ViewChild('tooltipMaxInner') private tooltipMaxInner: ElementRef;
-  @ViewChild('sliderTicksContainer') private sliderTicksContainer: ElementRef;
-  @ViewChild('sliderLabelsContainer') private sliderLabelsContainer: ElementRef;
+  // @ViewChild('sliderTicksContainer') private sliderTicksContainer: ElementRef;
+  // @ViewChild('sliderLabelsContainer') private sliderLabelsContainer: ElementRef;
+  @ViewChildren('tickElements') private tickElements: QueryList<ElementRef>;
+  @ViewChildren('labelElements') private labelElements: QueryList<ElementRef>;
+
   private offset: any;
   private dragged: number;
+  private isInitialized: boolean;
   private percentage: Array<number> = [];
   private size: any;
   private stylePos: string;
@@ -83,7 +88,7 @@ export class SliderComponent implements AfterViewInit {
   public constructor(private renderer: Renderer) {
   }
 
-  public ngAfterViewInit(): void {
+  public ngOnInit(): void {
     if (this.orientation === 'vertical') {
       this.stylePos = 'top';
       this.mousePos = 'pageY';
@@ -99,11 +104,16 @@ export class SliderComponent implements AfterViewInit {
         this.tooltipPosition = 'top';
       }
     }
+  }
+
+  public ngAfterViewInit(): void {
+    console.log(this.ticks, this.ticksLabels, this.ticksPositions, this.tickElements, this.labelElements);
+    this.size = this.sliderElem.nativeElement[this.sizePos];
 
     if (!Array.isArray(this._value)) {
       this._value = [this._value as number];
     }
-
+    this.isInitialized = true;
     this.value = this._value;
   }
 
@@ -114,10 +124,6 @@ export class SliderComponent implements AfterViewInit {
 
   public set max(val: number) {
     this._max = val;
-    if (this._value) {
-      this.value = this.value;
-      this.layout();
-    }
   }
 
   @Input()
@@ -127,10 +133,6 @@ export class SliderComponent implements AfterViewInit {
 
   public set min(val: number) {
     this._min = val;
-    if (this._value) {
-      this.value = this.value;
-      this.layout();
-    }
   }
 
   @Input()
@@ -140,10 +142,6 @@ export class SliderComponent implements AfterViewInit {
 
   public set step(val: number) {
     this._step = val;
-    if (this._value) {
-      this.value = this.value;
-      this.layout();
-    }
   }
 
   @Input()
@@ -152,7 +150,6 @@ export class SliderComponent implements AfterViewInit {
   }
 
   public set value(val: any) {
-    // debugger;
     if (!val) {
       val = 0;
     }
@@ -379,6 +376,9 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private layout(): void {
+    if(!this.isInitialized) {
+      return;
+    }
     // debugger;
     let positionPercentages: Array<number>;
 
@@ -397,7 +397,7 @@ export class SliderComponent implements AfterViewInit {
 
     this.setTooltipPosition();
 
-    /* Position ticks and labels */
+    /* Position ticks and labels
     if (Array.isArray(this.ticks) && this.ticks.length > 0) {
       let styleSize = this.orientation === 'vertical' ? 'height' : 'width';
       let styleMargin = this.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
@@ -460,7 +460,7 @@ export class SliderComponent implements AfterViewInit {
           }
         }
       }
-    }
+    }*/
 
     let formattedTooltipVal: string = SliderHelpers.formatter(this.value);
     this.setText(this.tooltipMainInner.nativeElement, formattedTooltipVal);

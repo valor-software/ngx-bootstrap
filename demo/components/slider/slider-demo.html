@@ -46,9 +46,11 @@
 <h3>Ticks and labels</h3>
 <div class="row">
   <div class="col-sm-2">
-    <slider [value]="4" tooltipMode="hide" [ticksPositions]="[0, 30, 100]" [ticks]="[5, 50, 90]" [ticksLabels]="['low', 'medium', 'high']"></slider>
+    <slider [value]="4" tooltipMode="hide"></slider>
   </div>
 </div>
+
+<div class="row" *ngFor="let num of [1,2,3,4,5]">{{ num }}</div>
 
 <!--hr/>
 <h3>Tooltips</h3>
