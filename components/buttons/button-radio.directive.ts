@@ -1,7 +1,7 @@
 import {
-    Directive, ElementRef, HostBinding, forwardRef, HostListener, Input, OnInit, Self
+    Directive, ElementRef, HostBinding, forwardRef, HostListener, Input, OnInit
 } from '@angular/core';
-import { ControlValueAccessor, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
@@ -11,7 +11,7 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
 
 @Directive({ selector: '[btnRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR] })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
-    
+
     public onChange:any = Function.prototype;
     public onTouched:any = Function.prototype;
 
@@ -47,7 +47,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
         this.uncheckable = typeof this.uncheckable !== 'undefined';
     }
 
-    public onBlur() {
+    public onBlur() : void {
         this.onTouched();
     }
 
