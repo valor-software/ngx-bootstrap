@@ -35,11 +35,11 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 ### With system.js: [angular2-quickstart](https://github.com/valor-software/angular2-quickstart)
 
 ### With webpack: [AngularClass/angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter)
-- install `ng2-bootstrap` and typings for `moment.js`
+- install `ng2-bootstrap` and typings for `moment.js` `(@types/moment)`
 ```bash
   npm install ng2-bootstrap --save
-  # Install typings from NPM. Ambient typings will not help
-  typings install moment --save
+  # Install typings from NPM.
+  mpn install @types/moment --save
 ```
 - add some code
 ```html
