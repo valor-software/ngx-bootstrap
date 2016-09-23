@@ -46,9 +46,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @Input() public tooltipPosition: string = 'top';
   @Input() public tooltipSplit: boolean;
   @Input() public tooltipMode: string = 'hover';
-  @Input() public ticks: Array<number> = [5, 30, 50];
-  @Input() public ticksPositions: Array<number> = [0, 30, 100];
-  @Input() public ticksLabels: Array<string> = ['one', 'two', 'tree'];
+  @Input() public ticks: Array<number>;
+  @Input() public ticksPositions: Array<number>;
+  @Input() public ticksLabels: Array<string>;
   @Input() public ticksSnapBounds: number = 0;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
