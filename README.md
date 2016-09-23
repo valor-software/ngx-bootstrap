@@ -39,7 +39,7 @@ Follow me [![twitter](https://img.shields.io/twitter/follow/valorkin.svg?style=s
 ```bash
   npm install ng2-bootstrap --save
   # Install typings from NPM.
-  npn install @types/moment --save
+  npm install @types/moment --save
 ```
 - add some code
 ```html
