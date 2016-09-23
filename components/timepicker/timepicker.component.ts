@@ -196,7 +196,11 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     this.onTouched = fn;
   }
 
-  public updateHours():void {
+  public setDisabledState(isDisabled: boolean): void {
+    this.readonlyInput = isDisabled;
+  }
+
+  protected updateHours():void {
     if (this.readonlyInput) {
       return;
     }
