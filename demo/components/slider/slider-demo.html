@@ -26,7 +26,7 @@
 <div class="sliders-block">
   <slider ngClass="colored" selection="all" type="range" [max]="max" [min]="min" [step]="step"
           [value]="[20, 100]"></slider>
-  <br><br>
+  <br><br><br>
   <slider ngClass="colored" type="range" tooltipSplit="true" [value]="[50, 80]"></slider>
 </div>
 
@@ -45,12 +45,12 @@
 <hr/>
 <h3>Ticks and labels</h3>
 <div class="row">
-  <div class="col-sm-2 sliders-block ticks">
+  <div class="col-sm-3 sliders-block ticks">
     <slider [value]="4" [ticks]="[0, 25, 50, 75, 100]" [ticksSnapBounds]="5"></slider>
-    <br/>
-    <slider [value]="40" [ticksLabels]="['0%', '50%', '100%']" [ticks]="[0, 50, 100]" tooltipMode="none"></slider>
-    <br/>
-    <slider [value]="40" [max]="400" [ticksLabels]="['$0', '$100', '$200', '$300', '$400']" [ticks]="[0, 100, 200, 300, 400]" [ticksPositions]="[0, 30, 60, 90, 100]"></slider>
+    <br/><br/>
+    <slider [value]="40" [ticksLabels]="['0%', '50%', '100%']" [ticks]="[0, 50, 100]" tooltipMode="always"></slider>
+    <br/><br/>
+    <slider [value]="40" [max]="400" [ticksLabels]="['0€', '100€', '200€', '300€', '400€']" [ticks]="[0, 100, 200, 300, 400]" [ticksPositions]="[0, 30, 60, 90, 100]"></slider>
   </div>
 </div>
 
@@ -58,9 +58,9 @@
 <h3>Tooltips</h3>
 <div class="row">
   <div class="col-sm-3">
-    <slider [value]="20" tooltipPosition="bottom"></slider>
+    <slider [value]="20"></slider>
     <br><br><br>
-    <slider [value]="70" tooltipMode="always"></slider>
+    <slider [value]="70" tooltipPosition="bottom" tooltipMode="always"></slider>
   </div>
   <div class="col-sm-2">
     <slider [value]="20" tooltipPosition="left" orientation="vertical"></slider>

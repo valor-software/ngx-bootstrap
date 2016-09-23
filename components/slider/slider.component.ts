@@ -13,6 +13,7 @@ import { SliderHelpers } from './slider.helpers';
 
 @Component({
   selector: 'slider',
+  styles: [require('./slider.css')],
   template: `
     <div (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
       <div class='slider-track'>
@@ -116,6 +117,8 @@ export class SliderComponent implements OnInit, AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
+    this.renderer.setElementClass(this.sliderElem.nativeElement, 'slider', true);
+    this.renderer.setElementClass(this.sliderElem.nativeElement, `slider-${this.orientation}`, true);
     console.log(this.ticks, this.ticksLabels, this.ticksPositions, this.tickElements, this.labelElements);
     this.size = this.sliderElem.nativeElement[this.sizePos];
 
@@ -133,6 +136,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
 
   public set max(val: number) {
     this._max = val;
+    if (this._value) {
+      this.value = this.value;
+    }
   }
 
   @Input()
@@ -142,6 +148,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
 
   public set min(val: number) {
     this._min = val;
+    if (this._value) {
+      this.value = this.value;
+    }
   }
 
   @Input()
@@ -151,6 +160,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
 
   public set step(val: number) {
     this._step = val;
+    if (this._value) {
+      this.value = this.value;
+    }
   }
 
   @Input()
@@ -232,6 +244,8 @@ export class SliderComponent implements OnInit, AfterViewInit {
     this.size = this.sliderElem.nativeElement[this.sizePos];
 
     const percentage = this.getPercentage(event);
+    console.log(this.sliderElem.nativeElement['offsetHeight'],
+      this.sliderElem.nativeElement['offsetWidth'],this.offset, this.size, this.sizePos, percentage);
     if (this.type === 'range') {
       const diff1: number = Math.abs(this.percentage[0] - percentage);
       const diff2: number = Math.abs(this.percentage[1] - percentage);
@@ -393,17 +407,17 @@ export class SliderComponent implements OnInit, AfterViewInit {
 
       if (this.sliderTicksContainer) {
         let extraMargin = 0;
-        if (this.ticksPositions.length === 0) {
-          if (this.orientation !== 'vertical' && this.sliderLabelsContainer) {
+        if (this.ticksPositions.length === 0 && this.sliderLabelsContainer) {
+          if (this.orientation !== 'vertical') {
             this.sliderLabelsContainer.nativeElement.style[styleMargin] = -labelSize / 2 + 'px';
           }
 
-          extraMargin = this.sliderTicksContainer.nativeElement.offsetHeight;
+          extraMargin = this.sliderLabelsContainer.nativeElement.offsetHeight;
         } else {
           // Chidren are position absolute, calculate height by finding the max offsetHeight of a child
-          this.tickElements.forEach((tick: ElementRef) => {
-            if (tick.nativeElement.offsetHeight > extraMargin) {
-              extraMargin = tick.nativeElement.offsetHeight;
+          this.labelElements.forEach((label: ElementRef) => {
+            if (label.nativeElement.offsetHeight > extraMargin) {
+              extraMargin = label.nativeElement.offsetHeight;
             }
           });
         }
