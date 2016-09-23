@@ -4,7 +4,7 @@ import { SliderHelpers } from './slider.helpers';
 @Component({
   selector: 'slider',
   template: `
-    <div #sliderElem (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
+    <div (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
       <div class='slider-track'>
         <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
         <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
@@ -50,7 +50,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @Input() public ticksPositions: Array<number> = [0, 30, 100];
   @Input() public ticksLabels: Array<string> = ['one', 'two', 'tree'];
   @Input() public ticksSnapBounds: number = 0;
-  @ViewChild('sliderElem') private sliderElem: ElementRef;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
   @ViewChild('trackHigh') private trackHigh: ElementRef;
@@ -85,7 +84,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
   private _min: number = 0;
   private _step: number = 1;
 
-  public constructor(private renderer: Renderer) {
+  public constructor(private renderer: Renderer, private sliderElem: ElementRef) {
   }
 
   public ngOnInit(): void {
