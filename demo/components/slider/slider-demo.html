@@ -1,4 +1,4 @@
-<!--h3>Static</h3>
+<h3>Static</h3>
 <div class="row">
   <div class="col-sm-1">
     <slider [value]="50" orientation="vertical" selection="after"></slider>
@@ -40,7 +40,7 @@
   <slider ngClass="slider3" [value]="50" [step]="10"></slider>
   <br><br>
   <slider ngClass="slider4" [value]="50" handleType="custom"></slider>
-</div-->
+</div>
 
 <hr/>
 <h3>Ticks and labels</h3>
@@ -50,14 +50,14 @@
     <br/>
     <slider [value]="40" [ticksLabels]="['0%', '50%', '100%']" [ticks]="[0, 50, 100]" tooltipMode="none"></slider>
     <br/>
-    <slider [value]="40" max="400" [ticksLabels]="['$0', '$100', '$200', '$300', '$400']" [ticks]="[0, 100, 200, 300, 400]" [ticksPositions]="[0, 30, 60, 70, 90, 100]"></slider>
+    <slider [value]="40" [max]="400" [ticksLabels]="['$0', '$100', '$200', '$300', '$400']" [ticks]="[0, 100, 200, 300, 400]" [ticksPositions]="[0, 30, 60, 90, 100]"></slider>
   </div>
 </div>
 
-<!--hr/>
+<hr/>
 <h3>Tooltips</h3>
 <div class="row">
-  <div class="col-sm-2">
+  <div class="col-sm-3">
     <slider [value]="20" tooltipPosition="bottom"></slider>
     <br><br><br>
     <slider [value]="70" tooltipMode="always"></slider>
@@ -66,4 +66,4 @@
     <slider [value]="20" tooltipPosition="left" orientation="vertical"></slider>
     <slider [value]="70" orientation="vertical"></slider>
   </div>
-</div-->
+</div>

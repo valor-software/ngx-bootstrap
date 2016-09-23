@@ -165,7 +165,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
     if (this.type === 'slider' && Array.isArray(val)) {
       val = val[0];
     }
-    // const oldValue = this.getValue();
     this._value = SliderHelpers.validateInputValue(val);
 
     if (this.type === 'range') {
@@ -197,20 +196,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
       this.percentage = [0, 0, 100];
     }
     this.layout();
-
-    /*
-     FIXME
-     let newValue = this.type === 'range' ? this._value : this._value[0];
-
-     if(triggerSlideEvent === true) {
-     this.trigger('slide', newValue);
-     }
-     if( (oldValue !== newValue) && (triggerChangeEvent === true) ) {
-     this.trigger('change', {
-     oldValue: oldValue,
-     newValue: newValue
-     });
-     }*/
   }
 
   protected showTooltip(): void {
@@ -256,7 +241,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
       this.dragged = 0;
     }
     this.percentage[this.dragged] = percentage;
-    this.layout();
 
     this.mouseMoveReference = this.onMouseMove.bind(this);
     this.mouseUpReference = this.onMouseUp.bind(this);
@@ -286,14 +270,8 @@ export class SliderComponent implements OnInit, AfterViewInit {
     this.eventRemoveCallback['mouseup'] = this.renderer.listenGlobal('document', 'mouseup', this.mouseUpReference);
 
     this.inDrag = true;
-    const newValue = this.calculateValue(false);
-
-    // this._trigger('slideStart', newValue);
-
-    this.value = newValue; // , false, true);
-
+    this.value = this.calculateValue(false);
     SliderHelpers.pauseEvent(event);
-
     return true;
   }
 
@@ -527,7 +505,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     if (this.orientation === 'vertical') {
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'top', '0');
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'height', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
-
+      console.log(positionPercentages);
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'top', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'height', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
@@ -640,27 +618,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  /*
-   private createHighlightRange(start: number, end: number) {
-   if (this.isHighlightRange(start, end)) {
-   if (start > end) {
-   return {'start': end, 'size': start - end};
-   }
-   return {'start': start, 'size': end - start};
-   }
-   return undefined;
-   }
-
-   private isHighlightRange(start: number, end: number) {
-   if (0 <= start && start <= 100 && 0 <= end && end <= 100) {
-   return true;
-   }
-   else {
-   return false;
-   }
-   }
-   */
-
   private calculateValue(snapToClosestTick: boolean): any {
     let val: any;
 
@@ -679,7 +636,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
       val = parseFloat(val);
       val = this.applyPrecision(val);
     }
-    console.log(snapToClosestTick);
 
     if (snapToClosestTick) {
       let min = [val, Infinity];
@@ -706,49 +662,56 @@ export class SliderComponent implements OnInit, AfterViewInit {
     if (this.max === this.min) {
       return 0;
     }
-    /*
-     if (this.options.ticks_positions.length > 0) {
-     let minv, maxv, minp, maxp = 0;
-     for (let i = 0; i < this.options.ticks.length; i++) {
-     if (value  <= this.options.ticks[i]) {
-     minv = (i > 0) ? this.options.ticks[i-1] : 0;
-     minp = (i > 0) ? this.options.ticks_positions[i-1] : 0;
-     maxv = this.options.ticks[i];
-     maxp = this.options.ticks_positions[i];
 
-     break;
-     }
-     }
-     if (i > 0) {
-     let partialPercentage = (value - minv) / (maxv - minv);
-     return minp + partialPercentage * (maxp - minp);
-     }
-     }*/
+    if (this.ticksPositions.length > 0) {
+      let minv: number;
+      let maxv: number;
+      let minp: number;
+      let i: number;
+      let maxp: number = 0;
+      for (i = 0; i < this.ticks.length; i++) {
+        if (value <= this.ticks[i]) {
+          minv = (i > 0) ? this.ticks[i - 1] : 0;
+          minp = (i > 0) ? this.ticksPositions[i - 1] : 0;
+          maxv = this.ticks[i];
+          maxp = this.ticksPositions[i];
+
+          break;
+        }
+      }
+      if (i > 0) {
+        let partialPercentage = (value - minv) / (maxv - minv);
+        return minp + partialPercentage * (maxp - minp);
+      }
+    }
 
     return 100 * (value - this.min) / (this.max - this.min);
   }
 
   private toValue(percentage: number): number {
-    const rawValue = percentage / 100 * (this.max - this.min);
-    const shouldAdjustWithBase = true;
-    /*
-     if (this.options.ticks_positions.length > 0) {
-     let minv, maxv, minp, maxp = 0;
-     for (let i = 1; i < this.options.ticks_positions.length; i++) {
-     if (percentage <= this.options.ticks_positions[i]) {
-     minv = this.options.ticks[i-1];
-     minp = this.options.ticks_positions[i-1];
-     maxv = this.options.ticks[i];
-     maxp = this.options.ticks_positions[i];
+    let rawValue = percentage / 100 * (this.max - this.min);
+    let shouldAdjustWithBase = true;
 
-     break;
-     }
-     }
-     let partialPercentage = (percentage - minp) / (maxp - minp);
-     rawValue = minv + partialPercentage * (maxv - minv);
-     shouldAdjustWithBase = false;
-     }
-     */
+    if (this.ticksPositions.length > 0) {
+      let minv: number;
+      let maxv: number;
+      let minp: number;
+      let maxp: number = 0;
+      for (let i = 1; i < this.ticksPositions.length; i++) {
+        if (percentage <= this.ticksPositions[i]) {
+          minv = this.ticks[i - 1];
+          minp = this.ticksPositions[i - 1];
+          maxv = this.ticks[i];
+          maxp = this.ticksPositions[i];
+
+          break;
+        }
+      }
+      let partialPercentage = (percentage - minp) / (maxp - minp);
+      rawValue = minv + partialPercentage * (maxv - minv);
+      shouldAdjustWithBase = false;
+    }
+
     const adjustment = shouldAdjustWithBase ? this.min : 0;
     const value = adjustment + Math.round(rawValue / this.step) * this.step;
     if (value < this.min) {
