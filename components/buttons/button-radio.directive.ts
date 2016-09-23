@@ -1,67 +1,67 @@
 import {
-  Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Self
+    Directive, ElementRef, HostBinding, forwardRef, HostListener, Input, OnInit, Self
 } from '@angular/core';
-import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { ControlValueAccessor, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-// TODO: if uncheckable, null should be set to ngModel
-// if disabled, button should not be checkable
+export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => ButtonRadioDirective),
+    multi: true
+};
 
-@Directive({selector: '[btnRadio][ngModel]'})
+@Directive({ selector: '[btnRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR] })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
-  public cd:NgModel;
-  public el:ElementRef;
+    
+    public onChange:any = Function.prototype;
+    public onTouched:any = Function.prototype;
 
-  public onChange:any = Function.prototype;
-  public onTouched:any = Function.prototype;
+    @Input() private btnRadio:any;
+    @Input() private uncheckable:boolean;
+    @Input() private value:any;
 
-  @Input() private btnRadio:string;
-  @Input() private uncheckable:boolean;
-
-  @HostBinding('class.active')
-  public get isActive():boolean {
-    return this.btnRadio === this.value;
-  }
-
-  @HostListener('click')
-  public onClick():void {
-    if (this.uncheckable && this.btnRadio === this.value) {
-      return this.cd.viewToModelUpdate(void 0);
+    @HostBinding('class.active')
+    public get isActive(): boolean {
+        return this.btnRadio === this.value;
     }
 
-    this.cd.viewToModelUpdate(this.btnRadio);
-  }
+    @HostListener('click')
+    public onClick(): void {
+        if (this.el.nativeElement.attributes.disabled) {
+            return;
+        }
 
-  public constructor(@Self() cd:NgModel, el:ElementRef) {
-    // hack!
-    this.cd = cd;
-    this.el = el;
-    cd.valueAccessor = this;
-  }
+        if (this.uncheckable && this.btnRadio === this.value) {
+            this.value = null;
+        } else {
+            this.value = this.btnRadio;
+        }
 
-  public ngOnInit():void {
-    this.uncheckable = typeof this.uncheckable !== 'undefined';
-  }
+        this.onTouched();
+        this.onChange(this.value);
+    }
 
-  // hack view model!
-  protected get value():any {
-    return this.cd.viewModel;
-  }
+    public constructor( private el: ElementRef) {
+    }
 
-  protected set value(value:any) {
-    this.cd.viewModel = value;
-  }
+    public ngOnInit(): void {
+        this.uncheckable = typeof this.uncheckable !== 'undefined';
+    }
 
-  // ControlValueAccessor
-  // model -> view
-  public writeValue(value:any):void {
-    this.value = value;
-  }
+    public onBlur() {
+        this.onTouched();
+    }
 
-  public registerOnChange(fn:(_:any) => {}):void {
-    this.onChange = fn;
-  }
+    // ControlValueAccessor
+    // model -> view
+    public writeValue(value: any): void {
+        this.value = value;
+    }
 
-  public registerOnTouched(fn:() => {}):void {
-    this.onTouched = fn;
-  }
+    public registerOnChange(fn: any): void {
+        this.onChange = fn;
+    }
+
+    public registerOnTouched(fn: any): void {
+        this.onTouched = fn;
+    }
 }
