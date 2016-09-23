@@ -1,14 +1,32 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, Renderer } from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  AfterViewInit,
+  Renderer,
+  OnInit
+} from '@angular/core';
 import { SliderHelpers } from './slider.helpers';
 
 @Component({
   selector: 'slider',
+  styles: [require('./slider.css')],
   template: `
-    <div #sliderElem (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
+    <div (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'>
       <div class='slider-track'>
         <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
         <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
         <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
+      </div>
+      
+      <div #sliderLabelsContainer class="slider-tick-label-container" *ngIf="ticksLabels.length > 0">
+        <div #labelElements *ngFor="let label of ticksLabels" class="slider-tick-label">{{ label }}</div>
+      </div>
+      <div #sliderTicksContainer class="slider-tick-container" *ngIf="ticks.length > 0">
+        <div #tickElements *ngFor="let tick of ticks" class="slider-tick {{ handleType }}">&nbsp;</div>
       </div>
       <div #tooltipMain class="tooltip tooltip-main {{ tooltipPosition }}" role="presentation">
         <div class="tooltip-arrow"></div>
@@ -27,7 +45,7 @@ import { SliderHelpers } from './slider.helpers';
     </div>
   `
 })
-export class SliderComponent implements AfterViewInit {
+export class SliderComponent implements OnInit, AfterViewInit {
   @Input() public animate: boolean;
   @Input() public enabled: boolean = true;
   @Input() public reversed: boolean;
@@ -39,7 +57,10 @@ export class SliderComponent implements AfterViewInit {
   @Input() public tooltipPosition: string = 'top';
   @Input() public tooltipSplit: boolean;
   @Input() public tooltipMode: string = 'hover';
-  @ViewChild('sliderElem') private sliderElem: ElementRef;
+  @Input() public ticks: Array<number> = [];
+  @Input() public ticksPositions: Array<number> = [];
+  @Input() public ticksLabels: Array<string> = [];
+  @Input() public ticksSnapBounds: number = 0;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
   @ViewChild('trackHigh') private trackHigh: ElementRef;
@@ -51,8 +72,14 @@ export class SliderComponent implements AfterViewInit {
   @ViewChild('tooltipMinInner') private tooltipMinInner: ElementRef;
   @ViewChild('tooltipMax') private tooltipMax: ElementRef;
   @ViewChild('tooltipMaxInner') private tooltipMaxInner: ElementRef;
+  @ViewChild('sliderTicksContainer') private sliderTicksContainer: ElementRef;
+  @ViewChild('sliderLabelsContainer') private sliderLabelsContainer: ElementRef;
+  @ViewChildren('tickElements') private tickElements: QueryList<ElementRef>;
+  @ViewChildren('labelElements') private labelElements: QueryList<ElementRef>;
+
   private offset: any;
   private dragged: number;
+  private isInitialized: boolean;
   private percentage: Array<number> = [];
   private size: any;
   private stylePos: string;
@@ -63,15 +90,15 @@ export class SliderComponent implements AfterViewInit {
   private mouseUpReference: any;
   private mouseMoveReference: any;
   private eventRemoveCallback: any = {};
-  private _value: Array<number>;
+  private _value: Array<number> = [0, 0];
   private _max: number = 100;
   private _min: number = 0;
   private _step: number = 1;
 
-  public constructor(private renderer: Renderer) {
+  public constructor(private renderer: Renderer, private sliderElem: ElementRef) {
   }
 
-  public ngAfterViewInit(): void {
+  public ngOnInit(): void {
     if (this.orientation === 'vertical') {
       this.stylePos = 'top';
       this.mousePos = 'pageY';
@@ -87,11 +114,18 @@ export class SliderComponent implements AfterViewInit {
         this.tooltipPosition = 'top';
       }
     }
+  }
+
+  public ngAfterViewInit(): void {
+    this.renderer.setElementClass(this.sliderElem.nativeElement, 'slider', true);
+    this.renderer.setElementClass(this.sliderElem.nativeElement, `slider-${this.orientation}`, true);
+    console.log(this.ticks, this.ticksLabels, this.ticksPositions, this.tickElements, this.labelElements);
+    this.size = this.sliderElem.nativeElement[this.sizePos];
 
     if (!Array.isArray(this._value)) {
       this._value = [this._value as number];
     }
-
+    this.isInitialized = true;
     this.value = this._value;
   }
 
@@ -104,7 +138,6 @@ export class SliderComponent implements AfterViewInit {
     this._max = val;
     if (this._value) {
       this.value = this.value;
-      this.layout();
     }
   }
 
@@ -117,7 +150,6 @@ export class SliderComponent implements AfterViewInit {
     this._min = val;
     if (this._value) {
       this.value = this.value;
-      this.layout();
     }
   }
 
@@ -130,7 +162,6 @@ export class SliderComponent implements AfterViewInit {
     this._step = val;
     if (this._value) {
       this.value = this.value;
-      this.layout();
     }
   }
 
@@ -146,8 +177,6 @@ export class SliderComponent implements AfterViewInit {
     if (this.type === 'slider' && Array.isArray(val)) {
       val = val[0];
     }
-
-    // const oldValue = this.getValue();
     this._value = SliderHelpers.validateInputValue(val);
 
     if (this.type === 'range') {
@@ -179,32 +208,20 @@ export class SliderComponent implements AfterViewInit {
       this.percentage = [0, 0, 100];
     }
     this.layout();
-
-    /*
-     FIXME
-     let newValue = this.type === 'range' ? this._value : this._value[0];
-
-     if(triggerSlideEvent === true) {
-     this.trigger('slide', newValue);
-     }
-     if( (oldValue !== newValue) && (triggerChangeEvent === true) ) {
-     this.trigger('change', {
-     oldValue: oldValue,
-     newValue: newValue
-     });
-     }*/
   }
 
   protected showTooltip(): void {
-    if (this.tooltipSplit) {
-      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
-      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', true);
-      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', true);
+    if (this.tooltipMode !== 'none') {
+      if (this.tooltipSplit) {
+        this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
+        this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', true);
+        this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', true);
 
-    } else {
-      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
-      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', false);
-      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', false);
+      } else {
+        this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
+        this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', false);
+        this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', false);
+      }
     }
     this.over = true;
   }
@@ -227,6 +244,8 @@ export class SliderComponent implements AfterViewInit {
     this.size = this.sliderElem.nativeElement[this.sizePos];
 
     const percentage = this.getPercentage(event);
+    console.log(this.sliderElem.nativeElement['offsetHeight'],
+      this.sliderElem.nativeElement['offsetWidth'],this.offset, this.size, this.sizePos, percentage);
     if (this.type === 'range') {
       const diff1: number = Math.abs(this.percentage[0] - percentage);
       const diff2: number = Math.abs(this.percentage[1] - percentage);
@@ -236,7 +255,6 @@ export class SliderComponent implements AfterViewInit {
       this.dragged = 0;
     }
     this.percentage[this.dragged] = percentage;
-    this.layout();
 
     this.mouseMoveReference = this.onMouseMove.bind(this);
     this.mouseUpReference = this.onMouseUp.bind(this);
@@ -266,14 +284,8 @@ export class SliderComponent implements AfterViewInit {
     this.eventRemoveCallback['mouseup'] = this.renderer.listenGlobal('document', 'mouseup', this.mouseUpReference);
 
     this.inDrag = true;
-    const newValue = this.calculateValue(false);
-
-    // this._trigger('slideStart', newValue);
-
-    this.value = newValue; // , false, true);
-
+    this.value = this.calculateValue(false);
     SliderHelpers.pauseEvent(event);
-
     return true;
   }
 
@@ -292,7 +304,8 @@ export class SliderComponent implements AfterViewInit {
       case 38: // up
         dir = 1;
         break;
-      default: return;
+      default:
+        return;
     }
 
     // use natural arrow keys instead of from min to max
@@ -365,6 +378,10 @@ export class SliderComponent implements AfterViewInit {
   }
 
   private layout(): void {
+    if (!this.isInitialized) {
+      return;
+    }
+    // debugger;
     let positionPercentages: Array<number>;
 
     if (this.tooltipMode === 'always') {
@@ -381,101 +398,78 @@ export class SliderComponent implements AfterViewInit {
     this.renderer.setElementStyle(this.maxHandle.nativeElement, this.stylePos, positionPercentages[1] + '%');
 
     this.setTooltipPosition();
-    /* Position highlight range elements */
-    /*
-     if (this.rangeHighlightElements.length > 0 && Array.isArray(this.options.rangeHighlights) && this.options.rangeHighlights.length > 0) {
-     for (let i = 0; i < this.options.rangeHighlights.length; i++) {
-     let startPercent = this._toPercentage(this.options.rangeHighlights[i].start);
-     let endPercent = this._toPercentage(this.options.rangeHighlights[i].end);
-
-     let currentRange = this.createHighlightRange(startPercent, endPercent);
-
-     if (currentRange) {
-     if (this.orientation === 'vertical') {
-     this.rangeHighlightElements[i].style.top = `${currentRange.start}%`;
-     this.rangeHighlightElements[i].style.height = `${currentRange.size}%`;
-     } else {
-     this.rangeHighlightElements[i].style.left = `${currentRange.start}%`;
-     this.rangeHighlightElements[i].style.width = `${currentRange.size}%`;
-     }
-     } else {
-     this.rangeHighlightElements[i].style.display = 'none';
-     }
-     }
-     }*/
 
     /* Position ticks and labels */
-    /*
-     if (Array.isArray(this.options.ticks) && this.options.ticks.length > 0) {
+    if (Array.isArray(this.ticks) && this.ticks.length > 0) {
+      let styleSize = this.orientation === 'vertical' ? 'height' : 'width';
+      let styleMargin = this.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
+      let labelSize = this.size / (this.ticks.length - 1);
 
-     let styleSize = this.orientation === 'vertical' ? 'height' : 'width';
-     let styleMargin = this.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
-     let labelSize = this.size / (this.options.ticks.length - 1);
+      if (this.sliderTicksContainer) {
+        let extraMargin = 0;
+        if (this.ticksPositions.length === 0 && this.sliderLabelsContainer) {
+          if (this.orientation !== 'vertical') {
+            this.sliderLabelsContainer.nativeElement.style[styleMargin] = -labelSize / 2 + 'px';
+          }
 
-     if (this.tickLabelContainer) {
-     let extraMargin = 0;
-     if (this.options.ticks_positions.length === 0) {
-     if (this.orientation !== 'vertical') {
-     this.tickLabelContainer.style[styleMargin] = -labelSize/2 + 'px';
-     }
+          extraMargin = this.sliderLabelsContainer.nativeElement.offsetHeight;
+        } else {
+          // Chidren are position absolute, calculate height by finding the max offsetHeight of a child
+          this.labelElements.forEach((label: ElementRef) => {
+            if (label.nativeElement.offsetHeight > extraMargin) {
+              extraMargin = label.nativeElement.offsetHeight;
+            }
+          });
+        }
+        if (this.orientation === 'horizontal') {
+          this.sliderElem.nativeElement.style.marginBottom = extraMargin + 'px';
+        }
+      }
 
-     extraMargin = this.tickLabelContainer.offsetHeight;
-     } else {
-     // Chidren are position absolute, calculate height by finding the max offsetHeight of a child
-     for (i = 0 ; i < this.tickLabelContainer.childNodes.length; i++) {
-     if (this.tickLabelContainer.childNodes[i].offsetHeight > extraMargin) {
-     extraMargin = this.tickLabelContainer.childNodes[i].offsetHeight;
-     }
-     }
-     }
-     if (this.orientation === 'horizontal') {
-     this.sliderElem.nativeElement.style.marginBottom = extraMargin + 'px';
-     }
-     }
+      const ticksArray = this.tickElements.toArray();
+      const labelsArray = this.labelElements.toArray();
+      for (let i = 0; i < ticksArray.length; i++) {
+        const tick = ticksArray[i].nativeElement;
+        const label = labelsArray[i] ? labelsArray[i].nativeElement : undefined;
+        let percentage: number = this.ticksPositions[i] || this.toPercentage(this.ticks[i]);
 
-     for (let i = 0; i < this.options.ticks.length; i++) {
+        if (this.reversed) {
+          percentage = 100 - percentage;
+        }
 
-     let percentage = this.options.ticks_positions[i] || this._toPercentage(this.options.ticks[i]);
+        this.renderer.setElementStyle(tick, this.stylePos, percentage + '%');
 
-     if (this.reversed) {
-     percentage = 100 - percentage;
-     }
+        // Set class labels to denote whether ticks are in the selection
+        this.renderer.setElementClass(tick, 'in-selection', false);
+        if (this.type !== 'range') {
+          if (this.selection === 'after' && percentage >= positionPercentages[0]) {
+            this.renderer.setElementClass(tick, 'in-selection', true);
+          } else if (this.selection === 'before' && percentage <= positionPercentages[0]) {
+            this.renderer.setElementClass(tick, 'in-selection', true);
+          }
+        } else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
+          this.renderer.setElementClass(tick, 'in-selection', true);
+        }
 
-     this.ticks[i].style[this.stylePos] = percentage + '%';
+        if (label) {
+          this.renderer.setElementStyle(label, styleSize, labelSize + 'px');
 
-     // Set class labels to denote whether ticks are in the selection
-     this._removeClass(this.ticks[i], 'in-selection');
-     if (this.type !== 'range') {
-     if (this.options.selection === 'after' && percentage >= positionPercentages[0]){
-     this._addClass(this.ticks[i], 'in-selection');
-     } else if (this.options.selection === 'before' && percentage <= positionPercentages[0]) {
-     this._addClass(this.ticks[i], 'in-selection');
-     }
-     } else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
-     this._addClass(this.ticks[i], 'in-selection');
-     }
-
-     if (this.tickLabels[i]) {
-     this.tickLabels[i].style[styleSize] = labelSize + 'px';
-
-     if (this.orientation !== 'vertical' && this.options.ticks_positions[i] !== undefined) {
-     this.tickLabels[i].style.position = 'absolute';
-     this.tickLabels[i].style[this.stylePos] = percentage + '%';
-     this.tickLabels[i].style[styleMargin] = -labelSize/2 + 'px';
-     } else if (this.orientation === 'vertical') {
-     this.tickLabels[i].style['marginLeft'] =  this.sliderElem.nativeElement.offsetWidth + 'px';
-     this.tickLabelContainer.style['marginTop'] = this.sliderElem.nativeElement.offsetWidth / 2 * -1 + 'px';
-     }
-     }
-     }
-
-     }
-     */
+          if (this.orientation !== 'vertical' && this.ticksPositions[i] !== undefined) {
+            this.renderer.setElementStyle(label, 'position', 'absolute');
+            this.renderer.setElementStyle(label, this.stylePos, percentage + '%');
+            this.renderer.setElementStyle(label, styleMargin, -labelSize / 2 + 'px');
+          } else if (this.orientation === 'vertical') {
+            this.renderer.setElementStyle(label, 'marginLeft', this.sliderElem.nativeElement.offsetLeft + 'px');
+            this.renderer.setElementStyle(this.sliderTicksContainer.nativeElement, 'marginTop', this.sliderElem.nativeElement.offsetWidth / 2 * -1 + 'px');
+          }
+        }
+      }
+    }
 
     let formattedTooltipVal: string = SliderHelpers.formatter(this.value);
     this.setText(this.tooltipMainInner.nativeElement, formattedTooltipVal);
     if (this.type === 'range') {
-      this.tooltipMain.nativeElement.style[this.stylePos] = (positionPercentages[1] + positionPercentages[0]) / 2 + '%';
+      this.renderer.setElementStyle(this.tooltipMain.nativeElement, this.stylePos, (positionPercentages[1] + positionPercentages[0]) / 2 + '%');
 
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
@@ -495,7 +489,7 @@ export class SliderComponent implements AfterViewInit {
       let innerTooltipMaxText = SliderHelpers.formatter(this.value[1]);
       this.setText(this.tooltipMaxInner.nativeElement, innerTooltipMaxText);
 
-      this.tooltipMin.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
+      this.renderer.setElementStyle(this.tooltipMin.nativeElement, this.stylePos, positionPercentages[0] + '%');
 
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMin.nativeElement, 'margin-top', -this.tooltipMin.nativeElement.offsetHeight / 2 + 'px');
@@ -503,7 +497,7 @@ export class SliderComponent implements AfterViewInit {
         this.renderer.setElementStyle(this.tooltipMin.nativeElement, 'margin-left', -this.tooltipMin.nativeElement.offsetWidth / 2 + 'px');
       }
 
-      this.tooltipMax.nativeElement.style[this.stylePos] = positionPercentages[1] + '%';
+      this.renderer.setElementStyle(this.tooltipMax.nativeElement, this.stylePos, positionPercentages[1] + '%');
 
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'margin-top', -this.tooltipMax.nativeElement.offsetHeight / 2 + 'px');
@@ -512,7 +506,9 @@ export class SliderComponent implements AfterViewInit {
       }
 
     } else {
-      this.tooltipMain.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
+
+      this.renderer.setElementStyle(this.tooltipMain.nativeElement, this.stylePos, positionPercentages[0] + '%');
+
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
       } else {
@@ -523,7 +519,7 @@ export class SliderComponent implements AfterViewInit {
     if (this.orientation === 'vertical') {
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'top', '0');
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'height', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
-
+      console.log(positionPercentages);
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'top', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'height', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
@@ -546,23 +542,23 @@ export class SliderComponent implements AfterViewInit {
         if (offset_min.right > offset_max.left) {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
-          this.tooltipMax.nativeElement.style.top = '';
-          this.tooltipMax.nativeElement.style.bottom = 22 + 'px';
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', '');
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'bottom', 22 + 'px');
         } else {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', true);
-          this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
-          this.tooltipMax.nativeElement.style.bottom = '';
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', this.tooltipMin.nativeElement.style.top);
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'bottom', '');
         }
       } else {
         if (offset_min.right > offset_max.left) {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', true);
-          this.tooltipMax.nativeElement.style.top = 18 + 'px';
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', 18 + 'px');
         } else {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
-          this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', this.tooltipMin.nativeElement.style.top);
         }
       }
     }
@@ -636,27 +632,6 @@ export class SliderComponent implements AfterViewInit {
     }
   }
 
-  /*
-   private createHighlightRange(start: number, end: number) {
-   if (this.isHighlightRange(start, end)) {
-   if (start > end) {
-   return {'start': end, 'size': start - end};
-   }
-   return {'start': start, 'size': end - start};
-   }
-   return undefined;
-   }
-
-   private isHighlightRange(start: number, end: number) {
-   if (0 <= start && start <= 100 && 0 <= end && end <= 100) {
-   return true;
-   }
-   else {
-   return false;
-   }
-   }
-   */
-
   private calculateValue(snapToClosestTick: boolean): any {
     let val: any;
 
@@ -675,21 +650,19 @@ export class SliderComponent implements AfterViewInit {
       val = parseFloat(val);
       val = this.applyPrecision(val);
     }
-    console.log(snapToClosestTick);
-    /*
-     FIXME
-     if (snapToClosestTick) {
-     let min = [val, Infinity];
-     for (let i = 0; i < this.ticks.length; i++) {
-     let diff = Math.abs(this.ticks[i] - val);
-     if (diff <= min[1]) {
-     min = [this.ticks[i], diff];
-     }
-     }
-     if (min[1] <= this.ticks_snap_bounds) {
-     return min[0];
-     }
-     }*/
+
+    if (snapToClosestTick) {
+      let min = [val, Infinity];
+      for (let i = 0; i < this.ticks.length; i++) {
+        let diff = Math.abs(this.ticks[i] - val);
+        if (diff <= min[1]) {
+          min = [this.ticks[i], diff];
+        }
+      }
+      if (min[1] <= this.ticksSnapBounds) {
+        return min[0];
+      }
+    }
 
     return val;
   }
@@ -703,49 +676,56 @@ export class SliderComponent implements AfterViewInit {
     if (this.max === this.min) {
       return 0;
     }
-    /*
-     if (this.options.ticks_positions.length > 0) {
-     let minv, maxv, minp, maxp = 0;
-     for (let i = 0; i < this.options.ticks.length; i++) {
-     if (value  <= this.options.ticks[i]) {
-     minv = (i > 0) ? this.options.ticks[i-1] : 0;
-     minp = (i > 0) ? this.options.ticks_positions[i-1] : 0;
-     maxv = this.options.ticks[i];
-     maxp = this.options.ticks_positions[i];
 
-     break;
-     }
-     }
-     if (i > 0) {
-     let partialPercentage = (value - minv) / (maxv - minv);
-     return minp + partialPercentage * (maxp - minp);
-     }
-     }*/
+    if (this.ticksPositions.length > 0) {
+      let minv: number;
+      let maxv: number;
+      let minp: number;
+      let i: number;
+      let maxp: number = 0;
+      for (i = 0; i < this.ticks.length; i++) {
+        if (value <= this.ticks[i]) {
+          minv = (i > 0) ? this.ticks[i - 1] : 0;
+          minp = (i > 0) ? this.ticksPositions[i - 1] : 0;
+          maxv = this.ticks[i];
+          maxp = this.ticksPositions[i];
+
+          break;
+        }
+      }
+      if (i > 0) {
+        let partialPercentage = (value - minv) / (maxv - minv);
+        return minp + partialPercentage * (maxp - minp);
+      }
+    }
 
     return 100 * (value - this.min) / (this.max - this.min);
   }
 
   private toValue(percentage: number): number {
-    const rawValue = percentage / 100 * (this.max - this.min);
-    const shouldAdjustWithBase = true;
-    /*
-     if (this.options.ticks_positions.length > 0) {
-     let minv, maxv, minp, maxp = 0;
-     for (let i = 1; i < this.options.ticks_positions.length; i++) {
-     if (percentage <= this.options.ticks_positions[i]) {
-     minv = this.options.ticks[i-1];
-     minp = this.options.ticks_positions[i-1];
-     maxv = this.options.ticks[i];
-     maxp = this.options.ticks_positions[i];
+    let rawValue = percentage / 100 * (this.max - this.min);
+    let shouldAdjustWithBase = true;
 
-     break;
-     }
-     }
-     let partialPercentage = (percentage - minp) / (maxp - minp);
-     rawValue = minv + partialPercentage * (maxv - minv);
-     shouldAdjustWithBase = false;
-     }
-     */
+    if (this.ticksPositions.length > 0) {
+      let minv: number;
+      let maxv: number;
+      let minp: number;
+      let maxp: number = 0;
+      for (let i = 1; i < this.ticksPositions.length; i++) {
+        if (percentage <= this.ticksPositions[i]) {
+          minv = this.ticks[i - 1];
+          minp = this.ticksPositions[i - 1];
+          maxv = this.ticks[i];
+          maxp = this.ticksPositions[i];
+
+          break;
+        }
+      }
+      let partialPercentage = (percentage - minp) / (maxp - minp);
+      rawValue = minv + partialPercentage * (maxv - minv);
+      shouldAdjustWithBase = false;
+    }
+
     const adjustment = shouldAdjustWithBase ? this.min : 0;
     const value = adjustment + Math.round(rawValue / this.step) * this.step;
     if (value < this.min) {
