@@ -1,4 +1,14 @@
-import { Component, Input, ElementRef, QueryList, ViewChild, ViewChildren, AfterViewInit, Renderer, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+  AfterViewInit,
+  Renderer,
+  OnInit
+} from '@angular/core';
 import { SliderHelpers } from './slider.helpers';
 
 @Component({
@@ -11,10 +21,10 @@ import { SliderHelpers } from './slider.helpers';
         <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
       </div>
       
-      <div class="slider-tick-label-container" [ngClass]="{hide: labels.length === 0}">
+      <div #sliderLabelsContainer class="slider-tick-label-container" *ngIf="ticksLabels.length > 0">
         <div #labelElements *ngFor="let label of ticksLabels" class="slider-tick-label">{{ label }}</div>
       </div>
-      <div class="slider-tick-container" [ngClass]="{hide: ticks.length === 0}">
+      <div #sliderTicksContainer class="slider-tick-container" *ngIf="ticks.length > 0">
         <div #tickElements *ngFor="let tick of ticks" class="slider-tick {{ handleType }}">&nbsp;</div>
       </div>
       <div #tooltipMain class="tooltip tooltip-main {{ tooltipPosition }}" role="presentation">
@@ -46,9 +56,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @Input() public tooltipPosition: string = 'top';
   @Input() public tooltipSplit: boolean;
   @Input() public tooltipMode: string = 'hover';
-  @Input() public ticks: Array<number>;
-  @Input() public ticksPositions: Array<number>;
-  @Input() public ticksLabels: Array<string>;
+  @Input() public ticks: Array<number> = [];
+  @Input() public ticksPositions: Array<number> = [];
+  @Input() public ticksLabels: Array<string> = [];
   @Input() public ticksSnapBounds: number = 0;
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
@@ -61,8 +71,8 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @ViewChild('tooltipMinInner') private tooltipMinInner: ElementRef;
   @ViewChild('tooltipMax') private tooltipMax: ElementRef;
   @ViewChild('tooltipMaxInner') private tooltipMaxInner: ElementRef;
-  // @ViewChild('sliderTicksContainer') private sliderTicksContainer: ElementRef;
-  // @ViewChild('sliderLabelsContainer') private sliderLabelsContainer: ElementRef;
+  @ViewChild('sliderTicksContainer') private sliderTicksContainer: ElementRef;
+  @ViewChild('sliderLabelsContainer') private sliderLabelsContainer: ElementRef;
   @ViewChildren('tickElements') private tickElements: QueryList<ElementRef>;
   @ViewChildren('labelElements') private labelElements: QueryList<ElementRef>;
 
@@ -155,7 +165,6 @@ export class SliderComponent implements OnInit, AfterViewInit {
     if (this.type === 'slider' && Array.isArray(val)) {
       val = val[0];
     }
-
     // const oldValue = this.getValue();
     this._value = SliderHelpers.validateInputValue(val);
 
@@ -205,15 +214,17 @@ export class SliderComponent implements OnInit, AfterViewInit {
   }
 
   protected showTooltip(): void {
-    if (this.tooltipSplit) {
-      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
-      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', true);
-      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', true);
+    if (this.tooltipMode !== 'none') {
+      if (this.tooltipSplit) {
+        this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', false);
+        this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', true);
+        this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', true);
 
-    } else {
-      this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
-      this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', false);
-      this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', false);
+      } else {
+        this.renderer.setElementClass(this.tooltipMain.nativeElement, 'in', true);
+        this.renderer.setElementClass(this.tooltipMin.nativeElement, 'in', false);
+        this.renderer.setElementClass(this.tooltipMax.nativeElement, 'in', false);
+      }
     }
     this.over = true;
   }
@@ -375,7 +386,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
   }
 
   private layout(): void {
-    if(!this.isInitialized) {
+    if (!this.isInitialized) {
       return;
     }
     // debugger;
@@ -396,7 +407,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
 
     this.setTooltipPosition();
 
-    /* Position ticks and labels
+    /* Position ticks and labels */
     if (Array.isArray(this.ticks) && this.ticks.length > 0) {
       let styleSize = this.orientation === 'vertical' ? 'height' : 'width';
       let styleMargin = this.orientation === 'vertical' ? 'marginTop' : 'marginLeft';
@@ -405,37 +416,39 @@ export class SliderComponent implements OnInit, AfterViewInit {
       if (this.sliderTicksContainer) {
         let extraMargin = 0;
         if (this.ticksPositions.length === 0) {
-          if (this.orientation !== 'vertical') {
-            this.sliderTicksContainer.nativeElement.style[styleMargin] = -labelSize / 2 + 'px';
+          if (this.orientation !== 'vertical' && this.sliderLabelsContainer) {
+            this.sliderLabelsContainer.nativeElement.style[styleMargin] = -labelSize / 2 + 'px';
           }
 
           extraMargin = this.sliderTicksContainer.nativeElement.offsetHeight;
         } else {
           // Chidren are position absolute, calculate height by finding the max offsetHeight of a child
-          for (let i = 0; i < this.sliderTicksContainer.nativeElement.childNodes.length; i++) {
-            if (this.sliderTicksContainer.nativeElement.childNodes[i].offsetHeight > extraMargin) {
-              extraMargin = this.sliderTicksContainer.nativeElement.childNodes[i].offsetHeight;
+          this.tickElements.forEach((tick: ElementRef) => {
+            if (tick.nativeElement.offsetHeight > extraMargin) {
+              extraMargin = tick.nativeElement.offsetHeight;
             }
-          }
+          });
         }
         if (this.orientation === 'horizontal') {
           this.sliderElem.nativeElement.style.marginBottom = extraMargin + 'px';
         }
       }
 
-      for (let i = 0; i < this.ticks.length; i++) {
-        const tick = this.sliderTicksContainer.nativeElement.childNodes[i];
-        const label = this.sliderLabelsContainer.nativeElement.childNodes[i];
+      const ticksArray = this.tickElements.toArray();
+      const labelsArray = this.labelElements.toArray();
+      for (let i = 0; i < ticksArray.length; i++) {
+        const tick = ticksArray[i].nativeElement;
+        const label = labelsArray[i] ? labelsArray[i].nativeElement : undefined;
         let percentage: number = this.ticksPositions[i] || this.toPercentage(this.ticks[i]);
 
         if (this.reversed) {
           percentage = 100 - percentage;
         }
 
-        tick.style[this.stylePos] = percentage + '%';
+        this.renderer.setElementStyle(tick, this.stylePos, percentage + '%');
 
         // Set class labels to denote whether ticks are in the selection
-        this.renderer.setElementClass(this.ticks[i], 'in-selection', false);
+        this.renderer.setElementClass(tick, 'in-selection', false);
         if (this.type !== 'range') {
           if (this.selection === 'after' && percentage >= positionPercentages[0]) {
             this.renderer.setElementClass(tick, 'in-selection', true);
@@ -447,24 +460,24 @@ export class SliderComponent implements OnInit, AfterViewInit {
         }
 
         if (label) {
-          label.style[styleSize] = labelSize + 'px';
+          this.renderer.setElementStyle(label, styleSize, labelSize + 'px');
 
           if (this.orientation !== 'vertical' && this.ticksPositions[i] !== undefined) {
-            label.style.position = 'absolute';
-            label.style[this.stylePos] = percentage + '%';
-            label.style[styleMargin] = -labelSize / 2 + 'px';
+            this.renderer.setElementStyle(label, 'position', 'absolute');
+            this.renderer.setElementStyle(label, this.stylePos, percentage + '%');
+            this.renderer.setElementStyle(label, styleMargin, -labelSize / 2 + 'px');
           } else if (this.orientation === 'vertical') {
-            label.style['marginLeft'] = this.sliderElem.nativeElement.offsetWidth + 'px';
-            this.sliderTicksContainer.nativeElement.style['marginTop'] = this.sliderElem.nativeElement.offsetWidth / 2 * -1 + 'px';
+            this.renderer.setElementStyle(label, 'marginLeft', this.sliderElem.nativeElement.offsetLeft + 'px');
+            this.renderer.setElementStyle(this.sliderTicksContainer.nativeElement, 'marginTop', this.sliderElem.nativeElement.offsetWidth / 2 * -1 + 'px');
           }
         }
       }
-    }*/
+    }
 
     let formattedTooltipVal: string = SliderHelpers.formatter(this.value);
     this.setText(this.tooltipMainInner.nativeElement, formattedTooltipVal);
     if (this.type === 'range') {
-      this.tooltipMain.nativeElement.style[this.stylePos] = (positionPercentages[1] + positionPercentages[0]) / 2 + '%';
+      this.renderer.setElementStyle(this.tooltipMain.nativeElement, this.stylePos, (positionPercentages[1] + positionPercentages[0]) / 2 + '%');
 
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
@@ -484,7 +497,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
       let innerTooltipMaxText = SliderHelpers.formatter(this.value[1]);
       this.setText(this.tooltipMaxInner.nativeElement, innerTooltipMaxText);
 
-      this.tooltipMin.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
+      this.renderer.setElementStyle(this.tooltipMin.nativeElement, this.stylePos, positionPercentages[0] + '%');
 
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMin.nativeElement, 'margin-top', -this.tooltipMin.nativeElement.offsetHeight / 2 + 'px');
@@ -492,7 +505,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
         this.renderer.setElementStyle(this.tooltipMin.nativeElement, 'margin-left', -this.tooltipMin.nativeElement.offsetWidth / 2 + 'px');
       }
 
-      this.tooltipMax.nativeElement.style[this.stylePos] = positionPercentages[1] + '%';
+      this.renderer.setElementStyle(this.tooltipMax.nativeElement, this.stylePos, positionPercentages[1] + '%');
 
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'margin-top', -this.tooltipMax.nativeElement.offsetHeight / 2 + 'px');
@@ -501,7 +514,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      this.tooltipMain.nativeElement.style[this.stylePos] = positionPercentages[0] + '%';
+
+      this.renderer.setElementStyle(this.tooltipMain.nativeElement, this.stylePos, positionPercentages[0] + '%');
+
       if (this.orientation === 'vertical') {
         this.renderer.setElementStyle(this.tooltipMain.nativeElement, 'margin-top', -this.tooltipMain.nativeElement.offsetHeight / 2 + 'px');
       } else {
@@ -535,23 +550,23 @@ export class SliderComponent implements OnInit, AfterViewInit {
         if (offset_min.right > offset_max.left) {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
-          this.tooltipMax.nativeElement.style.top = '';
-          this.tooltipMax.nativeElement.style.bottom = 22 + 'px';
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', '');
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'bottom', 22 + 'px');
         } else {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', true);
-          this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
-          this.tooltipMax.nativeElement.style.bottom = '';
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', this.tooltipMin.nativeElement.style.top);
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'bottom', '');
         }
       } else {
         if (offset_min.right > offset_max.left) {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', true);
-          this.tooltipMax.nativeElement.style.top = 18 + 'px';
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', 18 + 'px');
         } else {
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'bottom', false);
           this.renderer.setElementClass(this.tooltipMax.nativeElement, 'top', true);
-          this.tooltipMax.nativeElement.style.top = this.tooltipMin.nativeElement.style.top;
+          this.renderer.setElementStyle(this.tooltipMax.nativeElement, 'top', this.tooltipMin.nativeElement.style.top);
         }
       }
     }
@@ -665,20 +680,19 @@ export class SliderComponent implements OnInit, AfterViewInit {
       val = this.applyPrecision(val);
     }
     console.log(snapToClosestTick);
-    /*
-     FIXME
-     if (snapToClosestTick) {
-     let min = [val, Infinity];
-     for (let i = 0; i < this.ticks.length; i++) {
-     let diff = Math.abs(this.ticks[i] - val);
-     if (diff <= min[1]) {
-     min = [this.ticks[i], diff];
-     }
-     }
-     if (min[1] <= this.ticks_snap_bounds) {
-     return min[0];
-     }
-     }*/
+
+    if (snapToClosestTick) {
+      let min = [val, Infinity];
+      for (let i = 0; i < this.ticks.length; i++) {
+        let diff = Math.abs(this.ticks[i] - val);
+        if (diff <= min[1]) {
+          min = [this.ticks[i], diff];
+        }
+      }
+      if (min[1] <= this.ticksSnapBounds) {
+        return min[0];
+      }
+    }
 
     return val;
   }
