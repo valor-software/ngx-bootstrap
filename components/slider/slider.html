@@ -1,0 +1,28 @@
+<div (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}' [ngClass]="{animate: animate && !inDrag}">
+  <div class='slider-track'>
+    <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
+    <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
+    <div #trackHigh class='slider-track-high' [ngClass]="{hide: (selection === 'none' || selection === 'before')}"></div>
+  </div>
+
+  <div #sliderLabelsContainer class="slider-tick-label-container" *ngIf="ticksLabels.length > 0">
+    <div #labelElements *ngFor="let label of ticksLabels" class="slider-tick-label">{{ label }}</div>
+  </div>
+  <div #sliderTicksContainer class="slider-tick-container" *ngIf="ticks.length > 0">
+    <div #tickElements *ngFor="let tick of ticks" class="slider-tick {{ handleType }}">&nbsp;</div>
+  </div>
+  <div #tooltipMain class="tooltip tooltip-main {{ tooltipPosition }}" role="presentation">
+    <div class="tooltip-arrow"></div>
+    <div #tooltipMainInner class="tooltip-inner">Current value: {{ value }}</div>
+  </div>
+  <div #tooltipMin class="tooltip tooltip-min {{ tooltipPosition }}" role="presentation">
+    <div class="tooltip-arrow"></div>
+    <div #tooltipMinInner class="tooltip-inner"></div>
+  </div>
+  <div #tooltipMax class="tooltip tooltip-max {{ tooltipPosition }}" role="presentation">
+    <div class="tooltip-arrow"></div>
+    <div #tooltipMaxInner class="tooltip-inner"></div>
+  </div>
+  <div #minHandle tabindex="0" (keydown)="keydown(0, $event)" (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle min-slider-handle {{ handleType }}' role='slider'></div>
+  <div #maxHandle tabindex="0" (keydown)="keydown(1, $event)" (focus)="showTooltip()" (blur)="hideTooltip()" class='slider-handle max-slider-handle {{ handleType }}' [ngClass]="{hide: type === 'slider'}" role='slider'></div>
+</div>

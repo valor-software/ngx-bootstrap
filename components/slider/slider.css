@@ -236,3 +236,14 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff89cdef', endColorstr='#ff81bfde', GradientType=0);
   opacity: 1;
 }
+
+.slider.animate /deep/ .slider-track-low,
+.slider.animate /deep/ .slider-selection,
+.slider.animate /deep/ .slider-track-high,
+.slider.animate /deep/ .tooltip,
+.slider.animate /deep/ .slider-handle {
+  -webkit-transition: all 500ms ease-out;
+  -moz-transition: all 500ms ease-out;
+  -o-transition: all 500ms ease-out;
+  transition: all 500ms ease-out;
+}
