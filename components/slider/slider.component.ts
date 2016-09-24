@@ -69,6 +69,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
   public constructor(private renderer: Renderer, private sliderElem: ElementRef) {
   }
 
+  /**
+   * Initialize basic properties based on orientation
+   */
   public ngOnInit(): void {
     if (this.orientation === 'vertical') {
       this.stylePos = 'top';
@@ -87,10 +90,13 @@ export class SliderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Initialize base css class and set initial value
+   */
   public ngAfterViewInit(): void {
     this.renderer.setElementClass(this.sliderElem.nativeElement, 'slider', true);
     this.renderer.setElementClass(this.sliderElem.nativeElement, `slider-${this.orientation}`, true);
-    console.log(this.ticks, this.ticksLabels, this.ticksPositions, this.tickElements, this.labelElements);
+
     this.size = this.sliderElem.nativeElement[this.sizePos];
 
     if (!Array.isArray(this._value)) {
@@ -206,6 +212,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     this.over = false;
   }
 
+  /**
+   * Drag start on mouse down, start to move the handle
+   * @param event
+   * @returns {boolean}
+   */
   protected onMouseDown(event: Event): boolean {
     if (!this.enabled) {
       return false;
@@ -215,8 +226,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     this.size = this.sliderElem.nativeElement[this.sizePos];
 
     const percentage = this.getPercentage(event);
-    console.log(this.sliderElem.nativeElement['offsetHeight'],
-      this.sliderElem.nativeElement['offsetWidth'],this.offset, this.size, this.sizePos, percentage);
+
     if (this.type === 'range') {
       const diff1: number = Math.abs(this.percentage[0] - percentage);
       const diff2: number = Math.abs(this.percentage[1] - percentage);
@@ -260,6 +270,12 @@ export class SliderComponent implements OnInit, AfterViewInit {
     return true;
   }
 
+  /**
+   * Move handles on arrow keys
+   * @param handleIdx
+   * @param ev
+   * @returns {boolean}
+   */
   protected keydown(handleIdx: number, ev: Event): boolean {
     if (!this.enabled) {
       return false;
@@ -303,6 +319,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     return false;
   }
 
+  /**
+   * Update handle position on mouse move
+   * @param event
+   * @returns {boolean}
+   */
   private onMouseMove(event: Event): boolean {
     if (!this.enabled) {
       return false;
@@ -318,6 +339,10 @@ export class SliderComponent implements OnInit, AfterViewInit {
     return false;
   }
 
+  /**
+   * Drag end on mouse up, set final position of handle
+   * @returns {boolean}
+   */
   private onMouseUp(): boolean {
     if (!this.enabled) {
       return false;
@@ -348,6 +373,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
     return false;
   }
 
+  /**
+   * Manage the layout of all slider's elements (ticks, labels, handles, tracks)
+   */
   private layout(): void {
     if (!this.isInitialized) {
       return;
@@ -380,7 +408,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
         let extraMargin = 0;
         if (this.ticksPositions.length === 0 && this.sliderLabelsContainer) {
           if (this.orientation !== 'vertical') {
-            this.sliderLabelsContainer.nativeElement.style[styleMargin] = -labelSize / 2 + 'px';
+            this.renderer.setElementStyle(this.sliderLabelsContainer.nativeElement, styleMargin, -labelSize / 2 + 'px');
           }
 
           extraMargin = this.sliderLabelsContainer.nativeElement.offsetHeight;
@@ -393,7 +421,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
           });
         }
         if (this.orientation === 'horizontal') {
-          this.sliderElem.nativeElement.style.marginBottom = extraMargin + 'px';
+          this.renderer.setElementStyle(this.sliderElem.nativeElement, 'marginBottom', extraMargin + 'px');
         }
       }
 
@@ -490,7 +518,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     if (this.orientation === 'vertical') {
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'top', '0');
       this.renderer.setElementStyle(this.trackLow.nativeElement, 'height', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
-      console.log(positionPercentages);
+
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'top', Math.min(positionPercentages[0], positionPercentages[1]) + '%');
       this.renderer.setElementStyle(this.trackSelection.nativeElement, 'height', Math.abs(positionPercentages[0] - positionPercentages[1]) + '%');
 
@@ -535,6 +563,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Set text on element, use for update tooltip's text
+   * @param element
+   * @param text
+   */
   private setText(element: any, text: string): void {
     if (typeof element.textContent !== 'undefined') {
       element.textContent = text;
@@ -567,6 +600,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     };
   }
 
+  /**
+   * Retrieve percentage from an event
+   * @param ev
+   * @returns {number}
+   */
   private getPercentage(ev: Event): number {
     if (this.touchCapable && (ev.type === 'touchstart' || ev.type === 'touchmove')) {
       ev = ((ev as any).touches[0] as Event);
@@ -603,6 +641,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Calcul the current value of the slider
+   * @param snapToClosestTick snap to closest tick value
+   * @returns {any} value or array of values
+   */
   private calculateValue(snapToClosestTick: boolean): any {
     let val: any;
 
@@ -643,6 +686,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     return SliderHelpers.applyToFixedAndParseFloat(val, precision);
   }
 
+  /**
+   * Transform value to percentage
+   * @param value to transform
+   * @returns {number} percentage
+   */
   private toPercentage(value: number): number {
     if (this.max === this.min) {
       return 0;
@@ -673,6 +721,11 @@ export class SliderComponent implements OnInit, AfterViewInit {
     return 100 * (value - this.min) / (this.max - this.min);
   }
 
+  /**
+   * Transform percentage to value
+   * @param percentage to transform
+   * @returns {number} value
+   */
   private toValue(percentage: number): number {
     let rawValue = percentage / 100 * (this.max - this.min);
     let shouldAdjustWithBase = true;
@@ -708,6 +761,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
     }
   }
 
+  /**
+   * Set tooltip position based on orientation
+   */
   private setTooltipPosition(): void {
     const tooltips = [this.tooltipMain, this.tooltipMin, this.tooltipMax];
     if (this.orientation === 'vertical') {
@@ -715,17 +771,17 @@ export class SliderComponent implements OnInit, AfterViewInit {
       const oppositeSide = (tooltipPos === 'left') ? 'right' : 'left';
       tooltips.forEach((tooltip: ElementRef) => {
         this.renderer.setElementClass(tooltip.nativeElement, tooltipPos, true);
-        tooltip.nativeElement.style[oppositeSide] = '100%';
+        this.renderer.setElementStyle(tooltip.nativeElement, oppositeSide, '100%');
       });
     } else if (this.tooltipPosition === 'bottom') {
       tooltips.forEach((tooltip: ElementRef) => {
         this.renderer.setElementClass(tooltip.nativeElement, 'bottom', true);
-        tooltip.nativeElement.style.top = 22 + 'px';
+        this.renderer.setElementStyle(tooltip.nativeElement, 'top', 22 + 'px');
       });
     } else {
       tooltips.forEach((tooltip: ElementRef) => {
         this.renderer.setElementClass(tooltip.nativeElement, 'top', true);
-        tooltip.nativeElement.style.top = -tooltip.nativeElement.style.outerHeight - 14 + 'px';
+        this.renderer.setElementStyle(tooltip.nativeElement, 'top', -tooltip.nativeElement.style.outerHeight - 14 + 'px');
       });
     }
   }

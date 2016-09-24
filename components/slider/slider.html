@@ -1,4 +1,5 @@
-<div (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}' [ngClass]="{animate: animate && !inDrag}">
+<div (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()" (mousedown)='onMouseDown($event)' class='slider slider-{{ orientation }}'
+     [ngClass]="{animate: animate && !inDrag, 'slider-disabled': !enabled}">
   <div class='slider-track'>
     <div #trackLow class='slider-track-low' [ngClass]="{hide: (type === 'slider' || selection === 'none' || selection === 'after')}"></div>
     <div #trackSelection class='slider-selection' [ngClass]="{hide: (selection === 'none')}"></div>
