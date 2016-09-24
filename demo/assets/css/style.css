@@ -608,3 +608,10 @@ pre {
 .tooltip.customClass .tooltip-arrow {
   display: none;
 }
+
+.nav-item.customClass {
+	float: right;
+}
+.nav-item.customClass a {
+	background-color: #50ff50;
+}

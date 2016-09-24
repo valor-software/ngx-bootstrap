@@ -58,6 +58,7 @@ export class TabHeadingDirective {}
   - `active` (`?boolean=false`) - if tab is active equals true, or set `true` to activate tab
   - `disabled` (`?boolean=false`) - if `true` tab can not be activated
   - `removable` (`?boolean=false`) - if `true` tab can be removable, additional button will appear
+  - `customClass` (`?string`) - if set, will be added to the tab's class atribute
 
 ### Tab events
   - `select` - fired when `tab` became active, `$event:Tab` equals to selected instance of `Tab` component

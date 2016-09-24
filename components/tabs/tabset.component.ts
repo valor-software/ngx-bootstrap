@@ -7,7 +7,7 @@ import { TabDirective } from './tab.directive';
   selector: 'tabset',
   template: `
     <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
-        <li *ngFor="let tabz of tabs" class="nav-item"
+        <li *ngFor="let tabz of tabs" class="nav-item {{tabz.customClass}}"
           [class.active]="tabz.active" [class.disabled]="tabz.disabled">
           <a href class="nav-link"
             [class.active]="tabz.active" [class.disabled]="tabz.disabled"
