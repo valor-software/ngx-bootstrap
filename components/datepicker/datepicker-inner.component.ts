@@ -60,7 +60,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public formatDayHeader:string;
   @Input() public formatDayTitle:string;
   @Input() public formatMonthTitle:string;
-  @Input() public onlyCurrentMonth:boolean;
+  @Input() public currentMonthOnly:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
   // todo: change type during implementation
@@ -110,9 +110,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     this.showWeeks = (this.showWeeks === undefined
       ? SHOW_WEEKS
       : this.showWeeks);
-    this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined
+    this.currentMonthOnly = (this.currentMonthOnly === undefined
       ? ONLY_CURRENT_MONTH
-      : this.onlyCurrentMonth);
+      : this.currentMonthOnly);
     this.startingDay = this.startingDay || STARTING_DAY;
     this.yearRange = this.yearRange || YEAR_RANGE;
     this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;

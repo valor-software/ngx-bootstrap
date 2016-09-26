@@ -24,7 +24,7 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
                       [yearRange]="yearRange"
                       [customClass]="customClass"
                       [dateDisabled]="dateDisabled"
-                      [onlyCurrentMonth]="onlyCurrentMonth"
+                      [currentMonthOnly]="currentMonthOnly"
                       [shortcutPropagation]="shortcutPropagation"
                       (selectionDone)="onSelectionDone($event)">
       <daypicker tabindex="0"></daypicker>
@@ -51,7 +51,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public formatMonthTitle:string;
   @Input() public startingDay:number;
   @Input() public yearRange:number;
-  @Input() public onlyCurrentMonth:boolean;
+  @Input() public currentMonthOnly:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
 // todo: change type during implementation
