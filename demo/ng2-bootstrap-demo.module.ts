@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { Ng2BootstrapModule } from '../components';
+import { BsCoreModule } from '../components';
 
 import {
   AccordionDemoComponent,
@@ -91,7 +91,7 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
   imports: [
     BrowserModule,
     FormsModule,
-    Ng2BootstrapModule,
+    BsCoreModule,
     ReactiveFormsModule,
     routing
   ],

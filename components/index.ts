@@ -27,5 +27,5 @@ import { ComponentsHelper } from './utils/components-helper.service';
     {provide: ComponentsHelper, useClass: ComponentsHelper}
   ]
 })
-export class Ng2BootstrapModule {
+export class BsCoreModule {
 }
