@@ -11,6 +11,7 @@ export class TabDirective implements OnDestroy {
   @Input() public heading:string;
   @Input() public disabled:boolean;
   @Input() public removable:boolean;
+  @Input() public customClass:string;
 
   /** tab active state toggle */
   @HostBinding('class.active')
