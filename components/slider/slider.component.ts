@@ -1,22 +1,34 @@
 import {
   Component,
   Input,
+  Output,
   ElementRef,
   QueryList,
   ViewChild,
   ViewChildren,
   AfterViewInit,
   Renderer,
-  OnInit
+  OnInit,
+  forwardRef, EventEmitter
 } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { SliderHelpers } from './slider.helpers';
+
+/* tslint:disable:no-forward-ref */
+const CUSTOM_VALUE_ACCESSOR = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => SliderComponent),
+  multi: true
+};
+/* tslint:enable:no-forward-ref */
 
 @Component({
   selector: 'slider',
   styles: [require('./slider.css')],
+  providers: [CUSTOM_VALUE_ACCESSOR],
   template: require('./slider.html')
 })
-export class SliderComponent implements OnInit, AfterViewInit {
+export class SliderComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() public animate: boolean = true;
   @Input() public enabled: boolean = true;
   @Input() public reversed: boolean;
@@ -32,6 +44,9 @@ export class SliderComponent implements OnInit, AfterViewInit {
   @Input() public ticksPositions: Array<number> = [];
   @Input() public ticksLabels: Array<string> = [];
   @Input() public ticksSnapBounds: number = 0;
+  @Output() public onChange: EventEmitter<any> = new EventEmitter();
+  @Output() public onDragStart: EventEmitter<any> = new EventEmitter();
+  @Output() public onDragStop: EventEmitter<any> = new EventEmitter();
   @ViewChild('minHandle') private minHandle: ElementRef;
   @ViewChild('maxHandle') private maxHandle: ElementRef;
   @ViewChild('trackHigh') private trackHigh: ElementRef;
@@ -65,8 +80,23 @@ export class SliderComponent implements OnInit, AfterViewInit {
   private _max: number = 100;
   private _min: number = 0;
   private _step: number = 1;
+  private propagateChange: EventEmitter<any> = new EventEmitter();
 
   public constructor(private renderer: Renderer, private sliderElem: ElementRef) {
+  }
+
+  public registerOnTouched(): void {
+    // do nothing here ?
+  }
+
+  public registerOnChange(fn: any): void {
+    this.propagateChange.subscribe(fn);
+  }
+
+  public writeValue(value: any): void {
+    if (value !== undefined) {
+      this.value = value;
+    }
   }
 
   /**
@@ -184,6 +214,8 @@ export class SliderComponent implements OnInit, AfterViewInit {
     } else {
       this.percentage = [0, 0, 100];
     }
+    this.propagateChange.next(this.value);
+    this.onChange.emit(this.value);
     this.layout();
   }
 
@@ -221,6 +253,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     if (!this.enabled) {
       return false;
     }
+    this.onDragStart.emit(event);
 
     this.offset = this.calculateOffset(this.sliderElem.nativeElement);
     this.size = this.sliderElem.nativeElement[this.sizePos];
@@ -369,7 +402,7 @@ export class SliderComponent implements OnInit, AfterViewInit {
     }
 
     this.value = this.calculateValue(true);
-
+    this.onDragStop.emit(event);
     return false;
   }
 
