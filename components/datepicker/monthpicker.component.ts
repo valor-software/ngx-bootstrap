@@ -35,7 +35,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
     <tr *ngFor="let rowz of rows">
       <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ngClass]="dtz.customClass">
         <button type="button" style="min-width:100%;" class="btn btn-default"
-                [ngClass]="{'btn-info': dtz.selected, 'btn-link': isBS4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': isBS4 && !dtz.selected && datePicker.isActive(dtz), disabled: dtz.disabled, active: !isBS4 && datePicker.isActive(dtz)}"
+                [ngClass]="{'btn-link': isBS4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || (isBS4 && !dtz.selected && datePicker.isActive(dtz)), disabled: dtz.disabled, active: !isBS4 && datePicker.isActive(dtz)}"
                 [disabled]="dtz.disabled"
                 (click)="datePicker.select(dtz.date)" tabindex="-1">
           <span [ngClass]="{'text-success': isBS4 && dtz.current, 'text-info': !isBS4 && dtz.current}">{{dtz.label}}</span>

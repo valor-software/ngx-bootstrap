@@ -40,7 +40,7 @@ export class TabsetComponent implements OnInit, OnDestroy {
     return this._type;
   };
 
-  @HostBinding('class.tab-container') protected clazz:boolean = true;
+  @HostBinding('class.tab-container') public clazz:boolean = true;
 
   public set vertical(value:boolean) {
     this._vertical = value;
@@ -58,12 +58,12 @@ export class TabsetComponent implements OnInit, OnDestroy {
   }
 
   public tabs:Array<TabDirective> = [];
+  public classMap:any = {};
 
   private isDestroyed:boolean;
   private _vertical:boolean;
   private _justified:boolean;
   private _type:string;
-  private classMap:any = {};
 
   public ngOnInit():void {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';

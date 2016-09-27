@@ -12,9 +12,9 @@ import { CarouselModule } from 'ng2-bootstrap/components/carousel';
   selector: 'carousel'
 })
 export class CarouselComponent implements OnDestroy {
-  @Input() private noWrap:boolean;
-  @Input() private noPause:boolean;
-  @Input() private noTransition:boolean;
+  @Input() public noWrap:boolean;
+  @Input() public noPause:boolean;
+  @Input() public noTransition:boolean;
 
   @Input() public get interval():number {}
 }
@@ -32,7 +32,7 @@ export class SlideComponent implements OnInit, OnDestroy {
 
   @HostBinding('class.item')
   @HostBinding('class.carousel-item')
-  private addClass:boolean = true;
+  public addClass:boolean = true;
 }
 ```
 

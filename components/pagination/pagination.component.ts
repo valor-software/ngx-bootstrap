@@ -154,15 +154,14 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   public renderer:Renderer;
   public elementRef:ElementRef;
 
-  private classMap:string;
+  public classMap:string;
+  public pages:Array<any>;
 
   private _itemsPerPage:number;
   private _totalItems:number;
   private _totalPages:number;
   private inited:boolean = false;
-  // ??
   private _page:number;
-  private pages:Array<any>;
 
   public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     this.cd = cd;
@@ -224,7 +223,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     this.onTouched = fn;
   }
 
-  private selectPage(page:number, event?:MouseEvent):void {
+  public selectPage(page:number, event?:MouseEvent):void {
     if (event) {
       event.preventDefault();
     }

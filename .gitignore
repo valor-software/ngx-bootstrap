@@ -32,3 +32,4 @@ ng2-bootstrap.js.map
 factories
 
 /**/*.metadata.json
+/**/*.ngfactory.ts

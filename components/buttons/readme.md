@@ -21,8 +21,8 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 // directive ButtonCheckbox
 @Directive({ selector: '[btnCheckbox][ngModel]' })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
-  @Input() private btnCheckboxTrue:any;
-  @Input() private btnCheckboxFalse:any;
+  @Input() public btnCheckboxTrue:any;
+  @Input() public btnCheckboxFalse:any;
 
   @HostBinding('class.active')
   private state:boolean = false;
