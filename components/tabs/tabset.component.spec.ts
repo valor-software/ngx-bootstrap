@@ -5,7 +5,9 @@ import { TabsModule } from './tabs.module';
 
 const html = `
   <tabset [justified]="isJustified"
-          [vertical]="isVertical">
+          [vertical]="isVertical"
+          [width]="'50%'"
+          [height]="'90%'">
     <tab heading="tab0">tab0 content</tab>
     <tab *ngFor="let tab of tabs"
          [disabled]="tab.disabled"
@@ -173,6 +175,14 @@ describe('Component: Tabs', () => {
     expect(context._removed).toHaveBeenCalledWith(jasmine.objectContaining({
       heading: 'tab3'
     }));
+  });
+
+  it('should add width and height', () => {
+    const contentElement = element.querySelectorAll('div.tab-content')[0];
+    const contentStyle = contentElement.style;
+
+    expect(contentStyle.width).toEqual('50%');
+    expect(contentStyle.height).toEqual('90%');
   });
 });
 

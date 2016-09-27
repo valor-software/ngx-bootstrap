@@ -25,7 +25,8 @@ export class TabsetComponent implements OnInit {
   @Input() public vertical:boolean;
   @Input() public justified:boolean;
   @Input() public type:string;
-}
+  @Input() public width:string;
+  @Input() public height:string;
 
 // directive Tab
 @Directive({ selector: 'tab, [tab]' })
@@ -52,6 +53,8 @@ export class TabHeadingDirective {}
   - `vertical` (`?boolean=false`) - if `true` tabs will be placed vertically
   - `justified` (`?boolean=false`) - if `true` tabs fill the container and have a consistent width
   - `type` (`?string='tabs'`) - navigation context class: 'tabs' or 'pills'
+  - `width` (`?string='auto'`) - component width
+  - `width` (`?string='auto'`) - component height
 
 ### Tab properties
   - `heading` (`string`) - tab header text
