@@ -77,7 +77,7 @@
     "cpy-cli": "1.0.1",
     "cross-env": "2.0.1",
     "del-cli": "0.2.0",
-    "es6-promise": "3.3.0",
+    "es6-promise": "4.0.1",
     "es6-shim": "0.35.1",
     "es7-reflect-metadata": "1.6.0",
     "eslint-config-valorsoft": "0.1.0",
