@@ -32,12 +32,12 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   public onTouched:any = Function.prototype;
 
   public cd:NgModel;
-  private range:Array<any>;
-  private value:number;
+  public range:Array<any>;
+  public value:number;
   private preValue:number;
 
   @HostListener('keydown', ['$event'])
-  protected onKeydown(event:KeyboardEvent):void {
+  public onKeydown(event:KeyboardEvent):void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
@@ -87,7 +87,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  protected reset():void {
+  public reset():void {
     this.value = this.preValue;
     this.onLeave.emit(this.value);
   }

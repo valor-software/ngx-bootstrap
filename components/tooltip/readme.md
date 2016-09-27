@@ -10,7 +10,7 @@ import { TooltipModule } from 'ng2-bootstrap/components/tooltip';
 // class Tooltip implements OnInit
 @Directive({ selector: '[tooltip]' })
 export class TooltipDirective {
-  @Input('tooltip') private content:string;
+  @Input('tooltip') public content:string;
   @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
   @Input('tooltipPlacement') private placement:string = 'top';
   @Input('tooltipIsOpen') private isOpen:boolean;

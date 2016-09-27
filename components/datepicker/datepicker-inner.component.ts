@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { DateFormatter } from './date-formatter';
 
@@ -69,6 +69,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
+  @Output() public update:EventEmitter<Date> = new EventEmitter<Date>(false);
+
   public stepDay:any = {};
   public stepMonth:any = {};
   public stepYear:any = {};
@@ -86,9 +88,6 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   private compareHandlerMonth:Function;
   private refreshViewHandlerYear:Function;
   private compareHandlerYear:Function;
-
-  @Output()
-  private update:EventEmitter<Date> = new EventEmitter<Date>(false);
 
   @Input()
   public get activeDate():Date {
@@ -125,7 +124,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
     if (this.initDate) {
       this.activeDate = this.initDate;
-      this.selectedDate = new Date(this.activeDate.valueOf());
+      this.selectedDate = new Date(this.activeDate.valueOf() as number);
       this.update.emit(this.activeDate);
     } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
@@ -133,7 +132,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   // this.refreshView should be called here to reflect the changes on the fly
-  public ngOnChanges():void {
+  // tslint:disable-next-line:no-unused-variable
+  public ngOnChanges(changes:SimpleChanges):void {
     this.refreshView();
   }
 
@@ -255,7 +255,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
     }
 
-    this.selectedDate = new Date(this.activeDate.valueOf());
+    this.selectedDate = new Date(this.activeDate.valueOf() as number);
     this.update.emit(this.activeDate);
     this.refreshView();
   }

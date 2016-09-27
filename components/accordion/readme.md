@@ -16,7 +16,7 @@ export class AccordionComponent {
   @Input() public closeOthers:boolean;
 
   @HostBinding('class.panel-group')
-  private addClass = true;
+  public addClass = true;
 }
 
 // component AccordionGroup

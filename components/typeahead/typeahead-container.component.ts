@@ -71,12 +71,13 @@ export class TypeaheadContainerComponent {
   public query:any;
   public element:ElementRef;
   public isFocused:boolean = false;
+  public top:string;
+  public left:string;
+  public display:string;
+
   private _active:any;
   private _matches:Array<any> = [];
   private _field:string;
-  private top:string;
-  private left:string;
-  private display:string;
   private placement:string;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
@@ -168,7 +169,7 @@ export class TypeaheadContainerComponent {
     return itemStr;
   }
 
-  protected focusLost():void {
+  public focusLost():void {
     this.isFocused = false;
   }
 

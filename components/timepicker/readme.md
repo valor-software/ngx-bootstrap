@@ -13,17 +13,17 @@ import { TimepickerModule } from 'ng2-bootstrap/components/timepicker';
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
   // config
-  @Input() private hourStep:number;
-  @Input() private minuteStep:number;
-  @Input() private readonlyInput:boolean;
-  @Input() private mousewheel:boolean;
-  @Input() private arrowkeys:boolean;
-  @Input() private showSpinners:boolean;
-  @Input() private min:Date;
-  @Input() private max:Date;
-  @Input() private meridians:Array<string> = ['AM', 'PM']; // ??
+  @Input() public hourStep:number;
+  @Input() public minuteStep:number;
+  @Input() public readonlyInput:boolean;
+  @Input() public mousewheel:boolean;
+  @Input() public arrowkeys:boolean;
+  @Input() public showSpinners:boolean;
+  @Input() public min:Date;
+  @Input() public max:Date;
+  @Input() public meridians:Array<string> = ['AM', 'PM']; // ??
 
-  @Input() private get showMeridian() {}
+  @Input() public get showMeridian() {}
 }
 ```
 

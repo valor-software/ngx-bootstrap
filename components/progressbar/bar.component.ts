@@ -20,6 +20,7 @@ import { ProgressDirective } from './progress.directive';
 })
 export class BarComponent implements OnInit, OnDestroy {
   @Input() public type:string;
+  public max:number;
 
   @Input()
   public get value():number {
