@@ -61,12 +61,12 @@ const PAGINATION_TEMPLATE = `
 
     <li class="pagination-next page-item"
         *ngIf="directionLinks"
-        [class.disabled]="noNext()">
+        [class.disabled]="noNext()||disabled">
       <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
 
     <li class="pagination-last page-item"
         *ngIf="boundaryLinks"
-        [class.disabled]="noNext()">
+        [class.disabled]="noNext()||disabled">
       <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
   </ul>
   `;
