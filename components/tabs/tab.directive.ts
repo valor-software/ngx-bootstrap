@@ -5,7 +5,11 @@ import {
 import { TabsetComponent } from './tabset.component';
 
 /* tslint:disable */
-@Directive({selector: 'tab, [tab]'})
+@Directive({selector: 'tab, [tab]',
+host: {
+  '[style.width]': 'tabset.width',
+  '[style.height]': 'tabset.height'
+}})
 /* tslint:enable */
 export class TabDirective implements OnDestroy {
   @Input() public heading:string;

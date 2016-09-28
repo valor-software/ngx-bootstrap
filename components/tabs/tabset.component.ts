@@ -19,7 +19,7 @@ import { TabDirective } from './tab.directive';
           </a>
         </li>
     </ul>
-    <div class="tab-content">
+    <div class="tab-content" [style.width]="width" [style.height]="height">
       <ng-content></ng-content>
     </div>
   `
@@ -40,6 +40,16 @@ export class TabsetComponent implements OnInit, OnDestroy {
     return this._type;
   };
 
+  @Input()
+  public get width():string {
+    return this._width;
+  }
+
+  @Input()
+  public get height():string {
+    return this._height;
+  }
+
   @HostBinding('class.tab-container') protected clazz:boolean = true;
 
   public set vertical(value:boolean) {
@@ -57,12 +67,22 @@ export class TabsetComponent implements OnInit, OnDestroy {
     this.setClassMap();
   }
 
+  public set width(value: string) {
+    this._width = value;
+  }
+
+  public set height(value: string) {
+    this._height = value;
+  }
+
   public tabs:Array<TabDirective> = [];
 
   private isDestroyed:boolean;
   private _vertical:boolean;
   private _justified:boolean;
   private _type:string;
+  private _width: string = 'auto';
+  private _height: string = 'auto';
   private classMap:any = {};
 
   public ngOnInit():void {
