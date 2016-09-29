@@ -42,7 +42,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
         </button>
       </th>
       <th colspan="3">
-        <button [id]="uniqueId + '-title'" role="heading"
+        <button [id]="datePicker.uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"

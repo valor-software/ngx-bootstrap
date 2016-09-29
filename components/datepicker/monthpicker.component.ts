@@ -37,7 +37,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme] ||
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button></th>
       <th>
-        <button [id]="uniqueId + '-title'"
+        <button [id]="datePicker.uniqueId + '-title'"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
