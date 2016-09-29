@@ -140,7 +140,7 @@ export class AppModule { }
 And update your `app.component.ts` to have following content:
 
 ```ts
-import {Component} from 'angular2/core';
+import { Component } from 'angular2/core';
 
 @Component({
   selector: 'my-app',
@@ -148,6 +148,18 @@ import {Component} from 'angular2/core';
 })
 export class AppComponent {
 }
+```
+
+If you are using Angular [compiler-cli](https://github.com/angular/angular/tree/master/modules/%40angular/compiler-cli) don't forget bootstrap ModuleNgFactory instead of your common app module.
+
+```shell
+$ ./node_modules/.bin/ngc -p tsconfig.json
+```
+
+```ts
+import { AppModuleNgFactory } from './app.module.ngfactory'
+
+platformBrowserDynamic().bootstrapModuleFactory(AppModuleNgFactory);
 ```
 
 And you are ready to go! :)
