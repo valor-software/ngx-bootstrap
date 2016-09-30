@@ -92,7 +92,10 @@ export class TypeaheadDirective implements OnInit {
       }
     }
 
-    if (e.target.value.trim().length >= this.typeaheadMinLength) {
+    // For `<input>`s, use the `value` property. For others that don't have a
+    // `value` (such as `<span contenteditable="true">`, use `innerText`.
+    const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
+    if (value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
