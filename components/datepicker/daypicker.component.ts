@@ -62,7 +62,7 @@ const CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || 
         ${CURRENT_THEME_TEMPLATE.ARROW_LEFT}
         </button>
       </th>
-      <th [attr.colspan]="5 + datePicker.showWeeks">
+      <th [attr.colspan]="5 + (datePicker.showWeeks ? 1 : 0)">
         <button [id]="datePicker.uniqueId + '-title'"
                 type="button" class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
