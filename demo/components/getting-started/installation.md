@@ -1,26 +1,19 @@
-### Installation
+### Installation instructions
 
-**NOTE**: please use `npm 3.*` (`(sudo) npm i -g npm@3`)
-
+Install `ng2-bootstrap` from `npm`
 ```bash
-npm install --save ng2-bootstrap
+npm install ng2-bootstrap --save
 ```
 
-Additionally you will need `moment.js` typings if you are planning to work with datepicker
+You will need Bootstrap styles
 
-```bash
-# install typings globally
-npm install -g typings
-# init typings if you don't have typings.json yet
-typings init
-# and install moment.js typings
-typings install moment --save
+```
+<!-- index.html -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
-### How to use it with webpack?
-
-Please refer to [readme](https://github.com/valor-software/ng2-bootstrap#with-webpack-angularclassangular2-webpack-starter)
-
-### How to use it with system.js and angular2 quick start
-
-Please check this [instructions](https://github.com/valor-software/ng2-bootstrap#quick-start)
+## How to use it with:
+ - `angular-cli` please refer to [getting-started-with-ng-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/ng-cli.md)
+ - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart) 
+ - `webpack` you can view our demo page [source code](https://github.com/valor-software/ng2-bootstrap/tree/development/demo)
+ - `plnkr` sample available [here](http://bit.ly/ng2-bootstrap-plnkr)
