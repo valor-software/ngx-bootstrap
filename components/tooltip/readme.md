@@ -8,7 +8,10 @@ import { TooltipModule } from 'ng2-bootstrap/components/tooltip';
 ### Annotations
 ```typescript
 // class Tooltip implements OnInit
-@Directive({ selector: '[tooltip]' })
+@Directive({ 
+  selector: '[tooltip]',
+  exportAs: 'bs-tooltip'
+})
 export class TooltipDirective {
   @Input('tooltip') public content:string;
   @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
@@ -18,6 +21,7 @@ export class TooltipDirective {
   @Input('tooltipAppendToBody') private appendToBody:boolean;
   @Input('tooltipClass') public popupClass:string;
   @Input('tooltipContext') public tooltipContext:any;
+  @Output() public tooltipStateChanged:EventEmitter<boolean>;
 }
 ```
 
@@ -33,3 +37,6 @@ export class TooltipDirective {
   - `tooltipClass` (`?string`) - custom tooltip class applied to the tooltip container
   - `tooltipIsOpen` (`?boolean=false`) - if `true` tooltip is currently visible
   - `tooltipContext` (`any`) - if a template is used for the content, then this property can be used to specify a context for that template. The template variable exposed is called 'model'.
+
+### Tooltip events
+  - `tooltipStateChanged` - This event fires each time the state of the tooltip is changed. Argument is boolean stating if the tooltip is visible or not.
