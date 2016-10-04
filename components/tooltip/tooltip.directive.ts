@@ -28,7 +28,7 @@ export class TooltipDirective {
   @Input('tooltipIsOpen') public isOpen: boolean;
   @Input('tooltipEnable') public enable: boolean = true;
   @Input('tooltipAnimation') public animation: boolean = true;
-  @Input('tooltipAppendToBody') public appendToBody: boolean;
+  @Input('tooltipAppendToBody') public appendToBody: boolean = false;
   @Input('tooltipClass') public popupClass: string;
   @Input('tooltipContext') public tooltipContext: any;
   @Input('tooltipPopupDelay') public delay: number = 0;
@@ -71,14 +71,16 @@ export class TooltipDirective {
         context: this.tooltipContext
       });
 
-      let binding = ReflectiveInjector.resolve([
-        {provide: TooltipOptions, useValue: options}
-      ]);
-
-      this.tooltip = this.componentsHelper
-        .appendNextToLocation(TooltipContainerComponent,
-          this.viewContainerRef,
-          binding);
+      if (this.appendToBody) {
+        this.tooltip = this.componentsHelper
+          .appendNextToRoot(TooltipContainerComponent, TooltipOptions, options);
+      } else {
+        let binding = ReflectiveInjector.resolve([
+          {provide: TooltipOptions, useValue: options}
+        ]);
+        this.tooltip = this.componentsHelper
+          .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
+      }
 
       this.triggerStateChanged();
     };
