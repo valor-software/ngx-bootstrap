@@ -309,7 +309,16 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   private isDisabled(date:Date):boolean {
-    // todo: implement dateDisabled attribute
+    if(this.dateDisabled !==undefined && this.dateDisabled!==null){
+		for(var i=0;i<this.dateDisabled.length;i++){
+			var disabledDate = this.dateDisabled[i].getDate() + "/" +(this.dateDisabled[i].getMonth()+1) + "/" +(this.dateDisabled[i].getFullYear());
+			var currentDate = date.getDate() + "/" +(date.getMonth()+1) + "/" +date.getFullYear();
+				if(disabledDate === currentDate){
+					return true;
+				}
+			}
+	}
+	
     return ((this.minDate && this.compare(date, this.minDate) < 0) ||
     (this.maxDate && this.compare(date, this.maxDate) > 0));
   }
