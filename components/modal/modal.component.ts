@@ -99,6 +99,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     // this._element             = null
     // this._dialog              = null
     // this._backdrop            = null
+    if (this._isShown) {
+      this._isShown = false;
+      this.hideModal();
+    }
     this._isShown = void 0;
     this.isBodyOverflowing = void 0;
     this.originalBodyPadding = void 0;
