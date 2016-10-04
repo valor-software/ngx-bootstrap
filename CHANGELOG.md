@@ -1,3 +1,36 @@
+<a name="1.1.6"></a>
+## [1.1.6](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.5...v1.1.6) (2016-10-04)
+
+
+### Bug Fixes
+
+* **build:** change properties privacy to use in factories ([19c0c61](https://github.com/valor-software/ng2-bootstrap/commit/19c0c61))
+* **datepicker:** changing the date programatically selects the correct date ([#1041](https://github.com/valor-software/ng2-bootstrap/issues/1041)) ([fb6d532](https://github.com/valor-software/ng2-bootstrap/commit/fb6d532)), closes [#858](https://github.com/valor-software/ng2-bootstrap/issues/858)
+* **datepicker:** fixed broken bindings for aria-labelby and ids ([#1055](https://github.com/valor-software/ng2-bootstrap/issues/1055)) ([26d9209](https://github.com/valor-software/ng2-bootstrap/commit/26d9209))
+* **datepicker:** Fixing Colspan ([#1057](https://github.com/valor-software/ng2-bootstrap/issues/1057)) ([e71a8ae](https://github.com/valor-software/ng2-bootstrap/commit/e71a8ae))
+* **datepicker:** imlement ReactiveForms setDisabledState for TimepickerComponent ([cd58c3b](https://github.com/valor-software/ng2-bootstrap/commit/cd58c3b)), closes [#1024](https://github.com/valor-software/ng2-bootstrap/issues/1024)
+* **demo:** fixed tabs demo ([#1050](https://github.com/valor-software/ng2-bootstrap/issues/1050)) ([969a61a](https://github.com/valor-software/ng2-bootstrap/commit/969a61a))
+* **export:** removed obsolete exports to avoid missusage ([6993e97](https://github.com/valor-software/ng2-bootstrap/commit/6993e97))
+* **modal:** Call hideModal in ngOnDestroy if modal is shown ([#1038](https://github.com/valor-software/ng2-bootstrap/issues/1038)) ([b38db2a](https://github.com/valor-software/ng2-bootstrap/commit/b38db2a)), closes [#853](https://github.com/valor-software/ng2-bootstrap/issues/853) [#1051](https://github.com/valor-software/ng2-bootstrap/issues/1051) [#1052](https://github.com/valor-software/ng2-bootstrap/issues/1052)
+* **package:** development files added to .npmignore ([887c6b2](https://github.com/valor-software/ng2-bootstrap/commit/887c6b2)), closes [#737](https://github.com/valor-software/ng2-bootstrap/issues/737)
+* **pagination:** Fix disabled class on next and last buttons ([#1036](https://github.com/valor-software/ng2-bootstrap/issues/1036)) ([01f4759](https://github.com/valor-software/ng2-bootstrap/commit/01f4759)), closes [#922](https://github.com/valor-software/ng2-bootstrap/issues/922)
+* **slider:** Slide shouldnt enforce text alignment ([#824](https://github.com/valor-software/ng2-bootstrap/issues/824)) ([ad2c5a6](https://github.com/valor-software/ng2-bootstrap/commit/ad2c5a6))
+* **template:**  templates should not use es6 templates ([de26168](https://github.com/valor-software/ng2-bootstrap/commit/de26168))
+* **typeahead:** Fix crash with `contenteditable` inputs ([47b9fb1](https://github.com/valor-software/ng2-bootstrap/commit/47b9fb1))
+* **univeral:** added hacks for missing type keywords ([d20ccf1](https://github.com/valor-software/ng2-bootstrap/commit/d20ccf1)), closes [#964](https://github.com/valor-software/ng2-bootstrap/issues/964)
+* **utils:** now attach to body should work for mixed ng1+ng2 apps ([99f15c8](https://github.com/valor-software/ng2-bootstrap/commit/99f15c8)), closes [#1069](https://github.com/valor-software/ng2-bootstrap/issues/1069) [#1056](https://github.com/valor-software/ng2-bootstrap/issues/1056)
+
+
+### Features
+
+* **build:** added config file for wallabyjs ([cec8bae](https://github.com/valor-software/ng2-bootstrap/commit/cec8bae))
+* **build:** use ngc compiler to produce metadata ([afabb9d](https://github.com/valor-software/ng2-bootstrap/commit/afabb9d)), closes [#1060](https://github.com/valor-software/ng2-bootstrap/issues/1060) [#992](https://github.com/valor-software/ng2-bootstrap/issues/992) [#933](https://github.com/valor-software/ng2-bootstrap/issues/933)
+* **buttons:** update radio button directive to work with ReactiveForms ([5d51939](https://github.com/valor-software/ng2-bootstrap/commit/5d51939)), closes [#1023](https://github.com/valor-software/ng2-bootstrap/issues/1023)
+* **tabs:** added custom class option ([13fac37](https://github.com/valor-software/ng2-bootstrap/commit/13fac37)), closes [#766](https://github.com/valor-software/ng2-bootstrap/issues/766) [#842](https://github.com/valor-software/ng2-bootstrap/issues/842) [#842](https://github.com/valor-software/ng2-bootstrap/issues/842)
+* **tooltip:** added tooltipStateChanged and exporting the directive ([#939](https://github.com/valor-software/ng2-bootstrap/issues/939)) ([650b4f7](https://github.com/valor-software/ng2-bootstrap/commit/650b4f7))
+
+
+
 <a name="1.1.5"></a>
 ## [1.1.5](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.4...v1.1.5) (2016-09-16)
 
