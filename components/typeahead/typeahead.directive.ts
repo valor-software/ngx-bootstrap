@@ -37,6 +37,7 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadWaitMs:number;
   @Input() public typeaheadOptionsLimit:number;
   @Input() public typeaheadOptionField:string;
+  @Input() public typeaheadGroupField:string;
   @Input() public typeaheadAsync:boolean = void 0;
   @Input() public typeaheadLatinize:boolean = true;
   @Input() public typeaheadSingleWords:boolean = true;
@@ -57,7 +58,8 @@ export class TypeaheadDirective implements OnInit {
   public isTypeaheadOptionsListActive:boolean = false;
 
   private keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
-  private _matches:Array<string>;
+  private _matches:Array<any>;
+  private _groups:Array<any> = [];
   private placement:string = 'bottom-left';
   private popup:ComponentRef<TypeaheadContainerComponent>;
 
@@ -184,7 +186,7 @@ export class TypeaheadDirective implements OnInit {
     return this._matches;
   }
 
-  public show(matches:Array<any>):void {
+  public show():void {
     let options = new TypeaheadOptions({
       typeaheadRef: this,
       placement: this.placement,
@@ -209,8 +211,10 @@ export class TypeaheadDirective implements OnInit {
     this.container.query = this.typeaheadSingleWords
       ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
       : normalizedQuery;
-    this.container.matches = matches;
+    this.container.matches = this._matches;
+    this.container.groups = this._groups;
     this.container.field = this.typeaheadOptionField;
+    this.container.groupField = this.typeaheadGroupField;
     this.element.nativeElement.focus();
   }
 
@@ -227,8 +231,7 @@ export class TypeaheadDirective implements OnInit {
       .mergeMap(() => this.typeahead)
       .subscribe(
         (matches:string[]) => {
-          this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-          this.finalizeAsyncCall();
+          this.finalizeAsyncCall(matches);
         },
         (err:any) => {
           console.error(err);
@@ -244,14 +247,13 @@ export class TypeaheadDirective implements OnInit {
 
         return Observable.from(this.typeahead)
           .filter((option:any) => {
-            return option && this.testMatch(this.prepareOption(option).toLowerCase(), normalizedQuery);
+            return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
           })
           .toArray();
       })
       .subscribe(
         (matches:string[]) => {
-          this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-          this.finalizeAsyncCall();
+          this.finalizeAsyncCall(matches);
         },
         (err:any) => {
           console.error(err);
@@ -259,9 +261,11 @@ export class TypeaheadDirective implements OnInit {
       );
   }
 
-  private prepareOption(option:any):any {
-    let match:string = TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField);
-    return this.typeaheadLatinize ? TypeaheadUtils.latinize(match) : match;
+  private normalizeOption(option:any):any {
+    let optionValue:string = TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField);
+    let normalizedOption = this.typeaheadLatinize ? TypeaheadUtils.latinize(optionValue) : optionValue;
+
+    return normalizedOption.toLowerCase();
   }
 
   private normalizeQuery(value:string):any {
@@ -293,17 +297,20 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  private finalizeAsyncCall():void {
-    this.typeaheadLoading.emit(false);
-    this.typeaheadNoResults.emit(this.matches.length <= 0);
+  private finalizeAsyncCall(matches:any[]):void {
+    this.limitMatches(matches);
+    this.updateGroups();
 
-    if (this._matches.length <= 0) {
+    this.typeaheadLoading.emit(false);
+    this.typeaheadNoResults.emit(!this.hasMatches());
+
+    if (!this.hasMatches()) {
       this.hide();
       return;
     }
 
-    if (this.container && this._matches.length > 0) {
-      // This improves the speedas it won't have to be done for each list item
+    if (this.container) {
+      // This improves the speed as it won't have to be done for each list item
       let normalizedQuery = (this.typeaheadLatinize
         ? TypeaheadUtils.latinize(this.ngControl.control.value)
         : this.ngControl.control.value).toString()
@@ -311,12 +318,28 @@ export class TypeaheadDirective implements OnInit {
       this.container.query = this.typeaheadSingleWords
         ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
         : normalizedQuery;
+      this.container.groups = this._groups;
       this.container.matches = this._matches;
-    }
-
-    if (!this.container && this._matches.length > 0) {
-      this.show(this._matches);
+    } else {
+      this.show();
     }
   }
 
+  private limitMatches(matches:any[]):void {
+    this._matches = matches.slice(0, this.typeaheadOptionsLimit);
+  }
+
+  private updateGroups():void {
+    if (this.typeaheadGroupField) {
+      this._groups = this._matches
+        .map((match:any) => TypeaheadUtils.getValueFromObject(match, this.typeaheadGroupField))
+        .filter((v:string, i:number, a:Array<any>) => a.indexOf(v) === i);
+    } else {
+      this._groups = [];
+    }
+  }
+
+  private hasMatches():boolean {
+    return this._matches.length > 0;
+  }
 }

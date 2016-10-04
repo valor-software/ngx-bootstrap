@@ -21,6 +21,7 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadWaitMs:number;
   @Input() public typeaheadOptionsLimit:number;
   @Input() public typeaheadOptionField:string;
+  @Input() public typeaheadGroupField:string;
   @Input() public typeaheadAsync:boolean = null;
   @Input() public typeaheadLatinize:boolean = true;
   @Input() public typeaheadSingleWords:boolean = true;
@@ -46,7 +47,8 @@ export class TypeaheadDirective implements OnInit {
   - `typeaheadMinLength` (`?number=1`) - minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit)
   - `typeaheadWaitMs` (`?number=0`) - minimal wait time after last character typed before typeahead kicks-in
   - `typeaheadOptionsLimit` (`?number=20`) - maximum length of options items list
-  - `typeaheadOptionField` (`?string`) - name of field in array of states that contain options as objects, we use array item as option in case of this field is missing. Supports nested properties and methods
+  - `typeaheadOptionField` (`?string`) - when options source is an array of objects, the name of field that contains the options value, we use array item as option in case of this field is missing. Supports nested properties and methods.
+  - `typeaheadGroupField` (`?string`) - when options source is an array of objects, the name of field that contains the group value, matches are grouped by this field when set.
   - `typeaheadAsync` (`?boolean`) - should be used only in case of `typeahead` attribute is array. If `true` - loading of options will be async, otherwise - sync. `true` make sense if options array is large.
   - `typeaheadLatinize` (`?boolean=true`) - match latin symbols. If `true` the word `súper` would match `super` and vice versa.
   - `typeaheadSingleWords` (`?boolean=true`) - break words with spaces. If `true` the text `"exact phrase" here match` would match with `match exact phrase here` but not with `phrase here exact match` (kind of "google style").
