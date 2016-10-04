@@ -9,7 +9,7 @@ import { TabsModule } from 'ng2-bootstrap/components/tabs';
 <tabset>
   <tab heading='Tab 1'>Tab 1 content</tab>
   <tab>
-    <template tab-heading>Tab 2</template>
+    <template tabHeading>Tab 2</template>
     Tab 2 content
   </tab>
 </tabset>
@@ -44,7 +44,7 @@ export class TabDirective implements OnInit, OnDestroy, DoCheck {
 }
 
 // directive TabHeading
-@Directive({selector: '[tab-heading]'})
+@Directive({selector: '[tabHeading]'})
 export class TabHeadingDirective {}
 ```
 
