@@ -19,6 +19,9 @@ import 'rxjs/add/operator/toArray';
 
 import { ComponentsHelper } from '../utils/components-helper.service';
 
+/* tslint:disable-next-line */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+
 @Directive({
   /* tslint:disable */
   selector: '[typeahead][ngModel],[typeahead][formControlName]'
