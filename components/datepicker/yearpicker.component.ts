@@ -16,7 +16,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
         </button>
       </th>
       <th colspan="3">
-        <button [id]="uniqueId + '-title'" role="heading"
+        <button [id]="datePicker.uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"
