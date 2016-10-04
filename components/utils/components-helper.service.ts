@@ -39,14 +39,20 @@ export class ComponentsHelper {
    * @returns {ViewContainerRef} - application root view component ref
    */
   public getRootViewContainerRef():ViewContainerRef {
-    // The only way for now (by @mhevery)
-    // https://github.com/angular/angular/issues/6446#issuecomment-173459525
-    const appInstance = this.applicationRef.components[0].instance;
-    if (!appInstance.viewContainerRef) {
-      const appName = this.applicationRef.componentTypes[0].name;
-      throw new Error(`Missing 'viewContainerRef' declaration in ${appName} constructor`);
+    // https://github.com/angular/angular/issues/9293
+    const comps = this.applicationRef.components;
+
+    if(!comps.length) {
+      throw new Error(`ApplicationRef instance not found`);
     }
-    return appInstance.viewContainerRef;
+
+    try {
+      /* one more ugly hack, read issue above for details */
+      const root = (this.applicationRef as any )._rootComponents[0];
+      return root._hostElement.vcRef;
+    } catch (e) {
+      throw new Error(`ApplicationRef instance not found`);
+    }
   }
 
   /**
