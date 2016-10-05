@@ -15,12 +15,14 @@ ng serve
 
 #### Adding ng2-bootstrap
  
- - install `ng2-bootstrap`
+ - install `ng2-bootstrap` and `bootstrap`
+
  ```bash
-   npm install ng2-bootstrap --save
+   npm install ng2-bootstrap bootstrap@next --save
  ```
  
 - open `src/app/app.module.ts` and add
+
 ```typescript
 import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 ...
@@ -32,15 +34,16 @@ import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 })
 ```
 
+- open `angular-cli.json` and insert a new entry into the styles array 
+
+```json
+      "styles": [
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+      ],
+```
+
 - open `src/app/app.component.html` and add
 ```
 <alert type="success">hello</alert>
-```
-
-- and last thing you need is css, open `src/index.html` and add link to Bootstrap css
-```html
-<head>
-  ...
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-</head>
 ```
