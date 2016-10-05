@@ -5,54 +5,30 @@ import { positionService } from '../position';
 import { TypeaheadOptions } from './typeahead-options.class';
 import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
+import { TypeaheadMatch } from './typeahead-match.class';
 
 const bs4 = `
   <div class="dropdown-menu"
        [ngStyle]="{top: top, left: left, display: 'block'}"
        (mouseleave)="focusLost()">
-    <template *ngIf="hasGroups()" ngFor let-group [ngForOf]="groups">
-       <h6 class="dropdown-header">{{group}}</h6>
-       <div *ngIf="!itemTemplate">
+    <template ngFor let-match let-i="index" [ngForOf]="matches">
+       <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
+       <div *ngIf="!match.isHeader() && !itemTemplate">
           <a href="#"
-            *ngFor="let match of matchesByGroup(group)"
             class="dropdown-item"
             (click)="selectMatch(match, $event)"
             (mouseenter)="selectActive(match)"
             [class.active]="isActive(match)"
             [innerHtml]="hightlight(match, query)"></a>
       </div>
-      <div *ngIf="itemTemplate">
+      <div *ngIf="!match.isHeader() && itemTemplate">
         <a href="#"
-         *ngFor="let match of matchesByGroup(group); let i = index"
          class="dropdown-item"
          (click)="selectMatch(match, $event)"
          (mouseenter)="selectActive(match)"
          [class.active]="isActive(match)">
           <template [ngTemplateOutlet]="itemTemplate"
-                    [ngOutletContext]="{item: match, index: i}">
-          </template>
-         </a>
-      </div>
-    </template>    
-    <template [ngIf]="!hasGroups()">
-       <div *ngIf="!itemTemplate">
-          <a href="#"
-            *ngFor="let match of matches"
-            class="dropdown-item"
-            (click)="selectMatch(match, $event)"
-            (mouseenter)="selectActive(match)"
-            [class.active]="isActive(match)"
-            [innerHtml]="hightlight(match, query)"></a>
-      </div>
-      <div *ngIf="itemTemplate">
-        <a href="#"
-         *ngFor="let match of matches; let i = index"
-         class="dropdown-item"
-         (click)="selectMatch(match, $event)"
-         (mouseenter)="selectActive(match)"
-         [class.active]="isActive(match)">
-          <template [ngTemplateOutlet]="itemTemplate"
-                    [ngOutletContext]="{item: match, index: i}">
+                    [ngOutletContext]="{item: match.item, index: i}">
           </template>
          </a>
       </div>
@@ -64,9 +40,9 @@ const bs3 = `
   <ul class="dropdown-menu"
       [ngStyle]="{top: top, left: left, display: 'block'}"
       (mouseleave)="focusLost()">
-    <template *ngIf="hasGroups()" ngFor let-group [ngForOf]="groups">
-      <li class="dropdown-header">{{group}}</li>
-      <li *ngFor="let match of matchesByGroup(group); let i = index"
+    <template ngFor let-match let-i="index" [ngForOf]="matches">
+      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+      <li *ngIf="!match.isHeader()"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#" 
@@ -79,26 +55,7 @@ const bs3 = `
            (click)="selectMatch(match, $event)" 
            tabindex="-1">
             <template [ngTemplateOutlet]="itemTemplate"
-                      [ngOutletContext]="{item: match, index: i}">
-            </template>
-        </a>
-      </li>
-    </template>
-    <template [ngIf]="!hasGroups()">
-      <li *ngFor="let match of matches; let i = index"
-        [class.active]="isActive(match)"
-        (mouseenter)="selectActive(match)">
-        <a href="#" 
-           *ngIf="!itemTemplate" 
-           (click)="selectMatch(match, $event)" 
-           tabindex="-1" 
-           [innerHtml]="hightlight(match, query)"></a>
-        <a href="#" 
-           *ngIf="itemTemplate" 
-           (click)="selectMatch(match, $event)" 
-           tabindex="-1">
-            <template [ngTemplateOutlet]="itemTemplate"
-                      [ngOutletContext]="{item: match, index: i}">
+                      [ngOutletContext]="{item: match.item, index: i}">
             </template>
         </a>
       </li>
@@ -121,11 +78,8 @@ export class TypeaheadContainerComponent {
   public left:string;
   public display:string;
 
-  private _active:any;
-  private _matches:Array<any> = [];
-  private _field:string;
-  private _groupField:string;
-  private _groups:string[] = [];
+  private _active:TypeaheadMatch;
+  private _matches:Array<TypeaheadMatch> = [];
   private placement:string;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
@@ -133,39 +87,23 @@ export class TypeaheadContainerComponent {
     Object.assign(this, options);
   }
 
-  public get matches():Array<any> {
+  public get matches():Array<TypeaheadMatch> {
     return this._matches;
-  }
-
-  public get groups():string[] {
-    return this._groups;
-  }
-
-  public matchesByGroup(group:string):Array<any> {
-    return this.matches.filter((match:any) => TypeaheadUtils.getValueFromObject(match, this._groupField) === group);
   }
 
   public get itemTemplate():TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  public set matches(value:Array<any>) {
+  public set matches(value:Array<TypeaheadMatch>) {
     this._matches = value;
+
     if (this._matches.length > 0) {
       this._active = this._matches[0];
+      if (this._active.isHeader()) {
+        this.nextActiveMatch();
+      }
     }
-  }
-
-  public set field(value:string) {
-    this._field = value;
-  }
-
-  public set groupField(value:string) {
-    this._groupField = value;
-  }
-
-  public set groups(value:string[]) {
-    this._groups = value;
   }
 
   public position(hostEl:ElementRef):void {
@@ -188,6 +126,10 @@ export class TypeaheadContainerComponent {
     this._active = this.matches[index - 1 < 0
       ? this.matches.length - 1
       : index - 1];
+    if (this._active.isHeader()) {
+      this.prevActiveMatch();
+    }
+
   }
 
   public nextActiveMatch():void {
@@ -195,6 +137,9 @@ export class TypeaheadContainerComponent {
     this._active = this.matches[index + 1 > this.matches.length - 1
       ? 0
       : index + 1];
+    if (this._active.isHeader()) {
+      this.nextActiveMatch();
+    }
   }
 
   protected selectActive(value:any):void {
@@ -202,8 +147,8 @@ export class TypeaheadContainerComponent {
     this._active = value;
   }
 
-  protected hightlight(item:any, query:any):string {
-    let itemStr:string = TypeaheadUtils.getValueFromObject(item, this._field);
+  protected hightlight(match:TypeaheadMatch, query:any):string {
+    let itemStr:string = match.value;
     let itemStrHelper:string = (this.parent && this.parent.typeaheadLatinize
       ? TypeaheadUtils.latinize(itemStr)
       : itemStr).toLowerCase();
@@ -238,10 +183,6 @@ export class TypeaheadContainerComponent {
 
   public isActive(value:any):boolean {
     return this._active === value;
-  }
-
-  public hasGroups():boolean {
-    return this._groups && this._groups.length > 0;
   }
 
   private selectMatch(value:any, e:Event = void 0):boolean {

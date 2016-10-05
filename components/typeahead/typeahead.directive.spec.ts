@@ -4,6 +4,7 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TypeaheadDirective } from './typeahead.directive';
 import { Observable } from 'rxjs';
+import { TypeaheadMatch } from './typeahead-match.class';
 
 const template = `
   <input [(ngModel)]="selectedState" [typeahead]="states" (typeaheadOnSelect)="typeaheadOnSelect($event)">
@@ -100,7 +101,7 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
       tick(100);
 
-      expect(directive.matches).toEqual(['Alabama', 'Alaska']);
+      expect(directive.matches).toEqual([new TypeaheadMatch('Alabama'), new TypeaheadMatch('Alaska')]);
     }));
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
