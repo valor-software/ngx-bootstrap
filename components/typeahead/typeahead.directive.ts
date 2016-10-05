@@ -68,7 +68,7 @@ export class TypeaheadDirective implements OnInit {
   private componentsHelper:ComponentsHelper;
 
   @HostListener('keyup', ['$event'])
-  protected onChange(e:any):void {
+  public onChange(e:any):void {
     if (this.container) {
       // esc
       if (e.keyCode === 27) {
@@ -108,8 +108,8 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  @HostListener('focus', ['$event.target'])
-  protected onFocus():void {
+  @HostListener('focus')
+  public onFocus():void {
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit('');
@@ -117,14 +117,14 @@ export class TypeaheadDirective implements OnInit {
   }
 
   @HostListener('blur')
-  protected onBlur():void {
+  public onBlur():void {
     if (this.container && !this.container.isFocused) {
       this.hide();
     }
   }
 
   @HostListener('keydown', ['$event'])
-  protected onKeydown(e:KeyboardEvent):void {
+  public onKeydown(e:KeyboardEvent):void {
     // no container - no problems
     if (!this.container) {
       return;
