@@ -18,6 +18,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 
 import { ComponentsHelper } from '../utils/components-helper.service';
+import { TypeaheadMatch } from './typeahead-match.class';
 
 /* tslint:disable-next-line */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
@@ -58,8 +59,7 @@ export class TypeaheadDirective implements OnInit {
   public isTypeaheadOptionsListActive:boolean = false;
 
   private keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
-  private _matches:Array<any>;
-  private _groups:Array<any> = [];
+  private _matches:Array<TypeaheadMatch>;
   private placement:string = 'bottom-left';
   private popup:ComponentRef<TypeaheadContainerComponent>;
 
@@ -203,7 +203,7 @@ export class TypeaheadDirective implements OnInit {
     this.popup.instance.position(this.viewContainerRef.element);
     this.container = this.popup.instance;
     this.container.parent = this;
-    // This improves the speedas it won't have to be done for each list item
+    // This improves the speed as it won't have to be done for each list item
     let normalizedQuery = (this.typeaheadLatinize
       ? TypeaheadUtils.latinize(this.ngControl.control.value)
       : this.ngControl.control.value).toString()
@@ -212,9 +212,6 @@ export class TypeaheadDirective implements OnInit {
       ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
       : normalizedQuery;
     this.container.matches = this._matches;
-    this.container.groups = this._groups;
-    this.container.field = this.typeaheadOptionField;
-    this.container.groupField = this.typeaheadGroupField;
     this.element.nativeElement.focus();
   }
 
@@ -230,7 +227,7 @@ export class TypeaheadDirective implements OnInit {
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap(() => this.typeahead)
       .subscribe(
-        (matches:string[]) => {
+        (matches:any[]) => {
           this.finalizeAsyncCall(matches);
         },
         (err:any) => {
@@ -252,7 +249,7 @@ export class TypeaheadDirective implements OnInit {
           .toArray();
       })
       .subscribe(
-        (matches:string[]) => {
+        (matches:any[]) => {
           this.finalizeAsyncCall(matches);
         },
         (err:any) => {
@@ -298,8 +295,7 @@ export class TypeaheadDirective implements OnInit {
   }
 
   private finalizeAsyncCall(matches:any[]):void {
-    this.limitMatches(matches);
-    this.updateGroups();
+    this.prepareMatches(matches);
 
     this.typeaheadLoading.emit(false);
     this.typeaheadNoResults.emit(!this.hasMatches());
@@ -318,24 +314,36 @@ export class TypeaheadDirective implements OnInit {
       this.container.query = this.typeaheadSingleWords
         ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
         : normalizedQuery;
-      this.container.groups = this._groups;
       this.container.matches = this._matches;
     } else {
       this.show();
     }
   }
 
-  private limitMatches(matches:any[]):void {
-    this._matches = matches.slice(0, this.typeaheadOptionsLimit);
-  }
+  private prepareMatches(options:any[]):void {
+    let limited:any[] = options.slice(0, this.typeaheadOptionsLimit);
 
-  private updateGroups():void {
     if (this.typeaheadGroupField) {
-      this._groups = this._matches
-        .map((match:any) => TypeaheadUtils.getValueFromObject(match, this.typeaheadGroupField))
+      let matches:TypeaheadMatch[] = [];
+
+      // extract all group names
+      let groups = limited
+        .map((option:any) => TypeaheadUtils.getValueFromObject(option, this.typeaheadGroupField))
         .filter((v:string, i:number, a:Array<any>) => a.indexOf(v) === i);
+
+      groups.forEach((group:string) => {
+        // add group header to array of matches
+        matches.push(new TypeaheadMatch(group, group, true));
+
+        // add each item of group to array of matches
+        matches = matches.concat(limited
+          .filter((option:any) => TypeaheadUtils.getValueFromObject(option, this.typeaheadGroupField) === group)
+          .map((option:any) => new TypeaheadMatch(option, TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField))));
+      });
+
+      this._matches = matches;
     } else {
-      this._groups = [];
+      this._matches = limited.map((option:any) => new TypeaheadMatch(option, TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField)));
     }
   }
 

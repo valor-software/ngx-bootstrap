@@ -1,8 +1,9 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadOptions } from './typeahead-options.class';
-import { asNativeElements } from '@angular/core';
+import { TypeaheadMatch } from './typeahead-match.class';
 
 describe('Component: TypeaheadContainer', () => {
   let fixture:ComponentFixture<TypeaheadContainerComponent>;
@@ -65,7 +66,10 @@ describe('Component: TypeaheadContainer', () => {
 
     beforeEach(() => {
       component.query = 'fo';
-      component.matches = ['foo', 'food'];
+      component.matches = [
+        new TypeaheadMatch({id: 0, name: 'foo'}, 'foo'),
+        new TypeaheadMatch({id: 1, name: 'food'}, 'food')
+      ];
       fixture.detectChanges();
 
       matches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li')));
