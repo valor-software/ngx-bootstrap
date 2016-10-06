@@ -6,28 +6,26 @@ import { TypeaheadDirective } from './typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from './typeahead-match.class';
 
-const template = `
-  <input [(ngModel)]="selectedState" [typeahead]="states" (typeaheadOnSelect)="typeaheadOnSelect($event)">
-`;
+interface State {
+  id:number;
+  name:string;
+  region:string;
+}
 
 @Component({
-  template
+  template: `
+  <input [(ngModel)]="selectedState" 
+         [typeahead]="states" 
+         [typeaheadOptionField]="'name'" 
+         (typeaheadOnSelect)="typeaheadOnSelect($event)">
+`
 })
 class TestTypeaheadComponent {
   public selectedState:string;
-  public states:string[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
-    'California', 'Colorado',
-    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
-    'Illinois', 'Indiana', 'Iowa',
-    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
-    'Michigan', 'Minnesota',
-    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-    'New Jersey', 'New Mexico',
-    'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon',
-    'Pennsylvania', 'Rhode Island',
-    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-    'Virginia', 'Washington',
-    'West Virginia', 'Wisconsin', 'Wyoming'];
+  public states:State[] = [
+    {id: 1, name: 'Alabama', region: 'South'},
+    {id: 2, name: 'Alaska', region: 'West'}
+  ];
 }
 
 describe('Directive: Typeahead', () => {
@@ -94,14 +92,31 @@ describe('Directive: Typeahead', () => {
 
   describe('onChange', () => {
 
-    it('should result in 2 matches, when \"Ala\" is entered', fakeAsync(() => {
+    beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
       inputElement.dispatchEvent(new Event('keyup'));
 
       fixture.detectChanges();
       tick(100);
+    }));
 
-      expect(directive.matches).toEqual([new TypeaheadMatch('Alabama'), new TypeaheadMatch('Alaska')]);
+    it('should render the typeahead-container child element', () => {
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+
+      expect(typeaheadContainer).not.toBeNull();
+    });
+
+    it('should set the container reference', () => {
+      expect(directive.container).toBeTruthy();
+    });
+
+    it('should result in a total of 2 matches, when \"Ala\" is entered', fakeAsync(() => {
+      expect(directive.matches.length).toBe(2);
+    }));
+
+    it('should result in 2 item matches, when \"Ala\" is entered', fakeAsync(() => {
+      expect(directive.matches).toContain(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
+      expect(directive.matches).toContain(new TypeaheadMatch({id: 2, name: 'Alaska', region: 'West'}, 'Alaska'));
     }));
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
@@ -111,29 +126,41 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
       tick(100);
 
-      expect(directive.matches).toEqual([]);
+      expect(directive.matches.length).toBe(0);
     }));
-
   });
 
-  describe('show', () => {
+  describe('onChange grouped', () => {
+
     beforeEach(fakeAsync(() => {
-      inputElement.value = 'California';
+      inputElement.value = 'Ala';
       inputElement.dispatchEvent(new Event('keyup'));
+      directive.typeaheadGroupField = 'region';
 
       fixture.detectChanges();
       tick(100);
     }));
 
-    it('should render the typeahead-container child element', () => {
-      fixture.detectChanges();
-      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+    it('should result in a total of 4 matches, when \"Ala\" is entered', fakeAsync(() => {
+      expect(directive.matches.length).toBe(4);
+    }));
 
-      expect(typeaheadContainer).not.toBeNull();
-    });
+    it('should result in 2 header matches, when \"Ala\" is entered', fakeAsync(() => {
+      expect(directive.matches).toContain(new TypeaheadMatch('South', 'South', true));
+      expect(directive.matches).toContain(new TypeaheadMatch('West', 'West', true));
+    }));
 
-    it('should set the container reference', () => {
-      expect(directive.container).toBeTruthy();
+    it('should result in 2 item matches, when \"Ala\" is entered', fakeAsync(() => {
+      expect(directive.matches).toContain(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
+      expect(directive.matches).toContain(new TypeaheadMatch({id: 2, name: 'Alaska', region: 'West'}, 'Alaska'));
+    }));
+  });
+
+  describe('changeModel', () => {
+    it('should set the selectedState value', () => {
+      directive.changeModel(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
+
+      expect(component.selectedState).toBe('Alabama');
     });
   });
 
