@@ -1,3 +1,13 @@
+<a name="1.1.9"></a>
+## [1.1.9](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.8...v1.1.9) (2016-10-06)
+
+
+### Bug Fixes
+
+* **build:** All `[@HostBinding](https://github.com/HostBinding)` and `[@HostListener](https://github.com/HostListener)` should be public ([#1086](https://github.com/valor-software/ng2-bootstrap/issues/1086)) ([3691757](https://github.com/valor-software/ng2-bootstrap/commit/3691757)), closes [#1080](https://github.com/valor-software/ng2-bootstrap/issues/1080)
+
+
+
 <a name="1.1.8"></a>
 ## [1.1.8](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.7...v1.1.8) (2016-10-05)
 
