@@ -18,7 +18,7 @@ ng serve
  - install `ng2-bootstrap` and `bootstrap`
 
  ```bash
-   npm install ng2-bootstrap bootstrap@next --save
+   npm install ng2-bootstrap bootstrap --save
  ```
  
 - open `src/app/app.module.ts` and add
