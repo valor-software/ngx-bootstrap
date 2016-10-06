@@ -175,8 +175,8 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  public changeModel(value:any):void {
-    let valueStr:string = TypeaheadUtils.getValueFromObject(value, this.typeaheadOptionField);
+  public changeModel(match:TypeaheadMatch):void {
+    let valueStr:string = match.value;
     this.ngControl.viewToModelUpdate(valueStr);
     (this.ngControl.control as FormControl).setValue(valueStr);
     this.hide();

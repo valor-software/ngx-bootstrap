@@ -142,7 +142,7 @@ export class TypeaheadContainerComponent {
     }
   }
 
-  protected selectActive(value:any):void {
+  protected selectActive(value:TypeaheadMatch):void {
     this.isFocused = true;
     this._active = value;
   }
@@ -181,11 +181,11 @@ export class TypeaheadContainerComponent {
     this.isFocused = false;
   }
 
-  public isActive(value:any):boolean {
+  public isActive(value:TypeaheadMatch):boolean {
     return this._active === value;
   }
 
-  private selectMatch(value:any, e:Event = void 0):boolean {
+  private selectMatch(value:TypeaheadMatch, e:Event = void 0):boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
