@@ -15,7 +15,7 @@ export class ProgressDirective implements OnInit {
   @HostBinding('attr.max')
   @Input() public get max():number {}
 
-  @HostBinding('class') private addClass = 'progress';
+  @HostBinding('class') public addClass = 'progress';
 }
 
 // class Bar implements OnInit, OnDestroy
