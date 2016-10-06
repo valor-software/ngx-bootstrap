@@ -19,6 +19,9 @@ import 'rxjs/add/operator/toArray';
 
 import { ComponentsHelper } from '../utils/components-helper.service';
 
+/* tslint:disable-next-line */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+
 @Directive({
   /* tslint:disable */
   selector: '[typeahead][ngModel],[typeahead][formControlName]'
@@ -65,7 +68,7 @@ export class TypeaheadDirective implements OnInit {
   private componentsHelper:ComponentsHelper;
 
   @HostListener('keyup', ['$event'])
-  protected onChange(e:any):void {
+  public onChange(e:any):void {
     if (this.container) {
       // esc
       if (e.keyCode === 27) {
@@ -92,7 +95,10 @@ export class TypeaheadDirective implements OnInit {
       }
     }
 
-    if (e.target.value.trim().length >= this.typeaheadMinLength) {
+    // For `<input>`s, use the `value` property. For others that don't have a
+    // `value` (such as `<span contenteditable="true">`, use `innerText`.
+    const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
+    if (value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
@@ -103,7 +109,7 @@ export class TypeaheadDirective implements OnInit {
   }
 
   @HostListener('focus', ['$event.target'])
-  protected onFocus():void {
+  public onFocus():void {
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit('');
@@ -111,14 +117,14 @@ export class TypeaheadDirective implements OnInit {
   }
 
   @HostListener('blur')
-  protected onBlur():void {
+  public onBlur():void {
     if (this.container && !this.container.isFocused) {
       this.hide();
     }
   }
 
   @HostListener('keydown', ['$event'])
-  protected onKeydown(e:KeyboardEvent):void {
+  public onKeydown(e:KeyboardEvent):void {
     // no container - no problems
     if (!this.container) {
       return;

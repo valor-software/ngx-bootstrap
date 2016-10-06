@@ -30,3 +30,8 @@ ng2-bootstrap.js
 ng2-bootstrap.d.ts
 ng2-bootstrap.js.map
 /logs
+
+factories
+
+/**/*.metadata.json
+/**/*.ngfactory.ts

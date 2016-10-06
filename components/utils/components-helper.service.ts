@@ -38,14 +38,21 @@ export class ComponentsHelper {
    * ```
    * @returns {ViewContainerRef} - application root view component ref
    */
-  public getRootViewContainerRef(injector:Injector):ViewContainerRef {
-    // The only way for now (by @mhevery)
-    // https://github.com/angular/angular/issues/6446#issuecomment-173459525
-    // this is a class of application bootstrap component (like my-app)
-    const classOfRootComponent = this.applicationRef.componentTypes[0];
-    // this is an instance of application bootstrap component
-    const appInstance = injector.get(classOfRootComponent);
-    return appInstance.viewContainerRef;
+  public getRootViewContainerRef():ViewContainerRef {
+    // https://github.com/angular/angular/issues/9293
+    const comps = this.applicationRef.components;
+
+    if(!comps.length) {
+      throw new Error(`ApplicationRef instance not found`);
+    }
+
+    try {
+      /* one more ugly hack, read issue above for details */
+      const root = (this.applicationRef as any )._rootComponents[0];
+      return root._hostElement.vcRef;
+    } catch (e) {
+      throw new Error(`ApplicationRef instance not found`);
+    }
   }
 
   /**
@@ -81,14 +88,12 @@ export class ComponentsHelper {
    * @param ComponentClass - @Component class
    * @param ComponentOptionsClass - options class
    * @param options - instance of options
-   * @param contextInjector - injector to resolve root view container (any injector except root injector will fit)
    * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
   public appendNextToRoot<T>(ComponentClass:Type<T>,
                              ComponentOptionsClass:any,
-                             options:any,
-                             contextInjector:Injector):ComponentRef<T> {
-    let location = this.getRootViewContainerRef(contextInjector);
+                             options:any):ComponentRef<T> {
+    let location = this.getRootViewContainerRef();
     let providers = ReflectiveInjector.resolve([
       {provide: ComponentOptionsClass, useValue: options}
     ]);

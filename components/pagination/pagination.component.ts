@@ -5,6 +5,9 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 import { KeyAttribute } from '../common';
 
+/* tslint:disable-next-line */
+const MouseEvent = (global as any).MouseEvent as MouseEvent;
+
 // todo: extract base functionality classes
 // todo: expose an option to change default configuration
 export interface PaginationConfig extends KeyAttribute {
@@ -61,12 +64,12 @@ const PAGINATION_TEMPLATE = `
 
     <li class="pagination-next page-item"
         *ngIf="directionLinks"
-        [class.disabled]="noNext()">
+        [class.disabled]="noNext()||disabled">
       <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
 
     <li class="pagination-last page-item"
         *ngIf="boundaryLinks"
-        [class.disabled]="noNext()">
+        [class.disabled]="noNext()||disabled">
       <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
   </ul>
   `;
@@ -75,6 +78,7 @@ const PAGINATION_TEMPLATE = `
 @Component({
   selector: 'pagination[ngModel]',
   template: PAGINATION_TEMPLATE,
+  providers: [NgModel]
 })
 /* tslint:enable */
 export class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
@@ -153,15 +157,14 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   public renderer:Renderer;
   public elementRef:ElementRef;
 
-  private classMap:string;
+  public classMap:string;
+  public pages:Array<any>;
 
   private _itemsPerPage:number;
   private _totalItems:number;
   private _totalPages:number;
   private inited:boolean = false;
-  // ??
   private _page:number;
-  private pages:Array<any>;
 
   public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     this.cd = cd;
@@ -223,7 +226,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     this.onTouched = fn;
   }
 
-  private selectPage(page:number, event?:MouseEvent):void {
+  public selectPage(page:number, event?:MouseEvent):void {
     if (event) {
       event.preventDefault();
     }

@@ -30,12 +30,12 @@ import { TooltipOptions } from './tooltip-options.class';
 })
 export class TooltipContainerComponent implements AfterViewInit {
   /* tslint:disable */
-  private classMap:any;
-  private top:string = '-1000px';
-  private left:string = '-1000px';
-  private display:string = 'block';
-  private content:string;
-  private htmlContent:string | TemplateRef<any>;
+  public classMap:any;
+  public top:string = '-1000px';
+  public left:string = '-1000px';
+  public display:string = 'block';
+  public content:string;
+  public htmlContent:string | TemplateRef<any>;
   private placement:string;
   private popupClass:string;
   private animation:boolean;

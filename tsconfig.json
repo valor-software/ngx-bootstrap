@@ -8,14 +8,22 @@
     "sourceMap": true,
     "noEmitHelpers": true,
     "noImplicitAny": true,
-    "declaration": false
+    "declaration": false,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "lib": ["dom", "es6"],
+    "types": [
+      "jasmine",
+      "node",
+      "webpack"
+    ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules", "bundles", "dist"
   ],
   "files": [
-    "./typings/index.d.ts",
     "./demo/custom-typings.d.ts",
     "./ng2-bootstrap.ts"
-  ]
+  ],
+  "atom": { "rewriteTsconfig": false }
 }

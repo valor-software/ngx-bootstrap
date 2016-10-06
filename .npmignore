@@ -10,6 +10,22 @@ karma.conf.js
 test.bundle.js
 coverage
 
+#dev stuff
+.config
+.editorconfig
+.eslintrc.json
+.ng2-config.js
+.npmignore
+.travis.yml
+gulpfile.js
+protractor.conf.js
+spec-bundle.js
+tsconfig.json
+tsconfig.publish.json
+tslint.json
+typedoc.js
+wallaby.js
+
 # demo build
 doc
 demo
@@ -24,3 +40,4 @@ webpack.config.js
 /components/**/*.ts
 !/components/**/*.d.ts
 
+factories

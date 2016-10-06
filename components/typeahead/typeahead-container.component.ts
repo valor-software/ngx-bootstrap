@@ -6,36 +6,36 @@ import { TypeaheadOptions } from './typeahead-options.class';
 import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
 
-const TEMPLATE:any = {
-  [Ng2BootstrapTheme.BS4]: `
+const bs4 = `
   <div class="dropdown-menu"
        style="display: block"
        [ngStyle]="{top: top, left: left, display: display}"
        (mouseleave)="focusLost()">
-       <div *ngIf="!itemTemplate">
-          <a href="#"
-            *ngFor="let match of matches"
-            class="dropdown-item"
-            (click)="selectMatch(match, $event)"
-            (mouseenter)="selectActive(match)"
-            [class.active]="isActive(match)"
-            [innerHtml]="hightlight(match, query)"></a>
-      </div>
-      <div *ngIf="itemTemplate">
+     <div *ngIf="!itemTemplate">
         <a href="#"
-         *ngFor="let match of matches; let i = index"
-         class="dropdown-item"
-         (click)="selectMatch(match, $event)"
-         (mouseenter)="selectActive(match)"
-         [class.active]="isActive(match)">
-          <template [ngTemplateOutlet]="itemTemplate"
-                    [ngOutletContext]="{item: match, index: i}">
-          </template>
-         </a>
-      </div>
+          *ngFor="let match of matches"
+          class="dropdown-item"
+          (click)="selectMatch(match, $event)"
+          (mouseenter)="selectActive(match)"
+          [class.active]="isActive(match)"
+          [innerHtml]="hightlight(match, query)"></a>
+    </div>
+    <div *ngIf="itemTemplate">
+      <a href="#"
+       *ngFor="let match of matches; let i = index"
+       class="dropdown-item"
+       (click)="selectMatch(match, $event)"
+       (mouseenter)="selectActive(match)"
+       [class.active]="isActive(match)">
+        <template [ngTemplateOutlet]="itemTemplate"
+                  [ngOutletContext]="{item: match, index: i}">
+        </template>
+       </a>
+    </div>
   </div>
-  `,
-  [Ng2BootstrapTheme.BS3]: `
+`;
+
+const bs3 = `
   <ul class="dropdown-menu"
       style="display: block"
       [ngStyle]="{top: top, left: left, display: display}"
@@ -58,11 +58,12 @@ const TEMPLATE:any = {
         </a>
     </li>
   </ul>
-  `
-};
+`;
+let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
+
 @Component({
   selector: 'typeahead-container',
-  template: TEMPLATE[Ng2BootstrapConfig.theme],
+  template: isBS4 ? bs4 : bs3,
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
@@ -70,12 +71,13 @@ export class TypeaheadContainerComponent {
   public query:any;
   public element:ElementRef;
   public isFocused:boolean = false;
+  public top:string;
+  public left:string;
+  public display:string;
+
   private _active:any;
   private _matches:Array<any> = [];
   private _field:string;
-  private top:string;
-  private left:string;
-  private display:string;
   private placement:string;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
@@ -167,7 +169,7 @@ export class TypeaheadContainerComponent {
     return itemStr;
   }
 
-  protected focusLost():void {
+  public focusLost():void {
     this.isFocused = false;
   }
 

@@ -15,7 +15,7 @@ export class ProgressDirective implements OnInit {
   @HostBinding('attr.max')
   @Input() public get max():number {}
 
-  @HostBinding('class') private addClass = 'progress';
+  @HostBinding('class') public addClass = 'progress';
 }
 
 // class Bar implements OnInit, OnDestroy
@@ -32,10 +32,10 @@ export class BarComponent implements OnInit, OnDestroy {
   selector: 'progressbar, [progressbar]'
 })
 export class ProgressbarComponent {
-  @Input() private animate:boolean;
-  @Input() private max:number;
-  @Input() private type:string;
-  @Input() private value:number;
+  @Input() public animate:boolean;
+  @Input() public max:number;
+  @Input() public type:string;
+  @Input() public value:number;
 }```
 
 ### Properties
