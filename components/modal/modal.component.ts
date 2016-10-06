@@ -73,7 +73,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // @HostBinding(`class.${ClassName.IN}`) private _addClassIn:boolean;
 
   @HostListener('click', ['$event'])
-  protected onClick(event: any): void {
+  public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this.element.nativeElement) {
       return;
     }
@@ -83,7 +83,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // todo: consider preventing default and stopping propagation
   @HostListener('keydown.esc')
-  protected onEsc(): void {
+  public onEsc(): void {
     if (this.config.keyboard) {
       this.hide();
     }
