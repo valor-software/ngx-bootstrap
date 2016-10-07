@@ -1,3 +1,21 @@
+<a name="1.1.10"></a>
+## [1.1.10](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.9...v1.1.10) (2016-10-07)
+
+
+### Bug Fixes
+
+* **aot:** 2 more private methods made public ([0dbbf09](https://github.com/valor-software/ng2-bootstrap/commit/0dbbf09)), closes [#1093](https://github.com/valor-software/ng2-bootstrap/issues/1093)
+* **typeahead:** onFocus should not need any arguments ([41f5834](https://github.com/valor-software/ng2-bootstrap/commit/41f5834))
+* **typeahead:** use TypeaheadMatch model instead of any type ([ff5c219](https://github.com/valor-software/ng2-bootstrap/commit/ff5c219))
+
+
+### Features
+
+* **typeahead:** add grouping of typeahead options ([fdddbde](https://github.com/valor-software/ng2-bootstrap/commit/fdddbde))
+* **typeahead:** introduce TypeaheadMatch model ([80fccab](https://github.com/valor-software/ng2-bootstrap/commit/80fccab))
+
+
+
 <a name="1.1.9"></a>
 ## [1.1.9](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.8...v1.1.9) (2016-10-06)
 
