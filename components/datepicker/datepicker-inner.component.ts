@@ -253,7 +253,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
         this.selectionDone.emit(this.activeDate);
       }
     } else {
-      this.activeDate = date;
+      this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
     }
 

@@ -99,7 +99,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     }
     if (value && value instanceof Date) {
       this.activeDate = value;
-      this._datePicker.select(value);
+      this._datePicker.select(value, false);
       return;
     }
 
