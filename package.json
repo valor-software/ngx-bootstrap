@@ -28,9 +28,13 @@
     "test:watch": "cross-env NODE_ENV=test karma start --auto-watch --no-single-run",
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
-    "postversion": "git push origin development && git push --tags"
+    "postversion": "git push origin development && git push --tags",
+
+    "ngc": "ngc",
+    "compile": "ngc && node make.js"
   },
-  "main": "ng2-bootstrap.js",
+  "main": "bundles/ng2-bootstrap.js",
+  "module": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
   "keywords": [
     "angular2",
