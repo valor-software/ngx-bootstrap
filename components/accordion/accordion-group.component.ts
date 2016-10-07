@@ -4,8 +4,6 @@ import {
 
 import { AccordionComponent } from './accordion.component';
 
-/* tslint:disable-next-line */
-const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 /* tslint:disable:component-selector-name */
 @Component({

@@ -5,8 +5,6 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 import { KeyAttribute } from '../common';
 
-/* tslint:disable-next-line */
-const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 // todo: extract base functionality classes
 // todo: expose an option to change default configuration

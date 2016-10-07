@@ -20,8 +20,6 @@ import 'rxjs/add/operator/toArray';
 import { ComponentsHelper } from '../utils/components-helper.service';
 import { TypeaheadMatch } from './typeahead-match.class';
 
-/* tslint:disable-next-line */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 
 @Directive({
   /* tslint:disable */
