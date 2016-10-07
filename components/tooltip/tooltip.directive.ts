@@ -40,8 +40,8 @@ export class TooltipDirective {
 
   // todo: filter triggers
   // params: event, target
-  @HostListener('focusin', ['$event', '$target'])
-  @HostListener('mouseenter', ['$event', '$target'])
+  @HostListener('focusin')
+  @HostListener('mouseenter')
   public show():void {
     if (this.visible || !this.enable) {
       return;
@@ -68,8 +68,8 @@ export class TooltipDirective {
   }
 
   // params event, target
-  @HostListener('focusout', ['$event', '$target'])
-  @HostListener('mouseleave', ['$event', '$target'])
+  @HostListener('focusout')
+  @HostListener('mouseleave')
   public hide():void {
     if (!this.visible) {
       return;
