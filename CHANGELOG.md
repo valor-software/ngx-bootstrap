@@ -1,3 +1,13 @@
+<a name="1.1.12"></a>
+## [1.1.12](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.11...v1.1.12) (2016-10-10)
+
+
+### Bug Fixes
+
+* **helpers:** add a way to set root view component ref ([6e4a033](https://github.com/valor-software/ng2-bootstrap/commit/6e4a033)), closes [#1056](https://github.com/valor-software/ng2-bootstrap/issues/1056)
+
+
+
 <a name="1.1.11"></a>
 ## [1.1.11](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.10...v1.1.11) (2016-10-07)
 
