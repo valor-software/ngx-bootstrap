@@ -192,9 +192,7 @@ export class TypeaheadContainerComponent {
     }
     this.parent.changeModel(value);
     setTimeout(() =>
-      this.parent.typeaheadOnSelect.emit({
-        item: value
-      }), 0
+      this.parent.typeaheadOnSelect.emit(value), 0
     );
     return false;
   }
