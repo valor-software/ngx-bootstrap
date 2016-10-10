@@ -45,14 +45,14 @@ const bs3 = `
       <li *ngIf="!match.isHeader()"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
-        <a href="#" 
-           *ngIf="!itemTemplate" 
-           (click)="selectMatch(match, $event)" 
-           tabindex="-1" 
+        <a href="#"
+           *ngIf="!itemTemplate"
+           (click)="selectMatch(match, $event)"
+           tabindex="-1"
            [innerHtml]="hightlight(match, query)"></a>
-        <a href="#" 
-           *ngIf="itemTemplate" 
-           (click)="selectMatch(match, $event)" 
+        <a href="#"
+           *ngIf="itemTemplate"
+           (click)="selectMatch(match, $event)"
            tabindex="-1">
             <template [ngTemplateOutlet]="itemTemplate"
                       [ngOutletContext]="{item: match.item, index: i}">
@@ -192,9 +192,7 @@ export class TypeaheadContainerComponent {
     }
     this.parent.changeModel(value);
     setTimeout(() =>
-      this.parent.typeaheadOnSelect.emit({
-        item: value
-      }), 0
+      this.parent.typeaheadOnSelect.emit(value), 0
     );
     return false;
   }

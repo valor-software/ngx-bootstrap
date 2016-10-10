@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
+import { TypeaheadMatch } from '../../../components/typeahead/typeahead-match.class';
+
 // webpack html imports
 let template = require('./typeahead-demo.html');
 
@@ -90,7 +92,7 @@ export class TypeaheadDemoComponent {
     this.typeaheadNoResults = e;
   }
 
-  public typeaheadOnSelect(e:any):void {
-    console.log('Selected value: ', e.item);
+  public typeaheadOnSelect(e:TypeaheadMatch):void {
+    console.log('Selected value: ', e.value);
   }
 }

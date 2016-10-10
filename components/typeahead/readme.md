@@ -14,7 +14,7 @@ import { TypeaheadModule } from 'ng2-bootstrap/components/typeahead';
 export class TypeaheadDirective implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean>;
   @Output() public typeaheadNoResults:EventEmitter<boolean>;
-  @Output() public typeaheadOnSelect:EventEmitter&lt;{item: any}&gt;;
+  @Output() public typeaheadOnSelect:EventEmitter<TypeaheadMatch>;
 
   @Input() public typeahead:any;
   @Input() public typeaheadMinLength:number;

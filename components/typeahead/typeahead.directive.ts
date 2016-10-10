@@ -31,7 +31,7 @@ const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 export class TypeaheadDirective implements OnInit {
   @Output() public typeaheadLoading:EventEmitter<boolean> = new EventEmitter<boolean>(false);
   @Output() public typeaheadNoResults:EventEmitter<boolean> = new EventEmitter<boolean>(false);
-  @Output() public typeaheadOnSelect:EventEmitter<{item:any}> = new EventEmitter<{item:any}>(false);
+  @Output() public typeaheadOnSelect:EventEmitter<TypeaheadMatch> = new EventEmitter<TypeaheadMatch>(false);
 
   @Input() public typeahead:any;
   @Input() public typeaheadMinLength:number = void 0;
