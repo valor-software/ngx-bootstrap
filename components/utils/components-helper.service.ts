@@ -11,6 +11,8 @@ import { DOCUMENT } from '@angular/platform-browser';
  */
 @Injectable()
 export class ComponentsHelper {
+  public root:ViewContainerRef;
+
   public constructor(private applicationRef:ApplicationRef,
                      private componentFactoryResolver:ComponentFactoryResolver,
                      private injector:Injector) {
@@ -21,7 +23,8 @@ export class ComponentsHelper {
   }
 
   /**
-   * This is a name conventional class to get application root view component ref
+   * In some cases, like using ngUpgrate,
+   * you need to explicitly set view container ref
    * to made this method working you need to add:
    * ```typescript
    *  @Component({
@@ -29,17 +32,27 @@ export class ComponentsHelper {
    *   ...
    *   })
    *  export class MyApp {
-   *    constructor(viewContainerRef: ViewContainerRef) {
+   *    constructor(componentsHelper:ComponentsHelper, viewContainerRef: ViewContainerRef) {
    *        // A Default view container ref, usually the app root container ref.
    *        // Has to be set manually until we can find a way to get it automatically.
-   *        this.viewContainerRef = viewContainerRef;
+   *        componentsHelper.setRootViewContainerRef(viewContainerRef)
    *      }
    *  }
    * ```
+   */
+  public setRootViewContainerRef(value:ViewContainerRef):void {
+    this.root = value;
+  }
+  /**
+   * This is a name conventional class to get application root view component ref
    * @returns {ViewContainerRef} - application root view component ref
    */
   public getRootViewContainerRef():ViewContainerRef {
     // https://github.com/angular/angular/issues/9293
+    if (this.root) {
+      return this.root;
+    }
+
     const comps = this.applicationRef.components;
 
     if(!comps.length) {
@@ -48,8 +61,9 @@ export class ComponentsHelper {
 
     try {
       /* one more ugly hack, read issue above for details */
-      const root = (this.applicationRef as any )._rootComponents[0];
-      return root._hostElement.vcRef;
+      const rootComponent = (this.applicationRef as any )._rootComponents[0];
+      this.root = rootComponent._hostElement.vcRef;
+      return this.root;
     } catch (e) {
       throw new Error(`ApplicationRef instance not found`);
     }
