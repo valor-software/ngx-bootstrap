@@ -1,3 +1,14 @@
+<a name="1.1.13-0"></a>
+## [1.1.13-0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.11...v1.1.13-0) (2016-10-10)
+
+
+### Bug Fixes
+
+* **helpers:** add a way to set root view component ref ([79d3335](https://github.com/valor-software/ng2-bootstrap/commit/79d3335)), closes [#1056](https://github.com/valor-software/ng2-bootstrap/issues/1056)
+* **tooltip:** show & hide methods should not need any arguments ([#1099](https://github.com/valor-software/ng2-bootstrap/issues/1099)) ([b80c0b4](https://github.com/valor-software/ng2-bootstrap/commit/b80c0b4))
+
+
+
 <a name="1.1.12"></a>
 ## [1.1.12](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.11...v1.1.12) (2016-10-10)
 
