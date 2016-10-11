@@ -1,3 +1,8 @@
+<a name="1.1.13"></a>
+## [1.1.13](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13-1...v1.1.13) (2016-10-11)
+
+
+
 <a name="1.1.13-1"></a>
 ## [1.1.13-1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13-0...v1.1.13-1) (2016-10-11)
 
