@@ -1,3 +1,14 @@
+<a name="1.1.14-0"></a>
+## [1.1.14-0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13...v1.1.14-0) (2016-10-11)
+
+
+### Features
+
+* **build:** system.js bundles replaced with UMD bundles ([3e0a27d](https://github.com/valor-software/ng2-bootstrap/commit/3e0a27d))
+* **UMD:** added UMD bundles ([a7554a8](https://github.com/valor-software/ng2-bootstrap/commit/a7554a8)), closes [#1098](https://github.com/valor-software/ng2-bootstrap/issues/1098)
+
+
+
 <a name="1.1.13"></a>
 ## [1.1.13](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13-1...v1.1.13) (2016-10-11)
 
