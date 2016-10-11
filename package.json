@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.1.11",
+  "version": "1.1.13-1",
   "description": "angular2 bootstrap components",
   "scripts": {
     "typedoc": "typedoc",
@@ -28,13 +28,9 @@
     "test:watch": "cross-env NODE_ENV=test karma start --auto-watch --no-single-run",
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
-    "postversion": "git push origin development && git push --tags",
-
-    "ngc": "ngc",
-    "compile": "ngc && node make.js"
+    "postversion": "git push origin development && git push --tags"
   },
-  "main": "bundles/ng2-bootstrap.js",
-  "module": "ng2-bootstrap.js",
+  "main": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
   "keywords": [
     "angular2",

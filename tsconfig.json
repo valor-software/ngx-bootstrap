@@ -1,29 +1,29 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "module": "commonjs",
     "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "declaration": true,
-    "moduleResolution": "node",
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "noImplicitAny": true,
+    "declaration": false,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "lib": ["dom", "es6"],
     "types": [
       "jasmine",
       "node",
       "webpack"
-    ],
-    "lib": ["es2015", "dom"]
+    ]
   },
-  "files": [
-    "ng2-bootstrap.ts"
-  ],
   "exclude": [
     "node_modules", "bundles", "dist"
   ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true
-  },
+  "files": [
+    "./demo/custom-typings.d.ts",
+    "./ng2-bootstrap.ts"
+  ],
   "atom": { "rewriteTsconfig": false }
 }
