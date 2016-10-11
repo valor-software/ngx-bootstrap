@@ -1,3 +1,13 @@
+<a name="1.1.13-1"></a>
+## [1.1.13-1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13-0...v1.1.13-1) (2016-10-11)
+
+
+### Bug Fixes
+
+* **build:** export all internal classes so AoT can work without issues ([6e6be1a](https://github.com/valor-software/ng2-bootstrap/commit/6e6be1a)), closes [#1093](https://github.com/valor-software/ng2-bootstrap/issues/1093)
+
+
+
 <a name="1.1.13-0"></a>
 ## [1.1.13-0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.11...v1.1.13-0) (2016-10-10)
 
