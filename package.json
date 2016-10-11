@@ -30,7 +30,7 @@
     "version": "npm run flow.changelog && git add -A",
     "postversion": "git push origin development && git push --tags"
   },
-  "main": "bundles/ng2-bootstrap.js",
+  "main": "bundles/ng2-bootstrap.umd.js",
   "module": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
   "keywords": [
