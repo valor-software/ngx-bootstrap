@@ -2,6 +2,8 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 
 import { DropdownDirective } from './dropdown.directive';
 
+/* tslint:disable-next-line */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 
 @Directive({
   selector: '[dropdown][dropdownKeyboardNav]'

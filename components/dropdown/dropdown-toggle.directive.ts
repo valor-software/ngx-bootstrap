@@ -4,6 +4,8 @@ import {
 
 import { DropdownDirective } from './dropdown.directive';
 
+/* tslint:disable-next-line */
+const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 @Directive({
   selector: '[dropdownToggle]',

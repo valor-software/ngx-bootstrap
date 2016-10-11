@@ -5,6 +5,10 @@ export const NONINPUT = 'nonInput';
 
 import { DropdownDirective } from './dropdown.directive';
 
+/* tslint:disable-next-line */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+/* tslint:disable-next-line */
+const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 export class DropdownService {
   private openScope:DropdownDirective;
