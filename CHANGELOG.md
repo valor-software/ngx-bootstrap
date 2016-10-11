@@ -1,3 +1,13 @@
+<a name="1.1.14-1"></a>
+## [1.1.14-1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-0...v1.1.14-1) (2016-10-11)
+
+
+### Bug Fixes
+
+* **package:** fixed link to main file ([a515089](https://github.com/valor-software/ng2-bootstrap/commit/a515089))
+
+
+
 <a name="1.1.14-0"></a>
 ## [1.1.14-0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13...v1.1.14-0) (2016-10-11)
 
