@@ -21,6 +21,8 @@ export interface PaginationConfig extends KeyAttribute {
   previousText:string;
   nextText:string;
   lastText:string;
+  // css
+  classLi:string;
 
   rotate:boolean;
 }
@@ -38,6 +40,7 @@ const paginationConfig:PaginationConfig = {
   previousText: 'Previous',
   nextText: 'Next',
   lastText: 'Last',
+  classLi: '',
   rotate: true
 };
 
@@ -45,31 +48,36 @@ const PAGINATION_TEMPLATE = `
   <ul class="pagination" [ngClass]="classMap">
     <li class="pagination-first page-item"
         *ngIf="boundaryLinks"
-        [class.disabled]="noPrevious()||disabled">
+        [class.disabled]="noPrevious()||disabled"
+        class="{{ classLi }}">
       <a class="page-link" href (click)="selectPage(1, $event)" [innerHTML]="getText('first')"></a>
     </li>
 
     <li class="pagination-prev page-item"
         *ngIf="directionLinks"
-        [class.disabled]="noPrevious()||disabled">
+        [class.disabled]="noPrevious()||disabled"
+        class="{{ classLi }}">
       <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
       </li>
 
     <li *ngFor="let pg of pages"
         [class.active]="pg.active"
         [class.disabled]="disabled&&!pg.active"
-        class="pagination-page page-item">
+        class="pagination-page page-item"
+        class="{{ classLi }}">
       <a class="page-link" href (click)="selectPage(pg.number, $event)" [innerHTML]="pg.text"></a>
     </li>
 
     <li class="pagination-next page-item"
         *ngIf="directionLinks"
-        [class.disabled]="noNext()||disabled">
+        [class.disabled]="noNext()||disabled"
+        class="{{ classLi }}">
       <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
 
     <li class="pagination-last page-item"
         *ngIf="boundaryLinks"
-        [class.disabled]="noNext()||disabled">
+        [class.disabled]="noNext()||disabled"
+        class="{{ classLi }}">
       <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
   </ul>
   `;
@@ -94,6 +102,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   @Input() public nextText:string;
   @Input() public lastText:string;
   @Input() public rotate:boolean;
+  // css
+  @Input() public classLi:string;
 
   @Input() public disabled:boolean;
 
@@ -189,6 +199,9 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     this.directionLinks = typeof this.directionLinks !== 'undefined'
       ? this.directionLinks
       : paginationConfig.directionLinks;
+    this.classLi = typeof this.classLi !== 'undefined'
+    ? this.classLi
+    : paginationConfig.classLi;
 
     // base class
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
