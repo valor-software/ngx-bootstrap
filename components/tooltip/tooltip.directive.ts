@@ -34,7 +34,7 @@ export class TooltipDirective {
   private visible:boolean = false;
   private tooltip:ComponentRef<any>;
 
-  private delayTimeoutId:number;
+  private delayTimeoutId:NodeJS.Timer;
 
   public constructor(viewContainerRef:ViewContainerRef, componentsHelper:ComponentsHelper) {
     this.viewContainerRef = viewContainerRef;
