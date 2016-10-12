@@ -23,6 +23,7 @@ export class TooltipDirective {
   @Input('tooltipAppendToBody') public appendToBody:boolean;
   @Input('tooltipClass') public popupClass:string;
   @Input('tooltipContext') public tooltipContext:any;
+  @Input('tooltipPopupDelay') public delay:number = 0;
   /* tslint:enable */
 
   @Output() public tooltipStateChanged:EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -32,6 +33,8 @@ export class TooltipDirective {
 
   private visible:boolean = false;
   private tooltip:ComponentRef<any>;
+
+  private delayTimeoutId:number;
 
   public constructor(viewContainerRef:ViewContainerRef, componentsHelper:ComponentsHelper) {
     this.viewContainerRef = viewContainerRef;
@@ -43,37 +46,46 @@ export class TooltipDirective {
   @HostListener('focusin')
   @HostListener('mouseenter')
   public show():void {
-    if (this.visible || !this.enable) {
+    if (this.visible || !this.enable || this.delayTimeoutId) {
       return;
     }
-    this.visible = true;
-    let options = new TooltipOptions({
-      content: this.content,
-      htmlContent: this.htmlContent,
-      placement: this.placement,
-      animation: this.animation,
-      hostEl: this.viewContainerRef.element,
-      popupClass: this.popupClass,
-      context: this.tooltipContext
-    });
 
-    let binding = ReflectiveInjector.resolve([
-      {provide: TooltipOptions, useValue: options}
-    ]);
+    this.delayTimeoutId = setTimeout(() => {
+      this.visible = true;
+      let options = new TooltipOptions({
+        content: this.content,
+        htmlContent: this.htmlContent,
+        placement: this.placement,
+        animation: this.animation,
+        hostEl: this.viewContainerRef.element,
+        popupClass: this.popupClass,
+        context: this.tooltipContext
+      });
 
-    this.tooltip = this.componentsHelper
-      .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
+      let binding = ReflectiveInjector.resolve([
+        {provide: TooltipOptions, useValue: options}
+      ]);
 
-    this.triggerStateChanged();
+      this.tooltip = this.componentsHelper
+        .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
+
+      this.triggerStateChanged();
+    }, this.delay);
   }
 
   // params event, target
   @HostListener('focusout')
   @HostListener('mouseleave')
   public hide():void {
+    if (this.delayTimeoutId) {
+      clearTimeout(this.delayTimeoutId);
+      this.delayTimeoutId = undefined;
+    }
+
     if (!this.visible) {
       return;
     }
+
     this.visible = false;
     this.tooltip.destroy();
     this.triggerStateChanged();
