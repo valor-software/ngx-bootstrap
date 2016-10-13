@@ -22,9 +22,9 @@ exports.config = {
   ],
 
   specs: [
-    // './tests_e2e/tests/*.e2e.js'
+    './tests_e2e/tests/*.e2e.js'
     // './tests_e2e/tests/carousel-demo.e2e.js'
-    './tests_e2e/tests/modals-demo.e2e.js'
+    // './tests_e2e/tests/modals-demo.e2e.js'
   ],
 
   framework: 'jasmine',

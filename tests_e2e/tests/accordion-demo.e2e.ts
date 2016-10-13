@@ -1,4 +1,5 @@
 import { $, $$, browser } from 'protractor/globals';
+import { describe } from './../../typings/globals/require/index';
 
 const leftPanelTests = require('./../data/leftPanelTests.e2e');
 const buttonToggleLastPanel = $('accordion-demo>p button:nth-child(1)');
