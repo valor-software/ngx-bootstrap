@@ -1,13 +1,13 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.1.9",
+  "version": "1.1.14-1",
   "description": "angular2 bootstrap components",
   "scripts": {
     "typedoc": "typedoc",
     "flow.docs": "npm run typedoc -- --exclude '**/*.spec.ts' ./components/",
     "flow.compile": "npm run flow.compile:common && npm run flow.compile:system",
     "flow.compile:common": "ngc -p tsconfig.publish.json",
-    "flow.compile:system": "node ./.config/bundle-system.js",
+    "flow.compile:system": "node .config/umd-bundler.js",
     "flow.copy:src": "cpy ng2-bootstrap.ts \"components/*.ts\" ts --parents",
     "flow.clean": "del-cli bundles coverage demo-build \"components/**/*.+(js|d.ts|js.map|metadata.json)\" dist \"ng2-bootstrap.+(js|d.ts|js.map|metadata.json)\" factories",
     "flow.deploy:gh-pages": "npm run flow.build:prod && gh-pages -d demo-build",
@@ -30,7 +30,8 @@
     "version": "npm run flow.changelog && git add -A",
     "postversion": "git push origin development && git push --tags"
   },
-  "main": "ng2-bootstrap.js",
+  "main": "bundles/ng2-bootstrap.umd.js",
+  "module": "ng2-bootstrap.js",
   "typings": "ng2-bootstrap.d.ts",
   "keywords": [
     "angular2",

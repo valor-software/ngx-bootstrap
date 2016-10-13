@@ -53,5 +53,13 @@
            class="form-control">
   </form>
 
-
+  <!-- Grouped results -->
+  <h4>Grouped results</h4>
+  <pre class="card card-block card-header">Model: {{groupSelected | json}}</pre>
+  <input [(ngModel)]="groupSelected"
+         [typeahead]="statesComplex"
+         [typeaheadOptionField]="'name'"
+         [typeaheadGroupField]="'region'"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         class="form-control">
 </div>

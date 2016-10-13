@@ -200,7 +200,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     this.readonlyInput = isDisabled;
   }
 
-  protected updateHours():void {
+  public updateHours():void {
     if (this.readonlyInput) {
       return;
     }

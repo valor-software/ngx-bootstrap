@@ -60,14 +60,14 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
+  @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
+
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
 
   public cd:NgModel;
   private _now:Date = new Date();
   private _activeDate:Date;
-
-  @ViewChild(DatePickerInnerComponent) private datePicker: DatePickerInnerComponent;
 
   @Input()
   public get activeDate():Date {
@@ -94,12 +94,12 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   // todo: support null value
   public writeValue(value:any):void {
-    if (this.datePicker.compare(value, this._activeDate) === 0) {
+    if (this._datePicker.compare(value, this._activeDate) === 0) {
       return;
     }
     if (value && value instanceof Date) {
       this.activeDate = value;
-      this.datePicker.select(value);
+      this._datePicker.select(value, false);
       return;
     }
 
