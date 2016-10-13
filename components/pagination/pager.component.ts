@@ -7,16 +7,16 @@ const pagerConfig = {
   itemsPerPage: 10,
   previousText: '« Previous',
   nextText: 'Next »',
-  classLi: '',
+  pageBtnClass: '',
   align: true
 };
 
 const PAGER_TEMPLATE = `
     <ul class="pager">
-      <li [class.disabled]="noPrevious()" [class.previous]="align" [ngClass]="{'pull-right': align}" class="{{ classLi }}">
+      <li [class.disabled]="noPrevious()" [class.previous]="align" [ngClass]="{'pull-right': align}" class="{{ pageBtnClass }}">
         <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
       </li>
-      <li [class.disabled]="noNext()" [class.next]="align" [ngClass]="{'pull-right': align}" class="{{ classLi }}">
+      <li [class.disabled]="noNext()" [class.next]="align" [ngClass]="{'pull-right': align}" class="{{ pageBtnClass }}">
         <a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a>
       </li>
   </ul>

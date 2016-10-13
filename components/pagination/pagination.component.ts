@@ -22,7 +22,7 @@ export interface PaginationConfig extends KeyAttribute {
   nextText:string;
   lastText:string;
   // css
-  classLi:string;
+  pageBtnClass:string;
 
   rotate:boolean;
 }
@@ -40,7 +40,7 @@ const paginationConfig:PaginationConfig = {
   previousText: 'Previous',
   nextText: 'Next',
   lastText: 'Last',
-  classLi: '',
+  pageBtnClass: '',
   rotate: true
 };
 
@@ -49,14 +49,14 @@ const PAGINATION_TEMPLATE = `
     <li class="pagination-first page-item"
         *ngIf="boundaryLinks"
         [class.disabled]="noPrevious()||disabled"
-        class="{{ classLi }}">
+        class="{{ pageBtnClass }}">
       <a class="page-link" href (click)="selectPage(1, $event)" [innerHTML]="getText('first')"></a>
     </li>
 
     <li class="pagination-prev page-item"
         *ngIf="directionLinks"
         [class.disabled]="noPrevious()||disabled"
-        class="{{ classLi }}">
+        class="{{ pageBtnClass }}">
       <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
       </li>
 
@@ -64,20 +64,20 @@ const PAGINATION_TEMPLATE = `
         [class.active]="pg.active"
         [class.disabled]="disabled&&!pg.active"
         class="pagination-page page-item"
-        class="{{ classLi }}">
+        class="{{ pageBtnClass }}">
       <a class="page-link" href (click)="selectPage(pg.number, $event)" [innerHTML]="pg.text"></a>
     </li>
 
     <li class="pagination-next page-item"
         *ngIf="directionLinks"
         [class.disabled]="noNext()||disabled"
-        class="{{ classLi }}">
+        class="{{ pageBtnClass }}">
       <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
 
     <li class="pagination-last page-item"
         *ngIf="boundaryLinks"
         [class.disabled]="noNext()||disabled"
-        class="{{ classLi }}">
+        class="{{ pageBtnClass }}">
       <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
   </ul>
   `;
@@ -103,7 +103,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   @Input() public lastText:string;
   @Input() public rotate:boolean;
   // css
-  @Input() public classLi:string;
+  @Input() public pageBtnClass:string;
 
   @Input() public disabled:boolean;
 
@@ -199,9 +199,9 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     this.directionLinks = typeof this.directionLinks !== 'undefined'
       ? this.directionLinks
       : paginationConfig.directionLinks;
-    this.classLi = typeof this.classLi !== 'undefined'
-    ? this.classLi
-    : paginationConfig.classLi;
+    this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
+    ? this.pageBtnClass
+    : paginationConfig.pageBtnClass;
 
     // base class
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
