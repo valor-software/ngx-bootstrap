@@ -1,3 +1,19 @@
+<a name="1.1.14"></a>
+## [1.1.14](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-1...v1.1.14) (2016-10-13)
+
+
+### Bug Fixes
+
+* **tooltip:** properties types ([b407012](https://github.com/valor-software/ng2-bootstrap/commit/b407012))
+
+
+### Features
+
+* **package:** relax peer dependecies to work with 2.x.x ([bc55a38](https://github.com/valor-software/ng2-bootstrap/commit/bc55a38))
+* **tooltip:** added Tooltip delay functionality ([#1116](https://github.com/valor-software/ng2-bootstrap/issues/1116)) ([eb90e9a](https://github.com/valor-software/ng2-bootstrap/commit/eb90e9a))
+
+
+
 <a name="1.1.14-1"></a>
 ## [1.1.14-1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-0...v1.1.14-1) (2016-10-11)
 
