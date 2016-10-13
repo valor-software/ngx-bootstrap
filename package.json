@@ -53,10 +53,10 @@
     "moment": "2.15.1"
   },
   "peerDependencies": {
-    "@angular/common": "~2.0.1",
-    "@angular/compiler": "~2.0.1",
-    "@angular/core": "~2.0.1",
-    "@angular/forms": "~2.0.1"
+    "@angular/common": "^2.0.0",
+    "@angular/compiler": "^2.0.0",
+    "@angular/core": "^2.0.0",
+    "@angular/forms": "^2.0.0"
   },
   "devDependencies": {
     "@angular/common": "2.0.1",
@@ -69,7 +69,6 @@
     "@angular/platform-server": "2.0.1",
     "@angular/router": "3.0.1",
     "@types/jasmine": "2.2.34",
-    "@types/node": "6.0.41",
     "@types/webpack": "1.12.34",
     "async": "2.0.1",
     "bootstrap": "3.3.7",

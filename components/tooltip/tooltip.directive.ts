@@ -42,7 +42,7 @@ export class TooltipDirective {
   private visible: boolean = false;
   private tooltip: ComponentRef<any>;
 
-  private delayTimeoutId: NodeJS.Timer;
+  private delayTimeoutId: number;
 
   public constructor(viewContainerRef: ViewContainerRef,
                      componentsHelper: ComponentsHelper) {
@@ -84,9 +84,7 @@ export class TooltipDirective {
     };
 
     if (this.delay) {
-      this.delayTimeoutId = setTimeout(() => {
-        showTooltip();
-      }, this.delay);
+      this.delayTimeoutId = setTimeout(() => { showTooltip(); }, this.delay);
     } else {
       showTooltip();
     }
