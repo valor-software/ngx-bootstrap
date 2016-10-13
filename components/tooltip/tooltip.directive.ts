@@ -1,5 +1,13 @@
 import {
-  ComponentRef, Directive, HostListener, Input, ReflectiveInjector, TemplateRef, ViewContainerRef, Output, EventEmitter
+  ComponentRef,
+  Directive,
+  HostListener,
+  Input,
+  ReflectiveInjector,
+  TemplateRef,
+  ViewContainerRef,
+  Output,
+  EventEmitter
 } from '@angular/core';
 
 import { TooltipContainerComponent } from './tooltip-container.component';
@@ -14,29 +22,30 @@ import { ComponentsHelper } from '../utils/components-helper.service';
 /* tslint:enable */
 export class TooltipDirective {
   /* tslint:disable */
-  @Input('tooltip') public content:string;
-  @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
-  @Input('tooltipPlacement') public placement:string = 'top';
-  @Input('tooltipIsOpen') public isOpen:boolean;
-  @Input('tooltipEnable') public enable:boolean = true;
-  @Input('tooltipAnimation') public animation:boolean = true;
-  @Input('tooltipAppendToBody') public appendToBody:boolean;
-  @Input('tooltipClass') public popupClass:string;
-  @Input('tooltipContext') public tooltipContext:any;
-  @Input('tooltipPopupDelay') public delay:number = 0;
+  @Input('tooltip') public content: string;
+  @Input('tooltipHtml') public htmlContent: string | TemplateRef<any>;
+  @Input('tooltipPlacement') public placement: string = 'top';
+  @Input('tooltipIsOpen') public isOpen: boolean;
+  @Input('tooltipEnable') public enable: boolean = true;
+  @Input('tooltipAnimation') public animation: boolean = true;
+  @Input('tooltipAppendToBody') public appendToBody: boolean;
+  @Input('tooltipClass') public popupClass: string;
+  @Input('tooltipContext') public tooltipContext: any;
+  @Input('tooltipPopupDelay') public delay: number = 0;
   /* tslint:enable */
 
-  @Output() public tooltipStateChanged:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public viewContainerRef:ViewContainerRef;
-  public componentsHelper:ComponentsHelper;
+  public viewContainerRef: ViewContainerRef;
+  public componentsHelper: ComponentsHelper;
 
-  private visible:boolean = false;
-  private tooltip:ComponentRef<any>;
+  private visible: boolean = false;
+  private tooltip: ComponentRef<any>;
 
-  private delayTimeoutId:NodeJS.Timer;
+  private delayTimeoutId: NodeJS.Timer;
 
-  public constructor(viewContainerRef:ViewContainerRef, componentsHelper:ComponentsHelper) {
+  public constructor(viewContainerRef: ViewContainerRef,
+                     componentsHelper: ComponentsHelper) {
     this.viewContainerRef = viewContainerRef;
     this.componentsHelper = componentsHelper;
   }
@@ -45,12 +54,12 @@ export class TooltipDirective {
   // params: event, target
   @HostListener('focusin')
   @HostListener('mouseenter')
-  public show():void {
+  public show(): void {
     if (this.visible || !this.enable || this.delayTimeoutId) {
       return;
     }
 
-    this.delayTimeoutId = setTimeout(() => {
+    const showTooltip = () => {
       this.visible = true;
       let options = new TooltipOptions({
         content: this.content,
@@ -67,16 +76,26 @@ export class TooltipDirective {
       ]);
 
       this.tooltip = this.componentsHelper
-        .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
+        .appendNextToLocation(TooltipContainerComponent,
+          this.viewContainerRef,
+          binding);
 
       this.triggerStateChanged();
-    }, this.delay);
+    };
+
+    if (this.delay) {
+      this.delayTimeoutId = setTimeout(() => {
+        showTooltip();
+      }, this.delay);
+    } else {
+      showTooltip();
+    }
   }
 
   // params event, target
   @HostListener('focusout')
   @HostListener('mouseleave')
-  public hide():void {
+  public hide(): void {
     if (this.delayTimeoutId) {
       clearTimeout(this.delayTimeoutId);
       this.delayTimeoutId = undefined;
@@ -91,7 +110,7 @@ export class TooltipDirective {
     this.triggerStateChanged();
   }
 
-  private triggerStateChanged():void {
+  private triggerStateChanged(): void {
     this.tooltipStateChanged.emit(this.visible);
   }
 }
