@@ -55,8 +55,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
-// todo: change type during implementation
-  @Input() public dateDisabled:any;
+  @Input() public dateDisabled:Array<{date:Date, mode:string}>;
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
