@@ -24,12 +24,12 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, IPagin
   @Input() public lastText:string;
   @Input() public rotate:boolean;
 
-  @Input() private disabled:boolean;
+  @Input() public disabled:boolean;
   @Input() public get itemsPerPage():number {}
-  @Input() private get totalItems():number {}
+  @Input() public get totalItems():number {}
 
-  @Output() private numPages:EventEmitter<number> = new EventEmitter(false);
-  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
+  @Output() public numPages:EventEmitter<number> = new EventEmitter(false);
+  @Output() public pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
 
 @Component({
   selector: 'pager[ngModel]',

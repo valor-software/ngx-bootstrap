@@ -13,7 +13,7 @@ export class ModalBackdropOptions {
 @Component({
   selector: 'bs-modal-backdrop',
   template: '',
-  host: {'class': `${ClassName.BACKDROP}`}
+  host: {'class': ClassName.BACKDROP}
 })
 export class ModalBackdropComponent {
   public get isAnimated():boolean {

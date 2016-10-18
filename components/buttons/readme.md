@@ -13,22 +13,22 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   @Input() public uncheckable:boolean;
 
   @HostBinding('class.active')
-  private get isActive() {}
+  public get isActive() {}
 
   @HostListener('click')
-  private onClick() {}
+  public onClick() {}
 }
 // directive ButtonCheckbox
 @Directive({ selector: '[btnCheckbox][ngModel]' })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
-  @Input() private btnCheckboxTrue:any;
-  @Input() private btnCheckboxFalse:any;
+  @Input() public btnCheckboxTrue:any;
+  @Input() public btnCheckboxFalse:any;
 
   @HostBinding('class.active')
-  private state:boolean = false;
+  public state:boolean = false;
 
   @HostListener('click')
-  private onClick() {}
+  public onClick() {}
 }
 ```
 

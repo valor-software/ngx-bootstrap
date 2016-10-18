@@ -5,64 +5,68 @@ import { positionService } from '../position';
 import { TypeaheadOptions } from './typeahead-options.class';
 import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
+import { TypeaheadMatch } from './typeahead-match.class';
 
-const TEMPLATE:any = {
-  [Ng2BootstrapTheme.BS4]: `
+const bs4 = `
   <div class="dropdown-menu"
-       style="display: block"
-       [ngStyle]="{top: top, left: left, display: display}"
+       [ngStyle]="{top: top, left: left, display: 'block'}"
        (mouseleave)="focusLost()">
-       <div *ngIf="!itemTemplate">
+    <template ngFor let-match let-i="index" [ngForOf]="matches">
+       <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
+       <div *ngIf="!match.isHeader() && !itemTemplate">
           <a href="#"
-            *ngFor="let match of matches"
             class="dropdown-item"
             (click)="selectMatch(match, $event)"
             (mouseenter)="selectActive(match)"
             [class.active]="isActive(match)"
             [innerHtml]="hightlight(match, query)"></a>
       </div>
-      <div *ngIf="itemTemplate">
+      <div *ngIf="!match.isHeader() && itemTemplate">
         <a href="#"
-         *ngFor="let match of matches; let i = index"
          class="dropdown-item"
          (click)="selectMatch(match, $event)"
          (mouseenter)="selectActive(match)"
          [class.active]="isActive(match)">
           <template [ngTemplateOutlet]="itemTemplate"
-                    [ngOutletContext]="{item: match, index: i}">
+                    [ngOutletContext]="{item: match.item, index: i}">
           </template>
          </a>
       </div>
+    </template>
   </div>
-  `,
-  [Ng2BootstrapTheme.BS3]: `
+`;
+
+const bs3 = `
   <ul class="dropdown-menu"
-      style="display: block"
-      [ngStyle]="{top: top, left: left, display: display}"
+      [ngStyle]="{top: top, left: left, display: 'block'}"
       (mouseleave)="focusLost()">
-    <li *ngFor="let match of matches; let i = index"
+    <template ngFor let-match let-i="index" [ngForOf]="matches">
+      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+      <li *ngIf="!match.isHeader()"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
-        <a href="#" 
-           *ngIf="!itemTemplate" 
-           (click)="selectMatch(match, $event)" 
-           tabindex="-1" 
+        <a href="#"
+           *ngIf="!itemTemplate"
+           (click)="selectMatch(match, $event)"
+           tabindex="-1"
            [innerHtml]="hightlight(match, query)"></a>
-        <a href="#" 
-           *ngIf="itemTemplate" 
-           (click)="selectMatch(match, $event)" 
+        <a href="#"
+           *ngIf="itemTemplate"
+           (click)="selectMatch(match, $event)"
            tabindex="-1">
             <template [ngTemplateOutlet]="itemTemplate"
-                      [ngOutletContext]="{item: match, index: i}">
+                      [ngOutletContext]="{item: match.item, index: i}">
             </template>
         </a>
-    </li>
+      </li>
+    </template>
   </ul>
-  `
-};
+`;
+let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
+
 @Component({
   selector: 'typeahead-container',
-  template: TEMPLATE[Ng2BootstrapConfig.theme],
+  template: isBS4 ? bs4 : bs3,
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
@@ -70,12 +74,12 @@ export class TypeaheadContainerComponent {
   public query:any;
   public element:ElementRef;
   public isFocused:boolean = false;
-  private _active:any;
-  private _matches:Array<any> = [];
-  private _field:string;
-  private top:string;
-  private left:string;
-  private display:string;
+  public top:string;
+  public left:string;
+  public display:string;
+
+  private _active:TypeaheadMatch;
+  private _matches:Array<TypeaheadMatch> = [];
   private placement:string;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
@@ -83,7 +87,7 @@ export class TypeaheadContainerComponent {
     Object.assign(this, options);
   }
 
-  public get matches():Array<any> {
+  public get matches():Array<TypeaheadMatch> {
     return this._matches;
   }
 
@@ -91,19 +95,18 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  public set matches(value:Array<any>) {
+  public set matches(value:Array<TypeaheadMatch>) {
     this._matches = value;
+
     if (this._matches.length > 0) {
       this._active = this._matches[0];
+      if (this._active.isHeader()) {
+        this.nextActiveMatch();
+      }
     }
   }
 
-  public set field(value:string) {
-    this._field = value;
-  }
-
   public position(hostEl:ElementRef):void {
-    this.display = 'block';
     this.top = '0px';
     this.left = '0px';
     let p = positionService
@@ -123,6 +126,10 @@ export class TypeaheadContainerComponent {
     this._active = this.matches[index - 1 < 0
       ? this.matches.length - 1
       : index - 1];
+    if (this._active.isHeader()) {
+      this.prevActiveMatch();
+    }
+
   }
 
   public nextActiveMatch():void {
@@ -130,16 +137,19 @@ export class TypeaheadContainerComponent {
     this._active = this.matches[index + 1 > this.matches.length - 1
       ? 0
       : index + 1];
+    if (this._active.isHeader()) {
+      this.nextActiveMatch();
+    }
   }
 
-  protected selectActive(value:any):void {
+  protected selectActive(value:TypeaheadMatch):void {
     this.isFocused = true;
     this._active = value;
   }
 
-  protected hightlight(item:any, query:any):string {
-    let itemStr:string = TypeaheadUtils.getValueFromObject(item, this._field);
-    let itemStrHelper:string = (this.parent.typeaheadLatinize
+  protected hightlight(match:TypeaheadMatch, query:any):string {
+    let itemStr:string = match.value;
+    let itemStrHelper:string = (this.parent && this.parent.typeaheadLatinize
       ? TypeaheadUtils.latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx:number;
@@ -167,24 +177,22 @@ export class TypeaheadContainerComponent {
     return itemStr;
   }
 
-  protected focusLost():void {
+  public focusLost():void {
     this.isFocused = false;
   }
 
-  public isActive(value:any):boolean {
+  public isActive(value:TypeaheadMatch):boolean {
     return this._active === value;
   }
 
-  private selectMatch(value:any, e:Event = void 0):boolean {
+  private selectMatch(value:TypeaheadMatch, e:Event = void 0):boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
     }
     this.parent.changeModel(value);
     setTimeout(() =>
-      this.parent.typeaheadOnSelect.emit({
-        item: value
-      }), 0
+      this.parent.typeaheadOnSelect.emit(value), 0
     );
     return false;
   }

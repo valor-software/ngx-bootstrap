@@ -12,15 +12,15 @@ import { RatingModule } from 'ng2-bootstrap/components/rating';
   selector: 'rating[ngModel]'
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
-  @Input() private max:number;
-  @Input() private stateOn:string;
-  @Input() private stateOff:string;
-  @Input() private readonly:boolean;
-  @Input() private titles:Array<string>;
-  @Input() private ratingStates:{stateOn:string, stateOff:string}[];
+  @Input() public max:number;
+  @Input() public stateOn:string;
+  @Input() public stateOff:string;
+  @Input() public readonly:boolean;
+  @Input() public titles:Array<string>;
+  @Input() public ratingStates:{stateOn:string, stateOff:string}[];
 
-  @Output() private onHover:EventEmitter<number> = new EventEmitter(false);
-  @Output() private onLeave:EventEmitter<number> = new EventEmitter(false);
+  @Output() public onHover:EventEmitter<number> = new EventEmitter(false);
+  @Output() public onLeave:EventEmitter<number> = new EventEmitter(false);
 }
 ```
 

@@ -24,6 +24,7 @@ tsconfig.json
 tsconfig.publish.json
 tslint.json
 typedoc.js
+wallaby.js
 
 # demo build
 doc
@@ -36,6 +37,9 @@ webpack.config.js
 *.js.map
 !/bundles/*.js.map
 !*.d.ts
+!*.metadata.json
+make.js
 /components/**/*.ts
 !/components/**/*.d.ts
 
+factories

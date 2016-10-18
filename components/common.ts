@@ -15,14 +15,14 @@ export class NgTranscludeDirective {
   private _ngTransclude:TemplateRef<any>;
 
   @Input()
-  private set ngTransclude(templateRef:TemplateRef<any>) {
+  public set ngTransclude(templateRef:TemplateRef<any>) {
     this._ngTransclude = templateRef;
     if (templateRef) {
       this.viewRef.createEmbeddedView(templateRef);
     }
   }
 
-  private get ngTransclude():TemplateRef<any> {
+  public get ngTransclude():TemplateRef<any> {
     return this._ngTransclude;
   }
 

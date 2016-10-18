@@ -14,7 +14,6 @@
     "lib": ["dom", "es6"],
     "types": [
       "jasmine",
-      "node",
       "webpack"
     ]
   },
@@ -24,5 +23,8 @@
   "files": [
     "./demo/custom-typings.d.ts",
     "./ng2-bootstrap.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "factories"
+  }
 }
