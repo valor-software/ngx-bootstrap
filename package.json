@@ -102,6 +102,6 @@
     "typedoc": "0.5.0",
     "typescript": "2.0.3",
     "wallaby-webpack": "0.0.26",
-    "zone.js": "0.6.25"
+    "zone.js": "0.6.26"
   }
 }
