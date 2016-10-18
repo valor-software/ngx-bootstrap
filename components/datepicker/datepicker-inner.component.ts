@@ -15,6 +15,8 @@ const SHOW_WEEKS = true;
 const ONLY_CURRENT_MONTH = false;
 const STARTING_DAY = 0;
 const YEAR_RANGE = 20;
+const MONTH_COL_LIMIT = 3;
+const YEAR_COL_LIMIT = 5;
 // const MIN_DATE:Date = void 0;
 // const MAX_DATE:Date = void 0;
 const SHORTCUT_PROPAGATION = false;
@@ -63,6 +65,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public onlyCurrentMonth: boolean;
   @Input() public shortcutPropagation: boolean;
   @Input() public customClass: Array<{date: Date, mode: string, clazz: string}>;
+  @Input() public monthColLimit: number;
+  @Input() public yearColLimit: number;
   // todo: change type during implementation
   @Input() public dateDisabled: any;
   @Input() public initDate: Date;
@@ -118,6 +122,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     this.datepickerMode = this.datepickerMode || DATEPICKER_MODE;
     this.minMode = this.minMode || MIN_MODE;
     this.maxMode = this.maxMode || MAX_MODE;
+    this.monthColLimit = this.monthColLimit || MONTH_COL_LIMIT;
+    this.yearColLimit = this.yearColLimit || YEAR_COL_LIMIT;
 
     // todo: use date for unique value
     this.uniqueId = 'datepicker-' + '-' + Math.floor(Math.random() * 10000);

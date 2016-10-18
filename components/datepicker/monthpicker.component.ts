@@ -77,7 +77,7 @@ export class MonthPickerComponent implements OnInit {
       }
 
       self.title = this.dateFilter(this.activeDate, this.formatMonthTitle);
-      self.rows = this.split(months, 3);
+      self.rows = this.split(months, self.datePicker.monthColLimit);
     }, 'month');
 
     this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {

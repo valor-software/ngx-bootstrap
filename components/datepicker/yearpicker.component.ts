@@ -79,7 +79,7 @@ export class YearPickerComponent implements OnInit {
 
       self.title = [years[0].label,
         years[this.yearRange - 1].label].join(' - ');
-      self.rows = this.split(years, 5);
+      self.rows = this.split(years, self.datePicker.yearColLimit);
     }, 'year');
 
     this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
