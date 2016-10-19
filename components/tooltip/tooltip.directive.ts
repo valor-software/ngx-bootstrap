@@ -99,12 +99,30 @@ export class TooltipDirective {
       this.delayTimeoutId = undefined;
     }
 
+    // if (!this.visible) {
+    //   return;
+    // }
+    //
+    // this.visible = false;
+    // this.tooltip.destroy();
+    // this.triggerStateChanged();
+
+    let self=this;
     if (!this.visible) {
       return;
     }
-
-    this.visible = false;
-    this.tooltip.destroy();
+    let timer=setTimeout(function () {
+      self.visible=false;
+      self.tooltip.destroy();
+    }, 500);
+    var tooltipContainer=this.viewContainerRef.element.nativeElement.nextElementSibling.children[0];
+    jQuery(tooltipContainer).one('mouseenter', function(){
+      clearTimeout(timer);
+      jQuery(tooltipContainer).one('mouseleave', function(){
+        self.visible=false;
+        self.tooltip.destroy();
+      });
+    });
     this.triggerStateChanged();
   }
 
