@@ -15,7 +15,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </th>
-      <th colspan="3">
+      <th [attr.colspan]="((datePicker.yearColLimit - 2) <= 0) ? 1 : datePicker.yearColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"

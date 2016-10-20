@@ -14,7 +14,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 (click)="datePicker.move(-1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button></th>
-      <th>
+      <th [attr.colspan]="((datePicker.monthColLimit - 2) <= 0) ? 1 : datePicker.monthColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
