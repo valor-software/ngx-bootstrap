@@ -65,6 +65,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // reference to backdrop component
   private backdrop: ComponentRef<ModalBackdropComponent>;
 
+  private timerHideModal: number = 0;
+  private timerRmBackDrop: number = 0;
+
   private get document(): any {
     return this.componentsHelper.getDocument();
   };
@@ -107,6 +110,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.isBodyOverflowing = void 0;
     this.originalBodyPadding = void 0;
     this.scrollbarWidth = void 0;
+    this.timerHideModal = void 0;
+    this.timerRmBackDrop = void 0;
   }
 
   public ngAfterViewInit(): any {
@@ -124,6 +129,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     if (this._isShown) {
       return;
     }
+    clearTimeout(this.timerHideModal);
+    clearTimeout(this.timerRmBackDrop);
 
     this._isShown = true;
 
@@ -151,12 +158,15 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       return;
     }
 
+    clearTimeout(this.timerHideModal);
+    clearTimeout(this.timerRmBackDrop);
+
     this._isShown = false;
     this.renderer.setElementClass(this.element.nativeElement, ClassName.IN, false);
     // this._addClassIn = false;
 
     if (this.isAnimated) {
-      setTimeout(() => this.hideModal(), TRANSITION_DURATION);
+      this.timerHideModal = setTimeout(() => this.hideModal(), TRANSITION_DURATION);
     } else {
       this.hideModal();
     }
@@ -221,7 +231,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // todo: original show was calling a callback when done, but we can use promise
   private showBackdrop(callback?: Function): void {
-    if (this._isShown && this.config.backdrop) {
+    if (this._isShown && this.config.backdrop && (!this.backdrop || !this.backdrop.instance.isShown)) {
+      this.removeBackdrop();
       this.backdrop = this.componentsHelper
         .appendNextToRoot(
           ModalBackdropComponent,
@@ -255,7 +266,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       };
 
       if (this.backdrop.instance.isAnimated) {
-        setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
+        this.timerRmBackDrop = setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
       } else {
         callbackRemove();
       }
