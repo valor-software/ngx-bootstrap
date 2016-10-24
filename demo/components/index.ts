@@ -7,6 +7,7 @@ export * from './datepicker/datepicker-demo';
 export * from './dropdown/dropdown-demo';
 export * from './modal/modal-demo';
 export * from './pagination/pagination-demo';
+export * from './popover/popover-demo';
 export * from './progressbar/progressbar-demo';
 export * from './rating/rating-demo';
 export * from './tabs/tabs-demo';

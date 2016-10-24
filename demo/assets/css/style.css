@@ -598,14 +598,17 @@ pre {
   word-break: normal;
 }
 
-/* Specify styling for tooltip contents */
-.tooltip.customClass .tooltip-inner {
+/* Specify styling for tooltip/popover contents */
+.tooltip.customClass .tooltip-inner,
+.popover.customClass .popover-content {
   color: #880000;
   background-color: #ffff66;
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 /* Hide arrow */
-.tooltip.customClass .tooltip-arrow {
+.tooltip.customClass .tooltip-arrow,
+.popover.customClass .popover-arrow,
+.popover.customClass .arrow {
   display: none;
 }
 

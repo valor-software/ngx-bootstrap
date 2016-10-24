@@ -14,6 +14,7 @@ import {
   DropdownDemoComponent,
   ModalDemoComponent,
   PaginationDemoComponent,
+  PopoverDemoComponent,
   ProgressbarDemoComponent,
   RatingDemoComponent,
   TabsDemoComponent,
@@ -40,6 +41,7 @@ import { DatepickerSectionComponent } from './components/datepicker-section';
 import { DropdownSectionComponent } from './components/dropdown-section';
 import { ModalSectionComponent } from './components/modal-section';
 import { PaginationSectionComponent } from './components/pagination-section';
+import { PopoverSectionComponent } from './components/popover-section';
 import { ProgressbarSectionComponent } from './components/progressbar-section';
 import { RatingSectionComponent } from './components/rating-section';
 import { TabsSectionComponent } from './components/tabs-section';
@@ -65,6 +67,7 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
     DropdownDemoComponent,
     ModalDemoComponent,
     PaginationDemoComponent,
+    PopoverDemoComponent,
     ProgressbarDemoComponent,
     RatingDemoComponent,
     TabsDemoComponent,
@@ -81,6 +84,7 @@ import { TypeaheadSectionComponent } from './components/typeahead-section';
     DropdownSectionComponent,
     ModalSectionComponent,
     PaginationSectionComponent,
+    PopoverSectionComponent,
     ProgressbarSectionComponent,
     RatingSectionComponent,
     TabsSectionComponent,
