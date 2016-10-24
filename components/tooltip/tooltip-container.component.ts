@@ -4,6 +4,7 @@ import {
 
 import { positionService } from '../position';
 import { TooltipOptions } from './tooltip-options.class';
+import { OPTIONS } from './tooltip-options.token';
 
 @Component({
   selector: 'tooltip-container',
@@ -13,7 +14,7 @@ import { TooltipOptions } from './tooltip-options.class';
      [ngClass]="classMap">
       <div class="tooltip-arrow"></div>
       <div class="tooltip-inner"
-           *ngIf="htmlContent && !isTemplate" 
+           *ngIf="htmlContent && !isTemplate"
            innerHtml="{{htmlContent}}">
       </div>
       <div class="tooltip-inner"
@@ -50,7 +51,7 @@ export class TooltipContainerComponent implements AfterViewInit {
 
   public constructor(element:ElementRef,
                      cdr:ChangeDetectorRef,
-                     @Inject(TooltipOptions) options:TooltipOptions) {
+                     @Inject(OPTIONS) options:TooltipOptions) {
     this.element = element;
     this.cdr = cdr;
     Object.assign(this, options);

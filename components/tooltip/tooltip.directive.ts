@@ -12,6 +12,7 @@ import {
 
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipOptions } from './tooltip-options.class';
+import { OPTIONS } from './tooltip-options.token';
 import { ComponentsHelper } from '../utils/components-helper.service';
 
 /* tslint:disable */
@@ -30,11 +31,11 @@ export class TooltipDirective {
   @Input('tooltipAnimation') public animation: boolean = true;
   @Input('tooltipAppendToBody') public appendToBody: boolean = false;
   @Input('tooltipClass') public popupClass: string;
-  @Input('tooltipContext') public tooltipContext: any;
+  @Input('tooltipContext') public context: any;
   @Input('tooltipPopupDelay') public delay: number = 0;
-  /* tslint:enable */
 
-  @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output('tooltipStateChanged') public stateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  /* tslint:enable */
 
   public viewContainerRef: ViewContainerRef;
   public componentsHelper: ComponentsHelper;
@@ -59,36 +60,10 @@ export class TooltipDirective {
       return;
     }
 
-    const showTooltip = () => {
-      this.visible = true;
-      let options = new TooltipOptions({
-        content: this.content,
-        htmlContent: this.htmlContent,
-        placement: this.placement,
-        animation: this.animation,
-        hostEl: this.viewContainerRef.element,
-        popupClass: this.popupClass,
-        context: this.tooltipContext
-      });
-
-      if (this.appendToBody) {
-        this.tooltip = this.componentsHelper
-          .appendNextToRoot(TooltipContainerComponent, TooltipOptions, options);
-      } else {
-        let binding = ReflectiveInjector.resolve([
-          {provide: TooltipOptions, useValue: options}
-        ]);
-        this.tooltip = this.componentsHelper
-          .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
-      }
-
-      this.triggerStateChanged();
-    };
-
     if (this.delay) {
-      this.delayTimeoutId = setTimeout(() => { showTooltip(); }, this.delay);
+      this.delayTimeoutId = setTimeout(() => { this.showTooltip(); }, this.delay);
     } else {
-      showTooltip();
+      this.showTooltip();
     }
   }
 
@@ -110,7 +85,41 @@ export class TooltipDirective {
     this.triggerStateChanged();
   }
 
+  protected options(): TooltipOptions {
+    return new TooltipOptions({
+      content: this.content,
+      htmlContent: this.htmlContent,
+      placement: this.placement,
+      animation: this.animation,
+      hostEl: this.viewContainerRef.element,
+      popupClass: this.popupClass,
+      context: this.context
+    });
+  }
+
+  protected get containerComponent(): any {
+    return TooltipContainerComponent;
+  }
+
+  private showTooltip(): void {
+    this.visible = true;
+    let options = this.options();
+
+    if (this.appendToBody) {
+      this.tooltip = this.componentsHelper
+        .appendNextToRoot(this.containerComponent, OPTIONS, options);
+    } else {
+      let binding = ReflectiveInjector.resolve([
+        { provide: OPTIONS, useValue: options }
+      ]);
+      this.tooltip = this.componentsHelper
+        .appendNextToLocation(this.containerComponent, this.viewContainerRef, binding);
+    }
+
+    this.triggerStateChanged();
+  }
+
   private triggerStateChanged(): void {
-    this.tooltipStateChanged.emit(this.visible);
+    this.stateChanged.emit(this.visible);
   }
 }

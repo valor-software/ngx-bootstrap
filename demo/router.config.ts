@@ -10,6 +10,7 @@ import { DropdownSectionComponent } from './components/dropdown-section';
 import { GettingStartedSectionComponent } from './components/getting-started/getting-started';
 import { ModalSectionComponent } from './components/modal-section';
 import { PaginationSectionComponent } from './components/pagination-section';
+import { PopoverSectionComponent } from './components/popover-section';
 import { ProgressbarSectionComponent } from './components/progressbar-section';
 import { RatingSectionComponent } from './components/rating-section';
 import { TabsSectionComponent } from './components/tabs-section';
@@ -58,6 +59,10 @@ export const routes:Routes = [
     path: 'pagination',
     data: ['Pagination'],
     component: PaginationSectionComponent
+  }, {
+    path: 'popover',
+    data: ['Popover'],
+    component: PopoverSectionComponent
   }, {
     path: 'progressbar',
     data: ['Progressbar'],
