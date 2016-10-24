@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   ComponentRef,
   Directive,
   HostListener,
@@ -39,15 +40,18 @@ export class TooltipDirective {
   public viewContainerRef: ViewContainerRef;
   public componentsHelper: ComponentsHelper;
 
+  private changeDetectorRef: ChangeDetectorRef;
   private visible: boolean = false;
   private tooltip: ComponentRef<any>;
 
   private delayTimeoutId: number;
 
   public constructor(viewContainerRef: ViewContainerRef,
-                     componentsHelper: ComponentsHelper) {
+                     componentsHelper: ComponentsHelper,
+                     changeDetectorRef: ChangeDetectorRef) {
     this.viewContainerRef = viewContainerRef;
     this.componentsHelper = componentsHelper;
+    this.changeDetectorRef = changeDetectorRef;
   }
 
   // todo: filter triggers
@@ -82,6 +86,7 @@ export class TooltipDirective {
           .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
       }
 
+      this.changeDetectorRef.markForCheck();
       this.triggerStateChanged();
     };
 
