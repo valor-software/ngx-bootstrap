@@ -1,45 +1,26 @@
-<a name="1.1.14-1"></a>
-## [1.1.14-1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-0...v1.1.14-1) (2016-10-11)
+<a name="1.1.14"></a>
+## [1.1.14](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-1...v1.1.14) (2016-10-13)
 
 
 ### Bug Fixes
 
+* **tooltip:** properties types ([b407012](https://github.com/valor-software/ng2-bootstrap/commit/b407012))
 * **package:** fixed link to main file ([a515089](https://github.com/valor-software/ng2-bootstrap/commit/a515089))
-
-
-
-<a name="1.1.14-0"></a>
-## [1.1.14-0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13...v1.1.14-0) (2016-10-11)
 
 
 ### Features
 
+* **package:** relax peer dependecies to work with 2.x.x ([bc55a38](https://github.com/valor-software/ng2-bootstrap/commit/bc55a38))
+* **tooltip:** added Tooltip delay functionality ([#1116](https://github.com/valor-software/ng2-bootstrap/issues/1116)) ([eb90e9a](https://github.com/valor-software/ng2-bootstrap/commit/eb90e9a))
 * **build:** system.js bundles replaced with UMD bundles ([3e0a27d](https://github.com/valor-software/ng2-bootstrap/commit/3e0a27d))
 * **UMD:** added UMD bundles ([a7554a8](https://github.com/valor-software/ng2-bootstrap/commit/a7554a8)), closes [#1098](https://github.com/valor-software/ng2-bootstrap/issues/1098)
-
-
 
 <a name="1.1.13"></a>
 ## [1.1.13](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13-1...v1.1.13) (2016-10-11)
 
-
-
-<a name="1.1.13-1"></a>
-## [1.1.13-1](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.13-0...v1.1.13-1) (2016-10-11)
-
-
 ### Bug Fixes
 
 * **build:** export all internal classes so AoT can work without issues ([6e6be1a](https://github.com/valor-software/ng2-bootstrap/commit/6e6be1a)), closes [#1093](https://github.com/valor-software/ng2-bootstrap/issues/1093)
-
-
-
-<a name="1.1.13-0"></a>
-## [1.1.13-0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.11...v1.1.13-0) (2016-10-10)
-
-
-### Bug Fixes
-
 * **helpers:** add a way to set root view component ref ([79d3335](https://github.com/valor-software/ng2-bootstrap/commit/79d3335)), closes [#1056](https://github.com/valor-software/ng2-bootstrap/issues/1056)
 * **tooltip:** show & hide methods should not need any arguments ([#1099](https://github.com/valor-software/ng2-bootstrap/issues/1099)) ([b80c0b4](https://github.com/valor-software/ng2-bootstrap/commit/b80c0b4))
 

@@ -23,7 +23,7 @@
 </p>
 
 <p>
-  I can even contain HTML. <a href="#" [tooltipHtml]="htmlTooltip" (tooltipStateChanged)="tooltipStateChanged($event)">Check me out!</a>
+  I can even contain HTML. <a href="#" [tooltipPopupDelay]="500" [tooltipHtml]="htmlTooltip" (tooltipStateChanged)="tooltipStateChanged($event)">Check me out!</a>
 </p>
 
 <template #toolTipTemplate let-model="model">
@@ -32,13 +32,13 @@
 </template>
 
 <p>
-  Or use a TemplateRef. <a href="#" [tooltipHtml]="toolTipTemplate" 
-                                    [tooltipContext]="tooltipModel" 
+  Or use a TemplateRef. <a href="#" [tooltipHtml]="toolTipTemplate"
+                                    [tooltipContext]="tooltipModel"
                                     (tooltipStateChanged)="tooltipStateChanged($event)">Check me out!</a>
 </p>
 <p>
   Programatically show/hide tooltip
-   <a href="#" [tooltip]="'Foo'" 
+   <a href="#" [tooltip]="'Foo'"
                (tooltipStateChanged)="tooltipStateChanged($event)"
                #tooltip="bs-tooltip">Check me out!</a>
    <button class="btn btn-primary" (click)="tooltip.show()">Show tooltip</button>
