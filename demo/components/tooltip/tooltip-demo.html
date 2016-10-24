@@ -49,6 +49,10 @@
   I can have a custom class. <a href="#" tooltip="I can have a custom class applied to me!" tooltipClass="customClass">Check me out!</a>
 </p>
 
+<p style="overflow:hidden; position:relative; background-color: #f6f6f6" class="alert">
+  And if I am in <a href="#" tooltip="That ruins the tooltip">overflow: hidden</a> container, then just <a href="#" tooltip="So the tooltip is visible always correctly" [tooltipAppendToBody]="true">tooltipAppendToBody</a> me instead!
+</p>
+
 <form role="form">
   <div class="form-group">
     <label>Or use custom triggers, like focus: </label>
