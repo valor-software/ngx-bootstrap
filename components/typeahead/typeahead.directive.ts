@@ -45,6 +45,8 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadWordDelimiters:string = ' ';
   @Input() public typeaheadPhraseDelimiters:string = '\'"';
   @Input() public typeaheadItemTemplate:TemplateRef<any>;
+  @Input() public typeaheadScrollable:boolean = false;
+  @Input() public typeaheadOptionsInScrollableView:number = 5;
 
   // not yet implemented
   // @Input() private typeaheadAppendToBody:boolean;
@@ -190,7 +192,9 @@ export class TypeaheadDirective implements OnInit {
     let options = new TypeaheadOptions({
       typeaheadRef: this,
       placement: this.placement,
-      animation: false
+      animation: false,
+       scrollable: this.typeaheadScrollable,
+      optionsInScrollableView: this.typeaheadOptionsInScrollableView
     });
 
     let binding = ReflectiveInjector.resolve([

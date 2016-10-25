@@ -62,4 +62,15 @@
          [typeaheadGroupField]="'region'"
          (typeaheadOnSelect)="typeaheadOnSelect($event)"
          class="form-control">
+
+         
+    <!-- Static arrays -->
+  <h4>Static arrays (scrollable) </h4>
+  <pre class="card card-block card-header">Model: {{selected | json}}</pre>
+  <input [(ngModel)]="selected"
+         [typeahead]="states"
+         [typeaheadScrollable]="true"
+         [typeaheadOptionsInScrollableView]="3"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         class="form-control">
 </div>

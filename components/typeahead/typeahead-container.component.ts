@@ -38,7 +38,7 @@ const bs4 = `
 
 const bs3 = `
   <ul class="dropdown-menu"
-      [ngStyle]="{top: top, left: left, display: 'block'}"
+      [ngStyle]="{top: top, left: left, display: 'block', 'overflow-y': scrollable ? 'scroll' : 'auto', height: height }"
       (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
       <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
@@ -77,10 +77,14 @@ export class TypeaheadContainerComponent {
   public top:string;
   public left:string;
   public display:string;
+  public height:string;
+  public optionsInScrollableView:number;
+  public scrollable:boolean;
 
   private _active:TypeaheadMatch;
   private _matches:Array<TypeaheadMatch> = [];
   private placement:string;
+  private optionHeight:number;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
     this.element = element;
@@ -117,6 +121,22 @@ export class TypeaheadContainerComponent {
     this.left = p.left + 'px';
   }
 
+   ngAfterViewChecked(){
+    if(this.scrollable){
+
+const ul = this.element.nativeElement.querySelector('ul');
+  const paddingTop = parseInt(window.getComputedStyle(ul, null).getPropertyValue('padding-top').replace('px',''));
+  const paddingBottom = parseInt(window.getComputedStyle(ul, null).getPropertyValue('padding-bottom').replace('px',''));
+
+    this.optionHeight = this.element.nativeElement.querySelector('li').offsetHeight ;
+    
+
+
+      this.height = ((this.optionsInScrollableView * this.optionHeight) + paddingTop + paddingBottom) + 'px';
+    }
+
+  }
+
   public selectActiveMatch():void {
     this.selectMatch(this._active);
   }
@@ -137,10 +157,23 @@ export class TypeaheadContainerComponent {
     this._active = this.matches[index + 1 > this.matches.length - 1
       ? 0
       : index + 1];
+      
+    let viewIndex = (index +1) % this.optionsInScrollableView;
+    let lastInViewIndex = this.optionsInScrollableView -1 ===  viewIndex
     if (this._active.isHeader()) {
       this.nextActiveMatch();
     }
+    if(lastInViewIndex){
+      this.scrollDown();
+    }
+  } 
+  private scrollDown(){
+      const ul = this.element.nativeElement.querySelector('ul');
+      console.log(ul);
+      ul.scrollTop = this.optionHeight * (this.optionsInScrollableView -1);
+      console.log(ul.scrollTop);
   }
+
 
   protected selectActive(value:TypeaheadMatch):void {
     this.isFocused = true;
