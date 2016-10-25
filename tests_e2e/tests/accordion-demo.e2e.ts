@@ -1,4 +1,3 @@
-// import { $, $$, browser } from 'protractor';
 import { $, $$, browser } from 'protractor';
 import { leftPanelTests } from './leftPanelTests.e2e';
 import { DataProvider } from './../data-provider/data-provider.e2e';
@@ -55,8 +54,7 @@ describe('Check the Accordion page in bootstrap 3', () => {
     buttonAddItem.click();
     expect(getItemsCount.count()).toBe(5);
   });
-
-    it('Open all tabs together', () => {
+  it('Open all tabs together', () => {
       checkboxOnlyOne.click();
       getTabHeader(1).click();
       getTabHeader(2).click();
@@ -111,7 +109,6 @@ describe('Check the Accordion page in bootstrap 4', () => {
     buttonAddItem.click();
     expect(getItemsCount.count()).toBe(5);
   });
-
   it('Open all tabs together', () => {
     checkboxOnlyOne.click();
     getTabHeader(1).click();
@@ -130,4 +127,3 @@ describe('Check the Accordion page in bootstrap 4', () => {
     });
   });
 });
-
