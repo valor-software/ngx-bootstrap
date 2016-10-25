@@ -1,18 +1,21 @@
-import { $, $$, browser } from 'protractor/globals';
-import { describe } from './../../typings/globals/require/index';
+// import { $, $$, browser } from 'protractor';
+import { $, $$, browser } from 'protractor';
+import { leftPanelTests } from './leftPanelTests.e2e';
+import { DataProvider } from './../data-provider/data-provider.e2e';
 
-const leftPanelTests = require('./../data/leftPanelTests.e2e');
 const buttonToggleLastPanel = $('accordion-demo>p button:nth-child(1)');
 const buttonEnableDisablePanel = $('accordion-demo>p button:nth-child(2)');
 const buttonAddItem = $('.panel-body .btn');
 const checkboxOnlyOne = $('.checkbox .ng-valid');
 const getItemsCount = $$('accordion-group:nth-child(4) .panel-body > div');
+const buttonArrow = $('.pull-right');
+let using = require('jasmine-data-provider');
 
-const setTabHeaderNumber = (tabNumber:any) => {
-  return 'accordion-group:nth-child(' + tabNumber + ') .panel-heading';
+const getTabHeader = (tabNumber:number) => {
+  return $('accordion-group:nth-child(' + tabNumber + ') .panel-heading');
 };
-const setTabContentNumber = (tabNumber:any) => {
-  return 'accordion-group:nth-child(' + tabNumber + ') .panel-body';
+const getTabContent = (tabNumber:number) => {
+  return $('accordion-group:nth-child(' + tabNumber + ') .panel-body');
 };
 
 describe('Check the Accordion page in bootstrap 3', () => {
@@ -21,48 +24,54 @@ describe('Check the Accordion page in bootstrap 3', () => {
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
   });
-  afterEach(() => {
-    browser.refresh();
+  it('Close/open first tab by click', () => {
+    getTabHeader(1).click();
+    expect(getTabContent(1).isDisplayed()).toBe(false);
+    getTabHeader(1).click();
+    expect(getTabContent(1).isDisplayed()).toBe(true);
   });
-  it('Opening last tab with button Toggle Last Panel', () => {
+  it('Open/close last tab with button Toggle Last Panel', () => {
     buttonToggleLastPanel.click();
-    expect($(setTabContentNumber(5)).isDisplayed()).toBe(true);
-  });
-  it('Closing last tab with button Toggle Last Panel', () => {
+    expect(getTabContent(5).isDisplayed()).toBe(true);
+    expect(buttonArrow.getAttribute('class')).toContain('glyphicon-chevron-down');
     buttonToggleLastPanel.click();
-    buttonToggleLastPanel.click();
-    expect($(setTabContentNumber(5)).isDisplayed()).toBe(false);
+    expect(getTabContent(5).isDisplayed()).toBe(false);
+    expect(buttonArrow.getAttribute('class')).toContain('glyphicon-chevron-right');
   });
-  it('Closing first tab by clicking', () => {
-    $(setTabHeaderNumber(1)).click();
-    expect($(setTabContentNumber(1)).isDisplayed()).toBe(false);
-  });
-  it('Opening first tab by clicking', () => {
-    $(setTabHeaderNumber(1)).click();
-    $(setTabHeaderNumber(1)).click();
-    expect($(setTabContentNumber(1)).isDisplayed()).toBe(true);
-  });
-  it('Button Enable/Disable first panel', () => {
+  it('Button Enable/Disable first panel is ON', () => {
     buttonEnableDisablePanel.click();
-    $(setTabHeaderNumber(1)).click();
-    expect($(setTabHeaderNumber(1)).isDisplayed()).toBe(true);
+    getTabHeader(1).click();
+    expect(getTabContent(1).isDisplayed()).toBe(false);
   });
-  it('Default items in 4th tab', () => {
-    $(setTabHeaderNumber(4)).click();
+  it('Button Enable/Disable first panel is OFF', () => {
+    buttonEnableDisablePanel.click();
+    getTabHeader(1).click();
+    expect(getTabHeader(1).isDisplayed()).toBe(true);
+  });
+  it('Add items in 4th tab', () => {
+    getTabHeader(4).click();
     expect(getItemsCount.count()).toBe(3);
-  });
-  it('Button Add Item in 4th tab', () => {
-    $(setTabHeaderNumber(4)).click();
     buttonAddItem.click();
     buttonAddItem.click();
     expect(getItemsCount.count()).toBe(5);
   });
-  it('Open 2 tabs together', () => {
-    checkboxOnlyOne.click();
-    $(setTabHeaderNumber(2)).click();
-    $(setTabHeaderNumber(3)).click();
-    expect($(setTabHeaderNumber(2)).isDisplayed()).toBe(true);
-    expect($(setTabHeaderNumber(3)).isDisplayed()).toBe(true);
+
+    it('Open all tabs together', () => {
+      checkboxOnlyOne.click();
+      getTabHeader(1).click();
+      getTabHeader(2).click();
+      getTabHeader(3).click();
+      getTabHeader(5).click();
+      expect(getTabHeader(1).isDisplayed()).toBe(true);
+      expect(getTabHeader(2).isDisplayed()).toBe(true);
+      expect(getTabHeader(3).isDisplayed()).toBe(true);
+      expect(getTabHeader(4).isDisplayed()).toBe(true);
+      expect(getTabHeader(5).isDisplayed()).toBe(true);
+  });
+  using (DataProvider.accordionTableContent, (data:any, description:string) => {
+    it ('Check table texts: ' + description, () => {
+      expect(data.element().getText()).toBe(data.actualResult);
+    });
   });
 });
 describe('Check the Accordion page in bootstrap 4', () => {
@@ -71,47 +80,54 @@ describe('Check the Accordion page in bootstrap 4', () => {
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
   });
-  beforeEach(() => {
-    browser.refresh();
+  it('Close/open first tab by click', () => {
+    getTabHeader(1).click();
+    expect(getTabContent(1).isDisplayed()).toBe(false);
+    getTabHeader(1).click();
+    expect(getTabContent(1).isDisplayed()).toBe(true);
   });
-  it('Opening last tab with button Toggle Last Panel', () => {
+  it('Open/close last tab with button Toggle Last Panel', () => {
     buttonToggleLastPanel.click();
-    expect($(setTabContentNumber(5)).isDisplayed()).toBe(true);
-  });
-  it('Closing last tab with button Toggle Last Panel', () => {
+    expect(getTabContent(5).isDisplayed()).toBe(true);
+    expect(buttonArrow.getAttribute('class')).toContain('glyphicon-chevron-down');
     buttonToggleLastPanel.click();
-    buttonToggleLastPanel.click();
-    expect($(setTabContentNumber(5)).isDisplayed()).toBe(false);
+    expect(getTabContent(5).isDisplayed()).toBe(false);
+    expect(buttonArrow.getAttribute('class')).toContain('glyphicon-chevron-right');
   });
-  it('Closing first tab by clicking', () => {
-    $(setTabHeaderNumber(1)).click();
-    expect($(setTabContentNumber(1)).isDisplayed()).toBe(false);
-  });
-  it('Opening first tab by clicking', () => {
-    $(setTabHeaderNumber(1)).click();
-    $(setTabHeaderNumber(1)).click();
-    expect($(setTabContentNumber(1)).isDisplayed()).toBe(true);
-  });
-  it('Button Enable/Disable first panel', () => {
+  it('Button Enable/Disable first panel is ON', () => {
     buttonEnableDisablePanel.click();
-    $(setTabHeaderNumber(1)).click();
-    expect($(setTabHeaderNumber(1)).isDisplayed()).toBe(true);
+    getTabHeader(1).click();
+    expect(getTabContent(1).isDisplayed()).toBe(false);
   });
-  it('Default items in 4th tab', () => {
-    $(setTabHeaderNumber(4)).click();
+  it('Button Enable/Disable first panel is OFF', () => {
+    buttonEnableDisablePanel.click();
+    getTabHeader(1).click();
+    expect(getTabHeader(1).isDisplayed()).toBe(true);
+  });
+  it('Add items in 4th tab', () => {
+    getTabHeader(4).click();
     expect(getItemsCount.count()).toBe(3);
-  });
-  it('Button Add Item in 4th tab', () => {
-    $(setTabHeaderNumber(4)).click();
     buttonAddItem.click();
     buttonAddItem.click();
     expect(getItemsCount.count()).toBe(5);
   });
-  it('Open 2 tabs together', () => {
+
+  it('Open all tabs together', () => {
     checkboxOnlyOne.click();
-    $(setTabHeaderNumber(2)).click();
-    $(setTabHeaderNumber(3)).click();
-    expect($(setTabHeaderNumber(2)).isDisplayed()).toBe(true);
-    expect($(setTabHeaderNumber(3)).isDisplayed()).toBe(true);
+    getTabHeader(1).click();
+    getTabHeader(2).click();
+    getTabHeader(3).click();
+    getTabHeader(5).click();
+    expect(getTabHeader(1).isDisplayed()).toBe(true);
+    expect(getTabHeader(2).isDisplayed()).toBe(true);
+    expect(getTabHeader(3).isDisplayed()).toBe(true);
+    expect(getTabHeader(4).isDisplayed()).toBe(true);
+    expect(getTabHeader(5).isDisplayed()).toBe(true);
+  });
+  using (DataProvider.accordionTableContent, (data:any, description:string) => {
+    it ('Check table texts: ' + description, () => {
+      expect(data.element().getText()).toBe(data.actualResult);
+    });
   });
 });
+
