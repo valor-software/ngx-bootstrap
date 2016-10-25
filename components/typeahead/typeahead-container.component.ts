@@ -1,4 +1,4 @@
-import { Component, ElementRef, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewEncapsulation, ContentChildren, ViewChildren, QueryList, ViewChild, ApplicationRef, Renderer } from '@angular/core';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
 import { positionService } from '../position';
@@ -8,12 +8,12 @@ import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
 
 const bs4 = `
-  <div class="dropdown-menu"
-       [ngStyle]="{top: top, left: left, display: 'block'}"
+  <div #ulElement class="dropdown-menu"
+       [ngStyle]="{top: top, left: left, display: 'block', 'overflow-y': scrollable ? 'scroll' : 'auto'}"
        (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
-       <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
-       <div *ngIf="!match.isHeader() && !itemTemplate">
+       <h6 #liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
+       <div #liElement *ngIf="!match.isHeader() && !itemTemplate">
           <a href="#"
             class="dropdown-item"
             (click)="selectMatch(match, $event)"
@@ -21,7 +21,7 @@ const bs4 = `
             [class.active]="isActive(match)"
             [innerHtml]="hightlight(match, query)"></a>
       </div>
-      <div *ngIf="!match.isHeader() && itemTemplate">
+      <div #liElement *ngIf="!match.isHeader() && itemTemplate">
         <a href="#"
          class="dropdown-item"
          (click)="selectMatch(match, $event)"
@@ -37,12 +37,12 @@ const bs4 = `
 `;
 
 const bs3 = `
-  <ul class="dropdown-menu"
-      [ngStyle]="{top: top, left: left, display: 'block', 'overflow-y': scrollable ? 'scroll' : 'auto', height: height }"
+  <ul #ulElement class="dropdown-menu"
+      [ngStyle]="{top: top, left: left, display: 'block', 'overflow-y': scrollable ? 'scroll' : 'auto'}"
       (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
-      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
-      <li *ngIf="!match.isHeader()"
+      <li #liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+      <li #liElement *ngIf="!match.isHeader()"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#"
@@ -65,41 +65,60 @@ const bs3 = `
 let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
 
 @Component({
+  selector: '[test]',
+  template: '<ng-content></ng-content>',
+  encapsulation: ViewEncapsulation.None
+})
+export class TestComponent {
+  constructor() {
+    console.log('test');
+  }
+}
+
+
+@Component({
   selector: 'typeahead-container',
   template: isBS4 ? bs4 : bs3,
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
-  public parent:TypeaheadDirective;
-  public query:any;
-  public element:ElementRef;
-  public isFocused:boolean = false;
-  public top:string;
-  public left:string;
-  public display:string;
-  public height:string;
-  public optionsInScrollableView:number;
-  public scrollable:boolean;
+  public parent: TypeaheadDirective;
+  public query: any;
+  public element: ElementRef;
+  public isFocused: boolean = false;
+  public top: string;
+  public left: string;
+  public display: string;
+  public height: number;
+  public guiHeight: string;
 
-  private _active:TypeaheadMatch;
-  private _matches:Array<TypeaheadMatch> = [];
-  private placement:string;
-  private optionHeight:number;
+  public optionsInScrollableView: number;
+  public scrollable: boolean;
 
-  public constructor(element:ElementRef, options:TypeaheadOptions) {
+  private _active: TypeaheadMatch;
+  private _matches: Array<TypeaheadMatch> = [];
+  private placement: string;
+  private optionHeight: number;
+  private ulPaddingTop: number;
+  private maxScrollHeight: number;
+
+  @ViewChildren('liElement') private liElements: QueryList<ElementRef>;
+  @ViewChild('ulElement') private ulElement: ElementRef;
+  public constructor(element: ElementRef, options: TypeaheadOptions, private renderer: Renderer) {
     this.element = element;
     Object.assign(this, options);
+
   }
 
-  public get matches():Array<TypeaheadMatch> {
+  public get matches(): Array<TypeaheadMatch> {
     return this._matches;
   }
 
-  public get itemTemplate():TemplateRef<any> {
+  public get itemTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  public set matches(value:Array<TypeaheadMatch>) {
+  public set matches(value: Array<TypeaheadMatch>) {
     this._matches = value;
 
     if (this._matches.length > 0) {
@@ -110,38 +129,38 @@ export class TypeaheadContainerComponent {
     }
   }
 
-  public position(hostEl:ElementRef):void {
+  public position(hostEl: ElementRef): void {
     this.top = '0px';
     this.left = '0px';
     let p = positionService
       .positionElements(hostEl.nativeElement,
-        this.element.nativeElement.children[0],
-        this.placement, false);
+      this.element.nativeElement.children[0],
+      this.placement, false);
     this.top = p.top + 'px';
     this.left = p.left + 'px';
   }
 
-   ngAfterViewChecked(){
-    if(this.scrollable){
+  ngAfterViewInit() {
 
-const ul = this.element.nativeElement.querySelector('ul');
-  const paddingTop = parseInt(window.getComputedStyle(ul, null).getPropertyValue('padding-top').replace('px',''));
-  const paddingBottom = parseInt(window.getComputedStyle(ul, null).getPropertyValue('padding-bottom').replace('px',''));
+    if (this.scrollable && this.liElements.first) {
+      this.ulPaddingTop = parseInt(window.getComputedStyle(this.ulElement.nativeElement, null).getPropertyValue('padding-top').replace('px', ''));
+      const ulPaddingBottom = parseInt(window.getComputedStyle(this.ulElement.nativeElement, null).getPropertyValue('padding-bottom').replace('px', ''));
 
-    this.optionHeight = this.element.nativeElement.querySelector('li').offsetHeight ;
-    
+      this.optionHeight = parseInt(window.getComputedStyle(this.liElements.first.nativeElement).getPropertyValue('height').replace('px', ''));;
 
+      this.height = this.optionsInScrollableView * this.optionHeight;
+      this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
+      this.maxScrollHeight = this.ulElement.nativeElement.scrollHeight - this.height - this.ulPaddingTop - ulPaddingBottom;
 
-      this.height = ((this.optionsInScrollableView * this.optionHeight) + paddingTop + paddingBottom) + 'px';
+      this.renderer.setElementStyle(this.ulElement.nativeElement, "height", this.guiHeight);
     }
-
   }
 
-  public selectActiveMatch():void {
+  public selectActiveMatch(): void {
     this.selectMatch(this._active);
   }
 
-  public prevActiveMatch():void {
+  public prevActiveMatch(): void {
     let index = this.matches.indexOf(this._active);
     this._active = this.matches[index - 1 < 0
       ? this.matches.length - 1
@@ -150,46 +169,87 @@ const ul = this.element.nativeElement.querySelector('ul');
       this.prevActiveMatch();
     }
 
+    if (this.scrollable) {
+      this.scrollPrevious(index);
+    }
   }
 
-  public nextActiveMatch():void {
+  public nextActiveMatch(): void {
     let index = this.matches.indexOf(this._active);
     this._active = this.matches[index + 1 > this.matches.length - 1
       ? 0
       : index + 1];
-      
-    let viewIndex = (index +1) % this.optionsInScrollableView;
-    let lastInViewIndex = this.optionsInScrollableView -1 ===  viewIndex
+
+
     if (this._active.isHeader()) {
       this.nextActiveMatch();
     }
-    if(lastInViewIndex){
-      this.scrollDown();
+    if (index + 1 > this.matches.length - 1) {
+      this.scrollToTop();
     }
-  } 
-  private scrollDown(){
-      const ul = this.element.nativeElement.querySelector('ul');
-      console.log(ul);
-      ul.scrollTop = this.optionHeight * (this.optionsInScrollableView -1);
-      console.log(ul.scrollTop);
+
+    if (this.scrollable) {
+      this.scrollNext(index);
+    }
   }
 
+  private scrollPrevious(index: number) {
+    if (index === 0) {
+      this.scrollToBottom();
+      return;
+    }
 
-  protected selectActive(value:TypeaheadMatch):void {
+    if (this.isFirstElement(this.liElements.toArray()[index].nativeElement)) {
+      const newScrollValue = this.ulElement.nativeElement.scrollTop - this.height;
+
+      this.ulElement.nativeElement.scrollTop = newScrollValue < 0 ? 0 : newScrollValue;
+    }
+  }
+
+  private scrollNext(index: number) {
+    var islast = this.isLastElement(this.liElements.toArray()[index].nativeElement);
+
+    if (this.isLastElement(this.liElements.toArray()[index].nativeElement)) {
+      const newScrollValue = this.ulElement.nativeElement.scrollTop + this.height;
+      this.ulElement.nativeElement.scrollTop = (newScrollValue > this.maxScrollHeight) ? this.maxScrollHeight : newScrollValue;
+    }
+  }
+
+  private isLastElement(activeElement: HTMLElement) {
+    return (this.ulElement.nativeElement.scrollTop + this.height) === (activeElement.offsetTop + this.optionHeight - this.ulPaddingTop);
+  }
+
+  private isFirstElement(activeElement: HTMLElement) {
+    return (this.ulElement.nativeElement.scrollTop) === (activeElement.offsetTop - this.ulPaddingTop);
+  }
+
+  private scrollDown() {
+    this.ulElement.nativeElement.scrollTop = this.optionHeight * (this.optionsInScrollableView - 1);
+  }
+
+  private scrollToBottom() {
+    this.ulElement.nativeElement.scrollTop = this.maxScrollHeight;
+  }
+
+  private scrollToTop() {
+    this.ulElement.nativeElement.scrollTop = 0;
+  }
+
+  protected selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
     this._active = value;
   }
 
-  protected hightlight(match:TypeaheadMatch, query:any):string {
-    let itemStr:string = match.value;
-    let itemStrHelper:string = (this.parent && this.parent.typeaheadLatinize
+  protected hightlight(match: TypeaheadMatch, query: any): string {
+    let itemStr: string = match.value;
+    let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
       ? TypeaheadUtils.latinize(itemStr)
       : itemStr).toLowerCase();
-    let startIdx:number;
-    let tokenLen:number;
+    let startIdx: number;
+    let tokenLen: number;
     // Replaces the capture string with the same string inside of a "strong" tag
     if (typeof query === 'object') {
-      let queryLen:number = query.length;
+      let queryLen: number = query.length;
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
         startIdx = itemStrHelper.indexOf(query[i]);
@@ -210,15 +270,15 @@ const ul = this.element.nativeElement.querySelector('ul');
     return itemStr;
   }
 
-  public focusLost():void {
+  public focusLost(): void {
     this.isFocused = false;
   }
 
-  public isActive(value:TypeaheadMatch):boolean {
+  public isActive(value: TypeaheadMatch): boolean {
     return this._active === value;
   }
 
-  private selectMatch(value:TypeaheadMatch, e:Event = void 0):boolean {
+  private selectMatch(value: TypeaheadMatch, e: Event = void 0): boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();
