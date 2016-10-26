@@ -106,6 +106,5 @@
     "protractor": "4.0.9",
     "wallaby-webpack": "0.0.26",
     "zone.js": "0.6.25"
-    "protractor": "4.0.3"
   }
 }
