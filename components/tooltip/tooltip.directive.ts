@@ -70,6 +70,7 @@ export class TooltipDirective {
         htmlContent: this.htmlContent,
         placement: this.placement,
         animation: this.animation,
+        appendToBody: this.appendToBody,
         hostEl: this.viewContainerRef.element,
         popupClass: this.popupClass,
         context: this.tooltipContext
