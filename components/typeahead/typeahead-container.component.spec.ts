@@ -6,15 +6,15 @@ import { TypeaheadOptions } from './typeahead-options.class';
 import { TypeaheadMatch } from './typeahead-match.class';
 
 describe('Component: TypeaheadContainer', () => {
-  let fixture:ComponentFixture<TypeaheadContainerComponent>;
-  let component:TypeaheadContainerComponent;
+  let fixture: ComponentFixture<TypeaheadContainerComponent>;
+  let component: TypeaheadContainerComponent;
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
       providers: [{
         provide: TypeaheadOptions,
-        useValue: new TypeaheadOptions({animation: false, placement: 'bottom-left', typeaheadRef: undefined})
+        useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
       }]
     }).createComponent(TypeaheadContainerComponent);
 
@@ -35,7 +35,7 @@ describe('Component: TypeaheadContainer', () => {
   });
 
   describe('dropdown-menu', () => {
-    let dropDown:HTMLElement;
+    let dropDown: HTMLElement;
 
     beforeEach(() => {
       component.position(fixture.elementRef);
@@ -62,13 +62,13 @@ describe('Component: TypeaheadContainer', () => {
   });
 
   describe('matches', () => {
-    let matches:HTMLLIElement[];
+    let matches: HTMLLIElement[];
 
     beforeEach(() => {
       component.query = 'fo';
       component.matches = [
-        new TypeaheadMatch({id: 0, name: 'foo'}, 'foo'),
-        new TypeaheadMatch({id: 1, name: 'food'}, 'food')
+        new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
+        new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
       ];
       fixture.detectChanges();
 
@@ -125,15 +125,15 @@ describe('Component: TypeaheadContainer', () => {
   });
 
   describe('grouped matches', () => {
-    let itemMatches:HTMLLIElement[];
-    let headerMatch:HTMLLIElement;
+    let itemMatches: HTMLLIElement[];
+    let headerMatch: HTMLLIElement;
 
     beforeEach(() => {
       component.query = 'a';
       component.matches = [
         new TypeaheadMatch('fruits', 'fruits', true),
-        new TypeaheadMatch({id: 0, name: 'banana', category: 'fruits'}, 'banana'),
-        new TypeaheadMatch({id: 0, name: 'apple', category: 'fruits'}, 'apple')
+        new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
+        new TypeaheadMatch({ id: 0, name: 'apple', category: 'fruits' }, 'apple')
       ];
 
       fixture.detectChanges();
@@ -202,6 +202,69 @@ describe('Component: TypeaheadContainer', () => {
     it('should not be focused on focusLost()', () => {
       component.focusLost();
 
+      expect(component.isFocused).toBeFalsy();
+    });
+  });
+
+  describe('scrollable matches', () => {
+    let itemMatches: HTMLLIElement[];
+    let headerMatch: HTMLLIElement;
+
+    beforeEach(() => {
+      component.query = 'a';
+      component.matches = [
+        new TypeaheadMatch('fruits', 'fruits', true),
+        new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
+        new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
+        new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
+        new TypeaheadMatch({ id: 3, name: 'pear', category: 'fruits' }, 'pear'),
+        new TypeaheadMatch({ id: 4, name: 'pineapple', category: 'fruits' }, 'pineapple'),
+        new TypeaheadMatch({ id: 4, name: 'strawberry', category: 'berries' }, 'strawberry'),
+        new TypeaheadMatch({ id: 4, name: 'raspberry', category: 'berries' }, 'raspberry'),
+        new TypeaheadMatch({ id: 4, name: 'tomato', category: 'vegatables' }, 'tomato'),
+        new TypeaheadMatch({ id: 4, name: 'cucumber', category: 'vegatables' }, 'cucumber')
+      ];
+
+      fixture.detectChanges();
+      headerMatch = fixture.debugElement.query(By.css('.dropdown-header')).nativeElement;
+      itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
+    });
+
+    describe('rendering', () => {
+      it('should render 3 item matches', () => {
+        expect(itemMatches.length).toBe(2);
+      });
+
+      it('should highlight query for item match', () => {
+        expect(itemMatches[1].children[0].innerHTML).toBe('<strong>a</strong>pple');
+      });
+
+      it('should set the \"active\" class on the first item match', () => {
+        expect(itemMatches[0].classList.contains('active')).toBeTruthy();
+      });
+    });
+
+    describe('nextActiveMatch', () => {
+      it('should select the next item match', () => {
+        component.nextActiveMatch();
+        expect(component.isActive(component.matches[1])).toBeTruthy();
+      });
+    });
+
+    describe('prevActiveMatch', () => {
+      it('should select the prev item match', () => {
+        component.prevActiveMatch();
+      });
+    });
+  });
+
+  describe('isFocused', () => {
+    it('should not be focus after init', () => {
+      expect(component.isFocused).toBeFalsy();
+    });
+
+    it('should not be focused on focusLost()', () => {
+      component.focusLost();
       expect(component.isFocused).toBeFalsy();
     });
   });

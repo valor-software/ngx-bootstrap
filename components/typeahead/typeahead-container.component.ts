@@ -1,4 +1,4 @@
-import { Component, ElementRef, TemplateRef, ViewEncapsulation, ContentChildren, ViewChildren, QueryList, ViewChild, ApplicationRef, Renderer } from '@angular/core';
+import { Component, ElementRef, TemplateRef, ViewEncapsulation, ViewChildren, QueryList, ViewChild, Renderer, AfterViewInit } from '@angular/core';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
 import { positionService } from '../position';
@@ -65,23 +65,11 @@ const bs3 = `
 let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
 
 @Component({
-  selector: '[test]',
-  template: '<ng-content></ng-content>',
-  encapsulation: ViewEncapsulation.None
-})
-export class TestComponent {
-  constructor() {
-    console.log('test');
-  }
-}
-
-
-@Component({
   selector: 'typeahead-container',
   template: isBS4 ? bs4 : bs3,
   encapsulation: ViewEncapsulation.None
 })
-export class TypeaheadContainerComponent {
+export class TypeaheadContainerComponent implements AfterViewInit {
   public parent: TypeaheadDirective;
   public query: any;
   public element: ElementRef;
@@ -140,19 +128,19 @@ export class TypeaheadContainerComponent {
     this.left = p.left + 'px';
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit(): void {
 
     if (this.scrollable && this.liElements.first) {
-      this.ulPaddingTop = parseInt(window.getComputedStyle(this.ulElement.nativeElement, null).getPropertyValue('padding-top').replace('px', ''));
-      const ulPaddingBottom = parseInt(window.getComputedStyle(this.ulElement.nativeElement, null).getPropertyValue('padding-bottom').replace('px', ''));
+      this.ulPaddingTop = parseInt(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-top').replace('px', ''), 10);
+      const ulPaddingBottom = parseInt(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-bottom').replace('px', ''), 10);
 
-      this.optionHeight = parseInt(window.getComputedStyle(this.liElements.first.nativeElement).getPropertyValue('height').replace('px', ''));;
+      this.optionHeight = parseInt(window.getComputedStyle(this.liElements.first.nativeElement).getPropertyValue('height').replace('px', ''), 10);
 
       this.height = this.optionsInScrollableView * this.optionHeight;
       this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
       this.maxScrollHeight = this.ulElement.nativeElement.scrollHeight - this.height - this.ulPaddingTop - ulPaddingBottom;
 
-      this.renderer.setElementStyle(this.ulElement.nativeElement, "height", this.guiHeight);
+      this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
     }
   }
 
@@ -180,7 +168,6 @@ export class TypeaheadContainerComponent {
       ? 0
       : index + 1];
 
-
     if (this._active.isHeader()) {
       this.nextActiveMatch();
     }
@@ -191,48 +178,6 @@ export class TypeaheadContainerComponent {
     if (this.scrollable) {
       this.scrollNext(index);
     }
-  }
-
-  private scrollPrevious(index: number) {
-    if (index === 0) {
-      this.scrollToBottom();
-      return;
-    }
-
-    if (this.isFirstElement(this.liElements.toArray()[index].nativeElement)) {
-      const newScrollValue = this.ulElement.nativeElement.scrollTop - this.height;
-
-      this.ulElement.nativeElement.scrollTop = newScrollValue < 0 ? 0 : newScrollValue;
-    }
-  }
-
-  private scrollNext(index: number) {
-    var islast = this.isLastElement(this.liElements.toArray()[index].nativeElement);
-
-    if (this.isLastElement(this.liElements.toArray()[index].nativeElement)) {
-      const newScrollValue = this.ulElement.nativeElement.scrollTop + this.height;
-      this.ulElement.nativeElement.scrollTop = (newScrollValue > this.maxScrollHeight) ? this.maxScrollHeight : newScrollValue;
-    }
-  }
-
-  private isLastElement(activeElement: HTMLElement) {
-    return (this.ulElement.nativeElement.scrollTop + this.height) === (activeElement.offsetTop + this.optionHeight - this.ulPaddingTop);
-  }
-
-  private isFirstElement(activeElement: HTMLElement) {
-    return (this.ulElement.nativeElement.scrollTop) === (activeElement.offsetTop - this.ulPaddingTop);
-  }
-
-  private scrollDown() {
-    this.ulElement.nativeElement.scrollTop = this.optionHeight * (this.optionsInScrollableView - 1);
-  }
-
-  private scrollToBottom() {
-    this.ulElement.nativeElement.scrollTop = this.maxScrollHeight;
-  }
-
-  private scrollToTop() {
-    this.ulElement.nativeElement.scrollTop = 0;
   }
 
   protected selectActive(value: TypeaheadMatch): void {
@@ -289,4 +234,41 @@ export class TypeaheadContainerComponent {
     );
     return false;
   }
+
+  private scrollPrevious(index: number): void {
+    if (index === 0) {
+      this.scrollToBottom();
+      return;
+    }
+
+    if (this.isFirstElement(this.liElements.toArray()[index].nativeElement)) {
+      const newScrollValue = this.ulElement.nativeElement.scrollTop - this.height;
+
+      this.ulElement.nativeElement.scrollTop = newScrollValue < 0 ? 0 : newScrollValue;
+    }
+  }
+
+  private scrollNext(index: number): void {
+    if (this.isLastElement(this.liElements.toArray()[index].nativeElement)) {
+      const newScrollValue = this.ulElement.nativeElement.scrollTop + this.height;
+      this.ulElement.nativeElement.scrollTop = (newScrollValue > this.maxScrollHeight) ? this.maxScrollHeight : newScrollValue;
+    }
+  }
+
+  private isLastElement(activeElement: HTMLElement): boolean {
+    return (this.ulElement.nativeElement.scrollTop + this.height) === (activeElement.offsetTop + this.optionHeight - this.ulPaddingTop);
+  }
+
+  private isFirstElement(activeElement: HTMLElement): boolean {
+    return (this.ulElement.nativeElement.scrollTop) === (activeElement.offsetTop - this.ulPaddingTop);
+  }
+
+  private scrollToBottom(): void {
+    this.ulElement.nativeElement.scrollTop = this.maxScrollHeight;
+  }
+
+  private scrollToTop(): void {
+    this.ulElement.nativeElement.scrollTop = 0;
+  }
+
 }
