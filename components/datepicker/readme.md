@@ -27,7 +27,7 @@ import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
   - `maxMode` (`?string='year'`) - sets upper datepicker mode, supports: `day`, `month`, `year`
   - `formatDay` (`?string='dd'`) - format of day in month
   - `formatMonth` (`?string='MMMM'`) - format of month in year
-  - `formatMear` (`?string='yyyy'`) - format of year in year range
+  - `formatYear` (`?string='yyyy'`) - format of year in year range
   - `formatDayHeader` (`?string='EEE'`) - format of day in week header
   - `formatDayTitle` (`?string='MMMM yyyy'`) - format of title when selecting day
   - `formatMonthTitle` (`?string='yyyy'`) - format of title when selecting month
