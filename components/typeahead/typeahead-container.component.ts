@@ -131,14 +131,13 @@ export class TypeaheadContainerComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
 
     if (this.scrollable && this.liElements.first) {
-      this.ulPaddingTop = parseInt(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-top').replace('px', ''), 10);
-      const ulPaddingBottom = parseInt(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-bottom').replace('px', ''), 10);
+      this.ulPaddingTop = parseFloat(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-top').replace('px', ''));
+      const ulPaddingBottom = parseFloat(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-bottom').replace('px', ''));
 
-      this.optionHeight = parseInt(window.getComputedStyle(this.liElements.first.nativeElement).getPropertyValue('height').replace('px', ''), 10);
+      this.optionHeight = parseFloat(window.getComputedStyle(this.liElements.first.nativeElement).getPropertyValue('height').replace('px', ''));
 
       this.height = this.optionsInScrollableView * this.optionHeight;
       this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
-      this.maxScrollHeight = this.ulElement.nativeElement.scrollHeight - this.height - this.ulPaddingTop - ulPaddingBottom;
 
       this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
     }
@@ -170,9 +169,6 @@ export class TypeaheadContainerComponent implements AfterViewInit {
 
     if (this._active.isHeader()) {
       this.nextActiveMatch();
-    }
-    if (index + 1 > this.matches.length - 1) {
-      this.scrollToTop();
     }
 
     if (this.scrollable) {
@@ -241,30 +237,20 @@ export class TypeaheadContainerComponent implements AfterViewInit {
       return;
     }
 
-    if (this.isFirstElement(this.liElements.toArray()[index].nativeElement)) {
-      const newScrollValue = this.ulElement.nativeElement.scrollTop - this.height;
-
-      this.ulElement.nativeElement.scrollTop = newScrollValue < 0 ? 0 : newScrollValue;
-    }
+    this.ulElement.nativeElement.scrollTop = this.liElements.toArray()[index - 1].nativeElement.offsetTop;
   }
 
   private scrollNext(index: number): void {
-    if (this.isLastElement(this.liElements.toArray()[index].nativeElement)) {
-      const newScrollValue = this.ulElement.nativeElement.scrollTop + this.height;
-      this.ulElement.nativeElement.scrollTop = (newScrollValue > this.maxScrollHeight) ? this.maxScrollHeight : newScrollValue;
+    if (index + 1 > this.matches.length - 1) {
+      this.scrollToTop();
+      return;
     }
-  }
 
-  private isLastElement(activeElement: HTMLElement): boolean {
-    return (this.ulElement.nativeElement.scrollTop + this.height) === (activeElement.offsetTop + this.optionHeight - this.ulPaddingTop);
-  }
-
-  private isFirstElement(activeElement: HTMLElement): boolean {
-    return (this.ulElement.nativeElement.scrollTop) === (activeElement.offsetTop - this.ulPaddingTop);
+    this.ulElement.nativeElement.scrollTop = this.liElements.toArray()[index + 1].nativeElement.offsetTop
   }
 
   private scrollToBottom(): void {
-    this.ulElement.nativeElement.scrollTop = this.maxScrollHeight;
+    this.ulElement.nativeElement.scrollTop = this.ulElement.nativeElement.scrollHeight;
   }
 
   private scrollToTop(): void {
