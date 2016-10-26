@@ -13,6 +13,10 @@ export class SlideComponent implements OnInit, OnDestroy {
   @Input() public index: number;
   @Input() public direction: Direction;
 
+  @HostBinding('class.item')
+  @HostBinding('class.carousel-item')
+  public addClass: boolean = true;
+
   private _active: boolean;
   private _previousSiblingSlide: SlideComponent;
   private _nextSiblingSlide: SlideComponent;
@@ -26,7 +30,7 @@ export class SlideComponent implements OnInit, OnDestroy {
     this.direction = Direction.UNKNOWN;
   }
 
-  public get active() {
+  public get active(): boolean {
     return this._active;
   }
 
@@ -39,16 +43,12 @@ export class SlideComponent implements OnInit, OnDestroy {
   }
 
   public get hasNextSibling(): boolean {
-    return this._nextSiblingSlide != undefined;
+    return this._nextSiblingSlide !== undefined;
   }
 
   public get hasPreviousSibling(): boolean {
-    return this._previousSiblingSlide != undefined;
+    return this._previousSiblingSlide !== undefined;
   }
-
-  @HostBinding('class.item')
-  @HostBinding('class.carousel-item')
-  public addClass: boolean = true;
 
   public constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
@@ -70,16 +70,16 @@ export class SlideComponent implements OnInit, OnDestroy {
         }
         this._previousSiblingSlide.direction = Direction.NEXT;
         this._previousSiblingSlide.active = false;
-        break;
       }
+      break;
       case Direction.PREV: {
         if (!this._nextSiblingSlide) {
           return;
         }
         this._nextSiblingSlide.direction = Direction.PREV;
         this._nextSiblingSlide.active = false;
-        break;
       }
+      break;
       default: {
         if (this._nextSiblingSlide) {
           this._nextSiblingSlide.direction = this.direction;
@@ -89,8 +89,8 @@ export class SlideComponent implements OnInit, OnDestroy {
           this._previousSiblingSlide.direction = this.direction;
           this._previousSiblingSlide.active = false;
         }
-        break;
       }
+      break;
     }
   }
 }

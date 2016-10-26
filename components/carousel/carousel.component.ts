@@ -48,15 +48,11 @@ export class CarouselComponent implements OnDestroy {
   private isPlaying: boolean;
   private destroyed: boolean = false;
   private currentSlide: SlideComponent;
-  private _interval: number;
+  private _interval: number = 5000;
   private _lastAddedSlide: SlideComponent;
 
   public get isBS4(): boolean {
     return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
-  }
-
-  public constructor() {
-    this._interval = 5000;
   }
 
   public ngOnDestroy(): void {
@@ -122,8 +118,9 @@ export class CarouselComponent implements OnDestroy {
       this.play();
     }
     slide.previousSiblingSlide = this._lastAddedSlide;
-    if (this._lastAddedSlide)
+    if (this._lastAddedSlide){
       this._lastAddedSlide.nextSiblingSlide = slide;
+    }
     this._lastAddedSlide = slide;
   }
 
