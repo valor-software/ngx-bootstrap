@@ -1,21 +1,14 @@
 // todo: add animate
 
-import { Component, Input, OnDestroy } from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
-import { SlideComponent } from './slide.component';
+import {Ng2BootstrapConfig, Ng2BootstrapTheme} from '../ng2-bootstrap-config';
+import {SlideComponent} from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
 
 // todo:
 // (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
-/**
- * Problems:
- * 1) if we set an active slide via model changes, .active class remains on a current slide.
- * 2) if we have only one slide, we shouldn't show prev/next nav buttons
- * 3) if first or last slide is active and noWrap is true, there should be "disabled" class on the nav buttons.
- * 4) default interval should be equal 5000
- */
 @Component({
   selector: 'carousel',
   template: `
@@ -24,11 +17,11 @@ export enum Direction {UNKNOWN, NEXT, PREV}
          <li *ngFor="let slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
-      <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
+      <a class="left carousel-control" (click)="prev()" *ngIf="slides.length && currentSlide?.hasPreviousSibling">
         <span class="icon-prev" aria-hidden="true"></span>
         <span *ngIf="isBS4" class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
+      <a class="right carousel-control" (click)="next()" *ngIf="slides.length && currentSlide?.hasNextSibling">
         <span class="icon-next" aria-hidden="true"></span>
         <span *ngIf="isBS4" class="sr-only">Next</span>
       </a>
@@ -36,42 +29,44 @@ export enum Direction {UNKNOWN, NEXT, PREV}
   `
 })
 export class CarouselComponent implements OnDestroy {
-  @Input() public noWrap:boolean;
-  @Input() public noPause:boolean;
-  @Input() public noTransition:boolean;
+  @Input() public noWrap: boolean;
+  @Input() public noPause: boolean;
+  @Input() public noTransition: boolean;
 
   @Input()
-  public get interval():number {
+  public get interval(): number {
     return this._interval;
   }
 
-  public set interval(value:number) {
+  public set interval(value: number) {
     this._interval = value;
     this.restartTimer();
   }
 
-  public slides:Array<SlideComponent> = [];
-  private currentInterval:any;
-  private isPlaying:boolean;
-  private destroyed:boolean = false;
-  private currentSlide:SlideComponent;
-  private _interval:number;
+  public slides: Array<SlideComponent> = [];
+  private currentInterval: any;
+  private isPlaying: boolean;
+  private destroyed: boolean = false;
+  private currentSlide: SlideComponent;
+  private _interval: number;
+  private _lastAddedSlide: SlideComponent;
 
-  public get isBS4():boolean {
+  public get isBS4(): boolean {
     return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
   }
 
-  public ngOnDestroy():void {
+  public constructor() {
+    this._interval = 5000;
+  }
+
+  public ngOnDestroy(): void {
     this.destroyed = true;
   }
 
-  public select(nextSlide:SlideComponent, direction:Direction = Direction.UNKNOWN):void {
+  public select(nextSlide: SlideComponent): void {
     let nextIndex = nextSlide.index;
-    if (direction === Direction.UNKNOWN) {
-      direction = nextIndex > this.getCurrentIndex()
-        ? Direction.NEXT
-        : Direction.PREV;
-    }
+    let direction =
+      nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
 
     // Prevent this user-triggered transition from occurring if there is
     // already one in progress
@@ -80,21 +75,21 @@ export class CarouselComponent implements OnDestroy {
     }
   }
 
-  public play():void {
+  public play(): void {
     if (!this.isPlaying) {
       this.isPlaying = true;
       this.restartTimer();
     }
   }
 
-  public pause():void {
+  public pause(): void {
     if (!this.noPause) {
       this.isPlaying = false;
       this.resetTimer();
     }
   }
 
-  public next():any {
+  public next(): any {
     let newIndex = (this.getCurrentIndex() + 1) % this.slides.length;
 
     if (newIndex === 0 && this.noWrap) {
@@ -102,10 +97,10 @@ export class CarouselComponent implements OnDestroy {
       return;
     }
 
-    return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
+    return this.select(this.getSlideByIndex(newIndex),);
   }
 
-  public prev():any {
+  public prev(): any {
     let newIndex = this.getCurrentIndex() - 1 < 0
       ? this.slides.length - 1
       : this.getCurrentIndex() - 1;
@@ -115,23 +110,24 @@ export class CarouselComponent implements OnDestroy {
       return;
     }
 
-    return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
+    return this.select(this.getSlideByIndex(newIndex));
   }
 
-  public addSlide(slide:SlideComponent):void {
+  public addSlide(slide: SlideComponent): void {
     slide.index = this.slides.length;
     this.slides.push(slide);
+
     if (this.slides.length === 1 || slide.active) {
-      this.select(this.slides[this.slides.length - 1]);
-      if (this.slides.length === 1) {
-        this.play();
-      }
-    } else {
-      slide.active = false;
+      this.select(slide);
+      this.play();
     }
+    slide.previousSiblingSlide = this._lastAddedSlide;
+    if (this._lastAddedSlide)
+      this._lastAddedSlide.nextSiblingSlide = slide;
+    this._lastAddedSlide = slide;
   }
 
-  public removeSlide(slide:SlideComponent):void {
+  public removeSlide(slide: SlideComponent): void {
     this.slides.splice(slide.index, 1);
 
     if (this.slides.length === 0) {
@@ -144,26 +140,20 @@ export class CarouselComponent implements OnDestroy {
     }
   }
 
-  private goNext(slide:SlideComponent, direction:Direction):void {
+  private goNext(slide: SlideComponent, direction: Direction): void {
     if (this.destroyed) {
       return;
     }
 
     slide.direction = direction;
     slide.active = true;
-
-    if (this.currentSlide) {
-      this.currentSlide.direction = direction;
-      this.currentSlide.active = false;
-    }
-
     this.currentSlide = slide;
 
     // every time you change slides, reset the timer
     this.restartTimer();
   }
 
-  private getSlideByIndex(index:number):any {
+  private getSlideByIndex(index: number): any {
     let len = this.slides.length;
     for (let i = 0; i < len; ++i) {
       if (this.slides[i].index === index) {
@@ -173,11 +163,11 @@ export class CarouselComponent implements OnDestroy {
     return void 0;
   }
 
-  private getCurrentIndex():number {
+  private getCurrentIndex(): number {
     return !this.currentSlide ? 0 : this.currentSlide.index;
   }
 
-  private restartTimer():any {
+  private restartTimer(): any {
     this.resetTimer();
     let interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
@@ -194,7 +184,7 @@ export class CarouselComponent implements OnDestroy {
     }
   }
 
-  private resetTimer():void {
+  private resetTimer(): void {
     if (this.currentInterval) {
       clearInterval(this.currentInterval);
       this.currentInterval = void 0;
