@@ -1,3 +1,24 @@
+<a name="1.1.15"></a>
+## [1.1.15](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14...v1.1.15) (2016-10-26)
+
+
+### Bug Fixes
+
+* **doc:** formatYear instead of formatMear for the datepicker ([#1126](https://github.com/valor-software/ng2-bootstrap/issues/1126)) ([045573b](https://github.com/valor-software/ng2-bootstrap/commit/045573b))
+* **modal:** hide bug in [#1144](https://github.com/valor-software/ng2-bootstrap/issues/1144) ([#1147](https://github.com/valor-software/ng2-bootstrap/issues/1147)) ([a3985c1](https://github.com/valor-software/ng2-bootstrap/commit/a3985c1))
+* **tooltip:** fix `appendToBody` tooltip positioning ([#1158](https://github.com/valor-software/ng2-bootstrap/issues/1158)) ([#1159](https://github.com/valor-software/ng2-bootstrap/issues/1159)) ([0fd0a80](https://github.com/valor-software/ng2-bootstrap/commit/0fd0a80))
+* **tooltip:** fix delayed tooltip display ([#1156](https://github.com/valor-software/ng2-bootstrap/issues/1156)) ([#1161](https://github.com/valor-software/ng2-bootstrap/issues/1161)) ([c6da387](https://github.com/valor-software/ng2-bootstrap/commit/c6da387))
+
+
+### Features
+
+* **datepicker:** Added configurable limit for amount of items displayed in a single row of monthpicker and yearpicker ([#1141](https://github.com/valor-software/ng2-bootstrap/issues/1141)) ([859afb2](https://github.com/valor-software/ng2-bootstrap/commit/859afb2))
+* **e2e:** added more e2e test ([d56f560](https://github.com/valor-software/ng2-bootstrap/commit/d56f560)), closes [#1163](https://github.com/valor-software/ng2-bootstrap/issues/1163)
+* **pagination:** allow setting of a custom css class on <li> ([#1115](https://github.com/valor-software/ng2-bootstrap/issues/1115)) ([235215c](https://github.com/valor-software/ng2-bootstrap/commit/235215c))
+* **tooltip:** Make `appendToBody` work in Tooltip ([#1074](https://github.com/valor-software/ng2-bootstrap/issues/1074)) ([7e233b1](https://github.com/valor-software/ng2-bootstrap/commit/7e233b1))
+
+
+
 <a name="1.1.14"></a>
 ## [1.1.14](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-1...v1.1.14) (2016-10-13)
 
