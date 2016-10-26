@@ -1,5 +1,5 @@
-import {Component, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
-import {CarouselComponent, Direction} from './carousel.component';
+import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { CarouselComponent, Direction } from './carousel.component';
 
 @Component({
   selector: 'slide',
@@ -16,6 +16,7 @@ export class SlideComponent implements OnInit, OnDestroy {
   private _active: boolean;
   private _previousSiblingSlide: SlideComponent;
   private _nextSiblingSlide: SlideComponent;
+  private carousel: CarouselComponent;
 
   @HostBinding('class.active')
   @Input()
@@ -36,18 +37,18 @@ export class SlideComponent implements OnInit, OnDestroy {
   public set nextSiblingSlide(value: SlideComponent) {
     this._nextSiblingSlide = value;
   }
-  public get hasNextSibling(){
-    return this._nextSiblingSlide != null;
+
+  public get hasNextSibling(): boolean {
+    return this._nextSiblingSlide != undefined;
   }
-  public get hasPreviousSibling(){
-    return this._previousSiblingSlide != null;
+
+  public get hasPreviousSibling(): boolean {
+    return this._previousSiblingSlide != undefined;
   }
 
   @HostBinding('class.item')
   @HostBinding('class.carousel-item')
   public addClass: boolean = true;
-
-  private carousel: CarouselComponent;
 
   public constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
@@ -61,22 +62,25 @@ export class SlideComponent implements OnInit, OnDestroy {
     this.carousel.removeSlide(this);
   }
 
-  private changeSiblingsState() {
+  private changeSiblingsState(): void {
     switch (this.direction) {
-         case Direction.NEXT:
-        if (!this._previousSiblingSlide)
+      case Direction.NEXT: {
+        if (!this._previousSiblingSlide) {
           return;
+        }
         this._previousSiblingSlide.direction = Direction.NEXT;
         this._previousSiblingSlide.active = false;
         break;
-      case Direction.PREV:
-        if (!this._nextSiblingSlide)
+      }
+      case Direction.PREV: {
+        if (!this._nextSiblingSlide) {
           return;
+        }
         this._nextSiblingSlide.direction = Direction.PREV;
         this._nextSiblingSlide.active = false;
         break;
-      case Direction.UNKNOWN:
-      default:
+      }
+      default: {
         if (this._nextSiblingSlide) {
           this._nextSiblingSlide.direction = this.direction;
           this._nextSiblingSlide.active = false;
@@ -86,6 +90,7 @@ export class SlideComponent implements OnInit, OnDestroy {
           this._previousSiblingSlide.active = false;
         }
         break;
+      }
     }
   }
 }
