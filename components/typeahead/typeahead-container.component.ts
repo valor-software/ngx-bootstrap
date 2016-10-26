@@ -9,7 +9,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
 
 const bs4 = `
   <div #ulElement class="dropdown-menu"
-       [ngStyle]="{top: top, left: left, display: 'block', 'overflow-y': scrollable ? 'scroll' : 'auto'}"
+       [ngStyle]="{top: top, left: left, display: 'block', 'width': 'auto', 'overflow-x': 'hidden'}"
        (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
        <h6 #liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
@@ -38,7 +38,7 @@ const bs4 = `
 
 const bs3 = `
   <ul #ulElement class="dropdown-menu"
-      [ngStyle]="{top: top, left: left, display: 'block', 'overflow-y': scrollable ? 'scroll' : 'auto'}"
+      [ngStyle]="{top: top, left: left, display: 'block', 'width': 'auto', 'overflow-x': 'hidden'}"
       (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
       <li #liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
@@ -88,7 +88,6 @@ export class TypeaheadContainerComponent implements AfterViewInit {
   private placement: string;
   private optionHeight: number;
   private ulPaddingTop: number;
-  private maxScrollHeight: number;
 
   @ViewChildren('liElement') private liElements: QueryList<ElementRef>;
   @ViewChild('ulElement') private ulElement: ElementRef;
@@ -138,10 +137,28 @@ export class TypeaheadContainerComponent implements AfterViewInit {
 
       this.height = this.optionsInScrollableView * this.optionHeight;
       this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
-
-      this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
+      if (this._matches.length > this.optionsInScrollableView) {
+        console.log(this._matches.length)
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
+      } else{
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
+      }
     }
   }
+
+ public refreshSize(){
+   if (this.scrollable) {
+     if (this._matches.length > this.optionsInScrollableView) {
+        
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
+      } else{
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
+        this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'auto');
+      }
+   }
+ }
 
   public selectActiveMatch(): void {
     this.selectMatch(this._active);
@@ -246,7 +263,7 @@ export class TypeaheadContainerComponent implements AfterViewInit {
       return;
     }
 
-    this.ulElement.nativeElement.scrollTop = this.liElements.toArray()[index + 1].nativeElement.offsetTop
+    this.ulElement.nativeElement.scrollTop = this.liElements.toArray()[index + 1].nativeElement.offsetTop;
   }
 
   private scrollToBottom(): void {

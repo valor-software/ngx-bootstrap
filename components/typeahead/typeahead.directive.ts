@@ -319,6 +319,7 @@ export class TypeaheadDirective implements OnInit {
         ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
         : normalizedQuery;
       this.container.matches = this._matches;
+      this.container.refreshSize();
     } else {
       this.show();
     }
