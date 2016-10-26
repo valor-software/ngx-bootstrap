@@ -15,6 +15,7 @@ import { RatingSectionComponent } from './components/rating-section';
 import { TabsSectionComponent } from './components/tabs-section';
 import { TimepickerSectionComponent } from './components/timepicker-section';
 import { TooltipSectionComponent } from './components/tooltip-section';
+import { SliderSectionComponent } from './components/slider-section';
 import { TypeaheadSectionComponent } from './components/typeahead-section';
 
 export const routes:Routes = [
@@ -66,6 +67,10 @@ export const routes:Routes = [
     path: 'rating',
     data: ['Rating'],
     component: RatingSectionComponent
+  }, {
+    path: 'slider',
+    data: ['Slider'],
+    component: SliderSectionComponent
   }, {
     path: 'tabs',
     data: ['Tabs'],
