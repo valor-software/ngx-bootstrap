@@ -1,13 +1,7 @@
-/***
- * todo:
- * direction (?string) (not yet supported)
- actual (not yet supported) (?any) - will be bind to slider context, to be used from template
- */
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, Input, OnInit } from '@angular/core';
 
-import { CarouselComponent, Direction } from './carousel.component';
+import { CarouselComponent } from './carousel.component';
 
-/** Wrap your content with `slide` component  */
 @Component({
   selector: 'slide',
   template: `
@@ -17,28 +11,28 @@ import { CarouselComponent, Direction } from './carousel.component';
   `
 })
 export class SlideComponent implements OnInit, OnDestroy {
-  /** index of slide in carousel's slides */
-  @Input() public index:number;
-  @Input() public direction:Direction;
-
-  /** does current slide is active */
+  /** Specified slide as currently displayed */
   @HostBinding('class.active')
   @Input() public active:boolean;
 
+  /** Wraps element by appropriate CSS classes */
   @HostBinding('class.item')
   @HostBinding('class.carousel-item')
   public addClass:boolean = true;
 
+  /** Link to Parent(container-collection) component */
   protected carousel:CarouselComponent;
 
   public constructor(carousel:CarouselComponent) {
     this.carousel = carousel;
   }
 
+  /** Fires changes in container collection after adding a new slide instance */
   public ngOnInit():void {
     this.carousel.addSlide(this);
   }
 
+  /** Fires changes in container collection after removing of this slide instance */
   public ngOnDestroy():void {
     this.carousel.removeSlide(this);
   }

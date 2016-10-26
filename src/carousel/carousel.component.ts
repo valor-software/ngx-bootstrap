@@ -31,11 +31,11 @@ export enum Direction {UNKNOWN, NEXT, PREV}
          <li *ngFor="let slidez of slides" [class.active]="slidez.active === true" (click)="select(slidez)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
-      <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
+      <a class="left carousel-control" (click)="prev()" *ngIf="slides.length && (currentSlide?.hasPreviousSibling || currentSlide.index === 0)">
         <span class="icon-prev" aria-hidden="true"></span>
         <span *ngIf="isBs4" class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
+      <a class="right carousel-control" (click)="next()" *ngIf="slides.length && (currentSlide?.hasNextSibling || currentSlide.index === slides.length - 1)">
         <span class="icon-next" aria-hidden="true"></span>
         <span *ngIf="isBs4" class="sr-only">Next</span>
       </a>
@@ -69,7 +69,8 @@ export class CarouselComponent implements OnDestroy {
   protected isPlaying:boolean;
   protected destroyed:boolean = false;
   protected currentSlide:SlideComponent;
-  protected _interval:number;
+  protected _interval:number = 5000;
+  private _lastAddedSlide:SlideComponent;
 
   public get isBs4():boolean {
     return !isBs3();
@@ -79,14 +80,9 @@ export class CarouselComponent implements OnDestroy {
     this.destroyed = true;
   }
 
-  public select(nextSlide:SlideComponent, direction:Direction = Direction.UNKNOWN):void {
+  public select(nextSlide: SlideComponent):void {
     let nextIndex = nextSlide.index;
-    if (direction === Direction.UNKNOWN) {
-      direction = nextIndex > this.getCurrentIndex()
-        ? Direction.NEXT
-        : Direction.PREV;
-    }
-
+    let direction = nextIndex > this.getCurrentIndex() ? Direction.NEXT : Direction.PREV;
     // Prevent this user-triggered transition from occurring if there is
     // already one in progress
     if (nextSlide && nextSlide !== this.currentSlide) {
@@ -116,7 +112,7 @@ export class CarouselComponent implements OnDestroy {
       return;
     }
 
-    return this.select(this.getSlideByIndex(newIndex), Direction.NEXT);
+    return this.select(this.getSlideByIndex(newIndex));
   }
 
   public prev():any {
@@ -129,20 +125,21 @@ export class CarouselComponent implements OnDestroy {
       return;
     }
 
-    return this.select(this.getSlideByIndex(newIndex), Direction.PREV);
+    return this.select(this.getSlideByIndex(newIndex));
   }
 
   public addSlide(slide:SlideComponent):void {
     slide.index = this.slides.length;
     this.slides.push(slide);
     if (this.slides.length === 1 || slide.active) {
-      this.select(this.slides[this.slides.length - 1]);
-      if (this.slides.length === 1) {
-        this.play();
-      }
-    } else {
-      slide.active = false;
+      this.select(slide);
+      this.play();
     }
+    slide.previousSiblingSlide = this._lastAddedSlide;
+    if (this._lastAddedSlide) {
+      this._lastAddedSlide.nextSiblingSlide = slide;
+    }
+    this._lastAddedSlide = slide;
   }
 
   public removeSlide(slide:SlideComponent):void {
@@ -165,12 +162,6 @@ export class CarouselComponent implements OnDestroy {
 
     slide.direction = direction;
     slide.active = true;
-
-    if (this.currentSlide) {
-      this.currentSlide.direction = direction;
-      this.currentSlide.active = false;
-    }
-
     this.currentSlide = slide;
 
     // every time you change slides, reset the timer
