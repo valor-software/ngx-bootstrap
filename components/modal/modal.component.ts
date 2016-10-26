@@ -201,7 +201,6 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     // this._addClassIn = true;
     this.renderer.setElementClass(this.element.nativeElement, ClassName.IN, true);
 
-    this.onShown.emit(this);
     const transitionComplete = () => {
       if (this._config.focus) {
         this.element.nativeElement.focus();
