@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture, it, expect, describe, beforeEach, injectAsync, TestComponentBuilder, SetBaseProvider } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
@@ -7,16 +7,18 @@ import { TypeaheadMatch } from './typeahead-match.class';
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
+  let testModule: any;
   let component: TypeaheadContainerComponent;
   let options = new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined, scrollable: false, optionsInScrollableView: 3 });
   beforeEach(() => {
-    fixture = TestBed.configureTestingModule({
+    testModule = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
       providers: [{
         provide: TypeaheadOptions,
         useValue: options
       }]
-    }).createComponent(TypeaheadContainerComponent);
+    });
+    fixture = testModule.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -211,39 +213,39 @@ describe('Component: TypeaheadContainer', () => {
     let headerMatch: HTMLLIElement;
     let containingElement: HTMLElement;
 
-    beforeEach(injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
-      return tcb.createAsync(TypeaheadContainerComponent).then((componentFixture: ComponentFixture) => {
+    beforeEach(() => {
 
-        component = componentFixture.componentInstance
-        if (!options.scrollable) {
-          options.scrollable = true;
-          options.optionsInScrollableView = 3;
-        
-          fixture.detectChanges();
-        }
-        //component.ngAfterViewInit();
-        component.query = 'a';
-        component.matches = [
-          new TypeaheadMatch('fruits', 'fruits', true),
-          new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
-          new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
-          new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
-          new TypeaheadMatch({ id: 3, name: 'pear', category: 'fruits' }, 'pear'),
-          new TypeaheadMatch({ id: 4, name: 'pineapple', category: 'fruits' }, 'pineapple'),
-          new TypeaheadMatch('berries', 'berries', true),
-          new TypeaheadMatch({ id: 4, name: 'strawberry', category: 'berries' }, 'strawberry'),
-          new TypeaheadMatch({ id: 4, name: 'raspberry', category: 'berries' }, 'raspberry'),
-          new TypeaheadMatch('vegatables', 'vegatables', true),
-          new TypeaheadMatch({ id: 4, name: 'tomato', category: 'vegatables' }, 'tomato'),
-          new TypeaheadMatch({ id: 4, name: 'cucumber', category: 'vegatables' }, 'cucumber')
-        ];
-        fixture.detectChanges();
+      options.scrollable = true;
+      options.optionsInScrollableView = 3;
+      fixture = testModule.createComponent(TypeaheadContainerComponent);
+      fixture.detectChanges();
+      component = fixture.componentInstance;
 
-        headerMatch = fixture.debugElement.query(By.css('.dropdown-header')).nativeElement;
-        itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
-        containingElement = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
-      });
-    }));
+      component.query = 'a';
+      component.matches = [
+        new TypeaheadMatch('fruits', 'fruits', true),
+        new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
+        new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
+        new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
+        new TypeaheadMatch({ id: 3, name: 'pear', category: 'fruits' }, 'pear'),
+        new TypeaheadMatch({ id: 4, name: 'pineapple', category: 'fruits' }, 'pineapple'),
+        new TypeaheadMatch('berries', 'berries', true),
+        new TypeaheadMatch({ id: 5, name: 'strawberry', category: 'berries' }, 'strawberry'),
+        new TypeaheadMatch({ id: 6, name: 'raspberry', category: 'berries' }, 'raspberry'),
+        new TypeaheadMatch('vegatables', 'vegatables', true),
+        new TypeaheadMatch({ id: 7, name: 'tomato', category: 'vegatables' }, 'tomato'),
+        new TypeaheadMatch({ id: 8, name: 'cucumber', category: 'vegatables' }, 'cucumber')
+      ];
+
+      fixture.detectChanges();
+      component.ngAfterViewInit();
+      let headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
+      if (headers) {
+        headerMatch = asNativeElements(headers);
+      }
+      itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
+      containingElement = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
+    });
 
     describe('rendering', () => {
       it('should render 9 item matches', () => {
@@ -251,7 +253,8 @@ describe('Component: TypeaheadContainer', () => {
       });
 
       it('should show scrollbars', () => {
-        expect(containingElement.style.overflowY).toBe('scroll')
+        expect(containingElement[0]).toBeDefined();
+        expect(getComputedStyle(containingElement[0]).getPropertyValue('overflow-y')).toBe('scroll');
       });
 
       it('should highlight query for item match', () => {
@@ -265,44 +268,46 @@ describe('Component: TypeaheadContainer', () => {
 
     describe('nextActiveMatch', () => {
       it('should select the next item match', () => {
-
         component.nextActiveMatch();
         expect(component.isActive(component.matches[2])).toBeTruthy();
       });
       it('should select the next item match and scroll', () => {
         component.nextActiveMatch();
+        component.nextActiveMatch();
         expect(component.isActive(component.matches[3])).toBeTruthy();
-        expect(containingElement.scrollTop).toBe(itemMatches[2].offsetTop);
+        expect(containingElement[0].scrollTop).toBe(itemMatches[2].offsetTop - containingElement[0].offsetHeight + itemMatches[2].offsetHeight);
 
       });
-      it('should select the next item match and scroll', () => {
-        component.nextActiveMatch();
-        component.nextActiveMatch();
-        component.nextActiveMatch();
-        component.nextActiveMatch();
-        component.nextActiveMatch();
-        component.nextActiveMatch();
-        expect(component.isActive(component.matches[12])).toBeTruthy();
+      it('should select the last item match and scroll', () => {
+        for (let i = 0; i < 8; i++) {
+          component.nextActiveMatch();
+        }
+        expect(component.isActive(component.matches[11])).toBeTruthy();
       });
 
+      it('should select the first item match and scroll to top', () => {
+        for (let i = 0; i < 9; i++) {
+          component.nextActiveMatch();
+        }
+        expect(component.isActive(component.matches[1])).toBeTruthy();
+        expect(containingElement[0].scrollTop).toBe(0);
+      });
     });
 
     describe('prevActiveMatch', () => {
-      it('should select the prev item match', () => {
+      it('should select the last item and scroll to bottom', () => {
         component.prevActiveMatch();
+        expect(component.isActive(component.matches[11])).toBeTruthy();
+        expect(containingElement[0].scrollTop <= containingElement[0].scrollHeight).toBeTruthy();
+      });
+
+      it('should select the prev item match', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.prevActiveMatch();
+        expect(component.isActive(component.matches[3])).toBeTruthy();
       });
     });
   });
-
-  describe('isFocused', () => {
-    it('should not be focus after init', () => {
-      expect(component.isFocused).toBeFalsy();
-    });
-
-    it('should not be focused on focusLost()', () => {
-      component.focusLost();
-      expect(component.isFocused).toBeFalsy();
-    });
-  });
-
 });

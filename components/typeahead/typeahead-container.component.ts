@@ -163,7 +163,7 @@ export class TypeaheadContainerComponent implements AfterViewInit {
       ? this.matches.length - 1
       : index - 1];
     if (this._active.isHeader()) {
-      this.prevActiveMatch();
+      return this.prevActiveMatch();
     }
 
     if (this.scrollable) {
@@ -178,7 +178,7 @@ export class TypeaheadContainerComponent implements AfterViewInit {
       : index + 1];
 
     if (this._active.isHeader()) {
-      this.nextActiveMatch();
+      return this.nextActiveMatch();
     }
 
     if (this.scrollable) {
@@ -246,8 +246,13 @@ export class TypeaheadContainerComponent implements AfterViewInit {
       this.scrollToBottom();
       return;
     }
+    if (this.liElements) {
+      const liElement = this.liElements.toArray()[index - 1];
+      if (liElement) {
+        this.ulElement.nativeElement.scrollTop = liElement.nativeElement.offsetTop;
+      }
 
-    this.ulElement.nativeElement.scrollTop = this.liElements.toArray()[index - 1].nativeElement.offsetTop;
+    }
   }
 
   private scrollNext(index: number): void {
@@ -255,8 +260,23 @@ export class TypeaheadContainerComponent implements AfterViewInit {
       this.scrollToTop();
       return;
     }
+    if (this.liElements) {
+      const liElement = this.liElements.toArray()[index + 1];
+      if (liElement && !this.isScrolledIntoView(liElement.nativeElement)) {
+        this.ulElement.nativeElement.scrollTop =
+          liElement.nativeElement.offsetTop -
+          this.ulElement.nativeElement.offsetHeight +
+          liElement.nativeElement.offsetHeight;
+      }
+    }
+  }
 
-    this.ulElement.nativeElement.scrollTop = this.liElements.toArray()[index + 1].nativeElement.offsetTop;
+  private isScrolledIntoView(elem: HTMLElement): boolean {
+    const containerViewTop = this.ulElement.nativeElement.scrollTop;
+    const containerViewBottom = containerViewTop + this.ulElement.nativeElement.offsetHeight;
+    const elemTop = elem.offsetTop;
+    const elemBottom = elemTop + elem.offsetHeight;
+    return ((elemBottom <= containerViewBottom) && (elemTop >= containerViewTop));
   }
 
   private scrollToBottom(): void {

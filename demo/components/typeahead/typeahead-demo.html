@@ -64,7 +64,7 @@
          class="form-control">
 
          
-    <!-- Static arrays -->
+    <!-- Static arrays (scrollable) -->
   <h4>Static arrays (scrollable) </h4>
   <pre class="card card-block card-header">Model: {{selected | json}}</pre>
   <input [(ngModel)]="selected"
@@ -73,4 +73,19 @@
          [typeaheadOptionsInScrollableView]="3"
          (typeaheadOnSelect)="typeaheadOnSelect($event)"
          class="form-control">
+
+
+
+  <!-- Grouped results (scrollable) -->
+  <h4>Grouped results (scrollable)</h4>
+  <pre class="card card-block card-header">Model: {{groupSelected | json}}</pre>
+  <input [(ngModel)]="groupSelected"
+         [typeahead]="statesComplex"
+         [typeaheadOptionField]="'name'"
+         [typeaheadGroupField]="'region'"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         [typeaheadScrollable]="true"
+         [typeaheadOptionsInScrollableView]="3"
+         class="form-control">
+
 </div>
