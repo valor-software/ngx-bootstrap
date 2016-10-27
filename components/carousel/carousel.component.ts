@@ -118,7 +118,7 @@ export class CarouselComponent implements OnDestroy {
       this.play();
     }
     slide.previousSiblingSlide = this._lastAddedSlide;
-    if (this._lastAddedSlide){
+    if (this._lastAddedSlide) {
       this._lastAddedSlide.nextSiblingSlide = slide;
     }
     this._lastAddedSlide = slide;
