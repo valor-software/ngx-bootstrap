@@ -137,28 +137,21 @@ export class TypeaheadContainerComponent implements AfterViewInit {
 
       this.height = this.optionsInScrollableView * this.optionHeight;
       this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
-      if (this._matches.length > this.optionsInScrollableView) {
-        console.log(this._matches.length)
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
-      } else{
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
-      }
+      this.refreshSize();
     }
   }
 
- public refreshSize(){
-   if (this.scrollable) {
-     if (this._matches.length > this.optionsInScrollableView) {
-        
+  public refreshSize(): void {
+    if (this.scrollable) {
+      if (this._matches.length > this.optionsInScrollableView) {
         this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
         this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
-      } else{
+      } else {
         this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
         this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'auto');
       }
-   }
- }
+    }
+  }
 
   public selectActiveMatch(): void {
     this.selectMatch(this._active);

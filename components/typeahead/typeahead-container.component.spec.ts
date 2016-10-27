@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, it, expect, describe, beforeEach, injectAsync, TestComponentBuilder, SetBaseProvider } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
@@ -8,13 +8,13 @@ import { TypeaheadMatch } from './typeahead-match.class';
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
   let component: TypeaheadContainerComponent;
-
+  let options = new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined, scrollable: false, optionsInScrollableView: 3 });
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
       providers: [{
         provide: TypeaheadOptions,
-        useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
+        useValue: options
       }]
     }).createComponent(TypeaheadContainerComponent);
 
@@ -209,30 +209,49 @@ describe('Component: TypeaheadContainer', () => {
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
     let headerMatch: HTMLLIElement;
+    let containingElement: HTMLElement;
 
-    beforeEach(() => {
-      component.query = 'a';
-      component.matches = [
-        new TypeaheadMatch('fruits', 'fruits', true),
-        new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
-        new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
-        new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
-        new TypeaheadMatch({ id: 3, name: 'pear', category: 'fruits' }, 'pear'),
-        new TypeaheadMatch({ id: 4, name: 'pineapple', category: 'fruits' }, 'pineapple'),
-        new TypeaheadMatch({ id: 4, name: 'strawberry', category: 'berries' }, 'strawberry'),
-        new TypeaheadMatch({ id: 4, name: 'raspberry', category: 'berries' }, 'raspberry'),
-        new TypeaheadMatch({ id: 4, name: 'tomato', category: 'vegatables' }, 'tomato'),
-        new TypeaheadMatch({ id: 4, name: 'cucumber', category: 'vegatables' }, 'cucumber')
-      ];
+    beforeEach(injectAsync([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+      return tcb.createAsync(TypeaheadContainerComponent).then((componentFixture: ComponentFixture) => {
 
-      fixture.detectChanges();
-      headerMatch = fixture.debugElement.query(By.css('.dropdown-header')).nativeElement;
-      itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
-    });
+        component = componentFixture.componentInstance
+        if (!options.scrollable) {
+          options.scrollable = true;
+          options.optionsInScrollableView = 3;
+        
+          fixture.detectChanges();
+        }
+        //component.ngAfterViewInit();
+        component.query = 'a';
+        component.matches = [
+          new TypeaheadMatch('fruits', 'fruits', true),
+          new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
+          new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
+          new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
+          new TypeaheadMatch({ id: 3, name: 'pear', category: 'fruits' }, 'pear'),
+          new TypeaheadMatch({ id: 4, name: 'pineapple', category: 'fruits' }, 'pineapple'),
+          new TypeaheadMatch('berries', 'berries', true),
+          new TypeaheadMatch({ id: 4, name: 'strawberry', category: 'berries' }, 'strawberry'),
+          new TypeaheadMatch({ id: 4, name: 'raspberry', category: 'berries' }, 'raspberry'),
+          new TypeaheadMatch('vegatables', 'vegatables', true),
+          new TypeaheadMatch({ id: 4, name: 'tomato', category: 'vegatables' }, 'tomato'),
+          new TypeaheadMatch({ id: 4, name: 'cucumber', category: 'vegatables' }, 'cucumber')
+        ];
+        fixture.detectChanges();
+
+        headerMatch = fixture.debugElement.query(By.css('.dropdown-header')).nativeElement;
+        itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
+        containingElement = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
+      });
+    }));
 
     describe('rendering', () => {
-      it('should render 3 item matches', () => {
-        expect(itemMatches.length).toBe(2);
+      it('should render 9 item matches', () => {
+        expect(itemMatches.length).toBe(9);
+      });
+
+      it('should show scrollbars', () => {
+        expect(containingElement.style.overflowY).toBe('scroll')
       });
 
       it('should highlight query for item match', () => {
@@ -246,9 +265,26 @@ describe('Component: TypeaheadContainer', () => {
 
     describe('nextActiveMatch', () => {
       it('should select the next item match', () => {
+
         component.nextActiveMatch();
-        expect(component.isActive(component.matches[1])).toBeTruthy();
+        expect(component.isActive(component.matches[2])).toBeTruthy();
       });
+      it('should select the next item match and scroll', () => {
+        component.nextActiveMatch();
+        expect(component.isActive(component.matches[3])).toBeTruthy();
+        expect(containingElement.scrollTop).toBe(itemMatches[2].offsetTop);
+
+      });
+      it('should select the next item match and scroll', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        expect(component.isActive(component.matches[12])).toBeTruthy();
+      });
+
     });
 
     describe('prevActiveMatch', () => {
