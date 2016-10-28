@@ -34,7 +34,7 @@ export class TooltipDirective {
   - `tooltipPopupDelay` (`?numer=0`) - time in milliseconds before tooltip occurs
   - `tooltipTrigger` (*not implemented*) (`?Array<string>`) - array of event names which triggers tooltip opening
   - `tooltipEnable` (`?boolean=true`) - if `false` tooltip is disabled and will not be shown
-  - `tooltipAppendToBody` (*not implemented*) (`?boolean=false`) - if `true` tooltip will be appended to body
+  - `tooltipAppendToBody` (`?boolean=false`) - if `true` tooltip will be appended to body
   - `tooltipClass` (`?string`) - custom tooltip class applied to the tooltip container
   - `tooltipIsOpen` (`?boolean=false`) - if `true` tooltip is currently visible
   - `tooltipContext` (`any`) - if a template is used for the content, then this property can be used to specify a context for that template. The template variable exposed is called 'model'.
