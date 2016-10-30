@@ -15,11 +15,11 @@ import { TooltipModule } from 'ng2-bootstrap/components/tooltip';
 export class TooltipDirective {
   @Input('tooltip') public content:string;
   @Input('tooltipHtml') public htmlContent:string | TemplateRef<any>;
-  @Input('tooltipPlacement') private placement:string = 'top';
-  @Input('tooltipIsOpen') private isOpen:boolean;
-  @Input('tooltipEnable') private enable:boolean;
-  @Input('tooltipAppendToBody') private appendToBody:boolean;
-  @Input('tooltipClass') public popupClass:string;
+  @Input('tooltipPlacement') protected placement:string = 'top';
+  @Input('tooltipIsOpen') protected isOpen:boolean;
+  @Input('tooltipEnable') protected enable:boolean;
+  @Input('tooltipAppendToBody') protected appendToBody:boolean;
+  @Input('tooltipClass') protected popupClass:string;
   @Input('tooltipContext') public tooltipContext:any;
   @Input('tooltipPopupDelay') public delay:number = 0;
   @Output() public tooltipStateChanged:EventEmitter<boolean>;

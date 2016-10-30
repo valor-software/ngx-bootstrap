@@ -96,7 +96,7 @@ export class DayPickerComponent implements OnInit {
     return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
   }
 
-  /*private getDaysInMonth(year:number, month:number) {
+  /*protected getDaysInMonth(year:number, month:number) {
    return ((month === 1) && (year % 4 === 0) &&
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
@@ -158,7 +158,7 @@ export class DayPickerComponent implements OnInit {
     this.datePicker.refreshView();
   }
 
-  private getDates(startDate:Date, n:number):Array<Date> {
+  protected getDates(startDate:Date, n:number):Array<Date> {
     let dates:Array<Date> = new Array(n);
     let current = new Date(startDate.getTime());
     let i = 0;
@@ -172,7 +172,7 @@ export class DayPickerComponent implements OnInit {
     return dates;
   }
 
-  private getISO8601WeekNumber(date:Date):number {
+  protected getISO8601WeekNumber(date:Date):number {
     let checkDate = new Date(date.getTime());
     // Thursday
     checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));

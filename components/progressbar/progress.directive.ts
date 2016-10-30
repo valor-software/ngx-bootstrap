@@ -32,7 +32,7 @@ export class ProgressDirective implements OnInit {
 
   public bars:Array<any> = [];
 
-  private _max:number;
+  protected _max:number;
 
   public ngOnInit():void {
     this.animate = this.animate !== false;

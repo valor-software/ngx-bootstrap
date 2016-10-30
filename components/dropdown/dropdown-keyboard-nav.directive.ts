@@ -9,8 +9,8 @@ const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
   selector: '[dropdown][dropdownKeyboardNav]'
 })
 export class KeyboardNavDirective {
-  private dd:DropdownDirective;
-  private el:ElementRef;
+  protected dd:DropdownDirective;
+  protected el:ElementRef;
 
   public constructor(dd:DropdownDirective, el:ElementRef) {
     this.dd = dd;

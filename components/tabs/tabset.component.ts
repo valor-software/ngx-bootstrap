@@ -60,10 +60,10 @@ export class TabsetComponent implements OnInit, OnDestroy {
   public tabs:Array<TabDirective> = [];
   public classMap:any = {};
 
-  private isDestroyed:boolean;
-  private _vertical:boolean;
-  private _justified:boolean;
-  private _type:string;
+  protected isDestroyed:boolean;
+  protected _vertical:boolean;
+  protected _justified:boolean;
+  protected _type:string;
 
   public ngOnInit():void {
     this.type = this.type !== 'undefined' ? this.type : 'tabs';
@@ -93,7 +93,7 @@ export class TabsetComponent implements OnInit, OnDestroy {
     this.tabs.splice(index, 1);
   }
 
-  private getClosestTabIndex(index:number):number {
+  protected getClosestTabIndex(index:number):number {
     let tabsLength = this.tabs.length;
     if (!tabsLength) {
       return -1;
@@ -112,7 +112,7 @@ export class TabsetComponent implements OnInit, OnDestroy {
     return -1;
   }
 
-  private hasAvailableTabs(index:number):boolean {
+  protected hasAvailableTabs(index:number):boolean {
     let tabsLength = this.tabs.length;
     if (!tabsLength) {
       return false;
@@ -126,7 +126,7 @@ export class TabsetComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  private setClassMap():void {
+  protected setClassMap():void {
     this.classMap = {
       'nav-stacked': this.vertical,
       'nav-justified': this.justified,

@@ -70,8 +70,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   public onTouched:any = Function.prototype;
 
   public cd:NgModel;
-  private _now:Date = new Date();
-  private _activeDate:Date;
+  protected _now:Date = new Date();
+  protected _activeDate:Date;
 
   @Input()
   public get activeDate():Date {

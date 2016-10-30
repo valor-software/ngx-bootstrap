@@ -79,19 +79,19 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   public stepMonth: any = {};
   public stepYear: any = {};
 
-  private modes: Array<string> = ['day', 'month', 'year'];
-  private dateFormatter: DateFormatter = new DateFormatter();
-  private uniqueId: string;
-  private _activeDate: Date;
-  private selectedDate: Date;
-  private activeDateId: string;
+  protected modes: Array<string> = ['day', 'month', 'year'];
+  protected dateFormatter: DateFormatter = new DateFormatter();
+  protected uniqueId: string;
+  protected _activeDate: Date;
+  protected selectedDate: Date;
+  protected activeDateId: string;
 
-  private refreshViewHandlerDay: Function;
-  private compareHandlerDay: Function;
-  private refreshViewHandlerMonth: Function;
-  private compareHandlerMonth: Function;
-  private refreshViewHandlerYear: Function;
-  private compareHandlerYear: Function;
+  protected refreshViewHandlerDay: Function;
+  protected compareHandlerDay: Function;
+  protected refreshViewHandlerMonth: Function;
+  protected compareHandlerMonth: Function;
+  protected refreshViewHandlerYear: Function;
+  protected compareHandlerYear: Function;
 
   @Input()
   public get activeDate(): Date {
@@ -303,7 +303,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     this.refreshView();
   }
 
-  private getCustomClassForDate(date: Date): string {
+  protected getCustomClassForDate(date: Date): string {
     if (!this.customClass) {
       return '';
     }
@@ -316,7 +316,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 
-  private isDisabled(date: Date): boolean {
+  protected isDisabled(date: Date): boolean {
     // todo: implement dateDisabled attribute
     return ((this.minDate && this.compare(date, this.minDate) < 0) ||
     (this.maxDate && this.compare(date, this.maxDate) > 0));

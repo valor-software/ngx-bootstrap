@@ -1,7 +1,7 @@
 
 export class TypeaheadMatch {
 
-  public constructor(readonly item:any, readonly value:string = item, private header:boolean = false) {
+  public constructor(readonly item:any, readonly value:string = item, protected header:boolean = false) {
   }
 
   public isHeader():boolean {

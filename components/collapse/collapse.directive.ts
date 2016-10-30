@@ -27,12 +27,12 @@ import { Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output
 // TODO: #576 add callbacks: expanding, collapsing after adding animation
 @Directive({selector: '[collapse]'})
 export class CollapseDirective implements OnInit {
-  // private animation:any;
+  // protected animation:any;
   @Output() public collapsed:EventEmitter<any> = new EventEmitter<any>(false);
   @Output() public expanded:EventEmitter<any> = new EventEmitter<any>(false);
   // style
   // @HostBinding('style.height')
-  // private height:string;
+  // protected height:string;
   @HostBinding('style.display')
   public display:string;
   // shown
@@ -49,7 +49,7 @@ export class CollapseDirective implements OnInit {
   @HostBinding('class.collapsing')
   public isCollapsing:boolean = false;
 
-  // @Input() private transitionDuration:number = 500; // Duration in ms
+  // @Input() protected transitionDuration:number = 500; // Duration in ms
 
   @Input()
   public set collapse(value:boolean) {
@@ -61,10 +61,10 @@ export class CollapseDirective implements OnInit {
     return this.isExpanded;
   }
 
-  // private open: boolean;
-  // private _ab:AnimationBuilder;
-  private _el:ElementRef;
-  private _renderer:Renderer;
+  // protected open: boolean;
+  // protected _ab:AnimationBuilder;
+  protected _el:ElementRef;
+  protected _renderer:Renderer;
 
   public constructor(/*_ab:AnimationBuilder, */_el:ElementRef, _renderer:Renderer) {
     // this._ab = _ab;

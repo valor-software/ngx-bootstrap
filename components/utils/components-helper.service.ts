@@ -13,9 +13,9 @@ import { DOCUMENT } from '@angular/platform-browser';
 export class ComponentsHelper {
   public root:ViewContainerRef;
 
-  public constructor(private applicationRef:ApplicationRef,
-                     private componentFactoryResolver:ComponentFactoryResolver,
-                     private injector:Injector) {
+  public constructor(protected applicationRef:ApplicationRef,
+                     protected componentFactoryResolver:ComponentFactoryResolver,
+                     protected injector:Injector) {
   }
 
   public getDocument():any {

@@ -47,27 +47,27 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadItemTemplate:TemplateRef<any>;
 
   // not yet implemented
-  // @Input() private typeaheadAppendToBody:boolean;
-  // @Input() private typeaheadEditable:boolean;
-  // @Input() private typeaheadFocusFirst:boolean;
-  // @Input() private typeaheadInputFormatter:any;
-  // @Input() private typeaheadSelectOnExact:boolean;
-  // @Input() private typeaheadSelectOnBlur:boolean;
-  // @Input() private typeaheadFocusOnSelect:boolean;
+  // @Input() protected typeaheadAppendToBody:boolean;
+  // @Input() protected typeaheadEditable:boolean;
+  // @Input() protected typeaheadFocusFirst:boolean;
+  // @Input() protected typeaheadInputFormatter:any;
+  // @Input() protected typeaheadSelectOnExact:boolean;
+  // @Input() protected typeaheadSelectOnBlur:boolean;
+  // @Input() protected typeaheadFocusOnSelect:boolean;
 
   public container:TypeaheadContainerComponent;
   public isTypeaheadOptionsListActive:boolean = false;
 
-  private keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
-  private _matches:Array<TypeaheadMatch>;
-  private placement:string = 'bottom-left';
-  private popup:ComponentRef<TypeaheadContainerComponent>;
+  protected keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
+  protected _matches:Array<TypeaheadMatch>;
+  protected placement:string = 'bottom-left';
+  protected popup:ComponentRef<TypeaheadContainerComponent>;
 
-  private ngControl:NgControl;
-  private viewContainerRef:ViewContainerRef;
-  private element:ElementRef;
-  private renderer:Renderer;
-  private componentsHelper:ComponentsHelper;
+  protected ngControl:NgControl;
+  protected viewContainerRef:ViewContainerRef;
+  protected element:ElementRef;
+  protected renderer:Renderer;
+  protected componentsHelper:ComponentsHelper;
 
   @HostListener('keyup', ['$event'])
   public onChange(e:any):void {
@@ -222,7 +222,7 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  private asyncActions():void {
+  protected asyncActions():void {
     this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap(() => this.typeahead)
@@ -236,7 +236,7 @@ export class TypeaheadDirective implements OnInit {
       );
   }
 
-  private syncActions():void {
+  protected syncActions():void {
     this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap((value:string) => {
@@ -258,14 +258,14 @@ export class TypeaheadDirective implements OnInit {
       );
   }
 
-  private normalizeOption(option:any):any {
+  protected normalizeOption(option:any):any {
     let optionValue:string = TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField);
     let normalizedOption = this.typeaheadLatinize ? TypeaheadUtils.latinize(optionValue) : optionValue;
 
     return normalizedOption.toLowerCase();
   }
 
-  private normalizeQuery(value:string):any {
+  protected normalizeQuery(value:string):any {
     // If singleWords, break model here to not be doing extra work on each iteration
     let normalizedQuery:any =
       (this.typeaheadLatinize ? TypeaheadUtils.latinize(value) : value)
@@ -278,7 +278,7 @@ export class TypeaheadDirective implements OnInit {
     return normalizedQuery;
   }
 
-  private testMatch(match:string, test:any):boolean {
+  protected testMatch(match:string, test:any):boolean {
     let spaceLength:number;
 
     if (typeof test === 'object') {
@@ -294,7 +294,7 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  private finalizeAsyncCall(matches:any[]):void {
+  protected finalizeAsyncCall(matches:any[]):void {
     this.prepareMatches(matches);
 
     this.typeaheadLoading.emit(false);
@@ -320,7 +320,7 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  private prepareMatches(options:any[]):void {
+  protected prepareMatches(options:any[]):void {
     let limited:any[] = options.slice(0, this.typeaheadOptionsLimit);
 
     if (this.typeaheadGroupField) {
@@ -347,7 +347,7 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  private hasMatches():boolean {
+  protected hasMatches():boolean {
     return this._matches.length > 0;
   }
 }

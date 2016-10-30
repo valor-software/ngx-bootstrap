@@ -37,8 +37,8 @@ export class ModalBackdropComponent {
   public element:ElementRef;
   public renderer:Renderer;
 
-  private _isAnimated:boolean;
-  private _isShown:boolean = false;
+  protected _isAnimated:boolean;
+  protected _isShown:boolean = false;
 
   public constructor(options:ModalBackdropOptions, element:ElementRef, renderer:Renderer) {
     this.element = element;

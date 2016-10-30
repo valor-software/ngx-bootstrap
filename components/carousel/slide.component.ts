@@ -21,7 +21,7 @@ export class SlideComponent implements OnInit, OnDestroy {
   @HostBinding('class.carousel-item')
   public addClass:boolean = true;
 
-  private carousel:CarouselComponent;
+  protected carousel:CarouselComponent;
 
   public constructor(carousel:CarouselComponent) {
     this.carousel = carousel;
