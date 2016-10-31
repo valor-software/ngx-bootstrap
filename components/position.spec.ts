@@ -28,7 +28,10 @@ describe('positionService', () => {
         input.style.padding = '0px 0px';
         input.style.height = '20px';
         document.body.appendChild(input);
-        expect(positionService.offset(input).top).toBe(0);
+        var offsetShouldBe = parseInt(positionService.getStyle(document.body, 'margin-top').replace('px', ''), 10) +
+            parseInt(positionService.getStyle(document.body, 'padding-top'), 10) +
+            parseInt(positionService.getStyle(document.body, 'border-top-width'), 10);
+        expect(positionService.offset(input).top).toBe(offsetShouldBe);
         input.remove();
     });
 
