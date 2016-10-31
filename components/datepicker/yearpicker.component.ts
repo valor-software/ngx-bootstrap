@@ -15,7 +15,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </th>
-      <th colspan="3">
+      <th [attr.colspan]="((datePicker.yearColLimit - 2) <= 0) ? 1 : datePicker.yearColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
@@ -79,7 +79,7 @@ export class YearPickerComponent implements OnInit {
 
       self.title = [years[0].label,
         years[this.yearRange - 1].label].join(' - ');
-      self.rows = this.split(years, 5);
+      self.rows = this.split(years, self.datePicker.yearColLimit);
     }, 'year');
 
     this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {

@@ -21,6 +21,8 @@ export interface PaginationConfig extends KeyAttribute {
   previousText:string;
   nextText:string;
   lastText:string;
+  // css
+  pageBtnClass:string;
 
   rotate:boolean;
 }
@@ -38,6 +40,7 @@ const paginationConfig:PaginationConfig = {
   previousText: 'Previous',
   nextText: 'Next',
   lastText: 'Last',
+  pageBtnClass: '',
   rotate: true
 };
 
@@ -94,6 +97,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   @Input() public nextText:string;
   @Input() public lastText:string;
   @Input() public rotate:boolean;
+  // css
+  @Input() public pageBtnClass:string;
 
   @Input() public disabled:boolean;
 
@@ -189,6 +194,9 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     this.directionLinks = typeof this.directionLinks !== 'undefined'
       ? this.directionLinks
       : paginationConfig.directionLinks;
+    this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
+    ? this.pageBtnClass
+    : paginationConfig.pageBtnClass;
 
     // base class
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
