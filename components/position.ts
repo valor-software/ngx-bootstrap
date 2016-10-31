@@ -105,15 +105,16 @@ export class PositionService {
     return targetElPos;
   }
 
-  private get window():Window {
-    return window;
+ /**
+  * returns true if element is the currently focused element
+  * element
+  * @param nativeEl
+  */
+  public isFocused(nativeEl: HTMLElement): boolean {
+    return this.document.activeElement === nativeEl;
   }
 
-  private get document():Document {
-    return window.document;
-  }
-
-  private getStyle(nativeEl:HTMLElement, cssProp:string):string {
+  public getStyle(nativeEl:HTMLElement, cssProp:string):string {
     // IE
     if ((nativeEl as any).currentStyle) {
       return (nativeEl as any).currentStyle[cssProp];
@@ -124,6 +125,14 @@ export class PositionService {
     }
     // finally try and get inline style
     return (nativeEl.style as KeyAttribute)[cssProp];
+  }
+
+  private get window():Window {
+    return window;
+  }
+
+  private get document():Document {
+    return window.document;
   }
 
   /**
@@ -147,6 +156,7 @@ export class PositionService {
     }
     return offsetParent || this.document;
   };
+
 }
 
 export const positionService:PositionService = new PositionService();

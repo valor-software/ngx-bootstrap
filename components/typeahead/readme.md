@@ -28,6 +28,8 @@ export class TypeaheadDirective implements OnInit {
   @Input() public typeaheadWordDelimiters:string = ' ';
   @Input() public typeaheadPhraseDelimiters:string = '\'"';
   @Input() public typeaheadItemTemplate:TemplateRef<any>;
+  @Input() public typeaheadScrollable:boolean = false;
+  @Input() public typeaheadOptionsInScrollableView:number = 5;
 
   // not yet implemented
   @Input() private typeaheadAppendToBody:boolean;
@@ -55,6 +57,8 @@ export class TypeaheadDirective implements OnInit {
   - `typeaheadWordDelimiters` (`?string=" "`) - should be used only in case `typeaheadSingleWords` attribute is `true`. Sets the word delimiter to break words. Defaults to space.
   - `typeaheadPhraseDelimiters` (`?string="'\""`) - should be used only in case `typeaheadSingleWords` attribute is `true`. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes.
   - `typeaheadItemTemplate` (`?TemplateRef`) - used to specify a custom item template. Template variables exposed are called `item` and `index`;
+  - `typeaheadScrollable` (`?boolean`) - used to set the dropdown container to scrollable and scroll on key down/up
+  - `typeaheadOptionsInScrollableView` (`?number`) - used to set how many items to show in the scrollable dropdown list (only used if `typeaheadScrollable` is `true`)
   - `typeaheadAppendToBody` (*not implemented*) (`?boolean=false`) - if `true` the typeahead popup will be appended to $body instead of the parent element
   - `typeaheadEditable` (*not implemented*) (`?boolean=true`) - if `false` restrict model values to the ones selected from the popup only will be provided
   - `typeaheadFocusFirst` (*not implemented*) (`?boolean=true`) - if `false` the first match automatically will not be focused as you type
@@ -62,6 +66,7 @@ export class TypeaheadDirective implements OnInit {
   - `typeaheadSelectOnExact` (*not implemented*) (`?boolean=false`) - if `true` automatically select an item when there is one option that exactly matches the user input
   - `typeaheadSelectOnBlur` (*not implemented*) (`?boolean=false`) - if `true` select the currently highlighted match on blur
   - `typeaheadFocusOnSelect` (*not implemented*) (`?boolean=true`) - if `false` don't focus the input element the typeahead directive is associated with on selection
+  
 
 ### Typeahead events
 
