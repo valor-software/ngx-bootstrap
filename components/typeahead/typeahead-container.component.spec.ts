@@ -272,7 +272,7 @@ describe('Component: TypeaheadContainer', () => {
         expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('overflow-y')).toBe('scroll');
       });
 
-      it('should show correct height on scrollable element', () => {
+      xit('should show correct height on scrollable element', () => {
         expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('height')).toBe('60px');
       });
 
