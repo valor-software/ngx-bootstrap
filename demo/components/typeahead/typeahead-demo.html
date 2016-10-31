@@ -62,4 +62,41 @@
          [typeaheadGroupField]="'region'"
          (typeaheadOnSelect)="typeaheadOnSelect($event)"
          class="form-control">
+
+         
+    <!-- Static arrays (scrollable) -->
+  <h4>Static arrays (scrollable) </h4>
+  <pre class="card card-block card-header">Model: {{selected | json}}</pre>
+  <input [(ngModel)]="selected"
+         [typeahead]="states"
+         [typeaheadScrollable]="true"
+         [typeaheadOptionsInScrollableView]="3"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         class="form-control">
+
+  <!-- Asynchronous result (scrollable) -->
+  <h4>Asynchronous result (scrollable) </h4>
+  <pre class="card card-block card-header">Model: {{selected | json}}</pre>
+  <input [(ngModel)]="asyncSelected2"
+         [typeahead]="dataSourceDelayed"
+         [typeaheadScrollable]="true"
+         [typeaheadOptionsInScrollableView]="3"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         [typeaheadMinLength]="0"
+         class="form-control">
+
+
+
+  <!-- Grouped results (scrollable) -->
+  <h4>Grouped results (scrollable)</h4>
+  <pre class="card card-block card-header">Model: {{groupSelected | json}}</pre>
+  <input [(ngModel)]="groupSelected2"
+         [typeahead]="statesComplex"
+         [typeaheadOptionField]="'name'"
+         [typeaheadGroupField]="'region'"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         [typeaheadScrollable]="true"
+         [typeaheadOptionsInScrollableView]="3"
+         class="form-control">
+
 </div>
