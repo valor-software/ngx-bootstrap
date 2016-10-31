@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TypeaheadModule } from './typeahead.module';
 import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { TypeaheadDirective } from './typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { By } from '@angular/platform-browser';
 
 interface State {
-  id:number;
-  name:string;
-  region:string;
+  id: number;
+  name: string;
+  region: string;
 }
 
 @Component({
@@ -21,24 +21,44 @@ interface State {
 `
 })
 class TestTypeaheadComponent {
-  public selectedState:string;
-  public states:State[] = [
-    {id: 1, name: 'Alabama', region: 'South'},
-    {id: 2, name: 'Alaska', region: 'West'}
+  public selectedState: string;
+  public states: State[] = [
+    { id: 1, name: 'Alabama', region: 'South' },
+    { id: 2, name: 'Alaska', region: 'West' }
+  ];
+}
+
+@Component({
+  template: `<div class="no-min-length">
+  <input [(ngModel)]="selectedState" 
+         [typeahead]="states" 
+         [typeaheadOptionField]="'name'" 
+         [typeaheadScrollable]='true'
+         [typeaheadMinLength]='0'
+         (typeaheadOnSelect)="typeaheadOnSelect($event)">
+         </div>
+`
+})
+class TestTypeaheadScrollableComponent {
+  public selectedState: string;
+  public states: State[] = [
+    { id: 1, name: 'Alabama', region: 'South' },
+    { id: 2, name: 'Alaska', region: 'West' }
   ];
 }
 
 describe('Directive: Typeahead', () => {
-  let fixture:ComponentFixture<TestTypeaheadComponent>;
-  let component:TestTypeaheadComponent;
-  let directive:TypeaheadDirective;
-  let inputElement:HTMLInputElement;
-
+  let fixture: ComponentFixture<TestTypeaheadComponent>;
+  let component: TestTypeaheadComponent;
+  let directive: TypeaheadDirective;
+  let inputElement: HTMLInputElement;
+  let testBed: any;
   beforeEach(() => {
-    fixture = TestBed.configureTestingModule({
-      declarations: [TestTypeaheadComponent],
+    testBed = TestBed.configureTestingModule({
+      declarations: [TestTypeaheadComponent, TestTypeaheadScrollableComponent],
       imports: [TypeaheadModule]
-    }).createComponent(TestTypeaheadComponent);
+    });
+    fixture = testBed.createComponent(TestTypeaheadComponent);
 
     fixture.detectChanges();
 
@@ -47,7 +67,7 @@ describe('Directive: Typeahead', () => {
 
     // get the typeahead directive instance
     let inputs = fixture.debugElement.queryAll(By.directive(TypeaheadDirective));
-    directive = inputs.map((de:DebugElement) => de.injector.get(TypeaheadDirective) as TypeaheadDirective)[0];
+    directive = inputs.map((de: DebugElement) => de.injector.get(TypeaheadDirective) as TypeaheadDirective)[0];
   });
 
   it('should be defined on the test component', () => {
@@ -88,9 +108,10 @@ describe('Directive: Typeahead', () => {
     it('should not set the container reference', () => {
       expect(directive.container).toBeFalsy();
     });
+
   });
 
-  describe('onChange', () => {
+  describe('onChange keyup', () => {
 
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
@@ -115,17 +136,15 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('should result in 2 item matches, when \"Ala\" is entered', fakeAsync(() => {
-      expect(directive.matches).toContain(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
-      expect(directive.matches).toContain(new TypeaheadMatch({id: 2, name: 'Alaska', region: 'West'}, 'Alaska'));
+      expect(directive.matches).toContain(new TypeaheadMatch({ id: 1, name: 'Alabama', region: 'South' }, 'Alabama'));
+      expect(directive.matches).toContain(new TypeaheadMatch({ id: 2, name: 'Alaska', region: 'West' }, 'Alaska'));
     }));
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
       inputElement.value = 'foo';
       inputElement.dispatchEvent(new Event('keyup'));
-
       fixture.detectChanges();
       tick(100);
-
       expect(directive.matches.length).toBe(0);
     }));
   });
@@ -151,17 +170,65 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('should result in 2 item matches, when \"Ala\" is entered', fakeAsync(() => {
-      expect(directive.matches).toContain(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
-      expect(directive.matches).toContain(new TypeaheadMatch({id: 2, name: 'Alaska', region: 'West'}, 'Alaska'));
+      expect(directive.matches).toContain(new TypeaheadMatch({ id: 1, name: 'Alabama', region: 'South' }, 'Alabama'));
+      expect(directive.matches).toContain(new TypeaheadMatch({ id: 2, name: 'Alaska', region: 'West' }, 'Alaska'));
     }));
   });
 
   describe('changeModel', () => {
     it('should set the selectedState value', () => {
-      directive.changeModel(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
-
+      directive.changeModel(new TypeaheadMatch({ id: 1, name: 'Alabama', region: 'South' }, 'Alabama'));
       expect(component.selectedState).toBe('Alabama');
     });
+
+  });
+  describe('no minlength', () => {
+    beforeEach(() => {
+
+      fixture = testBed.createComponent(TestTypeaheadScrollableComponent);
+
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+      let inputDirective = fixture.debugElement.query(By.css('.no-min-length input'));
+
+      inputElement = inputDirective.nativeElement as HTMLInputElement;
+      // get the typeahead directive instance
+
+      directive = inputDirective.injector.get(TypeaheadDirective) as TypeaheadDirective;
+
+      inputElement.value = '';
+      inputElement.dispatchEvent(new Event('keyup'));
+
+    });
+
+    it('should not render the typeahead-container child element', () => {
+      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+      expect(typeaheadContainer).toBeNull();
+    });
+
+    it('should render the typeahead-container child element', (done: Function) => {
+      fixture.detectChanges();
+      setTimeout(() => {
+        let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+        expect(typeaheadContainer).toBeTruthy();
+        done();
+      }, 1);
+    });
+
+    it('should render it agian', (done: Function) => {
+      inputElement.value = 'Alaba';
+      inputElement.dispatchEvent(new Event('keydown'));
+      inputElement.dispatchEvent(new Event('keyup'));
+      fixture.detectChanges();
+      setTimeout(() => {
+        let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+        expect(typeaheadContainer).toBeTruthy();
+        expect(directive.container).toBeTruthy();
+        done();
+      }, 1);
+    });
+
   });
 
 });

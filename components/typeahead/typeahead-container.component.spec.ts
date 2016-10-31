@@ -9,6 +9,8 @@ describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
   let testModule: any;
   let component: TypeaheadContainerComponent;
+  let containingElement: HTMLElement;
+
   let options = new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined, scrollable: false, optionsInScrollableView: 3 });
   beforeEach(() => {
     testModule = TestBed.configureTestingModule({
@@ -22,6 +24,8 @@ describe('Component: TypeaheadContainer', () => {
 
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngAfterViewInit();
+    containingElement = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
   });
 
   it('should be defined', () => {
@@ -38,11 +42,10 @@ describe('Component: TypeaheadContainer', () => {
 
   describe('dropdown-menu', () => {
     let dropDown: HTMLElement;
-
     beforeEach(() => {
       component.position(fixture.elementRef);
       fixture.detectChanges();
-
+      component.ngAfterViewInit();
       dropDown = fixture.debugElement.query(By.css('.dropdown-menu')).nativeElement as HTMLElement;
     });
 
@@ -61,6 +64,10 @@ describe('Component: TypeaheadContainer', () => {
     it('should have left style set', () => {
       expect(dropDown.style.left).toBe('8px');
     });
+
+    it('should not be scrollable', () => {
+      expect(getComputedStyle(dropDown).getPropertyValue('overflow-y')).toBe('auto');
+    });
   });
 
   describe('matches', () => {
@@ -73,13 +80,17 @@ describe('Component: TypeaheadContainer', () => {
         new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
       ];
       fixture.detectChanges();
-
+      component.ngAfterViewInit();
       matches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li')));
     });
 
     describe('rendering', () => {
       it('should render 2 matches', () => {
         expect(matches.length).toBe(2);
+      });
+
+      it('should not show scrollbars', () => {
+        expect(getComputedStyle(containingElement[0]).getPropertyValue('overflow-y')).toBe('auto');
       });
 
       it('should highlight query for match', () => {
@@ -139,6 +150,7 @@ describe('Component: TypeaheadContainer', () => {
       ];
 
       fixture.detectChanges();
+      component.ngAfterViewInit();
       headerMatch = fixture.debugElement.query(By.css('.dropdown-header')).nativeElement;
       itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
     });
@@ -211,7 +223,7 @@ describe('Component: TypeaheadContainer', () => {
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
     let headerMatch: HTMLLIElement;
-    let containingElement: HTMLElement;
+    let containingElementScrollable: HTMLElement;
 
     beforeEach(() => {
 
@@ -244,17 +256,24 @@ describe('Component: TypeaheadContainer', () => {
         headerMatch = asNativeElements(headers);
       }
       itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
-      containingElement = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
+      containingElementScrollable = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
     });
 
     describe('rendering', () => {
+      it('should render scrollable element', () => {
+        expect(containingElementScrollable[0]).toBeDefined();
+      });
+
       it('should render 9 item matches', () => {
         expect(itemMatches.length).toBe(9);
       });
 
       it('should show scrollbars', () => {
-        expect(containingElement[0]).toBeDefined();
-        expect(getComputedStyle(containingElement[0]).getPropertyValue('overflow-y')).toBe('scroll');
+        expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('overflow-y')).toBe('scroll');
+      });
+
+      it('should show correct height on scrollable element', () => {
+        expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('height')).toBe('60px');
       });
 
       it('should highlight query for item match', () => {
@@ -275,7 +294,7 @@ describe('Component: TypeaheadContainer', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
         expect(component.isActive(component.matches[3])).toBeTruthy();
-        expect(containingElement[0].scrollTop).toBe(itemMatches[2].offsetTop - containingElement[0].offsetHeight + itemMatches[2].offsetHeight);
+        expect(containingElementScrollable[0].scrollTop).toBe(itemMatches[2].offsetTop - containingElementScrollable[0].offsetHeight + itemMatches[2].offsetHeight);
 
       });
       it('should select the last item match and scroll', () => {
@@ -290,7 +309,7 @@ describe('Component: TypeaheadContainer', () => {
           component.nextActiveMatch();
         }
         expect(component.isActive(component.matches[1])).toBeTruthy();
-        expect(containingElement[0].scrollTop).toBe(0);
+        expect(containingElementScrollable[0].scrollTop).toBe(0);
       });
     });
 
@@ -298,7 +317,7 @@ describe('Component: TypeaheadContainer', () => {
       it('should select the last item and scroll to bottom', () => {
         component.prevActiveMatch();
         expect(component.isActive(component.matches[11])).toBeTruthy();
-        expect(containingElement[0].scrollTop <= containingElement[0].scrollHeight).toBeTruthy();
+        expect(containingElementScrollable[0].scrollTop <= containingElementScrollable[0].scrollHeight).toBeTruthy();
       });
 
       it('should select the prev item match', () => {
@@ -309,5 +328,7 @@ describe('Component: TypeaheadContainer', () => {
         expect(component.isActive(component.matches[3])).toBeTruthy();
       });
     });
+
   });
+
 });

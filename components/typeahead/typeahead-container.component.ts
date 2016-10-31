@@ -76,10 +76,6 @@ export class TypeaheadContainerComponent implements AfterViewInit {
   public isFocused: boolean = false;
   public top: string;
   public left: string;
-  public display: string;
-  public height: number;
-  public guiHeight: string;
-
   public optionsInScrollableView: number;
   public scrollable: boolean;
 
@@ -88,6 +84,8 @@ export class TypeaheadContainerComponent implements AfterViewInit {
   private placement: string;
   private optionHeight: number;
   private ulPaddingTop: number;
+  private height: number;
+  private guiHeight: string;
 
   @ViewChildren('liElement') private liElements: QueryList<ElementRef>;
   @ViewChild('ulElement') private ulElement: ElementRef;
@@ -130,26 +128,27 @@ export class TypeaheadContainerComponent implements AfterViewInit {
   public ngAfterViewInit(): void {
 
     if (this.scrollable && this.liElements.first) {
-      this.ulPaddingTop = parseFloat(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-top').replace('px', ''));
-      const ulPaddingBottom = parseFloat(window.getComputedStyle(this.ulElement.nativeElement, undefined).getPropertyValue('padding-bottom').replace('px', ''));
+      this.ulPaddingTop = parseFloat(positionService.getStyle(this.ulElement.nativeElement, 'padding-top').replace('px', ''));
+      const ulPaddingBottom = parseFloat(positionService.getStyle(this.ulElement.nativeElement,'padding-bottom').replace('px', ''));
 
-      this.optionHeight = parseFloat(window.getComputedStyle(this.liElements.first.nativeElement).getPropertyValue('height').replace('px', ''));
+      this.optionHeight = parseFloat(positionService.getStyle(this.liElements.first.nativeElement, 'height').replace('px', ''));
 
       this.height = this.optionsInScrollableView * this.optionHeight;
       this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
-      this.refreshSize();
     }
+    this.refreshSize();
   }
 
   public refreshSize(): void {
     if (this.scrollable) {
       if (this._matches.length > this.optionsInScrollableView) {
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
+        this.setElementToBeScrollable();
+
       } else {
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
-        this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'auto');
+        this.setElementToBeNotScrollable();
       }
+    } else {
+      this.setElementToBeNotScrollable();
     }
   }
 
@@ -285,6 +284,16 @@ export class TypeaheadContainerComponent implements AfterViewInit {
 
   private scrollToTop(): void {
     this.ulElement.nativeElement.scrollTop = 0;
+  }
+
+  private setElementToBeScrollable(): void {
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
+  }
+
+  private setElementToBeNotScrollable(): void {
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'auto');
   }
 
 }

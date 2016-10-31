@@ -7,6 +7,7 @@ import { FormControl, NgControl } from '@angular/forms';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadOptions } from './typeahead-options.class';
 import { TypeaheadUtils } from './typeahead-utils';
+import { positionService } from '../position';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -106,6 +107,7 @@ export class TypeaheadDirective implements OnInit {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
+
       this.typeaheadLoading.emit(false);
       this.typeaheadNoResults.emit(false);
       this.hide();
@@ -175,7 +177,6 @@ export class TypeaheadDirective implements OnInit {
       this.syncActions();
     }
 
-    this.setIeInputEventForClear();
   }
 
   public changeModel(match: TypeaheadMatch): void {
@@ -227,25 +228,12 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  private setIeInputEventForClear(): void {
-    this.element.nativeElement.addEventListener('input', (e: Event) => {
-      if (e && e.target && (e.target as HTMLInputElement).value === '') {
-        this.clearEvent();
-      }
-    });
-  }
-
-  private clearEvent(): void {
-    if (this._matches) {
-      this._matches.length = 0;
-    }
-    this.keyUpEventEmitter.emit('');
-  }
-
   private asyncActions(): void {
     this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
-      .mergeMap(() => this.typeahead)
+      .mergeMap(() => {
+        return this.typeahead;
+      })
       .subscribe(
       (matches: any[]) => {
         this.finalizeAsyncCall(matches);
@@ -261,7 +249,6 @@ export class TypeaheadDirective implements OnInit {
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap((value: string) => {
         let normalizedQuery = this.normalizeQuery(value);
-
         return Observable.from(this.typeahead)
           .filter((option: any) => {
             return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
@@ -325,7 +312,9 @@ export class TypeaheadDirective implements OnInit {
       return;
     }
 
-    if (this.container) {
+    if (this.shouldIgnoreMatches()) {
+      this.hide();
+    } else if (this.container) {
       // This improves the speed as it won't have to be done for each list item
       let normalizedQuery = (this.typeaheadLatinize
         ? TypeaheadUtils.latinize(this.ngControl.control.value)
@@ -371,4 +360,9 @@ export class TypeaheadDirective implements OnInit {
   private hasMatches(): boolean {
     return this._matches.length > 0;
   }
+
+  private shouldIgnoreMatches(): boolean {
+    return this.ngControl.control.value === '' && this.typeaheadAsync && this.typeaheadMinLength === 0 && !positionService.isFocused(this.element.nativeElement);
+  }
+
 }
