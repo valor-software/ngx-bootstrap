@@ -147,6 +147,25 @@ describe('Directive: Typeahead', () => {
       tick(100);
       expect(directive.matches.length).toBe(0);
     }));
+
+    it('should prevent default on enter', ()=>{
+      let event:any = {keyCode: 13, preventDefault: ()=> {}}; 
+      let preventDefaultSpy = spyOn(event, 'preventDefault').and.callThrough();
+      expect(directive.container).toBeTruthy();
+      directive.onKeydown(event as KeyboardEvent);
+      expect(preventDefaultSpy.calls.count()).toBe(1);
+
+    });
+
+    it('should hide typeahead-conteiner', ()=>{
+      let event:any = {keyCode: 9, preventDefault: ()=> {}}; 
+      let hideSpy = spyOn(directive, 'hide').and.callThrough();
+      directive.onKeydown(event as KeyboardEvent);
+      expect(hideSpy.calls.count()).toBe(1);
+
+    });
+    
+
   });
 
   describe('onChange grouped', () => {
