@@ -85,6 +85,25 @@ class TestTypeaheadScrollableComponent {
   ];
 }
 
+@Component({
+  template: `<div class="min-length">
+  <input [(ngModel)]="selectedState" 
+         [typeahead]="states" 
+         [typeaheadOptionField]="'name'" 
+         [typeaheadScrollable]='true'
+         [typeaheadMinLength]='3'
+         (typeaheadOnSelect)="typeaheadOnSelect($event)">
+         </div>
+`
+})
+class TestTypeaheadWithMinLengthComponent {
+  public selectedState: string;
+  public states: State[] = [
+    { id: 1, name: 'Alabama', region: 'South' },
+    { id: 2, name: 'Alaska', region: 'West' }
+  ];
+}
+
 describe('Directive: Typeahead', () => {
   let fixture: ComponentFixture<TestTypeaheadComponent>;
   let component: TestTypeaheadComponent;
@@ -93,7 +112,7 @@ describe('Directive: Typeahead', () => {
   let testBed: any;
   beforeEach(() => {
     testBed = TestBed.configureTestingModule({
-      declarations: [TestTypeaheadComponent, TestTypeaheadScrollableComponent, TestTypeaheadScrollableAsyncComponent],
+      declarations: [TestTypeaheadComponent, TestTypeaheadScrollableComponent, TestTypeaheadScrollableAsyncComponent, TestTypeaheadWithMinLengthComponent],
       imports: [TypeaheadModule]
     });
     fixture = testBed.createComponent(TestTypeaheadComponent);
@@ -150,8 +169,8 @@ describe('Directive: Typeahead', () => {
   });
 
   describe('onChange keyup', () => {
-
     beforeEach(fakeAsync(() => {
+
       inputElement.focus();
       inputElement.value = 'Ala';
 
@@ -159,6 +178,7 @@ describe('Directive: Typeahead', () => {
 
       fixture.detectChanges();
       tick(100);
+
     }));
 
     it('should render the typeahead-container child element', fakeAsync(() => {
@@ -205,6 +225,61 @@ describe('Directive: Typeahead', () => {
       };
       let hideSpy = spyOn(directive, 'hide').and.callThrough();
       directive.onKeydown(event as KeyboardEvent);
+      expect(hideSpy.calls.count()).toBe(1);
+    });
+
+    it('should select active match', () => {
+      let event: any = {
+        keyCode: 13,
+        preventDefault: () => undefined,
+        target: {
+          value: 'Ala'
+        }
+      };
+      let selectActiveMatchSpy = spyOn(directive.container, 'selectActiveMatch').and.callThrough();
+      directive.onChange(event as Event);
+      expect(selectActiveMatchSpy.calls.count()).toBe(1);
+
+    });
+
+    it('should select next active match', () => {
+      let event: any = {
+        keyCode: 40,
+        preventDefault: () => undefined,
+        target: {
+          value: 'Ala'
+        }
+      };
+      let prevActiveMatchSpy = spyOn(directive.container, 'nextActiveMatch').and.callThrough();
+      directive.onChange(event as Event);
+      expect(prevActiveMatchSpy.calls.count()).toBe(1);
+
+    });
+
+    it('should select prev match', () => {
+      let event: any = {
+        keyCode: 38,
+        preventDefault: () => undefined,
+        target: {
+          value: 'Ala'
+        }
+      };
+      let prevActiveMatchSpy = spyOn(directive.container, 'prevActiveMatch').and.callThrough();
+      directive.onChange(event as Event);
+      expect(prevActiveMatchSpy.calls.count()).toBe(1);
+
+    });
+
+    it('should hide typeahead-container on esc', () => {
+      let event: any = {
+        keyCode: 27,
+        preventDefault: () => undefined,
+        target: {
+          value: 'Ala'
+        }
+      };
+      let hideSpy = spyOn(directive, 'hide').and.callThrough();
+      directive.onChange(event as Event);
       expect(hideSpy.calls.count()).toBe(1);
 
     });
