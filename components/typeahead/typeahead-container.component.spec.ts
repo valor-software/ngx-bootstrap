@@ -180,7 +180,6 @@ describe('Component: TypeaheadContainer', () => {
     describe('nextActiveMatch', () => {
       it('should select the next item match', () => {
         component.nextActiveMatch();
-
         expect(component.isActive(component.matches[2])).toBeTruthy();
       });
 
@@ -195,14 +194,12 @@ describe('Component: TypeaheadContainer', () => {
     describe('prevActiveMatch', () => {
       it('should skip the header match', () => {
         component.prevActiveMatch();
-
         expect(component.isActive(component.matches[0])).toBeFalsy();
       });
 
       it('should select the first match again, when triggered twice', () => {
         component.prevActiveMatch();
         component.prevActiveMatch();
-
         expect(component.isActive(component.matches[1])).toBeTruthy();
       });
     });
@@ -215,7 +212,6 @@ describe('Component: TypeaheadContainer', () => {
 
     it('should not be focused on focusLost()', () => {
       component.focusLost();
-
       expect(component.isFocused).toBeFalsy();
     });
   });
@@ -235,7 +231,7 @@ describe('Component: TypeaheadContainer', () => {
 
       component.query = 'a';
       component.matches = [
-        new TypeaheadMatch('fruits', 'fruits', true),
+        //        new TypeaheadMatch('fruits', 'fruits', true),
         new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
         new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
         new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
@@ -264,6 +260,31 @@ describe('Component: TypeaheadContainer', () => {
         expect(containingElementScrollable[0]).toBeDefined();
       });
 
+      it('should not throw exception when scrollPrevious is without li elements', () => {
+        (component as any).liElements = undefined;
+        (component as any).scrollPrevious(1);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+      });
+
+      it('should not throw exception when scrollPrevious is scrolling outside of index ', () => {
+        (component as any).scrollPrevious(100);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+
+      });
+
+      it('should not throw exception when scrollNext is without li elements', () => {
+        (component as any).liElements = undefined;
+
+        (component as any).scrollNext(1);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+
+      });
+
+      it('should not throw exception when scrollNext is scrolling outside of index', () => {
+        (component as any).scrollNext(100);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+      });
+
       it('should render 9 item matches', () => {
         expect(itemMatches.length).toBe(9);
       });
@@ -288,12 +309,12 @@ describe('Component: TypeaheadContainer', () => {
     describe('nextActiveMatch', () => {
       it('should select the next item match', () => {
         component.nextActiveMatch();
-        expect(component.isActive(component.matches[2])).toBeTruthy();
+        expect(component.isActive(component.matches[1])).toBeTruthy();
       });
       it('should select the next item match and scroll', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
-        expect(component.isActive(component.matches[3])).toBeTruthy();
+        expect(component.isActive(component.matches[2])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(itemMatches[2].offsetTop - containingElementScrollable[0].offsetHeight + itemMatches[2].offsetHeight);
 
       });
@@ -301,14 +322,14 @@ describe('Component: TypeaheadContainer', () => {
         for (let i = 0; i < 8; i++) {
           component.nextActiveMatch();
         }
-        expect(component.isActive(component.matches[11])).toBeTruthy();
+        expect(component.isActive(component.matches[10])).toBeTruthy();
       });
 
       it('should select the first item match and scroll to top', () => {
         for (let i = 0; i < 9; i++) {
           component.nextActiveMatch();
         }
-        expect(component.isActive(component.matches[1])).toBeTruthy();
+        expect(component.isActive(component.matches[0])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(0);
       });
     });
@@ -316,7 +337,7 @@ describe('Component: TypeaheadContainer', () => {
     describe('prevActiveMatch', () => {
       it('should select the last item and scroll to bottom', () => {
         component.prevActiveMatch();
-        expect(component.isActive(component.matches[11])).toBeTruthy();
+        expect(component.isActive(component.matches[10])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop <= containingElementScrollable[0].scrollHeight).toBeTruthy();
       });
 
@@ -325,7 +346,7 @@ describe('Component: TypeaheadContainer', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
         component.prevActiveMatch();
-        expect(component.isActive(component.matches[3])).toBeTruthy();
+        expect(component.isActive(component.matches[2])).toBeTruthy();
       });
     });
 

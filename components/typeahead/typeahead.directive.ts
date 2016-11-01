@@ -218,7 +218,6 @@ export class TypeaheadDirective implements OnInit {
       ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
       : normalizedQuery;
     this.container.matches = this._matches;
-    this.element.nativeElement.focus();
   }
 
   public hide(): void {
@@ -362,7 +361,7 @@ export class TypeaheadDirective implements OnInit {
   }
 
   private shouldIgnoreMatches(): boolean {
-    return this.ngControl.control.value === '' && this.typeaheadAsync && this.typeaheadMinLength === 0 && !positionService.isFocused(this.element.nativeElement);
+    return !positionService.isFocused(this.element.nativeElement);
   }
 
 }

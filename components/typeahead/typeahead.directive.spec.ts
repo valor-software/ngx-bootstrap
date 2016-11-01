@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { EventEmitter } from '@angular/core';
 import { TypeaheadModule } from './typeahead.module';
 import { Component, DebugElement } from '@angular/core';
 import { TypeaheadDirective } from './typeahead.directive';
@@ -13,11 +14,11 @@ interface State {
 }
 
 @Component({
-  template: `
+  template: `<div class='default'>
   <input [(ngModel)]="selectedState" 
          [typeahead]="states" 
          [typeaheadOptionField]="'name'" 
-         (typeaheadOnSelect)="typeaheadOnSelect($event)">
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"></div>
 `
 })
 class TestTypeaheadComponent {
@@ -26,6 +27,43 @@ class TestTypeaheadComponent {
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' }
   ];
+}
+
+@Component({
+  template: `<div class="no-min-length-async">
+  <input [(ngModel)]="selectedState" 
+         [typeahead]="dataSourceDelayed" 
+         [typeaheadOptionField]="'name'" 
+         [typeaheadScrollable]='true'
+         [typeaheadMinLength]='0'
+         (typeaheadOnSelect)="typeaheadOnSelect($event)">
+         </div>
+`
+})
+class TestTypeaheadScrollableAsyncComponent {
+  public selectedState: string;
+  public states: State[] = [
+    { id: 1, name: 'Alabama', region: 'South' },
+    { id: 2, name: 'Alaska', region: 'West' }
+  ];
+  public fakeCallback: EventEmitter<any> = new EventEmitter();
+  public dataSourceDelayed: Observable<State[]> = Observable.create((observer: any) => {
+    // Runs on every search
+    setTimeout(() => {
+      observer.next(this.selectedState);
+      this.fakeCallback.emit(this.selectedState);
+    }, 100);
+  }).mergeMap((token: string) => this.getStatesSimpleAsObservable(token));
+
+  public getStatesSimpleAsObservable(token: string): Observable<any> {
+    let query = new RegExp(token, 'ig');
+
+    return Observable.of(
+      this.states.filter((state: any) => {
+        return query.test(state);
+      })
+    );
+  }
 }
 
 @Component({
@@ -55,7 +93,7 @@ describe('Directive: Typeahead', () => {
   let testBed: any;
   beforeEach(() => {
     testBed = TestBed.configureTestingModule({
-      declarations: [TestTypeaheadComponent, TestTypeaheadScrollableComponent],
+      declarations: [TestTypeaheadComponent, TestTypeaheadScrollableComponent, TestTypeaheadScrollableAsyncComponent],
       imports: [TypeaheadModule]
     });
     fixture = testBed.createComponent(TestTypeaheadComponent);
@@ -63,7 +101,7 @@ describe('Directive: Typeahead', () => {
     fixture.detectChanges();
 
     component = fixture.componentInstance;
-    inputElement = fixture.debugElement.query(By.css('input')).nativeElement as HTMLInputElement;
+    inputElement = fixture.debugElement.query(By.css('.default input')).nativeElement as HTMLInputElement;
 
     // get the typeahead directive instance
     let inputs = fixture.debugElement.queryAll(By.directive(TypeaheadDirective));
@@ -100,7 +138,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should not render the typeahead-container', () => {
-      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+      let typeaheadContainer = fixture.debugElement.query(By.css('.default typeahead-container'));
 
       expect(typeaheadContainer).toBeNull();
     });
@@ -114,18 +152,19 @@ describe('Directive: Typeahead', () => {
   describe('onChange keyup', () => {
 
     beforeEach(fakeAsync(() => {
+      inputElement.focus();
       inputElement.value = 'Ala';
+
       inputElement.dispatchEvent(new Event('keyup'));
 
       fixture.detectChanges();
       tick(100);
     }));
 
-    it('should render the typeahead-container child element', () => {
-      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
-
+    it('should render the typeahead-container child element', fakeAsync(() => {
+      let typeaheadContainer = fixture.debugElement.query(By.css('.default typeahead-container'));
       expect(typeaheadContainer).not.toBeNull();
-    });
+    }));
 
     it('should set the container reference', () => {
       expect(directive.container).toBeTruthy();
@@ -159,7 +198,7 @@ describe('Directive: Typeahead', () => {
       expect(preventDefaultSpy.calls.count()).toBe(1);
     });
 
-    it('should hide typeahead-conteiner', () => {
+    it('should hide typeahead-container', () => {
       let event: any = {
         keyCode: 9,
         preventDefault: () => undefined
@@ -217,41 +256,95 @@ describe('Directive: Typeahead', () => {
 
       inputElement = inputDirective.nativeElement as HTMLInputElement;
       // get the typeahead directive instance
-
       directive = inputDirective.injector.get(TypeaheadDirective) as TypeaheadDirective;
+    });
 
+    it('should render the typeahead-container child element', fakeAsync(() => {
+      inputElement.focus();
       inputElement.value = '';
+      inputElement.dispatchEvent(new Event('keydown'));
       inputElement.dispatchEvent(new Event('keyup'));
-
-    });
-
-    it('should not render the typeahead-container child element', () => {
-      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
-      expect(typeaheadContainer).toBeNull();
-    });
-
-    it('should render the typeahead-container child element', (done: Function) => {
       fixture.detectChanges();
-      setTimeout(() => {
-        let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
-        expect(typeaheadContainer).toBeTruthy();
-        done();
-      }, 1);
-    });
+      tick(100);
+      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+      expect(typeaheadContainer).toBeTruthy();
+    }));
 
-    it('should render it agian', (done: Function) => {
+    it('should render it agian', fakeAsync(() => {
+      inputElement.focus();
       inputElement.value = 'Alaba';
       inputElement.dispatchEvent(new Event('keydown'));
       inputElement.dispatchEvent(new Event('keyup'));
       fixture.detectChanges();
-      setTimeout(() => {
-        let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
-        expect(typeaheadContainer).toBeTruthy();
-        expect(directive.container).toBeTruthy();
-        done();
-      }, 1);
+      tick(100);
+      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+      expect(typeaheadContainer).toBeTruthy();
+      expect(directive.container).toBeTruthy();
+    }));
+
+    it('should use same container', fakeAsync(() => {
+      inputElement.focus();
+      inputElement.value = 'Alaba';
+      inputElement.dispatchEvent(new Event('keydown'));
+      inputElement.dispatchEvent(new Event('keyup'));
+      fixture.detectChanges();
+      tick(100);
+      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+      const firstContainer = directive.container;
+      expect(typeaheadContainer).toBeTruthy();
+      expect(directive.container).toBeTruthy();
+      inputElement.value = 'Ala';
+      inputElement.dispatchEvent(new Event('keydown'));
+      inputElement.dispatchEvent(new Event('keyup'));
+      fixture.detectChanges();
+      tick(100);
+      expect(firstContainer === directive.container).toBe(true);
+    }));
+
+  });
+
+  describe('no minlength and async', () => {
+    let componentAsync: TestTypeaheadScrollableAsyncComponent;
+    let fakeElement: HTMLElement;
+    beforeEach(() => {
+
+      fixture = testBed.createComponent(TestTypeaheadScrollableAsyncComponent);
+
+      fixture.detectChanges();
+
+      componentAsync = fixture.componentInstance;
+      let inputDirective = fixture.debugElement.query(By.css('.no-min-length-async input'));
+
+      inputElement = inputDirective.nativeElement as HTMLInputElement;
+      // get the typeahead directive instance
+
+      directive = inputDirective.injector.get(TypeaheadDirective) as TypeaheadDirective;
+
+      inputElement.value = '';
+      fakeElement = document.createElement('input');
+      document.body.appendChild(fakeElement);
+
     });
 
+    it('should not set input to focused when user blur input before async load', fakeAsync(() => {
+      inputElement.focus();
+      inputElement.value = 'Alaba';
+      inputElement.dispatchEvent(new Event('keydown'));
+      inputElement.dispatchEvent(new Event('keyup'));
+      fixture.detectChanges();
+      tick(100);
+      fakeElement.focus();
+      (directive as any).finalizeAsyncCall(component.states);
+      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+      expect(typeaheadContainer).toBeFalsy();
+      expect(directive.container).toBeFalsy();
+      tick(100);
+      fixture.detectChanges();
+    }));
+
+    afterEach(() => {
+      fakeElement.remove();
+    });
   });
 
 });
