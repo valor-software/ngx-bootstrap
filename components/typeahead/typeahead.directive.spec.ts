@@ -151,10 +151,7 @@ describe('Directive: Typeahead', () => {
     it('should prevent default on enter', () => {
       let event: any = {
         keyCode: 13,
-        preventDefault: () => {
-          let t = 0;
-          t++;
-        }
+        preventDefault: () => undefined
       };
       let preventDefaultSpy = spyOn(event, 'preventDefault').and.callThrough();
       expect(directive.container).toBeTruthy();
@@ -165,10 +162,7 @@ describe('Directive: Typeahead', () => {
     it('should hide typeahead-conteiner', () => {
       let event: any = {
         keyCode: 9,
-        preventDefault: () => {
-          let t = 0;
-          t++;
-        }
+        preventDefault: () => undefined
       };
       let hideSpy = spyOn(directive, 'hide').and.callThrough();
       directive.onKeydown(event as KeyboardEvent);
