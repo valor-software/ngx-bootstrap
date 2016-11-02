@@ -5,6 +5,8 @@ import { ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { ModalModule } from 'ng2-bootstrap/components/modal';
 ```
 
+Add the ModalModule import to the imports array of the child module that uses the modal, not the AppModule.
+
 ### Annotations
 ```typescript
 @Directive({
