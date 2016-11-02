@@ -40,11 +40,11 @@ export class TooltipDirective {
   public viewContainerRef: ViewContainerRef;
   public componentsHelper: ComponentsHelper;
 
-  private changeDetectorRef: ChangeDetectorRef;
-  private visible: boolean = false;
-  private tooltip: ComponentRef<any>;
+  protected changeDetectorRef: ChangeDetectorRef;
+  protected visible: boolean = false;
+  protected tooltip: ComponentRef<any>;
 
-  private delayTimeoutId: number;
+  protected delayTimeoutId: number;
 
   public constructor(viewContainerRef: ViewContainerRef,
                      componentsHelper: ComponentsHelper,
@@ -116,7 +116,7 @@ export class TooltipDirective {
     this.triggerStateChanged();
   }
 
-  private triggerStateChanged(): void {
+  protected triggerStateChanged(): void {
     this.tooltipStateChanged.emit(this.visible);
   }
 }

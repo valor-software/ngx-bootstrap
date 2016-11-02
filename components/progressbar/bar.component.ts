@@ -39,7 +39,7 @@ export class BarComponent implements OnInit, OnDestroy {
   public transition:string;
   public progress:ProgressDirective;
 
-  private _value:number;
+  protected _value:number;
 
   public constructor(@Host() progress:ProgressDirective) {
     this.progress = progress;

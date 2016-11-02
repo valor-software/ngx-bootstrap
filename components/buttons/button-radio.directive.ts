@@ -42,7 +42,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
         this.onChange(this.value);
     }
 
-    public constructor( private el: ElementRef) {
+    public constructor( protected el: ElementRef) {
     }
 
     public ngOnInit(): void {

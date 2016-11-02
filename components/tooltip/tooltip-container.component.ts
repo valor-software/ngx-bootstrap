@@ -36,17 +36,17 @@ export class TooltipContainerComponent implements AfterViewInit {
   public display:string = 'block';
   public content:string;
   public htmlContent:string | TemplateRef<any>;
-  private placement:string;
-  private popupClass:string;
-  private animation:boolean;
-  private isOpen:boolean;
-  private appendToBody:boolean;
-  private hostEl:ElementRef;
-  private context:any;
+  protected placement:string;
+  protected popupClass:string;
+  protected animation:boolean;
+  protected isOpen:boolean;
+  protected appendToBody:boolean;
+  protected hostEl:ElementRef;
+  protected context:any;
   /* tslint:enable */
 
-  private element:ElementRef;
-  private cdr:ChangeDetectorRef;
+  protected element:ElementRef;
+  protected cdr:ChangeDetectorRef;
 
   public constructor(element:ElementRef,
                      cdr:ChangeDetectorRef,

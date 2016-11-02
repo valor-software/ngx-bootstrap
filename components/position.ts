@@ -105,15 +105,15 @@ export class PositionService {
     return targetElPos;
   }
 
-  private get window():Window {
+  protected get window():Window {
     return window;
   }
 
-  private get document():Document {
+  protected get document():Document {
     return window.document;
   }
 
-  private getStyle(nativeEl:HTMLElement, cssProp:string):string {
+  protected getStyle(nativeEl:HTMLElement, cssProp:string):string {
     // IE
     if ((nativeEl as any).currentStyle) {
       return (nativeEl as any).currentStyle[cssProp];
@@ -130,7 +130,7 @@ export class PositionService {
    * Checks if a given element is statically positioned
    * @param nativeEl - raw DOM element
    */
-  private isStaticPositioned(nativeEl:HTMLElement):boolean {
+  protected isStaticPositioned(nativeEl:HTMLElement):boolean {
     return (this.getStyle(nativeEl, 'position') || 'static' ) === 'static';
   }
 
@@ -139,7 +139,7 @@ export class PositionService {
    * element
    * @param nativeEl
    */
-  private parentOffsetEl(nativeEl:HTMLElement):any {
+  protected parentOffsetEl(nativeEl:HTMLElement):any {
     let offsetParent:any = nativeEl.offsetParent || this.document;
     while (offsetParent && offsetParent !== this.document &&
     this.isStaticPositioned(offsetParent)) {

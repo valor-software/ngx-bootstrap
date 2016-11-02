@@ -49,8 +49,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 })
 export class YearPickerComponent implements OnInit {
   public datePicker:DatePickerInnerComponent;
-  private title:string;
-  private rows:Array<any> = [];
+  protected title:string;
+  protected rows:Array<any> = [];
 
   public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;
@@ -89,7 +89,7 @@ export class YearPickerComponent implements OnInit {
     this.datePicker.refreshView();
   }
 
-  private getStartingYear(year:number):number {
+  protected getStartingYear(year:number):number {
     // todo: parseInt
     return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
   }

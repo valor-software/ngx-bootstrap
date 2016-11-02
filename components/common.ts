@@ -12,7 +12,7 @@ export interface KeyAttribute {
 export class NgTranscludeDirective {
   public viewRef:ViewContainerRef;
 
-  private _ngTransclude:TemplateRef<any>;
+  protected _ngTransclude:TemplateRef<any>;
 
   @Input()
   public set ngTransclude(templateRef:TemplateRef<any>) {
@@ -26,7 +26,7 @@ export class NgTranscludeDirective {
     return this._ngTransclude;
   }
 
-  public constructor(private _viewRef:ViewContainerRef) {
+  public constructor(protected _viewRef:ViewContainerRef) {
     this.viewRef = _viewRef;
   }
 }
