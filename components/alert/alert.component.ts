@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AlertConfig } from './alert.config';
 
 const ALERT_TEMPLATE = `
   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
@@ -16,16 +17,28 @@ const ALERT_TEMPLATE = `
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {
-  @Input() public type:string = 'warning';
-  @Input() public dismissible:boolean;
-  @Input() public dismissOnTimeout:number;
+  @Input() public type: string;
+  @Input() public dismissible: boolean;
+  @Input() public dismissOnTimeout: number;
 
   @Output() public close:EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
 
-  public closed:boolean;
+  public closed: boolean;
   protected classes:Array<string> = [];
 
-  public ngOnInit():any {
+  public constructor(public config: AlertConfig) {
+    this.configureOptions();
+  }
+
+  public configureOptions(): void {
+    const { type, dismissible, dismissOnTimeout} = this.config;
+
+    this.type = type;
+    this.dismissible = dismissible;
+    this.dismissOnTimeout = dismissOnTimeout;
+  }
+
+  public ngOnInit(): void {
     this.classes[0] = `alert-${this.type}`;
     if (this.dismissible) {
       this.classes[1] = 'alert-dismissible';
@@ -39,7 +52,7 @@ export class AlertComponent implements OnInit {
   }
 
   // todo: mouse event + touch + pointer
-  public onClose():void {
+  public onClose(): void {
     this.closed = true;
     this.close.emit(this);
   }
