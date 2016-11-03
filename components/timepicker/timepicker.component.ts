@@ -128,16 +128,16 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   public invalidMinutes:any;
 
   // result value
-  private _selected:Date = new Date();
+  protected _selected:Date = new Date();
 
-  private _showMeridian:boolean;
-  private meridian:any; // ??
+  protected _showMeridian:boolean;
+  protected meridian:any; // ??
 
-  private get selected():Date {
+  protected get selected():Date {
     return this._selected;
   }
 
-  private set selected(v:Date) {
+  protected set selected(v:Date) {
     if (v) {
       this._selected = v;
       this.updateTemplate();
@@ -335,13 +335,13 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  private refresh(/*type?:string*/):void {
+  protected refresh(/*type?:string*/):void {
     // this.makeValid();
     this.updateTemplate();
     this.cd.viewToModelUpdate(this.selected);
   }
 
-  private updateTemplate(/*keyboardChange?:any*/):void {
+  protected updateTemplate(/*keyboardChange?:any*/):void {
     let hours = this.selected.getHours();
     let minutes = this.selected.getMinutes();
 
@@ -361,7 +361,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
       : this.meridians[1];
   }
 
-  private getHoursFromTemplate():number {
+  protected getHoursFromTemplate():number {
     let hours = parseInt(this.hours, 10);
     let valid = this.showMeridian
       ? (hours > 0 && hours < 13)
@@ -381,23 +381,23 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     return hours;
   }
 
-  private getMinutesFromTemplate():number {
+  protected getMinutesFromTemplate():number {
     let minutes = parseInt(this.minutes, 10);
     return (minutes >= 0 && minutes < 60) ? minutes : undefined;
   }
 
-  private pad(value:string|number):string {
+  protected pad(value:string|number):string {
     return (isDefined(value) && value.toString().length < 2)
       ? '0' + value
       : value.toString();
   }
 
-  private addMinutesToSelected(minutes:any):void {
+  protected addMinutesToSelected(minutes:any):void {
     this.selected = addMinutes(this.selected, minutes);
     this.refresh();
   }
 
-  private noToggleMeridian():boolean {
+  protected noToggleMeridian():boolean {
     if (this.readonlyInput) {
       return true;
     }

@@ -37,7 +37,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   public cd:NgModel;
   public range:Array<any>;
   public value:number;
-  private preValue:number;
+  protected preValue:number;
 
   @HostListener('keydown', ['$event'])
   public onKeydown(event:KeyboardEvent):void {
@@ -103,7 +103,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.onTouched = fn;
   }
 
-  private buildTemplateObjects(ratingStates:Array<any>, max:number):Array<any> {
+  protected buildTemplateObjects(ratingStates:Array<any>, max:number):Array<any> {
     ratingStates = ratingStates || [];
     let count = ratingStates.length || max;
     let result:any[] = [];
@@ -118,7 +118,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     return result;
   }
 
-  private rate(value:number):void {
+  protected rate(value:number):void {
     if (!this.readonly && value >= 0 && value <= this.range.length) {
       this.writeValue(value);
       this.cd.viewToModelUpdate(value);

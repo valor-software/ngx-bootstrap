@@ -1,3 +1,105 @@
+<a name="1.1.16"></a>
+## [1.1.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.23...v1.1.16) (2016-10-26)
+
+
+### Bug Fixes
+
+* **aot:** 2 more private methods made public ([0dbbf09](https://github.com/valor-software/ng2-bootstrap/commit/0dbbf09)), closes [#1093](https://github.com/valor-software/ng2-bootstrap/issues/1093)
+* **build:** All `[@HostBinding](https://github.com/HostBinding)` and `[@HostListener](https://github.com/HostListener)` should be public ([#1086](https://github.com/valor-software/ng2-bootstrap/issues/1086)) ([3691757](https://github.com/valor-software/ng2-bootstrap/commit/3691757)), closes [#1080](https://github.com/valor-software/ng2-bootstrap/issues/1080)
+* **build:** change properties privacy to use in factories ([19c0c61](https://github.com/valor-software/ng2-bootstrap/commit/19c0c61))
+* **build:** export all internal classes so AoT can work without issues ([6e6be1a](https://github.com/valor-software/ng2-bootstrap/commit/6e6be1a)), closes [#1093](https://github.com/valor-software/ng2-bootstrap/issues/1093)
+* **build:** restore coverage reports ([#755](https://github.com/valor-software/ng2-bootstrap/issues/755)) ([26191eb](https://github.com/valor-software/ng2-bootstrap/commit/26191eb))
+* **buttons:** all [@Input](https://github.com/Input)() fields should be public ([c96ffd3](https://github.com/valor-software/ng2-bootstrap/commit/c96ffd3))
+* **ci:** upload test coverage report to codecov ([#756](https://github.com/valor-software/ng2-bootstrap/issues/756)) ([4358773](https://github.com/valor-software/ng2-bootstrap/commit/4358773))
+* **datepicker:** changing the date programatically selects the correct date ([#1041](https://github.com/valor-software/ng2-bootstrap/issues/1041)) ([fb6d532](https://github.com/valor-software/ng2-bootstrap/commit/fb6d532)), closes [#858](https://github.com/valor-software/ng2-bootstrap/issues/858)
+* **datepicker:** do not emit selection done on ngModel changes ([7b24283](https://github.com/valor-software/ng2-bootstrap/commit/7b24283)), closes [#1095](https://github.com/valor-software/ng2-bootstrap/issues/1095)
+* **datepicker:** fixed broken bindings for aria-labelby and ids ([#1055](https://github.com/valor-software/ng2-bootstrap/issues/1055)) ([26d9209](https://github.com/valor-software/ng2-bootstrap/commit/26d9209))
+* **datepicker:** Fixing Colspan ([#1057](https://github.com/valor-software/ng2-bootstrap/issues/1057)) ([e71a8ae](https://github.com/valor-software/ng2-bootstrap/commit/e71a8ae))
+* **datepicker:** imlement ReactiveForms setDisabledState for TimepickerComponent ([cd58c3b](https://github.com/valor-software/ng2-bootstrap/commit/cd58c3b)), closes [#1024](https://github.com/valor-software/ng2-bootstrap/issues/1024)
+* **datepicker:** remove unused code ([#837](https://github.com/valor-software/ng2-bootstrap/issues/837)) ([fa22c98](https://github.com/valor-software/ng2-bootstrap/commit/fa22c98))
+* **datepicker:** removed popup stub ([d1a7d09](https://github.com/valor-software/ng2-bootstrap/commit/d1a7d09))
+* **demo:** fixed accordion demo ([bd4cc96](https://github.com/valor-software/ng2-bootstrap/commit/bd4cc96)), closes [#399](https://github.com/valor-software/ng2-bootstrap/issues/399)
+* **demo:** fixed tabs demo ([#1050](https://github.com/valor-software/ng2-bootstrap/issues/1050)) ([969a61a](https://github.com/valor-software/ng2-bootstrap/commit/969a61a))
+* **doc:** formatYear instead of formatMear for the datepicker ([#1126](https://github.com/valor-software/ng2-bootstrap/issues/1126)) ([045573b](https://github.com/valor-software/ng2-bootstrap/commit/045573b))
+* **dropdown:** toggle does not close when clicking directly on an icon in Chrome ([#851](https://github.com/valor-software/ng2-bootstrap/issues/851)) ([341dcf8](https://github.com/valor-software/ng2-bootstrap/commit/341dcf8)), closes [#658](https://github.com/valor-software/ng2-bootstrap/issues/658)
+* **export:** removed obsolete exports to avoid missusage ([6993e97](https://github.com/valor-software/ng2-bootstrap/commit/6993e97))
+* **helpers:** add a way to set root view component ref ([79d3335](https://github.com/valor-software/ng2-bootstrap/commit/79d3335)), closes [#1056](https://github.com/valor-software/ng2-bootstrap/issues/1056)
+* **modal:** Call hideModal in ngOnDestroy if modal is shown ([#1038](https://github.com/valor-software/ng2-bootstrap/issues/1038)) ([b38db2a](https://github.com/valor-software/ng2-bootstrap/commit/b38db2a)), closes [#853](https://github.com/valor-software/ng2-bootstrap/issues/853) [#1051](https://github.com/valor-software/ng2-bootstrap/issues/1051) [#1052](https://github.com/valor-software/ng2-bootstrap/issues/1052)
+* **modal:** fixing hack which gets root viewContainerRef to attach backdrop ([b5db597](https://github.com/valor-software/ng2-bootstrap/commit/b5db597)), closes [#975](https://github.com/valor-software/ng2-bootstrap/issues/975) [#854](https://github.com/valor-software/ng2-bootstrap/issues/854)
+* **modal:** hide bug in [#1144](https://github.com/valor-software/ng2-bootstrap/issues/1144) ([#1147](https://github.com/valor-software/ng2-bootstrap/issues/1147)) ([a3985c1](https://github.com/valor-software/ng2-bootstrap/commit/a3985c1))
+* **modal:** should fix 'no provider for ...' exception ([4c3e4c9](https://github.com/valor-software/ng2-bootstrap/commit/4c3e4c9)), closes [#854](https://github.com/valor-software/ng2-bootstrap/issues/854) [#951](https://github.com/valor-software/ng2-bootstrap/issues/951)
+* **modals:** fixed modals fade in animation ([2b95c95](https://github.com/valor-software/ng2-bootstrap/commit/2b95c95)), closes [#687](https://github.com/valor-software/ng2-bootstrap/issues/687)
+* **module:** class exports added back ([3eaa9ad](https://github.com/valor-software/ng2-bootstrap/commit/3eaa9ad))
+* **package:** development files added to .npmignore ([887c6b2](https://github.com/valor-software/ng2-bootstrap/commit/887c6b2)), closes [#737](https://github.com/valor-software/ng2-bootstrap/issues/737)
+* **package:** fixed link to main file ([a515089](https://github.com/valor-software/ng2-bootstrap/commit/a515089))
+* **pagination:** Fix disabled class on next and last buttons ([#1036](https://github.com/valor-software/ng2-bootstrap/issues/1036)) ([01f4759](https://github.com/valor-software/ng2-bootstrap/commit/01f4759)), closes [#922](https://github.com/valor-software/ng2-bootstrap/issues/922)
+* **pagination:** temporary disabled pageBtnClass option ([49dd07f](https://github.com/valor-software/ng2-bootstrap/commit/49dd07f))
+* **slider:** Slide shouldnt enforce text alignment ([#824](https://github.com/valor-software/ng2-bootstrap/issues/824)) ([ad2c5a6](https://github.com/valor-software/ng2-bootstrap/commit/ad2c5a6))
+* **template:**  templates should not use es6 templates ([de26168](https://github.com/valor-software/ng2-bootstrap/commit/de26168))
+* **tests:** "no provider" error when running tests ([#963](https://github.com/valor-software/ng2-bootstrap/issues/963)) ([8483615](https://github.com/valor-software/ng2-bootstrap/commit/8483615))
+* **tooltip:** fix `appendToBody` tooltip positioning ([#1158](https://github.com/valor-software/ng2-bootstrap/issues/1158)) ([#1159](https://github.com/valor-software/ng2-bootstrap/issues/1159)) ([0fd0a80](https://github.com/valor-software/ng2-bootstrap/commit/0fd0a80))
+* **tooltip:** fix delayed tooltip display ([#1156](https://github.com/valor-software/ng2-bootstrap/issues/1156)) ([#1161](https://github.com/valor-software/ng2-bootstrap/issues/1161)) ([c6da387](https://github.com/valor-software/ng2-bootstrap/commit/c6da387))
+* **tooltip:** properties types ([b407012](https://github.com/valor-software/ng2-bootstrap/commit/b407012))
+* **tooltip:** show & hide methods should not need any arguments ([#1099](https://github.com/valor-software/ng2-bootstrap/issues/1099)) ([b80c0b4](https://github.com/valor-software/ng2-bootstrap/commit/b80c0b4))
+* **typeahead:** Fix crash with `contenteditable` inputs ([47b9fb1](https://github.com/valor-software/ng2-bootstrap/commit/47b9fb1))
+* **typeahead:** onFocus should not need any arguments ([41f5834](https://github.com/valor-software/ng2-bootstrap/commit/41f5834))
+* **typeahead:** use TypeaheadMatch model instead of any type ([ff5c219](https://github.com/valor-software/ng2-bootstrap/commit/ff5c219))
+* **univeral:** added hacks for missing type keywords ([d20ccf1](https://github.com/valor-software/ng2-bootstrap/commit/d20ccf1)), closes [#964](https://github.com/valor-software/ng2-bootstrap/issues/964)
+* **utils:** now attach to body should work for mixed ng1+ng2 apps ([99f15c8](https://github.com/valor-software/ng2-bootstrap/commit/99f15c8)), closes [#1069](https://github.com/valor-software/ng2-bootstrap/issues/1069) [#1056](https://github.com/valor-software/ng2-bootstrap/issues/1056)
+* **window:** fixed window usage ([0b7012a](https://github.com/valor-software/ng2-bootstrap/commit/0b7012a)), closes [#909](https://github.com/valor-software/ng2-bootstrap/issues/909) [#908](https://github.com/valor-software/ng2-bootstrap/issues/908) [#906](https://github.com/valor-software/ng2-bootstrap/issues/906)
+
+
+### Features
+
+* **build:** added config file for wallabyjs ([cec8bae](https://github.com/valor-software/ng2-bootstrap/commit/cec8bae))
+* **build:** system.js bundles replaced with UMD bundles ([3e0a27d](https://github.com/valor-software/ng2-bootstrap/commit/3e0a27d))
+* **build:** use ngc compiler to produce metadata ([afabb9d](https://github.com/valor-software/ng2-bootstrap/commit/afabb9d)), closes [#1060](https://github.com/valor-software/ng2-bootstrap/issues/1060) [#992](https://github.com/valor-software/ng2-bootstrap/issues/992) [#933](https://github.com/valor-software/ng2-bootstrap/issues/933)
+* **buttons:** update radio button directive to work with ReactiveForms ([5d51939](https://github.com/valor-software/ng2-bootstrap/commit/5d51939)), closes [#1023](https://github.com/valor-software/ng2-bootstrap/issues/1023)
+* **collpase:** add collapsed and expanded events to the collapse directive [#576](https://github.com/valor-software/ng2-bootstrap/issues/576) ([#779](https://github.com/valor-software/ng2-bootstrap/issues/779)) ([a6f9bb5](https://github.com/valor-software/ng2-bootstrap/commit/a6f9bb5))
+* **datepicker:** Added configurable limit for amount of items displayed in a single row of monthpicker and yearpicker ([#1141](https://github.com/valor-software/ng2-bootstrap/issues/1141)) ([859afb2](https://github.com/valor-software/ng2-bootstrap/commit/859afb2))
+* **dropdown:** added exportAs to dropdown directives ([#785](https://github.com/valor-software/ng2-bootstrap/issues/785)) ([66531c7](https://github.com/valor-software/ng2-bootstrap/commit/66531c7))
+* **dropdown:** optionally add dropdown-toggle class ([#772](https://github.com/valor-software/ng2-bootstrap/issues/772)) ([52d3167](https://github.com/valor-software/ng2-bootstrap/commit/52d3167))
+* **e2e:** added more e2e test ([d56f560](https://github.com/valor-software/ng2-bootstrap/commit/d56f560)), closes [#1163](https://github.com/valor-software/ng2-bootstrap/issues/1163)
+* **forms:**  add export of FormsModule where [ngModel] selector is present ([#931](https://github.com/valor-software/ng2-bootstrap/issues/931)) ([b5c8448](https://github.com/valor-software/ng2-bootstrap/commit/b5c8448)), closes [#929](https://github.com/valor-software/ng2-bootstrap/issues/929) [#929](https://github.com/valor-software/ng2-bootstrap/issues/929)
+* **package:** relax peer dependecies to work with 2.x.x ([bc55a38](https://github.com/valor-software/ng2-bootstrap/commit/bc55a38))
+* **pagination:** allow setting of a custom css class on <li> ([#1115](https://github.com/valor-software/ng2-bootstrap/issues/1115)) ([235215c](https://github.com/valor-software/ng2-bootstrap/commit/235215c))
+* **tabs:** added custom class option ([13fac37](https://github.com/valor-software/ng2-bootstrap/commit/13fac37)), closes [#766](https://github.com/valor-software/ng2-bootstrap/issues/766) [#842](https://github.com/valor-software/ng2-bootstrap/issues/842) [#842](https://github.com/valor-software/ng2-bootstrap/issues/842)
+* **timepicker:** disabling meridian and hiding spinners if input is disabled ([#768](https://github.com/valor-software/ng2-bootstrap/issues/768)) ([a19c841](https://github.com/valor-software/ng2-bootstrap/commit/a19c841)), closes [#759](https://github.com/valor-software/ng2-bootstrap/issues/759)
+* **tooltip:** add implementation for tooltipClass ([#664](https://github.com/valor-software/ng2-bootstrap/issues/664)) ([fa4475a](https://github.com/valor-software/ng2-bootstrap/commit/fa4475a))
+* **tooltip:** added Tooltip delay functionality ([#1116](https://github.com/valor-software/ng2-bootstrap/issues/1116)) ([eb90e9a](https://github.com/valor-software/ng2-bootstrap/commit/eb90e9a))
+* **tooltip:** added tooltipStateChanged and exporting the directive ([#939](https://github.com/valor-software/ng2-bootstrap/issues/939)) ([650b4f7](https://github.com/valor-software/ng2-bootstrap/commit/650b4f7))
+* **tooltip:** html content as template ([#751](https://github.com/valor-software/ng2-bootstrap/issues/751)) ([6489e38](https://github.com/valor-software/ng2-bootstrap/commit/6489e38))
+* **tooltip:** Make `appendToBody` work in Tooltip ([#1074](https://github.com/valor-software/ng2-bootstrap/issues/1074)) ([7e233b1](https://github.com/valor-software/ng2-bootstrap/commit/7e233b1))
+* **tooltip:** tooltip html content ([#724](https://github.com/valor-software/ng2-bootstrap/issues/724)) ([9070125](https://github.com/valor-software/ng2-bootstrap/commit/9070125))
+* **typeahead:** add grouping of typeahead options ([fdddbde](https://github.com/valor-software/ng2-bootstrap/commit/fdddbde))
+* **typeahead:** adding custom item template ([#776](https://github.com/valor-software/ng2-bootstrap/issues/776)) ([1356ff7](https://github.com/valor-software/ng2-bootstrap/commit/1356ff7)), closes [#503](https://github.com/valor-software/ng2-bootstrap/issues/503) [#652](https://github.com/valor-software/ng2-bootstrap/issues/652)
+* **typeahead:** adding support for nested properties and functions for typeaheadOptionField ([#777](https://github.com/valor-software/ng2-bootstrap/issues/777)) ([b24dabf](https://github.com/valor-software/ng2-bootstrap/commit/b24dabf)), closes [#135](https://github.com/valor-software/ng2-bootstrap/issues/135) [#523](https://github.com/valor-software/ng2-bootstrap/issues/523)
+* **typeahead:** introduce TypeaheadMatch model ([80fccab](https://github.com/valor-software/ng2-bootstrap/commit/80fccab))
+* **UMD:** added UMD bundles ([a7554a8](https://github.com/valor-software/ng2-bootstrap/commit/a7554a8)), closes [#1098](https://github.com/valor-software/ng2-bootstrap/issues/1098)
+
+
+
+<a name="1.1.15"></a>
+## [1.1.15](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14...v1.1.15) (2016-10-26)
+
+
+### Bug Fixes
+
+* **doc:** formatYear instead of formatMear for the datepicker ([#1126](https://github.com/valor-software/ng2-bootstrap/issues/1126)) ([045573b](https://github.com/valor-software/ng2-bootstrap/commit/045573b))
+* **modal:** hide bug in [#1144](https://github.com/valor-software/ng2-bootstrap/issues/1144) ([#1147](https://github.com/valor-software/ng2-bootstrap/issues/1147)) ([a3985c1](https://github.com/valor-software/ng2-bootstrap/commit/a3985c1))
+* **tooltip:** fix `appendToBody` tooltip positioning ([#1158](https://github.com/valor-software/ng2-bootstrap/issues/1158)) ([#1159](https://github.com/valor-software/ng2-bootstrap/issues/1159)) ([0fd0a80](https://github.com/valor-software/ng2-bootstrap/commit/0fd0a80))
+* **tooltip:** fix delayed tooltip display ([#1156](https://github.com/valor-software/ng2-bootstrap/issues/1156)) ([#1161](https://github.com/valor-software/ng2-bootstrap/issues/1161)) ([c6da387](https://github.com/valor-software/ng2-bootstrap/commit/c6da387))
+
+
+### Features
+
+* **datepicker:** Added configurable limit for amount of items displayed in a single row of monthpicker and yearpicker ([#1141](https://github.com/valor-software/ng2-bootstrap/issues/1141)) ([859afb2](https://github.com/valor-software/ng2-bootstrap/commit/859afb2))
+* **e2e:** added more e2e test ([d56f560](https://github.com/valor-software/ng2-bootstrap/commit/d56f560)), closes [#1163](https://github.com/valor-software/ng2-bootstrap/issues/1163)
+* **pagination:** allow setting of a custom css class on <li> ([#1115](https://github.com/valor-software/ng2-bootstrap/issues/1115)) ([235215c](https://github.com/valor-software/ng2-bootstrap/commit/235215c))
+* **tooltip:** Make `appendToBody` work in Tooltip ([#1074](https://github.com/valor-software/ng2-bootstrap/issues/1074)) ([7e233b1](https://github.com/valor-software/ng2-bootstrap/commit/7e233b1))
+
+
+
 <a name="1.1.14"></a>
 ## [1.1.14](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.14-1...v1.1.14) (2016-10-13)
 

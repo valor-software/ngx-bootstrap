@@ -11,10 +11,10 @@ const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 export class DropdownService {
-  private openScope:DropdownDirective;
+  protected openScope:DropdownDirective;
 
-  private closeDropdownBind:EventListener = this.closeDropdown.bind(this);
-  private keybindFilterBind:EventListener = this.keybindFilter.bind(this);
+  protected closeDropdownBind:EventListener = this.closeDropdown.bind(this);
+  protected keybindFilterBind:EventListener = this.keybindFilter.bind(this);
 
   public open(dropdownScope:DropdownDirective):void {
     if (!this.openScope) {
@@ -39,7 +39,7 @@ export class DropdownService {
     window.document.removeEventListener('keydown', this.keybindFilterBind);
   }
 
-  private closeDropdown(event:MouseEvent):void {
+  protected closeDropdown(event:MouseEvent):void {
     if (!this.openScope) {
       return;
     }
@@ -69,7 +69,7 @@ export class DropdownService {
     this.openScope.isOpen = false;
   }
 
-  private keybindFilter(event:KeyboardEvent):void {
+  protected keybindFilter(event:KeyboardEvent):void {
     if (event.which === 27) {
       this.openScope.focusToggleElement();
       this.closeDropdown(void 0);

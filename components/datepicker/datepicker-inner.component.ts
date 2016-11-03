@@ -15,6 +15,8 @@ const SHOW_WEEKS = true;
 const ONLY_CURRENT_MONTH = false;
 const STARTING_DAY = 0;
 const YEAR_RANGE = 20;
+const MONTH_COL_LIMIT = 3;
+const YEAR_COL_LIMIT = 5;
 // const MIN_DATE:Date = void 0;
 // const MAX_DATE:Date = void 0;
 const SHORTCUT_PROPAGATION = false;
@@ -63,6 +65,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public onlyCurrentMonth: boolean;
   @Input() public shortcutPropagation: boolean;
   @Input() public customClass: Array<{date: Date, mode: string, clazz: string}>;
+  @Input() public monthColLimit: number;
+  @Input() public yearColLimit: number;
   @Input() public dateDisabled: Array<{date:Date, mode:string}>;
   @Input() public initDate: Date;
 
@@ -74,19 +78,19 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   public stepMonth: any = {};
   public stepYear: any = {};
 
-  private modes: Array<string> = ['day', 'month', 'year'];
-  private dateFormatter: DateFormatter = new DateFormatter();
-  private uniqueId: string;
-  private _activeDate: Date;
-  private selectedDate: Date;
-  private activeDateId: string;
+  protected modes: Array<string> = ['day', 'month', 'year'];
+  protected dateFormatter: DateFormatter = new DateFormatter();
+  protected uniqueId: string;
+  protected _activeDate: Date;
+  protected selectedDate: Date;
+  protected activeDateId: string;
 
-  private refreshViewHandlerDay: Function;
-  private compareHandlerDay: Function;
-  private refreshViewHandlerMonth: Function;
-  private compareHandlerMonth: Function;
-  private refreshViewHandlerYear: Function;
-  private compareHandlerYear: Function;
+  protected refreshViewHandlerDay: Function;
+  protected compareHandlerDay: Function;
+  protected refreshViewHandlerMonth: Function;
+  protected compareHandlerMonth: Function;
+  protected refreshViewHandlerYear: Function;
+  protected compareHandlerYear: Function;
 
   @Input()
   public get activeDate(): Date {
@@ -117,6 +121,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     this.datepickerMode = this.datepickerMode || DATEPICKER_MODE;
     this.minMode = this.minMode || MIN_MODE;
     this.maxMode = this.maxMode || MAX_MODE;
+    this.monthColLimit = this.monthColLimit || MONTH_COL_LIMIT;
+    this.yearColLimit = this.yearColLimit || YEAR_COL_LIMIT;
 
     // todo: use date for unique value
     this.uniqueId = 'datepicker-' + '-' + Math.floor(Math.random() * 10000);
@@ -296,7 +302,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     this.refreshView();
   }
 
-  private getCustomClassForDate(date: Date): string {
+  protected getCustomClassForDate(date: Date): string {
     if (!this.customClass) {
       return '';
     }
@@ -309,7 +315,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 
-  private compareDateDisabled(date1Disabled: {date: Date, mode: string}, date2: Date): number {
+    protected compareDateDisabled(date1Disabled: {date: Date, mode: string}, date2: Date): number {
     if (date1Disabled === undefined || date2 === undefined) {
       return undefined;
     }
@@ -329,7 +335,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return undefined;
   }
 
-  private isDisabled(date: Date): boolean {
+    protected isDisabled(date: Date): boolean {
     let isDateDisabled: boolean = false;
     if (this.dateDisabled) {
       this.dateDisabled.forEach((disabledDate: {date: Date, mode: string}) => {

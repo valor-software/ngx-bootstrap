@@ -78,9 +78,9 @@ export class TypeaheadContainerComponent {
   public left:string;
   public display:string;
 
-  private _active:TypeaheadMatch;
-  private _matches:Array<TypeaheadMatch> = [];
-  private placement:string;
+  protected _active:TypeaheadMatch;
+  protected _matches:Array<TypeaheadMatch> = [];
+  protected placement:string;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
     this.element = element;
@@ -185,7 +185,7 @@ export class TypeaheadContainerComponent {
     return this._active === value;
   }
 
-  private selectMatch(value:TypeaheadMatch, e:Event = void 0):boolean {
+  protected selectMatch(value:TypeaheadMatch, e:Event = void 0):boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();

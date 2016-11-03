@@ -47,7 +47,7 @@ export class TabDirective implements OnDestroy {
 
   public headingRef:TemplateRef<any>;
   public tabset:TabsetComponent;
-  private _active:boolean;
+  protected _active:boolean;
 
   public constructor(tabset:TabsetComponent) {
     this.tabset = tabset;

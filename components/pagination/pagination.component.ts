@@ -21,6 +21,8 @@ export interface PaginationConfig extends KeyAttribute {
   previousText:string;
   nextText:string;
   lastText:string;
+  // css
+  pageBtnClass:string;
 
   rotate:boolean;
 }
@@ -38,6 +40,7 @@ const paginationConfig:PaginationConfig = {
   previousText: 'Previous',
   nextText: 'Next',
   lastText: 'Last',
+  pageBtnClass: '',
   rotate: true
 };
 
@@ -94,6 +97,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   @Input() public nextText:string;
   @Input() public lastText:string;
   @Input() public rotate:boolean;
+  // css
+  @Input() public pageBtnClass:string;
 
   @Input() public disabled:boolean;
 
@@ -160,11 +165,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   public classMap:string;
   public pages:Array<any>;
 
-  private _itemsPerPage:number;
-  private _totalItems:number;
-  private _totalPages:number;
-  private inited:boolean = false;
-  private _page:number;
+  protected _itemsPerPage:number;
+  protected _totalItems:number;
+  protected _totalPages:number;
+  protected inited:boolean = false;
+  protected _page:number;
 
   public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
     this.cd = cd;
@@ -189,6 +194,9 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     this.directionLinks = typeof this.directionLinks !== 'undefined'
       ? this.directionLinks
       : paginationConfig.directionLinks;
+    this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
+    ? this.pageBtnClass
+    : paginationConfig.pageBtnClass;
 
     // base class
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
@@ -242,7 +250,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   }
 
   // Create page object used in template
-  private makePage(num:number, text:string, isActive:boolean):{number:number, text:string, active:boolean} {
+  protected makePage(num:number, text:string, isActive:boolean):{number:number, text:string, active:boolean} {
     return {
       number: num,
       text: text,
@@ -250,7 +258,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     };
   }
 
-  private getPages(currentPage:number, totalPages:number):Array<any> {
+  protected getPages(currentPage:number, totalPages:number):Array<any> {
     let pages:any[] = [];
 
     // Default page limits
@@ -302,7 +310,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   }
 
   // base class
-  private calculateTotalPages():number {
+  protected calculateTotalPages():number {
     let totalPages = this.itemsPerPage < 1
       ? 1
       : Math.ceil(this.totalItems / this.itemsPerPage);

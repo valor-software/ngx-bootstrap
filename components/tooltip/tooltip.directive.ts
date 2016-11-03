@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   ComponentRef,
   Directive,
   HostListener,
@@ -28,7 +29,7 @@ export class TooltipDirective {
   @Input('tooltipIsOpen') public isOpen: boolean;
   @Input('tooltipEnable') public enable: boolean = true;
   @Input('tooltipAnimation') public animation: boolean = true;
-  @Input('tooltipAppendToBody') public appendToBody: boolean;
+  @Input('tooltipAppendToBody') public appendToBody: boolean = false;
   @Input('tooltipClass') public popupClass: string;
   @Input('tooltipContext') public tooltipContext: any;
   @Input('tooltipPopupDelay') public delay: number = 0;
@@ -39,15 +40,18 @@ export class TooltipDirective {
   public viewContainerRef: ViewContainerRef;
   public componentsHelper: ComponentsHelper;
 
-  private visible: boolean = false;
-  private tooltip: ComponentRef<any>;
+  protected changeDetectorRef: ChangeDetectorRef;
+  protected visible: boolean = false;
+  protected tooltip: ComponentRef<any>;
 
-  private delayTimeoutId: number;
+  protected delayTimeoutId: number;
 
   public constructor(viewContainerRef: ViewContainerRef,
-                     componentsHelper: ComponentsHelper) {
+                     componentsHelper: ComponentsHelper,
+                     changeDetectorRef: ChangeDetectorRef) {
     this.viewContainerRef = viewContainerRef;
     this.componentsHelper = componentsHelper;
+    this.changeDetectorRef = changeDetectorRef;
   }
 
   // todo: filter triggers
@@ -66,20 +70,24 @@ export class TooltipDirective {
         htmlContent: this.htmlContent,
         placement: this.placement,
         animation: this.animation,
+        appendToBody: this.appendToBody,
         hostEl: this.viewContainerRef.element,
         popupClass: this.popupClass,
         context: this.tooltipContext
       });
 
-      let binding = ReflectiveInjector.resolve([
-        {provide: TooltipOptions, useValue: options}
-      ]);
+      if (this.appendToBody) {
+        this.tooltip = this.componentsHelper
+          .appendNextToRoot(TooltipContainerComponent, TooltipOptions, options);
+      } else {
+        let binding = ReflectiveInjector.resolve([
+          {provide: TooltipOptions, useValue: options}
+        ]);
+        this.tooltip = this.componentsHelper
+          .appendNextToLocation(TooltipContainerComponent, this.viewContainerRef, binding);
+      }
 
-      this.tooltip = this.componentsHelper
-        .appendNextToLocation(TooltipContainerComponent,
-          this.viewContainerRef,
-          binding);
-
+      this.changeDetectorRef.markForCheck();
       this.triggerStateChanged();
     };
 
@@ -108,7 +116,7 @@ export class TooltipDirective {
     this.triggerStateChanged();
   }
 
-  private triggerStateChanged(): void {
+  protected triggerStateChanged(): void {
     this.tooltipStateChanged.emit(this.visible);
   }
 }

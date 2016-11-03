@@ -17,7 +17,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   protected onChange:any = Function.prototype;
   protected onTouched:any = Function.prototype;
 
-  private value:any;
+  protected value:any;
 
   // view -> model
   @HostListener('click')
@@ -36,13 +36,13 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.toggle(this.trueValue === this.value);
   }
 
-  private get trueValue():boolean {
+  protected get trueValue():boolean {
     return typeof this.btnCheckboxTrue !== 'undefined'
       ? this.btnCheckboxTrue
       : true;
   }
 
-  private get falseValue():boolean {
+  protected get falseValue():boolean {
     return typeof this.btnCheckboxFalse !== 'undefined'
       ? this.btnCheckboxFalse
       : false;

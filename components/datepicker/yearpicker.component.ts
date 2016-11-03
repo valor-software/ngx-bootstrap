@@ -15,7 +15,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
       </th>
-      <th colspan="3">
+      <th [attr.colspan]="((datePicker.yearColLimit - 2) <= 0) ? 1 : datePicker.yearColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
                 (click)="datePicker.toggleMode()"
@@ -49,8 +49,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 })
 export class YearPickerComponent implements OnInit {
   public datePicker:DatePickerInnerComponent;
-  private title:string;
-  private rows:Array<any> = [];
+  protected title:string;
+  protected rows:Array<any> = [];
 
   public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;
@@ -79,7 +79,7 @@ export class YearPickerComponent implements OnInit {
 
       self.title = [years[0].label,
         years[this.yearRange - 1].label].join(' - ');
-      self.rows = this.split(years, 5);
+      self.rows = this.split(years, self.datePicker.yearColLimit);
     }, 'year');
 
     this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
@@ -89,7 +89,7 @@ export class YearPickerComponent implements OnInit {
     this.datePicker.refreshView();
   }
 
-  private getStartingYear(year:number):number {
+  protected getStartingYear(year:number):number {
     // todo: parseInt
     return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
   }

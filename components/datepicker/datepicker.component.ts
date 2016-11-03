@@ -27,6 +27,8 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
                       [dateDisabled]="dateDisabled"
                       [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation"
+                      [monthColLimit]="monthColLimit"
+                      [yearColLimit]="yearColLimit"
                       (selectionDone)="onSelectionDone($event)">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
@@ -55,6 +57,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
+  @Input() public monthColLimit: number;
+  @Input() public yearColLimit: number;
   @Input() public dateDisabled:Array<{date:Date, mode:string}>;
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
@@ -65,8 +69,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   public onTouched:any = Function.prototype;
 
   public cd:NgModel;
-  private _now:Date = new Date();
-  private _activeDate:Date;
+  protected _now:Date = new Date();
+  protected _activeDate:Date;
 
   @Input()
   public get activeDate():Date {

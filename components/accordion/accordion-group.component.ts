@@ -47,8 +47,8 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     }
   }
 
-  private _isOpen:boolean;
-  private accordion:AccordionComponent;
+  protected _isOpen:boolean;
+  protected accordion:AccordionComponent;
 
   public constructor(@Inject(AccordionComponent) accordion:AccordionComponent) {
     this.accordion = accordion;
