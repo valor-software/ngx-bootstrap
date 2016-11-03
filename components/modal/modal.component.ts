@@ -163,6 +163,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
     this._isShown = false;
     this.renderer.setElementClass(this.element.nativeElement, ClassName.IN, false);
+    this.renderer.setElementClass(this.element.nativeElement, ClassName.ACTIVE, false);
     // this._addClassIn = false;
 
     if (this.isAnimated) {
@@ -200,6 +201,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
     // this._addClassIn = true;
     this.renderer.setElementClass(this.element.nativeElement, ClassName.IN, true);
+    this.renderer.setElementClass(this.element.nativeElement, ClassName.ACTIVE, true);
 
     const transitionComplete = () => {
       if (this._config.focus) {
