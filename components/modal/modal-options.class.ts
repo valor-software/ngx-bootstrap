@@ -32,7 +32,8 @@ export const ClassName:any = {
   BACKDROP: 'modal-backdrop',
   OPEN: 'modal-open',
   FADE: 'fade',
-  IN: 'in'
+  IN: 'in',         // bs3
+  ACTIVE: 'active'  // bs4
 };
 
 export const Selector:any = {

@@ -32,6 +32,7 @@ export class ModalBackdropComponent {
   public set isShown(value:boolean) {
     this._isShown = value;
     this.renderer.setElementClass(this.element.nativeElement, `${ClassName.IN}`, value);
+    this.renderer.setElementClass(this.element.nativeElement, `${ClassName.ACTIVE}`, value);
   }
 
   public element:ElementRef;
