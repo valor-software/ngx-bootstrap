@@ -12,3 +12,4 @@ export { DayPickerComponent } from './datepicker/daypicker.component'
 export { MonthPickerComponent } from './datepicker/monthpicker.component'
 export { YearPickerComponent } from './datepicker/yearpicker.component'
 export { DateFormatter } from './datepicker/date-formatter'
+export { DatepickerConfig } from './datepicker/datepicker.config';
