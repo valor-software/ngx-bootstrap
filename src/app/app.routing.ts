@@ -1,5 +1,6 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { AccordionSectionComponent } from './components/accordion/accordion-section.component';
 //
 // import { AccordionSectionComponent } from './components/accordion-section';
 // import { AlertSectionComponent } from './components/alert-section';
@@ -24,11 +25,12 @@ export const routes:Routes = [
     data: ['Getting started'],
     component: GettingStartedComponent
   },
-// {
-//     path: 'accordion',
-//     data: ['Accordion'],
-//     component: AccordionSectionComponent
-//   }, {
+{
+    path: 'accordion',
+    data: ['Accordion'],
+    component: AccordionSectionComponent
+  },
+  // {
 //     path: 'alerts',
 //     data: ['Alerts'],
 //     component: AlertSectionComponent

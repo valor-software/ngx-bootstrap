@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../../../dist/components/ng2-bootstrap-config';
-import { routes } from './../../app.routing';
+import { routes } from '../../app.routing';
 
 @Component({
   selector: 'main-menu',

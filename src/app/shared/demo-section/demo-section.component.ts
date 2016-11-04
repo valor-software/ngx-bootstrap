@@ -1,10 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-let template = require('./demo-section.template.html');
-
 @Component({
   selector: 'demo-section',
-  template: template
+  templateUrl: './demo-section.component.html'
 })
 export class DemoSectionComponent {
   @Input() public name:string;

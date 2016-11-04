@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let template = require('./accordion-demo.html');
+let template = require('./accordion-demo.component.html');
 
 @Component({
   selector: 'accordion-demo',

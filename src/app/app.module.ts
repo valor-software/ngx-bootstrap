@@ -10,6 +10,8 @@ import { GettingStartedComponent } from './getting-started/getting-started.compo
 import { MainMenuComponent } from './shared/main-menu/main-menu.component';
 import { TopMenuComponent } from './shared/top-menu/top-menu.component';
 import { SearchFilterPipe } from './shared/main-menu/search-filter.pipe';
+import { DemoSectionComponent } from './shared/demo-section/demo-section.component';
+import { AccordionDocsModule } from './components/accordion/accordion-docs.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { SearchFilterPipe } from './shared/main-menu/search-filter.pipe';
   imports: [
     BrowserModule,
     FormsModule,
+    AccordionDocsModule,
     RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [],

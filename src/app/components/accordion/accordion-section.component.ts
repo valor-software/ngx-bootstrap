@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/accordion/readme.md');
-let titleDoc = require('../../components/accordion/title.md');
+let doc = require('html!markdown!../../../../components/accordion/readme.md');
+let titleDoc = require('html!markdown!../../../../components/accordion/title.md');
 
-let ts = require('!!raw!./accordion/accordion-demo.ts');
-let html = require('!!raw!./accordion/accordion-demo.html');
+let ts = require('!!raw!./demos/accordion-demo.component.ts');
+let html = require('!!raw!./demos//accordion-demo.component.html');
 
 @Component({
   selector: 'accordion-section',
