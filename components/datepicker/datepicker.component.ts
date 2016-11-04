@@ -59,8 +59,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
-// todo: change type during implementation
-  @Input() public dateDisabled:any;
+  @Input() public dateDisabled:Array<{date:Date, mode:string}>;
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 

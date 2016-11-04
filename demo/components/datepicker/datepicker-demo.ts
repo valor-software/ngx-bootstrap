@@ -14,6 +14,7 @@ export class DatepickerDemoComponent {
   public events:Array<any>;
   public tomorrow:Date;
   public afterTomorrow:Date;
+  public dateDisabled: Array<{date: Date, mode: string}>;
   public formats:Array<string> = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
   public format:string = this.formats[0];
   public dateOptions:any = {
@@ -26,6 +27,7 @@ export class DatepickerDemoComponent {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
     (this.afterTomorrow = new Date()).setDate(this.tomorrow.getDate() + 2);
     (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
+    (this.dateDisabled = []);
     this.events = [
       {date: this.tomorrow, status: 'full'},
       {date: this.afterTomorrow, status: 'partially'}
@@ -42,6 +44,10 @@ export class DatepickerDemoComponent {
 
   public d20090824():void {
     this.dt = moment('2009-08-24', 'YYYY-MM-DD').toDate();
+  }
+
+  public disableTomorrow(): void {
+    this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
   }
 
   // todo: implement custom class cases
@@ -71,6 +77,7 @@ export class DatepickerDemoComponent {
 
   public clear():void {
     this.dt = void 0;
+    this.dateDisabled = undefined;
   }
 
   public toggleMin():void {

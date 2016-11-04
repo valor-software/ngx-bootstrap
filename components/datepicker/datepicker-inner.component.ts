@@ -67,8 +67,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public customClass: Array<{date: Date, mode: string, clazz: string}>;
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
-  // todo: change type during implementation
-  @Input() public dateDisabled: any;
+  @Input() public dateDisabled: Array<{date:Date, mode:string}>;
   @Input() public initDate: Date;
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
@@ -316,9 +315,37 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 
-  protected isDisabled(date: Date): boolean {
-    // todo: implement dateDisabled attribute
-    return ((this.minDate && this.compare(date, this.minDate) < 0) ||
+    protected compareDateDisabled(date1Disabled: {date: Date, mode: string}, date2: Date): number {
+    if (date1Disabled === undefined || date2 === undefined) {
+      return undefined;
+    }
+
+    if (date1Disabled.mode === 'day' && this.compareHandlerDay) {
+      return this.compareHandlerDay(date1Disabled.date, date2);
+    }
+
+    if (date1Disabled.mode === 'month' && this.compareHandlerMonth) {
+      return this.compareHandlerMonth(date1Disabled.date, date2);
+    }
+
+    if (date1Disabled.mode === 'year' && this.compareHandlerYear) {
+      return this.compareHandlerYear(date1Disabled.date, date2);
+    }
+
+    return undefined;
+  }
+
+    protected isDisabled(date: Date): boolean {
+    let isDateDisabled: boolean = false;
+    if (this.dateDisabled) {
+      this.dateDisabled.forEach((disabledDate: {date: Date, mode: string}) => {
+        if (this.compareDateDisabled(disabledDate, date) === 0) {
+          isDateDisabled = true;
+        }
+      });
+    }
+
+    return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
     (this.maxDate && this.compare(date, this.maxDate) > 0));
   }
 }
