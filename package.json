@@ -28,7 +28,8 @@
     "test:watch": "cross-env NODE_ENV=test karma start --auto-watch --no-single-run",
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
-    "postversion": "git push origin development && git push --tags"
+    "postversion": "git push origin development && git push --tags",
+    "pree2e": "webdriver-manager update"
   },
   "main": "bundles/ng2-bootstrap.umd.js",
   "module": "ng2-bootstrap.js",
@@ -59,16 +60,17 @@
     "@angular/forms": "^2.0.0"
   },
   "devDependencies": {
-    "@angular/common": "2.1.0",
-    "@angular/compiler": "2.1.0",
-    "@angular/compiler-cli": "2.1.0",
-    "@angular/core": "2.1.0",
-    "@angular/forms": "2.1.0",
-    "@angular/platform-browser": "2.1.0",
-    "@angular/platform-browser-dynamic": "2.1.0",
-    "@angular/platform-server": "2.1.0",
-    "@angular/router": "3.1.0",
+    "@angular/common": "2.1.2",
+    "@angular/compiler": "2.1.2",
+    "@angular/compiler-cli": "2.1.2",
+    "@angular/core": "2.1.2",
+    "@angular/forms": "2.1.2",
+    "@angular/platform-browser": "2.1.2",
+    "@angular/platform-browser-dynamic": "2.1.2",
+    "@angular/platform-server": "2.1.2",
+    "@angular/router": "3.1.2",
     "@types/jasmine": "2.5.35",
+    "@types/node": "6.0.42",
     "@types/webpack": "1.12.35",
     "async": "2.1.1",
     "bootstrap": "3.3.7",
@@ -98,6 +100,20 @@
     "typedoc": "0.5.0",
     "typescript": "2.0.7",
     "wallaby-webpack": "0.0.26",
-    "zone.js": "0.6.25"
+    "zone.js": "0.6.25",
+    "ts-helpers": "^1.1.1",
+    "angular-cli": "1.0.0-beta.19-3",
+    "codelyzer": "1.0.0-beta.1",
+    "jasmine-core": "2.4.1",
+    "jasmine-spec-reporter": "2.5.0",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-remap-istanbul": "^0.2.1",
+    "protractor": "4.0.9",
+    "ts-node": "1.2.1",
+    "tslint": "3.13.0",
+    "webdriver-manager": "10.2.5"
   }
 }
