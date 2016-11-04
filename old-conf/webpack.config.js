@@ -10,14 +10,6 @@ const conf = getWebpackConfig(process.env.NODE_ENV, require('./.ng2-config'));
 // marked renderer hack
 const marked = require('marked');
 
-marked.Renderer.prototype.code = function renderCode(code, lang) {
-  const escCode = code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
-  if (!lang) {
-    return `<pre class="prettyprint" ngNonBindable>${escCode}</pre>`;
-  }
-  return `<pre class="prettyprint lang-${lang}" ngNonBindable>${escCode}</pre>`;
-};
 
 module.exports = conf;
 

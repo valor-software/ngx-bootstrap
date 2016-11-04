@@ -2,12 +2,9 @@ import { AfterViewInit, Component, Inject, Renderer } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 
-// webpack html imports
-let template = require('./top-menu.template.html');
-
 @Component({
   selector: 'top-menu',
-  template
+  templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements AfterViewInit {
   public isShown:boolean = false;

@@ -7,11 +7,17 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routing';
 
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { MainMenuComponent } from './shared/main-menu/main-menu.component';
+import { TopMenuComponent } from './shared/top-menu/top-menu.component';
+import { SearchFilterPipe } from './shared/main-menu/search-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GettingStartedComponent
+    GettingStartedComponent,
+    TopMenuComponent,
+    MainMenuComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,
