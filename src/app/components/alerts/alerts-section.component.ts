@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/alert/readme.md');
-let titleDoc = require('../../components/alert/title.md');
-let ts = require('!!raw?lang=typescript!./alert/alert-demo.ts');
-let html = require('!!raw?lang=markup!./alert/alert-demo.html');
+let doc = require('html!markdown!../../../../components/alert/readme.md');
+let titleDoc = require('html!markdown!../../../../components/alert/title.md');
+
+let ts = require('!!raw?lang=typescript!./demos/alerts-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/alerts-demo.component.html');
 
 @Component({
   selector: 'alert-section',
@@ -13,7 +14,7 @@ let html = require('!!raw?lang=markup!./alert/alert-demo.html');
       <alert-demo></alert-demo>
     </demo-section>`
 })
-export class AlertSectionComponent {
+export class AlertsSectionComponent {
   public name:string = 'Alerts';
   public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert';
   public html:string = html;

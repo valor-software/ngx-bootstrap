@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { AccordionSectionComponent } from './components/accordion/accordion-section.component';
+import { AlertsSectionComponent } from './components/alerts/alerts-section.component';
 //
 // import { AccordionSectionComponent } from './components/accordion-section';
 // import { AlertSectionComponent } from './components/alert-section';
@@ -30,11 +31,12 @@ export const routes:Routes = [
     data: ['Accordion'],
     component: AccordionSectionComponent
   },
+  {
+    path: 'alerts',
+    data: ['Alerts'],
+    component: AlertsSectionComponent
+  },
   // {
-//     path: 'alerts',
-//     data: ['Alerts'],
-//     component: AlertSectionComponent
-//   }, {
 //     path: 'buttons',
 //     data: ['Buttons'],
 //     component: ButtonsSectionComponent

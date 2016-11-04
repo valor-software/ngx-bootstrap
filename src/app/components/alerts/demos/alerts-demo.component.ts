@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let template = require('./alert-demo.html');
+let template = require('./alerts-demo.component.html');
 
 @Component({
   selector: 'alert-demo',
   template: template
 })
-export class AlertDemoComponent {
+export class AlertsDemoComponent {
   public alerts:Array<Object> = [
     {
       type: 'danger',

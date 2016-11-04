@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routing';
 
 import { GettingStartedComponent } from './getting-started/getting-started.component';
-import { MainMenuComponent } from './shared/main-menu/main-menu.component';
-import { TopMenuComponent } from './shared/top-menu/top-menu.component';
-import { SearchFilterPipe } from './shared/main-menu/search-filter.pipe';
-import { DemoSectionComponent } from './shared/demo-section/demo-section.component';
-import { AccordionDocsModule } from './components/accordion/accordion-docs.module';
+import { MainMenuComponent } from './common/main-menu/main-menu.component';
+import { TopMenuComponent } from './common/top-menu/top-menu.component';
+import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
+// import { DemoSectionComponent } from './shared/demo-section/demo-section.component';
+
+// will be lazy loaded later
+import { AccordionDocModule } from './components/accordion/accordion-doc.module';
+import { AlertsDocModule } from './components/alerts/alerts-docs.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +27,10 @@ import { AccordionDocsModule } from './components/accordion/accordion-docs.modul
   imports: [
     BrowserModule,
     FormsModule,
-    AccordionDocsModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes, {useHash: true}),
+    // will be lazy loaded later on
+    AccordionDocModule,
+    AlertsDocModule
   ],
   providers: [],
   bootstrap: [AppComponent]
