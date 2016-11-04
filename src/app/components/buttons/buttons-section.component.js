@@ -7,10 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 // webpack html imports
-var doc = require('../../../../components/buttons/readme.md');
-var titleDoc = require('../../../../components/buttons/title.md');
-var ts = require('!!raw?lang=typescript!./.././buttons-demo.ts');
-var html = require('!!raw?lang=markup!./.././buttons-demo.html');
+var doc = require('html!markdown!../../../../components/buttons/readme.md');
+var titleDoc = require('html!markdown!../../../../components/buttons/title.md');
+var ts = require('!!raw?lang=typescript!./demos/buttons-demo.component.ts');
+var html = require('!!raw?lang=markup!./demos/buttons-demo.component.html');
 var ButtonsSectionComponent = (function () {
     function ButtonsSectionComponent() {
         this.name = 'Buttons';

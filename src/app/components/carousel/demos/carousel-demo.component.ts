@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let template = require('./carousel-demo.html');
+let template = require('./carousel-demo.component.html');
 
 @Component({
   selector: 'carousel-demo',
