@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./buttons-demo.html');
-
 @Component({
   selector: 'buttons-demo',
-  template: template
+  templateUrl: './buttons-demo.component.html'
 })
 export class ButtonsDemoComponent {
   public singleModel:string = '1';

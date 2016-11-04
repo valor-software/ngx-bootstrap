@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { AccordionSectionComponent } from './components/accordion/accordion-section.component';
 import { AlertsSectionComponent } from './components/alerts/alerts-section.component';
+import { ButtonsSectionComponent } from './components/buttons/buttons-section.component';
 //
 // import { AccordionSectionComponent } from './components/accordion-section';
 // import { AlertSectionComponent } from './components/alert-section';
@@ -20,13 +21,13 @@ import { AlertsSectionComponent } from './components/alerts/alerts-section.compo
 // import { TooltipSectionComponent } from './components/tooltip-section';
 // import { TypeaheadSectionComponent } from './components/typeahead-section';
 
-export const routes:Routes = [
+export const routes = [
   {
     path: '',
     data: ['Getting started'],
     component: GettingStartedComponent
   },
-{
+  {
     path: 'accordion',
     data: ['Accordion'],
     component: AccordionSectionComponent
@@ -36,11 +37,12 @@ export const routes:Routes = [
     data: ['Alerts'],
     component: AlertsSectionComponent
   },
+  {
+    path: 'buttons',
+    data: ['Buttons'],
+    component: ButtonsSectionComponent
+  },
   // {
-//     path: 'buttons',
-//     data: ['Buttons'],
-//     component: ButtonsSectionComponent
-//   }, {
 //     path: 'carousel',
 //     data: ['Carousel'],
 //     component: CarouselSectionComponent

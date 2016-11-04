@@ -15,6 +15,7 @@ import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 // will be lazy loaded later
 import { AccordionDocModule } from './components/accordion/accordion-doc.module';
 import { AlertsDocModule } from './components/alerts/alerts-docs.module';
+import { ButtonsDocModule } from './components/buttons/buttons-doc.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AlertsDocModule } from './components/alerts/alerts-docs.module';
     RouterModule.forRoot(routes, {useHash: true}),
     // will be lazy loaded later on
     AccordionDocModule,
-    AlertsDocModule
+    AlertsDocModule,
+    ButtonsDocModule
   ],
   providers: [],
   bootstrap: [AppComponent]

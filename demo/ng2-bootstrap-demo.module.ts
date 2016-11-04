@@ -33,7 +33,7 @@ import { routing } from './router.config';
 
 import { AccordionSectionComponent } from './components/accordion-section';
 import { AlertSectionComponent } from './components/alert-section';
-import { ButtonsSectionComponent } from './components/buttons-section';
+import { ButtonsSectionComponent } from '../src/app/components/buttons/buttons-section.component';
 import { CarouselSectionComponent } from './components/carousel-section';
 import { CollapseSectionComponent } from './components/collapse-section';
 import { DatepickerSectionComponent } from './components/datepicker-section';

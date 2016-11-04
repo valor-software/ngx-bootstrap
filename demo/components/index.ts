@@ -1,6 +1,6 @@
 export * from './accordion/accordion-demo';
 export * from './alert/alert-demo';
-export * from './buttons/buttons-demo';
+export * from '../../src/app/components/buttons/demos/buttons-demo.component';
 export * from './carousel/carousel-demo';
 export * from './collapse/collapse-demo';
 export * from './datepicker/datepicker-demo';
