@@ -7,7 +7,9 @@ export interface ModalOptions {
    * Closes the modal when escape key is pressed.
    */
   keyboard?:boolean;
-
+  /**
+   * Puts the focus on the modal when initialized and prevents focusing on any element out of the modal.
+   */
   focus?:boolean;
   /**
    * Shows the modal when initialized.
