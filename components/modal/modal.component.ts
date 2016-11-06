@@ -68,6 +68,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected timerHideModal: number = 0;
   protected timerRmBackDrop: number = 0;
 
+  private detachFocusinListener: Function;
+
   protected get document(): any {
     return this.componentsHelper.getDocument();
   };
@@ -112,6 +114,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.scrollbarWidth = void 0;
     this.timerHideModal = void 0;
     this.timerRmBackDrop = void 0;
+    if (this.detachFocusinListener) {
+      this.detachFocusinListener();
+    }
+    this.detachFocusinListener = void 0;
   }
 
   public ngAfterViewInit(): any {
@@ -161,6 +167,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     clearTimeout(this.timerHideModal);
     clearTimeout(this.timerRmBackDrop);
 
+    if (this.detachFocusinListener) {
+      this.detachFocusinListener();
+    }
+
     this._isShown = false;
     this.renderer.setElementClass(this.element.nativeElement, ClassName.IN, false);
     this.renderer.setElementClass(this.element.nativeElement, ClassName.ACTIVE, false);
@@ -203,9 +213,13 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.renderer.setElementClass(this.element.nativeElement, ClassName.IN, true);
     this.renderer.setElementClass(this.element.nativeElement, ClassName.ACTIVE, true);
 
+    if(this._config.focus) {
+      this.enforceFocus();
+    }
+
     const transitionComplete = () => {
       if (this._config.focus) {
-        this.element.nativeElement.focus();
+        this.renderer.invokeElementMethod(this.element.nativeElement, 'focus');
       }
       this.onShown.emit(this);
     };
@@ -280,6 +294,23 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     if (this.backdrop) {
       this.backdrop.destroy();
       this.backdrop = void 0;
+    }
+  }
+
+  private enforceFocus(): void {
+    let focusHandler = (event: Event): void => {
+      if (!this.element.nativeElement.contains(event.target)) {
+        this.renderer.invokeElementMethod(this.element.nativeElement, 'focus');
+      }
+    };
+
+    if ('onfocusin' in this.document) {
+      this.detachFocusinListener = this.renderer.listenGlobal(this.document, 'focusin', focusHandler);
+    } else { // FF does not have focusin event yet
+      this.document.addEventListener('focus', focusHandler, true);
+      this.detachFocusinListener = (): void => {
+        this.document.removeEventListener('focus', focusHandler, true);
+      }
     }
   }
 
