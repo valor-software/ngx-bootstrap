@@ -297,7 +297,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  private enforceFocus(): void {
+  protected enforceFocus(): void {
     let focusHandler = (event: Event): void => {
       if (!this.element.nativeElement.contains(event.target)) {
         this.renderer.invokeElementMethod(this.element.nativeElement, 'focus');
@@ -310,7 +310,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this.document.addEventListener('focus', focusHandler, true);
       this.detachFocusinListener = (): void => {
         this.document.removeEventListener('focus', focusHandler, true);
-      }
+      };
     }
   }
 
