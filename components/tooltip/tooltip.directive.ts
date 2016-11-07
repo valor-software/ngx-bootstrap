@@ -57,7 +57,7 @@ export class TooltipDirective {
   // todo: filter triggers
   // params: event, target
   @HostListener('focusin')
-  @HostListener('mouseenter')
+  @HostListener('mouseover')
   public show(): void {
     if (this.visible || !this.enable || this.delayTimeoutId) {
       return;
@@ -100,7 +100,7 @@ export class TooltipDirective {
 
   // params event, target
   @HostListener('focusout')
-  @HostListener('mouseleave')
+  @HostListener('mouseout')
   public hide(): void {
     if (this.delayTimeoutId) {
       clearTimeout(this.delayTimeoutId);
