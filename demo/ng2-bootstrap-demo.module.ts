@@ -39,7 +39,7 @@ import { CollapseSectionComponent } from '../src/app/components/collapse/collaps
 import { DatepickerSectionComponent } from '../src/app/components/datepicker/datepicker-section';
 import { DropdownSectionComponent } from '../src/app/components/dropdown/dropdown-section';
 import { ModalSectionComponent } from '../src/app/components/modal/modal-section';
-import { PaginationSectionComponent } from './components/pagination-section';
+import { PaginationSectionComponent } from '../src/app/components/pagination/pagination-section';
 import { ProgressbarSectionComponent } from './components/progressbar-section';
 import { RatingSectionComponent } from './components/rating-section';
 import { TabsSectionComponent } from './components/tabs-section';

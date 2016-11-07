@@ -7,6 +7,7 @@ import { CollapseSectionComponent } from './components/collapse/collapse-section
 import { DatepickerSectionComponent } from './components/datepicker/datepicker-section.component';
 import { DropdownSectionComponent } from './components/dropdown/dropdown-section.component';
 import { ModalSectionComponent } from './components/modal/modal-section.component';
+import { PaginationSectionComponent } from './components/pagination/pagination-section.component';
 
 export const routes = [
   {
@@ -54,11 +55,12 @@ export const routes = [
     data: ['Modals'],
     component: ModalSectionComponent
   },
+  {
+    path: 'pagination',
+    data: ['Pagination'],
+    component: PaginationSectionComponent
+  },
   // {
-//     path: 'pagination',
-//     data: ['Pagination'],
-//     component: PaginationSectionComponent
-//   }, {
 //     path: 'progressbar',
 //     data: ['Progressbar'],
 //     component: ProgressbarSectionComponent

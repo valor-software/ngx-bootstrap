@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./pagination-demo.html');
-
 @Component({
   selector: 'pagination-demo',
-  template: template
+  templateUrl: './pagination-demo.component.html'
 })
 export class PaginationDemoComponent {
   public totalItems:number = 64;

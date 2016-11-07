@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/pagination/readme.md');
-let titleDoc = require('../../components/pagination/title.md');
+let doc = require('html!markdown!../../../../components/pagination/readme.md');
+let titleDoc = require('html!markdown!../../../../components/pagination/title.md');
 
-let ts = require('!!raw?lang=typescript!./pagination/pagination-demo.ts');
-let html = require('!!raw?lang=markup!./pagination/pagination-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/pagination-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/pagination-demo.component.html');
 
 @Component({
   selector: 'pagination-section',
