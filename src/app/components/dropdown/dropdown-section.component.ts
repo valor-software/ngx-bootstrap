@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/dropdown/readme.md');
-let titleDoc = require('../../components/dropdown/title.md');
+let doc = require('html!markdown!../../../../components/dropdown/readme.md');
+let titleDoc = require('html!markdown!../../../../components/dropdown/title.md');
 
-let ts = require('!!raw?lang=typescript!./dropdown/dropdown-demo.ts');
-let html = require('!!raw?lang=markup!./dropdown/dropdown-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/dropdown-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/dropdown-demo.component.html');
 
 @Component({
   selector: 'dropdown-section',

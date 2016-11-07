@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./dropdown-demo.html');
-
 @Component({
   selector: 'dropdown-demo',
-  template: template
+  templateUrl: './dropdown-demo.component.html'
 })
 export class DropdownDemoComponent {
   public disabled:boolean = false;
