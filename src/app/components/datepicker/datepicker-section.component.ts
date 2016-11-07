@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/datepicker/readme.md');
-let titleDoc = require('../../components/datepicker/title.md');
+let doc = require('html!markdown!../../../../components/datepicker/readme.md');
+let titleDoc = require('html!markdown!../../../../components/datepicker/title.md');
 
-let ts = require('!!raw?lang=typescript!./datepicker/datepicker-demo.ts');
-let html = require('!!raw?lang=markup!./datepicker/datepicker-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/datepicker-demo.component');
+let html = require('!!raw?lang=markup!./demos/datepicker-demo.component.html');
 
 @Component({
   selector: 'datepicker-section',

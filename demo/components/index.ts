@@ -3,7 +3,7 @@ export * from './alert/alert-demo';
 export * from '../../src/app/components/buttons/demos/buttons-demo.component';
 export * from '../../src/app/components/carousel/demos/carousel-demo.component';
 export * from '../../src/app/components/collapse/demos/collapse-demo';
-export * from './datepicker/datepicker-demo';
+export * from '../../src/app/components/datepicker/demos/datepicker-demo';
 export * from './dropdown/dropdown-demo';
 export * from './modal/modal-demo';
 export * from './pagination/pagination-demo';

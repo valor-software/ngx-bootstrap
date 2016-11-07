@@ -17,6 +17,7 @@ import { AlertsDocModule } from './components/alerts/alerts-docs.module';
 import { ButtonsDocModule } from './components/buttons/buttons-doc.module';
 import { CarouselDocModule } from './components/carousel/carousel-doc.module';
 import { CollapseDocModule } from './components/collapse/collapse-doc.module';
+import { DatepickerDocModule } from './components/datepicker/datepicker-doc.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CollapseDocModule } from './components/collapse/collapse-doc.module';
     AlertsDocModule,
     ButtonsDocModule,
     CarouselDocModule,
-    CollapseDocModule
+    CollapseDocModule,
+    DatepickerDocModule
   ],
   providers: [],
   bootstrap: [AppComponent]

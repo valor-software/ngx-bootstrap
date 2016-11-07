@@ -4,6 +4,7 @@ import { AlertsSectionComponent } from './components/alerts/alerts-section.compo
 import { ButtonsSectionComponent } from './components/buttons/buttons-section.component';
 import { CarouselSectionComponent } from './components/carousel/carousel-section.component';
 import { CollapseSectionComponent } from './components/collapse/collapse-section.component';
+import { DatepickerSectionComponent } from './components/datepicker/datepicker-section.component';
 
 export const routes = [
   {
@@ -35,11 +36,12 @@ export const routes = [
     data: ['Collapse'],
     component: CollapseSectionComponent
   },
-// {
-//     path: 'datepicker',
-//     data: ['Datepicker'],
-//     component: DatepickerSectionComponent
-//   }, {
+{
+    path: 'datepicker',
+    data: ['Datepicker'],
+    component: DatepickerSectionComponent
+  },
+  // {
 //     path: 'dropdowns',
 //     data: ['Dropdowns'],
 //     component: DropdownSectionComponent

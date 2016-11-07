@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 
-// webpack html imports
-let template = require('./datepicker-demo.html');
-
 @Component({
   selector: 'datepicker-demo',
-  template: template
+  templateUrl: './datepicker-demo.component.html'
 })
 export class DatepickerDemoComponent {
   public dt:Date = new Date();
