@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./collapse-demo.html');
-
 @Component({
   selector: 'collapse-demo',
-  template: template
+  templateUrl: './collapse-demo.component.html'
 })
 export class CollapseDemoComponent {
   public isCollapsed:boolean = false;

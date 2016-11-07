@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./carousel-demo.component.html');
-
 @Component({
   selector: 'carousel-demo',
-  template: template
+  templateUrl: './carousel-demo.component.html'
 })
 export class CarouselDemoComponent {
   public myInterval:number = 5000;

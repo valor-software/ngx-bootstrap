@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../../../components/carousel/readme.md');
-let titleDoc = require('../../../../components/carousel/title.md');
+let doc = require('html!markdown!../../../../components/carousel/readme.md');
+let titleDoc = require('html!markdown!../../../../components/carousel/title.md');
 
-let ts = require('!!raw?lang=typescript!./.././carousel-demo.ts');
-let html = require('!!raw?lang=markup!./.././carousel-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/carousel-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/carousel-demo.component.html');
 
 @Component({
   selector: 'carousel-section',

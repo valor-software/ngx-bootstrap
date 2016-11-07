@@ -35,7 +35,7 @@ import { AccordionSectionComponent } from './components/accordion-section';
 import { AlertSectionComponent } from './components/alert-section';
 import { ButtonsSectionComponent } from '../src/app/components/buttons/buttons-section.component';
 import { CarouselSectionComponent } from '../src/app/components/carousel/carousel-section.component';
-import { CollapseSectionComponent } from './components/collapse-section';
+import { CollapseSectionComponent } from '../src/app/components/collapse/collapse-section';
 import { DatepickerSectionComponent } from './components/datepicker-section';
 import { DropdownSectionComponent } from './components/dropdown-section';
 import { ModalSectionComponent } from './components/modal-section';
