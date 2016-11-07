@@ -12,18 +12,18 @@ import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 
 // will be lazy loaded later
-import { AccordionDocModule } from './components/accordion/accordion-doc.module';
-import { AlertsDocModule } from './components/alerts/alerts-docs.module';
-import { ButtonsDocModule } from './components/buttons/buttons-doc.module';
-import { CarouselDocModule } from './components/carousel/carousel-doc.module';
-import { CollapseDocModule } from './components/collapse/collapse-doc.module';
-import { DatepickerDocModule } from './components/datepicker/datepicker-doc.module';
-import { DropdownDocModule } from './components/dropdown/drowdown-doc.module';
-import { ModalDocModule } from './components/modal/modal-doc.module';
-import { PaginationDocModule } from './components/pagination/pagination-doc.module';
-import { ProgressbarDocModule } from './components/progressbar/progressbar-doc.module';
-import { RatingDocModule } from './components/rating/rating-doc.module';
-import { DemoTabsModule } from './components/tabs/index';
+import { AccordionDocModule } from './components/accordion';
+import { AlertsDocModule } from './components/alerts';
+import { ButtonsDocModule } from './components/buttons';
+import { CarouselDocModule } from './components/carousel';
+import { CollapseDocModule } from './components/collapse';
+import { DatepickerDocModule } from './components/datepicker';
+import { DropdownDocModule } from './components/dropdown';
+import { ModalDocModule } from './components/modal';
+import { PaginationDocModule } from './components/pagination';
+import { ProgressbarDocModule } from './components/progressbar';
+import { RatingDocModule } from './components/rating';
+import { DemoTabsModule } from './components/tabs';
 
 @NgModule({
   declarations: [
