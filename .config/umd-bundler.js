@@ -17,7 +17,7 @@ const Builder = require('systemjs-builder');
 
 const pkg = require('../package.json');
 const name = pkg.name;
-const targetFolder = path.resolve('./bundles');
+const targetFolder = path.resolve('./dist/bundles');
 
 async.waterfall([
   cleanBundlesFolder,

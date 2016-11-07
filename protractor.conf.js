@@ -9,24 +9,20 @@ exports.config = {
   specs: [
     './e2e/**/*.e2e-spec.ts'
   ],
-  capabilities: {
-    'browserName': 'chrome'
-  },
+  capabilities: {'browserName': 'chrome'},
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    print() {}
   },
   useAllAngular2AppRoots: true,
-  beforeLaunch: function() {
-    require('ts-node').register({
-      project: 'e2e'
-    });
+  beforeLaunch() {
+    require('ts-node').register({project: 'e2e'});
   },
-  onPrepare: function() {
+  onPrepare() {
     jasmine.getEnv().addReporter(new SpecReporter());
   }
 };

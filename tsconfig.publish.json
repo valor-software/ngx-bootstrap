@@ -22,7 +22,7 @@
     "node_modules"
   ],
   "files": [
-    "./demo/custom-typings.d.ts",
+    "./src/typings.d.ts",
     "./ng2-bootstrap.ts"
   ],
   "angularCompilerOptions": {
