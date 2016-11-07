@@ -45,7 +45,7 @@ import { RatingSectionComponent } from '../src/app/components/rating/rating-sect
 import { TabsSectionComponent } from '../src/app/components/tabs/tabs-section';
 import { TimepickerSectionComponent } from '../src/app/components/timepicker/timepicker-section';
 import { TooltipSectionComponent } from '../src/app/components/tooltip/tooltip-section';
-import { TypeaheadSectionComponent } from './components/typeahead-section';
+import { TypeaheadSectionComponent } from '../src/app/components/typeahead/typeahead-section';
 
 @NgModule({
   declarations: [

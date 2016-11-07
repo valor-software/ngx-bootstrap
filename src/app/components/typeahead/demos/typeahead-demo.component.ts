@@ -3,15 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-
-import { TypeaheadMatch } from '../../../components/typeahead/typeahead-match.class';
-
-// webpack html imports
-let template = require('./typeahead-demo.html');
+import { TypeaheadMatch } from '../../../../../dist/components/typeahead';
 
 @Component({
   selector: 'typeahead-demo',
-  template: template
+  templateUrl: './typeahead-demo.component.html'
 })
 export class TypeaheadDemoComponent {
   public stateCtrl:FormControl = new FormControl();

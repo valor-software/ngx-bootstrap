@@ -26,6 +26,7 @@ import { DemoRatingModule } from './components/rating';
 import { DemoTabsModule } from './components/tabs';
 import { DemoTimepickerModule } from './components/timepicker/index';
 import { DemoTooltipModule } from './components/tooltip/index';
+import { DemoTypeaheadModule } from './components/typeahead/index';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DemoTooltipModule } from './components/tooltip/index';
     DemoRatingModule,
     DemoTabsModule,
     DemoTimepickerModule,
-    DemoTooltipModule
+    DemoTooltipModule,
+    DemoTypeaheadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

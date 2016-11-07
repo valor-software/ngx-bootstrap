@@ -13,6 +13,7 @@ import { RatingSectionComponent } from './components/rating/rating-section.compo
 import { TabsSectionComponent } from './components/tabs/tabs-section.component';
 import { TimepickerSectionComponent } from './components/timepicker/timepicker-section.component';
 import { TooltipSectionComponent } from './components/tooltip/tooltip-section.component';
+import { TypeaheadSectionComponent } from './components/typeahead/typeahead-section.component';
 
 export const routes = [
   {
@@ -90,12 +91,12 @@ export const routes = [
     data: ['Tooltip'],
     component: TooltipSectionComponent
   },
-  // {
-//     path: 'typeahead',
-//     data: ['Typeahead'],
-//     component: TypeaheadSectionComponent
-//   }, {
-//     path: '**',
-//     redirectTo: '/'
-//   }
+  {
+    path: 'typeahead',
+    data: ['Typeahead'],
+    component: TypeaheadSectionComponent
+  }, {
+    path: '**',
+    redirectTo: '/'
+  }
 ];

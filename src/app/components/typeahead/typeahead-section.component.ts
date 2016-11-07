@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/typeahead/readme.md');
-let titleDoc = require('../../components/typeahead/title.md');
+let doc = require('html!markdown!../../../../components/typeahead/readme.md');
+let titleDoc = require('html!markdown!../../../../components/typeahead/title.md');
 
-let ts = require('!!raw?lang=typescript!./typeahead/typeahead-demo.ts');
-let html = require('!!raw?lang=markup!./typeahead/typeahead-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/typeahead-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/typeahead-demo.component.html');
 
 @Component({
   selector: 'typeahead-section',
