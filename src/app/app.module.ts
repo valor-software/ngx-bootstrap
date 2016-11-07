@@ -22,6 +22,7 @@ import { DropdownDocModule } from './components/dropdown/drowdown-doc.module';
 import { ModalDocModule } from './components/modal/modal-doc.module';
 import { PaginationDocModule } from './components/pagination/pagination-doc.module';
 import { ProgressbarDocModule } from './components/progressbar/progressbar-doc.module';
+import { RatingDocModule } from './components/rating/rating-doc.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProgressbarDocModule } from './components/progressbar/progressbar-doc.m
     DropdownDocModule,
     ModalDocModule,
     PaginationDocModule,
-    ProgressbarDocModule
+    ProgressbarDocModule,
+    RatingDocModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/rating/readme.md');
-let titleDoc = require('../../components/rating/title.md');
+let doc = require('html!markdown!../../../../components/rating/readme.md');
+let titleDoc = require('html!markdown!../../../../components/rating/title.md');
 
-let ts = require('!!raw?lang=typescript!./rating/rating-demo.ts');
-let html = require('!!raw?lang=markup!./rating/rating-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/rating-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/rating-demo.component.html');
 
 @Component({
   selector: 'rating-section',

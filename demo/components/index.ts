@@ -8,7 +8,7 @@ export * from '../../src/app/components/dropdown/demos/dropdown-demo';
 export * from '../../src/app/components/modal/demos/modal-demo';
 export * from '../../src/app/components/pagination/demos/pagination-demo';
 export * from '../../src/app/components/progressbar/demos/progressbar-demo';
-export * from './rating/rating-demo';
+export * from '../../src/app/components/rating/demos/rating-demo';
 export * from './tabs/tabs-demo';
 export * from './timepicker/timepicker-demo';
 export * from './tooltip/tooltip-demo';

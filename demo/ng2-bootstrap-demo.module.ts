@@ -41,7 +41,7 @@ import { DropdownSectionComponent } from '../src/app/components/dropdown/dropdow
 import { ModalSectionComponent } from '../src/app/components/modal/modal-section';
 import { PaginationSectionComponent } from '../src/app/components/pagination/pagination-section';
 import { ProgressbarSectionComponent } from '../src/app/components/progressbar/progressbar-section';
-import { RatingSectionComponent } from './components/rating-section';
+import { RatingSectionComponent } from '../src/app/components/rating/rating-section';
 import { TabsSectionComponent } from './components/tabs-section';
 import { TimepickerSectionComponent } from './components/timepicker-section';
 import { TooltipSectionComponent } from './components/tooltip-section';

@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./rating-demo.html');
-
 @Component({
   selector: 'rating-demo',
-  template: template
+  templateUrl: './rating-demo.component.html'
 })
 export class RatingDemoComponent {
   public x:number = 5;

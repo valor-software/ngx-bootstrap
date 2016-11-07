@@ -9,6 +9,7 @@ import { DropdownSectionComponent } from './components/dropdown/dropdown-section
 import { ModalSectionComponent } from './components/modal/modal-section.component';
 import { PaginationSectionComponent } from './components/pagination/pagination-section.component';
 import { ProgressbarSectionComponent } from './components/progressbar/progressbar-section.component';
+import { RatingSectionComponent } from './components/rating/rating-section.component';
 
 export const routes = [
   {
@@ -66,11 +67,12 @@ export const routes = [
     data: ['Progressbar'],
     component: ProgressbarSectionComponent
   },
-// {
-//     path: 'rating',
-//     data: ['Rating'],
-//     component: RatingSectionComponent
-//   }, {
+{
+    path: 'rating',
+    data: ['Rating'],
+    component: RatingSectionComponent
+  },
+  // {
 //     path: 'tabs',
 //     data: ['Tabs'],
 //     component: TabsSectionComponent
