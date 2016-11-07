@@ -31,6 +31,9 @@ testem.log
 /demo/**/*.js
 /demo/**/*.js.map
 /demo/**/*.d.ts
+/src/app/**/*.js
+/src/app/**/*.js.map
+/src/app/**/*.d.ts
 /components/**/*.js
 /components/**/*.js.map
 /components/**/*.d.ts
