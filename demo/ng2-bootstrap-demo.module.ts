@@ -43,7 +43,7 @@ import { PaginationSectionComponent } from '../src/app/components/pagination/pag
 import { ProgressbarSectionComponent } from '../src/app/components/progressbar/progressbar-section';
 import { RatingSectionComponent } from '../src/app/components/rating/rating-section';
 import { TabsSectionComponent } from '../src/app/components/tabs/tabs-section';
-import { TimepickerSectionComponent } from './components/timepicker-section';
+import { TimepickerSectionComponent } from '../src/app/components/timepicker/timepicker-section';
 import { TooltipSectionComponent } from './components/tooltip-section';
 import { TypeaheadSectionComponent } from './components/typeahead-section';
 

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/timepicker/readme.md');
-let titleDoc = require('../../components/timepicker/title.md');
+let doc = require('html!markdown!../../../../components/timepicker/readme.md');
+let titleDoc = require('html!markdown!../../../../components/timepicker/title.md');
 
-let ts = require('!!raw?lang=typescript!./timepicker/timepicker-demo.ts');
-let html = require('!!raw?lang=markup!./timepicker/timepicker-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/timepicker-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/timepicker-demo.component.html');
 
 @Component({
   selector: 'timepicker-section',

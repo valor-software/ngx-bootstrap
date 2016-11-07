@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./timepicker-demo.html');
-
 @Component({
   selector: 'timepicker-demo',
-  template: template
+  templateUrl: './timepicker-demo.component.html'
 })
 export class TimepickerDemoComponent {
   public hstep:number = 1;

@@ -11,6 +11,7 @@ import { PaginationSectionComponent } from './components/pagination/pagination-s
 import { ProgressbarSectionComponent } from './components/progressbar/progressbar-section.component';
 import { RatingSectionComponent } from './components/rating/rating-section.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section.component';
+import { TimepickerSectionComponent } from './components/timepicker/timepicker-section.component';
 
 export const routes = [
   {
@@ -78,11 +79,12 @@ export const routes = [
     data: ['Tabs'],
     component: TabsSectionComponent
   },
+  {
+    path: 'timepicker',
+    data: ['Timepicker'],
+    component: TimepickerSectionComponent
+  },
   // {
-//     path: 'timepicker',
-//     data: ['Timepicker'],
-//     component: TimepickerSectionComponent
-//   }, {
 //     path: 'tooltip',
 //     data: ['Tooltip'],
 //     component: TooltipSectionComponent

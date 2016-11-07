@@ -24,6 +24,7 @@ import { PaginationDocModule } from './components/pagination';
 import { ProgressbarDocModule } from './components/progressbar';
 import { RatingDocModule } from './components/rating';
 import { DemoTabsModule } from './components/tabs';
+import { DemoTimepickerModule } from './components/timepicker/index';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DemoTabsModule } from './components/tabs';
     PaginationDocModule,
     ProgressbarDocModule,
     RatingDocModule,
-    DemoTabsModule
+    DemoTabsModule,
+    DemoTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
