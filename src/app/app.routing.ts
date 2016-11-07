@@ -12,6 +12,7 @@ import { ProgressbarSectionComponent } from './components/progressbar/progressba
 import { RatingSectionComponent } from './components/rating/rating-section.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section.component';
 import { TimepickerSectionComponent } from './components/timepicker/timepicker-section.component';
+import { TooltipSectionComponent } from './components/tooltip/tooltip-section.component';
 
 export const routes = [
   {
@@ -43,7 +44,7 @@ export const routes = [
     data: ['Collapse'],
     component: CollapseSectionComponent
   },
-{
+  {
     path: 'datepicker',
     data: ['Datepicker'],
     component: DatepickerSectionComponent
@@ -69,7 +70,7 @@ export const routes = [
     data: ['Progressbar'],
     component: ProgressbarSectionComponent
   },
-{
+  {
     path: 'rating',
     data: ['Rating'],
     component: RatingSectionComponent
@@ -84,11 +85,12 @@ export const routes = [
     data: ['Timepicker'],
     component: TimepickerSectionComponent
   },
+  {
+    path: 'tooltip',
+    data: ['Tooltip'],
+    component: TooltipSectionComponent
+  },
   // {
-//     path: 'tooltip',
-//     data: ['Tooltip'],
-//     component: TooltipSectionComponent
-//   }, {
 //     path: 'typeahead',
 //     data: ['Typeahead'],
 //     component: TypeaheadSectionComponent

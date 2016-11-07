@@ -11,5 +11,5 @@ export * from '../../src/app/components/progressbar/demos/progressbar-demo';
 export * from '../../src/app/components/rating/demos/rating-demo';
 export * from '../../src/app/components/tabs/demos/tabs-demo';
 export * from '../../src/app/components/timepicker/demos/timepicker-demo';
-export * from './tooltip/tooltip-demo';
+export * from '../../src/app/components/tooltip/demos/tooltip-demo';
 export * from './typeahead/typeahead-demo';

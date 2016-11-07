@@ -19,4 +19,4 @@ import { ButtonsModule } from '../../../../dist/components/buttons/buttons.modul
   ],
   exports: [ButtonsSectionComponent]
 })
-export class ButtonsDocModule{}
+export class DemoButtonsModule{}

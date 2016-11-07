@@ -19,5 +19,5 @@ import { DropdownModule } from '../../../../dist/components/dropdown/dropdown.mo
   ],
   exports: [DropdownSectionComponent]
 })
-export class DropdownDocModule {
+export class DemoDropdownModule {
 }

@@ -19,6 +19,6 @@ import { PaginationModule } from '../../../../dist/components/pagination/paginat
   ],
   exports: [PaginationSectionComponent]
 })
-export class PaginationDocModule {
+export class DemoPaginationModule {
 
 }

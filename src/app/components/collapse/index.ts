@@ -19,6 +19,6 @@ import { CollapseModule } from '../../../../dist/components/collapse/collapse.mo
   ],
   exports: [CollapseSectionComponent]
 })
-export class CollapseDocModule {
+export class DemoCollapseModule {
 
 }

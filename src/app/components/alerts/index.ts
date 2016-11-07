@@ -17,5 +17,5 @@ import { AlertModule } from '../../../../dist/components/alert/alert.module';
   ],
   exports: [AlertsSectionComponent]
 })
-export class AlertsDocModule {
+export class DemoAlertsModule {
 }

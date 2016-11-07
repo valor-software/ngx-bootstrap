@@ -12,19 +12,20 @@ import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 
 // will be lazy loaded later
-import { AccordionDocModule } from './components/accordion';
-import { AlertsDocModule } from './components/alerts';
-import { ButtonsDocModule } from './components/buttons';
-import { CarouselDocModule } from './components/carousel';
-import { CollapseDocModule } from './components/collapse';
-import { DatepickerDocModule } from './components/datepicker';
-import { DropdownDocModule } from './components/dropdown';
-import { ModalDocModule } from './components/modal';
-import { PaginationDocModule } from './components/pagination';
-import { ProgressbarDocModule } from './components/progressbar';
-import { RatingDocModule } from './components/rating';
+import { DemoAccordionModule } from './components/accordion';
+import { DemoAlertsModule } from './components/alerts';
+import { DemoButtonsModule } from './components/buttons';
+import { DemoCarouselModule } from './components/carousel';
+import { DemoCollapseModule } from './components/collapse';
+import { DemoDatepickerModule } from './components/datepicker';
+import { DemoDropdownModule } from './components/dropdown';
+import { DemoModalModule } from './components/modal';
+import { DemoPaginationModule } from './components/pagination';
+import { DemoProgressbarModule } from './components/progressbar';
+import { DemoRatingModule } from './components/rating';
 import { DemoTabsModule } from './components/tabs';
 import { DemoTimepickerModule } from './components/timepicker/index';
+import { DemoTooltipModule } from './components/tooltip/index';
 
 @NgModule({
   declarations: [
@@ -39,19 +40,20 @@ import { DemoTimepickerModule } from './components/timepicker/index';
     FormsModule,
     RouterModule.forRoot(routes, {useHash: true}),
     // will be lazy loaded later on
-    AccordionDocModule,
-    AlertsDocModule,
-    ButtonsDocModule,
-    CarouselDocModule,
-    CollapseDocModule,
-    DatepickerDocModule,
-    DropdownDocModule,
-    ModalDocModule,
-    PaginationDocModule,
-    ProgressbarDocModule,
-    RatingDocModule,
+    DemoAccordionModule,
+    DemoAlertsModule,
+    DemoButtonsModule,
+    DemoCarouselModule,
+    DemoCollapseModule,
+    DemoDatepickerModule,
+    DemoDropdownModule,
+    DemoModalModule,
+    DemoPaginationModule,
+    DemoProgressbarModule,
+    DemoRatingModule,
     DemoTabsModule,
-    DemoTimepickerModule
+    DemoTimepickerModule,
+    DemoTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

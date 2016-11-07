@@ -22,4 +22,4 @@ import { TabsModule } from '../../../../dist/components/tabs';
   ],
   exports: [AccordionSectionComponent]
 })
-export class AccordionDocModule{}
+export class DemoAccordionModule{}

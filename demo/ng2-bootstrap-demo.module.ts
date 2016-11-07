@@ -44,7 +44,7 @@ import { ProgressbarSectionComponent } from '../src/app/components/progressbar/p
 import { RatingSectionComponent } from '../src/app/components/rating/rating-section';
 import { TabsSectionComponent } from '../src/app/components/tabs/tabs-section';
 import { TimepickerSectionComponent } from '../src/app/components/timepicker/timepicker-section';
-import { TooltipSectionComponent } from './components/tooltip-section';
+import { TooltipSectionComponent } from '../src/app/components/tooltip/tooltip-section';
 import { TypeaheadSectionComponent } from './components/typeahead-section';
 
 @NgModule({

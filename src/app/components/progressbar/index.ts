@@ -19,5 +19,5 @@ import { ProgressbarModule } from '../../../../dist/components/progressbar/progr
   ],
   exports: [ProgressbarSectionComponent]
 })
-export class ProgressbarDocModule {
+export class DemoProgressbarModule {
 }

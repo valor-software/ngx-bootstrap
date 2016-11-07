@@ -20,6 +20,6 @@ import { CarouselModule } from '../../../../dist/components/carousel/carousel.mo
   ],
   exports: [CarouselSectionComponent]
 })
-export class CarouselDocModule {
+export class DemoCarouselModule {
 
 }

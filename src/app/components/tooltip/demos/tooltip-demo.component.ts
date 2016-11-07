@@ -1,11 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./tooltip-demo.html');
-
 @Component({
   selector: 'tooltip-demo',
-  template: template,
+  templateUrl: './tooltip-demo.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipDemoComponent {

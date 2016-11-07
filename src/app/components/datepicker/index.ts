@@ -19,6 +19,6 @@ import { DatepickerModule } from '../../../../dist/components/datepicker/datepic
   ],
   exports: [DatepickerSectionComponent]
 })
-export class DatepickerDocModule {
+export class DemoDatepickerModule {
 
 }

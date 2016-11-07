@@ -19,6 +19,6 @@ import { RatingModule } from '../../../../dist/components/rating';
   ],
   exports: [RatingSectionComponent]
 })
-export class RatingDocModule {
+export class DemoRatingModule {
 
 }

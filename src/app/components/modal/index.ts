@@ -19,6 +19,6 @@ import { ModalSectionComponent } from './modal-section.component';
   ],
   exports: [ModalDemoComponent]
 })
-export class ModalDocModule {
+export class DemoModalModule {
 
 }
