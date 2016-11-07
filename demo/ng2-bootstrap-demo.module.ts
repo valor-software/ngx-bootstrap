@@ -40,7 +40,7 @@ import { DatepickerSectionComponent } from '../src/app/components/datepicker/dat
 import { DropdownSectionComponent } from '../src/app/components/dropdown/dropdown-section';
 import { ModalSectionComponent } from '../src/app/components/modal/modal-section';
 import { PaginationSectionComponent } from '../src/app/components/pagination/pagination-section';
-import { ProgressbarSectionComponent } from './components/progressbar-section';
+import { ProgressbarSectionComponent } from '../src/app/components/progressbar/progressbar-section';
 import { RatingSectionComponent } from './components/rating-section';
 import { TabsSectionComponent } from './components/tabs-section';
 import { TimepickerSectionComponent } from './components/timepicker-section';

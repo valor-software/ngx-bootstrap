@@ -21,6 +21,7 @@ import { DatepickerDocModule } from './components/datepicker/datepicker-doc.modu
 import { DropdownDocModule } from './components/dropdown/drowdown-doc.module';
 import { ModalDocModule } from './components/modal/modal-doc.module';
 import { PaginationDocModule } from './components/pagination/pagination-doc.module';
+import { ProgressbarDocModule } from './components/progressbar/progressbar-doc.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PaginationDocModule } from './components/pagination/pagination-doc.modu
     DatepickerDocModule,
     DropdownDocModule,
     ModalDocModule,
-    PaginationDocModule
+    PaginationDocModule,
+    ProgressbarDocModule
   ],
   providers: [],
   bootstrap: [AppComponent]

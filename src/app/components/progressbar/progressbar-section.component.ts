@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../ng2-bootstrap';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../../../dist/ng2-bootstrap';
 
 // webpack html imports
-let doc = require('../../components/progressbar/readme.md');
-let titleDoc = require('../../components/progressbar/title.md');
+let doc = require('html!markdown!../../../../components/progressbar/readme.md');
+let titleDoc = require('html!markdown!../../../../components/progressbar/title.md');
 
-let ts = require('!!raw?lang=typescript!./progressbar/progressbar-demo.ts');
+let ts = require('!!raw?lang=typescript!./demos/progressbar-demo.component.ts');
 
 let templates:any = {
-  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./progressbar/progressbar-demo.html'),
-  [Ng2BootstrapTheme.BS4]: require('!!raw?lang=markup!./progressbar/progressbar-demo-bs4.html')
+  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./demos/progressbar-demo.component.html'),
+  [Ng2BootstrapTheme.BS4]: require('!!raw?lang=markup!./demos/progressbar-demo-bs4.component.html')
 };
 
 let html = templates[Ng2BootstrapConfig.theme];

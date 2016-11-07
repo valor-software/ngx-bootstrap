@@ -8,6 +8,7 @@ import { DatepickerSectionComponent } from './components/datepicker/datepicker-s
 import { DropdownSectionComponent } from './components/dropdown/dropdown-section.component';
 import { ModalSectionComponent } from './components/modal/modal-section.component';
 import { PaginationSectionComponent } from './components/pagination/pagination-section.component';
+import { ProgressbarSectionComponent } from './components/progressbar/progressbar-section.component';
 
 export const routes = [
   {
@@ -60,11 +61,12 @@ export const routes = [
     data: ['Pagination'],
     component: PaginationSectionComponent
   },
-  // {
-//     path: 'progressbar',
-//     data: ['Progressbar'],
-//     component: ProgressbarSectionComponent
-//   }, {
+  {
+    path: 'progressbar',
+    data: ['Progressbar'],
+    component: ProgressbarSectionComponent
+  },
+// {
 //     path: 'rating',
 //     data: ['Rating'],
 //     component: RatingSectionComponent
