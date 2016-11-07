@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/modal/readme.md');
-let titleDoc = require('../../components/modal/title.md');
+let doc = require('html!markdown!../../../../components/modal/readme.md');
+let titleDoc = require('html!markdown!../../../../components/modal/title.md');
 
-let ts = require('!!raw?lang=typescript!./modal/modal-demo.ts');
-let html = require('!!raw?lang=markup!./modal/modal-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/modal-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/modal-demo.component.html');
 
 @Component({
   selector: 'modal-section',

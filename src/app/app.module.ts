@@ -19,6 +19,7 @@ import { CarouselDocModule } from './components/carousel/carousel-doc.module';
 import { CollapseDocModule } from './components/collapse/collapse-doc.module';
 import { DatepickerDocModule } from './components/datepicker/datepicker-doc.module';
 import { DropdownDocModule } from './components/dropdown/drowdown-doc.module';
+import { ModalDocModule } from './components/modal/modal-doc.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DropdownDocModule } from './components/dropdown/drowdown-doc.module';
     CarouselDocModule,
     CollapseDocModule,
     DatepickerDocModule,
-    DropdownDocModule
+    DropdownDocModule,
+    ModalDocModule
   ],
   providers: [],
   bootstrap: [AppComponent]

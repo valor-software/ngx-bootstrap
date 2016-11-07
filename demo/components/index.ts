@@ -5,7 +5,7 @@ export * from '../../src/app/components/carousel/demos/carousel-demo.component';
 export * from '../../src/app/components/collapse/demos/collapse-demo';
 export * from '../../src/app/components/datepicker/demos/datepicker-demo';
 export * from '../../src/app/components/dropdown/demos/dropdown-demo';
-export * from './modal/modal-demo';
+export * from '../../src/app/components/modal/demos/modal-demo';
 export * from './pagination/pagination-demo';
 export * from './progressbar/progressbar-demo';
 export * from './rating/rating-demo';

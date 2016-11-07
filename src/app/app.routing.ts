@@ -6,6 +6,7 @@ import { CarouselSectionComponent } from './components/carousel/carousel-section
 import { CollapseSectionComponent } from './components/collapse/collapse-section.component';
 import { DatepickerSectionComponent } from './components/datepicker/datepicker-section.component';
 import { DropdownSectionComponent } from './components/dropdown/dropdown-section.component';
+import { ModalSectionComponent } from './components/modal/modal-section.component';
 
 export const routes = [
   {
@@ -48,11 +49,12 @@ export const routes = [
     component: DropdownSectionComponent
   },
 
+  {
+    path: 'modals',
+    data: ['Modals'],
+    component: ModalSectionComponent
+  },
   // {
-//     path: 'modals',
-//     data: ['Modals'],
-//     component: ModalSectionComponent
-//   }, {
 //     path: 'pagination',
 //     data: ['Pagination'],
 //     component: PaginationSectionComponent
