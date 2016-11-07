@@ -23,6 +23,7 @@ import { ModalDocModule } from './components/modal/modal-doc.module';
 import { PaginationDocModule } from './components/pagination/pagination-doc.module';
 import { ProgressbarDocModule } from './components/progressbar/progressbar-doc.module';
 import { RatingDocModule } from './components/rating/rating-doc.module';
+import { DemoTabsModule } from './components/tabs/index';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { RatingDocModule } from './components/rating/rating-doc.module';
     ModalDocModule,
     PaginationDocModule,
     ProgressbarDocModule,
-    RatingDocModule
+    RatingDocModule,
+    DemoTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

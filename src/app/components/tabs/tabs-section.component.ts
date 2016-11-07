@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('../../components/tabs/readme.md');
-let titleDoc = require('../../components/tabs/title.md');
+let doc = require('html!markdown!../../../../components/tabs/readme.md');
+let titleDoc = require('html!markdown!../../../../components/tabs/title.md');
 
-let ts = require('!!raw?lang=typescript!./tabs/tabs-demo.ts');
-let html = require('!!raw?lang=markup!./tabs/tabs-demo.html');
+let ts = require('!!raw?lang=typescript!./demos/tabs-demo.component.ts');
+let html = require('!!raw?lang=markup!./demos/tabs-demo.component.html');
 
 @Component({
   selector: 'tabs-section',

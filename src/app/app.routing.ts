@@ -10,6 +10,7 @@ import { ModalSectionComponent } from './components/modal/modal-section.componen
 import { PaginationSectionComponent } from './components/pagination/pagination-section.component';
 import { ProgressbarSectionComponent } from './components/progressbar/progressbar-section.component';
 import { RatingSectionComponent } from './components/rating/rating-section.component';
+import { TabsSectionComponent } from './components/tabs/tabs-section.component';
 
 export const routes = [
   {
@@ -72,11 +73,12 @@ export const routes = [
     data: ['Rating'],
     component: RatingSectionComponent
   },
+  {
+    path: 'tabs',
+    data: ['Tabs'],
+    component: TabsSectionComponent
+  },
   // {
-//     path: 'tabs',
-//     data: ['Tabs'],
-//     component: TabsSectionComponent
-//   }, {
 //     path: 'timepicker',
 //     data: ['Timepicker'],
 //     component: TimepickerSectionComponent

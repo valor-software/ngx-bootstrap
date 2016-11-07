@@ -1,12 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-// webpack html imports
-let template = require('./tabs-demo.html');
-
 @Component({
   selector: 'tabs-demo',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: template
+  templateUrl: './tabs-demo.component.html'
 })
 export class TabsDemoComponent {
   public tabs:Array<any> = [
