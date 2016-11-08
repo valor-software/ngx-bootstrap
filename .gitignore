@@ -28,15 +28,7 @@ testem.log
 /doc
 
 # ignore inline compiling
-/demo/**/*.js
-/demo/**/*.js.map
-/demo/**/*.d.ts
-/src/app/**/*.js
-/src/app/**/*.js.map
-/src/app/**/*.d.ts
-/components/**/*.js
-/components/**/*.js.map
-/components/**/*.d.ts
+/demo/dist
 /tests_e2e/**/*.e2e.js
 /tests_e2e/**/*.e2e.js.map
 ng2-bootstrap.js
