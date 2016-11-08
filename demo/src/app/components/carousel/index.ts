@@ -5,7 +5,7 @@ import { SharedModule } from '../../shared';
 
 import { CarouselDemoComponent } from './demos/carousel-demo.component';
 import { CarouselSectionComponent } from './carousel-section.component';
-import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { CarouselModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations:[

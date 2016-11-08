@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
 
 // switch bs3\bs4 templates
 // webpack html imports

@@ -49,7 +49,7 @@ import { DemoTypeaheadModule } from './components/typeahead/index';
     DemoDatepickerModule,
     DemoDropdownModule,
     DemoModalModule,
-    DemoPaginationModule,
+    // DemoPaginationModule,
     DemoProgressbarModule,
     DemoRatingModule,
     DemoTabsModule,

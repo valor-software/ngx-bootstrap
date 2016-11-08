@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DatepickerSectionComponent } from './datepicker-section.component';
-import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { DatepickerModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations:[

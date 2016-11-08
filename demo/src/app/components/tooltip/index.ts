@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared';
 import { TooltipDemoComponent } from './demos/tooltip-demo.component';
 import { TooltipSectionComponent } from './tooltip-section.component';
-import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { TooltipModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [

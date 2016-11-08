@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared';
 import { ButtonsSectionComponent } from './buttons-section.component';
 import { ButtonsDemoComponent } from './demos/buttons-demo.component';
-import { ButtonsModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { ButtonsModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations:[

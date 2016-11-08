@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared';
 import { TabsDemoComponent } from './demos/tabs-demo.component';
 import { TabsSectionComponent } from './tabs-section.component';
-import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { TabsModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [

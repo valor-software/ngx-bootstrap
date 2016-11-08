@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared';
 import { AlertsSectionComponent } from './alerts-section.component';
 import { AlertsDemoComponent } from './demos/alerts-demo.component';
-import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [

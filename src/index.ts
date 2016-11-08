@@ -29,3 +29,25 @@ import { ComponentsHelper } from './utils/components-helper.service';
 })
 export class Ng2BootstrapModule {
 }
+
+export * from './accordion';
+export * from './alert';
+export * from './buttons';
+export * from './carousel';
+export * from './collapse';
+export * from './datepicker';
+export * from './modal';
+export * from './dropdown';
+export * from './pagination';
+export * from './progressbar';
+export * from './rating';
+export * from './tabs';
+export * from './timepicker';
+export * from './tooltip';
+export * from './typeahead';
+
+export * from './position';
+export * from './common';
+export * from './ng2-bootstrap-config';
+
+export { ComponentsHelper } from './utils/components-helper.service';

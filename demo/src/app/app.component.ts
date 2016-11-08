@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, ViewContainerRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../../../ng2-bootstrap';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
 
 let w:any = window;
 
