@@ -8,6 +8,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script:
+  - npm run pretest
   - npm run test-coverage
   - ./node_modules/.bin/codecov
 
