@@ -8,12 +8,17 @@ import {
   TemplateRef,
   ViewContainerRef,
   Output,
-  EventEmitter
+  EventEmitter,
+  Renderer,
+  ElementRef,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipOptions } from './tooltip-options.class';
 import { ComponentsHelper } from '../utils/components-helper.service';
+import { TooltipConfig } from './tooltip.config';
 
 /* tslint:disable */
 @Directive({
@@ -21,7 +26,7 @@ import { ComponentsHelper } from '../utils/components-helper.service';
   exportAs: 'bs-tooltip'
 })
 /* tslint:enable */
-export class TooltipDirective {
+export class TooltipDirective implements OnInit, OnDestroy {
   /* tslint:disable */
   @Input('tooltip') public content: string;
   @Input('tooltipHtml') public htmlContent: string | TemplateRef<any>;
@@ -33,32 +38,55 @@ export class TooltipDirective {
   @Input('tooltipClass') public popupClass: string;
   @Input('tooltipContext') public tooltipContext: any;
   @Input('tooltipPopupDelay') public delay: number = 0;
+  @Input('tooltipTrigger') public tooltipTrigger: string|Array<string>;
   /* tslint:enable */
 
   @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public viewContainerRef: ViewContainerRef;
-  public componentsHelper: ComponentsHelper;
-
-  protected changeDetectorRef: ChangeDetectorRef;
   protected visible: boolean = false;
   protected tooltip: ComponentRef<any>;
-
   protected delayTimeoutId: number;
+  protected toggleOnShowListeners: Array<Function> = [];
 
-  public constructor(viewContainerRef: ViewContainerRef,
-                     componentsHelper: ComponentsHelper,
-                     changeDetectorRef: ChangeDetectorRef) {
-    this.viewContainerRef = viewContainerRef;
-    this.componentsHelper = componentsHelper;
-    this.changeDetectorRef = changeDetectorRef;
+  public constructor(protected viewContainerRef: ViewContainerRef,
+                     protected componentsHelper: ComponentsHelper,
+                     protected changeDetectorRef: ChangeDetectorRef,
+                     protected renderer: Renderer,
+                     protected elementRef: ElementRef,
+                     protected config: TooltipConfig) {
+    this.configureOptions();
   }
 
-  // todo: filter triggers
+  public ngOnInit(): void {
+    this.bindListeners();
+  }
+
+  protected configureOptions(): void {
+    Object.assign(this, this.config);
+  }
+
+  protected bindListeners(): void {
+    const tooltipElement = this.elementRef.nativeElement;
+    const events: Array<string> = this.normalizeEventsSet(this.tooltipTrigger);
+    /* tslint:disable */
+    for (var i = 0; i < events.length; i++) {
+      const listener = this.renderer.listen(tooltipElement, events[i], this.show.bind(this));
+      this.toggleOnShowListeners.push(listener);
+    }
+    /* tslint:enable */
+  }
+
+  protected normalizeEventsSet(events: string|Array<string>): Array<string> {
+    if (typeof events === 'string') {
+      return events.split(/[\s,]+/);
+    }
+    return events;
+  }
+
   // params: event, target
-  @HostListener('focusin')
-  @HostListener('mouseenter')
-  public show(): void {
+  public show(e: MouseEvent|FocusEvent): void {
+    this.preventAndStop(e);
+
     if (this.visible || !this.enable || this.delayTimeoutId) {
       return;
     }
@@ -73,7 +101,8 @@ export class TooltipDirective {
         appendToBody: this.appendToBody,
         hostEl: this.viewContainerRef.element,
         popupClass: this.popupClass,
-        context: this.tooltipContext
+        context: this.tooltipContext,
+        trigger: this.tooltipTrigger
       });
 
       if (this.appendToBody) {
@@ -99,8 +128,10 @@ export class TooltipDirective {
   }
 
   // params event, target
-  @HostListener('focusout')
   @HostListener('mouseleave')
+  @HostListener('mouseout')
+  @HostListener('focusout')
+  @HostListener('blur')
   public hide(): void {
     if (this.delayTimeoutId) {
       clearTimeout(this.delayTimeoutId);
@@ -118,5 +149,22 @@ export class TooltipDirective {
 
   protected triggerStateChanged(): void {
     this.tooltipStateChanged.emit(this.visible);
+  }
+
+  protected preventAndStop(event: MouseEvent|FocusEvent): void {
+    if (!event) {
+      return;
+    }
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  public ngOnDestroy(): void {
+    const listeners = this.toggleOnShowListeners;
+    /* tslint:disable */
+    for (var i = 0; i < listeners.length; i++) {
+      listeners[i].call(this);
+    }
+    /* tslint:enable */
   }
 }
