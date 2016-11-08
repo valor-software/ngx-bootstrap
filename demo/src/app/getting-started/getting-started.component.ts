@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 let desc = ``;
-let dependencies = require('html!markdown!./dependencies.md');
-let installation = require('html!markdown!./installation.md');
-let readingDocumentation = require('html!markdown!./reading-documentation.md');
+let dependencies = require('html!markdown!./docs/dependencies.md');
+let installation = require('html!markdown!./docs/installation.md');
+let readingDocumentation = require('html!markdown!./docs/reading-documentation.md');
 
 @Component({
   selector: 'getting-started',

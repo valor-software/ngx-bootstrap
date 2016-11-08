@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('html!markdown!../../../../../components/tooltip/readme.md');
-let titleDoc = require('html!markdown!../../../../../components/tooltip/title.md');
+let doc = require('html!markdown!./docs/readme.md');
+let titleDoc = require('html!markdown!./docs/title.md');
 
 let ts = require('!!raw?lang=typescript!./demos/tooltip-demo.component.ts');
 let html = require('!!raw?lang=markup!./demos/tooltip-demo.component.html');

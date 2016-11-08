@@ -36,14 +36,9 @@ ng2-bootstrap.d.ts
 ng2-bootstrap.js.map
 /logs
 
-factories
-
-/**/*.metadata.json
-/**/*.ngfactory.ts
-
 # e2e
-/e2e/*.js
-/e2e/*.map
+/demo/e2e/*.js
+/demo/e2e/*.map
 
 #System Files
 .DS_Store

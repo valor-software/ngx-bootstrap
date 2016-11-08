@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap/ng2-bootstrap';
 
 // webpack html imports
-let doc = require('html!markdown!../../../../../components/progressbar/readme.md');
-let titleDoc = require('html!markdown!../../../../../components/progressbar/title.md');
+let doc = require('html!markdown!./docs/readme.md');
+let titleDoc = require('html!markdown!./docs/title.md');
 
 let ts = require('!!raw?lang=typescript!./demos/progressbar-demo.component.ts');
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('html!markdown!../../../../../components/modal/readme.md');
-let titleDoc = require('html!markdown!../../../../../components/modal/title.md');
+let doc = require('html!markdown!./docs/readme.md');
+let titleDoc = require('html!markdown!./docs/title.md');
 
 let ts = require('!!raw?lang=typescript!./demos/modal-demo.component.ts');
 let html = require('!!raw?lang=markup!./demos/modal-demo.component.html');

@@ -22,10 +22,10 @@
     "node_modules"
   ],
   "files": [
-    "./src/typings.d.ts",
+    "./demo/src/typings.d.ts",
     "./ng2-bootstrap.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "factories"
+    "genDir": "dist/factories"
   }
 }

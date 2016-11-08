@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 // webpack html imports
-let doc = require('html!markdown!../../../../../components/carousel/readme.md');
-let titleDoc = require('html!markdown!../../../../../components/carousel/title.md');
+let doc = require('html!markdown!./docs/readme.md');
+let titleDoc = require('html!markdown!./docs/title.md');
 
 let ts = require('!!raw?lang=typescript!./demos/carousel-demo.component.ts');
 let html = require('!!raw?lang=markup!./demos/carousel-demo.component.html');

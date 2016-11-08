@@ -42,4 +42,4 @@ make.js
 /components/**/*.ts
 !/components/**/*.d.ts
 
-factories
+dist/factories
