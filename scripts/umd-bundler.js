@@ -17,7 +17,7 @@ const Builder = require('systemjs-builder');
 
 const pkg = require('../package.json');
 const name = pkg.name;
-const targetFolder = path.resolve('./dist/bundles');
+const targetFolder = path.resolve('./dist/package/bundles');
 
 async.waterfall([
   cleanBundlesFolder,
@@ -75,7 +75,7 @@ function buildSystemJs(options) {
     builder.config(config);
 
     return builder
-      .buildStatic(name, dest, {format: 'umd'})
+      .buildStatic(`src`, dest, {format: 'umd'})
       .then(() => {
         console.log('Build complete.');
         cb();
