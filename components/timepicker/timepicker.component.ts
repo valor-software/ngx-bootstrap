@@ -1,44 +1,14 @@
 import { Component, Input, OnInit, Self } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { TimepickerConfig } from './timepicker.config';
 
-export interface TimepickerConfig {
-  hourStep:number;
-  minuteStep:number;
-  showMeridian:boolean;
-  meridians?:any[];
-  readonlyInput:boolean;
-  mousewheel:boolean;
-  arrowkeys:boolean;
-  showSpinners:boolean;
-  min?:number;
-  max?:number;
-}
-
-// todo: implement global configuration via DI
 // todo: refactor directive has to many functions! (extract to stateless helper)
 // todo: use moment js?
 // todo: implement `time` validator
 // todo: replace increment/decrement blockers with getters, or extract
 // todo: unify work with selected
-export const timepickerConfig:TimepickerConfig = {
-  hourStep: 1,
-  minuteStep: 1,
-  showMeridian: true,
-  meridians: void 0,
-  readonlyInput: false,
-  mousewheel: true,
-  arrowkeys: true,
-  showSpinners: true,
-  min: void 0,
-  max: void 0
-};
-
 function isDefined(value:any):boolean {
   return typeof value !== 'undefined';
-}
-
-function def(value:any, fn:Function, defaultValue:any):any {
-  return fn(value) ? value : defaultValue;
 }
 
 function addMinutes(date:any, minutes:number):Date {
@@ -84,7 +54,7 @@ function addMinutes(date:any, minutes:number):Date {
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
   public cd:NgModel;
-  // config
+
   @Input() public hourStep:number;
   @Input() public minuteStep:number;
   @Input() public readonlyInput:boolean;
@@ -93,7 +63,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   @Input() public showSpinners:boolean;
   @Input() public min:Date;
   @Input() public max:Date;
-  @Input() public meridians:Array<string> = ['AM', 'PM']; // ??
+  @Input() public meridians:Array<string>;
 
   @Input()
   public get showMeridian():boolean {
@@ -145,7 +115,8 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  public constructor(@Self() cd:NgModel) {
+  public constructor(@Self() cd:NgModel, private _config: TimepickerConfig) {
+    Object.assign(this, _config);
     this.cd = cd;
     cd.valueAccessor = this;
   }
@@ -153,28 +124,15 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   // todo: add formatter value to Date object
   public ngOnInit():void {
     // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
-    this.meridians = def(this.meridians, isDefined, timepickerConfig.meridians) || ['AM',
-        'PM'];
-    this.mousewheel = def(this.mousewheel, isDefined, timepickerConfig.mousewheel);
     if (this.mousewheel) {
       // this.setupMousewheelEvents();
     }
-    this.arrowkeys = def(this.arrowkeys, isDefined, timepickerConfig.arrowkeys);
+
     if (this.arrowkeys) {
       // this.setupArrowkeyEvents();
     }
 
-    this.readonlyInput = def(this.readonlyInput, isDefined, timepickerConfig.readonlyInput);
-
     // this.setupInputEvents();
-
-    this.hourStep = def(this.hourStep, isDefined, timepickerConfig.hourStep);
-    this.minuteStep = def(this.minuteStep, isDefined, timepickerConfig.minuteStep);
-    this.min = def(this.min, isDefined, timepickerConfig.min);
-    this.max = def(this.max, isDefined, timepickerConfig.max);
-    // 12H / 24H mode
-    this.showMeridian = def(this.showMeridian, isDefined, timepickerConfig.showMeridian);
-    this.showSpinners = def(this.showSpinners, isDefined, timepickerConfig.showSpinners);
   }
 
   public writeValue(v:any):void {
@@ -356,6 +314,11 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     // }
     this.hours = this.pad(hours);
     this.minutes = this.pad(minutes);
+
+    if (!this.meridians) {
+      this.meridians = this._config.meridians;
+    }
+
     this.meridian = this.selected.getHours() < 12
       ? this.meridians[0]
       : this.meridians[1];
