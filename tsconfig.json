@@ -3,6 +3,7 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
+    "outDir": "./dist",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": false,
@@ -17,13 +18,13 @@
       "webpack"
     ],
     "typeRoots": [
-      "../node_modules/@types"
+      "./node_modules/@types"
     ]
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "./demo/src/typings.d.ts"
+    "./scripts/typings.d.ts"
   ]
 }

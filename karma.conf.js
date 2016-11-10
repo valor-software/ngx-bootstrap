@@ -12,9 +12,11 @@ module.exports = function (config) {
       require('angular-cli/plugins/karma')
     ],
     files: [
-      {pattern: './src/test.ts', watched: false}
+      {pattern: './scripts/test.ts', watched: false}
     ],
-    preprocessors: {'./src/test.ts': ['angular-cli']},
+    preprocessors: {
+      './scripts/test.ts': ['angular-cli']
+    },
     remapIstanbulReporter: {
       reports: {
         html: 'coverage',
@@ -22,7 +24,7 @@ module.exports = function (config) {
       }
     },
     angularCli: {
-      config: '../angular-cli.json',
+      config: './angular-cli.json',
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage

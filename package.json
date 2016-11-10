@@ -3,9 +3,8 @@
   "version": "1.1.16",
   "description": "angular2 bootstrap components",
   "scripts": {
-    "typedoc": "typedoc",
-    "flow.docs": "npm run typedoc -- --exclude '**/*.spec.ts' ./src/",
-    "flow.compile": "npm-run-all -c flow.compile:common flow.compile:system",
+    "flow.docs": "typedoc -- --exclude '**/*.spec.ts' ./src/",
+    "flow.compile": "run-s flow.compile:common flow.compile:system",
     "build": "ngc -p ./src",
     "flow.compile:common": "ngc -p ./src/tsconfig.publish.json",
     "flow.compile:system": "webpack -p",

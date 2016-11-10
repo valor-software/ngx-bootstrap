@@ -31,12 +31,12 @@
   "packages": [],
   "e2e": {
     "protractor": {
-      "config": "./demo/protractor.conf.js"
+      "config": "protractor.conf.js"
     }
   },
   "test": {
     "karma": {
-      "config": "./demo/karma.conf.js"
+      "config": "karma.conf.js"
     }
   },
   "defaults": {

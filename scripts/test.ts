@@ -1,4 +1,4 @@
-import './polyfills.ts';
+import '../demo/src/polyfills.ts';
 
 import 'zone.js/dist/long-stack-trace-zone';
 import 'zone.js/dist/proxy.js';
@@ -27,8 +27,11 @@ Promise.all([
     );
   })
   // Then we find all the tests.
-  .then(() => require.context('./', true, /\.spec\.ts/))
+  .then(() => [
+    require.context('../src', true, /\.spec\.ts/),
+    require.context('../demo/src', true, /\.spec\.ts/),
+  ])
   // And load the modules.
-  .then(context => context.keys().map(context))
+  .then(contexts => [].concat.apply([],contexts.map(context => context.keys().map(context))))
   // Finally, start Karma to run the tests.
   .then(__karma__.start, __karma__.error);
