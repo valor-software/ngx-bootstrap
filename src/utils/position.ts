@@ -51,25 +51,25 @@ export class PositionService {
     let targetElWidth = targetEl.offsetWidth;
     let targetElHeight = targetEl.offsetHeight;
     let shiftWidth:KeyAttribute = {
-      center: function ():number {
+      center():number {
         return hostElPos.left + hostElPos.width / 2 - targetElWidth / 2;
       },
-      left: function ():number {
+      left():number {
         return hostElPos.left;
       },
-      right: function ():number {
+      right():number {
         return hostElPos.left + hostElPos.width;
       }
     };
 
     let shiftHeight:KeyAttribute = {
-      center: function ():number {
+      center():number {
         return hostElPos.top + hostElPos.height / 2 - targetElHeight / 2;
       },
-      top: function ():number {
+      top():number {
         return hostElPos.top;
       },
-      bottom: function ():number {
+      bottom():number {
         return hostElPos.top + hostElPos.height;
       }
     };

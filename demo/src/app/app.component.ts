@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ViewContainerRef } from '@angular/core';
+import { AfterContentInit, Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
@@ -15,11 +15,8 @@ if (w && w.__theme === 'bs4') {
 })
 export class AppComponent implements AfterContentInit {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
-  private viewContainerRef:ViewContainerRef;
 
-  public constructor(viewContainerRef:ViewContainerRef, private router:Router) {
-    // You need this small hack in order to catch application root view container ref
-    this.viewContainerRef = viewContainerRef;
+  public constructor(private router:Router) {
   }
 
   public ngAfterContentInit():any {

@@ -13,6 +13,7 @@ export class ModalBackdropOptions {
 @Component({
   selector: 'bs-modal-backdrop',
   template: '',
+  // tslint:disable-next-line
   host: {'class': ClassName.BACKDROP}
 })
 export class ModalBackdropComponent {

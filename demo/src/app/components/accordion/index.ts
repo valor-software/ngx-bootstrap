@@ -20,4 +20,5 @@ import { AccordionModule } from 'ng2-bootstrap';
   ],
   exports: [AccordionSectionComponent]
 })
-export class DemoAccordionModule{}
+export class DemoAccordionModule {
+}

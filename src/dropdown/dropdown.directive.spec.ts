@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 

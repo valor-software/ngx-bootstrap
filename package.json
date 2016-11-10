@@ -10,7 +10,7 @@
     "flow.copy:src": "cpy package.json dist/package",
     "flow.clean": "del-cli dist demo/dist temp coverage",
     "flow.deploy:gh-pages": "npm run build && ng build -p && gh-pages -d demo/dist",
-    "flow.lint": "tslint \"**/*.ts\" -c tslint.json -e \"node_modules/**\" -e \"dist/**\"",
+    "flow.lint": "tslint \"**/*.ts\" -c tslint.json -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -v",
     "flow.github-release": "conventional-github-releaser -p angular",
     "preflow.publish":"run-s flow.clean flow.compile",

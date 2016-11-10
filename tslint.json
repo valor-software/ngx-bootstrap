@@ -2,6 +2,9 @@
   "extends": "tslint-config-valorsoft",
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
+    "directive-selector-prefix": [true, ""],
+    "component-selector-prefix": [true, ""],
+    "pipe-naming": [true, "camelCase", ""],
     "component-selector-name": [false, ""],
     "only-arrow-functions": false
   }

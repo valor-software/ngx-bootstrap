@@ -1,11 +1,12 @@
-import { browser, element, by, $ } from 'protractor';
+import { browser, $ } from 'protractor';
+import Promise = webdriver.promise.Promise;
 
 export class Ng2BootstrapPage {
-  navigateTo() {
+  public navigateTo(): any {
     return browser.get('/');
   }
 
-  getParagraphText() {
+  public getParagraphText(): Promise<string> {
     return $('getting-started h1:nth-child(1)').getText();
   }
 }

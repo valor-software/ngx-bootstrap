@@ -250,12 +250,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   }
 
   // Create page object used in template
-  protected makePage(num:number, text:string, isActive:boolean):{number:number, text:string, active:boolean} {
-    return {
-      number: num,
-      text: text,
-      active: isActive
-    };
+  protected makePage(num:number, text:string, active:boolean):{number:number, text:string, active:boolean} {
+    return { text, number:num, active };
   }
 
   protected getPages(currentPage:number, totalPages:number):Array<any> {

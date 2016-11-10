@@ -49,8 +49,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 })
 export class YearPickerComponent implements OnInit {
   public datePicker:DatePickerInnerComponent;
-  protected title:string;
-  protected rows:Array<any> = [];
+  public title:string;
+  public rows:Array<any> = [];
 
   public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;

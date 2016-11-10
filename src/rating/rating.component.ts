@@ -83,7 +83,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.value = value;
   }
 
-  protected enter(value:number):void {
+  public enter(value:number):void {
     if (!this.readonly) {
       this.value = value;
       this.onHover.emit(value);
@@ -103,6 +103,13 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.onTouched = fn;
   }
 
+  public rate(value:number):void {
+    if (!this.readonly && value >= 0 && value <= this.range.length) {
+      this.writeValue(value);
+      this.cd.viewToModelUpdate(value);
+    }
+  }
+
   protected buildTemplateObjects(ratingStates:Array<any>, max:number):Array<any> {
     ratingStates = ratingStates || [];
     let count = ratingStates.length || max;
@@ -116,12 +123,5 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
       }, ratingStates[i] || {}));
     }
     return result;
-  }
-
-  protected rate(value:number):void {
-    if (!this.readonly && value >= 0 && value <= this.range.length) {
-      this.writeValue(value);
-      this.cd.viewToModelUpdate(value);
-    }
   }
 }

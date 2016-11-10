@@ -13,11 +13,11 @@ interface State {
 }
 
 @Component({
+  // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
   <input [(ngModel)]="selectedState" 
          [typeahead]="states" 
-         [typeaheadOptionField]="'name'" 
-         (typeaheadOnSelect)="typeaheadOnSelect($event)">
+         [typeaheadOptionField]="'name'">
 `
 })
 class TestTypeaheadComponent {

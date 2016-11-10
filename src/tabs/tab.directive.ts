@@ -1,5 +1,5 @@
 import {
-  Directive, EventEmitter, HostBinding, Input, OnDestroy, Output, TemplateRef
+  Directive, EventEmitter, HostBinding, Input, OnDestroy, Output, TemplateRef, OnInit
 } from '@angular/core';
 
 import { TabsetComponent } from './tabset.component';
@@ -7,7 +7,7 @@ import { TabsetComponent } from './tabset.component';
 /* tslint:disable */
 @Directive({selector: 'tab, [tab]'})
 /* tslint:enable */
-export class TabDirective implements OnDestroy {
+export class TabDirective implements OnDestroy, OnInit {
   @Input() public heading:string;
   @Input() public disabled:boolean;
   @Input() public removable:boolean;

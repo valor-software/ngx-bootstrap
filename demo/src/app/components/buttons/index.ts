@@ -7,11 +7,11 @@ import { ButtonsDemoComponent } from './demos/buttons-demo.component';
 import { ButtonsModule } from 'ng2-bootstrap';
 
 @NgModule({
-  declarations:[
+  declarations: [
     ButtonsSectionComponent,
     ButtonsDemoComponent
   ],
-  imports:[
+  imports: [
     CommonModule,
     FormsModule,
     ButtonsModule,
@@ -19,4 +19,5 @@ import { ButtonsModule } from 'ng2-bootstrap';
   ],
   exports: [ButtonsSectionComponent]
 })
-export class DemoButtonsModule{}
+export class DemoButtonsModule {
+}

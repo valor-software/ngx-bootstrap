@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 export const latinMap = {
   'Á': 'A',
   'Ă': 'A',

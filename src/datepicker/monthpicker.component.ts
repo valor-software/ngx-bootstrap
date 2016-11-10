@@ -50,6 +50,7 @@ export class MonthPickerComponent implements OnInit {
   public title:string;
   public rows:Array<any> = [];
   public datePicker:DatePickerInnerComponent;
+  public maxMode:string;
 
   public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;

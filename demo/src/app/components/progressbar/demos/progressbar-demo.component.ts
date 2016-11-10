@@ -4,7 +4,7 @@ import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
 
 // switch bs3\bs4 templates
 // webpack html imports
-let templates:any = {
+let templates: any = {
   [Ng2BootstrapTheme.BS3]: require('./progressbar-demo.component.html'),
   [Ng2BootstrapTheme.BS4]: require('./progressbar-demo-bs4.component.html')
 };
@@ -14,20 +14,20 @@ let templates:any = {
   template: templates[Ng2BootstrapConfig.theme]
 })
 export class ProgressbarDemoComponent {
-  public max:number = 200;
-  public showWarning:boolean;
-  public dynamic:number;
-  public type:string;
-  public stacked:any[] = [];
+  public max: number = 200;
+  public showWarning: boolean;
+  public dynamic: number;
+  public type: string;
+  public stacked: any[] = [];
 
   public constructor() {
     this.random();
     this.randomStacked();
   }
 
-  public random():void {
+  public random(): void {
     let value = Math.floor((Math.random() * 100) + 1);
-    let type:string;
+    let type: string;
 
     if (value < 25) {
       type = 'success';
@@ -44,7 +44,7 @@ export class ProgressbarDemoComponent {
     this.type = type;
   };
 
-  public randomStacked():void {
+  public randomStacked(): void {
     let types = ['success', 'info', 'warning', 'danger'];
 
     this.stacked = [];
@@ -55,7 +55,7 @@ export class ProgressbarDemoComponent {
       let value = Math.floor((Math.random() * 30) + 1);
       total += value;
       this.stacked.push({
-        value: value,
+        value,
         max: value, // i !== (n - 1) ? value : 100,
         type: types[index]
       });

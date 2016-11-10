@@ -54,7 +54,8 @@ export class TooltipContainerComponent implements AfterViewInit {
     this.element = element;
     this.cdr = cdr;
     Object.assign(this, options);
-    this.classMap = {'in': false, 'fade': false};
+    // tslint:disable-next-line
+    this.classMap = {'in': false, fade: false};
     this.classMap[options.placement] = true;
     this.classMap['tooltip-' + options.placement] = true;
   }

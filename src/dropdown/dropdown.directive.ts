@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import {
   ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output
 } from '@angular/core';

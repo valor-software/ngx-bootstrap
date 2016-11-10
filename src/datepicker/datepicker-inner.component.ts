@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { DateFormatter } from './date-formatter';
