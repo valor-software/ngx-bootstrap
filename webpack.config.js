@@ -24,7 +24,7 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
 
-  entry: helpers.root('src'),
+  entry: helpers.root('src/core'),
 
   output: {
     path: helpers.root(targetFolder),

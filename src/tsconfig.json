@@ -30,6 +30,6 @@
     "./core.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "../dist/factories"
+    "genDir": "../temp/factories"
   }
 }
