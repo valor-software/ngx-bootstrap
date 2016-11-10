@@ -1,4 +1,4 @@
-import { browser, element, by } from 'protractor';
+import { browser, element, by, $ } from 'protractor';
 
 export class Ng2BootstrapPage {
   navigateTo() {
@@ -6,6 +6,6 @@ export class Ng2BootstrapPage {
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return $('getting-started h1:nth-child(1)').getText();
   }
 }

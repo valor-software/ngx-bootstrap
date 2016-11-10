@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../ng2-bootstrap-config';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 @Component({

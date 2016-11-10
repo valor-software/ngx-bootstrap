@@ -1,5 +1,4 @@
-import { $ } from 'protractor';
-import { ElementFinder } from 'protractor/built/index';
+import { $, ElementFinder } from 'protractor';
 
 const getTabHeaderAccordionPage = (tabNumber:number) => {
   return $('accordion-group:nth-child(' + tabNumber + ') .panel-heading');

@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
-import { KeyAttribute } from '../common';
+import { KeyAttribute } from '../utils/common';
 
 /* tslint:disable-next-line */
 const MouseEvent = (global as any).MouseEvent as MouseEvent;

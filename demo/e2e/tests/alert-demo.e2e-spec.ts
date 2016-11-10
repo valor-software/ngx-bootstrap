@@ -1,6 +1,6 @@
-import { $, $$, browser } from 'protractor/globals';
+import { $, $$, browser } from 'protractor';
+import { leftPanelTests } from './leftPanelTests.po';
 
-const leftPanelTests = require('./../data/leftPanelTests.e2e');
 const buttonAddAlert = $('alert-demo .btn');
 const alertWarning = $('.alert.alert-warning');
 const getAlertCount = $$('alert > div');

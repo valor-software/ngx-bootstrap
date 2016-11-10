@@ -21,22 +21,14 @@ testem.log
 /typings
 
 # ignore build and dist for now
-/bundles
-/demo-build
 /dist
-/ts
-/doc
-
-# ignore inline compiling
+/temp
 /demo/dist
-src/**/*.js
-src/**/*.d.ts
-src/**/*.js.map
 /logs
 
 # e2e
-/demo/e2e/*.js
-/demo/e2e/*.map
+#/demo/e2e/*.js
+#/demo/e2e/*.map
 
 #System Files
 .DS_Store

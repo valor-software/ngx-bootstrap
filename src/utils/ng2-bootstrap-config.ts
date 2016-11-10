@@ -1,4 +1,4 @@
-import { window } from './utils/facade/browser';
+import { window } from './facade/browser';
 
 export enum Ng2BootstrapTheme {BS3 = 1, BS4 = 2}
 

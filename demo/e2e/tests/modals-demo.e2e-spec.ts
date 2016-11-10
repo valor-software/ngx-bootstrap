@@ -1,6 +1,6 @@
-import { $, browser } from 'protractor/globals';
+import { $, browser } from 'protractor';
+import { leftPanelTests } from './leftPanelTests.po';
 
-const leftPanelTests = require('./../data/leftPanelTests.e2e');
 const buttonLargeModal = $('.btn:nth-child(1)');
 const buttonSmallModal = $('.btn:nth-child(3)');
 const buttonChildModal = $('.btn:nth-child(5)');
@@ -33,7 +33,7 @@ describe('Modals page test on bootstrap 3', () => {
   it('Large modal closed by missclick', () => {
     buttonLargeModal.click();
     browser.actions().
-    mouseDown(buttonLargeModal).
+    mouseDown(/*buttonLargeModal*/).
     click().
     perform();
     expect(modalWindow.isPresent()).toBe(false);
@@ -61,7 +61,7 @@ describe('Modals page test on bootstrap 3', () => {
   it('Static modal does not close by misclick', () => {
     buttonStaticModal.click();
     browser.actions().
-    mouseDown(buttonLargeModal).
+    mouseDown(/*buttonLargeModal*/).
     click().
     perform();
     expect(modalWindow.isDisplayed()).toBe(true);
@@ -91,7 +91,7 @@ describe('Modals page test on bootstrap 4', () => {
   it('Large modal closed by missclick', () => {
     buttonLargeModal.click();
     browser.actions().
-    mouseDown(buttonLargeModal).
+    mouseDown(/*buttonLargeModal*/).
     click().
     perform();
     expect(modalWindow.isPresent()).toBe(false);
@@ -119,7 +119,7 @@ describe('Modals page test on bootstrap 4', () => {
   it('Static modal does not close by misclick', () => {
     buttonStaticModal.click();
     browser.actions().
-    mouseDown(buttonLargeModal).
+    mouseDown(/*buttonLargeModal*/).
     click().
     perform();
     expect(modalWindow.isDisplayed()).toBe(true);

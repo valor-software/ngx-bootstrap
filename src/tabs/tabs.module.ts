@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NgTranscludeDirective } from '../common';
+import { NgTranscludeDirective } from '../utils/common';
 import { TabHeadingDirective } from './tab-heading.directive';
 import { TabDirective } from './tab.directive';
 import { TabsetComponent } from './tabset.component';

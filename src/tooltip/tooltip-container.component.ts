@@ -2,7 +2,7 @@ import {
   AfterViewInit, ChangeDetectorRef, Component, ElementRef, Inject, TemplateRef
 } from '@angular/core';
 
-import { positionService } from '../position';
+import { positionService } from '../utils/position';
 import { TooltipOptions } from './tooltip-options.class';
 
 @Component({

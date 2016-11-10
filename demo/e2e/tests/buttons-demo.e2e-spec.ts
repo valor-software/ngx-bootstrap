@@ -1,6 +1,6 @@
-import { $, browser } from 'protractor/globals';
+import { $, browser } from 'protractor';
+import { leftPanelTests } from './leftPanelTests.po';
 
-const leftPanelTests = require('./../data/leftPanelTests.e2e');
 const buttonSingleToggle = $('buttons-demo>.btn');
 const panelSingleToggle = $('buttons-demo>.card:nth-child(2)');
 // cant find better CSS

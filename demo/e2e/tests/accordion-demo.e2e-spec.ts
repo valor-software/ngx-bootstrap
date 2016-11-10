@@ -1,6 +1,6 @@
 import { $, $$, browser } from 'protractor';
-import { leftPanelTests } from './leftPanelTests.e2e';
-import { DataProvider } from '../data-provider/data-provider.e2e';
+import { leftPanelTests } from './leftPanelTests.po';
+import { DataProvider } from '../data-provider/data-provider.po';
 
 const buttonToggleLastPanel = $('accordion-demo>p button:nth-child(1)');
 const buttonEnableDisablePanel = $('accordion-demo>p button:nth-child(2)');
