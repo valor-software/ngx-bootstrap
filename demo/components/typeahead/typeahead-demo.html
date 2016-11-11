@@ -76,7 +76,7 @@
 
   <!-- Asynchronous result (scrollable) -->
   <h4>Asynchronous result (scrollable) </h4>
-  <pre class="card card-block card-header">Model: {{selected | json}}</pre>
+  <pre class="card card-block card-header">Model: {{asyncSelected2 | json}}</pre>
   <input [(ngModel)]="asyncSelected2"
          [typeahead]="dataSourceDelayed"
          [typeaheadScrollable]="true"
@@ -89,7 +89,7 @@
 
   <!-- Grouped results (scrollable) -->
   <h4>Grouped results (scrollable)</h4>
-  <pre class="card card-block card-header">Model: {{groupSelected | json}}</pre>
+  <pre class="card card-block card-header">Model: {{groupSelected2 | json}}</pre>
   <input [(ngModel)]="groupSelected2"
          [typeahead]="statesComplex"
          [typeaheadOptionField]="'name'"

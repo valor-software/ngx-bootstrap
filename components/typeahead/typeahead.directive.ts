@@ -72,8 +72,32 @@ export class TypeaheadDirective implements OnInit {
   private renderer: Renderer;
   private componentsHelper: ComponentsHelper;
 
-  @HostListener('keyup', ['$event'])
+  private currentValue: string;
+
+  @HostListener('input', ['$event'])
   public onChange(e: any): void {
+    // For `<input>`s, use the `value` property. For others that don't have a
+    // `value` (such as `<span contenteditable="true">`, use `innerText`.    
+    const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
+
+    if (this.currentValue === value) {
+      return;
+    }
+
+    if (value.trim().length >= this.typeaheadMinLength) {
+      this.currentValue = value;
+      this.typeaheadLoading.emit(true);
+      this.keyUpEventEmitter.emit(value);
+    } else {
+      this.typeaheadLoading.emit(false);
+      this.typeaheadNoResults.emit(false);
+      this.hide();
+    }
+  }
+
+  @HostListener('keyup', ['$event'])
+  public onKeyUp(e: any): void {
+
     if (this.container) {
       // esc
       if (e.keyCode === 27) {
@@ -98,19 +122,6 @@ export class TypeaheadDirective implements OnInit {
         this.container.selectActiveMatch();
         return;
       }
-    }
-
-    // For `<input>`s, use the `value` property. For others that don't have a
-    // `value` (such as `<span contenteditable="true">`, use `innerText`.
-    const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
-    if (value.trim().length >= this.typeaheadMinLength) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(e.target.value);
-    } else {
-
-      this.typeaheadLoading.emit(false);
-      this.typeaheadNoResults.emit(false);
-      this.hide();
     }
   }
 

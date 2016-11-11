@@ -210,7 +210,7 @@ describe('Directive: Typeahead', () => {
         target: {
           value: 'a'
         },
-        preventDefault: () => undefined
+        preventDefault: (): any => undefined
       };
       let emitSpy = spyOn(directive.typeaheadLoading, 'emit').and.callThrough();
       directive.onChange(event as Event);
@@ -260,7 +260,7 @@ describe('Directive: Typeahead', () => {
     it('should preventDefault on enter', () => {
       let event: any = {
         keyCode: 13,
-        preventDefault: () => undefined
+        preventDefault: (): any => undefined
       };
       let preventDefaultSpy = spyOn(event, 'preventDefault').and.callThrough();
       expect(directive.container).toBeTruthy();
@@ -271,7 +271,7 @@ describe('Directive: Typeahead', () => {
     xit('should hide typeahead-container', () => {
       let event: any = {
         keyCode: 9,
-        preventDefault: () => undefined
+        preventDefault: (): any => undefined
       };
 
       let hideSpy = spyOn(directive, 'hide').and.callThrough();
@@ -282,7 +282,7 @@ describe('Directive: Typeahead', () => {
     it('should select active match', () => {
       let event: any = {
         keyCode: 13,
-        preventDefault: () => undefined,
+        preventDefault: (): any => undefined,
         target: {
           value: 'Ala'
         }
@@ -296,7 +296,7 @@ describe('Directive: Typeahead', () => {
     it('should select next active match', () => {
       let event: any = {
         keyCode: 40,
-        preventDefault: () => undefined,
+        preventDefault: (): any => undefined,
         target: {
           value: 'Ala'
         }
@@ -310,7 +310,7 @@ describe('Directive: Typeahead', () => {
     it('should select prev match', () => {
       let event: any = {
         keyCode: 38,
-        preventDefault: () => undefined,
+        preventDefault: (): any => undefined,
         target: {
           value: 'Ala'
         }
@@ -330,7 +330,7 @@ describe('Directive: Typeahead', () => {
       let tmpDirective = inputs.map((de: DebugElement) => de.injector.get(TypeaheadDirective) as TypeaheadDirective)[0];
       let event: any = {
         keyCode: 27,
-        preventDefault: () => undefined,
+        preventDefault: (): any => undefined,
         target: {
           value: 'Ala'
         }
@@ -438,15 +438,16 @@ describe('Directive: Typeahead', () => {
 
   describe('no minlength and async', () => {
     let componentAsync: TestTypeaheadScrollableAsyncComponent;
+    let fixtureScrollableAsync: ComponentFixture<TestTypeaheadScrollableAsyncComponent>
     let fakeElement: HTMLElement;
     beforeEach(() => {
 
-      fixture = testBed.createComponent(TestTypeaheadScrollableAsyncComponent);
+      fixtureScrollableAsync = testBed.createComponent(TestTypeaheadScrollableAsyncComponent);
 
-      fixture.detectChanges();
+      fixtureScrollableAsync.detectChanges();
 
-      componentAsync = fixture.componentInstance;
-      let inputDirective = fixture.debugElement.query(By.css('.no-min-length-async input'));
+      componentAsync = fixtureScrollableAsync.componentInstance;
+      let inputDirective = fixtureScrollableAsync.debugElement.query(By.css('.no-min-length-async input'));
 
       inputElement = inputDirective.nativeElement as HTMLInputElement;
       // get the typeahead directive instance
@@ -464,15 +465,15 @@ describe('Directive: Typeahead', () => {
       inputElement.value = 'Alaba';
       inputElement.dispatchEvent(new Event('keydown'));
       inputElement.dispatchEvent(new Event('keyup'));
-      fixture.detectChanges();
+      fixtureScrollableAsync.detectChanges();
       tick(1);
       fakeElement.focus();
-      (directive as any).finalizeAsyncCall(component.states);
-      let typeaheadContainer = fixture.debugElement.query(By.css('.no-min-length typeahead-container'));
+      (directive as any).finalizeAsyncCall(componentAsync.states);
+      let typeaheadContainer = fixtureScrollableAsync.debugElement.query(By.css('.no-min-length typeahead-container'));
       expect(typeaheadContainer).toBeFalsy();
       expect(directive.container).toBeFalsy();
       tick(100);
-      fixture.detectChanges();
+      fixtureScrollableAsync.detectChanges();
     }));
 
     afterEach(() => {

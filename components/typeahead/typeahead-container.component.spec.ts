@@ -9,7 +9,7 @@ describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
   let testModule: any;
   let component: TypeaheadContainerComponent;
-  let containingElement: HTMLElement;
+  let containingElement: HTMLElement[];
 
   let options = new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined, scrollable: false, optionsInScrollableView: 3 });
   beforeEach(() => {
@@ -219,7 +219,7 @@ describe('Component: TypeaheadContainer', () => {
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
     let headerMatch: HTMLLIElement;
-    let containingElementScrollable: HTMLElement;
+    let containingElementScrollable: HTMLElement[];
 
     beforeEach(() => {
 

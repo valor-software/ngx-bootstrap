@@ -8,12 +8,12 @@ import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
 
 const bs4 = `
-  <div #ulElement class="dropdown-menu"
+  <div ref-ulElement class="dropdown-menu"
        [ngStyle]="{top: top, left: left, display: 'block', 'width': 'auto', 'overflow-x': 'hidden'}"
        (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
-       <h6 #liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
-       <div #liElement *ngIf="!match.isHeader() && !itemTemplate">
+       <h6 ref-liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
+       <div ref-liElement *ngIf="!match.isHeader() && !itemTemplate">
           <a href="#"
             class="dropdown-item"
             (click)="selectMatch(match, $event)"
@@ -21,7 +21,7 @@ const bs4 = `
             [class.active]="isActive(match)"
             [innerHtml]="hightlight(match, query)"></a>
       </div>
-      <div #liElement *ngIf="!match.isHeader() && itemTemplate">
+      <div ref-liElement *ngIf="!match.isHeader() && itemTemplate">
         <a href="#"
          class="dropdown-item"
          (click)="selectMatch(match, $event)"
@@ -37,12 +37,12 @@ const bs4 = `
 `;
 
 const bs3 = `
-  <ul #ulElement class="dropdown-menu"
+  <ul ref-ulElement class="dropdown-menu"
       [ngStyle]="{top: top, left: left, display: 'block', 'width': 'auto', 'overflow-x': 'hidden'}"
       (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
-      <li #liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
-      <li #liElement *ngIf="!match.isHeader()"
+      <li ref-liElement *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+      <li ref-liElement *ngIf="!match.isHeader()"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#"
