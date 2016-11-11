@@ -1,48 +1,20 @@
 import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self, Inject
 } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 import { KeyAttribute } from '../utils/common';
+import { PaginationConfig } from './pagination.config';
 
 /* tslint:disable-next-line */
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
 // todo: extract base functionality classes
-// todo: expose an option to change default configuration
-export interface PaginationConfig extends KeyAttribute {
-  maxSize:number;
-  itemsPerPage:number;
-  // is navigation buttons visible
-  boundaryLinks:boolean;
-  directionLinks:boolean;
-  // labels
-  firstText:string;
-  previousText:string;
-  nextText:string;
-  lastText:string;
-  // css
-  pageBtnClass:string;
 
-  rotate:boolean;
-}
 export interface PageChangedEvent {
   itemsPerPage:number;
   page:number;
 }
-
-const paginationConfig:PaginationConfig = {
-  maxSize: void 0,
-  itemsPerPage: 10,
-  boundaryLinks: false,
-  directionLinks: true,
-  firstText: 'First',
-  previousText: 'Previous',
-  nextText: 'Next',
-  lastText: 'Last',
-  pageBtnClass: '',
-  rotate: true
-};
 
 const PAGINATION_TEMPLATE = `
   <ul class="pagination" [ngClass]="classMap">
@@ -84,7 +56,7 @@ const PAGINATION_TEMPLATE = `
   providers: [NgModel]
 })
 /* tslint:enable */
-export class PaginationComponent implements ControlValueAccessor, OnInit, PaginationConfig, KeyAttribute {
+export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAttribute {
   public config:any;
   @Input() public align:boolean;
   @Input() public maxSize:number;
@@ -171,12 +143,15 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   protected inited:boolean = false;
   protected _page:number;
 
-  public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef) {
+  public constructor(@Self() cd:NgModel,
+                     renderer:Renderer,
+                     elementRef:ElementRef,
+                     @Inject('baseConfig') _config: PaginationConfig) {
     this.cd = cd;
     this.renderer = renderer;
     this.elementRef = elementRef;
     cd.valueAccessor = this;
-    this.config = this.config || paginationConfig;
+    this.config = this.config || _config;
   }
 
   public ngOnInit():void {
@@ -184,24 +159,24 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     // watch for maxSize
     this.maxSize = typeof this.maxSize !== 'undefined'
       ? this.maxSize
-      : paginationConfig.maxSize;
+      : this.config.maxSize;
     this.rotate = typeof this.rotate !== 'undefined'
       ? this.rotate
-      : paginationConfig.rotate;
+      : this.config.rotate;
     this.boundaryLinks = typeof this.boundaryLinks !== 'undefined'
       ? this.boundaryLinks
-      : paginationConfig.boundaryLinks;
+      : this.config.boundaryLinks;
     this.directionLinks = typeof this.directionLinks !== 'undefined'
       ? this.directionLinks
-      : paginationConfig.directionLinks;
+      : this.config.directionLinks;
     this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
     ? this.pageBtnClass
-    : paginationConfig.pageBtnClass;
+    : this.config.pageBtnClass;
 
     // base class
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
       ? this.itemsPerPage
-      : paginationConfig.itemsPerPage;
+      : this.config.itemsPerPage;
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
@@ -215,7 +190,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   }
 
   public getText(key:string):string {
-    return (this as KeyAttribute)[key + 'Text'] || paginationConfig[key + 'Text'];
+    return (this as KeyAttribute)[key + 'Text'] || this.config[key + 'Text'];
   }
 
   public noPrevious():boolean {
@@ -250,6 +225,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   }
 
   // Create page object used in template
+
   protected makePage(num:number, text:string, active:boolean):{number:number, text:string, active:boolean} {
     return { text, number:num, active };
   }
