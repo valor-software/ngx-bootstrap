@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { NgTranscludeDirective } from '../utils/common';
+import { NgTranscludeDirective } from './ng-transclude.directive';
 import { TabHeadingDirective } from './tab-heading.directive';
 import { TabDirective } from './tab.directive';
 import { TabsetComponent } from './tabset.component';
@@ -9,7 +9,7 @@ import { TabsetComponent } from './tabset.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [NgTranscludeDirective, TabDirective, TabsetComponent, TabHeadingDirective],
-  exports: [TabDirective, TabsetComponent, TabHeadingDirective]
+  exports: [TabDirective, TabsetComponent, TabHeadingDirective, NgTranscludeDirective]
 })
 export class TabsModule {
 }
