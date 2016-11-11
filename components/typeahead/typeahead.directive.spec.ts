@@ -438,7 +438,7 @@ describe('Directive: Typeahead', () => {
 
   describe('no minlength and async', () => {
     let componentAsync: TestTypeaheadScrollableAsyncComponent;
-    let fixtureScrollableAsync: ComponentFixture<TestTypeaheadScrollableAsyncComponent>
+    let fixtureScrollableAsync: ComponentFixture<TestTypeaheadScrollableAsyncComponent>;
     let fakeElement: HTMLElement;
     beforeEach(() => {
 
