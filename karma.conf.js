@@ -7,5 +7,5 @@
 const config = require('./.ng2-config');
 
 config.src = '/';
-config.browserNoActivityTimeout= 30000;
+config.browserNoActivityTimeout= 70000;
 module.exports = require('ng2-webpack-config').karma(config);
