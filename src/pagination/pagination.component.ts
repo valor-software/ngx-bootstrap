@@ -31,7 +31,7 @@ export interface PageChangedEvent {
   page:number;
 }
 
-const paginationConfig:PaginationConfig = {
+export const paginationConfig:PaginationConfig = {
   maxSize: void 0,
   itemsPerPage: 10,
   boundaryLinks: false,
