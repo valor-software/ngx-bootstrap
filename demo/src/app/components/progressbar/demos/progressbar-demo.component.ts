@@ -5,15 +5,14 @@ import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
 // switch bs3\bs4 templates
 // webpack html imports
 // todo: resolve templates in a different way
-// let templates: any = {
-//   [Ng2BootstrapTheme.BS3]: require('./progressbar-demo.component.html'),
-//   [Ng2BootstrapTheme.BS4]: require('./progressbar-demo-bs4.component.html')
-// };
+let templates: any = {
+  [Ng2BootstrapTheme.BS3]: require('./progressbar-demo.component.html'),
+  [Ng2BootstrapTheme.BS4]: require('./progressbar-demo-bs4.component.html')
+};
 
 @Component({
   selector: 'progressbar-demo',
-  // template: templates[Ng2BootstrapConfig.theme]
-  templateUrl: './progressbar-demo.component.html'
+  template: templates[Ng2BootstrapConfig.theme]
 })
 export class ProgressbarDemoComponent {
   public max: number = 200;
