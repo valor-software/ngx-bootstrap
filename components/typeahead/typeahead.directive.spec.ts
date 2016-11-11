@@ -179,7 +179,7 @@ describe('Directive: Typeahead', () => {
       inputElement.focus();
       inputElement.value = '';
 
-      inputElement.dispatchEvent(new Event('keyup'));
+      inputElement.dispatchEvent(new Event('input'));
 
       fixture.detectChanges();
       tick(1);
@@ -195,7 +195,7 @@ describe('Directive: Typeahead', () => {
       inputElement.focus();
       inputElement.value = 'ala';
 
-      inputElement.dispatchEvent(new Event('keyup'));
+      inputElement.dispatchEvent(new Event('input'));
 
       fixture.detectChanges();
       tick(1);
@@ -224,7 +224,7 @@ describe('Directive: Typeahead', () => {
       inputElement.focus();
       inputElement.value = 'Ala';
 
-      inputElement.dispatchEvent(new Event('keyup'));
+      inputElement.dispatchEvent(new Event('input'));
 
       fixture.detectChanges();
       tick(1);
@@ -251,7 +251,7 @@ describe('Directive: Typeahead', () => {
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
       inputElement.value = 'foo';
-      inputElement.dispatchEvent(new Event('keyup'));
+      inputElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
       tick(1);
       expect(directive.matches.length).toBe(0);
@@ -288,7 +288,7 @@ describe('Directive: Typeahead', () => {
         }
       };
       let selectActiveMatchSpy = spyOn(directive.container, 'selectActiveMatch').and.callThrough();
-      directive.onChange(event as Event);
+      directive.onKeyUp(event as Event);
       expect(selectActiveMatchSpy.calls.count()).toBe(1);
 
     });
@@ -302,7 +302,7 @@ describe('Directive: Typeahead', () => {
         }
       };
       let prevActiveMatchSpy = spyOn(directive.container, 'nextActiveMatch').and.callThrough();
-      directive.onChange(event as Event);
+      directive.onKeyUp(event as Event);
       expect(prevActiveMatchSpy.calls.count()).toBe(1);
 
     });
@@ -316,7 +316,7 @@ describe('Directive: Typeahead', () => {
         }
       };
       let prevActiveMatchSpy = spyOn(directive.container, 'prevActiveMatch').and.callThrough();
-      directive.onChange(event as Event);
+      directive.onKeyUp(event as Event);
       expect(prevActiveMatchSpy.calls.count()).toBe(1);
 
     });
@@ -348,7 +348,7 @@ describe('Directive: Typeahead', () => {
 
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
-      inputElement.dispatchEvent(new Event('keyup'));
+      inputElement.dispatchEvent(new Event('input'));
       directive.typeaheadGroupField = 'region';
 
       fixture.detectChanges();
