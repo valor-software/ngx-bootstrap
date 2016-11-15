@@ -50,7 +50,7 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
-    "moment": "2.15.1"
+    "moment": "2.16.0"
   },
   "peerDependencies": {
     "@angular/common": "^2.0.0",
@@ -59,15 +59,16 @@
     "@angular/forms": "^2.0.0"
   },
   "devDependencies": {
-    "@angular/common": "2.2.0-rc.0",
-    "@angular/compiler": "2.2.0-rc.0",
-    "@angular/compiler-cli": "2.2.0-rc.0",
-    "@angular/core": "2.2.0-rc.0",
-    "@angular/forms": "2.2.0-rc.0",
-    "@angular/platform-browser": "2.2.0-rc.0",
-    "@angular/platform-browser-dynamic": "2.2.0-rc.0",
-    "@angular/platform-server": "2.2.0-rc.0",
-    "@angular/router": "3.2.0-rc.0",
+    "@angular/common": "2.2.0",
+    "@angular/compiler": "2.2.0",
+    "@angular/compiler-cli": "2.2.0",
+    "@angular/core": "2.2.0",
+    "@angular/forms": "2.2.0",
+    "@angular/platform-browser": "2.2.0",
+    "@angular/platform-browser-dynamic": "2.2.0",
+    "@angular/platform-server": "2.2.0",
+    "@angular/router": "3.2.0",
+    "@angular/upgrade": "2.2.0",
     "@types/jasmine": "2.5.35",
     "@types/node": "6.0.42",
     "@types/webpack": "1.12.35",
