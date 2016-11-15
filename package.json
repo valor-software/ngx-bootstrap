@@ -102,7 +102,7 @@
     "systemjs-builder": "0.15.32",
     "tslint-config-valorsoft": "1.1.1",
     "typedoc": "0.5.0",
-    "typescript": "2.0.6",
+    "typescript": "2.0.10",
     "protractor": "4.0.9",
     "wallaby-webpack": "0.0.26",
     "zone.js": "0.6.25"
