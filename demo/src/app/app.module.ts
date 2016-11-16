@@ -27,6 +27,7 @@ import { DemoTabsModule } from './components/tabs';
 import { DemoTimepickerModule } from './components/timepicker/index';
 import { DemoTooltipModule } from './components/tooltip/index';
 import { DemoTypeaheadModule } from './components/typeahead/index';
+import { ComponentsHelper } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { DemoTypeaheadModule } from './components/typeahead/index';
     DemoTooltipModule,
     DemoTypeaheadModule
   ],
-  providers: [],
+  providers: [{provide: ComponentsHelper, useClass: ComponentsHelper}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,7 +1,7 @@
-import { AfterContentInit, Component } from '@angular/core';
+import { AfterContentInit, Component, ViewContainerRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
+import { Ng2BootstrapConfig, Ng2BootstrapTheme, ComponentsHelper } from 'ng2-bootstrap';
 
 let w:any = window;
 
@@ -16,7 +16,8 @@ if (w && w.__theme === 'bs4') {
 export class AppComponent implements AfterContentInit {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
 
-  public constructor(private router:Router) {
+  public constructor(private router:Router, componentsHelper:ComponentsHelper, vcr:ViewContainerRef) {
+    componentsHelper.setRootViewContainerRef(vcr);
   }
 
   public ngAfterContentInit():any {
