@@ -31,6 +31,6 @@ Promise.all([
     require.context('../demo/src', true, /\.spec\.ts/)
   ])
   // And load the modules.
-  .then((contexts:any) => [].concat.apply([], contexts.map((context:any) => context.keys().map(context))))
+  .then((contexts: any) => [].concat.apply([], contexts.map((context: any) => context.keys().map(context))))
   // Finally, start Karma to run the tests.
   .then(__karma__.start, __karma__.error);
