@@ -1,51 +1,56 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/0.13/config/configuration-file.html
+/**
+ * @author: @AngularClass
+ */
 
-module.exports = function (config) {
-  const configuration = {
+module.exports = function(config) {
+  var testWebpackConfig = require('./webpack.test.js')({env: 'test'});
+
+  var configuration = {
     basePath: '',
-    frameworks: ['jasmine', 'angular-cli'],
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
-    ],
-    files: [
-      {pattern: './scripts/test.ts', watched: false}
-    ],
-    preprocessors: {
-      './scripts/test.ts': ['angular-cli']
+
+    frameworks: ['jasmine'],
+
+    exclude: [ ],
+
+    // files: [ './src/**/*.spec.ts' ],
+    files: [ { pattern: './spec-bundle.js', watched: false } ],
+
+    preprocessors: { './spec-bundle.js': ['webpack', 'sourcemap'] },
+
+    webpack: testWebpackConfig,
+
+    coverageReporter: {
+      type: 'in-memory'
     },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
-    },
-    angularCli: {
-      config: './angular-cli.json',
-      environment: 'dev'
-    },
-    reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'karma-remap-istanbul']
-              : ['progress'],
+
+    webpackMiddleware: { stats: 'errors-only'},
+
     port: 9876,
+
     colors: true,
-    logLevel: config.LOG_DEBUG,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
+
+    logLevel: config.LOG_INFO,
+
+    autoWatch: false,
+
+    browsers: [
+      'Chrome'
+    ],
+
     customLaunchers: {
-      Chrome_travis_ci: {
+      ChromeTravisCi: {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
-    }
+    },
+
+    singleRun: true
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = [
+      'ChromeTravisCi'
+    ];
   }
 
   config.set(configuration);
