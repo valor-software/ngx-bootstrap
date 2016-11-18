@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../node_modules/ng2-bootstrap",
+    "outDir": "./node_modules/ng2-bootstrap",
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -20,19 +20,19 @@
       "webpack"
     ],
     "typeRoots": [
-      "../node_modules/@types"
+      "./node_modules/@types"
     ]
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "../scripts/typings.d.ts",
-    "./ng2-bootstrap.ts",
-    "./index.ts"
+    "./scripts/typings.d.ts",
+    "./src//ng2-bootstrap.ts",
+    "./src/index.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "../temp/factories"
+    "genDir": "./temp/factories"
   },
   "compileOnSave": false,
   "buildOnSave": false,
