@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick, it, expect, beforeEach, describe } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TypeaheadModule } from './typeahead.module';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
