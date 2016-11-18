@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "../node_modules/ng2-bootstrap",
+    "outDir": "../dist",
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
