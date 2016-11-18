@@ -27,7 +27,7 @@ Promise.all([
   })
   // Then we find all the tests.
   .then(() => [
-    require.context('../src', true, /\.spec\.ts/),
+    require.context('../src/spec', true, /\.spec\.ts/),
     require.context('../demo/src', true, /\.spec\.ts/)
   ])
   // And load the modules.

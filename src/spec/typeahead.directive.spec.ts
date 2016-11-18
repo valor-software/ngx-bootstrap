@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { TypeaheadModule } from './typeahead.module';
+import { TypeaheadModule } from '../typeahead/typeahead.module';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TypeaheadDirective } from './typeahead.directive';
+import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { Observable } from 'rxjs';
-import { TypeaheadMatch } from './typeahead-match.class';
+import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
 
 interface State {
   id:number;

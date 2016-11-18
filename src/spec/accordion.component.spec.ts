@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccordionModule } from './accordion.module';
+import { AccordionModule } from '../accordion/accordion.module';
 
 const html = `
   <accordion [closeOthers]="oneAtATime">

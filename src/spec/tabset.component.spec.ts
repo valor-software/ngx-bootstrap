@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TabsModule } from './tabs.module';
+import { TabsModule } from '../tabs/tabs.module';
 
 const html = `
   <tabset [justified]="isJustified"

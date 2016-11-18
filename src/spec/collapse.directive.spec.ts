@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseModule } from './collapse.module';
+import { CollapseModule } from '../collapse/collapse.module';
 
 const template = `
   <div [collapse]="isCollapsed">

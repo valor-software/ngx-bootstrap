@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { DropdownModule } from './dropdown.module';
+import { DropdownModule } from '../dropdown/dropdown.module';
 
 const defaultHtml = `
   <div dropdown>

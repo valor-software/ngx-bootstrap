@@ -1,9 +1,9 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TypeaheadContainerComponent } from './typeahead-container.component';
-import { TypeaheadOptions } from './typeahead-options.class';
-import { TypeaheadMatch } from './typeahead-match.class';
+import { TypeaheadContainerComponent } from '../typeahead/typeahead-container.component';
+import { TypeaheadOptions } from '../typeahead/typeahead-options.class';
+import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
 
 describe('Component: TypeaheadContainer', () => {
   let fixture:ComponentFixture<TypeaheadContainerComponent>;
