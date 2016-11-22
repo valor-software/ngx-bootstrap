@@ -16,15 +16,16 @@ import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { ComponentsHelper } from './utils/components-helper.service';
+import { SliderModule } from './slider/slider.module';
 
 @NgModule({
   exports: [
     AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, DatepickerModule, DropdownModule,
-    ModalModule, PaginationModule, ProgressbarModule, RatingModule, TabsModule, TimepickerModule, TooltipModule,
+    ModalModule, PaginationModule, ProgressbarModule, RatingModule, SliderModule, TabsModule, TimepickerModule, TooltipModule,
     TypeaheadModule
   ],
   providers: [
-    {provide: ComponentsHelper, useClass: ComponentsHelper}
+    { provide: ComponentsHelper, useClass: ComponentsHelper }
   ]
 })
 export class Ng2BootstrapModule {

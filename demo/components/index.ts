@@ -9,6 +9,7 @@ export * from './modal/modal-demo';
 export * from './pagination/pagination-demo';
 export * from './progressbar/progressbar-demo';
 export * from './rating/rating-demo';
+export * from './slider/slider-demo';
 export * from './tabs/tabs-demo';
 export * from './timepicker/timepicker-demo';
 export * from './tooltip/tooltip-demo';

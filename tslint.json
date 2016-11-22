@@ -3,6 +3,7 @@
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
     "component-selector-name": [false, ""],
-    "only-arrow-functions": false
+    "only-arrow-functions": false,
+    "no-string-literal": false
   }
 }
