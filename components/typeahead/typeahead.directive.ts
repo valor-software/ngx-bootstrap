@@ -72,17 +72,13 @@ export class TypeaheadDirective implements OnInit {
   private renderer: Renderer;
   private componentsHelper: ComponentsHelper;
 
-  private currentValue: string;
+  private currentValue: string = '';
 
   @HostListener('input', ['$event'])
   public onChange(e: any): void {
     // For `<input>`s, use the `value` property. For others that don't have a
     // `value` (such as `<span contenteditable="true">`, use `innerText`.    
     const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
-
-    if (this.currentValue === value) {
-      return;
-    }
 
     if (value.trim().length >= this.typeaheadMinLength) {
       this.currentValue = value;
@@ -125,11 +121,16 @@ export class TypeaheadDirective implements OnInit {
     }
   }
 
-  @HostListener('focus')
-  public onFocus(): void {
+  @HostListener('focus', ['$event'])
+  public onFocus(e: any): void {
+    const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
+    this.currentValue = value;
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit('');
+    } else if (this.typeaheadMinLength > 0 && this.currentValue.length >= this.typeaheadMinLength) {
+      this.typeaheadLoading.emit(true);
+      this.keyUpEventEmitter.emit(this.currentValue);
     }
   }
 
