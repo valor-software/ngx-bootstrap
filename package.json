@@ -70,7 +70,7 @@
     "@angular/router": "3.1.0",
     "@types/jasmine": "2.5.35",
     "@types/webpack": "1.12.35",
-    "async": "2.1.1",
+    "async": "2.1.4",
     "bootstrap": "3.3.7",
     "codecov": "1.0.1",
     "conventional-changelog-cli": "1.2.0",
