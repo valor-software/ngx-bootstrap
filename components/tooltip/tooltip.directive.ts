@@ -92,7 +92,7 @@ export class TooltipDirective {
     };
 
     if (this.delay) {
-      this.delayTimeoutId = setTimeout(() => { showTooltip(); }, this.delay);
+      this.delayTimeoutId = <number>(<any>setTimeout(() => { showTooltip(); }, this.delay));
     } else {
       showTooltip();
     }
