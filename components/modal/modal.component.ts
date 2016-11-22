@@ -98,6 +98,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   }
 
   public ngOnDestroy(): any {
+    this.hide();
     this.config = void 0;
     // this._element             = null
     // this._dialog              = null
