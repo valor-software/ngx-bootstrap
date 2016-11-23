@@ -62,14 +62,6 @@ export class ComponentsHelper {
     try {
       /* one more ugly hack, read issue above for details */
       const rootComponent = (this.applicationRef as any )._rootComponents[0];
-      /*
-        without those change modal window wont work
-        package.json 
-          "@angular/common": "~2.2.0",
-          "@angular/compiler": "~2.2.0",
-          "@angular/core": "~2.2.0",
-          "@angular/forms": "~2.2.0",
-      */
       //this.root = rootComponent._hostElement.vcRef;
       this.root = rootComponent._component.viewContainerRef;
       
