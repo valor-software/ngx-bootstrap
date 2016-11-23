@@ -62,7 +62,9 @@ export class ComponentsHelper {
     try {
       /* one more ugly hack, read issue above for details */
       const rootComponent = (this.applicationRef as any )._rootComponents[0];
-      this.root = rootComponent._hostElement.vcRef;
+      //this.root = rootComponent._hostElement.vcRef;
+      this.root = rootComponent._component.viewContainerRef;
+      
       return this.root;
     } catch (e) {
       throw new Error(`ApplicationRef instance not found`);
