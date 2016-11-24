@@ -22,6 +22,7 @@ export class TooltipDirective {
   @Input('tooltipClass') protected popupClass:string;
   @Input('tooltipContext') public tooltipContext:any;
   @Input('tooltipPopupDelay') public delay:number = 0;
+  @Input('tooltipFadeDuration') public fadeDuration:number = 150;
   @Output() public tooltipStateChanged:EventEmitter<boolean>;
 }
 ```
@@ -31,7 +32,8 @@ export class TooltipDirective {
   - `tooltipHtml` (`string|TempalteRef`) - tooltip custom html content, defined as string or template reference
   - `tooltipPlacement` (`?string='top'`) - tooltip positioning instruction, supported positions: 'top', 'bottom', 'left', 'right'
   - `tooltipAnimation` (`?boolean=true`) - if `false` fade tooltip animation will be disabled
-  - `tooltipPopupDelay` (`?numer=0`) - time in milliseconds before tooltip occurs
+  - `tooltipPopupDelay` (`?number=0`) - time in milliseconds before tooltip occurs
+  - `tooltipFadeDuration` (`?number=150`) - time in milliseconds for tooltip to fade out. This value must be the same as transition-duration in your css
   - `tooltipTrigger` (*not implemented*) (`?Array<string>`) - array of event names which triggers tooltip opening
   - `tooltipEnable` (`?boolean=true`) - if `false` tooltip is disabled and will not be shown
   - `tooltipAppendToBody` (`?boolean=false`) - if `true` tooltip will be appended to body
