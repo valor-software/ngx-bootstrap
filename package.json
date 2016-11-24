@@ -105,6 +105,6 @@
     "typescript": "2.0.6",
     "protractor": "4.0.9",
     "wallaby-webpack": "0.0.26",
-    "zone.js": "0.6.25"
+    "zone.js": "0.7.2"
   }
 }
