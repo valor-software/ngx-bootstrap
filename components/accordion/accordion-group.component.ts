@@ -11,17 +11,17 @@ const MouseEvent = (global as any).MouseEvent as MouseEvent;
 @Component({
   selector: 'accordion-group, accordion-panel',
   template: `
-    <div class="panel" [ngClass]="panelClass">
-      <div class="panel-heading" (click)="toggleOpen($event)">
-        <h4 class="panel-title">
+    <div class="card" [ngClass]="panelClass">
+      <div class="card-header" (click)="toggleOpen($event)">
+        <h4 class="card-title">
           <a href tabindex="0" class="accordion-toggle">
             <span *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">{{heading}}</span>
             <ng-content select="[accordion-heading]"></ng-content>
           </a>
         </h4>
       </div>
-      <div class="panel-collapse collapse" [collapse]="!isOpen">
-        <div class="panel-body">
+      <div class="collapse" [collapse]="!isOpen">
+        <div class="card-block">
           <ng-content></ng-content>
         </div>
       </div>
