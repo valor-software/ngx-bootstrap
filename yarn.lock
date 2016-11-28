@@ -57,15 +57,15 @@
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.2.0.tgz#522585357ff9216e3ffae47e9045b3c150d00c7f"
 
-"@angular/tsc-wrapped@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.3.0.tgz#98cdeb5c38d145b187c0ad0397a8d98b217f33f2"
+"@angular/tsc-wrapped@0.4.0", "@angular/tsc-wrapped@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.4.0.tgz#78cacfd865b11366811baa1f2eec2ef0b63468e6"
   dependencies:
     tsickle "^0.1.7"
 
-"@angular/tsc-wrapped@^0.4.0":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.4.1.tgz#4809a58f1a61470c7dcffdb0a5ca18f3d2d57212"
+"@angular/tsc-wrapped@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.3.0.tgz#98cdeb5c38d145b187c0ad0397a8d98b217f33f2"
   dependencies:
     tsickle "^0.1.7"
 
