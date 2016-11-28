@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap",
-  "version": "1.1.16-1",
+  "version": "1.1.16-3",
   "description": "angular2 bootstrap components",
   "private": true,
   "scripts": {
@@ -23,7 +23,7 @@
     "test:watch": "ng test",
     "preversion": "npm test",
     "version": "npm run flow.changelog && git add -A",
-    "postversion": "git push origin development && git push --tags && npm run flow.copy:src",
+    "postversion": "git push origin development && git push --tags",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor"
   },
@@ -65,6 +65,7 @@
     "@angular/platform-browser-dynamic": "2.2.0",
     "@angular/platform-server": "2.2.0",
     "@angular/router": "3.2.0",
+    "@angular/tsc-wrapped": "0.4.0",
     "@angular/upgrade": "2.2.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "6.0.48",
