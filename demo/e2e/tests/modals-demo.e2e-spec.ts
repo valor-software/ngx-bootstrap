@@ -12,7 +12,7 @@ const modalCloseButton = $('.modal.fade.in .close');
 
 describe('Modals page test on bootstrap 3', () => {
   beforeAll(() => {
-    browser.get('#/modals');
+    browser.get(`${browser.baseUrl}#/modals`);
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
   });

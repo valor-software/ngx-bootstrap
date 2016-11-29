@@ -20,7 +20,7 @@ const doClick = (element:any, q:any) => {
 
 describe('Carousel page tests on bootstrap 3', () => {
   beforeAll(() => {
-    browser.get('#/carousel');
+    browser.get(`${browser.baseUrl}#/carousel`);
     browser.ignoreSynchronization = true;
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
