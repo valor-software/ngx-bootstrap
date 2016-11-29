@@ -50,7 +50,7 @@
   },
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "dependencies": {
-    "moment": "2.15.1"
+    "moment": "2.15.2"
   },
   "peerDependencies": {
     "@angular/common": "^2.0.0",
