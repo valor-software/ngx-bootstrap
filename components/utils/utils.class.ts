@@ -2,7 +2,7 @@ import { window } from './facade/browser';
 
 export class Utils {
   public static reflow(element: any): void {
-    element.offsetHeight;
+    ((bs) => bs)(element.offsetHeight);
   }
 
 // source: https://github.com/jquery/jquery/blob/master/src/css/var/getStyles.js
