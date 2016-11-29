@@ -58,9 +58,9 @@ describe('Check the Accordion page in bootstrap 3', () => {
     buttonAddItem.click();
     expect(getItemsCount.count()).toBe(5);
   });
-  it('Open all tabs together', () => {
+  it('Open all tabs together', (): void => {
     checkboxOnlyOne.click();
-    buttonGroup.each(function (element: any) {
+    buttonGroup.each(function (element: any): void {
       element.click();
     });
   });
