@@ -6,7 +6,7 @@ const sameContent = $('.well');
 
 describe('Collapse page test on bootstrap 3', () => {
   beforeAll(() => {
-    browser.get('#/collapse');
+    browser.get(`${browser.baseUrl}#/collapse`);
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
   });
