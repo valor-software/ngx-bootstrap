@@ -18,6 +18,7 @@
     "disable-prestart": "chokidar 'src/**/*.ts' -c \"npm run build\" --initial",
     "start": "ng serve",
     "build:copy": "cpy '**/*.*' ../node_modules/ng2-bootstrap --cwd=dist --parents",
+    "generate-bs4": "node scripts/generate-bs4.js",
     "pretest": "run-s flow.lint build:copy",
     "test": "ng test --watch false",
     "test:watch": "ng test",
