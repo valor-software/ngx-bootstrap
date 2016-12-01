@@ -33,6 +33,7 @@ export class TooltipDirective {
   @Input('tooltipClass') public popupClass: string;
   @Input('tooltipContext') public tooltipContext: any;
   @Input('tooltipPopupDelay') public delay: number = 0;
+  @Input('tooltipFadeDuration') public fadeDuration: number = 150;
   /* tslint:enable */
 
   @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -110,10 +111,13 @@ export class TooltipDirective {
     if (!this.visible) {
       return;
     }
+    this.tooltip.instance.classMap.in = false;
+    setTimeout(() => {
+      this.visible = false;
+      this.tooltip.destroy();
+      this.triggerStateChanged();
+    }, this.fadeDuration);
 
-    this.visible = false;
-    this.tooltip.destroy();
-    this.triggerStateChanged();
   }
 
   protected triggerStateChanged(): void {
