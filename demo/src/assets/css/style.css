@@ -605,6 +605,9 @@ pre {
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 /* Hide arrow */
+.tooltip.customClass.fade{
+  transition: opacity 1s;
+}
 .tooltip.customClass .tooltip-arrow {
   display: none;
 }
