@@ -8,7 +8,6 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - npm run build
   - npm test
 
 after_success:
@@ -17,7 +16,7 @@ after_success:
 addons:
   # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
   sauce_connect: true
-  firefox: "42.0"
+  firefox: "latest"
   apt:
     sources:
     - ubuntu-toolchain-r-test
