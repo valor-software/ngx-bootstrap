@@ -13,12 +13,12 @@ const MouseEvent = (global as any).MouseEvent as MouseEvent;
   template: `
     <div class="panel" [ngClass]="panelClass">
       <div class="panel-heading" (click)="toggleOpen($event)">
-        <h4 class="panel-title">
+        <div class="panel-title">
           <a href tabindex="0" class="accordion-toggle">
             <span *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">{{heading}}</span>
             <ng-content select="[accordion-heading]"></ng-content>
           </a>
-        </h4>
+        </div>
       </div>
       <div class="panel-collapse collapse" [collapse]="!isOpen">
         <div class="panel-body">
