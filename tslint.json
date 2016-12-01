@@ -2,7 +2,6 @@
   "extends": "tslint-config-valorsoft",
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
-    "component-selector-name": [false, ""],
     "only-arrow-functions": false
   }
 }

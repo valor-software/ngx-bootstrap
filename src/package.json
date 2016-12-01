@@ -1,0 +1,13 @@
+{
+  "name": "ng2-bootstrap",
+  "version": "1.1.16-3",
+  "dependencies": {
+    "moment": "*"
+  },
+  "peerDependencies": {
+    "@angular/common": "*",
+    "@angular/compiler": "*",
+    "@angular/core": "*",
+    "@angular/forms": "*"
+  }
+}

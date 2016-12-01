@@ -21,7 +21,7 @@ gulpfile.js
 protractor.conf.js
 spec-bundle.js
 tsconfig.json
-tsconfig.publish.json
+src/tsconfig.json
 tslint.json
 typedoc.js
 wallaby.js
@@ -42,4 +42,4 @@ make.js
 /components/**/*.ts
 !/components/**/*.d.ts
 
-factories
+dist/factories

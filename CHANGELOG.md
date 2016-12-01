@@ -1,3 +1,45 @@
+<a name="1.1.16-3"></a>
+## [1.1.16-3](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16...v1.1.16-3) (2016-11-28)
+
+
+### Bug Fixes
+
+* **ci:** karma test should work in travis now ([3d61d48](https://github.com/valor-software/ng2-bootstrap/commit/3d61d48))
+* **ci:** let the karma pass ([29615f4](https://github.com/valor-software/ng2-bootstrap/commit/29615f4))
+* **pager:** fix aot compilation ([#1232](https://github.com/valor-software/ng2-bootstrap/issues/1232)) ([fd93f7b](https://github.com/valor-software/ng2-bootstrap/commit/fd93f7b))
+
+
+### Features
+
+* **access:** private access specifiers replaced by protected ([#1186](https://github.com/valor-software/ng2-bootstrap/issues/1186)) ([0d4e93b](https://github.com/valor-software/ng2-bootstrap/commit/0d4e93b))
+* **bs4:** updated to alfa 5 Class name changes ([#1201](https://github.com/valor-software/ng2-bootstrap/issues/1201)) ([49197f0](https://github.com/valor-software/ng2-bootstrap/commit/49197f0))
+* **build:** ng test now working, applied workaroud >.< ([8eea379](https://github.com/valor-software/ng2-bootstrap/commit/8eea379))
+* **datepicker:** disable datepicker dates based on dateDisabled property ([#799](https://github.com/valor-software/ng2-bootstrap/issues/799)) ([#1130](https://github.com/valor-software/ng2-bootstrap/issues/1130)) ([83452e1](https://github.com/valor-software/ng2-bootstrap/commit/83452e1))
+* **package:** ng2 and moment version bump ([333b876](https://github.com/valor-software/ng2-bootstrap/commit/333b876))
+
+
+
+<a name="1.1.16-2"></a>
+## [1.1.16-2](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16...v1.1.16-2) (2016-11-28)
+
+
+### Bug Fixes
+
+* **ci:** karma test should work in travis now ([3d61d48](https://github.com/valor-software/ng2-bootstrap/commit/3d61d48))
+* **ci:** let the karma pass ([29615f4](https://github.com/valor-software/ng2-bootstrap/commit/29615f4))
+* **pager:** fix aot compilation ([#1232](https://github.com/valor-software/ng2-bootstrap/issues/1232)) ([fd93f7b](https://github.com/valor-software/ng2-bootstrap/commit/fd93f7b))
+
+
+### Features
+
+* **access:** private access specifiers replaced by protected ([#1186](https://github.com/valor-software/ng2-bootstrap/issues/1186)) ([0d4e93b](https://github.com/valor-software/ng2-bootstrap/commit/0d4e93b))
+* **bs4:** updated to alfa 5 Class name changes ([#1201](https://github.com/valor-software/ng2-bootstrap/issues/1201)) ([49197f0](https://github.com/valor-software/ng2-bootstrap/commit/49197f0))
+* **build:** ng test now working, applied workaroud >.< ([8eea379](https://github.com/valor-software/ng2-bootstrap/commit/8eea379))
+* **datepicker:** disable datepicker dates based on dateDisabled property ([#799](https://github.com/valor-software/ng2-bootstrap/issues/799)) ([#1130](https://github.com/valor-software/ng2-bootstrap/issues/1130)) ([83452e1](https://github.com/valor-software/ng2-bootstrap/commit/83452e1))
+* **package:** ng2 and moment version bump ([333b876](https://github.com/valor-software/ng2-bootstrap/commit/333b876))
+
+
+
 <a name="1.1.16"></a>
 ## [1.1.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.0.23...v1.1.16) (2016-10-26)
 
