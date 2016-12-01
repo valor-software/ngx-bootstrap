@@ -6,14 +6,14 @@ import { Component } from '@angular/core';
 })
 export class AccordionDemoComponent {
   public oneAtATime:boolean = true;
-  public items:Array<string> = ['Item 1', 'Item 2', 'Item 3'];
+  public items:string[] = ['Item 1', 'Item 2', 'Item 3'];
 
   public status:Object = {
     isFirstOpen: true,
     isFirstDisabled: false
   };
 
-  public groups:Array<any> = [
+  public groups:any[] = [
     {
       title: 'Dynamic Group Header - 1',
       content: 'Dynamic Group Body - 1'

@@ -81,10 +81,10 @@ const TEMPLATE_OPTIONS:any = {
 })
 export class DayPickerComponent implements OnInit {
 
-  public labels:Array<any> = [];
+  public labels:any[] = [];
   public title:string;
-  public rows:Array<any> = [];
-  public weekNumbers:Array<number> = [];
+  public rows:any[] = [];
+  public weekNumbers:number[] = [];
   public datePicker:DatePickerInnerComponent;
   public CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2BootstrapTheme.BS3];
 
@@ -120,8 +120,8 @@ export class DayPickerComponent implements OnInit {
       }
 
       // 42 is the number of days on a six-week calendar
-      let _days:Array<Date> = self.getDates(firstDate, 42);
-      let days:Array<any> = [];
+      let _days:Date[] = self.getDates(firstDate, 42);
+      let days:any[] = [];
       for (let i = 0; i < 42; i++) {
         let _dateObject = this.createDateObject(_days[i], this.formatDay);
         _dateObject.secondary = _days[i].getMonth() !== month;
@@ -158,8 +158,8 @@ export class DayPickerComponent implements OnInit {
     this.datePicker.refreshView();
   }
 
-  protected getDates(startDate:Date, n:number):Array<Date> {
-    let dates:Array<Date> = new Array(n);
+  protected getDates(startDate:Date, n:number):Date[] {
+    let dates:Date[] = new Array(n);
     let current = new Date(startDate.getTime());
     let i = 0;
     let date:Date;

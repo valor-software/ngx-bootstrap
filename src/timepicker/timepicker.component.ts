@@ -93,7 +93,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   @Input() public showSpinners: boolean;
   @Input() public min: Date;
   @Input() public max: Date;
-  @Input() public meridians: Array<string> = ['AM', 'PM']; // ??
+  @Input() public meridians: string[] = ['AM', 'PM']; // ??
 
   @Input()
   public get showMeridian(): boolean {

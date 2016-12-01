@@ -184,7 +184,7 @@ describe('Component: Tabs', () => {
 class TestTabsetComponent {
   public isVertical:Boolean = false;
   public isJustified:Boolean = false;
-  public tabs:Array<any> = [
+  public tabs:any[] = [
     {title: 'tab1', content: 'tab1 content'},
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}

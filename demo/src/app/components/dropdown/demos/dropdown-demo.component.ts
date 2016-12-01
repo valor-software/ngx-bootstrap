@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class DropdownDemoComponent {
   public disabled:boolean = false;
   public status:{isopen:boolean} = {isopen: false};
-  public items:Array<string> = ['The first choice!',
+  public items:string[] = ['The first choice!',
     'And another choice for you.', 'but wait! A third!'];
 
   public toggled(open:boolean):void {

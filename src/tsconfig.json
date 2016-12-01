@@ -12,6 +12,8 @@
     "declaration": true,
     "skipLibCheck": true,
     "stripInternal": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "lib": ["dom", "es6"],
     "types": [
       "jasmine",

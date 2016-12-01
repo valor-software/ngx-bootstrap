@@ -56,10 +56,10 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public yearRange:number;
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
-  @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
+  @Input() public customClass:{date:Date, mode:string, clazz:string}[];
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
-  @Input() public dateDisabled:Array<{date:Date, mode:string}>;
+  @Input() public dateDisabled:{date:Date, mode:string}[];
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
 

@@ -15,7 +15,7 @@ export class AccordionComponent {
   public addClass:boolean = true;
   /* tslint:enable:no-unused-variable */
 
-  protected groups:Array<AccordionPanelComponent> = [];
+  protected groups:AccordionPanelComponent[] = [];
 
   public closeOtherPanels(openGroup:AccordionPanelComponent):void {
     if (!this.closeOthers) {

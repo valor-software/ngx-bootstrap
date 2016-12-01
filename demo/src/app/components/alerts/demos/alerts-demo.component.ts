@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './alerts-demo.component.html'
 })
 export class AlertsDemoComponent {
-  public alerts:Array<Object> = [
+  public alerts:Object[] = [
     {
       type: 'danger',
       msg: 'Oh snap! Change a few things up and try submitting again.'

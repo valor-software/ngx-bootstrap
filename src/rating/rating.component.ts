@@ -25,7 +25,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public stateOn:string;
   @Input() public stateOff:string;
   @Input() public readonly:boolean;
-  @Input() public titles:Array<string>;
+  @Input() public titles:string[];
   @Input() public ratingStates:{stateOn:string, stateOff:string}[];
 
   @Output() public onHover:EventEmitter<number> = new EventEmitter<number>(false);
@@ -35,7 +35,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   public onTouched:any = Function.prototype;
 
   public cd:NgModel;
-  public range:Array<any>;
+  public range:any[];
   public value:number;
   protected preValue:number;
 
@@ -110,7 +110,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  protected buildTemplateObjects(ratingStates:Array<any>, max:number):Array<any> {
+  protected buildTemplateObjects(ratingStates:any[], max:number):any[] {
     ratingStates = ratingStates || [];
     let count = ratingStates.length || max;
     let result:any[] = [];

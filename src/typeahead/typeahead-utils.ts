@@ -23,8 +23,8 @@ export class TypeaheadUtils {
   public static tokenize(str:string, wordRegexDelimiters = ' ', phraseRegexDelimiters = ''):Array<string> {
     /* tslint:enable */
     let regexStr:string = '(?:[' + phraseRegexDelimiters + '])([^' + phraseRegexDelimiters + ']+)(?:[' + phraseRegexDelimiters + '])|([^' + wordRegexDelimiters + ']+)';
-    let preTokenized:Array<string> = str.split(new RegExp(regexStr, 'g'));
-    let result:Array<string> = [];
+    let preTokenized:string[] = str.split(new RegExp(regexStr, 'g'));
+    let result:string[] = [];
     let preTokenizedLength:number = preTokenized.length;
     let token:string;
     let replacePhraseDelimiters = new RegExp('[' + phraseRegexDelimiters + ']+', 'g');
@@ -51,7 +51,7 @@ export class TypeaheadUtils {
 
     let properties:string = option.replace(/\[(\w+)\]/g, '.$1')
       .replace(/^\./, '');
-    let propertiesArray:Array<string> = properties.split('.');
+    let propertiesArray:string[] = properties.split('.');
 
     for (let property of propertiesArray) {
       if (property in object) {

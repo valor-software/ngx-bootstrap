@@ -48,7 +48,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 })
 export class MonthPickerComponent implements OnInit {
   public title:string;
-  public rows:Array<any> = [];
+  public rows:any[] = [];
   public datePicker:DatePickerInnerComponent;
   public maxMode:string;
 
@@ -66,7 +66,7 @@ export class MonthPickerComponent implements OnInit {
     this.datePicker.stepMonth = {years: 1};
 
     this.datePicker.setRefreshViewHandler(function ():void {
-      let months:Array<any> = new Array(12);
+      let months:any[] = new Array(12);
       let year:number = this.activeDate.getFullYear();
       let date:Date;
 

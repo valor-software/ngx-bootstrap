@@ -23,7 +23,7 @@ export class AlertComponent implements OnInit {
   @Output() public close:EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
 
   public closed:boolean;
-  protected classes:Array<string> = [];
+  protected classes:string[] = [];
 
   public ngOnInit():any {
     this.classes[0] = `alert-${this.type}`;

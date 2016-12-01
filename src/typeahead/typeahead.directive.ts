@@ -59,7 +59,7 @@ export class TypeaheadDirective implements OnInit {
   public isTypeaheadOptionsListActive:boolean = false;
 
   protected keyUpEventEmitter:EventEmitter<any> = new EventEmitter();
-  protected _matches:Array<TypeaheadMatch>;
+  protected _matches:TypeaheadMatch[];
   protected placement:string = 'bottom-left';
   protected popup:ComponentRef<TypeaheadContainerComponent>;
 
@@ -182,7 +182,7 @@ export class TypeaheadDirective implements OnInit {
     this.hide();
   }
 
-  public get matches():Array<any> {
+  public get matches():any[] {
     return this._matches;
   }
 
@@ -329,7 +329,7 @@ export class TypeaheadDirective implements OnInit {
       // extract all group names
       let groups = limited
         .map((option:any) => TypeaheadUtils.getValueFromObject(option, this.typeaheadGroupField))
-        .filter((v:string, i:number, a:Array<any>) => a.indexOf(v) === i);
+        .filter((v:string, i:number, a:any[]) => a.indexOf(v) === i);
 
       groups.forEach((group:string) => {
         // add group header to array of matches

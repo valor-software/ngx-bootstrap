@@ -205,7 +205,7 @@ describe('Component: Carousel', () => {
 class TestCarouselComponent {
   public myInterval:number = 5000;
   public noWrapSlides:boolean = false;
-  public slides:Array<any> = [
+  public slides:any[] = [
     {image: '//placekitten.com/600/300', text: 'slide0'},
     {image: '//placekitten.com/600/300', text: 'slide1'},
     {image: '//placekitten.com/600/300', text: 'slide2'}

@@ -23,7 +23,7 @@ export class TypeaheadDemoComponent {
   public asyncSelected:string = '';
   public typeaheadLoading:boolean = false;
   public typeaheadNoResults:boolean = false;
-  public states:Array<string> = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
+  public states:string[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
     'California', 'Colorado',
     'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
     'Illinois', 'Indiana', 'Iowa',
@@ -36,7 +36,7 @@ export class TypeaheadDemoComponent {
     'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
     'Virginia', 'Washington',
     'West Virginia', 'Wisconsin', 'Wyoming'];
-  public statesComplex:Array<any> = [
+  public statesComplex:any[] = [
     {id: 1, name: 'Alabama', region: 'South'}, {id: 2, name: 'Alaska', region: 'West'}, {id: 3, name: 'Arizona', region: 'West'},
     {id: 4, name: 'Arkansas', region: 'South'}, {id: 5, name: 'California', region: 'West'},
     {id: 6, name: 'Colorado', region: 'West'}, {id: 7, name: 'Connecticut', region: 'Northeast'},

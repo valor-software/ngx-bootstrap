@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class CarouselDemoComponent {
   public myInterval:number = 5000;
   public noWrapSlides:boolean = false;
-  public slides:Array<any> = [];
+  public slides:any[] = [];
 
   public constructor() {
     for (let i = 0; i < 4; i++) {

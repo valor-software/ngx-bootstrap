@@ -65,10 +65,10 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public formatMonthTitle: string;
   @Input() public onlyCurrentMonth: boolean;
   @Input() public shortcutPropagation: boolean;
-  @Input() public customClass: Array<{date: Date, mode: string, clazz: string}>;
+  @Input() public customClass: {date: Date, mode: string, clazz: string}[];
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
-  @Input() public dateDisabled: Array<{date:Date, mode:string}>;
+  @Input() public dateDisabled: {date:Date, mode:string}[];
   @Input() public initDate: Date;
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
@@ -79,7 +79,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   public stepMonth: any = {};
   public stepYear: any = {};
 
-  protected modes: Array<string> = ['day', 'month', 'year'];
+  protected modes: string[] = ['day', 'month', 'year'];
   protected dateFormatter: DateFormatter = new DateFormatter();
   protected uniqueId: string;
   protected _activeDate: Date;
@@ -229,8 +229,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return dateObject;
   }
 
-  public split(arr: Array<any>, size: number): Array<any> {
-    let arrays: Array<any> = [];
+  public split(arr: any[], size: number): any[] {
+    let arrays: any[] = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
     }

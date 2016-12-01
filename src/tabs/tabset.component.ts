@@ -57,7 +57,7 @@ export class TabsetComponent implements OnInit, OnDestroy {
     this.setClassMap();
   }
 
-  public tabs:Array<TabDirective> = [];
+  public tabs:TabDirective[] = [];
   public classMap:any = {};
 
   protected isDestroyed:boolean;

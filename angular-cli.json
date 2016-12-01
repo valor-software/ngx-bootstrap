@@ -27,13 +27,6 @@
       }
     }
   ],
-  "module":[{
-    "name": "ng2-bootstrap",
-    "root": "src",
-    "outDir": "dist",
-    "main":"index.ts",
-    "tsconfig": "tsconfig.json"
-  }],
   "addons": [],
   "packages": [],
   "e2e": {

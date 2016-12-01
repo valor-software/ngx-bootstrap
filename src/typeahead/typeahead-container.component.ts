@@ -79,7 +79,7 @@ export class TypeaheadContainerComponent {
   public display:string;
 
   protected _active:TypeaheadMatch;
-  protected _matches:Array<TypeaheadMatch> = [];
+  protected _matches:TypeaheadMatch[] = [];
   protected placement:string;
 
   public constructor(element:ElementRef, options:TypeaheadOptions) {
@@ -87,7 +87,7 @@ export class TypeaheadContainerComponent {
     Object.assign(this, options);
   }
 
-  public get matches():Array<TypeaheadMatch> {
+  public get matches():TypeaheadMatch[] {
     return this._matches;
   }
 
@@ -95,7 +95,7 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  public set matches(value:Array<TypeaheadMatch>) {
+  public set matches(value:TypeaheadMatch[]) {
     this._matches = value;
 
     if (this._matches.length > 0) {

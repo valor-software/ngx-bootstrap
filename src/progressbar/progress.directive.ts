@@ -30,7 +30,7 @@ export class ProgressDirective implements OnInit {
     });
   }
 
-  public bars:Array<any> = [];
+  public bars:any[] = [];
 
   protected _max:number;
 

@@ -8,11 +8,11 @@ import * as moment from 'moment';
 export class DatepickerDemoComponent {
   public dt:Date = new Date();
   public minDate:Date = void 0;
-  public events:Array<any>;
+  public events:any[];
   public tomorrow:Date;
   public afterTomorrow:Date;
-  public dateDisabled: Array<{date: Date, mode: string}>;
-  public formats:Array<string> = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
+  public dateDisabled: {date: Date, mode: string}[];
+  public formats:string[] = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY', 'shortDate'];
   public format:string = this.formats[0];
   public dateOptions:any = {
     formatYear: 'YY',

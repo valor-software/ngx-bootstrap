@@ -163,7 +163,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
   public elementRef:ElementRef;
 
   public classMap:string;
-  public pages:Array<any>;
+  public pages:any[];
 
   protected _itemsPerPage:number;
   protected _totalItems:number;
@@ -254,7 +254,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, Pagina
     return { text, number:num, active };
   }
 
-  protected getPages(currentPage:number, totalPages:number):Array<any> {
+  protected getPages(currentPage:number, totalPages:number):any[] {
     let pages:any[] = [];
 
     // Default page limits

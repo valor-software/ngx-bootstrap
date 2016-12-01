@@ -145,7 +145,7 @@ describe('Component: Accordion', () => {
 
 class TestAccordionComponent {
   public oneAtATime:boolean = true;
-  public panels:Array<any> = [
+  public panels:any[] = [
     {isOpen: false, isDisabled: false},
     {isOpen: false, isDisabled: false},
     {isOpen: false, isDisabled: false}

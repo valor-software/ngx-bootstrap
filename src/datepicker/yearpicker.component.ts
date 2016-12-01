@@ -50,7 +50,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 export class YearPickerComponent implements OnInit {
   public datePicker:DatePickerInnerComponent;
   public title:string;
-  public rows:Array<any> = [];
+  public rows:any[] = [];
 
   public constructor(datePicker:DatePickerInnerComponent) {
     this.datePicker = datePicker;
@@ -66,7 +66,7 @@ export class YearPickerComponent implements OnInit {
     this.datePicker.stepYear = {years: this.datePicker.yearRange};
 
     this.datePicker.setRefreshViewHandler(function ():void {
-      let years:Array<any> = new Array(this.yearRange);
+      let years:any[] = new Array(this.yearRange);
       let date:Date;
       let start = self.getStartingYear(this.activeDate.getFullYear());
 

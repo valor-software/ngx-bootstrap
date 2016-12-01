@@ -50,7 +50,7 @@ export class CarouselComponent implements OnDestroy {
     this.restartTimer();
   }
 
-  public slides:Array<SlideComponent> = [];
+  public slides:SlideComponent[] = [];
   protected currentInterval:any;
   protected isPlaying:boolean;
   protected destroyed:boolean = false;
