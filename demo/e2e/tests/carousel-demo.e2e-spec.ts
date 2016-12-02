@@ -1,6 +1,8 @@
 import { $, $$, browser } from 'protractor';
 import { leftPanelTests } from './leftPanelTests.po';
+import { DataProvider } from '../data-provider/data-provider.po';
 
+let using = require('jasmine-data-provider');
 const inputInterval = $('input.form-control');
 const buttonAddSlide = $('.btn');
 const controlLeft = $('.left');
@@ -20,13 +22,11 @@ const doClick = (element:any, q:any) => {
 
 describe('Carousel page tests on bootstrap 3', () => {
   beforeAll(() => {
-    browser.get(`${browser.baseUrl}#/carousel`);
+    browser.get('#/carousel');
     browser.ignoreSynchronization = true;
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
-  });
-  beforeEach(() => {
-    browser.refresh();
+    inputInterval.clear();
   });
   it('Carousel default count', () => {
     expect(slidesCount.count()).toBe(4);
@@ -36,108 +36,38 @@ describe('Carousel page tests on bootstrap 3', () => {
     buttonAddSlide.click();
     expect(slidesCount.count()).toBe(6);
   });
-  it('Change the slides by clicking in right', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
+  it('Change the slides by Rigth/left controls ', () => {
     controlRight.click();
     expect($(getSlideNumber('2')).getAttribute('class')).toContain('active');
-  });
-  it('Change the slides by clicking in left', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
     controlLeft.click();
-    expect($(getSlideNumber('4')).getAttribute('class')).toContain('active');
+    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
+  });
+  it('Disable slide looping. Right/Left sides', () => {
+    checkboxDisableLopping.click();
+    controlLeft.click();
+    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
+    doClick(controlRight, 7);
+    expect($(getSlideNumber('6')).getAttribute('class')).toContain('active');
+    checkboxDisableLopping.click();
+  });
+  it('Slide lopping on Right/left sides', () => {
+    doClick(controlRight, 1);
+    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
+    controlLeft.click();
+    expect($(getSlideNumber('6')).getAttribute('class')).toContain('active');
   });
   it('Change the slides by time', () => {
-    browser.sleep(5000);
-    expect($(getSlideNumber('2')).getAttribute('class')).toContain('active');
-  });
-  it('Disable slide looping. Left control', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    checkboxDisableLopping.click();
-    controlLeft.click();
-    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
-  });
-  it('Disable slide looping. Right control', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    checkboxDisableLopping.click();
-    doClick(controlRight, 5);
-    browser.sleep(6000);
-    expect($(getSlideNumber('4')).getAttribute('class')).toContain('active');
-  });
-  it('Slide lopping on right', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    doClick(controlRight, 4);
-    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
-  });
-  it('Slide lopping on left', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    controlLeft.click();
-    expect($(getSlideNumber('4')).getAttribute('class')).toContain('active');
-  });
-});
-describe('Carousel page tests on bootstrap 4', () => {
-  beforeAll(() => {
-    browser.get('index-bs4.html#/carousel');
-    browser.ignoreSynchronization = true;
-    leftPanelTests.checkLeftPanelMini();
-    leftPanelTests.checkLeftPanelMaxi();
-  });
-  beforeEach(() => {
     browser.refresh();
-  });
-  it('Carousel default count', () => {
-    expect(slidesCount.count()).toBe(4);
-  });
-  it('Carousel count after adding slides', () => {
-    buttonAddSlide.click();
-    buttonAddSlide.click();
-    expect(slidesCount.count()).toBe(6);
-  });
-  it('Change the slides by clicking in right', () => {
     inputInterval.clear();
-    inputInterval.sendKeys('0');
-    controlRight.click();
+    inputInterval.sendKeys(`1500`);
+    browser.sleep(2010);
     expect($(getSlideNumber('2')).getAttribute('class')).toContain('active');
-  });
-  it('Change the slides by clicking in left', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
     controlLeft.click();
-    expect($(getSlideNumber('4')).getAttribute('class')).toContain('active');
   });
-  it('Change the slides by time', () => {
-    browser.sleep(6000);
-    expect($(getSlideNumber('2')).getAttribute('class')).toContain('active');
-  });
-  it('Disable slide looping. Left control', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    checkboxDisableLopping.click();
-    controlLeft.click();
-    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
-  });
-  it('Disable slide looping. Right control', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    checkboxDisableLopping.click();
-    doClick(controlRight, 5);
-    expect($(getSlideNumber('4')).getAttribute('class')).toContain('active');
-  });
-  it('Slide lopping on right', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    doClick(controlRight, 4);
-    expect($(getSlideNumber('1')).getAttribute('class')).toContain('active');
-  });
-  it('Slide lopping on left', () => {
-    inputInterval.clear();
-    inputInterval.sendKeys('0');
-    controlLeft.click();
-    expect($(getSlideNumber('4')).getAttribute('class')).toContain('active');
+  using (DataProvider.carouselSlidesTexts, (data:any, description:string) => {
+    it ('Check table texts: ' + description, () => {
+      expect(data.element().getText()).toBe(data.actualResult);
+      controlRight.click();
+    });
   });
 });
