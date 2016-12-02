@@ -8,6 +8,7 @@ import { DayPickerComponent } from './daypicker.component';
 import { MonthPickerComponent } from './monthpicker.component';
 import { YearPickerComponent } from './yearpicker.component';
 import { ComponentsHelper } from '../utils/components-helper.service';
+import { DatepickerConfig } from './datepicker.config';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
@@ -15,7 +16,7 @@ import { ComponentsHelper } from '../utils/components-helper.service';
                  MonthPickerComponent, YearPickerComponent],
   exports: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, FormsModule,
             MonthPickerComponent, YearPickerComponent],
-  providers: [ComponentsHelper]
+  providers: [ComponentsHelper, DatepickerConfig]
 })
 export class DatepickerModule {
 }
