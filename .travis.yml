@@ -15,6 +15,7 @@ script:
   # e2e
   - npm run demo.build
   - npm run lite-server &
+  - sleep 5
   - npm run e2e
 
 after_success:
@@ -29,4 +30,7 @@ addons:
     - ubuntu-toolchain-r-test
     # required by node-gyp to build some packages
     packages:
+    - expect-dev
     - g++-4.8
+    - chromium-browser
+    - chromium-chromedriver
