@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { PaginationModule } from '../pagination/pagination.module';
 import { PaginationComponent } from '../pagination/pagination.component';
 
 describe('Component: Pagination:', () => {
@@ -9,7 +10,7 @@ describe('Component: Pagination:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PaginationComponent]
+      imports: [PaginationModule]
     });
     fixture = TestBed.createComponent(PaginationComponent);
     context = fixture.debugElement.componentInstance;
