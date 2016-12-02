@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { PagerComponent } from '../pagination/pager.component';
+import { PaginationModule } from '../pagination/pagination.module';
 
 describe('Component: Pager:', () => {
 
@@ -9,7 +10,7 @@ describe('Component: Pager:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PagerComponent]
+      imports: [PaginationModule]
     });
     fixture = TestBed.createComponent(PagerComponent);
     context = fixture.debugElement.componentInstance;
@@ -27,8 +28,8 @@ describe('Component: Pager:', () => {
 
     const links = element.querySelectorAll('a');
 
-    expect(links[0].innerHTML).toEqual('Previous');
-    expect(links[1].innerHTML).toEqual('Next');
+    expect(links[0].innerHTML).toEqual('« Previous');
+    expect(links[1].innerHTML).toEqual('Next »');
 
     expect(context._totalPages).toEqual(1);
   });
