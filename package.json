@@ -102,7 +102,7 @@
     "typedoc": "0.5.1",
     "typescript": "2.0.10",
     "wallaby-webpack": "0.0.26",
-    "webdriver-manager": "10.2.8",
+    "webdriver-manager": "11.0.0",
     "zone.js": "0.6.26"
   }
 }
