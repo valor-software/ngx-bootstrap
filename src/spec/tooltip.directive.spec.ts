@@ -26,7 +26,7 @@ const overTemplate = `
      <button class="btn btn-danger" id="hideTooltipBtn" (click)="tooltip.hide()">Hide tooltip</button>
    </p>`;
 
-describe('Directives: Tooltips', () => {
+fdescribe('Directives: Tooltips', () => {
   let fixture: ComponentFixture<TestTooltipComponent>;
   let context: any;
 
@@ -70,7 +70,7 @@ describe('Directives: Tooltips', () => {
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
 
-  it('tooltip should be displayed by mouseenter event', fakeAsync(() => {
+  fit('tooltip should be displayed by mouseenter event', fakeAsync(() => {
     const element: Element = fixture.debugElement.nativeElement;
     const tooltipElement: Element = element.querySelector('#test-tooltip1');
     tooltipElement.dispatchEvent(new Event('mouseenter'));

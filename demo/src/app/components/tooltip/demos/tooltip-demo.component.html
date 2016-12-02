@@ -49,6 +49,16 @@
   I can have a custom class. <a href="#" [tooltip]="'I can have a custom class applied to me!'" [tooltipClass]="'customClass'" [tooltipFadeDuration]="1000">Check me out!</a>
 </p>
 
+<p>
+  I can triggered by the custom events. For example, by the click. <a href="#" tooltip="I displayed after click event" tooltipTrigger="click">Check me out</a>
+</p>
+
+<p>
+  I can combine trigger events. Now I can be displayed by the "click" and "focus" events.
+  <a href="#" tooltip="I displayed after click or focus event" [tooltipTrigger]="['focusin', 'click']">Click or tab me.</a>
+</p>
+
+
 <p style="overflow:hidden; position:relative; background-color: #f6f6f6" class="alert">
   And if I am in <a href="#" tooltip="That ruins the tooltip">overflow: hidden</a> container, then just <a href="#" tooltip="So the tooltip is visible always correctly" [tooltipAppendToBody]="true">tooltipAppendToBody</a> me instead!
 </p>
