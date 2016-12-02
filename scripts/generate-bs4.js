@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 const files = {
-  initial: 'demo/src/index.html',
-  generated: 'demo/src/index-bs4.html'
+  initial: 'demo/dist/index.html',
+  generated: 'demo/dist/index-bs4.html'
 };
 
 const toReplace = [
