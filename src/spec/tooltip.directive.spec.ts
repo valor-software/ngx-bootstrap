@@ -26,7 +26,7 @@ const overTemplate = `
      <button class="btn btn-danger" id="hideTooltipBtn" (click)="tooltip.hide()">Hide tooltip</button>
    </p>`;
 
-fdescribe('Directives: Tooltips', () => {
+describe('Directives: Tooltips', () => {
   let fixture: ComponentFixture<TestTooltipComponent>;
   let context: any;
 
