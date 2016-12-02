@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertComponent } from '../alert/alert.component';
 import { AlertModule } from '../alert/alert.module';
+import { AlertConfig } from '../alert/alert.config';
 
 describe('Component: Alert', () => {
   let fixture:ComponentFixture<TestAlertComponent>;
@@ -62,4 +63,7 @@ describe('Component: Alert', () => {
 })
 
 class TestAlertComponent extends AlertComponent {
+  public constructor(config: AlertConfig) {
+    super(config);
+  }
 }
