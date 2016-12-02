@@ -3,25 +3,8 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 
 import { DateFormatter } from './date-formatter';
 
-const FORMAT_DAY = 'DD';
-const FORMAT_MONTH = 'MMMM';
-const FORMAT_YEAR = 'YYYY';
-const FORMAT_DAY_HEADER = 'dd';
-const FORMAT_DAY_TITLE = 'MMMM YYYY';
-const FORMAT_MONTH_TITLE = 'YYYY';
-const DATEPICKER_MODE = 'day';
-const MIN_MODE = 'day';
-const MAX_MODE = 'year';
-const SHOW_WEEKS = true;
-const ONLY_CURRENT_MONTH = false;
-const STARTING_DAY = 0;
-const YEAR_RANGE = 20;
-const MONTH_COL_LIMIT = 3;
-const YEAR_COL_LIMIT = 5;
 // const MIN_DATE:Date = void 0;
 // const MAX_DATE:Date = void 0;
-const SHORTCUT_PROPAGATION = false;
-
 // const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 /*
@@ -104,27 +87,6 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
   // todo: add formatter value to Date object
   public ngOnInit(): void {
-    this.formatDay = this.formatDay || FORMAT_DAY;
-    this.formatMonth = this.formatMonth || FORMAT_MONTH;
-    this.formatYear = this.formatYear || FORMAT_YEAR;
-    this.formatDayHeader = this.formatDayHeader || FORMAT_DAY_HEADER;
-    this.formatDayTitle = this.formatDayTitle || FORMAT_DAY_TITLE;
-    this.formatMonthTitle = this.formatMonthTitle || FORMAT_MONTH_TITLE;
-    this.showWeeks = (this.showWeeks === undefined
-      ? SHOW_WEEKS
-      : this.showWeeks);
-    this.onlyCurrentMonth = (this.onlyCurrentMonth === undefined
-      ? ONLY_CURRENT_MONTH
-      : this.onlyCurrentMonth);
-    this.startingDay = this.startingDay || STARTING_DAY;
-    this.yearRange = this.yearRange || YEAR_RANGE;
-    this.shortcutPropagation = this.shortcutPropagation || SHORTCUT_PROPAGATION;
-    this.datepickerMode = this.datepickerMode || DATEPICKER_MODE;
-    this.minMode = this.minMode || MIN_MODE;
-    this.maxMode = this.maxMode || MAX_MODE;
-    this.monthColLimit = this.monthColLimit || MONTH_COL_LIMIT;
-    this.yearColLimit = this.yearColLimit || YEAR_COL_LIMIT;
-
     // todo: use date for unique value
     this.uniqueId = 'datepicker-' + '-' + Math.floor(Math.random() * 10000);
 
@@ -157,7 +119,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  public compare(date1: Date, date2: Date): number {
+  public compare(date1: Date, date2: Date): number|undefined {
     if (date1 === undefined || date2 === undefined) {
       return undefined;
     }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, Self, ViewChild } from '@angular/core';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { DatepickerConfig } from './datepicker.config';
 
 /* tslint:disable:component-selector-name component-selector-type */
 @Component({
@@ -77,10 +78,15 @@ export class DatePickerComponent implements ControlValueAccessor {
     return this._activeDate || this._now;
   }
 
-  public constructor(@Self() cd:NgModel) {
+  public constructor(@Self() cd:NgModel, protected config: DatepickerConfig) {
     this.cd = cd;
     // hack
     cd.valueAccessor = this;
+    this.configureOptions();
+  }
+
+  public configureOptions(): void {
+    Object.assign(this, this.config);
   }
 
   public set activeDate(value:Date) {
