@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "typedoc": "typedoc --exclude '**/*.spec.ts' ./src/",
+    "lite-server": "lite-server -c -c demo/bs-config.json",
     "demo": "run-s build demo.build demo.deploy",
     "demo.build": "ng build -p",
     "demo.deploy": "gh-pages -d demo/dist",
@@ -22,7 +23,7 @@
     "test-coverage": "ng test -sr -cc",
     "preversion": "npm test",
     "wm-update": "webdriver-manager update",
-    "pree2e": "run-s wm-update build link",
+    "pree2e": "run-s wm-update",
     "e2e": "protractor",
     "e2e.saucelabs": "tsc -p ./demo/e2e/ && webdriver-manager update && protractor protractor.saucelabs.conf.js"
   },
