@@ -8,7 +8,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - npm test
+  - npm test-coverage
+  - ./node_modules/.bin/codecov
 
 after_success:
   - ./node_modules/.bin/codecov  -f coverage/coverage-final.json
