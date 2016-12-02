@@ -1,5 +1,5 @@
 import {
-  Directive, HostBinding, HostListener, Input, OnInit, Self
+  Directive, HostBinding, HostListener, Input, OnInit, Self, ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
@@ -22,11 +22,14 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   // view -> model
   @HostListener('click')
   public onClick():void {
+    if (this.el.nativeElement.attributes.disabled) {
+      return;
+    }
     this.toggle(!this.state);
     this.cd.viewToModelUpdate(this.value);
   }
 
-  public constructor(@Self() cd:NgModel) {
+  public constructor(@Self() cd:NgModel, protected el: ElementRef) {
     this.cd = cd;
     // hack !
     cd.valueAccessor = this;
