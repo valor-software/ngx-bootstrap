@@ -6,7 +6,7 @@ import { TooltipModule } from '../tooltip/tooltip.module';
 const overTemplate = `
     <div class="form-group">
       <label>Or use custom triggers, like focus: </label>
-      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" tooltip="See? Now click away..."  tooltipTrigger="focus"  class="form-control" />
+      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  tooltipTrigger="focus"  class="form-control" />
     </div>
   
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
@@ -64,18 +64,20 @@ fdescribe('Directives: Tooltips', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
     context.delay = 1000;
+    fixture.detectChanges();
     tooltipElement.focus();
-    tick(1000);
+    tick(1100);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
 
-  fit('tooltip should be displayed by mouseenter event', fakeAsync(() => {
-    const element: Element = fixture.debugElement.nativeElement;
-    const tooltipElement: Element = element.querySelector('#test-tooltip1');
-    tooltipElement.dispatchEvent(new Event('mouseenter'));
+  xit('tooltip should be displayed by mouseenter event', fakeAsync(() => {
+    const element: HTMLElement = fixture.debugElement.nativeElement;
+    const tooltipElement: any = element.querySelector('#test-tooltip1');
+    tooltipElement.focus();
+    tooltipElement.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
     fixture.detectChanges();
-    tick(context.delay);
+    tick(100);
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
 
@@ -103,4 +105,5 @@ fdescribe('Directives: Tooltips', () => {
   template: ''
 })
 class TestTooltipComponent {
+  public delay: number = 0;
 }
