@@ -1,37 +1,35 @@
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 /node_modules
-npm-debug.log
+/bower_components
 
-# type script artifacts
+# IDEs and editors
+/.idea
+/.vscode
+.project
+.classpath
+*.launch
+.settings/
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
 /typings
 
-# WebStorm
-.idea
-
 # ignore build and dist for now
-/bundles
-/demo-build
 /dist
-/coverage
-/ts
-/doc
-
-# ignore inline compiling
-/demo/**/*.js
-/demo/**/*.js.map
-/demo/**/*.d.ts
-/components/**/*.js
-/components/**/*.js.map
-/components/**/*.d.ts
-/tests_e2e/**/*.e2e.js
-/tests_e2e/**/*.e2e.js.map
-ng2-bootstrap.js
-ng2-bootstrap.d.ts
-ng2-bootstrap.js.map
+/temp
+/demo/dist
 /logs
 
-factories
+# e2e
+#/demo/e2e/*.js
+#/demo/e2e/*.map
 
-/**/*.metadata.json
-/**/*.ngfactory.ts
+#System Files
+.DS_Store
+Thumbs.db
