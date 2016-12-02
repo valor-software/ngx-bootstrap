@@ -111,13 +111,13 @@
   version "2.0.29"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
 
-"@types/node@*", "@types/node@6.0.49":
-  version "6.0.49"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.49.tgz#c644f7305e0d64bd797c939af833f22d150e1d33"
-
-"@types/node@6.0.48", "@types/node@^6.0.46":
+"@types/node@*", "@types/node@6.0.48", "@types/node@^6.0.46":
   version "6.0.48"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.48.tgz#86ccc15f66b73cbbc5eb3483398936c585122b3c"
+
+"@types/node@6.0.49":
+  version "6.0.49"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.49.tgz#c644f7305e0d64bd797c939af833f22d150e1d33"
 
 "@types/q@^0.0.32":
   version "0.0.32"
@@ -4915,14 +4915,14 @@ nested-error-stacks@^2.0.0:
   dependencies:
     inherits "~2.0.1"
 
-ngm-cli@0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/ngm-cli/-/ngm-cli-0.3.3.tgz#d2a07fc857888b157ccdc9db581884b880eb6041"
+ngm-cli@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/ngm-cli/-/ngm-cli-0.3.4.tgz#adcbedcc84a444b246aaa9cf34672403b7174a14"
   dependencies:
     "@angular/compiler-cli" "^2.2.0"
     "@angular/tsc-wrapped" "0.4.0"
     awesome-typescript-loader "3.0.0-beta.9"
-    npm-submodules "0.3.3"
+    npm-submodules "0.3.4"
     reflect-metadata "0.1.8"
     rxjs "5.0.0-beta.12"
     zone.js "0.7.2"
@@ -5068,7 +5068,22 @@ normalize-url@^1.4.0:
     query-string "^4.1.0"
     sort-keys "^1.0.0"
 
-npm-run-all@3.1.1, npm-run-all@^3.0.0:
+npm-run-all@3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-3.1.2.tgz#c7e3faf4aa0a59bf0dcfc12601166151692171cf"
+  dependencies:
+    chalk "^1.1.3"
+    cross-spawn "^4.0.0"
+    minimatch "^3.0.2"
+    object-assign "^4.0.1"
+    pinkie-promise "^2.0.1"
+    ps-tree "^1.0.1"
+    read-pkg "^1.1.0"
+    read-pkg-up "^1.0.1"
+    shell-quote "^1.6.1"
+    string.prototype.padend "^3.0.0"
+
+npm-run-all@^3.0.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/npm-run-all/-/npm-run-all-3.1.1.tgz#5c6fe867332f08342b1a1ea99f447ab86c95cb02"
   dependencies:
@@ -5089,9 +5104,9 @@ npm-run-path@^2.0.0:
   dependencies:
     path-key "^2.0.0"
 
-npm-submodules@0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/npm-submodules/-/npm-submodules-0.3.3.tgz#1419f7c30fe038e57920a1134131085918f9d07c"
+npm-submodules@0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/npm-submodules/-/npm-submodules-0.3.4.tgz#76a725821a743083a8a1749ae37c3b0618ffbd47"
   dependencies:
     "@angular/compiler" "^2.2.0"
     "@angular/core" "^2.2.0"
@@ -5111,7 +5126,7 @@ npm-submodules@0.3.3:
     split "1.0.0"
     stream-to-observable "0.2.0"
     tsconfig "5.0.3"
-    typescript "2.1.1"
+    typescript "2.0.10"
     update-notifier "1.0.2"
     webpack "2.1.0-beta.27"
     write-pkg "2.0.0"
@@ -7336,10 +7351,6 @@ typescript@2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.6.tgz#5385499ac9811508c2c43e0ea07a1ddca435e111"
 
-typescript@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.1.1.tgz#41c2b64472f529331b2055c0424862b44ce58d42"
-
 ua-parser-js@0.7.10:
   version "0.7.10"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.10.tgz#917559ddcce07cbc09ece7d80495e4c268f4ef9f"
@@ -7597,7 +7608,22 @@ wbuf@^1.1.0, wbuf@^1.4.0:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-webdriver-manager@10.2.8, webdriver-manager@^10.2.8:
+webdriver-manager@11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/webdriver-manager/-/webdriver-manager-11.0.0.tgz#0f4027695ea6b578c9d5a0913b77753210b7b2a0"
+  dependencies:
+    adm-zip "^0.4.7"
+    chalk "^1.1.1"
+    del "^2.2.0"
+    glob "^7.0.3"
+    ini "^1.3.4"
+    minimist "^1.2.0"
+    q "^1.4.1"
+    request "^2.78.0"
+    rimraf "^2.5.2"
+    semver "^5.3.0"
+
+webdriver-manager@^10.2.8:
   version "10.2.8"
   resolved "https://registry.yarnpkg.com/webdriver-manager/-/webdriver-manager-10.2.8.tgz#b3b4ef7983271a97b9432c4211c39ff5caecd9dc"
   dependencies:

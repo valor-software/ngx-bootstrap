@@ -117,8 +117,8 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
 
   protected config: TimepickerConfig;
   public constructor(@Self() cd:NgModel, _config: TimepickerConfig) {
-    Object.assign(this, _config);
     this.config = _config;
+    Object.assign(this, _config);
     this.cd = cd;
     cd.valueAccessor = this;
   }

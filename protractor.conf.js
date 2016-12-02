@@ -9,7 +9,12 @@ exports.config = {
   specs: [
     './demo/e2e/**/*.e2e-spec.ts'
   ],
-  capabilities: {browserName: 'chrome'},
+  capabilities: {
+    browserName: 'chrome',
+    'chromeOptions': {
+      'args': ['show-fps-counter=true', '--no-sandbox']
+    }
+  },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
