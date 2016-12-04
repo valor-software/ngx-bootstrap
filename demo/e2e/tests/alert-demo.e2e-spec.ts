@@ -1,18 +1,19 @@
 import { $, $$, browser } from 'protractor';
-import { DataProvider } from '../data-provider/data-provider.po';
 import { leftPanelTests } from './leftPanelTests.po';
+import { DataProvider } from '../data-provider/data-provider.po';
 
 let using = require('jasmine-data-provider');
 const buttonAddAlert = $('alert-demo .btn');
 const alertWarning = $('[ng-reflect-ng-class="alert-warning"]');
 const getAlertCount = $$('alert > div');
+
 const getCloseButton = (tabNumber:number) => {
   return 'alert-demo alert:nth-child(' + tabNumber + ') .close';
 };
 
 describe('Alerts page test on bootstrap 3', () => {
   beforeAll(() => {
-    browser.get(`${browser.baseUrl}#/alerts`);
+    browser.get('#/alerts');
     browser.ignoreSynchronization = true;
   });
   afterAll(() => {
