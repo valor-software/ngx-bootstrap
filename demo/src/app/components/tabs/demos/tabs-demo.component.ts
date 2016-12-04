@@ -17,13 +17,13 @@ export class TabsDemoComponent {
     setTimeout(function ():void {
       alert('You\'ve selected the alert tab!');
     });
-  };
+  }
 
   public setActiveTab(index:number):void {
     this.tabs[index].active = true;
-  };
+  }
 
   public removeTabHandler(/*tab:any*/):void {
     console.log('Remove Tab handler');
-  };
+  }
 }

@@ -8,6 +8,7 @@ import {
 export class NgTranscludeDirective {
   public viewRef:ViewContainerRef;
 
+  protected _viewRef:ViewContainerRef;
   protected _ngTransclude:TemplateRef<any>;
 
   @Input()
@@ -22,7 +23,7 @@ export class NgTranscludeDirective {
     return this._ngTransclude;
   }
 
-  public constructor(protected _viewRef:ViewContainerRef) {
-    this.viewRef = _viewRef;
+  public constructor(viewRef:ViewContainerRef) {
+    this.viewRef = viewRef;
   }
 }

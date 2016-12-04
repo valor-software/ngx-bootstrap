@@ -34,17 +34,16 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   @Input()
   public set config(conf: ModalOptions) {
     this._config = this.getConfig(conf);
-  };
+  }
+
+  public get config(): ModalOptions {
+    return this._config;
+  }
 
   @Output() public onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
   @Output() public onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-
-  public get config(): ModalOptions {
-    return this._config;
-
-  }
 
   // seems like an Options
   public isAnimated: boolean = true;
@@ -69,9 +68,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected timerHideModal: number = 0;
   protected timerRmBackDrop: number = 0;
 
+  // constructor props
+  protected element: ElementRef;
+  protected renderer: Renderer;
+  protected componentsHelper: ComponentsHelper;
+
   protected get document(): any {
     return this.componentsHelper.getDocument();
-  };
+  }
 
   /** Host element manipulations */
   // @HostBinding(`class.${ClassName.IN}`) protected _addClassIn:boolean;
@@ -93,9 +97,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  public constructor(protected element: ElementRef,
-                     protected renderer: Renderer,
-                     protected componentsHelper: ComponentsHelper) {
+  public constructor(element: ElementRef, renderer: Renderer, componentsHelper: ComponentsHelper) {
+    this.element = element;
+    this.renderer = renderer;
+    this.componentsHelper = componentsHelper;
   }
 
   public ngOnDestroy(): any {

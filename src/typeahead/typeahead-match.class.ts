@@ -1,7 +1,13 @@
 
 export class TypeaheadMatch {
+  public readonly value:string;
+  protected readonly item:any;
+  protected header:boolean;
 
-  public constructor(readonly item:any, readonly value:string = item, protected header:boolean = false) {
+  public constructor(item:any, value:string = item, header:boolean = false) {
+    this.item = item;
+    this.value = value;
+    this.header = header;
   }
 
   public isHeader():boolean {

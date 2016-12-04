@@ -28,34 +28,31 @@ export class TabsetComponent implements OnInit, OnDestroy {
   @Input()
   public get vertical():boolean {
     return this._vertical;
-  };
-
-  @Input()
-  public get justified():boolean {
-    return this._justified;
-  };
-
-  @Input()
-  public get type():string {
-    return this._type;
-  };
-
-  @HostBinding('class.tab-container') public clazz:boolean = true;
-
+  }
   public set vertical(value:boolean) {
     this._vertical = value;
     this.setClassMap();
   }
 
+  @Input()
+  public get justified():boolean {
+    return this._justified;
+  }
   public set justified(value:boolean) {
     this._justified = value;
     this.setClassMap();
   }
 
+  @Input()
+  public get type():string {
+    return this._type;
+  }
   public set type(value:string) {
     this._type = value;
     this.setClassMap();
   }
+
+  @HostBinding('class.tab-container') public clazz:boolean = true;
 
   public tabs:TabDirective[] = [];
   public classMap:any = {};

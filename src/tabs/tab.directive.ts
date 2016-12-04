@@ -20,10 +20,6 @@ export class TabDirective implements OnDestroy, OnInit {
     return this._active;
   }
 
-  @Output() public select:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
-  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
-  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
-
   public set active(active:boolean) {
     if (this.disabled && active || !active) {
       if (!active) {
@@ -42,6 +38,10 @@ export class TabDirective implements OnDestroy, OnInit {
       }
     });
   }
+
+  @Output() public select:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
+  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
+  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
 
   @HostBinding('class.tab-pane') public addClass:boolean = true;
 

@@ -105,10 +105,10 @@ export class DataProvider {
     'Grouped results modal text': {element: (): ElementFinder => $('.card:nth-child(14)'), actualResult: 'Model: ""'}
   };
   public static typeaheadInputCityTexts:any = {
-    'California': { inputText: 'Cal', expectedResult: 'California'},
-    'Texas': { inputText: 'xa', expectedResult: 'Texas'},
-    'Florida': { inputText: 'rida', expectedResult: 'Florida'},
-    'Mississippi': { inputText: 'ssi', expectedResult: 'Mississippi'},
+    California: { inputText: 'Cal', expectedResult: 'California'},
+    Texas: { inputText: 'xa', expectedResult: 'Texas'},
+    Florida: { inputText: 'rida', expectedResult: 'Florida'},
+    Mississippi: { inputText: 'ssi', expectedResult: 'Mississippi'},
     'New Jersey': { inputText: 'J', expectedResult: 'New Jersey'}
   };
 }

@@ -2,7 +2,6 @@ import { $, browser } from 'protractor';
 import { leftPanelTests } from './leftPanelTests.po';
 import { DataProvider } from '../data-provider/data-provider.po';
 
-
 const buttonLargeModal = $('.btn:nth-child(1)');
 const buttonSmallModal = $('.btn:nth-child(3)');
 const buttonChildModal = $('.btn:nth-child(5)');

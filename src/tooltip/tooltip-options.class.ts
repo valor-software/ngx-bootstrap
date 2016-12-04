@@ -10,7 +10,7 @@ export class TooltipOptions {
   public content:string;
   public htmlContent:any;
   public context:any;
-  public trigger: Array<string>|string;
+  public trigger: string[]|string;
 
   public constructor(options:Object) {
     Object.assign(this, options);

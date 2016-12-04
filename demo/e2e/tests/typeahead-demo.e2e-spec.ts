@@ -2,7 +2,6 @@ import { $, browser } from 'protractor';
 import { leftPanelTests } from './leftPanelTests.po';
 import { DataProvider } from '../data-provider/data-provider.po';
 
-
 let using = require('jasmine-data-provider');
 
 const inputStatic = $('.container-fluid>input:nth-of-type(1)');

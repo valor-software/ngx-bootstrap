@@ -9,7 +9,7 @@ let titleDoc = require('html!markdown!./docs/title.md');
 let ts = require('!!raw?lang=typescript!./demos/progressbar-demo.component.ts');
 
 let templates:any = {
-  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./demos/progressbar-demo.component.html'),
+  [Ng2BootstrapTheme.BS3]: require('!!raw?lang=markup!./demos/progressbar-demo-bs3.component.html'),
   [Ng2BootstrapTheme.BS4]: require('!!raw?lang=markup!./demos/progressbar-demo-bs4.component.html')
 };
 

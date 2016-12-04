@@ -16,7 +16,9 @@ if (w && w.__theme === 'bs4') {
 export class AppComponent implements AfterContentInit {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
 
-  public constructor(private router:Router, componentsHelper:ComponentsHelper, vcr:ViewContainerRef) {
+  private router:Router;
+  public constructor(router:Router, componentsHelper:ComponentsHelper, vcr:ViewContainerRef) {
+    this.router = router;
     componentsHelper.setRootViewContainerRef(vcr);
   }
 

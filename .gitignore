@@ -25,6 +25,7 @@ testem.log
 /temp
 /demo/dist
 /logs
+sauce_connect.log
 
 # e2e
 #/demo/e2e/*.js

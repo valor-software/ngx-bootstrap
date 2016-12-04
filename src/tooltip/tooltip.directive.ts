@@ -47,14 +47,27 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected visible: boolean = false;
   protected tooltip: ComponentRef<any>;
   protected delayTimeoutId: number;
-  protected toggleOnShowListeners: Array<Function> = [];
+  protected toggleOnShowListeners: Function[] = [];
 
-  public constructor(protected viewContainerRef: ViewContainerRef,
-                     protected componentsHelper: ComponentsHelper,
-                     protected changeDetectorRef: ChangeDetectorRef,
-                     protected renderer: Renderer,
-                     protected elementRef: ElementRef,
-                     protected config: TooltipConfig) {
+  protected viewContainerRef: ViewContainerRef;
+  protected componentsHelper: ComponentsHelper;
+  protected changeDetectorRef: ChangeDetectorRef;
+  protected renderer: Renderer;
+  protected elementRef: ElementRef;
+  protected config: TooltipConfig;
+
+  public constructor(viewContainerRef: ViewContainerRef,
+                     componentsHelper: ComponentsHelper,
+                     changeDetectorRef: ChangeDetectorRef,
+                     renderer: Renderer,
+                     elementRef: ElementRef,
+                     config: TooltipConfig) {
+    this.viewContainerRef = viewContainerRef;
+    this.componentsHelper = componentsHelper;
+    this.changeDetectorRef = changeDetectorRef;
+    this.renderer = renderer;
+    this.elementRef = elementRef;
+    this.config = config;
     this.configureOptions();
   }
 
@@ -68,7 +81,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   protected bindListeners(): void {
     const tooltipElement = this.elementRef.nativeElement;
-    const events: Array<string> = this.normalizeEventsSet(this.tooltipTrigger);
+    const events: string[] = this.normalizeEventsSet(this.tooltipTrigger);
     /* tslint:disable */
     for (var i = 0; i < events.length; i++) {
       const listener = this.renderer.listen(tooltipElement, events[i], this.show.bind(this));
@@ -77,11 +90,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
     /* tslint:enable */
   }
 
-  protected normalizeEventsSet(events: string|Array<string>): Array<string> {
+  protected normalizeEventsSet(events: string|string[]): string[] {
     if (typeof events === 'string') {
       return events.split(/[\s,]+/);
     }
-    return events;
+
+    return events as string[];
   }
 
   // params: event, target
