@@ -12,10 +12,16 @@ import { DOCUMENT } from '@angular/platform-browser';
 @Injectable()
 export class ComponentsHelper {
   public root:ViewContainerRef;
+  protected applicationRef:ApplicationRef;
+  protected componentFactoryResolver:ComponentFactoryResolver;
+  protected injector:Injector;
 
-  public constructor(protected applicationRef:ApplicationRef,
-                     protected componentFactoryResolver:ComponentFactoryResolver,
-                     protected injector:Injector) {
+  public constructor(applicationRef:ApplicationRef,
+                     componentFactoryResolver:ComponentFactoryResolver,
+                     injector:Injector) {
+    this.applicationRef = applicationRef;
+    this.componentFactoryResolver = componentFactoryResolver;
+    this.injector = injector;
   }
 
   public getDocument():any {

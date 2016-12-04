@@ -9,9 +9,7 @@ const progressConfig = {
 
 // todo: progress element conflict with bootstrap.css
 // todo: need hack: replace host element with div
-/* tslint:disable */
 @Directive({selector: 'bs-progress, [progress]'})
-/* tslint:enable */
 export class ProgressDirective implements OnInit {
   @Input() public animate:boolean;
 
@@ -21,14 +19,14 @@ export class ProgressDirective implements OnInit {
     return this._max;
   }
 
-  @HostBinding('class.progress') public addClass:boolean = true;
-
   public set max(v:number) {
     this._max = v;
     this.bars.forEach((bar:BarComponent) => {
       bar.recalculatePercentage();
     });
   }
+
+  @HostBinding('class.progress') public addClass:boolean = true;
 
   public bars:any[] = [];
 

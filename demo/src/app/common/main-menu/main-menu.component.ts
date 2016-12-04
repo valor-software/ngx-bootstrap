@@ -14,7 +14,9 @@ export class MainMenuComponent {
   public search:any = {};
   public hash:string = '';
 
-  public constructor(private router:Router) {
+  private router: Router;
+  public constructor(router:Router) {
+    this.router = router;
     this.routes = this.routes.filter((v:any) => v.path !== '**');
     this.router.events.subscribe((event:any) => {
       if (event instanceof NavigationEnd) {

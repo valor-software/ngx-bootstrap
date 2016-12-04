@@ -8,6 +8,7 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
 @Directive({selector: '[btnCheckbox][ngModel]'})
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   public cd:NgModel;
+  public el: ElementRef;
   @Input() public btnCheckboxTrue:any;
 
   @Input() public btnCheckboxFalse:any;
@@ -29,7 +30,8 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.cd.viewToModelUpdate(this.value);
   }
 
-  public constructor(@Self() cd:NgModel, protected el: ElementRef) {
+  public constructor(@Self() cd:NgModel, el: ElementRef) {
+    this.el = el;
     this.cd = cd;
     // hack !
     cd.valueAccessor = this;

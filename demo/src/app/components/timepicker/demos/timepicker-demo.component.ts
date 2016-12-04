@@ -18,20 +18,20 @@ export class TimepickerDemoComponent {
 
   public toggleMode():void {
     this.ismeridian = !this.ismeridian;
-  };
+  }
 
   public update():void {
     let d = new Date();
     d.setHours(14);
     d.setMinutes(0);
     this.mytime = d;
-  };
+  }
 
   public changed():void {
     console.log('Time changed to: ' + this.mytime);
-  };
+  }
 
   public clear():void {
     this.mytime = void 0;
-  };
+  }
 }

@@ -17,7 +17,7 @@
     "build": "ngm build -p src",
     "start": "ng serve --aot",
     "generate-bs4": "node scripts/generate-bs4.js",
-    "pretest": "run-s build link",
+    "pretest": "run-s link build link",
     "test": "ng test -sr",
     "test-coverage": "ng test -sr -cc",
     "pree2e": "webdriver-manager update",

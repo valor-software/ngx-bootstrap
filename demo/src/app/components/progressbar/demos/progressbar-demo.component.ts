@@ -44,7 +44,7 @@ export class ProgressbarDemoComponent {
     this.showWarning = (type === 'danger' || type === 'warning');
     this.dynamic = value;
     this.type = type;
-  };
+  }
 
   public randomStacked(): void {
     let types = ['success', 'info', 'warning', 'danger'];
@@ -62,5 +62,5 @@ export class ProgressbarDemoComponent {
         type: types[index]
       });
     }
-  };
+  }
 }

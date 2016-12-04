@@ -21,6 +21,8 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     @Input() public uncheckable:boolean;
     @Input() public value:any;
 
+    protected el: ElementRef;
+
     @HostBinding('class.active')
     public get isActive(): boolean {
         return this.btnRadio === this.value;
@@ -42,7 +44,8 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
         this.onChange(this.value);
     }
 
-    public constructor( protected el: ElementRef) {
+    public constructor(el: ElementRef) {
+      this.el = el;
     }
 
     public ngOnInit(): void {

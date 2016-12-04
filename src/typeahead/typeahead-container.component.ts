@@ -90,11 +90,6 @@ export class TypeaheadContainerComponent {
   public get matches():TypeaheadMatch[] {
     return this._matches;
   }
-
-  public get itemTemplate():TemplateRef<any> {
-    return this.parent ? this.parent.typeaheadItemTemplate : undefined;
-  }
-
   public set matches(value:TypeaheadMatch[]) {
     this._matches = value;
 
@@ -104,6 +99,10 @@ export class TypeaheadContainerComponent {
         this.nextActiveMatch();
       }
     }
+  }
+
+  public get itemTemplate():TemplateRef<any> {
+    return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
   public position(hostEl:ElementRef):void {

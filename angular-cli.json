@@ -15,7 +15,7 @@
       "main": "main.ts",
       "test": "../../scripts/test.ts",
       "tsconfig": "tsconfig.json",
-      "prefix": "app",
+      "prefix": "",
       "mobile": false,
       "styles": [
       ],
