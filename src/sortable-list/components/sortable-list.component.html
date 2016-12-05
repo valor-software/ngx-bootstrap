@@ -1,0 +1,27 @@
+<div
+    [ngClass]="wrapperClass"
+    [ngStyle]="wrapperStyle"
+    [ngStyle]="wrapperStyle"
+    (dragover)="onZoneDragover($event)"
+    (drop)="resetActiveItem()"
+    (mouseleave)="resetActiveItem()"
+>
+    <div
+        *ngIf="showPlaceholder"
+        [ngClass]="placeholderClass"
+        [ngStyle]="placeholderStyle"
+        (dragover)="onItemDragover($event, 0)"
+    >{{placeholderItem}}</div>
+    <div
+        [@flyInOut]="'in'"
+        (@flyInOut.done)="updatePlaceholderState()"
+        (@flyInOut.start)="showPlaceholder = false"
+        *ngFor="let item of items; let i=index;"
+        [ngClass]="[ itemClass, i === activeItem ? itemActiveClass : '' ]"
+        [ngStyle]="getItemStyle(i === activeItem)"
+        draggable="true"
+        (dragstart)="onItemDragstart($event, item, i)"
+        (dragend)="resetActiveItem()"
+        (dragover)="onItemDragover($event, i)"
+    >{{item.value}}</div>
+</div>
