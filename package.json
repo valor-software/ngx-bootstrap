@@ -22,7 +22,8 @@
     "test-coverage": "ng test -sr -cc",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "e2e.saucelabs": "tsc -p ./demo/e2e/ && webdriver-manager update && protractor protractor.saucelabs.conf.js"
+    "e2e.saucelabs": "tsc -p ./demo/e2e/ && webdriver-manager update && protractor protractor.saucelabs.conf.js",
+    "karma.saucelabs": "karma start karma.saucelabs.conf.js"
   },
   "main": "bundles/ng2-bootstrap.umd.js",
   "module": "index.js",
@@ -83,6 +84,7 @@
     "karma-cli": "1.0.1",
     "karma-jasmine": "1.0.2",
     "karma-remap-istanbul": "0.2.1",
+    "karma-sauce-launcher": "1.1.0",
     "lite-server": "2.2.2",
     "lodash": "4.17.2",
     "markdown-loader": "github:valorkin/markdown-loader",
