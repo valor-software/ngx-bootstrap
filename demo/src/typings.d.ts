@@ -8,3 +8,9 @@ declare const PR:any;
 
 declare const require:any;
 declare const global:any;
+
+// Some do it the other way around.
+declare module 'json!*' {
+  const value: any;
+  export default value;
+}

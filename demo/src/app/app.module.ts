@@ -11,6 +11,8 @@ import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 
+import ngdoc from 'json!../ng-api-doc.json';
+
 // will be lazy loaded later
 import { DemoAccordionModule } from './components/accordion';
 import { DemoAlertsModule } from './components/alerts';
@@ -28,6 +30,7 @@ import { DemoTimepickerModule } from './components/timepicker/index';
 import { DemoTooltipModule } from './components/tooltip/index';
 import { DemoTypeaheadModule } from './components/typeahead/index';
 import { ComponentsHelper } from 'ng2-bootstrap';
+import { NgApiDocModule } from './api-docs/index';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { ComponentsHelper } from 'ng2-bootstrap';
     SearchFilterPipe
   ],
   imports: [
+    NgApiDocModule,
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes, {useHash: true}),
@@ -58,7 +62,10 @@ import { ComponentsHelper } from 'ng2-bootstrap';
     DemoTooltipModule,
     DemoTypeaheadModule
   ],
-  providers: [{provide: ComponentsHelper, useClass: ComponentsHelper}],
+  providers: [
+    {provide: ComponentsHelper, useClass: ComponentsHelper},
+    {provide: NgApiDoc, useValue: ngdoc}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
