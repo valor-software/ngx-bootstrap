@@ -36,7 +36,7 @@
   },
   "test": {
     "karma": {
-      "config": "karma.conf.js"
+      "config": "karma.saucelabs.conf.js"
     }
   },
   "defaults": {

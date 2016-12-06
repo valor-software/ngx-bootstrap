@@ -1,10 +1,13 @@
+process.env.SAUCE_USERNAME = 'valorkin';
+process.env.SAUCE_ACCESS_KEY = 'aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a';
+
 module.exports = function (config) {
   if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
     console.log('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.');
     process.exit(1);
   }
 
-  var customLaunchers = {
+  const customLaunchers = {
     sl_chrome: {
       base: 'SauceLabs',
       browserName: 'chrome',
@@ -32,25 +35,44 @@ module.exports = function (config) {
   };
 
   config.set({
+    logLevel: config.LOG_DEBUG,
     basePath: '',
     frameworks: ['jasmine'],
     plugins: [
       require('karma-sauce-launcher'),
       require('karma-jasmine'),
-      require('karma-chrome-launcher')
+      // require('karma-chrome-launcher'),
+      require('karma-remap-istanbul'),
+      require('angular-cli/plugins/karma')
     ],
     files: [
-      './src/**/*.spec.ts'
+      {pattern: './scripts/test.ts', watched: false}
     ],
-    reporters: ['progress', 'saucelabs'],
+    preprocessors: {
+      './scripts/test.ts': ['angular-cli']
+    },
+    remapIstanbulReporter: {
+      reports: {
+        html: 'coverage',
+        lcovonly: './coverage/coverage.lcov'
+      }
+    },
+    angularCli: {
+      config: './angular-cli.json',
+      environment: 'dev'
+    },
+    reporters: config.angularCli && config.angularCli.codeCoverage
+      ? ['progress', 'karma-remap-istanbul', 'saucelabs']
+      : ['dots', 'saucelabs'],
     port: 9876,
     colors: true,
-    saucelabs: {
+    sauceLabs: {
+      doctor: true,
+      verbose: true,
       testName: 'ng2-bootstrap unit tests',
-      recordScreenshots: false,
+      recordScreenshots: true,
       username: process.env.SAUCE_USERNAME,
       accessKey: process.env.SAUCE_ACCESS_KEY,
-      verbose: false,
       connectOptions: {
         port: 5757,
         logfile: 'sauce_connect.log'

@@ -1,0 +1,1479 @@
+{
+  "AccordionPanelComponent": {
+    "fileName": "src/accordion/accordion-group.component.ts",
+    "className": "AccordionPanelComponent",
+    "description": "",
+    "selector": "accordion-group, accordion-panel",
+    "inputs": [
+      {
+        "name": "heading",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "panelClass",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "AccordionComponent": {
+    "fileName": "src/accordion/accordion.component.ts",
+    "className": "AccordionComponent",
+    "description": "",
+    "selector": "accordion",
+    "inputs": [
+      {
+        "name": "closeOthers",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "AlertComponent": {
+    "fileName": "src/alert/alert.component.ts",
+    "className": "AlertComponent",
+    "description": "",
+    "selector": "alert",
+    "inputs": [
+      {
+        "name": "dismissible",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "dismissOnTimeout",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "close",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "AlertConfig": {
+    "fileName": "src/alert/alert.config.ts",
+    "className": "AlertConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "ButtonCheckboxDirective": {
+    "fileName": "src/buttons/button-checkbox.directive.ts",
+    "className": "ButtonCheckboxDirective",
+    "description": "",
+    "selector": "[btnCheckbox][ngModel]",
+    "inputs": [
+      {
+        "name": "btnCheckboxFalse",
+        "type": "any",
+        "description": ""
+      },
+      {
+        "name": "btnCheckboxTrue",
+        "type": "any",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ButtonRadioDirective": {
+    "fileName": "src/buttons/button-radio.directive.ts",
+    "className": "ButtonRadioDirective",
+    "description": "",
+    "selector": "[btnRadio]",
+    "inputs": [
+      {
+        "name": "btnRadio",
+        "type": "any",
+        "description": ""
+      },
+      {
+        "name": "uncheckable",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "any",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "CarouselComponent": {
+    "fileName": "src/carousel/carousel.component.ts",
+    "className": "CarouselComponent",
+    "description": "Problems:\n1) if we set an active slide via model changes, .active class remains on a current slide.\n2) if we have only one slide, we shouldn't show prev/next nav buttons\n3) if first or last slide is active and noWrap is true, there should be \"disabled\" class on the nav buttons.\n4) default interval should be equal 5000",
+    "selector": "carousel",
+    "inputs": [
+      {
+        "name": "interval",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "noPause",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "noTransition",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "noWrap",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "SlideComponent": {
+    "fileName": "src/carousel/slide.component.ts",
+    "className": "SlideComponent",
+    "description": "",
+    "selector": "slide",
+    "inputs": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "direction",
+        "type": "Direction",
+        "description": ""
+      },
+      {
+        "name": "index",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "CollapseDirective": {
+    "fileName": "src/collapse/collapse.directive.ts",
+    "className": "CollapseDirective",
+    "description": "",
+    "selector": "[collapse]",
+    "inputs": [
+      {
+        "name": "collapse",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "collapsed",
+        "description": ""
+      },
+      {
+        "name": "expanded",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "DatePickerInnerComponent": {
+    "fileName": "src/datepicker/datepicker-inner.component.ts",
+    "className": "DatePickerInnerComponent",
+    "description": "",
+    "selector": "datepicker-inner",
+    "inputs": [
+      {
+        "name": "activeDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "customClass",
+        "type": "{ date: Date; mode: string; clazz: string; }[]",
+        "description": ""
+      },
+      {
+        "name": "dateDisabled",
+        "type": "{ date: Date; mode: string; }[]",
+        "description": ""
+      },
+      {
+        "name": "datepickerMode",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatDay",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatDayHeader",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatDayTitle",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatMonth",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatMonthTitle",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatYear",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "initDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "maxMode",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "minMode",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "monthColLimit",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "onlyCurrentMonth",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "shortcutPropagation",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "showWeeks",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "startingDay",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "yearColLimit",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "yearRange",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "selectionDone",
+        "description": ""
+      },
+      {
+        "name": "update",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "DatePickerComponent": {
+    "fileName": "src/datepicker/datepicker.component.ts",
+    "className": "DatePickerComponent",
+    "description": "",
+    "selector": "datepicker[ngModel]",
+    "inputs": [
+      {
+        "name": "activeDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "customClass",
+        "type": "{ date: Date; mode: string; clazz: string; }[]",
+        "description": ""
+      },
+      {
+        "name": "dateDisabled",
+        "type": "{ date: Date; mode: string; }[]",
+        "description": ""
+      },
+      {
+        "name": "datepickerMode",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatDay",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatDayHeader",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatDayTitle",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatMonth",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatMonthTitle",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "formatYear",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "initDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "maxMode",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "minMode",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "monthColLimit",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "onlyCurrentMonth",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "shortcutPropagation",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "showWeeks",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "startingDay",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "yearColLimit",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "yearRange",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "selectionDone",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "DatepickerConfig": {
+    "fileName": "src/datepicker/datepicker.config.ts",
+    "className": "DatepickerConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DayPickerComponent": {
+    "fileName": "src/datepicker/daypicker.component.ts",
+    "className": "DayPickerComponent",
+    "description": "",
+    "selector": "daypicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "MonthPickerComponent": {
+    "fileName": "src/datepicker/monthpicker.component.ts",
+    "className": "MonthPickerComponent",
+    "description": "",
+    "selector": "monthpicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "YearPickerComponent": {
+    "fileName": "src/datepicker/yearpicker.component.ts",
+    "className": "YearPickerComponent",
+    "description": "",
+    "selector": "yearpicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "KeyboardNavDirective": {
+    "fileName": "src/dropdown/dropdown-keyboard-nav.directive.ts",
+    "className": "KeyboardNavDirective",
+    "description": "",
+    "selector": "[dropdown][dropdownKeyboardNav]",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "DropdownMenuDirective": {
+    "fileName": "src/dropdown/dropdown-menu.directive.ts",
+    "className": "DropdownMenuDirective",
+    "description": "",
+    "selector": "[dropdownMenu]",
+    "exportAs": "bs-dropdown-menu",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "DropdownToggleDirective": {
+    "fileName": "src/dropdown/dropdown-toggle.directive.ts",
+    "className": "DropdownToggleDirective",
+    "description": "",
+    "selector": "[dropdownToggle]",
+    "exportAs": "bs-dropdown-toggle",
+    "inputs": [
+      {
+        "name": "addToggleClass",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "isDisabled",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "DropdownDirective": {
+    "fileName": "src/dropdown/dropdown.directive.ts",
+    "className": "DropdownDirective",
+    "description": "",
+    "selector": "[dropdown]",
+    "exportAs": "bs-dropdown",
+    "inputs": [
+      {
+        "name": "appendToBody",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "autoClose",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "keyboardNav",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "isOpenChange",
+        "description": ""
+      },
+      {
+        "name": "onToggle",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "DropdownMenuInterface": {
+    "fileName": "src/dropdown/dropdown.interfaces.ts",
+    "className": "DropdownMenuInterface",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DropdownToggleInterface": {
+    "fileName": "src/dropdown/dropdown.interfaces.ts",
+    "className": "DropdownToggleInterface",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "ModalBackdropComponent": {
+    "fileName": "src/modal/modal-backdrop.component.ts",
+    "className": "ModalBackdropComponent",
+    "description": "",
+    "selector": "bs-modal-backdrop",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ModalOptions": {
+    "fileName": "src/modal/modal-options.class.ts",
+    "className": "ModalOptions",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "backdrop",
+        "type": "boolean | \"static\"",
+        "description": "Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click."
+      },
+      {
+        "name": "ignoreBackdropClick",
+        "type": "boolean",
+        "description": "Ignore the backdrop click"
+      },
+      {
+        "name": "keyboard",
+        "type": "boolean",
+        "description": "Closes the modal when escape key is pressed."
+      },
+      {
+        "name": "show",
+        "type": "boolean",
+        "description": "Shows the modal when initialized."
+      }
+    ]
+  },
+  "ModalDirective": {
+    "fileName": "src/modal/modal.component.ts",
+    "className": "ModalDirective",
+    "description": "",
+    "selector": "[bsModal]",
+    "exportAs": "bs-modal",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "ModalOptions",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onHidden",
+        "description": ""
+      },
+      {
+        "name": "onHide",
+        "description": ""
+      },
+      {
+        "name": "onShow",
+        "description": ""
+      },
+      {
+        "name": "onShown",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": [
+      {
+        "name": "onClick",
+        "description": "Host element manipulations ",
+        "args": [
+          {
+            "name": "event",
+            "type": "any"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "toggle",
+        "description": "Public methods ",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "getConfig",
+        "description": "Private methods ",
+        "args": [
+          {
+            "name": "config",
+            "type": "ModalOptions"
+          }
+        ],
+        "returnType": "ModalOptions"
+      },
+      {
+        "name": "showElement",
+        "description": "Show dialog",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "resetAdjustments",
+        "description": "Events tricks ",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "checkScrollbar",
+        "description": "Scroll bar tricks ",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
+  },
+  "PagerComponent": {
+    "fileName": "src/pagination/pager.component.ts",
+    "className": "PagerComponent",
+    "description": "",
+    "selector": "pager[ngModel]",
+    "inputs": [
+      {
+        "name": "align",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "boundaryLinks",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "directionLinks",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "firstText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "itemsPerPage",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "lastText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "maxSize",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "nextText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "pageBtnClass",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "previousText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "rotate",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "totalItems",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "numPages",
+        "description": ""
+      },
+      {
+        "name": "pageChanged",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "PageChangedEvent": {
+    "fileName": "src/pagination/pagination.component.ts",
+    "className": "PageChangedEvent",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "PaginationComponent": {
+    "fileName": "src/pagination/pagination.component.ts",
+    "className": "PaginationComponent",
+    "description": "",
+    "selector": "pagination[ngModel]",
+    "inputs": [
+      {
+        "name": "align",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "boundaryLinks",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "directionLinks",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "firstText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "itemsPerPage",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "lastText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "maxSize",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "nextText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "pageBtnClass",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "previousText",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "rotate",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "totalItems",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "numPages",
+        "description": ""
+      },
+      {
+        "name": "pageChanged",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "PaginationConfig": {
+    "fileName": "src/pagination/pagination.config.ts",
+    "className": "PaginationConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "BarComponent": {
+    "fileName": "src/progressbar/bar.component.ts",
+    "className": "BarComponent",
+    "description": "",
+    "selector": "bar",
+    "inputs": [
+      {
+        "name": "type",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ProgressDirective": {
+    "fileName": "src/progressbar/progress.directive.ts",
+    "className": "ProgressDirective",
+    "description": "",
+    "selector": "bs-progress, [progress]",
+    "inputs": [
+      {
+        "name": "animate",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ProgressbarComponent": {
+    "fileName": "src/progressbar/progressbar.component.ts",
+    "className": "ProgressbarComponent",
+    "description": "",
+    "selector": "progressbar",
+    "inputs": [
+      {
+        "name": "animate",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "number",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "RatingComponent": {
+    "fileName": "src/rating/rating.component.ts",
+    "className": "RatingComponent",
+    "description": "",
+    "selector": "rating[ngModel]",
+    "inputs": [
+      {
+        "name": "max",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "ratingStates",
+        "type": "{ stateOn: string; stateOff: string; }[]",
+        "description": ""
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "stateOff",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "stateOn",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "titles",
+        "type": "string[]",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onHover",
+        "description": ""
+      },
+      {
+        "name": "onLeave",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "NgTranscludeDirective": {
+    "fileName": "src/tabs/ng-transclude.directive.ts",
+    "className": "NgTranscludeDirective",
+    "description": "",
+    "selector": "[ngTransclude]",
+    "inputs": [
+      {
+        "name": "ngTransclude",
+        "type": "TemplateRef<any>",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "TabHeadingDirective": {
+    "fileName": "src/tabs/tab-heading.directive.ts",
+    "className": "TabHeadingDirective",
+    "description": "",
+    "selector": "[tabHeading]",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "TabDirective": {
+    "fileName": "src/tabs/tab.directive.ts",
+    "className": "TabDirective",
+    "description": "",
+    "selector": "tab, [tab]",
+    "inputs": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "tab active state toggle "
+      },
+      {
+        "name": "customClass",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "heading",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "removable",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "deselect",
+        "description": ""
+      },
+      {
+        "name": "removed",
+        "description": ""
+      },
+      {
+        "name": "select",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "TabsetComponent": {
+    "fileName": "src/tabs/tabset.component.ts",
+    "className": "TabsetComponent",
+    "description": "",
+    "selector": "tabset",
+    "inputs": [
+      {
+        "name": "justified",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "vertical",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "TimepickerComponent": {
+    "fileName": "src/timepicker/timepicker.component.ts",
+    "className": "TimepickerComponent",
+    "description": "",
+    "selector": "timepicker[ngModel]",
+    "inputs": [
+      {
+        "name": "arrowkeys",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "hourStep",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "max",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "meridians",
+        "type": "string[]",
+        "description": ""
+      },
+      {
+        "name": "min",
+        "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "minuteStep",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "mousewheel",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "readonlyInput",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "showMeridian",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "showSpinners",
+        "type": "boolean",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "TimepickerConfig": {
+    "fileName": "src/timepicker/timepicker.config.ts",
+    "className": "TimepickerConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TooltipContainerComponent": {
+    "fileName": "src/tooltip/tooltip-container.component.ts",
+    "className": "TooltipContainerComponent",
+    "description": "",
+    "selector": "tooltip-container",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "TooltipOptions": {
+    "fileName": "src/tooltip/tooltip-options.class.ts",
+    "className": "TooltipOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TooltipConfig": {
+    "fileName": "src/tooltip/tooltip.config.ts",
+    "className": "TooltipConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TooltipDirective": {
+    "fileName": "src/tooltip/tooltip.directive.ts",
+    "className": "TooltipDirective",
+    "description": "",
+    "selector": "[tooltip], [tooltipHtml]",
+    "exportAs": "bs-tooltip",
+    "inputs": [
+      {
+        "name": "tooltip",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "tooltipAnimation",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "tooltipAppendToBody",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "tooltipClass",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "tooltipContext",
+        "type": "any",
+        "description": ""
+      },
+      {
+        "name": "tooltipEnable",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "tooltipFadeDuration",
+        "defaultValue": "150",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "tooltipHtml",
+        "type": "string | TemplateRef<any>",
+        "description": ""
+      },
+      {
+        "name": "tooltipIsOpen",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "tooltipPlacement",
+        "defaultValue": "top",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "tooltipPopupDelay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "tooltipTrigger",
+        "type": "string | string[]",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tooltipStateChanged",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "TypeaheadContainerComponent": {
+    "fileName": "src/typeahead/typeahead-container.component.ts",
+    "className": "TypeaheadContainerComponent",
+    "description": "",
+    "selector": "typeahead-container",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "TypeaheadDirective": {
+    "fileName": "src/typeahead/typeahead.directive.ts",
+    "className": "TypeaheadDirective",
+    "description": "",
+    "selector": "[typeahead][ngModel],[typeahead][formControlName]",
+    "inputs": [
+      {
+        "name": "typeahead",
+        "type": "any",
+        "description": ""
+      },
+      {
+        "name": "typeaheadAsync",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "typeaheadGroupField",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "typeaheadItemTemplate",
+        "type": "TemplateRef<any>",
+        "description": ""
+      },
+      {
+        "name": "typeaheadLatinize",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "typeaheadMinLength",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "typeaheadOptionField",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "typeaheadOptionsLimit",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "typeaheadPhraseDelimiters",
+        "defaultValue": "'\"",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "typeaheadSingleWords",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "typeaheadWaitMs",
+        "type": "number",
+        "description": ""
+      },
+      {
+        "name": "typeaheadWordDelimiters",
+        "defaultValue": " ",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "typeaheadLoading",
+        "description": ""
+      },
+      {
+        "name": "typeaheadNoResults",
+        "description": ""
+      },
+      {
+        "name": "typeaheadOnSelect",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "KeyAttribute": {
+    "fileName": "src/utils/common.ts",
+    "className": "KeyAttribute",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "ComponentsHelper": {
+    "fileName": "src/utils/components-helper.service.ts",
+    "className": "ComponentsHelper",
+    "description": "Components helper class to easily work with\nallows to:\n- get application root view container ref",
+    "methods": [
+      {
+        "name": "setRootViewContainerRef",
+        "description": "In some cases, like using ngUpgrate,\nyou need to explicitly set view container ref\nto made this method working you need to add:\n```typescript\n @Component({\n  selector: 'my-app',\n  ...\n  })\n export class MyApp {\n   constructor(componentsHelper:ComponentsHelper, viewContainerRef: ViewContainerRef) {\n       // A Default view container ref, usually the app root container ref.\n       // Has to be set manually until we can find a way to get it automatically.\n       componentsHelper.setRootViewContainerRef(viewContainerRef)\n     }\n }\n```",
+        "args": [
+          {
+            "name": "value",
+            "type": "ViewContainerRef"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "getRootViewContainerRef",
+        "description": "This is a name conventional class to get application root view component ref\n@returns {ViewContainerRef} - application root view component ref",
+        "args": [],
+        "returnType": "ViewContainerRef"
+      },
+      {
+        "name": "appendNextToLocation",
+        "description": "Creates an instance of a Component and attaches it to the View Container found at the\n`location` specified as {@link ViewContainerRef}.\n\nYou can optionally provide `providers` to configure the {@link Injector} provisioned for this\nComponent Instance.\n\nReturns {@link ComponentRef} representing the newly created Component.\n@Component class\n@returns {ComponentRef<T>} - returns ComponentRef<T>",
+        "args": [
+          {
+            "name": "ComponentClass",
+            "type": "Type<T>"
+          },
+          {
+            "name": "location",
+            "type": "ViewContainerRef"
+          },
+          {
+            "name": "providers",
+            "type": "ResolvedReflectiveProvider[]"
+          }
+        ],
+        "returnType": "ComponentRef<T>"
+      },
+      {
+        "name": "appendNextToRoot",
+        "description": "Helper methods to add ComponentClass(like modal backdrop) with options\nof type ComponentOptionsClass to element next to application root\nor next to provided instance of view container\n@Component class\n@returns {ComponentRef<T>} - returns ComponentRef<T>",
+        "args": [
+          {
+            "name": "ComponentClass",
+            "type": "Type<T>"
+          },
+          {
+            "name": "ComponentOptionsClass",
+            "type": "any"
+          },
+          {
+            "name": "options",
+            "type": "any"
+          }
+        ],
+        "returnType": "ComponentRef<T>"
+      }
+    ],
+    "properties": []
+  }
+}
