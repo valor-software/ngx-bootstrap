@@ -23,6 +23,7 @@ import { DemoModalModule } from './components/modal';
 import { DemoPaginationModule } from './components/pagination';
 import { DemoProgressbarModule } from './components/progressbar';
 import { DemoRatingModule } from './components/rating';
+import { DemoSortableModule } from './components/sortable';
 import { DemoTabsModule } from './components/tabs';
 import { DemoTimepickerModule } from './components/timepicker/index';
 import { DemoTooltipModule } from './components/tooltip/index';
@@ -53,6 +54,7 @@ import { ComponentsHelper } from 'ng2-bootstrap';
     DemoPaginationModule,
     DemoProgressbarModule,
     DemoRatingModule,
+    DemoSortableModule,
     DemoTabsModule,
     DemoTimepickerModule,
     DemoTooltipModule,
