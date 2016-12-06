@@ -3,7 +3,10 @@
  * @copyright ng-bootstrap
  */
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { PropertyDesc, DirectiveDesc, InputDesc, MethodDesc, ClassDesc, signature } from '../api-docs.model';
+import {
+  PropertyDesc, DirectiveDesc, InputDesc, MethodDesc, ClassDesc, signature,
+  NgApiDoc
+} from '../api-docs.model';
 import { Analytics } from '../analytics/analytics';
 
 /**
@@ -20,13 +23,6 @@ import { Analytics } from '../analytics/analytics';
   templateUrl: './api-doc.component.html'
 })
 export class NgApiDocComponent {
-
-  /**
-   * Object which contains, for each input name of the directive, the corresponding property of the associated config
-   * service (if any)
-   */
-  private _configProperties: {[propertyName: string]: PropertyDesc};
-
   @Input()
   public set directive(directiveName: string) {
     this.apiDocs = this.docs[directiveName];
@@ -40,14 +36,21 @@ export class NgApiDocComponent {
     }
   }
 
-  private apiDocs: DirectiveDesc;
-  private configServiceName: string;
-  private _analytics: Analytics;
+  public apiDocs: DirectiveDesc;
+  public configServiceName: string;
 
-  public constructor(_analytics: Analytics) {
+  /**
+   * Object which contains, for each input name of the directive, the corresponding property of the associated config
+   * service (if any)
+   */
+  private _configProperties: {[propertyName: string]: PropertyDesc};
+  private _analytics: Analytics;
+  private docs: NgApiDoc;
+
+  public constructor(_analytics: Analytics, docs: NgApiDoc) {
     this._analytics = _analytics;
     // todo: inject docs
-    this.docs = {};
+    this.docs = docs;
   }
 
   /**
@@ -75,6 +78,7 @@ export class NgApiDocComponent {
   }
 
   private _findInputConfigProperty(configApiDocs: ClassDesc, input: InputDesc): PropertyDesc {
-    return configApiDocs.properties.filter((prop) => prop.name === input.name)[0];
+    return configApiDocs.properties
+      .filter((prop:PropertyDesc) => prop.name === input.name)[0];
   }
 }

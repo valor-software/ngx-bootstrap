@@ -20,7 +20,7 @@ export { NgApiDocConfigComponent } from './api-doc-config/api-doc-config.compone
 @NgModule({
   declarations: [ExampleBoxComponent, NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent],
   exports: [ExampleBoxComponent, NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent],
-  provide: [Analytics]
+  providers: [Analytics]
 })
 export class NgApiDocModule {
 }

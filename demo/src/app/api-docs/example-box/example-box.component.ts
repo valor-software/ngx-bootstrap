@@ -14,7 +14,7 @@ export class ExampleBoxComponent {
   @Input() public component: string;
   @Input() public demo: string;
   @Input() public snippets: Object;
-  private showCode:boolean = false;
+  public showCode:boolean = false;
   private _analytics: Analytics;
 
   public constructor(_analytics: Analytics) {

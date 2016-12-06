@@ -22,7 +22,8 @@ export class NgApiDocClassComponent {
     this.apiDocs = this.docs[typeName];
   }
 
-  private apiDocs: ClassDesc;
+  public apiDocs: ClassDesc;
+
   private _analytics: Analytics;
   private docs: NgApiDoc;
 

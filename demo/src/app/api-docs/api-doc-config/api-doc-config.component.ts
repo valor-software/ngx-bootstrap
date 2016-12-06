@@ -22,8 +22,8 @@ const CONFIG_SUFFIX_LENGTH = 'Config'.length;
   templateUrl: './api-doc-config.component.html'
 })
 export class NgApiDocConfigComponent {
-  private apiDocs: ClassDesc;
-  private directiveName: string;
+  public apiDocs: ClassDesc;
+  public directiveName: string;
   private _analytics: Analytics;
   private docs: NgApiDoc;
 

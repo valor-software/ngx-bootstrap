@@ -10,7 +10,7 @@ declare const require:any;
 declare const global:any;
 
 // Some do it the other way around.
-declare module 'json!*' {
+declare module '!!json!*' {
   const value: any;
   export default value;
 }

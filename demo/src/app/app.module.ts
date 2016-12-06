@@ -11,7 +11,7 @@ import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 
-import ngdoc from 'json!../ng-api-doc.json';
+import ngdoc from '!!json!../ng-api-doc.json';
 
 // will be lazy loaded later
 import { DemoAccordionModule } from './components/accordion';
@@ -31,6 +31,7 @@ import { DemoTooltipModule } from './components/tooltip/index';
 import { DemoTypeaheadModule } from './components/typeahead/index';
 import { ComponentsHelper } from 'ng2-bootstrap';
 import { NgApiDocModule } from './api-docs/index';
+import { NgApiDoc } from './api-docs/api-docs.model';
 
 @NgModule({
   declarations: [
