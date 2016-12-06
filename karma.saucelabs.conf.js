@@ -37,11 +37,11 @@ module.exports = function (config) {
   config.set({
     logLevel: config.LOG_DEBUG,
     basePath: '',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'angular-cli'],
     plugins: [
-      require('karma-sauce-launcher'),
       require('karma-jasmine'),
-      // require('karma-chrome-launcher'),
+      require('karma-sauce-launcher'),
+      require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
       require('angular-cli/plugins/karma')
     ],
@@ -63,7 +63,7 @@ module.exports = function (config) {
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
       ? ['progress', 'karma-remap-istanbul', 'saucelabs']
-      : ['dots', 'saucelabs'],
+      : ['progress', 'saucelabs'],
     port: 9876,
     colors: true,
     sauceLabs: {
