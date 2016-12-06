@@ -82,6 +82,7 @@ module.exports = function (config) {
     captureTimeout: 0,
     customLaunchers: customLaunchers,
     browsers: Object.keys(customLaunchers),
+    concurrency: 2,
     singleRun: true
   });
 };
