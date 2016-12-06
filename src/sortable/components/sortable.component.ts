@@ -9,8 +9,8 @@ const nullCallback = (arg?: any): void => { return void 0; };
 
 /* tslint:disable */
 @Component({
-    selector: 'ng2-sortable-list',
-    templateUrl: './sortable-list.component.html',
+    selector: 'ng2-sortable',
+    templateUrl: './sortable.component.html',
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SortableComponent), multi: true }],
     animations: [
         trigger('flyInOut', [

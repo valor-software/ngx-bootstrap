@@ -19,4 +19,4 @@ import { DraggableItemService } from './services';
         DraggableItemService
     ]
 })
-export class SortableListModule { }
+export class SortableModule { }
