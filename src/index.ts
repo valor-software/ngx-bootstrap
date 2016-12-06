@@ -11,7 +11,6 @@ import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
-import { SortableModule } from './sortable';
 import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
@@ -21,7 +20,7 @@ import { ComponentsHelper } from './utils/components-helper.service';
 @NgModule({
   exports: [
     AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, DatepickerModule, DropdownModule,
-    ModalModule, PaginationModule, ProgressbarModule, RatingModule, SortableModule, TabsModule, TimepickerModule, TooltipModule,
+    ModalModule, PaginationModule, ProgressbarModule, RatingModule, TabsModule, TimepickerModule, TooltipModule,
     TypeaheadModule
   ],
   providers: [
@@ -42,7 +41,6 @@ export * from './dropdown';
 export * from './pagination';
 export * from './progressbar';
 export * from './rating';
-export * from './sortable';
 export * from './tabs';
 export * from './timepicker';
 export * from './tooltip';
