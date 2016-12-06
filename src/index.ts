@@ -41,6 +41,7 @@ export * from './dropdown';
 export * from './pagination';
 export * from './progressbar';
 export * from './rating';
+export * from './sortable';
 export * from './tabs';
 export * from './timepicker';
 export * from './tooltip';

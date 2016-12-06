@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef, animate, style, state, transition, keyframes, trigger } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Inject, forwardRef, animate, style, state, transition, keyframes, trigger } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import 'rxjs/add/operator/first';
 
@@ -10,18 +10,45 @@ const nullCallback = (arg?: any): void => { return void 0; };
 /* tslint:disable */
 @Component({
     selector: 'ng2-sortable',
-    templateUrl: './sortable.component.html',
+    template: `
+        <div
+            [ngClass]="wrapperClass"
+            [ngStyle]="wrapperStyle"
+            [ngStyle]="wrapperStyle"
+            (dragover)="onZoneDragover($event)"
+            (drop)="resetActiveItem()"
+            (mouseleave)="resetActiveItem()"
+        >
+            <div
+                *ngIf="showPlaceholder"
+                [ngClass]="placeholderClass"
+                [ngStyle]="placeholderStyle"
+                (dragover)="onItemDragover($event, 0)"
+            >{{placeholderItem}}</div>
+            <div
+                [@flyInOut]="'in'"
+                (@flyInOut.done)="updatePlaceholderState()"
+                (@flyInOut.start)="showPlaceholder = false"
+                *ngFor="let item of items; let i=index;"
+                [ngClass]="[ itemClass, i === activeItem ? itemActiveClass : '' ]"
+                [ngStyle]="getItemStyle(i === activeItem)"
+                draggable="true"
+                (dragstart)="onItemDragstart($event, item, i)"
+                (dragend)="resetActiveItem()"
+                (dragover)="onItemDragover($event, i)"
+            >{{item.value}}</div>
+        </div>`,
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SortableComponent), multi: true }],
     animations: [
         trigger('flyInOut', [
-          state('in', style({ height: '*', width: '*' })),
+          state('in', style({ height: '*' })),
           transition('void => *', [
-            style({ height: 0, width: 0 }),
+            style({ height: 0 }),
             animate('100ms ease-out')
           ]),
           transition('* => void', [
-            style({ height: '*', width: '*' }),
-            animate('100ms ease-out', style({ height: 0, width: 0 }))
+            style({ height: '*' }),
+            animate('100ms ease-out', style({ height: 0 }))
           ])
         ])
     ]
