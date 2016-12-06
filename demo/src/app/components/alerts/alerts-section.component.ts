@@ -10,6 +10,8 @@ let html = require('!!raw?lang=markup!./demos/alerts-demo.component.html');
 @Component({
   selector: 'alert-section',
   template: `
+      <ng-api-doc directive="AlertComponent"></ng-api-doc>
+      <ng-api-doc-config type="AlertConfig"></ng-api-doc-config>
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
       <alert-demo></alert-demo>
     </demo-section>`

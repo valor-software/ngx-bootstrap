@@ -6,8 +6,8 @@ import { Component, Input } from '@angular/core';
 import { Analytics } from '../analytics/analytics';
 
 @Component({
-  selector: 'ngbd-example-box',
-  templateUrl: './example-box.component.html'
+  selector: 'ng-example-box',
+  templateUrl: 'example-box.component.html'
 })
 export class ExampleBoxComponent {
   @Input() public demoTitle: string;

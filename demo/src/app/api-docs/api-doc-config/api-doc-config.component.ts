@@ -17,7 +17,7 @@ const CONFIG_SUFFIX_LENGTH = 'Config'.length;
  * default value is documented in the directive itself.
  */
 @Component({
-  selector: 'ngbd-api-docs-config',
+  selector: 'ng-api-doc-config',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './api-doc-config.component.html'
 })
