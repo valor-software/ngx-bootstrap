@@ -243,15 +243,15 @@ describe('Component: Sortable', () => {
       it('should insert a new item', () => {
         // arrange
         item.id = 4;
-        item.initData = "new";
-        item.value = "new";
+        item.initData = 'new';
+        item.value = 'new';
         draggableItem.overZoneIndex = -1;
 
         // act
         sort1.onItemDragover(event, 0);
 
         // assert
-        expect(spyOnChanged).toHaveBeenCalledWith([ "new", ...HEROES ]);
+        expect(spyOnChanged).toHaveBeenCalledWith([ 'new', ...HEROES ]);
       });
     });
 
