@@ -1,10 +1,11 @@
-import { ComponentFixture, TestBed, fakeAsync, tick, ComponentFixtureAutoDetect } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick, ComponentFixtureAutoDetect, inject } from '@angular/core/testing';
 import { TypeaheadModule } from '../typeahead/typeahead.module';
 import { Component, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { SortableModule, SortableComponent } from '../sortable';
+import { SortableModule, SortableComponent, DraggableItemService } from '../sortable';
+import { SortableItem } from '../sortable/components';
 
 interface State {
   id:number;
@@ -83,6 +84,140 @@ describe('Component: Sortable', () => {
       // assert
       expect(renderedItems).toEqual(HEROES_OBJ.map((h: any) => h.name));
     });
+  });
+
+  describe('process drag & drop', () => {
+    let transfer: DraggableItemService;
+
+    beforeEach(inject([DraggableItemService], (service: DraggableItemService) => {
+      transfer = service;
+    }));
+
+    it('should pass dragged item to transfer', () => {
+      // arrange
+      let item = getItemToDrag();
+      let event = new Event('dragstart') as DragEvent;
+      let spy = spyOn(transfer, 'dragStart');
+      let zone = (sort1 as any).currentZoneIndex;
+
+      // act
+      sort1.onItemDragstart(event, item, 0);
+
+      // assert
+      expect(spy).toHaveBeenCalledWith(getDraggableItem(item, event, zone));
+    });
+
+    it('sould prevent event default when dragover item', () => {
+      // arrange
+      let item = getItemToDrag();
+      let event = new Event('dragover') as DragEvent;
+      let zone = (sort1 as any).currentZoneIndex;
+      let draggableItem = getDraggableItem(item, event, zone);
+      let spy = spyOn(event, 'preventDefault');
+      spyOn(transfer, 'getItem').and.returnValue(draggableItem);
+      spyOn(transfer, 'captureItem').and.returnValue(draggableItem);
+
+      // act
+      sort1.onItemDragover(event, 1);
+
+      // assert
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('souldn\'t prevent event default when no item is dragged', () => {
+      // arrange
+      let spy = jasmine.createSpy('preventDefault');
+
+      // act
+      sort1.onItemDragover(new Event('dragover') as DragEvent, 1);
+
+      // assert
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    describe('reordering', () => {
+      let item: SortableItem;
+      let event: DragEvent;
+      let draggableItem: any;
+      let spyOnChanged: any;
+
+      let spies: any[];
+
+      beforeEach(() => {
+        item = getItemToDrag();
+        event = new Event('dragover') as DragEvent;
+        let zone = (sort1 as any).currentZoneIndex;
+        draggableItem = getDraggableItem(item, event, zone);
+        spyOnChanged = spyOn(sort1, 'onChanged');
+        spyOn(transfer, 'getItem').and.returnValue(draggableItem);
+        spyOn(transfer, 'captureItem').and.returnValue(draggableItem);
+      });
+
+      it('should fire onChanged when drag over item', () => {
+        // arrange
+        // act
+        sort1.onItemDragover(event, 1);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalled();
+      });
+
+      it('should swap first and second item', () => {
+        // arrange
+        // act
+        sort1.onItemDragover(event, 1);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalledWith([ HEROES[1], HEROES[0], HEROES[2], HEROES[3] ]);
+      });
+
+      it('should return unchanged array', () => {
+        // arrange
+        // act
+        sort1.onItemDragover(event, 0);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalledWith(HEROES);
+      });
+
+      it('should move first item to the end', () => {
+        // arrange
+        // act
+        sort1.onItemDragover(event, 3);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalledWith([ HEROES[1], HEROES[2], HEROES[3], HEROES[0] ]);
+      });
+
+      it('should move last item to the begining', () => {
+        // arrange
+        item.id = 3;
+        item.initData = HEROES[3];
+        item.value = HEROES[3];
+        draggableItem.i = 3;
+
+        // act
+        sort1.onItemDragover(event, 0);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalledWith([ HEROES[3], HEROES[0], HEROES[1], HEROES[2] ]);
+      });
+    });
+
+    function getItemToDrag(): SortableItem {
+      return { id: 0, value: HEROES[0], initData: HEROES[0]};
+    }
+
+    function getDraggableItem(item: SortableItem, event: DragEvent, zone: number): any {
+      return {
+        event,
+        item,
+        i: 0,
+        initialIndex: 0,
+        lastZoneIndex: zone,
+        overZoneIndex: zone
+      };
+    }
   });
 
   function getItemsByContainerId(id: string = 'sort1'): string[] {
