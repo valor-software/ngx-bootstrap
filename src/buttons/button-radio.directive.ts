@@ -3,13 +3,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-/* tslint:disable */
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => ButtonRadioDirective),
     multi: true
 };
-/* tslint:enable */
 
 @Directive({ selector: '[btnRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR] })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
