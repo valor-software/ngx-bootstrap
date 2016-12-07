@@ -7,7 +7,7 @@ import { DraggableItem } from '../models';
 export class DraggableItemService {
     private draggableItem: DraggableItem;
 
-    private onCapture: Subject<DraggableItem> = new Subject();
+    private onCapture: Subject<DraggableItem> = new Subject<DraggableItem>();
 
     public dragStart(item: DraggableItem): void {
         this.draggableItem = item;

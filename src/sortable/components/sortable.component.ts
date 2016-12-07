@@ -171,7 +171,6 @@ export class SortableComponent implements ControlValueAccessor {
     public writeValue(value: any[]): void {
         if (value) {
             this.items = value.map((x: any, i: number) => ({ id: i, initData: x, value: this.fieldName ? x[this.fieldName] : x }));
-            console.log('items', this.items);
         } else {
             this.items = [];
         }
