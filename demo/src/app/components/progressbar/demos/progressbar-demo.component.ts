@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
-const isBs3 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
-const templateUrl = isBs3 ? './progressbar-demo.component.html' : './progressbar-demo-bs4.component.html';
 
 @Component({
   selector: 'progressbar-demo',
-  // tslint:disable-next-line
-  templateUrl: templateUrl
+  templateUrl: './progressbar-demo.component.html'
 })
 export class ProgressbarDemoComponent {
   public max: number = 200;
@@ -15,6 +12,9 @@ export class ProgressbarDemoComponent {
   public dynamic: number;
   public type: string;
   public stacked: any[] = [];
+  public get isBs3(): boolean {
+    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+  }
 
   public constructor() {
     this.random();
