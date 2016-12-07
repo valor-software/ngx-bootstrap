@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { SortableModule, SortableComponent, DraggableItemService } from '../sortable';
+import { DraggableItem } from '../sortable/models';
 import { SortableItem } from '../sortable/components';
 
 interface State {
@@ -164,7 +165,7 @@ describe('Component: Sortable', () => {
     describe('reordering', () => {
       let item: SortableItem;
       let event: DragEvent;
-      let draggableItem: any;
+      let draggableItem: DraggableItem;
       let spyOnChanged: any;
 
       let spies: any[];
@@ -245,7 +246,7 @@ describe('Component: Sortable', () => {
         item.id = 4;
         item.initData = 'new';
         item.value = 'new';
-        draggableItem.overZoneIndex = -1;
+        draggableItem.i = 4;
 
         // act
         sort1.onItemDragover(event, 0);
@@ -259,7 +260,7 @@ describe('Component: Sortable', () => {
       return { id: 0, value: HEROES[0], initData: HEROES[0]};
     }
 
-    function getDraggableItem(item: SortableItem, event: DragEvent, zone: number): any {
+    function getDraggableItem(item: SortableItem, event: DragEvent, zone: number): DraggableItem {
       return {
         event,
         item,
