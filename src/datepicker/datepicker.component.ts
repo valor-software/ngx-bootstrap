@@ -1,13 +1,17 @@
-import {
-  Component, EventEmitter, Input, Output, Self, ViewChild
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
-import { ControlValueAccessor, NgModel } from '@angular/forms';
 import { DatepickerConfig } from './datepicker.config';
+
+export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => DatePickerComponent),
+  multi: true
+};
 
 /* tslint:disable:component-selector-name component-selector-type */
 @Component({
-  selector: 'datepicker[ngModel]',
+  selector: 'datepicker',
   template: `
     <datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate($event)"
@@ -38,7 +42,7 @@ import { DatepickerConfig } from './datepicker.config';
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
     `,
-  providers: [NgModel]
+  providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
 })
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
@@ -80,16 +84,12 @@ export class DatePickerComponent implements ControlValueAccessor {
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
 
-  public cd: NgModel;
   protected _now: Date = new Date();
   protected _activeDate: Date;
   protected config: DatepickerConfig;
 
-  public constructor(@Self() cd: NgModel, config: DatepickerConfig) {
+  public constructor(config: DatepickerConfig) {
     this.config = config;
-    this.cd = cd;
-    // hack
-    cd.valueAccessor = this;
     this.configureOptions();
   }
 
@@ -98,7 +98,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   public onUpdate(event: any): void {
-    this.cd.viewToModelUpdate(event);
+    this.onChange(event);
   }
 
   public onSelectionDone(event: Date): void {
