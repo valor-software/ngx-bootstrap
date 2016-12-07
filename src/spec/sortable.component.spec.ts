@@ -124,12 +124,38 @@ describe('Component: Sortable', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('souldn\'t prevent event default when no item is dragged', () => {
+    it('souldn\'t prevent event default when no item is dragged over items', () => {
       // arrange
       let spy = jasmine.createSpy('preventDefault');
 
       // act
       sort1.onItemDragover(new Event('dragover') as DragEvent, 1);
+
+      // assert
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('sould prevent event default when dragover zone', () => {
+      // arrange
+      let item = getItemToDrag();
+      let event = new Event('dragover') as DragEvent;
+      let draggableItem = getDraggableItem(item, event, 0);
+      let spy = spyOn(event, 'preventDefault');
+      spyOn(transfer, 'getItem').and.returnValue(draggableItem);
+
+      // act
+      sort1.onZoneDragover(event);
+
+      // assert
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('souldn\'t prevent event default when no item is dragged over zone', () => {
+      // arrange
+      let spy = jasmine.createSpy('preventDefault');
+
+      // act
+      sort1.onZoneDragover(new Event('dragover') as DragEvent);
 
       // assert
       expect(spy).not.toHaveBeenCalled();
