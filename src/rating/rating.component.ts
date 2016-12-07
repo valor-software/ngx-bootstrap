@@ -11,9 +11,7 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  /* tslint:disable */
-  selector: 'rating[ngModel]',
-  /* tslint:enable */
+  selector: 'rating',
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
       <template ngFor let-r [ngForOf]="range" let-index="index">
