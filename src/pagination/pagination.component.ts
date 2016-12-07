@@ -1,7 +1,7 @@
 import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self
+  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self, forwardRef
 } from '@angular/core';
-import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { KeyAttribute } from '../utils/common';
 import { PaginationConfig } from './pagination.config';
@@ -10,6 +10,12 @@ export interface PageChangedEvent {
   itemsPerPage:number;
   page:number;
 }
+
+export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => PaginationComponent),
+  multi: true
+};
 
 const PAGINATION_TEMPLATE = `
   <ul class="pagination" [ngClass]="classMap">
@@ -44,13 +50,11 @@ const PAGINATION_TEMPLATE = `
   </ul>
   `;
 
-/* tslint:disable */
 @Component({
-  selector: 'pagination[ngModel]',
+  selector: 'pagination',
   template: PAGINATION_TEMPLATE,
-  providers: [NgModel]
+  providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
-/* tslint:enable */
 export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAttribute {
   public config:any;
   @Input() public align:boolean;
@@ -125,7 +129,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
 
-  public cd:NgModel;
   public renderer:Renderer;
   public elementRef:ElementRef;
 
@@ -138,11 +141,9 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
   protected inited:boolean = false;
   protected _page:number;
 
-  public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
-    this.cd = cd;
+  public constructor(renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
     this.renderer = renderer;
     this.elementRef = elementRef;
-    cd.valueAccessor = this;
     if (!this.config) {
       this.configureOptions(paginationConfig.main);
     }
@@ -178,7 +179,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
-    this.page = this.cd.value;
     this.inited = true;
   }
 
@@ -218,7 +218,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
         target.blur();
       }
       this.writeValue(page);
-      this.cd.viewToModelUpdate(this.page);
+      this.onChange(this.page);
     }
   }
 
