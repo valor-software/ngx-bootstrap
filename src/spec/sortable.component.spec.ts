@@ -228,6 +228,31 @@ describe('Component: Sortable', () => {
         // assert
         expect(spyOnChanged).toHaveBeenCalledWith([ HEROES[3], HEROES[0], HEROES[1], HEROES[2] ]);
       });
+
+      it('should insert a new item if was empty', () => {
+        // arrange
+        sort1.writeValue([]);
+
+        // act
+        sort1.onItemDragover(event, 0);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalledWith([ HEROES[0] ]);
+      });
+
+      it('should insert a new item', () => {
+        // arrange
+        item.id = 4;
+        item.initData = "new";
+        item.value = "new";
+        draggableItem.overZoneIndex = -1;
+
+        // act
+        sort1.onItemDragover(event, 0);
+
+        // assert
+        expect(spyOnChanged).toHaveBeenCalledWith([ "new", ...HEROES ]);
+      });
     });
 
     function getItemToDrag(): SortableItem {
