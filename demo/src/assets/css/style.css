@@ -1,6 +1,6 @@
 body {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  background-color: #f5f9fb;
+  /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+  /*background-color: #f5f9fb;*/
 }
 
 body,html {
@@ -15,6 +15,10 @@ body,html {
 
 .text-red {
   color: #cd151e;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 /************* START TOP MENU **************/
@@ -305,9 +309,9 @@ body,html {
   padding-left: 15px;
 }
 
-#main .content-header h2 {
-  font-size: 48px;
-  font-weight: 500;
+#main .content-header h1 {
+  /*font-size: 48px;*/
+  /*font-weight: 500;*/
   color: #1d1d2b;
   /*text-transform: uppercase;*/
   margin-top: 35px;
@@ -315,23 +319,23 @@ body,html {
   /*line-height: 23px;*/
 }
 
-#main .content-header h2 a {
+#main .content-header h1 a {
   display: inline-block;
   vertical-align: top;
   margin-top: 4px;
   line-height: 0;
 }
 
-#main .content-header h2 img {
+#main .content-header h1 img {
   width: 15px;
   vertical-align: top;
 }
 
 #main .content-header p {
-  font-size: 18px;
+  /*font-size: 18px;*/
   color: #1d1d2b;
   font-weight: 300;
-  line-height: 30px;
+  /*line-height: 30px;*/
 }
 
 #main .content-box {
@@ -349,16 +353,16 @@ body,html {
 #content p,
 #content li:not([class^='L']) ,
 #content .accordion h4 {
-  font-weight: 300;
-  font-size: 18px;
+  /*font-weight: 300;*/
+  /*font-size: 18px;*/
   color: #1d1d2b;
 }
 
-#content p {
-  line-height: 30px;
-}
+/*#content p {*/
+  /*line-height: 30px;*/
+/*}*/
 
-#content p,
+/*#content p,*/
 #content li:not([class^='L']) {
   line-height: 30px;
 }
@@ -406,8 +410,8 @@ body,html {
 
 #content .section > h3 {
   color: #1d1d2b;
-  font-size: 28px;
-  font-weight: 500;
+  /*font-size: 28px;*/
+  /*font-weight: 500;*/
   margin-bottom: 10px;
 }
 
@@ -500,7 +504,7 @@ body,html {
 }
 
 #content .item > h4 {
-  font-size: 22px;
+  /*font-size: 22px;*/
   margin: 20px 0 15px;
 }
 
