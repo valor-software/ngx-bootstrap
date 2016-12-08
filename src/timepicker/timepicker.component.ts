@@ -1,17 +1,24 @@
-import { Component, Input, OnInit, Self } from '@angular/core';
-import { ControlValueAccessor, NgModel } from '@angular/forms';
+// tslint:disable max-file-line-count
+import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TimepickerConfig } from './timepicker.config';
+
+export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => TimepickerComponent),
+  multi: true
+};
 
 // todo: refactor directive has to many functions! (extract to stateless helper)
 // todo: use moment js?
 // todo: implement `time` validator
 // todo: replace increment/decrement blockers with getters, or extract
 // todo: unify work with selected
-function isDefined(value:any):boolean {
+function isDefined(value: any): boolean {
   return typeof value !== 'undefined';
 }
 
-function addMinutes(date:any, minutes:number):Date {
+function addMinutes(date: any, minutes: number): Date {
   let dt = new Date(date.getTime() + minutes * 60000);
   let newDate = new Date(date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
@@ -19,9 +26,7 @@ function addMinutes(date:any, minutes:number):Date {
 }
 
 @Component({
-  /* tslint:disable */
-  selector: 'timepicker[ngModel]',
-  /* tslint:enable */
+  selector: 'timepicker',
   template: `
     <table>
       <tbody>
@@ -50,11 +55,9 @@ function addMinutes(date:any, minutes:number):Date {
       </tbody>
     </table>
   `,
-  providers: [NgModel]
+  providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
-  public cd: NgModel;
-
   @Input() public hourStep: number;
   @Input() public minuteStep: number;
   @Input() public readonlyInput: boolean;
@@ -63,7 +66,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   @Input() public showSpinners: boolean;
   @Input() public min: Date;
   @Input() public max: Date;
-  @Input() public meridians:string[];
+  @Input() public meridians: string[];
 
   @Input()
   public get showMeridian(): boolean {
@@ -111,16 +114,15 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     if (v) {
       this._selected = v;
       this.updateTemplate();
-      this.cd.viewToModelUpdate(this.selected);
+      this.onChange(this.selected);
     }
   }
 
   protected config: TimepickerConfig;
-  public constructor(@Self() cd:NgModel, _config: TimepickerConfig) {
+
+  public constructor(_config: TimepickerConfig) {
     this.config = _config;
     Object.assign(this, _config);
-    this.cd = cd;
-    cd.valueAccessor = this;
   }
 
   // todo: add formatter value to Date object
@@ -188,8 +190,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  // tslint:disable-next-line:no-unused-variable
-  public hoursOnBlur(event: Event): void {
+  public hoursOnBlur(): void {
     if (this.readonlyInput) {
       return;
     }
@@ -228,8 +229,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  // tslint:disable-next-line:no-unused-variable
-  public minutesOnBlur(event: Event): void {
+  public minutesOnBlur(): void {
     if (this.readonlyInput) {
       return;
     }
@@ -310,7 +310,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   protected refresh(/*type?:string*/): void {
     // this.makeValid();
     this.updateTemplate();
-    this.cd.viewToModelUpdate(this.selected);
+    this.onChange(this.selected);
   }
 
   protected updateTemplate(/*keyboardChange?:any*/): void {

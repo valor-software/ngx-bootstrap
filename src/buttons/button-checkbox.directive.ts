@@ -1,75 +1,75 @@
-import {
-  Directive, HostBinding, HostListener, Input, OnInit, Self, ElementRef
-} from '@angular/core';
-import { ControlValueAccessor, NgModel } from '@angular/forms';
+import { Directive, HostBinding, HostListener, Input, OnInit, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-// TODO: config: activeClass - Class to apply to the checked buttons.
+// TODO: config: activeClass - Class to apply to the checked buttons
 
-@Directive({selector: '[btnCheckbox][ngModel]'})
+export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => ButtonCheckboxDirective),
+  multi: true
+};
+
+@Directive({selector: '[btnCheckbox]', providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]})
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
-  public cd:NgModel;
-  public el: ElementRef;
-  @Input() public btnCheckboxTrue:any;
+  @Input() public btnCheckboxTrue: any;
+  @Input() public btnCheckboxFalse: any;
 
-  @Input() public btnCheckboxFalse:any;
-  @HostBinding('class.active')
-  public state:boolean = false;
+  @HostBinding('class.active') public state: boolean = false;
 
-  protected onChange:any = Function.prototype;
-  protected onTouched:any = Function.prototype;
+  protected value: any;
+  protected isDisabled: boolean;
 
-  protected value:any;
+  protected onChange: any = Function.prototype;
+  protected onTouched: any = Function.prototype;
 
   // view -> model
   @HostListener('click')
-  public onClick():void {
-    if (this.el.nativeElement.attributes.disabled) {
+  public onClick(): void {
+    if (this.isDisabled) {
       return;
     }
+
     this.toggle(!this.state);
-    this.cd.viewToModelUpdate(this.value);
+    this.onChange(this.value);
   }
 
-  public constructor(@Self() cd:NgModel, el: ElementRef) {
-    this.el = el;
-    this.cd = cd;
-    // hack !
-    cd.valueAccessor = this;
-  }
-
-  public ngOnInit():any {
+  public ngOnInit(): any {
     this.toggle(this.trueValue === this.value);
   }
 
-  protected get trueValue():boolean {
+  protected get trueValue(): boolean {
     return typeof this.btnCheckboxTrue !== 'undefined'
       ? this.btnCheckboxTrue
       : true;
   }
 
-  protected get falseValue():boolean {
+  protected get falseValue(): boolean {
     return typeof this.btnCheckboxFalse !== 'undefined'
       ? this.btnCheckboxFalse
       : false;
   }
 
-  public toggle(state:boolean):void {
+  public toggle(state: boolean): void {
     this.state = state;
     this.value = this.state ? this.trueValue : this.falseValue;
   }
 
   // ControlValueAccessor
   // model -> view
-  public writeValue(value:any):void {
+  public writeValue(value: any): void {
     this.state = this.trueValue === value;
-    this.value = value;
+    this.value = value ? this.trueValue : this.falseValue;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void {
+  public setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+
+  public registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn:() => {}):void {
+  public registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 }

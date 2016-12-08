@@ -36,7 +36,7 @@
   font-size: 13px
 }
 
-.prettyprint ol li {
+.prettyprint ol li,.prettyprint .tag {
   color: #7a8b94;
   background: none;
   margin-bottom: 5px;
