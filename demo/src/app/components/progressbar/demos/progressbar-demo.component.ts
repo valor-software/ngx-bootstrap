@@ -1,18 +1,9 @@
 import { Component } from '@angular/core';
 
-// import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
-
-// switch bs3\bs4 templates
-// webpack html imports
-// todo: resolve templates in a different way
-// let templates: any = {
-//   [Ng2BootstrapTheme.BS3]: require('./progressbar-demo.component.html'),
-//   [Ng2BootstrapTheme.BS4]: require('./progressbar-demo-bs4.component.html')
-// };
+import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
 
 @Component({
   selector: 'progressbar-demo',
-  // template: templates[Ng2BootstrapConfig.theme]
   templateUrl: './progressbar-demo.component.html'
 })
 export class ProgressbarDemoComponent {
@@ -21,6 +12,9 @@ export class ProgressbarDemoComponent {
   public dynamic: number;
   public type: string;
   public stacked: any[] = [];
+  public get isBs3(): boolean {
+    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+  }
 
   public constructor() {
     this.random();
