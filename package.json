@@ -70,7 +70,7 @@
     "core-js": "2.4.1",
     "cpy": "5.0.0",
     "cpy-cli": "1.0.1",
-    "del-cli": "0.2.0",
+    "del-cli": "0.2.1",
     "gitignore-to-glob": "0.3.0",
     "google-code-prettify": "1.0.5",
     "html-loader": "0.4.4",
