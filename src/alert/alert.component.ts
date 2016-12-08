@@ -16,16 +16,21 @@ const ALERT_TEMPLATE = `
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {
-  @Input() public type: string;
-  @Input() public dismissible: boolean;
+  /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
+  @Input() public type: string = 'warning';
+  /** determines if an inline close button is displayed */
+  @Input() public dismissible: boolean = false;
+  /** number of milliseconds, if specified sets a timeout duration, after which the alert will be closed */
   @Input() public dismissOnTimeout: number;
-
-  @Output() public close:EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
+  // todo: rename in onClosed
+  /** fired when alert closed with inline button or by timeout, $event is an instance of Alert component */
+  @Output() public close: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
 
   public closed: boolean;
-  protected classes:string[] = [];
+  protected classes: string[] = [];
 
   public config: AlertConfig;
+
   public constructor(config: AlertConfig) {
     this.config = config;
     this.configureOptions();

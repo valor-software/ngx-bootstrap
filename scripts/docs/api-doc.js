@@ -1,7 +1,7 @@
 'use strict';
 
-var ts = require('typescript');
-var fs = require('fs');
+const ts = require('typescript');
+const fs = require('fs');
 
 function getNamesCompareFn(name) {
   name = name || 'name';
@@ -33,7 +33,7 @@ class APIDocVisitor {
   }
 
   visitSourceFile(fileName) {
-    var sourceFile = this.program.getSourceFile(fileName);
+    const sourceFile = this.program.getSourceFile(fileName);
 
     if (!sourceFile) {
       throw new Error(`File doesn't exist: ${fileName}.`)
@@ -51,23 +51,22 @@ class APIDocVisitor {
   }
 
   visitInterfaceDeclaration(fileName, interfaceDeclaration) {
-    var symbol = this.program.getTypeChecker().getSymbolAtLocation(interfaceDeclaration.name);
-    var description = ts.displayPartsToString(symbol.getDocumentationComment());
-    var className = interfaceDeclaration.name.text;
-    var members = this.visitMembers(interfaceDeclaration.members);
+    const symbol = this.program.getTypeChecker().getSymbolAtLocation(interfaceDeclaration.name);
+    const description = ts.displayPartsToString(symbol.getDocumentationComment());
+    const className = interfaceDeclaration.name.text;
+    const members = this.visitMembers(interfaceDeclaration.members);
 
     return [{fileName, className, description, methods: members.methods, properties: members.properties}];
   }
 
   visitClassDeclaration(fileName, classDeclaration) {
-    var symbol = this.program.getTypeChecker().getSymbolAtLocation(classDeclaration.name);
-    var description = ts.displayPartsToString(symbol.getDocumentationComment());
-    var className = classDeclaration.name.text;
-    var directiveInfo;
-    var members;
+    const symbol = this.program.getTypeChecker().getSymbolAtLocation(classDeclaration.name);
+    const description = ts.displayPartsToString(symbol.getDocumentationComment());
+    const className = classDeclaration.name.text;
+    let directiveInfo, members;
 
     if (classDeclaration.decorators) {
-      for (var i = 0; i < classDeclaration.decorators.length; i++) {
+      for (let i = 0; i < classDeclaration.decorators.length; i++) {
         if (this.isDirectiveDecorator(classDeclaration.decorators[i])) {
           directiveInfo = this.visitDirectiveDecorator(classDeclaration.decorators[i]);
           members = this.visitMembers(classDeclaration.members);
@@ -100,11 +99,10 @@ class APIDocVisitor {
   }
 
   visitDirectiveDecorator(decorator) {
-    var selector;
-    var exportAs;
-    var properties = decorator.expression.arguments[0].properties;
+    const properties = decorator.expression.arguments[0].properties;
+    let selector, exportAs;
 
-    for (var i = 0; i < properties.length; i++) {
+    for (let i = 0; i < properties.length; i++) {
       if (properties[i].name.text === 'selector') {
         // TODO: this will only work if selector is initialized as a string literal
         selector = properties[i].initializer.text;
@@ -119,13 +117,13 @@ class APIDocVisitor {
   }
 
   visitMembers(members) {
-    var inputs = [];
-    var outputs = [];
-    var methods = [];
-    var properties = [];
-    var inputDecorator, outDecorator;
+    const inputs = [];
+    const outputs = [];
+    const methods = [];
+    const properties = [];
+    let inputDecorator, outDecorator;
 
-    for (var i = 0; i < members.length; i++) {
+    for (let i = 0; i < members.length; i++) {
       inputDecorator = this.getDecoratorOfType(members[i], 'Input');
       outDecorator = this.getDecoratorOfType(members[i], 'Output');
 
@@ -168,7 +166,7 @@ class APIDocVisitor {
   }
 
   visitInput(property, inDecorator) {
-    var inArgs = inDecorator.expression.arguments;
+    const inArgs = inDecorator.expression.arguments;
     return {
       name: inArgs.length ? inArgs[0].text : property.name.text,
       defaultValue: property.initializer ? this.stringifyDefaultValue(property.initializer) : undefined,
@@ -188,7 +186,7 @@ class APIDocVisitor {
   }
 
   visitOutput(property, outDecorator) {
-    var outArgs = outDecorator.expression.arguments;
+    const outArgs = outDecorator.expression.arguments;
     return {
       name: outArgs.length ? outArgs[0].text : property.name.text,
       description: ts.displayPartsToString(property.symbol.getDocumentationComment())
@@ -207,16 +205,16 @@ class APIDocVisitor {
   visitType(node) { return node ? this.typeChecker.typeToString(this.typeChecker.getTypeAtLocation(node)) : 'void'; }
 
   isDirectiveDecorator(decorator) {
-    var decoratorIdentifierText = decorator.expression.expression.text;
+    const decoratorIdentifierText = decorator.expression.expression.text;
     return decoratorIdentifierText === 'Directive' || decoratorIdentifierText === 'Component';
   }
 
   isServiceDecorator(decorator) { return decorator.expression.expression.text === 'Injectable'; }
 
   getDecoratorOfType(node, decoratorType) {
-    var decorators = node.decorators || [];
+    const decorators = node.decorators || [];
 
-    for (var i = 0; i < decorators.length; i++) {
+    for (let i = 0; i < decorators.length; i++) {
       if (decorators[i].expression.expression.text === decoratorType) {
         return decorators[i];
       }
@@ -227,11 +225,11 @@ class APIDocVisitor {
 }
 
 function parseOutApiDocs(programFiles) {
-  var apiDocVisitor = new APIDocVisitor(programFiles);
+  const apiDocVisitor = new APIDocVisitor(programFiles);
 
   return programFiles.reduce(
       (soFar, file) => {
-        var directivesInFile = apiDocVisitor.visitSourceFile(file);
+        const directivesInFile = apiDocVisitor.visitSourceFile(file);
 
         directivesInFile.forEach((directive) => { soFar[directive.className] = directive; });
 

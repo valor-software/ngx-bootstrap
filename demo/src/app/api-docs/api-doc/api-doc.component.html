@@ -23,7 +23,7 @@
         <tbody>
         <tr *ngFor="let input of apiDocs.inputs">
           <td class="col-md-3"><code>{{input.name}}</code></td>
-          <td class="col-md-9">
+          <td class="col-md-3">
             <div><i>Type: </i><code>{{ input.type }}</code></div>
             <template [ngIf]="defaultInputValue(input) || hasConfigProperty(input)">
               <div>
@@ -31,8 +31,8 @@
                 <span *ngIf="hasConfigProperty(input)">&mdash; initialized from {{ configServiceName }} service</span>
               </div>
             </template>
-            <div style="margin: 10px 0">{{ input.description }}</div>
           </td>
+          <td class="col-md-6"><div style="margin: 10px 0">{{ input.description }}</div></td>
         </tr>
         </tbody>
       </table>
@@ -46,7 +46,7 @@
         <tbody>
           <tr *ngFor="let output of apiDocs.outputs">
             <td class="col-md-3"><code>{{output.name}}</code></td>
-            <td class="col-md-9">{{output.description}}</td>
+            <td class="col-md-9"><div style="margin: 10px 0">{{output.description}}</div></td>
           </tr>
         </tbody>
       </table>
@@ -60,11 +60,11 @@
         <tbody>
         <tr *ngFor="let method of apiDocs.methods">
           <td class="col-md-3"><code>{{method.name}}</code></td>
-          <td class="col-md-9">
+          <td class="col-md-6">
             <div><i>Signature: </i><code>{{ methodSignature(method) }}</code></div>
             <div><i>Return type: </i><code>{{ method.returnType }}</code></div>
-            <div style="margin: 10px 0">{{ method.description }}</div>
           </td>
+          <td class="col-md-9"><div style="margin: 10px 0">{{ method.description }}</div></td>
         </tr>
         </tbody>
       </table>

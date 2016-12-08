@@ -54,24 +54,26 @@
     "inputs": [
       {
         "name": "dismissible",
+        "defaultValue": "false",
         "type": "boolean",
-        "description": ""
+        "description": "determines if an inline close button is displayed "
       },
       {
         "name": "dismissOnTimeout",
         "type": "number",
-        "description": ""
+        "description": "number of milliseconds, if specified sets a timeout duration, after which the alert will be closed "
       },
       {
         "name": "type",
+        "defaultValue": "warning",
         "type": "string",
-        "description": ""
+        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
       }
     ],
     "outputs": [
       {
         "name": "close",
-        "description": ""
+        "description": "fired when alert closed with inline button or by timeout, $event is an instance of Alert component "
       }
     ],
     "properties": [],
@@ -82,7 +84,26 @@
     "className": "AlertConfig",
     "description": "",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "dismissible",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "is alerts dismissible by default "
+      },
+      {
+        "name": "dismissOnTimeout",
+        "defaultValue": "undefined",
+        "type": "number",
+        "description": "default time before alert dismiss "
+      },
+      {
+        "name": "type",
+        "defaultValue": "warning",
+        "type": "string",
+        "description": "default alert type "
+      }
+    ]
   },
   "ButtonCheckboxDirective": {
     "fileName": "src/buttons/button-checkbox.directive.ts",

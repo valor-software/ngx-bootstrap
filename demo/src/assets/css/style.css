@@ -1,5 +1,5 @@
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   background-color: #f5f9fb;
 }
 
@@ -301,15 +301,15 @@ body,html {
 }
 
 #main .content-header {
-  border-left: 3px solid #babfc4;
+  /*border-left: 3px solid #babfc4;*/
   padding-left: 15px;
 }
 
 #main .content-header h2 {
-  /*font-size: 34px;*/
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 500;
   color: #1d1d2b;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   margin-top: 35px;
   margin-bottom: 20px;
   /*line-height: 23px;*/
@@ -350,7 +350,7 @@ body,html {
 #content li:not([class^='L']) ,
 #content .accordion h4 {
   font-weight: 300;
-  font-size: 16px;
+  font-size: 18px;
   color: #1d1d2b;
 }
 

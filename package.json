@@ -6,6 +6,7 @@
   "scripts": {
     "lite-server": "lite-server -c demo/bs-config.json",
     "typedoc": "typedoc --exclude '**/*.spec.ts' ./src/",
+    "ng-api-doc": "node scripts/docs/get-doc.js",
     "demo.serve": "run-s build demo.build lite-server",
     "demo.gh-pages": "run-s build demo.build demo.deploy",
     "demo.build": "ng build -p --aot && npm run generate-bs4",
