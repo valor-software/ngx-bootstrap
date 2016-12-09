@@ -8,6 +8,7 @@ import { GettingStartedComponent } from './getting-started/getting-started.compo
 import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
+import { AppFooterComponent } from './common/app-footer/app-footer.component';
 import ngdoc from '!!json!../ng-api-doc.json';
 // will be lazy loaded later
 import { DemoAccordionModule } from './components/accordion';
@@ -39,7 +40,8 @@ export function getNgDoc(): NgApiDoc {
     GettingStartedComponent,
     TopMenuComponent,
     MainMenuComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    AppFooterComponent
   ],
   imports: [
     NgApiDocModule,
