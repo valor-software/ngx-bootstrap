@@ -7,14 +7,14 @@ Base specifications: [bootstrap 3](http://getbootstrap.com/javascript/#modals) o
 
 ```typescript
 import { Component, ViewContainerRef } from '@angular/core';
+import { ComponentsHelper } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({selector:'app-root'})
 class AppRoot {
-  protected viewContainerRef: ViewContainerRef;
 
-  public constructor(viewContainerRef:ViewContainerRef) {
+  public constructor(componentsHelper:ComponentsHelper, viewContainerRef:ViewContainerRef) {
     // You need this small hack in order to catch application root view container ref
-    this.viewContainerRef = viewContainerRef;
+    componentsHelper.setRootViewContainerRef(viewContainerRef);
   }
 }
 ```
