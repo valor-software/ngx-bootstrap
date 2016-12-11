@@ -63,7 +63,7 @@ describe('Directives: Tooltips', () => {
   it('tooltip should be displayed after specified delay', fakeAsync(() => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
-    context.delay = 1000;
+    context._delay = 1000;
     fixture.detectChanges();
     tooltipElement.focus();
     tick(1100);
@@ -77,7 +77,7 @@ describe('Directives: Tooltips', () => {
     tooltipElement.focus();
     tooltipElement.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
     fixture.detectChanges();
-    tick(context.delay);
+    tick(context._delay);
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
 
@@ -85,7 +85,7 @@ describe('Directives: Tooltips', () => {
     const element: Element = fixture.debugElement.nativeElement;
     const showTooltipBtn: any = element.querySelector('#showTooltipBtn');
     showTooltipBtn.click();
-    tick(context.delay);
+    tick(context._delay);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
@@ -94,7 +94,7 @@ describe('Directives: Tooltips', () => {
     const element: Element = fixture.debugElement.nativeElement;
     const showTooltipBtn: any = element.querySelector('#hideTooltipBtn');
     showTooltipBtn.click();
-    tick(context.delay);
+    tick(context._delay);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).toBeNull();
   }));
