@@ -18,7 +18,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 
-import { ComponentsHelper } from '../utils/components-helper.service';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
 
@@ -74,7 +73,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected viewContainerRef:ViewContainerRef;
   protected element:ElementRef;
   protected renderer:Renderer;
-  protected componentsHelper:ComponentsHelper;
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
 
@@ -154,13 +152,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  public constructor(control:NgControl, viewContainerRef:ViewContainerRef, element:ElementRef,
-                     renderer:Renderer, componentsHelper:ComponentsHelper, cis: ComponentLoaderFactory) {
+  public constructor(control:NgControl, viewContainerRef:ViewContainerRef, element:ElementRef, renderer:Renderer, cis: ComponentLoaderFactory) {
     this.element = element;
     this.ngControl = control;
     this.viewContainerRef = viewContainerRef;
     this.renderer = renderer;
-    // this.componentsHelper = componentsHelper;
     this._typeahead = cis
       .createLoader<TypeaheadContainerComponent>(element, viewContainerRef, renderer);
   }
@@ -209,21 +205,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         animation: false
       });
 
-    // let options = new TypeaheadOptions({
-    //   typeaheadRef: this,
-    //   placement: this.placement,
-    //   animation: false
-    // });
-    //
-    // let binding = ReflectiveInjector.resolve([
-    //   {provide: TypeaheadOptions, useValue: options}
-    // ]);
-    //
-    // this.popup = this.componentsHelper
-    //   .appendNextToLocation(TypeaheadContainerComponent, this.viewContainerRef, binding);
-
-    // this.popup.instance.position(this.viewContainerRef.element);
-    // this._container = this.popup.instance;
     this._container = this._typeahead.instance;
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
@@ -243,10 +224,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._typeahead.hide();
       this._container = null;
     }
-    // if (this._container) {
-    //   this.popup.destroy();
-    //   this._container = void 0;
-    // }
   }
 
   public ngOnDestroy():any {
