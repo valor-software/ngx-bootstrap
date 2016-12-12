@@ -19,7 +19,7 @@ const getTabContent = (tabNumber:number) => {
   return $('accordion-group:nth-child(' + tabNumber + ') .panel-body');
 };
 
-describe('Check the Accordion page in bootstrap 3', () => {
+fdescribe('Check the Accordion page in bootstrap 3', () => {
   beforeAll(() => {
     browser.get('#/accordion');
     leftPanelTests.checkLeftPanelMini();

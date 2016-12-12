@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { PagerComponent } from '../pagination/pager.component';
 import { PaginationModule } from '../pagination/pagination.module';
+const { fireEvent } = require('../../scripts/helpers');
 
 describe('Component: Pager:', () => {
 
@@ -109,7 +110,7 @@ describe('Component: Pager:', () => {
 
     context.page = 2;
     fixture.detectChanges();
-    element.dispatchEvent(new Event('input'));
+    fireEvent(element, 'input');
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
