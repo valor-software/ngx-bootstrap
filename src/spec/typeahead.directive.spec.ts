@@ -86,7 +86,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should not set the container reference', () => {
-      expect(directive.container).toBeFalsy();
+      expect(directive._container).toBeFalsy();
     });
   });
 
@@ -107,7 +107,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should set the container reference', () => {
-      expect(directive.container).toBeTruthy();
+      expect(directive._container).toBeTruthy();
     });
 
     it('should result in a total of 2 matches, when \"Ala\" is entered', fakeAsync(() => {
