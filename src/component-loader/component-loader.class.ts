@@ -24,10 +24,10 @@ export class ComponentLoader<T> {
   public onHidden: EventEmitter<any> = new EventEmitter();
 
   public instance: T;
+  public _componentRef: ComponentRef<T>;
 
   private _componentFactory: ComponentFactory<T>;
   private _elementRef: ElementRef;
-  private _componentRef: ComponentRef<T>;
   private _zoneSubscription: any;
   private _contentRef: ContentRef;
   private _viewContainerRef: ViewContainerRef;
