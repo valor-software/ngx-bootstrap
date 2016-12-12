@@ -1,3 +1,4 @@
+// tslint:disable
 /**
  * @copyright Angular ng-bootstrap team
  */
