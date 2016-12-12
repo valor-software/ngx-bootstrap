@@ -63,6 +63,8 @@ let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
 @Component({
   selector: 'typeahead-container',
   template: isBS4 ? bs4 : bs3,
+  // tslint:disable-next-line
+  host: {'[class]': '"dropdown open"' },
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
@@ -98,17 +100,6 @@ export class TypeaheadContainerComponent {
 
   public get itemTemplate():TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
-  }
-
-  public position(hostEl:ElementRef):void {
-    // this.top = '0px';
-    // this.left = '0px';
-    // let p = positionService
-    //   .positionElements(hostEl.nativeElement,
-    //     this.element.nativeElement.children[0],
-    //     this.placement, false);
-    // this.top = p.top + 'px';
-    // this.left = p.left + 'px';
   }
 
   public selectActiveMatch():void {

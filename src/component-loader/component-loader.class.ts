@@ -195,7 +195,7 @@ export class ComponentLoader<T> {
   }
 
   private _subscribePositioning(): void {
-    if (this._zoneSubscription) {
+    if (this._zoneSubscription || !this.attachment) {
       return;
     }
 
