@@ -5,8 +5,6 @@ import { PositioningService } from '../positioning';
 import { PopoverDirective } from './popover.directive';
 import { PopoverContainerComponent } from './popover-container.component';
 
-export { PopoverConfig } from './popover-config';
-
 @NgModule({
   declarations: [PopoverDirective, PopoverContainerComponent],
   exports: [PopoverDirective],

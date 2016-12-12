@@ -2,7 +2,7 @@
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
-import { parseTriggers } from './triggers';
+import { parseTriggers } from '../../../utils/triggers';
 
 describe('triggers', () => {
 

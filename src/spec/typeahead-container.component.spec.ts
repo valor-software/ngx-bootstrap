@@ -38,7 +38,6 @@ describe('Component: TypeaheadContainer', () => {
     let dropDown:HTMLElement;
 
     beforeEach(() => {
-      component.position(fixture.elementRef);
       fixture.detectChanges();
 
       dropDown = fixture.debugElement.query(By.css('.dropdown-menu')).nativeElement as HTMLElement;

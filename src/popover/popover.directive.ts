@@ -37,7 +37,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Returns whether or not the popover is currently being shown
    */
-  @Input
+  @Input()
   public get isOpen(): boolean { return this._popover.isShown; }
 
   public set isOpen(value: boolean) {
@@ -47,11 +47,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the popover is shown
    */
-  @Output() public onShown: EventEmitter;
+  @Output() public onShown: EventEmitter<any>;
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() public onHidden: EventEmitter;
+  @Output() public onHidden: EventEmitter<any>;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
 

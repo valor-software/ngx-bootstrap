@@ -2,7 +2,6 @@
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
-
 import { Renderer } from '@angular/core';
 import { Trigger } from './trigger.class';
 
@@ -11,7 +10,7 @@ const DEFAULT_ALIASES = {
   focus: ['focusin', 'focusout']
 };
 
-export function parseTriggers(triggers: string, aliases:any = DEFAULT_ALIASES): Trigger[] {
+export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();
 
   if (trimmedTriggers.length === 0) {
@@ -40,9 +39,9 @@ export function parseTriggers(triggers: string, aliases:any = DEFAULT_ALIASES): 
 }
 
 export function listenToTriggers(renderer: Renderer, target: any, triggers: string,
-                                 showFn: Function, hideFn: Function, toggleFn: Function) {
+                                 showFn: Function, hideFn: Function, toggleFn: Function): Function {
   const parsedTriggers = parseTriggers(triggers);
-  const listeners:any[] = [];
+  const listeners: any[] = [];
 
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
     return Function.prototype;
@@ -59,5 +58,5 @@ export function listenToTriggers(renderer: Renderer, target: any, triggers: stri
       renderer.listen(target, trigger.close, hideFn));
   });
 
-  return () => { listeners.forEach((unsubscribeFn:Function) => unsubscribeFn()); };
+  return () => { listeners.forEach((unsubscribeFn: Function) => unsubscribeFn()); };
 }
