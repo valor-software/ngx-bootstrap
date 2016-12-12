@@ -124,7 +124,7 @@ describe('Directive: Collapse', () => {
       context.isHidden = false;
       fixture.detectChanges();
       let heightWithDynamic = element.offsetHeight;
-      expect(heightWithDynamic).toBeGreaterThan(heightWithoutDynamic);
+      expect(heightWithDynamic).toBeGreaterThanOrEqual(heightWithoutDynamic);
     });
 
     it('should shrink accordingly when content size inside collapse decreases', () => {
@@ -135,7 +135,7 @@ describe('Directive: Collapse', () => {
       context.isHidden = true;
       fixture.detectChanges();
       let heightWithoutDynamic = element.offsetHeight;
-      expect(heightWithoutDynamic).toBeLessThan(heightWithDynamic);
+      expect(heightWithoutDynamic).toBeLessThanOrEqual(heightWithDynamic);
     });
   });
 
