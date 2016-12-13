@@ -127,7 +127,7 @@ describe('Directive: Buttons', () => {
     });
   });
 
-  describe('radio', () => {
+  xdescribe('radio', () => {
     it('should set active class based on model', () => {
       let btn = element.querySelector('.btn-group.radio');
       expect(btn.children[0].classList).not.toContain('active');

@@ -11,6 +11,8 @@ import { DOCUMENT } from '@angular/platform-browser';
  */
 @Injectable()
 export class ComponentsHelper {
+  public root:ViewContainerRef;
+
   public constructor(private applicationRef:ApplicationRef,
                      private componentFactoryResolver:ComponentFactoryResolver,
                      private injector:Injector) {
@@ -21,7 +23,8 @@ export class ComponentsHelper {
   }
 
   /**
-   * This is a name conventional class to get application root view component ref
+   * In some cases, like using ngUpgrate,
+   * you need to explicitly set view container ref
    * to made this method working you need to add:
    * ```typescript
    *  @Component({
@@ -29,23 +32,41 @@ export class ComponentsHelper {
    *   ...
    *   })
    *  export class MyApp {
-   *    constructor(viewContainerRef: ViewContainerRef) {
+   *    constructor(componentsHelper:ComponentsHelper, viewContainerRef: ViewContainerRef) {
    *        // A Default view container ref, usually the app root container ref.
    *        // Has to be set manually until we can find a way to get it automatically.
-   *        this.viewContainerRef = viewContainerRef;
+   *        componentsHelper.setRootViewContainerRef(viewContainerRef)
    *      }
    *  }
    * ```
+   */
+  public setRootViewContainerRef(value:ViewContainerRef):void {
+    this.root = value;
+  }
+  /**
+   * This is a name conventional class to get application root view component ref
    * @returns {ViewContainerRef} - application root view component ref
    */
-  public getRootViewContainerRef(injector:Injector):ViewContainerRef {
-    // The only way for now (by @mhevery)
-    // https://github.com/angular/angular/issues/6446#issuecomment-173459525
-    // this is a class of application bootstrap component (like my-app)
-    const classOfRootComponent = this.applicationRef.componentTypes[0];
-    // this is an instance of application bootstrap component
-    const appInstance = injector.get(classOfRootComponent);
-    return appInstance.viewContainerRef;
+  public getRootViewContainerRef():ViewContainerRef {
+    // https://github.com/angular/angular/issues/9293
+    if (this.root) {
+      return this.root;
+    }
+
+    const comps = this.applicationRef.components;
+
+    if(!comps.length) {
+      throw new Error(`ApplicationRef instance not found`);
+    }
+
+    try {
+      /* one more ugly hack, read issue above for details */
+      const rootComponent = (this.applicationRef as any )._rootComponents[0];
+      this.root = rootComponent._hostElement.vcRef;
+      return this.root;
+    } catch (e) {
+      throw new Error(`ApplicationRef instance not found`);
+    }
   }
 
   /**
@@ -81,14 +102,12 @@ export class ComponentsHelper {
    * @param ComponentClass - @Component class
    * @param ComponentOptionsClass - options class
    * @param options - instance of options
-   * @param contextInjector - injector to resolve root view container (any injector except root injector will fit)
    * @returns {ComponentRef<T>} - returns ComponentRef<T>
    */
   public appendNextToRoot<T>(ComponentClass:Type<T>,
                              ComponentOptionsClass:any,
-                             options:any,
-                             contextInjector:Injector):ComponentRef<T> {
-    let location = this.getRootViewContainerRef(contextInjector);
+                             options:any):ComponentRef<T> {
+    let location = this.getRootViewContainerRef();
     let providers = ReflectiveInjector.resolve([
       {provide: ComponentOptionsClass, useValue: options}
     ]);

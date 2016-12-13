@@ -3,6 +3,9 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
+/* tslint:disable-next-line */
+const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
+
 @Component({
   /* tslint:disable */
   selector: 'rating[ngModel]',
@@ -14,7 +17,8 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
         <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
       </template>
     </span>
-  `
+  `,
+  providers: [NgModel]
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public max:number;
@@ -31,12 +35,12 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   public onTouched:any = Function.prototype;
 
   public cd:NgModel;
-  private range:Array<any>;
-  private value:number;
+  public range:Array<any>;
+  public value:number;
   private preValue:number;
 
   @HostListener('keydown', ['$event'])
-  protected onKeydown(event:KeyboardEvent):void {
+  public onKeydown(event:KeyboardEvent):void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
@@ -86,7 +90,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  protected reset():void {
+  public reset():void {
     this.value = this.preValue;
     this.onLeave.emit(this.value);
   }

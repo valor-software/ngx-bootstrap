@@ -23,13 +23,15 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, IPagin
   @Input() public nextText:string;
   @Input() public lastText:string;
   @Input() public rotate:boolean;
+  // css
+  @Input() public pageBtnClass: string;
 
-  @Input() private disabled:boolean;
+  @Input() public disabled:boolean;
   @Input() public get itemsPerPage():number {}
-  @Input() private get totalItems():number {}
+  @Input() public get totalItems():number {}
 
-  @Output() private numPages:EventEmitter<number> = new EventEmitter(false);
-  @Output() private pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
+  @Output() public numPages:EventEmitter<number> = new EventEmitter(false);
+  @Output() public pageChanged:EventEmitter<IPageChangedEvent> = new EventEmitter(false);
 
 @Component({
   selector: 'pager[ngModel]',
@@ -49,6 +51,7 @@ export class PagerComponent extends Pagination {}
   - `nextText` (`?string='Next'`) - next button text
   - `firstText` (`?string='First'`) - first button text
   - `lastText` (`?string='Last'`) - last button text
+  - `pageBtnClass` (`?string=''`) - add class to `<li>`
 
 ### Pagination events
   - `numPages` - fired when total pages count changes, `$event:number` equals to total pages count
@@ -61,6 +64,7 @@ export class PagerComponent extends Pagination {}
   - `itemsPerPage` (`?number=10`) - maximum number of items per page. If value less than 1 will display all items on one page
   - `previousText` (`?string='Previous'`) - previous button text
   - `nextText` (`?string='Next'`) - next button text
+  - `pageBtnClass` (`?string=''`) - add class to `<li>`
 
 ### Pager events
   - `numPages` - fired when total pages count changes, `$event:number` equals to total pages count

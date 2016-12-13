@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, Self } from '@angular/core';
+import { Component, EventEmitter, Input, Output, Self, ViewChild } from '@angular/core';
+import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { ControlValueAccessor, NgModel } from '@angular/forms';
 
 /* tslint:disable:component-selector-name component-selector-type */
@@ -26,12 +27,15 @@ import { ControlValueAccessor, NgModel } from '@angular/forms';
                       [dateDisabled]="dateDisabled"
                       [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation"
+                      [monthColLimit]="monthColLimit"
+                      [yearColLimit]="yearColLimit"
                       (selectionDone)="onSelectionDone($event)">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
-    `
+    `,
+  providers: [NgModel]
 })
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
@@ -53,10 +57,14 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
+  @Input() public monthColLimit: number;
+  @Input() public yearColLimit: number;
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
   @Output() public selectionDone:EventEmitter<Date> = new EventEmitter<Date>(undefined);
+
+  @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
@@ -81,7 +89,6 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   public onUpdate(event:any):void {
-    this.writeValue(event);
     this.cd.viewToModelUpdate(event);
   }
 
@@ -91,19 +98,12 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   // todo: support null value
   public writeValue(value:any):void {
-    // todo: fix something sends here new date all the time
-    // if (value) {
-    //  if (typeof value !== 'Date') {
-    //    value = new Date(value);
-    //  }
-    //
-    //  this.activeDate = value;
-    // }
-    if (value === this._activeDate) {
+    if (this._datePicker.compare(value, this._activeDate) === 0) {
       return;
     }
     if (value && value instanceof Date) {
       this.activeDate = value;
+      this._datePicker.select(value, false);
       return;
     }
 

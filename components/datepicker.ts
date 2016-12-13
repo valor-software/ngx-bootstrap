@@ -6,6 +6,9 @@
  4. date-disabled attribute support
  5. template-url attribute support
  */
-export { DatePickerPopupDirective } from './datepicker/datepicker-popup.component';
 export { DatePickerComponent } from './datepicker/datepicker.component';
 export { DatepickerModule } from './datepicker/datepicker.module';
+export { DayPickerComponent } from './datepicker/daypicker.component'
+export { MonthPickerComponent } from './datepicker/monthpicker.component'
+export { YearPickerComponent } from './datepicker/yearpicker.component'
+export { DateFormatter } from './datepicker/date-formatter'

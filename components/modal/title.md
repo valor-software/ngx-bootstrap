@@ -6,10 +6,12 @@ Base specifications: [bootstrap 3](http://getbootstrap.com/javascript/#modals) o
 - Don't forget to add `hack` to your application root component ([why?](https://github.com/angular/angular/issues/6446#issuecomment-173459525))
 
 ```typescript
-import {Component, ViewContainerRef} from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 
 @Component({selector:'app-root'})
 class AppRoot {
+  private viewContainerRef: ViewContainerRef;
+
   public constructor(viewContainerRef:ViewContainerRef) {
     // You need this small hack in order to catch application root view container ref
     this.viewContainerRef = viewContainerRef;

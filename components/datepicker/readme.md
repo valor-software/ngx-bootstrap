@@ -34,6 +34,8 @@ import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
   - `yearRange` (`?number=20`) - number of years displayed in year selection
   - `shortcutPropagation` (`?boolean=false`) - if `true` shortcut`s event propagation will be disabled
   - `onlyCurrentMonth` (`?boolean=false`) - if `true` only dates from the currently displayed month will be shown
+  - `monthColLimit` (`?number=3`) - number of months displayed in a single row of month picker
+  - `yearColLimit` (`?number=5`) - number of years displayed in a single row of year picker
 
 <!--
 ### Date picker popup properties

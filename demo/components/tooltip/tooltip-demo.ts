@@ -13,4 +13,8 @@ export class TooltipDemoComponent {
   public dynamicTooltipText:string = 'dynamic';
   public htmlTooltip:string = 'I\'ve been made <b>bold</b>!';
   public tooltipModel:any = {text: 'foo', index: 1};
+
+  public tooltipStateChanged(state: boolean):void {
+    console.log(`Tooltip is open: ${state}`);
+  }
 }

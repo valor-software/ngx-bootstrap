@@ -24,7 +24,14 @@ npm-debug.log
 /components/**/*.js
 /components/**/*.js.map
 /components/**/*.d.ts
+/tests_e2e/**/*.e2e.js
+/tests_e2e/**/*.e2e.js.map
 ng2-bootstrap.js
 ng2-bootstrap.d.ts
 ng2-bootstrap.js.map
 /logs
+
+factories
+
+/**/*.metadata.json
+/**/*.ngfactory.ts

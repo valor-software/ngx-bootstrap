@@ -22,7 +22,7 @@ export class AlertComponent implements OnInit {
 
   @Output() public close:EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
 
-  private closed:boolean;
+  public closed:boolean;
   private classes:Array<string> = [];
 
   public ngOnInit():any {

@@ -9,7 +9,7 @@ import { TabsModule } from 'ng2-bootstrap/components/tabs';
 <tabset>
   <tab heading='Tab 1'>Tab 1 content</tab>
   <tab>
-    <template tab-heading>Tab 2</template>
+    <template tabHeading>Tab 2</template>
     Tab 2 content
   </tab>
 </tabset>
@@ -44,7 +44,7 @@ export class TabDirective implements OnInit, OnDestroy, DoCheck {
 }
 
 // directive TabHeading
-@Directive({selector: '[tab-heading]'})
+@Directive({selector: '[tabHeading]'})
 export class TabHeadingDirective {}
 ```
 
@@ -58,6 +58,7 @@ export class TabHeadingDirective {}
   - `active` (`?boolean=false`) - if tab is active equals true, or set `true` to activate tab
   - `disabled` (`?boolean=false`) - if `true` tab can not be activated
   - `removable` (`?boolean=false`) - if `true` tab can be removable, additional button will appear
+  - `customClass` (`?string`) - if set, will be added to the tab's class atribute
 
 ### Tab events
   - `select` - fired when `tab` became active, `$event:Tab` equals to selected instance of `Tab` component

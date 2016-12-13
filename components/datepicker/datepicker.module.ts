@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { DatePickerInnerComponent } from './datepicker-inner.component';
-// import {DatePickerPopup} from './datepicker-popup';
-import { DatePickerPopupDirective } from './datepicker-popup.component';
 import { DatePickerComponent } from './datepicker.component';
 import { DayPickerComponent } from './daypicker.component';
 import { MonthPickerComponent } from './monthpicker.component';
@@ -13,8 +11,10 @@ import { ComponentsHelper } from '../utils/components-helper.service';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  declarations: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent],
-  exports: [DatePickerPopupDirective, DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, MonthPickerComponent, YearPickerComponent],
+  declarations: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent,
+                 MonthPickerComponent, YearPickerComponent],
+  exports: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent, FormsModule,
+            MonthPickerComponent, YearPickerComponent],
   providers: [ComponentsHelper]
 })
 export class DatepickerModule {
