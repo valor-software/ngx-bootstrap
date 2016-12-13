@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 import { KeyAttribute } from './common';
 
 export class PositionService {

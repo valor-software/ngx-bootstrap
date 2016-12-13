@@ -15,7 +15,7 @@ import { RatingModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    RatingModule
+    RatingModule.forRoot()
   ],
   exports: [RatingSectionComponent]
 })

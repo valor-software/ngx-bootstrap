@@ -27,9 +27,15 @@ testem.log
 /logs
 
 # e2e
-#/demo/e2e/*.js
-#/demo/e2e/*.map
+/demo/e2e/*.js
+/demo/e2e/*.map
+demo/temp
 
 #System Files
 .DS_Store
 Thumbs.db
+
+src/**/*.js
+scripts/**/*.js
+src/**/*.map
+scripts/**/*.map

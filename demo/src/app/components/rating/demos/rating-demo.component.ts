@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'rating-demo',
-  templateUrl: 'rating-demo.component.html'
+  templateUrl: './rating-demo.component.html'
 })
 export class RatingDemoComponent {
   public x:number = 5;

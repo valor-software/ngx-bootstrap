@@ -1,22 +1,3 @@
-### Usage
-```typescript
-import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { DropdownModule } from 'ng2-bootstrap/components/dropdown';
-```
-
-```html
-<!-- dropdown directive marks a dropdown root element -->
-<div dropdown>
-  <!-- click on dropdown-toggle toggles dropdown state, optional -->
-  <div dropdownToggle></div>
-  <!-- dropdown-menu holds content which will be shown -->
-  <div dropdownMenu>
-    <!-- this content will be shown if dropdown opened -->
-  </div>
-</div>
-```
-
 ### Annotations
 ```typescript
 // directive Dropdown

@@ -15,7 +15,7 @@ import { DropdownModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    DropdownModule
+    DropdownModule.forRoot()
   ],
   exports: [DropdownSectionComponent]
 })

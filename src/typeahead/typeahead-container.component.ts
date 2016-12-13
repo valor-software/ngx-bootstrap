@@ -1,15 +1,12 @@
 import { Component, ElementRef, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../utils/ng2-bootstrap-config';
-import { positionService } from '../utils/position';
-import { TypeaheadOptions } from './typeahead-options.class';
 import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
 
 const bs4 = `
   <div class="dropdown-menu"
-       [ngStyle]="{top: top, left: left, display: 'block'}"
        (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
        <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
@@ -38,7 +35,6 @@ const bs4 = `
 
 const bs3 = `
   <ul class="dropdown-menu"
-      [ngStyle]="{top: top, left: left, display: 'block'}"
       (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
       <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
@@ -67,6 +63,8 @@ let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
 @Component({
   selector: 'typeahead-container',
   template: isBS4 ? bs4 : bs3,
+  // tslint:disable-next-line
+  host: {'[class]': '"dropdown open"' },
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
@@ -82,19 +80,13 @@ export class TypeaheadContainerComponent {
   protected _matches:TypeaheadMatch[] = [];
   protected placement:string;
 
-  public constructor(element:ElementRef, options:TypeaheadOptions) {
+  public constructor(element:ElementRef) {
     this.element = element;
-    Object.assign(this, options);
   }
 
   public get matches():TypeaheadMatch[] {
     return this._matches;
   }
-
-  public get itemTemplate():TemplateRef<any> {
-    return this.parent ? this.parent.typeaheadItemTemplate : undefined;
-  }
-
   public set matches(value:TypeaheadMatch[]) {
     this._matches = value;
 
@@ -106,15 +98,8 @@ export class TypeaheadContainerComponent {
     }
   }
 
-  public position(hostEl:ElementRef):void {
-    this.top = '0px';
-    this.left = '0px';
-    let p = positionService
-      .positionElements(hostEl.nativeElement,
-        this.element.nativeElement.children[0],
-        this.placement, false);
-    this.top = p.top + 'px';
-    this.left = p.left + 'px';
+  public get itemTemplate():TemplateRef<any> {
+    return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
   public selectActiveMatch():void {

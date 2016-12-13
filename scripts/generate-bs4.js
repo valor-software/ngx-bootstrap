@@ -1,14 +1,15 @@
 const fs = require('fs');
 
 const files = {
-  initial: 'demo/src/index.html',
-  generated: 'demo/src/index-bs4.html'
+  initial: 'demo/dist/index.html',
+  generated: 'demo/dist/index-bs4.html'
 };
 
 const toReplace = [
   {
-    from: '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">',
-    to: '<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">'
+    from: '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">',
+    to: `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/glyphicons.css">`
   }, {
     from: '<script src="assets/js/prettify.min.js"></script>',
     to: '<script src="assets/js/prettify.min.js"></script>\r\n  <!-- Enable bootstrap 4 theme -->\r\n  <script>window.__theme = \'bs4\';</script>'

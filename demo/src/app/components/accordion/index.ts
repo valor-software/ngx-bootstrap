@@ -16,7 +16,7 @@ import { AccordionModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    AccordionModule
+    AccordionModule.forRoot()
   ],
   exports: [AccordionSectionComponent]
 })

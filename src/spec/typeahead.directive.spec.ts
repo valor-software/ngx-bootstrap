@@ -5,6 +5,8 @@ import { By } from '@angular/platform-browser';
 import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
+import { FormsModule } from '@angular/forms';
+const { fireEvent } = require('../../scripts/helpers');
 
 interface State {
   id:number;
@@ -37,7 +39,7 @@ describe('Directive: Typeahead', () => {
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [TestTypeaheadComponent],
-      imports: [TypeaheadModule]
+      imports: [TypeaheadModule.forRoot(), FormsModule]
     }).createComponent(TestTypeaheadComponent);
 
     fixture.detectChanges();
@@ -86,7 +88,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should not set the container reference', () => {
-      expect(directive.container).toBeFalsy();
+      expect(directive._container).toBeFalsy();
     });
   });
 
@@ -94,7 +96,7 @@ describe('Directive: Typeahead', () => {
 
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
-      inputElement.dispatchEvent(new Event('keyup'));
+      fireEvent(inputElement, 'keyup');
 
       fixture.detectChanges();
       tick(100);
@@ -107,7 +109,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should set the container reference', () => {
-      expect(directive.container).toBeTruthy();
+      expect(directive._container).toBeTruthy();
     });
 
     it('should result in a total of 2 matches, when \"Ala\" is entered', fakeAsync(() => {
@@ -121,7 +123,7 @@ describe('Directive: Typeahead', () => {
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
       inputElement.value = 'foo';
-      inputElement.dispatchEvent(new Event('keyup'));
+      fireEvent(inputElement, 'keyup');
 
       fixture.detectChanges();
       tick(100);
@@ -134,7 +136,7 @@ describe('Directive: Typeahead', () => {
 
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
-      inputElement.dispatchEvent(new Event('keyup'));
+      fireEvent(inputElement, 'keyup');
       directive.typeaheadGroupField = 'region';
 
       fixture.detectChanges();

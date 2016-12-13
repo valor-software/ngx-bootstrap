@@ -2,5 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TooltipConfig {
-  public tooltipTrigger: string|Array<string> = ['mouseenter', 'focusin'];
+  public placement:string = 'top';
+  public triggers:string = 'hover focus';
+  public container: string;
 }

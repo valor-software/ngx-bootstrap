@@ -7,7 +7,7 @@ import { TypeaheadMatch } from 'ng2-bootstrap';
 
 @Component({
   selector: 'typeahead-demo',
-  templateUrl: 'typeahead-demo.component.html'
+  templateUrl: './typeahead-demo.component.html'
 })
 export class TypeaheadDemoComponent {
   public stateCtrl:FormControl = new FormControl();

@@ -17,6 +17,29 @@ export class DropdownDirective implements OnInit, OnDestroy {
     return this._isOpen;
   }
 
+  public set isOpen(value:boolean) {
+    this._isOpen = !!value;
+
+    // todo: implement after porting position
+    // if (this.appendToBody && this.menuEl) {
+    //
+    // }
+
+    // todo: $animate open<->close transitions, as soon as ng2Animate will be
+    // ready
+    if (this.isOpen) {
+      this.focusToggleElement();
+      dropdownService.open(this);
+    } else {
+      dropdownService.close(this);
+      this.selectedOption = void 0;
+    }
+    this.onToggle.emit(this.isOpen);
+    this.isOpenChange.emit(this.isOpen);
+    this._changeDetector.markForCheck();
+    // todo: implement call to setIsOpen if set and function
+  }
+
   @Input() public autoClose:string;
   @Input() public keyboardNav:boolean;
   // enum string: ['always', 'outsideClick', 'disabled']
@@ -43,29 +66,6 @@ export class DropdownDirective implements OnInit, OnDestroy {
     this.el = el;
     this._changeDetector = ref;
     // todo: bind to route change event
-  }
-
-  public set isOpen(value:boolean) {
-    this._isOpen = !!value;
-
-    // todo: implement after porting position
-    // if (this.appendToBody && this.menuEl) {
-    //
-    // }
-
-    // todo: $animate open<->close transitions, as soon as ng2Animate will be
-    // ready
-    if (this.isOpen) {
-      this.focusToggleElement();
-      dropdownService.open(this);
-    } else {
-      dropdownService.close(this);
-      this.selectedOption = void 0;
-    }
-    this.onToggle.emit(this.isOpen);
-    this.isOpenChange.emit(this.isOpen);
-    this._changeDetector.markForCheck();
-    // todo: implement call to setIsOpen if set and function
   }
 
   public ngOnInit():void {

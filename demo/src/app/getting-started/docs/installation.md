@@ -22,7 +22,7 @@ You will need bootstrap styles
 
 So your are in trouble, where to get help:
 - you can search and ask for help at [StackOverflow](https://stackoverflow.com/questions/tagged/ng2-bootstrap)
-- you can join [gitter](https://gitter.im/valor-software/ng2-bootstrap) or [slack](https://www.hamsterpad.com/chat/ng2) and ask a question ( response in slack will be faster )
+- you can join [gitter](https://gitter.im/valor-software/ng2-bootstrap) or **preferred** [slack](https://ng2-team.herokuapp.com/) and ask a question ( response in slack will be faster )
 - if none of this helped please [search](https://github.com/valor-software/ng2-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue) and only then open new issue
 
 # Contribution

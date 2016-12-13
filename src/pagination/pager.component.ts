@@ -1,8 +1,14 @@
-import { Component, ElementRef, OnInit, Renderer, Self, Input, Output, EventEmitter } from '@angular/core';
-import { NgModel, ControlValueAccessor } from '@angular/forms';
+import { Component, ElementRef, OnInit, Renderer, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { KeyAttribute } from '../utils/common';
 import { PageChangedEvent } from './pagination.component';
 import { PaginationConfig } from './pagination.config';
+
+export const PAGER_CONTROL_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => PagerComponent),
+  multi: true
+};
 
 const PAGER_TEMPLATE = `
     <ul class="pager">
@@ -15,59 +21,57 @@ const PAGER_TEMPLATE = `
   </ul>
 `;
 
-/* tslint:disable */
 @Component({
-  selector: 'pager[ngModel]',
+  selector: 'pager',
   template: PAGER_TEMPLATE,
-  providers: [NgModel]
+  providers: [PAGER_CONTROL_VALUE_ACCESSOR]
 })
-/* tslint:enable */
 export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribute {
-  public config:any;
-  @Input() public align:boolean;
-  @Input() public maxSize:number;
+  public config: any;
+  @Input() public align: boolean;
+  @Input() public maxSize: number;
 
-  @Input() public boundaryLinks:boolean;
-  @Input() public directionLinks:boolean;
+  @Input() public boundaryLinks: boolean;
+  @Input() public directionLinks: boolean;
   // labels
-  @Input() public firstText:string;
-  @Input() public previousText:string;
-  @Input() public nextText:string;
-  @Input() public lastText:string;
-  @Input() public rotate:boolean;
+  @Input() public firstText: string;
+  @Input() public previousText: string;
+  @Input() public nextText: string;
+  @Input() public lastText: string;
+  @Input() public rotate: boolean;
   // css
-  @Input() public pageBtnClass:string;
+  @Input() public pageBtnClass: string;
 
-  @Input() public disabled:boolean;
+  @Input() public disabled: boolean;
 
-  @Output() public numPages:EventEmitter<number> = new EventEmitter<number>(false);
-  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>(false);
+  @Output() public numPages: EventEmitter<number> = new EventEmitter<number>(false);
+  @Output() public pageChanged: EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>(false);
 
   @Input()
-  public get itemsPerPage():number {
+  public get itemsPerPage(): number {
     return this._itemsPerPage;
   }
 
-  public set itemsPerPage(v:number) {
+  public set itemsPerPage(v: number) {
     this._itemsPerPage = v;
     this.totalPages = this.calculateTotalPages();
   }
 
   @Input()
-  public get totalItems():number {
+  public get totalItems(): number {
     return this._totalItems;
   }
 
-  public set totalItems(v:number) {
+  public set totalItems(v: number) {
     this._totalItems = v;
     this.totalPages = this.calculateTotalPages();
   }
 
-  public get totalPages():number {
+  public get totalPages(): number {
     return this._totalPages;
   }
 
-  public set totalPages(v:number) {
+  public set totalPages(v: number) {
     this._totalPages = v;
     this.numPages.emit(v);
     if (this.inited) {
@@ -75,7 +79,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
     }
   }
 
-  public set page(value:number) {
+  public set page(value: number) {
     const _previous = this._page;
     this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
 
@@ -89,31 +93,28 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
     });
   }
 
-  public get page():number {
+  public get page(): number {
     return this._page;
   }
 
-  public onChange:any = Function.prototype;
-  public onTouched:any = Function.prototype;
+  public onChange: any = Function.prototype;
+  public onTouched: any = Function.prototype;
 
-  public cd:NgModel;
-  public renderer:Renderer;
-  public elementRef:ElementRef;
+  public renderer: Renderer;
+  public elementRef: ElementRef;
 
-  public classMap:string;
-  public pages:any[];
+  public classMap: string;
+  public pages: any[];
 
-  protected _itemsPerPage:number;
-  protected _totalItems:number;
-  protected _totalPages:number;
-  protected inited:boolean = false;
-  protected _page:number;
+  protected _itemsPerPage: number;
+  protected _totalItems: number;
+  protected _totalPages: number;
+  protected inited: boolean = false;
+  protected _page: number;
 
-  public constructor(@Self() cd:NgModel, renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
-    this.cd = cd;
+  public constructor(renderer: Renderer, elementRef: ElementRef, paginationConfig: PaginationConfig) {
     this.renderer = renderer;
     this.elementRef = elementRef;
-    cd.valueAccessor = this;
     if (!this.config) {
       this.configureOptions(Object.assign({}, paginationConfig.main, paginationConfig.pager));
     }
@@ -123,7 +124,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
     this.config = Object.assign({}, config);
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
     // watch for maxSize
     this.maxSize = typeof this.maxSize !== 'undefined'
@@ -149,57 +150,56 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
-    this.page = this.cd.value;
     this.inited = true;
   }
 
-  public writeValue(value:number):void {
+  public writeValue(value: number): void {
     this.page = value;
     this.pages = this.getPages(this.page, this.totalPages);
   }
 
-  public getText(key:string):string {
+  public getText(key: string): string {
     return (this as KeyAttribute)[key + 'Text'] || this.config[key + 'Text'];
   }
 
-  public noPrevious():boolean {
+  public noPrevious(): boolean {
     return this.page === 1;
   }
 
-  public noNext():boolean {
+  public noNext(): boolean {
     return this.page === this.totalPages;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void {
+  public registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn:() => {}):void {
+  public registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 
-  public selectPage(page:number, event?:MouseEvent):void {
+  public selectPage(page: number, event?: MouseEvent): void {
     if (event) {
       event.preventDefault();
     }
 
     if (!this.disabled) {
       if (event && event.target) {
-        let target:any = event.target;
+        let target: any = event.target;
         target.blur();
       }
       this.writeValue(page);
-      this.cd.viewToModelUpdate(this.page);
+      this.onChange(this.page);
     }
   }
 
   // Create page object used in template
-  protected makePage(num:number, text:string, active:boolean):{number:number, text:string, active:boolean} {
-    return { text, number:num, active };
+  protected makePage(num: number, text: string, active: boolean): {number: number, text: string, active: boolean} {
+    return {text, number: num, active};
   }
 
-  protected getPages(currentPage:number, totalPages:number):any[] {
-    let pages:any[] = [];
+  protected getPages(currentPage: number, totalPages: number): any[] {
+    let pages: any[] = [];
 
     // Default page limits
     let startPage = 1;
@@ -250,7 +250,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
   }
 
   // base class
-  protected calculateTotalPages():number {
+  protected calculateTotalPages(): number {
     let totalPages = this.itemsPerPage < 1
       ? 1
       : Math.ceil(this.totalItems / this.itemsPerPage);

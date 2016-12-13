@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { ButtonCheckboxDirective } from './button-checkbox.directive';
 import { ButtonRadioDirective } from './button-radio.directive';
 
 @NgModule({
-  imports: [FormsModule],
   declarations: [ButtonCheckboxDirective, ButtonRadioDirective],
-  exports: [ButtonCheckboxDirective, ButtonRadioDirective, FormsModule]
+  exports: [ButtonCheckboxDirective, ButtonRadioDirective]
 })
 export class ButtonsModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: ButtonsModule, providers: []};
+  }
 }

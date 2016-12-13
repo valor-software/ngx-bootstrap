@@ -15,7 +15,7 @@ import { ProgressbarModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    ProgressbarModule
+    ProgressbarModule.forRoot()
   ],
   exports: [ProgressbarSectionComponent]
 })

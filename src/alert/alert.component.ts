@@ -11,7 +11,6 @@ const ALERT_TEMPLATE = `
   </div>
   `;
 
-// TODO: templateUrl
 @Component({
   selector: 'alert',
   template: ALERT_TEMPLATE
@@ -26,7 +25,9 @@ export class AlertComponent implements OnInit {
   public closed: boolean;
   protected classes:string[] = [];
 
-  public constructor(public config: AlertConfig) {
+  public config: AlertConfig;
+  public constructor(config: AlertConfig) {
+    this.config = config;
     this.configureOptions();
   }
 

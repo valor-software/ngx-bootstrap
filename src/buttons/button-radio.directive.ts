@@ -3,13 +3,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-/* tslint:disable */
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => ButtonRadioDirective),
     multi: true
 };
-/* tslint:enable */
 
 @Directive({ selector: '[btnRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR] })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
@@ -20,6 +18,8 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     @Input() public btnRadio:any;
     @Input() public uncheckable:boolean;
     @Input() public value:any;
+
+    protected el: ElementRef;
 
     @HostBinding('class.active')
     public get isActive(): boolean {
@@ -42,7 +42,8 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
         this.onChange(this.value);
     }
 
-    public constructor( protected el: ElementRef) {
+    public constructor(el: ElementRef) {
+      this.el = el;
     }
 
     public ngOnInit(): void {

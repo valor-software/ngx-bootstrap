@@ -14,7 +14,7 @@ import { ButtonsModule } from 'ng2-bootstrap';
   imports: [
     CommonModule,
     FormsModule,
-    ButtonsModule,
+    ButtonsModule.forRoot(),
     SharedModule
   ],
   exports: [ButtonsSectionComponent]

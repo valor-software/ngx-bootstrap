@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'top-menu',
-  templateUrl: 'top-menu.component.html'
+  templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements AfterViewInit {
   public isShown:boolean = false;
@@ -12,7 +12,9 @@ export class TopMenuComponent implements AfterViewInit {
   private renderer:Renderer;
   private document:any;
 
-  public constructor(renderer:Renderer, @Inject(DOCUMENT) document:any, private router:Router) {
+  private router:Router;
+  public constructor(renderer:Renderer, @Inject(DOCUMENT) document:any, router:Router) {
+    this.router = router;
     this.renderer = renderer;
     this.document = document;
   }

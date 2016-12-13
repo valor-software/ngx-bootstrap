@@ -1,20 +1,3 @@
-### Usage
-```typescript
-import { TabsModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { TabsModule } from 'ng2-bootstrap/components/tabs';
-```
-
-```html
-<tabset>
-  <tab heading='Tab 1'>Tab 1 content</tab>
-  <tab>
-    <template tabHeading>Tab 2</template>
-    Tab 2 content
-  </tab>
-</tabset>
-```
-
 ### Annotations
 ```typescript
 // component Tabset
