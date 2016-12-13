@@ -7,7 +7,7 @@ const { fireEvent } = require('../../scripts/helpers');
 const overTemplate = `
     <div class="form-group">
       <label>Or use custom triggers, like focus: </label>
-      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  tooltipTrigger="focus"  class="form-control" />
+      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
     </div>
   
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
@@ -15,8 +15,7 @@ const overTemplate = `
       <input type="text" name="inputModel"  class="form-control"
              placeholder="Hover over this for a tooltip until this is filled"
              tooltip="Enter something in this input field to disable this tooltip"
-             tooltipPlacement="top"
-             tooltipTrigger="mouseenter"/>
+             placement="top" />
     </div>
              
     <p>
@@ -34,7 +33,7 @@ xdescribe('Directives: Tooltips', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestTooltipComponent],
-      imports: [TooltipModule, FormsModule]
+      imports: [TooltipModule.forRoot(), FormsModule]
     });
     TestBed.overrideComponent(TestTooltipComponent, {set: {template: overTemplate}});
     fixture = TestBed.createComponent(TestTooltipComponent);
@@ -65,7 +64,7 @@ xdescribe('Directives: Tooltips', () => {
   it('tooltip should be displayed after specified delay', fakeAsync(() => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
-    context.delay = 1000;
+    context._delay = 1000;
     fixture.detectChanges();
     tooltipElement.focus();
     fixture.detectChanges();

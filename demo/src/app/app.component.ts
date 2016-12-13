@@ -11,7 +11,7 @@ if (w && w.__theme === 'bs4') {
 
 @Component({
   selector: 'bs-demo',
-  templateUrl: 'app.component.html'
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterContentInit {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;

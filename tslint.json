@@ -3,6 +3,7 @@
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
     "no-forward-ref": false,
+    "no-null-keyword": false,
     "only-arrow-functions": false,
     "no-access-missing-member": false,
     "directive-selector": false,
