@@ -75,6 +75,9 @@ module.exports = function (config) {
     configuration.customLaunchers = customLaunchers();
     configuration.browsers = Object.keys(configuration.customLaunchers);
     configuration.concurrency = 3;
+    configuration.browserDisconnectTolerance = 2;
+    configuration.browserNoActivityTimeout = 20000;
+    configuration.browserDisconnectTimeout = 5000;
   }
 
   config.set(configuration);
