@@ -8,6 +8,7 @@ export class CarouselDemoComponent {
   public myInterval:number = 5000;
   public noWrapSlides:boolean = false;
   public slides:any[] = [];
+  public currentSlideIndex: number;
 
   public constructor() {
     for (let i = 0; i < 4; i++) {
@@ -24,7 +25,12 @@ export class CarouselDemoComponent {
     });
   }
 
-  public removeSlide(index:number):void {
-    this.slides.splice(index, 1);
+  public activeSlideChanged(index: number): void {
+    this.currentSlideIndex = index;
+  }
+
+  public removeSlide(index?: number):void {
+    const toRemove = index ? index : this.currentSlideIndex;
+    this.slides.splice(toRemove, 1);
   }
 }
