@@ -36,4 +36,6 @@ demo/temp
 Thumbs.db
 
 src/**/*.js
+scripts/**/*.js
 src/**/*.map
+scripts/**/*.map
