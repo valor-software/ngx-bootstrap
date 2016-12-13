@@ -43,6 +43,9 @@ module.exports = function (config) {
         base: 'Chrome',
         flags: ['--no-sandbox']
       }
+    },
+    mime: {
+      'text/x-typescript': ['ts','tsx']
     }
   };
 
