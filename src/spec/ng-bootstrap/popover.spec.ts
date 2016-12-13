@@ -106,16 +106,11 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl)
-        .toHaveCssClass('popover');
-      expect(windowEl)
-        .toHaveCssClass(`popover-${defaultConfig.placement}`);
-      expect(windowEl.textContent.trim())
-        .toBe('TitleHello, World!');
-      expect(windowEl.getAttribute('role'))
-        .toBe('tooltip');
-      expect(windowEl.parentNode)
-        .toBe(fixture.nativeElement);
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass(`popover-${defaultConfig.placement}`);
+      expect(windowEl.textContent.trim()).toBe('TitleHello, World!');
+      expect(windowEl.getAttribute('role')).toBe('tooltip');
+      expect(windowEl.parentNode).toBe(fixture.nativeElement);
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
@@ -278,7 +273,7 @@ describe('popover', () => {
   describe('visibility', () => {
     it('should emit events when showing and hiding popover', () => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" triggers="click" (shown)="shown()" (hidden)="hidden()"></div>`);
+        `<div popover="Great tip!" triggers="click" (onShown)="shown()" (onHidden)="hidden()"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
@@ -302,7 +297,7 @@ describe('popover', () => {
 
     it('should not emit close event when already closed', () => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" triggers="manual" (shown)="shown()" (hidden)="hidden()"></div>`);
+        `<div popover="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
       let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
@@ -327,7 +322,7 @@ describe('popover', () => {
 
     it('should not emit open event when already opened', () => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" triggers="manual" (shown)="shown()" (hidden)="hidden()"></div>`);
+        `<div popover="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
       let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');

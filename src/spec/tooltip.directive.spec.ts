@@ -6,7 +6,7 @@ import { TooltipModule } from '../tooltip/tooltip.module';
 const overTemplate = `
     <div class="form-group">
       <label>Or use custom triggers, like focus: </label>
-      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  tooltipTrigger="focus"  class="form-control" />
+      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
     </div>
   
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
@@ -14,8 +14,7 @@ const overTemplate = `
       <input type="text" name="inputModel"  class="form-control"
              placeholder="Hover over this for a tooltip until this is filled"
              tooltip="Enter something in this input field to disable this tooltip"
-             tooltipPlacement="top"
-             tooltipTrigger="mouseenter"/>
+             placement="top" />
     </div>
              
     <p>
@@ -33,7 +32,7 @@ describe('Directives: Tooltips', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestTooltipComponent],
-      imports: [TooltipModule, FormsModule]
+      imports: [TooltipModule.forRoot(), FormsModule]
     });
     TestBed.overrideComponent(TestTooltipComponent, {set: {template: overTemplate}});
     fixture = TestBed.createComponent(TestTooltipComponent);
