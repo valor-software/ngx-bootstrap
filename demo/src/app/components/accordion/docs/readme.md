@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { AccordionModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { AccordionModule } from 'ng2-bootstrap/components/accordion';
-```
-
 ### Annotations
 ```typescript
 // component Accordion

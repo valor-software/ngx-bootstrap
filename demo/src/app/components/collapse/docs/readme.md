@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { CollapseModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { CollapseModule } from 'ng2-bootstrap/components/collapse';
-```
-
 ### Annotations
 ```typescript
 // class Collapse

@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { TypeaheadModule } from 'ng2-bootstrap/components/typeahead';
-```
-
 ### Annotations
 ```typescript
 // directive Typeahead

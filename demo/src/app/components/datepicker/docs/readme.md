@@ -1,15 +1,8 @@
-### Usage
-```typescript
-import { DatepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
-```
-
 ### Annotations
 ```typescript
 // component DatePicker
 @Component({
-  selector: 'datepicker[ngModel], [datepicker][ngModel]'
+  selector: 'datepicker, [datepicker]'
 })
 ```
 

@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { TimepickerModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { TimepickerModule } from 'ng2-bootstrap/components/timepicker';
-```
-
 ### Annotations
 ```typescript
 // component Timepicker

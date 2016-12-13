@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { ProgressbarModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { ProgressbarModule } from 'ng2-bootstrap/components/progressbar';
-```
-
 ### Annotations
 ```typescript
 // class Progress implements OnInit

@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { TooltipModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { TooltipModule } from 'ng2-bootstrap/components/tooltip';
-```
-
 ### Annotations
 ```typescript
 // class Tooltip implements OnInit
