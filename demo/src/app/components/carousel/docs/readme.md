@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { CarouselModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { CarouselModule } from 'ng2-bootstrap/components/carousel';
-```
-
 ### Annotations
 ```typescript
 // class Carousel implements OnDestroy

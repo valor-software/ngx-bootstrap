@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AlertComponent } from './alert.component';
 import { AlertConfig } from './alert.config';
 
@@ -7,7 +7,10 @@ import { AlertConfig } from './alert.config';
   imports: [CommonModule],
   declarations: [AlertComponent],
   exports: [AlertComponent],
-  providers: [AlertConfig]
+  entryComponents: [AlertComponent]
 })
 export class AlertModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: AlertModule, providers: [AlertConfig]};
+  }
 }

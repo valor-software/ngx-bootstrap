@@ -8,6 +8,7 @@ import { DOCUMENT } from '@angular/platform-browser';
  * Components helper class to easily work with
  * allows to:
  * - get application root view container ref
+ * @deprecated
  */
 @Injectable()
 export class ComponentsHelper {
@@ -19,6 +20,7 @@ export class ComponentsHelper {
   public constructor(applicationRef:ApplicationRef,
                      componentFactoryResolver:ComponentFactoryResolver,
                      injector:Injector) {
+    console.warn(`ComponentsHelper is DEPRECATED, please check ComponentLoader and tooltips as a sample`);
     this.applicationRef = applicationRef;
     this.componentFactoryResolver = componentFactoryResolver;
     this.injector = injector;
@@ -45,8 +47,10 @@ export class ComponentsHelper {
    *      }
    *  }
    * ```
+   * @deprecated
    */
   public setRootViewContainerRef(value:ViewContainerRef):void {
+    console.warn(`This hack is not needed any more, please remove any usage of ComponentsHelper`);
     this.root = value;
   }
   /**

@@ -15,7 +15,7 @@ import { TimepickerDemoComponent } from './demos/timepicker-demo.component';
     CommonModule,
     FormsModule,
     SharedModule,
-    TimepickerModule
+    TimepickerModule.forRoot()
   ],
   exports: [TimepickerSectionComponent]
 })

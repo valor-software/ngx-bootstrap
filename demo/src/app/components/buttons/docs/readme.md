@@ -1,13 +1,7 @@
-### Usage
-```typescript
-import { ButtonsModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { ButtonsModule } from 'ng2-bootstrap/components/buttons';
-```
 ### Annotations
 ```typescript
 // directive ButtonRadio
-@Directive({ selector: '[btnRadio][ngModel]' })
+@Directive({ selector: '[btnRadio]' })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   @Input() public btnRadio:string;
   @Input() public uncheckable:boolean;
@@ -19,7 +13,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   public onClick() {}
 }
 // directive ButtonCheckbox
-@Directive({ selector: '[btnCheckbox][ngModel]' })
+@Directive({ selector: '[btnCheckbox]' })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   @Input() public btnCheckboxTrue:any;
   @Input() public btnCheckboxFalse:any;

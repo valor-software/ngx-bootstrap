@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { PaginationModule } from 'ng2-bootstrap/components/pagination';
-```
-
 ### Annotations
 ```typescript
 // component Pagination

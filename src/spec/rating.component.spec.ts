@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 
 import { RatingComponent } from '../rating/rating.component';
 import { RatingModule } from '../rating/rating.module';
+import { FormsModule } from '@angular/forms';
 
 describe('Component: Rating. Init:', () => {
 
@@ -91,7 +92,7 @@ describe('Component: Rating. Init:', () => {
     beforeEach(fakeAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TestRatingComponent],
-        imports: [RatingModule]
+        imports: [RatingModule.forRoot(), FormsModule]
       });
       TestBed.overrideComponent(TestRatingComponent, {set: {template: tpl}});
       fixture = TestBed.createComponent(TestRatingComponent);

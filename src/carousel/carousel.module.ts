@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { CarouselComponent } from './carousel.component';
 import { SlideComponent } from './slide.component';
@@ -10,4 +10,7 @@ import { SlideComponent } from './slide.component';
   exports: [SlideComponent, CarouselComponent]
 })
 export class CarouselModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: CarouselModule, providers: []};
+  }
 }

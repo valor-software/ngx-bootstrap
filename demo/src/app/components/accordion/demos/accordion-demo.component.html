@@ -32,7 +32,7 @@
     <div accordion-heading>
       I can have markup, too!
       <i class="pull-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+         [ngClass]="{'glyphicon-chevron-down': group?._isOpen, 'glyphicon-chevron-right': !group?._isOpen}"></i>
     </div>
     This is just some content to illustrate fancy headings.
   </accordion-group>

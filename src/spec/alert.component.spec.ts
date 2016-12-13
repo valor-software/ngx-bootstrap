@@ -18,7 +18,7 @@ describe('Component: Alert', () => {
   `;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule]});
+    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule.forRoot()]});
     TestBed.overrideComponent(TestAlertComponent, {set: {template: overTemplate}});
     fixture = TestBed.createComponent(TestAlertComponent);
     context = fixture.debugElement.componentInstance;

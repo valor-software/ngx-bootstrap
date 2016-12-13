@@ -1,10 +1,3 @@
-### Usage
-```typescript
-import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { AlertModule } from 'ng2-bootstrap/components/alert';
-```
-
 ### Annotations
 ```typescript
 // class Alert

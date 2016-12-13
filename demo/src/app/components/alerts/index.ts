@@ -11,7 +11,7 @@ import { AlertModule } from 'ng2-bootstrap';
     AlertsDemoComponent
   ],
   imports: [
-    AlertModule,
+    AlertModule.forRoot(),
     CommonModule,
     SharedModule
   ],

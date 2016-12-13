@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { NgTranscludeDirective } from './ng-transclude.directive';
 import { TabHeadingDirective } from './tab-heading.directive';
@@ -12,4 +12,10 @@ import { TabsetComponent } from './tabset.component';
   exports: [TabDirective, TabsetComponent, TabHeadingDirective, NgTranscludeDirective]
 })
 export class TabsModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: TabsModule,
+      providers: []
+    };
+  }
 }

@@ -15,7 +15,7 @@ import { TabsModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    TabsModule
+    TabsModule.forRoot()
   ],
   exports: [TabsSectionComponent]
 })

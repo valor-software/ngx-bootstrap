@@ -38,7 +38,6 @@ describe('Component: TypeaheadContainer', () => {
     let dropDown:HTMLElement;
 
     beforeEach(() => {
-      component.position(fixture.elementRef);
       fixture.detectChanges();
 
       dropDown = fixture.debugElement.query(By.css('.dropdown-menu')).nativeElement as HTMLElement;
@@ -46,18 +45,6 @@ describe('Component: TypeaheadContainer', () => {
 
     it('should be rendered', () => {
       expect(dropDown).toBeDefined();
-    });
-
-    it('should have display style set', () => {
-      expect(dropDown.style.display).toBe('block');
-    });
-
-    it('should have top style set', () => {
-      expect(dropDown.style.top).toBe('16px');
-    });
-
-    it('should have left style set', () => {
-      expect(dropDown.style.left).toBe('8px');
     });
   });
 

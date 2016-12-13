@@ -1,15 +1,8 @@
-### Usage
-```typescript
-import { RatingModule } from 'ng2-bootstrap/ng2-bootstrap';
-// or
-import { RatingModule } from 'ng2-bootstrap/components/rating';
-```
-
 ### Annotations
 ```typescript
 // class Rating implements on Init
 @Component({
-  selector: 'rating[ngModel]'
+  selector: 'rating'
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   @Input() public max:number;

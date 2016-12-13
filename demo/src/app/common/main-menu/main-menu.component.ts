@@ -6,7 +6,7 @@ import { routes } from '../../app.routing';
 
 @Component({
   selector: 'main-menu',
-  templateUrl: 'main-menu.component.html'
+  templateUrl: './main-menu.component.html'
 })
 export class MainMenuComponent {
   public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;

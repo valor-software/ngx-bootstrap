@@ -15,7 +15,7 @@ import { TooltipModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    TooltipModule
+    TooltipModule.forRoot()
   ],
   exports: [TooltipSectionComponent]
 })
