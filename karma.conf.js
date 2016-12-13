@@ -1,6 +1,8 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
+const customLaunchers = require('./scripts/sauce-browsers').customLaunchers;
+
 module.exports = function (config) {
   const configuration = {
     basePath: '',
@@ -28,8 +30,8 @@ module.exports = function (config) {
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'karma-remap-istanbul']
-              : ['progress'],
+      ? ['progress', 'karma-remap-istanbul']
+      : ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_DEBUG,
@@ -46,6 +48,33 @@ module.exports = function (config) {
 
   if (process.env.TRAVIS) {
     configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  console.log(process.env.SAUCE)
+  if (process.env.SAUCE) {
+    if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
+      console.log('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.');
+      process.exit(1);
+    }
+
+    configuration.plugins.push(require('karma-sauce-launcher'));
+    configuration.reporters.push('saucelabs');
+    configuration.sauceLabs = {
+      verbose: true,
+      testName: 'ng2-bootstrap unit tests',
+      recordScreenshots: false,
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY,
+      connectOptions: {
+        port: 5757,
+        logfile: 'sauce_connect.log'
+      },
+      public: 'public'
+    };
+    configuration.captureTimeout = 0;
+    configuration.customLaunchers = customLaunchers();
+    configuration.browsers = Object.keys(configuration.customLaunchers);
+    configuration.concurrency = 2;
   }
 
   config.set(configuration);
