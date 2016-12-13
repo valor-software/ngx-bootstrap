@@ -7,6 +7,7 @@ Native Angular2 directives for Bootstrap, works with Bootstrap 3 and 4-alfa
 [![Dependency Status](https://david-dm.org/valor-software/ng2-bootstrap.svg)](https://david-dm.org/valor-software/ng2-bootstrap)
 [![NPM](https://nodei.co/npm/ng2-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ng2-bootstrap)
 [![NPM](https://nodei.co/npm-dl/ng2-bootstrap.png?height=3&months=9)](https://npmjs.org/ng2-bootstrap)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
 
 ## Table of contents 
 1. [Getting Started](#getting-started)

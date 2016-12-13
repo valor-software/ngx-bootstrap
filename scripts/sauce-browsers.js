@@ -1,29 +1,22 @@
 module.exports.customLaunchers = function customLaunchers() {
   return {
-    sl_chrome: {
-      base: 'SauceLabs',
-      browserName: 'chrome',
-      version: "52.0",
-      platform: "Windows 7"
-    },
-    sl_firefox: {
-      base: 'SauceLabs',
-      browserName: 'Firefox',
-      platform: 'Windows 7',
-      version: '46.0'
-    },
-    sl_ie_9: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: "9.0",
-      platform: "Windows 7"
-    },
-    sl_ie_11: {
-      base: 'SauceLabs',
-      browserName: 'internet explorer',
-      version: "11.0",
-      platform: "Windows 8.1"
-    }
+    sl_chrome: {base: 'SauceLabs', browserName: 'chrome'},
+    sl_chrome_1: {base: 'SauceLabs', browserName: 'chrome', version: 'latest-1'},
+    sl_chrome_beta: {base: 'SauceLabs', browserName: 'chrome', version: 'beta'},
+    sl_chrome_dev: {base: 'SauceLabs', browserName: 'chrome', version: 'dev'},
+    sl_firefox: {base: 'SauceLabs', browserName: 'firefox'},
+    sl_firefox_1: {base: 'SauceLabs', browserName: 'firefox', version: 'latest-1'},
+    sl_firefox_beta: {base: 'SauceLabs', browserName: 'firefox', version: 'beta'},
+    sl_firefox_dev: {base: 'SauceLabs', browserName: 'firefox', version: 'dev'},
+    sl_ie9: {base: 'SauceLabs', browserName: 'internet explorer', platform: 'Windows 2008', version: '9'},
+    'SL_IE10': {base: 'SauceLabs', browserName: 'internet explorer', platform: 'Windows 2012', version: '10'},
+    'SL_IE11': {base: 'SauceLabs', browserName: 'internet explorer', platform: 'Windows 8.1', version: '11'},
+    'SL_EDGE': {base: 'SauceLabs', browserName: 'MicrosoftEdge', platform: 'Windows 10', version: '13.10586'},
+    'SL_IOS9': {base: 'SauceLabs', browserName: 'iphone', platform: 'OS X 10.10', version: '9.3'},
+    'SL_IOS10': {base: 'SauceLabs', browserName: 'iphone', platform: 'OS X 10.10', version: '10.0'},
+    'SL_ANDROID4.4': {base: 'SauceLabs', browserName: 'android', platform: 'Linux', version: '4.4'},
+    'SL_ANDROID5': {base: 'SauceLabs', browserName: 'android', platform: 'Linux', version: '5.1'},
+    'SL_SAFARI9': {base: 'SauceLabs', browserName: 'safari', platform: 'OS X 10.11', version: '9.0'}
   };
 };
 
