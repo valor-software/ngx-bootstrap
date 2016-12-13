@@ -2,12 +2,8 @@ module.exports.customLaunchers = function customLaunchers() {
   return {
     sl_chrome: {base: 'SauceLabs', browserName: 'chrome'},
     sl_chrome_1: {base: 'SauceLabs', browserName: 'chrome', version: 'latest-1'},
-    sl_chrome_beta: {base: 'SauceLabs', browserName: 'chrome', version: 'beta'},
-    sl_chrome_dev: {base: 'SauceLabs', browserName: 'chrome', version: 'dev'},
     sl_firefox: {base: 'SauceLabs', browserName: 'firefox'},
     sl_firefox_1: {base: 'SauceLabs', browserName: 'firefox', version: 'latest-1'},
-    sl_firefox_beta: {base: 'SauceLabs', browserName: 'firefox', version: 'beta'},
-    sl_firefox_dev: {base: 'SauceLabs', browserName: 'firefox', version: 'dev'},
     sl_ie9: {base: 'SauceLabs', browserName: 'internet explorer', platform: 'Windows 2008', version: '9'},
     'SL_IE10': {base: 'SauceLabs', browserName: 'internet explorer', platform: 'Windows 2012', version: '10'},
     'SL_IE11': {base: 'SauceLabs', browserName: 'internet explorer', platform: 'Windows 8.1', version: '11'},
