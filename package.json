@@ -19,10 +19,11 @@
     "generate-bs4": "node scripts/generate-bs4.js",
     "pretest": "run-s lint build link",
     "test": "ng test -sr",
+    "test-cross": "SAUCE=true ng test -sr",
     "test-coverage": "ng test -sr -cc",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
-    "e2e.saucelabs": "tsc -p ./demo/e2e/ && webdriver-manager update && protractor protractor.saucelabs.conf.js"
+    "e2e-cross": "SAUCE=true npm run e2e"
   },
   "main": "bundles/ng2-bootstrap.umd.js",
   "module": "index.js",
@@ -63,6 +64,7 @@
     "angular-cli": "1.0.0-beta.22-1",
     "bootstrap": "3.3.7",
     "chokidar-cli": "1.2.0",
+    "classlist-polyfill": "1.0.3",
     "codecov": "1.0.1",
     "codelyzer": "^2.0.0-beta.1",
     "conventional-changelog-cli": "1.2.0",
@@ -83,6 +85,7 @@
     "karma-cli": "1.0.1",
     "karma-jasmine": "1.1.0",
     "karma-remap-istanbul": "0.2.1",
+    "karma-sauce-launcher": "1.1.0",
     "lite-server": "2.2.2",
     "lodash": "4.17.2",
     "markdown-loader": "github:valorkin/markdown-loader",
