@@ -10,7 +10,7 @@ describe('Component: Pagination:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule]
+      imports: [PaginationModule.forRoot()]
     });
     fixture = TestBed.createComponent(PaginationComponent);
     context = fixture.debugElement.componentInstance;

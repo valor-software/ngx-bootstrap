@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadDirective } from './typeahead.directive';
@@ -8,11 +7,16 @@ import { ComponentLoaderFactory } from '../component-loader';
 import { PositioningService } from '../positioning';
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   declarations: [TypeaheadContainerComponent, TypeaheadDirective],
-  exports: [FormsModule, TypeaheadContainerComponent, TypeaheadDirective],
-  providers: [ComponentLoaderFactory, PositioningService],
+  exports: [TypeaheadContainerComponent, TypeaheadDirective],
   entryComponents: [TypeaheadContainerComponent]
 })
 export class TypeaheadModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: TypeaheadModule,
+      providers: [ComponentLoaderFactory, PositioningService]
+    };
+  };
 }

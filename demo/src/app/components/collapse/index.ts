@@ -15,7 +15,7 @@ import { CollapseModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    CollapseModule
+    CollapseModule.forRoot()
   ],
   exports: [CollapseSectionComponent]
 })

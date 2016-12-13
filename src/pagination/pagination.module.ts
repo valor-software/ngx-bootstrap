@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { PaginationConfig } from './pagination.config';
 
 import { PagerComponent } from './pager.component';
 import { PaginationComponent } from './pagination.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   declarations: [PagerComponent, PaginationComponent],
-  exports: [FormsModule, PagerComponent, PaginationComponent],
-  providers: [PaginationConfig]
+  exports: [PagerComponent, PaginationComponent]
 })
 export class PaginationModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: PaginationModule, providers: [PaginationConfig]};
+  }
 }

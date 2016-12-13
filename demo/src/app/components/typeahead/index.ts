@@ -16,7 +16,7 @@ import { TypeaheadSectionComponent } from './typeahead-section.component';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    TypeaheadModule
+    TypeaheadModule.forRoot()
   ],
   exports: [TypeaheadSectionComponent]
 })

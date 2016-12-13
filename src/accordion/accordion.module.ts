@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { CollapseModule } from '../collapse/collapse.module';
 import { AccordionPanelComponent } from './accordion-group.component';
@@ -11,4 +11,5 @@ import { AccordionComponent } from './accordion.component';
   exports: [AccordionComponent, AccordionPanelComponent]
 })
 export class AccordionModule {
+  public static forRoot(): ModuleWithProviders {return {ngModule: AccordionModule, providers: []};}
 }

@@ -15,7 +15,7 @@ import { PaginationModule } from 'ng2-bootstrap';
     CommonModule,
     FormsModule,
     SharedModule,
-    PaginationModule
+    PaginationModule.forRoot()
   ],
   exports: [PaginationSectionComponent]
 })

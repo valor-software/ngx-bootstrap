@@ -15,7 +15,7 @@ import { ModalSectionComponent } from './modal-section.component';
     CommonModule,
     FormsModule,
     SharedModule,
-    ModalModule
+    ModalModule.forRoot()
   ],
   exports: [ModalDemoComponent]
 })

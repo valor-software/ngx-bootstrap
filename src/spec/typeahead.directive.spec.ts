@@ -5,6 +5,7 @@ import { By } from '@angular/platform-browser';
 import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
+import { FormsModule } from '@angular/forms';
 const { fireEvent } = require('../../scripts/helpers');
 
 interface State {
@@ -38,7 +39,7 @@ describe('Directive: Typeahead', () => {
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [TestTypeaheadComponent],
-      imports: [TypeaheadModule]
+      imports: [TypeaheadModule.forRoot(), FormsModule]
     }).createComponent(TestTypeaheadComponent);
 
     fixture.detectChanges();

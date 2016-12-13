@@ -4,7 +4,7 @@ import { TabsModule } from 'ng2-bootstrap';
 
 @NgModule({
   declarations: [DemoSectionComponent],
-  imports: [TabsModule],
+  imports: [TabsModule.forRoot()],
   exports: [DemoSectionComponent]
 })
 export class SharedModule {

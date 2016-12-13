@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { BarComponent } from './bar.component';
 import { ProgressDirective } from './progress.directive';
@@ -11,4 +11,7 @@ import { ProgressbarComponent } from './progressbar.component';
   exports: [ProgressDirective, BarComponent, ProgressbarComponent]
 })
 export class ProgressbarModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: ProgressbarModule, providers: []};
+  }
 }

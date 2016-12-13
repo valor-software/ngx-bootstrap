@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'top-menu',
-  templateUrl: 'top-menu.component.html'
+  templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements AfterViewInit {
   public isShown:boolean = false;
