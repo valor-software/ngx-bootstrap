@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { AccordionPanelComponent } from './accordion-group.component';
+import { AccordionConfig } from './accordion.config';
 
 @Component({
   selector: 'accordion',
@@ -14,6 +15,10 @@ export class AccordionComponent {
   /* tslint:enable:no-unused-variable */
 
   protected groups:AccordionPanelComponent[] = [];
+
+  public constructor(config: AccordionConfig) {
+    Object.assign(this, config);
+  }
 
   public closeOtherPanels(openGroup:AccordionPanelComponent):void {
     if (!this.closeOthers) {
