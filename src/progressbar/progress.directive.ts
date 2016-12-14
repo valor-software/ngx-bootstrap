@@ -1,16 +1,11 @@
-import { Directive, HostBinding, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, Input } from '@angular/core';
 
 import { BarComponent } from './bar.component';
-
-const progressConfig = {
-  animate: true,
-  max: 100
-};
 
 // todo: progress element conflict with bootstrap.css
 // todo: need hack: replace host element with div
 @Directive({selector: 'bs-progress, [progress]'})
-export class ProgressDirective implements OnInit {
+export class ProgressDirective  {
   @Input() public animate:boolean;
 
   @HostBinding('attr.max')
@@ -31,11 +26,6 @@ export class ProgressDirective implements OnInit {
   public bars:any[] = [];
 
   protected _max:number;
-
-  public ngOnInit():void {
-    this.animate = this.animate !== false;
-    this.max = typeof this.max === 'number' ? this.max : progressConfig.max;
-  }
 
   public addBar(bar:BarComponent):void {
     if (!this.animate) {
