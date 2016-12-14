@@ -1,6 +1,7 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
+import { TabsetConfig } from './tabset.config';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
@@ -24,7 +25,7 @@ import { TabDirective } from './tab.directive';
     </div>
   `
 })
-export class TabsetComponent implements OnInit, OnDestroy {
+export class TabsetComponent implements OnDestroy {
   @Input()
   public get vertical():boolean {
     return this._vertical;
@@ -62,8 +63,8 @@ export class TabsetComponent implements OnInit, OnDestroy {
   protected _justified:boolean;
   protected _type:string;
 
-  public ngOnInit():void {
-    this.type = this.type !== 'undefined' ? this.type : 'tabs';
+  public constructor(config: TabsetConfig) {
+    Object.assign(this, config);
   }
 
   public ngOnDestroy():void {
@@ -127,7 +128,7 @@ export class TabsetComponent implements OnInit, OnDestroy {
     this.classMap = {
       'nav-stacked': this.vertical,
       'nav-justified': this.justified,
-      ['nav-' + (this.type || 'tabs')]: true
+      [`nav-${this.type}`]: true
     };
   }
 }
