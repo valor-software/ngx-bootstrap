@@ -3,7 +3,8 @@ import {
   ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output
 } from '@angular/core';
 
-import { dropdownService, NONINPUT } from './dropdown.service';
+import { dropdownService } from './dropdown.service';
+import { DropdownConfig } from './dropdown.config';
 
 @Directive({
   selector: '[dropdown]',
@@ -60,16 +61,16 @@ export class DropdownDirective implements OnInit, OnDestroy {
 
   protected _changeDetector:ChangeDetectorRef;
 
-  public constructor(el:ElementRef, ref:ChangeDetectorRef) {
+  public constructor(el:ElementRef, ref:ChangeDetectorRef, config: DropdownConfig) {
     // @Query('dropdownMenu', {descendants: false})
     // dropdownMenuList:QueryList<ElementRef>) {
     this.el = el;
     this._changeDetector = ref;
+    Object.assign(this, config);
     // todo: bind to route change event
   }
 
   public ngOnInit():void {
-    this.autoClose = this.autoClose || NONINPUT;
     if (this.isOpen) {
       // todo: watch for event get-isOpen?
     }
