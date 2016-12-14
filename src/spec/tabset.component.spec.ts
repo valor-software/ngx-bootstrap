@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TabsetConfig } from '../tabs/tabset.config';
 
 import { TabsModule } from '../tabs/tabs.module';
 
@@ -18,15 +19,15 @@ const html = `
   </tabset>
 `;
 
-function getTabTitles(nativeEl:HTMLElement):NodeListOf<Element> {
+function getTabTitles(nativeEl: HTMLElement): NodeListOf<Element> {
   return nativeEl.querySelectorAll('.nav-link');
 }
 
-function getTabContent(nativeEl:HTMLElement):NodeListOf<Element> {
+function getTabContent(nativeEl: HTMLElement): NodeListOf<Element> {
   return nativeEl.querySelectorAll('.tab-content .tab-pane');
 }
 
-function expectActiveTabs(nativeEl:HTMLElement, active:boolean[]):void {
+function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
   const tabTitles = getTabTitles(nativeEl);
   const tabContent = getTabContent(nativeEl);
 
@@ -67,7 +68,7 @@ describe('Component: Tabs', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestTabsetComponent],
-      imports: [TabsModule]
+      imports: [TabsModule.forRoot()]
     });
     TestBed.overrideComponent(TestTabsetComponent, {set: {template: html}});
     fixture = TestBed.createComponent(TestTabsetComponent);
@@ -190,15 +191,19 @@ class TestTabsetComponent {
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
 
-  public _select(e:TabsModule):TabsModule {
+  public constructor(config: TabsetConfig) {
+    Object.assign(this, config);
+  }
+
+  public _select(e: TabsModule): TabsModule {
     return e;
   }
 
-  public _deselect(e:TabsModule):TabsModule {
+  public _deselect(e: TabsModule): TabsModule {
     return e;
   }
 
-  public _removed(e:TabsModule):TabsModule {
+  public _removed(e: TabsModule): TabsModule {
     return e;
   }
 }
