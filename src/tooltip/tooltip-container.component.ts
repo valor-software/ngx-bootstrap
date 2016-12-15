@@ -1,13 +1,16 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ElementRef, TemplateRef,
-  ChangeDetectionStrategy
+  AfterViewInit, Component, ChangeDetectionStrategy, Inject
 } from '@angular/core';
+import { TooltipConfig } from './tooltip.config';
 
 @Component({
   selector: 'bs-tooltip-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
-  host: {'[class]': '"tooltip in tooltip-" + placement + " " + placement', role: 'tooltip'},
+  host: {
+    '[class]': '"tooltip in tooltip-" + placement + " " + placement',
+    role: 'tooltip'
+  },
   template: `
     <div class="tooltip-arrow"></div>
     <div class="tooltip-inner"><ng-content></ng-content></div>
@@ -37,6 +40,10 @@ export class TooltipContainerComponent implements AfterViewInit {
   public placement: string;
   public popupClass: string;
   public animation: boolean;
+
+  public constructor(config: TooltipConfig) {
+    Object.assign(this, config);
+  }
 
   public ngAfterViewInit(): void {
     this.classMap = {in: false, fade: false};

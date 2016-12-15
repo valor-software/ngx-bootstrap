@@ -61,7 +61,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
                      _config: PopoverConfig,
                      cis: ComponentLoaderFactory) {
     this._popover = cis
-      .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer);
+      .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
+      .provide({provide: PopoverConfig, useValue: _config});
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
+import { PopoverConfig } from './popover-config';
 
 @Component({
   selector: 'popover-container',
@@ -11,6 +12,10 @@ import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
     `
 })
 export class PopoverContainerComponent {
-  @Input() public placement: string = 'top';
+  @Input() public placement: string;
   @Input() public title: string;
+
+  public constructor(config: PopoverConfig) {
+    Object.assign(this, config);
+  }
 }

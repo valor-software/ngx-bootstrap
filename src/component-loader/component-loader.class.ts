@@ -3,7 +3,8 @@
 // todo: add global positioning configuration?
 import {
   NgZone, ViewContainerRef, ComponentFactoryResolver, Injector, Renderer,
-  ElementRef, ComponentRef, ComponentFactory, Type, TemplateRef, EventEmitter
+  ElementRef, ComponentRef, ComponentFactory, Type, TemplateRef, EventEmitter,
+  Provider, ReflectiveInjector
 } from '@angular/core';
 import { ContentRef } from './content-ref.class';
 import { PositioningService, PositioningOptions } from '../positioning';
@@ -26,6 +27,7 @@ export class ComponentLoader<T> {
   public instance: T;
   public _componentRef: ComponentRef<T>;
 
+  private _providers: Provider[] = [];
   private _componentFactory: ComponentFactory<T>;
   private _elementRef: ElementRef;
   private _zoneSubscription: any;
@@ -104,14 +106,20 @@ export class ComponentLoader<T> {
     return this;
   }
 
+  public provide(provider: Provider): ComponentLoader<T> {
+    this._providers.push(provider);
+    return this;
+  }
+
   public show(content?: string | TemplateRef<any>, mixin?: any): ComponentRef<T> {
     this._subscribePositioning();
 
     if (!this._componentRef) {
       this.onBeforeShow.emit();
       this._contentRef = this._getContentRef(content);
+      const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
       this._componentRef = this._viewContainerRef
-        .createComponent(this._componentFactory, 0, this._injector, this._contentRef.nodes);
+        .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
       this.instance = this._componentRef.instance;
 
       Object.assign(this._componentRef.instance, mixin || {});

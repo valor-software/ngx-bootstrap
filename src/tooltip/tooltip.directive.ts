@@ -47,7 +47,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Allows to disable tooltip
    */
-  @Input() public isDisabled:boolean;
+  @Input() public isDisabled: boolean;
 
   /**
    * Emits an event when the tooltip is shown
@@ -60,54 +60,67 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /* tslint:disable */
   /** @deprecated */
-  @Input('tooltipHtml') public set htmlContent(value: string | TemplateRef<any>){
+  @Input('tooltipHtml')
+  public set htmlContent(value: string | TemplateRef<any>) {
     console.warn('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }
+
   /** @deprecated */
-  @Input('tooltipPlacement') public set _placement(value: string){
+  @Input('tooltipPlacement')
+  public set _placement(value: string) {
     console.warn('tooltipPlacement was deprecated, please use `placement` instead');
     this.placement = value;
   }
+
   /** @deprecated */
-  @Input('tooltipIsOpen') public set _isOpen(value:boolean) {
+  @Input('tooltipIsOpen')
+  public set _isOpen(value: boolean) {
     console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
     this.isOpen = value;
   }
-  public get _isOpen():boolean {
+
+  public get _isOpen(): boolean {
     console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
     return this.isOpen;
   }
 
   /** @deprecated */
-  @Input('tooltipEnable') public set _enable(value: boolean){
+  @Input('tooltipEnable')
+  public set _enable(value: boolean) {
     console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
     this.isDisabled = value === true;
   }
-  public get _enable(): boolean{
+
+  public get _enable(): boolean {
     console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
     return this.isDisabled === true;
   }
 
   /** @deprecated */
-  @Input('tooltipAppendToBody') public set _appendToBody(value: boolean) {
+  @Input('tooltipAppendToBody')
+  public set _appendToBody(value: boolean) {
     console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
     this.container = value ? 'body' : this.container;
   }
 
-  public get _appendToBody():boolean {
+  public get _appendToBody(): boolean {
     console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
     return this.container === 'body';
   }
 
   /** @deprecated */
   @Input('tooltipAnimation') public _animation: boolean = true;
+
   /** @deprecated */
-  @Input('tooltipClass') public set _popupClass(value: string){
+  @Input('tooltipClass')
+  public set _popupClass(value: string) {
     console.warn('tooltipClass deprecated');
   }
+
   /** @deprecated */
-  @Input('tooltipContext') public set _tooltipContext(value: any){
+  @Input('tooltipContext')
+  public set _tooltipContext(value: any) {
     console.warn('tooltipContext deprecated');
   }
 
@@ -117,15 +130,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input('tooltipFadeDuration') public _fadeDuration: number = 150;
 
   /** @deprecated */
-  @Input('tooltipTrigger') public get _tooltipTrigger():string|Array<string>{
+  @Input('tooltipTrigger')
+  public get _tooltipTrigger(): string|Array<string> {
     console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
     return this.triggers;
   };
 
-  public set _tooltipTrigger(value:string|Array<string>){
+  public set _tooltipTrigger(value: string|Array<string>) {
     console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
     this.triggers = (value || '').toString();
   };
+
   /* tslint:enable */
 
   @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -141,7 +156,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
                      cis: ComponentLoaderFactory,
                      config: TooltipConfig) {
     this._tooltip = cis
-      .createLoader<TooltipContainerComponent>(_elementRef, _viewContainerRef, _renderer);
+      .createLoader<TooltipContainerComponent>(_elementRef, _viewContainerRef, _renderer)
+      .provide({provide: TooltipConfig, useValue: config});
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
