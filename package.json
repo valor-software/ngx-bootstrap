@@ -10,7 +10,7 @@
     "demo.gh-pages": "run-s build demo.build demo.deploy",
     "demo.build": "ng build -prod --aot && npm run generate-bs4",
     "demo.deploy": "gh-pages -d demo/dist",
-    "link": "ngm link -p src && npm link ng2-bootstrap",
+    "link": "ngm link -p src --here",
     "lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -v",
     "flow.github-release": "conventional-github-releaser -p angular",
