@@ -180,7 +180,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
       .attach(TooltipContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})
-      .show(this.tooltip, {
+      .show({
+        content: this.tooltip,
         placement: this.placement,
         title: this.tooltipTitle
       });

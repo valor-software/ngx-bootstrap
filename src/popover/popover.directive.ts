@@ -81,7 +81,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .attach(PopoverContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})
-      .show(this.popover, {
+      .show({
+        content: this.popover,
         placement: this.placement,
         title: this.popoverTitle
       });

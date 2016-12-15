@@ -111,18 +111,18 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  public show(content?: string | TemplateRef<any>, mixin?: any): ComponentRef<T> {
+  public show(opts: {content?: string | TemplateRef<any>, [key:string]: any} = {}): ComponentRef<T> {
     this._subscribePositioning();
 
     if (!this._componentRef) {
       this.onBeforeShow.emit();
-      this._contentRef = this._getContentRef(content);
+      this._contentRef = this._getContentRef(opts.content);
       const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
       this._componentRef = this._viewContainerRef
         .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
       this.instance = this._componentRef.instance;
 
-      Object.assign(this._componentRef.instance, mixin || {});
+      Object.assign(this._componentRef.instance, opts);
 
       if (this.container === 'body' && typeof document !== 'undefined') {
         document.querySelector(this.container as string)
