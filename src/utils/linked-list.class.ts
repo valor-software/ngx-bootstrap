@@ -32,7 +32,7 @@ export default class LinkedList <T> extends Array {
 
   public get(position: number): T {
     if (this.length === 0 || position < 0 || position >= this.length) {
-      throw new Error('Position is out of the list');
+      return void 0;
     }
 
     let current = this.head;

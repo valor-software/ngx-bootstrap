@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4">
-    <carousel [interval]="myInterval" [noWrap]="noWrapSlides" (activeSlideChanged)="activeSlideChanged($event)">
+    <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
       <slide *ngFor="let slidez of slides; let index=index">
         <img [src]="slidez.image" style="margin:auto;">
 
@@ -19,10 +19,14 @@
     </button>
 
     <button type="button" class="btn btn-info"
-            (click)="removeSlide()">Remove Current Slide
+            (click)="selectSlide(2)">Select #3
     </button>
+
     <button type="button" class="btn btn-info"
-            (click)="removeSlide(2)">Remove Slide#3
+            (click)="removeSlide()">Remove Current
+    </button>git
+    <button type="button" class="btn btn-info"
+            (click)="removeSlide(2)">Remove #3
     </button>
     <br>
 
