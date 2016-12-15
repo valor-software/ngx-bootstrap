@@ -178,10 +178,6 @@ export class ComponentLoader<T> {
   }
 
   public listen(listenOpts: ListenOptions): ComponentLoader<T> {
-    if (this._unregisterListenersFn) {
-      this._unregisterListenersFn();
-    }
-
     this.triggers = listenOpts.triggers || this.triggers;
 
     listenOpts.target = listenOpts.target || this._elementRef;

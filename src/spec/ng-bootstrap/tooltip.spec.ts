@@ -3,7 +3,9 @@
  * @copyright Angular ng-bootstrap team
  */
 
-import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
+import {
+  TestBed, ComponentFixture, inject, fakeAsync, tick
+} from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 
 import { By } from '@angular/platform-browser';
@@ -238,7 +240,7 @@ describe('tooltip', () => {
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
 
-      it('should allow toggling for manual triggers', () => {
+      it('should allow toggling for manual triggers', fakeAsync(() => {
         const fixture = createTestComponent(`
                 <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip"></div>
                 <button (click)="t.toggle()">T</button>`);
@@ -250,10 +252,11 @@ describe('tooltip', () => {
 
         button.click();
         fixture.detectChanges();
+        tick(150);
         expect(getWindow(fixture.nativeElement)).toBeNull();
-      });
+      }));
 
-      it('should allow open / close for manual triggers', () => {
+      it('should allow open / close for manual triggers', fakeAsync(() => {
         const fixture = createTestComponent(`
                 <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip"></div>
                 <button (click)="t.show()">O</button>
@@ -267,8 +270,9 @@ describe('tooltip', () => {
 
         buttons[1].click();  // close
         fixture.detectChanges();
+        tick(150);
         expect(getWindow(fixture.nativeElement)).toBeNull();
-      });
+      }));
 
       it('should not throw when open called for manual triggers and open tooltip', () => {
         const fixture = createTestComponent(`
@@ -331,7 +335,7 @@ describe('tooltip', () => {
   describe('visibility', () => {
     it('should emit events when showing and hiding popover', () => {
       const fixture = createTestComponent(
-          `<div tooltip="Great tip!" triggers="click" (shown)="shown()" (hidden)="hidden()"></div>`);
+          `<div tooltip="Great tip!" triggers="click" (onShown)="shown()" (onHidden)="hidden()"></div>`);
       const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
@@ -350,15 +354,15 @@ describe('tooltip', () => {
 
     it('should not emit close event when already closed', () => {
       const fixture = createTestComponent(
-          `<div tooltip="Great tip!" triggers="manual" (shown)="shown()" (hidden)="hidden()"></div>`);
+          `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
       let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
-      fixture.componentInstance.tooltip.open();
+      fixture.componentInstance.tooltip.show();
       fixture.detectChanges();
 
-      fixture.componentInstance.tooltip.open();
+      fixture.componentInstance.tooltip.show();
       fixture.detectChanges();
 
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
@@ -369,32 +373,33 @@ describe('tooltip', () => {
 
     it('should not emit open event when already opened', () => {
       const fixture = createTestComponent(
-          `<div tooltip="Great tip!" triggers="manual" (shown)="shown()" (hidden)="hidden()"></div>`);
+          `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
       let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
-      fixture.componentInstance.tooltip.close();
+      fixture.componentInstance.tooltip.hide();
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
       expect(shownSpy).not.toHaveBeenCalled();
       expect(hiddenSpy).not.toHaveBeenCalled();
     });
 
-    it('should report correct visibility', () => {
+    it('should report correct visibility', fakeAsync(() => {
       const fixture = createTestComponent(`<div tooltip="Great tip!" triggers="manual"></div>`);
       fixture.detectChanges();
+      expect(fixture.componentInstance.tooltip.isOpen).toBeFalsy();
 
-      expect(fixture.componentInstance.tooltip.isOpen()).toBeFalsy();
-
-      fixture.componentInstance.tooltip.open();
+      fixture.componentInstance.tooltip.show();
       fixture.detectChanges();
-      expect(fixture.componentInstance.tooltip.isOpen()).toBeTruthy();
+      tick(150);
+      expect(fixture.componentInstance.tooltip.isOpen).toBeTruthy();
 
-      fixture.componentInstance.tooltip.close();
+      fixture.componentInstance.tooltip.hide();
       fixture.detectChanges();
-      expect(fixture.componentInstance.tooltip.isOpen()).toBeFalsy();
-    });
+      tick(150);
+      expect(fixture.componentInstance.tooltip.isOpen).toBeFalsy();
+    }));
   });
 
   describe('Custom config', () => {

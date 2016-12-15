@@ -44,16 +44,14 @@ module.exports = function (config) {
         flags: ['--no-sandbox']
       }
     },
-    mime: {
-      'text/x-typescript': ['ts','tsx']
-    }
+    mime: { 'text/x-typescript': ['ts','tsx'] },
+    client: { captureConsole: true }
   };
 
   if (process.env.TRAVIS) {
     configuration.browsers = ['Chrome_travis_ci'];
   }
 
-  console.log(process.env.SAUCE)
   if (process.env.SAUCE) {
     if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
       console.log('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.');

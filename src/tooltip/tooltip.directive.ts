@@ -5,6 +5,7 @@ import {
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
+import { OnChange } from '../utils/decorators';
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -14,7 +15,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Content to be displayed as popover.
    */
+  @OnChange()
   @Input() public tooltip: string | TemplateRef<any>;
+  @Output() public tooltipChange: EventEmitter<string | TemplateRef<any>> = new EventEmitter();
+
   /**
    * Title of a popover.
    */
@@ -169,10 +173,31 @@ export class TooltipDirective implements OnInit, OnDestroy {
       triggers: this.triggers,
       show: () => this.show()
     });
+    this.tooltipChange.subscribe((value: any) => {
+      if (!value) {
+        this._tooltip.hide();
+      }
+    });
   }
 
+  /**
+   * Toggles an element’s tooltip. This is considered a “manual” triggering of
+   * the popover.
+   */
+  public toggle(): void {
+    if (this.isOpen) {
+      return this.hide();
+    }
+
+    this.show();
+  }
+
+  /**
+   * Opens an element’s tooltip. This is considered a “manual” triggering of
+   * the popover.
+   */
   public show(): void {
-    if (this._tooltip.isShown || this.isDisabled || this._delayTimeoutId) {
+    if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.tooltip) {
       return;
     }
 
@@ -193,6 +218,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Closes an element’s tooltip. This is considered a “manual” triggering of
+   * the popover.
+   */
   public hide(): void {
     if (this._delayTimeoutId) {
       clearTimeout(this._delayTimeoutId);

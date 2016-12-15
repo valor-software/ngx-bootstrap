@@ -93,7 +93,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   public hide(): void {
-    if (this._popover.isShown) {
+    if (this.isOpen) {
       this._popover.hide();
     }
   }
@@ -103,7 +103,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   public toggle(): void {
-    if (this._popover.isShown) {
+    if (this.isOpen) {
       return this.hide();
     }
 
