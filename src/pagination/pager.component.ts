@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { KeyAttribute } from '../utils/common';
 import { PageChangedEvent } from './pagination.component';
 import { PaginationConfig } from './pagination.config';
 
@@ -26,7 +25,7 @@ const PAGER_TEMPLATE = `
   template: PAGER_TEMPLATE,
   providers: [PAGER_CONTROL_VALUE_ACCESSOR]
 })
-export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribute {
+export class PagerComponent implements ControlValueAccessor, OnInit {
   public config: any;
   @Input() public align: boolean;
   @Input() public maxSize: number;
@@ -159,7 +158,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
   }
 
   public getText(key: string): string {
-    return (this as KeyAttribute)[key + 'Text'] || this.config[key + 'Text'];
+    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
   }
 
   public noPrevious(): boolean {

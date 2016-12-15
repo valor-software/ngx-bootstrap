@@ -3,7 +3,6 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { KeyAttribute } from '../utils/common';
 import { PaginationConfig } from './pagination.config';
 
 export interface PageChangedEvent {
@@ -55,7 +54,7 @@ const PAGINATION_TEMPLATE = `
   template: PAGINATION_TEMPLATE,
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
-export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAttribute {
+export class PaginationComponent implements ControlValueAccessor, OnInit {
   public config:any;
   @Input() public align:boolean;
   @Input() public maxSize:number;
@@ -188,7 +187,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
   }
 
   public getText(key:string):string {
-    return (this as KeyAttribute)[key + 'Text'] || this.config[key + 'Text'];
+    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
   }
 
   public noPrevious():boolean {

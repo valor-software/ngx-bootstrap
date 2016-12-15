@@ -42,9 +42,5 @@ export * from './timepicker';
 export * from './tooltip';
 export * from './typeahead';
 
-export * from './utils/position';
-export * from './utils/common';
 export * from './utils/ng2-bootstrap-config';
 export * from './utils/decorators';
-
-export { ComponentsHelper } from './utils/components-helper.service';
