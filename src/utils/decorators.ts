@@ -2,11 +2,11 @@
 export function OnChange(defaultValue?:any):any {
   const sufix = 'Change';
   return function OnChangeHandler(target:any, propertyKey:string):void {
-    let _value = defaultValue;
+    let _key = ` __${propertyKey}Value`;
     Object.defineProperty(target, propertyKey, {
-      get():any { return _value; },
+      get():any { return this[_key]; },
       set(value:any):void {
-        _value = value;
+        this[_key] = value;
         this[propertyKey + sufix].emit(value);
       }
     });
