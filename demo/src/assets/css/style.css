@@ -298,14 +298,14 @@ a:hover {
   width: calc(100% - 270px);
   height: 100%;
   float: right;
-  margin-top: 35px;
-  padding: 15px;
+  margin-top: 50px;
+  /*padding: 15px;*/
   box-sizing: border-box;
 }
 
 #main .content-header {
   /*border-left: 3px solid #babfc4;*/
-  padding-left: 15px;
+  /*padding-left: 15px;*/
 }
 
 #main .content-header h1 {
@@ -339,7 +339,7 @@ a:hover {
 
 #main .content-box {
   margin-top: 20px;
-  padding: 15px;
+  /*padding: 15px;*/
   box-sizing: border-box;
   background-color: #fff;
   margin-bottom: 30px;

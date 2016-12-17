@@ -17,7 +17,6 @@ const ALERT_TEMPLATE = `
 
 @Component({
   selector: 'alert,ngx-alert',
-  exportAs: 'bs-alert',
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {
