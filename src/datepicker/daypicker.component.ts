@@ -52,7 +52,7 @@ const TEMPLATE_OPTIONS: any = {
     </tr>
     <tr>
       <th *ngIf="datePicker.showWeeks"></th>
-      <th *ngFor="let labelz of labels" [ngClass]="{'text-xs-center':isBS4, 'text-center': !isBS4}">
+      <th *ngFor="let labelz of labels" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}">
         <small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small>
       </th>
     </tr>
@@ -60,16 +60,16 @@ const TEMPLATE_OPTIONS: any = {
   <tbody>
     <template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
       <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
-        <td *ngIf="datePicker.showWeeks" class="h6" [ngClass]="{'text-xs-center':isBS4, 'text-center': !isBS4}">
+        <td *ngIf="datePicker.showWeeks" class="h6" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}">
           <em>{{ weekNumbers[index] }}</em>
         </td>
-        <td *ngFor="let dtz of rowz" [ngClass]="{'text-xs-center':isBS4, 'text-center': !isBS4}" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
-                  [ngClass]="{'btn-secondary': isBS4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBS4 && datePicker.isActive(dtz), 'btn-default': !isBS4}"
+                  [ngClass]="{'btn-secondary': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz), 'btn-default': !isBs4}"
                   [disabled]="dtz.disabled"
                   (click)="datePicker.select(dtz.date)" tabindex="-1">
-            <span [ngClass]="{'text-muted': dtz.secondary || dtz.current, 'text-info': !isBS4 && dtz.current}">{{dtz.label}}</span>
+            <span [ngClass]="{'text-muted': dtz.secondary || dtz.current, 'text-info': !isBs4 && dtz.current}">{{dtz.label}}</span>
           </button>
         </td>
       </tr>
@@ -94,7 +94,7 @@ export class DayPickerComponent implements OnInit {
     this.datePicker = datePicker;
   }
 
-  public get isBS4(): boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 

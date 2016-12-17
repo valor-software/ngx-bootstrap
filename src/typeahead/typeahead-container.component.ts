@@ -10,7 +10,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
   selector: 'typeahead-container',
   // tslint:disable-next-line
   template: `
-  <template [ngIf]="!isBS4"><ul class="dropdown-menu"
+  <template [ngIf]="!isBs4"><ul class="dropdown-menu"
       (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
       <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
@@ -73,10 +73,9 @@ export class TypeaheadContainerComponent {
   public display: string;
   public placement: string;
 
-  public get isBS4():boolean {
+  public get isBs4():boolean {
     return !isBs3();
   }
-
 
   protected _active: TypeaheadMatch;
   protected _matches: TypeaheadMatch[] = [];

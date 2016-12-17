@@ -26,11 +26,11 @@ export enum Direction {UNKNOWN, NEXT, PREV}
       <div class="carousel-inner"><ng-content></ng-content></div>
       <a class="left carousel-control" (click)="prev()" *ngIf="slides.length">
         <span class="icon-prev" aria-hidden="true"></span>
-        <span *ngIf="isBS4" class="sr-only">Previous</span>
+        <span *ngIf="isBs4" class="sr-only">Previous</span>
       </a>
       <a class="right carousel-control" (click)="next()" *ngIf="slides.length">
         <span class="icon-next" aria-hidden="true"></span>
-        <span *ngIf="isBS4" class="sr-only">Next</span>
+        <span *ngIf="isBs4" class="sr-only">Next</span>
       </a>
     </div>
   `
@@ -57,7 +57,7 @@ export class CarouselComponent implements OnDestroy {
   protected currentSlide:SlideComponent;
   protected _interval:number;
 
-  public get isBS4():boolean {
+  public get isBs4():boolean {
     return !isBs3();
   }
 
