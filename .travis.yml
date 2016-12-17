@@ -13,10 +13,19 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script:
+  # unit tests
   - npm run pretest
   - npm run test-coverage
   - ./node_modules/.bin/codecov
+
+  # e2e
+  - npm run demo.build
+  - npm run lite-server &
+  - sleep 5
+  - npm run e2e
+
   - npm run test-cross
+
 
 after_success:
   - ./node_modules/.bin/codecov  -f coverage/coverage-final.json
@@ -30,4 +39,7 @@ addons:
     - ubuntu-toolchain-r-test
     # required by node-gyp to build some packages
     packages:
+    - expect-dev
     - g++-4.8
+    - chromium-browser
+    - chromium-chromedriver

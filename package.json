@@ -4,7 +4,7 @@
   "description": "angular2 bootstrap components",
   "private": true,
   "scripts": {
-    "lite-server": "lite-server -c -c demo/bs-config.json",
+    "lite-server": "lite-server -c demo/bs-config.json",
     "typedoc": "typedoc --exclude '**/*.spec.ts' ./src/",
     "demo.serve": "run-s build demo.build lite-server",
     "demo.gh-pages": "run-s build demo.build demo.deploy",
