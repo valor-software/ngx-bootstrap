@@ -52,7 +52,7 @@ describe('Component: Alert', () => {
   it('should be closed by public method onClose', () => {
     context.ngOnInit();
     expect(context.closed).toBeFalsy();
-    context.onClose();
+    context.close();
     expect(context.closed).toBeTruthy();
   });
 });

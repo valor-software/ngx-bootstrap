@@ -15,5 +15,6 @@ function getApiDocs() {
 }
 
 module.exports = getApiDocs;
-fs.writeFileSync('demo/src/ng-api-doc.json', JSON.stringify(getApiDocs(), null, 2));
+const json = JSON.stringify(getApiDocs(), null, 2);
+fs.writeFileSync('demo/src/ng-api-doc.ts', `export const ngdoc = ${json};`);
 

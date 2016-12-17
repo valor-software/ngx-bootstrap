@@ -6,8 +6,6 @@ let titleDoc = require('html!markdown!./docs/title.md');
 
 @Component({
   selector: 'alert-section',
-  // tslint:disable-next-line
-  host: {'class': 'col-md-9'},
   template: `
     <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc">
       <!-- basic -->
@@ -16,9 +14,14 @@ let titleDoc = require('html!markdown!./docs/title.md');
       <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
         <ui-alert-basic></ui-alert-basic>
       </ng-sample-box>
-      
+      <!-- link -->
       <h3 id="link-color">Link color</h3>
+      <p>Use the <code class="highlighter-rouge">.alert-link</code> utility class to quickly provide matching colored links within any alert.</p>
         
+      <ng-sample-box [ts]="demos.link.component" [html]="demos.link.html">
+        <ui-alert-link></ui-alert-link>
+      </ng-sample-box>
+      
       <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
         <alert-demo></alert-demo>
       </ng-sample-box>

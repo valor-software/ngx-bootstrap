@@ -1,4 +1,4 @@
-{
+export const ngdoc = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",
     "className": "AccordionPanelComponent",
@@ -109,7 +109,7 @@
     "fileName": "src/buttons/button-checkbox.directive.ts",
     "className": "ButtonCheckboxDirective",
     "description": "",
-    "selector": "[btnCheckbox][ngModel]",
+    "selector": "[btnCheckbox]",
     "inputs": [
       {
         "name": "btnCheckboxFalse",
@@ -233,6 +233,40 @@
     ],
     "properties": [],
     "methods": []
+  },
+  "ListenOptions": {
+    "fileName": "src/component-loader/component-loader.class.ts",
+    "className": "ListenOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "ComponentLoaderFactory": {
+    "fileName": "src/component-loader/component-loader.factory.ts",
+    "className": "ComponentLoaderFactory",
+    "description": "",
+    "methods": [
+      {
+        "name": "createLoader",
+        "description": "@returns {ComponentLoader}",
+        "args": [
+          {
+            "name": "_elementRef",
+            "type": "ElementRef"
+          },
+          {
+            "name": "_viewContainerRef",
+            "type": "ViewContainerRef"
+          },
+          {
+            "name": "_renderer",
+            "type": "Renderer"
+          }
+        ],
+        "returnType": "ComponentLoader<T>"
+      }
+    ],
+    "properties": []
   },
   "DatePickerInnerComponent": {
     "fileName": "src/datepicker/datepicker-inner.component.ts",
@@ -368,7 +402,7 @@
     "fileName": "src/datepicker/datepicker.component.ts",
     "className": "DatePickerComponent",
     "description": "",
-    "selector": "datepicker[ngModel]",
+    "selector": "datepicker",
     "inputs": [
       {
         "name": "activeDate",
@@ -572,6 +606,13 @@
     "properties": [],
     "methods": []
   },
+  "DropdownConfig": {
+    "fileName": "src/dropdown/dropdown.config.ts",
+    "className": "DropdownConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "DropdownDirective": {
     "fileName": "src/dropdown/dropdown.directive.ts",
     "className": "DropdownDirective",
@@ -699,17 +740,6 @@
     "properties": [],
     "methods": [
       {
-        "name": "onClick",
-        "description": "Host element manipulations ",
-        "args": [
-          {
-            "name": "event",
-            "type": "any"
-          }
-        ],
-        "returnType": "void"
-      },
-      {
         "name": "toggle",
         "description": "Public methods ",
         "args": [],
@@ -750,7 +780,7 @@
     "fileName": "src/pagination/pager.component.ts",
     "className": "PagerComponent",
     "description": "",
-    "selector": "pager[ngModel]",
+    "selector": "pager",
     "inputs": [
       {
         "name": "align",
@@ -842,7 +872,7 @@
     "fileName": "src/pagination/pagination.component.ts",
     "className": "PaginationComponent",
     "description": "",
-    "selector": "pagination[ngModel]",
+    "selector": "pagination",
     "inputs": [
       {
         "name": "align",
@@ -930,6 +960,161 @@
     "methods": [],
     "properties": []
   },
+  "PopoverConfig": {
+    "fileName": "src/popover/popover-config.ts",
+    "className": "PopoverConfig",
+    "description": "Configuration service for the Popover directive.\nYou can inject this service, typically in your root component, and customize\nthe values of its properties in order to provide default values for all the\npopovers used in the application.",
+    "methods": [],
+    "properties": []
+  },
+  "PopoverContainerComponent": {
+    "fileName": "src/popover/popover-container.component.ts",
+    "className": "PopoverContainerComponent",
+    "description": "",
+    "selector": "popover-container",
+    "inputs": [
+      {
+        "name": "placement",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "PopoverDirective": {
+    "fileName": "src/popover/popover.directive.ts",
+    "className": "PopoverDirective",
+    "description": "A lightweight, extensible directive for fancy popover creation.",
+    "selector": "[popover]",
+    "exportAs": "bs-popover",
+    "inputs": [
+      {
+        "name": "container",
+        "type": "string",
+        "description": "A selector specifying the element the popover should be appended to.\nCurrently only supports \"body\"."
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "description": "Returns whether or not the popover is currently being shown"
+      },
+      {
+        "name": "placement",
+        "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+        "description": "Placement of a popover. Accepts: \"top\", \"bottom\", \"left\", \"right\""
+      },
+      {
+        "name": "popover",
+        "type": "string | TemplateRef<any>",
+        "description": "Content to be displayed as popover."
+      },
+      {
+        "name": "popoverTitle",
+        "type": "string",
+        "description": "Title of a popover."
+      },
+      {
+        "name": "triggers",
+        "type": "string",
+        "description": "Specifies events that should trigger. Supports a space separated list of\nevent names."
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onHidden",
+        "description": "Emits an event when the popover is hidden"
+      },
+      {
+        "name": "onShown",
+        "description": "Emits an event when the popover is shown"
+      }
+    ],
+    "properties": [],
+    "methods": [
+      {
+        "name": "show",
+        "description": "Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "toggle",
+        "description": "Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
+  },
+  "Positioning": {
+    "fileName": "src/positioning/ng-positioning.ts",
+    "className": "Positioning",
+    "description": "@copyright Valor Software\n@copyright Angular ng-bootstrap team",
+    "methods": [],
+    "properties": []
+  },
+  "PositioningOptions": {
+    "fileName": "src/positioning/positioning.service.ts",
+    "className": "PositioningOptions",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "appendToBody",
+        "type": "boolean",
+        "description": "If true component will be attached to body "
+      },
+      {
+        "name": "attachment",
+        "type": "string",
+        "description": "A string of the form 'vert-attachment horiz-attachment' or 'placement'\n- placement can be \"top\", \"bottom\", \"left\", \"right\"\nnot yet supported:\n- vert-attachment can be any of 'top', 'middle', 'bottom'\n- horiz-attachment can be any of 'left', 'center', 'right'"
+      },
+      {
+        "name": "element",
+        "type": "string | ElementRef | HTMLElement",
+        "description": "The DOM element, ElementRef, or a selector string of an element which will be moved "
+      },
+      {
+        "name": "offset",
+        "type": "string",
+        "description": "A string of the form 'vert-offset horiz-offset'\n- vert-offset and horiz-offset can be of the form \"20px\" or \"55%\""
+      },
+      {
+        "name": "target",
+        "type": "string | ElementRef | HTMLElement",
+        "description": "The DOM element, ElementRef, or a selector string of an element which the element will be attached to  "
+      },
+      {
+        "name": "targetAttachment",
+        "type": "string",
+        "description": "A string similar to `attachment`. The one difference is that, if it's not provided, `targetAttachment` will assume the mirror image of `attachment`. "
+      },
+      {
+        "name": "targetOffset",
+        "type": "string",
+        "description": "A string similar to `offset`, but referring to the offset of the target "
+      }
+    ]
+  },
+  "PositioningService": {
+    "fileName": "src/positioning/positioning.service.ts",
+    "className": "PositioningService",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "BarComponent": {
     "fileName": "src/progressbar/bar.component.ts",
     "className": "BarComponent",
@@ -1007,7 +1192,7 @@
     "fileName": "src/rating/rating.component.ts",
     "className": "RatingComponent",
     "description": "",
-    "selector": "rating[ngModel]",
+    "selector": "rating",
     "inputs": [
       {
         "name": "max",
@@ -1154,11 +1339,18 @@
     "properties": [],
     "methods": []
   },
+  "TabsetConfig": {
+    "fileName": "src/tabs/tabset.config.ts",
+    "className": "TabsetConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "TimepickerComponent": {
     "fileName": "src/timepicker/timepicker.component.ts",
     "className": "TimepickerComponent",
     "description": "",
-    "selector": "timepicker[ngModel]",
+    "selector": "timepicker",
     "inputs": [
       {
         "name": "arrowkeys",
@@ -1226,7 +1418,7 @@
     "fileName": "src/tooltip/tooltip-container.component.ts",
     "className": "TooltipContainerComponent",
     "description": "",
-    "selector": "tooltip-container",
+    "selector": "bs-tooltip-container",
     "inputs": [],
     "outputs": [],
     "properties": [],
@@ -1254,59 +1446,76 @@
     "exportAs": "bs-tooltip",
     "inputs": [
       {
-        "name": "tooltip",
+        "name": "container",
         "type": "string",
-        "description": ""
+        "description": "A selector specifying the element the tooltip should be appended to.\nCurrently only supports \"body\"."
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "Allows to disable tooltip"
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "description": "Returns whether or not the tooltip is currently being shown"
+      },
+      {
+        "name": "placement",
+        "type": "string",
+        "description": "Placement of a tooltip. Accepts: \"top\", \"bottom\", \"left\", \"right\""
+      },
+      {
+        "name": "tooltip",
+        "type": "string | TemplateRef<any>",
+        "description": "Content to be displayed as popover."
       },
       {
         "name": "tooltipAnimation",
         "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipAppendToBody",
-        "defaultValue": "false",
         "type": "boolean",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipClass",
         "type": "string",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipContext",
         "type": "any",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipEnable",
-        "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipFadeDuration",
         "defaultValue": "150",
         "type": "number",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipHtml",
         "type": "string | TemplateRef<any>",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipIsOpen",
         "type": "boolean",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipPlacement",
-        "defaultValue": "top",
         "type": "string",
-        "description": ""
+        "description": "@deprecated "
       },
       {
         "name": "tooltipPopupDelay",
@@ -1315,19 +1524,76 @@
         "description": ""
       },
       {
+        "name": "tooltipTitle",
+        "type": "string",
+        "description": "Title of a popover."
+      },
+      {
         "name": "tooltipTrigger",
         "type": "string | string[]",
-        "description": ""
+        "description": "@deprecated "
+      },
+      {
+        "name": "triggers",
+        "type": "string",
+        "description": "Specifies events that should trigger. Supports a space separated list of\nevent names."
       }
     ],
     "outputs": [
+      {
+        "name": "onHidden",
+        "description": "Emits an event when the tooltip is hidden"
+      },
+      {
+        "name": "onShown",
+        "description": "Emits an event when the tooltip is shown"
+      },
+      {
+        "name": "tooltipChange",
+        "description": ""
+      },
       {
         "name": "tooltipStateChanged",
         "description": ""
       }
     ],
-    "properties": [],
-    "methods": []
+    "properties": [
+      {
+        "name": "_appendToBody",
+        "type": "boolean",
+        "description": "@deprecated "
+      },
+      {
+        "name": "_enable",
+        "type": "boolean",
+        "description": "@deprecated "
+      },
+      {
+        "name": "_isOpen",
+        "type": "boolean",
+        "description": "@deprecated "
+      }
+    ],
+    "methods": [
+      {
+        "name": "toggle",
+        "description": "Toggles an element’s tooltip. This is considered a “manual” triggering of\nthe popover.",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "show",
+        "description": "Opens an element’s tooltip. This is considered a “manual” triggering of\nthe popover.",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "Closes an element’s tooltip. This is considered a “manual” triggering of\nthe popover.",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
   },
   "TypeaheadContainerComponent": {
     "fileName": "src/typeahead/typeahead-container.component.ts",
@@ -1345,6 +1611,11 @@
     "description": "",
     "selector": "[typeahead][ngModel],[typeahead][formControlName]",
     "inputs": [
+      {
+        "name": "container",
+        "type": "string",
+        "description": "A selector specifying the element the typeahead should be appended to.\nCurrently only supports \"body\"."
+      },
       {
         "name": "typeahead",
         "type": "any",
@@ -1427,74 +1698,11 @@
     "properties": [],
     "methods": []
   },
-  "KeyAttribute": {
-    "fileName": "src/utils/common.ts",
-    "className": "KeyAttribute",
-    "description": "",
+  "Trigger": {
+    "fileName": "src/utils/trigger.class.ts",
+    "className": "Trigger",
+    "description": "@copyright Valor Software\n@copyright Angular ng-bootstrap team",
     "methods": [],
     "properties": []
-  },
-  "ComponentsHelper": {
-    "fileName": "src/utils/components-helper.service.ts",
-    "className": "ComponentsHelper",
-    "description": "Components helper class to easily work with\nallows to:\n- get application root view container ref",
-    "methods": [
-      {
-        "name": "setRootViewContainerRef",
-        "description": "In some cases, like using ngUpgrate,\nyou need to explicitly set view container ref\nto made this method working you need to add:\n```typescript\n @Component({\n  selector: 'my-app',\n  ...\n  })\n export class MyApp {\n   constructor(componentsHelper:ComponentsHelper, viewContainerRef: ViewContainerRef) {\n       // A Default view container ref, usually the app root container ref.\n       // Has to be set manually until we can find a way to get it automatically.\n       componentsHelper.setRootViewContainerRef(viewContainerRef)\n     }\n }\n```",
-        "args": [
-          {
-            "name": "value",
-            "type": "ViewContainerRef"
-          }
-        ],
-        "returnType": "void"
-      },
-      {
-        "name": "getRootViewContainerRef",
-        "description": "This is a name conventional class to get application root view component ref\n@returns {ViewContainerRef} - application root view component ref",
-        "args": [],
-        "returnType": "ViewContainerRef"
-      },
-      {
-        "name": "appendNextToLocation",
-        "description": "Creates an instance of a Component and attaches it to the View Container found at the\n`location` specified as {@link ViewContainerRef}.\n\nYou can optionally provide `providers` to configure the {@link Injector} provisioned for this\nComponent Instance.\n\nReturns {@link ComponentRef} representing the newly created Component.\n@Component class\n@returns {ComponentRef<T>} - returns ComponentRef<T>",
-        "args": [
-          {
-            "name": "ComponentClass",
-            "type": "Type<T>"
-          },
-          {
-            "name": "location",
-            "type": "ViewContainerRef"
-          },
-          {
-            "name": "providers",
-            "type": "ResolvedReflectiveProvider[]"
-          }
-        ],
-        "returnType": "ComponentRef<T>"
-      },
-      {
-        "name": "appendNextToRoot",
-        "description": "Helper methods to add ComponentClass(like modal backdrop) with options\nof type ComponentOptionsClass to element next to application root\nor next to provided instance of view container\n@Component class\n@returns {ComponentRef<T>} - returns ComponentRef<T>",
-        "args": [
-          {
-            "name": "ComponentClass",
-            "type": "Type<T>"
-          },
-          {
-            "name": "ComponentOptionsClass",
-            "type": "any"
-          },
-          {
-            "name": "options",
-            "type": "any"
-          }
-        ],
-        "returnType": "ComponentRef<T>"
-      }
-    ],
-    "properties": []
   }
-}
+};

@@ -3,7 +3,7 @@ import { AlertConfig } from './alert.config';
 
 const ALERT_TEMPLATE = `
   <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
-    <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
+    <button *ngIf="dismissible" type="button" class="close" (click)="close()" (touch)="close()">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
@@ -12,7 +12,7 @@ const ALERT_TEMPLATE = `
   `;
 
 @Component({
-  selector: 'alert',
+  selector: 'alert,ngx-alert',
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {
@@ -24,7 +24,8 @@ export class AlertComponent implements OnInit {
   @Input() public dismissOnTimeout: number;
   // todo: rename in onClosed
   /** fired when alert closed with inline button or by timeout, $event is an instance of Alert component */
-  @Output() public close: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
+  @Output() public onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
+  @Output() public onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
 
   public closed: boolean;
   protected classes: string[] = [];
@@ -49,13 +50,18 @@ export class AlertComponent implements OnInit {
     }
 
     if (this.dismissOnTimeout) {
-      setTimeout(() => this.onClose(), this.dismissOnTimeout);
+      setTimeout(() => this.close(), this.dismissOnTimeout);
     }
   }
 
   // todo: mouse event + touch + pointer
-  public onClose(): void {
+  // todo: animatin ` If the .fade and .in classes are present on the element, the alert will fade out before it is removed`
+  /**
+   * Closes an alert by removing it from the DOM.
+   */
+  public close(): void {
+    this.onClose.emit(this);
     this.closed = true;
-    this.close.emit(this);
+    this.onClosed.emit(this);
   }
 }

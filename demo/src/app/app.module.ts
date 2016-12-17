@@ -9,7 +9,6 @@ import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 import { AppFooterComponent } from './common/app-footer/app-footer.component';
-import ngdoc from '!!json!../ng-api-doc.json';
 // will be lazy loaded later
 import { DemoAccordionModule } from './components/accordion';
 import { DemoAlertsModule } from './components/alerts';
@@ -28,10 +27,7 @@ import { DemoTooltipModule } from './components/tooltip/index';
 import { DemoTypeaheadModule } from './components/typeahead/index';
 import { NgApiDocModule } from './api-docs/index';
 import { NgApiDoc } from './api-docs/api-docs.model';
-
-export function getNgDoc(): NgApiDoc {
-  return ngdoc;
-}
+import { ngdoc } from '../ng-api-doc';
 
 @NgModule({
   declarations: [
@@ -65,7 +61,7 @@ export function getNgDoc(): NgApiDoc {
     DemoTypeaheadModule
   ],
   providers: [
-      {provide: NgApiDoc, useValue: ngdoc}
+    {provide: NgApiDoc, useValue: ngdoc}
   ],
   bootstrap: [AppComponent]
 })

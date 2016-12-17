@@ -14,6 +14,10 @@ const ANGULAR_LIFECYCLE_METHODS = [
 ];
 
 function isInternalMember(member) {
+  // todo: could be an issue, as for now lets skip members without a symbol
+  if (!member.symbol) {
+    return true;
+  }
   const jsDoc = ts.displayPartsToString(member.symbol.getDocumentationComment());
   return jsDoc.trim().length === 0 || jsDoc.indexOf('@internal') > -1;
 }
