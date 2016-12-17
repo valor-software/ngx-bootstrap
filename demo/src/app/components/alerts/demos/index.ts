@@ -2,9 +2,12 @@ import { UiAlertBasicComponent } from './basic/basic';
 import { AlertsDemoComponent } from './alerts-demo.component';
 import { UiAlertLinkComponent } from './link/link';
 import { DemoAlertContentComponent } from './content/content';
+import { DemoAlertDismissComponent } from './dismiss/dismiss';
+import { DemoAlertDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 
 export const DEMO_COMPONENTS = [UiAlertBasicComponent, AlertsDemoComponent,
-  UiAlertLinkComponent, DemoAlertContentComponent];
+  UiAlertLinkComponent, DemoAlertContentComponent, DemoAlertDismissComponent,
+  DemoAlertDynamicHtmlComponent];
 
 export const DEMOS = {
   old: {
@@ -22,5 +25,13 @@ export const DEMOS = {
   content: {
     component: require('!!raw?lang=typescript!./content/content.ts'),
     html: require('!!raw?lang=markup!./content/content.html')
+  },
+  dismiss: {
+    component: require('!!raw?lang=typescript!./dismiss/dismiss.ts'),
+    html: require('!!raw?lang=markup!./dismiss/dismiss.html')
+  },
+  dynamic: {
+    component: require('!!raw?lang=typescript!./dynamic-html/dynamic-html.ts'),
+    html: require('!!raw?lang=markup!./dynamic-html/dynamic-html.html')
   }
 };

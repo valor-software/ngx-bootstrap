@@ -17,21 +17,24 @@ const ALERT_TEMPLATE = `
 
 @Component({
   selector: 'alert,ngx-alert',
+  exportAs: 'bs-alert',
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {
-  /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
+  /** Alert type. Provide one of the four supported by bootstrap contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() public type: string = 'warning';
-  /** determines if an inline close button is displayed */
+  /** If set, displays an inline close button */
   @Input() public dismissible: boolean = false;
-  /** number of milliseconds, if specified sets a timeout duration, after which the alert will be closed */
+  /** Number of milliseconds, if specified sets a timeout duration, after which the alert will be closed */
   @Input() public dismissOnTimeout: number;
-  // todo: rename in onClosed
-  /** fired when alert closed with inline button or by timeout, $event is an instance of Alert component */
+
+  public isClosed: boolean = false;
+
+  /** This event fires immediately when the close instance method is called, $event is an instance of Alert component. */
   @Output() public onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
+  /** This event fires when alert closed, $event is an instance of Alert component */
   @Output() public onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
 
-  public isClosed: boolean;
   protected classes: string[] = [];
 
   public constructor(_config: AlertConfig) {
@@ -52,7 +55,8 @@ export class AlertComponent implements OnInit {
   }
 
   // todo: mouse event + touch + pointer
-  // todo: animation ` If the .fade and .in classes are present on the element, the alert will fade out before it is removed`
+  // todo: animation ` If the .fade and .in classes are present on the element,
+  // the alert will fade out before it is removed`
   /**
    * Closes an alert by removing it from the DOM.
    */

@@ -30,6 +30,20 @@ let titleDoc = require('html!markdown!./docs/title.md');
         <demo-alert-content></demo-alert-content>
       </ng-sample-box>
       
+      <!-- dismiss -->
+      <h3 id="dismissing">Dismissing</h3>
+      <p>Alerts have <code class="highlighter-rouge">dismiss</code> option. Enabling it will show close button to the right of the alert.</p>
+      <ng-sample-box [ts]="demos.dismiss.component" [html]="demos.dismiss.html">
+        <demo-alert-dismiss></demo-alert-dismiss>
+      </ng-sample-box>
+      
+      <!-- dynamic-html -->
+      <h3 id="dynamic-html">Dynamic html</h3>
+      <p>Sometimes you will need to show dynamically generated html in alerts, here is how you can make it.</p>
+      <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
+        <demo-alert-dynamic-html></demo-alert-dynamic-html>
+      </ng-sample-box>
+      
       <!--<ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">-->
         <!--<alert-demo></alert-demo>-->
       <!--</ng-sample-box>-->

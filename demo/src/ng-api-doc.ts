@@ -1,3 +1,4 @@
+/* tslint:disable */
 export const ngdoc = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",
@@ -50,34 +51,46 @@ export const ngdoc = {
     "fileName": "src/alert/alert.component.ts",
     "className": "AlertComponent",
     "description": "",
-    "selector": "alert",
+    "selector": "alert,ngx-alert",
+    "exportAs": "bs-alert",
     "inputs": [
       {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "determines if an inline close button is displayed "
+        "description": "If set, displays an inline close button "
       },
       {
         "name": "dismissOnTimeout",
         "type": "number",
-        "description": "number of milliseconds, if specified sets a timeout duration, after which the alert will be closed "
+        "description": "Number of milliseconds, if specified sets a timeout duration, after which the alert will be closed "
       },
       {
         "name": "type",
         "defaultValue": "warning",
         "type": "string",
-        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
+        "description": "Alert type. Provide one of the four supported by bootstrap contextual classes: `success`, `info`, `warning`, `danger` "
       }
     ],
     "outputs": [
       {
-        "name": "close",
-        "description": "fired when alert closed with inline button or by timeout, $event is an instance of Alert component "
+        "name": "onClose",
+        "description": "This event fires immediately when the close instance method is called, $event is an instance of Alert component. "
+      },
+      {
+        "name": "onClosed",
+        "description": "This event fires when alert closed, $event is an instance of Alert component "
       }
     ],
     "properties": [],
-    "methods": []
+    "methods": [
+      {
+        "name": "close",
+        "description": "Closes an alert by removing it from the DOM.",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
   },
   "AlertConfig": {
     "fileName": "src/alert/alert.config.ts",
@@ -89,13 +102,13 @@ export const ngdoc = {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "is alerts dismissible by default "
+        "description": "is alerts are dismissible by default "
       },
       {
         "name": "dismissOnTimeout",
         "defaultValue": "undefined",
         "type": "number",
-        "description": "default time before alert dismiss "
+        "description": "default time before alert will dismiss "
       },
       {
         "name": "type",
