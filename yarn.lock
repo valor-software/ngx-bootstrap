@@ -1420,9 +1420,9 @@ codecov@1.0.1, codecov@^1.0.1:
     request ">=2.42.0"
     urlgrey ">=0.4.0"
 
-codelyzer@^2.0.0-beta.1:
-  version "2.0.0-beta.1"
-  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-2.0.0-beta.1.tgz#5385f739ec782933d0d4d7b11a42510174de0bf7"
+codelyzer@^2.0.0-beta.3:
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/codelyzer/-/codelyzer-2.0.0-beta.3.tgz#be17e73a4ccd659d6f2a863da1711b3f742762ed"
   dependencies:
     app-root-path "^2.0.1"
     css-selector-tokenizer "^0.7.0"
@@ -4994,14 +4994,14 @@ nested-error-stacks@^2.0.0:
   dependencies:
     inherits "~2.0.1"
 
-ngm-cli@^0.3.6:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/ngm-cli/-/ngm-cli-0.3.6.tgz#790a1f1b9153295973d729f542baa61cf7552ce4"
+ngm-cli@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/ngm-cli/-/ngm-cli-0.3.7.tgz#5163adcb5c53d04ba42203c813278c7f6836898e"
   dependencies:
     "@angular/compiler-cli" "^2.2.0"
     "@angular/tsc-wrapped" "0.4.0"
     awesome-typescript-loader "3.0.0-beta.9"
-    npm-submodules "0.3.6"
+    npm-submodules "0.3.7"
     reflect-metadata "0.1.8"
     rxjs "5.0.0-beta.12"
     zone.js "0.7.2"
@@ -5168,9 +5168,9 @@ npm-run-path@^2.0.0:
   dependencies:
     path-key "^2.0.0"
 
-npm-submodules@0.3.6:
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/npm-submodules/-/npm-submodules-0.3.6.tgz#b03254569f3f3acf6c7cc9d52ce31cbb65fe3f00"
+npm-submodules@0.3.7:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/npm-submodules/-/npm-submodules-0.3.7.tgz#592d73257984d7e4dfff986cd6da3c5d140c16a3"
   dependencies:
     "@angular/compiler" "^2.2.0"
     "@angular/core" "^2.2.0"

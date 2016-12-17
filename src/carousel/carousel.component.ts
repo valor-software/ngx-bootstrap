@@ -2,7 +2,7 @@
 
 import { Component, Input, OnDestroy } from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { SlideComponent } from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
@@ -58,7 +58,7 @@ export class CarouselComponent implements OnDestroy {
   protected _interval:number;
 
   public get isBS4():boolean {
-    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
+    return !isBs3();
   }
 
   public ngOnDestroy():void {

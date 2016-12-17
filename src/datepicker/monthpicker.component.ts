@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 @Component({
@@ -57,7 +57,7 @@ export class MonthPickerComponent implements OnInit {
   }
 
   public get isBS4():boolean {
-    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
+    return !isBs3();
   }
 
   public ngOnInit():void {
