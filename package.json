@@ -14,7 +14,7 @@
     "lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -v",
     "flow.github-release": "conventional-github-releaser -p angular",
-    "build": "ngm build -p src",
+    "build": "ngm build -p src --clean",
     "build.watch": "ngm build -p src --watch --skip-bundles",
     "start": "ng serve --aot",
     "generate-bs4": "node scripts/generate-bs4.js",
