@@ -22,9 +22,17 @@ let titleDoc = require('html!markdown!./docs/title.md');
         <ui-alert-link></ui-alert-link>
       </ng-sample-box>
       
-      <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-        <alert-demo></alert-demo>
+      <!-- content -->
+      <h3 id="additional-content">Additional content</h3>
+      <p>Alerts can also contain additional HTML elements like headings and paragraphs.</p>
+      
+      <ng-sample-box [ts]="demos.content.component" [html]="demos.content.html">
+        <demo-alert-content></demo-alert-content>
       </ng-sample-box>
+      
+      <!--<ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">-->
+        <!--<alert-demo></alert-demo>-->
+      <!--</ng-sample-box>-->
       <ng-api-doc directive="AlertComponent"></ng-api-doc>
       <ng-api-doc-config type="AlertConfig"></ng-api-doc-config>
     </demo-section>`

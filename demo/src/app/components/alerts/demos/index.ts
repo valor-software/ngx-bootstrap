@@ -1,9 +1,10 @@
 import { UiAlertBasicComponent } from './basic/basic';
 import { AlertsDemoComponent } from './alerts-demo.component';
 import { UiAlertLinkComponent } from './link/link';
+import { DemoAlertContentComponent } from './content/content';
 
 export const DEMO_COMPONENTS = [UiAlertBasicComponent, AlertsDemoComponent,
-  UiAlertLinkComponent];
+  UiAlertLinkComponent, DemoAlertContentComponent];
 
 export const DEMOS = {
   old: {
@@ -17,5 +18,9 @@ export const DEMOS = {
   link: {
     component: require('!!raw?lang=typescript!./link/link.ts'),
     html: require('!!raw?lang=markup!./link/link.html')
+  },
+  content: {
+    component: require('!!raw?lang=typescript!./content/content.ts'),
+    html: require('!!raw?lang=markup!./content/content.html')
   }
 };
