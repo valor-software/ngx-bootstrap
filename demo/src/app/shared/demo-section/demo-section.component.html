@@ -6,13 +6,11 @@
   </h1>
 </div>
 
-
-<!-- remove this -->
 <div id="content" class="content-box">
-  <p class="description" [innerHTML]="titleDoc"></p>
-  <div id="example" class="section">
-    <h3>Examples</h3>
+  <!-- remove this -->
+  <p class="description" [innerHTML]="titleDoc" *ngIf="titleDoc"></p>
 
+  <div id="example" class="section">
     <div class="item">
       <ng-content></ng-content>
     </div>

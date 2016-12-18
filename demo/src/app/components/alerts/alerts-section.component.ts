@@ -2,80 +2,11 @@ import { Component } from '@angular/core';
 import { DEMOS } from './demos/index';
 
 // webpack html imports
-let titleDoc = require('html!markdown!./docs/title.md');
+let titleDoc = require('html!markdown!./docs/usage.md');
 
 @Component({
   selector: 'alert-section',
-  template: `
-    <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc">
-      <!-- basic -->
-      <p>Alerts are available for any length of text, as well as an optional dismiss button. For proper styling, use one of the four <strong>required</strong> contextual classes (e.g., <code>.alert-success</code>). For inline dismissal, use the <a href="#dismissing"><code>dismiss property</code></a>.</p>
-      
-      <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
-        <demo-alert-basic></demo-alert-basic>
-      </ng-sample-box>
-      <!-- link -->
-      <h3 id="link-color">Link color</h3>
-      <p>Use the <code>.alert-link</code> utility class to quickly provide matching colored links within any alert.</p>
-        
-      <ng-sample-box [ts]="demos.link.component" [html]="demos.link.html">
-        <demo-alert-link></demo-alert-link>
-      </ng-sample-box>
-      
-      <!-- content -->
-      <h3 id="additional-content">Additional content</h3>
-      <p>Alerts can also contain additional HTML elements like headings and paragraphs.</p>
-      
-      <ng-sample-box [ts]="demos.content.component" [html]="demos.content.html">
-        <demo-alert-content></demo-alert-content>
-      </ng-sample-box>
-      
-      <!-- dismiss -->
-      <h3 id="dismissing">Dismissing</h3>
-      <p>Alerts have <code>dismiss</code> option. Enabling it will show close button to the right of the alert.</p>
-      <ng-sample-box [ts]="demos.dismiss.component" [html]="demos.dismiss.html">
-        <demo-alert-dismiss></demo-alert-dismiss>
-      </ng-sample-box>
-      
-      <!-- dynamic-html -->
-      <h3 id="dynamic-html">Dynamic html</h3>
-      <p>Sometimes you will need to show dynamically generated html in alerts, here is how you can make it. And don't forget to sanitize your html.</p>
-      <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
-        <demo-alert-dynamic-html></demo-alert-dynamic-html>
-      </ng-sample-box>
-      
-      <!-- dismiss on timeout -->
-      <h3>Dismiss on timeout</h3>
-      <p>You can simply set timeout in milliseconds to <code>dismissOnTimeout</code> property to create self closable alerts.</p>
-      <ng-sample-box [ts]="demos.timeout.component" [html]="demos.timeout.html">
-        <demo-alert-timeout></demo-alert-timeout>
-      </ng-sample-box>
-      
-      <!-- global styling of alerts -->
-      <h3>Global styling</h3>
-      <p>You can add additional types of alerts globally.</p>
-      <ng-sample-box [ts]="demos.global.component" [html]="demos.global.html">
-        <demo-alert-styling-global></demo-alert-styling-global>
-      </ng-sample-box>
-      
-      <!-- local styling of alerts -->
-      <h3>Component level styling</h3>
-      <p>You can add additional types of alerts directly to containing component</p>
-      <ng-sample-box [ts]="demos.local.component" [html]="demos.local.html">
-        <demo-alert-styling-local></demo-alert-styling-local>
-      </ng-sample-box>
-      
-      <!-- configuration -->
-      <h3>Configuring defaults</h3>
-      <p>It is possible to override default alert config partially or completely.</p>
-      <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
-        <demo-alert-config></demo-alert-config>
-      </ng-sample-box>
-      
-      <h2 id="api-reference">API Reference</h2>
-      <ng-api-doc directive="AlertComponent"></ng-api-doc>
-      <ng-api-doc-config type="AlertConfig"></ng-api-doc-config>
-    </demo-section>`
+  templateUrl: './alerts-section.component.html'
 })
 export class AlertsSectionComponent {
   public name: string = 'Alerts';

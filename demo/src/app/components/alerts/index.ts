@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared';
-import { AlertsSectionComponent } from './alerts-section.component';
 import { AlertModule } from 'ng2-bootstrap';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { AlertsSectionComponent } from './alerts-section.component';
+import { DEMO_COMPONENTS } from './demos';
+import { SharedModule } from '../../shared';
 import { NgApiDocModule } from '../../api-docs';
-import { DEMO_COMPONENTS } from './demos/index';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DEMO_COMPONENTS } from './demos/index';
   imports: [
     AlertModule.forRoot(),
     NgApiDocModule,
+    Ng2PageScrollModule,
     CommonModule,
     SharedModule
   ],

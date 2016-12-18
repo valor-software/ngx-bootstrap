@@ -1,6 +1,9 @@
 import { AfterContentInit, Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { isBs3 } from 'ng2-bootstrap';
+import { PageScrollConfig } from 'ng2-page-scroll';
+PageScrollConfig.defaultDuration = 50;
+PageScrollConfig.defaultScrollOffset = 70;
 
 @Component({
   selector: 'bs-demo',
