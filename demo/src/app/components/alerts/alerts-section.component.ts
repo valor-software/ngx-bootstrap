@@ -1,6 +1,5 @@
-import { Component, SecurityContext } from '@angular/core';
+import { Component } from '@angular/core';
 import { DEMOS } from './demos/index';
-import { DomSanitizer } from '@angular/platform-browser';
 
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
@@ -64,6 +63,13 @@ let titleDoc = require('html!markdown!./docs/title.md');
       <p>You can add additional types of alerts directly to containing component</p>
       <ng-sample-box [ts]="demos.local.component" [html]="demos.local.html">
         <demo-alert-styling-local></demo-alert-styling-local>
+      </ng-sample-box>
+      
+      <!-- configuration -->
+      <h3>Configuring defaults</h3>
+      <p>It is possible to override default alert config partially or completely.</p>
+      <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
+        <demo-alert-config></demo-alert-config>
       </ng-sample-box>
       
       <h2 id="api-reference">API Reference</h2>
