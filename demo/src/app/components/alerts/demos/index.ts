@@ -1,13 +1,14 @@
-import { UiAlertBasicComponent } from './basic/basic';
+import { DemoAlertBasicComponent } from './basic/basic';
 import { AlertsDemoComponent } from './alerts-demo.component';
-import { UiAlertLinkComponent } from './link/link';
+import { DemoAlertLinkComponent } from './link/link';
 import { DemoAlertContentComponent } from './content/content';
 import { DemoAlertDismissComponent } from './dismiss/dismiss';
 import { DemoAlertDynamicHtmlComponent } from './dynamic-html/dynamic-html';
+import { DemoAlertTimeoutComponent } from './dismiss-on-timeout/dismiss-on-timeout';
 
-export const DEMO_COMPONENTS = [UiAlertBasicComponent, AlertsDemoComponent,
-  UiAlertLinkComponent, DemoAlertContentComponent, DemoAlertDismissComponent,
-  DemoAlertDynamicHtmlComponent];
+export const DEMO_COMPONENTS = [DemoAlertBasicComponent, AlertsDemoComponent,
+  DemoAlertLinkComponent, DemoAlertContentComponent, DemoAlertDismissComponent,
+  DemoAlertDynamicHtmlComponent, DemoAlertTimeoutComponent];
 
 export const DEMOS = {
   old: {
@@ -29,6 +30,10 @@ export const DEMOS = {
   dismiss: {
     component: require('!!raw?lang=typescript!./dismiss/dismiss.ts'),
     html: require('!!raw?lang=markup!./dismiss/dismiss.html')
+  },
+  timeout: {
+    component: require('!!raw?lang=typescript!./dismiss-on-timeout/dismiss-on-timeout.ts'),
+    html: require('!!raw?lang=markup!./dismiss-on-timeout/dismiss-on-timeout.html')
   },
   dynamic: {
     component: require('!!raw?lang=typescript!./dynamic-html/dynamic-html.ts'),

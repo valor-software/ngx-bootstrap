@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'demo-alert-dynamic-html',
@@ -19,4 +20,11 @@ export class DemoAlertDynamicHtmlComponent {
       msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
     }
   ];
+
+  public constructor(sanitizer: DomSanitizer) {
+    this.alerts = this.alerts.map((alert:any) => ({
+      type: alert.type,
+      msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
+    }));
+  }
 }

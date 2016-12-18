@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ui-alert-basic',
+  selector: 'demo-alert-basic',
   templateUrl: './basic.html'
 })
-export class UiAlertBasicComponent {
+export class DemoAlertBasicComponent {
 }

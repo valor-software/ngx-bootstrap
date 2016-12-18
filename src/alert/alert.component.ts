@@ -49,7 +49,9 @@ export class AlertComponent implements OnInit {
     }
 
     if (this.dismissOnTimeout) {
-      setTimeout(() => this.close(), this.dismissOnTimeout);
+      // if dismissOnTimeout used as attr without binding, it will be a string
+      setTimeout(() => this.close(),
+        parseInt(this.dismissOnTimeout as string, 10));
     }
   }
 

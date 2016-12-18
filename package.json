@@ -11,6 +11,7 @@
     "demo.gh-pages": "run-s build demo.build demo.deploy",
     "demo.build": "ng build -prod --aot && npm run generate-bs4",
     "demo.deploy": "gh-pages -d demo/dist",
+    "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ng2-bootstrap.git -b gh-pages",
     "link": "ngm link -p src --here",
     "lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -v",
