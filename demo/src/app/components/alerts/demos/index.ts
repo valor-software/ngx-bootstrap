@@ -5,10 +5,12 @@ import { DemoAlertContentComponent } from './content/content';
 import { DemoAlertDismissComponent } from './dismiss/dismiss';
 import { DemoAlertDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoAlertTimeoutComponent } from './dismiss-on-timeout/dismiss-on-timeout';
+import { DemoAlertStylingGlobalComponent } from './styling-global/styling-global';
 
 export const DEMO_COMPONENTS = [DemoAlertBasicComponent, AlertsDemoComponent,
   DemoAlertLinkComponent, DemoAlertContentComponent, DemoAlertDismissComponent,
-  DemoAlertDynamicHtmlComponent, DemoAlertTimeoutComponent];
+  DemoAlertDynamicHtmlComponent, DemoAlertTimeoutComponent,
+  DemoAlertStylingGlobalComponent];
 
 export const DEMOS = {
   old: {
@@ -38,5 +40,9 @@ export const DEMOS = {
   dynamic: {
     component: require('!!raw?lang=typescript!./dynamic-html/dynamic-html.ts'),
     html: require('!!raw?lang=markup!./dynamic-html/dynamic-html.html')
+  },
+  global: {
+    component: require('!!raw?lang=typescript!./styling-global/styling-global.ts'),
+    html: require('!!raw?lang=markup!./styling-global/styling-global.html')
   }
 };
