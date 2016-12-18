@@ -99,7 +99,7 @@ describe('Component: Sortable', () => {
     beforeEach(inject([DraggableItemService], (service: DraggableItemService) => {
       transfer = service;
       item = getItemToDrag();
-      event = new Event('dragover') as DragEvent;
+      event = { preventDefault: () => void 0 } as DragEvent;
       sort1ZoneNumber = (sort1 as any).currentZoneIndex;
       draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
       spyOnChanged = spyOn(sort1, 'onChanged');
