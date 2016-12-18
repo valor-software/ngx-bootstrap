@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { SortableComponent } from './components';
-import { DraggableItemService } from './services';
+import { SortableComponent } from './sortable.component';
+import { DraggableItemService } from './draggable-item.service';
 
 @NgModule({
     declarations: [

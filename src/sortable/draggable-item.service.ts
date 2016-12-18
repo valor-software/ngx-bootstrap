@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { DraggableItem } from '../models';
+import { DraggableItem } from './draggable-item';
 
 @Injectable()
 export class DraggableItemService {

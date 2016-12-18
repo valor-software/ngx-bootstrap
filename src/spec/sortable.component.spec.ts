@@ -3,8 +3,8 @@ import { Component, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { SortableModule, SortableComponent, DraggableItemService } from '../sortable';
-import { DraggableItem } from '../sortable/models';
-import { SortableItem } from '../sortable/components';
+import { DraggableItem } from '../sortable';
+import { SortableItem } from '../sortable';
 
 const HEROES: string[] = [ 'Windstorm', 'Bombasto', 'Magneta', 'Tornado' ];
 const HEROES_OBJ: any[] = [ { id: 1, name: 'Windstorm' }, { id: 2, name: 'Bombasto' }, { id: 3, name: 'Magneta' } ];
@@ -138,7 +138,7 @@ describe('Component: Sortable', () => {
     it('sould prevent event default when dragover zone', () => {
       // arrange
       // act
-      sort1.onZoneDragover(event);
+      sort1.cancelEvent(event);
       // assert
       expect(spyPreventDefault).toHaveBeenCalled();
     });
@@ -147,7 +147,7 @@ describe('Component: Sortable', () => {
       // arrange
       spyGetItem.and.returnValue(undefined);
       // act
-      sort1.onZoneDragover(event);
+      sort1.cancelEvent(event);
       // assert
       expect(spyPreventDefault).not.toHaveBeenCalled();
     });

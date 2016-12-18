@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { DraggableItemService } from '../sortable';
-import { DraggableItem } from '../sortable/models';
-import { SortableItem } from '../sortable/components';
+import { DraggableItem } from '../sortable';
+import { SortableItem } from '../sortable';
 
 @Component({
   template: `<h1>Test</h1>`

@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter, Inject, forwardRef, animate, st
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import 'rxjs/add/operator/first';
 
-import { DraggableItem } from '../models';
-import { DraggableItemService } from '../services';
+import { DraggableItem } from './draggable-item';
+import { DraggableItemService } from './draggable-item.service';
 
 const nullCallback = (arg?: any): void => { return void 0; };
 
@@ -15,7 +15,8 @@ const nullCallback = (arg?: any): void => { return void 0; };
             [ngClass]="wrapperClass"
             [ngStyle]="wrapperStyle"
             [ngStyle]="wrapperStyle"
-            (dragover)="onZoneDragover($event)"
+            (dragover)="cancelEvent($event)"
+            (dragenter)="cancelEvent($event)"
             (drop)="resetActiveItem()"
             (mouseleave)="resetActiveItem()"
         >
@@ -24,6 +25,7 @@ const nullCallback = (arg?: any): void => { return void 0; };
                 [ngClass]="placeholderClass"
                 [ngStyle]="placeholderStyle"
                 (dragover)="onItemDragover($event, 0)"
+                (dragenter)="cancelEvent($event)"
             >{{placeholderItem}}</div>
             <div
                 [@flyInOut]="'in'"
@@ -36,6 +38,7 @@ const nullCallback = (arg?: any): void => { return void 0; };
                 (dragstart)="onItemDragstart($event, item, i)"
                 (dragend)="resetActiveItem()"
                 (dragover)="onItemDragover($event, i)"
+                (dragenter)="cancelEvent($event)"
             >{{item.value}}</div>
         </div>`,
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SortableComponent), multi: true }],
@@ -139,7 +142,7 @@ export class SortableComponent implements ControlValueAccessor {
         this.activeItem = i;
     }
 
-    public onZoneDragover(event: DragEvent): void {
+    public cancelEvent(event: DragEvent): void {
         if (!this.transfer.getItem()) {
             return;
         }
