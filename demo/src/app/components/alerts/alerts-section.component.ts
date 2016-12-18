@@ -58,9 +58,13 @@ let titleDoc = require('html!markdown!./docs/title.md');
       <ng-sample-box [ts]="demos.global.component" [html]="demos.global.html">
         <demo-alert-styling-global></demo-alert-styling-global>
       </ng-sample-box>
-      <!--<ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">-->
-        <!--<alert-demo></alert-demo>-->
-      <!--</ng-sample-box>-->
+      
+      <!-- local styling of alerts -->
+      <h3>Component level styling</h3>
+      <p>You can add additional types of alerts directly to containing component</p>
+      <ng-sample-box [ts]="demos.local.component" [html]="demos.local.html">
+        <demo-alert-styling-local></demo-alert-styling-local>
+      </ng-sample-box>
       
       <h2 id="api-reference">API Reference</h2>
       <ng-api-doc directive="AlertComponent"></ng-api-doc>
