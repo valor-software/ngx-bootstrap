@@ -134,18 +134,20 @@ export const ngdoc = {
   "ButtonCheckboxDirective": {
     "fileName": "src/buttons/button-checkbox.directive.ts",
     "className": "ButtonCheckboxDirective",
-    "description": "",
+    "description": "Add checkbox functionality to any element",
     "selector": "[btnCheckbox]",
     "inputs": [
       {
         "name": "btnCheckboxFalse",
+        "defaultValue": "false",
         "type": "any",
-        "description": ""
+        "description": "falsy value, will be set to ngModel "
       },
       {
         "name": "btnCheckboxTrue",
+        "defaultValue": "true",
         "type": "any",
-        "description": ""
+        "description": "truthy value, will be set to ngModel "
       }
     ],
     "outputs": [],
@@ -155,23 +157,23 @@ export const ngdoc = {
   "ButtonRadioDirective": {
     "fileName": "src/buttons/button-radio.directive.ts",
     "className": "ButtonRadioDirective",
-    "description": "",
+    "description": "Create radio buttons or groups of buttons.\nA value of a selected button is bound to a variable specified via ngModel.",
     "selector": "[btnRadio]",
     "inputs": [
       {
         "name": "btnRadio",
         "type": "any",
-        "description": ""
+        "description": "radio button value, will be set to `ngModel` "
       },
       {
         "name": "uncheckable",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` radio button can be unchecked "
       },
       {
         "name": "value",
         "type": "any",
-        "description": ""
+        "description": "current value of radio component or group "
       }
     ],
     "outputs": [],

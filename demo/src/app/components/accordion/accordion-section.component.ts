@@ -1,3 +1,6 @@
+// todo: add more samples https://jqueryui.com/accordion/#default
+// todo: add more samples http://getbootstrap.com/components/#panels-alternatives
+
 import { Component } from '@angular/core';
 
 // webpack html imports
@@ -17,7 +20,7 @@ let html = require('!!raw!./demos/accordion-demo.component.html');
     <li><a pageScroll href="#usage">Usage</a></li>
     <li><a pageScroll href="#examples">Examples</a>
       <ul>
-        <li><a pageScroll href="#link-color">Link color</a></li>
+        <!--<li><a pageScroll href="#link-color">Link color</a></li>-->
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
@@ -37,7 +40,9 @@ let html = require('!!raw!./demos/accordion-demo.component.html');
   <!-- basic -->
   <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
   
-  <accordion-demo></accordion-demo>
+  <ng-sample-box [ts]="ts" [html]="html">
+      <accordion-demo></accordion-demo>
+  </ng-sample-box>
       
   <h2 id="api-reference">API Reference</h2>
   <ng-api-doc id="accordion-panel-component" directive="AccordionPanelComponent"></ng-api-doc>
