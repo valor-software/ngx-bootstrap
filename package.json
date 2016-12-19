@@ -107,6 +107,6 @@
     "typescript": "2.0.10",
     "wallaby-webpack": "0.0.26",
     "webdriver-manager": "11.0.0",
-    "zone.js": "0.6.26"
+    "zone.js": "0.7.3"
   }
 }
