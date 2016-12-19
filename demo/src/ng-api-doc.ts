@@ -183,28 +183,28 @@ export const ngdoc = {
   "CarouselComponent": {
     "fileName": "src/carousel/carousel.component.ts",
     "className": "CarouselComponent",
-    "description": "Problems:\n1) if we set an active slide via model changes, .active class remains on a current slide.\n2) if we have only one slide, we shouldn't show prev/next nav buttons\n3) if first or last slide is active and noWrap is true, there should be \"disabled\" class on the nav buttons.\n4) default interval should be equal 5000",
+    "description": "Base element to create carousel",
     "selector": "carousel",
     "inputs": [
       {
         "name": "interval",
         "type": "number",
-        "description": ""
+        "description": "Amount of time in milliseconds to delay between automatically\ncycling an item. If false, carousel will not automatically cycle"
       },
       {
         "name": "noPause",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` will disable pausing on carousel mouse hover "
       },
       {
         "name": "noTransition",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` will disable transitions on the carousel "
       },
       {
         "name": "noWrap",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` carousel will not cycle continuously and will have hard stops (prevent looping) "
       }
     ],
     "outputs": [],
@@ -214,13 +214,13 @@ export const ngdoc = {
   "SlideComponent": {
     "fileName": "src/carousel/slide.component.ts",
     "className": "SlideComponent",
-    "description": "",
+    "description": "Wrap your content with `slide` component  ",
     "selector": "slide",
     "inputs": [
       {
         "name": "active",
         "type": "boolean",
-        "description": ""
+        "description": "does current slide is active "
       },
       {
         "name": "direction",
@@ -230,7 +230,7 @@ export const ngdoc = {
       {
         "name": "index",
         "type": "number",
-        "description": ""
+        "description": "index of slide in carousel's slides "
       }
     ],
     "outputs": [],

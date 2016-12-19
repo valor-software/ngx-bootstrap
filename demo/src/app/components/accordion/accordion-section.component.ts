@@ -15,6 +15,7 @@ let html = require('!!raw!./demos/accordion-demo.component.html');
 <demo-section [name]="name" [src]="src">
   <p>Displays collapsible content panels for presenting information in a limited amount of space</p>
   <p>The <strong>accordion component</strong> builds on top of the collapse directive to provide a list of items, with collapsible bodies that are collapsed or expanded by clicking on the item's header.</p>
+  
   <h2>Contents</h2>
   <ul>
     <li><a pageScroll href="#usage">Usage</a></li>

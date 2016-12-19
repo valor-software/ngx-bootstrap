@@ -1,7 +1,13 @@
+/***
+ * todo:
+ * direction (?string) (not yet supported)
+ actual (not yet supported) (?any) - will be bind to slider context, to be used from template
+ */
 import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { CarouselComponent, Direction } from './carousel.component';
 
+/** Wrap your content with `slide` component  */
 @Component({
   selector: 'slide',
   template: `
@@ -11,9 +17,11 @@ import { CarouselComponent, Direction } from './carousel.component';
   `
 })
 export class SlideComponent implements OnInit, OnDestroy {
+  /** index of slide in carousel's slides */
   @Input() public index:number;
   @Input() public direction:Direction;
 
+  /** does current slide is active */
   @HostBinding('class.active')
   @Input() public active:boolean;
 
