@@ -9,22 +9,22 @@ export const ngdoc = {
       {
         "name": "heading",
         "type": "string",
-        "description": ""
+        "description": "click able text in accordion's group header, check `accordion heading` below for using html in header "
       },
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": ""
+        "description": "if <code>true</code> disables accordion group "
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": ""
+        "description": "is accordion group open or closed "
       },
       {
         "name": "panelClass",
         "type": "string",
-        "description": ""
+        "description": "provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) "
       }
     ],
     "outputs": [],
@@ -34,25 +34,38 @@ export const ngdoc = {
   "AccordionComponent": {
     "fileName": "src/accordion/accordion.component.ts",
     "className": "AccordionComponent",
-    "description": "",
+    "description": "Displays collapsible content panels for presenting information in a limited amount of space. ",
     "selector": "accordion",
     "inputs": [
       {
         "name": "closeOthers",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` expanding one item will close all others "
       }
     ],
     "outputs": [],
     "properties": [],
     "methods": []
   },
+  "AccordionConfig": {
+    "fileName": "src/accordion/accordion.config.ts",
+    "className": "AccordionConfig",
+    "description": "Configuration service, provides default values for the AccordionComponent.",
+    "methods": [],
+    "properties": [
+      {
+        "name": "closeOthers",
+        "defaultValue": "false",
+        "type": "Boolean",
+        "description": "Whether the other panels should be closed when a panel is opened "
+      }
+    ]
+  },
   "AlertComponent": {
     "fileName": "src/alert/alert.component.ts",
     "className": "AlertComponent",
     "description": "",
     "selector": "alert,ngx-alert",
-    "exportAs": "bs-alert",
     "inputs": [
       {
         "name": "dismissible",
@@ -62,7 +75,7 @@ export const ngdoc = {
       },
       {
         "name": "dismissOnTimeout",
-        "type": "number",
+        "type": "string | number",
         "description": "Number of milliseconds, if specified sets a timeout duration, after which the alert will be closed "
       },
       {
