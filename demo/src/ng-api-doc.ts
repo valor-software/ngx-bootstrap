@@ -460,7 +460,7 @@ export const ngdoc = {
       {
         "name": "activeDate",
         "type": "Date",
-        "description": ""
+        "description": "currently active date "
       },
       {
         "name": "customClass",
@@ -640,7 +640,7 @@ export const ngdoc = {
   "DropdownToggleDirective": {
     "fileName": "src/dropdown/dropdown-toggle.directive.ts",
     "className": "DropdownToggleDirective",
-    "description": "",
+    "description": "Mark element which can toggle dropdown visibility with this directive ",
     "selector": "[dropdownToggle]",
     "exportAs": "bs-dropdown-toggle",
     "inputs": [
@@ -648,13 +648,13 @@ export const ngdoc = {
         "name": "addToggleClass",
         "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "if true the dropdown-toggle class will be added to the element "
       },
       {
         "name": "isDisabled",
         "defaultValue": "false",
         "type": "boolean",
-        "description": ""
+        "description": "if true dropdown toggle will be disabled "
       }
     ],
     "outputs": [],
@@ -664,46 +664,59 @@ export const ngdoc = {
   "DropdownConfig": {
     "fileName": "src/dropdown/dropdown.config.ts",
     "className": "DropdownConfig",
-    "description": "",
+    "description": "Default dropdown configuration ",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "autoClose",
+        "defaultValue": "NONINPUT",
+        "type": "string",
+        "description": "default dropdown auto closing behavior "
+      },
+      {
+        "name": "keyboardNav",
+        "defaultValue": "false",
+        "type": "Boolean",
+        "description": "is keyboard navigation enabled by default "
+      }
+    ]
   },
   "DropdownDirective": {
     "fileName": "src/dropdown/dropdown.directive.ts",
     "className": "DropdownDirective",
-    "description": "",
+    "description": "Mark dropdown content with this directive",
     "selector": "[dropdown]",
     "exportAs": "bs-dropdown",
     "inputs": [
       {
         "name": "appendToBody",
         "type": "boolean",
-        "description": ""
+        "description": "Allows to attach dropdown to body, will be replaced with container=\"body\" "
       },
       {
         "name": "autoClose",
         "type": "string",
-        "description": ""
+        "description": "behaviour vary:\n- nonInput - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an input or a textarea.\n- always - automatically closes the dropdown when any of its elements is clicked\n- outsideClick - closes the dropdown automatically only when the user clicks any element outside the dropdown\n- disabled - disables the auto close. You can then control the open/close status of the dropdown manually, by using is-open. Please notice that the dropdown will still close if the toggle is clicked, the esc key is pressed or another dropdown is open"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` dropdown will be opened "
       },
       {
         "name": "keyboardNav",
         "type": "boolean",
-        "description": ""
+        "description": "if true will enable navigation of dropdown list elements with the arrow keys "
       }
     ],
     "outputs": [
       {
         "name": "isOpenChange",
-        "description": ""
+        "description": "fired when isOpen value changes "
       },
       {
         "name": "onToggle",
-        "description": ""
+        "description": "fired when dropdown toggles, $event:boolean equals dropdown isOpen state "
       }
     ],
     "properties": [],
