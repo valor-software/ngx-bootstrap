@@ -1575,16 +1575,34 @@ export const ngdoc = {
   "TooltipOptions": {
     "fileName": "src/tooltip/tooltip-options.class.ts",
     "className": "TooltipOptions",
-    "description": "",
+    "description": "@deprecated ",
     "methods": [],
     "properties": []
   },
   "TooltipConfig": {
     "fileName": "src/tooltip/tooltip.config.ts",
     "className": "TooltipConfig",
-    "description": "",
+    "description": "Default values provider for tooltip ",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "container",
+        "type": "string",
+        "description": "a selector specifying the element the tooltip should be appended to. Currently only supports \"body\" "
+      },
+      {
+        "name": "placement",
+        "defaultValue": "top",
+        "type": "string",
+        "description": "tooltip placement, supported positions: 'top', 'bottom', 'left', 'right' "
+      },
+      {
+        "name": "triggers",
+        "defaultValue": "hover focus",
+        "type": "string",
+        "description": "array of event names which triggers tooltip opening "
+      }
+    ]
   },
   "TooltipDirective": {
     "fileName": "src/tooltip/tooltip.directive.ts",
@@ -1616,7 +1634,7 @@ export const ngdoc = {
       {
         "name": "tooltip",
         "type": "string | TemplateRef<any>",
-        "description": "Content to be displayed as popover."
+        "description": "Content to be displayed as tooltip."
       },
       {
         "name": "tooltipAnimation",
@@ -1669,12 +1687,7 @@ export const ngdoc = {
         "name": "tooltipPopupDelay",
         "defaultValue": "0",
         "type": "number",
-        "description": ""
-      },
-      {
-        "name": "tooltipTitle",
-        "type": "string",
-        "description": "Title of a popover."
+        "description": "@deprecated "
       },
       {
         "name": "tooltipTrigger",
@@ -1698,11 +1711,11 @@ export const ngdoc = {
       },
       {
         "name": "tooltipChange",
-        "description": ""
+        "description": "Fired when tooltip content changes "
       },
       {
         "name": "tooltipStateChanged",
-        "description": ""
+        "description": "@deprecated "
       }
     ],
     "properties": [
@@ -1725,19 +1738,19 @@ export const ngdoc = {
     "methods": [
       {
         "name": "toggle",
-        "description": "Toggles an element’s tooltip. This is considered a “manual” triggering of\nthe popover.",
+        "description": "Toggles an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "show",
-        "description": "Opens an element’s tooltip. This is considered a “manual” triggering of\nthe popover.",
+        "description": "Opens an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "hide",
-        "description": "Closes an element’s tooltip. This is considered a “manual” triggering of\nthe popover.",
+        "description": "Closes an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.",
         "args": [],
         "returnType": "void"
       }

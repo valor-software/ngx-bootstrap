@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+/** @deprecated */
 @Injectable()
 export class TooltipOptions {
   public placement:string;

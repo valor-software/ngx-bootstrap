@@ -13,16 +13,13 @@ import { OnChange } from '../utils/decorators';
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   /**
-   * Content to be displayed as popover.
+   * Content to be displayed as tooltip.
    */
   @OnChange()
   @Input() public tooltip: string | TemplateRef<any>;
+  /** Fired when tooltip content changes */
   @Output() public tooltipChange: EventEmitter<string | TemplateRef<any>> = new EventEmitter();
 
-  /**
-   * Title of a popover.
-   */
-  @Input() public tooltipTitle: string;
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
@@ -128,6 +125,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     console.warn('tooltipContext deprecated');
   }
 
+  /** @deprecated */
   @Input('tooltipPopupDelay') public _delay: number = 0;
 
   /** @deprecated */
@@ -145,10 +143,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this.triggers = (value || '').toString();
   };
 
-  /* tslint:enable */
-
+  /** @deprecated */
   @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-
+  /* tslint:enable */
   protected _delayTimeoutId: number;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
@@ -182,7 +179,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /**
    * Toggles an element’s tooltip. This is considered a “manual” triggering of
-   * the popover.
+   * the tooltip.
    */
   public toggle(): void {
     if (this.isOpen) {
@@ -194,7 +191,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /**
    * Opens an element’s tooltip. This is considered a “manual” triggering of
-   * the popover.
+   * the tooltip.
    */
   public show(): void {
     if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.tooltip) {
@@ -207,8 +204,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       .position({attachment: this.placement})
       .show({
         content: this.tooltip,
-        placement: this.placement,
-        title: this.tooltipTitle
+        placement: this.placement
       });
 
     if (this._delay) {
@@ -220,7 +216,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /**
    * Closes an element’s tooltip. This is considered a “manual” triggering of
-   * the popover.
+   * the tooltip.
    */
   public hide(): void {
     if (this._delayTimeoutId) {
