@@ -847,77 +847,77 @@ export const ngdoc = {
       {
         "name": "align",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` aligns each link to the sides of pager "
       },
       {
         "name": "boundaryLinks",
         "type": "boolean",
-        "description": ""
+        "description": "if false first and last buttons will be hidden "
       },
       {
         "name": "directionLinks",
         "type": "boolean",
-        "description": ""
+        "description": "if false previous and next buttons will be hidden "
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": ""
+        "description": "if true pagination component will be disabled "
       },
       {
         "name": "firstText",
         "type": "string",
-        "description": ""
+        "description": "first button text "
       },
       {
         "name": "itemsPerPage",
         "type": "number",
-        "description": ""
+        "description": "maximum number of items per page. If value less than 1 will display all items on one page "
       },
       {
         "name": "lastText",
         "type": "string",
-        "description": ""
+        "description": "last button text "
       },
       {
         "name": "maxSize",
         "type": "number",
-        "description": ""
+        "description": "limit number for page links in pager "
       },
       {
         "name": "nextText",
         "type": "string",
-        "description": ""
+        "description": "next button text "
       },
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": ""
+        "description": "add class to <li> "
       },
       {
         "name": "previousText",
         "type": "string",
-        "description": ""
+        "description": "previous button text "
       },
       {
         "name": "rotate",
         "type": "boolean",
-        "description": ""
+        "description": "if true current page will in the middle of pages list "
       },
       {
         "name": "totalItems",
         "type": "number",
-        "description": ""
+        "description": "total number of items in all pages "
       }
     ],
     "outputs": [
       {
         "name": "numPages",
-        "description": ""
+        "description": "fired when total pages count changes, $event:number equals to total pages count "
       },
       {
         "name": "pageChanged",
-        "description": ""
+        "description": "fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page "
       }
     ],
     "properties": [],
@@ -939,77 +939,77 @@ export const ngdoc = {
       {
         "name": "align",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` aligns each link to the sides of pager "
       },
       {
         "name": "boundaryLinks",
         "type": "boolean",
-        "description": ""
+        "description": "if false first and last buttons will be hidden "
       },
       {
         "name": "directionLinks",
         "type": "boolean",
-        "description": ""
+        "description": "if false previous and next buttons will be hidden "
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": ""
+        "description": "if true pagination component will be disabled "
       },
       {
         "name": "firstText",
         "type": "string",
-        "description": ""
+        "description": "first button text "
       },
       {
         "name": "itemsPerPage",
         "type": "number",
-        "description": ""
+        "description": "maximum number of items per page. If value less than 1 will display all items on one page "
       },
       {
         "name": "lastText",
         "type": "string",
-        "description": ""
+        "description": "last button text "
       },
       {
         "name": "maxSize",
         "type": "number",
-        "description": ""
+        "description": "limit number for page links in pager "
       },
       {
         "name": "nextText",
         "type": "string",
-        "description": ""
+        "description": "next button text "
       },
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": ""
+        "description": "add class to <li> "
       },
       {
         "name": "previousText",
         "type": "string",
-        "description": ""
+        "description": "previous button text "
       },
       {
         "name": "rotate",
         "type": "boolean",
-        "description": ""
+        "description": "if true current page will in the middle of pages list "
       },
       {
         "name": "totalItems",
         "type": "number",
-        "description": ""
+        "description": "total number of items in all pages "
       }
     ],
     "outputs": [
       {
         "name": "numPages",
-        "description": ""
+        "description": "fired when total pages count changes, $event:number equals to total pages count "
       },
       {
         "name": "pageChanged",
-        "description": ""
+        "description": "fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page "
       }
     ],
     "properties": [],
@@ -1018,7 +1018,7 @@ export const ngdoc = {
   "PaginationConfig": {
     "fileName": "src/pagination/pagination.config.ts",
     "className": "PaginationConfig",
-    "description": "",
+    "description": "Provides default values for Pagination and pager components ",
     "methods": [],
     "properties": []
   },
