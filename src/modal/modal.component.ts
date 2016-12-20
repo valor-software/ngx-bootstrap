@@ -29,11 +29,13 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
 
+/** Mark any code with directive to show it's content in modal */
 @Directive({
   selector: '[bsModal]',
   exportAs: 'bs-modal'
 })
 export class ModalDirective implements AfterViewInit, OnDestroy {
+  /** allows to set modal configuration via element property */
   @Input()
   public set config(conf: ModalOptions) {
     this._config = this.getConfig(conf);
@@ -43,9 +45,13 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     return this._config;
   }
 
+  /** This event fires immediately when the `show` instance method is called. */
   @Output() public onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  /** This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) */
   @Output() public onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  /** This event is fired immediately when the hide instance method has been called. */
   @Output() public onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  /** This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). */
   @Output() public onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   // seems like an Options
@@ -111,11 +117,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this._config = this._config || this.getConfig();
   }
 
-  /** Public methods */
+  /* Public methods */
+
+  /** Allows to manually toggle modal visibility */
   public toggle(): void {
     return this._isShown ? this.hide() : this.show();
   }
 
+  /** Allows to manually open modal */
   public show(): void {
     this.onShow.emit(this);
     if (this._isShown) {
@@ -138,6 +147,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     });
   }
 
+  /** Allows to manually close modal */
   public hide(event?: Event): void {
     if (event) {
       event.preventDefault();
@@ -165,13 +175,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  /** Private methods */
+  /** Private methods @internal */
   protected getConfig(config?: ModalOptions): ModalOptions {
     return Object.assign({}, modalConfigDefaults, config);
   }
 
   /**
    *  Show dialog
+   *  @internal
    */
   protected showElement(): void {
     // todo: replace this with component loader usage
@@ -209,6 +220,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
+  /** @internal */
   protected hideModal(): void {
     this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
     this._renderer.setElementStyle(this._element.nativeElement, 'display', 'none');
@@ -223,6 +235,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   }
 
   // todo: original show was calling a callback when done, but we can use promise
+  /** @internal */
   protected showBackdrop(callback?: Function): void {
     if (this._isShown && this.config.backdrop && (!this.backdrop || !this.backdrop.instance.isShown)) {
       this.removeBackdrop();
@@ -268,6 +281,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
+  /** @internal */
   protected removeBackdrop(): void {
     this._backdrop.hide();
   }
@@ -297,13 +311,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // }
   // }
 
+  /** @internal */
   protected resetAdjustments(): void {
     this._renderer.setElementStyle(this._element.nativeElement, 'paddingLeft', '');
     this._renderer.setElementStyle(this._element.nativeElement, 'paddingRight', '');
   }
 
   /** Scroll bar tricks */
-
+  /** @internal */
   protected checkScrollbar(): void {
     this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
     this.scrollbarWidth = this.getScrollbarWidth();

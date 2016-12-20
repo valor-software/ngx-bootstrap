@@ -739,7 +739,7 @@ export const ngdoc = {
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
     "className": "ModalBackdropComponent",
-    "description": "",
+    "description": "This component will be added as background layout for modals if enabled ",
     "selector": "bs-modal-backdrop",
     "inputs": [],
     "outputs": [],
@@ -777,69 +777,63 @@ export const ngdoc = {
   "ModalDirective": {
     "fileName": "src/modal/modal.component.ts",
     "className": "ModalDirective",
-    "description": "",
+    "description": "Mark any code with directive to show it's content in modal ",
     "selector": "[bsModal]",
     "exportAs": "bs-modal",
     "inputs": [
       {
         "name": "config",
         "type": "ModalOptions",
-        "description": ""
+        "description": "allows to set modal configuration via element property "
       }
     ],
     "outputs": [
       {
         "name": "onHidden",
-        "description": ""
+        "description": "This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). "
       },
       {
         "name": "onHide",
-        "description": ""
+        "description": "This event is fired immediately when the hide instance method has been called. "
       },
       {
         "name": "onShow",
-        "description": ""
+        "description": "This event fires immediately when the `show` instance method is called. "
       },
       {
         "name": "onShown",
-        "description": ""
+        "description": "This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) "
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "config",
+        "type": "ModalOptions",
+        "description": "allows to set modal configuration via element property "
+      }
+    ],
     "methods": [
       {
         "name": "toggle",
-        "description": "Public methods ",
+        "description": "Allows to manually toggle modal visibility ",
         "args": [],
         "returnType": "void"
       },
       {
-        "name": "getConfig",
-        "description": "Private methods ",
+        "name": "show",
+        "description": "Allows to manually open modal ",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "Allows to manually close modal ",
         "args": [
           {
-            "name": "config",
-            "type": "ModalOptions"
+            "name": "event",
+            "type": "Event"
           }
         ],
-        "returnType": "ModalOptions"
-      },
-      {
-        "name": "showElement",
-        "description": "Show dialog",
-        "args": [],
-        "returnType": "void"
-      },
-      {
-        "name": "resetAdjustments",
-        "description": "Events tricks ",
-        "args": [],
-        "returnType": "void"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "Scroll bar tricks ",
-        "args": [],
         "returnType": "void"
       }
     ]
