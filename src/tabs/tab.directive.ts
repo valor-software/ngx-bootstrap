@@ -4,13 +4,15 @@ import {
 
 import { TabsetComponent } from './tabset.component';
 
-/* tslint:disable */
 @Directive({selector: 'tab, [tab]'})
-/* tslint:enable */
 export class TabDirective implements OnDestroy, OnInit {
+  /** tab header text */
   @Input() public heading:string;
+  /** if true tab can not be activated */
   @Input() public disabled:boolean;
+  /** if true tab can be removable, additional button will appear */
   @Input() public removable:boolean;
+  /** if set, will be added to the tab's class atribute */
   @Input() public customClass:string;
 
   /** tab active state toggle */
@@ -39,9 +41,12 @@ export class TabDirective implements OnDestroy, OnInit {
     });
   }
 
-  @Output() public select:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
-  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
-  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter<TabDirective>(false);
+  /** fired when tab became active, $event:Tab equals to selected instance of Tab component */
+  @Output() public select:EventEmitter<TabDirective> = new EventEmitter();
+  /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
+  @Output() public deselect:EventEmitter<TabDirective> = new EventEmitter();
+  /** fired before tab will be removed */
+  @Output() public removed:EventEmitter<TabDirective> = new EventEmitter();
 
   @HostBinding('class.tab-pane') public addClass:boolean = true;
 

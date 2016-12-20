@@ -1340,7 +1340,7 @@ export const ngdoc = {
   "TabHeadingDirective": {
     "fileName": "src/tabs/tab-heading.directive.ts",
     "className": "TabHeadingDirective",
-    "description": "",
+    "description": "Should be used to mark <template> element as a template for tab heading ",
     "selector": "[tabHeading]",
     "inputs": [],
     "outputs": [],
@@ -1361,36 +1361,36 @@ export const ngdoc = {
       {
         "name": "customClass",
         "type": "string",
-        "description": ""
+        "description": "if set, will be added to the tab's class atribute "
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": ""
+        "description": "if true tab can not be activated "
       },
       {
         "name": "heading",
         "type": "string",
-        "description": ""
+        "description": "tab header text "
       },
       {
         "name": "removable",
         "type": "boolean",
-        "description": ""
+        "description": "if true tab can be removable, additional button will appear "
       }
     ],
     "outputs": [
       {
         "name": "deselect",
-        "description": ""
+        "description": "fired when tab became inactive, $event:Tab equals to deselected instance of Tab component "
       },
       {
         "name": "removed",
-        "description": ""
+        "description": "fired before tab will be removed "
       },
       {
         "name": "select",
-        "description": ""
+        "description": "fired when tab became active, $event:Tab equals to selected instance of Tab component "
       }
     ],
     "properties": [],
@@ -1405,17 +1405,17 @@ export const ngdoc = {
       {
         "name": "justified",
         "type": "boolean",
-        "description": ""
+        "description": "if true tabs fill the container and have a consistent width "
       },
       {
         "name": "type",
         "type": "string",
-        "description": ""
+        "description": "navigation context class: 'tabs' or 'pills' "
       },
       {
         "name": "vertical",
         "type": "boolean",
-        "description": ""
+        "description": "if true tabs will be placed vertically "
       }
     ],
     "outputs": [],
@@ -1427,7 +1427,14 @@ export const ngdoc = {
     "className": "TabsetConfig",
     "description": "",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "type",
+        "defaultValue": "tabs",
+        "type": "string",
+        "description": "provides default navigation context class: 'tabs' or 'pills' "
+      }
+    ]
   },
   "TimepickerComponent": {
     "fileName": "src/timepicker/timepicker.component.ts",

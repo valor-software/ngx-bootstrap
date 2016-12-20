@@ -1,6 +1,3 @@
-Add quick, dynamic tab functionality to transition through panes of local content, even via dropdown menus. **Nested tabs are not supported.**
-
-### Usage
 ```typescript
 // RECOMMENDED
 import { TabsModule } from 'ng2-bootstrap/tabs';
