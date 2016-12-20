@@ -246,21 +246,46 @@ export const ngdoc = {
       {
         "name": "collapse",
         "type": "boolean",
-        "description": ""
+        "description": "A flag indicating visibility of content (shown or hidden) "
       }
     ],
     "outputs": [
       {
         "name": "collapsed",
-        "description": ""
+        "description": "This event fired as soon as content collapsed "
       },
       {
         "name": "expanded",
-        "description": ""
+        "description": "This event fired as soon as content became visible "
       }
     ],
-    "properties": [],
-    "methods": []
+    "properties": [
+      {
+        "name": "collapse",
+        "type": "boolean",
+        "description": "A flag indicating visibility of content (shown or hidden) "
+      }
+    ],
+    "methods": [
+      {
+        "name": "toggle",
+        "description": "allows to manually toggle content visibility ",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "allows to manually hide content ",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "show",
+        "description": "allows to manually show collapsed content ",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
   },
   "ListenOptions": {
     "fileName": "src/component-loader/component-loader.class.ts",

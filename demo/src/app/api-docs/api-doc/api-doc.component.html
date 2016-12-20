@@ -32,7 +32,7 @@
               </div>
             </template>
           </td>
-          <td class="col-md-6"><div style="margin: 10px 0">{{ input.description }}</div></td>
+          <td class="col-md-6"><div>{{ input.description }}</div></td>
         </tr>
         </tbody>
       </table>
@@ -46,7 +46,7 @@
         <tbody>
           <tr *ngFor="let output of apiDocs.outputs">
             <td class="col-md-3"><code>{{output.name}}</code></td>
-            <td class="col-md-9"><div style="margin: 10px 0">{{output.description}}</div></td>
+            <td class="col-md-9"><div>{{output.description}}</div></td>
           </tr>
         </tbody>
       </table>
@@ -64,7 +64,7 @@
             <div><i>Signature: </i><code>{{ methodSignature(method) }}</code></div>
             <div><i>Return type: </i><code>{{ method.returnType }}</code></div>
           </td>
-          <td class="col-md-9"><div style="margin: 10px 0">{{ method.description }}</div></td>
+          <td class="col-md-9"><div>{{ method.description }}</div></td>
         </tr>
         </tbody>
       </table>
