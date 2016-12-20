@@ -465,107 +465,109 @@ export const ngdoc = {
       {
         "name": "customClass",
         "type": "{ date: Date; mode: string; clazz: string; }[]",
-        "description": ""
+        "description": "array of custom css classes to be applied to targeted dates "
       },
       {
         "name": "dateDisabled",
         "type": "{ date: Date; mode: string; }[]",
-        "description": ""
+        "description": "array of disabled dates "
       },
       {
         "name": "datepickerMode",
+        "defaultValue": "day",
         "type": "string",
-        "description": ""
+        "description": "sets datepicker mode, supports: `day`, `month`, `year` "
       },
       {
         "name": "formatDay",
         "type": "string",
-        "description": ""
+        "description": "format of day in month "
       },
       {
         "name": "formatDayHeader",
         "type": "string",
-        "description": ""
+        "description": "format of day in week header "
       },
       {
         "name": "formatDayTitle",
         "type": "string",
-        "description": ""
+        "description": "format of title when selecting day "
       },
       {
         "name": "formatMonth",
         "type": "string",
-        "description": ""
+        "description": "format of month in year "
       },
       {
         "name": "formatMonthTitle",
         "type": "string",
-        "description": ""
+        "description": "format of title when selecting month "
       },
       {
         "name": "formatYear",
         "type": "string",
-        "description": ""
+        "description": "format of year in year range "
       },
       {
         "name": "initDate",
         "type": "Date",
-        "description": ""
+        "description": "default date to show if `ng-model` value is not specified "
       },
       {
         "name": "maxDate",
         "type": "Date",
-        "description": ""
+        "description": "latest selectable date "
       },
       {
         "name": "maxMode",
         "type": "string",
-        "description": ""
+        "description": "sets upper datepicker mode, supports: `day`, `month`, `year` "
       },
       {
         "name": "minDate",
         "type": "Date",
-        "description": ""
+        "description": "oldest selectable date "
       },
       {
         "name": "minMode",
         "type": "string",
-        "description": ""
+        "description": "set lower datepicker mode, supports: `day`, `month`, `year` "
       },
       {
         "name": "monthColLimit",
         "type": "number",
-        "description": ""
+        "description": "number of months displayed in a single row of month picker "
       },
       {
         "name": "onlyCurrentMonth",
         "type": "boolean",
-        "description": ""
+        "description": "if true only dates from the currently displayed month will be shown "
       },
       {
         "name": "shortcutPropagation",
         "type": "boolean",
-        "description": ""
+        "description": "if true shortcut`s event propagation will be disabled "
       },
       {
         "name": "showWeeks",
+        "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "if false week numbers will be hidden "
       },
       {
         "name": "startingDay",
         "type": "number",
-        "description": ""
+        "description": "starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday) "
       },
       {
         "name": "yearColLimit",
         "type": "number",
-        "description": ""
+        "description": "number of years displayed in a single row of year picker "
       },
       {
         "name": "yearRange",
         "type": "number",
-        "description": ""
+        "description": "number of years displayed in year selection "
       }
     ],
     "outputs": [
