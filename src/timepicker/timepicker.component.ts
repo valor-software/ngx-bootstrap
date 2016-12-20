@@ -38,11 +38,11 @@ function addMinutes(date: any, minutes: number): Date {
         </tr>
         <tr>
           <td class="form-group" [ngClass]="{'has-error': invalidHours}">
-            <input style="width:50px;" type="text" [(ngModel)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur($event)" maxlength="2">
+            <input style="width:50px;" type="text" [(ngModel)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur()" maxlength="2">
           </td>
           <td>:</td>
           <td class="form-group" [ngClass]="{'has-error': invalidMinutes}">
-            <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur($event)" maxlength="2">
+            <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur()" maxlength="2">
           </td>
           <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian() || readonlyInput}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
         </tr>
