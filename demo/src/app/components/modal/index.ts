@@ -5,8 +5,6 @@ import { SharedModule } from '../../shared';
 import { ModalModule } from 'ng2-bootstrap';
 import { ModalDemoComponent } from './demos/modal-demo.component';
 import { ModalSectionComponent } from './modal-section.component';
-import { NgApiDocModule } from '../../api-docs';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   declarations: [
@@ -15,8 +13,6 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
   ],
   imports: [
     ModalModule.forRoot(),
-    NgApiDocModule,
-    Ng2PageScrollModule,
     CommonModule,
     FormsModule,
     SharedModule

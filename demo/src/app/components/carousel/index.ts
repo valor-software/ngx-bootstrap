@@ -5,9 +5,7 @@ import { SharedModule } from '../../shared';
 
 import { CarouselDemoComponent } from './demos/carousel-demo.component';
 import { CarouselSectionComponent } from './carousel-section.component';
-import { NgApiDocModule } from '../../api-docs';
 import { CarouselModule } from 'ng2-bootstrap';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 @NgModule({
   declarations:[
@@ -16,8 +14,6 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
   ],
   imports:[
     CarouselModule.forRoot(),
-    NgApiDocModule,
-    Ng2PageScrollModule,
     CommonModule,
     FormsModule,
     SharedModule

@@ -1186,12 +1186,12 @@ export const ngdoc = {
       {
         "name": "type",
         "type": "string",
-        "description": ""
+        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
       },
       {
         "name": "value",
         "type": "number",
-        "description": ""
+        "description": "current value of progress bar "
       }
     ],
     "outputs": [],
@@ -1207,12 +1207,12 @@ export const ngdoc = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) "
       },
       {
         "name": "max",
         "type": "number",
-        "description": ""
+        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
       }
     ],
     "outputs": [],
@@ -1228,27 +1228,47 @@ export const ngdoc = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": ""
+        "description": "if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) "
       },
       {
         "name": "max",
         "type": "number",
-        "description": ""
+        "description": "maximum total value of progress element "
       },
       {
         "name": "type",
         "type": "string",
-        "description": ""
+        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
       },
       {
         "name": "value",
         "type": "number",
-        "description": ""
+        "description": "current value of progress bar "
       }
     ],
     "outputs": [],
     "properties": [],
     "methods": []
+  },
+  "ProgressbarConfig": {
+    "fileName": "src/progressbar/progressbar.config.ts",
+    "className": "ProgressbarConfig",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "animate",
+        "defaultValue": "true",
+        "type": "Boolean",
+        "description": "if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) "
+      },
+      {
+        "name": "max",
+        "defaultValue": "100",
+        "type": "number",
+        "description": "maximum total value of progress element "
+      }
+    ]
   },
   "RatingComponent": {
     "fileName": "src/rating/rating.component.ts",
