@@ -1278,43 +1278,44 @@ export const ngdoc = {
     "inputs": [
       {
         "name": "max",
+        "defaultValue": "5",
         "type": "number",
-        "description": ""
+        "description": "number of icons "
       },
       {
         "name": "ratingStates",
         "type": "{ stateOn: string; stateOff: string; }[]",
-        "description": ""
+        "description": "array of custom icons classes "
       },
       {
         "name": "readonly",
         "type": "boolean",
-        "description": ""
+        "description": "if true will not react on any user events "
       },
       {
         "name": "stateOff",
         "type": "string",
-        "description": ""
+        "description": "unselected icon class "
       },
       {
         "name": "stateOn",
         "type": "string",
-        "description": ""
+        "description": "selected icon class "
       },
       {
         "name": "titles",
         "type": "string[]",
-        "description": ""
+        "description": "array of icons titles, default: ([\"one\", \"two\", \"three\", \"four\", \"five\"]) "
       }
     ],
     "outputs": [
       {
         "name": "onHover",
-        "description": ""
+        "description": "fired when icon selected, $event:number equals to selected rating "
       },
       {
         "name": "onLeave",
-        "description": ""
+        "description": "fired when icon selected, $event:number equals to previous rating value "
       }
     ],
     "properties": [],
