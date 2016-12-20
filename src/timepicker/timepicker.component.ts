@@ -58,16 +58,26 @@ function addMinutes(date: any, minutes: number): Date {
   providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class TimepickerComponent implements ControlValueAccessor, OnInit {
+  /** hours change step */
   @Input() public hourStep: number;
+  /** hours change step */
   @Input() public minuteStep: number;
+  /** if true hours and minutes fields will be readonly */
   @Input() public readonlyInput: boolean;
+  /** if true scroll inside hours and minutes inputs will change time */
   @Input() public mousewheel: boolean;
+  /** if true up/down arrowkeys inside hours and minutes inputs will change time */
   @Input() public arrowkeys: boolean;
+  /** if true spinner arrows above and below the inputs will be shown */
   @Input() public showSpinners: boolean;
+  /** minimum time user can select */
   @Input() public min: Date;
+  /** maximum time user can select */
   @Input() public max: Date;
+  /** meridian labels based on locale */
   @Input() public meridians: string[];
 
+  /** if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM */
   @Input()
   public get showMeridian(): boolean {
     return this._showMeridian;

@@ -1445,52 +1445,52 @@ export const ngdoc = {
       {
         "name": "arrowkeys",
         "type": "boolean",
-        "description": ""
+        "description": "if true up/down arrowkeys inside hours and minutes inputs will change time "
       },
       {
         "name": "hourStep",
         "type": "number",
-        "description": ""
+        "description": "hours change step "
       },
       {
         "name": "max",
         "type": "Date",
-        "description": ""
+        "description": "maximum time user can select "
       },
       {
         "name": "meridians",
         "type": "string[]",
-        "description": ""
+        "description": "meridian labels based on locale "
       },
       {
         "name": "min",
         "type": "Date",
-        "description": ""
+        "description": "minimum time user can select "
       },
       {
         "name": "minuteStep",
         "type": "number",
-        "description": ""
+        "description": "hours change step "
       },
       {
         "name": "mousewheel",
         "type": "boolean",
-        "description": ""
+        "description": "if true scroll inside hours and minutes inputs will change time "
       },
       {
         "name": "readonlyInput",
         "type": "boolean",
-        "description": ""
+        "description": "if true hours and minutes fields will be readonly "
       },
       {
         "name": "showMeridian",
         "type": "boolean",
-        "description": ""
+        "description": "if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM "
       },
       {
         "name": "showSpinners",
         "type": "boolean",
-        "description": ""
+        "description": "if true spinner arrows above and below the inputs will be shown "
       }
     ],
     "outputs": [],
@@ -1500,9 +1500,67 @@ export const ngdoc = {
   "TimepickerConfig": {
     "fileName": "src/timepicker/timepicker.config.ts",
     "className": "TimepickerConfig",
-    "description": "",
+    "description": "Provides default configuration values for timepicker ",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "arrowkeys",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "if true up/down arrowkeys inside hours and minutes inputs will change time "
+      },
+      {
+        "name": "hourStep",
+        "defaultValue": "1",
+        "type": "number",
+        "description": "hours change step "
+      },
+      {
+        "name": "max",
+        "type": "number",
+        "description": "maximum time user can select "
+      },
+      {
+        "name": "meridians",
+        "type": "string[]",
+        "description": "meridian labels based on locale "
+      },
+      {
+        "name": "min",
+        "type": "number",
+        "description": "minimum time user can select "
+      },
+      {
+        "name": "minuteStep",
+        "defaultValue": "5",
+        "type": "number",
+        "description": "hours change step "
+      },
+      {
+        "name": "mousewheel",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "if true scroll inside hours and minutes inputs will change time "
+      },
+      {
+        "name": "readonlyInput",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "if true hours and minutes fields will be readonly "
+      },
+      {
+        "name": "showMeridian",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM "
+      },
+      {
+        "name": "showSpinners",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "if true spinner arrows above and below the inputs will be shown "
+      }
+    ]
   },
   "TooltipContainerComponent": {
     "fileName": "src/tooltip/tooltip-container.component.ts",
