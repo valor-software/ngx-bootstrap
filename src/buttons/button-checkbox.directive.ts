@@ -14,9 +14,9 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
  */
 @Directive({selector: '[btnCheckbox]', providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]})
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
-  /** truthy value, will be set to ngModel */
+  /** Truthy value, will be set to ngModel */
   @Input() public btnCheckboxTrue: any = true;
-  /** falsy value, will be set to ngModel */
+  /** Falsy value, will be set to ngModel */
   @Input() public btnCheckboxFalse: any = false;
 
   @HostBinding('class.active') public state: boolean = false;
