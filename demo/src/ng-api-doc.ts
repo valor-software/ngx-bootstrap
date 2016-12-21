@@ -1780,83 +1780,89 @@ export const ngdoc = {
       {
         "name": "typeahead",
         "type": "any",
-        "description": ""
+        "description": "options source, can be Array of strings, objects or an Observable for external matching process "
       },
       {
         "name": "typeaheadAsync",
         "type": "boolean",
-        "description": ""
+        "description": "should be used only in case of typeahead attribute is array. If true - loading of options will be async, otherwise - sync. true make sense if options array is large. "
       },
       {
         "name": "typeaheadGroupField",
         "type": "string",
-        "description": ""
+        "description": "when options source is an array of objects, the name of field that contains the group value, matches are grouped by this field when set. "
       },
       {
         "name": "typeaheadItemTemplate",
         "type": "TemplateRef<any>",
-        "description": ""
+        "description": "used to specify a custom item template. Template variables exposed are called item and index; "
       },
       {
         "name": "typeaheadLatinize",
         "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "match latin symbols. If true the word súper would match super and vice versa. "
       },
       {
         "name": "typeaheadMinLength",
         "type": "number",
-        "description": ""
+        "description": "minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit) "
       },
       {
         "name": "typeaheadOptionField",
         "type": "string",
-        "description": ""
+        "description": "when options source is an array of objects, the name of field that contains the options value, we use array item as option in case of this field is missing. Supports nested properties and methods. "
       },
       {
         "name": "typeaheadOptionsLimit",
         "type": "number",
-        "description": ""
+        "description": "maximum length of options items list "
       },
       {
         "name": "typeaheadPhraseDelimiters",
         "defaultValue": "'\"",
         "type": "string",
-        "description": ""
+        "description": "should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes. "
       },
       {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "break words with spaces. If true the text \"exact phrase\" here match would match with match exact phrase here but not with phrase here exact match (kind of \"google style\"). "
       },
       {
         "name": "typeaheadWaitMs",
         "type": "number",
-        "description": ""
+        "description": "minimal wait time after last character typed before typeahead kicks-in "
       },
       {
         "name": "typeaheadWordDelimiters",
         "defaultValue": " ",
         "type": "string",
-        "description": ""
+        "description": "should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to break words. Defaults to space. "
       }
     ],
     "outputs": [
       {
         "name": "typeaheadLoading",
-        "description": ""
+        "description": "fired when 'busy' state of this component was changed, fired on async mode only, returns boolean "
       },
       {
         "name": "typeaheadNoResults",
-        "description": ""
+        "description": "fired on every key event and returns true in case of matches are not detected "
       },
       {
         "name": "typeaheadOnSelect",
-        "description": ""
+        "description": "fired when option was selected, return object with data of this option "
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "_container",
+        "type": "TypeaheadContainerComponent",
+        "description": "if false restrict model values to the ones selected from the popup only will be provided \nif false the first match automatically will not be focused as you type \nformat the ng-model result after selection \nif true automatically select an item when there is one option that exactly matches the user input \nif true select the currently highlighted match on blur \nif false don't focus the input element the typeahead directive is associated with on selection "
+      }
+    ],
     "methods": []
   },
   "Trigger": {

@@ -1,4 +1,3 @@
-### Usage
 ```typescript
 // RECOMMENDED
 import { TypeaheadModule } from 'ng2-bootstrap/typeahead';

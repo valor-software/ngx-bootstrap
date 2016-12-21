@@ -42,7 +42,7 @@ let html = require('!!raw!./demos/accordion-demo.component.html');
   <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
   
   <ng-sample-box [ts]="ts" [html]="html">
-      <accordion-demo></accordion-demo>
+    <accordion-demo></accordion-demo>
   </ng-sample-box>
       
   <h2 id="api-reference">API Reference</h2>
