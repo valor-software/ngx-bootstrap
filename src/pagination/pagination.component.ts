@@ -141,10 +141,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
-
   public renderer:Renderer;
   public elementRef:ElementRef;
-
   public classMap:string;
   public pages:any[];
 
