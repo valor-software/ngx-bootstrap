@@ -7,7 +7,7 @@ import { AccordionComponent } from './accordion.component';
 /*
 * ### Accordion heading
 
- Instead of the `heading` attribute on the `accordion-group`, you can use an `accordion-heading` attribute on `any` element inside a group that will be used as the group's header template.
+ Instead of using `heading` attribute on the `accordion-group`, you can use an `accordion-heading` attribute on `any` element inside of a group that will be used as group's header template.
 
  * */
 
@@ -32,15 +32,15 @@ import { AccordionComponent } from './accordion.component';
   `
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
-  /** click able text in accordion's group header, check `accordion heading` below for using html in header */
+  /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
   @Input() public heading:string;
-  /** provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) */
+  /** Provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) */
   @Input() public panelClass:string;
-  /** if <code>true</code> disables accordion group */
+  /** if <code>true</code> — disables accordion group */
   @Input() public isDisabled:boolean;
 
   // Questionable, maybe .panel-open should be on child div.panel element?
-  /** is accordion group open or closed */
+  /** Is accordion group open or closed */
   @HostBinding('class.panel-open')
   @Input()
   public get isOpen():boolean {
