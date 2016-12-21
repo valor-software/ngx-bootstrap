@@ -9,7 +9,7 @@ export class ProgressDirective  {
   /** if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) */
   @Input() public animate:boolean;
 
-  /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
+  /** maximum total value of progress element */
   @HostBinding('attr.max')
   @Input()
   public get max():number {
@@ -27,7 +27,7 @@ export class ProgressDirective  {
 
   public bars:any[] = [];
 
-  protected _max:number;
+  protected _max:number = 100;
 
   public addBar(bar:BarComponent):void {
     if (!this.animate) {

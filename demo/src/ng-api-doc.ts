@@ -1212,7 +1212,7 @@ export const ngdoc = {
       {
         "name": "max",
         "type": "number",
-        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
+        "description": "maximum total value of progress element "
       }
     ],
     "outputs": [],
