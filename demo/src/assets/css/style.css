@@ -3,6 +3,10 @@ body {
   /*background-color: #f5f9fb;*/
 }
 
+html {
+  touch-action: manipulation;
+}
+
 body,html {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
