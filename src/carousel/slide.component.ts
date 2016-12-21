@@ -17,11 +17,11 @@ import { CarouselComponent, Direction } from './carousel.component';
   `
 })
 export class SlideComponent implements OnInit, OnDestroy {
-  /** index of slide in carousel's slides */
+  /** Index of slide in carousel's slides */
   @Input() public index:number;
   @Input() public direction:Direction;
 
-  /** does current slide is active */
+  /** Is current slide active */
   @HostBinding('class.active')
   @Input() public active:boolean;
 
