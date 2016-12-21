@@ -9,7 +9,7 @@ let readingDocumentation = require('html!markdown!./docs/reading-documentation.m
   templateUrl: './getting-started.template.html'
 })
 export class GettingStartedComponent {
-  public name:string = `Native Angular 2 directives for bootstrap`;
+  public name:string = `Bootstrap components for Angular`;
   public desc:string = '';
   public dependencies:string = dependencies;
   public installation:string = installation;
