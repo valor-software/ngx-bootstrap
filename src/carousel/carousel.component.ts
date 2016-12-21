@@ -43,16 +43,15 @@ export enum Direction {UNKNOWN, NEXT, PREV}
   `
 })
 export class CarouselComponent implements OnDestroy {
-  /** if `true` carousel will not cycle continuously and will have hard stops (prevent looping) */
+  /** If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
   @Input() public noWrap:boolean;
-  /**  if `true` will disable pausing on carousel mouse hover */
+  /**  If `true` — will disable pausing on carousel mouse hover */
   @Input() public noPause:boolean;
-  /** if `true` will disable transitions on the carousel */
+  /** If `true` — will disable carousel transitions */
   @Input() public noTransition:boolean;
 
   /**
-   * Amount of time in milliseconds to delay between automatically
-   * cycling an item. If false, carousel will not automatically cycle
+   * Delay of item cycling in milliseconds. If false, carousel won't cycle automatically. 
    */
   @Input()
   public get interval():number {
