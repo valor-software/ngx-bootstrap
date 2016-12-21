@@ -20,16 +20,16 @@ const ALERT_TEMPLATE = `
   template: ALERT_TEMPLATE
 })
 export class AlertComponent implements OnInit {
-  /** Alert type. Provide one of the four supported by bootstrap contextual classes: `success`, `info`, `warning`, `danger` */
+  /** Alert type. Provides one of four bootstrap supported contextual classes: `success`, `info`, `warning` and `danger` */
   @Input() public type: string = 'warning';
-  /** If set, displays an inline close button */
+  /** If set, displays an inline "Close" button */
   @Input() public dismissible: boolean = false;
-  /** Number of milliseconds, if specified sets a timeout duration, after which the alert will be closed */
+  /** Number in milliseconds, after which alert will be closed */
   @Input() public dismissOnTimeout: number | string;
 
   public isClosed: boolean = false;
 
-  /** This event fires immediately when the close instance method is called, $event is an instance of Alert component. */
+  /** This event fires immediately after close instance method is called, $event is an instance of Alert component. */
   @Output() public onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
   /** This event fires when alert closed, $event is an instance of Alert component */
   @Output() public onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>(false);
