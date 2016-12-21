@@ -41,9 +41,9 @@ describe('Component: Alert', () => {
   it('should be dismissed by timeout', (done:() => void) => {
     context.dismissOnTimeout = 1000;
     context
-      .close
+      .onClosed
       .subscribe(() => {
-        expect(context.closed).toBeTruthy();
+        expect(context.isClosed).toBeTruthy();
         done();
       });
     context.ngOnInit();
@@ -51,9 +51,9 @@ describe('Component: Alert', () => {
 
   it('should be closed by public method onClose', () => {
     context.ngOnInit();
-    expect(context.closed).toBeFalsy();
+    expect(context.isClosed).toBeFalsy();
     context.close();
-    expect(context.closed).toBeTruthy();
+    expect(context.isClosed).toBeTruthy();
   });
 });
 
