@@ -19,11 +19,11 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     public onChange:any = Function.prototype;
     public onTouched:any = Function.prototype;
 
-    /** radio button value, will be set to `ngModel` */
+    /** Radio button value, will be set to `ngModel` */
     @Input() public btnRadio:any;
-    /** if `true` radio button can be unchecked */
+    /** If `true` — radio button can be unchecked */
     @Input() public uncheckable:boolean;
-    /** current value of radio component or group */
+    /** Current value of radio component or group */
     @Input() public value:any;
 
     protected el: ElementRef;
