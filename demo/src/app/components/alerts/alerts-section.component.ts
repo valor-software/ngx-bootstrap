@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DEMOS } from './demos/index';
+import { DEMOS } from './demos';
 
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/usage.md');

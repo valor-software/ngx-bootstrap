@@ -1,15 +1,9 @@
 import { Component } from '@angular/core';
 import { isBs3 } from 'ng2-bootstrap';
+import { DEMOS } from './demos';
 
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/progressbar-demo.component.ts');
-
-let templates: any = {
-  'bs3': require('!!raw?lang=markup!./demos/progressbar-demo-bs3.component.html'),
-  'bs4': require('!!raw?lang=markup!./demos/progressbar-demo-bs4.component.html')
-};
 
 @Component({
   selector: 'progressbar-section',
@@ -42,7 +36,11 @@ let templates: any = {
   <h2 id="examples">Examples</h2>
   
   <!-- basic -->
-  <ng-sample-box [ts]="ts" [html]="html">
+  <ng-sample-box *ngIf="isBs3" [ts]="demos.bs3old.component" [html]="demos.bs3old.html">
+    <progressbar-demo></progressbar-demo>
+  </ng-sample-box>
+  
+  <ng-sample-box *ngIf="!isBs3" [ts]="demos.bs4old.component" [html]="demos.bs4old.html">
     <progressbar-demo></progressbar-demo>
   </ng-sample-box>
       
@@ -55,12 +53,10 @@ let templates: any = {
 })
 export class ProgressbarSectionComponent {
   public name: string = 'Progressbar';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/progressbar';
-
-  public get html(): string {
-    return isBs3() ? templates.bs3 : templates.bs4;
+  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/progressbar';
+  public get isBs3():boolean {
+    return isBs3();
   }
-
-  public ts: string = ts;
+  public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
 }

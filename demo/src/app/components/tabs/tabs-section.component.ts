@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-
+import { DEMOS } from './demos';
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/tabs-demo.component.ts');
-let html = require('!!raw?lang=markup!./demos/tabs-demo.component.html');
 
 @Component({
   selector: 'tabs-section',
@@ -37,7 +34,7 @@ let html = require('!!raw?lang=markup!./demos/tabs-demo.component.html');
   <h2 id="examples">Examples</h2>
       
   <!-- basic -->
-  <ng-sample-box [ts]="ts" [html]="html">
+  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
       <tabs-demo></tabs-demo>
   </ng-sample-box>
       
@@ -51,8 +48,7 @@ let html = require('!!raw?lang=markup!./demos/tabs-demo.component.html');
 })
 export class TabsSectionComponent {
   public name:string = 'Tabs';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/tabs';
-  public html:string = html;
-  public ts:string = ts;
+  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/tabs';
+  public demos: any = DEMOS;
   public titleDoc:string = titleDoc;
 }

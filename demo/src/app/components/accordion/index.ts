@@ -5,13 +5,11 @@ import { AccordionModule } from 'ng2-bootstrap';
 
 import { SharedModule } from '../../shared';
 import { AccordionSectionComponent } from './accordion-section.component';
-import { AccordionDemoComponent } from './demos/accordion-demo.component';
 import { DEMO_COMPONENTS } from './demos';
 
 @NgModule({
   declarations: [
     AccordionSectionComponent,
-    AccordionDemoComponent,
     ...DEMO_COMPONENTS
   ],
   imports: [
