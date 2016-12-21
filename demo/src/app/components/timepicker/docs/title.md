@@ -1,6 +1,3 @@
-A lightweight & configurable timepicker directive
-
-### Usage
 ```typescript
 // RECOMMENDED
 import { TimepickerModule } from 'ng2-bootstrap/timepicker';

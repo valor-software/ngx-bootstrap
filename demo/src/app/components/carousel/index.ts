@@ -13,9 +13,9 @@ import { CarouselModule } from 'ng2-bootstrap';
     CarouselSectionComponent
   ],
   imports:[
+    CarouselModule.forRoot(),
     CommonModule,
     FormsModule,
-    CarouselModule.forRoot(),
     SharedModule
   ],
   exports: [CarouselSectionComponent]

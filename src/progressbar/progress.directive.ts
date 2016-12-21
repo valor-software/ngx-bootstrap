@@ -6,8 +6,10 @@ import { BarComponent } from './bar.component';
 // todo: need hack: replace host element with div
 @Directive({selector: 'bs-progress, [progress]'})
 export class ProgressDirective  {
+  /** if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) */
   @Input() public animate:boolean;
 
+  /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @HostBinding('attr.max')
   @Input()
   public get max():number {

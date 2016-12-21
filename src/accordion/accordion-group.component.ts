@@ -4,10 +4,13 @@ import {
 
 import { AccordionComponent } from './accordion.component';
 
-/* tslint:disable-next-line */
-const MouseEvent = (global as any).MouseEvent as MouseEvent;
+/*
+* ### Accordion heading
 
-/* tslint:disable:component-selector-name */
+ Instead of the `heading` attribute on the `accordion-group`, you can use an `accordion-heading` attribute on `any` element inside a group that will be used as the group's header template.
+
+ * */
+
 @Component({
   selector: 'accordion-group, accordion-panel',
   template: `
@@ -29,11 +32,15 @@ const MouseEvent = (global as any).MouseEvent as MouseEvent;
   `
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
+  /** click able text in accordion's group header, check `accordion heading` below for using html in header */
   @Input() public heading:string;
+  /** provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) */
   @Input() public panelClass:string;
+  /** if <code>true</code> disables accordion group */
   @Input() public isDisabled:boolean;
 
   // Questionable, maybe .panel-open should be on child div.panel element?
+  /** is accordion group open or closed */
   @HostBinding('class.panel-open')
   @Input()
   public get isOpen():boolean {
@@ -63,7 +70,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     this.accordion.removeGroup(this);
   }
 
-  public toggleOpen(event:MouseEvent):any {
+  public toggleOpen(event:Event):any {
     event.preventDefault();
     if (!this.isDisabled) {
       this.isOpen = !this.isOpen;

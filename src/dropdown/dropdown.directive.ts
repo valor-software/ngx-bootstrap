@@ -6,11 +6,15 @@ import {
 import { dropdownService } from './dropdown.service';
 import { DropdownConfig } from './dropdown.config';
 
+/**
+ * Mark dropdown content with this directive
+ */
 @Directive({
   selector: '[dropdown]',
   exportAs: 'bs-dropdown'
 })
 export class DropdownDirective implements OnInit, OnDestroy {
+  /** if `true` dropdown will be opened */
   @HostBinding('class.open')
   @HostBinding('class.active')
   @Input()
@@ -41,12 +45,22 @@ export class DropdownDirective implements OnInit, OnDestroy {
     // todo: implement call to setIsOpen if set and function
   }
 
+  /** behaviour vary:
+   * - nonInput - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an input or a textarea.
+   * - always - automatically closes the dropdown when any of its elements is clicked
+   * - outsideClick - closes the dropdown automatically only when the user clicks any element outside the dropdown
+   * - disabled - disables the auto close. You can then control the open/close status of the dropdown manually, by using is-open. Please notice that the dropdown will still close if the toggle is clicked, the esc key is pressed or another dropdown is open
+   */
   @Input() public autoClose:string;
+  /** if true will enable navigation of dropdown list elements with the arrow keys */
   @Input() public keyboardNav:boolean;
   // enum string: ['always', 'outsideClick', 'disabled']
+  /** Allows to attach dropdown to body, will be replaced with container="body" */
   @Input() public appendToBody:boolean;
 
+  /** fired when dropdown toggles, $event:boolean equals dropdown isOpen state */
   @Output() public onToggle:EventEmitter<boolean> = new EventEmitter<boolean>(false);
+  /** fired when isOpen value changes */
   @Output() public isOpenChange:EventEmitter<boolean> = new EventEmitter<boolean>(false);
   @HostBinding('class.dropdown') public addClass:boolean = true;
 

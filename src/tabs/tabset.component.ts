@@ -26,6 +26,7 @@ import { TabsetConfig } from './tabset.config';
   `
 })
 export class TabsetComponent implements OnDestroy {
+  /** if true tabs will be placed vertically */
   @Input()
   public get vertical():boolean {
     return this._vertical;
@@ -35,6 +36,7 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
+  /** if true tabs fill the container and have a consistent width */
   @Input()
   public get justified():boolean {
     return this._justified;
@@ -44,6 +46,7 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
+  /** navigation context class: 'tabs' or 'pills' */
   @Input()
   public get type():string {
     return this._type;

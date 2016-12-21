@@ -10,6 +10,7 @@ export class ModalBackdropOptions {
   }
 }
 
+/** This component will be added as background layout for modals if enabled */
 @Component({
   selector: 'bs-modal-backdrop',
   template: '',

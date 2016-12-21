@@ -12,9 +12,9 @@ import { ButtonsModule } from 'ng2-bootstrap';
     ButtonsDemoComponent
   ],
   imports: [
+    ButtonsModule.forRoot(),
     CommonModule,
     FormsModule,
-    ButtonsModule.forRoot(),
     SharedModule
   ],
   exports: [ButtonsSectionComponent]

@@ -1,4 +1,17 @@
-// todo: add animate
+// todo: add animation
+
+/***
+ * pause (not yet supported) (?string='hover') - event group name which pauses the cycling of the carousel, if hover pauses on mouseenter and resumes on mouseleave
+ keyboard (not yet supported) (?boolean=true) - if false carousel will not react to keyboard events
+ note: swiping not yet supported
+ */
+/****
+ * Problems:
+ * 1) if we set an active slide via model changes, .active class remains on a current slide.
+ * 2) if we have only one slide, we shouldn't show prev/next nav buttons
+ * 3) if first or last slide is active and noWrap is true, there should be "disabled" class on the nav buttons.
+ * 4) default interval should be equal 5000
+ */
 
 import { Component, Input, OnDestroy } from '@angular/core';
 
@@ -7,14 +20,8 @@ import { SlideComponent } from './slide.component';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
 
-// todo:
-// (ng-swipe-right)="prev()" (ng-swipe-left)="next()"
 /**
- * Problems:
- * 1) if we set an active slide via model changes, .active class remains on a current slide.
- * 2) if we have only one slide, we shouldn't show prev/next nav buttons
- * 3) if first or last slide is active and noWrap is true, there should be "disabled" class on the nav buttons.
- * 4) default interval should be equal 5000
+ * Base element to create carousel
  */
 @Component({
   selector: 'carousel',
@@ -36,10 +43,17 @@ export enum Direction {UNKNOWN, NEXT, PREV}
   `
 })
 export class CarouselComponent implements OnDestroy {
+  /** if `true` carousel will not cycle continuously and will have hard stops (prevent looping) */
   @Input() public noWrap:boolean;
+  /**  if `true` will disable pausing on carousel mouse hover */
   @Input() public noPause:boolean;
+  /** if `true` will disable transitions on the carousel */
   @Input() public noTransition:boolean;
 
+  /**
+   * Amount of time in milliseconds to delay between automatically
+   * cycling an item. If false, carousel will not automatically cycle
+   */
   @Input()
   public get interval():number {
     return this._interval;

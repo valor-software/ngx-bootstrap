@@ -12,10 +12,10 @@ import { ModalSectionComponent } from './modal-section.component';
     ModalSectionComponent
   ],
   imports: [
+    ModalModule.forRoot(),
     CommonModule,
     FormsModule,
-    SharedModule,
-    ModalModule.forRoot()
+    SharedModule
   ],
   exports: [ModalDemoComponent]
 })

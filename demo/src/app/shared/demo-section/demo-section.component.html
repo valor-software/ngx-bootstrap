@@ -1,40 +1,40 @@
 <div class="content-header">
-  <h2>{{name}}
+  <h1>{{name}}
     <a [href]="src" target="_blank">
       <img src="assets/images/link-doc.png" alt=""/>
     </a>
-  </h2>
-
-  <p class="description" [innerHTML]="titleDoc"></p>
+  </h1>
 </div>
 
 <div id="content" class="content-box">
-  <div id="example" class="section">
-    <h3>Example</h3>
+  <!-- remove this -->
+  <p class="description" [innerHTML]="titleDoc" *ngIf="titleDoc"></p>
 
+  <div id="example" class="section">
     <div class="item">
       <ng-content></ng-content>
     </div>
   </div>
 
-  <div id="markup" class="section">
+  <!-- remove this -->
+  <div id="markup" class="section" *ngIf="html || ts">
     <h3>Markup</h3>
 
     <div class="item">
       <tabset>
-        <tab heading="Markup">
+        <tab heading="Markup" *ngIf="html">
           <pre class="prettyprint linenums lang-html">{{html}}</pre>
         </tab>
-        <tab heading="TypeScript">
+        <tab heading="TypeScript" *ngIf="ts">
           <pre class="prettyprint linenums lang-js">{{ts}}</pre>
         </tab>
       </tabset>
     </div>
   </div>
 
-  <div id="api" class="section">
+  <!-- remove this -->
+  <div id="api" class="section" *ngIf="doc">
     <h3>Api</h3>
-
     <div class="item list-container" [innerHTML]="doc" ngNonBindable></div>
   </div>
 </div>

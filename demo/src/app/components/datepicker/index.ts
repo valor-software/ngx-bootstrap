@@ -12,13 +12,12 @@ import { DatepickerModule } from 'ng2-bootstrap';
     DatepickerSectionComponent
   ],
   imports:[
+    DatepickerModule.forRoot(),
     CommonModule,
     FormsModule,
-    SharedModule,
-    DatepickerModule.forRoot()
+    SharedModule
   ],
   exports: [DatepickerSectionComponent]
 })
 export class DemoDatepickerModule {
-
 }

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from '../../shared';
-import { AlertsSectionComponent } from './alerts-section.component';
-import { AlertsDemoComponent } from './demos/alerts-demo.component';
 import { AlertModule } from 'ng2-bootstrap';
+import { AlertsSectionComponent } from './alerts-section.component';
+import { DEMO_COMPONENTS } from './demos';
+import { SharedModule } from '../../shared';
 
 @NgModule({
   declarations: [
     AlertsSectionComponent,
-    AlertsDemoComponent
+    ...DEMO_COMPONENTS
   ],
   imports: [
     AlertModule.forRoot(),
