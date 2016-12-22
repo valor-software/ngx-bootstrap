@@ -1,7 +1,7 @@
 {
   "name": "ng2-bootstrap-base",
   "version": "1.1.16-9",
-  "description": "angular2 bootstrap components",
+  "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
     "lite-server": "lite-server -c demo/bs-config.json",
@@ -32,9 +32,11 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "keywords": [
+    "ng",
+    "ng-bootstap",
+    "angular",
     "angular2",
     "bootstrap",
-    "angularjs",
     "twitter-bootstrap"
   ],
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
@@ -57,6 +59,7 @@
     "@angular/core": "^2.4.0",
     "@angular/forms": "^2.4.0",
     "@angular/http": "^2.4.0",
+    "@angular/language-service": "2.4.1",
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
