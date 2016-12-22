@@ -29,7 +29,7 @@ import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
    ...
-   imports: [AlertModule, ... ],
+   imports: [AlertModule.forRoot(), ... ],
     ... 
 })
 ```
