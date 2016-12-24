@@ -10,6 +10,7 @@ for all add support of:
 + add input config
 + forms integration
 + mobile events
++ theming
 
 + breadcrumb
 + scrollspy

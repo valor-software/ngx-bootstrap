@@ -43,6 +43,10 @@
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.4.0.tgz#21083c631f95b73a9e472d74170dfd70395be91f"
 
+"@angular/language-service@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-2.4.1.tgz#006f8907a28f0e13fa8fdf6f7d1ff23f3a649b01"
+
 "@angular/platform-browser-dynamic@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.4.0.tgz#56348ae1ab5a4382442fe2c5436262c78dba48dc"
