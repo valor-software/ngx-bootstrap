@@ -9,22 +9,22 @@ export const ngdoc = {
       {
         "name": "heading",
         "type": "string",
-        "description": "click able text in accordion's group header, check `accordion heading` below for using html in header "
+        "description": "<p>Clickable text in accordion&#39;s group header, check <code>accordion heading</code> below for using html in header </p>\n"
       },
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "if <code>true</code> disables accordion group "
+        "description": "<p>if <code>true</code> — disables accordion group </p>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "is accordion group open or closed "
+        "description": "<p>Is accordion group open or closed </p>\n"
       },
       {
         "name": "panelClass",
         "type": "string",
-        "description": "provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) "
+        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes (<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...). List of all available classes <a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">available here</a> </p>\n"
       }
     ],
     "outputs": [],
@@ -34,13 +34,13 @@ export const ngdoc = {
   "AccordionComponent": {
     "fileName": "src/accordion/accordion.component.ts",
     "className": "AccordionComponent",
-    "description": "Displays collapsible content panels for presenting information in a limited amount of space. ",
+    "description": "<p>Displays collapsible content panels for presenting information in a limited amount of space. </p>\n",
     "selector": "accordion",
     "inputs": [
       {
         "name": "closeOthers",
         "type": "boolean",
-        "description": "if `true` expanding one item will close all others "
+        "description": "<p>if <code>true</code> expanding one item will close all others </p>\n"
       }
     ],
     "outputs": [],
@@ -50,14 +50,14 @@ export const ngdoc = {
   "AccordionConfig": {
     "fileName": "src/accordion/accordion.config.ts",
     "className": "AccordionConfig",
-    "description": "Configuration service, provides default values for the AccordionComponent.",
+    "description": "<p>Configuration service, provides default values for the AccordionComponent.</p>\n",
     "methods": [],
     "properties": [
       {
         "name": "closeOthers",
         "defaultValue": "false",
         "type": "Boolean",
-        "description": "Whether the other panels should be closed when a panel is opened "
+        "description": "<p>Whether the other panels should be closed when a panel is opened </p>\n"
       }
     ]
   },
@@ -71,35 +71,35 @@ export const ngdoc = {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "If set, displays an inline close button "
+        "description": "<p>If set, displays an inline &quot;Close&quot; button </p>\n"
       },
       {
         "name": "dismissOnTimeout",
         "type": "string | number",
-        "description": "Number of milliseconds, if specified sets a timeout duration, after which the alert will be closed "
+        "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
       },
       {
         "name": "type",
         "defaultValue": "warning",
         "type": "string",
-        "description": "Alert type. Provide one of the four supported by bootstrap contextual classes: `success`, `info`, `warning`, `danger` "
+        "description": "<p>Alert type. Provides one of four bootstrap supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code> and <code>danger</code> </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "onClose",
-        "description": "This event fires immediately when the close instance method is called, $event is an instance of Alert component. "
+        "description": "<p>This event fires immediately after close instance method is called, $event is an instance of Alert component. </p>\n"
       },
       {
         "name": "onClosed",
-        "description": "This event fires when alert closed, $event is an instance of Alert component "
+        "description": "<p>This event fires when alert closed, $event is an instance of Alert component </p>\n"
       }
     ],
     "properties": [],
     "methods": [
       {
         "name": "close",
-        "description": "Closes an alert by removing it from the DOM.",
+        "description": "<p>Closes an alert by removing it from the DOM.</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -115,39 +115,39 @@ export const ngdoc = {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "is alerts are dismissible by default "
+        "description": "<p>is alerts are dismissible by default </p>\n"
       },
       {
         "name": "dismissOnTimeout",
         "defaultValue": "undefined",
         "type": "number",
-        "description": "default time before alert will dismiss "
+        "description": "<p>default time before alert will dismiss </p>\n"
       },
       {
         "name": "type",
         "defaultValue": "warning",
         "type": "string",
-        "description": "default alert type "
+        "description": "<p>default alert type </p>\n"
       }
     ]
   },
   "ButtonCheckboxDirective": {
     "fileName": "src/buttons/button-checkbox.directive.ts",
     "className": "ButtonCheckboxDirective",
-    "description": "Add checkbox functionality to any element",
+    "description": "<p>Add checkbox functionality to any element</p>\n",
     "selector": "[btnCheckbox]",
     "inputs": [
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
         "type": "any",
-        "description": "falsy value, will be set to ngModel "
+        "description": "<p>Falsy value, will be set to ngModel </p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
         "type": "any",
-        "description": "truthy value, will be set to ngModel "
+        "description": "<p>Truthy value, will be set to ngModel </p>\n"
       }
     ],
     "outputs": [],
@@ -157,23 +157,23 @@ export const ngdoc = {
   "ButtonRadioDirective": {
     "fileName": "src/buttons/button-radio.directive.ts",
     "className": "ButtonRadioDirective",
-    "description": "Create radio buttons or groups of buttons.\nA value of a selected button is bound to a variable specified via ngModel.",
+    "description": "<p>Create radio buttons or groups of buttons.\nA value of a selected button is bound to a variable specified via ngModel.</p>\n",
     "selector": "[btnRadio]",
     "inputs": [
       {
         "name": "btnRadio",
         "type": "any",
-        "description": "radio button value, will be set to `ngModel` "
+        "description": "<p>Radio button value, will be set to <code>ngModel</code> </p>\n"
       },
       {
         "name": "uncheckable",
         "type": "boolean",
-        "description": "if `true` radio button can be unchecked "
+        "description": "<p>If <code>true</code> — radio button can be unchecked </p>\n"
       },
       {
         "name": "value",
         "type": "any",
-        "description": "current value of radio component or group "
+        "description": "<p>Current value of radio component or group </p>\n"
       }
     ],
     "outputs": [],
@@ -183,28 +183,28 @@ export const ngdoc = {
   "CarouselComponent": {
     "fileName": "src/carousel/carousel.component.ts",
     "className": "CarouselComponent",
-    "description": "Base element to create carousel",
+    "description": "<p>Base element to create carousel</p>\n",
     "selector": "carousel",
     "inputs": [
       {
         "name": "interval",
         "type": "number",
-        "description": "Amount of time in milliseconds to delay between automatically\ncycling an item. If false, carousel will not automatically cycle"
+        "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle automatically. </p>\n"
       },
       {
         "name": "noPause",
         "type": "boolean",
-        "description": "if `true` will disable pausing on carousel mouse hover "
+        "description": "<p>If <code>true</code> — will disable pausing on carousel mouse hover </p>\n"
       },
       {
         "name": "noTransition",
         "type": "boolean",
-        "description": "if `true` will disable transitions on the carousel "
+        "description": "<p>If <code>true</code> — will disable carousel transitions </p>\n"
       },
       {
         "name": "noWrap",
         "type": "boolean",
-        "description": "if `true` carousel will not cycle continuously and will have hard stops (prevent looping) "
+        "description": "<p>If <code>true</code> — carousel will not cycle continuously and will have hard stops (prevent looping) </p>\n"
       }
     ],
     "outputs": [],
@@ -214,13 +214,13 @@ export const ngdoc = {
   "SlideComponent": {
     "fileName": "src/carousel/slide.component.ts",
     "className": "SlideComponent",
-    "description": "Wrap your content with `slide` component  ",
+    "description": "<p>Wrap your content with <code>slide</code> component  </p>\n",
     "selector": "slide",
     "inputs": [
       {
         "name": "active",
         "type": "boolean",
-        "description": "does current slide is active "
+        "description": "<p>Is current slide active </p>\n"
       },
       {
         "name": "direction",
@@ -230,7 +230,7 @@ export const ngdoc = {
       {
         "name": "index",
         "type": "number",
-        "description": "index of slide in carousel's slides "
+        "description": "<p>Index of slide in carousel&#39;s slides </p>\n"
       }
     ],
     "outputs": [],
@@ -246,42 +246,42 @@ export const ngdoc = {
       {
         "name": "collapse",
         "type": "boolean",
-        "description": "A flag indicating visibility of content (shown or hidden) "
+        "description": "<p>A flag indicating visibility of content (shown or hidden) </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "collapsed",
-        "description": "This event fired as soon as content collapsed "
+        "description": "<p>This event fired as soon as content is collapsed </p>\n"
       },
       {
         "name": "expanded",
-        "description": "This event fired as soon as content became visible "
+        "description": "<p>This event fired as soon as content becomes visible </p>\n"
       }
     ],
     "properties": [
       {
         "name": "collapse",
         "type": "boolean",
-        "description": "A flag indicating visibility of content (shown or hidden) "
+        "description": "<p>A flag indicating visibility of content (shown or hidden) </p>\n"
       }
     ],
     "methods": [
       {
         "name": "toggle",
-        "description": "allows to manually toggle content visibility ",
+        "description": "<p>allows to manually toggle content visibility </p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "hide",
-        "description": "allows to manually hide content ",
+        "description": "<p>allows to manually hide content </p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "show",
-        "description": "allows to manually show collapsed content ",
+        "description": "<p>allows to manually show collapsed content </p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -301,7 +301,7 @@ export const ngdoc = {
     "methods": [
       {
         "name": "createLoader",
-        "description": "@returns {ComponentLoader}",
+        "description": "<p>@returns {ComponentLoader}</p>\n",
         "args": [
           {
             "name": "_elementRef",
@@ -460,114 +460,114 @@ export const ngdoc = {
       {
         "name": "activeDate",
         "type": "Date",
-        "description": "currently active date "
+        "description": "<p>currently active date </p>\n"
       },
       {
         "name": "customClass",
         "type": "{ date: Date; mode: string; clazz: string; }[]",
-        "description": "array of custom css classes to be applied to targeted dates "
+        "description": "<p>array of custom css classes to be applied to targeted dates </p>\n"
       },
       {
         "name": "dateDisabled",
         "type": "{ date: Date; mode: string; }[]",
-        "description": "array of disabled dates "
+        "description": "<p>array of disabled dates </p>\n"
       },
       {
         "name": "datepickerMode",
         "defaultValue": "day",
         "type": "string",
-        "description": "sets datepicker mode, supports: `day`, `month`, `year` "
+        "description": "<p>sets datepicker mode, supports: <code>day</code>, <code>month</code>, <code>year</code> </p>\n"
       },
       {
         "name": "formatDay",
         "type": "string",
-        "description": "format of day in month "
+        "description": "<p>format of day in month </p>\n"
       },
       {
         "name": "formatDayHeader",
         "type": "string",
-        "description": "format of day in week header "
+        "description": "<p>format of day in week header </p>\n"
       },
       {
         "name": "formatDayTitle",
         "type": "string",
-        "description": "format of title when selecting day "
+        "description": "<p>format of title when selecting day </p>\n"
       },
       {
         "name": "formatMonth",
         "type": "string",
-        "description": "format of month in year "
+        "description": "<p>format of month in year </p>\n"
       },
       {
         "name": "formatMonthTitle",
         "type": "string",
-        "description": "format of title when selecting month "
+        "description": "<p>format of title when selecting month </p>\n"
       },
       {
         "name": "formatYear",
         "type": "string",
-        "description": "format of year in year range "
+        "description": "<p>format of year in year range </p>\n"
       },
       {
         "name": "initDate",
         "type": "Date",
-        "description": "default date to show if `ng-model` value is not specified "
+        "description": "<p>default date to show if <code>ng-model</code> value is not specified </p>\n"
       },
       {
         "name": "maxDate",
         "type": "Date",
-        "description": "latest selectable date "
+        "description": "<p>latest selectable date </p>\n"
       },
       {
         "name": "maxMode",
         "type": "string",
-        "description": "sets upper datepicker mode, supports: `day`, `month`, `year` "
+        "description": "<p>sets upper datepicker mode, supports: <code>day</code>, <code>month</code>, <code>year</code> </p>\n"
       },
       {
         "name": "minDate",
         "type": "Date",
-        "description": "oldest selectable date "
+        "description": "<p>oldest selectable date </p>\n"
       },
       {
         "name": "minMode",
         "type": "string",
-        "description": "set lower datepicker mode, supports: `day`, `month`, `year` "
+        "description": "<p>set lower datepicker mode, supports: <code>day</code>, <code>month</code>, <code>year</code> </p>\n"
       },
       {
         "name": "monthColLimit",
         "type": "number",
-        "description": "number of months displayed in a single row of month picker "
+        "description": "<p>number of months displayed in a single row of month picker </p>\n"
       },
       {
         "name": "onlyCurrentMonth",
         "type": "boolean",
-        "description": "if true only dates from the currently displayed month will be shown "
+        "description": "<p>if true only dates from the currently displayed month will be shown </p>\n"
       },
       {
         "name": "shortcutPropagation",
         "type": "boolean",
-        "description": "if true shortcut`s event propagation will be disabled "
+        "description": "<p>if true shortcut`s event propagation will be disabled </p>\n"
       },
       {
         "name": "showWeeks",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "if false week numbers will be hidden "
+        "description": "<p>if false week numbers will be hidden </p>\n"
       },
       {
         "name": "startingDay",
         "type": "number",
-        "description": "starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday) "
+        "description": "<p>starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday) </p>\n"
       },
       {
         "name": "yearColLimit",
         "type": "number",
-        "description": "number of years displayed in a single row of year picker "
+        "description": "<p>number of years displayed in a single row of year picker </p>\n"
       },
       {
         "name": "yearRange",
         "type": "number",
-        "description": "number of years displayed in year selection "
+        "description": "<p>number of years displayed in year selection </p>\n"
       }
     ],
     "outputs": [
@@ -640,7 +640,7 @@ export const ngdoc = {
   "DropdownToggleDirective": {
     "fileName": "src/dropdown/dropdown-toggle.directive.ts",
     "className": "DropdownToggleDirective",
-    "description": "Mark element which can toggle dropdown visibility with this directive ",
+    "description": "<p>Mark element which can toggle dropdown visibility with this directive </p>\n",
     "selector": "[dropdownToggle]",
     "exportAs": "bs-dropdown-toggle",
     "inputs": [
@@ -648,13 +648,13 @@ export const ngdoc = {
         "name": "addToggleClass",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "if true the dropdown-toggle class will be added to the element "
+        "description": "<p>if true the dropdown-toggle class will be added to the element </p>\n"
       },
       {
         "name": "isDisabled",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "if true dropdown toggle will be disabled "
+        "description": "<p>if true dropdown toggle will be disabled </p>\n"
       }
     ],
     "outputs": [],
@@ -664,59 +664,59 @@ export const ngdoc = {
   "DropdownConfig": {
     "fileName": "src/dropdown/dropdown.config.ts",
     "className": "DropdownConfig",
-    "description": "Default dropdown configuration ",
+    "description": "<p>Default dropdown configuration </p>\n",
     "methods": [],
     "properties": [
       {
         "name": "autoClose",
         "defaultValue": "NONINPUT",
         "type": "string",
-        "description": "default dropdown auto closing behavior "
+        "description": "<p>default dropdown auto closing behavior </p>\n"
       },
       {
         "name": "keyboardNav",
         "defaultValue": "false",
         "type": "Boolean",
-        "description": "is keyboard navigation enabled by default "
+        "description": "<p>is keyboard navigation enabled by default </p>\n"
       }
     ]
   },
   "DropdownDirective": {
     "fileName": "src/dropdown/dropdown.directive.ts",
     "className": "DropdownDirective",
-    "description": "Mark dropdown content with this directive",
+    "description": "<p>Mark dropdown content with this directive</p>\n",
     "selector": "[dropdown]",
     "exportAs": "bs-dropdown",
     "inputs": [
       {
         "name": "appendToBody",
         "type": "boolean",
-        "description": "Allows to attach dropdown to body, will be replaced with container=\"body\" "
+        "description": "<p>Allows to attach dropdown to body, will be replaced with container=&quot;body&quot; </p>\n"
       },
       {
         "name": "autoClose",
         "type": "string",
-        "description": "behaviour vary:\n- nonInput - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an input or a textarea.\n- always - automatically closes the dropdown when any of its elements is clicked\n- outsideClick - closes the dropdown automatically only when the user clicks any element outside the dropdown\n- disabled - disables the auto close. You can then control the open/close status of the dropdown manually, by using is-open. Please notice that the dropdown will still close if the toggle is clicked, the esc key is pressed or another dropdown is open"
+        "description": "<p>behaviour vary:</p>\n<ul>\n<li>nonInput - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an input or a textarea.</li>\n<li>always - automatically closes the dropdown when any of its elements is clicked</li>\n<li>outsideClick - closes the dropdown automatically only when the user clicks any element outside the dropdown</li>\n<li>disabled - disables the auto close. You can then control the open/close status of the dropdown manually, by using is-open. Please notice that the dropdown will still close if the toggle is clicked, the esc key is pressed or another dropdown is open</li>\n</ul>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "if `true` dropdown will be opened "
+        "description": "<p>if <code>true</code> dropdown will be opened </p>\n"
       },
       {
         "name": "keyboardNav",
         "type": "boolean",
-        "description": "if true will enable navigation of dropdown list elements with the arrow keys "
+        "description": "<p>if true will enable navigation of dropdown list elements with the arrow keys </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "isOpenChange",
-        "description": "fired when isOpen value changes "
+        "description": "<p>fired when isOpen value changes </p>\n"
       },
       {
         "name": "onToggle",
-        "description": "fired when dropdown toggles, $event:boolean equals dropdown isOpen state "
+        "description": "<p>fired when dropdown toggles, $event:boolean equals dropdown isOpen state </p>\n"
       }
     ],
     "properties": [],
@@ -739,7 +739,7 @@ export const ngdoc = {
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
     "className": "ModalBackdropComponent",
-    "description": "This component will be added as background layout for modals if enabled ",
+    "description": "<p>This component will be added as background layout for modals if enabled </p>\n",
     "selector": "bs-modal-backdrop",
     "inputs": [],
     "outputs": [],
@@ -755,79 +755,79 @@ export const ngdoc = {
       {
         "name": "backdrop",
         "type": "boolean | \"static\"",
-        "description": "Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click."
+        "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
       },
       {
         "name": "ignoreBackdropClick",
         "type": "boolean",
-        "description": "Ignore the backdrop click"
+        "description": "<p>Ignore the backdrop click</p>\n"
       },
       {
         "name": "keyboard",
         "type": "boolean",
-        "description": "Closes the modal when escape key is pressed."
+        "description": "<p>Closes the modal when escape key is pressed.</p>\n"
       },
       {
         "name": "show",
         "type": "boolean",
-        "description": "Shows the modal when initialized."
+        "description": "<p>Shows the modal when initialized.</p>\n"
       }
     ]
   },
   "ModalDirective": {
     "fileName": "src/modal/modal.component.ts",
     "className": "ModalDirective",
-    "description": "Mark any code with directive to show it's content in modal ",
+    "description": "<p>Mark any code with directive to show it&#39;s content in modal </p>\n",
     "selector": "[bsModal]",
     "exportAs": "bs-modal",
     "inputs": [
       {
         "name": "config",
         "type": "ModalOptions",
-        "description": "allows to set modal configuration via element property "
+        "description": "<p>allows to set modal configuration via element property </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "onHidden",
-        "description": "This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). "
+        "description": "<p>This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). </p>\n"
       },
       {
         "name": "onHide",
-        "description": "This event is fired immediately when the hide instance method has been called. "
+        "description": "<p>This event is fired immediately when the hide instance method has been called. </p>\n"
       },
       {
         "name": "onShow",
-        "description": "This event fires immediately when the `show` instance method is called. "
+        "description": "<p>This event fires immediately when the <code>show</code> instance method is called. </p>\n"
       },
       {
         "name": "onShown",
-        "description": "This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) "
+        "description": "<p>This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) </p>\n"
       }
     ],
     "properties": [
       {
         "name": "config",
         "type": "ModalOptions",
-        "description": "allows to set modal configuration via element property "
+        "description": "<p>allows to set modal configuration via element property </p>\n"
       }
     ],
     "methods": [
       {
         "name": "toggle",
-        "description": "Allows to manually toggle modal visibility ",
+        "description": "<p>Allows to manually toggle modal visibility </p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "show",
-        "description": "Allows to manually open modal ",
+        "description": "<p>Allows to manually open modal </p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "hide",
-        "description": "Allows to manually close modal ",
+        "description": "<p>Allows to manually close modal </p>\n",
         "args": [
           {
             "name": "event",
@@ -847,77 +847,77 @@ export const ngdoc = {
       {
         "name": "align",
         "type": "boolean",
-        "description": "if `true` aligns each link to the sides of pager "
+        "description": "<p>if <code>true</code> aligns each link to the sides of pager </p>\n"
       },
       {
         "name": "boundaryLinks",
         "type": "boolean",
-        "description": "if false first and last buttons will be hidden "
+        "description": "<p>if false first and last buttons will be hidden </p>\n"
       },
       {
         "name": "directionLinks",
         "type": "boolean",
-        "description": "if false previous and next buttons will be hidden "
+        "description": "<p>if false previous and next buttons will be hidden </p>\n"
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "if true pagination component will be disabled "
+        "description": "<p>if true pagination component will be disabled </p>\n"
       },
       {
         "name": "firstText",
         "type": "string",
-        "description": "first button text "
+        "description": "<p>first button text </p>\n"
       },
       {
         "name": "itemsPerPage",
         "type": "number",
-        "description": "maximum number of items per page. If value less than 1 will display all items on one page "
+        "description": "<p>maximum number of items per page. If value less than 1 will display all items on one page </p>\n"
       },
       {
         "name": "lastText",
         "type": "string",
-        "description": "last button text "
+        "description": "<p>last button text </p>\n"
       },
       {
         "name": "maxSize",
         "type": "number",
-        "description": "limit number for page links in pager "
+        "description": "<p>limit number for page links in pager </p>\n"
       },
       {
         "name": "nextText",
         "type": "string",
-        "description": "next button text "
+        "description": "<p>next button text </p>\n"
       },
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "add class to <li> "
+        "description": "<p>add class to <li> </p>\n"
       },
       {
         "name": "previousText",
         "type": "string",
-        "description": "previous button text "
+        "description": "<p>previous button text </p>\n"
       },
       {
         "name": "rotate",
         "type": "boolean",
-        "description": "if true current page will in the middle of pages list "
+        "description": "<p>if true current page will in the middle of pages list </p>\n"
       },
       {
         "name": "totalItems",
         "type": "number",
-        "description": "total number of items in all pages "
+        "description": "<p>total number of items in all pages </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "numPages",
-        "description": "fired when total pages count changes, $event:number equals to total pages count "
+        "description": "<p>fired when total pages count changes, $event:number equals to total pages count </p>\n"
       },
       {
         "name": "pageChanged",
-        "description": "fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page "
+        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page </p>\n"
       }
     ],
     "properties": [],
@@ -939,77 +939,77 @@ export const ngdoc = {
       {
         "name": "align",
         "type": "boolean",
-        "description": "if `true` aligns each link to the sides of pager "
+        "description": "<p>if <code>true</code> aligns each link to the sides of pager </p>\n"
       },
       {
         "name": "boundaryLinks",
         "type": "boolean",
-        "description": "if false first and last buttons will be hidden "
+        "description": "<p>if false first and last buttons will be hidden </p>\n"
       },
       {
         "name": "directionLinks",
         "type": "boolean",
-        "description": "if false previous and next buttons will be hidden "
+        "description": "<p>if false previous and next buttons will be hidden </p>\n"
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "if true pagination component will be disabled "
+        "description": "<p>if true pagination component will be disabled </p>\n"
       },
       {
         "name": "firstText",
         "type": "string",
-        "description": "first button text "
+        "description": "<p>first button text </p>\n"
       },
       {
         "name": "itemsPerPage",
         "type": "number",
-        "description": "maximum number of items per page. If value less than 1 will display all items on one page "
+        "description": "<p>maximum number of items per page. If value less than 1 will display all items on one page </p>\n"
       },
       {
         "name": "lastText",
         "type": "string",
-        "description": "last button text "
+        "description": "<p>last button text </p>\n"
       },
       {
         "name": "maxSize",
         "type": "number",
-        "description": "limit number for page links in pager "
+        "description": "<p>limit number for page links in pager </p>\n"
       },
       {
         "name": "nextText",
         "type": "string",
-        "description": "next button text "
+        "description": "<p>next button text </p>\n"
       },
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "add class to <li> "
+        "description": "<p>add class to <li> </p>\n"
       },
       {
         "name": "previousText",
         "type": "string",
-        "description": "previous button text "
+        "description": "<p>previous button text </p>\n"
       },
       {
         "name": "rotate",
         "type": "boolean",
-        "description": "if true current page will in the middle of pages list "
+        "description": "<p>if true current page will in the middle of pages list </p>\n"
       },
       {
         "name": "totalItems",
         "type": "number",
-        "description": "total number of items in all pages "
+        "description": "<p>total number of items in all pages </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "numPages",
-        "description": "fired when total pages count changes, $event:number equals to total pages count "
+        "description": "<p>fired when total pages count changes, $event:number equals to total pages count </p>\n"
       },
       {
         "name": "pageChanged",
-        "description": "fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page "
+        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page </p>\n"
       }
     ],
     "properties": [],
@@ -1018,14 +1018,14 @@ export const ngdoc = {
   "PaginationConfig": {
     "fileName": "src/pagination/pagination.config.ts",
     "className": "PaginationConfig",
-    "description": "Provides default values for Pagination and pager components ",
+    "description": "<p>Provides default values for Pagination and pager components </p>\n",
     "methods": [],
     "properties": []
   },
   "PopoverConfig": {
     "fileName": "src/popover/popover-config.ts",
     "className": "PopoverConfig",
-    "description": "Configuration service for the Popover directive.\nYou can inject this service, typically in your root component, and customize\nthe values of its properties in order to provide default values for all the\npopovers used in the application.",
+    "description": "<p>Configuration service for the Popover directive.\nYou can inject this service, typically in your root component, and customize\nthe values of its properties in order to provide default values for all the\npopovers used in the application.</p>\n",
     "methods": [],
     "properties": []
   },
@@ -1053,68 +1053,68 @@ export const ngdoc = {
   "PopoverDirective": {
     "fileName": "src/popover/popover.directive.ts",
     "className": "PopoverDirective",
-    "description": "A lightweight, extensible directive for fancy popover creation.",
+    "description": "<p>A lightweight, extensible directive for fancy popover creation.</p>\n",
     "selector": "[popover]",
     "exportAs": "bs-popover",
     "inputs": [
       {
         "name": "container",
         "type": "string",
-        "description": "A selector specifying the element the popover should be appended to.\nCurrently only supports \"body\"."
+        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "Returns whether or not the popover is currently being shown"
+        "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
       },
       {
         "name": "placement",
         "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-        "description": "Placement of a popover. Accepts: \"top\", \"bottom\", \"left\", \"right\""
+        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
         "name": "popover",
         "type": "string | TemplateRef<any>",
-        "description": "Content to be displayed as popover."
+        "description": "<p>Content to be displayed as popover.</p>\n"
       },
       {
         "name": "popoverTitle",
         "type": "string",
-        "description": "Title of a popover."
+        "description": "<p>Title of a popover.</p>\n"
       },
       {
         "name": "triggers",
         "type": "string",
-        "description": "Specifies events that should trigger. Supports a space separated list of\nevent names."
+        "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }
     ],
     "outputs": [
       {
         "name": "onHidden",
-        "description": "Emits an event when the popover is hidden"
+        "description": "<p>Emits an event when the popover is hidden</p>\n"
       },
       {
         "name": "onShown",
-        "description": "Emits an event when the popover is shown"
+        "description": "<p>Emits an event when the popover is shown</p>\n"
       }
     ],
     "properties": [],
     "methods": [
       {
         "name": "show",
-        "description": "Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.",
+        "description": "<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "hide",
-        "description": "Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.",
+        "description": "<p>Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "toggle",
-        "description": "Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -1123,7 +1123,7 @@ export const ngdoc = {
   "Positioning": {
     "fileName": "src/positioning/ng-positioning.ts",
     "className": "Positioning",
-    "description": "@copyright Valor Software\n@copyright Angular ng-bootstrap team",
+    "description": "<p>@copyright Valor Software\n@copyright Angular ng-bootstrap team</p>\n",
     "methods": [],
     "properties": []
   },
@@ -1136,37 +1136,37 @@ export const ngdoc = {
       {
         "name": "appendToBody",
         "type": "boolean",
-        "description": "If true component will be attached to body "
+        "description": "<p>If true component will be attached to body </p>\n"
       },
       {
         "name": "attachment",
         "type": "string",
-        "description": "A string of the form 'vert-attachment horiz-attachment' or 'placement'\n- placement can be \"top\", \"bottom\", \"left\", \"right\"\nnot yet supported:\n- vert-attachment can be any of 'top', 'middle', 'bottom'\n- horiz-attachment can be any of 'left', 'center', 'right'"
+        "description": "<p>A string of the form &#39;vert-attachment horiz-attachment&#39; or &#39;placement&#39;</p>\n<ul>\n<li>placement can be &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;\nnot yet supported:</li>\n<li>vert-attachment can be any of &#39;top&#39;, &#39;middle&#39;, &#39;bottom&#39;</li>\n<li>horiz-attachment can be any of &#39;left&#39;, &#39;center&#39;, &#39;right&#39;</li>\n</ul>\n"
       },
       {
         "name": "element",
         "type": "string | ElementRef | HTMLElement",
-        "description": "The DOM element, ElementRef, or a selector string of an element which will be moved "
+        "description": "<p>The DOM element, ElementRef, or a selector string of an element which will be moved </p>\n"
       },
       {
         "name": "offset",
         "type": "string",
-        "description": "A string of the form 'vert-offset horiz-offset'\n- vert-offset and horiz-offset can be of the form \"20px\" or \"55%\""
+        "description": "<p>A string of the form &#39;vert-offset horiz-offset&#39;</p>\n<ul>\n<li>vert-offset and horiz-offset can be of the form &quot;20px&quot; or &quot;55%&quot;</li>\n</ul>\n"
       },
       {
         "name": "target",
         "type": "string | ElementRef | HTMLElement",
-        "description": "The DOM element, ElementRef, or a selector string of an element which the element will be attached to  "
+        "description": "<p>The DOM element, ElementRef, or a selector string of an element which the element will be attached to  </p>\n"
       },
       {
         "name": "targetAttachment",
         "type": "string",
-        "description": "A string similar to `attachment`. The one difference is that, if it's not provided, `targetAttachment` will assume the mirror image of `attachment`. "
+        "description": "<p>A string similar to <code>attachment</code>. The one difference is that, if it&#39;s not provided, <code>targetAttachment</code> will assume the mirror image of <code>attachment</code>. </p>\n"
       },
       {
         "name": "targetOffset",
         "type": "string",
-        "description": "A string similar to `offset`, but referring to the offset of the target "
+        "description": "<p>A string similar to <code>offset</code>, but referring to the offset of the target </p>\n"
       }
     ]
   },
@@ -1186,12 +1186,12 @@ export const ngdoc = {
       {
         "name": "type",
         "type": "string",
-        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
+        "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code> </p>\n"
       },
       {
         "name": "value",
         "type": "number",
-        "description": "current value of progress bar "
+        "description": "<p>current value of progress bar </p>\n"
       }
     ],
     "outputs": [],
@@ -1207,12 +1207,12 @@ export const ngdoc = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": "if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) "
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated (note: not supported by Bootstrap 4) </p>\n"
       },
       {
         "name": "max",
         "type": "number",
-        "description": "maximum total value of progress element "
+        "description": "<p>maximum total value of progress element </p>\n"
       }
     ],
     "outputs": [],
@@ -1228,22 +1228,22 @@ export const ngdoc = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": "if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) "
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated (note: not supported by Bootstrap 4) </p>\n"
       },
       {
         "name": "max",
         "type": "number",
-        "description": "maximum total value of progress element "
+        "description": "<p>maximum total value of progress element </p>\n"
       },
       {
         "name": "type",
         "type": "string",
-        "description": "provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` "
+        "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code> </p>\n"
       },
       {
         "name": "value",
         "type": "number",
-        "description": "current value of progress bar "
+        "description": "<p>current value of progress bar </p>\n"
       }
     ],
     "outputs": [],
@@ -1260,13 +1260,13 @@ export const ngdoc = {
         "name": "animate",
         "defaultValue": "true",
         "type": "Boolean",
-        "description": "if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) "
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated (note: not supported by Bootstrap 4) </p>\n"
       },
       {
         "name": "max",
         "defaultValue": "100",
         "type": "number",
-        "description": "maximum total value of progress element "
+        "description": "<p>maximum total value of progress element </p>\n"
       }
     ]
   },
@@ -1280,42 +1280,42 @@ export const ngdoc = {
         "name": "max",
         "defaultValue": "5",
         "type": "number",
-        "description": "number of icons "
+        "description": "<p>number of icons </p>\n"
       },
       {
         "name": "ratingStates",
         "type": "{ stateOn: string; stateOff: string; }[]",
-        "description": "array of custom icons classes "
+        "description": "<p>array of custom icons classes </p>\n"
       },
       {
         "name": "readonly",
         "type": "boolean",
-        "description": "if true will not react on any user events "
+        "description": "<p>if true will not react on any user events </p>\n"
       },
       {
         "name": "stateOff",
         "type": "string",
-        "description": "unselected icon class "
+        "description": "<p>unselected icon class </p>\n"
       },
       {
         "name": "stateOn",
         "type": "string",
-        "description": "selected icon class "
+        "description": "<p>selected icon class </p>\n"
       },
       {
         "name": "titles",
         "type": "string[]",
-        "description": "array of icons titles, default: ([\"one\", \"two\", \"three\", \"four\", \"five\"]) "
+        "description": "<p>array of icons titles, default: ([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]) </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "onHover",
-        "description": "fired when icon selected, $event:number equals to selected rating "
+        "description": "<p>fired when icon selected, $event:number equals to selected rating </p>\n"
       },
       {
         "name": "onLeave",
-        "description": "fired when icon selected, $event:number equals to previous rating value "
+        "description": "<p>fired when icon selected, $event:number equals to previous rating value </p>\n"
       }
     ],
     "properties": [],
@@ -1340,7 +1340,7 @@ export const ngdoc = {
   "TabHeadingDirective": {
     "fileName": "src/tabs/tab-heading.directive.ts",
     "className": "TabHeadingDirective",
-    "description": "Should be used to mark <template> element as a template for tab heading ",
+    "description": "<p>Should be used to mark <template> element as a template for tab heading </p>\n",
     "selector": "[tabHeading]",
     "inputs": [],
     "outputs": [],
@@ -1356,41 +1356,41 @@ export const ngdoc = {
       {
         "name": "active",
         "type": "boolean",
-        "description": "tab active state toggle "
+        "description": "<p>tab active state toggle </p>\n"
       },
       {
         "name": "customClass",
         "type": "string",
-        "description": "if set, will be added to the tab's class atribute "
+        "description": "<p>if set, will be added to the tab&#39;s class atribute </p>\n"
       },
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "if true tab can not be activated "
+        "description": "<p>if true tab can not be activated </p>\n"
       },
       {
         "name": "heading",
         "type": "string",
-        "description": "tab header text "
+        "description": "<p>tab header text </p>\n"
       },
       {
         "name": "removable",
         "type": "boolean",
-        "description": "if true tab can be removable, additional button will appear "
+        "description": "<p>if true tab can be removable, additional button will appear </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "deselect",
-        "description": "fired when tab became inactive, $event:Tab equals to deselected instance of Tab component "
+        "description": "<p>fired when tab became inactive, $event:Tab equals to deselected instance of Tab component </p>\n"
       },
       {
         "name": "removed",
-        "description": "fired before tab will be removed "
+        "description": "<p>fired before tab will be removed </p>\n"
       },
       {
         "name": "select",
-        "description": "fired when tab became active, $event:Tab equals to selected instance of Tab component "
+        "description": "<p>fired when tab became active, $event:Tab equals to selected instance of Tab component </p>\n"
       }
     ],
     "properties": [],
@@ -1405,17 +1405,17 @@ export const ngdoc = {
       {
         "name": "justified",
         "type": "boolean",
-        "description": "if true tabs fill the container and have a consistent width "
+        "description": "<p>if true tabs fill the container and have a consistent width </p>\n"
       },
       {
         "name": "type",
         "type": "string",
-        "description": "navigation context class: 'tabs' or 'pills' "
+        "description": "<p>navigation context class: &#39;tabs&#39; or &#39;pills&#39; </p>\n"
       },
       {
         "name": "vertical",
         "type": "boolean",
-        "description": "if true tabs will be placed vertically "
+        "description": "<p>if true tabs will be placed vertically </p>\n"
       }
     ],
     "outputs": [],
@@ -1432,7 +1432,7 @@ export const ngdoc = {
         "name": "type",
         "defaultValue": "tabs",
         "type": "string",
-        "description": "provides default navigation context class: 'tabs' or 'pills' "
+        "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39; </p>\n"
       }
     ]
   },
@@ -1445,52 +1445,52 @@ export const ngdoc = {
       {
         "name": "arrowkeys",
         "type": "boolean",
-        "description": "if true up/down arrowkeys inside hours and minutes inputs will change time "
+        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
       },
       {
         "name": "hourStep",
         "type": "number",
-        "description": "hours change step "
+        "description": "<p>hours change step </p>\n"
       },
       {
         "name": "max",
         "type": "Date",
-        "description": "maximum time user can select "
+        "description": "<p>maximum time user can select </p>\n"
       },
       {
         "name": "meridians",
         "type": "string[]",
-        "description": "meridian labels based on locale "
+        "description": "<p>meridian labels based on locale </p>\n"
       },
       {
         "name": "min",
         "type": "Date",
-        "description": "minimum time user can select "
+        "description": "<p>minimum time user can select </p>\n"
       },
       {
         "name": "minuteStep",
         "type": "number",
-        "description": "hours change step "
+        "description": "<p>hours change step </p>\n"
       },
       {
         "name": "mousewheel",
         "type": "boolean",
-        "description": "if true scroll inside hours and minutes inputs will change time "
+        "description": "<p>if true scroll inside hours and minutes inputs will change time </p>\n"
       },
       {
         "name": "readonlyInput",
         "type": "boolean",
-        "description": "if true hours and minutes fields will be readonly "
+        "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
         "name": "showMeridian",
         "type": "boolean",
-        "description": "if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM "
+        "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
       },
       {
         "name": "showSpinners",
         "type": "boolean",
-        "description": "if true spinner arrows above and below the inputs will be shown "
+        "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ],
     "outputs": [],
@@ -1500,65 +1500,65 @@ export const ngdoc = {
   "TimepickerConfig": {
     "fileName": "src/timepicker/timepicker.config.ts",
     "className": "TimepickerConfig",
-    "description": "Provides default configuration values for timepicker ",
+    "description": "<p>Provides default configuration values for timepicker </p>\n",
     "methods": [],
     "properties": [
       {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "if true up/down arrowkeys inside hours and minutes inputs will change time "
+        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
       },
       {
         "name": "hourStep",
         "defaultValue": "1",
         "type": "number",
-        "description": "hours change step "
+        "description": "<p>hours change step </p>\n"
       },
       {
         "name": "max",
         "type": "number",
-        "description": "maximum time user can select "
+        "description": "<p>maximum time user can select </p>\n"
       },
       {
         "name": "meridians",
         "type": "string[]",
-        "description": "meridian labels based on locale "
+        "description": "<p>meridian labels based on locale </p>\n"
       },
       {
         "name": "min",
         "type": "number",
-        "description": "minimum time user can select "
+        "description": "<p>minimum time user can select </p>\n"
       },
       {
         "name": "minuteStep",
         "defaultValue": "5",
         "type": "number",
-        "description": "hours change step "
+        "description": "<p>hours change step </p>\n"
       },
       {
         "name": "mousewheel",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "if true scroll inside hours and minutes inputs will change time "
+        "description": "<p>if true scroll inside hours and minutes inputs will change time </p>\n"
       },
       {
         "name": "readonlyInput",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "if true hours and minutes fields will be readonly "
+        "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
         "name": "showMeridian",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM "
+        "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
       },
       {
         "name": "showSpinners",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "if true spinner arrows above and below the inputs will be shown "
+        "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ]
   },
@@ -1575,32 +1575,32 @@ export const ngdoc = {
   "TooltipOptions": {
     "fileName": "src/tooltip/tooltip-options.class.ts",
     "className": "TooltipOptions",
-    "description": "@deprecated ",
+    "description": "<p>@deprecated </p>\n",
     "methods": [],
     "properties": []
   },
   "TooltipConfig": {
     "fileName": "src/tooltip/tooltip.config.ts",
     "className": "TooltipConfig",
-    "description": "Default values provider for tooltip ",
+    "description": "<p>Default values provider for tooltip </p>\n",
     "methods": [],
     "properties": [
       {
         "name": "container",
         "type": "string",
-        "description": "a selector specifying the element the tooltip should be appended to. Currently only supports \"body\" "
+        "description": "<p>a selector specifying the element the tooltip should be appended to. Currently only supports &quot;body&quot; </p>\n"
       },
       {
         "name": "placement",
         "defaultValue": "top",
         "type": "string",
-        "description": "tooltip placement, supported positions: 'top', 'bottom', 'left', 'right' "
+        "description": "<p>tooltip placement, supported positions: &#39;top&#39;, &#39;bottom&#39;, &#39;left&#39;, &#39;right&#39; </p>\n"
       },
       {
         "name": "triggers",
         "defaultValue": "hover focus",
         "type": "string",
-        "description": "array of event names which triggers tooltip opening "
+        "description": "<p>array of event names which triggers tooltip opening </p>\n"
       }
     ]
   },
@@ -1614,143 +1614,143 @@ export const ngdoc = {
       {
         "name": "container",
         "type": "string",
-        "description": "A selector specifying the element the tooltip should be appended to.\nCurrently only supports \"body\"."
+        "description": "<p>A selector specifying the element the tooltip should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "Allows to disable tooltip"
+        "description": "<p>Allows to disable tooltip</p>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "Returns whether or not the tooltip is currently being shown"
+        "description": "<p>Returns whether or not the tooltip is currently being shown</p>\n"
       },
       {
         "name": "placement",
         "type": "string",
-        "description": "Placement of a tooltip. Accepts: \"top\", \"bottom\", \"left\", \"right\""
+        "description": "<p>Placement of a tooltip. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
         "name": "tooltip",
         "type": "string | TemplateRef<any>",
-        "description": "Content to be displayed as tooltip."
+        "description": "<p>Content to be displayed as tooltip.</p>\n"
       },
       {
         "name": "tooltipAnimation",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipAppendToBody",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipClass",
         "type": "string",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipContext",
         "type": "any",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipEnable",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipFadeDuration",
         "defaultValue": "150",
         "type": "number",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipHtml",
         "type": "string | TemplateRef<any>",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipIsOpen",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipPlacement",
         "type": "string",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipPopupDelay",
         "defaultValue": "0",
         "type": "number",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "tooltipTrigger",
         "type": "string | string[]",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "triggers",
         "type": "string",
-        "description": "Specifies events that should trigger. Supports a space separated list of\nevent names."
+        "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }
     ],
     "outputs": [
       {
         "name": "onHidden",
-        "description": "Emits an event when the tooltip is hidden"
+        "description": "<p>Emits an event when the tooltip is hidden</p>\n"
       },
       {
         "name": "onShown",
-        "description": "Emits an event when the tooltip is shown"
+        "description": "<p>Emits an event when the tooltip is shown</p>\n"
       },
       {
         "name": "tooltipChange",
-        "description": "Fired when tooltip content changes "
+        "description": "<p>Fired when tooltip content changes </p>\n"
       },
       {
         "name": "tooltipStateChanged",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       }
     ],
     "properties": [
       {
         "name": "_appendToBody",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "_enable",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       },
       {
         "name": "_isOpen",
         "type": "boolean",
-        "description": "@deprecated "
+        "description": "<p>@deprecated </p>\n"
       }
     ],
     "methods": [
       {
         "name": "toggle",
-        "description": "Toggles an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.",
+        "description": "<p>Toggles an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.</p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "show",
-        "description": "Opens an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.",
+        "description": "<p>Opens an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.</p>\n",
         "args": [],
         "returnType": "void"
       },
       {
         "name": "hide",
-        "description": "Closes an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.",
+        "description": "<p>Closes an element’s tooltip. This is considered a “manual” triggering of\nthe tooltip.</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -1775,92 +1775,92 @@ export const ngdoc = {
       {
         "name": "container",
         "type": "string",
-        "description": "A selector specifying the element the typeahead should be appended to.\nCurrently only supports \"body\"."
+        "description": "<p>A selector specifying the element the typeahead should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
         "name": "typeahead",
         "type": "any",
-        "description": "options source, can be Array of strings, objects or an Observable for external matching process "
+        "description": "<p>options source, can be Array of strings, objects or an Observable for external matching process </p>\n"
       },
       {
         "name": "typeaheadAsync",
         "type": "boolean",
-        "description": "should be used only in case of typeahead attribute is array. If true - loading of options will be async, otherwise - sync. true make sense if options array is large. "
+        "description": "<p>should be used only in case of typeahead attribute is array. If true - loading of options will be async, otherwise - sync. true make sense if options array is large. </p>\n"
       },
       {
         "name": "typeaheadGroupField",
         "type": "string",
-        "description": "when options source is an array of objects, the name of field that contains the group value, matches are grouped by this field when set. "
+        "description": "<p>when options source is an array of objects, the name of field that contains the group value, matches are grouped by this field when set. </p>\n"
       },
       {
         "name": "typeaheadItemTemplate",
         "type": "TemplateRef<any>",
-        "description": "used to specify a custom item template. Template variables exposed are called item and index; "
+        "description": "<p>used to specify a custom item template. Template variables exposed are called item and index; </p>\n"
       },
       {
         "name": "typeaheadLatinize",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "match latin symbols. If true the word súper would match super and vice versa. "
+        "description": "<p>match latin symbols. If true the word súper would match super and vice versa. </p>\n"
       },
       {
         "name": "typeaheadMinLength",
         "type": "number",
-        "description": "minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit) "
+        "description": "<p>minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit) </p>\n"
       },
       {
         "name": "typeaheadOptionField",
         "type": "string",
-        "description": "when options source is an array of objects, the name of field that contains the options value, we use array item as option in case of this field is missing. Supports nested properties and methods. "
+        "description": "<p>when options source is an array of objects, the name of field that contains the options value, we use array item as option in case of this field is missing. Supports nested properties and methods. </p>\n"
       },
       {
         "name": "typeaheadOptionsLimit",
         "type": "number",
-        "description": "maximum length of options items list "
+        "description": "<p>maximum length of options items list </p>\n"
       },
       {
         "name": "typeaheadPhraseDelimiters",
         "defaultValue": "'\"",
         "type": "string",
-        "description": "should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes. "
+        "description": "<p>should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes. </p>\n"
       },
       {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "break words with spaces. If true the text \"exact phrase\" here match would match with match exact phrase here but not with phrase here exact match (kind of \"google style\"). "
+        "description": "<p>break words with spaces. If true the text &quot;exact phrase&quot; here match would match with match exact phrase here but not with phrase here exact match (kind of &quot;google style&quot;). </p>\n"
       },
       {
         "name": "typeaheadWaitMs",
         "type": "number",
-        "description": "minimal wait time after last character typed before typeahead kicks-in "
+        "description": "<p>minimal wait time after last character typed before typeahead kicks-in </p>\n"
       },
       {
         "name": "typeaheadWordDelimiters",
         "defaultValue": " ",
         "type": "string",
-        "description": "should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to break words. Defaults to space. "
+        "description": "<p>should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to break words. Defaults to space. </p>\n"
       }
     ],
     "outputs": [
       {
         "name": "typeaheadLoading",
-        "description": "fired when 'busy' state of this component was changed, fired on async mode only, returns boolean "
+        "description": "<p>fired when &#39;busy&#39; state of this component was changed, fired on async mode only, returns boolean </p>\n"
       },
       {
         "name": "typeaheadNoResults",
-        "description": "fired on every key event and returns true in case of matches are not detected "
+        "description": "<p>fired on every key event and returns true in case of matches are not detected </p>\n"
       },
       {
         "name": "typeaheadOnSelect",
-        "description": "fired when option was selected, return object with data of this option "
+        "description": "<p>fired when option was selected, return object with data of this option </p>\n"
       }
     ],
     "properties": [
       {
         "name": "_container",
         "type": "TypeaheadContainerComponent",
-        "description": "if false restrict model values to the ones selected from the popup only will be provided \nif false the first match automatically will not be focused as you type \nformat the ng-model result after selection \nif true automatically select an item when there is one option that exactly matches the user input \nif true select the currently highlighted match on blur \nif false don't focus the input element the typeahead directive is associated with on selection "
+        "description": "<p>if false restrict model values to the ones selected from the popup only will be provided \nif false the first match automatically will not be focused as you type \nformat the ng-model result after selection \nif true automatically select an item when there is one option that exactly matches the user input \nif true select the currently highlighted match on blur \nif false don&#39;t focus the input element the typeahead directive is associated with on selection </p>\n"
       }
     ],
     "methods": []
@@ -1868,7 +1868,7 @@ export const ngdoc = {
   "Trigger": {
     "fileName": "src/utils/trigger.class.ts",
     "className": "Trigger",
-    "description": "@copyright Valor Software\n@copyright Angular ng-bootstrap team",
+    "description": "<p>@copyright Valor Software\n@copyright Angular ng-bootstrap team</p>\n",
     "methods": [],
     "properties": []
   }

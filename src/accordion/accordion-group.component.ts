@@ -34,7 +34,7 @@ import { AccordionComponent } from './accordion.component';
 export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
   @Input() public heading: string;
-  /** Provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) */
+  /** Provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [available here](http://getbootstrap.com/components/#panels-alternatives) */
   @Input() public panelClass: string;
   /** if <code>true</code> — disables accordion group */
   @Input() public isDisabled: boolean;
