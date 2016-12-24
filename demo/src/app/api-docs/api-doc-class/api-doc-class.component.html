@@ -1,9 +1,9 @@
 <div class="api-doc-component">
-  <h2>
+  <h3>
     <a (click)="trackSourceClick()"
        href="https://github.com/valor-software/ng2-bootstrap/tree/development/{{apiDocs.fileName}}"
        target="_blank">{{apiDocs.className}}</a>
-  </h2>
+  </h3>
   <p [innerHtml]="apiDocs.description"></p>
 
   <template [ngIf]="apiDocs.properties && apiDocs.properties.length">
