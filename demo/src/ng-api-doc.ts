@@ -9,22 +9,22 @@ export const ngdoc = {
       {
         "name": "heading",
         "type": "string",
-        "description": "click able text in accordion's group header, check `accordion heading` below for using html in header "
+        "description": "Clickable text in accordion's group header, check `accordion heading` below for using html in header "
       },
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "if <code>true</code> disables accordion group "
+        "description": "if <code>true</code> — disables accordion group "
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "is accordion group open or closed "
+        "description": "Is accordion group open or closed "
       },
       {
         "name": "panelClass",
         "type": "string",
-        "description": "provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) "
+        "description": "Provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [link](http://getbootstrap.com/components/#panels-alternatives) "
       }
     ],
     "outputs": [],
@@ -71,24 +71,24 @@ export const ngdoc = {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "If set, displays an inline close button "
+        "description": "If set, displays an inline \"Close\" button "
       },
       {
         "name": "dismissOnTimeout",
         "type": "string | number",
-        "description": "Number of milliseconds, if specified sets a timeout duration, after which the alert will be closed "
+        "description": "Number in milliseconds, after which alert will be closed "
       },
       {
         "name": "type",
         "defaultValue": "warning",
         "type": "string",
-        "description": "Alert type. Provide one of the four supported by bootstrap contextual classes: `success`, `info`, `warning`, `danger` "
+        "description": "Alert type. Provides one of four bootstrap supported contextual classes: `success`, `info`, `warning` and `danger` "
       }
     ],
     "outputs": [
       {
         "name": "onClose",
-        "description": "This event fires immediately when the close instance method is called, $event is an instance of Alert component. "
+        "description": "This event fires immediately after close instance method is called, $event is an instance of Alert component. "
       },
       {
         "name": "onClosed",
@@ -141,13 +141,13 @@ export const ngdoc = {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
         "type": "any",
-        "description": "falsy value, will be set to ngModel "
+        "description": "Falsy value, will be set to ngModel "
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
         "type": "any",
-        "description": "truthy value, will be set to ngModel "
+        "description": "Truthy value, will be set to ngModel "
       }
     ],
     "outputs": [],
@@ -163,17 +163,17 @@ export const ngdoc = {
       {
         "name": "btnRadio",
         "type": "any",
-        "description": "radio button value, will be set to `ngModel` "
+        "description": "Radio button value, will be set to `ngModel` "
       },
       {
         "name": "uncheckable",
         "type": "boolean",
-        "description": "if `true` radio button can be unchecked "
+        "description": "If `true` — radio button can be unchecked "
       },
       {
         "name": "value",
         "type": "any",
-        "description": "current value of radio component or group "
+        "description": "Current value of radio component or group "
       }
     ],
     "outputs": [],
@@ -187,54 +187,178 @@ export const ngdoc = {
     "selector": "carousel",
     "inputs": [
       {
+        "name": "activeSlide",
+        "type": "number",
+        "description": "Index of currently displayed slide(started for 0) "
+      },
+      {
         "name": "interval",
         "type": "number",
-        "description": "Amount of time in milliseconds to delay between automatically\ncycling an item. If false, carousel will not automatically cycle"
+        "description": "Delay of item cycling in milliseconds. If false, carousel won't cycle automatically. "
       },
       {
         "name": "noPause",
         "type": "boolean",
-        "description": "if `true` will disable pausing on carousel mouse hover "
-      },
-      {
-        "name": "noTransition",
-        "type": "boolean",
-        "description": "if `true` will disable transitions on the carousel "
+        "description": "If `true` — will disable pausing on carousel mouse hover "
       },
       {
         "name": "noWrap",
         "type": "boolean",
-        "description": "if `true` carousel will not cycle continuously and will have hard stops (prevent looping) "
+        "description": "If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) "
       }
     ],
-    "outputs": [],
-    "properties": [],
-    "methods": []
+    "outputs": [
+      {
+        "name": "activeSlideChange",
+        "description": "Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property "
+      }
+    ],
+    "properties": [
+      {
+        "name": "activeSlide",
+        "type": "number",
+        "description": "Index of currently displayed slide(started for 0) "
+      }
+    ],
+    "methods": [
+      {
+        "name": "addSlide",
+        "description": "Adds new slide. If this slide is first in collection - set it as active and starts auto changing",
+        "args": [
+          {
+            "name": "slide",
+            "type": "SlideComponent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "removeSlide",
+        "description": "Removes specified slide. If this slide is active - will roll to another slide",
+        "args": [
+          {
+            "name": "slide",
+            "type": "SlideComponent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "nextSlide",
+        "description": "Rolling to next slide",
+        "args": [
+          {
+            "name": "force",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "previousSlide",
+        "description": "Rolling to previous slide",
+        "args": [
+          {
+            "name": "force",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "selectSlide",
+        "description": "Rolling to specified slide",
+        "args": [
+          {
+            "name": "index",
+            "type": "number"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "play",
+        "description": "Starts a auto changing of slides",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pause",
+        "description": "Stops a auto changing of slides",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "getCurrentSlideIndex",
+        "description": "Finds and returns index of currently displayed slide\n@returns {number}",
+        "args": [],
+        "returnType": "number"
+      },
+      {
+        "name": "isLast",
+        "description": "Defines, whether the specified index is last in collection\n@returns {boolean}",
+        "args": [
+          {
+            "name": "index",
+            "type": "number"
+          }
+        ],
+        "returnType": "boolean"
+      }
+    ]
+  },
+  "CarouselConfig": {
+    "fileName": "src/carousel/carousel.config.ts",
+    "className": "CarouselConfig",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "interval",
+        "defaultValue": "5000",
+        "type": "number",
+        "description": "Default interval of auto changing of slides "
+      },
+      {
+        "name": "noPause",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "Is loop of auto changing of slides can be paused "
+      },
+      {
+        "name": "noWrap",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "Is slides can wrap from the last to the first slide "
+      }
+    ]
   },
   "SlideComponent": {
     "fileName": "src/carousel/slide.component.ts",
     "className": "SlideComponent",
-    "description": "Wrap your content with `slide` component  ",
+    "description": "",
     "selector": "slide",
     "inputs": [
       {
         "name": "active",
         "type": "boolean",
-        "description": "does current slide is active "
-      },
-      {
-        "name": "direction",
-        "type": "Direction",
-        "description": ""
-      },
-      {
-        "name": "index",
-        "type": "number",
-        "description": "index of slide in carousel's slides "
+        "description": "Is current slide active "
       }
     ],
     "outputs": [],
-    "properties": [],
+    "properties": [
+      {
+        "name": "addClass",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "Wraps element by appropriate CSS classes "
+      },
+      {
+        "name": "carousel",
+        "type": "CarouselComponent",
+        "description": "Link to Parent(container-collection) component "
+      }
+    ],
     "methods": []
   },
   "CollapseDirective": {
@@ -252,11 +376,11 @@ export const ngdoc = {
     "outputs": [
       {
         "name": "collapsed",
-        "description": "This event fired as soon as content collapsed "
+        "description": "This event fired as soon as content is collapsed "
       },
       {
         "name": "expanded",
-        "description": "This event fired as soon as content became visible "
+        "description": "This event fired as soon as content becomes visible "
       }
     ],
     "properties": [
