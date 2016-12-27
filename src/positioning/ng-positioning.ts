@@ -83,8 +83,8 @@ export class Positioning {
       bottom: hostElPosition.top + hostElPosition.height
     };
     const targetElBCR = targetElement.getBoundingClientRect();
-    const placementPrimary = placement.split('-')[0] || 'top';
-    const placementSecondary = placement.split('-')[1] || 'center';
+    const placementPrimary = placement.split(' ')[0] || 'top';
+    const placementSecondary = placement.split(' ')[1] || 'center';
 
     let targetElPosition: ClientRect = {
       height: targetElBCR.height || targetElement.offsetHeight,

@@ -60,7 +60,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
   </div></template>
 `,
   // tslint:disable-next-line
-  host: {'[class]': '"dropdown open"'},
+  host: {'class': 'dropdown open', style: 'position: absolute;' },
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
