@@ -20,6 +20,7 @@ import { DemoDatepickerModule } from './components/datepicker';
 import { DemoDropdownModule } from './components/dropdown';
 import { DemoModalModule } from './components/modal';
 import { DemoPaginationModule } from './components/pagination';
+import { DemoPopoverModule } from './components/popover/index';
 import { DemoProgressbarModule } from './components/progressbar';
 import { DemoRatingModule } from './components/rating';
 import { DemoTabsModule } from './components/tabs';
@@ -55,6 +56,7 @@ import { ngdoc } from '../ng-api-doc';
     DemoDropdownModule,
     DemoModalModule,
     DemoPaginationModule,
+    DemoPopoverModule,
     DemoProgressbarModule,
     DemoRatingModule,
     DemoTabsModule,

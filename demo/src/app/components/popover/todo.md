@@ -4,8 +4,11 @@
 - dismissible popovers (like tooltips)
 - templateRef content
 - html content
-- triggers
 - container: body
+
+todo:
+- triggers
+- styling
 - config
 
 + add doc base
