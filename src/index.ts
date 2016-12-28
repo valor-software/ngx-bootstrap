@@ -9,6 +9,7 @@ import { DatepickerModule } from './datepicker/datepicker.module';
 import { DropdownModule } from './dropdown/dropdown.module';
 import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
+import { PopoverModule } from './popover/popover.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
 import { TabsModule } from './tabs/tabs.module';
@@ -19,7 +20,7 @@ import { TypeaheadModule } from './typeahead/typeahead.module';
 @NgModule({
   exports: [
     AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, DatepickerModule, DropdownModule,
-    ModalModule, PaginationModule, ProgressbarModule, RatingModule, TabsModule, TimepickerModule, TooltipModule,
+    ModalModule, PaginationModule, PopoverModule, ProgressbarModule, RatingModule, TabsModule, TimepickerModule, TooltipModule,
     TypeaheadModule
   ]
 })
@@ -35,6 +36,7 @@ export * from './datepicker';
 export * from './modal';
 export * from './dropdown';
 export * from './pagination';
+export * from './popover';
 export * from './progressbar';
 export * from './rating';
 export * from './tabs';
