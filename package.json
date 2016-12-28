@@ -64,7 +64,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "~4.0.13",
-    "ts-node": "1.2.1",
+    "ts-node": "1.7.3",
     "tslint": "^4.0.2",
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",
