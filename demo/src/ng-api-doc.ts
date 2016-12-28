@@ -187,6 +187,11 @@ export const ngdoc = {
     "selector": "carousel",
     "inputs": [
       {
+        "name": "activeSlide",
+        "type": "number",
+        "description": "<p>Index of currently displayed slide(started for 0) </p>\n"
+      },
+      {
         "name": "interval",
         "type": "number",
         "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle automatically. </p>\n"
@@ -197,44 +202,163 @@ export const ngdoc = {
         "description": "<p>If <code>true</code> — will disable pausing on carousel mouse hover </p>\n"
       },
       {
-        "name": "noTransition",
-        "type": "boolean",
-        "description": "<p>If <code>true</code> — will disable carousel transitions </p>\n"
-      },
-      {
         "name": "noWrap",
         "type": "boolean",
         "description": "<p>If <code>true</code> — carousel will not cycle continuously and will have hard stops (prevent looping) </p>\n"
       }
     ],
-    "outputs": [],
-    "properties": [],
-    "methods": []
+    "outputs": [
+      {
+        "name": "activeSlideChange",
+        "description": "<p>Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property </p>\n"
+      }
+    ],
+    "properties": [
+      {
+        "name": "activeSlide",
+        "type": "number",
+        "description": "<p>Index of currently displayed slide(started for 0) </p>\n"
+      }
+    ],
+    "methods": [
+      {
+        "name": "addSlide",
+        "description": "<p>Adds new slide. If this slide is first in collection - set it as active and starts auto changing</p>\n",
+        "args": [
+          {
+            "name": "slide",
+            "type": "SlideComponent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "removeSlide",
+        "description": "<p>Removes specified slide. If this slide is active - will roll to another slide</p>\n",
+        "args": [
+          {
+            "name": "slide",
+            "type": "SlideComponent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "nextSlide",
+        "description": "<p>Rolling to next slide</p>\n",
+        "args": [
+          {
+            "name": "force",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "previousSlide",
+        "description": "<p>Rolling to previous slide</p>\n",
+        "args": [
+          {
+            "name": "force",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "selectSlide",
+        "description": "<p>Rolling to specified slide</p>\n",
+        "args": [
+          {
+            "name": "index",
+            "type": "number"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "play",
+        "description": "<p>Starts a auto changing of slides</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pause",
+        "description": "<p>Stops a auto changing of slides</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "getCurrentSlideIndex",
+        "description": "<p>Finds and returns index of currently displayed slide\n@returns {number}</p>\n",
+        "args": [],
+        "returnType": "number"
+      },
+      {
+        "name": "isLast",
+        "description": "<p>Defines, whether the specified index is last in collection\n@returns {boolean}</p>\n",
+        "args": [
+          {
+            "name": "index",
+            "type": "number"
+          }
+        ],
+        "returnType": "boolean"
+      }
+    ]
+  },
+  "CarouselConfig": {
+    "fileName": "src/carousel/carousel.config.ts",
+    "className": "CarouselConfig",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "interval",
+        "defaultValue": "5000",
+        "type": "number",
+        "description": "<p>Default interval of auto changing of slides </p>\n"
+      },
+      {
+        "name": "noPause",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Is loop of auto changing of slides can be paused </p>\n"
+      },
+      {
+        "name": "noWrap",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Is slides can wrap from the last to the first slide </p>\n"
+      }
+    ]
   },
   "SlideComponent": {
     "fileName": "src/carousel/slide.component.ts",
     "className": "SlideComponent",
-    "description": "<p>Wrap your content with <code>slide</code> component  </p>\n",
+    "description": "",
     "selector": "slide",
     "inputs": [
       {
         "name": "active",
         "type": "boolean",
         "description": "<p>Is current slide active </p>\n"
-      },
-      {
-        "name": "direction",
-        "type": "Direction",
-        "description": ""
-      },
-      {
-        "name": "index",
-        "type": "number",
-        "description": "<p>Index of slide in carousel&#39;s slides </p>\n"
       }
     ],
     "outputs": [],
-    "properties": [],
+    "properties": [
+      {
+        "name": "addClass",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Wraps element by appropriate CSS classes </p>\n"
+      },
+      {
+        "name": "carousel",
+        "type": "CarouselComponent",
+        "description": "<p>Link to Parent(container-collection) component </p>\n"
+      }
+    ],
     "methods": []
   },
   "CollapseDirective": {
@@ -252,11 +376,11 @@ export const ngdoc = {
     "outputs": [
       {
         "name": "collapsed",
-        "description": "<p>This event fired as soon as content is collapsed </p>\n"
+        "description": "<p>This event fires as soon as content collapses </p>\n"
       },
       {
         "name": "expanded",
-        "description": "<p>This event fired as soon as content becomes visible </p>\n"
+        "description": "<p>This event fires as soon as content becomes visible </p>\n"
       }
     ],
     "properties": [

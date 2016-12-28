@@ -217,8 +217,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
-      // .to(this.container)
-      // .position({attachment: 'bottom left'})
+      .to(this.container)
+      .position({attachment: 'bottom left'})
       .show({
         typeaheadRef: this,
         placement: this.placement,
