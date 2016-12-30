@@ -17,7 +17,7 @@ const nullCallback = (arg?: any): void => { return void 0; };
             [ngStyle]="wrapperStyle"
             (dragover)="cancelEvent($event)"
             (dragenter)="cancelEvent($event)"
-            (drop)="resetActiveItem()"
+            (drop)="resetActiveItem($event)"
             (mouseleave)="resetActiveItem()"
         >
             <div
@@ -36,7 +36,7 @@ const nullCallback = (arg?: any): void => { return void 0; };
                 [ngStyle]="getItemStyle(i === activeItem)"
                 draggable="true"
                 (dragstart)="onItemDragstart($event, item, i)"
-                (dragend)="resetActiveItem()"
+                (dragend)="resetActiveItem($event)"
                 (dragover)="onItemDragover($event, i)"
                 (dragenter)="cancelEvent($event)"
             >{{item.value}}</div>
@@ -124,6 +124,7 @@ export class SortableComponent implements ControlValueAccessor {
     }
 
     public onItemDragstart(event: DragEvent, item: SortableItem, i: number): void {
+        this.initDragstartEvent(event);
         this.onTouched();
         this.transfer.dragStart({
             event,
@@ -165,7 +166,7 @@ export class SortableComponent implements ControlValueAccessor {
     }
 
     public cancelEvent(event: DragEvent): void {
-        if (!this.transfer.getItem()) {
+        if (!this.transfer.getItem() || !event) {
             return;
         }
         event.preventDefault();
@@ -178,10 +179,11 @@ export class SortableComponent implements ControlValueAccessor {
         ) {
             this.items = this.items.filter((x: SortableItem, i: number) => i !== item.i);
         }
-        this.resetActiveItem();
+        this.resetActiveItem(undefined);
     }
 
-    public resetActiveItem(): void {
+    public resetActiveItem(event: DragEvent): void {
+        this.cancelEvent(event);
         this.activeItem = -1;
     }
 
@@ -208,6 +210,12 @@ export class SortableComponent implements ControlValueAccessor {
 
     public getItemStyle(isActive: boolean): {} {
         return isActive ? Object.assign({}, this.itemStyle, this.itemActiveStyle) : this.itemStyle;
+    }
+
+    private initDragstartEvent(event: DragEvent): void {
+        // it is necessary for mozilla
+        // data type should be 'Text' instead of 'text/plain' to keep compatibility with IE
+        event.dataTransfer.setData('Text', 'placeholder');
     }
 }
 
