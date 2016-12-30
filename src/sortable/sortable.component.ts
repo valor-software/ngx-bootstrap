@@ -60,17 +60,39 @@ const nullCallback = (arg?: any): void => { return void 0; };
 export class SortableComponent implements ControlValueAccessor {
     private static globalZoneIndex: number = 0;
 
+    /** field name if input array consists of objects */
     @Input() public fieldName: string;
+
+    /** class name for items wrapper */
     @Input() public wrapperClass: string = '';
-    @Input() public wrapperStyle: {} = {};
+
+    /** style object for items wrapper */
+    @Input() public wrapperStyle: { [key: string]: string } = {};
+
+    /** class name for item */
     @Input() public itemClass: string = '';
-    @Input() public itemStyle: {} = {};
+
+    /** style object for item */
+    @Input() public itemStyle: { [key: string]: string } = {};
+
+    /** class name for active item */
     @Input() public itemActiveClass: string = '';
-    @Input() public itemActiveStyle: {} = {};
+
+    /** style object for active item */
+    @Input() public itemActiveStyle: { [key: string]: string } = {};
+
+    /** class name for placeholder */
     @Input() public placeholderClass: string = '';
-    @Input() public placeholderStyle: {} = {};
+
+    /** style object for placeholder */
+    @Input() public placeholderStyle: { [key: string]: string } = {};
+
+    /** placeholder item which will be shown if collection is empty */
     @Input() public placeholderItem: string = '';
 
+    /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
+     *  Returns new items collection as a payload.
+     */
     @Output() public onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
     private _items: SortableItem[];
