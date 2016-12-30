@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-alert-styling-local',
+  selector: 'demo-popover-styling-local',
   templateUrl: './styling-local.html',
   /* tslint:disable no-unused-css*/
   styles: [`
@@ -12,5 +12,5 @@ import { Component } from '@angular/core';
   }
   `]
 })
-export class DemoAlertStylingLocalComponent {
+export class DemoPopoverStylingLocalComponent {
 }

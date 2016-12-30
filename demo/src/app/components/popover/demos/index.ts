@@ -5,6 +5,9 @@ import { DemoPopoverDynamicComponent } from './dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoPopoverContainerComponent } from './container/container';
 import { DemoPopoverConfigComponent } from './config/config';
+import { DemoPopoverTriggersComponent } from './triggers/basic';
+import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-global';
+import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
@@ -13,7 +16,10 @@ export const DEMO_COMPONENTS = [
   DemoPopoverDynamicComponent,
   DemoPopoverDynamicHtmlComponent,
   DemoPopoverContainerComponent,
-  DemoPopoverConfigComponent
+  DemoPopoverConfigComponent,
+  DemoPopoverTriggersComponent,
+  DemoPopoverStylingGlobalComponent,
+  DemoPopoverStylingLocalComponent
 ];
 
 export const DEMOS = {
