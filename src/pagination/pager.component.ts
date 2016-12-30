@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { KeyAttribute } from '../utils/common';
 import { PageChangedEvent } from './pagination.component';
 import { PaginationConfig } from './pagination.config';
 
@@ -26,39 +25,53 @@ const PAGER_TEMPLATE = `
   template: PAGER_TEMPLATE,
   providers: [PAGER_CONTROL_VALUE_ACCESSOR]
 })
-export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribute {
-  public config: any;
-  @Input() public align: boolean;
-  @Input() public maxSize: number;
-
-  @Input() public boundaryLinks: boolean;
-  @Input() public directionLinks: boolean;
+export class PagerComponent implements ControlValueAccessor, OnInit {
+  public config:any;
+  /** if `true` aligns each link to the sides of pager */
+  @Input() public align:boolean;
+  /** limit number for page links in pager */
+  @Input() public maxSize:number;
+  /** if false first and last buttons will be hidden */
+  @Input() public boundaryLinks:boolean;
+  /** if false previous and next buttons will be hidden */
+  @Input() public directionLinks:boolean;
   // labels
-  @Input() public firstText: string;
-  @Input() public previousText: string;
-  @Input() public nextText: string;
-  @Input() public lastText: string;
-  @Input() public rotate: boolean;
+  /** first button text */
+  @Input() public firstText:string;
+  /** previous button text */
+  @Input() public previousText:string;
+  /** next button text */
+  @Input() public nextText:string;
+  /** last button text */
+  @Input() public lastText:string;
+  /** if true current page will in the middle of pages list */
+  @Input() public rotate:boolean;
   // css
-  @Input() public pageBtnClass: string;
+  /** add class to <li> */
+  @Input() public pageBtnClass:string;
 
-  @Input() public disabled: boolean;
+  /** if true pagination component will be disabled */
+  @Input() public disabled:boolean;
 
-  @Output() public numPages: EventEmitter<number> = new EventEmitter<number>(false);
-  @Output() public pageChanged: EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>(false);
+  /** fired when total pages count changes, $event:number equals to total pages count */
+  @Output() public numPages:EventEmitter<number> = new EventEmitter<number>();
+  /** fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page */
+  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>();
 
+  /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
-  public get itemsPerPage(): number {
+  public get itemsPerPage():number {
     return this._itemsPerPage;
   }
 
-  public set itemsPerPage(v: number) {
+  public set itemsPerPage(v:number) {
     this._itemsPerPage = v;
     this.totalPages = this.calculateTotalPages();
   }
 
+  /** total number of items in all pages */
   @Input()
-  public get totalItems(): number {
+  public get totalItems():number {
     return this._totalItems;
   }
 
@@ -159,7 +172,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit, KeyAttribut
   }
 
   public getText(key: string): string {
-    return (this as KeyAttribute)[key + 'Text'] || this.config[key + 'Text'];
+    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
   }
 
   public noPrevious(): boolean {

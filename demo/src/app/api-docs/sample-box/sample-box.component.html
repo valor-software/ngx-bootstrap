@@ -1,0 +1,16 @@
+<div class="section bd-example"><ng-content></ng-content></div>
+<div id="markup" class="section">
+  <div class="item">
+    <tabset>
+      <tab heading="template" *ngIf="html">
+        <pre class="prettyprint linenums lang-html">{{html}}</pre>
+      </tab>
+      <tab heading="component" *ngIf="ts">
+        <pre class="prettyprint linenums lang-js">{{ts}}</pre>
+      </tab>
+      <tab heading="tests" *ngIf="spec">
+        <pre class="prettyprint linenums lang-js">{{spec}}</pre>
+      </tab>
+    </tabset>
+  </div>
+</div>

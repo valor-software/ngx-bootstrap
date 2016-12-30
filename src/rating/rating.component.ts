@@ -23,15 +23,22 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
   providers: [RATING_CONTROL_VALUE_ACCESSOR]
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
-  @Input() public max: number;
+  /** number of icons */
+  @Input() public max: number = 5;
+  /** selected icon class */
   @Input() public stateOn: string;
+  /** unselected icon class */
   @Input() public stateOff: string;
+  /** if true will not react on any user events */
   @Input() public readonly: boolean;
+  /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
   @Input() public titles: string[];
+  /** array of custom icons classes */
   @Input() public ratingStates: {stateOn: string, stateOff: string}[];
-
-  @Output() public onHover: EventEmitter<number> = new EventEmitter<number>(false);
-  @Output() public onLeave: EventEmitter<number> = new EventEmitter<number>(false);
+  /** fired when icon selected, $event:number equals to selected rating */
+  @Output() public onHover: EventEmitter<number> = new EventEmitter();
+  /** fired when icon selected, $event:number equals to previous rating value */
+  @Output() public onLeave: EventEmitter<number> = new EventEmitter();
 
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;

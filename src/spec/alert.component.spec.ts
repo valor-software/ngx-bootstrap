@@ -18,7 +18,7 @@ describe('Component: Alert', () => {
   `;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule]});
+    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule.forRoot()]});
     TestBed.overrideComponent(TestAlertComponent, {set: {template: overTemplate}});
     fixture = TestBed.createComponent(TestAlertComponent);
     context = fixture.debugElement.componentInstance;
@@ -41,9 +41,9 @@ describe('Component: Alert', () => {
   it('should be dismissed by timeout', (done:() => void) => {
     context.dismissOnTimeout = 1000;
     context
-      .close
+      .onClosed
       .subscribe(() => {
-        expect(context.closed).toBeTruthy();
+        expect(context.isClosed).toBeTruthy();
         done();
       });
     context.ngOnInit();
@@ -51,9 +51,9 @@ describe('Component: Alert', () => {
 
   it('should be closed by public method onClose', () => {
     context.ngOnInit();
-    expect(context.closed).toBeFalsy();
-    context.onClose();
-    expect(context.closed).toBeTruthy();
+    expect(context.isClosed).toBeFalsy();
+    context.close();
+    expect(context.isClosed).toBeTruthy();
   });
 });
 

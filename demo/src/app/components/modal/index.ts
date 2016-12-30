@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared';
 import { ModalModule } from 'ng2-bootstrap';
-import { ModalDemoComponent } from './demos/modal-demo.component';
 import { ModalSectionComponent } from './modal-section.component';
+import { DEMO_COMPONENTS } from './demos';
 
 @NgModule({
   declarations: [
-    ModalDemoComponent,
-    ModalSectionComponent
+    ModalSectionComponent,
+    ...DEMO_COMPONENTS
   ],
   imports: [
+    ModalModule.forRoot(),
     CommonModule,
     FormsModule,
-    SharedModule,
-    ModalModule
+    SharedModule
   ],
-  exports: [ModalDemoComponent]
+  exports: [ModalSectionComponent]
 })
 export class DemoModalModule {
 

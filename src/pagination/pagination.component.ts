@@ -3,7 +3,6 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { KeyAttribute } from '../utils/common';
 import { PaginationConfig } from './pagination.config';
 
 export interface PageChangedEvent {
@@ -55,27 +54,40 @@ const PAGINATION_TEMPLATE = `
   template: PAGINATION_TEMPLATE,
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
-export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAttribute {
+export class PaginationComponent implements ControlValueAccessor, OnInit {
   public config:any;
+  /** if `true` aligns each link to the sides of pager */
   @Input() public align:boolean;
+  /** limit number for page links in pager */
   @Input() public maxSize:number;
-
+  /** if false first and last buttons will be hidden */
   @Input() public boundaryLinks:boolean;
+  /** if false previous and next buttons will be hidden */
   @Input() public directionLinks:boolean;
   // labels
+  /** first button text */
   @Input() public firstText:string;
+  /** previous button text */
   @Input() public previousText:string;
+  /** next button text */
   @Input() public nextText:string;
+  /** last button text */
   @Input() public lastText:string;
+  /** if true current page will in the middle of pages list */
   @Input() public rotate:boolean;
   // css
+  /** add class to <li> */
   @Input() public pageBtnClass:string;
 
+  /** if true pagination component will be disabled */
   @Input() public disabled:boolean;
 
-  @Output() public numPages:EventEmitter<number> = new EventEmitter<number>(false);
-  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>(false);
+  /** fired when total pages count changes, $event:number equals to total pages count */
+  @Output() public numPages:EventEmitter<number> = new EventEmitter<number>();
+  /** fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page */
+  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>();
 
+  /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
   public get itemsPerPage():number {
     return this._itemsPerPage;
@@ -86,6 +98,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
     this.totalPages = this.calculateTotalPages();
   }
 
+  /** total number of items in all pages */
   @Input()
   public get totalItems():number {
     return this._totalItems;
@@ -128,10 +141,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
 
   public onChange:any = Function.prototype;
   public onTouched:any = Function.prototype;
-
   public renderer:Renderer;
   public elementRef:ElementRef;
-
   public classMap:string;
   public pages:any[];
 
@@ -188,7 +199,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit, KeyAtt
   }
 
   public getText(key:string):string {
-    return (this as KeyAttribute)[key + 'Text'] || this.config[key + 'Text'];
+    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
   }
 
   public noPrevious():boolean {

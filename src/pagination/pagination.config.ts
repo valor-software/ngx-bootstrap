@@ -1,5 +1,7 @@
+// todo: split
 import { Injectable } from '@angular/core';
 
+/** Provides default values for Pagination and pager components */
 @Injectable()
 export class PaginationConfig {
   public main: any = {

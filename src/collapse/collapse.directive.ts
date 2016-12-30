@@ -1,84 +1,65 @@
-// FIX: in order to update to rc.1 had to disable animation, sorry
-import { Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output, Renderer } from '@angular/core';
-// import {AnimationBuilder} from '@angular/platform-browser/src/animate/animation_builder';
+// todo: add animations when https://github.com/angular/angular/issues/9947 solved
+import {
+  Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output,
+  Renderer, style
+} from '@angular/core';
 
-// import {animate, animation, state, style, transition} from '@angular/core';
+@Directive({
+  selector: '[collapse]'/*,
+  animations: [
+    trigger('active', [
+      state('void', style({height: 0})),
+      state('closed', style({height: 0})),
+      state('open', style({height: '*'})),
+      transition('void => closed', [animate(0)]),
+      transition('closed => open', [animate('350ms ease-out')]),
+      transition('open => closed', [animate('350ms ease-out')])
+    ])
+  ]*/
+})
+export class CollapseDirective {
+  /** This event fires as soon as content collapses */
+  @Output() public collapsed: EventEmitter<any> = new EventEmitter();
+  /** This event fires as soon as content becomes visible */
+  @Output() public expanded: EventEmitter<any> = new EventEmitter();
 
-/*@Directive({
- selector: '[collapse]',
- // templateUrl: 'app/panel.html',
- // styleUrls: ['app/panel.css'],
- animations: [
- animation('active', [
- state('void', style({ height: 0 })),
- state('closed', style({ height: 0 })),
- state('open', style({ height: '*' })),
- transition('void => closed', [ animate(0) ]),
- transition('closed => open', [ animate('350ms ease-out') ]),
- transition('open => closed', [ animate('350ms ease-out') ])
- ])
- ]
- })*/
-// fix: replace with // '@angular/animate';
-// when https://github.com/angular/angular/issues/5984 will be fixed
-
-// TODO: remove ElementRef
-// TODO: add on change
-// TODO: #576 add callbacks: expanding, collapsing after adding animation
-@Directive({selector: '[collapse]'})
-export class CollapseDirective implements OnInit {
-  // protected animation:any;
-  @Output() public collapsed:EventEmitter<any> = new EventEmitter<any>(false);
-  @Output() public expanded:EventEmitter<any> = new EventEmitter<any>(false);
-  // style
-  // @HostBinding('style.height')
-  // protected height:string;
   @HostBinding('style.display')
-  public display:string;
+  public display: string;
   // shown
   @HostBinding('class.in')
   @HostBinding('attr.aria-expanded')
-  public isExpanded:boolean = true;
+  public isExpanded: boolean = true;
   // hidden
   @HostBinding('attr.aria-hidden')
-  public isCollapsed:boolean = false;
+  public isCollapsed: boolean = false;
   // stale state
   @HostBinding('class.collapse')
-  public isCollapse:boolean = true;
+  public isCollapse: boolean = true;
   // animation state
   @HostBinding('class.collapsing')
-  public isCollapsing:boolean = false;
+  public isCollapsing: boolean = false;
 
-  // @Input() protected transitionDuration:number = 500; // Duration in ms
-
+  /** A flag indicating visibility of content (shown or hidden) */
   @Input()
-  public set collapse(value:boolean) {
+  public set collapse(value: boolean) {
     this.isExpanded = value;
     this.toggle();
   }
 
-  public get collapse():boolean {
+  public get collapse(): boolean {
     return this.isExpanded;
   }
 
-  // protected open: boolean;
-  // protected _ab:AnimationBuilder;
-  protected _el:ElementRef;
-  protected _renderer:Renderer;
+  protected _el: ElementRef;
+  protected _renderer: Renderer;
 
-  public constructor(/*_ab:AnimationBuilder, */_el:ElementRef, _renderer:Renderer) {
-    // this._ab = _ab;
+  public constructor(_el: ElementRef, _renderer: Renderer) {
     this._el = _el;
     this._renderer = _renderer;
   }
 
-  public ngOnInit():void {
-    // this.animation = this._ab.css();
-    // this.animation.setDuration(this.transitionDuration);
-  }
-
-  public toggle():void {
-    // this.open = !this.open;
+  /** allows to manually toggle content visibility */
+  public toggle(): void {
     if (this.isExpanded) {
       this.hide();
     } else {
@@ -86,7 +67,8 @@ export class CollapseDirective implements OnInit {
     }
   }
 
-  public hide():void {
+  /** allows to manually hide content */
+  public hide(): void {
     this.isCollapse = false;
     this.isCollapsing = true;
 
@@ -98,33 +80,10 @@ export class CollapseDirective implements OnInit {
 
     this.display = 'none';
     this.collapsed.emit(this);
-
-    /*  setTimeout(() => {
-     // this.height = '0';
-     // this.isCollapse = true;
-     // this.isCollapsing = false;
-     this.animation
-     .setFromStyles({
-     height: this._el.nativeElement.scrollHeight + 'px'
-     })
-     .setToStyles({
-     height: '0',
-     overflow: 'hidden'
-     });
-
-     this.animation.start(this._el.nativeElement)
-     .onComplete(() => {
-     if (this._el.nativeElement.offsetHeight === 0) {
-     this.display = 'none';
-     }
-
-     this.isCollapse = true;
-     this.isCollapsing = false;
-     });
-     }, 4);*/
   }
 
-  public show():void {
+  /** allows to manually show collapsed content */
+  public show(): void {
     this.isCollapse = false;
     this.isCollapsing = true;
 
@@ -138,26 +97,5 @@ export class CollapseDirective implements OnInit {
     this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
     this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
     this.expanded.emit(this);
-    /*setTimeout(() => {
-     // this.height = 'auto';
-     // this.isCollapse = true;
-     // this.isCollapsing = false;
-     this.animation
-     .setFromStyles({
-     height: this._el.nativeElement.offsetHeight,
-     overflow: 'hidden'
-     })
-     .setToStyles({
-     height: this._el.nativeElement.scrollHeight + 'px'
-     });
-
-     this.animation.start(this._el.nativeElement)
-     .onComplete(() => {
-     this.isCollapse = true;
-     this.isCollapsing = false;
-     this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
-     this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
-     });
-     }, 4);*/
   }
 }

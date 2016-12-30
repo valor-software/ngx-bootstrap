@@ -10,7 +10,7 @@ describe('Component: Pagination:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule]
+      imports: [PaginationModule.forRoot()]
     });
     fixture = TestBed.createComponent(PaginationComponent);
     context = fixture.debugElement.componentInstance;
@@ -21,6 +21,9 @@ describe('Component: Pagination:', () => {
   it('checking of working with default values', () => {
     const listItems = element.querySelectorAll('li');
     const links = element.querySelectorAll('a');
+
+    context.disabled = true;
+    fixture.detectChanges();
 
     // <~Previous~> _1_ <~Next~>
     expect(listItems.length).toEqual(3);

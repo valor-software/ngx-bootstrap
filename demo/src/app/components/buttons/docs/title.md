@@ -1,3 +1,11 @@
-There are two directives that can make a group of buttons behave like a set of checkboxes, radio buttons, or a hybrid where radio buttons can be unchecked.
+```typescript
+// RECOMMENDED
+import { ButtonsModule } from 'ng2-bootstrap/buttons';
+// or
+import { ButtonsModule } from 'ng2-bootstrap';
 
-Base specifications: [bootstrap 3](http://getbootstrap.com/javascript/#buttons) or [bootstrap 4](http://v4-alpha.getbootstrap.com/components/buttons/#checkbox-and-radio-buttons)
+@NgModule({
+  imports: [ButtonsModule.forRoot(),...]
+})
+export class AppModule(){} 
+```

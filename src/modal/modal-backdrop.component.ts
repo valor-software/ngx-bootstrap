@@ -10,6 +10,7 @@ export class ModalBackdropOptions {
   }
 }
 
+/** This component will be added as background layout for modals if enabled */
 @Component({
   selector: 'bs-modal-backdrop',
   template: '',
@@ -42,9 +43,8 @@ export class ModalBackdropComponent {
   protected _isAnimated:boolean;
   protected _isShown:boolean = false;
 
-  public constructor(options:ModalBackdropOptions, element:ElementRef, renderer:Renderer) {
+  public constructor(element:ElementRef, renderer:Renderer) {
     this.element = element;
     this.renderer = renderer;
-    this.isAnimated = options.animate !== false;
   }
 }

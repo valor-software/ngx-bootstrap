@@ -1,15 +1,39 @@
-import { Component, ElementRef, TemplateRef, ViewEncapsulation } from '@angular/core';
-
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../utils/ng2-bootstrap-config';
-import { positionService } from '../utils/position';
-import { TypeaheadOptions } from './typeahead-options.class';
+import {
+  Component, ElementRef, TemplateRef, ViewEncapsulation
+} from '@angular/core';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
 
-const bs4 = `
-  <div class="dropdown-menu"
-       [ngStyle]="{top: top, left: left, display: 'block'}"
+@Component({
+  selector: 'typeahead-container',
+  // tslint:disable-next-line
+  template: `
+  <template [ngIf]="!isBs4"><ul class="dropdown-menu"
+      (mouseleave)="focusLost()">
+    <template ngFor let-match let-i="index" [ngForOf]="matches">
+      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+      <li *ngIf="!match.isHeader()"
+        [class.active]="isActive(match)"
+        (mouseenter)="selectActive(match)">
+        <a href="#"
+           *ngIf="!itemTemplate"
+           (click)="selectMatch(match, $event)"
+           tabindex="-1"
+           [innerHtml]="hightlight(match, query)"></a>
+        <a href="#"
+           *ngIf="itemTemplate"
+           (click)="selectMatch(match, $event)"
+           tabindex="-1">
+            <template [ngTemplateOutlet]="itemTemplate"
+                      [ngOutletContext]="{item: match.item, index: i}">
+            </template>
+        </a>
+      </li>
+    </template>
+  </ul></template>
+  <template [ngIf]="isBs4"><div class="dropdown-menu"
        (mouseleave)="focusLost()">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
        <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
@@ -33,64 +57,38 @@ const bs4 = `
          </a>
       </div>
     </template>
-  </div>
-`;
-
-const bs3 = `
-  <ul class="dropdown-menu"
-      [ngStyle]="{top: top, left: left, display: 'block'}"
-      (mouseleave)="focusLost()">
-    <template ngFor let-match let-i="index" [ngForOf]="matches">
-      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
-      <li *ngIf="!match.isHeader()"
-        [class.active]="isActive(match)"
-        (mouseenter)="selectActive(match)">
-        <a href="#"
-           *ngIf="!itemTemplate"
-           (click)="selectMatch(match, $event)"
-           tabindex="-1"
-           [innerHtml]="hightlight(match, query)"></a>
-        <a href="#"
-           *ngIf="itemTemplate"
-           (click)="selectMatch(match, $event)"
-           tabindex="-1">
-            <template [ngTemplateOutlet]="itemTemplate"
-                      [ngOutletContext]="{item: match.item, index: i}">
-            </template>
-        </a>
-      </li>
-    </template>
-  </ul>
-`;
-let isBS4 = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
-
-@Component({
-  selector: 'typeahead-container',
-  template: isBS4 ? bs4 : bs3,
+  </div></template>
+`,
+  // tslint:disable-next-line
+  host: {'class': 'dropdown open', style: 'position: absolute;' },
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
-  public parent:TypeaheadDirective;
-  public query:any;
-  public element:ElementRef;
-  public isFocused:boolean = false;
-  public top:string;
-  public left:string;
-  public display:string;
+  public parent: TypeaheadDirective;
+  public query: any;
+  public element: ElementRef;
+  public isFocused: boolean = false;
+  public top: string;
+  public left: string;
+  public display: string;
+  public placement: string;
 
-  protected _active:TypeaheadMatch;
-  protected _matches:TypeaheadMatch[] = [];
-  protected placement:string;
-
-  public constructor(element:ElementRef, options:TypeaheadOptions) {
-    this.element = element;
-    Object.assign(this, options);
+  public get isBs4():boolean {
+    return !isBs3();
   }
 
-  public get matches():TypeaheadMatch[] {
+  protected _active: TypeaheadMatch;
+  protected _matches: TypeaheadMatch[] = [];
+
+  public constructor(element: ElementRef) {
+    this.element = element;
+  }
+
+  public get matches(): TypeaheadMatch[] {
     return this._matches;
   }
-  public set matches(value:TypeaheadMatch[]) {
+
+  public set matches(value: TypeaheadMatch[]) {
     this._matches = value;
 
     if (this._matches.length > 0) {
@@ -101,26 +99,15 @@ export class TypeaheadContainerComponent {
     }
   }
 
-  public get itemTemplate():TemplateRef<any> {
+  public get itemTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  public position(hostEl:ElementRef):void {
-    this.top = '0px';
-    this.left = '0px';
-    let p = positionService
-      .positionElements(hostEl.nativeElement,
-        this.element.nativeElement.children[0],
-        this.placement, false);
-    this.top = p.top + 'px';
-    this.left = p.left + 'px';
-  }
-
-  public selectActiveMatch():void {
+  public selectActiveMatch(): void {
     this.selectMatch(this._active);
   }
 
-  public prevActiveMatch():void {
+  public prevActiveMatch(): void {
     let index = this.matches.indexOf(this._active);
     this._active = this.matches[index - 1 < 0
       ? this.matches.length - 1
@@ -131,7 +118,7 @@ export class TypeaheadContainerComponent {
 
   }
 
-  public nextActiveMatch():void {
+  public nextActiveMatch(): void {
     let index = this.matches.indexOf(this._active);
     this._active = this.matches[index + 1 > this.matches.length - 1
       ? 0
@@ -141,21 +128,21 @@ export class TypeaheadContainerComponent {
     }
   }
 
-  protected selectActive(value:TypeaheadMatch):void {
+  public selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
     this._active = value;
   }
 
-  protected hightlight(match:TypeaheadMatch, query:any):string {
-    let itemStr:string = match.value;
-    let itemStrHelper:string = (this.parent && this.parent.typeaheadLatinize
+  public hightlight(match: TypeaheadMatch, query: any): string {
+    let itemStr: string = match.value;
+    let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
       ? TypeaheadUtils.latinize(itemStr)
       : itemStr).toLowerCase();
-    let startIdx:number;
-    let tokenLen:number;
+    let startIdx: number;
+    let tokenLen: number;
     // Replaces the capture string with the same string inside of a "strong" tag
     if (typeof query === 'object') {
-      let queryLen:number = query.length;
+      let queryLen: number = query.length;
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
         startIdx = itemStrHelper.indexOf(query[i]);
@@ -176,15 +163,15 @@ export class TypeaheadContainerComponent {
     return itemStr;
   }
 
-  public focusLost():void {
+  public focusLost(): void {
     this.isFocused = false;
   }
 
-  public isActive(value:TypeaheadMatch):boolean {
+  public isActive(value: TypeaheadMatch): boolean {
     return this._active === value;
   }
 
-  protected selectMatch(value:TypeaheadMatch, e:Event = void 0):boolean {
+  public selectMatch(value: TypeaheadMatch, e: Event = void 0): boolean {
     if (e) {
       e.stopPropagation();
       e.preventDefault();

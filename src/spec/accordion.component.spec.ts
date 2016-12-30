@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccordionModule } from '../accordion/accordion.module';
+import { AccordionConfig } from '../accordion/accordion.config';
 
 const html = `
   <accordion [closeOthers]="oneAtATime">
@@ -53,7 +54,7 @@ describe('Component: Accordion', () => {
   let element:any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAccordionComponent], imports: [AccordionModule]});
+    TestBed.configureTestingModule({declarations: [TestAccordionComponent], imports: [AccordionModule.forRoot()]});
     TestBed.overrideComponent(TestAccordionComponent, {set: {template: html}});
     fixture = TestBed.createComponent(TestAccordionComponent);
     context = fixture.componentInstance;
@@ -150,4 +151,8 @@ class TestAccordionComponent {
     {isOpen: false, isDisabled: false},
     {isOpen: false, isDisabled: false}
   ];
+
+  public constructor(config: AccordionConfig) {
+    Object.assign(this, config);
+  }
 }

@@ -1,8 +1,7 @@
 <div class="row">
   <div class="col-md-4">
-    <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
-      <slide *ngFor="let slidez of slides; let index=index"
-             [active]="slidez.active">
+    <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
+      <slide *ngFor="let slidez of slides; let index=index">
         <img [src]="slidez.image" style="margin:auto;">
 
         <div class="carousel-caption">
@@ -18,10 +17,17 @@
     <button type="button" class="btn btn-info"
             (click)="addSlide()">Add Slide
     </button>
-    <!-- issue: removing currently active slide should not lead to white screen? -->
-    <!--<button type="button" class="btn btn-info"-->
-            <!--(click)="removeSlide(2)">Remove Slide#3-->
-    <!--</button>-->
+
+    <button type="button" class="btn btn-info"
+            (click)="selectSlide(2)">Select #3
+    </button>
+
+    <button type="button" class="btn btn-info"
+            (click)="removeSlide()">Remove Current
+    </button>
+    <button type="button" class="btn btn-info"
+            (click)="removeSlide(2)">Remove #3
+    </button>
     <br>
 
     <div class="checkbox">

@@ -1,12 +1,14 @@
-# ng2-bootstrap [![npm version](https://badge.fury.io/js/ng2-bootstrap.svg)](http://badge.fury.io/js/ng2-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ng2-bootstrap.svg)](https://npmjs.org/ng2-bootstrap)
+# ng2-bootstrap [![npm version](https://badge.fury.io/js/ng2-bootstrap.svg)](http://badge.fury.io/js/ng2-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ng2-bootstrap.svg)](https://npmjs.org/ng2-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
 Native Angular2 directives for Bootstrap, works with Bootstrap 3 and 4-alfa
 
 [![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
 [![Build Status](https://travis-ci.org/valor-software/ng2-bootstrap.svg?branch=master)](https://travis-ci.org/valor-software/ng2-bootstrap)
 [![codecov](https://codecov.io/gh/valor-software/ng2-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ng2-bootstrap)
 [![Dependency Status](https://david-dm.org/valor-software/ng2-bootstrap.svg)](https://david-dm.org/valor-software/ng2-bootstrap)
+
 [![NPM](https://nodei.co/npm/ng2-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ng2-bootstrap)
 [![NPM](https://nodei.co/npm-dl/ng2-bootstrap.png?height=3&months=9)](https://npmjs.org/ng2-bootstrap)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
 
 ## Table of contents 
 1. [Getting Started](#getting-started)
@@ -57,7 +59,7 @@ Check demo page for API [reference](http://valor-software.github.io/ng2-bootstra
 
 So you are in trouble, where to get help:
 - you can search and ask for help at [StackOverflow](https://stackoverflow.com/questions/tagged/ng2-bootstrap)
-- you can join [gitter](https://gitter.im/valor-software/ng2-bootstrap) or [slack](https://www.hamsterpad.com/chat/ng2) and ask a question ( response in slack will be faster )
+- you can join [gitter](https://gitter.im/valor-software/ng2-bootstrap) or [slack](https://ngx-slack.herokuapp.com/) and ask a question ( response in slack will be faster )
 - if none of this helped please [search](https://github.com/valor-software/ng2-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue) and only then open new issue
 
 # Contribution

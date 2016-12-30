@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from 'ng2-bootstrap';
+import { isBs3 } from 'ng2-bootstrap';
 
 @Component({
   selector: 'progressbar-demo',
@@ -13,7 +13,7 @@ export class ProgressbarDemoComponent {
   public type: string;
   public stacked: any[] = [];
   public get isBs3(): boolean {
-    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
+    return isBs3();
   }
 
   public constructor() {

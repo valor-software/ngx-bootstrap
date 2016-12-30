@@ -99,8 +99,7 @@ describe('Component: Carousel', () => {
     expect(indicators.length).toBe(3);
   });
 
-  // TODO:
-  xit('should hide navigation when only one slide', () => {
+  it('should hide navigation when only one slide', () => {
     context.slides.splice(0, 2);
     fixture.detectChanges();
     expect(context.slides.length).toBe(1);
@@ -112,18 +111,17 @@ describe('Component: Carousel', () => {
     expect(next.length).toBe(0);
   });
 
-  // TODO:
-  xit('should disable prev button when slide index is 0 and noWrap is truthy', () => {
+  it('should disable prev button when slide index is 0 and noWrap is truthy', () => {
     context.noWrapSlides = true;
     fixture.detectChanges();
     let prev = element.querySelector('a.left');
     expect(prev.classList).toContain('disabled');
   });
 
-  // TODO:
-  xit('should disable next button when last slide is active and noWrap is truthy', () => {
+  it('should disable next button when last slide is active and noWrap is truthy', () => {
     context.noWrapSlides = true;
-    context.slides[2].active = true;
+    let indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    indicators[2].click();
     fixture.detectChanges();
     let next = element.querySelector('a.right');
     expect(next.classList).toContain('disabled');
