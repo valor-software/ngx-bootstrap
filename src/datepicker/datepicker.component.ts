@@ -32,6 +32,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [yearRange]="yearRange"
                       [customClass]="customClass"
                       [dateDisabled]="dateDisabled"
+                      [dateAppointed]="dateAppointed"
                       [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation"
                       [monthColLimit]="monthColLimit"
@@ -89,6 +90,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** array of disabled dates */
   @Input() public dateDisabled: {date: Date, mode: string}[];
 
+  @Input() public dateAppointed: {date: Date, mode: string}[];
   /** currently active date */
   @Input()
   public get activeDate(): Date {
