@@ -10,7 +10,7 @@ import { ModalSectionComponent } from './components/modal/modal-section.componen
 import { ProgressbarSectionComponent } from './components/progressbar/progressbar-section.component';
 import { PaginationSectionComponent } from './components/pagination/pagination-section.component';
 import { RatingSectionComponent } from './components/rating/rating-section.component';
-import { SortableSectionComponent } from './components/sortable/sortable.component';
+import { SortableSectionComponent } from './components/sortable/sortable-section.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section.component';
 import { TimepickerSectionComponent } from './components/timepicker/timepicker-section.component';
 import { TooltipSectionComponent } from './components/tooltip/tooltip-section.component';

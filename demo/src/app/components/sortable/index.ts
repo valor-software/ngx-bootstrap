@@ -3,14 +3,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared';
 
-import { SortableSectionComponent } from './sortable.component';
-import { SortableDemoComponent } from './demos/sortable-demo.component';
+import { SortableSectionComponent } from './sortable-section.component';
+import { DEMO_COMPONENTS } from './demos';
 import { SortableModule } from 'ng2-bootstrap/sortable';
 
 @NgModule({
   declarations: [
     SortableSectionComponent,
-    SortableDemoComponent
+    ...DEMO_COMPONENTS
   ],
   imports: [
     CommonModule,

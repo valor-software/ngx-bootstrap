@@ -1880,6 +1880,78 @@ export const ngdoc = {
       }
     ]
   },
+  "SortableComponent": {
+    "fileName": "src/sortable/sortable.component.ts",
+    "className": "SortableComponent",
+    "description": "",
+    "selector": "ng2-sortable",
+    "inputs": [
+      {
+        "name": "ngModel",
+        "type": "string[] | any[]",
+        "description": "<p>array of items to show</p>"
+      },
+      {
+        "name": "fieldName",
+        "type": "string",
+        "description": "<p>field name if input array consists of objects</p>"
+      },
+      {
+        "name": "placeholderItem",
+        "type": "string",
+        "description": "<p>placeholder item which will be shown if collection is empty</p>"
+      },
+      {
+        "name": "wrapperClass",
+        "type": "string",
+        "description": "<p>class name for items wrapper</p>"
+      },
+      {
+        "name": "wrapperStyle",
+        "type": "{ [key: string]: string }",
+        "description": "<p>style object for items wrapper</p>"
+      },
+      {
+        "name": "itemClass",
+        "type": "string",
+        "description": "<p>class name for item</p>"
+      },
+      {
+        "name": "itemStyle",
+        "type": "{ [key: string]: string }",
+        "description": "<p>style object for item</p>"
+      },
+      {
+        "name": "itemActiveClass",
+        "type": "string",
+        "description": "<p>class name for active item</p>"
+      },
+      {
+        "name": "itemActiveStyle",
+        "type": "{ [key: string]: string }",
+        "description": "<p>style object for active item</p>"
+      },
+      {
+        "name": "placeholderClass",
+        "type": "string",
+        "description": "<p>class name for placeholder</p>"
+      },
+      {
+        "name": "placeholderStyle",
+        "type": "{ [key: string]: string }",
+        "description": "<p>style object for placeholder</p>"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onChange",
+        "type": "string[] | any[]",
+        "description": "<p>fired on array change (reordering, insert, remove), same as <code>ngModelChange</code></p>"
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
   "TypeaheadContainerComponent": {
     "fileName": "src/typeahead/typeahead-container.component.ts",
     "className": "TypeaheadContainerComponent",
