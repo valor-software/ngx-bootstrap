@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
-let dependencies = require('html!markdown!./docs/dependencies.md');
-let installation = require('html!markdown!./docs/installation.md');
-let readingDocumentation = require('html!markdown!./docs/reading-documentation.md');
+let doc = require('html!markdown!./getting-started.md');
 
 @Component({
   selector: 'getting-started',
@@ -10,8 +8,5 @@ let readingDocumentation = require('html!markdown!./docs/reading-documentation.m
 })
 export class GettingStartedComponent {
   public name:string = `Bootstrap components for Angular`;
-  public desc:string = '';
-  public dependencies:string = dependencies;
-  public installation:string = installation;
-  public readingDocumentation:string = readingDocumentation;
+  public doc:string = doc;
 }

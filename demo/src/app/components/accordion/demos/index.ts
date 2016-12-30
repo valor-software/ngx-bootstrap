@@ -1,5 +1,7 @@
-export const DEMO_COMPONENTS = [
+import { AccordionDemoComponent } from './accordion-demo.component';
 
+export const DEMO_COMPONENTS = [
+  AccordionDemoComponent
 ];
 
 export const DEMOS = {

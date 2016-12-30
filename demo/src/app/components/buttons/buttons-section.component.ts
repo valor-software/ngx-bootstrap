@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
+import { DEMOS } from './demos';
 
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/buttons-demo.component.ts');
-let html = require('!!raw?lang=markup!./demos/buttons-demo.component.html');
 
 @Component({
   selector: 'buttons-section',
@@ -35,7 +33,7 @@ let html = require('!!raw?lang=markup!./demos/buttons-demo.component.html');
     <!-- basic -->
   <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
     
-  <ng-sample-box [ts]="ts" [html]="html">
+  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <buttons-demo></buttons-demo>
   </ng-sample-box>
       
@@ -46,8 +44,7 @@ let html = require('!!raw?lang=markup!./demos/buttons-demo.component.html');
 })
 export class ButtonsSectionComponent {
   public name:string = 'Buttons';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/buttons';
-  public html:string = html;
-  public ts:string = ts;
+  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/buttons';
   public titleDoc:string = titleDoc;
+  public demos: any = DEMOS;
 }

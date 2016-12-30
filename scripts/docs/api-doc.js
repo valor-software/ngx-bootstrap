@@ -2,6 +2,16 @@
 
 const ts = require('typescript');
 const fs = require('fs');
+const marked = require('marked');
+
+const renderer = new marked.Renderer();
+renderer.link = (href, title, text) => (`<a href=\"${href}\" target="_blank" title=\"${title}\">${text}</a>`);
+marked.setOptions({gfm: true});
+
+const getDescription = (symbol) => marked(
+  ts.displayPartsToString(symbol.getDocumentationComment()),
+  {renderer}
+);
 
 function getNamesCompareFn(name) {
   name = name || 'name';
@@ -56,16 +66,22 @@ class APIDocVisitor {
 
   visitInterfaceDeclaration(fileName, interfaceDeclaration) {
     const symbol = this.program.getTypeChecker().getSymbolAtLocation(interfaceDeclaration.name);
-    const description = ts.displayPartsToString(symbol.getDocumentationComment());
+    const description = getDescription(symbol);
     const className = interfaceDeclaration.name.text;
     const members = this.visitMembers(interfaceDeclaration.members);
 
-    return [{fileName, className, description, methods: members.methods, properties: members.properties}];
+    return [{
+      fileName,
+      className,
+      description,
+      methods: members.methods,
+      properties: members.properties
+    }];
   }
 
   visitClassDeclaration(fileName, classDeclaration) {
     const symbol = this.program.getTypeChecker().getSymbolAtLocation(classDeclaration.name);
-    const description = ts.displayPartsToString(symbol.getDocumentationComment());
+    const description = getDescription(symbol);
     const className = classDeclaration.name.text;
     let directiveInfo, members;
 
@@ -89,13 +105,25 @@ class APIDocVisitor {
         } else if (this.isServiceDecorator(classDeclaration.decorators[i])) {
           members = this.visitMembers(classDeclaration.members);
 
-          return [{fileName, className, description, methods: members.methods, properties: members.properties}];
+          return [{
+            fileName,
+            className,
+            description,
+            methods: members.methods,
+            properties: members.properties
+          }];
         }
       }
     } else if (description) {
       members = this.visitMembers(classDeclaration.members);
 
-      return [{fileName, className, description, methods: members.methods, properties: members.properties}];
+      return [{
+        fileName,
+        className,
+        description,
+        methods: members.methods,
+        properties: members.properties
+      }];
     }
 
     // a class that is not a directive or a service, not documented for now
@@ -139,12 +167,12 @@ class APIDocVisitor {
 
       } else if (!isPrivateOrInternal(members[i])) {
         if ((members[i].kind === ts.SyntaxKind.MethodDeclaration ||
-             members[i].kind === ts.SyntaxKind.MethodSignature) &&
-            !isAngularLifecycleHook(members[i].name.text)) {
+          members[i].kind === ts.SyntaxKind.MethodSignature) &&
+          !isAngularLifecycleHook(members[i].name.text)) {
           methods.push(this.visitMethodDeclaration(members[i]));
         } else if (
-            members[i].kind === ts.SyntaxKind.PropertyDeclaration ||
-            members[i].kind === ts.SyntaxKind.PropertySignature || members[i].kind === ts.SyntaxKind.GetAccessor) {
+          members[i].kind === ts.SyntaxKind.PropertyDeclaration ||
+          members[i].kind === ts.SyntaxKind.PropertySignature || members[i].kind === ts.SyntaxKind.GetAccessor) {
           properties.push(this.visitProperty(members[i]));
         }
       }
@@ -159,14 +187,15 @@ class APIDocVisitor {
 
   visitMethodDeclaration(method) {
     return {
-      name: method.name.text, description: ts.displayPartsToString(method.symbol.getDocumentationComment()),
-          args: method.parameters ? method.parameters.map((prop) => this.visitArgument(prop)) : [],
-          returnType: this.visitType(method.type)
+      name: method.name.text,
+      description: getDescription(method.symbol),
+      args: method.parameters ? method.parameters.map((prop) => this.visitArgument(prop)) : [],
+      returnType: this.visitType(method.type)
     }
   }
 
   visitArgument(arg) {
-    return { name: arg.name.text, type: this.visitType(arg) }
+    return {name: arg.name.text, type: this.visitType(arg)}
   }
 
   visitInput(property, inDecorator) {
@@ -175,7 +204,7 @@ class APIDocVisitor {
       name: inArgs.length ? inArgs[0].text : property.name.text,
       defaultValue: property.initializer ? this.stringifyDefaultValue(property.initializer) : undefined,
       type: this.visitType(property),
-      description: ts.displayPartsToString(property.symbol.getDocumentationComment())
+      description: getDescription(property.symbol)
     };
   }
 
@@ -193,7 +222,7 @@ class APIDocVisitor {
     const outArgs = outDecorator.expression.arguments;
     return {
       name: outArgs.length ? outArgs[0].text : property.name.text,
-      description: ts.displayPartsToString(property.symbol.getDocumentationComment())
+      description: getDescription(property.symbol)
     };
   }
 
@@ -202,18 +231,22 @@ class APIDocVisitor {
       name: property.name.text,
       defaultValue: property.initializer ? this.stringifyDefaultValue(property.initializer) : undefined,
       type: this.visitType(property),
-      description: ts.displayPartsToString(property.symbol.getDocumentationComment())
+      description: getDescription(property.symbol)
     };
   }
 
-  visitType(node) { return node ? this.typeChecker.typeToString(this.typeChecker.getTypeAtLocation(node)) : 'void'; }
+  visitType(node) {
+    return node ? this.typeChecker.typeToString(this.typeChecker.getTypeAtLocation(node)) : 'void';
+  }
 
   isDirectiveDecorator(decorator) {
     const decoratorIdentifierText = decorator.expression.expression.text;
     return decoratorIdentifierText === 'Directive' || decoratorIdentifierText === 'Component';
   }
 
-  isServiceDecorator(decorator) { return decorator.expression.expression.text === 'Injectable'; }
+  isServiceDecorator(decorator) {
+    return decorator.expression.expression.text === 'Injectable';
+  }
 
   getDecoratorOfType(node, decoratorType) {
     const decorators = node.decorators || [];
@@ -232,14 +265,16 @@ function parseOutApiDocs(programFiles) {
   const apiDocVisitor = new APIDocVisitor(programFiles);
 
   return programFiles.reduce(
-      (soFar, file) => {
-        const directivesInFile = apiDocVisitor.visitSourceFile(file);
+    (soFar, file) => {
+      const directivesInFile = apiDocVisitor.visitSourceFile(file);
 
-        directivesInFile.forEach((directive) => { soFar[directive.className] = directive; });
+      directivesInFile.forEach((directive) => {
+        soFar[directive.className] = directive;
+      });
 
-        return soFar;
-      },
-      {});
+      return soFar;
+    },
+    {});
 }
 
 module.exports = parseOutApiDocs;

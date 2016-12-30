@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-
+import { DEMOS } from './demos';
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/typeahead-demo.component.ts');
-let html = require('!!raw?lang=markup!./demos/typeahead-demo.component.html');
 
 @Component({
   selector: 'typeahead-section',
@@ -33,7 +30,7 @@ let html = require('!!raw?lang=markup!./demos/typeahead-demo.component.html');
       
   <!-- basic -->
   
-  <ng-sample-box [ts]="ts" [html]="html">
+  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <typeahead-demo></typeahead-demo>
   </ng-sample-box>
       
@@ -43,8 +40,7 @@ let html = require('!!raw?lang=markup!./demos/typeahead-demo.component.html');
 })
 export class TypeaheadSectionComponent {
   public name:string = 'Typeahead';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/typeahead';
-  public html:string = html;
-  public ts:string = ts;
+  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/typeahead';
+  public demos: any = DEMOS;
   public titleDoc:string = titleDoc;
 }

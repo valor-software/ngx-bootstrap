@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared';
 import { TimepickerModule } from 'ng2-bootstrap';
 import { TimepickerSectionComponent } from './timepicker-section.component';
-import { TimepickerDemoComponent } from './demos/timepicker-demo.component';
+import { DEMO_COMPONENTS } from './demos';
 
 @NgModule({
   declarations: [
-    TimepickerDemoComponent,
-    TimepickerSectionComponent
+    TimepickerSectionComponent,
+    ...DEMO_COMPONENTS
   ],
   imports: [
     CommonModule,

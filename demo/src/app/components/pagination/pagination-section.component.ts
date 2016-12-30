@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
+import { DEMOS } from './demos';
 
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/pagination-demo.component.ts');
-let html = require('!!raw?lang=markup!./demos/pagination-demo.component.html');
 
 @Component({
   selector: 'pagination-section',
@@ -37,7 +35,7 @@ let html = require('!!raw?lang=markup!./demos/pagination-demo.component.html');
   <h2 id="examples">Examples</h2>
   
   <!-- basic -->
-  <ng-sample-box [ts]="ts" [html]="html">
+  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <pagination-demo></pagination-demo>
   </ng-sample-box>
       
@@ -49,8 +47,7 @@ let html = require('!!raw?lang=markup!./demos/pagination-demo.component.html');
 })
 export class PaginationSectionComponent {
   public name:string = 'Pagination';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/pagination';
-  public html:string = html;
-  public ts:string = ts;
+  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/pagination';
+  public demos: any = DEMOS;
   public titleDoc:string = titleDoc;
 }

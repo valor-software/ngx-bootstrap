@@ -7,7 +7,11 @@ import { AccordionConfig } from './accordion.config';
   selector: 'accordion',
   template: `<ng-content></ng-content>`,
   // tslint:disable-next-line
-  host: {'[class.panel-group]': 'true'}
+  host: {
+    '[class.panel-group]': 'true',
+    '[attr.aria-multiselectable]':'closeOthers',
+    role: 'tablist'
+  }
 })
 export class AccordionComponent {
   /** if `true` expanding one item will close all others */

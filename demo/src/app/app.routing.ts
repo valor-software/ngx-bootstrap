@@ -14,6 +14,7 @@ import { TabsSectionComponent } from './components/tabs/tabs-section.component';
 import { TimepickerSectionComponent } from './components/timepicker/timepicker-section.component';
 import { TooltipSectionComponent } from './components/tooltip/tooltip-section.component';
 import { TypeaheadSectionComponent } from './components/typeahead/typeahead-section.component';
+import { PopoverSectionComponent } from './components/popover/popover-section.component';
 
 export const routes = [
   {
@@ -65,6 +66,11 @@ export const routes = [
     path: 'pagination',
     data: ['Pagination'],
     component: PaginationSectionComponent
+  },
+  {
+    path: 'popover',
+    data: ['Popover'],
+    component: PopoverSectionComponent
   },
   {
     path: 'progressbar',

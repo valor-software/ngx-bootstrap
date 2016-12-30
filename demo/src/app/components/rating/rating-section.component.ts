@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-
+import { DEMOS } from './demos';
 // webpack html imports
 let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/rating-demo.component.ts');
-let html = require('!!raw?lang=markup!./demos/rating-demo.component.html');
 
 @Component({
   selector: 'rating-section',
@@ -35,7 +32,7 @@ let html = require('!!raw?lang=markup!./demos/rating-demo.component.html');
   <h2 id="examples">Examples</h2>
       
   <!-- basic -->
-  <ng-sample-box [ts]="ts" [html]="html">
+  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <rating-demo></rating-demo>
   </ng-sample-box>
       
@@ -45,8 +42,7 @@ let html = require('!!raw?lang=markup!./demos/rating-demo.component.html');
 })
 export class RatingSectionComponent {
   public name:string = 'Rating';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/rating';
-  public html:string = html;
-  public ts:string = ts;
+  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/rating';
+  public demos: any = DEMOS;
   public titleDoc:string = titleDoc;
 }
