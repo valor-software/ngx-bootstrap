@@ -1,0 +1,10 @@
+<span dropdown (onToggle)="toggled($event)">
+  <a href id="simple-dropdown" dropdownToggle>
+    Click me for a dropdown, yo!
+  </a>
+  <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+    <li *ngFor="let choice of items">
+      <a class="dropdown-item" href="#">{{choice}}</a>
+    </li>
+  </ul>
+</span>
