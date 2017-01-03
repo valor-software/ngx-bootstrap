@@ -25,7 +25,7 @@ You will need bootstrap styles
 
 ## How to use it with:
  - `angular-cli` (**RECOMMENDED**) please refer to [getting-started-with-ng-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/ng-cli.md)
-- `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/angular-seed.md)
+ - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
  - `webpack` you can view our demo page [source code](https://github.com/valor-software/ng2-bootstrap/tree/development/demo)
  - `plnkr` sample available [here](http://bit.ly/ng2-bootstrap-plnkr)
