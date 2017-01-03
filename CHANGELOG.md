@@ -9,6 +9,8 @@
 3. All modules now have `.forRoot()` static method, which provides required providers (configuration, positioning and component loader services, etc...)
 - in `AppModule` you should use `imports: [AlertModule.forRoot()]` in child modules `imports: [AlertModule]`
 
+4. Please read more in [documentation](http://valor-software.com/ng2-bootstrap/)
+
 <a name="1.1.16-11"></a>
 ## [1.1.16-11](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-7...v1.1.16-11) (2016-12-30)
 
