@@ -73,7 +73,7 @@ let titleDoc = require('html!markdown!./docs/title.md');
   </ng-sample-box>
   
   <h2 id="config">Configuring defaults</h2>
-  <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
+  <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-popover-config></demo-popover-config>
   </ng-sample-box>
   
