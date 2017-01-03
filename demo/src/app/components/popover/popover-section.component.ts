@@ -20,6 +20,8 @@ let titleDoc = require('html!markdown!./docs/title.md');
         <li><a pageScroll href="#dynamic-html">Dynamic Html</a></li>
         <li><a pageScroll href="#container-body">Append to body</a></li>
         <li><a pageScroll href="#config">Configuring defaults</a></li>
+        <li><a pageScroll href="#triggers-custom">Custom triggers</a></li>
+        <li><a pageScroll href="#triggers-manual">Manual triggering</a></li>
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
@@ -78,6 +80,16 @@ let titleDoc = require('html!markdown!./docs/title.md');
     <demo-popover-config></demo-popover-config>
   </ng-sample-box>
   
+  <h2 id="triggers-custom">Custom triggers</h2>
+  <ng-sample-box [ts]="demos.triggersCustom.component" [html]="demos.triggersCustom.html">
+    <demo-popover-triggers-custom></demo-popover-triggers-custom>
+  </ng-sample-box>
+
+  <h2 id="triggers-manual">Manual triggering</h2>
+  <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
+    <demo-popover-triggers-manual></demo-popover-triggers-manual>
+  </ng-sample-box>
+
   <h2 id="api-reference">API Reference</h2>
   
   <ng-api-doc id="popover-directive" directive="PopoverDirective"></ng-api-doc>
