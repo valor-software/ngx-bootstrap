@@ -6,8 +6,11 @@ export function OnChange(defaultValue?:any):any {
     Object.defineProperty(target, propertyKey, {
       get():any { return this[_key]; },
       set(value:any):void {
+        const prevValue = this[_key];
         this[_key] = value;
-        this[propertyKey + sufix].emit(value);
+        if (prevValue !== value && this[propertyKey + sufix]) {
+          this[propertyKey + sufix].emit(value);
+        }
       }
     });
   };
