@@ -1146,13 +1146,6 @@ export const ngdoc = {
     "methods": [],
     "properties": []
   },
-  "PopoverConfig": {
-    "fileName": "src/popover/popover-config.ts",
-    "className": "PopoverConfig",
-    "description": "<p>Configuration service for the Popover directive.\nYou can inject this service, typically in your root component, and customize\nthe values of its properties in order to provide default values for all the\npopovers used in the application.</p>\n",
-    "methods": [],
-    "properties": []
-  },
   "PopoverContainerComponent": {
     "fileName": "src/popover/popover-container.component.ts",
     "className": "PopoverContainerComponent",
@@ -1173,6 +1166,31 @@ export const ngdoc = {
     "outputs": [],
     "properties": [],
     "methods": []
+  },
+  "PopoverConfig": {
+    "fileName": "src/popover/popover.config.ts",
+    "className": "PopoverConfig",
+    "description": "<p>Configuration service for the Popover directive.\nYou can inject this service, typically in your root component, and customize\nthe values of its properties in order to provide default values for all the\npopovers used in the application.</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "container",
+        "type": "string",
+        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "placement",
+        "defaultValue": "top",
+        "type": "string",
+        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+      },
+      {
+        "name": "triggers",
+        "defaultValue": "click",
+        "type": "string",
+        "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      }
+    ]
   },
   "PopoverDirective": {
     "fileName": "src/popover/popover.directive.ts",

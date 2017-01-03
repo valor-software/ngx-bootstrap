@@ -5,10 +5,10 @@
 - templateRef content
 - html content
 - container: body
+- config
 
 todo:
 - triggers
 - styling
-- config
 
 + add doc base
