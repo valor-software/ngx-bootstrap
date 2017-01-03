@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
-import { PopoverConfig } from './popover-config';
+import { PopoverConfig } from './popover.config';
 
 @Component({
   selector: 'popover-container',

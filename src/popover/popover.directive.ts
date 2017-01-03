@@ -2,7 +2,7 @@ import {
   Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer,
   ElementRef, TemplateRef, ViewContainerRef
 } from '@angular/core';
-import { PopoverConfig } from './popover-config';
+import { PopoverConfig } from './popover.config';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
 
