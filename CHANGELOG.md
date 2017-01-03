@@ -1,13 +1,13 @@
 ## Migration notes v1.1.16 and less to v1.1.16-11+
 1. `ComponentHelper` and `PositioningService` removed, please remove any mentions of this two
 2. Package structure was simplified, (removed `components` folder) so you need to change imports:
-- `ng2-bootstrap\ng2-bootstrap` to `ng2-bootstrap`
-- `ng2-bootstrap\components\alert` to `ng2-bootstrap\alert`
-- `ng2-bootstrap\components\buttons` to `ng2-bootstrap\buttons`
+  - `ng2-bootstrap\ng2-bootstrap` to `ng2-bootstrap`
+  - `ng2-bootstrap\components\alert` to `ng2-bootstrap\alert`
+  - `ng2-bootstrap\components\buttons` to `ng2-bootstrap\buttons`
 
   ... etc.
 3. All modules now have `.forRoot()` static method, which provides required providers (configuration, positioning and component loader services, etc...)
-- in `AppModule` you should use `imports: [AlertModule.forRoot()]` in child modules `imports: [AlertModule]`
+  - in `AppModule` you should use `imports: [AlertModule.forRoot()]` in child modules `imports: [AlertModule]`
 
 4. Please read more in [documentation](http://valor-software.com/ng2-bootstrap/)
 
