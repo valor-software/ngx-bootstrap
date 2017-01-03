@@ -19,6 +19,7 @@ let titleDoc = require('html!markdown!./docs/title.md');
         <li><a pageScroll href="#dynamic-content">Dynamic Content</a></li>
         <li><a pageScroll href="#dynamic-html">Dynamic Html</a></li>
         <li><a pageScroll href="#container-body">Append to body</a></li>
+        <li><a pageScroll href="#config">Configuring defaults</a></li>
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
