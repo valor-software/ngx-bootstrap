@@ -29,7 +29,7 @@ export enum Direction {UNKNOWN, NEXT, PREV}
 @Component({
   selector: 'carousel',
   template: `
-    <div (mouseenter)="pause()" (mouseleave)="play()" class="carousel slide">
+    <div (mouseenter)="pause()" (mouseleave)="play()" (mouseup)="play()" class="carousel slide">
       <ol class="carousel-indicators" *ngIf="slides.length > 1">
          <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
       </ol>
