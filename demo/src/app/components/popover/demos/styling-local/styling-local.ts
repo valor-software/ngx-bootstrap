@@ -5,11 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './styling-local.html',
   /* tslint:disable no-unused-css*/
   styles: [`
-  :host >>> .alert-md-local {
-    background-color: #009688;
-    border-color: #00695C;
-    color: #fff;
-  }
+:host >>> .popover {
+  background-color: #009688;
+  color: #fff;
+}
+:host >>> .popover>.arrow:after {
+  border-top-color: #009688;
+}
   `]
 })
 export class DemoPopoverStylingLocalComponent {

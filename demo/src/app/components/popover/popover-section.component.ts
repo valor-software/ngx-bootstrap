@@ -22,6 +22,8 @@ let titleDoc = require('html!markdown!./docs/title.md');
         <li><a pageScroll href="#config">Configuring defaults</a></li>
         <li><a pageScroll href="#triggers-custom">Custom triggers</a></li>
         <li><a pageScroll href="#triggers-manual">Manual triggering</a></li>
+        <li><a pageScroll href="#styling-local">Component level styling</a></li>
+        <!--<li><a pageScroll href="#styling-global">Global styling</a></li>-->
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
@@ -89,6 +91,17 @@ let titleDoc = require('html!markdown!./docs/title.md');
   <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
     <demo-popover-triggers-manual></demo-popover-triggers-manual>
   </ng-sample-box>
+
+  <h2 id="styling-local">Component level styling</h2>
+  <ng-sample-box [ts]="demos.stylingComponent.component" [html]="demos.stylingComponent.html">
+    <demo-popover-styling-local></demo-popover-styling-local>
+  </ng-sample-box>
+
+  <!-- todo: add custom class -->
+  <!--<h2 id="styling-global">Global styling</h2>-->
+  <!--<ng-sample-box [ts]="demos.stylingGlobal.component" [html]="demos.stylingGlobal.html">-->
+    <!--<demo-popover-styling-global></demo-popover-styling-global>-->
+  <!--</ng-sample-box>-->
 
   <h2 id="api-reference">API Reference</h2>
   

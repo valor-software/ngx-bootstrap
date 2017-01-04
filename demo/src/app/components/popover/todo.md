@@ -1,4 +1,3 @@
-- static
 - basic sample
 - four directions
 - dismissible popovers (like tooltips)
@@ -6,9 +5,11 @@
 - html content
 - container: body
 - config
+- triggers ( custom and manual )
+- local styling
 
 todo:
-- triggers
-- styling
+- global styling (custom class)
+
 
 + add doc base

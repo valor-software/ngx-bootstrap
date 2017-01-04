@@ -60,5 +60,13 @@ export const DEMOS = {
   triggersManual: {
     component: require('!!raw?lang=typescript!./triggers-manual/triggers-manual.ts'),
     html: require('!!raw?lang=markup!./triggers-manual/triggers-manual.html')
+  },
+  stylingComponent: {
+    component: require('!!raw?lang=typescript!./styling-local/styling-local.ts'),
+    html: require('!!raw?lang=markup!./styling-local/styling-local.html')
+  },
+  stylingGlobal: {
+    component: require('!!raw?lang=typescript!./styling-global/styling-global.ts'),
+    html: require('!!raw?lang=markup!./styling-global/styling-global.html')
   }
 };
