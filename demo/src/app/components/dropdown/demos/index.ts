@@ -6,10 +6,14 @@ import { DemoDropdownBasicLinkComponent } from './basic/basic-link';
 import { DemoDropdownKeyboardComponent } from './keyboard/keyboard';
 import { DemoDropdownConfigComponent } from './config/config';
 import { DemoDropupComponent } from './dropup/dropup';
+import { DemoDropdownTriggersManualComponent } from './triggers-manual/triggers-manual';
+import { DemoDropdownDisabledComponent } from './disabled-menu/disabled-menu';
+import { DemoDropdownAlignmentComponent } from './alignment/menu-alignment';
 
 export const DEMO_COMPONENTS = [
   DropdownDemoComponent, DemoDropdownBasicComponent, DemoDropdownBasicLinkComponent, DemoDropdownSplitComponent,
-  DemoDropdownContainerComponent, DemoDropdownKeyboardComponent, DemoDropdownConfigComponent, DemoDropupComponent
+  DemoDropdownContainerComponent, DemoDropdownKeyboardComponent, DemoDropdownConfigComponent, DemoDropupComponent,
+  DemoDropdownTriggersManualComponent, DemoDropdownDisabledComponent, DemoDropdownAlignmentComponent
 ];
 
 export const DEMOS = {
@@ -29,6 +33,18 @@ export const DEMOS = {
   container: {
     component: require('!!raw?lang=typescript!./container/container.ts'),
     html: require('!!raw?lang=markup!./container/container.html')
+  },
+  triggersManual: {
+    component: require('!!raw?lang=typescript!./triggers-manual/triggers-manual.ts'),
+    html: require('!!raw?lang=markup!./triggers-manual/triggers-manual.html')
+  },
+  disabledMenu: {
+    component: require('!!raw?lang=typescript!./disabled-menu/disabled-menu.ts'),
+    html: require('!!raw?lang=markup!./disabled-menu/disabled-menu.html')
+  },
+  alignment: {
+    component: require('!!raw?lang=typescript!./alignment/menu-alignment.ts'),
+    html: require('!!raw?lang=markup!./alignment/menu-alignment.html')
   },
   keyboard: {
     component: require('!!raw?lang=typescript!./keyboard/keyboard.ts'),
