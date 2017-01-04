@@ -4,6 +4,7 @@ import { TabsModule } from 'ng2-bootstrap';
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { NgApiDocModule } from '../api-docs';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [DemoSectionComponent],
@@ -11,12 +12,14 @@ import { Ng2PageScrollModule } from 'ng2-page-scroll';
     TabsModule.forRoot(),
     CommonModule,
     NgApiDocModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    RouterModule
   ],
   exports: [
     DemoSectionComponent,
     NgApiDocModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    RouterModule
   ]
 })
 export class SharedModule {
