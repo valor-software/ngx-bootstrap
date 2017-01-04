@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Inject, Renderer } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'top-menu',

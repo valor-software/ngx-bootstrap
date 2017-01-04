@@ -18,9 +18,9 @@ export class AppComponent implements AfterContentInit {
   private route: ActivatedRoute;
   private router: Router;
   private pageScrollService: PageScrollService;
-  private document: Document;
+  private document: any;
 
-  public constructor(route: ActivatedRoute, router: Router, pageScrollService: PageScrollService, @Inject(DOCUMENT) document: Document) {
+  public constructor(route: ActivatedRoute, router: Router, pageScrollService: PageScrollService, @Inject(DOCUMENT) document: any) {
     this.route = route;
     this.router = router;
     this.pageScrollService = pageScrollService;
