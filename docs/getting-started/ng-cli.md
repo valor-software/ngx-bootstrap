@@ -24,7 +24,7 @@ ng serve
 - open `src/app/app.module.ts` and add
 
 ```typescript
-import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule } from 'ng2-bootstrap';
 ...
 
 @NgModule({
