@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ng2-bootstrap';
 
 @Component({
-  selector: 'modal-demo',
-  templateUrl: './modal-demo.component.html'
+  selector: 'demo-modal-child',
+  templateUrl: './child.html'
 })
-export class ModalDemoComponent {
+export class DemoModalChildComponent {
   @ViewChild('childModal') public childModal:ModalDirective;
 
   public showChildModal():void {
