@@ -1,0 +1,16 @@
+<div class="row col-lg-12">
+  <!-- todo: implement as component -->
+  <progress *ngFor="let baz of stacked"
+            class="progress progress-{{ baz?.type }}"
+            style="float: left;"
+            [ngStyle]="{width: baz.value + '%'}"
+            [value]="baz.value" [max]="baz.max">
+    <span *ngIf="baz.value > 3">{{baz?.value}}%</span>
+  </progress>
+  <!-- gray background -->
+  <progress class="progress" value="0" max="100" style="width: 100%;"></progress>
+</div>
+
+<div class="row col-md-12">
+    <button type="button" class="btn btn-sm btn-primary" (click)="randomStacked()">Randomize</button>
+</div>
