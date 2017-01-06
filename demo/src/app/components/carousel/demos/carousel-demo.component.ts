@@ -5,8 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './carousel-demo.component.html'
 })
 export class CarouselDemoComponent {
-  public myInterval:number = 5000;
-  public noWrapSlides:boolean = false;
+  public myInterval:number = 1500;
   public slides:any[] = [];
   public activeSlideIndex: number;
 
@@ -17,11 +16,8 @@ export class CarouselDemoComponent {
   }
 
   public addSlide():void {
-    let newWidth = 600 + this.slides.length + 1;
     this.slides.push({
-      image: `//placekitten.com/${newWidth}/300`,
-      text: `${['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4]}
-      ${['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]}`
+      image: `http://lorempixel.com/900/500/nature/${this.slides.length}`
     });
   }
 
