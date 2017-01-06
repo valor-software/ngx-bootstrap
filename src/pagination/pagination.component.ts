@@ -150,7 +150,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _totalItems:number;
   protected _totalPages:number;
   protected inited:boolean = false;
-  protected _page:number;
+  protected _page:number = 1;
 
   public constructor(renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
     this.renderer = renderer;

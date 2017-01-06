@@ -1463,6 +1463,93 @@ export const ngdoc = {
     "properties": [],
     "methods": []
   },
+  "DraggableItemService": {
+    "fileName": "src/sortable/draggable-item.service.ts",
+    "className": "DraggableItemService",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DraggableItem": {
+    "fileName": "src/sortable/draggable-item.ts",
+    "className": "DraggableItem",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "SortableComponent": {
+    "fileName": "src/sortable/sortable.component.ts",
+    "className": "SortableComponent",
+    "description": "",
+    "selector": "ng2-sortable",
+    "inputs": [
+      {
+        "name": "fieldName",
+        "type": "string",
+        "description": "<p>field name if input array consists of objects </p>\n"
+      },
+      {
+        "name": "itemActiveClass",
+        "type": "string",
+        "description": "<p>class name for active item </p>\n"
+      },
+      {
+        "name": "itemActiveStyle",
+        "type": "{ [key: string]: string; }",
+        "description": "<p>style object for active item </p>\n"
+      },
+      {
+        "name": "itemClass",
+        "type": "string",
+        "description": "<p>class name for item </p>\n"
+      },
+      {
+        "name": "itemStyle",
+        "type": "{ [key: string]: string; }",
+        "description": "<p>style object for item </p>\n"
+      },
+      {
+        "name": "placeholderClass",
+        "type": "string",
+        "description": "<p>class name for placeholder </p>\n"
+      },
+      {
+        "name": "placeholderItem",
+        "type": "string",
+        "description": "<p>placeholder item which will be shown if collection is empty </p>\n"
+      },
+      {
+        "name": "placeholderStyle",
+        "type": "{ [key: string]: string; }",
+        "description": "<p>style object for placeholder </p>\n"
+      },
+      {
+        "name": "wrapperClass",
+        "type": "string",
+        "description": "<p>class name for items wrapper </p>\n"
+      },
+      {
+        "name": "wrapperStyle",
+        "type": "{ [key: string]: string; }",
+        "description": "<p>style object for items wrapper </p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onChange",
+        "description": "<p>fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.\n Returns new items collection as a payload.</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "SortableItem": {
+    "fileName": "src/sortable/sortable.component.ts",
+    "className": "SortableItem",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "NgTranscludeDirective": {
     "fileName": "src/tabs/ng-transclude.directive.ts",
     "className": "NgTranscludeDirective",

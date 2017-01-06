@@ -23,6 +23,7 @@ import { DemoPaginationModule } from './components/pagination';
 import { DemoPopoverModule } from './components/popover/index';
 import { DemoProgressbarModule } from './components/progressbar';
 import { DemoRatingModule } from './components/rating';
+import { DemoSortableModule } from './components/sortable';
 import { DemoTabsModule } from './components/tabs';
 import { DemoTimepickerModule } from './components/timepicker/index';
 import { DemoTooltipModule } from './components/tooltip/index';
@@ -59,6 +60,7 @@ import { ngdoc } from '../ng-api-doc';
     DemoPopoverModule,
     DemoProgressbarModule,
     DemoRatingModule,
+    DemoSortableModule,
     DemoTabsModule,
     DemoTimepickerModule,
     DemoTooltipModule,

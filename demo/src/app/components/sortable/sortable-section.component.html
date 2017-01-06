@@ -1,0 +1,25 @@
+<demo-section [name]="name" [src]="src" [titleDoc]="titleDoc">
+  <h2>Contents</h2>
+  <ul>
+    <li><a pageScroll href="#usage">Usage</a></li>
+    <li><a pageScroll href="#examples">Examples</a></li>
+    <li><a pageScroll href="#api-reference">API Reference</a>
+      <ul>
+        <li><a pageScroll href="#sortable-component">SortableComponent</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2 id="usage">Usage</h2>
+
+  <p [innerHtml]="usageDoc"></p>
+
+  <h2 id="examples">Examples</h2>
+
+  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
+    <sortable-demo></sortable-demo>
+  </ng-sample-box>
+
+  <h2 id="api-reference">API Reference</h2>
+  <ng-api-doc id="sortable-component" directive="SortableComponent"></ng-api-doc>
+</demo-section>
