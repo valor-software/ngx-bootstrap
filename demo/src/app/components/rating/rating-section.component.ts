@@ -12,37 +12,49 @@ let titleDoc = require('html!markdown!./docs/title.md');
   
   <h2>Contents</h2>
   <ul>
-    <li><a pageScroll href="#usage">Usage</a></li>
-    <li><a pageScroll href="#examples">Examples</a>
+    <li><a routerLink="." fragment="usage">Usage</a></li>
+    <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
-        <!--<li><a pageScroll href="#link-color">Link color</a></li>-->
+        <li><a routerLink="." fragment="static">Static rating</a></li>
+        <li><a routerLink="." fragment="dynamic">Dynamic rating</a></li>
+        <li><a routerLink="." fragment="custom">Custom icons</a></li>
       </ul>
     </li>
-    <li><a pageScroll href="#api-reference">API Reference</a>
+    <li><a routerLink="." fragment="api-reference">API Reference</a>
       <ul>
-        <li><a pageScroll href="#rating-component">RatingComponent</a></li>
+        <li><a routerLink="." fragment="rating-component">RatingComponent</a></li>
       </ul>
     </li>
   </ul>   
       
-  <h2 id="usage">Usage</h2>
+  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
 
   <p [innerHtml]="titleDoc"></p>
 
-  <h2 id="examples">Examples</h2>
-      
-  <!-- basic -->
-  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-    <rating-demo></rating-demo>
+  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
+  
+  <h2 routerLink="." fragment="static" id="static">Static rating</h2>
+  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
+    <demo-rating-basic></demo-rating-basic>
+  </ng-sample-box>  
+  
+  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic rating</h2>
+  <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
+    <demo-rating-dynamic></demo-rating-dynamic>
+  </ng-sample-box> 
+   
+  <h2 routerLink="." fragment="custom" id="custom">Custom icons</h2>
+  <ng-sample-box [ts]="demos.custom.component" [html]="demos.custom.html">
+    <demo-rating-custom></demo-rating-custom>
   </ng-sample-box>
       
-  <h2 id="api-reference">API Reference</h2>
-  <ng-api-doc id="rating-component" directive="RatingComponent"></ng-api-doc>
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <ng-api-doc routerLink="." fragment="rating-component" id="rating-component" directive="RatingComponent"></ng-api-doc>
 </demo-section>`
 })
 export class RatingSectionComponent {
-  public name:string = 'Rating';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/rating';
+  public name: string = 'Rating';
+  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/rating';
   public demos: any = DEMOS;
-  public titleDoc:string = titleDoc;
+  public titleDoc: string = titleDoc;
 }
