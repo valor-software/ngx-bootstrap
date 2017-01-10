@@ -1,12 +1,22 @@
-import { RatingDemoComponent } from './rating-demo.component';
+import { DemoRatingBasicComponent } from './basic/basic';
+import { DemoRatingCustomComponent } from './custom/custom';
+import { DemoRatingDynamicComponent } from './dynamic/dynamic';
 
 export const DEMO_COMPONENTS = [
-  RatingDemoComponent
+  DemoRatingBasicComponent, DemoRatingCustomComponent, DemoRatingDynamicComponent
 ];
 
 export const DEMOS = {
-  old: {
-    component: require('!!raw?lang=typescript!./rating-demo.component'),
-    html: require('!!raw?lang=markup!./rating-demo.component.html')
+  basic: {
+    component: require('!!raw?lang=typescript!./basic/basic'),
+    html: require('!!raw?lang=markup!./basic/basic.html')
+  },
+  dynamic: {
+    component: require('!!raw?lang=typescript!./dynamic/dynamic'),
+    html: require('!!raw?lang=markup!./dynamic/dynamic.html')
+  },
+  custom: {
+    component: require('!!raw?lang=typescript!./custom/custom'),
+    html: require('!!raw?lang=markup!./custom/custom.html')
   }
 };

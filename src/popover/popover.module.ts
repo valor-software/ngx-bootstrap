@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PopoverConfig } from './popover-config';
 import { ComponentLoaderFactory } from '../component-loader';
 import { PositioningService } from '../positioning';
+import { PopoverConfig } from './popover.config';
 import { PopoverDirective } from './popover.directive';
 import { PopoverContainerComponent } from './popover-container.component';
 

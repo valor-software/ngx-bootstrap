@@ -14,7 +14,10 @@ let titleDoc = require('html!markdown!./docs/title.md');
     <li><a pageScroll href="#usage">Usage</a></li>
     <li><a pageScroll href="#examples">Examples</a>
       <ul>
-        <!--<li><a pageScroll href="#link-color">Link color</a></li>-->
+        <li><a pageScroll href="#basic">Single button</a></li>
+        <li><a pageScroll href="#checkbox">Checkbox</a></li>
+        <li><a pageScroll href="#radio">Radio & Uncheckable Radio</a></li>
+        <li><a pageScroll href="#disabled">Disabled Buttons</a></li>
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
@@ -30,13 +33,29 @@ let titleDoc = require('html!markdown!./docs/title.md');
   <p [innerHtml]="titleDoc"></p>
 
   <h2 id="examples">Examples</h2>
-    <!-- basic -->
-  <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
-    
-  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-    <buttons-demo></buttons-demo>
+  <h2 id="basic">Single button</h2>
+  <p>Default static button with two states</p>
+  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
+    <demo-buttons-basic></demo-buttons-basic>
   </ng-sample-box>
-      
+   
+  <h2 id="checkbox">Checkbox</h2>
+  <p>Checkbox-like buttons set with variable states</p>
+  <ng-sample-box [ts]="demos.checkbox.component" [html]="demos.checkbox.html">
+    <demo-buttons-checkbox></demo-buttons-checkbox>
+  </ng-sample-box>
+    
+  <h2 id="radio">Radio & Uncheckable Radio</h2>
+  <p>Radio buttons with checked/unchecked states</p>
+  <ng-sample-box [ts]="demos.radio.component" [html]="demos.radio.html">
+    <demo-buttons-radio></demo-buttons-radio>
+  </ng-sample-box>
+        
+  <h2 id="disabled">Disabled Buttons</h2>
+  <ng-sample-box [ts]="demos.disabled.component" [html]="demos.disabled.html">
+    <demo-buttons-disabled></demo-buttons-disabled>
+  </ng-sample-box>
+    
   <h2 id="api-reference">API Reference</h2>
   <ng-api-doc id="button-checkbox-directive" directive="ButtonCheckboxDirective"></ng-api-doc>
   <ng-api-doc id="button-radio-directive" directive="ButtonRadioDirective"></ng-api-doc>

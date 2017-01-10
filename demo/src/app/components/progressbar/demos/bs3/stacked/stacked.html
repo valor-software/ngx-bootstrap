@@ -1,0 +1,10 @@
+<bs-progress>
+  <bar *ngFor="let baz of stacked" [value]="baz.value" [type]="baz?.type">
+    <span *ngIf="baz.value > 5">{{baz?.value}}%</span>
+  </bar>
+</bs-progress>
+
+<div class="row col-md-12">
+  <button type="button" class="btn btn-sm btn-primary" (click)="randomStacked()" style="margin: 15px 0;">Randomize
+  </button>
+</div>

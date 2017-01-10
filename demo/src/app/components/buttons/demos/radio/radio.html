@@ -1,0 +1,16 @@
+<pre class="card card-block card-header">{{radioModel || 'null'}}</pre>
+<div class="btn-group">
+  <label class="btn btn-primary" [(ngModel)]="radioModel"
+         btnRadio="Left">Left</label>
+  <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Middle">Middle</label>
+  <label class="btn btn-primary" [(ngModel)]="radioModel"
+         btnRadio="Right">Right</label>
+</div>
+<div class="btn-group">
+  <label class="btn btn-success" [(ngModel)]="radioModel" btnRadio="Left"
+         uncheckable>Left</label>
+  <label class="btn btn-success" [(ngModel)]="radioModel" btnRadio="Middle"
+         uncheckable>Middle</label>
+  <label class="btn btn-success" [(ngModel)]="radioModel" btnRadio="Right"
+         uncheckable>Right</label>
+</div>

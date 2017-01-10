@@ -1,0 +1,13 @@
+<progress class="progress progress-striped progress-animated" [max]="max" [value]="dynamic">
+  <span style="color:white; white-space:nowrap;">{{dynamic}} / {{max}}</span>
+</progress>
+
+<small><em>No animation</em></small>
+<progress class="progress progress-success" [value]="dynamic" [max]="100"><b>{{dynamic}}%</b></progress>
+
+<small><em>Object (changes type based on value)</em></small>
+<progress class="progress progress-striped progress-animated active progress-{{ type }}" [value]="dynamic" [max]="max">
+  {{type}} <i *ngIf="showWarning">!!! Watch out !!!</i>
+</progress>
+
+<button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>

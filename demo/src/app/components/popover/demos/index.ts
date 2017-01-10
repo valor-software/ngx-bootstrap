@@ -5,9 +5,10 @@ import { DemoPopoverDynamicComponent } from './dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoPopoverContainerComponent } from './container/container';
 import { DemoPopoverConfigComponent } from './config/config';
-import { DemoPopoverTriggersComponent } from './triggers/basic';
 import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-global';
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
+import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
+import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
@@ -17,9 +18,10 @@ export const DEMO_COMPONENTS = [
   DemoPopoverDynamicHtmlComponent,
   DemoPopoverContainerComponent,
   DemoPopoverConfigComponent,
-  DemoPopoverTriggersComponent,
   DemoPopoverStylingGlobalComponent,
-  DemoPopoverStylingLocalComponent
+  DemoPopoverStylingLocalComponent,
+  DemoPopoverTriggersCustomComponent,
+  DemoPopoverTriggersManualComponent
 ];
 
 export const DEMOS = {
@@ -50,5 +52,21 @@ export const DEMOS = {
   config: {
     component: require('!!raw?lang=typescript!./config/config.ts'),
     html: require('!!raw?lang=markup!./config/config.html')
+  },
+  triggersCustom: {
+    component: require('!!raw?lang=typescript!./triggers-custom/triggers-custom.ts'),
+    html: require('!!raw?lang=markup!./triggers-custom/triggers-custom.html')
+  },
+  triggersManual: {
+    component: require('!!raw?lang=typescript!./triggers-manual/triggers-manual.ts'),
+    html: require('!!raw?lang=markup!./triggers-manual/triggers-manual.html')
+  },
+  stylingComponent: {
+    component: require('!!raw?lang=typescript!./styling-local/styling-local.ts'),
+    html: require('!!raw?lang=markup!./styling-local/styling-local.html')
+  },
+  stylingGlobal: {
+    component: require('!!raw?lang=typescript!./styling-global/styling-global.ts'),
+    html: require('!!raw?lang=markup!./styling-global/styling-global.html')
   }
 };

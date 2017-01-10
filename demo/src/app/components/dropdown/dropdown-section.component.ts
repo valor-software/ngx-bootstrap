@@ -15,7 +15,15 @@ let titleDoc = require('html!markdown!./docs/title.md');
     <li><a pageScroll href="#usage">Usage</a></li>
     <li><a pageScroll href="#examples">Examples</a>
       <ul>
-        <!--<li><a pageScroll href="#link-color">Link color</a></li>-->
+        <li><a pageScroll href="#single-button">Single button dropdowns</a></li>
+        <li><a pageScroll href="#split-button">Split button dropdowns</a></li>
+        <li><a pageScroll href="#triggers-manual">Manual triggers</a></li>
+        <li><a pageScroll href="#disabled-menu">Disabled menu</a></li>
+        <li><a pageScroll href="#alignment">Menu alignment</a></li>
+        <li><a pageScroll href="#container-body">Append to body</a></li>
+        <li><a pageScroll href="#keyboard">Single button with keyboard nav</a></li>
+        <li><a pageScroll href="#dropup">Dropup variation</a></li>
+        <li><a pageScroll href="#config">Configuring defaults</a></li>
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
@@ -32,12 +40,76 @@ let titleDoc = require('html!markdown!./docs/title.md');
   <p [innerHtml]="titleDoc"></p>
 
   <h2 id="examples">Examples</h2>
+  <p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within <code>dropdown</code>. 
+  Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code> elements to better fit your potential needs.</p>
+
+  <h2 id="single-button">Single button dropdowns</h2>
       
-  <!-- basic -->
-  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-    <dropdown-demo></dropdown-demo>
+  <p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes. 
+  Here’s how you can put them to work with either  <code> &lt;button&gt; </code> elements:</p>
+  
+  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
+    <demo-dropdown-basic></demo-dropdown-basic>
   </ng-sample-box>
+  
+  <p>And with <code> &lt;a&gt;</code> elements:</p>
+ 
+  <ng-sample-box [ts]="demos.link.component" [html]="demos.link.html">
+    <demo-dropdown-basic-link></demo-dropdown-basic-link>
+  </ng-sample-box>
+  
+  <h2 id="split-button">Split button dropdowns</h2>
+  <p>Similarly, create split button dropdowns with virtually the same markup as single button dropdowns,
+   but with the addition of <code>.dropdown-toggle-split</code> for proper spacing around the dropdown caret.</p>
+  
+  <ng-sample-box [ts]="demos.splitBtn.component" [html]="demos.splitBtn.html">
+    <demo-dropdown-split></demo-dropdown-split>
+  </ng-sample-box>
+  
+   <h2 id="triggers-manual">Manual triggers</h2>
+   
+   <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
+    <demo-dropdown-triggers-manual></demo-dropdown-triggers-manual>
+   </ng-sample-box>
+   
+   <h2 id="disabled-menu">Disabled menu</h2>
+   
+   <ng-sample-box [ts]="demos.disabledMenu.component" [html]="demos.disabledMenu.html">
+    <demo-dropdown-disabled></demo-dropdown-disabled>
+   </ng-sample-box>
       
+   <h2 id="alignment">Menu alignment</h2>
+   
+   <p>By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. 
+   Add class <code>.dropdown-menu-right</code> to a <code>dropdownMenu</code> to right align the dropdown menu.</p>
+   
+   <ng-sample-box [ts]="demos.alignment.component" [html]="demos.alignment.html">
+    <demo-dropdown-alignment></demo-dropdown-alignment>
+   </ng-sample-box>
+  
+   <h2 id="container-body">Append to body</h2>
+   
+   <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
+    <demo-dropdown-container></demo-dropdown-container>
+  </ng-sample-box>
+  
+  <h2 id="keyboard">Single button with keyboard nav</h2>
+   <ng-sample-box [ts]="demos.keyboard.component" [html]="demos.keyboard.html">
+    <demo-dropdown-keyboard></demo-dropdown-keyboard>
+  </ng-sample-box>
+    
+  <h2 id="dropup">Dropup variation</h2>
+  <p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the parent element.</p>
+   <ng-sample-box [ts]="demos.dropup.component" [html]="demos.dropup.html">
+    <demo-dropup></demo-dropup>
+  </ng-sample-box>
+  
+  <h2 id="config">Configuring defaults</h2>
+  <p>It is possible to override default dropdown config partially or completely.</p>
+  <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
+    <demo-dropdown-config></demo-dropdown-config>
+  </ng-sample-box>
+  
   <h2 id="api-reference">API Reference</h2>
   <ng-api-doc id="dropdown-directive" directive="DropdownDirective"></ng-api-doc>
   <ng-api-doc id="dropdown-toggle-directive" directive="DropdownToggleDirective"></ng-api-doc>
@@ -45,8 +117,8 @@ let titleDoc = require('html!markdown!./docs/title.md');
 </demo-section>`
 })
 export class DropdownSectionComponent {
-  public name:string = 'Dropdowns';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/dropdown';
+  public name: string = 'Dropdowns';
+  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/dropdown';
   public demos: any = DEMOS;
-  public titleDoc:string = titleDoc;
+  public titleDoc: string = titleDoc;
 }
