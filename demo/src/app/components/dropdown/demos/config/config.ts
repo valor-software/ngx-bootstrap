@@ -4,7 +4,7 @@ import { DropdownConfig } from 'ng2-bootstrap';
 // such override allows to keep some initial values
 
 export function getDropdownConfig(): DropdownConfig {
-  return Object.assign(new DropdownConfig(), {type: 'success'});
+  return Object.assign(new DropdownConfig(), {autoClose: 'disabled', keyboardNav: true});
 }
 
 @Component({
