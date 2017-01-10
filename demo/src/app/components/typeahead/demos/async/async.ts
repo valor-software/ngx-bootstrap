@@ -6,38 +6,20 @@ import 'rxjs/add/observable/of';
 import { TypeaheadMatch } from 'ng2-bootstrap';
 
 @Component({
-  selector: 'typeahead-demo',
-  templateUrl: './typeahead-demo.component.html'
+  selector: 'demo-typeahead-async',
+  templateUrl: './async.html'
 })
-export class TypeaheadDemoComponent {
-  public stateCtrl:FormControl = new FormControl();
-
-  public myForm:FormGroup = new FormGroup({
-    state: this.stateCtrl
-  });
-
-  public customSelected:string = '';
-  public groupSelected:string = '';
-  public selected:string = '';
-  public dataSource:Observable<any>;
-  public asyncSelected:string = '';
-  public typeaheadLoading:boolean = false;
-  public typeaheadNoResults:boolean = false;
-  public states:string[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
-    'California', 'Colorado',
-    'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
-    'Illinois', 'Indiana', 'Iowa',
-    'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts',
-    'Michigan', 'Minnesota',
-    'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-    'New Jersey', 'New Mexico',
-    'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon',
-    'Pennsylvania', 'Rhode Island',
-    'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-    'Virginia', 'Washington',
-    'West Virginia', 'Wisconsin', 'Wyoming'];
-  public statesComplex:any[] = [
-    {id: 1, name: 'Alabama', region: 'South'}, {id: 2, name: 'Alaska', region: 'West'}, {id: 3, name: 'Arizona', region: 'West'},
+export class DemoTypeaheadAsyncComponent {
+  public asyncSelected: string;
+  public typeaheadLoading: boolean;
+  public typeaheadNoResults: boolean;
+  public dataSource: Observable<any>;
+  public statesComplex: any[] = [
+    {id: 1, name: 'Alabama', region: 'South'}, {id: 2, name: 'Alaska', region: 'West'}, {
+      id: 3,
+      name: 'Arizona',
+      region: 'West'
+    },
     {id: 4, name: 'Arkansas', region: 'South'}, {id: 5, name: 'California', region: 'West'},
     {id: 6, name: 'Colorado', region: 'West'}, {id: 7, name: 'Connecticut', region: 'Northeast'},
     {id: 8, name: 'Delaware', region: 'South'}, {id: 9, name: 'Florida', region: 'South'},
@@ -64,31 +46,33 @@ export class TypeaheadDemoComponent {
     {id: 51, name: 'Wyoming', region: 'West'}];
 
   public constructor() {
-    this.dataSource = Observable.create((observer:any) => {
-      // Runs on every search
-      observer.next(this.asyncSelected);
-    }).mergeMap((token:string) => this.getStatesAsObservable(token));
+    this.dataSource = Observable
+      .create((observer: any) => {
+        // Runs on every search
+        observer.next(this.asyncSelected);
+      })
+      .mergeMap((token: string) => this.getStatesAsObservable(token));
   }
 
-  public getStatesAsObservable(token:string):Observable<any> {
+  public getStatesAsObservable(token: string): Observable<any> {
     let query = new RegExp(token, 'ig');
 
     return Observable.of(
-      this.statesComplex.filter((state:any) => {
+      this.statesComplex.filter((state: any) => {
         return query.test(state.name);
       })
     );
   }
 
-  public changeTypeaheadLoading(e:boolean):void {
+  public changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
   }
 
-  public changeTypeaheadNoResults(e:boolean):void {
+  public changeTypeaheadNoResults(e: boolean): void {
     this.typeaheadNoResults = e;
   }
 
-  public typeaheadOnSelect(e:TypeaheadMatch):void {
+  public typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
   }
 }
