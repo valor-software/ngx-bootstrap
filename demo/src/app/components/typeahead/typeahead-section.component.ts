@@ -28,12 +28,42 @@ let titleDoc = require('html!markdown!./docs/title.md');
 
   <h2 id="examples">Examples</h2>
       
-  <!-- basic -->
-  
-  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-    <typeahead-demo></typeahead-demo>
+  <!-- static -->
+  <h2 id="static">Static array</h2>
+  <ng-sample-box [ts]="demos.static.component" [html]="demos.static.html">
+    <demo-typeahead-static></demo-typeahead-static>
   </ng-sample-box>
       
+  <!-- Custom item template -->
+  <h2 id="item-template">Item template</h2>
+  <ng-sample-box [ts]="demos.itemTemplate.component" [html]="demos.itemTemplate.html">
+    <demo-typeahead-item-template></demo-typeahead-item-template>
+  </ng-sample-box>
+  
+  <!-- Option field -->
+  <h2 id="option-field">Option field</h2>
+  <ng-sample-box [ts]="demos.field.component" [html]="demos.field.html">
+    <demo-typeahead-field></demo-typeahead-field>
+  </ng-sample-box>  
+  
+  <!-- Async data -->
+  <h2 id="async">Async data</h2>
+  <ng-sample-box [ts]="demos.async.component" [html]="demos.async.html">
+    <demo-typeahead-async></demo-typeahead-async>
+  </ng-sample-box>
+  
+  <!-- With reactive forms -->
+  <h2 id="forms">Reactive forms</h2>
+  <ng-sample-box [ts]="demos.inForm.component" [html]="demos.inForm.html">
+    <demo-typeahead-forms></demo-typeahead-forms>
+  </ng-sample-box>
+    
+  <!-- Grouping results -->
+  <h2 id="grouping-results">Grouping results</h2>
+  <ng-sample-box [ts]="demos.grouping.component" [html]="demos.grouping.html">
+    <demo-typeahead-grouping></demo-typeahead-grouping>
+  </ng-sample-box>
+  
   <h2 id="api-reference">API Reference</h2>
   <ng-api-doc id="typeahead-directive" directive="TypeaheadDirective"></ng-api-doc>
 </demo-section>`
