@@ -29,9 +29,6 @@ const nullCallback = (arg?: any): void => { return void 0; };
                 (dragenter)="cancelEvent($event)"
             >{{placeholderItem}}</div>
             <div
-                [@flyInOut]="'in'"
-                (@flyInOut.done)="updatePlaceholderState()"
-                (@flyInOut.start)="showPlaceholder = false"
                 *ngFor="let item of items; let i=index;"
                 [ngClass]="[ itemClass, i === activeItem ? itemActiveClass : '' ]"
                 [ngStyle]="getItemStyle(i === activeItem)"
@@ -43,19 +40,6 @@ const nullCallback = (arg?: any): void => { return void 0; };
             >{{item.value}}</div>
         </div>`,
     providers: [{ provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SortableComponent), multi: true }],
-    animations: [
-        trigger('flyInOut', [
-          state('in', style({ height: '*' })),
-          transition('void => *', [
-            style({ height: 0 }),
-            animate('100ms ease-out')
-          ]),
-          transition('* => void', [
-            style({ height: '*' }),
-            animate('100ms ease-out', style({ height: 0 }))
-          ])
-        ])
-    ]
 })
 /* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
@@ -164,6 +148,7 @@ export class SortableComponent implements ControlValueAccessor {
         this.items = newArray;
         dragItem.i = i;
         this.activeItem = i;
+        this.updatePlaceholderState();
     }
 
     public cancelEvent(event: DragEvent): void {
@@ -179,6 +164,7 @@ export class SortableComponent implements ControlValueAccessor {
             item.lastZoneIndex === this.currentZoneIndex
         ) {
             this.items = this.items.filter((x: SortableItem, i: number) => i !== item.i);
+            this.updatePlaceholderState();
         }
         this.resetActiveItem(undefined);
     }
