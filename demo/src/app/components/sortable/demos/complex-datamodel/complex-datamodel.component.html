@@ -1,0 +1,32 @@
+<div>
+  <div [ngStyle]="{ 'margin-left': '50px' }">
+    <!-- Example with objects -->
+    <h3>Complex data model:</h3>
+    <div [ngStyle]="{ display: 'flex' }">
+      <div [ngStyle]="{ width: '200px', 'margin-right': '10px' }">
+        <bs-sortable
+          [(ngModel)]="itemObjectsLeft"
+          [fieldName]="'name'"
+          [itemStyle]="itemStyle"
+          [itemActiveStyle]="itemActiveStyle"
+          [placeholderItem]="'Drag here'"
+          [placeholderStyle]="itemStyle"
+          [wrapperStyle]="wrapperStyle"
+        ></bs-sortable>
+        <pre>model: {{ itemObjectsLeft | json }}</pre>
+      </div>
+      <div [ngStyle]="{ width: '200px' }">
+        <bs-sortable
+          [(ngModel)]="itemObjectsRight"
+          [fieldName]="'name'"
+          [itemStyle]="itemStyle"
+          [itemActiveStyle]="itemActiveStyle"
+          [placeholderItem]="'Drag here'"
+          [placeholderStyle]="itemStyle"
+          [wrapperStyle]="wrapperStyle"
+        ></bs-sortable>
+        <pre>model: {{ itemObjectsRight | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>

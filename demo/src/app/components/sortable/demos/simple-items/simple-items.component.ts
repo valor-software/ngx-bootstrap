@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sortable-demo',
-  templateUrl: './sortable-demo.component.html'
+  selector: 'simple-items-demo',
+  templateUrl: './simple-items.component.html'
 })
-export class SortableDemoComponent {
+export class SimpleItemsDemoComponent {
   public itemStringsLeft: any[] = [
     'Windstorm',
     'Bombasto',
@@ -15,18 +15,6 @@ export class SortableDemoComponent {
   public itemStringsRight: any[] = [
     'Mr. O',
     'Tomato'
-  ];
-
-  public itemObjectsLeft: any[] = [
-    { id: 1, name: 'Windstorm' },
-    { id: 2, name: 'Bombasto' },
-    { id: 3, name: 'Magneta' }
-  ];
-
-  public itemObjectsRight: any[] = [
-    { id: 4, name: 'Tornado' },
-    { id: 5, name: 'Mr. O' },
-    { id: 6, name: 'Tomato' }
   ];
 
   public itemStyle: {} = {

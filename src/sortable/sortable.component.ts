@@ -9,7 +9,8 @@ const nullCallback = (arg?: any): void => { return void 0; };
 
 /* tslint:disable */
 @Component({
-    selector: 'ng2-sortable',
+    selector: 'bs-sortable',
+    exportAs: 'bs-sortable',
     template: `
         <div
             [ngClass]="wrapperClass"

@@ -1481,7 +1481,8 @@ export const ngdoc = {
     "fileName": "src/sortable/sortable.component.ts",
     "className": "SortableComponent",
     "description": "",
-    "selector": "ng2-sortable",
+    "selector": "bs-sortable",
+    "exportAs": "bs-sortable",
     "inputs": [
       {
         "name": "fieldName",
