@@ -17,6 +17,7 @@ let titleDoc = require('html!markdown!./docs/title.md');
       <ul>
         <li><a pageScroll href="#captions">Optional captions</a></li>
         <li><a pageScroll href="#config">Configuring defaults</a></li>
+        <li><a pageScroll href="#dynamic">Dynamic Slides</a></li>
       </ul>
     </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
@@ -52,9 +53,11 @@ let titleDoc = require('html!markdown!./docs/title.md');
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-carousel-config></demo-carousel-config>
   </ng-sample-box>
-    
-  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-    <carousel-demo></carousel-demo>
+  
+  <!-- dynamic -->
+  <h2 id="dynamic">Dynamic Slides</h2>
+  <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
+    <demo-carousel-dynamic></demo-carousel-dynamic>
   </ng-sample-box>
   
   <h2 id="api-reference">API Reference</h2>
