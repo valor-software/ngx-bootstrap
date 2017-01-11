@@ -16,7 +16,7 @@ import { SortableModule } from 'ng2-bootstrap/sortable';
     CommonModule,
     FormsModule,
     SharedModule,
-    SortableModule
+    SortableModule.forRoot()
   ],
   exports: [SortableSectionComponent]
 })

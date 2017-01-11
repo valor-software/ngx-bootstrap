@@ -1,8 +1,35 @@
 <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc">
+<style>
+  .sortable-item {
+    padding: 6px 12px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 1.4em;
+    text-align: center;
+    cursor: grab;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #adadad;
+  }
+
+  .sortable-item-active {
+    background-color: #e6e6e6;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  }
+
+  .sortable-wrapper {
+    min-height: 150px;
+  }
+</style>
   <h2>Contents</h2>
   <ul>
     <li><a pageScroll href="#usage">Usage</a></li>
-    <li><a pageScroll href="#examples">Examples</a></li>
+    <li><a pageScroll href="#examples">Examples</a>
+      <ul>
+        <li><a href="#stringItems">String items</a></li>
+        <li><a href="#complexDatamodel">Complex datamodel</a></li>
+      </ul>
+    </li>
     <li><a pageScroll href="#api-reference">API Reference</a>
       <ul>
         <li><a pageScroll href="#sortable-component">SortableComponent</a></li>
@@ -16,8 +43,14 @@
 
   <h2 id="examples">Examples</h2>
 
-  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
-    <sortable-demo></sortable-demo>
+  <h2 id="stringItems">String items:</h2>
+  <ng-sample-box [ts]="demos.simpleItems.component" [html]="demos.simpleItems.html">
+    <simple-items-demo></simple-items-demo>
+  </ng-sample-box>
+
+  <h2 id="complexDatamodel">Complex data model:</h2>
+  <ng-sample-box [ts]="demos.complexDatamodel.component" [html]="demos.complexDatamodel.html">
+    <complex-datamodel-demo></complex-datamodel-demo>
   </ng-sample-box>
 
   <h2 id="api-reference">API Reference</h2>

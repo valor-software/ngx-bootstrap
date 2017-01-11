@@ -11,6 +11,7 @@ import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
+import { SortableModule } from './sortable';
 import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
@@ -33,7 +34,7 @@ const MODULES = [
     DropdownModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot(),
     ProgressbarModule.forRoot(), PopoverModule.forRoot(), RatingModule.forRoot(),
     TabsModule.forRoot(), TimepickerModule.forRoot(), TooltipModule.forRoot(),
-    TypeaheadModule.forRoot()
+    TypeaheadModule.forRoot(), SortableModule.forRoot()
   ],
   exports: MODULES
 })

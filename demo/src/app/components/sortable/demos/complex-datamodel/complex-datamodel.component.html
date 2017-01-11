@@ -1,0 +1,31 @@
+<div>
+  <div>
+    <!-- Example with objects -->
+    <div [ngStyle]="{ display: 'flex' }">
+      <div [ngStyle]="{ width: '200px', 'margin-right': '10px' }">
+        <bs-sortable
+          [(ngModel)]="itemObjectsLeft"
+          fieldName="name"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
+          placeholderItem="Drag here"
+          placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"
+        ></bs-sortable>
+        <pre>model: {{ itemObjectsLeft | json }}</pre>
+      </div>
+      <div [ngStyle]="{ width: '200px' }">
+        <bs-sortable
+          [(ngModel)]="itemObjectsRight"
+          fieldName="name"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
+          placeholderItem="Drag here"
+          placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"
+        ></bs-sortable>
+        <pre>model: {{ itemObjectsRight | json }}</pre>
+      </div>
+    </div>
+  </div>
+</div>
