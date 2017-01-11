@@ -1,13 +1,7 @@
-- static
-- basic
-- templateRef
-- html
-- delay
-- triggers (custom & manual)
-- container: body
-- config
+- delayed tooltip
 
 ? tabindex=0
 + animation
 + constraints
 + offset
+
