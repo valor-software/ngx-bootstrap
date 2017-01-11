@@ -16,36 +16,66 @@ let titleDoc = require('html!markdown!./docs/usage.md');
   
   <h2>Contents</h2>
   <ul>
-    <li><a pageScroll href="#usage">Usage</a></li>
-    <li><a pageScroll href="#examples">Examples</a>
+    <li><a routerLink="." fragment="usage">Usage</a></li>
+    <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
-        <!--<li><a pageScroll href="#link-color">Link color</a></li>-->
+        <li><a routerLink="." fragment="simple">Simple accordion</a></li>
+        <li><a routerLink="." fragment="disabled">Disabled</a></li>
+        <li><a routerLink="." fragment="dynamic">Dynamic accordion</a></li>
+        <li><a routerLink="." fragment="one-time">Open only one at a time</a></li>
+        <li><a routerLink="." fragment="styling">Styling</a></li>
+        <li><a routerLink="." fragment="config">Configuring defaults</a></li>
       </ul>
     </li>
-    <li><a pageScroll href="#api-reference">API Reference</a>
+    <li><a routerLink="." fragment="api-reference">API Reference</a>
       <ul>
-        <li><a pageScroll href="#accordion-panel-component">AccordionPanelComponent</a></li>
-        <li><a pageScroll href="#accordion-config">AccordionConfig</a></li>
+        <li><a routerLink="." fragment="accordion-panel-component">AccordionPanelComponent</a></li>
+        <li><a routerLink="." fragment="accordion-config">AccordionConfig</a></li>
       </ul>
     </li>
   </ul>   
       
-  <h2 id="usage">Usage</h2>
+  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
 
   <p [innerHtml]="titleDoc"></p>
 
-  <h2 id="examples">Examples</h2>
+  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
       
-  <!-- basic -->
   <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
   
-  <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
-    <accordion-demo></accordion-demo>
+  <h2 routerLink="." fragment="simple" id="simple">Simple accordion</h2>
+  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
+    <demo-accordion-basic></demo-accordion-basic>
   </ng-sample-box>
-      
-  <h2 id="api-reference">API Reference</h2>
-  <ng-api-doc id="accordion-panel-component" directive="AccordionPanelComponent"></ng-api-doc>
-  <ng-api-doc-config id="accordion-config" type="AccordionConfig"></ng-api-doc-config>
+        
+  <h2 routerLink="." fragment="disabled" id="disabled">Disabled</h2>
+  <ng-sample-box [ts]="demos.disabled.component" [html]="demos.disabled.html">
+    <demo-accordion-disabled></demo-accordion-disabled>
+  </ng-sample-box>  
+        
+  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic accordion</h2>
+  <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
+    <demo-accordion-dynamic></demo-accordion-dynamic>
+  </ng-sample-box>   
+       
+  <h2 routerLink="." fragment="one-time" id="one-time">Open only one at a time</h2>
+  <ng-sample-box [ts]="demos.oneAtATime.component" [html]="demos.oneAtATime.html">
+    <demo-accordion-one-time></demo-accordion-one-time>
+  </ng-sample-box>
+                
+  <h2 routerLink="." fragment="styling" id="styling">Styling</h2>
+  <ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html">
+    <demo-accordion-styling></demo-accordion-styling>
+  </ng-sample-box>
+                
+  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+  <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
+    <demo-accordion-config></demo-accordion-config>
+  </ng-sample-box>
+
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <ng-api-doc routerLink="." fragment="accordion-panel-component" id="accordion-panel-component" directive="AccordionPanelComponent"></ng-api-doc>
+  <ng-api-doc-config routerLink="." fragment="accordion-config" id="accordion-config" type="AccordionConfig"></ng-api-doc-config>
 </demo-section>`
 })
 export class AccordionSectionComponent {

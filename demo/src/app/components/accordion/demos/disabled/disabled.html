@@ -1,0 +1,19 @@
+<p>
+  <button type="button" class="btn btn-primary btn-sm" (click)="status.isFirstDisabled = ! status.isFirstDisabled">
+    Enable / Disable first panel
+  </button>
+</p>
+
+<accordion>
+  <accordion-group heading="Static Header, initially expanded"
+                   [isOpen]="status.isFirstOpen"
+                   [isDisabled]="status.isFirstDisabled">
+    This content is straight in the template.
+  </accordion-group>
+  <accordion-group heading="Content 1">
+    <p>accordion 1</p>
+  </accordion-group>
+  <accordion-group heading="Content 2">
+    <p>accordion 2</p>
+  </accordion-group>
+</accordion>
