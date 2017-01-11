@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "outDir": "../dist",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": false,
+    "noEmitHelpers": false,
+    "noImplicitAny": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "lib": ["dom", "es6"],
+    "types": [
+      "jasmine",
+      "webpack"
+    ],
+    "typeRoots": [
+      "../node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "files": [
+    "../scripts/typings.d.ts",
+    "./ng2-bootstrap.ts",
+    "./index.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "../temp/factories"
+  }
+}

@@ -1,0 +1,58 @@
+<demo-section [name]="name" [src]="src" [titleDoc]="titleDoc">
+<style>
+  .sortable-item {
+    padding: 6px 12px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    line-height: 1.4em;
+    text-align: center;
+    cursor: grab;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #adadad;
+  }
+
+  .sortable-item-active {
+    background-color: #e6e6e6;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  }
+
+  .sortable-wrapper {
+    min-height: 150px;
+  }
+</style>
+  <h2>Contents</h2>
+  <ul>
+    <li><a routerLink="." fragment="usage">Usage</a></li>
+    <li><a routerLink="." fragment="examples">Examples</a>
+      <ul>
+        <li><a href="#stringItems">String items</a></li>
+        <li><a href="#complexDatamodel">Complex datamodel</a></li>
+      </ul>
+    </li>
+    <li><a routerLink="." fragment="api-reference">API Reference</a>
+      <ul>
+        <li><a routerLink="." fragment="sortable-component">SortableComponent</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
+
+  <p [innerHtml]="usageDoc"></p>
+
+  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
+
+  <h2 routerLink="." fragment="stringItems" id="stringItems">String items:</h2>
+  <ng-sample-box [ts]="demos.simpleItems.component" [html]="demos.simpleItems.html">
+    <simple-items-demo></simple-items-demo>
+  </ng-sample-box>
+
+  <h2 routerLink="." fragment="complexDatamodel" id="complexDatamodel">Complex data model:</h2>
+  <ng-sample-box [ts]="demos.complexDatamodel.component" [html]="demos.complexDatamodel.html">
+    <complex-datamodel-demo></complex-datamodel-demo>
+  </ng-sample-box>
+
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <ng-api-doc id="sortable-component" directive="SortableComponent"></ng-api-doc>
+</demo-section>

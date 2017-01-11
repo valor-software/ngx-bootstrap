@@ -1,0 +1,9 @@
+<alert type="success" dismissOnTimeout="5000">
+  <strong>Well done!</strong> You successfully read this important alert message.
+</alert>
+
+<p>If you missed alert on top of me, just press <code>Add more</code> button</p>
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+</div>
+<button type="button" class="btn btn-primary" (click)="add()">Add more</button>

@@ -1,0 +1,30 @@
+<p>
+  <button type="button" class="btn btn-primary btn-sm"
+          (click)="group.isOpen = !group.isOpen">Toggle last panel
+  </button>
+</p>
+
+<accordion>
+  <accordion-group heading="Static Header, initially expanded"
+                   [isOpen]="status.isFirstOpen">
+    This content is straight in the template.
+  </accordion-group>
+  <accordion-group *ngFor="let group of groups" [heading]="group.title">
+    {{ group?.content }}
+  </accordion-group>
+  <accordion-group heading="Dynamic Body Content">
+    <p>The body of the accordion group grows to fit the contents</p>
+    <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add
+      Item
+    </button>
+    <div *ngFor="let item of items">{{item}}</div>
+  </accordion-group>
+  <accordion-group #group [isOpen]="status.open">
+    <div accordion-heading>
+      I can have markup, too!
+      <i class="pull-right float-xs-right glyphicon"
+         [ngClass]="{'glyphicon-chevron-down': group?._isOpen, 'glyphicon-chevron-right': !group?._isOpen}"></i>
+    </div>
+    This is just some content to illustrate fancy headings.
+  </accordion-group>
+</accordion>
