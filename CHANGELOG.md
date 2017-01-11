@@ -1,4 +1,4 @@
-## Migration notes v1.1.16 and less to v1.1.16-11+
+## Migration notes v1.1.16 and less to v1.1.17
 1. `ComponentHelper` and `PositioningService` removed, please remove any mentions of this two
 2. Package structure was simplified, (removed `components` folder) so you need to change imports:
   - `ng2-bootstrap\ng2-bootstrap` to `ng2-bootstrap`
@@ -10,6 +10,23 @@
   - in `AppModule` you should use `imports: [AlertModule.forRoot()]` in child modules `imports: [AlertModule]`
 
 4. Please read more in [documentation](http://valor-software.com/ng2-bootstrap/)
+
+<a name="1.1.17"></a>
+## [1.1.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-11...v1.1.16) (2017-01-11)
+
+
+### Bug Fixes
+
+* **alert:** removed duplicated event triggering ([b047d7f](https://github.com/valor-software/ng2-bootstrap/commit/b047d7f)), closes [#1430](https://github.com/valor-software/ng2-bootstrap/issues/1430)
+* **carousel:** play carousel on mouseup ([#1433](https://github.com/valor-software/ng2-bootstrap/issues/1433)) ([a1d7983](https://github.com/valor-software/ng2-bootstrap/commit/a1d7983))
+* **popover:** markup for bs4 ([#1431](https://github.com/valor-software/ng2-bootstrap/issues/1431)) ([538cca8](https://github.com/valor-software/ng2-bootstrap/commit/538cca8))
+* **popover:** misspring in popover config name ([d7e8aa1](https://github.com/valor-software/ng2-bootstrap/commit/d7e8aa1))
+
+
+### Features
+
+* **docs:** make urls easy to share ([47ab93b](https://github.com/valor-software/ng2-bootstrap/commit/47ab93b))
+* **sortable:** added new sortable component ([#1295](https://github.com/valor-software/ng2-bootstrap/issues/1295)) ([fab3df5](https://github.com/valor-software/ng2-bootstrap/commit/fab3df5))
 
 <a name="1.1.16-11"></a>
 ## [1.1.16-11](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-7...v1.1.16-11) (2016-12-30)

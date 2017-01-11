@@ -11,8 +11,8 @@ const HEROES_OBJ: any[] = [ { id: 1, name: 'Windstorm' }, { id: 2, name: 'Bombas
 
 @Component({
   template: `
-    <ng2-sortable id="sort1" [(ngModel)]="heroes" [placeholderItem]="'empty'" [itemStyle]="{ 'background-color': 'white', margin: '10px' }" [itemActiveStyle]="{ 'background-color': 'lightgray' }"></ng2-sortable>
-    <ng2-sortable id="sort2" [(ngModel)]="heroesObj" [fieldName]="'name'" [placeholderItem]="'empty'"></ng2-sortable>
+    <bs-sortable id="sort1" [(ngModel)]="heroes" [placeholderItem]="'empty'" [itemStyle]="{ 'background-color': 'white', margin: '10px' }" [itemActiveStyle]="{ 'background-color': 'lightgray' }"></bs-sortable>
+    <bs-sortable id="sort2" [(ngModel)]="heroesObj" [fieldName]="'name'" [placeholderItem]="'empty'"></bs-sortable>
 `
 })
 class TestSortableComponent {
@@ -29,7 +29,7 @@ describe('Component: Sortable', () => {
   beforeEach(fakeAsync(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TestSortableComponent ],
-      imports: [ SortableModule, FormsModule ],
+      imports: [ SortableModule.forRoot(), FormsModule ],
       providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
     }).createComponent(TestSortableComponent);
 

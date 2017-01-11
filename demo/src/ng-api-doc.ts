@@ -1481,7 +1481,8 @@ export const ngdoc = {
     "fileName": "src/sortable/sortable.component.ts",
     "className": "SortableComponent",
     "description": "",
-    "selector": "ng2-sortable",
+    "selector": "bs-sortable",
+    "exportAs": "bs-sortable",
     "inputs": [
       {
         "name": "fieldName",
@@ -1869,27 +1870,27 @@ export const ngdoc = {
         "name": "tooltipAnimation",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - removed, will be added to configuration </p>\n"
       },
       {
         "name": "tooltipAppendToBody",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>container=&quot;body&quot;</code> instead </p>\n"
       },
       {
         "name": "tooltipClass",
         "type": "string",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - will replaced with customClass </p>\n"
       },
       {
         "name": "tooltipContext",
         "type": "any",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - removed </p>\n"
       },
       {
         "name": "tooltipEnable",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>isDisabled</code> instead </p>\n"
       },
       {
         "name": "tooltipFadeDuration",
@@ -1900,17 +1901,17 @@ export const ngdoc = {
       {
         "name": "tooltipHtml",
         "type": "string | TemplateRef<any>",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>tooltip</code> instead </p>\n"
       },
       {
         "name": "tooltipIsOpen",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>isOpen</code> instead</p>\n"
       },
       {
         "name": "tooltipPlacement",
         "type": "string",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>placement</code> instead </p>\n"
       },
       {
         "name": "tooltipPopupDelay",
@@ -1921,7 +1922,7 @@ export const ngdoc = {
       {
         "name": "tooltipTrigger",
         "type": "string | string[]",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated -  please use <code>triggers</code> instead </p>\n"
       },
       {
         "name": "triggers",
@@ -1951,17 +1952,17 @@ export const ngdoc = {
       {
         "name": "_appendToBody",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>container=&quot;body&quot;</code> instead </p>\n"
       },
       {
         "name": "_enable",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>isDisabled</code> instead </p>\n"
       },
       {
         "name": "_isOpen",
         "type": "boolean",
-        "description": "<p>@deprecated </p>\n"
+        "description": "<p>@deprecated - please use <code>isOpen</code> instead</p>\n"
       }
     ],
     "methods": [

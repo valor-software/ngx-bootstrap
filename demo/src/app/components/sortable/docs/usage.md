@@ -5,7 +5,7 @@ import { SortableModule } from 'ng2-bootstrap/sortable';
 import { SortableModule } from 'ng2-bootstrap';
 
 @NgModule({
-  imports: [SortableModule,...]
+  imports: [SortableModule.forRoot(),...]
 })
 export class AppModule(){}
 ```

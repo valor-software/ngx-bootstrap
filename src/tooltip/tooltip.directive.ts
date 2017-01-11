@@ -60,21 +60,21 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Output() public onHidden: EventEmitter<any>;
 
   /* tslint:disable */
-  /** @deprecated */
+  /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
   public set htmlContent(value: string | TemplateRef<any>) {
     console.warn('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }
 
-  /** @deprecated */
+  /** @deprecated - please use `placement` instead */
   @Input('tooltipPlacement')
   public set _placement(value: string) {
     console.warn('tooltipPlacement was deprecated, please use `placement` instead');
     this.placement = value;
   }
 
-  /** @deprecated */
+  /** @deprecated - please use `isOpen` instead*/
   @Input('tooltipIsOpen')
   public set _isOpen(value: boolean) {
     console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
@@ -86,7 +86,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     return this.isOpen;
   }
 
-  /** @deprecated */
+  /** @deprecated - please use `isDisabled` instead */
   @Input('tooltipEnable')
   public set _enable(value: boolean) {
     console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
@@ -98,7 +98,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     return this.isDisabled === true;
   }
 
-  /** @deprecated */
+  /** @deprecated - please use `container="body"` instead */
   @Input('tooltipAppendToBody')
   public set _appendToBody(value: boolean) {
     console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
@@ -110,16 +110,16 @@ export class TooltipDirective implements OnInit, OnDestroy {
     return this.container === 'body';
   }
 
-  /** @deprecated */
+  /** @deprecated - removed, will be added to configuration */
   @Input('tooltipAnimation') public _animation: boolean = true;
 
-  /** @deprecated */
+  /** @deprecated - will replaced with customClass */
   @Input('tooltipClass')
   public set _popupClass(value: string) {
     console.warn('tooltipClass deprecated');
   }
 
-  /** @deprecated */
+  /** @deprecated - removed */
   @Input('tooltipContext')
   public set _tooltipContext(value: any) {
     console.warn('tooltipContext deprecated');
@@ -131,7 +131,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated */
   @Input('tooltipFadeDuration') public _fadeDuration: number = 150;
 
-  /** @deprecated */
+  /** @deprecated -  please use `triggers` instead */
   @Input('tooltipTrigger')
   public get _tooltipTrigger(): string|Array<string> {
     console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
