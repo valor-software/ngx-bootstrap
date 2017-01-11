@@ -15,7 +15,6 @@ let titleDoc = require('html!markdown!./docs/title.md');
     <li><a routerLink="." fragment="usage">Usage</a></li>
     <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
-      <!--href="#four-directions"-->
         <li><a routerLink="." fragment="four-directions">Four Directions</a></li>
         <li><a routerLink="." fragment="dismiss">Dismissible</a></li>
         <li><a routerLink="." fragment="dynamic-content">Dynamic Content</a></li>
