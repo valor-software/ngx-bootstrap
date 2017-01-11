@@ -25,6 +25,10 @@ a:hover {
   text-decoration: none;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /************* START TOP MENU **************/
 
 #top-menu {

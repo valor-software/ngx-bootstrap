@@ -1,0 +1,8 @@
+<timepicker [(ngModel)]="mytime" (change)="changed()" [showMeridian]="ismeridian"></timepicker>
+
+<pre class="alert alert-info">Time is: {{mytime}}</pre>
+
+<hr>
+
+<button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
+
