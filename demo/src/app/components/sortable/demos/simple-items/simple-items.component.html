@@ -1,14 +1,13 @@
 <div>
   <div>
     <!-- Example with strings -->
-    <h3>String items:</h3>
     <div [ngStyle]="{ display: 'flex' }">
       <div [ngStyle]="{ width: '200px', 'margin-right': '10px' }">
         <bs-sortable
           [(ngModel)]="itemStringsLeft"
           [itemStyle]="itemStyle"
           [itemActiveStyle]="itemActiveStyle"
-          [placeholderItem]="'Drag here'"
+          placeholderItem="Drag here"
           [placeholderStyle]="placeholderStyle"
           [wrapperStyle]="wrapperStyle"
         ></bs-sortable>
@@ -19,7 +18,7 @@
           [(ngModel)]="itemStringsRight"
           [itemStyle]="itemStyle"
           [itemActiveStyle]="itemActiveStyle"
-          [placeholderItem]="'Drag here'"
+          placeholderItem="Drag here"
           [placeholderStyle]="placeholderStyle"
           [wrapperStyle]="wrapperStyle"
         ></bs-sortable>

@@ -1,15 +1,14 @@
 <div>
-  <div [ngStyle]="{ 'margin-left': '50px' }">
+  <div>
     <!-- Example with objects -->
-    <h3>Complex data model:</h3>
     <div [ngStyle]="{ display: 'flex' }">
       <div [ngStyle]="{ width: '200px', 'margin-right': '10px' }">
         <bs-sortable
           [(ngModel)]="itemObjectsLeft"
-          [fieldName]="'name'"
+          fieldName="name"
           [itemStyle]="itemStyle"
           [itemActiveStyle]="itemActiveStyle"
-          [placeholderItem]="'Drag here'"
+          placeholderItem="Drag here"
           [placeholderStyle]="itemStyle"
           [wrapperStyle]="wrapperStyle"
         ></bs-sortable>
@@ -18,10 +17,10 @@
       <div [ngStyle]="{ width: '200px' }">
         <bs-sortable
           [(ngModel)]="itemObjectsRight"
-          [fieldName]="'name'"
+          fieldName="name"
           [itemStyle]="itemStyle"
           [itemActiveStyle]="itemActiveStyle"
-          [placeholderItem]="'Drag here'"
+          placeholderItem="Drag here"
           [placeholderStyle]="itemStyle"
           [wrapperStyle]="wrapperStyle"
         ></bs-sortable>
