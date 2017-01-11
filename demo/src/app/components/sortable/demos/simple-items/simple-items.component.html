@@ -5,22 +5,22 @@
       <div [ngStyle]="{ width: '200px', 'margin-right': '10px' }">
         <bs-sortable
           [(ngModel)]="itemStringsLeft"
-          [itemStyle]="itemStyle"
-          [itemActiveStyle]="itemActiveStyle"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
           placeholderItem="Drag here"
-          [placeholderStyle]="placeholderStyle"
-          [wrapperStyle]="wrapperStyle"
+          placeholderClass="placeholderStyle"
+          wrapperClass="sortable-wrapper"
         ></bs-sortable>
         <pre>model: {{ itemStringsLeft | json }}</pre>
       </div>
       <div [ngStyle]="{ width: '200px' }">
         <bs-sortable
           [(ngModel)]="itemStringsRight"
-          [itemStyle]="itemStyle"
-          [itemActiveStyle]="itemActiveStyle"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
           placeholderItem="Drag here"
-          [placeholderStyle]="placeholderStyle"
-          [wrapperStyle]="wrapperStyle"
+          placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"
         ></bs-sortable>
         <pre>model: {{ itemStringsRight | json }}</pre>
       </div>

@@ -6,11 +6,11 @@
         <bs-sortable
           [(ngModel)]="itemObjectsLeft"
           fieldName="name"
-          [itemStyle]="itemStyle"
-          [itemActiveStyle]="itemActiveStyle"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
           placeholderItem="Drag here"
-          [placeholderStyle]="itemStyle"
-          [wrapperStyle]="wrapperStyle"
+          placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"
         ></bs-sortable>
         <pre>model: {{ itemObjectsLeft | json }}</pre>
       </div>
@@ -18,11 +18,11 @@
         <bs-sortable
           [(ngModel)]="itemObjectsRight"
           fieldName="name"
-          [itemStyle]="itemStyle"
-          [itemActiveStyle]="itemActiveStyle"
+          itemClass="sortable-item"
+          itemActiveClass="sortable-item-active"
           placeholderItem="Drag here"
-          [placeholderStyle]="itemStyle"
-          [wrapperStyle]="wrapperStyle"
+          placeholderClass="sortable-item"
+          wrapperClass="sortable-wrapper"
         ></bs-sortable>
         <pre>model: {{ itemObjectsRight | json }}</pre>
       </div>
