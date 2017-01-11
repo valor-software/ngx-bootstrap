@@ -11,8 +11,8 @@ let titleDoc = require('html!markdown!./docs/title.md');
 
  <h2>Contents</h2>
   <ul>
-    <li><a pageScroll href="#usage">Usage</a></li>
-    <li><a pageScroll href="#examples">Examples</a>
+    <li><a routerLink="." fragment="usage">Usage</a></li>
+    <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
         <li><a routerLink="." fragment="four-directions">Four Directions</a></li>
         <li><a routerLink="." fragment="dismiss">Dismissible</a></li>
@@ -25,19 +25,19 @@ let titleDoc = require('html!markdown!./docs/title.md');
         <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
       </ul>
     </li>
-    <li><a pageScroll href="#api-reference">API Reference</a>
+    <li><a routerLink="." fragment="api-reference">API Reference</a>
       <ul>
-        <li><a pageScroll href="#tooltip-directive">TooltipDirective</a></li>
-        <li><a pageScroll href="#tooltip-config">TooltipConfig</a></li>
+        <li><a routerLink="." fragment="tooltip-directive">TooltipDirective</a></li>
+        <li><a routerLink="." fragment="tooltip-config">TooltipConfig</a></li>
       </ul>
     </li>
   </ul>   
       
-  <h2 id="usage">Usage</h2>
+  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
 
   <p [innerHtml]="titleDoc"></p>
 
-  <h2 id="examples">Examples</h2>
+  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
       
   <!-- basic -->
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
@@ -96,7 +96,7 @@ let titleDoc = require('html!markdown!./docs/title.md');
     <demo-tooltip-styling-local></demo-tooltip-styling-local>
   </ng-sample-box>
       
-  <h2 id="api-reference">API Reference</h2>
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   
   <ng-api-doc id="tooltip-directive" directive="TooltipDirective"></ng-api-doc>
   <ng-api-doc-config id="tooltip-config" type="TooltipConfig"></ng-api-doc-config>

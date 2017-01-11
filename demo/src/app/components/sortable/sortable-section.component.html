@@ -23,36 +23,36 @@
 </style>
   <h2>Contents</h2>
   <ul>
-    <li><a pageScroll href="#usage">Usage</a></li>
-    <li><a pageScroll href="#examples">Examples</a>
+    <li><a routerLink="." fragment="usage">Usage</a></li>
+    <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
         <li><a href="#stringItems">String items</a></li>
         <li><a href="#complexDatamodel">Complex datamodel</a></li>
       </ul>
     </li>
-    <li><a pageScroll href="#api-reference">API Reference</a>
+    <li><a routerLink="." fragment="api-reference">API Reference</a>
       <ul>
-        <li><a pageScroll href="#sortable-component">SortableComponent</a></li>
+        <li><a routerLink="." fragment="sortable-component">SortableComponent</a></li>
       </ul>
     </li>
   </ul>
 
-  <h2 id="usage">Usage</h2>
+  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
 
   <p [innerHtml]="usageDoc"></p>
 
-  <h2 id="examples">Examples</h2>
+  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
 
-  <h2 id="stringItems">String items:</h2>
+  <h2 routerLink="." fragment="stringItems" id="stringItems">String items:</h2>
   <ng-sample-box [ts]="demos.simpleItems.component" [html]="demos.simpleItems.html">
     <simple-items-demo></simple-items-demo>
   </ng-sample-box>
 
-  <h2 id="complexDatamodel">Complex data model:</h2>
+  <h2 routerLink="." fragment="complexDatamodel" id="complexDatamodel">Complex data model:</h2>
   <ng-sample-box [ts]="demos.complexDatamodel.component" [html]="demos.complexDatamodel.html">
     <complex-datamodel-demo></complex-datamodel-demo>
   </ng-sample-box>
 
-  <h2 id="api-reference">API Reference</h2>
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc id="sortable-component" directive="SortableComponent"></ng-api-doc>
 </demo-section>

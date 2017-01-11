@@ -11,32 +11,32 @@ let titleDoc = require('html!markdown!./docs/title.md');
 
   <h2>Contents</h2>
   <ul>
-    <li><a pageScroll href="#usage">Usage</a></li>
-    <li><a pageScroll href="#examples">Examples</a>
+    <li><a routerLink="." fragment="usage">Usage</a></li>
+    <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
-        <!--<li><a pageScroll href="#link-color">Link color</a></li>-->
+        <!--<li><a routerLink="." fragment="link-color">Link color</a></li>-->
       </ul>
     </li>
-    <li><a pageScroll href="#api-reference">API Reference</a>
+    <li><a routerLink="." fragment="api-reference">API Reference</a>
       <ul>
-        <li><a pageScroll href="#timepicker-component">TimepickerComponent</a></li>
-        <li><a pageScroll href="#timepicker-config">TimepickerConfig</a></li>
+        <li><a routerLink="." fragment="timepicker-component">TimepickerComponent</a></li>
+        <li><a routerLink="." fragment="timepicker-config">TimepickerConfig</a></li>
       </ul>
     </li>
   </ul>   
       
-  <h2 id="usage">Usage</h2>
+  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
 
   <p [innerHtml]="titleDoc"></p>
 
-  <h2 id="examples">Examples</h2>
+  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
       
   <!-- basic -->
   <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <timepicker-demo></timepicker-demo>
   </ng-sample-box>
       
-  <h2 id="api-reference">API Reference</h2>
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   
   <ng-api-doc id="timepicker-component" directive="TimepickerComponent"></ng-api-doc>
   <ng-api-doc-config id="timepicker-config" type="TimepickerConfig"></ng-api-doc-config>
