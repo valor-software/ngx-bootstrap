@@ -52,7 +52,7 @@ const TEMPLATE_OPTIONS: any = {
     </tr>
     <tr>
       <th *ngIf="datePicker.showWeeks"></th>
-      <th *ngFor="let labelz of labels" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}">
+      <th *ngFor="let labelz of labels" class="text-center">
         <small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small>
       </th>
     </tr>
@@ -60,10 +60,10 @@ const TEMPLATE_OPTIONS: any = {
   <tbody>
     <template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
       <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
-        <td *ngIf="datePicker.showWeeks" class="h6" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}">
+        <td *ngIf="datePicker.showWeeks" class="h6" class="text-center">
           <em>{{ weekNumbers[index] }}</em>
         </td>
-        <td *ngFor="let dtz of rowz" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-secondary': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz), 'btn-default': !isBs4}"
