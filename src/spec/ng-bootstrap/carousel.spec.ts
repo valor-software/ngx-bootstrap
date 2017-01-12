@@ -139,15 +139,16 @@ describe('ngb-carousel', () => {
 
     const fixture = createTestComponent(html);
 
-    const controlElms = fixture.nativeElement.querySelectorAll('.carousel-control');
+    const prevControlElm = fixture.nativeElement.querySelector('.carousel-control-prev');
+    const nextControlElm = fixture.nativeElement.querySelector('.carousel-control-next');
 
     expectActiveSlides(fixture.nativeElement, [true, false]);
 
-    controlElms[1].click();  // next
+    nextControlElm.click();  // next
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [false, true]);
 
-    controlElms[0].click();  // prev
+    prevControlElm.click();  // prev
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [true, false]);
 
@@ -259,20 +260,20 @@ describe('ngb-carousel', () => {
     `;
 
     const fixture = createTestComponent(html);
-
-    const controlElms = fixture.nativeElement.querySelectorAll('.carousel-control');
+    const prevControlElm = fixture.nativeElement.querySelector('.carousel-control-prev');
+    const nextControlElm = fixture.nativeElement.querySelector('.carousel-control-next');
 
     expectActiveSlides(fixture.nativeElement, [true, false]);
 
-    controlElms[1].click();  // next
+    nextControlElm.click();  // next
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [false, true]);
 
-    controlElms[1].click();  // next
+    nextControlElm.click();  // next
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [true, false]);
 
-    controlElms[0].click();  // prev
+    prevControlElm.click();  // prev
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [false, true]);
 
@@ -289,19 +290,20 @@ describe('ngb-carousel', () => {
 
     const fixture = createTestComponent(html);
 
-    const controlElms = fixture.nativeElement.querySelectorAll('.carousel-control');
+    const prevControlElm = fixture.nativeElement.querySelector('.carousel-control-prev');
+    const nextControlElm = fixture.nativeElement.querySelector('.carousel-control-next');
 
     expectActiveSlides(fixture.nativeElement, [true, false]);
 
-    controlElms[0].click();  // prev
+    prevControlElm.click();  // prev
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [true, false]);
 
-    controlElms[1].click();  // next
+    nextControlElm.click();  // next
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [false, true]);
 
-    controlElms[1].click();  // next
+    nextControlElm.click();  // next
     fixture.detectChanges();
     expectActiveSlides(fixture.nativeElement, [false, true]);
 
@@ -367,7 +369,9 @@ describe('ngb-carousel', () => {
   describe('Custom config', () => {
     let config: CarouselConfig;
 
-    beforeEach(() => { TestBed.configureTestingModule({imports: [CarouselModule.forRoot()]}); });
+    beforeEach(() => {
+      TestBed.configureTestingModule({imports: [CarouselModule.forRoot()]});
+    });
 
     beforeEach(inject([CarouselConfig], (c: CarouselConfig) => {
       config = c;
