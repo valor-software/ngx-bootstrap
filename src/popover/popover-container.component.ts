@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
 import { PopoverConfig } from './popover.config';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 @Component({
   selector: 'popover-container',
@@ -7,6 +8,7 @@ import { PopoverConfig } from './popover.config';
   // tslint:disable-next-line
   host: {
     '[class]': '"popover in popover-" + placement + " " + placement',
+    '[class.show]': '!isBs3',
     role: 'tooltip',
     style: 'display:block;'
   },
@@ -18,6 +20,10 @@ import { PopoverConfig } from './popover.config';
 export class PopoverContainerComponent {
   @Input() public placement: string;
   @Input() public title: string;
+
+  public get isBs3(): boolean {
+    return isBs3();
+  }
 
   public constructor(config: PopoverConfig) {
     Object.assign(this, config);
