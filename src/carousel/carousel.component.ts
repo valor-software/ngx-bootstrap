@@ -34,12 +34,12 @@ export enum Direction {UNKNOWN, NEXT, PREV}
          <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
       </ol>
       <div class="carousel-inner"><ng-content></ng-content></div>
-      <a class="left carousel-control" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1">
-        <span class="icon-prev" aria-hidden="true"></span>
+      <a class="left carousel-control-prev" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1">
+        <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
         <span *ngIf="isBs4" class="sr-only">Previous</span>
       </a>
-      <a class="right carousel-control" (click)="nextSlide()"  [class.disabled]="isLast(activeSlide) && noWrap" *ngIf="slides.length > 1">
-        <span class="icon-next" aria-hidden="true"></span>
+      <a class="right carousel-control-next" (click)="nextSlide()"  [class.disabled]="isLast(activeSlide) && noWrap" *ngIf="slides.length > 1">
+        <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
         <span *ngIf="isBs4" class="sr-only">Next</span>
       </a>
     </div>
@@ -70,7 +70,7 @@ export class CarouselComponent implements OnDestroy {
   protected _interval: number;
 
   /**
-   * Delay of item cycling in milliseconds. If false, carousel won't cycle automatically. 
+   * Delay of item cycling in milliseconds. If false, carousel won't cycle automatically.
    */
   @Input()
   public get interval(): number {

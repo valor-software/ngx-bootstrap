@@ -5,7 +5,10 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[collapse]'/*,
+  selector: '[collapse]',
+  exportAs: 'bs-collapse',
+  /* tslint:disable-next-line */
+  host: {'[class.collapse]': 'true'}/*,
   animations: [
     trigger('active', [
       state('void', style({height: 0})),
@@ -27,6 +30,7 @@ export class CollapseDirective {
   public display: string;
   // shown
   @HostBinding('class.in')
+  @HostBinding('class.show')
   @HostBinding('attr.aria-expanded')
   public isExpanded: boolean = true;
   // hidden
