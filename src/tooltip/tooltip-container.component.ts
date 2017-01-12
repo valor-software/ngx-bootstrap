@@ -2,6 +2,7 @@ import {
   AfterViewInit, Component, ChangeDetectionStrategy, Inject
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 @Component({
   selector: 'bs-tooltip-container',
@@ -9,6 +10,7 @@ import { TooltipConfig } from './tooltip.config';
   // tslint:disable-next-line
   host: {
     '[class]': '"tooltip in tooltip-" + placement + " " + placement',
+    '[class.show]': '!isBs3',
     role: 'tooltip'
   },
   template: `
@@ -40,6 +42,10 @@ export class TooltipContainerComponent implements AfterViewInit {
   public placement: string;
   public popupClass: string;
   public animation: boolean;
+
+  public get isBs3(): boolean {
+    return isBs3();
+  }
 
   public constructor(config: TooltipConfig) {
     Object.assign(this, config);
