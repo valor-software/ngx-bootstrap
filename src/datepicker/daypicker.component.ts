@@ -63,7 +63,7 @@ const TEMPLATE_OPTIONS: any = {
         <td *ngIf="datePicker.showWeeks" class="h6" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}">
           <em>{{ weekNumbers[index] }}</em>
         </td>
-        <td *ngFor="let dtz of rowz" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4}" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" [ngClass]="{'text-xs-center':isBs4, 'text-center': !isBs4, 'appointed': dtz.appointment}" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
                   [ngClass]="{'btn-secondary': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz), 'btn-default': !isBs4}"

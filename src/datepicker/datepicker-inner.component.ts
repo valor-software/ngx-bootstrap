@@ -52,6 +52,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
   @Input() public dateDisabled: {date:Date, mode:string}[];
+  @Input() public dateAppointed: {date:Date, mode:string}[];
   @Input() public initDate: Date;
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
@@ -186,8 +187,10 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     dateObject.label = this.dateFilter(date, format);
     dateObject.selected = this.compare(date, this.selectedDate) === 0;
     dateObject.disabled = this.isDisabled(date);
+    dateObject.appointment = this.isAppointed(date);
     dateObject.current = this.compare(date, new Date()) === 0;
     dateObject.customClass = this.getCustomClassForDate(dateObject.date);
+    console.log(dateObject.appointment);
     return dateObject;
   }
 
@@ -275,6 +278,10 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
         return customClass.date.valueOf() === date.valueOf() &&
           customClass.mode === this.datepickerMode;
       }, this);
+      if(!customClassObject) {
+        console.log("customClass");
+        console.log(customClassObject);
+      }
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 
@@ -310,5 +317,20 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
     return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
     (this.maxDate && this.compare(date, this.maxDate) > 0));
+  }
+
+  protected isAppointed(date: Date): boolean {
+    let isDateAppointed: boolean = false;
+    if (this.dateAppointed) {
+      this.dateAppointed.forEach((appointedDate: {date: Date, mode: string}) => {
+        if (appointedDate.date.getDate() == date.getDate()) {
+          console.log("appointed");
+          console.log(date);
+          isDateAppointed = true;
+        }
+      });
+    }
+
+    return isDateAppointed;
   }
 }
