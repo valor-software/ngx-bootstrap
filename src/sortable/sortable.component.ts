@@ -80,9 +80,9 @@ export class SortableComponent implements ControlValueAccessor {
      */
     @Output() public onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-    private _items: SortableItem[];
+    public showPlaceholder: boolean = false;
 
-    private showPlaceholder: boolean = false;
+    private _items: SortableItem[];
 
     private get items(): SortableItem[] {
         return this._items;
