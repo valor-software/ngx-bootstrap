@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, TemplateRef, ViewEncapsulation
+  Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener
 } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { TypeaheadUtils } from './typeahead-utils';
@@ -10,8 +10,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
   selector: 'typeahead-container',
   // tslint:disable-next-line
   template: `
-  <template [ngIf]="!isBs4"><ul class="dropdown-menu"
-      (mouseleave)="focusLost()">
+  <template [ngIf]="!isBs4"><ul class="dropdown-menu">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
       <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
       <li *ngIf="!match.isHeader()"
@@ -33,34 +32,38 @@ import { TypeaheadMatch } from './typeahead-match.class';
       </li>
     </template>
   </ul></template>
-  <template [ngIf]="isBs4"><div class="dropdown-menu"
-       (mouseleave)="focusLost()">
+  <template [ngIf]="isBs4">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
        <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
-       <div *ngIf="!match.isHeader() && !itemTemplate">
-          <a href="#"
+       <template [ngIf]="!match.isHeader() && !itemTemplate">
+          <button
             class="dropdown-item"
             (click)="selectMatch(match, $event)"
             (mouseenter)="selectActive(match)"
             [class.active]="isActive(match)"
-            [innerHtml]="hightlight(match, query)"></a>
-      </div>
-      <div *ngIf="!match.isHeader() && itemTemplate">
-        <a href="#"
-         class="dropdown-item"
-         (click)="selectMatch(match, $event)"
-         (mouseenter)="selectActive(match)"
-         [class.active]="isActive(match)">
+            [innerHtml]="hightlight(match, query)"></button>
+      </template>
+      <template [ngIf]="!match.isHeader() && itemTemplate">
+        <button
+           class="dropdown-item"
+           (click)="selectMatch(match, $event)"
+           (mouseenter)="selectActive(match)"
+           [class.active]="isActive(match)">
           <template [ngTemplateOutlet]="itemTemplate"
                     [ngOutletContext]="{item: match.item, index: i}">
           </template>
-         </a>
-      </div>
+         </button>
+      </template>
     </template>
-  </div></template>
+  </template>
 `,
-  // tslint:disable-next-line
-  host: {'class': 'dropdown open', style: 'position: absolute;' },
+  // tslint:disable
+  host: {
+    'class': 'dropdown open',
+    '[class.dropdown-menu]':'isBs4',
+    style: 'position: absolute;display: block;'
+  },
+  // tslint: enable
   encapsulation: ViewEncapsulation.None
 })
 export class TypeaheadContainerComponent {
@@ -163,6 +166,7 @@ export class TypeaheadContainerComponent {
     return itemStr;
   }
 
+  @HostListener('blur')
   public focusLost(): void {
     this.isFocused = false;
   }
