@@ -1,4 +1,7 @@
-## Migration notes v1.1.16 and less to v1.1.17
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.17...v1.2.0) (2017-01-12)
+
+### Migration notes v1.1.16 and less to v1.1.17
 1. `ComponentHelper` and `PositioningService` removed, please remove any mentions of this two
 2. Package structure was simplified, (removed `components` folder) so you need to change imports:
   - `ng2-bootstrap\ng2-bootstrap` to `ng2-bootstrap`
@@ -11,8 +14,19 @@
 
 4. Please read more in [documentation](http://valor-software.com/ng2-bootstrap/)
 
+### Bug Fixes
+
+* **sortable:** make property public for AoT compilance ([e5c3135](https://github.com/valor-software/ng2-bootstrap/commit/e5c3135)), closes [#1483](https://github.com/valor-software/ng2-bootstrap/issues/1483)
+
+
+### Features
+
+* **bs4:** upgrade to v4-alfa.6 ([#1485](https://github.com/valor-software/ng2-bootstrap/issues/1485)) ([4c71f87](https://github.com/valor-software/ng2-bootstrap/commit/4c71f87))
+
+
+
 <a name="1.1.17"></a>
-## [1.1.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-11...v1.1.16) (2017-01-11)
+## [1.1.17](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-11...v1.1.17) (2017-01-11)
 
 
 ### Bug Fixes
@@ -27,6 +41,8 @@
 
 * **docs:** make urls easy to share ([47ab93b](https://github.com/valor-software/ng2-bootstrap/commit/47ab93b))
 * **sortable:** added new sortable component ([#1295](https://github.com/valor-software/ng2-bootstrap/issues/1295)) ([fab3df5](https://github.com/valor-software/ng2-bootstrap/commit/fab3df5))
+
+
 
 <a name="1.1.16-11"></a>
 ## [1.1.16-11](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-7...v1.1.16-11) (2016-12-30)
