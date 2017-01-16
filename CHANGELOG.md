@@ -1,3 +1,19 @@
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.1...v1.2.2) (2017-01-16)
+
+
+### Bug Fixes
+
+* **sortable:** Changed reference to BrowserModule to CommonModule instead ([#1503](https://github.com/valor-software/ng2-bootstrap/issues/1503)) ([e7105c6](https://github.com/valor-software/ng2-bootstrap/commit/e7105c6))
+* **typeahead:** hide on blur when item was hovered ([4311c18](https://github.com/valor-software/ng2-bootstrap/commit/4311c18)), closes [#1495](https://github.com/valor-software/ng2-bootstrap/issues/1495)
+
+
+### Features
+
+* **build:** upgrade to support ng v2.3+ only ([bd5171a](https://github.com/valor-software/ng2-bootstrap/commit/bd5171a))
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.0...v1.2.1) (2017-01-13)
 
