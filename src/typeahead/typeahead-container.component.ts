@@ -166,6 +166,7 @@ export class TypeaheadContainerComponent {
     return itemStr;
   }
 
+  @HostListener('mouseleave')
   @HostListener('blur')
   public focusLost(): void {
     this.isFocused = false;
