@@ -5,11 +5,11 @@ export const DEMO_COMPONENTS = [SimpleItemsDemoComponent, ComplexDatamodelDemoCo
 
 export const DEMOS = {
   complexDatamodel: {
-    component: require('!!raw?lang=typescript!./complex-datamodel/complex-datamodel.component.ts'),
-    html: require('!!raw?lang=markup!./complex-datamodel/complex-datamodel.component.html')
+    component: require('!!raw-loader?lang=typescript!./complex-datamodel/complex-datamodel.component.ts'),
+    html: require('!!raw-loader?lang=markup!./complex-datamodel/complex-datamodel.component.html')
   },
   simpleItems: {
-    component: require('!!raw?lang=typescript!./simple-items/simple-items.component.ts'),
-    html: require('!!raw?lang=markup!./simple-items/simple-items.component.html')
+    component: require('!!raw-loader?lang=typescript!./simple-items/simple-items.component.ts'),
+    html: require('!!raw-loader?lang=markup!./simple-items/simple-items.component.html')
   }
 };

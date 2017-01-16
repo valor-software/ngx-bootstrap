@@ -16,39 +16,39 @@ export const DEMO_COMPONENTS = [DemoAlertBasicComponent,
 
 export const DEMOS = {
   basic: {
-    component: require('!!raw?lang=typescript!./basic/basic.ts'),
-    html: require('!!raw?lang=markup!./basic/basic.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic.ts'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   link: {
-    component: require('!!raw?lang=typescript!./link/link.ts'),
-    html: require('!!raw?lang=markup!./link/link.html')
+    component: require('!!raw-loader?lang=typescript!./link/link.ts'),
+    html: require('!!raw-loader?lang=markup!./link/link.html')
   },
   content: {
-    component: require('!!raw?lang=typescript!./content/content.ts'),
-    html: require('!!raw?lang=markup!./content/content.html')
+    component: require('!!raw-loader?lang=typescript!./content/content.ts'),
+    html: require('!!raw-loader?lang=markup!./content/content.html')
   },
   dismiss: {
-    component: require('!!raw?lang=typescript!./dismiss/dismiss.ts'),
-    html: require('!!raw?lang=markup!./dismiss/dismiss.html')
+    component: require('!!raw-loader?lang=typescript!./dismiss/dismiss.ts'),
+    html: require('!!raw-loader?lang=markup!./dismiss/dismiss.html')
   },
   timeout: {
-    component: require('!!raw?lang=typescript!./dismiss-on-timeout/dismiss-on-timeout.ts'),
-    html: require('!!raw?lang=markup!./dismiss-on-timeout/dismiss-on-timeout.html')
+    component: require('!!raw-loader?lang=typescript!./dismiss-on-timeout/dismiss-on-timeout.ts'),
+    html: require('!!raw-loader?lang=markup!./dismiss-on-timeout/dismiss-on-timeout.html')
   },
   dynamic: {
-    component: require('!!raw?lang=typescript!./dynamic-html/dynamic-html.ts'),
-    html: require('!!raw?lang=markup!./dynamic-html/dynamic-html.html')
+    component: require('!!raw-loader?lang=typescript!./dynamic-html/dynamic-html.ts'),
+    html: require('!!raw-loader?lang=markup!./dynamic-html/dynamic-html.html')
   },
   global: {
-    component: require('!!raw?lang=typescript!./styling-global/styling-global.ts'),
-    html: require('!!raw?lang=markup!./styling-global/styling-global.html')
+    component: require('!!raw-loader?lang=typescript!./styling-global/styling-global.ts'),
+    html: require('!!raw-loader?lang=markup!./styling-global/styling-global.html')
   },
   local: {
-    component: require('!!raw?lang=typescript!./styling-local/styling-local.ts'),
-    html: require('!!raw?lang=markup!./styling-local/styling-local.html')
+    component: require('!!raw-loader?lang=typescript!./styling-local/styling-local.ts'),
+    html: require('!!raw-loader?lang=markup!./styling-local/styling-local.html')
   },
   config: {
-    component: require('!!raw?lang=typescript!./config/config.ts'),
-    html: require('!!raw?lang=markup!./config/config.html')
+    component: require('!!raw-loader?lang=typescript!./config/config.ts'),
+    html: require('!!raw-loader?lang=markup!./config/config.html')
   }
 };

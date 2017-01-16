@@ -26,47 +26,47 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   basic: {
-    component: require('!!raw?lang=typescript!./basic/basic.ts'),
-    html: require('!!raw?lang=markup!./basic/basic.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic.ts'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   forDirections: {
-    component: require('!!raw?lang=typescript!./four-directions/four-directions.ts'),
-    html: require('!!raw?lang=markup!./four-directions/four-directions.html')
+    component: require('!!raw-loader?lang=typescript!./four-directions/four-directions.ts'),
+    html: require('!!raw-loader?lang=markup!./four-directions/four-directions.html')
   },
   dismiss: {
-    component: require('!!raw?lang=typescript!./dismiss/dismiss.ts'),
-    html: require('!!raw?lang=markup!./dismiss/dismiss.html')
+    component: require('!!raw-loader?lang=typescript!./dismiss/dismiss.ts'),
+    html: require('!!raw-loader?lang=markup!./dismiss/dismiss.html')
   },
   dynamic: {
-    component: require('!!raw?lang=typescript!./dynamic/dynamic.ts'),
-    html: require('!!raw?lang=markup!./dynamic/dynamic.html')
+    component: require('!!raw-loader?lang=typescript!./dynamic/dynamic.ts'),
+    html: require('!!raw-loader?lang=markup!./dynamic/dynamic.html')
   },
   dynamicHtml: {
-    component: require('!!raw?lang=typescript!./dynamic-html/dynamic-html.ts'),
-    html: require('!!raw?lang=markup!./dynamic-html/dynamic-html.html')
+    component: require('!!raw-loader?lang=typescript!./dynamic-html/dynamic-html.ts'),
+    html: require('!!raw-loader?lang=markup!./dynamic-html/dynamic-html.html')
   },
   container: {
-    component: require('!!raw?lang=typescript!./container/container.ts'),
-    html: require('!!raw?lang=markup!./container/container.html')
+    component: require('!!raw-loader?lang=typescript!./container/container.ts'),
+    html: require('!!raw-loader?lang=markup!./container/container.html')
   },
   config: {
-    component: require('!!raw?lang=typescript!./config/config.ts'),
-    html: require('!!raw?lang=markup!./config/config.html')
+    component: require('!!raw-loader?lang=typescript!./config/config.ts'),
+    html: require('!!raw-loader?lang=markup!./config/config.html')
   },
   triggersCustom: {
-    component: require('!!raw?lang=typescript!./triggers-custom/triggers-custom.ts'),
-    html: require('!!raw?lang=markup!./triggers-custom/triggers-custom.html')
+    component: require('!!raw-loader?lang=typescript!./triggers-custom/triggers-custom.ts'),
+    html: require('!!raw-loader?lang=markup!./triggers-custom/triggers-custom.html')
   },
   triggersManual: {
-    component: require('!!raw?lang=typescript!./triggers-manual/triggers-manual.ts'),
-    html: require('!!raw?lang=markup!./triggers-manual/triggers-manual.html')
+    component: require('!!raw-loader?lang=typescript!./triggers-manual/triggers-manual.ts'),
+    html: require('!!raw-loader?lang=markup!./triggers-manual/triggers-manual.html')
   },
   stylingComponent: {
-    component: require('!!raw?lang=typescript!./styling-local/styling-local.ts'),
-    html: require('!!raw?lang=markup!./styling-local/styling-local.html')
+    component: require('!!raw-loader?lang=typescript!./styling-local/styling-local.ts'),
+    html: require('!!raw-loader?lang=markup!./styling-local/styling-local.html')
   },
   stylingGlobal: {
-    component: require('!!raw?lang=typescript!./styling-global/styling-global.ts'),
-    html: require('!!raw?lang=markup!./styling-global/styling-global.html')
+    component: require('!!raw-loader?lang=typescript!./styling-global/styling-global.ts'),
+    html: require('!!raw-loader?lang=markup!./styling-global/styling-global.html')
   }
 };

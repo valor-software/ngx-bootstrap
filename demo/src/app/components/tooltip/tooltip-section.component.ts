@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DEMOS } from './demos';
 // webpack html imports
-let titleDoc = require('html!markdown!./docs/title.md');
+let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 
 @Component({
   selector: 'tooltip-section',
