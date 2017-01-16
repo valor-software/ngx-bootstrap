@@ -8,15 +8,15 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   basic: {
-    component: require('!!raw?lang=typescript!./basic/basic'),
-    html: require('!!raw?lang=markup!./basic/basic.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   dynamic: {
-    component: require('!!raw?lang=typescript!./dynamic/dynamic'),
-    html: require('!!raw?lang=markup!./dynamic/dynamic.html')
+    component: require('!!raw-loader?lang=typescript!./dynamic/dynamic'),
+    html: require('!!raw-loader?lang=markup!./dynamic/dynamic.html')
   },
   custom: {
-    component: require('!!raw?lang=typescript!./custom/custom'),
-    html: require('!!raw?lang=markup!./custom/custom.html')
+    component: require('!!raw-loader?lang=typescript!./custom/custom'),
+    html: require('!!raw-loader?lang=markup!./custom/custom.html')
   }
 };

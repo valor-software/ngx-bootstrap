@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-let doc = require('html!markdown!./getting-started.md');
+let doc = require('html-loader!markdown-loader!./getting-started.md');
 
 @Component({
   selector: 'getting-started',

@@ -12,27 +12,27 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   basic: {
-    component: require('!!raw?lang=typescript!./basic/basic'),
-    html: require('!!raw?lang=markup!./basic/basic.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   disabled: {
-    component: require('!!raw?lang=typescript!./disabled/disabled'),
-    html: require('!!raw?lang=markup!./disabled/disabled.html')
+    component: require('!!raw-loader?lang=typescript!./disabled/disabled'),
+    html: require('!!raw-loader?lang=markup!./disabled/disabled.html')
   },
   dynamic: {
-    component: require('!!raw?lang=typescript!./dymanic/dynamic'),
-    html: require('!!raw?lang=markup!./dymanic/dynamic.html')
+    component: require('!!raw-loader?lang=typescript!./dymanic/dynamic'),
+    html: require('!!raw-loader?lang=markup!./dymanic/dynamic.html')
   },
   oneAtATime: {
-    component: require('!!raw?lang=typescript!./one-at-a-time/one-at-a-time'),
-    html: require('!!raw?lang=markup!./one-at-a-time/one-at-a-time.html')
+    component: require('!!raw-loader?lang=typescript!./one-at-a-time/one-at-a-time'),
+    html: require('!!raw-loader?lang=markup!./one-at-a-time/one-at-a-time.html')
   },
   config: {
-    component: require('!!raw?lang=typescript!./config/config'),
-    html: require('!!raw?lang=markup!./config/config.html')
+    component: require('!!raw-loader?lang=typescript!./config/config'),
+    html: require('!!raw-loader?lang=markup!./config/config.html')
   },
   styling: {
-    component: require('!!raw?lang=typescript!./styling/styling'),
-    html: require('!!raw?lang=markup!./styling/styling.html')
+    component: require('!!raw-loader?lang=typescript!./styling/styling'),
+    html: require('!!raw-loader?lang=markup!./styling/styling.html')
   }
 };

@@ -12,19 +12,19 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   basic: {
-    component: require('!!raw?lang=typescript!./basic/basic.ts'),
-    html: require('!!raw?lang=markup!./basic/basic.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic.ts'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   captions: {
-    component: require('!!raw?lang=typescript!./captions/captions.ts'),
-    html: require('!!raw?lang=markup!./captions/captions.html')
+    component: require('!!raw-loader?lang=typescript!./captions/captions.ts'),
+    html: require('!!raw-loader?lang=markup!./captions/captions.html')
   },
   dynamic: {
-    component: require('!!raw?lang=typescript!./dynamic/dynamic.ts'),
-    html: require('!!raw?lang=markup!./dynamic/dynamic.html')
+    component: require('!!raw-loader?lang=typescript!./dynamic/dynamic.ts'),
+    html: require('!!raw-loader?lang=markup!./dynamic/dynamic.html')
   },
   config: {
-    component: require('!!raw?lang=typescript!./config/config.ts'),
-    html: require('!!raw?lang=markup!./config/config.html')
+    component: require('!!raw-loader?lang=typescript!./config/config.ts'),
+    html: require('!!raw-loader?lang=markup!./config/config.html')
   }
 };

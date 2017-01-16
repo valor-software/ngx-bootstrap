@@ -13,31 +13,31 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   basic: {
-    component: require('!!raw?lang=typescript!./basic/basic'),
-    html: require('!!raw?lang=markup!./basic/basic.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   dynamic: {
-    component: require('!!raw?lang=typescript!./dynamic/dynamic'),
-    html: require('!!raw?lang=markup!./dynamic/dynamic.html')
+    component: require('!!raw-loader?lang=typescript!./dynamic/dynamic'),
+    html: require('!!raw-loader?lang=markup!./dynamic/dynamic.html')
   },
   pills: {
-    component: require('!!raw?lang=typescript!./pills/pills'),
-    html: require('!!raw?lang=markup!./pills/pills.html')
+    component: require('!!raw-loader?lang=typescript!./pills/pills'),
+    html: require('!!raw-loader?lang=markup!./pills/pills.html')
   },
   verticalPills: {
-    component: require('!!raw?lang=typescript!./vertical-pills/vertical-pills'),
-    html: require('!!raw?lang=markup!./vertical-pills/vertical-pills.html')
+    component: require('!!raw-loader?lang=typescript!./vertical-pills/vertical-pills'),
+    html: require('!!raw-loader?lang=markup!./vertical-pills/vertical-pills.html')
   },
   justified: {
-    component: require('!!raw?lang=typescript!./justified/justified'),
-    html: require('!!raw?lang=markup!./justified/justified.html')
+    component: require('!!raw-loader?lang=typescript!./justified/justified'),
+    html: require('!!raw-loader?lang=markup!./justified/justified.html')
   },
   styling: {
-    component: require('!!raw?lang=typescript!./styling/styling'),
-    html: require('!!raw?lang=markup!./styling/styling.html')
+    component: require('!!raw-loader?lang=typescript!./styling/styling'),
+    html: require('!!raw-loader?lang=markup!./styling/styling.html')
   },
   config: {
-    component: require('!!raw?lang=typescript!./config/config'),
-    html: require('!!raw?lang=markup!./config/config.html')
+    component: require('!!raw-loader?lang=typescript!./config/config'),
+    html: require('!!raw-loader?lang=markup!./config/config.html')
   }
 };

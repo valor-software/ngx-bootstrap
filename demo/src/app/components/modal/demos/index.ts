@@ -8,15 +8,15 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   sizes: {
-    component: require('!!raw?lang=typescript!./sizes/sizes.ts'),
-    html: require('!!raw?lang=markup!./sizes/sizes.html')
+    component: require('!!raw-loader?lang=typescript!./sizes/sizes.ts'),
+    html: require('!!raw-loader?lang=markup!./sizes/sizes.html')
   },
   child: {
-    component: require('!!raw?lang=typescript!./child/child.ts'),
-    html: require('!!raw?lang=markup!./child/child.html')
+    component: require('!!raw-loader?lang=typescript!./child/child.ts'),
+    html: require('!!raw-loader?lang=markup!./child/child.html')
   },
   staticModal: {
-    component: require('!!raw?lang=typescript!./static/static.ts'),
-    html: require('!!raw?lang=markup!./static/static.html')
+    component: require('!!raw-loader?lang=typescript!./static/static.ts'),
+    html: require('!!raw-loader?lang=markup!./static/static.html')
   }
 };
