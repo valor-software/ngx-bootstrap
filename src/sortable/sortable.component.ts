@@ -17,7 +17,7 @@ import { DraggableItemService } from './draggable-item.service';
     (dragover)="cancelEvent($event)"
     (dragenter)="cancelEvent($event)"
     (drop)="resetActiveItem($event)"
-    (mouseleave)="resetActiveItem()">
+    (mouseleave)="resetActiveItem($event)">
   <div
         *ngIf="showPlaceholder"
         [ngClass]="placeholderClass"
