@@ -1,3 +1,12 @@
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.1...v1.2.3) (2017-01-17)
+
+
+### Bug Fixes
+
+* **sortable:** prop made public for AoT ([1c25afc](https://github.com/valor-software/ng2-bootstrap/commit/1c25afc))
+
+
 <a name="1.2.2"></a>
 ## [1.2.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.1...v1.2.2) (2017-01-16)
 
