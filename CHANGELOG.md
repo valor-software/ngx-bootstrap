@@ -1,3 +1,13 @@
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.3...v1.2.4) (2017-01-17)
+
+
+### Bug Fixes
+
+* **sortable:** fixing AoT type issues ([717a7e9](https://github.com/valor-software/ng2-bootstrap/commit/717a7e9))
+
+
+
 <a name="1.2.3"></a>
 ## [1.2.3](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.1...v1.2.3) (2017-01-17)
 
