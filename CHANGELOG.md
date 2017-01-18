@@ -1,3 +1,14 @@
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.4...v1.2.5) (2017-01-18)
+
+
+### Bug Fixes
+
+* **accordion:** a tag replaced with div, so preventDefault() was removed from toggleOpen ([d352962](https://github.com/valor-software/ng2-bootstrap/commit/d352962)), closes [#1512](https://github.com/valor-software/ng2-bootstrap/issues/1512)
+* **carousel:** fixed styles for carousel navigation buttons ([a1489bd](https://github.com/valor-software/ng2-bootstrap/commit/a1489bd))
+
+
+
 <a name="1.2.4"></a>
 ## [1.2.4](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.3...v1.2.4) (2017-01-17)
 
