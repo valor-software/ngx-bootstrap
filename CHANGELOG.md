@@ -1,3 +1,13 @@
+<a name="1.2.6"></a>
+## [1.2.6](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.5...v1.2.6) (2017-01-19)
+
+
+### Bug Fixes
+
+* **aot:** added missing exports ([d40a299](https://github.com/valor-software/ng2-bootstrap/commit/d40a299))
+
+
+
 <a name="1.2.5"></a>
 ## [1.2.5](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.4...v1.2.5) (2017-01-18)
 
