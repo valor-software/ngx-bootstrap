@@ -10,17 +10,13 @@
     "noEmitHelpers": false,
     "noImplicitAny": true,
     "declaration": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "stripInternal": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "lib": ["dom", "es6"],
     "types": [
-      "jasmine",
-      "webpack"
-    ],
-    "typeRoots": [
-      "../node_modules/@types"
+      "jasmine"
     ]
   },
   "exclude": [
