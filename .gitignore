@@ -17,19 +17,22 @@
 /coverage/*
 /libpeerconnection.log
 npm-debug.log
-testem.log
-/typings
 
 # ignore build and dist for now
 /dist
 /temp
 /demo/dist
+/demo/temp
 /logs
-
-# e2e
-#/demo/e2e/*.js
-#/demo/e2e/*.map
 
 #System Files
 .DS_Store
 Thumbs.db
+
+
+/demo/e2e/*.js
+/demo/e2e/*.map
+src/**/*.js
+src/**/*.map
+scripts/**/*.js
+scripts/**/*.map

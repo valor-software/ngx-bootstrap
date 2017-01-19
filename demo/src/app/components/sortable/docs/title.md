@@ -1,0 +1,1 @@
+The **sortable component** represents a list of items, with ability to sort them or move to another container via drag&drop. Input collection isn't mutated by the component, so events <code>ngModelChange</code>, <code>onChange</code> are using new collections.

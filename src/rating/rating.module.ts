@@ -1,13 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RatingComponent } from './rating.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   declarations: [RatingComponent],
-  exports: [FormsModule, RatingComponent]
+  exports: [RatingComponent]
 })
 export class RatingModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: RatingModule,
+      providers: []
+    };
+  }
 }

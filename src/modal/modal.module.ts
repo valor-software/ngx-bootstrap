@@ -1,14 +1,17 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalDirective } from './modal.component';
-import { ComponentsHelper } from '../utils/components-helper.service';
+import { PositioningService } from '../positioning';
+import { ComponentLoaderFactory } from '../component-loader';
 
 @NgModule({
   declarations: [ModalBackdropComponent, ModalDirective],
   exports: [ModalBackdropComponent, ModalDirective],
-  entryComponents: [ModalBackdropComponent],
-  providers: [ComponentsHelper]
+  entryComponents: [ModalBackdropComponent]
 })
 export class ModalModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: ModalModule, providers: [ComponentLoaderFactory, PositioningService]};
+  }
 }

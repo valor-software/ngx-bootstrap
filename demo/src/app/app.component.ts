@@ -1,35 +1,55 @@
-import { AfterContentInit, Component, ViewContainerRef } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-
-import { Ng2BootstrapConfig, Ng2BootstrapTheme, ComponentsHelper } from 'ng2-bootstrap';
-
-let w:any = window;
-
-if (w && w.__theme === 'bs4') {
-  Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
-}
+import { AfterContentInit, Component, Inject } from '@angular/core';
+import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
+import { isBs3 } from 'ng2-bootstrap';
+import { PageScrollConfig, PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
+import { DOCUMENT } from '@angular/platform-browser';
+PageScrollConfig.defaultDuration = 11;
+PageScrollConfig.defaultScrollOffset = 70;
 
 @Component({
   selector: 'bs-demo',
-  templateUrl: 'app.component.html'
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterContentInit {
-  public isBs3:boolean = Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS3;
-
-  private router:Router;
-  public constructor(router:Router, componentsHelper:ComponentsHelper, vcr:ViewContainerRef) {
-    this.router = router;
-    componentsHelper.setRootViewContainerRef(vcr);
+  public get isBs3(): boolean {
+    return isBs3();
   }
 
-  public ngAfterContentInit():any {
-    this.router.events.subscribe((event:any) => {
-      if (event instanceof NavigationEnd) {
-        if (typeof PR !== 'undefined') {
-          // google code-prettify
-          setTimeout(PR.prettyPrint, 50);
-        }
+  private route: ActivatedRoute;
+  private router: Router;
+  private pageScrollService: PageScrollService;
+  private document: any;
+
+  public constructor(route: ActivatedRoute, router: Router, pageScrollService: PageScrollService, @Inject(DOCUMENT) document: any) {
+    this.route = route;
+    this.router = router;
+    this.pageScrollService = pageScrollService;
+    this.document = document;
+  }
+
+  // almost same logic exists in top-menu component
+  public ngAfterContentInit(): any {
+    const getUrl = (router: Router) => router.routerState.snapshot.url.slice(0, router.routerState.snapshot.url.indexOf('#'));
+    let _prev = getUrl(this.router);
+    const justDoIt = (event: any): void => {
+      if (!(event instanceof NavigationEnd)) {
+        return;
       }
-    });
+
+      let _cur = getUrl(this.router);
+      if (typeof PR !== 'undefined' && _prev !== _cur) {
+        _prev = _cur;
+        // google code-prettify
+        PR.prettyPrint();
+      }
+
+      let hash = this.route.snapshot.fragment;
+      if (hash) {
+        let pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleDirectionInstance(this.document, `#${hash}`, true);
+        this.pageScrollService.start(pageScrollInstance);
+      }
+    };
+
+    this.router.events.subscribe((event: any) => setTimeout(() => justDoIt(event), 50));
   }
 }

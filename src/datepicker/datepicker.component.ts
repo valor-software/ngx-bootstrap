@@ -46,28 +46,50 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
 })
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
-  @Input() public datepickerMode: string;
+  /** sets datepicker mode, supports: `day`, `month`, `year` */
+  @Input() public datepickerMode: string = 'day';
+  /** default date to show if `ng-model` value is not specified */
   @Input() public initDate: Date;
+  /**  oldest selectable date */
   @Input() public minDate: Date;
+  /** latest selectable date */
   @Input() public maxDate: Date;
+  /** set lower datepicker mode, supports: `day`, `month`, `year` */
   @Input() public minMode: string;
+  /** sets upper datepicker mode, supports: `day`, `month`, `year` */
   @Input() public maxMode: string;
-  @Input() public showWeeks: boolean;
+  /** if false week numbers will be hidden */
+  @Input() public showWeeks: boolean = true;
+  /** format of day in month */
   @Input() public formatDay: string;
+  /** format of month in year */
   @Input() public formatMonth: string;
+  /** format of year in year range */
   @Input() public formatYear: string;
+  /** format of day in week header */
   @Input() public formatDayHeader: string;
+  /** format of title when selecting day */
   @Input() public formatDayTitle: string;
+  /** format of title when selecting month */
   @Input() public formatMonthTitle: string;
+  /** starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday) */
   @Input() public startingDay: number;
+  /** number of years displayed in year selection */
   @Input() public yearRange: number;
+  /** if true only dates from the currently displayed month will be shown */
   @Input() public onlyCurrentMonth: boolean;
+  /** if true shortcut`s event propagation will be disabled */
   @Input() public shortcutPropagation: boolean;
-  @Input() public customClass: {date: Date, mode: string, clazz: string}[];
+  /** number of months displayed in a single row of month picker */
   @Input() public monthColLimit: number;
+  /** number of years displayed in a single row of year picker */
   @Input() public yearColLimit: number;
+  /** array of custom css classes to be applied to targeted dates */
+  @Input() public customClass: {date: Date, mode: string, clazz: string}[];
+  /** array of disabled dates */
   @Input() public dateDisabled: {date: Date, mode: string}[];
 
+  /** currently active date */
   @Input()
   public get activeDate(): Date {
     return this._activeDate || this._now;

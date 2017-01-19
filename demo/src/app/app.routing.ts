@@ -10,10 +10,12 @@ import { ModalSectionComponent } from './components/modal/modal-section.componen
 import { ProgressbarSectionComponent } from './components/progressbar/progressbar-section.component';
 import { PaginationSectionComponent } from './components/pagination/pagination-section.component';
 import { RatingSectionComponent } from './components/rating/rating-section.component';
+import { SortableSectionComponent } from './components/sortable/sortable-section.component';
 import { TabsSectionComponent } from './components/tabs/tabs-section.component';
 import { TimepickerSectionComponent } from './components/timepicker/timepicker-section.component';
 import { TooltipSectionComponent } from './components/tooltip/tooltip-section.component';
 import { TypeaheadSectionComponent } from './components/typeahead/typeahead-section.component';
+import { PopoverSectionComponent } from './components/popover/popover-section.component';
 
 export const routes = [
   {
@@ -67,6 +69,11 @@ export const routes = [
     component: PaginationSectionComponent
   },
   {
+    path: 'popover',
+    data: ['Popover'],
+    component: PopoverSectionComponent
+  },
+  {
     path: 'progressbar',
     data: ['Progressbar'],
     component: ProgressbarSectionComponent
@@ -85,6 +92,11 @@ export const routes = [
     path: 'timepicker',
     data: ['Timepicker'],
     component: TimepickerSectionComponent
+  },
+  {
+    path: 'sortable',
+    data: ['Sortable'],
+    component: SortableSectionComponent
   },
   {
     path: 'tooltip',

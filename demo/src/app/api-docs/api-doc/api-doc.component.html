@@ -1,0 +1,74 @@
+<div class="api-doc-component">
+  <h3>
+    <a (click)="trackSourceClick()" href="https://github.com/valor-software/ng2-bootstrap/tree/development/{{apiDocs.fileName}}" target="_blank">{{apiDocs.className}}</a>
+  </h3>
+  <p [innerHtml]="apiDocs.description"></p>
+    <table class="table table-sm table-hover">
+      <tbody>
+        <tr>
+          <td class="col-xs-3">Selector</td>
+          <td class="col-xs-9"><code>{{apiDocs.selector}}</code></td>
+        </tr>
+        <tr *ngIf="apiDocs.exportAs">
+          <td class="col-xs-3">Exported as</td>
+          <td class="col-xs-9"><code>{{apiDocs.exportAs}}</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+  <template [ngIf]="apiDocs.inputs.length">
+    <section>
+      <h3 id="inputs">Inputs</h3>
+      <table class="table table-sm table-hover">
+        <tbody>
+        <tr *ngFor="let input of apiDocs.inputs">
+          <td class="col-xs-3"><code>{{input.name}}</code></td>
+          <td class="col-xs-9">
+            <div><i>Type: </i><code>{{ input.type }}</code></div>
+            <template [ngIf]="defaultInputValue(input) || hasConfigProperty(input)">
+              <div>
+                <span><i>Default value: </i><code>{{ defaultInputValue(input) || '-' }}</code></span>
+                <span *ngIf="hasConfigProperty(input)">&mdash; initialized from {{ configServiceName }} service</span>
+              </div>
+            </template>
+            <div [innerHtml]="input.description"></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </template>
+
+  <template [ngIf]="apiDocs.outputs.length">
+    <section>
+      <h3 id="outputs">Outputs</h3>
+      <table class="table table-sm table-hover">
+        <tbody>
+          <tr *ngFor="let output of apiDocs.outputs">
+            <td class="col-xs-3"><code>{{output.name}}</code></td>
+            <td class="col-xs-9"><div [innerHtml]="output.description"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </template>
+
+  <template [ngIf]="apiDocs.methods.length && apiDocs.exportAs">
+    <section>
+      <h3 id="methods">Methods</h3>
+      <table class="table table-sm table-hover">
+        <tbody>
+        <tr *ngFor="let method of apiDocs.methods">
+          <td class="col-xs-3"><code>{{method.name}}</code></td>
+          <td class="col-xs-9">
+            <div><i>Signature: </i><code>{{ methodSignature(method) }}</code></div>
+            <div><i>Return type: </i><code>{{ method.returnType }}</code></div>
+            <div [innerHtml]="method.description"></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </template>
+</div>
+<hr/>

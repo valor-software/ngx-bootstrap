@@ -19,9 +19,11 @@ import { ProgressDirective } from './progress.directive';
 `
 })
 export class BarComponent implements OnInit, OnDestroy {
-  @Input() public type:string;
   public max:number;
 
+  /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
+  @Input() public type:string;
+  /** current value of progress bar */
   @Input()
   public get value():number {
     return this._value;

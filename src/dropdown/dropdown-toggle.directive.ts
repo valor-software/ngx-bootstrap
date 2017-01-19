@@ -7,14 +7,17 @@ import { DropdownDirective } from './dropdown.directive';
 /* tslint:disable-next-line */
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
+/** Mark element which can toggle dropdown visibility with this directive */
 @Directive({
   selector: '[dropdownToggle]',
   exportAs: 'bs-dropdown-toggle'
 })
 export class DropdownToggleDirective implements OnInit {
+  /** if true dropdown toggle will be disabled */
   @HostBinding('class.disabled')
   @Input() public isDisabled:boolean = false;
 
+  /** if true the dropdown-toggle class will be added to the element */
   @HostBinding('class.dropdown-toggle')
   @Input() public addToggleClass:boolean = true;
 

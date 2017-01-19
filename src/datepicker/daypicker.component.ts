@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Ng2BootstrapConfig, Ng2BootstrapTheme } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 // write an interface for template options
-const TEMPLATE_OPTIONS:any = {
-  [Ng2BootstrapTheme.BS4]: {
+const TEMPLATE_OPTIONS: any = {
+  'bs4': {
     ARROW_LEFT: '&lt;',
     ARROW_RIGHT: '&gt;'
   },
-  [Ng2BootstrapTheme.BS3]: {
+  'bs3': {
     ARROW_LEFT: `
     <i class="glyphicon glyphicon-chevron-left"></i>
     `,
@@ -53,7 +52,7 @@ const TEMPLATE_OPTIONS:any = {
     </tr>
     <tr>
       <th *ngIf="datePicker.showWeeks"></th>
-      <th *ngFor="let labelz of labels" [ngClass]="{'text-xs-center':isBS4, 'text-center': !isBS4}">
+      <th *ngFor="let labelz of labels" class="text-center">
         <small aria-label="labelz.full"><b>{{labelz.abbr}}</b></small>
       </th>
     </tr>
@@ -61,16 +60,16 @@ const TEMPLATE_OPTIONS:any = {
   <tbody>
     <template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
       <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
-        <td *ngIf="datePicker.showWeeks" class="h6" [ngClass]="{'text-xs-center':isBS4, 'text-center': !isBS4}">
+        <td *ngIf="datePicker.showWeeks" class="h6" class="text-center">
           <em>{{ weekNumbers[index] }}</em>
         </td>
-        <td *ngFor="let dtz of rowz" [ngClass]="{'text-xs-center':isBS4, 'text-center': !isBS4}" role="gridcell" [id]="dtz.uid">
+        <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" [id]="dtz.uid">
           <button type="button" style="min-width:100%;" class="btn btn-sm {{dtz.customClass}}"
                   *ngIf="!(datePicker.onlyCurrentMonth && dtz.secondary)"
-                  [ngClass]="{'btn-secondary': isBS4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBS4 && datePicker.isActive(dtz), 'btn-default': !isBS4}"
+                  [ngClass]="{'btn-secondary': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected, disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz), 'btn-default': !isBs4}"
                   [disabled]="dtz.disabled"
                   (click)="datePicker.select(dtz.date)" tabindex="-1">
-            <span [ngClass]="{'text-muted': dtz.secondary || dtz.current, 'text-info': !isBS4 && dtz.current}">{{dtz.label}}</span>
+            <span [ngClass]="{'text-muted': dtz.secondary || dtz.current, 'text-info': !isBs4 && dtz.current}">{{dtz.label}}</span>
           </button>
         </td>
       </tr>
@@ -81,31 +80,34 @@ const TEMPLATE_OPTIONS:any = {
 })
 export class DayPickerComponent implements OnInit {
 
-  public labels:any[] = [];
-  public title:string;
-  public rows:any[] = [];
-  public weekNumbers:number[] = [];
-  public datePicker:DatePickerInnerComponent;
-  public CURRENT_THEME_TEMPLATE:any = TEMPLATE_OPTIONS[Ng2BootstrapConfig.theme || Ng2BootstrapTheme.BS3];
+  public labels: any[] = [];
+  public title: string;
+  public rows: any[] = [];
+  public weekNumbers: number[] = [];
+  public datePicker: DatePickerInnerComponent;
+  public CURRENT_THEME_TEMPLATE: any;
 
-  public constructor(datePicker:DatePickerInnerComponent) {
+  public constructor(datePicker: DatePickerInnerComponent) {
+    this.CURRENT_THEME_TEMPLATE = isBs3()
+      ? TEMPLATE_OPTIONS.bs3
+      : TEMPLATE_OPTIONS.bs4;
     this.datePicker = datePicker;
   }
 
-  public get isBS4():boolean {
-    return Ng2BootstrapConfig.theme === Ng2BootstrapTheme.BS4;
+  public get isBs4(): boolean {
+    return !isBs3();
   }
 
   /*protected getDaysInMonth(year:number, month:number) {
    return ((month === 1) && (year % 4 === 0) &&
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
-  public ngOnInit():void {
+  public ngOnInit(): void {
     let self = this;
 
     this.datePicker.stepDay = {months: 1};
 
-    this.datePicker.setRefreshViewHandler(function ():void {
+    this.datePicker.setRefreshViewHandler(function (): void {
       let year = this.activeDate.getFullYear();
       let month = this.activeDate.getMonth();
       let firstDayOfMonth = new Date(year, month, 1);
@@ -120,8 +122,8 @@ export class DayPickerComponent implements OnInit {
       }
 
       // 42 is the number of days on a six-week calendar
-      let _days:Date[] = self.getDates(firstDate, 42);
-      let days:any[] = [];
+      let _days: Date[] = self.getDates(firstDate, 42);
+      let days: any[] = [];
       for (let i = 0; i < 42; i++) {
         let _dateObject = this.createDateObject(_days[i], this.formatDay);
         _dateObject.secondary = _days[i].getMonth() !== month;
@@ -149,7 +151,7 @@ export class DayPickerComponent implements OnInit {
       }
     }, 'day');
 
-    this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
+    this.datePicker.setCompareHandler(function (date1: Date, date2: Date): number {
       let d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
       let d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
       return d1.getTime() - d2.getTime();
@@ -158,11 +160,11 @@ export class DayPickerComponent implements OnInit {
     this.datePicker.refreshView();
   }
 
-  protected getDates(startDate:Date, n:number):Date[] {
-    let dates:Date[] = new Array(n);
+  protected getDates(startDate: Date, n: number): Date[] {
+    let dates: Date[] = new Array(n);
     let current = new Date(startDate.getTime());
     let i = 0;
-    let date:Date;
+    let date: Date;
     while (i < n) {
       date = new Date(current.getTime());
       date = this.datePicker.fixTimeZone(date);
@@ -172,7 +174,7 @@ export class DayPickerComponent implements OnInit {
     return dates;
   }
 
-  protected getISO8601WeekNumber(date:Date):number {
+  protected getISO8601WeekNumber(date: Date): number {
     let checkDate = new Date(date.getTime());
     // Thursday
     checkDate.setDate(checkDate.getDate() + 4 - (checkDate.getDay() || 7));

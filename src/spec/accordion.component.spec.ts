@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AccordionModule } from '../accordion/accordion.module';
+import { AccordionConfig } from '../accordion/accordion.config';
 
 const html = `
   <accordion [closeOthers]="oneAtATime">
@@ -53,7 +54,7 @@ describe('Component: Accordion', () => {
   let element:any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAccordionComponent], imports: [AccordionModule]});
+    TestBed.configureTestingModule({declarations: [TestAccordionComponent], imports: [AccordionModule.forRoot()]});
     TestBed.overrideComponent(TestAccordionComponent, {set: {template: html}});
     fixture = TestBed.createComponent(TestAccordionComponent);
     context = fixture.componentInstance;
@@ -100,12 +101,12 @@ describe('Component: Accordion', () => {
   });
 
   it('should have the appropriate heading', () => {
-    const titles = Array.from(element.querySelectorAll('.panel-heading a span'));
+    const titles = Array.from(element.querySelectorAll('.panel-heading .accordion-toggle span'));
     titles.forEach((title:HTMLElement, idx:number) => expect(hasTitle(title, `Panel ${idx + 1}`)).toBe(true));
   });
 
   it('should only open one at a time', () => {
-    const headingLinks = element.querySelectorAll('.panel-title a');
+    const headingLinks = element.querySelectorAll('.accordion-toggle');
 
     headingLinks[0].click();
     fixture.detectChanges();
@@ -131,7 +132,7 @@ describe('Component: Accordion', () => {
   it('should not open disabled panels from click', () => {
     context.panels[0].isDisabled = true;
     fixture.detectChanges();
-    const headingLinks = element.querySelectorAll('.panel-title a');
+    const headingLinks = element.querySelectorAll('.panel-title .accordion-toggle');
     headingLinks[0].click();
     fixture.detectChanges();
     expectOpenPanels(element, [false, false, false]);
@@ -150,4 +151,8 @@ class TestAccordionComponent {
     {isOpen: false, isDisabled: false},
     {isOpen: false, isDisabled: false}
   ];
+
+  public constructor(config: AccordionConfig) {
+    Object.assign(this, config);
+  }
 }

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-
+/* tslint:disable: max-classes-per-file */
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -11,23 +11,41 @@ import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
+import { SortableModule } from './sortable';
 import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
-import { ComponentsHelper } from './utils/components-helper.service';
+import { PopoverModule } from './popover/popover.module';
+
+const MODULES = [
+  AccordionModule, AlertModule, ButtonsModule,
+  CarouselModule, CollapseModule, DatepickerModule,
+  DropdownModule, ModalModule, PaginationModule,
+  ProgressbarModule, PopoverModule, RatingModule,
+  TabsModule, TimepickerModule, TooltipModule,
+  TypeaheadModule
+];
 
 @NgModule({
-  exports: [
-    AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, DatepickerModule, DropdownModule,
-    ModalModule, PaginationModule, ProgressbarModule, RatingModule, TabsModule, TimepickerModule, TooltipModule,
-    TypeaheadModule
+  imports: [
+    AccordionModule.forRoot(), AlertModule.forRoot(), ButtonsModule.forRoot(),
+    CarouselModule.forRoot(), CollapseModule.forRoot(), DatepickerModule.forRoot(),
+    DropdownModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot(),
+    ProgressbarModule.forRoot(), PopoverModule.forRoot(), RatingModule.forRoot(),
+    TabsModule.forRoot(), TimepickerModule.forRoot(), TooltipModule.forRoot(),
+    TypeaheadModule.forRoot(), SortableModule.forRoot()
   ],
-  providers: [
-    {provide: ComponentsHelper, useClass: ComponentsHelper}
-  ]
+  exports: MODULES
 })
+export class BsRootModule {
+}
+
+@NgModule({exports: MODULES})
 export class Ng2BootstrapModule {
+  public static forRoot(): ModuleWithProviders {
+    return {ngModule: BsRootModule};
+  }
 }
 
 export * from './accordion';
@@ -41,13 +59,11 @@ export * from './dropdown';
 export * from './pagination';
 export * from './progressbar';
 export * from './rating';
+export * from './sortable';
 export * from './tabs';
 export * from './timepicker';
 export * from './tooltip';
 export * from './typeahead';
-
-export * from './utils/position';
-export * from './utils/common';
+export * from './popover';
 export * from './utils/ng2-bootstrap-config';
-
-export { ComponentsHelper } from './utils/components-helper.service';
+export * from './utils/decorators';

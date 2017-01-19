@@ -1,0 +1,7 @@
+<div class="col-md-6" style="margin: 20px 0;">
+  <pagination [directionLinks]="false" [totalItems]="totalItems" [(ngModel)]="currentPage" (numPages)="smallnumPages = $event"></pagination>
+</div>
+
+<div class="col-md-6">
+  <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn" itemsPerPage="10"></pager>
+</div>

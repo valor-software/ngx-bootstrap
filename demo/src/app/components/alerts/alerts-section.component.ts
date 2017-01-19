@@ -1,24 +1,16 @@
 import { Component } from '@angular/core';
+import { DEMOS } from './demos';
 
 // webpack html imports
-let doc = require('html!markdown!./docs/readme.md');
-let titleDoc = require('html!markdown!./docs/title.md');
-
-let ts = require('!!raw?lang=typescript!./demos/alerts-demo.component.ts');
-let html = require('!!raw?lang=markup!./demos/alerts-demo.component.html');
+let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
 
 @Component({
   selector: 'alert-section',
-  template: `
-    <demo-section [name]="name" [src]="src" [titleDoc]="titleDoc" [html]="html" [ts]="ts" [doc]="doc">
-      <alert-demo></alert-demo>
-    </demo-section>`
+  templateUrl: './alerts-section.component.html'
 })
 export class AlertsSectionComponent {
-  public name:string = 'Alerts';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/alert';
-  public html:string = html;
-  public ts:string = ts;
-  public titleDoc:string = titleDoc;
-  public doc:string = doc;
+  public name: string = 'Alerts';
+  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/alert';
+  public titleDoc: string = titleDoc;
+  public demos: any = DEMOS;
 }

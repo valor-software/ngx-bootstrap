@@ -18,7 +18,7 @@ describe('Component: Alert', () => {
   `;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule]});
+    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule.forRoot()]});
     TestBed.overrideComponent(TestAlertComponent, {set: {template: overTemplate}});
     fixture = TestBed.createComponent(TestAlertComponent);
     context = fixture.debugElement.componentInstance;
@@ -28,22 +28,20 @@ describe('Component: Alert', () => {
   it('should have a default type alert-warning', () => {
     context.ngOnInit();
     expect(context.type).toEqual(`warning`);
-    expect(context.classes[0]).toEqual(`alert-warning`);
   });
 
   it('should have class dismissible if dismissible=true', () => {
     context.dismissible = true;
     context.ngOnInit();
-    expect(context.classes.length).toEqual(2);
-    expect(context.classes[1]).toEqual(`alert-dismissible`);
+    expect(context.classes).toEqual(`alert-dismissible`);
   });
 
   it('should be dismissed by timeout', (done:() => void) => {
     context.dismissOnTimeout = 1000;
     context
-      .close
+      .onClosed
       .subscribe(() => {
-        expect(context.closed).toBeTruthy();
+        expect(context.isClosed).toBeTruthy();
         done();
       });
     context.ngOnInit();
@@ -51,9 +49,9 @@ describe('Component: Alert', () => {
 
   it('should be closed by public method onClose', () => {
     context.ngOnInit();
-    expect(context.closed).toBeFalsy();
-    context.onClose();
-    expect(context.closed).toBeTruthy();
+    expect(context.isClosed).toBeFalsy();
+    context.close();
+    expect(context.isClosed).toBeTruthy();
   });
 });
 

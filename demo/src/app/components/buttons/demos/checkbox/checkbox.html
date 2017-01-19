@@ -1,0 +1,13 @@
+<pre class="card card-block card-header">
+  Model via JsonPipe: {{checkModel | json}}</pre>
+<pre class="card card-block card-header">
+Left: {{checkModel.left}}
+Middle: {{checkModel.middle}}
+Right: {{checkModel.right}}</pre>
+<!--<pre class="card card-block card-header">Results: {{checkResults}}</pre>-->
+<div class="btn-group">
+  <label class="btn btn-primary" [(ngModel)]="checkModel.left"
+         btnCheckbox>Left</label>
+  <label class="btn btn-primary" [(ngModel)]="checkModel.middle" btnCheckbox>Middle</label>
+  <label class="btn btn-primary" [(ngModel)]="checkModel.right" btnCheckbox>Right</label>
+</div>
