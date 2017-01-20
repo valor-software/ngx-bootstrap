@@ -68,9 +68,6 @@ describe('Linked List. Overridden (from Array) methods.', () => {
     list.add('4');
     list.add('5');
   });
-  it('Check instance of Array', () => {
-    expect(list instanceof Array).toBeTruthy();
-  });
 
   it('Check instance of indexOf', () => {
     expect(list.indexOf('3')).toEqual(2);
