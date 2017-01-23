@@ -18,6 +18,6 @@ module.exports = getApiDocs;
 const json = JSON.stringify(getApiDocs(), null, 2);
 fs.writeFileSync('demo/src/ng-api-doc.ts',
 `/* tslint:disable */
-export const ngdoc = ${json};
+export const ngdoc: any = ${json};
 `);
 

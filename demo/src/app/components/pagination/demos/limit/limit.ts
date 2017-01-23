@@ -8,6 +8,7 @@ export class DemoPaginationLimitComponent {
   public maxSize:number = 5;
   public bigTotalItems:number = 175;
   public bigCurrentPage:number = 1;
+  public numPages:number = 0;
 
   public pageChanged(event:any):void {
     console.log('Page changed to: ' + event.page);
