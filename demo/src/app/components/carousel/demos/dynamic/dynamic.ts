@@ -8,6 +8,7 @@ export class DemoCarouselDynamicComponent {
   public myInterval: number = 1500;
   public slides: any[] = [];
   public activeSlideIndex: number;
+  public noWrapSlides:boolean = false;
 
   public constructor() {
     for (let i = 0; i < 4; i++) {

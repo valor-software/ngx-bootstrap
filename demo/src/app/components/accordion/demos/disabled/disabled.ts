@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './disabled.html'
 })
 export class DemoAccordionDisabledComponent {
-  public status: Object = {
+  public status: any = {
     isFirstOpen: true,
     isFirstDisabled: false
   };

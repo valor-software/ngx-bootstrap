@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
 export class DemoAccordionDynamicComponent {
   public items: string[] = ['Item 1', 'Item 2', 'Item 3'];
 
-  public status: Object = {
-    isFirstOpen: true
+  public status: any = {
+    isFirstOpen: true,
+    isOpen: false
   };
 
   public groups: any[] = [
