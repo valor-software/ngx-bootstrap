@@ -1,3 +1,20 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.6...v1.3.0) (2017-01-23)
+
+
+### Bug Fixes
+
+* **aot:** adding missing exports ([#1525](https://github.com/valor-software/ng2-bootstrap/issues/1525)) ([7690e5d](https://github.com/valor-software/ng2-bootstrap/commit/7690e5d))
+* **carousel:** _slides.add is not a function, by removing extend Array ([7d454de](https://github.com/valor-software/ng2-bootstrap/commit/7d454de)), closes [#1516](https://github.com/valor-software/ng2-bootstrap/issues/1516)
+
+
+### Features
+
+* **build:** use es2015 module compile target ([2d74fc3](https://github.com/valor-software/ng2-bootstrap/commit/2d74fc3)), closes [#1538](https://github.com/valor-software/ng2-bootstrap/issues/1538)
+* **package:** angular-cli version bump ([a79aa26](https://github.com/valor-software/ng2-bootstrap/commit/a79aa26))
+
+
+
 <a name="1.2.6"></a>
 ## [1.2.6](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.5...v1.2.6) (2017-01-19)
 
