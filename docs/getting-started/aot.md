@@ -15,25 +15,25 @@ npm install ng2-bootstrap bootstrap --save
 Open the module file where you want to include ng2-bootstrap (most probably `app.module.ts`) and import either specific ng2-bootstrap modules by listing them in the import statement and then in the import array of the Angular 2 module
 
 ```typescript
-import { AlertModule, ModalModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule, ModalModule } from 'ng2-bootstrap';
 ...
 
 @NgModule({
    ...
-   imports: [AlertModule, ModalModule, ... ],
+   imports: [AlertModule.forRoot(), ModalModule.forRoot(), ... ],
    ... 
 })
 ```
 
- or use Ng2BootstrapModule to import all of the modules at once:
+ or use Ng2BootstrapModule (**NOT RECOMMENDED**) to import all of the modules at once:
 
 ```typescript
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ng2-bootstrap';
 ...
 
 @NgModule({
    ...
-   imports: [Ng2BootstrapModule, ... ],
+   imports: [Ng2BootstrapModule.forRoot(), ... ],
    ... 
 })
 ```
