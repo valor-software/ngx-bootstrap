@@ -63,14 +63,20 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-sample-box [ts]="demos.grouping.component" [html]="demos.grouping.html">
     <demo-typeahead-grouping></demo-typeahead-grouping>
   </ng-sample-box>
+
+  <!-- Grouping results with scroll -->
+  <h2 routerLink="." fragment="grouping-scroll-results" id="grouping-results-scroll">Grouping results with scroll</h2>
+  <ng-sample-box [ts]="demos['grouping-scroll'].component" [html]="demos['grouping-scroll'].html">
+    <demo-typeahead-grouping-scroll></demo-typeahead-grouping-scroll>
+  </ng-sample-box>
   
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc id="typeahead-directive" directive="TypeaheadDirective"></ng-api-doc>
 </demo-section>`
 })
 export class TypeaheadSectionComponent {
-  public name:string = 'Typeahead';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/typeahead';
+  public name: string = 'Typeahead';
+  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/typeahead';
   public demos: any = DEMOS;
-  public titleDoc:string = titleDoc;
+  public titleDoc: string = titleDoc;
 }

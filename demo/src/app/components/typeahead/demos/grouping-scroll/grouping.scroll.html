@@ -1,0 +1,10 @@
+<pre class="card card-block card-header">Model: {{groupSelected | json}}</pre>
+<input [(ngModel)]="groupSelected"
+       [typeahead]="statesComplex"
+       typeaheadOptionField="name"
+       typeaheadGroupField="region" 
+       [typeaheadScrollable]="true"       
+       [typeaheadOptionsInScrollableView]="5"       
+       class="form-control">
+
+

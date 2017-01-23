@@ -14,6 +14,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
+import { Utils } from './../utils/utils.class'
 
 /* tslint:disable-next-line */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
@@ -48,7 +49,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() public typeaheadPhraseDelimiters: string = '\'"';
   /** used to specify a custom item template. Template variables exposed are called item and index; */
   @Input() public typeaheadItemTemplate: TemplateRef<any>;
-
+  /** specifies if typeahead is scrollable  */
+  @Input() public typeaheadScrollable: boolean = false;
+  /** specifies nr of options to show in scroll view  */
+  @Input() public typeaheadOptionsInScrollableView: number = 5;
   /** fired when 'busy' state of this component was changed, fired on async mode only, returns boolean */
   @Output() public typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
   /** fired on every key event and returns true in case of matches are not detected */
@@ -88,58 +92,66 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected viewContainerRef: ViewContainerRef;
   protected element: ElementRef;
   protected renderer: Renderer;
+  private currentValue:string;
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
 
-  @HostListener('keyup', ['$event'])
+  @HostListener('input', ['$event'])
   public onChange(e: any): void {
-    if (this._container) {
-      // esc
-      if (e.keyCode === 27) {
-        this.hide();
-        return;
-      }
-
-      // up
-      if (e.keyCode === 38) {
-        this._container.prevActiveMatch();
-        return;
-      }
-
-      // down
-      if (e.keyCode === 40) {
-        this._container.nextActiveMatch();
-        return;
-      }
-
-      // enter
-      if (e.keyCode === 13) {
-        this._container.selectActiveMatch();
-        return;
-      }
-    }
-
+      
     // For `<input>`s, use the `value` property. For others that don't have a
-    // `value` (such as `<span contenteditable="true">`, use `innerText`.
-    const value = e.target.value !== undefined
-      ? e.target.value
-      : e.target.innerText;
-    if (value.trim().length >= this.typeaheadMinLength) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(e.target.value);
-    } else {
-      this.typeaheadLoading.emit(false);
-      this.typeaheadNoResults.emit(false);
-      this.hide();
-    }
+        // `value` (such as `<span contenteditable="true">`, use `innerText`.    
+        const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
+        if (value.trim().length >= this.typeaheadMinLength) {
+            this.currentValue = value;
+            this.typeaheadLoading.emit(true);
+            this.keyUpEventEmitter.emit(value);
+        }
+        else {
+            this.typeaheadLoading.emit(false);
+            this.typeaheadNoResults.emit(false);
+            this.hide();
+        }
   }
 
-  @HostListener('focus')
-  public onFocus(): void {
-    if (this.typeaheadMinLength === 0) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit('');
-    }
+  @HostListener('keyup', ['$event'])
+  public onKeyUp(e: any) : void {
+    if (this._container) {
+            // esc
+            if (e.keyCode === 27) {
+                this.hide();
+                return;
+            }
+            // up
+            if (e.keyCode === 38) {
+                this._container.prevActiveMatch();
+                return;
+            }
+            // down
+            if (e.keyCode === 40) {
+                this._container.nextActiveMatch();
+                return;
+            }
+            // enter
+            if (e.keyCode === 13) {
+                this._container.selectActiveMatch();
+                return;
+            }
+        }
+  }
+
+  @HostListener('focus', ['$event'])
+  public onFocus(e:any): void {
+     const value = e.target.value !== undefined ? e.target.value : e.target.innerText;
+        this.currentValue = value;
+        if (this.typeaheadMinLength === 0) {
+            this.typeaheadLoading.emit(true);
+            this.keyUpEventEmitter.emit('');
+        }
+        else if (this.typeaheadMinLength > 0 && this.currentValue.length >= this.typeaheadMinLength) {
+            this.typeaheadLoading.emit(true);
+            this.keyUpEventEmitter.emit(this.currentValue);
+        }
   }
 
   @HostListener('blur')
@@ -236,7 +248,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
       : normalizedQuery;
     this._container.matches = this._matches;
-    this.element.nativeElement.focus();
   }
 
   public hide(): void {
@@ -332,13 +343,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this.typeaheadLoading.emit(false);
     this.typeaheadNoResults.emit(!this.hasMatches());
-
     if (!this.hasMatches()) {
       this.hide();
       return;
     }
-
-    if (this._container) {
+    if (this.shouldIgnoreMatches()) {
+      this.hide();
+    } else if (this._container) {
       // This improves the speed as it won't have to be done for each list item
       let normalizedQuery = (this.typeaheadLatinize
         ? TypeaheadUtils.latinize(this.ngControl.control.value)
@@ -348,6 +359,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
         : normalizedQuery;
       this._container.matches = this._matches;
+      this._container.refreshSize();
     } else {
       this.show();
     }
@@ -382,5 +394,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   protected hasMatches(): boolean {
     return this._matches.length > 0;
+  }
+
+  protected shouldIgnoreMatches() : boolean {
+    const shouldIgnore = !Utils.isFocused(this.element.nativeElement);
+    return shouldIgnore;
   }
 }

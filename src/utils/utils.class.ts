@@ -5,7 +5,7 @@ export class Utils {
     ((bs: any): void => bs)(element.offsetHeight);
   }
 
-// source: https://github.com/jquery/jquery/blob/master/src/css/var/getStyles.js
+  // source: https://github.com/jquery/jquery/blob/master/src/css/var/getStyles.js
   public static getStyles(elem: any): any {
     // Support: IE <=11 only, Firefox <=30 (#15098, #14150)
     // IE throws on elements created in popups
@@ -17,5 +17,10 @@ export class Utils {
     }
 
     return view.getComputedStyle(elem);
+  }
+
+
+  public static isFocused(elem: any): boolean {
+    return elem.ownerDocument.activeElement === elem;
   }
 }

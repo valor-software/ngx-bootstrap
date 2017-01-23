@@ -194,7 +194,7 @@ export const ngdoc = {
       {
         "name": "interval",
         "type": "number",
-        "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle automatically. </p>\n"
+        "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle automatically.</p>\n"
       },
       {
         "name": "noPause",
@@ -366,6 +366,7 @@ export const ngdoc = {
     "className": "CollapseDirective",
     "description": "",
     "selector": "[collapse]",
+    "exportAs": "bs-collapse",
     "inputs": [
       {
         "name": "collapse",
@@ -2044,6 +2045,12 @@ export const ngdoc = {
         "description": "<p>when options source is an array of objects, the name of field that contains the options value, we use array item as option in case of this field is missing. Supports nested properties and methods. </p>\n"
       },
       {
+        "name": "typeaheadOptionsInScrollableView",
+        "defaultValue": "5",
+        "type": "number",
+        "description": "<p>specifies nr of options to show in scroll view  </p>\n"
+      },
+      {
         "name": "typeaheadOptionsLimit",
         "type": "number",
         "description": "<p>maximum length of options items list </p>\n"
@@ -2053,6 +2060,12 @@ export const ngdoc = {
         "defaultValue": "'\"",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes. </p>\n"
+      },
+      {
+        "name": "typeaheadScrollable",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>specifies if typeahead has a scrollable menu  </p>\n"
       },
       {
         "name": "typeaheadSingleWords",

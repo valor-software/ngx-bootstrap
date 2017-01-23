@@ -1,19 +1,20 @@
 import {
-  Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener
+  Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener, Renderer, ViewChildren, ViewChild, QueryList
 } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { Utils } from './../utils/utils.class'
 
 @Component({
   selector: 'typeahead-container',
   // tslint:disable-next-line
   template: `
-  <template [ngIf]="!isBs4"><ul class="dropdown-menu">
+  <template [ngIf]="!isBs4"><ul #ulElement class="dropdown-menu">
     <template ngFor let-match let-i="index" [ngForOf]="matches">
-      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
-      <li *ngIf="!match.isHeader()"
+      <li #liElements *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+      <li #liElements *ngIf="!match.isHeader()"
         [class.active]="isActive(match)"
         (mouseenter)="selectActive(match)">
         <a href="#"
@@ -60,7 +61,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
   // tslint:disable
   host: {
     'class': 'dropdown open',
-    '[class.dropdown-menu]':'isBs4',
+    '[class.dropdown-menu]': 'isBs4',
     style: 'position: absolute;display: block;'
   },
   // tslint: enable
@@ -76,14 +77,28 @@ export class TypeaheadContainerComponent {
   public display: string;
   public placement: string;
 
-  public get isBs4():boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 
   protected _active: TypeaheadMatch;
   protected _matches: TypeaheadMatch[] = [];
 
-  public constructor(element: ElementRef) {
+  @ViewChild('ulElement')
+  private ulElement: ElementRef;
+
+  @ViewChildren('liElements')
+  private liElements: QueryList<ElementRef>;
+
+  private optionHeight: number;
+  private ulPaddingTop: number;
+  private height: number;
+  private guiHeight: string;
+  private : boolean = false;
+
+  
+
+  public constructor(element: ElementRef, private renderer: Renderer) {
     this.element = element;
   }
 
@@ -102,6 +117,16 @@ export class TypeaheadContainerComponent {
     }
   }
 
+  public get typeaheadScrollable(): boolean {
+    return this.parent ? this.parent.typeaheadScrollable : false;
+  }
+  
+
+  public get typeaheadOptionsInScrollableView(): number {
+    return this.parent ? this.parent.typeaheadOptionsInScrollableView : 5;
+  }
+  
+
   public get itemTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
@@ -116,7 +141,10 @@ export class TypeaheadContainerComponent {
       ? this.matches.length - 1
       : index - 1];
     if (this._active.isHeader()) {
-      this.prevActiveMatch();
+      return this.prevActiveMatch();
+    }
+    if (this.typeaheadScrollable) {
+      this.scrollPrevious(index);
     }
 
   }
@@ -127,7 +155,10 @@ export class TypeaheadContainerComponent {
       ? 0
       : index + 1];
     if (this._active.isHeader()) {
-      this.nextActiveMatch();
+      return this.nextActiveMatch();
+    }
+    if (this.typeaheadScrollable) {
+      this.scrollNext(index);
     }
   }
 
@@ -187,4 +218,91 @@ export class TypeaheadContainerComponent {
     );
     return false;
   }
+
+  ngAfterViewInit(): void {
+    if (this.typeaheadScrollable && this.liElements.first) {
+      const ulStyles = Utils.getStyles(this.ulElement.nativeElement);
+      const liStyles = Utils.getStyles(this.liElements.first.nativeElement);
+      this.ulPaddingTop = parseFloat((ulStyles['padding-top'] ? ulStyles['padding-top'] : '0').replace('px', ''));
+      var ulPaddingBottom = parseFloat((ulStyles['padding-bottom'] ? ulStyles['padding-bottom'] : '').replace('px', ''));
+      this.optionHeight = parseFloat((liStyles['height'] ? liStyles['height'] : '0').replace('px', ''));
+      this.height = this.typeaheadOptionsInScrollableView * this.optionHeight;
+      this.guiHeight = (this.height + this.ulPaddingTop + ulPaddingBottom) + 'px';
+    }
+    this.refreshSize();
+  }
+
+
+  refreshSize(): void {
+    if (this.typeaheadScrollable) {
+      if (this._matches.length > this.typeaheadOptionsInScrollableView) {
+        this.setElementToBeScrollable();
+      }
+      else {
+        this.setElementToBeNotScrollable();
+      }
+    }
+    else {
+      this.setElementToBeNotScrollable();
+    }
+  }
+
+  scrollPrevious(index: number): void {
+    if (index === 0) {
+      this.scrollToBottom();
+      return;
+    }
+    if (this.liElements) {
+      var liElement = this.liElements.toArray()[index - 1];
+      if (liElement) {
+        this.ulElement.nativeElement.scrollTop = liElement.nativeElement.offsetTop;
+      }
+    }
+  }
+
+  scrollNext(index: number): void {
+    if (index + 1 > this.matches.length - 1) {
+      this.scrollToTop();
+      return;
+    }
+    if (this.liElements) {
+      var liElement = this.liElements.toArray()[index + 1];
+      if (liElement && !this.isScrolledIntoView(liElement.nativeElement)) {
+        this.ulElement.nativeElement.scrollTop =
+          liElement.nativeElement.offsetTop -
+          this.ulElement.nativeElement.offsetHeight +
+          liElement.nativeElement.offsetHeight;
+      }
+    }
+  }
+
+
+  private isScrolledIntoView = function (elem: HTMLElement) {
+    var containerViewTop = this.ulElement.nativeElement.scrollTop;
+    var containerViewBottom = containerViewTop + this.ulElement.nativeElement.offsetHeight;
+    var elemTop = elem.offsetTop;
+    var elemBottom = elemTop + elem.offsetHeight;
+    return ((elemBottom <= containerViewBottom) && (elemTop >= containerViewTop));
+  }
+
+  private scrollToBottom(): void {
+    this.ulElement.nativeElement.scrollTop = this.ulElement.nativeElement.scrollHeight;
+  }
+
+  private scrollToTop(): void {
+    this.ulElement.nativeElement.scrollTop = 0;
+  }
+
+  private setElementToBeScrollable(): void {
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', this.guiHeight);
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'scroll');
+  }
+
+  private setElementToBeNotScrollable(): void {
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'height', 'auto');
+    this.renderer.setElementStyle(this.ulElement.nativeElement, 'overflow-y', 'auto');
+  };
+
+
+
 }
