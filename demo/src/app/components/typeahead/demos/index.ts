@@ -4,6 +4,8 @@ import { DemoTypeaheadFieldComponent } from './field/field';
 import { DemoTypeaheadAsyncComponent } from './async/async';
 import { DemoTypeaheadFormsComponent } from './in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
+import { DemoTypeaheadGroupingScrollComponent } from './grouping-scroll/grouping.scroll';
+
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadStaticComponent,
@@ -11,7 +13,8 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadFieldComponent,
   DemoTypeaheadAsyncComponent,
   DemoTypeaheadFormsComponent,
-  DemoTypeaheadGroupingComponent
+  DemoTypeaheadGroupingComponent,
+  DemoTypeaheadGroupingScrollComponent
 ];
 
 export const DEMOS = {
@@ -38,5 +41,9 @@ export const DEMOS = {
   grouping: {
     component: require('!!raw-loader?lang=typescript!./grouping/grouping.ts'),
     html: require('!!raw-loader?lang=markup!./grouping/grouping.html')
+  },
+  "grouping-scroll": {
+    component: require('!!raw-loader?lang=typescript!./grouping-scroll/grouping.scroll.ts'),
+    html: require('!!raw-loader?lang=markup!./grouping-scroll/grouping.scroll.html')
   }
 };

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "lite-server": "lite-server -c demo/bs-config.json",
-    "typedoc": "typedoc --exclude '**/*.spec.ts' ./src/",
+    "typedoc": "node typedoc --exclude '**/*.spec.ts' ./src/",
     "demo.docs": "node scripts/docs/get-doc.js",
     "demo.serve": "run-s build link demo.build lite-server",
     "demo.gh-pages": "run-s build demo.build demo.deploy",
