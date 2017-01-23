@@ -37,7 +37,7 @@ import { Utils } from './../utils/utils.class'
     <template ngFor let-match let-i="index" [ngForOf]="matches">
        <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
        <template [ngIf]="!match.isHeader() && !itemTemplate">
-          <button
+          <button #liElements
             class="dropdown-item"
             (click)="selectMatch(match, $event)"
             (mouseenter)="selectActive(match)"
@@ -45,7 +45,7 @@ import { Utils } from './../utils/utils.class'
             [innerHtml]="hightlight(match, query)"></button>
       </template>
       <template [ngIf]="!match.isHeader() && itemTemplate">
-        <button
+        <button #liElements
            class="dropdown-item"
            (click)="selectMatch(match, $event)"
            (mouseenter)="selectActive(match)"
@@ -220,6 +220,9 @@ export class TypeaheadContainerComponent {
   }
 
   ngAfterViewInit(): void {
+    if(!this.ulElement){
+        this.ulElement = this.element;
+    }
     if (this.typeaheadScrollable && this.liElements.first) {
       const ulStyles = Utils.getStyles(this.ulElement.nativeElement);
       const liStyles = Utils.getStyles(this.liElements.first.nativeElement);

@@ -2065,7 +2065,7 @@ export const ngdoc = {
         "name": "typeaheadScrollable",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "<p>specifies if typeahead has a scrollable menu  </p>\n"
+        "description": "<p>specifies if typeahead is scrollable  </p>\n"
       },
       {
         "name": "typeaheadSingleWords",
