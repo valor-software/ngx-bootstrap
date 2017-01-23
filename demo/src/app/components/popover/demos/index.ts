@@ -9,6 +9,7 @@ import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-glob
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
+import {DemoPopoverOutsideClickComponent} from './outside-click/outside-click';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
@@ -21,7 +22,8 @@ export const DEMO_COMPONENTS = [
   DemoPopoverStylingGlobalComponent,
   DemoPopoverStylingLocalComponent,
   DemoPopoverTriggersCustomComponent,
-  DemoPopoverTriggersManualComponent
+  DemoPopoverTriggersManualComponent,
+  DemoPopoverOutsideClickComponent
 ];
 
 export const DEMOS = {
@@ -60,6 +62,10 @@ export const DEMOS = {
   triggersManual: {
     component: require('!!raw-loader?lang=typescript!./triggers-manual/triggers-manual.ts'),
     html: require('!!raw-loader?lang=markup!./triggers-manual/triggers-manual.html')
+  },
+  outsideClick: {
+    component: require('!!raw-loader?lang=typescript!./outside-click/outside-click.ts'),
+    html: require('!!raw-loader?lang=markup!./outside-click/outside-click.html')
   },
   stylingComponent: {
     component: require('!!raw-loader?lang=typescript!./styling-local/styling-local.ts'),
