@@ -145,11 +145,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
   protected onMouseDown(target: EventTarget): void {
     if (!this.popoverCloseOnClickOutside) return;
     if (!this._getContainerNativeElement()) return;
-    if (this._elementRef.nativeElement === target) return;
-
-    if (!this._getContainerNativeElement().contains(target)) {
-      this.hide();
-    }
+    if (this._elementRef.nativeElement === target) return; // if popover toggle element was clicked
+    if (this._getContainerNativeElement().contains(target)) return; // if clicked on popover content
+    
+    this.hide();
   }
 
   protected _getContainerNativeElement(): any {
