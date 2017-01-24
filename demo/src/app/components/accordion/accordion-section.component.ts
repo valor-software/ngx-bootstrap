@@ -64,7 +64,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
   </ng-sample-box>
                 
   <h2 routerLink="." fragment="styling" id="styling">Styling</h2>
-  <ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html">
+  <ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html" [style]="demos.styling.css">
     <demo-accordion-styling></demo-accordion-styling>
   </ng-sample-box>
                 
