@@ -6,6 +6,7 @@ import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
 import { OnChange } from '../utils/decorators';
+import { Subject } from "rxjs";
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -148,6 +149,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /* tslint:enable */
   protected _delayTimeoutId: number;
 
+  // Channel for deferred events
+  protected _eventsBus: Subject<any> = new Subject();
+
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
   // tslint:disable-next-line
@@ -170,6 +174,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
       triggers: this.triggers,
       show: () => this.show()
     });
+
+    if (this._delay) {
+      this._tooltip.listen({
+        triggers: 'mouseout',
+        show: () => this._eventsBus.next({showEnabled: false})
+      });
+    }
     this.tooltipChange.subscribe((value: any) => {
       if (!value) {
         this._tooltip.hide();
@@ -194,6 +205,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * the tooltip.
    */
   public show(): void {
+    this._eventsBus.next({showEnabled: true});
     if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.tooltip) {
       return;
     }
@@ -208,7 +220,24 @@ export class TooltipDirective implements OnInit, OnDestroy {
       });
 
     if (this._delay) {
-      this._delayTimeoutId = setTimeout(() => { showTooltip(); }, this._delay);
+      let isShowingEnabled = true;
+      let subscription = this._eventsBus
+        .filter(data => {
+          return data !== undefined;
+        })
+        .subscribe((data) => {
+          isShowingEnabled = data.showEnabled;
+        });
+
+      this._delayTimeoutId = setTimeout(() => {
+        subscription.unsubscribe();
+        if (isShowingEnabled) {
+          this._delayTimeoutId = void 0;
+          return showTooltip();
+        }
+        this.hide();
+
+      }, this._delay);
     } else {
       showTooltip();
     }

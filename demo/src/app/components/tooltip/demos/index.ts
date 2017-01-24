@@ -4,6 +4,7 @@ import { DemoTooltipDismissComponent } from './dismiss/dismiss';
 import { DemoTooltipDynamicComponent } from './dynamic/dynamic';
 import { DemoTooltipConfigComponent } from './config/config';
 import { DemoTooltipContainerComponent } from './container/container';
+import { DemoTooltipDelayedComponent } from './delayed/delayed';
 import { DemoTooltipStylingGlobalComponent } from './styling-global/styling-global';
 import { DemoTooltipStylingLocalComponent } from './styling-local/styling-local';
 import { DemoTooltipTriggersCustomComponent } from './triggers-custom/triggers-custom';
@@ -16,6 +17,7 @@ export const DEMO_COMPONENTS = [
   DemoTooltipDismissComponent,
   DemoTooltipDynamicComponent,
   DemoTooltipDynamicHtmlComponent,
+  DemoTooltipDelayedComponent,
   DemoTooltipContainerComponent,
   DemoTooltipConfigComponent,
   DemoTooltipStylingGlobalComponent,
@@ -48,6 +50,10 @@ export const DEMOS = {
   container: {
     component: require('!!raw-loader?lang=typescript!./container/container.ts'),
     html: require('!!raw-loader?lang=markup!./container/container.html')
+  },
+  delayed: {
+    component: require('!!raw-loader?lang=typescript!./delayed/delayed.ts'),
+    html: require('!!raw-loader?lang=markup!./delayed/delayed.html')
   },
   config: {
     component: require('!!raw-loader?lang=typescript!./config/config.ts'),
