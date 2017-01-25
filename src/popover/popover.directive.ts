@@ -65,12 +65,15 @@ export class PopoverDirective implements OnInit, OnDestroy {
    */
   @Output() public onHidden: EventEmitter<any>;
 
-  private _popover: ComponentLoader<PopoverContainerComponent>;
-  private _outsideClickListener: Function;
+  protected _popover: ComponentLoader<PopoverContainerComponent>;
+  protected _outsideClickListener: Function;
+  protected _elementRef: ElementRef;
+  protected _renderer: Renderer;
+  protected _viewContainerRef: ViewContainerRef;
 
-  public constructor(protected _elementRef: ElementRef,
-                     protected _renderer: Renderer,
-                     protected _viewContainerRef: ViewContainerRef,
+  public constructor(_elementRef: ElementRef,
+                     _renderer: Renderer,
+                     _viewContainerRef: ViewContainerRef,
                      _config: PopoverConfig,
                      cis: ComponentLoaderFactory) {
     this._popover = cis
@@ -79,6 +82,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
+    this._elementRef = _elementRef;
+    this._renderer = _renderer;
+    this._viewContainerRef = _viewContainerRef;
   }
 
   /**
