@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter, forwardRef
+  Component, Input, Output, EventEmitter, forwardRef, TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
@@ -34,8 +34,12 @@ import { DraggableItemService } from './draggable-item.service';
         (dragend)="resetActiveItem($event)"
         (dragover)="onItemDragover($event, i)"
         (dragenter)="cancelEvent($event)"
-    >{{item.value}}</div>
-</div>`,
+    ><template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
+  [ngOutletContext]="{item:item, index: i}"></template></div>
+</div>
+
+<template #defItemTemplate let-item="item">{{item.value}}</template>  
+`,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => SortableComponent),
@@ -75,6 +79,9 @@ export class SortableComponent implements ControlValueAccessor {
 
   /** placeholder item which will be shown if collection is empty */
   @Input() public placeholderItem: string = '';
+
+  /** used to specify a custom item template. Template variables: item and index; */
+  @Input() public itemTemplate: TemplateRef<any>;
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.

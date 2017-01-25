@@ -1511,6 +1511,11 @@ export const ngdoc: any = {
         "description": "<p>style object for item </p>\n"
       },
       {
+        "name": "itemTemplate",
+        "type": "TemplateRef<any>",
+        "description": "<p>used to specify a custom item template. Template variables: item and index; </p>\n"
+      },
+      {
         "name": "placeholderClass",
         "type": "string",
         "description": "<p>class name for placeholder </p>\n"
