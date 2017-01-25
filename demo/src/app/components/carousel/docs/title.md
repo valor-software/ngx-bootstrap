@@ -1,5 +1,5 @@
 ```typescript
-// RECOMMENDED
+// RECOMMENDED (doesn't work with system.js)
 import { CarouselModule } from 'ng2-bootstrap/carousel';
 // or
 import { CarouselModule } from 'ng2-bootstrap';

@@ -1,5 +1,5 @@
 ```typescript
-// RECOMMENDED
+// RECOMMENDED (doesn't work with system.js)
 import { PopoverModule } from 'ng2-bootstrap/popover';
 // or
 import { PopoverModule } from 'ng2-bootstrap';
