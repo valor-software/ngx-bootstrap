@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap-base",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {

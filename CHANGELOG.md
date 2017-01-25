@@ -1,3 +1,13 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.0...v1.3.1) (2017-01-25)
+
+
+### Features
+
+* **typeahead:** added option list template to typeahead container ([#1548](https://github.com/valor-software/ng2-bootstrap/issues/1548)) ([e56ea43](https://github.com/valor-software/ng2-bootstrap/commit/e56ea43))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.6...v1.3.0) (2017-01-23)
 
