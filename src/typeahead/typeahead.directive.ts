@@ -48,6 +48,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() public typeaheadPhraseDelimiters: string = '\'"';
   /** used to specify a custom item template. Template variables exposed are called item and index; */
   @Input() public typeaheadItemTemplate: TemplateRef<any>;
+  /** used to specify a custom options list template. Template variables: matches, itemTemplate, query */
+  @Input() public optionsListTemplate: TemplateRef<any>;
 
   /** fired when 'busy' state of this component was changed, fired on async mode only, returns boolean */
   @Output() public typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
