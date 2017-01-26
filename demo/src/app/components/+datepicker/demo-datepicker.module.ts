@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DatepickerModule } from 'ng2-bootstrap/datepicker';
+import { BsDatePickerModule } from 'ng2-bootstrap/datepicker2';
 
 import { SharedModule } from '../../shared';
 import { DatepickerSectionComponent } from './datepicker-section.component';
@@ -16,6 +17,7 @@ import { routes } from './demo-datepicker.routes';
   ],
   imports:[
     DatepickerModule.forRoot(),
+    BsDatePickerModule,
     CommonModule,
     FormsModule,
     SharedModule,

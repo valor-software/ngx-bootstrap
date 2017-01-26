@@ -18,6 +18,7 @@
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "flow.github-release": "conventional-github-releaser -p angular",
     "build": "ngm build -p src --clean",
+    "postbuild": "cpy src/datepicker2/bs-date-picker.css dist/css",
     "build.watch": "ngm build -p src --watch --skip-bundles",
     "start": "ng serve --aot --host 0.0.0.0",
     "generate-bs4": "node scripts/generate-bs4.js",

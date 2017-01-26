@@ -42,8 +42,13 @@ export class ComponentLoader<T> {
   private _unregisterListenersFn: Function;
 
   public get isShown(): boolean {
+    if (this._isHiding) {
+      return false;
+    }
     return !!this._componentRef;
   };
+
+  private _isHiding: boolean = false;
 
   /**
    * Placement of a component. Accepts: "top", "bottom", "left", "right"
@@ -111,7 +116,7 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  public show(opts: {content?: string | TemplateRef<any>, [key:string]: any} = {}): ComponentRef<T> {
+  public show(opts: { content?: string | TemplateRef<any>, [key: string]: any } = {}): ComponentRef<T> {
     this._subscribePositioning();
 
     if (!this._componentRef) {
@@ -140,10 +145,10 @@ export class ComponentLoader<T> {
   }
 
   public hide(): ComponentLoader<T> {
-    if (this._componentRef) {
+    if (this.isShown) {
+      this._isHiding = true;
       this.onBeforeHide.emit(this._componentRef.instance);
       this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
-      this._componentRef = null;
 
       if (this._contentRef.viewRef) {
         this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
@@ -151,6 +156,7 @@ export class ComponentLoader<T> {
       }
 
       this._componentRef = null;
+      this._isHiding = false;
       this.onHidden.emit();
     }
     return this;
