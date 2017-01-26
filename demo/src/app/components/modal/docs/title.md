@@ -1,5 +1,5 @@
 ```typescript
-// RECOMMENDED
+// RECOMMENDED (doesn't work with system.js)
 import { ModalModule } from 'ng2-bootstrap/modal';
 // or
 import { ModalModule } from 'ng2-bootstrap';

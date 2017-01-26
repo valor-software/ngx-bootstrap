@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer } from '@angular/core';
 
 import { ClassName } from './modal-options.class';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 export class ModalBackdropOptions {
   public animate:boolean = true;
@@ -34,7 +35,9 @@ export class ModalBackdropComponent {
   public set isShown(value:boolean) {
     this._isShown = value;
     this.renderer.setElementClass(this.element.nativeElement, `${ClassName.IN}`, value);
-    this.renderer.setElementClass(this.element.nativeElement, `${ClassName.ACTIVE}`, value);
+    if (!isBs3()) {
+      this.renderer.setElementClass(this.element.nativeElement, `${ClassName.SHOW}`, value);
+    }
   }
 
   public element:ElementRef;

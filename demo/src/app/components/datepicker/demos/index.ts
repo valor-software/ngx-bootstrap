@@ -6,7 +6,7 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   old: {
-    component: require('!!raw?lang=typescript!./datepicker-demo.component.html'),
-    html: require('!!raw?lang=markup!./datepicker-demo.component')
+    component: require('!!raw-loader?lang=typescript!./datepicker-demo.component.ts'),
+    html: require('!!raw-loader?lang=markup!./datepicker-demo.component.html')
   }
 };

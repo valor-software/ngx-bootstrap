@@ -1,0 +1,6 @@
+<timepicker [(ngModel)]="mytime" (change)="changed()"></timepicker>
+
+<pre class="alert alert-info">Time is: {{mytime}}</pre>
+
+<button type="button" class="btn btn-primary" (click)="update()">Set to 14:00</button>
+<button type="button" class="btn btn-danger" (click)="clear()">Clear</button>

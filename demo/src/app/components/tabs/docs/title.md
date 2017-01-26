@@ -1,5 +1,5 @@
 ```typescript
-// RECOMMENDED
+// RECOMMENDED (doesn't work with system.js)
 import { TabsModule } from 'ng2-bootstrap/tabs';
 // or
 import { TabsModule } from 'ng2-bootstrap';

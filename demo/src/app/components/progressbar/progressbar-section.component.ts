@@ -3,7 +3,7 @@ import { isBs3 } from 'ng2-bootstrap';
 import { DEMOS } from './demos';
 
 // webpack html imports
-let titleDoc = require('html!markdown!./docs/title.md');
+let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 
 @Component({
   selector: 'progressbar-section',

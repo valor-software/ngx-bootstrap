@@ -18,6 +18,7 @@ import {
 
 import { document } from  '../utils/facade/browser';
 
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modal-options.class';
@@ -165,7 +166,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
     this._isShown = false;
     this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, false);
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.ACTIVE, false);
+    if (!isBs3()) {
+      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, false);
+    }
     // this._addClassIn = false;
 
     if (this.isAnimated) {
@@ -204,7 +207,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
     // this._addClassIn = true;
     this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, true);
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.ACTIVE, true);
+    if (!isBs3()) {
+      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, true);
+    }
 
     const transitionComplete = () => {
       if (this._config.focus) {

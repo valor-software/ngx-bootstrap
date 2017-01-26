@@ -6,7 +6,7 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   old: {
-    component: require('!!raw?lang=typescript!./collapse-demo.component'),
-    html: require('!!raw?lang=markup!./collapse-demo.component.html')
+    component: require('!!raw-loader?lang=typescript!./collapse-demo.component'),
+    html: require('!!raw-loader?lang=markup!./collapse-demo.component.html')
   }
 };

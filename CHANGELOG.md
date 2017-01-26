@@ -1,4 +1,105 @@
-## Migration notes v1.1.16 and less to v1.1.17
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.0...v1.3.1) (2017-01-25)
+
+
+### Features
+
+* **typeahead:** added option list template to typeahead container ([#1548](https://github.com/valor-software/ng2-bootstrap/issues/1548)) ([e56ea43](https://github.com/valor-software/ng2-bootstrap/commit/e56ea43))
+
+
+
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.6...v1.3.0) (2017-01-23)
+
+
+### Bug Fixes
+
+* **aot:** adding missing exports ([#1525](https://github.com/valor-software/ng2-bootstrap/issues/1525)) ([7690e5d](https://github.com/valor-software/ng2-bootstrap/commit/7690e5d))
+* **carousel:** _slides.add is not a function, by removing extend Array ([7d454de](https://github.com/valor-software/ng2-bootstrap/commit/7d454de)), closes [#1516](https://github.com/valor-software/ng2-bootstrap/issues/1516)
+
+
+### Features
+
+* **build:** use es2015 module compile target ([2d74fc3](https://github.com/valor-software/ng2-bootstrap/commit/2d74fc3)), closes [#1538](https://github.com/valor-software/ng2-bootstrap/issues/1538)
+* **package:** angular-cli version bump ([a79aa26](https://github.com/valor-software/ng2-bootstrap/commit/a79aa26))
+
+
+
+<a name="1.2.6"></a>
+## [1.2.6](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.5...v1.2.6) (2017-01-19)
+
+
+### Bug Fixes
+
+* **aot:** added missing exports ([d40a299](https://github.com/valor-software/ng2-bootstrap/commit/d40a299))
+
+
+
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.4...v1.2.5) (2017-01-18)
+
+
+### Bug Fixes
+
+* **accordion:** a tag replaced with div, so preventDefault() was removed from toggleOpen ([d352962](https://github.com/valor-software/ng2-bootstrap/commit/d352962)), closes [#1512](https://github.com/valor-software/ng2-bootstrap/issues/1512)
+* **carousel:** fixed styles for carousel navigation buttons ([a1489bd](https://github.com/valor-software/ng2-bootstrap/commit/a1489bd))
+
+
+
+<a name="1.2.4"></a>
+## [1.2.4](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.3...v1.2.4) (2017-01-17)
+
+
+### Bug Fixes
+
+* **sortable:** fixing AoT type issues ([717a7e9](https://github.com/valor-software/ng2-bootstrap/commit/717a7e9))
+
+
+
+<a name="1.2.3"></a>
+## [1.2.3](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.1...v1.2.3) (2017-01-17)
+
+
+### Bug Fixes
+
+* **sortable:** prop made public for AoT ([1c25afc](https://github.com/valor-software/ng2-bootstrap/commit/1c25afc))
+
+
+<a name="1.2.2"></a>
+## [1.2.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.1...v1.2.2) (2017-01-16)
+
+
+### Bug Fixes
+
+* **sortable:** Changed reference to BrowserModule to CommonModule instead ([#1503](https://github.com/valor-software/ng2-bootstrap/issues/1503)) ([e7105c6](https://github.com/valor-software/ng2-bootstrap/commit/e7105c6))
+* **typeahead:** hide on blur when item was hovered ([4311c18](https://github.com/valor-software/ng2-bootstrap/commit/4311c18)), closes [#1495](https://github.com/valor-software/ng2-bootstrap/issues/1495)
+
+
+### Features
+
+* **build:** upgrade to support ng v2.3+ only ([bd5171a](https://github.com/valor-software/ng2-bootstrap/commit/bd5171a))
+
+
+
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.2.0...v1.2.1) (2017-01-13)
+
+
+### Bug Fixes
+
+* **sortable:** do not reexport BrowserModule ([77d79ab](https://github.com/valor-software/ng2-bootstrap/commit/77d79ab)), closes [#1486](https://github.com/valor-software/ng2-bootstrap/issues/1486)
+
+
+### Features
+
+* **typeahead:** fix for bs4-alfa.6 template ([3fb6e38](https://github.com/valor-software/ng2-bootstrap/commit/3fb6e38)), closes [#1494](https://github.com/valor-software/ng2-bootstrap/issues/1494)
+
+
+
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.17...v1.2.0) (2017-01-12)
+
+### Migration notes v1.1.16 and less to v1.1.17
 1. `ComponentHelper` and `PositioningService` removed, please remove any mentions of this two
 2. Package structure was simplified, (removed `components` folder) so you need to change imports:
   - `ng2-bootstrap\ng2-bootstrap` to `ng2-bootstrap`
@@ -11,8 +112,19 @@
 
 4. Please read more in [documentation](http://valor-software.com/ng2-bootstrap/)
 
+### Bug Fixes
+
+* **sortable:** make property public for AoT compilance ([e5c3135](https://github.com/valor-software/ng2-bootstrap/commit/e5c3135)), closes [#1483](https://github.com/valor-software/ng2-bootstrap/issues/1483)
+
+
+### Features
+
+* **bs4:** upgrade to v4-alfa.6 ([#1485](https://github.com/valor-software/ng2-bootstrap/issues/1485)) ([4c71f87](https://github.com/valor-software/ng2-bootstrap/commit/4c71f87))
+
+
+
 <a name="1.1.17"></a>
-## [1.1.16](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-11...v1.1.16) (2017-01-11)
+## [1.1.17](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-11...v1.1.17) (2017-01-11)
 
 
 ### Bug Fixes
@@ -27,6 +139,8 @@
 
 * **docs:** make urls easy to share ([47ab93b](https://github.com/valor-software/ng2-bootstrap/commit/47ab93b))
 * **sortable:** added new sortable component ([#1295](https://github.com/valor-software/ng2-bootstrap/issues/1295)) ([fab3df5](https://github.com/valor-software/ng2-bootstrap/commit/fab3df5))
+
+
 
 <a name="1.1.16-11"></a>
 ## [1.1.16-11](https://github.com/valor-software/ng2-bootstrap/compare/v1.1.16-7...v1.1.16-11) (2016-12-30)

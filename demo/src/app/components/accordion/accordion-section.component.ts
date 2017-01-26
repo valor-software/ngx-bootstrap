@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { DEMOS } from './demos';
 
 // webpack html imports
-let titleDoc = require('html!markdown!./docs/usage.md');
+let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
 
 @Component({
   selector: 'accordion-section',

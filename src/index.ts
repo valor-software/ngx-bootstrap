@@ -67,3 +67,5 @@ export * from './typeahead';
 export * from './popover';
 export * from './utils/ng2-bootstrap-config';
 export * from './utils/decorators';
+export * from './component-loader';
+export * from './positioning';

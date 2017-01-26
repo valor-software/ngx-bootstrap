@@ -33,7 +33,7 @@ export const ClassName:any = {
   OPEN: 'modal-open',
   FADE: 'fade',
   IN: 'in',         // bs3
-  ACTIVE: 'active'  // bs4
+  SHOW: 'show'  // bs4
 };
 
 export const Selector:any = {
