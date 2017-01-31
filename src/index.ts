@@ -1,5 +1,5 @@
 /* tslint:disable: max-classes-per-file */
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -18,6 +18,89 @@ import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
 
+export {
+  AccordionComponent, AccordionConfig, AccordionModule, AccordionPanelComponent
+} from './accordion';
+
+export { AlertComponent, AlertConfig, AlertModule } from './alert';
+
+export {
+  ButtonCheckboxDirective, ButtonRadioDirective, ButtonsModule
+} from './buttons';
+
+export {
+  CarouselComponent, CarouselConfig, CarouselModule, SlideComponent
+} from './carousel';
+
+export { CollapseDirective, CollapseModule } from './collapse';
+
+export {
+  DateFormatter, DatePickerComponent, DatepickerConfig, DatepickerModule,
+  DayPickerComponent, MonthPickerComponent, YearPickerComponent
+} from './datepicker';
+
+export {
+  ModalDirective, ModalOptions, ModalBackdropOptions, ModalBackdropComponent,
+  ModalModule
+} from './modal';
+
+export {
+  DropdownConfig, DropdownDirective, DropdownMenuDirective,
+  DropdownMenuInterface, DropdownModule, DropdownToggleDirective,
+  DropdownToggleInterface
+} from './dropdown';
+
+export {
+  PagerComponent, PaginationComponent, PaginationConfig, PaginationModule
+} from './pagination';
+
+export {
+  BarComponent, ProgressbarComponent, ProgressbarConfig, ProgressbarModule,
+  ProgressDirective
+} from './progressbar';
+
+export { RatingComponent, RatingModule } from './rating';
+
+export {
+  DraggableItem, DraggableItemService, SortableItem, SortableComponent,
+  SortableModule
+} from './sortable';
+
+export {
+  NgTranscludeDirective, TabDirective, TabHeadingDirective, TabsetComponent,
+  TabsetConfig, TabsModule
+} from './tabs';
+
+export {
+  TimepickerComponent, TimepickerConfig, TimepickerModule
+} from './timepicker';
+
+export {
+  TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule,
+  TooltipOptions
+} from './tooltip';
+
+export {
+  TypeaheadOptions, TypeaheadContainerComponent, TypeaheadDirective,
+  TypeaheadMatch, TypeaheadModule, TypeaheadUtils,
+} from './typeahead';
+
+export {
+  PopoverConfig, PopoverContainerComponent, PopoverDirective, PopoverModule
+} from './popover';
+
+export { isBs3 } from './utils/ng2-bootstrap-config';
+
+export { OnChange } from './utils/decorators';
+
+export {
+  ComponentLoader, ComponentLoaderFactory, ContentRef
+} from './component-loader';
+
+export {
+  Positioning, PositioningOptions, PositioningService, positionElements
+} from './positioning';
+
 const MODULES = [
   AccordionModule, AlertModule, ButtonsModule,
   CarouselModule, CollapseModule, DatepickerModule,
@@ -30,9 +113,11 @@ const MODULES = [
 @NgModule({
   imports: [
     AccordionModule.forRoot(), AlertModule.forRoot(), ButtonsModule.forRoot(),
-    CarouselModule.forRoot(), CollapseModule.forRoot(), DatepickerModule.forRoot(),
+    CarouselModule.forRoot(), CollapseModule.forRoot(),
+    DatepickerModule.forRoot(),
     DropdownModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot(),
-    ProgressbarModule.forRoot(), PopoverModule.forRoot(), RatingModule.forRoot(),
+    ProgressbarModule.forRoot(), PopoverModule.forRoot(),
+    RatingModule.forRoot(),
     TabsModule.forRoot(), TimepickerModule.forRoot(), TooltipModule.forRoot(),
     TypeaheadModule.forRoot(), SortableModule.forRoot()
   ],
@@ -47,25 +132,3 @@ export class Ng2BootstrapModule {
     return {ngModule: BsRootModule};
   }
 }
-
-export * from './accordion';
-export * from './alert';
-export * from './buttons';
-export * from './carousel';
-export * from './collapse';
-export * from './datepicker';
-export * from './modal';
-export * from './dropdown';
-export * from './pagination';
-export * from './progressbar';
-export * from './rating';
-export * from './sortable';
-export * from './tabs';
-export * from './timepicker';
-export * from './tooltip';
-export * from './typeahead';
-export * from './popover';
-export * from './utils/ng2-bootstrap-config';
-export * from './utils/decorators';
-export * from './component-loader';
-export * from './positioning';

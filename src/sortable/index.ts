@@ -1,4 +1,4 @@
-export * from './sortable.module';
-export * from './sortable.component';
-export * from './draggable-item.service';
-export * from './draggable-item';
+export { SortableModule } from './sortable.module';
+export { SortableComponent, SortableItem } from './sortable.component';
+export { DraggableItemService } from './draggable-item.service';
+export { DraggableItem } from './draggable-item';
