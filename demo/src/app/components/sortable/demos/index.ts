@@ -1,7 +1,12 @@
 import { ComplexDatamodelDemoComponent } from './complex-datamodel/complex-datamodel.component';
 import { SimpleItemsDemoComponent } from './simple-items/simple-items.component';
+import { CustomItemTemplateDemoComponent } from './custom-item-template/custom-item-template';
 
-export const DEMO_COMPONENTS = [SimpleItemsDemoComponent, ComplexDatamodelDemoComponent];
+export const DEMO_COMPONENTS = [
+  SimpleItemsDemoComponent,
+  ComplexDatamodelDemoComponent,
+  CustomItemTemplateDemoComponent
+];
 
 export const DEMOS = {
   complexDatamodel: {
@@ -11,5 +16,9 @@ export const DEMOS = {
   simpleItems: {
     component: require('!!raw-loader?lang=typescript!./simple-items/simple-items.component.ts'),
     html: require('!!raw-loader?lang=markup!./simple-items/simple-items.component.html')
+  },
+  itemTemplate: {
+    component: require('!!raw-loader?lang=typescript!./custom-item-template/custom-item-template.ts'),
+    html: require('!!raw-loader?lang=markup!./custom-item-template/custom-item-template.html')
   }
 };
