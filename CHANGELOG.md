@@ -1,3 +1,18 @@
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.1...v1.3.2) (2017-01-31)
+
+
+### Bug Fixes
+
+* **pagination:** export Pagination Config ([#1574](https://github.com/valor-software/ng2-bootstrap/issues/1574)) ([c3337f6](https://github.com/valor-software/ng2-bootstrap/commit/c3337f6))
+
+
+### Features
+
+* **sortable:** add support for custom item templates ([#1580](https://github.com/valor-software/ng2-bootstrap/issues/1580)) ([9d0b228](https://github.com/valor-software/ng2-bootstrap/commit/9d0b228))
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.0...v1.3.1) (2017-01-25)
 
