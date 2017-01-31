@@ -33,6 +33,7 @@ export const DEMOS = {
   },
   styling: {
     component: require('!!raw-loader?lang=typescript!./styling/styling'),
-    html: require('!!raw-loader?lang=markup!./styling/styling.html')
+    html: require('!!raw-loader?lang=markup!./styling/styling.html'),
+    css: require('!!raw-loader?lang=markup!./styling/styling.css')
   }
 };
