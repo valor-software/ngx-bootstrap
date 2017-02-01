@@ -26,8 +26,9 @@
     <li><a routerLink="." fragment="usage">Usage</a></li>
     <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
-        <li><a href="#stringItems">String items</a></li>
-        <li><a href="#complexDatamodel">Complex datamodel</a></li>
+        <li><a routerLink="." fragment="stringItems">String items</a></li>
+        <li><a routerLink="." fragment="complexDatamodel">Complex datamodel</a></li>
+        <li><a routerLink="." fragment="itemTemplate">Custom item template</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -51,6 +52,11 @@
   <h2 routerLink="." fragment="complexDatamodel" id="complexDatamodel">Complex data model:</h2>
   <ng-sample-box [ts]="demos.complexDatamodel.component" [html]="demos.complexDatamodel.html">
     <complex-datamodel-demo></complex-datamodel-demo>
+  </ng-sample-box>
+
+  <h2 routerLink="." fragment="itemTemplate" id="itemTemplate">Custom item template:</h2>
+  <ng-sample-box [ts]="demos.itemTemplate.component" [html]="demos.itemTemplate.html">
+    <custom-item-template-demo></custom-item-template-demo>
   </ng-sample-box>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
