@@ -18,11 +18,7 @@ import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
 /* tslint:disable-next-line */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 
-@Directive({
-  /* tslint:disable */
-  selector: '[typeahead][ngModel],[typeahead][formControlName]'
-  /* tslint:enable */
-})
+@Directive({selector: '[typeahead]'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or an Observable for external matching process */
   @Input() public typeahead: any;
