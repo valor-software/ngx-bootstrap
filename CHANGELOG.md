@@ -1,3 +1,18 @@
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.2...v1.3.3) (2017-02-03)
+
+
+### Bug Fixes
+
+* **typeahead:** allow to work with formControl ([e3f4854](https://github.com/valor-software/ng2-bootstrap/commit/e3f4854)), closes [#1595](https://github.com/valor-software/ng2-bootstrap/issues/1595)
+
+
+### Features
+
+* **package:** export missed things from utils ([54eb13d](https://github.com/valor-software/ng2-bootstrap/commit/54eb13d)), closes [#1584](https://github.com/valor-software/ng2-bootstrap/issues/1584) [#1590](https://github.com/valor-software/ng2-bootstrap/issues/1590)
+
+
+
 <a name="1.3.2"></a>
 ## [1.3.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.1...v1.3.2) (2017-01-31)
 
