@@ -1,4 +1,4 @@
-import LinkedList from '../../utils/linked-list.class';
+import { LinkedList } from '../../utils/linked-list.class';
 
 let list: LinkedList;
 
@@ -105,19 +105,19 @@ describe('Linked List. Overridden (from Array) methods.', () => {
   });
 
   it('Positive check some()', () => {
-    expect(list.some((item: string) =>  item === '2'));
+    expect(list.some((item: string) => item === '2'));
   });
 
   it('Negative check some()', () => {
-    expect(list.some((item: string) =>  item === '6')).toBeFalsy();
+    expect(list.some((item: string) => item === '6')).toBeFalsy();
   });
 
   it('Negative check every()', () => {
-    expect(list.every((item: string) =>  item === '2')).toBeFalsy();
+    expect(list.every((item: string) => item === '2')).toBeFalsy();
   });
 
   it('Positive check every()', () => {
-    expect(list.every((item: string) =>  item !== '0')).toBeTruthy();
+    expect(list.every((item: string) => item !== '0')).toBeTruthy();
   });
 
 });
