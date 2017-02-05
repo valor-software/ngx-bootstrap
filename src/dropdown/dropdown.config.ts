@@ -7,5 +7,5 @@ export class DropdownConfig {
   /** default dropdown auto closing behavior */
   public autoClose: string = NONINPUT;
   /** is keyboard navigation enabled by default */
-  public keyboardNav: Boolean = false;
+  public keyboardNav: boolean = false;
 }
