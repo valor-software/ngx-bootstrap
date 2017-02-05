@@ -15,11 +15,9 @@
 
 import { Component, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3, LinkedList } from '../utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
-
-import LinkedList from './../utils/linked-list.class';
 
 export enum Direction {UNKNOWN, NEXT, PREV}
 
