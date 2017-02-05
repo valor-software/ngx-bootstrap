@@ -89,9 +89,7 @@ export {
   PopoverConfig, PopoverContainerComponent, PopoverDirective, PopoverModule
 } from './popover';
 
-export { isBs3 } from './utils/ng2-bootstrap-config';
-
-export { OnChange } from './utils/decorators';
+export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils';
 
 export {
   ComponentLoader, ComponentLoaderFactory, ContentRef
