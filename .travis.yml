@@ -17,8 +17,7 @@ script:
   - npm run build
   - rm -rf node_modules/ng2-bootstrap
   - npm i ./dist
-  #angular-cli test coverage is broken
-  #- npm run test-coverage
+  - npm run test-coverage
   - npm run test
 
 after_success:
