@@ -1,20 +1,25 @@
+import { Injectable } from '@angular/core';
+
+import { DropdownDirective } from './dropdown.directive';
+
 export const ALWAYS = 'always';
 export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';
 export const NONINPUT = 'nonInput';
-
-import { DropdownDirective } from './dropdown.directive';
 
 /* tslint:disable-next-line */
 const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
 /* tslint:disable-next-line */
 const MouseEvent = (global as any).MouseEvent as MouseEvent;
 
+@Injectable()
 export class DropdownService {
-  protected openScope:DropdownDirective;
+  private openScope:DropdownDirective;
 
-  protected closeDropdownBind:EventListener = this.closeDropdown.bind(this);
-  protected keybindFilterBind:EventListener = this.keybindFilter.bind(this);
+  private closeDropdownBind:EventListener = this.closeDropdown.bind(this);
+  private keybindFilterBind:EventListener = this.keybindFilter.bind(this);
+
+  private suspendedEvent: any;
 
   public open(dropdownScope:DropdownDirective):void {
     if (!this.openScope) {
@@ -39,34 +44,44 @@ export class DropdownService {
     window.document.removeEventListener('keydown', this.keybindFilterBind);
   }
 
+  public preventEventHandling(): void {
+    clearTimeout(this.suspendedEvent);
+  }
+
   protected closeDropdown(event:MouseEvent):void {
-    if (!this.openScope) {
-      return;
-    }
+    this.suspendedEvent = setTimeout(() => {
+      if (!this.openScope) {
+        return;
+      }
 
-    if (event && this.openScope.autoClose === DISABLED) {
-      return;
-    }
+      if (event && this.openScope.autoClose === DISABLED) {
+        return;
+      }
 
-    if (event && this.openScope.toggleEl &&
-      this.openScope.toggleEl.nativeElement.contains(event.target)) {
-      return;
-    }
+      if (event && this.openScope.toggleEl &&
+        this.openScope.toggleEl.nativeElement.contains(event.target)) {
+        return;
+      }
 
-    if (event && this.openScope.autoClose === NONINPUT &&
-      this.openScope.menuEl &&
-      /input|textarea/i.test((event.target as any).tagName) &&
-      this.openScope.menuEl.nativeElement.contains(event.target)) {
-      return;
-    }
+      if (event && this.openScope.autoClose === NONINPUT &&
+        this.openScope.menuEl &&
+        /input|textarea/i.test((event.target as any).tagName) &&
+        this.openScope.menuEl.nativeElement.contains(event.target)) {
+        return;
+      }
 
-    if (event && this.openScope.autoClose === OUTSIDECLICK &&
-      this.openScope.menuEl &&
-      this.openScope.menuEl.nativeElement.contains(event.target)) {
-      return;
-    }
+      if (event && this.openScope.autoClose === OUTSIDECLICK &&
+        this.openScope.menuEl &&
+        this.openScope.menuEl.nativeElement.contains(event.target)) {
+        return;
+      }
 
-    this.openScope.isOpen = false;
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      this.openScope.isOpen = false;
+    }, 0);
   }
 
   protected keybindFilter(event:KeyboardEvent):void {
@@ -84,5 +99,3 @@ export class DropdownService {
     }
   }
 }
-
-export let dropdownService = new DropdownService();

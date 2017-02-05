@@ -1,6 +1,6 @@
 /* tslint:disable:max-file-line-count */
 import { Component } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { DropdownModule } from '../dropdown/dropdown.module';
 import { DropdownConfig } from '../dropdown/dropdown.config';
@@ -77,7 +77,7 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('.dropdown').classList).not.toContain('open');
   });
 
-  it('should close by click on nonInput menu item', () => {
+  it('should close by click on nonInput menu item', fakeAsync(() => {
     const html = `
       <div dropdown>
         <button dropdownToggle>Dropdown</button>
@@ -100,10 +100,10 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     expect(element.querySelector('.dropdown').classList).toContain('open');
     element.querySelector('li').click();
+    tick();
     fixture.detectChanges();
     expect(element.querySelector('.dropdown').classList).not.toContain('open');
-
-  });
+  }));
 
   it('should not close by click on input or textarea menu item', () => {
     const html = `
