@@ -260,7 +260,8 @@ describe('bs-dropdown-toggle', () => {
     fixture.detectChanges();
     expect(dropdownEl).toHaveCssClass('open');
 
-    let event = new Event('keydown') as any;
+    let event = document.createEvent('CustomEvent') as Event;
+    event.initEvent('keydown', true, true);
     event.which = 27;
     document.dispatchEvent(event);
     tick();
