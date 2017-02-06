@@ -31,6 +31,7 @@ npm-debug.log
 Thumbs.db
 
 
+/doc
 /demo/e2e/*.js
 /demo/e2e/*.map
 src/**/*.js

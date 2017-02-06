@@ -1,0 +1,21 @@
+<table
+  class="table table-striped"
+  [bsDropZone]="table"
+  ghostClassName="sortable-item-ghost"
+  [(items)]="rows"
+  (activeItemIndexChange)="activeItemIndex = $event"
+>
+  <thead>
+    <th *ngFor="let name of header">{{name}}</th>
+  </thead>
+  <tbody>
+    <tr bsDraggableElement *ngFor="let row of rows">
+      <td>{{row.id}}</td>
+      <td>{{row.company}}</td>
+      <td>{{row.contact}}</td>
+      <td>{{row.country}}</td>
+    </tr>
+  </tbody>
+</table>
+<pre>active item index: {{ activeItemIndex }}</pre>
+<pre>model: {{ rows | json }}</pre>

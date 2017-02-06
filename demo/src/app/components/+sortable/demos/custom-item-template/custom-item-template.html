@@ -1,25 +1,29 @@
-<template #itemTemplate let-item="item" let-index="index"><span>{{index}}: {{item.value}}</span></template>
+<template #itemTemplate let-item="item" let-index="index">
+  <div>{{index}}: {{item.name}}</div>
+  <div>
+    <a class="btn btn-default" *ngIf="item.url.startsWith('http')" [href]="item.url" target="_blank">know more</a>
+    <span *ngIf="!item.url.startsWith('http')">{{item.url}}</span>
+  </div>
+</template>
 
-<div class="col-xs-6 col-md-3">
-  <bs-sortable
-    [(ngModel)]="itemStringsLeft"
-    [itemTemplate]="itemTemplate"
-    itemClass="sortable-item"
-    itemActiveClass="sortable-item-active"
-    placeholderItem="Drag here"
-    placeholderClass="placeholderStyle"
-    wrapperClass="sortable-wrapper"
-  ></bs-sortable>
-  <pre>model: {{ itemStringsLeft | json }}</pre>
+<div class="col-xs-12 col-md-12">
+  <label><input type="checkbox" [(ngModel)]="disableItems"> disable items {{disabledItems | json}}</label><br>
+  <label><input type="checkbox" [(ngModel)]="fixDisabledItems"> fix disabled items on their positions</label>
 </div>
-<div class="col-xs-6 col-md-3">
+
+<div class="col-xs-12 col-md-12">
   <bs-sortable
-    [(ngModel)]="itemStringsRight"
-    itemClass="sortable-item"
+    [(ngModel)]="items"
+    [itemTemplate]="itemTemplate"
+    [isItemDisabled]="isItemDisabled"
+    [fixDisabledItems]="fixDisabledItems"
+    dropZoneGroup="customItemTemplate"
+    itemClass="sortable-item custom-item-template"
     itemActiveClass="sortable-item-active"
+    itemDisabledClass="sortable-item-disabled"
     placeholderItem="Drag here"
-    placeholderClass="sortable-item"
+    placeholderClass="sortable-item-placeholder"
     wrapperClass="sortable-wrapper"
   ></bs-sortable>
-  <pre>model: {{ itemStringsRight | json }}</pre>
+  <!--<pre>model: {{ items | json }}</pre>-->
 </div>

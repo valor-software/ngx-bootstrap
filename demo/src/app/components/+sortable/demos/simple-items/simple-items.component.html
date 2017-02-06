@@ -1,21 +1,35 @@
 <div class="col-xs-6 col-md-3">
   <bs-sortable
     [(ngModel)]="itemStringsLeft"
+    dropZoneGroup="simpleItems"
     itemClass="sortable-item"
     itemActiveClass="sortable-item-active"
     placeholderItem="Drag here"
-    placeholderClass="placeholderStyle"
+    placeholderClass="sortable-item-placeholder"
     wrapperClass="sortable-wrapper"
   ></bs-sortable>
   <pre>model: {{ itemStringsLeft | json }}</pre>
 </div>
 <div class="col-xs-6 col-md-3">
   <bs-sortable
-    [(ngModel)]="itemStringsRight"
+    [(ngModel)]="itemStringsMiddle"
+    dropZoneGroup="simpleItems"
     itemClass="sortable-item"
     itemActiveClass="sortable-item-active"
     placeholderItem="Drag here"
-    placeholderClass="sortable-item"
+    placeholderClass="sortable-item-placeholder"
+    wrapperClass="sortable-wrapper"
+  ></bs-sortable>
+  <pre>model: {{ itemStringsMiddle | json }}</pre>
+</div>
+<div class="col-md-3 hide-on-mobile">
+  <bs-sortable
+    [(ngModel)]="itemStringsRight"
+    dropZoneGroup="simpleItems"
+    itemClass="sortable-item"
+    itemActiveClass="sortable-item-active"
+    placeholderItem="Drag here"
+    placeholderClass="sortable-item-placeholder"
     wrapperClass="sortable-wrapper"
   ></bs-sortable>
   <pre>model: {{ itemStringsRight | json }}</pre>

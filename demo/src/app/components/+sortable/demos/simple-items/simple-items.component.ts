@@ -12,8 +12,11 @@ export class SimpleItemsDemoComponent {
     'Tornado'
   ];
 
-  public itemStringsRight: any[] = [
+  public itemStringsMiddle: any[] = [
     'Mr. O',
     'Tomato'
+  ];
+
+  public itemStringsRight: any[] = [
   ];
 }

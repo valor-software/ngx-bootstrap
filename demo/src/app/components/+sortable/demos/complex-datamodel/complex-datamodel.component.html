@@ -1,11 +1,12 @@
 <div class="col-xs-6 col-md-3">
   <bs-sortable
     [(ngModel)]="itemObjectsLeft"
+    dropZoneGroup="complexDatamodel"
     fieldName="name"
     itemClass="sortable-item"
     itemActiveClass="sortable-item-active"
     placeholderItem="Drag here"
-    placeholderClass="sortable-item"
+    placeholderClass="sortable-item-placeholder"
     wrapperClass="sortable-wrapper"
   ></bs-sortable>
   <pre>{{ itemObjectsLeft | json }}</pre>
@@ -13,11 +14,12 @@
 <div class="col-xs-6 col-md-3">
   <bs-sortable
     [(ngModel)]="itemObjectsRight"
+    dropZoneGroup="complexDatamodel"
     fieldName="name"
     itemClass="sortable-item"
     itemActiveClass="sortable-item-active"
     placeholderItem="Drag here"
-    placeholderClass="sortable-item"
+    placeholderClass="sortable-item-placeholder"
     wrapperClass="sortable-wrapper"
   ></bs-sortable>
   <pre>{{ itemObjectsRight | json }}</pre>
