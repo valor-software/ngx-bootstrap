@@ -19,6 +19,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="dynamic-content">Dynamic Content</a></li>
         <li><a routerLink="." fragment="dynamic-html">Dynamic Html</a></li>
         <li><a routerLink="." fragment="container-body">Append to body</a></li>
+        <li><a routerLink="." fragment="delayed">Appears with delay</a></li>
         <li><a routerLink="." fragment="config">Configuring defaults</a></li>
         <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
         <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
@@ -75,6 +76,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
     <demo-tooltip-container></demo-tooltip-container>
   </ng-sample-box>
+  
+  <h2 routerLink="." fragment="delayed" id="delayed">Appears with delay</h2>
+  <ng-sample-box [ts]="demos.delayed.component" [html]="demos.delayed.html">
+    <demo-tooltip-delayed></demo-tooltip-delayed>
+  </ng-sample-box>   
   
   <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">

@@ -7,7 +7,7 @@ const { fireEvent } = require('../../scripts/helpers');
 const overTemplate = `
     <div class="form-group">
       <label>Or use custom triggers, like focus: </label>
-      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
+      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus mouseenter"  class="form-control" />
     </div>
   
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
@@ -26,7 +26,7 @@ const overTemplate = `
      <button class="btn btn-danger" id="hideTooltipBtn" (click)="tooltip.hide()">Hide tooltip</button>
    </p>`;
 
-xdescribe('Directives: Tooltips', () => {
+describe('Directives: Tooltips', () => {
   let fixture: ComponentFixture<TestTooltipComponent>;
   let context: any;
 
@@ -54,31 +54,10 @@ xdescribe('Directives: Tooltips', () => {
   it('tooltip should be displayed by focus event after 0 ms by default', fakeAsync(() => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     const tooltipElement: any = element.querySelector('#test-tooltip1');
-    tooltipElement.focus();
-    fixture.detectChanges();
-    tick(0);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
-  }));
-
-  it('tooltip should be displayed after specified delay', fakeAsync(() => {
-    const element: HTMLElement = fixture.debugElement.nativeElement;
-    const tooltipElement: any = element.querySelector('#test-tooltip1');
-    context._delay = 1000;
-    fixture.detectChanges();
-    tooltipElement.focus();
-    fixture.detectChanges();
-    tick(1100);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
-  }));
-
-  xit('tooltip should be displayed by mouseenter event', fakeAsync(() => {
-    const element: HTMLElement = fixture.debugElement.nativeElement;
-    const tooltipElement: any = element.querySelector('#test-tooltip1');
+    // tooltipElement.focus();
     fireEvent(tooltipElement, 'mouseenter');
     fixture.detectChanges();
-    tick(context.delay);
+    tick(0);
     fixture.detectChanges();
     expect(element.querySelector('.tooltip-inner')).not.toBeNull();
   }));
@@ -110,4 +89,85 @@ xdescribe('Directives: Tooltips', () => {
 })
 class TestTooltipComponent {
   public delay: number = 0;
+}
+
+describe('Directives: Tooltips. Delay features.', () => {
+  let fixture: ComponentFixture<TestDelayedTooltipComponent>;
+  let context: any;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestDelayedTooltipComponent],
+      imports: [TooltipModule.forRoot(), FormsModule]
+    });
+    TestBed.overrideComponent(TestDelayedTooltipComponent, {set: {template: overTemplate}});
+    fixture = TestBed.createComponent(TestDelayedTooltipComponent);
+    context = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    fixture = undefined;
+    context = undefined;
+  });
+
+  it('Tooltip should be displayed by mouseenter event', fakeAsync(() => {
+    const element: HTMLElement = fixture.debugElement.nativeElement;
+    const tooltipElement: any = element.querySelector('#test-tooltip1');
+    fireEvent(tooltipElement, 'mouseenter');
+    fixture.detectChanges();
+    tick(context.delay + 1000);
+    fixture.detectChanges();
+    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+  }));
+
+  it('tooltip should be hided by mouseout event', fakeAsync(() => {
+    const element: HTMLElement = fixture.debugElement.nativeElement;
+    const tooltipElement: any = element.querySelector('#test-tooltip1');
+    fireEvent(tooltipElement, 'mouseenter');
+    fixture.detectChanges();
+    tick(context.delay + 1000);
+    fixture.detectChanges();
+    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+
+    fireEvent(tooltipElement, 'mouseout');
+    fixture.detectChanges();
+    tick(context.delay + 1000);
+    fixture.detectChanges();
+
+    expect(element.querySelector('.tooltip-inner')).toBeNull();
+  }));
+
+  it('tooltip should be displayed after second focusing', fakeAsync(() => {
+    const element: HTMLElement = fixture.debugElement.nativeElement;
+    const tooltipElement: any = element.querySelector('#test-tooltip1');
+    fireEvent(tooltipElement, 'mouseenter');
+    fixture.detectChanges();
+    tick(context.delay + 1000);
+    fixture.detectChanges();
+    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+
+    fireEvent(tooltipElement, 'mouseout');
+    fixture.detectChanges();
+    tick(context.delay + 1000);
+    fixture.detectChanges();
+
+    expect(element.querySelector('.tooltip-inner')).toBeNull();
+
+    fireEvent(tooltipElement, 'mouseenter');
+    fixture.detectChanges();
+    tick(context.delay + 1000);
+    fixture.detectChanges();
+
+    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+  }));
+
+});
+
+@Component({
+  selector: 'test-delayed-tooltip',
+  template: ''
+})
+class TestDelayedTooltipComponent {
+  public delay: number = 1000;
 }
