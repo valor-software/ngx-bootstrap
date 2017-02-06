@@ -19,7 +19,7 @@
     "flow.github-release": "conventional-github-releaser -p angular",
     "build": "ngm build -p src --clean",
     "build.watch": "ngm build -p src --watch --skip-bundles",
-    "start": "ng serve --aot",
+    "start": "ng serve --aot --host 0.0.0.0",
     "generate-bs4": "node scripts/generate-bs4.js",
     "pretest": "run-s lint build link",
     "test": "ng test -sr",
