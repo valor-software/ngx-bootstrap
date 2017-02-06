@@ -9,7 +9,7 @@
     "demo.docs": "node scripts/docs/get-doc.js",
     "demo.serve": "run-s build link demo.build lite-server",
     "demo.gh-pages": "run-s build demo.build demo.deploy",
-    "demo.build": "ng build -prod --aot && npm run generate-bs4",
+    "demo.build": "ng build -prod --aot --gh '' && npm run generate-bs4",
     "demo.deploy": "gh-pages -d demo/dist",
     "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ng2-bootstrap.git -b gh-pages",
     "link": "ngm link -p src --here",
