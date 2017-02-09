@@ -11,7 +11,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
   // tslint:disable-next-line
   template: `
 <!-- inject options list template -->
-<template [ngTemplateOutlet]="optionsListTemplate || isBs4 ? bs4Template : bs3Template"
+<template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
   [ngOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></template>
 
 <!-- default options item template -->
