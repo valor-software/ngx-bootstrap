@@ -1,14 +1,20 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/docs/referenceConf.js
 
-/*global jasmine */
-const SpecReporter = require('jasmine-spec-reporter');
-const customLaunchers = require('./scripts/sauce-browsers').customLaunchers;
-
-const config = {
+exports.config = {
   allScriptsTimeout: 11000,
   specs: [
     './demo/e2e/**/*.e2e-spec.ts'
+  ],
+  exclude: [
+    './demo/e2e/**/accordion-demo.e2e-spec.ts',
+    './demo/e2e/**/alert-demo.e2e-spec.ts',
+    './demo/e2e/**/buttons-demo.e2e-spec.ts',
+    './demo/e2e/**/carousel-demo.e2e-spec.ts',
+    './demo/e2e/**/collapse-demo.e2e-spec.ts',
+    './demo/e2e/**/leftPanelTests.po.ts',
+    './demo/e2e/**/modals-demo.e2e-spec.ts',
+    './demo/e2e/**/typeahead-demo.e2e-spec.ts'
   ],
   capabilities: {
     browserName: 'chrome',
@@ -28,9 +34,10 @@ const config = {
   beforeLaunch() {
     require('ts-node').register({project: 'demo/e2e'});
   },
-  onPrepare() {
-    jasmine.getEnv().addReporter(new SpecReporter());
-  }
+  // TODO add working specreporter
+  // onPrepare() {
+  //   jasmine.getEnv().addReporter(new SpecReporter());
+  // }
 };
 
 if (process.env.SAUCE) {
@@ -38,10 +45,4 @@ if (process.env.SAUCE) {
     console.log('Make sure the SAUCE_USERNAME and SAUCE_ACCESS_KEY environment variables are set.');
     process.exit(1);
   }
-
-  delete config.capabilities;
-  config.multiCapabilities = customLaunchers();
-  // todo: O`Really?
-  config.baseUrl = 'http://valor-software.com/ng2-bootstrap/';
 }
-exports.config = config;
