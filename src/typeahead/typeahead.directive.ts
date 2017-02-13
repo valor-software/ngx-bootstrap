@@ -377,4 +377,4 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected hasMatches(): boolean {
     return this._matches.length > 0;
   }
-}v
+}
