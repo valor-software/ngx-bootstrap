@@ -4,7 +4,7 @@
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './demo/e2e/**/*.e2e-spec.ts'
+    './demo/e2e/**/*.e2e-spec.ts',
   ],
   exclude: [
     './demo/e2e/**/accordion-demo.e2e-spec.ts',
@@ -14,7 +14,6 @@ exports.config = {
     './demo/e2e/**/collapse-demo.e2e-spec.ts',
     './demo/e2e/**/leftPanelTests.po.ts',
     './demo/e2e/**/modals-demo.e2e-spec.ts',
-    './demo/e2e/**/typeahead-demo.e2e-spec.ts'
   ],
   capabilities: {
     browserName: 'chrome',
