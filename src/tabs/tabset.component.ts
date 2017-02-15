@@ -8,7 +8,7 @@ import { TabsetConfig } from './tabset.config';
   selector: 'tabset',
   template: `
     <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
-        <li *ngFor="let tabz of tabs" class="nav-item {{tabz.customClass}}"
+        <li *ngFor="let tabz of tabs" [ngClass]="'nav-item ' + tabz.customClass"
           [class.active]="tabz.active" [class.disabled]="tabz.disabled">
           <a href="javascript:void(0);" class="nav-link"
             [class.active]="tabz.active" [class.disabled]="tabz.disabled"
