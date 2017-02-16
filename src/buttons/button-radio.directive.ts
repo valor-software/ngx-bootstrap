@@ -39,6 +39,11 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
             return;
         }
 
+        if (!this.uncheckable && this.btnRadio === this.value) {
+          this.onTouched();
+          return;
+        }
+
         if (this.uncheckable && this.btnRadio === this.value) {
             this.value = undefined;
         } else {
