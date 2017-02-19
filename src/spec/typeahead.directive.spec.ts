@@ -173,7 +173,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Alab';
       fireEvent(inputElement, 'keyup');
-
+ 
       fixture.detectChanges();
       tick(100);
     }));
