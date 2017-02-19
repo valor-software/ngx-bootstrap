@@ -19,7 +19,8 @@ interface State {
   template: `
   <input [(ngModel)]="selectedState" 
          [typeahead]="states" 
-         [typeaheadOptionField]="'name'">
+         [typeaheadOptionField]="'name'"
+         (typeaheadOnBlur)="onBlurEvent($event)">
 `
 })
 class TestTypeaheadComponent {
@@ -28,6 +29,8 @@ class TestTypeaheadComponent {
     {id: 1, name: 'Alabama', region: 'South'},
     {id: 2, name: 'Alaska', region: 'West'}
   ];
+
+  public onBlurEvent (activeItem) { };
 }
 
 describe('Directive: Typeahead', () => {
@@ -163,6 +166,24 @@ describe('Directive: Typeahead', () => {
       directive.changeModel(new TypeaheadMatch({id: 1, name: 'Alabama', region: 'South'}, 'Alabama'));
 
       expect(component.selectedState).toBe('Alabama');
+    });
+  });
+
+  describe('onBlur', () => {
+    beforeEach(fakeAsync(() => {
+      inputElement.value = 'Alab';
+      fireEvent(inputElement, 'keyup');
+
+      fixture.detectChanges();
+      tick(100);
+    }));
+
+    it('blur event should send the correct active item', () => {
+      spyOn(fixture.componentInstance, 'onBlurEvent').and.callFake((param) => {
+        expect(param.item.id).toBe(1);
+      });
+      directive.onBlur();
+      fixture.detectChanges();
     });
   });
 
