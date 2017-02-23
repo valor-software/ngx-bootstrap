@@ -74,7 +74,7 @@
     "@angular/router": "^3.4.4",
     "@angular/tsc-wrapped": "0.5.1",
     "@ngtools/webpack": "1.2.7",
-    "@types/jasmine": "^2.5.41",
+    "@types/jasmine": "2.5.41",
     "@types/marked": "0.0.28",
     "@types/node": "7.0.0",
     "@types/webpack": "^2.2.2",
@@ -110,7 +110,7 @@
     "ngm-cli": "0.4.4",
     "npm-run-all": "^4.0.1",
     "pre-commit": "1.2.2",
-    "protractor": "5.0.0",
+    "protractor": "5.1.1",
     "reflect-metadata": "0.1.9",
     "require-dir": "0.3.1",
     "rxjs": "5.0.3",
@@ -122,7 +122,7 @@
     "typedoc": "0.5.5",
     "typescript": "2.0.10",
     "wallaby-webpack": "^0.0.31",
-    "webdriver-manager": "11.1.1",
+    "webdriver-manager": "12.0.2",
     "zone.js": "^0.7.6"
   }
 }
