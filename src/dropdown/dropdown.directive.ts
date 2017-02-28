@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { dropdownService } from './dropdown.service';
+import { DropdownService } from './dropdown.service';
 import { DropdownConfig } from './dropdown.config';
 
 /**
@@ -17,6 +17,7 @@ import { DropdownConfig } from './dropdown.config';
   host: {'[class.show]': 'isOpen && !isBs3'}
 })
 export class DropdownDirective implements OnInit, OnDestroy {
+  private dropdownService: DropdownService;
   /** if `true` dropdown will be opened */
   @HostBinding('class.open')
   @HostBinding('class.active')
@@ -26,6 +27,11 @@ export class DropdownDirective implements OnInit, OnDestroy {
   }
 
   public set isOpen(value: boolean) {
+    if (this._isOpen === !!value) {
+      // don't emit events
+      return;
+    }
+
     this._isOpen = !!value;
 
     // todo: implement after porting position
@@ -37,9 +43,9 @@ export class DropdownDirective implements OnInit, OnDestroy {
     // ready
     if (this.isOpen) {
       this.focusToggleElement();
-      dropdownService.open(this);
+      this.dropdownService.open(this);
     } else {
-      dropdownService.close(this);
+      this.dropdownService.close(this);
       this.selectedOption = void 0;
     }
     this.onToggle.emit(this.isOpen);
@@ -78,15 +84,21 @@ export class DropdownDirective implements OnInit, OnDestroy {
   // drop down toggle element
   public toggleEl: ElementRef;
   public el: ElementRef;
-  protected _isOpen: boolean;
+  protected _isOpen: boolean = false;
 
   protected _changeDetector: ChangeDetectorRef;
 
-  public constructor(el: ElementRef, ref: ChangeDetectorRef, config: DropdownConfig) {
+  public constructor(
+    el: ElementRef,
+    ref: ChangeDetectorRef,
+    dropdownService: DropdownService,
+    config: DropdownConfig
+  ) {
     // @Query('dropdownMenu', {descendants: false})
     // dropdownMenuList:QueryList<ElementRef>) {
     this.el = el;
     this._changeDetector = ref;
+    this.dropdownService = dropdownService;
     Object.assign(this, config);
     // todo: bind to route change event
   }
@@ -118,10 +130,14 @@ export class DropdownDirective implements OnInit, OnDestroy {
   }
 
   public show():void {
+    /** prevent global event handling */
+    this.dropdownService.preventEventHandling();
     this.isOpen = true;
   }
 
   public hide():void {
+    /** prevent global event handling */
+    this.dropdownService.preventEventHandling();
     this.isOpen = false;
   }
 
