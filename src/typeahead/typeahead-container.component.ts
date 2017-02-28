@@ -79,6 +79,10 @@ export class TypeaheadContainerComponent {
     this.element = element;
   }
 
+  public get active(): TypeaheadMatch {
+    return this._active;
+  }
+
   public get matches(): TypeaheadMatch[] {
     return this._matches;
   }
