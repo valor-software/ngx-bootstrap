@@ -36,7 +36,8 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [shortcutPropagation]="shortcutPropagation"
                       [monthColLimit]="monthColLimit"
                       [yearColLimit]="yearColLimit"
-                      (selectionDone)="onSelectionDone($event)">
+                      (selectionDone)="onSelectionDone($event)"
+                      (viewChanged)="onViewChanged($event)">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
@@ -85,9 +86,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** number of years displayed in a single row of year picker */
   @Input() public yearColLimit: number;
   /** array of custom css classes to be applied to targeted dates */
-  @Input() public customClass: {date: Date, mode: string, clazz: string}[];
+  @Input() public customClass: { date: Date, mode: string, clazz: string }[];
   /** array of disabled dates */
-  @Input() public dateDisabled: {date: Date, mode: string}[];
+  @Input() public dateDisabled: { date: Date, mode: string }[];
 
   /** currently active date */
   @Input()
@@ -100,6 +101,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+
+  @Output() public viewChanged: EventEmitter<any> = new EventEmitter<any>(undefined);
 
   @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
 
@@ -122,12 +125,16 @@ export class DatePickerComponent implements ControlValueAccessor {
   public onUpdate(event: any): void {
     this.activeDate = event;
     this.onChange(event);
+    this.onviewChanged({ date: this.activeDate, mode: this.datepickerMode })
   }
 
   public onSelectionDone(event: Date): void {
     this.selectionDone.emit(event);
   }
 
+  public onviewChanged(event: any): void {
+    this.viewChanged.emit(event)
+  }
   // todo: support null value
   public writeValue(value: any): void {
     if (this._datePicker.compare(value, this._activeDate) === 0) {
