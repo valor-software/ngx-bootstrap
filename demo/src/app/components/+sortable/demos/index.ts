@@ -1,11 +1,15 @@
 import { ComplexDatamodelDemoComponent } from './complex-datamodel/complex-datamodel.component';
 import { SimpleItemsDemoComponent } from './simple-items/simple-items.component';
 import { CustomItemTemplateDemoComponent } from './custom-item-template/custom-item-template';
+import { OneWayDemoComponent } from './one-way/one-way.component';
+import { DirectivesUsageDemoComponent } from './directives-usage/directives-usage.component';
 
 export const DEMO_COMPONENTS = [
   SimpleItemsDemoComponent,
   ComplexDatamodelDemoComponent,
-  CustomItemTemplateDemoComponent
+  CustomItemTemplateDemoComponent,
+  OneWayDemoComponent,
+  DirectivesUsageDemoComponent
 ];
 
 export const DEMOS = {
@@ -20,5 +24,13 @@ export const DEMOS = {
   itemTemplate: {
     component: require('!!raw-loader?lang=typescript!./custom-item-template/custom-item-template.ts'),
     html: require('!!raw-loader?lang=markup!./custom-item-template/custom-item-template.html')
+  },
+  oneWay: {
+    component: require('!!raw-loader?lang=typescript!./one-way/one-way.component.ts'),
+    html: require('!!raw-loader?lang=markup!./one-way/one-way.component.html')
+  },
+  directivesUsage: {
+    component: require('!!raw-loader?lang=typescript!./directives-usage/directives-usage.component.ts'),
+    html: require('!!raw-loader?lang=markup!./directives-usage/directives-usage.component.html')
   }
 };

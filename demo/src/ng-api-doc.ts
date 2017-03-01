@@ -1464,31 +1464,47 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "DraggableItemService": {
-    "fileName": "src/sortable/draggable-item.service.ts",
-    "className": "DraggableItemService",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
-  "DraggableItem": {
-    "fileName": "src/sortable/draggable-item.ts",
-    "className": "DraggableItem",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
   "SortableComponent": {
-    "fileName": "src/sortable/sortable.component.ts",
+    "fileName": "src/sortable/components/sortable.component.ts",
     "className": "SortableComponent",
     "description": "",
     "selector": "bs-sortable",
     "exportAs": "bs-sortable",
     "inputs": [
       {
+        "name": "acceptFromZones",
+        "type": "string",
+        "description": "<p>names of sortables from which elements could be dragged </p>\n"
+      },
+      {
+        "name": "dropZoneGroup",
+        "type": "string",
+        "description": "<p>name of sortable group from which elements could be dragged </p>\n"
+      },
+      {
+        "name": "dropZoneId",
+        "type": "string",
+        "description": "<p>name of sortable, should be unique for all the Sortable components and dropZone directives on the page </p>\n"
+      },
+      {
         "name": "fieldName",
         "type": "string",
         "description": "<p>field name if input array consists of objects </p>\n"
+      },
+      {
+        "name": "fixDisabledItems",
+        "type": "boolean",
+        "description": "<p>if true disabled items won&#39;t move during sorting, doesn&#39;t affect case if an item was removed or inserted into the conteiner </p>\n"
+      },
+      {
+        "name": "ghostClassName",
+        "type": "string",
+        "description": "<p>class name for ghost item (applicable for touch only) </p>\n"
+      },
+      {
+        "name": "isItemDisabled",
+        "type": "(item: any) => boolean",
+        "description": "<p>should return true if item should be disabled </p>\n"
       },
       {
         "name": "itemActiveClass",
@@ -1504,6 +1520,11 @@ export const ngdoc: any = {
         "name": "itemClass",
         "type": "string",
         "description": "<p>class name for item </p>\n"
+      },
+      {
+        "name": "itemDisabledClass",
+        "type": "string",
+        "description": "<p>class name for disabled item </p>\n"
       },
       {
         "name": "itemStyle",
@@ -1550,9 +1571,111 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "SortableItem": {
-    "fileName": "src/sortable/sortable.component.ts",
-    "className": "SortableItem",
+  "DraggableElementDirective": {
+    "fileName": "src/sortable/directives/draggable-element.directive.ts",
+    "className": "DraggableElementDirective",
+    "description": "",
+    "selector": "[bsDraggableElement]",
+    "exportAs": "bsDraggableElement",
+    "inputs": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>if true then draggable property is set to false and element couldn&#39;t be dragged </p>\n"
+      }
+    ],
+    "outputs": [],
+    "properties": [
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>if true then draggable property is set to false and element couldn&#39;t be dragged </p>\n"
+      }
+    ],
+    "methods": []
+  },
+  "DropZoneDirective": {
+    "fileName": "src/sortable/directives/drop-zone.directive.ts",
+    "className": "DropZoneDirective",
+    "description": "",
+    "selector": "[bsDropZone]",
+    "exportAs": "bsDropZone",
+    "inputs": [
+      {
+        "name": "acceptFromZones",
+        "type": "string[]",
+        "description": "<p>names of drop zones from which elements could be dragged </p>\n"
+      },
+      {
+        "name": "bsDropZone",
+        "type": "string",
+        "description": "<p>drop zone name, should be unique for all the Sortable components and dropZone directives on the page </p>\n"
+      },
+      {
+        "name": "dropZoneGroup",
+        "type": "string",
+        "description": "<p>name of drop zone group from which elements could be dragged </p>\n"
+      },
+      {
+        "name": "fixDisabledItems",
+        "type": "boolean",
+        "description": "<p>if true disabled items won&#39;t move during sorting, doesn&#39;t affect case if an item was removed or inserted into the conteiner </p>\n"
+      },
+      {
+        "name": "ghostClassName",
+        "type": "string",
+        "description": "<p>class for element which will be rendered under the touch during drag and drop on touch device </p>\n"
+      },
+      {
+        "name": "items",
+        "type": "any[]",
+        "description": "<p>data which is handled by the drop zone </p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "activeItemIndexChange",
+        "description": "<p>fired when active item index is changed </p>\n"
+      },
+      {
+        "name": "itemsChange",
+        "description": "<p>fired when items array is changed </p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "DropZoneContainer": {
+    "fileName": "src/sortable/models/drop-zone-container.ts",
+    "className": "DropZoneContainer",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DropZone": {
+    "fileName": "src/sortable/models/drop-zone.ts",
+    "className": "DropZone",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "GrabbedElement": {
+    "fileName": "src/sortable/models/grabbed-element.ts",
+    "className": "GrabbedElement",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "Point": {
+    "fileName": "src/sortable/models/point.ts",
+    "className": "Point",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DragAndDropService": {
+    "fileName": "src/sortable/services/drag-and-drop.service.ts",
+    "className": "DragAndDropService",
     "description": "",
     "methods": [],
     "properties": []

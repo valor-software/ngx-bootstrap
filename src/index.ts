@@ -62,7 +62,7 @@ export {
 export { RatingComponent, RatingModule } from './rating';
 
 export {
-  DraggableItem, DraggableItemService, SortableItem, SortableComponent,
+  DropZoneDirective, DraggableElementDirective, DragAndDropService, SortableComponent,
   SortableModule
 } from './sortable';
 
