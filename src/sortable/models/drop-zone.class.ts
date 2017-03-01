@@ -1,5 +1,5 @@
-import { Point } from './point';
-import { GrabbedElement } from './grabbed-element';
+import { Point } from './point.class';
+import { GrabbedElement } from './grabbed-element.class';
 
 export interface DropZone {
   dragoverPoint(point: Point, grabbedElement: GrabbedElement): void;

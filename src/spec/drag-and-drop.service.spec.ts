@@ -1,20 +1,20 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { DragAndDropService } from '../sortable';
+import { BsDragAndDropService } from '../sortable';
 import { GrabbedElement } from '../sortable/models';
 
 describe('Service: DragAndDropService', () => {
-  let service: DragAndDropService;
+  let service: BsDragAndDropService;
   let grabbedElement: GrabbedElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DragAndDropService]
+      providers: [BsDragAndDropService]
     });
   });
 
-  beforeEach(inject([DragAndDropService], (dragAndDropservice: DragAndDropService) => {
+  beforeEach(inject([BsDragAndDropService], (dragAndDropservice: BsDragAndDropService) => {
     service = dragAndDropservice;
     grabbedElement = { dropZoneContainerId: 'id1', index: 1, dropZoneGroup: 'group', element: undefined };
     grabbedElement.element = { host: { nativeElement: document.createElement('div') } } as any;

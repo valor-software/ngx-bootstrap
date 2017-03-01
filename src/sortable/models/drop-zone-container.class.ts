@@ -1,4 +1,4 @@
-import { DropZone } from './drop-zone';
+import { DropZone } from './drop-zone.class';
 
 export interface DropZoneContainer {
   id: string;

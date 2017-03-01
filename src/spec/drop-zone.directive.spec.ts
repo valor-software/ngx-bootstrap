@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ContentChild, ViewChildren, Injectable, QueryList } from '@angular/core';
 import { TestBed, async, ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, inject, tick } from '@angular/core/testing';
-import { DropZoneDirective, DragAndDropService, SortableModule, DraggableElementDirective } from '../sortable';
+import { DropZoneDirective, BsDragAndDropService, BsSortableModule, BsDraggableDirective } from '../sortable';
 import { GrabbedElement, Point } from '../sortable/models';
-import { ArrayHelper } from '../sortable/array.helper';
+import { ArrayHelper } from '../sortable/utils/array.helper';
 
 const ITEMS = [ 'one', 'two', 'three', 'four', 'five' ];
 
@@ -11,10 +11,10 @@ const ITEMS = [ 'one', 'two', 'three', 'four', 'five' ];
   selector: 'test',
   template: `
     <div id="directive" [acceptFromZones]="['testZone2']" bsDropZone="testZone" [(items)]="items" (activeItemIndexChange)="activeItemIndex = $event" [ngStyle]="style">
-      <div bsDraggableElement *ngFor="let item of items">{{item}}</div>
+      <div bsDraggable *ngFor="let item of items">{{item}}</div>
     </div>
     <div id="directive2" bsDropZone="testZone2" [(items)]="items2" (activeItemIndexChange)="activeItemIndex2 = $event" [ngStyle]="style">
-      <div bsDraggableElement *ngFor="let item of items2">{{item}}</div>
+      <div bsDraggable *ngFor="let item of items2">{{item}}</div>
     </div>
   `
 })
@@ -32,18 +32,18 @@ describe('Directive: DropZoneDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
   let directive: DropZoneDirective;
   let directive2: DropZoneDirective;
-  let service: DragAndDropService;
+  let service: BsDragAndDropService;
   let firstItemRect: ClientRect;
   let firstItemRectCenter: Point;
   let lastItemRect: ClientRect;
   let lastItemRectCenter: Point;
-  let firstDraggableElement: DraggableElementDirective;
+  let firstDraggableElement: BsDraggableDirective;
 
   beforeEach(fakeAsync(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TestComponent ],
-      imports: [ SortableModule.forRoot(), CommonModule ],
-      providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }, DragAndDropService]
+      imports: [ BsSortableModule.forRoot(), CommonModule ],
+      providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }, BsDragAndDropService]
     }).createComponent(TestComponent);
 
     fixture.detectChanges();
@@ -52,14 +52,14 @@ describe('Directive: DropZoneDirective', () => {
     directive2 = fixture.componentInstance.dropZoneDirectives.last;
   }));
 
-  beforeEach(inject([DragAndDropService], (dragAndDropservice: DragAndDropService) => {
+  beforeEach(inject([BsDragAndDropService], (dragAndDropservice: BsDragAndDropService) => {
     service = dragAndDropservice;
     rendererListenSpy = spyOn((directive as any).renderer, 'listen');
-    firstItemRect = (directive.draggableItems.first as DraggableElementDirective).host.nativeElement.getBoundingClientRect();
+    firstItemRect = (directive.draggableItems.first as BsDraggableDirective).host.nativeElement.getBoundingClientRect();
     firstItemRectCenter = getRectCenter(firstItemRect);
-    lastItemRect = (directive.draggableItems.last as DraggableElementDirective).host.nativeElement.getBoundingClientRect();
+    lastItemRect = (directive.draggableItems.last as BsDraggableDirective).host.nativeElement.getBoundingClientRect();
     lastItemRectCenter = getRectCenter(lastItemRect);
-    firstDraggableElement = directive.draggableItems.first as DraggableElementDirective;
+    firstDraggableElement = directive.draggableItems.first as BsDraggableDirective;
   }));
 
   afterEach(() => {

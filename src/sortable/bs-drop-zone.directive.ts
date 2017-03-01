@@ -12,29 +12,20 @@ import {
   Renderer
 } from '@angular/core';
 
-import { DraggableElementDirective } from './draggable-element.directive';
-import { DragAndDropService } from '../services';
-import { GrabbedElement, Point, DropZone } from '../models';
-import { PointHelper } from '../point.helper';
-import { ArrayHelper } from '../array.helper';
+import { BsDraggableDirective } from './bs-draggable.directive';
+import { DragAndDropService } from './services';
+import { GrabbedElement, Point, DropZone } from './models';
+import { PointHelper } from './utils/point.helper';
+import { ArrayHelper } from './utils/array.helper';
 
-@Directive({
-  selector: '[bsDropZone]',
-  exportAs: 'bsDropZone'
-})
-export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
-  @ContentChildren(DraggableElementDirective) public draggableItems: QueryList<DraggableElementDirective>;
+// plus\minus unique id for lazy
+const dropZoneId = 0;
+
+@Directive({ selector: '[bsDropZone]', exportAs: 'bsDropZone' })
+export class BsDropZoneDirective implements AfterViewInit, OnInit, DropZone {
+  @ContentChildren(BsDraggableDirective) public draggableItems: QueryList<BsDraggableDirective>;
 
   public activeItemIndex: number = -1;
-
-  /** fired when items array is changed */
-  @Output() public itemsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
-
-  /** fired when active item index is changed */
-  @Output() public activeItemIndexChange: EventEmitter<number> = new EventEmitter<number>();
-
-  /** drop zone name, should be unique for all the Sortable components and dropZone directives on the page */
-  @Input() public bsDropZone: string;
 
   /** if true disabled items won't move during sorting, doesn't affect case if an item was removed or inserted into the conteiner */
   @Input() public fixDisabledItems: boolean;
@@ -51,61 +42,72 @@ export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
   /** class for element which will be rendered under the touch during drag and drop on touch device */
   @Input() public ghostClassName: string;
 
-  private host: ElementRef;
-  private renderer: Renderer;
-  private dragAndDropService: DragAndDropService;
-  private draggableItemsElements: DraggableElementDirective[];
+  /** optional: drop zone name, should be unique for all the Sortable components and dropZone directives on the page */
+  @Input() public bsDropZone: string;
 
-  public constructor(
-    host: ElementRef,
-    dragAndDropService: DragAndDropService,
-    renderer: Renderer
-  ) {
-    this.host = host;
-    this.renderer = renderer;
-    this.dragAndDropService = dragAndDropService;
+  /** fired when items array is changed */
+  @Output() public itemsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+
+  /** fired when active item index is changed */
+  @Output() public activeItemIndexChange: EventEmitter<number> = new EventEmitter<number>();
+
+  private _hostEl: ElementRef;
+  private _renderer: Renderer;
+  private _dndService: DragAndDropService;
+  private draggableItemsElements: BsDraggableDirective[];
+
+  public constructor(host: ElementRef,
+                     renderer: Renderer,
+                     dragAndDropService: DragAndDropService) {
+    this._hostEl = host;
+    this._renderer = renderer;
+    this._dndService = dragAndDropService;
   }
 
   public ngOnInit(): void {
-    this.dragAndDropService.registerContainer({
+    this.bsDropZone = this.bsDropZone || `bs-drop-zone-id-${dropZoneId++}`;
+    this._dndService.registerContainer({
       id: this.bsDropZone,
-      nativeElement: this.host.nativeElement,
+      nativeElement: this._hostEl.nativeElement,
       dropZone: this
     });
-    this.dragAndDropService.dragend.subscribe(() => {
+    this._dndService.dragend.subscribe(() => {
       this.setActiveIndex(-1);
     });
   }
 
   public ngAfterViewInit(): void {
     this.updateDraggableItems(this.draggableItems.toArray());
-    this.draggableItems.changes.subscribe((items: QueryList<DraggableElementDirective>) => {
+    this.draggableItems.changes.subscribe((items: QueryList<BsDraggableDirective>) => {
       this.updateDraggableItems(items.toArray());
     });
   }
 
-  @HostListener('dragover', ['$event']) public onDragover(event: DragEvent): void {
-    const grabbedElement = this.dragAndDropService.getGrabbedElement();
+  @HostListener('dragover', ['$event'])
+  public onDragover(event: DragEvent): void {
+    const grabbedElement = this._dndService.getGrabbedElement();
     if (!this.cancelEvent(event, grabbedElement)) {
       return;
     }
 
-    const point = { x: event.clientX, y: event.clientY };
+    const point = {x: event.clientX, y: event.clientY};
     this.dragoverPoint(point, grabbedElement);
   }
 
-  @HostListener('dragenter', ['$event']) public onDragenter(event: DragEvent): void {
-    this.cancelEvent(event, this.dragAndDropService.getGrabbedElement());
+  @HostListener('dragenter', ['$event'])
+  public onDragenter(event: DragEvent): void {
+    this.cancelEvent(event, this._dndService.getGrabbedElement());
   }
 
-  @HostListener('touchstart', ['$event']) public onTouchstart(event: TouchEvent): void {
-    if (this.dragAndDropService.getGrabbedElement()) {
+  @HostListener('touchstart', ['$event'])
+  public onTouchstart(event: TouchEvent): void {
+    if (this._dndService.getGrabbedElement()) {
       return;
     }
     const touch = event.changedTouches[0];
     const itemIndex = this.draggableItemsElements.findIndex(
-      (x: DraggableElementDirective) => PointHelper.isPointInRectangle(
-        { x: touch.clientX, y: touch.clientY },
+      (x: BsDraggableDirective) => PointHelper.isPointInRectangle(
+        {x: touch.clientX, y: touch.clientY},
         x.host.nativeElement.getBoundingClientRect()
       )
     );
@@ -117,16 +119,17 @@ export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
       // when ngFor updates DOM (removes some element which was a target for touchstart) touchmove events fires
       // on this element only without bubbling, so we need to attach listeners to this element directly
       const eventListeners = [
-        this.renderer.listen(event.target, 'touchmove', (e: TouchEvent) => this.dragAndDropService.onTouchmove(e)),
-        this.renderer.listen(event.target, 'touchend', (e: TouchEvent) => this.onDrop(e, eventListeners)),
-        this.renderer.listen(event.target, 'touchcancel', (e: TouchEvent) => this.onDrop(e, eventListeners))
+        this._renderer.listen(event.target, 'touchmove', (e: TouchEvent) => this._dndService.onTouchmove(e)),
+        this._renderer.listen(event.target, 'touchend', (e: TouchEvent) => this.onDrop(e, eventListeners)),
+        this._renderer.listen(event.target, 'touchcancel', (e: TouchEvent) => this.onDrop(e, eventListeners))
       ];
-      this.dragAndDropService.startDragElement(this.createGrabbedElement(itemIndex), touch, this.ghostClassName);
+      this._dndService.startDragElement(this.createGrabbedElement(itemIndex), touch, this.ghostClassName);
     }
   }
 
-  @HostListener('drop', ['$event']) public onDrop(event: DragEvent | TouchEvent, listeners: Function[]): void {
-    if ((event as TouchEvent).changedTouches && !this.dragAndDropService.containsCurrentTouch((event as TouchEvent).changedTouches)) {
+  @HostListener('drop', ['$event'])
+  public onDrop(event: DragEvent | TouchEvent, listeners: Function[]): void {
+    if ((event as TouchEvent).changedTouches && !this._dndService.containsCurrentTouch((event as TouchEvent).changedTouches)) {
       return;
     }
     if (listeners) {
@@ -135,10 +138,8 @@ export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
     this.finalizeDrag();
   }
 
-  public dragoverPoint(
-    point: Point,
-    grabbedElement: GrabbedElement
-  ): void {
+  public dragoverPoint(point: Point,
+                       grabbedElement: GrabbedElement): void {
     if (grabbedElement.dropZoneContainerId === this.bsDropZone) {
       grabbedElement.element = this.draggableItemsElements[grabbedElement.index];
     }
@@ -153,7 +154,7 @@ export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
         && PointHelper.isPointInRectangle(point, this.draggableItemsElements[i].host.nativeElement.getBoundingClientRect())
         && (!this.fixDisabledItems || !this.draggableItemsElements[i].disabled)
       ) {
-        this.dragAndDropService.captureGrabbedElement(this.bsDropZone);
+        this._dndService.captureGrabbedElement(this.bsDropZone);
         let result: any[] = [];
         if (grabbedElement.dropZoneContainerId !== this.bsDropZone) {
           result = ArrayHelper.insertElement(i, grabbedElement.element.draggableElementData, this.items);
@@ -172,7 +173,7 @@ export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
   }
 
   public finalizeDrag(): void {
-    this.dragAndDropService.stopDragElement();
+    this._dndService.stopDragElement();
   }
 
   public removeGrabbedItem(grabbedItem: GrabbedElement): void {
@@ -199,25 +200,25 @@ export class DropZoneDirective implements AfterViewInit, OnInit, DropZone {
     return !!result;
   }
 
-  private updateDraggableItems(items: DraggableElementDirective[]): void {
-    items.forEach((item: DraggableElementDirective, index: number) => {
+  private updateDraggableItems(items: BsDraggableDirective[]): void {
+    items.forEach((item: BsDraggableDirective, index: number) => {
       item.draggableElementData = this.items[index];
       item.onDragStart = (event: DragEvent) => {
         this.setActiveIndex(index);
-        this.dragAndDropService.startDragElement(this.createGrabbedElement(index));
-        const listener = this.renderer.listen(event.target, 'dragend', () => {
+        this._dndService.startDragElement(this.createGrabbedElement(index));
+        const listener = this._renderer.listen(event.target, 'dragend', () => {
           this.finalizeDrag();
           listener();
         });
       };
-      item.onDragEnd = () => this.dragAndDropService.stopDragElement();
+      item.onDragEnd = () => this._dndService.stopDragElement();
     });
     this.draggableItemsElements = items;
   }
 
   private getDisabledItems(): number[] {
     return this.draggableItemsElements
-      .map((x: DraggableElementDirective, i: number) => ({ index: i, disabled: x.disabled }))
+      .map((x: BsDraggableDirective, i: number) => ({index: i, disabled: x.disabled}))
       .filter((x: any) => x.disabled)
       .map((x: any) => x.index);
   }

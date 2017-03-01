@@ -1,4 +1,4 @@
-import { Point } from './models';
+import { Point } from '../models/point.class';
 
 export class PointHelper {
   public static isPointInRectangle(point: Point, rectangle: ClientRect) {

@@ -25,7 +25,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
       [ngStyle]="placeholderStyle"
     >{{placeholderItem}}</div>
     <div
-      bsDraggableElement
+      bsDraggable
       *ngFor="let item of items; let i = index;"
       [disabled]="isCurrentItemDisabled(item)"
       [ngClass]="[ itemClass, isItemActive(i) ? itemActiveClass : '', isCurrentItemDisabled(item) ? itemDisabledClass : '' ]"
@@ -41,11 +41,11 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   <template #defItemTemplate let-item="item">{{ fieldName ? item[fieldName] : item }}</template>`,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SortableComponent),
+    useExisting: forwardRef(() => BsSortableComponent),
     multi: true
   }]
 })
-export class SortableComponent implements ControlValueAccessor {
+export class BsSortableComponent implements ControlValueAccessor {
   private static globalZoneIndex: number = 0;
 
   /** name of sortable, should be unique for all the Sortable components and dropZone directives on the page */
@@ -129,7 +129,7 @@ export class SortableComponent implements ControlValueAccessor {
 
   public get currentDropZoneId(): string {
     if (!this.dropZoneId && !this.defaultZoneIndex) {
-      this.defaultZoneIndex = `sortableZone${SortableComponent.globalZoneIndex++}`;
+      this.defaultZoneIndex = `sortableZone${BsSortableComponent.globalZoneIndex++}`;
     }
     return this.dropZoneId || this.defaultZoneIndex;
   }

@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { PointHelper } from '../sortable/point.helper';
+import { PointHelper } from '../sortable/utils/point.helper';
 
 describe('Helper: PointHelper', () => {
   let rectangle: ClientRect;

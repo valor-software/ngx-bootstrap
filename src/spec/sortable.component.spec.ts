@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick, ComponentFixtureAutoDetect,
 import { Component, DebugElement } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { SortableModule, SortableComponent, DragAndDropService } from '../sortable';
+import { BsSortableModule, BsSortableComponent, BsDragAndDropService } from '../sortable';
 import { GrabbedElement } from '../sortable/models';
 
 const HEROES: string[] = [ 'Windstorm', 'Bombasto', 'Magneta', 'Tornado' ];
@@ -22,19 +22,19 @@ class TestSortableComponent {
 
 describe('Component: Sortable', () => {
   let fixture: ComponentFixture<TestSortableComponent>;
-  let sort1: SortableComponent;
-  let sort2: SortableComponent;
+  let sort1: BsSortableComponent;
+  let sort2: BsSortableComponent;
 
   beforeEach(fakeAsync(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TestSortableComponent ],
-      imports: [ SortableModule.forRoot(), FormsModule ],
+      imports: [ BsSortableModule.forRoot(), FormsModule ],
       providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
     }).createComponent(TestSortableComponent);
 
     fixture.detectChanges();
 
-    let sortableComponents = fixture.debugElement.queryAll(By.directive(SortableComponent)).map((de:DebugElement) => de.injector.get(SortableComponent) as SortableComponent);
+    let sortableComponents = fixture.debugElement.queryAll(By.directive(BsSortableComponent)).map((de:DebugElement) => de.injector.get(BsSortableComponent) as BsSortableComponent);
     [ sort1, sort2 ] = sortableComponents;
   }));
 
@@ -94,9 +94,9 @@ describe('Component: Sortable', () => {
   });
 
   describe('process drag & drop', () => {
-    let dragAndDropService: DragAndDropService;
+    let dragAndDropService: BsDragAndDropService;
 
-    beforeEach(inject([DragAndDropService], (service: DragAndDropService) => {
+    beforeEach(inject([BsDragAndDropService], (service: BsDragAndDropService) => {
       dragAndDropService = service;
     }));
 
