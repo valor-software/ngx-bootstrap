@@ -120,7 +120,7 @@
     "tslint": "4.3.1",
     "tslint-config-valorsoft": "1.2.0",
     "typedoc": "0.5.5",
-    "typescript": "2.0.10",
+    "typescript": "2.2.1",
     "wallaby-webpack": "^0.0.31",
     "webdriver-manager": "12.0.2",
     "zone.js": "^0.7.6"
