@@ -1,16 +1,20 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
-import { DraggableElementDirective } from '../directives';
-import { DropZoneContainer, Point, DropZone, GrabbedElement } from '../models';
-import { PointHelper } from '../point.helper';
+import { PointHelper } from './utils/point.helper';
+import { BsDraggableDirective } from './bs-draggable.directive';
+import { DropZoneContainer } from './models/drop-zone-container.class';
+import { Point } from './models/point.class';
+import { GrabbedElement } from './models/grabbed-element.class';
 
 @Injectable()
-export class DragAndDropService {
+export class BsDragAndDropService {
   public dragend: EventEmitter<any> = new EventEmitter<any>();
 
   private containers: DropZoneContainer[] = [];
+
   private grabbedElement: GrabbedElement;
   private grabbedElementGhost: HTMLElement;
+
   private touchOffset: Point;
   private touchId: number;
 
@@ -21,7 +25,7 @@ export class DragAndDropService {
     this.containers.push(dropZoneContainer);
   }
 
-  public updateGrabbedElement(grabbedElement: DraggableElementDirective): void {
+  public updateGrabbedElement(grabbedElement: BsDraggableDirective): void {
     this.grabbedElement.element = grabbedElement;
   }
 
@@ -30,7 +34,8 @@ export class DragAndDropService {
   }
 
   public captureGrabbedElement(dropZoneContainerId: string): void {
-    if (this.grabbedElement.dropZoneContainerId && dropZoneContainerId && dropZoneContainerId !== this.grabbedElement.dropZoneContainerId) {
+    if (this.grabbedElement.dropZoneContainerId && dropZoneContainerId &&
+      dropZoneContainerId !== this.grabbedElement.dropZoneContainerId) {
       this.containers.find((x: DropZoneContainer) => x.id === this.grabbedElement.dropZoneContainerId).dropZone.removeGrabbedItem(this.grabbedElement);
       this.grabbedElement.dropZoneContainerId = undefined;
     }
@@ -42,7 +47,7 @@ export class DragAndDropService {
       this.grabbedElementGhost = this.createGhost(
         grabbedElement.element.host.nativeElement,
         ghostClassName,
-        { x: touch.clientX, y: touch.clientY }
+        {x: touch.clientX, y: touch.clientY}
       );
       document.children[0].appendChild(this.grabbedElementGhost);
       this.touchId = touch.identifier;
@@ -70,7 +75,7 @@ export class DragAndDropService {
       return;
     }
     event.preventDefault();
-    const point = { x: touch.clientX, y: touch.clientY };
+    const point = {x: touch.clientX, y: touch.clientY};
     this.drag(point);
   }
 
@@ -93,7 +98,7 @@ export class DragAndDropService {
       ghost.classList.add(className);
     }
 
-    this.touchOffset = { x: rect.left + rect.width / 2 - touchPoint.x, y: rect.top + rect.height / 2 - touchPoint.y };
+    this.touchOffset = {x: rect.left + rect.width / 2 - touchPoint.x, y: rect.top + rect.height / 2 - touchPoint.y};
     return ghost;
   }
 
@@ -107,8 +112,8 @@ export class DragAndDropService {
   private fireDragover(point: Point): void {
     for (const container of this.containers) {
       if (PointHelper.isPointInRectangle(point, container.nativeElement.getBoundingClientRect())) {
-          container.dropZone.dragoverPoint(point, this.getGrabbedElement());
-          return;
+        container.dropZone.dragoverPoint(point, this.getGrabbedElement());
+        return;
       }
     }
   }

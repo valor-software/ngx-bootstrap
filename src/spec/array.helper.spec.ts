@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 
-import { ArrayHelper } from '../sortable/array.helper';
+import { ArrayHelper } from '../sortable/utils/array.helper';
 
 describe('Helper: ArrayHelper', () => {
   let array = [];

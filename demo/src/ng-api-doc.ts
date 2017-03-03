@@ -1571,12 +1571,12 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "DraggableElementDirective": {
+  "BsDraggableDirective": {
     "fileName": "src/sortable/directives/draggable-element.directive.ts",
-    "className": "DraggableElementDirective",
+    "className": "BsDraggableDirective",
     "description": "",
-    "selector": "[bsDraggableElement]",
-    "exportAs": "bsDraggableElement",
+    "selector": "[bsDraggable]",
+    "exportAs": "bsDraggable",
     "inputs": [
       {
         "name": "disabled",

@@ -11,7 +11,7 @@ import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
-import { SortableModule } from './sortable';
+import { BsSortableModule } from './sortable';
 import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
@@ -62,8 +62,8 @@ export {
 export { RatingComponent, RatingModule } from './rating';
 
 export {
-  DropZoneDirective, DraggableElementDirective, DragAndDropService, SortableComponent,
-  SortableModule
+  DropZoneDirective, BsDraggableDirective, BsDragAndDropService, BsSortableComponent,
+  BsSortableModule
 } from './sortable';
 
 export {
@@ -117,7 +117,7 @@ const MODULES = [
     ProgressbarModule.forRoot(), PopoverModule.forRoot(),
     RatingModule.forRoot(),
     TabsModule.forRoot(), TimepickerModule.forRoot(), TooltipModule.forRoot(),
-    TypeaheadModule.forRoot(), SortableModule.forRoot()
+    TypeaheadModule.forRoot(), BsSortableModule.forRoot()
   ],
   exports: MODULES
 })

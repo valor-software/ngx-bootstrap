@@ -1,25 +1,16 @@
-import {
-  Directive,
-  Input,
-  Output,
-  EventEmitter,
-  ElementRef,
-  HostListener,
-  OnInit,
-  AfterViewInit,
-  Renderer
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer } from '@angular/core';
 
 @Directive({
-  selector: '[bsDraggableElement]',
-  exportAs: 'bsDraggableElement'
+  selector: '[bsDraggable]',
+  exportAs: 'bsDraggable'
 })
-export class DraggableElementDirective implements AfterViewInit {
+export class BsDraggableDirective implements AfterViewInit {
   public draggableElementData: any;
   public host: ElementRef;
 
   /** if true then draggable property is set to false and element couldn't be dragged */
-  @Input() public set disabled(value: boolean) {
+  @Input()
+  public set disabled(value: boolean) {
     this._disabled = value;
     if (this.viewInitialized) {
       this.updateDraggableAttribute();
@@ -47,14 +38,16 @@ export class DraggableElementDirective implements AfterViewInit {
     this.updateDraggableAttribute();
   }
 
-  @HostListener('dragstart', ['$event']) public onDragstart(event: DragEvent): void {
+  @HostListener('dragstart', ['$event'])
+  public onDragstart(event: DragEvent): void {
     if (!this.disabled) {
       event.dataTransfer.setData('Text', 'placeholder');
       this.onDragStart(event);
     }
   }
 
-  @HostListener('dragend', ['$event']) public onDragend(event: DragEvent): void {
+  @HostListener('dragend', ['$event'])
+  public onDragend(event: DragEvent): void {
     this.onDragEnd();
   }
 

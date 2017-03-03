@@ -1,29 +1,29 @@
 import { ViewChild, Component } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { DraggableElementDirective, SortableModule } from '../sortable';
+import { BsDraggableDirective, BsSortableModule } from '../sortable';
 
 @Component({
   selector: 'test-draggable-element',
-  template: `<div bsDraggableElement [disabled]="disabled"></div>`
+  template: `<div bsDraggable [disabled]="disabled"></div>`
 })
 class TestComponent {
-  @ViewChild(DraggableElementDirective) public draggableElementDirective: DropZoneDirective;
+  @ViewChild(BsDraggableDirective) public BsDraggableDirective: DropZoneDirective;
   public disabled: boolean = false;
 }
 
-describe('Directive: DraggableElementDirective', () => {
-  let directive: DraggableElementDirective;
+describe('Directive: BsDraggableDirective', () => {
+  let directive: BsDraggableDirective;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TestComponent ],
-      imports: [ SortableModule.forRoot() ]
+      imports: [ BsSortableModule.forRoot() ]
     }).createComponent(TestComponent);
 
     fixture.detectChanges();
 
-    directive = fixture.componentInstance.draggableElementDirective;
+    directive = fixture.componentInstance.BsDraggableDirective;
   });
 
   it('should create an instance', () => {
