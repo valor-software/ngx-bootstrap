@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
+const DYNAMIC_TAB_OFFSET = 1;
+
 @Component({
   selector: 'demo-tabs-dynamic',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,11 +14,23 @@ export class DemoTabsDynamicComponent {
     {title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true}
   ];
 
-  public setActiveTab(index: number): void {
-    this.tabs[index].active = true;
+  public onRemoved(event: any): void {
+    this.tabs.splice(event.indexToRemove - DYNAMIC_TAB_OFFSET, 1);
   }
 
-  public removeTabHandler(/*tab:any*/): void {
-    console.log('Remove Tab handler');
+  public swapTabs(): void {
+    const temp = this.tabs[this.tabs.length - 1];
+
+    this.tabs[this.tabs.length - 1] = this.tabs[this.tabs.length - 2];
+    this.tabs[this.tabs.length - 2] = temp;
+  }
+
+  public addTab(): void {
+    this.tabs.push({
+      title: `Dynamic Title ${this.tabs.length + 1}`,
+      content: `Dynamic content ${this.tabs.length + 1}`,
+      removable: true
+    });
+    this.tabs[this.tabs.length - 1].active = true;
   }
 }

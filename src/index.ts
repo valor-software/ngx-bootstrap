@@ -67,7 +67,7 @@ export {
 } from './sortable';
 
 export {
-  NgTranscludeDirective, TabDirective, TabHeadingDirective, TabsetComponent,
+  NgTranscludeDirective, TabComponent, TabHeadingDirective, TabsetComponent,
   TabsetConfig, TabsModule
 } from './tabs';
 

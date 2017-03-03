@@ -8,6 +8,9 @@
     <button type="button" class="btn btn-primary btn-sm" (click)="tabs[1].disabled = ! tabs[1].disabled">
       Enable / Disable third tab
     </button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="swapTabs()">
+      Swap last two tabs
+    </button>
   </p>
   <hr/>
   <tabset>
@@ -19,9 +22,14 @@
          (deselect)="tabz.active = false"
          [disabled]="tabz.disabled"
          [removable]="tabz.removable"
-         (removed)="removeTabHandler(tabz)"
+         (removed)="onRemoved($event)"
          [customClass]="tabz.customClass">
       {{tabz?.content}}
+    </tab>
+    <tab [contentless]="true">
+      <template tabHeading>
+        <span (click)="addTab()" class="glyphicon glyphicon-plus"></span>
+      </template>
     </tab>
   </tabset>
 </div>

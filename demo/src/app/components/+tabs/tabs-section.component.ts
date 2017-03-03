@@ -26,7 +26,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <li><a routerLink="." fragment="api-reference">API Reference</a>
       <ul>
         <li><a routerLink="." fragment="tabset-component">TabsetComponent</a></li>
-        <li><a routerLink="." fragment="tab-directive">TabDirective</a></li>
+        <li><a routerLink="." fragment="tab-component">TabComponent</a></li>
         <li><a routerLink="." fragment="tab-heading-directive">TabHeadingDirective</a></li>
         <li><a routerLink="." fragment="tabset-config">TabsetConfig</a></li>
       </ul>
@@ -78,7 +78,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   
   <ng-api-doc routerLink="." fragment="tabset-component" id="tabset-component" directive="TabsetComponent"></ng-api-doc>
-  <ng-api-doc routerLink="." fragment="tab-directive"id="tab-directive" directive="TabDirective"></ng-api-doc>
+  <ng-api-doc routerLink="." fragment="tab-component" id="tab-component" directive="TabComponent"></ng-api-doc>
   <ng-api-doc routerLink="." fragment="tab-heading-directive" id="tab-heading-directive" directive="TabHeadingDirective"></ng-api-doc>
   <ng-api-doc-config routerLink="." fragment="tabset-config" id="tabset-config" type="TabsetConfig"></ng-api-doc-config>
 </demo-section>`

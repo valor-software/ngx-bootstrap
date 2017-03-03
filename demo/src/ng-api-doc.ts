@@ -1583,9 +1583,9 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "TabDirective": {
-    "fileName": "src/tabs/tab.directive.ts",
-    "className": "TabDirective",
+  "TabComponent": {
+    "fileName": "src/tabs/tab.component.ts",
+    "className": "TabComponent",
     "description": "",
     "selector": "tab, [tab]",
     "inputs": [
@@ -1603,6 +1603,11 @@ export const ngdoc: any = {
         "name": "disabled",
         "type": "boolean",
         "description": "<p>if true tab can not be activated </p>\n"
+      },
+      {
+        "name": "contentless",
+        "type": "boolean",
+        "description": "<p>if true tab will not contain content. This kind of tab is good for additional controls under tabset </p>\n"
       },
       {
         "name": "heading",
