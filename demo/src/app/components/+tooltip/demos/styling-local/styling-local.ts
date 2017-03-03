@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
   color: #fff;
 }
 :host >>> .tooltip .tooltip-arrow {
-  border-top-color: #009688;
+  border-bottom-color: #009688;
 }
   `]
 })
