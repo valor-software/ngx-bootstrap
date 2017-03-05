@@ -10,6 +10,7 @@ const html = `
     <tab heading="tab0">tab0 content</tab>
     <tab *ngFor="let tab of tabs"
          [disabled]="tab.disabled"
+         [customClass]="tab.customClass"
          [active]="tab.active"
          [removable]="tab.removable"
          (select)="_select($event)"
@@ -18,6 +19,10 @@ const html = `
          [heading]="tab.title">{{ tab.content }}</tab>
   </tabset>
 `;
+
+function getTabItems(nativeEl: HTMLElement): NodeListOf<Element> {
+  return nativeEl.querySelectorAll('.nav-item');
+}
 
 function getTabTitles(nativeEl: HTMLElement): NodeListOf<Element> {
   return nativeEl.querySelectorAll('.nav-link');
@@ -28,18 +33,18 @@ function getTabContent(nativeEl: HTMLElement): NodeListOf<Element> {
 }
 
 function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
-  const tabTitles = getTabTitles(nativeEl);
+  const tabItems = getTabItems(nativeEl);
   const tabContent = getTabContent(nativeEl);
 
-  expect(tabTitles.length).toBe(active.length);
+  expect(tabItems.length).toBe(active.length);
   expect(tabContent.length).toBe(active.length);
 
   for (let i = 0; i < active.length; i++) {
     if (active[i]) {
-      expect(tabTitles[i].classList).toContain('active');
+      expect(tabItems[i].classList).toContain('active');
       expect(tabContent[i].classList).toContain('active');
     } else {
-      expect(tabTitles[i].classList).not.toContain('active');
+      expect(tabItems[i].classList).not.toContain('active');
       expect(tabContent[i].classList).not.toContain('active');
     }
   }
@@ -175,6 +180,31 @@ describe('Component: Tabs', () => {
       heading: 'tab3'
     }));
   });
+
+  it('should set class on a tab item through [customClass]', () => {
+    const tabItems = getTabItems(element);
+
+    expect(tabItems[1].classList).toContain('testCustomClass');
+  });
+
+  it('should prevent interference of [customClass] and state classes', () => {
+    const tabItems = getTabItems(element);
+    const tabTitles = getTabTitles(element);
+
+    expect(tabItems[1].classList).toContain('testCustomClass');
+
+    (tabTitles[1] as HTMLAnchorElement).click();
+    fixture.detectChanges();
+    expect(tabItems[1].classList).toContain('testCustomClass');
+    expectActiveTabs(element, [false, true, false, false]);
+    
+    context.tabs[0].customClass = 'otherCustomClass';
+    fixture.detectChanges();
+
+    expect(tabItems[1].classList).not.toContain('testCustomClass');
+    expect(tabItems[1].classList).toContain('otherCustomClass');
+    expectActiveTabs(element, [false, true, false, false]);
+  });
 });
 
 @Component({
@@ -186,7 +216,7 @@ class TestTabsetComponent {
   public isVertical:Boolean = false;
   public isJustified:Boolean = false;
   public tabs:any[] = [
-    {title: 'tab1', content: 'tab1 content'},
+    {title: 'tab1', content: 'tab1 content', customClass:'testCustomClass'},
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];

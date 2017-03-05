@@ -4,6 +4,7 @@ import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { DropdownDirective } from './dropdown.directive';
 import { DropdownConfig } from './dropdown.config';
+import { DropdownService } from './dropdown.service';
 
 @NgModule({
   declarations: [DropdownDirective, DropdownMenuDirective, DropdownToggleDirective],
@@ -11,6 +12,6 @@ import { DropdownConfig } from './dropdown.config';
 })
 export class DropdownModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: DropdownModule, providers: [DropdownConfig]};
+    return {ngModule: DropdownModule, providers: [DropdownConfig, DropdownService]};
   }
 }

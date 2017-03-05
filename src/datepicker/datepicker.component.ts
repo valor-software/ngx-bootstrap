@@ -120,6 +120,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   public onUpdate(event: any): void {
+    this.activeDate = event;
     this.onChange(event);
   }
 

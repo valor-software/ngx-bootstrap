@@ -53,6 +53,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Output() public typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
   /** fired when option was selected, return object with data of this option */
   @Output() public typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
+  /** fired when blur event occurres. returns the active item */
+  @Output() public typeaheadOnBlur: EventEmitter<any> = new EventEmitter();
 
   /**
    * A selector specifying the element the typeahead should be appended to.
@@ -143,6 +145,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('blur')
   public onBlur(): void {
     if (this._container && !this._container.isFocused) {
+      this.typeaheadOnBlur.emit(this._container.active);
       this.hide();
     }
   }
@@ -157,13 +160,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // if items is visible - prevent form submition
     if (e.keyCode === 13) {
       e.preventDefault();
-      return;
-    }
-
-    // if tab default browser behavior will select next input field, and
-    // therefore we should close the items list
-    if (e.keyCode === 9) {
-      this.hide();
       return;
     }
   }

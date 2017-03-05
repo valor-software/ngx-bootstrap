@@ -76,8 +76,7 @@ export {
 } from './timepicker';
 
 export {
-  TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule,
-  TooltipOptions
+  TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule
 } from './tooltip';
 
 export {
