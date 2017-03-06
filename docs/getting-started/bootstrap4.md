@@ -100,41 +100,30 @@ Open `/src/index.html` and add the following markup:
 - open `src/app/app.module.ts` and add
 
 ```typescript
-import { CollapseModule } from 'ng2-bootstrap/collapse';
+import { DropdownModule } from 'ng2-bootstrap/dropdown';
 ...
 
 @NgModule({
    ...
-   imports: [CollapseModule.forRoot(), ... ],
+   imports: [Dropdown.forRoot(), ... ],
     ... 
 })
 ```
 
-- open `src/app/app.component.ts` and add
-```typescript
-  public isCollapsed:boolean = false;
- 
-  public collapsed(event:any):void {
-    console.log(event);
-  }
- 
-  public expanded(event:any):void {
-    console.log(event);
-  }
-```
-
 - open `src/app/app.component.html` and add
 ```
-<button type="button" class="btn btn-primary"
-        (click)="isCollapsed = !isCollapsed">Toggle collapse
-</button>
-<hr>
-<div (collapsed)="collapsed($event)"
-     (expanded)="expanded($event)"
-     [collapse]="isCollapsed"
-     class="card card-block card-header">
-  <div class="well well-lg">Some content</div>
+<div class="btn-group" dropdown>
+  <button id="single-button" type="button" class="btn btn-primary" dropdownToggle>
+    Button dropdown <span class="caret"></span>
+  </button>
+  <ul dropdownMenu role="menu" aria-labelledby="single-button">
+    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
+  </ul>
 </div>
 ```
 
-run the app in demo mode and ensure the collapse button functions correctly.
+run the app in demo mode and ensure the dropdown button functions correctly.
