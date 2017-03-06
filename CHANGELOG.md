@@ -1,3 +1,27 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.3...v1.4.0) (2017-03-06)
+
+
+### Bug Fixes
+
+* **datepicker:** update activeDate on select ([#1676](https://github.com/valor-software/ng2-bootstrap/issues/1676)) ([378726b](https://github.com/valor-software/ng2-bootstrap/commit/378726b))
+* **demo:** bootstrap 4 demos card text formatting incorrectly. ([#1656](https://github.com/valor-software/ng2-bootstrap/issues/1656)) ([d8f42df](https://github.com/valor-software/ng2-bootstrap/commit/d8f42df)), closes [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637) [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637)
+* **docs:** fixed angular-cli docs install guide ([e626947](https://github.com/valor-software/ng2-bootstrap/commit/e626947))
+* **dropdown:** fixed disabled tests, removed outdated ([#1605](https://github.com/valor-software/ng2-bootstrap/issues/1605)) ([29dceba](https://github.com/valor-software/ng2-bootstrap/commit/29dceba)), closes [#1606](https://github.com/valor-software/ng2-bootstrap/issues/1606)
+* **package.json:** locked version tor types/jasmine ([#1635](https://github.com/valor-software/ng2-bootstrap/issues/1635)) ([90fd995](https://github.com/valor-software/ng2-bootstrap/commit/90fd995))
+* **tabs:** Use [ngClass] to avoid conflicts with [class.x] bindings ([#1651](https://github.com/valor-software/ng2-bootstrap/issues/1651)) ([183b275](https://github.com/valor-software/ng2-bootstrap/commit/183b275))
+* **tooltip:** removed deprecated tooltip options ([373bed9](https://github.com/valor-software/ng2-bootstrap/commit/373bed9)), closes [#1612](https://github.com/valor-software/ng2-bootstrap/issues/1612)
+* **typeahead:** optionsListTemplate usage is fixed in TypeaheadContainerComponent ([#1625](https://github.com/valor-software/ng2-bootstrap/issues/1625)) ([f21bd8d](https://github.com/valor-software/ng2-bootstrap/commit/f21bd8d))
+
+
+### Features
+
+* **buttons:** Fixed disabled buttons module tests ([#1604](https://github.com/valor-software/ng2-bootstrap/issues/1604)) ([4df17c7](https://github.com/valor-software/ng2-bootstrap/commit/4df17c7)), closes [#1606](https://github.com/valor-software/ng2-bootstrap/issues/1606)
+* **demo:** access static tabs sample ([#1603](https://github.com/valor-software/ng2-bootstrap/issues/1603)) ([63c64e0](https://github.com/valor-software/ng2-bootstrap/commit/63c64e0))
+* **typeahead:** - added typeaheadOnBlur event ([#1639](https://github.com/valor-software/ng2-bootstrap/issues/1639)) ([62eb22a](https://github.com/valor-software/ng2-bootstrap/commit/62eb22a))
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/valor-software/ng2-bootstrap/compare/v1.3.2...v1.3.3) (2017-02-03)
 
