@@ -116,6 +116,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): any {
     this._config = this._config || this.getConfig();
+    if (this._config.show) {
+      this.show();
+    }
   }
 
   /* Public methods */
