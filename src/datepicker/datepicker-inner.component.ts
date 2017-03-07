@@ -58,7 +58,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
   @Output() public update: EventEmitter<Date> = new EventEmitter<Date>(false);
 
-  @Output() public viewChanged: EventEmitter<any> = new EventEmitter<any>(undefined);
+  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public stepDay: any = {};
   public stepMonth: any = {};
@@ -252,7 +252,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       this.activeDate = new Date(year, month, 1);
 
       this.refreshView();
-      this.viewChanged.emit({ date: this.activeDate, mode: this.datepickerMode })
+      this.activeDateChange.emit(this.activeDate);
     }
   }
 

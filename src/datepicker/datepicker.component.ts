@@ -37,7 +37,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [monthColLimit]="monthColLimit"
                       [yearColLimit]="yearColLimit"
                       (selectionDone)="onSelectionDone($event)"
-                      (viewChanged)="onViewChanged($event)">
+                      (activeDateChange)="onActiveDateChange($event)">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
@@ -102,7 +102,8 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
-  @Output() public viewChanged: EventEmitter<any> = new EventEmitter<any>(undefined);
+  /** callback to invoke when the activeDate is changed. */
+  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
 
@@ -125,15 +126,14 @@ export class DatePickerComponent implements ControlValueAccessor {
   public onUpdate(event: any): void {
     this.activeDate = event;
     this.onChange(event);
-    this.onviewChanged({ date: this.activeDate, mode: this.datepickerMode })
   }
 
   public onSelectionDone(event: Date): void {
     this.selectionDone.emit(event);
   }
 
-  public onviewChanged(event: any): void {
-    this.viewChanged.emit(event)
+  public onActiveDateChange(event: Date): void {
+    this.activeDateChange.emit(event);
   }
   // todo: support null value
   public writeValue(value: any): void {
