@@ -1,9 +1,13 @@
 import { DemoModalSizesComponent } from './sizes/sizes';
 import { DemoModalStaticComponent } from './static/static';
 import { DemoModalChildComponent } from './child/child';
+import { DemoAutoShownModalComponent } from './auto-shown/auto-shown';
 
 export const DEMO_COMPONENTS = [
-  DemoModalSizesComponent, DemoModalChildComponent, DemoModalStaticComponent
+  DemoModalSizesComponent,
+  DemoModalChildComponent,
+  DemoModalStaticComponent,
+  DemoAutoShownModalComponent
 ];
 
 export const DEMOS = {
@@ -18,5 +22,9 @@ export const DEMOS = {
   staticModal: {
     component: require('!!raw-loader?lang=typescript!./static/static.ts'),
     html: require('!!raw-loader?lang=markup!./static/static.html')
+  },
+  autoShown: {
+    component: require('!!raw-loader?lang=typescript!./auto-shown/auto-shown.ts'),
+    html: require('!!raw-loader?lang=markup!./auto-shown/auto-shown.html')
   }
 };
