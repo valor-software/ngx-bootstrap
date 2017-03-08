@@ -104,7 +104,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "0.6.0",
     "karma-sauce-launcher": "1.1.0",
-    "lite-server": "2.2.2",
+    "lite-server": "2.3.0",
     "lodash": "4.17.4",
     "markdown-loader": "github:valorkin/markdown-loader",
     "marked": "0.3.6",
