@@ -36,8 +36,8 @@ import { AlertModule } from 'ng2-bootstrap';
 
 ```json
       "styles": [
+         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css",
-        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
 ```
 
