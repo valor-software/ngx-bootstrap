@@ -1,9 +1,6 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-/* tslint:disable-next-line */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
-
 export const RATING_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RatingComponent),

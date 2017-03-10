@@ -7,11 +7,6 @@ export const DISABLED = 'disabled';
 export const OUTSIDECLICK = 'outsideClick';
 export const NONINPUT = 'nonInput';
 
-/* tslint:disable-next-line */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
-/* tslint:disable-next-line */
-const MouseEvent = (global as any).MouseEvent as MouseEvent;
-
 @Injectable()
 export class DropdownService {
   private openScope:DropdownDirective;

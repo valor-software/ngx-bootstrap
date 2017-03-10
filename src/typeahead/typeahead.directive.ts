@@ -15,9 +15,6 @@ import 'rxjs/add/operator/toArray';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
 
-/* tslint:disable-next-line */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
-
 @Directive({selector: '[typeahead]'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or an Observable for external matching process */
