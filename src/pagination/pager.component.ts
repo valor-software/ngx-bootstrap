@@ -191,7 +191,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     this.onTouched = fn;
   }
 
-  public selectPage(page: number, event?: MouseEvent): void {
+  public selectPage(page: number, event?: Event): void {
     if (event) {
       event.preventDefault();
     }

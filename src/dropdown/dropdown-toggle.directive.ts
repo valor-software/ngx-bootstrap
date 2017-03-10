@@ -4,9 +4,6 @@ import {
 
 import { DropdownDirective } from './dropdown.directive';
 
-/* tslint:disable-next-line */
-const MouseEvent = (global as any).MouseEvent as MouseEvent;
-
 /** Mark element which can toggle dropdown visibility with this directive */
 @Directive({
   selector: '[dropdownToggle]',
@@ -42,7 +39,7 @@ export class DropdownToggleDirective implements OnInit {
   }
 
   @HostListener('click', ['$event'])
-  public toggleDropdown(event:MouseEvent):boolean {
+  public toggleDropdown(event:Event):boolean {
     event.stopPropagation();
 
     if (!this.isDisabled) {
