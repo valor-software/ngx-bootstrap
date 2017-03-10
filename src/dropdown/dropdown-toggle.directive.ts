@@ -39,7 +39,7 @@ export class DropdownToggleDirective implements OnInit {
   }
 
   @HostListener('click', ['$event'])
-  public toggleDropdown(event:MouseEvent):boolean {
+  public toggleDropdown(event:Event):boolean {
     event.stopPropagation();
 
     if (!this.isDisabled) {

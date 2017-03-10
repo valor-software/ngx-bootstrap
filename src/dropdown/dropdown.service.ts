@@ -43,7 +43,7 @@ export class DropdownService {
     clearTimeout(this.suspendedEvent);
   }
 
-  protected closeDropdown(event:MouseEvent):void {
+  protected closeDropdown(event:Event):void {
     this.suspendedEvent = setTimeout(() => {
       if (!this.openScope) {
         return;
