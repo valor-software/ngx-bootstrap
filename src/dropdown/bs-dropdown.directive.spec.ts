@@ -1,14 +1,13 @@
 /* tslint:disable:max-file-line-count */
 import { Component } from '@angular/core';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { DropdownModule } from '../dropdown/dropdown.module';
-import { DropdownConfig } from '../dropdown/dropdown.config';
+import { BsDropdownConfig, BsDropdownModule } from './';
 
 const defaultHtml = `
   <div dropdown>
     <button dropdownToggle>Dropdown</button>
-    <ul dropdownMenu>
+    <ul *dropdownMenu>
       <li><a href="#">One</a></li>
       <li><a href="#">Two</a></li>
     </ul>
@@ -20,7 +19,7 @@ describe('Directive: Dropdown', () => {
   it('should be closed by default', () => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: defaultHtml}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -33,7 +32,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown [(isOpen)]="isOpen">
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -41,7 +40,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -62,7 +61,7 @@ describe('Directive: Dropdown', () => {
   it('should toggle by click', () => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: defaultHtml}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -81,7 +80,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown>
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -89,7 +88,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -109,7 +108,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown>
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><input type="text"></li>
           <li><textarea>dropdown</textarea></li>
           <li><a href="#">Two</a></li>
@@ -118,7 +117,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -140,7 +139,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown [autoClose]="autoClose">
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -148,7 +147,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -169,7 +168,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown [autoClose]="autoClose">
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><input type="text"></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -177,7 +176,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -198,7 +197,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown>
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -207,7 +206,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -231,7 +230,7 @@ describe('Directive: Dropdown', () => {
     const html = `
       <div dropdown [keyboardNav]="keyboardNav">
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -239,7 +238,7 @@ describe('Directive: Dropdown', () => {
     `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [DropdownModule.forRoot()]
+      imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -259,7 +258,7 @@ describe('Directive: Dropdown', () => {
       const html = `
       <div dropdown>
         <button dropdownToggle [isDisabled]="isDisabled">Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -267,7 +266,7 @@ describe('Directive: Dropdown', () => {
     `;
       TestBed.configureTestingModule({
         declarations: [TestDropdownComponent],
-        imports: [DropdownModule.forRoot()]
+        imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
       let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -291,7 +290,7 @@ describe('Directive: Dropdown', () => {
       const html = `
       <div dropdown>
         <button dropdownToggle>Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -299,7 +298,7 @@ describe('Directive: Dropdown', () => {
     `;
       TestBed.configureTestingModule({
         declarations: [TestDropdownComponent],
-        imports: [DropdownModule.forRoot()]
+        imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
       let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -312,7 +311,7 @@ describe('Directive: Dropdown', () => {
       const html = `
       <div dropdown>
         <button dropdownToggle [addToggleClass]="addToggleClass">Dropdown</button>
-        <ul dropdownMenu>
+        <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
         </ul>
@@ -320,7 +319,7 @@ describe('Directive: Dropdown', () => {
     `;
       TestBed.configureTestingModule({
         declarations: [TestDropdownComponent],
-        imports: [DropdownModule.forRoot()]
+        imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
       let fixture = TestBed.createComponent(TestDropdownComponent);
@@ -342,7 +341,8 @@ class TestDropdownComponent {
   public addToggleClass: Boolean = false;
   public autoClose: string = 'nonInput';
   public keyboardNav: Boolean = false;
-  public constructor(config: DropdownConfig) {
+
+  public constructor(config: BsDropdownConfig) {
     Object.assign(this, config);
   }
 }
