@@ -34,11 +34,11 @@ import { DraggableItemService } from './draggable-item.service';
         (dragend)="resetActiveItem($event)"
         (dragover)="onItemDragover($event, i)"
         (dragenter)="cancelEvent($event)"
-    ><template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
-  [ngOutletContext]="{item:item, index: i}"></template></div>
+    ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
+  [ngOutletContext]="{item:item, index: i}"></ng-template></div>
 </div>
 
-<template #defItemTemplate let-item="item">{{item.value}}</template>  
+<ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>
 `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,

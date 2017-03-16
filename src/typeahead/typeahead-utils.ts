@@ -7,7 +7,9 @@ export class TypeaheadUtils {
     if (!str) {
       return '';
     }
-    return str.replace(/[^A-Za-z0-9\[\] ]/g, function (a:string):string {
+    // if we use the regex directly inside the replace call, we get ngc error
+    const replaceRegEx = new RegExp('[^A-Za-z0-9\[\] ]', 'g');
+    return str.replace(replaceRegEx, function (a:string):string {
       return TypeaheadUtils.latinMap[a] || a;
     });
   }
@@ -16,7 +18,9 @@ export class TypeaheadUtils {
     // Regex: capture the whole query string and replace it with the string
     // that will be used to match the results, for example if the capture is
     // 'a' the result will be \a
-    return queryToEscape.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
+    // if we use the regex directly inside the replace call, we get ngc error
+    const replaceRegEx = new RegExp('([.?*+^$[\]\\(){}|-])', 'g');
+    return queryToEscape.replace(replaceRegEx, '\\$1');
   }
 
   /* tslint:disable */

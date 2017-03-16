@@ -11,10 +11,10 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'rating',
   template: `
     <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
-      <template ngFor let-r [ngForOf]="range" let-index="index">
+      <ng-template ngFor let-r [ngForOf]="range" let-index="index">
         <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
         <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
-      </template>
+      </ng-template>
     </span>
   `,
   providers: [RATING_CONTROL_VALUE_ACCESSOR]
