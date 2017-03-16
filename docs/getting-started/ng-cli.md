@@ -32,7 +32,7 @@ import { AlertModule } from 'ng2-bootstrap';
 })
 ```
 
-- open `angular-cli.json` and insert a new entry into the styles array 
+- open `.angular-cli.json` and insert a new entry into the styles array 
 
 ```json
       "styles": [
