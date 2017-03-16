@@ -36,7 +36,8 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [shortcutPropagation]="shortcutPropagation"
                       [monthColLimit]="monthColLimit"
                       [yearColLimit]="yearColLimit"
-                      (selectionDone)="onSelectionDone($event)">
+                      (selectionDone)="onSelectionDone($event)"
+                      (activeDateChange)="onActiveDateChange($event)">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
@@ -85,9 +86,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** number of years displayed in a single row of year picker */
   @Input() public yearColLimit: number;
   /** array of custom css classes to be applied to targeted dates */
-  @Input() public customClass: {date: Date, mode: string, clazz: string}[];
+  @Input() public customClass: { date: Date, mode: string, clazz: string }[];
   /** array of disabled dates */
-  @Input() public dateDisabled: {date: Date, mode: string}[];
+  @Input() public dateDisabled: { date: Date, mode: string }[];
 
   /** currently active date */
   @Input()
@@ -100,6 +101,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+
+  /** callback to invoke when the activeDate is changed. */
+  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
 
@@ -128,6 +132,9 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.selectionDone.emit(event);
   }
 
+  public onActiveDateChange(event: Date): void {
+    this.activeDateChange.emit(event);
+  }
   // todo: support null value
   public writeValue(value: any): void {
     if (this._datePicker.compare(value, this._activeDate) === 0) {

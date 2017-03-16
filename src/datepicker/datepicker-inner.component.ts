@@ -48,15 +48,17 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public formatMonthTitle: string;
   @Input() public onlyCurrentMonth: boolean;
   @Input() public shortcutPropagation: boolean;
-  @Input() public customClass: {date: Date, mode: string, clazz: string}[];
+  @Input() public customClass: { date: Date, mode: string, clazz: string }[];
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
-  @Input() public dateDisabled: {date:Date, mode:string}[];
+  @Input() public dateDisabled: { date: Date, mode: string }[];
   @Input() public initDate: Date;
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   @Output() public update: EventEmitter<Date> = new EventEmitter<Date>(false);
+
+  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   public stepDay: any = {};
   public stepMonth: any = {};
@@ -119,7 +121,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  public compare(date1: Date, date2: Date): number|undefined {
+  public compare(date1: Date, date2: Date): number | undefined {
     if (date1 === undefined || date2 === undefined) {
       return undefined;
     }
@@ -250,6 +252,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       this.activeDate = new Date(year, month, 1);
 
       this.refreshView();
+      this.activeDateChange.emit(this.activeDate);
     }
   }
 
@@ -270,7 +273,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       return '';
     }
     // todo: build a hash of custom classes, it will work faster
-    const customClassObject: {date: Date, mode: string, clazz: string} = this.customClass
+    const customClassObject: { date: Date, mode: string, clazz: string } = this.customClass
       .find((customClass: any) => {
         return customClass.date.valueOf() === date.valueOf() &&
           customClass.mode === this.datepickerMode;
@@ -278,7 +281,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 
-    protected compareDateDisabled(date1Disabled: {date: Date, mode: string}, date2: Date): number {
+  protected compareDateDisabled(date1Disabled: { date: Date, mode: string }, date2: Date): number {
     if (date1Disabled === undefined || date2 === undefined) {
       return undefined;
     }
@@ -298,10 +301,10 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return undefined;
   }
 
-    protected isDisabled(date: Date): boolean {
+  protected isDisabled(date: Date): boolean {
     let isDateDisabled: boolean = false;
     if (this.dateDisabled) {
-      this.dateDisabled.forEach((disabledDate: {date: Date, mode: string}) => {
+      this.dateDisabled.forEach((disabledDate: { date: Date, mode: string }) => {
         if (this.compareDateDisabled(disabledDate, date) === 0) {
           isDateDisabled = true;
         }
@@ -309,6 +312,6 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
 
     return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
-    (this.maxDate && this.compare(date, this.maxDate) > 0));
+      (this.maxDate && this.compare(date, this.maxDate) > 0));
   }
 }
