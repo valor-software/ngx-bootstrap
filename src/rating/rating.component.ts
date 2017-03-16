@@ -45,7 +45,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   protected preValue: number;
 
   @HostListener('keydown', ['$event'])
-  public onKeydown(event: KeyboardEvent): void {
+  public onKeydown(event: any): void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }

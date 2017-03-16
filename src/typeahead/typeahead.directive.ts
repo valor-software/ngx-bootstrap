@@ -148,7 +148,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  public onKeydown(e: KeyboardEvent): void {
+  public onKeydown(e: any): void {
     // no container - no problems
     if (!this._container) {
       return;

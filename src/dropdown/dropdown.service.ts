@@ -79,7 +79,7 @@ export class DropdownService {
     }, 0);
   }
 
-  protected keybindFilter(event:KeyboardEvent):void {
+  protected keybindFilter(event: any):void {
     if (event.which === 27) {
       this.openScope.focusToggleElement();
       this.closeDropdown(void 0);
