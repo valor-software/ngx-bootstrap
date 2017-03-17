@@ -82,7 +82,7 @@
     "@types/webpack": "^2.2.2",
     "bootstrap": "3.3.7",
     "classlist-polyfill": "1.0.3",
-    "codecov": "1.0.1",
+    "codecov": "2.0.1",
     "codelyzer": "3.0.0-beta.0",
     "conventional-changelog-cli": "1.2.0",
     "conventional-github-releaser": "1.1.3",
