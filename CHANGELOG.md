@@ -1,3 +1,26 @@
+<a name="1.4.2"></a>
+## [1.4.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.4.2) (2017-03-17)
+
+
+### Bug Fixes
+
+* **dropdown,rating,typeahead:** remove global in order to be usable in System.js ([#1734](https://github.com/valor-software/ng2-bootstrap/issues/1734)) ([4a7719b](https://github.com/valor-software/ng2-bootstrap/commit/4a7719b))
+* **styling-local:** fix tooltip arrow styles ([b1f04d9](https://github.com/valor-software/ng2-bootstrap/commit/b1f04d9))
+* **universal:** to not through on unrecognized Keyboard and Mouse events ([b81e9de](https://github.com/valor-software/ng2-bootstrap/commit/b81e9de))
+
+
+### Features
+
+* **build:** rename .angular-cli.json and refactor ([#1736](https://github.com/valor-software/ng2-bootstrap/issues/1736)) ([d60dcfb](https://github.com/valor-software/ng2-bootstrap/commit/d60dcfb))
+* **datepicker:** added active date changed event ([#1703](https://github.com/valor-software/ng2-bootstrap/issues/1703)) ([8120c88](https://github.com/valor-software/ng2-bootstrap/commit/8120c88))
+* **demo:** add example for `show` modal option ([a33dc10](https://github.com/valor-software/ng2-bootstrap/commit/a33dc10))
+* **docs:** added Instructions for BS4 and ng-cli ([#1714](https://github.com/valor-software/ng2-bootstrap/issues/1714)) ([98b9b2e](https://github.com/valor-software/ng2-bootstrap/commit/98b9b2e)), closes [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637) [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637)
+* **modal:** make `show` config option work ([#1680](https://github.com/valor-software/ng2-bootstrap/issues/1680)) ([0abd801](https://github.com/valor-software/ng2-bootstrap/commit/0abd801))
+* **package:** changed the way moment is imported ([#1556](https://github.com/valor-software/ng2-bootstrap/issues/1556)) ([27a0229](https://github.com/valor-software/ng2-bootstrap/commit/27a0229))
+* **popover:** Updated property 'isOpen' in show and hide methods ([#1765](https://github.com/valor-software/ng2-bootstrap/issues/1765)) ([363d9e6](https://github.com/valor-software/ng2-bootstrap/commit/363d9e6))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.4.1) (2017-03-16)
 
