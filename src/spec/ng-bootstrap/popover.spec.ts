@@ -97,7 +97,7 @@ describe('popover', () => {
 
     it('should open and close a popover - default settings and content from a template', () => {
       const fixture = createTestComponent(`
-          <template #t>Hello, {{name}}!</template>
+          <ng-template #t>Hello, {{name}}!</ng-template>
           <div [popover]="t" popoverTitle="Title"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
       const defaultConfig = new PopoverConfig();
@@ -120,7 +120,7 @@ describe('popover', () => {
 
     it('should properly destroy TemplateRef content', () => {
       const fixture = createTestComponent(`
-          <template #t><destroyable-cmpt></destroyable-cmpt></template>
+          <ng-template #t><destroyable-cmpt></destroyable-cmpt></ng-template>
           <div [popover]="t" popoverTitle="Title"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
       const spyService = fixture.debugElement.injector.get(SpyService);
@@ -165,7 +165,7 @@ describe('popover', () => {
 
     it('should not leave dangling popovers in the DOM', () => {
       const fixture =
-        createTestComponent(`<template [ngIf]="show"><div popover="Great tip!" popoverTitle="Title"></div></template>`);
+        createTestComponent(`<ng-template [ngIf]="show"><div popover="Great tip!" popoverTitle="Title"></div></ng-template>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
       directive.triggerEventHandler('click', {});
@@ -181,9 +181,9 @@ describe('popover', () => {
     });
 
     it('should properly cleanup popovers with manual triggers', () => {
-      const fixture = createTestComponent(`<template [ngIf]="show">
+      const fixture = createTestComponent(`<ng-template [ngIf]="show">
                                             <div popover="Great tip!" triggers="manual" #p="bs-popover" (mouseenter)="p.show()"></div>
-                                        </template>`);
+                                        </ng-template>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
       directive.triggerEventHandler('mouseenter', {});

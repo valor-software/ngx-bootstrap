@@ -1576,7 +1576,7 @@ export const ngdoc: any = {
   "TabHeadingDirective": {
     "fileName": "src/tabs/tab-heading.directive.ts",
     "className": "TabHeadingDirective",
-    "description": "<p>Should be used to mark <template> element as a template for tab heading </p>\n",
+    "description": "<p>Should be used to mark <ng-template> element as a template for tab heading </p>\n",
     "selector": "[tabHeading]",
     "inputs": [],
     "outputs": [],

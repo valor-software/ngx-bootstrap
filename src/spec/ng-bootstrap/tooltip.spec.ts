@@ -72,7 +72,7 @@ describe('tooltip', () => {
     });
 
     it('should open and close a tooltip - default settings and content from a template', () => {
-      const fixture = createTestComponent(`<template #t>Hello, {{name}}!</template><div [tooltip]="t"></div>`);
+      const fixture = createTestComponent(`<ng-template #t>Hello, {{name}}!</ng-template><div [tooltip]="t"></div>`);
       const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
       directive.triggerEventHandler('mouseenter', {});
@@ -132,7 +132,7 @@ describe('tooltip', () => {
     });
 
     it('should not leave dangling tooltips in the DOM', () => {
-      const fixture = createTestComponent(`<template [ngIf]="show"><div tooltip="Great tip!"></div></template>`);
+      const fixture = createTestComponent(`<ng-template [ngIf]="show"><div tooltip="Great tip!"></div></ng-template>`);
       const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
       directive.triggerEventHandler('mouseenter', {});
@@ -146,9 +146,9 @@ describe('tooltip', () => {
 
     it('should properly cleanup tooltips with manual triggers', () => {
       const fixture = createTestComponent(`
-            <template [ngIf]="show">
-              <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip" (mouseenter)="t.show()"></div>  
-            </template>`);
+            <ng-template [ngIf]="show">
+              <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip" (mouseenter)="t.show()"></div>
+            </ng-template>`);
       const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
       directive.triggerEventHandler('mouseenter', {});
