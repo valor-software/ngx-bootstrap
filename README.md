@@ -32,12 +32,24 @@ Install `ng2-bootstrap` from `npm`
 npm install ng2-bootstrap --save
 ```
 
-You will need bootstrap styles
+You will need bootstrap styles (Bootstrap 3)
 
 ```
 <!-- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
+
+Or Bootstrap 4
+```
+<!--- index.html -->
+<linkhref="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+```
+
+```
+<!-- index.html -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+```
+
 
 ## How to use it with:
  - `angular-cli` please refer to [getting-started-with-ng-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/ng-cli.md)
