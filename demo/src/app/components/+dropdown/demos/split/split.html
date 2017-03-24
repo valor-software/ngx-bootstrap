@@ -1,14 +1,17 @@
 <div class="btn-group" dropdown>
-  <button id="split-button" type="button" class="btn btn-danger">Action</button>
-  <button type="button" class="btn btn-danger dropdown-toggle-split" dropdownToggle>
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split">
     <span class="caret"></span>
     <span class="sr-only">Split button!</span>
   </button>
-  <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="split-button">
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
+    </li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Something else
+      here</a></li>
     <li class="divider dropdown-divider"></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+    </li>
   </ul>
 </div>

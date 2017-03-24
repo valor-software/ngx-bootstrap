@@ -1,12 +1,15 @@
-<div class="btn-group" dropdown keyboardNav="true">
-  <button id="simple-btn-keyboard-nav" type="button" class="btn btn-primary" dropdownToggle>
+<div dropdown class="btn-group" keyboardNav="true">
+  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
     Dropdown with keyboard navigation <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" dropdownMenu role="menu" aria-labelledby="simple-btn-keyboard-nav">
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
+    </li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Something else
+      here</a></li>
     <li class="divider dropdown-divider"></li>
-    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+    </li>
   </ul>
 </div>

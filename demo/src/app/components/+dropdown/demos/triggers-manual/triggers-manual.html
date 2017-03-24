@@ -1,15 +1,18 @@
-<div (click)="$event.preventDefault()">
-  <div class="btn-group" dropdown [isOpen]="status.isopen">
-    <button id="single-button" type="button" class="btn btn-primary" dropdownToggle>
-      Button dropdown <span class="caret"></span>
-    </button>
-    <ul dropdownMenu role="menu" aria-labelledby="single-button">
-      <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
-      <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
-      <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
-      <li class="divider dropdown-divider"></li>
-      <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-  </div>
-  <button type="button" class="btn btn-primary" (click)="toggleDropdown($event)">Toggle button dropdown</button>
+<div class="btn-group" dropdown [isOpen]="status.isopen">
+  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+    Button dropdown <span class="caret"></span>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
+    </li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Something else
+      here</a></li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+    </li>
+  </ul>
 </div>
+<button type="button" class="btn btn-primary"
+        (click)="toggleDropdown($event)">Toggle button dropdown
+</button>
