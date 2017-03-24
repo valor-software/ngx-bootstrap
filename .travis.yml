@@ -1,6 +1,6 @@
+sudo: false
 language: node_js
-node_js:
-  - "6"
+node_js: "7"
 
 env:
   global:
@@ -18,7 +18,6 @@ script:
   - rm -rf node_modules/ng2-bootstrap
   - npm i ./dist
   - npm run test-coverage
-  - npm run test
 
 after_success:
   - ./node_modules/.bin/codecov
