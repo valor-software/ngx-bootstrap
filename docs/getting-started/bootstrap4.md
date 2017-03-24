@@ -37,12 +37,12 @@ Now that the project is set up it must be configured to include the bootstrap CS
  - Specify the path to bootstrap.min.css
 
    It should look like the following when you are done:  
-
+```
    "styles": [  
    "../node_modules/bootstrap/dist/css/bootstrap.min.css",  
    "styles.css"  
    ],
-
+```
      
 Note: When you make changes to .angular-cli.json you will need to re-start ng serve to pick up configuration changes.
 
@@ -62,7 +62,7 @@ If the project has already been created then
 
 - rename `src/styles.css` to `src/styles.scss`
 - in `.angular-cli.json` make the following changes
-
+```
    "styles": [  
         "styles.scss" <-- rename this from .css to .scss  
       ],
@@ -73,7 +73,7 @@ If the project has already been created then
     "styleExt": "scss", <-- set this to default to .scss  
     "component": {}  
   }  
-
+```
 Create an empty file `_variables.scss` in `src/`.
 
 In `styles.scss` add the following:
