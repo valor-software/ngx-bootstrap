@@ -105,7 +105,7 @@ import { DropdownModule } from 'ng2-bootstrap/dropdown';
 
 @NgModule({
    ...
-   imports: [Dropdown.forRoot(), ... ],
+   imports: [DropdownModule.forRoot(), ... ],
     ... 
 })
 ```
