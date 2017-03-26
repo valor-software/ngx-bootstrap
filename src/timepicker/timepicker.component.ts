@@ -18,8 +18,9 @@ function isDefined(value: any): boolean {
   return typeof value !== 'undefined';
 }
 
+
 function addMinutes(date: any, minutes: number, minuteRoundBeforeStep?:boolean): Date {
-  let dt = new Date(date.getTime() + (minuteRoundBeforeStep?(minutes - (date.getMinutes() % minutes ))):minutes) * 60000);
+  let dt = new Date(date.getTime() + (minuteRoundBeforeStep?(minutes - (date.getMinutes() % minutes )):minutes) * 60000);
   let newDate = new Date(date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
   return newDate;
@@ -276,25 +277,25 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   }
 
   public noIncrementHours(): boolean {
-    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60, minuteRoundBeforeStep);
+    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60, this.minuteRoundBeforeStep);
     return incrementedSelected > this.max ||
       (incrementedSelected < this.selected && incrementedSelected < this.min);
   }
 
   public noDecrementHours(): boolean {
-    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60, minuteRoundBeforeStep);
+    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60, this.minuteRoundBeforeStep);
     return decrementedSelected < this.min ||
       (decrementedSelected > this.selected && decrementedSelected > this.max);
   }
 
   public noIncrementMinutes(): boolean {
-    let incrementedSelected = addMinutes(this.selected, this.minuteStep, minuteRoundBeforeStep);
+    let incrementedSelected = addMinutes(this.selected, this.minuteStep, this.minuteRoundBeforeStep);
     return incrementedSelected > this.max ||
       (incrementedSelected < this.selected && incrementedSelected < this.min);
   }
 
   public noDecrementMinutes(): boolean {
-    let decrementedSelected = addMinutes(this.selected, -this.minuteStep, minuteRoundBeforeStep);
+    let decrementedSelected = addMinutes(this.selected, -this.minuteStep, this.minuteRoundBeforeStep);
     return decrementedSelected < this.min ||
       (decrementedSelected > this.selected && decrementedSelected > this.max);
 
@@ -313,9 +314,9 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
 
     if (this.selected.getHours() < 13) {
-      return addMinutes(this.selected, 12 * 60, minuteRoundBeforeStep) > this.max;
+      return addMinutes(this.selected, 12 * 60, this.minuteRoundBeforeStep) > this.max;
     } else {
-      return addMinutes(this.selected, -12 * 60, minuteRoundBeforeStep) < this.min;
+      return addMinutes(this.selected, -12 * 60, this.minuteRoundBeforeStep) < this.min;
     }
   }
 
@@ -382,7 +383,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   }
 
   protected addMinutesToSelected(minutes: any): void {
-    this.selected = addMinutes(this.selected, minutes, minuteRoundBeforeStep);
+    this.selected = addMinutes(this.selected, minutes, this.minuteRoundBeforeStep);
     this.refresh();
   }
 }
