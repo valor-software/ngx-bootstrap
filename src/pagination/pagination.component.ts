@@ -62,6 +62,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() public maxSize:number;
   /** if false first and last buttons will be hidden */
   @Input() public boundaryLinks:boolean;
+  /** if false the first and last page will be hidden */
+  @Input() public boundaryLinkNumbers:boolean;
   /** if false previous and next buttons will be hidden */
   @Input() public directionLinks:boolean;
   // labels
@@ -180,8 +182,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       ? this.directionLinks
       : this.config.directionLinks;
     this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
-    ? this.pageBtnClass
-    : this.config.pageBtnClass;
+      ? this.pageBtnClass
+      : this.config.pageBtnClass;
+    this.boundaryLinkNumbers = typeof this.boundaryLinkNumbers !== 'undefined' 
+      ? this.boundaryLinkNumbers 
+      : this.config.boundaryLinkNumbers;
 
     // base class
     this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
@@ -278,11 +283,31 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       if (startPage > 1) {
         let previousPageSet = this.makePage(startPage - 1, '...', false);
         pages.unshift(previousPageSet);
+
+        if (this.boundaryLinkNumbers) {
+          if (startPage === 3) { //need to replace ellipsis when the buttons would be sequential
+            let secondPageLink = this.makePage(2, '2', false);
+            pages.unshift(secondPageLink);
+          }
+          //add the first page
+          let firstPageLink = this.makePage(1, '1', false);
+          pages.unshift(firstPageLink);
+        }
       }
 
       if (endPage < totalPages) {
         let nextPageSet = this.makePage(endPage + 1, '...', false);
         pages.push(nextPageSet);
+
+        if (this.boundaryLinkNumbers) {
+          if (endPage === totalPages - 2) { //need to replace ellipsis when the buttons would be sequential
+            let secondToLastPageLink = this.makePage(totalPages - 1, (totalPages - 1).toString(), false);
+            pages.push(secondToLastPageLink);
+          }
+          //add the last page
+          let lastPageLink = this.makePage(totalPages, totalPages.toString(), false);
+          pages.push(lastPageLink);
+        }
       }
     }
 
