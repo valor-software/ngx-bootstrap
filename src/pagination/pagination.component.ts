@@ -151,8 +151,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _itemsPerPage:number;
   protected _totalItems:number;
   protected _totalPages:number;
-  protected inited:boolean = false;
-  protected _page:number = 1;
+  protected inited = false;
+  protected _page = 1;
 
   public constructor(renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
     this.renderer = renderer;
@@ -184,8 +184,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
       ? this.pageBtnClass
       : this.config.pageBtnClass;
-    this.boundaryLinkNumbers = typeof this.boundaryLinkNumbers !== 'undefined' 
-      ? this.boundaryLinkNumbers 
+    this.boundaryLinkNumbers = typeof this.boundaryLinkNumbers !== 'undefined'
+      ? this.boundaryLinkNumbers
       : this.config.boundaryLinkNumbers;
 
     // base class
@@ -285,11 +285,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
         pages.unshift(previousPageSet);
 
         if (this.boundaryLinkNumbers) {
-          if (startPage === 3) { //need to replace ellipsis when the buttons would be sequential
-            let secondPageLink = this.makePage(2, '2', false);
-            pages.unshift(secondPageLink);
+          if (startPage === 3) {
+            // need to replace ellipsis when the buttons would be sequential
+            pages.unshift(this.makePage(2, '2', false));
           }
-          //add the first page
+          // add the first page
           let firstPageLink = this.makePage(1, '1', false);
           pages.unshift(firstPageLink);
         }
@@ -300,11 +300,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
         pages.push(nextPageSet);
 
         if (this.boundaryLinkNumbers) {
-          if (endPage === totalPages - 2) { //need to replace ellipsis when the buttons would be sequential
-            let secondToLastPageLink = this.makePage(totalPages - 1, (totalPages - 1).toString(), false);
-            pages.push(secondToLastPageLink);
+          if (endPage === totalPages - 2) {
+            // need to replace ellipsis when the buttons would be sequential
+            pages.push(this.makePage(totalPages - 1, (totalPages - 1).toString(), false));
           }
-          //add the last page
+          // add the last page
           let lastPageLink = this.makePage(totalPages, totalPages.toString(), false);
           pages.push(lastPageLink);
         }
