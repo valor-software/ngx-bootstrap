@@ -151,8 +151,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _itemsPerPage:number;
   protected _totalItems:number;
   protected _totalPages:number;
-  protected inited = false;
-  protected _page = 1;
+  protected inited:boolean = false;
+  protected _page:number = 1;
 
   public constructor(renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
     this.renderer = renderer;
