@@ -285,10 +285,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
         pages.unshift(previousPageSet);
 
         if (this.boundaryLinkNumbers) {
-          if (startPage === 3) {
-            // need to replace ellipsis when the buttons would be sequential
-            pages.unshift(this.makePage(2, '2', false));
-          }
           // add the first page
           let firstPageLink = this.makePage(1, '1', false);
           pages.unshift(firstPageLink);
@@ -300,10 +296,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
         pages.push(nextPageSet);
 
         if (this.boundaryLinkNumbers) {
-          if (endPage === totalPages - 2) {
-            // need to replace ellipsis when the buttons would be sequential
-            pages.push(this.makePage(totalPages - 1, (totalPages - 1).toString(), false));
-          }
           // add the last page
           let lastPageLink = this.makePage(totalPages, totalPages.toString(), false);
           pages.push(lastPageLink);
