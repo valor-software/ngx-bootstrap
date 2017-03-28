@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 export type Granularity = 'day' | 'month' | 'year';
 
 export abstract class DatePickerBase implements OnInit, OnDestroy {
+  public options: BsDatePickerOptions;
   protected datePickerState: BsDatePickerState;
-  protected options: BsDatePickerOptions;
 
   protected calendar: DatePickerDate[][];
 
