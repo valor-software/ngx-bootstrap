@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap-base-modified",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Native Angular Bootstrap Components Typeahead modified",
   "scripts": {
     "lite-server": "lite-server -c demo/bs-config.js",

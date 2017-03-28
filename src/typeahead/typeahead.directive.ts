@@ -161,10 +161,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if items is visible - prevent form submition
-    if (e.keyCode === 13) {
+    /*if (e.keyCode === 13) {
       e.preventDefault();
       return;
-    }
+    }*/
   }
 
   public constructor(control: NgControl, viewContainerRef: ViewContainerRef, element: ElementRef, renderer: Renderer, cis: ComponentLoaderFactory) {

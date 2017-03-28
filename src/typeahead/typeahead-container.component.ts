@@ -93,9 +93,9 @@ export class TypeaheadContainerComponent {
     if (this._matches.length > 0) {
       console.log(this._matches);
       //this._active = this._matches[0];
-      if (this._active.isHeader()) {
+      /*if (this._active.isHeader()) {
         this.nextActiveMatch();
-      }
+      }*/
     }
   }
 
