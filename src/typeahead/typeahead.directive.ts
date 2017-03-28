@@ -114,6 +114,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         this._container.selectActiveMatch();
         return;
       }
+      
+      // tab
+      if (e.keyCode === 9) {
+        this._container.selectActiveMatch();
+      }
     }
 
     // For `<input>`s, use the `value` property. For others that don't have a
