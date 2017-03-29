@@ -135,7 +135,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      if (e.keyCode === 13 && this._container.active){
+      if (e.keyCode === 13){
+        if(!this._container.active){
+          return;
+        }
         this._container.selectActiveMatch();
         return;
       }
@@ -147,7 +150,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         return;
       }
     }
-
+    //Don't include enter as an input to trigger typeahead
+    if(e.keyCode===13){
+      return;
+    }
     // For `<input>`s, use the `value` property. For others that don't have a
     // `value` (such as `<span contenteditable="true">`, use `innerText`.
     const value = e.target.value !== undefined
@@ -194,9 +200,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if items is visible - prevent form submition
-    if (e.keyCode === 13 && this._container.active) {
-      e.preventDefault();
-      return;
+    if (e.keyCode === 13) {
+      if(this._container.active){
+        e.preventDefault();
+        return;
+      } else{
+        this.hide();
+        return;
+      }
     }
   }
 
