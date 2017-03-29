@@ -139,6 +139,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         this._container.selectActiveMatch();
         return;
       }
+
+      // tab
+      if (e.keyCode === 9 && this._container.active){
+        e.preventDefault();
+        this._container.selectActiveMatch();
+        return;
+      }
     }
 
     // For `<input>`s, use the `value` property. For others that don't have a
@@ -179,8 +186,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
+    // if a match is selected and the key pressed is defined by the user to have a fucntion, then ignore the key's normal function
+    if ((this.typeaheadSelectKeys.find(k => k === e.keyCode) || this.typeaheadEscapeKeys.find(k => k===e.keyCode))
+         && this._container.active){
+      e.preventDefault();
+      return;
+    }
+
     // if items is visible - prevent form submition
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this._container.active) {
       e.preventDefault();
       return;
     }

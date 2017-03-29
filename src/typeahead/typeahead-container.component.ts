@@ -108,7 +108,9 @@ export class TypeaheadContainerComponent {
   }
 
   public selectActiveMatch(): void {
-    this.selectMatch(this._active);
+    if(this._active){
+      this.selectMatch(this._active);
+    }
   }
 
   public prevActiveMatch(): void {
