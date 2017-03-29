@@ -135,7 +135,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      if (e.keyCode === 13){
+      if (e.keyCode === 13 && this._container.active){
         this._container.selectActiveMatch();
         return;
       }

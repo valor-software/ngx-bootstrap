@@ -89,6 +89,7 @@ export class TypeaheadContainerComponent {
   }
 
   public set matches(value: TypeaheadMatch[]) {
+    this._active=null;
     this._matches = value;
 
     if (this._matches.length > 0 && this.focusFirst) {
