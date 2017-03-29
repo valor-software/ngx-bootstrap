@@ -98,25 +98,24 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('keyup', ['$event'])
   public onChange(e: any): void {
     if (this._container) {
+      // Ignore keys set to ignore by user
+      if(this.typeaheadIgnoreKeys.find(k => k===e.keyCode)){
+        return;
+      }
 
       // Set user defined select keys
-      if (this.typeaheadSelectKeys.find(k => e.keyCode)){
+      if (this.typeaheadSelectKeys.find(k => k===e.keyCode)){
         this._container.selectActiveMatch();
         return;
       }
 
       // Set user defined escape keys
-      if(this.typeaheadEscapeKeys.find(k => e.keyCode)){
+      if(this.typeaheadEscapeKeys.find(k => k===e.keyCode)){
         this.hide();
-        return;
-      }
-      // Ignore keys set to ignore by user
-      if(this.typeaheadIgnoreKeys.find(k => e.keyCode)){
         return;
       }
 
       //Set default actions for keys
-
       // esc
       if (e.keyCode === 27) {
         this.hide();
@@ -137,12 +136,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // enter
       if (e.keyCode === 13){
-        this._container.selectActiveMatch();
-        return;
-      }
-      
-      // tab
-      if (e.keyCode === 9) {
         this._container.selectActiveMatch();
         return;
       }

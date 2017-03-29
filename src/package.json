@@ -1,6 +1,6 @@
 {
   "name": "ng2-bootstrap-typeahead-mod",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "dependencies": {
     "moment": "*"
   },
