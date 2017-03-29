@@ -49,6 +49,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() public typeaheadIgnoreKeys: number[] = [];
   /** use to set keys to hide typeahead */
   @Input() public typeaheadEscapeKeys: number[] = [];
+  /** use to set keys to select match in typeahead */
+  @Input() public typeaheadSelectKeys: number[] = [];
   
 
   /** fired when 'busy' state of this component was changed, fired on async mode only, returns boolean */
@@ -96,6 +98,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('keyup', ['$event'])
   public onChange(e: any): void {
     if (this._container) {
+
+      // Set user defined select keys
+      if (this.typeaheadSelectKeys.find(k => e.keyCode)){
+        this._container.selectActiveMatch();
+        return;
+      }
+
       // Set user defined escape keys
       if(this.typeaheadEscapeKeys.find(k => e.keyCode)){
         this.hide();
@@ -107,7 +116,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       //Set default actions for keys
-      
+
       // esc
       if (e.keyCode === 27) {
         this.hide();

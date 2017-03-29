@@ -91,12 +91,10 @@ export class TypeaheadContainerComponent {
   public set matches(value: TypeaheadMatch[]) {
     this._matches = value;
 
-    if (this._matches.length > 0) {
-      if(this.focusFirst){
-        this._active = this._matches[0];
-        if (this._active.isHeader()) {
-          this.nextActiveMatch();
-        }
+    if (this._matches.length > 0 && this.focusFirst) {
+      this._active = this._matches[0];
+      if (this._active.isHeader()) {
+        this.nextActiveMatch();
       }
     }
   }
