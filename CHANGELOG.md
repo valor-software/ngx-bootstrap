@@ -1,3 +1,41 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.6.0) (2017-03-29)
+
+
+### Bug Fixes
+
+* **dropdown,rating,typeahead:** remove global in order to be usable in System.js ([#1734](https://github.com/valor-software/ng2-bootstrap/issues/1734)) ([4a7719b](https://github.com/valor-software/ng2-bootstrap/commit/4a7719b))
+* **styling-local:** fix tooltip arrow styles ([b1f04d9](https://github.com/valor-software/ng2-bootstrap/commit/b1f04d9))
+* **universal:** to not through on unrecognized Keyboard and Mouse events ([b81e9de](https://github.com/valor-software/ng2-bootstrap/commit/b81e9de))
+
+
+### Features
+
+* **build:** rename .angular-cli.json and refactor ([#1736](https://github.com/valor-software/ng2-bootstrap/issues/1736)) ([d60dcfb](https://github.com/valor-software/ng2-bootstrap/commit/d60dcfb))
+* **datepicker:** added active date changed event ([#1703](https://github.com/valor-software/ng2-bootstrap/issues/1703)) ([8120c88](https://github.com/valor-software/ng2-bootstrap/commit/8120c88))
+* **demo:** add example for `show` modal option ([a33dc10](https://github.com/valor-software/ng2-bootstrap/commit/a33dc10))
+* **docs:** added Instructions for BS4 and ng-cli ([#1714](https://github.com/valor-software/ng2-bootstrap/issues/1714)) ([98b9b2e](https://github.com/valor-software/ng2-bootstrap/commit/98b9b2e)), closes [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637) [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637)
+* **dropdown:** rollout completely rewritten bs-dropdown version ([#1771](https://github.com/valor-software/ng2-bootstrap/issues/1771)) ([31cba41](https://github.com/valor-software/ng2-bootstrap/commit/31cba41)), closes [#1674](https://github.com/valor-software/ng2-bootstrap/issues/1674) [#1749](https://github.com/valor-software/ng2-bootstrap/issues/1749) [#1623](https://github.com/valor-software/ng2-bootstrap/issues/1623) [#1415](https://github.com/valor-software/ng2-bootstrap/issues/1415) [#802](https://github.com/valor-software/ng2-bootstrap/issues/802) [#569](https://github.com/valor-software/ng2-bootstrap/issues/569) [#530](https://github.com/valor-software/ng2-bootstrap/issues/530) [#6](https://github.com/valor-software/ng2-bootstrap/issues/6) [#1540](https://github.com/valor-software/ng2-bootstrap/issues/1540) [#1217](https://github.com/valor-software/ng2-bootstrap/issues/1217) [#591](https://github.com/valor-software/ng2-bootstrap/issues/591) [#478](https://github.com/valor-software/ng2-bootstrap/issues/478)
+* **modal:** make `show` config option work ([#1680](https://github.com/valor-software/ng2-bootstrap/issues/1680)) ([0abd801](https://github.com/valor-software/ng2-bootstrap/commit/0abd801))
+* **package:** changed the way moment is imported ([#1556](https://github.com/valor-software/ng2-bootstrap/issues/1556)) ([27a0229](https://github.com/valor-software/ng2-bootstrap/commit/27a0229))
+* **popover:** Updated property 'isOpen' in show and hide methods ([#1765](https://github.com/valor-software/ng2-bootstrap/issues/1765)) ([363d9e6](https://github.com/valor-software/ng2-bootstrap/commit/363d9e6))
+* **typeahead:** added export as bs-typeahead ([#1783](https://github.com/valor-software/ng2-bootstrap/issues/1783)) ([9ef6fa6](https://github.com/valor-software/ng2-bootstrap/commit/9ef6fa6))
+
+
+### BREAKING CHANGES
+
+* **dropdown:** - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+- `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+- `dropdownMenu` menu become a template selector, so `*` should be added
+sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
+- `onToggle` event deprecated use `isOpenChange` instead
+- `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+- `keyboardNav` deprecated
+- `disabled` renamed to `isDisabled`
+- `dropdownToggle` doesn't prevent default behaviour anymore
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.5.0) (2017-03-29)
 
