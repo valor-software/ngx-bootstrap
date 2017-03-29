@@ -44,6 +44,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** used to specify a custom options list template. Template variables: matches, itemTemplate, query */
   @Input() public optionsListTemplate: TemplateRef<any>;
   /** used to set whether or not the first typeahead option is automatically made active */
+  @Input() public typeaheadAutoSelect: boolean = true;
+  /** allow enter to be used to select typeahead match, and prevent it from submitting a form */
+  @Input() public typeaheadEnterAsSelect: boolean = true;
 
   /** fired when 'busy' state of this component was changed, fired on async mode only, returns boolean */
   @Output() public typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
@@ -111,7 +114,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      if (e.keyCode === 13) {
+      if (e.keyCode === 13 && this.typeaheadEnterAsSelect) {
         this._container.selectActiveMatch();
         return;
       }
@@ -119,6 +122,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // tab
       if (e.keyCode === 9) {
         this._container.selectActiveMatch();
+        return;
       }
     }
 
@@ -161,10 +165,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if items is visible - prevent form submition
-    /*if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.typeaheadEnterAsSelect) {
       e.preventDefault();
       return;
-    }*/
+    }
   }
 
   public constructor(control: NgControl, viewContainerRef: ViewContainerRef, element: ElementRef, renderer: Renderer, cis: ComponentLoaderFactory) {
@@ -219,7 +223,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .show({
         typeaheadRef: this,
         placement: this.placement,
-        animation: false
+        animation: false,
+        autoSelect: this.typeaheadAutoSelect
       });
 
     this._container = this._typeahead.instance;

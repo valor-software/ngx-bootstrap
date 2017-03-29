@@ -67,6 +67,7 @@ export class TypeaheadContainerComponent {
   public left: string;
   public display: string;
   public placement: string;
+  public autoSelect: boolean = true;
 
   public get isBs4():boolean {
     return !isBs3();
@@ -91,11 +92,12 @@ export class TypeaheadContainerComponent {
     this._matches = value;
 
     if (this._matches.length > 0) {
-      console.log(this._matches);
-      //this._active = this._matches[0];
-      /*if (this._active.isHeader()) {
-        this.nextActiveMatch();
-      }*/
+      if(this.autoSelect){
+        this._active = this._matches[0];
+        if (this._active.isHeader()) {
+          this.nextActiveMatch();
+        }
+      }
     }
   }
 
