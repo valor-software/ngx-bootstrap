@@ -44,9 +44,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** used to specify a custom options list template. Template variables: matches, itemTemplate, query */
   @Input() public optionsListTemplate: TemplateRef<any>;
   /** used to set whether or not the first typeahead option is automatically made active */
-  @Input() public typeaheadAutoSelect: boolean = true;
-  /** allow enter to be used to select typeahead match, and prevent it from submitting a form */
-  @Input() public typeaheadEnterAsSelect: boolean = true;
+  @Input() public typeaheadFocusFirst: boolean = true;
+  /** use to set keys to be ignored by typeahead */
+  @Input() public typeaheadIgnoreKeys: number[] = [];
+  /** use to set keys to hide typeahead */
+  @Input() public typeaheadEscapeKeys: number[] = [];
+  
 
   /** fired when 'busy' state of this component was changed, fired on async mode only, returns boolean */
   @Output() public typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
@@ -66,8 +69,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
   // @Input() protected typeaheadEditable:boolean;
-  /** if false the first match automatically will not be focused as you type */
-  // @Input() protected typeaheadFocusFirst:boolean;
   /** format the ng-model result after selection */
   // @Input() protected typeaheadInputFormatter:any;
   /** if true automatically select an item when there is one option that exactly matches the user input */
@@ -95,6 +96,18 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('keyup', ['$event'])
   public onChange(e: any): void {
     if (this._container) {
+      // Set user defined escape keys
+      if(this.typeaheadEscapeKeys.find(k => e.keyCode)){
+        this.hide();
+        return;
+      }
+      // Ignore keys set to ignore by user
+      if(this.typeaheadIgnoreKeys.find(k => e.keyCode)){
+        return;
+      }
+
+      //Set default actions for keys
+      
       // esc
       if (e.keyCode === 27) {
         this.hide();
@@ -114,7 +127,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      if (e.keyCode === 13 && this.typeaheadEnterAsSelect) {
+      if (e.keyCode === 13){
         this._container.selectActiveMatch();
         return;
       }
@@ -165,7 +178,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if items is visible - prevent form submition
-    if (e.keyCode === 13 && this.typeaheadEnterAsSelect) {
+    if (e.keyCode === 13) {
       e.preventDefault();
       return;
     }
@@ -224,7 +237,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         typeaheadRef: this,
         placement: this.placement,
         animation: false,
-        autoSelect: this.typeaheadAutoSelect
+        focusFirst: this.typeaheadFocusFirst
       });
 
     this._container = this._typeahead.instance;
