@@ -16,9 +16,9 @@
     <tab heading="Static Title 2">Static content 2</tab>
     <tab heading="Static Title 3" removable="true">Static content 3</tab>
     <tab (select)="alertMe()">
-      <template tabHeading>
+      <ng-template tabHeading>
         <i class="glyphicon glyphicon-bell"></i> Alert!
-      </template>
+      </ng-template>
       I've got an HTML heading, and a select callback. Pretty cool!
     </tab>
   </tabset>

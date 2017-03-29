@@ -14,7 +14,7 @@ export class AppModule(){}
 <tabset>
   <tab heading='Tab 1'>Tab 1 content</tab>
   <tab>
-    <template tabHeading>Tab 2</template>
+    <ng-template tabHeading>Tab 2</ng-template>
     Tab 2 content
   </tab>
 </tabset>
