@@ -1,5 +1,5 @@
 /* tslint:disable:max-file-line-count */
-export const latinMap = {
+export const latinMap: { [key: string]: string } = {
   'Á': 'A',
   'Ă': 'A',
   'Ắ': 'A',

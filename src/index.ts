@@ -81,7 +81,7 @@ export {
 
 export {
   TypeaheadOptions, TypeaheadContainerComponent, TypeaheadDirective,
-  TypeaheadMatch, TypeaheadModule, TypeaheadUtils,
+  TypeaheadMatch, TypeaheadModule,
 } from './typeahead';
 
 export {
