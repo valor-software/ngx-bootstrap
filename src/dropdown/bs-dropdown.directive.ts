@@ -12,7 +12,8 @@ import { BsDropdownState } from './bs-dropdown.state';
 @Directive({
   selector: '[bsDropdown],[dropdown]',
   exportAs: 'bs-dropdown',
-  providers: [BsDropdownState]
+  providers: [BsDropdownState],
+  host: {'[class.dropup]': 'dropup'}
 })
 export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
@@ -138,20 +139,20 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._state.dropdownMenu
       .then((dropdownMenu) => {
         // check direction in which dropdown should be opened
-        this.dropup = typeof this.dropup !== 'undefined' || this.dropup;
-        this._state.direction = this.dropup ? 'up' : 'down';
-        if (!this.placement) {
-          this.placement = this.dropup ? 'top left' : 'bottom left';
-        }
+        const _dropup = this.dropup === true ||
+          (typeof this.dropup !== 'undefined' && this.dropup !== false);
+        this._state.direction = _dropup ? 'up' : 'down';
+        const _placement = this.placement ||
+          (_dropup ? 'top left' : 'bottom left');
 
         // show dropdown
         this._dropdown
           .attach(BsDropdownContainerComponent)
           .to(this.container)
-          .position({attachment: this.placement})
+          .position({attachment: _placement})
           .show({
             content: dropdownMenu,
-            placement: this.placement
+            placement: _placement
           });
 
         this._state.isOpenChange.emit(true);
