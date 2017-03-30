@@ -1,5 +1,6 @@
 import { browser, $ } from 'protractor';
 import Promise = webdriver.promise.Promise;
+import * as webdriver from "selenium-webdriver";
 
 export class Ng2BootstrapPage {
   public navigateTo(): any {
@@ -7,6 +8,6 @@ export class Ng2BootstrapPage {
   }
 
   public getParagraphText(): Promise<string> {
-    return $('getting-started h1:nth-child(1)').getText();
+    return $('.content-header>h1').getText();
   }
 }

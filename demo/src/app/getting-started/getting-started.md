@@ -1,6 +1,6 @@
 # ng2-bootstrap  [![npm version](https://badge.fury.io/js/ng2-bootstrap.svg)](http://badge.fury.io/js/ng2-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ng2-bootstrap.svg)](https://npmjs.org/ng2-bootstrap)[![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
 
-Here you will find all [Twitter Bootstrap](http://v4-alpha.getbootstrap.com) components plus
+Here you will find all [Bootstrap](http://v4-alpha.getbootstrap.com) components plus
 many more useful components like: date picker, time picker, rating, typeahead, etc.
 
 Additionally to allow reach experience while working with Dates we are using [moment.js](http://momentjs.com/), de facto best date manipulation library at the moment.
@@ -27,8 +27,8 @@ You will need bootstrap styles
  - `angular-cli` (**RECOMMENDED**) please refer to [getting-started-with-ng-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/ng-cli.md)
  - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
- - `webpack` you can view our demo page [source code](https://github.com/valor-software/ng2-bootstrap/tree/development/demo)
  - `plnkr` sample available [here](http://bit.ly/ng2-bootstrap-plnkr)
+ - `Bootstrap 4 and angular-cli` please refer to [using-with-bootstrap-4-and-angular-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/bootstrap4.md)
 
 ## Troubleshooting
 

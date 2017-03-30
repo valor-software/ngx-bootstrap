@@ -8,4 +8,5 @@ export class SampleBoxComponent {
   @Input() public ts: string;
   @Input() public html: string;
   @Input() public spec: string;
+  @Input() public style: string;
 }

@@ -1,95 +1,122 @@
-import { $, browser } from 'protractor';
-import { leftPanelTests } from './leftPanelTests.po';
-import { DataProvider } from '../data-provider/data-provider.po';
-import WebElement = webdriver.WebElement;
+import {browser} from 'protractor';
+import {tooltipEl} from '../selectors.json';
 
-let using = require('jasmine-data-provider');
-const buttonShowTooltip = $('.btn.btn-primary');
-const buttonHideTooltip = $('.btn.btn-danger');
-const tooltipElement = $('.tooltip-inner');
-const tooltipDelayed = $('[tooltip="appears with delay"]');
-const tooltipHTML = $('.item>tooltip-demo>p:nth-child(4)>a');
-const tooltipTemplateRef = $('tooltip-demo>p:nth-child(5)>a');
-const tooltipDynamic = $('tooltip-demo>p:nth-child(3)>a:nth-child(1)');
-const inputDynamicTooltipText = $('tooltip-demo>div:nth-child(1) input');
-const inputDynamicPopupText = $('tooltip-demo>div:nth-child(2) input');
-const inputDisableTooltipConditionally = $('[tooltiptrigger="mouseenter"]');
-
-describe('Tooltip page test on bootstrap 3', () => {
+describe('Tooltip page test on bootstrap 3.', () => {
   beforeAll(() => {
     browser.get('#/tooltip');
-    leftPanelTests.checkLeftPanelMini();
-    leftPanelTests.checkLeftPanelMaxi();
   });
-  using (DataProvider.tooltipDefaultContains, (data:any, description:string) => {
-    it ('Check default texts on the page: ' + description, () => {
-      expect(data.element().getText()).toBe(data.actualResult);
-    });
-  });
-  using (DataProvider.tooltipElementsTexts, (data:any, description:string) => {
-    it ('Check tooltip texts: ' + description, () => {
-      browser.actions()
-        .mouseMove(data.element())
-        .perform();
-      browser.sleep(50);
-      expect(tooltipElement.getText()).toBe(data.actualResult);
-    });
-  });
-  it ('Check buttons Show/Hide tooltip', () => {
-    buttonShowTooltip.click();
-    expect(tooltipElement.isDisplayed()).toBe(true);
-    buttonHideTooltip.click();
-    expect(tooltipElement.isPresent()).toBe(false);
-  });
-  it ('Check Delayed tooltip', () => {
-    browser.ignoreSynchronization=true;
+
+
+  it('Check the tooltip for Simple demo button.', () => {
     browser.actions()
-      .mouseMove(tooltipDelayed as any)
+      .mouseMove(tooltipEl.buttonSimpleDemo)
       .perform();
-    expect(tooltipElement.isPresent()).toBe(false);
-    browser.sleep(1010);
-    expect(tooltipElement.getText()).toBe('appears with delay');
+    expect(tooltipEl.tooltipElement.isDisplayed()).toBe(true);
   });
-  it ('Check HTML tooltip', () => {
-    browser.ignoreSynchronization=true;
+
+  it('Four directions tooltip.', () => {
     browser.actions()
-      .mouseMove(tooltipHTML as any)
+      .mouseMove(tooltipEl.buttonFourDirectionsLeft)
       .perform();
-    expect(tooltipElement.isPresent()).toBe(false);
-    browser.sleep(510);
-    expect(tooltipElement.getText()).toBe(`I've been made bold!`);
-  });
-  using (DataProvider.inputDifferentData, (data:any, description:string) => {
-    it ('Check tooltip texts: ' + description, () => {
-      inputDynamicPopupText.clear();
-      inputDynamicPopupText.sendKeys(data.inputText);
-      browser.actions()
-        .mouseMove(tooltipDynamic as any)
-        .perform();
-      expect(tooltipElement.getText()).toBe(data.inputText);
-      browser.actions()
-        .mouseMove(inputDynamicTooltipText as any)
-        .perform();
-    });
-  });
-  using (DataProvider.inputDifferentData, (data:any, description:string) => {
-    it ('Check tooltip texts: ' + description, () => {
-      inputDynamicTooltipText.clear();
-      inputDynamicTooltipText.sendKeys(data.inputText);
-      expect(tooltipDynamic.getText()).toBe(data.inputText);
-    });
-  });
-  it ('Disable tooltip conditionally. Expect to fail', () => {
-    inputDisableTooltipConditionally.sendKeys('Some text');
-    expect(tooltipElement.isPresent()).toBe(false);
-    inputDisableTooltipConditionally.clear();
-    expect(tooltipElement.isPresent()).toBe(true);
-  });
-  it ('Check text in tooltip TemplateRef', () => {
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
     browser.actions()
-      .mouseMove(tooltipTemplateRef as any)
+      .mouseMove(tooltipEl.buttonFourDirectionsTop)
       .perform();
-    expect($('.tooltip-inner>h4').getText()).toBe('Tool tip custom content defined inside a template');
-    expect($('.tooltip-inner>h5').getText()).toBe('With context binding: foo');
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .mouseMove(tooltipEl.buttonFourDirectionsBottom)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .mouseMove(tooltipEl.buttonFourDirectionsRight)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+  });
+
+  it('Dismissible tooltip.', () => {
+    browser.actions()
+      .click(tooltipEl.buttonDismissible)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+  });
+
+  it('Dynamic Content tooltip.', () => {
+    browser.actions()
+      .mouseMove(tooltipEl.buttonSimpleBinding)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .mouseMove(tooltipEl.buttonTemplateRefBinding)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+  });
+
+  it('Dynamic Html tooltip.', () => {
+    browser.actions()
+      .mouseMove(tooltipEl.buttonDynamicHTML)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+  });
+
+  it('Append to body.', () => {
+    browser.actions()
+      .mouseMove(tooltipEl.buttonDefaultTooltip)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .mouseMove(tooltipEl.buttonAppendedToBody)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+  });
+
+  it('Preconfigured tooltip.', () => {
+    browser.actions()
+      .mouseMove(tooltipEl.buttonPreconfiguredTooltip)
+      .perform();
+    expect(tooltipEl.buttonPreconfiguredTooltip.getAttribute('tooltip')).toContain("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.");
+  });
+
+  it('Custom triggers.', () => {
+    browser.actions()
+      .mouseMove(tooltipEl.buttonCustomTriggers)
+      .perform();//Moving over button to show tooltip.
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .mouseMove(tooltipEl.buttonPreconfiguredTooltip)
+      .perform();//Moving to to another button to test than tooltip still showed.
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .click(tooltipEl.buttonCustomTriggers)
+      .perform();//Clicking the button - tooltip must be hidden.
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(false);
+  });
+
+  it('Manual triggering.', () => {
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(false);
+
+    browser.actions()
+      .click(tooltipEl.buttonManualTriggeringShow)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(true);
+
+    browser.actions()
+      .click(tooltipEl.buttonManualTriggeringHide)
+      .perform();
+    expect(tooltipEl.tooltipElement.isPresent()).toBe(false);
+
+  });
+
+  it('Component level styling.', () => {
+    browser.actions()
+      .mouseMove(tooltipEl.buttonComponentLevelStyling)
+      .perform();
+    expect(tooltipEl.buttonComponentLevelStyling.getAttribute('tooltip')).toContain("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.");
   });
 });

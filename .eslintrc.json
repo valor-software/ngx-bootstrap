@@ -1,6 +1,0 @@
-{
-  "extends": "./node_modules/eslint-config-valorsoft/.eslintrc.json",
-  "env": {
-    "node": true
-  }
-}

@@ -1,0 +1,30 @@
+<carousel [interval]="myInterval" [noWrap]="noWrapSlides" [(activeSlide)]="activeSlideIndex">
+  <slide *ngFor="let slide of slides; let index=index">
+    <img [src]="slide.image">
+
+    <div class="carousel-caption">
+      <h4>Slide {{index}}</h4>
+      <p>{{slide.text}}</p>
+    </div>
+  </slide>
+</carousel>
+<br/>
+<div>
+  <button type="button" class="btn btn-info"
+          (click)="addSlide()">Add Slide
+  </button>
+  <button type="button" class="btn btn-info"
+          (click)="removeSlide()">Remove Current
+  </button>
+  <button type="button" class="btn btn-info"
+          (click)="removeSlide(2)">Remove #3
+  </button>
+</div>
+<div>
+  <div class="checkbox">
+    <label><input type="checkbox" [(ngModel)]="noWrapSlides">Disable Slide Looping</label>
+  </div>
+
+  <span>Interval, in milliseconds (Enter a negative number or 0 to stop the interval.): </span>
+  <input type="number" class="form-control" [(ngModel)]="myInterval">
+</div>

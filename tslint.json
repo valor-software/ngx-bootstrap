@@ -2,6 +2,11 @@
   "extends": "tslint-config-valorsoft",
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
+    "member-access": false,
+    "use-host-property-decorator": false,
+    "no-parameter-properties": false,
+    "typedef": true,
+    "no-inferrable-types": true,
     "no-forward-ref": false,
     "no-null-keyword": false,
     "only-arrow-functions": false,

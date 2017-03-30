@@ -10,7 +10,7 @@ for all add support of:
 + add input config
 + forms integration
 + mobile events
-+ theming
++ theming (it blocks bs4 testing)
 
 + breadcrumb
 + scrollspy

@@ -1,5 +1,6 @@
-export { TypeaheadMatch } from './typeahead-match.class';
+export { latinMap } from './latin-map';
 export { TypeaheadOptions } from './typeahead-options.class';
+export { TypeaheadMatch } from './typeahead-match.class';
 
 export { TypeaheadUtils } from './typeahead-utils';
 export { TypeaheadContainerComponent } from './typeahead-container.component';

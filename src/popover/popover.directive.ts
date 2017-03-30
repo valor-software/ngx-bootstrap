@@ -86,6 +86,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
         placement: this.placement,
         title: this.popoverTitle
       });
+    this.isOpen = true;
   }
 
   /**
@@ -95,6 +96,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   public hide(): void {
     if (this.isOpen) {
       this._popover.hide();
+      this.isOpen = false;
     }
   }
 

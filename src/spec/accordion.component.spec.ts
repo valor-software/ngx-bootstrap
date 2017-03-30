@@ -101,12 +101,12 @@ describe('Component: Accordion', () => {
   });
 
   it('should have the appropriate heading', () => {
-    const titles = Array.from(element.querySelectorAll('.panel-heading a span'));
+    const titles = Array.from(element.querySelectorAll('.panel-heading .accordion-toggle span'));
     titles.forEach((title:HTMLElement, idx:number) => expect(hasTitle(title, `Panel ${idx + 1}`)).toBe(true));
   });
 
   it('should only open one at a time', () => {
-    const headingLinks = element.querySelectorAll('.panel-title a');
+    const headingLinks = element.querySelectorAll('.accordion-toggle');
 
     headingLinks[0].click();
     fixture.detectChanges();
@@ -132,7 +132,7 @@ describe('Component: Accordion', () => {
   it('should not open disabled panels from click', () => {
     context.panels[0].isDisabled = true;
     fixture.detectChanges();
-    const headingLinks = element.querySelectorAll('.panel-title a');
+    const headingLinks = element.querySelectorAll('.panel-title .accordion-toggle');
     headingLinks[0].click();
     fixture.detectChanges();
     expectOpenPanels(element, [false, false, false]);

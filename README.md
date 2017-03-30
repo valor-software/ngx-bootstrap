@@ -32,20 +32,34 @@ Install `ng2-bootstrap` from `npm`
 npm install ng2-bootstrap --save
 ```
 
-You will need bootstrap styles
+You will need bootstrap styles (Bootstrap 3)
 
 ```
 <!-- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
+Or Bootstrap 4
+```
+<!--- index.html -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+```
+Hot to enable bootstrap 4 theme templates in ng2-bootstrap, please read
+[here](https://github.com/valor-software/ng2-bootstrap/blob/development/docs/getting-started/bootstrap4.md)
+
+```
+<!-- index.html -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+```
+
+
 ## How to use it with:
  - `angular-cli` please refer to [getting-started-with-ng-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/ng-cli.md)
  - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart) 
- - `webpack` you can view our demo page [source code](https://github.com/valor-software/ng2-bootstrap/tree/development/demo)
  - `plnkr` sample available [here](http://bit.ly/ng2-bootstrap-plnkr)
  - `AoT using ngc and rollup` please refer to [ng2-bootstrap-with-aot](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/aot.md)
+ - `Bootstrap 4 and angular-cli` please refer to [using-with-bootstrap-4-and-angular-cli](https://github.com/valor-software/ng2-bootstrap/tree/development/docs/getting-started/bootstrap4.md)
 
 # Usage & Demo
 

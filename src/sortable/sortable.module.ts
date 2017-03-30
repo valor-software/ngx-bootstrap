@@ -1,20 +1,13 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { SortableComponent } from './sortable.component';
 import { DraggableItemService } from './draggable-item.service';
 
 @NgModule({
-    declarations: [
-        SortableComponent
-    ],
-    imports: [
-        BrowserModule
-    ],
-    exports: [
-        BrowserModule,
-        SortableComponent
-    ]
+    declarations: [SortableComponent],
+    imports: [CommonModule],
+    exports: [SortableComponent]
 })
 export class SortableModule {
     public static forRoot(): ModuleWithProviders {
