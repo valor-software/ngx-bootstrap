@@ -1,3 +1,12 @@
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.6.1) (2017-03-30)
+
+
+### Features
+
+* **dropdown:** now you can bind to dropup property ([d6f6d25](https://github.com/valor-software/ng2-bootstrap/commit/d6f6d25))
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.6.0) (2017-03-29)
 
