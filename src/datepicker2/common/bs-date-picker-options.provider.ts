@@ -1,6 +1,5 @@
 import * as moment from 'moment';
 import { Injectable, EventEmitter } from '@angular/core';
-const defaults = {};
 
 export const DatePickerViewModes: { [key: string]: number, days: number, months: number, years: number }
   = {days: 0, months: 1, years: 2};
@@ -113,9 +112,9 @@ export class BsDatePickerOptions {
 
   public onUpdate: EventEmitter<BsDatePickerOptions> = new EventEmitter();
 
-  public static setDefaults(options: any): void {
-    Object.assign(defaults, options);
-  }
+  // public static setDefaults(options: any): void {
+  //   Object.assign(defaults, options);
+  // }
 
   public update(options: any): BsDatePickerOptions {
     const {mode, viewMode, ui, date, format, locale, timepicker, customDates, ranges} = options;
@@ -190,11 +189,6 @@ export class BsDatePickerOptions {
     // Object.assign(this, options);
     this.onUpdate.emit(this);
     return this;
-  }
-
-  // todo: add event emitter on options change
-  public constructor() {
-    Object.assign(this, defaults);
   }
 
   public get isDatePicker(): boolean {
