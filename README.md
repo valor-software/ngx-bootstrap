@@ -44,7 +44,7 @@ Or Bootstrap 4
 <!--- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 ```
-Hot to enable bootstrap 4 theme templates in ng2-bootstrap, please read
+To enable bootstrap 4 theme templates in ng2-bootstrap, please read
 [here](https://github.com/valor-software/ng2-bootstrap/blob/development/docs/getting-started/bootstrap4.md)
 
 ```
