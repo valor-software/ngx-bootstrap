@@ -116,7 +116,7 @@ import { DropdownModule } from 'ng2-bootstrap/dropdown';
   <button id="single-button" type="button" class="btn btn-primary" dropdownToggle>
     Button dropdown <span class="caret"></span>
   </button>
-  <ul dropdownMenu role="menu" aria-labelledby="single-button">
+  <ul *dropdownMenu role="menu" aria-labelledby="single-button">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
