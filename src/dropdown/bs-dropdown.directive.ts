@@ -124,8 +124,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // hide dropdown if set disabled while opened
     this._subscriptions.push(this._state
       .isDisabledChange
-      .filter((value: boolean) => value === true)
-      .subscribe((value: boolean) => this.hide()));
+      .subscribe((value: boolean) => if (value === true) { this.hide(); }));
   }
 
   /**
