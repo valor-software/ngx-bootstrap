@@ -3,6 +3,7 @@ import {
   Renderer, ViewContainerRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/filter';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
