@@ -1,5 +1,5 @@
 import {
-  Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
+  Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostBinding, Input, OnDestroy, OnInit, Output,
   Renderer, ViewContainerRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -9,6 +9,8 @@ import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
+import { BsComponentRef } from '../component-loader/bs-component-ref.class';
+import { BsDropdownMenuDirective } from './';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',
@@ -67,7 +69,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Returns whether or not the popover is currently being shown
    */
+  @HostBinding('class.open')
   @Input() get isOpen(): boolean {
+    if (this._showInline) {
+      return this._isInlineOpen;
+    }
     return this._dropdown.isShown;
   }
 
@@ -87,6 +93,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Emits an event when the popover is hidden
    */
   @Output() onHidden: EventEmitter<any>;
+
+  // todo: move to component loader
+  private _isInlineOpen = false;
+  private _showInline: boolean;
+  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
 
   private _isDisabled: boolean;
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
@@ -108,6 +119,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this._showInline = !this.container;
+
     // attach DOM listeners
     this._dropdown.listen({
       triggers: this.triggers,
@@ -126,6 +139,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       .isDisabledChange
       .filter((value: boolean) => value === true)
       .subscribe((value: boolean) => this.hide()));
+
+    // attach dropdown menu inside of dropdown
+    if (this._showInline) {
+      this._state.dropdownMenu
+        .then((dropdownMenu:BsComponentRef<BsDropdownMenuDirective>) => {
+          this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
+        });
+    }
   }
 
   /**
@@ -133,7 +154,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * the popover.
    */
   show(): void {
-    if (this._dropdown.isShown || this.isDisabled) {
+    if (this.isOpen || this.isDisabled) {
+      return;
+    }
+
+    if (this._showInline) {
+      this._isInlineOpen = true;
+      this._state.isOpenChange.emit(true);
       return;
     }
 
@@ -152,7 +179,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           .to(this.container)
           .position({attachment: _placement})
           .show({
-            content: dropdownMenu,
+            content: dropdownMenu.templateRef,
             placement: _placement
           });
 
@@ -169,7 +196,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       return;
     }
 
-    this._dropdown.hide();
+    if (this._showInline) {
+      this._isInlineOpen = false;
+    } else {
+      this._dropdown.hide();
+    }
+
     this._state.isOpenChange.emit(false);
   }
 
