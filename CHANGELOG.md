@@ -1,3 +1,19 @@
+<a name="1.6.2"></a>
+## [1.6.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.6.1...v1.6.2) (2017-04-05)
+
+
+### Bug Fixes
+
+* **dropdown:** Add missing rxjs filter operator dependency ([#1836](https://github.com/valor-software/ng2-bootstrap/issues/1836)) ([838821a](https://github.com/valor-software/ng2-bootstrap/commit/838821a))
+* **dropdown:** fixed auto close input behavior ([b023ca6](https://github.com/valor-software/ng2-bootstrap/commit/b023ca6)), closes [#1840](https://github.com/valor-software/ng2-bootstrap/issues/1840)
+
+
+### Features
+
+* **dropdown:** added inline style of adding dropdown, enabled by default ([f4334a8](https://github.com/valor-software/ng2-bootstrap/commit/f4334a8)), closes [#1860](https://github.com/valor-software/ng2-bootstrap/issues/1860) [#1862](https://github.com/valor-software/ng2-bootstrap/issues/1862)
+
+
+
 <a name="1.6.1"></a>
 ## [1.6.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.6.1) (2017-03-30)
 
