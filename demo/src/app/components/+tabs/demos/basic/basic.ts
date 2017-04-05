@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TabsetComponent } from 'ng2-bootstrap';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'demo-tabs-basic',
@@ -21,5 +21,5 @@ export class DemoTabsBasicComponent {
 
   disableEnable() {
     this.staticTabs.tabs[2].disabled = ! this.staticTabs.tabs[2].disabled
-  }  
+  }
 }

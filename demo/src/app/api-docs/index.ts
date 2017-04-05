@@ -10,7 +10,7 @@ import { NgApiDocComponent } from './api-doc/api-doc.component';
 import { NgApiDocClassComponent } from './api-doc-class/api-doc-class.component';
 import { NgApiDocConfigComponent } from './api-doc-config/api-doc-config.component';
 import { SampleBoxComponent } from './sample-box/sample-box.component';
-import { TabsModule } from 'ng2-bootstrap/tabs';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 export { NgApiDoc } from './api-docs.model';
 export { Analytics } from './analytics/analytics';

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PaginationModule } from 'ng2-bootstrap/pagination';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { SharedModule } from '../../shared';
 import { PaginationSectionComponent } from './pagination-section.component';

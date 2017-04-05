@@ -8,7 +8,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   template: `
 <demo-section [name]="name" [src]="src">
   <p>Rating component that will take care of visualising a star rating bar</p>
-  <p><em>Note</em>: Bootstrap 4 do not include glyphicons anymore, so if you want to continue use this font, you will need to add a link to <a href="https://github.com/valor-software/ng2-bootstrap/blob/master/demo/assets/css/glyphicons.css"><code>glyphicons.css</code></a></p>
+  <p><em>Note</em>: Bootstrap 4 do not include glyphicons anymore, so if you want to continue use this font, you will need to add a link to <a href="https://github.com/valor-software/ngx-bootstrap/blob/master/demo/assets/css/glyphicons.css"><code>glyphicons.css</code></a></p>
   
   <h2>Contents</h2>
   <ul>
@@ -54,7 +54,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class RatingSectionComponent {
   public name: string = 'Rating';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/rating';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
   public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
 }

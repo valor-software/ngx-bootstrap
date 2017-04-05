@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsDropdownConfig } from 'ng2-bootstrap/dropdown';
+import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 @Component({
   selector: 'demo-dropdown-config',
