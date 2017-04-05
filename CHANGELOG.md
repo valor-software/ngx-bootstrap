@@ -4,16 +4,7 @@
 
 ### Bug Fixes
 
-* **dropdown:** Add missing rxjs filter operator dependency ([#1836](https://github.com/valor-software/ngx-bootstrap/issues/1836)) ([838821a](https://github.com/valor-software/ngx-bootstrap/commit/838821a))
-* **dropdown:** fixed auto close input behavior ([b023ca6](https://github.com/valor-software/ngx-bootstrap/commit/b023ca6)), closes [#1840](https://github.com/valor-software/ngx-bootstrap/issues/1840)
 * **dropdowns:** fixed styling of dropdowns with bootstrap 4 ([9c8c74b](https://github.com/valor-software/ngx-bootstrap/commit/9c8c74b))
-
-
-### Features
-
-* **dropdown:** added inline style of adding dropdown, enabled by default ([f4334a8](https://github.com/valor-software/ngx-bootstrap/commit/f4334a8)), closes [#1860](https://github.com/valor-software/ngx-bootstrap/issues/1860) [#1862](https://github.com/valor-software/ngx-bootstrap/issues/1862)
-* **package:** rename to ngx-bootstrap ([c946f8e](https://github.com/valor-software/ngx-bootstrap/commit/c946f8e))
-
 
 
 <a name="1.6.2"></a>
