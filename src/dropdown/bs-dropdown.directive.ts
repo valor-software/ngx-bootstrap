@@ -116,6 +116,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
+
+    // set initial dropdown state from config
+    this._state.autoClose = this._config.autoClose;
   }
 
   ngOnInit(): void {
@@ -126,9 +129,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       triggers: this.triggers,
       show: () => this.show()
     });
-
-    // set initial dropdown state from config
-    this._state.autoClose = this._config.autoClose;
 
     // toggle visibility on toggle element click
     this._subscriptions.push(this._state
