@@ -11,12 +11,17 @@ import { BsDropdownContainerComponent } from './bs-dropdown-container.component'
 import { BsDropdownState } from './bs-dropdown.state';
 import { BsComponentRef } from '../component-loader/bs-component-ref.class';
 import { BsDropdownMenuDirective } from './';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',
   exportAs: 'bs-dropdown',
   providers: [BsDropdownState],
-  host: {'[class.dropup]': 'dropup'}
+  host: {
+    '[class.dropup]': 'dropup',
+    '[class.open]': 'isOpen',
+    '[class.show]': 'isOpen && isBs4'
+  }
 })
 export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
@@ -69,7 +74,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Returns whether or not the popover is currently being shown
    */
-  @HostBinding('class.open')
   @Input() get isOpen(): boolean {
     if (this._showInline) {
       return this._isInlineOpen;
@@ -94,6 +98,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    */
   @Output() onHidden: EventEmitter<any>;
 
+  get isBs4(): boolean {
+    return !isBs3();
+  }
   // todo: move to component loader
   private _isInlineOpen = false;
   private _showInline: boolean;

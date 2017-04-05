@@ -10,9 +10,9 @@ Note that you also have to include bootstrap CSS from the official Bootrstrap si
 npm install ngx-bootstrap bootstrap --save
 ```
  
-#### 2) Edit Angular 2 module
+#### 2) Edit Angular module
 
-Open the module file where you want to include ngx-bootstrap (most probably `app.module.ts`) and import either specific ngx-bootstrap modules by listing them in the import statement and then in the import array of the Angular 2 module
+Open the module file where you want to include ngx-bootstrap (most probably `app.module.ts`) and import either specific ngx-bootstrap modules by listing them in the import statement and then in the import array of the Angular module
 
 ```typescript
 import { AlertModule } from 'ngx-bootstrap/alert';
