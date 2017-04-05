@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable, TemplateRef } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { BsComponentRef } from '../component-loader/bs-component-ref.class';
 
 @Injectable()
 export class BsDropdownState {
@@ -11,8 +12,8 @@ export class BsDropdownState {
   /**
    * Content to be displayed as popover.
    */
-  dropdownMenu: Promise<TemplateRef<any>>;
-  resolveDropdownMenu: Function;
+  dropdownMenu: Promise<BsComponentRef<any>>;
+  resolveDropdownMenu: (componentRef: BsComponentRef<any>) => void;
 
   constructor() {
     this.dropdownMenu = new Promise((resolve) => {
