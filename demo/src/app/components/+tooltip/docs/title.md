@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { TooltipModule } from 'ng2-bootstrap/tooltip';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 // or
-import { TooltipModule } from 'ng2-bootstrap';
+import { TooltipModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [TooltipModule.forRoot(),...]

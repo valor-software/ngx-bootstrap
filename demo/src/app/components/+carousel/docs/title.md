@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { CarouselModule } from 'ng2-bootstrap/carousel';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 // or
-import { CarouselModule } from 'ng2-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [CarouselModule.forRoot(),...]

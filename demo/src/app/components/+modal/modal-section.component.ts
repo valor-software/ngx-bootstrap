@@ -74,7 +74,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class ModalSectionComponent {
   public name: string = 'Modals';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/master/components/modal';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/master/components/modal';
   public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
 

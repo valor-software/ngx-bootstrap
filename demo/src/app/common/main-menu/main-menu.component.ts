@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { isBs3 } from 'ng2-bootstrap/utils';
+import { isBs3 } from 'ngx-bootstrap/utils';
 import { routes } from '../../app.routing';
 
 @Component({

@@ -1,5 +1,5 @@
 {
-  "name": "ng2-bootstrap-base",
+  "name": "ngx-bootstrap-base",
   "version": "2.0.0-beta.0",
   "description": "Native Angular Bootstrap Components",
   "private": true,
@@ -11,7 +11,7 @@
     "demo.gh-pages": "run-s build demo.build demo.deploy",
     "demo.build": "ng build -prod --aot && npm run generate-bs4",
     "demo.deploy": "gh-pages -d demo/dist",
-    "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ng2-bootstrap.git -b gh-pages",
+    "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ngx-bootstrap.git -b gh-pages",
     "link": "ngm link -p src --here",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
@@ -35,7 +35,7 @@
     "e2e-cross": "SAUCE=true npm run e2e",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json"
   },
-  "main": "bundles/ng2-bootstrap.umd.js",
+  "main": "bundles/ngx-bootstrap.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
   "keywords": [
@@ -50,12 +50,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/valor-software/ng2-bootstrap.git"
+    "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
   },
   "bugs": {
-    "url": "https://github.com/valor-software/ng2-bootstrap/issues"
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
   },
-  "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
+  "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "peerDependencies": {
     "@angular/common": "^2.3.1 || >=4.0.0",
     "@angular/compiler": "^2.3.1 || >=4.0.0",
@@ -107,7 +107,7 @@
     "karma-sauce-launcher": "1.1.0",
     "lite-server": "2.3.0",
     "lodash": "4.17.4",
-    "markdown-loader": "2.0.0",
+    "markdown-loader": "github:valorkin/markdown-loader",
     "marked": "0.3.6",
     "moment": "2.18.1",
     "ng2-page-scroll": "4.0.0-beta.6",

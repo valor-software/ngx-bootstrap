@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { AlertModule } from 'ng2-bootstrap/alert';
+import { AlertModule } from 'ngx-bootstrap/alert';
 // or
-import { AlertModule } from 'ng2-bootstrap';
+import { AlertModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [AlertModule.forRoot(),...]

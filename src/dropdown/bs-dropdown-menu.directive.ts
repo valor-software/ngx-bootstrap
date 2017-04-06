@@ -1,4 +1,4 @@
-import { Directive, TemplateRef } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BsDropdownState } from './bs-dropdown.state';
 
 @Directive({
@@ -6,8 +6,12 @@ import { BsDropdownState } from './bs-dropdown.state';
   exportAs: 'bs-dropdown-menu'
 })
 export class BsDropdownMenuDirective {
-  constructor(private _state: BsDropdownState,
-              private _templateRef: TemplateRef<any>) {
-    _state.resolveDropdownMenu(_templateRef);
+  constructor(_state: BsDropdownState,
+              _viewContainer: ViewContainerRef,
+              _templateRef: TemplateRef<any>) {
+    _state.resolveDropdownMenu({
+      templateRef: _templateRef,
+      viewContainer: _viewContainer
+    });
   }
 }

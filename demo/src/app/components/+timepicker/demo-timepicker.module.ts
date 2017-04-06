@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { TimepickerModule } from 'ng2-bootstrap/timepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { SharedModule } from '../../shared';
 import { TimepickerSectionComponent } from './timepicker-section.component';

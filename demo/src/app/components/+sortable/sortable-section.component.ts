@@ -13,7 +13,7 @@ let usageDoc = require('html-loader!markdown-loader!./docs/usage.md');
 })
 export class SortableSectionComponent {
   public name:string = 'Sortable';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/blob/master/components/sortable';
+  public src:string = 'https://github.com/valor-software/ngx-bootstrap/blob/master/components/sortable';
   public titleDoc:string = titleDoc;
   public usageDoc:string = usageDoc;
   public demos: any = DEMOS;

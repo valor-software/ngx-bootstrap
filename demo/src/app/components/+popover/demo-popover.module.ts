@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PopoverModule } from 'ng2-bootstrap/popover';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 import { SharedModule } from '../../shared';
 import { DEMO_COMPONENTS } from './demos';

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ButtonsModule } from 'ng2-bootstrap/buttons';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { SharedModule } from '../../shared';
 import { ButtonsSectionComponent } from './buttons-section.component';
