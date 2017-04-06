@@ -5,10 +5,6 @@
 [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap)
 [![Dependency Status](https://david-dm.org/valor-software/ngx-bootstrap.svg)](https://david-dm.org/valor-software/ngx-bootstrap)
 
-[![NPM](https://nodei.co/npm/ng2-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ngx-bootstrap)
-[![NPM](https://nodei.co/npm-dl/ng2-bootstrap.png?height=3&months=6)](https://npmjs.org/ngx-bootstrap)
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
-
 ## Table of contents 
 1. [Getting Started](#getting-started)
 2. [Installation instructions](#installation-instructions)
