@@ -1,3 +1,27 @@
+<a name="1.6.5"></a>
+## [1.6.5](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.4...v1.6.5) (2017-04-06)
+
+
+### Features
+
+* **typeahead:** deprecated typeahead utils for ngv4 aot mode work ([df499e9](https://github.com/valor-software/ngx-bootstrap/commit/df499e9))
+
+
+
+<a name="1.6.4"></a>
+## [1.6.4](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.3...v1.6.4) (2017-04-06)
+
+
+
+<a name="1.6.3"></a>
+## [1.6.3](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.1...v1.6.3) (2017-04-05)
+
+
+### Bug Fixes
+
+* **dropdowns:** fixed styling of dropdowns with bootstrap 4 ([9c8c74b](https://github.com/valor-software/ngx-bootstrap/commit/9c8c74b))
+
+
 <a name="1.6.2"></a>
 ## [1.6.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.6.1...v1.6.2) (2017-04-05)
 

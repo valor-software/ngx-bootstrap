@@ -1,7 +1,7 @@
 # ngx-bootstrap [![npm version](https://badge.fury.io/js/ngx-bootstrap.svg)](http://badge.fury.io/js/ngx-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ng2-bootstrap.svg)](https://npmjs.org/ngx-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
 Native Angular directives for Bootstrap 3 and Bootstrap 4
 
-[![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
+[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
 [![Build Status](https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=master)](https://travis-ci.org/valor-software/ngx-bootstrap)
 [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap)
 [![Dependency Status](https://david-dm.org/valor-software/ngx-bootstrap.svg)](https://david-dm.org/valor-software/ngx-bootstrap)

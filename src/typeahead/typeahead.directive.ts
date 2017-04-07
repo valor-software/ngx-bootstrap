@@ -6,6 +6,7 @@ import {
 import { FormControl, NgControl } from '@angular/forms';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { latinize, tokenize, getValueFromObject } from './typeahead-utils';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';

@@ -27,13 +27,13 @@
   // required for dev build 
   {
     name:'ngx-bootstrap',
-    path:'node_modules/ngx-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+    path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
   },    
   
   // required for prod build
   {
     name:'ngx-bootstrap/*',
-    path:'node_modules/ngx-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+    path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
   },
   
   // mandatory dependency for ngx-bootstrap datepicker 
