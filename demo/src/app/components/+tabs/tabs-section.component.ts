@@ -16,6 +16,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
       <ul>
         <li><a routerLink="." fragment="static">Static tabs</a></li>
         <li><a routerLink="." fragment="dynamic">Dynamic tabs</a></li>
+        <li><a routerLink="." fragment="reordering">reordering (drag &amp; drop)</a></li>
         <li><a routerLink="." fragment="pills">Pills</a></li>
         <li><a routerLink="." fragment="vertical-pills">Vertical Pills</a></li>
         <li><a routerLink="." fragment="justified">Justified</a></li>
@@ -47,6 +48,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic tabs</h2>    
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
       <demo-tabs-dynamic></demo-tabs-dynamic>
+  </ng-sample-box>
+  
+  <h2 routerLink="." fragment="reordering" id="reordering">Reordering (drag &amp; drop)</h2>    
+  <ng-sample-box [ts]="demos.reordering.component" [html]="demos.reordering.html">
+      <demo-tabs-reordering></demo-tabs-reordering>
   </ng-sample-box>
           
   <h2 routerLink="." fragment="pills" id="pills">Pills</h2>    
