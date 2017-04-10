@@ -109,6 +109,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _isDisabled: boolean;
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
   private _subscriptions: Subscription[] = [];
+  private _isInited = false;
 
   constructor(private _elementRef: ElementRef,
               private _renderer: Renderer,
@@ -129,6 +130,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // fix: seems there are an issue with `routerLinkActive`
+    // which result in duplicated call ngOnInit without call to ngOnDestroy
+    // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
+    if (this._isInited) {return;}
+    this._isInited = true;
+
     this._showInline = !this.container;
 
     // attach DOM listeners
