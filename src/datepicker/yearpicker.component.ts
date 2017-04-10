@@ -10,10 +10,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   <thead>
     <tr>
       <th>
-        <button type="button" class="btn btn-default btn-sm pull-left"
-                (click)="datePicker.move(-1)" tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-left"></i>
-        </button>
+        <datepicker-menu-left (click)="datePicker.move(-1)"></datepicker-menu-left>
       </th>
       <th [attr.colspan]="((datePicker.yearColLimit - 2) <= 0) ? 1 : datePicker.yearColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'" role="heading"
@@ -25,10 +22,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
         </button>
       </th>
       <th>
-        <button type="button" class="btn btn-default btn-sm pull-right"
-                (click)="datePicker.move(1)" tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-right"></i>
-        </button>
+        <datepicker-menu-right (click)="datePicker.move(1)"></datepicker-menu-right>
       </th>
     </tr>
   </thead>
