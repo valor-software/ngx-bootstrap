@@ -1,3 +1,13 @@
+<a name="1.6.6"></a>
+## [1.6.6](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.5...v1.6.6) (2017-04-10)
+
+
+### Bug Fixes
+
+* **dropdown:** prevent ng router active link double ngOnInit issue ([7ded538](https://github.com/valor-software/ngx-bootstrap/commit/7ded538))
+
+
+
 <a name="1.6.5"></a>
 ## [1.6.5](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.4...v1.6.5) (2017-04-06)
 
