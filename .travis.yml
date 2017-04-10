@@ -1,6 +1,6 @@
+sudo: false
 language: node_js
-node_js:
-  - "6"
+node_js: "7"
 
 env:
   global:
@@ -13,7 +13,10 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - npm run pretest
+  - npm run lint
+  - npm run build
+  - rm -rf node_modules/ng2-bootstrap
+  - npm i ./dist
   - npm run test-coverage
 
 after_success:

@@ -1,6 +1,7 @@
 import { AfterContentInit, Component, Inject } from '@angular/core';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
-import { isBs3 } from 'ng2-bootstrap';
+import { isBs3 } from 'ngx-bootstrap/utils';
+
 import { PageScrollConfig, PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 import { DOCUMENT } from '@angular/platform-browser';
 PageScrollConfig.defaultDuration = 11;

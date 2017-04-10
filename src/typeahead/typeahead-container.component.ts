@@ -2,60 +2,52 @@ import {
   Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener
 } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { latinize } from './typeahead-utils';
 
 @Component({
   selector: 'typeahead-container',
   // tslint:disable-next-line
   template: `
-  <template [ngIf]="!isBs4"><ul class="dropdown-menu">
-    <template ngFor let-match let-i="index" [ngForOf]="matches">
-      <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
-      <li *ngIf="!match.isHeader()"
-        [class.active]="isActive(match)"
-        (mouseenter)="selectActive(match)">
-        <a href="#"
-           *ngIf="!itemTemplate"
-           (click)="selectMatch(match, $event)"
-           tabindex="-1"
-           [innerHtml]="hightlight(match, query)"></a>
-        <a href="#"
-           *ngIf="itemTemplate"
-           (click)="selectMatch(match, $event)"
-           tabindex="-1">
-            <template [ngTemplateOutlet]="itemTemplate"
-                      [ngOutletContext]="{item: match.item, index: i}">
-            </template>
-        </a>
-      </li>
-    </template>
-  </ul></template>
-  <template [ngIf]="isBs4">
-    <template ngFor let-match let-i="index" [ngForOf]="matches">
-       <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
-       <template [ngIf]="!match.isHeader() && !itemTemplate">
-          <button
-            class="dropdown-item"
-            (click)="selectMatch(match, $event)"
-            (mouseenter)="selectActive(match)"
-            [class.active]="isActive(match)"
-            [innerHtml]="hightlight(match, query)"></button>
-      </template>
-      <template [ngIf]="!match.isHeader() && itemTemplate">
-        <button
-           class="dropdown-item"
-           (click)="selectMatch(match, $event)"
-           (mouseenter)="selectActive(match)"
-           [class.active]="isActive(match)">
-          <template [ngTemplateOutlet]="itemTemplate"
-                    [ngOutletContext]="{item: match.item, index: i}">
-          </template>
-         </button>
-      </template>
-    </template>
+<!-- inject options list template -->
+<template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
+  [ngOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></template>
+
+<!-- default options item template -->
+<template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="hightlight(match, query)"></span></template>
+
+<!-- Bootstrap 3 options list template -->
+<template #bs3Template>
+<ul class="dropdown-menu">
+  <template ngFor let-match let-i="index" [ngForOf]="matches">
+    <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+    <li *ngIf="!match.isHeader()" [class.active]="isActive(match)" (mouseenter)="selectActive(match)">
+      <a href="#" (click)="selectMatch(match, $event)" tabindex="-1">
+        <template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
+          [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></template>
+      </a>
+    </li>
   </template>
+</ul>
+</template>
+
+<!-- Bootstrap 4 options list template -->
+<template #bs4Template >
+<template ngFor let-match let-i="index" [ngForOf]="matches">
+   <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
+   <template [ngIf]="!match.isHeader()">
+      <button
+        class="dropdown-item"
+        (click)="selectMatch(match, $event)"
+        (mouseenter)="selectActive(match)"
+        [class.active]="isActive(match)">
+          <template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
+            [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></template>
+      </button>
+  </template>
+</template>
+</template>
 `,
   // tslint:disable
   host: {
@@ -87,6 +79,10 @@ export class TypeaheadContainerComponent {
     this.element = element;
   }
 
+  public get active(): TypeaheadMatch {
+    return this._active;
+  }
+
   public get matches(): TypeaheadMatch[] {
     return this._matches;
   }
@@ -100,6 +96,10 @@ export class TypeaheadContainerComponent {
         this.nextActiveMatch();
       }
     }
+  }
+
+  public get optionsListTemplate(): TemplateRef<any> {
+    return this.parent ? this.parent.optionsListTemplate : undefined;
   }
 
   public get itemTemplate(): TemplateRef<any> {
@@ -139,7 +139,7 @@ export class TypeaheadContainerComponent {
   public hightlight(match: TypeaheadMatch, query: any): string {
     let itemStr: string = match.value;
     let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
-      ? TypeaheadUtils.latinize(itemStr)
+      ? latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx: number;
     let tokenLen: number;

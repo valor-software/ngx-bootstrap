@@ -1,10 +1,11 @@
 import {
-  Directive, ElementRef, EventEmitter, HostListener, Input, OnInit, Output,
-  Renderer, TemplateRef, ViewContainerRef, OnDestroy
+  Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit,
+  Output, Renderer, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { FormControl, NgControl } from '@angular/forms';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
-import { TypeaheadUtils } from './typeahead-utils';
+import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
@@ -13,16 +14,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
 import { TypeaheadMatch } from './typeahead-match.class';
-import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
+import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
 
-/* tslint:disable-next-line */
-const KeyboardEvent = (global as any).KeyboardEvent as KeyboardEvent;
-
-@Directive({
-  /* tslint:disable */
-  selector: '[typeahead][ngModel],[typeahead][formControlName]'
-  /* tslint:enable */
-})
+@Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or an Observable for external matching process */
   @Input() public typeahead: any;
@@ -48,6 +42,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() public typeaheadPhraseDelimiters: string = '\'"';
   /** used to specify a custom item template. Template variables exposed are called item and index; */
   @Input() public typeaheadItemTemplate: TemplateRef<any>;
+  /** used to specify a custom options list template. Template variables: matches, itemTemplate, query */
+  @Input() public optionsListTemplate: TemplateRef<any>;
 
   /** fired when 'busy' state of this component was changed, fired on async mode only, returns boolean */
   @Output() public typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
@@ -55,6 +51,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Output() public typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
   /** fired when option was selected, return object with data of this option */
   @Output() public typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
+  /** fired when blur event occurres. returns the active item */
+  @Output() public typeaheadOnBlur: EventEmitter<any> = new EventEmitter();
 
   /**
    * A selector specifying the element the typeahead should be appended to.
@@ -145,12 +143,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('blur')
   public onBlur(): void {
     if (this._container && !this._container.isFocused) {
+      this.typeaheadOnBlur.emit(this._container.active);
       this.hide();
     }
   }
 
   @HostListener('keydown', ['$event'])
-  public onKeydown(e: KeyboardEvent): void {
+  public onKeydown(e: any): void {
     // no container - no problems
     if (!this._container) {
       return;
@@ -159,13 +158,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // if items is visible - prevent form submition
     if (e.keyCode === 13) {
       e.preventDefault();
-      return;
-    }
-
-    // if tab default browser behavior will select next input field, and
-    // therefore we should close the items list
-    if (e.keyCode === 9) {
-      this.hide();
       return;
     }
   }
@@ -229,11 +221,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
     let normalizedQuery = (this.typeaheadLatinize
-      ? TypeaheadUtils.latinize(this.ngControl.control.value)
+      ? latinize(this.ngControl.control.value)
       : this.ngControl.control.value).toString()
       .toLowerCase();
     this._container.query = this.typeaheadSingleWords
-      ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+      ? tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
       : normalizedQuery;
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
@@ -287,9 +279,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected normalizeOption(option: any): any {
-    let optionValue: string = TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField);
+    let optionValue: string = getValueFromObject(option, this.typeaheadOptionField);
     let normalizedOption = this.typeaheadLatinize
-      ? TypeaheadUtils.latinize(optionValue)
+      ? latinize(optionValue)
       : optionValue;
 
     return normalizedOption.toLowerCase();
@@ -299,14 +291,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // If singleWords, break model here to not be doing extra work on each
     // iteration
     let normalizedQuery: any =
-      (this.typeaheadLatinize ? TypeaheadUtils.latinize(value) : value)
+      (this.typeaheadLatinize ? latinize(value) : value)
         .toString()
         .toLowerCase();
     normalizedQuery = this.typeaheadSingleWords
-      ?
-      TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
-      :
-      normalizedQuery;
+      ? tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+      : normalizedQuery;
 
     return normalizedQuery;
   }
@@ -341,11 +331,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     if (this._container) {
       // This improves the speed as it won't have to be done for each list item
       let normalizedQuery = (this.typeaheadLatinize
-        ? TypeaheadUtils.latinize(this.ngControl.control.value)
+        ? latinize(this.ngControl.control.value)
         : this.ngControl.control.value).toString()
         .toLowerCase();
       this._container.query = this.typeaheadSingleWords
-        ? TypeaheadUtils.tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
+        ? tokenize(normalizedQuery, this.typeaheadWordDelimiters, this.typeaheadPhraseDelimiters)
         : normalizedQuery;
       this._container.matches = this._matches;
     } else {
@@ -361,7 +351,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // extract all group names
       let groups = limited
-        .map((option: any) => TypeaheadUtils.getValueFromObject(option, this.typeaheadGroupField))
+        .map((option: any) => getValueFromObject(option, this.typeaheadGroupField))
         .filter((v: string, i: number, a: any[]) => a.indexOf(v) === i);
 
       groups.forEach((group: string) => {
@@ -370,13 +360,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
         // add each item of group to array of matches
         matches = matches.concat(limited
-          .filter((option: any) => TypeaheadUtils.getValueFromObject(option, this.typeaheadGroupField) === group)
-          .map((option: any) => new TypeaheadMatch(option, TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField))));
+          .filter((option: any) => getValueFromObject(option, this.typeaheadGroupField) === group)
+          .map((option: any) => new TypeaheadMatch(option, getValueFromObject(option, this.typeaheadOptionField))));
       });
 
       this._matches = matches;
     } else {
-      this._matches = limited.map((option: any) => new TypeaheadMatch(option, TypeaheadUtils.getValueFromObject(option, this.typeaheadOptionField)));
+      this._matches = limited.map((option: any) => new TypeaheadMatch(option, getValueFromObject(option, this.typeaheadOptionField)));
     }
   }
 

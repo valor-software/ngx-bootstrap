@@ -23,7 +23,7 @@ export const modalConfigDefaults:ModalOptions = {
   backdrop: true,
   keyboard: true,
   focus: true,
-  show: true,
+  show: false,
   ignoreBackdropClick: false
 };
 

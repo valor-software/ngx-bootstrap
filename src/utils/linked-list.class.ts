@@ -1,4 +1,4 @@
-export default class LinkedList <T> {
+export class LinkedList <T> {
 
   public length: number = 0;
   protected head: any;
