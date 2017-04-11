@@ -3,6 +3,8 @@ export class DatePickerTemplateOptions {
   public arrowRight: string;
   public floatLeft: string;
   public floatRight: string;
+  public btnClasses: string;
+
   public constructor(options: DatePickerTemplateOptions) {
     (<any>Object).assign(this, options);
   }

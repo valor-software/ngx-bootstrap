@@ -1,21 +1,16 @@
-import { Component } from '@angular/core';
-import { DatepickerService } from './datepicker.service';
+import { Component, Input } from '@angular/core';
 import { DatePickerTemplateOptions } from './datepicker-template-options.class';
 
 @Component({
   selector: 'datepicker-menu-right',
   template: `
 <button type="button" 
-  class="btn btn-default btn-secondary btn-sm {{themeTemplate.floatRight}}" 
+  class="btn btn-default btn-secondary btn-sm {{theme.floatRight}}" 
   tabindex="-1"
-  [innerHTML]="themeTemplate.arrowRight">
+  [innerHTML]="theme.arrowRight">
 </button>
   `
 })
 export class DatePickerMenuRightComponent {
-  public themeTemplate: DatePickerTemplateOptions;
-
-  public constructor(datePickerService: DatepickerService) {
-    this.themeTemplate = datePickerService.getTemplateOptions();
-  }
+  @Input() theme: DatePickerTemplateOptions;
 }

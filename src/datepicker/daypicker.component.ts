@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
+import { DatePickerTemplateOptions } from './datepicker-template-options.class';
 
 @Component({
   selector: 'daypicker',
@@ -9,7 +10,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   <thead>
     <tr>
       <th>
-        <datepicker-menu-left (click)="datePicker.move(-1)"></datepicker-menu-left>
+        <datepicker-menu-left [theme]="theme" (click)="datePicker.move(-1)"></datepicker-menu-left>
       </th>
       <th [attr.colspan]="5 + (datePicker.showWeeks ? 1 : 0)">
         <button [id]="datePicker.uniqueId + '-title'"
@@ -21,7 +22,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
         </button>
       </th>
       <th>
-        <datepicker-menu-right (click)="datePicker.move(1)"></datepicker-menu-right>
+        <datepicker-menu-right [theme]="theme" (click)="datePicker.move(1)"></datepicker-menu-right>
       </th>
     </tr>
     <tr>
@@ -53,6 +54,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   `
 })
 export class DayPickerComponent implements OnInit {
+  @Input() theme: DatePickerTemplateOptions;
 
   public labels: any[] = [];
   public title: string;

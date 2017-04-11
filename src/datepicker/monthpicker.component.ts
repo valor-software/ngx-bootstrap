@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
+import { DatePickerTemplateOptions } from './datepicker-template-options.class';
 
 @Component({
   selector: 'monthpicker',
@@ -10,11 +11,11 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   <thead>
     <tr>
       <th>
-        <datepicker-menu-left (click)="datePicker.move(-1)"></datepicker-menu-left>
+        <datepicker-menu-left [theme]="theme" (click)="datePicker.move(-1)"></datepicker-menu-left>
       </th>
       <th [attr.colspan]="((datePicker.monthColLimit - 2) <= 0) ? 1 : datePicker.monthColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'"
-                type="button" class="btn btn-default btn-sm"
+                type="button" class="btn btn-default btn-secondary btn-sm"
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
                 [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
@@ -22,15 +23,15 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
         </button>
       </th>
       <th>
-        <datepicker-menu-right (click)="datePicker.move(1)"></datepicker-menu-right>
+        <datepicker-menu-right [theme]="theme" (click)="datePicker.move(1)"></datepicker-menu-right>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let rowz of rows">
       <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" id="{{dtz.uid}}" [ngClass]="dtz.customClass">
-        <button type="button" style="min-width:100%;" class="btn btn-default"
-                [ngClass]="{'btn-link': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || (isBs4 && !dtz.selected && datePicker.isActive(dtz)), disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz)}"
+        <button type="button" style="min-width:100%;" class="btn {{theme.btnClasses}}"
+                [ngClass]="{'btn-info': dtz.selected || (isBs4 && !dtz.selected && datePicker.isActive(dtz)), disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz)}"
                 [disabled]="dtz.disabled"
                 (click)="datePicker.select(dtz.date)" tabindex="-1">
           <span [ngClass]="{'text-success': isBs4 && dtz.current, 'text-info': !isBs4 && dtz.current}">{{dtz.label}}</span>
@@ -42,6 +43,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   `
 })
 export class MonthPickerComponent implements OnInit {
+  @Input() theme: DatePickerTemplateOptions;
+
   public title:string;
   public rows:any[] = [];
   public datePicker:DatePickerInnerComponent;

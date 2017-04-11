@@ -11,13 +11,15 @@ export class DatepickerService {
         arrowLeft: `<i class="glyphicon glyphicon-chevron-left"></i>`,
         arrowRight: `<i class="glyphicon glyphicon-chevron-right"></i>`,
         floatLeft: 'pull-left',
-        floatRight: 'pull-right'
+        floatRight: 'pull-right',
+        btnClasses: 'btn-default'
       }) :
       new DatePickerTemplateOptions({
         arrowLeft: '&lt',
         arrowRight: '&gt',
         floatLeft: 'float-left',
-        floatRight: 'float-right'
+        floatRight: 'float-right',
+        btnClasses: 'btn-secondary'
       });
   }
 }
