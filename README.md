@@ -63,7 +63,7 @@ To enable bootstrap 4 theme templates in ngx-bootstrap, please read
 
 # Usage & Demo
 
-Main source of API documentation and usage scenarious available here: 
+Main source of API documentation and usage scenarios available here: 
 [http://valor-software.github.io/ngx-bootstrap/](http://valor-software.github.io/ngx-bootstrap/)
 
 # API
