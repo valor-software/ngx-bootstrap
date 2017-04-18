@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { AccordionModule } from 'ng2-bootstrap/accordion';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 // or
-import { AccordionModule } from 'ng2-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [AccordionModule.forRoot(),...]

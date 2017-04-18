@@ -1,6 +1,6 @@
 {
-  "name": "ng2-bootstrap-base",
-  "version": "1.6.0",
+  "name": "ngx-bootstrap-base",
+  "version": "1.6.6",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
     "demo.gh-pages": "run-s build demo.build demo.deploy",
     "demo.build": "ng build -prod --aot && npm run generate-bs4",
     "demo.deploy": "gh-pages -d demo/dist",
-    "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ng2-bootstrap.git -b gh-pages",
+    "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ngx-bootstrap.git -b gh-pages",
     "link": "ngm link -p src --here",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
@@ -25,16 +25,16 @@
     "test": "ng test -sr",
     "test-cross": "SAUCE=true ng test -sr",
     "test-coverage": "ng test -sr -cc",
-    "postversion": "run-s changelog git-add git-commit-ammend",
+    "postversion": "run-s changelog git-add git-commit-changelog",
     "git-add": "git add -A",
-    "git-commit-ammend": "git commit --amend --no-edit -n",
+    "git-commit-changelog": "git commit -am \"chore(changelog): update\"",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -r 2",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "e2e-cross": "SAUCE=true npm run e2e",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json"
   },
-  "main": "bundles/ng2-bootstrap.umd.js",
+  "main": "bundles/ngx-bootstrap.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
   "keywords": [
@@ -49,12 +49,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/valor-software/ng2-bootstrap.git"
+    "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
   },
   "bugs": {
-    "url": "https://github.com/valor-software/ng2-bootstrap/issues"
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
   },
-  "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
+  "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "dependencies": {
     "moment": "2.18.1"
   },

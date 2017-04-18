@@ -1,11 +1,11 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // or
-import { DropdownModule } from 'ng2-bootstrap';
+import { BsDropdownModule } from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [DropdownModule.forRoot(),...]
+  imports: [BsDropdownModule.forRoot(),...]
 })
 export class AppModule(){} 
 ```

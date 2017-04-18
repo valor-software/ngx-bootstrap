@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 // or
-import { TypeaheadModule } from 'ng2-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [TypeaheadModule.forRoot(),...]

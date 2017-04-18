@@ -565,6 +565,10 @@ export const ngdoc: any = {
     ],
     "outputs": [
       {
+        "name": "activeDateChange",
+        "description": ""
+      },
+      {
         "name": "selectionDone",
         "description": ""
       },
@@ -697,6 +701,10 @@ export const ngdoc: any = {
     ],
     "outputs": [
       {
+        "name": "activeDateChange",
+        "description": "<p>callback to invoke when the activeDate is changed. </p>\n"
+      },
+      {
         "name": "selectionDone",
         "description": ""
       }
@@ -741,125 +749,155 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "KeyboardNavDirective": {
-    "fileName": "src/dropdown/dropdown-keyboard-nav.directive.ts",
-    "className": "KeyboardNavDirective",
+  "BsDropdownContainerComponent": {
+    "fileName": "src/dropdown/bs-dropdown-container.component.ts",
+    "className": "BsDropdownContainerComponent",
     "description": "",
-    "selector": "[dropdown][dropdownKeyboardNav]",
+    "selector": "bs-dropdown-container",
     "inputs": [],
     "outputs": [],
     "properties": [],
     "methods": []
   },
-  "DropdownMenuDirective": {
-    "fileName": "src/dropdown/dropdown-menu.directive.ts",
-    "className": "DropdownMenuDirective",
+  "BsDropdownMenuDirective": {
+    "fileName": "src/dropdown/bs-dropdown-menu.directive.ts",
+    "className": "BsDropdownMenuDirective",
     "description": "",
-    "selector": "[dropdownMenu]",
+    "selector": "[bsDropdownMenu],[dropdownMenu]",
     "exportAs": "bs-dropdown-menu",
     "inputs": [],
     "outputs": [],
     "properties": [],
     "methods": []
   },
-  "DropdownToggleDirective": {
-    "fileName": "src/dropdown/dropdown-toggle.directive.ts",
-    "className": "DropdownToggleDirective",
-    "description": "<p>Mark element which can toggle dropdown visibility with this directive </p>\n",
-    "selector": "[dropdownToggle]",
+  "BsDropdownToggleDirective": {
+    "fileName": "src/dropdown/bs-dropdown-toggle.directive.ts",
+    "className": "BsDropdownToggleDirective",
+    "description": "",
+    "selector": "[bsDropdownToggle],[dropdownToggle]",
     "exportAs": "bs-dropdown-toggle",
-    "inputs": [
-      {
-        "name": "addToggleClass",
-        "defaultValue": "true",
-        "type": "boolean",
-        "description": "<p>if true the dropdown-toggle class will be added to the element </p>\n"
-      },
-      {
-        "name": "isDisabled",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>if true dropdown toggle will be disabled </p>\n"
-      }
-    ],
+    "inputs": [],
     "outputs": [],
     "properties": [],
     "methods": []
   },
-  "DropdownConfig": {
-    "fileName": "src/dropdown/dropdown.config.ts",
-    "className": "DropdownConfig",
+  "BsDropdownConfig": {
+    "fileName": "src/dropdown/bs-dropdown.config.ts",
+    "className": "BsDropdownConfig",
     "description": "<p>Default dropdown configuration </p>\n",
     "methods": [],
     "properties": [
       {
         "name": "autoClose",
-        "defaultValue": "NONINPUT",
-        "type": "string",
+        "defaultValue": "true",
+        "type": "boolean",
         "description": "<p>default dropdown auto closing behavior </p>\n"
-      },
-      {
-        "name": "keyboardNav",
-        "defaultValue": "false",
-        "type": "Boolean",
-        "description": "<p>is keyboard navigation enabled by default </p>\n"
       }
     ]
   },
-  "DropdownDirective": {
-    "fileName": "src/dropdown/dropdown.directive.ts",
-    "className": "DropdownDirective",
-    "description": "<p>Mark dropdown content with this directive</p>\n",
-    "selector": "[dropdown]",
+  "BsDropdownDirective": {
+    "fileName": "src/dropdown/bs-dropdown.directive.ts",
+    "className": "BsDropdownDirective",
+    "description": "",
+    "selector": "[bsDropdown],[dropdown]",
     "exportAs": "bs-dropdown",
     "inputs": [
       {
-        "name": "appendToBody",
+        "name": "autoClose",
         "type": "boolean",
-        "description": "<p>Allows to attach dropdown to body, will be replaced with container=&quot;body&quot; </p>\n"
+        "description": "<p>Indicates that dropdown will be closed on item or document click,\nand after pressing ESC</p>\n"
       },
       {
-        "name": "autoClose",
+        "name": "container",
         "type": "string",
-        "description": "<p>behaviour vary:</p>\n<ul>\n<li>nonInput - (default) automatically closes the dropdown when any of its elements is clicked — as long as the clicked element is not an input or a textarea.</li>\n<li>always - automatically closes the dropdown when any of its elements is clicked</li>\n<li>outsideClick - closes the dropdown automatically only when the user clicks any element outside the dropdown</li>\n<li>disabled - disables the auto close. You can then control the open/close status of the dropdown manually, by using is-open. Please notice that the dropdown will still close if the toggle is clicked, the esc key is pressed or another dropdown is open</li>\n</ul>\n"
+        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "dropup",
+        "type": "boolean",
+        "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>Disables dropdown toggle and hides dropdown menu if opened</p>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "<p>if <code>true</code> dropdown will be opened </p>\n"
+        "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
       },
       {
-        "name": "keyboardNav",
-        "type": "boolean",
-        "description": "<p>if true will enable navigation of dropdown list elements with the arrow keys </p>\n"
+        "name": "placement",
+        "type": "string",
+        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+      },
+      {
+        "name": "triggers",
+        "type": "string",
+        "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }
     ],
     "outputs": [
       {
-        "name": "isOpenChange",
-        "description": "<p>fired when isOpen value changes </p>\n"
+        "name": "onHidden",
+        "description": "<p>Emits an event when the popover is hidden</p>\n"
       },
       {
-        "name": "onToggle",
-        "description": "<p>fired when dropdown toggles, $event:boolean equals dropdown isOpen state </p>\n"
+        "name": "onShown",
+        "description": "<p>Emits an event when the popover is shown</p>\n"
       }
     ],
-    "properties": [],
-    "methods": []
+    "properties": [
+      {
+        "name": "autoClose",
+        "type": "boolean",
+        "description": "<p>Indicates that dropdown will be closed on item or document click,\nand after pressing ESC</p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>Disables dropdown toggle and hides dropdown menu if opened</p>\n"
+      }
+    ],
+    "methods": [
+      {
+        "name": "show",
+        "description": "<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "<p>Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "toggle",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "void"
+      }
+    ]
   },
-  "DropdownMenuInterface": {
-    "fileName": "src/dropdown/dropdown.interfaces.ts",
-    "className": "DropdownMenuInterface",
+  "BsDropdownState": {
+    "fileName": "src/dropdown/bs-dropdown.state.ts",
+    "className": "BsDropdownState",
     "description": "",
     "methods": [],
-    "properties": []
-  },
-  "DropdownToggleInterface": {
-    "fileName": "src/dropdown/dropdown.interfaces.ts",
-    "className": "DropdownToggleInterface",
-    "description": "",
-    "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "dropdownMenu",
+        "type": "any",
+        "description": "<p>Content to be displayed as popover.</p>\n"
+      }
+    ]
   },
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
@@ -1808,13 +1846,6 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "TooltipOptions": {
-    "fileName": "src/tooltip/tooltip-options.class.ts",
-    "className": "TooltipOptions",
-    "description": "<p>@deprecated </p>\n",
-    "methods": [],
-    "properties": []
-  },
   "TooltipConfig": {
     "fileName": "src/tooltip/tooltip.config.ts",
     "className": "TooltipConfig",
@@ -2006,7 +2037,7 @@ export const ngdoc: any = {
     "fileName": "src/typeahead/typeahead.directive.ts",
     "className": "TypeaheadDirective",
     "description": "",
-    "selector": "[typeahead][ngModel],[typeahead][formControlName]",
+    "selector": "[typeahead]",
     "inputs": [
       {
         "name": "container",
@@ -2093,12 +2124,12 @@ export const ngdoc: any = {
         "description": "<p>fired on every key event and returns true in case of matches are not detected </p>\n"
       },
       {
-        "name": "typeaheadOnSelect",
-        "description": "<p>fired when option was selected, return object with data of this option </p>\n"
-      },
-      {
         "name": "typeaheadOnBlur",
         "description": "<p>fired when blur event occurres. returns the active item </p>\n"
+      },
+      {
+        "name": "typeaheadOnSelect",
+        "description": "<p>fired when option was selected, return object with data of this option </p>\n"
       }
     ],
     "properties": [

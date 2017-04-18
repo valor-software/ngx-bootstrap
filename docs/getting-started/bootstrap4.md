@@ -1,8 +1,8 @@
 ## Using with Bootstrap 4 with angular-cli
 
-This is extracted from the [angular-cli include bootstrap story](https://github.com/angular/angular-cli/wiki/stories-include-bootstrap) and demonstates one way to accomplish using Bootstrap 4 with ng2-bootstrap.
+This is extracted from the [angular-cli include bootstrap story](https://github.com/angular/angular-cli/wiki/stories-include-bootstrap) and demonstates one way to accomplish using Bootstrap 4 with ngx-bootstrap.
 
-The important thing to note is the final section - you must let ng2-bootstrap know you are using Bootstrap 4 as it assumes BS3 by default.
+The important thing to note is the final section - you must let ngx-bootstrap know you are using Bootstrap 4 as it assumes BS3 by default.
  
 #### Installing angular-cli
 
@@ -17,12 +17,12 @@ cd my-app
 ng serve
 ```
 
-#### Adding ng2-bootstrap and bootstrap 4
+#### Adding ngx-bootstrap and bootstrap 4
  
- - install `ng2-bootstrap` and `bootstrap 4`
+ - install `ngx-bootstrap` and `bootstrap 4`
 
  ```bash
-   npm install ng2-bootstrap bootstrap@next --save
+   npm install ngx-bootstrap bootstrap@next --save
  ```
  
 ### Using with css
@@ -37,12 +37,12 @@ Now that the project is set up it must be configured to include the bootstrap CS
  - Specify the path to bootstrap.min.css
 
    It should look like the following when you are done:  
-
+```
    "styles": [  
    "../node_modules/bootstrap/dist/css/bootstrap.min.css",  
    "styles.css"  
    ],
-
+```
      
 Note: When you make changes to .angular-cli.json you will need to re-start ng serve to pick up configuration changes.
 
@@ -62,7 +62,7 @@ If the project has already been created then
 
 - rename `src/styles.css` to `src/styles.scss`
 - in `.angular-cli.json` make the following changes
-
+```
    "styles": [  
         "styles.scss" <-- rename this from .css to .scss  
       ],
@@ -73,7 +73,7 @@ If the project has already been created then
     "styleExt": "scss", <-- set this to default to .scss  
     "component": {}  
   }  
-
+```
 Create an empty file `_variables.scss` in `src/`.
 
 In `styles.scss` add the following:
@@ -83,7 +83,7 @@ In `styles.scss` add the following:
 @import '../node_modules/bootstrap/scss/bootstrap';
 ```
 
-### Let ng2-bootstrap know you are using BS4
+### Let ngx-bootstrap know you are using BS4
 
 Open `/src/index.html` and add the following markup:
 
@@ -100,12 +100,12 @@ Open `/src/index.html` and add the following markup:
 - open `src/app/app.module.ts` and add
 
 ```typescript
-import { DropdownModule } from 'ng2-bootstrap/dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 ...
 
 @NgModule({
    ...
-   imports: [Dropdown.forRoot(), ... ],
+   imports: [BsDropdownModule.forRoot(), ... ],
     ... 
 })
 ```
@@ -116,7 +116,7 @@ import { DropdownModule } from 'ng2-bootstrap/dropdown';
   <button id="single-button" type="button" class="btn btn-primary" dropdownToggle>
     Button dropdown <span class="caret"></span>
   </button>
-  <ul dropdownMenu role="menu" aria-labelledby="single-button">
+  <ul *dropdownMenu role="menu" aria-labelledby="single-button">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>

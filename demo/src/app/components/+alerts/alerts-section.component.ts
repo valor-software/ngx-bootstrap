@@ -10,7 +10,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
 })
 export class AlertsSectionComponent {
   public name: string = 'Alerts';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/alert';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
   public titleDoc: string = titleDoc;
   public demos: any = DEMOS;
 }

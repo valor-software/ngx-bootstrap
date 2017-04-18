@@ -6,7 +6,7 @@ import { ButtonsModule } from './buttons/buttons.module';
 import { CarouselModule } from './carousel/carousel.module';
 import { CollapseModule } from './collapse/collapse.module';
 import { DatepickerModule } from './datepicker/datepicker.module';
-import { DropdownModule } from './dropdown/dropdown.module';
+import { BsDropdownModule } from './dropdown/bs-dropdown.module';
 import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
@@ -45,9 +45,9 @@ export {
 } from './modal';
 
 export {
-  DropdownConfig, DropdownDirective, DropdownMenuDirective,
-  DropdownMenuInterface, DropdownModule, DropdownToggleDirective,
-  DropdownToggleInterface
+  BsDropdownModule, BsDropdownConfig, BsDropdownState,
+  BsDropdownContainerComponent, BsDropdownDirective,
+  BsDropdownMenuDirective, BsDropdownToggleDirective
 } from './dropdown';
 
 export {
@@ -81,7 +81,7 @@ export {
 
 export {
   TypeaheadOptions, TypeaheadContainerComponent, TypeaheadDirective,
-  TypeaheadMatch, TypeaheadModule, TypeaheadUtils,
+  TypeaheadMatch, TypeaheadModule
 } from './typeahead';
 
 export {
@@ -101,7 +101,7 @@ export {
 const MODULES = [
   AccordionModule, AlertModule, ButtonsModule,
   CarouselModule, CollapseModule, DatepickerModule,
-  DropdownModule, ModalModule, PaginationModule,
+  BsDropdownModule, ModalModule, PaginationModule,
   ProgressbarModule, PopoverModule, RatingModule,
   TabsModule, TimepickerModule, TooltipModule,
   TypeaheadModule
@@ -112,7 +112,7 @@ const MODULES = [
     AccordionModule.forRoot(), AlertModule.forRoot(), ButtonsModule.forRoot(),
     CarouselModule.forRoot(), CollapseModule.forRoot(),
     DatepickerModule.forRoot(),
-    DropdownModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot(),
+    BsDropdownModule.forRoot(), ModalModule.forRoot(), PaginationModule.forRoot(),
     ProgressbarModule.forRoot(), PopoverModule.forRoot(),
     RatingModule.forRoot(),
     TabsModule.forRoot(), TimepickerModule.forRoot(), TooltipModule.forRoot(),

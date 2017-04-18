@@ -1,7 +1,7 @@
-export { DropdownMenuInterface, DropdownToggleInterface } from './dropdown.interfaces'
-export { DropdownMenuDirective } from './dropdown-menu.directive';
-export { DropdownToggleDirective } from './dropdown-toggle.directive';
-export { DropdownDirective } from './dropdown.directive';
-export { DropdownService } from './dropdown.service'
-export { DropdownModule } from './dropdown.module';
-export { DropdownConfig } from './dropdown.config';
+export { BsDropdownDirective } from './bs-dropdown.directive';
+export { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
+export { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
+export { BsDropdownContainerComponent } from './bs-dropdown-container.component';
+export { BsDropdownState } from './bs-dropdown.state';
+export { BsDropdownConfig } from './bs-dropdown.config';
+export { BsDropdownModule } from './bs-dropdown.module';

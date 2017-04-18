@@ -7,6 +7,6 @@ let doc = require('html-loader!markdown-loader!./getting-started.md');
   templateUrl: './getting-started.template.html'
 })
 export class GettingStartedComponent {
-  public name:string = `Bootstrap components for Angular`;
+  public name = `Native Angular widgets for Bootstrap 3 and Bootstrap 4`;
   public doc:string = doc;
 }

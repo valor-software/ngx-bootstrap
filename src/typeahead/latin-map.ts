@@ -1,5 +1,5 @@
 /* tslint:disable:max-file-line-count */
-export const latinMap = {
+export const latinMap:any = {
   'Á': 'A',
   'Ă': 'A',
   'Ắ': 'A',
