@@ -135,8 +135,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('focus')
   public onFocus(): void {
     if (this.typeaheadMinLength === 0) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit('');
+        //let valueToEmit = this.element.nativeElement.value.length != 0 ? this.element.nativeElement.value : '';
+        let valueToEmit = '';
+        this.typeaheadLoading.emit(true);
+        this.keyUpEventEmitter.emit(valueToEmit);
     }
   }
 
@@ -175,7 +177,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
     this.typeaheadMinLength = this.typeaheadMinLength === void 0
       ? 1
-      : this.typeaheadMinLength;
+      : +this.typeaheadMinLength;
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
