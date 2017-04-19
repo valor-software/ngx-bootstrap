@@ -186,5 +186,58 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
     });
   });
+  
+  describe('onFocus', () => {
+    beforeEach(fakeAsync(() => {
+ 
+    }));
+
+    it('should result in a total of 2 matches, when minLength === 0', fakeAsync(() => {
+	  expect(directive).toBeDefined();
+	  
+	  directive.typeaheadMinLength = 0;
+      fixture.detectChanges();
+      tick(100);
+	  
+	  expect(directive.typeaheadMinLength).toBe(0);
+	  directive.onFocus();
+	  
+	  tick(100);
+	  
+	  expect(directive.matches.length).toBe(2);
+    }));	
+	
+    it('should result in a total of 2 matches, when minLength === \"0\"', fakeAsync(() => {
+	  expect(directive).toBeDefined();
+	  
+	  directive.typeaheadMinLength = '0';
+      fixture.detectChanges();
+      tick(100);
+	  
+	  expect(directive.typeaheadMinLength).toBe('0');
+	  directive.onFocus();
+	  
+	  tick(100);
+	  
+	  expect(directive.matches.length).toBe(2);
+    }));
+	
+    it('should do nothing, when minLength > 0', fakeAsync(() => {
+	  expect(directive).toBeDefined();
+	  
+	  directive.typeaheadMinLength = 1;
+      fixture.detectChanges();
+      tick(100);
+	  
+	  expect(directive.typeaheadMinLength).toBe(1);
+	  directive.onFocus();
+	  
+	  tick(100);
+	  
+	  expect(directive.matches).toBeUndefined();
+    }));
+	
+	
+  });
 
 });
