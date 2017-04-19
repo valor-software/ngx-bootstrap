@@ -187,4 +187,30 @@ describe('Directive: Typeahead', () => {
     });
   });
 
+  describe('onChange special keys', () => {
+    
+    beforeEach(fakeAsync(() => {
+      inputElement.value = 'Alab';
+      fireEvent(inputElement, 'keyup');
+ 
+      fixture.detectChanges();
+      tick(100);
+    }));
+
+    it('should be a test', () => {
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+
+      
+      var event = document.createEvent('Event');
+      event['keyCode'] = 27; //escape
+      event.initEvent('keyup', false, true);
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      tick(100);
+      fixture.detectChanges();
+
+      expect(typeaheadContainer).toBeNull();
+    });
+  });
+
 });
