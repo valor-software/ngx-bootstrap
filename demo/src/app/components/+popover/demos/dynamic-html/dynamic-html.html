@@ -1,5 +1,6 @@
-<template #popTemplate>Here we go: <div [innerHtml]="html"></div></template>
-<button type="button" class="btn btn-success"
-        [popover]="popTemplate" popoverTitle="Dynamic html inside">
+<ng-template #popTemplate>Here we go:
+  <div [innerHtml]="html"></div>
+</ng-template>
+<button type="button" class="btn btn-success" [popover]="popTemplate" popoverTitle="Dynamic html inside">
   Show me popover with html
 </button>

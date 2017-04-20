@@ -27,9 +27,9 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   //     </div>
   //     <div class="tooltip-inner"
   //          *ngIf="htmlContent && isTemplate">
-  //       <template [ngTemplateOutlet]="htmlContent"
+  //       <ng-template [ngTemplateOutlet]="htmlContent"
   //                 [ngOutletContext]="{model: context}">
-  //       </template>
+  //       </ng-template>
   //     </div>
   //     <div class="tooltip-inner"
   //          *ngIf="content">
@@ -52,7 +52,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.classMap = {in: false, fade: false};
+    this.classMap = { in: false, fade: false };
     this.classMap[this.placement] = true;
     this.classMap['tooltip-' + this.placement] = true;
 
