@@ -111,7 +111,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // Set user defined escape keys
-      if(this.typeaheadEscapeKeys.find(k => k===e.keyCode)){
+      if(this.typeaheadEscapeKeys.find(k => k===e.keyCode) ){
         this.hide();
         return;
       }

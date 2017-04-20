@@ -133,6 +133,19 @@ describe('Directive: Typeahead', () => {
 
       expect(directive.matches.length).toBe(0);
     }));
+
+    it('should not show the typeahead if the input length is shorter than the min length', fakeAsync(() =>{
+      directive.typeaheadMinLength = 2;
+
+      inputElement.value = 'A';
+      fireEvent(inputElement, 'keyup');
+
+      fixture.detectChanges();
+      tick(100);
+      
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'))
+      expect(typeaheadContainer).toBeNull();
+    }));
   });
 
   describe('onChange grouped', () => {
@@ -186,31 +199,4 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
     });
   });
-
-  describe('onChange special keys', () => {
-    
-    beforeEach(fakeAsync(() => {
-      inputElement.value = 'Alab';
-      fireEvent(inputElement, 'keyup');
- 
-      fixture.detectChanges();
-      tick(100);
-    }));
-
-    it('should be a test', () => {
-      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
-
-      
-      var event = document.createEvent('Event');
-      event['keyCode'] = 27; //escape
-      event.initEvent('keyup', false, true);
-      inputElement.dispatchEvent(event);
-      fixture.detectChanges();
-      tick(100);
-      fixture.detectChanges();
-
-      expect(typeaheadContainer).toBeNull();
-    });
-  });
-
 });
