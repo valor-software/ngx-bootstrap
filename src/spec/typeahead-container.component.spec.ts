@@ -82,6 +82,20 @@ describe('Component: TypeaheadContainer', () => {
       it('should not set the \"active\" class on other matches', () => {
         expect(matches[1].classList.contains('active')).toBeFalsy();
       });
+
+      it('should not set the \"active\" class on any if focusFirst is false', () =>{
+        component.focusFirst=false;
+        component.matches = [
+          new TypeaheadMatch({id: 0, name: 'foo'}, 'foo'),
+          new TypeaheadMatch({id: 1, name: 'food'}, 'food')
+        ];
+        fixture.detectChanges();
+
+        matches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li')));
+
+        expect(matches[0].classList.contains('active')).toBeFalsy();
+        expect(matches[1].classList.contains('active')).toBeFalsy();
+      })
     });
 
     describe('nextActiveMatch', () => {
