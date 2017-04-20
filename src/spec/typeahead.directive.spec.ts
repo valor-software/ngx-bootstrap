@@ -179,34 +179,16 @@ describe('Directive: Typeahead', () => {
       expect(match).toBe(defaultActive);
     }));
 
-    it('should select active match when enter key is pressed', fakeAsync(() =>{
+    it('should select active match when tab key is pressed', fakeAsync(() =>{
       let defaultActive = directive._container.active;
-      
+
       let match :TypeaheadMatch;
       directive.typeaheadOnSelect.subscribe(m => match = m);
 
       var keyboardEvent = document.createEvent("Events");
       keyboardEvent.initEvent('keyup', true, true);
-      keyboardEvent['keyCode'] = 13;
-      keyboardEvent['which'] = 13;
-      inputElement.dispatchEvent(keyboardEvent); 
-      
-      fixture.detectChanges();
-      tick(100);
-
-      expect(match).toBe(defaultActive);
-    }));
-
-    it('should select active match when enter key is pressed', fakeAsync(() =>{
-      let defaultActive = directive._container.active;
-      
-      let match :TypeaheadMatch;
-      directive.typeaheadOnSelect.subscribe(m => match = m);
-
-      var keyboardEvent = document.createEvent("Events");
-      keyboardEvent.initEvent('keyup', true, true);
-      keyboardEvent['keyCode'] = 13;
-      keyboardEvent['which'] = 13;
+      keyboardEvent['keyCode'] = 9;
+      keyboardEvent['which'] = 9;
       inputElement.dispatchEvent(keyboardEvent); 
       
       fixture.detectChanges();
@@ -248,6 +230,63 @@ describe('Directive: Typeahead', () => {
 
       expect(directive._container.active).toBe(prevActive);
     }));
+    
+    describe('on custom defined key',() =>{
+      beforeEach(fakeAsync(() =>{
+        directive.typeaheadSelectKeys = [49];
+        directive.typeaheadEscapeKeys = [50];
+        directive.typeaheadIgnoreKeys = [13];
+      }));
+
+      it('should select active match when the 1 (keyCode 49) key is pressed', fakeAsync(() =>{
+        let defaultActive = directive._container.active;
+        
+        let match :TypeaheadMatch;
+        directive.typeaheadOnSelect.subscribe(m => match = m);
+
+        var keyboardEvent = document.createEvent("Events");
+        keyboardEvent.initEvent('keyup', true, true);
+        keyboardEvent['keyCode'] = 49;
+        keyboardEvent['which'] = 49;
+        inputElement.dispatchEvent(keyboardEvent); 
+        
+        fixture.detectChanges();
+        tick(100);
+
+        expect(match).toBe(defaultActive);
+      }));
+
+      it('should close container when the 2 (keyCode 50) key is pressed', fakeAsync(() =>{
+        var keyboardEvent = document.createEvent("Events");
+        keyboardEvent.initEvent('keyup', true, true);
+        keyboardEvent['keyCode'] = 27;
+        keyboardEvent['which'] = 27;
+        inputElement.dispatchEvent(keyboardEvent); 
+        
+        fixture.detectChanges();
+        tick(100);
+        
+        let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+        expect(typeaheadContainer).toBeNull();
+      }));
+
+      it('should ignore the enter key', fakeAsync(() =>{
+        let match :TypeaheadMatch;
+        directive.typeaheadOnSelect.subscribe(m => match = m);
+
+        var keyboardEvent = document.createEvent("Events");
+        keyboardEvent.initEvent('keyup', true, true);
+        keyboardEvent['keyCode'] = 13;
+        keyboardEvent['which'] = 13;
+        inputElement.dispatchEvent(keyboardEvent); 
+        
+        fixture.detectChanges();
+        tick(100);
+
+        expect(match).toBeUndefined();
+      }));
+
+    })
   });
 
   describe('onChange grouped', () => {

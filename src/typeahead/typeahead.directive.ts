@@ -210,6 +210,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         return;
       }
     }
+
+    // if tab is not ignored, key focus on typeahead container
+    if(e.keyCode === 9 && (this.typeaheadIgnoreKeys.findIndex(k => k===9)==-1)){
+      e.preventDefault();
+      return;
+    }
   }
 
   public constructor(control: NgControl, viewContainerRef: ViewContainerRef, element: ElementRef, renderer: Renderer, cis: ComponentLoaderFactory) {
