@@ -340,4 +340,60 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
     });
   });
+
+  describe('onKeydown', () => {
+    beforeEach(fakeAsync(() => {
+      inputElement.value = 'Alab';
+      fireEvent(inputElement, 'keyup');
+ 
+      fixture.detectChanges();
+      tick(100);
+    }));
+
+    it('should ignore defaults of keys defined for specific roles', fakeAsync(() => {
+      directive.typeaheadEscapeKeys = [13];
+
+      let match :TypeaheadMatch;
+      directive.typeaheadOnSelect.subscribe(m => match = m);
+
+      var keyboardEvent = document.createEvent("Events");
+      keyboardEvent.initEvent('keydown', true, true);
+      keyboardEvent['keyCode'] = 13;
+      keyboardEvent['which'] = 13;
+      inputElement.dispatchEvent(keyboardEvent); 
+      
+      fixture.detectChanges();
+      tick(100);
+
+      expect(match).toBeUndefined();
+      expect(directive._container).toBeTruthy();
+    }));
+
+    it('should close container on enter if there is no current active', fakeAsync(() => {
+      directive._container.selectActive(null);
+      var keyboardEvent = document.createEvent("Events");
+      keyboardEvent.initEvent('keydown', true, true);
+      keyboardEvent['keyCode'] = 13;
+      keyboardEvent['which'] = 13;
+      inputElement.dispatchEvent(keyboardEvent); 
+      
+      fixture.detectChanges();
+      tick(100);
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'))
+
+      expect(typeaheadContainer).toBeNull();
+    }));
+
+    it('should ignore default for tab', fakeAsync(() => {
+      var keyboardEvent = document.createEvent("Events");
+      keyboardEvent.initEvent('keydown', true, true);
+      keyboardEvent['keyCode'] = 9;
+      keyboardEvent['which'] = 9;
+      inputElement.dispatchEvent(keyboardEvent); 
+      
+      fixture.detectChanges();
+      tick(100);
+      expect(directive._container.active).toBeTruthy();
+    }));
+  });
 });

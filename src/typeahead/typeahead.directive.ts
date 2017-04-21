@@ -211,7 +211,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
     }
 
-    // if tab is not ignored, key focus on typeahead container
+    // if tab is not ignored, keep focus on typeahead container
     if(e.keyCode === 9 && (this.typeaheadIgnoreKeys.findIndex(k => k===9)==-1)){
       e.preventDefault();
       return;
