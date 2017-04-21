@@ -20,7 +20,8 @@ interface State {
   <input [(ngModel)]="selectedState" 
          [typeahead]="states" 
          [typeaheadOptionField]="'name'"
-         (typeaheadOnBlur)="onBlurEvent($event)">
+         (typeaheadOnBlur)="onBlurEvent($event)"
+         (typeaheadLoading)="onLoading($event)">
 `
 })
 class TestTypeaheadComponent {
@@ -31,7 +32,9 @@ class TestTypeaheadComponent {
   ];
 
   public onBlurEvent (activeItem) { };
+  public onLoading (activeItem) { };
 }
+
 
 describe('Directive: Typeahead', () => {
   let fixture:ComponentFixture<TestTypeaheadComponent>;
@@ -165,7 +168,10 @@ describe('Directive: Typeahead', () => {
       let defaultActive = directive._container.active;
 
       let match :TypeaheadMatch;
-      directive.typeaheadOnSelect.subscribe(m => match = m);
+      let sub = directive.typeaheadOnSelect.subscribe(m => {
+        match = m;
+        sub.unsubscribe();
+      });
 
       var keyboardEvent = document.createEvent("Events");
       keyboardEvent.initEvent('keyup', true, true);
@@ -183,7 +189,10 @@ describe('Directive: Typeahead', () => {
       let defaultActive = directive._container.active;
 
       let match :TypeaheadMatch;
-      directive.typeaheadOnSelect.subscribe(m => match = m);
+      let sub = directive.typeaheadOnSelect.subscribe(m => {
+        match = m;
+        sub.unsubscribe();
+      });
 
       var keyboardEvent = document.createEvent("Events");
       keyboardEvent.initEvent('keyup', true, true);
@@ -230,6 +239,22 @@ describe('Directive: Typeahead', () => {
 
       expect(directive._container.active).toBe(prevActive);
     }));
+
+    it('should not trigger typeahead on enter', fakeAsync(() =>{
+      directive.hide();
+
+      var keyboardEvent = document.createEvent("Events");
+      keyboardEvent.initEvent('keyup', true, true);
+      keyboardEvent['keyCode'] = 13;
+      keyboardEvent['which'] = 13;
+      inputElement.dispatchEvent(keyboardEvent); 
+      
+      fixture.detectChanges();
+      tick(100);
+
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+      expect(typeaheadContainer).toBeNull();
+    }));
     
     describe('on custom defined key',() =>{
       beforeEach(fakeAsync(() =>{
@@ -242,7 +267,10 @@ describe('Directive: Typeahead', () => {
         let defaultActive = directive._container.active;
         
         let match :TypeaheadMatch;
-        directive.typeaheadOnSelect.subscribe(m => match = m);
+        let sub = directive.typeaheadOnSelect.subscribe(m => {
+          match = m;
+          sub.unsubscribe();
+        });
 
         var keyboardEvent = document.createEvent("Events");
         keyboardEvent.initEvent('keyup', true, true);
@@ -272,7 +300,10 @@ describe('Directive: Typeahead', () => {
 
       it('should ignore the enter key', fakeAsync(() =>{
         let match :TypeaheadMatch;
-        directive.typeaheadOnSelect.subscribe(m => match = m);
+        let sub = directive.typeaheadOnSelect.subscribe(m => {
+          match = m;
+          sub.unsubscribe();
+        });
 
         var keyboardEvent = document.createEvent("Events");
         keyboardEvent.initEvent('keyup', true, true);
@@ -354,7 +385,10 @@ describe('Directive: Typeahead', () => {
       directive.typeaheadEscapeKeys = [13];
 
       let match :TypeaheadMatch;
-      directive.typeaheadOnSelect.subscribe(m => match = m);
+      let sub = directive.typeaheadOnSelect.subscribe(m => {
+        match = m;
+        sub.unsubscribe();
+      });
 
       var keyboardEvent = document.createEvent("Events");
       keyboardEvent.initEvent('keydown', true, true);
@@ -394,6 +428,22 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
       tick(100);
       expect(directive._container.active).toBeTruthy();
+    }));
+  });
+
+  describe('onFocus', () =>{
+    it('blur event should send the correct active item', fakeAsync(() => {
+      directive.typeaheadMinLength = 0;
+      let loading = false;
+      let sub = directive.typeaheadLoading.subscribe(b => {
+        loading = b;
+        sub.unsubscribe();
+      });
+      directive.onFocus();
+      fixture.detectChanges();
+      tick(100);
+
+      expect(loading).toBeTruthy();
     }));
   });
 });
