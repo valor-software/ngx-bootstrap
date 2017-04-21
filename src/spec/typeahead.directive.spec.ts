@@ -255,6 +255,22 @@ describe('Directive: Typeahead', () => {
       let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
       expect(typeaheadContainer).toBeNull();
     }));
+
+    it('should do nothing if there is no active item on enter', fakeAsync(() =>{
+      directive._container.selectActive(null);
+
+      var keyboardEvent = document.createEvent("Events");
+      keyboardEvent.initEvent('keyup', true, true);
+      keyboardEvent['keyCode'] = 13;
+      keyboardEvent['which'] = 13;
+      inputElement.dispatchEvent(keyboardEvent); 
+      
+      fixture.detectChanges();
+      tick(100);
+
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+      expect(typeaheadContainer).not.toBeNull();
+    }));
     
     describe('on custom defined key',() =>{
       beforeEach(fakeAsync(() =>{
@@ -381,6 +397,33 @@ describe('Directive: Typeahead', () => {
       tick(100);
     }));
 
+    it('should do nothing if there is no container', fakeAsync(() =>{
+      directive.hide();
+      fireEvent(inputElement, 'keydown');
+
+      fixture.detectChanges();
+      tick(100);
+
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+      expect(typeaheadContainer).toBeNull();
+    }));
+
+    it('should do nothing if there is an active item', fakeAsync(() =>{
+      fireEvent(inputElement, 'keydown');
+
+      fixture.detectChanges();
+      tick(100);
+
+      var keyboardEvent = document.createEvent("Events");
+      keyboardEvent.initEvent('keydown', true, true);
+      keyboardEvent['keyCode'] = 13;
+      keyboardEvent['which'] = 13;
+      inputElement.dispatchEvent(keyboardEvent); 
+
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+      expect(typeaheadContainer).not.toBeNull();
+    }));
+
     it('should ignore defaults of keys defined for specific roles', fakeAsync(() => {
       directive.typeaheadEscapeKeys = [13];
 
@@ -400,7 +443,8 @@ describe('Directive: Typeahead', () => {
       tick(100);
 
       expect(match).toBeUndefined();
-      expect(directive._container).toBeTruthy();
+      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
+      expect(typeaheadContainer).not.toBeNull();
     }));
 
     it('should close container on enter if there is no current active', fakeAsync(() => {
