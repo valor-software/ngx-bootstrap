@@ -113,10 +113,10 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 - open `src/app/app.component.html` and add
 ```
 <div class="btn-group" dropdown>
-  <button id="single-button" type="button" class="btn btn-primary" dropdownToggle>
+  <button id="single-button" type="button" class="btn btn-primary dropdown-toggle" dropdownToggle>
     Button dropdown <span class="caret"></span>
   </button>
-  <ul *dropdownMenu role="menu" aria-labelledby="single-button">
+  <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="single-button">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
