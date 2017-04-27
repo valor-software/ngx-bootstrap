@@ -1,8 +1,8 @@
-import { Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit } from '@angular/core';
+﻿import { Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit, OnDestroy } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
 @Directive({selector: 'tab, [tab]'})
-export class TabDirective implements OnInit {
+export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() public heading: string;
   /** if true tab can not be activated */
@@ -58,5 +58,9 @@ export class TabDirective implements OnInit {
 
   public ngOnInit(): void {
     this.removable = this.removable;
+  }
+
+  public ngOnDestroy(): void {
+    this.tabset.removeTab(this);
   }
 }
