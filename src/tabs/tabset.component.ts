@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
+﻿import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -79,13 +79,13 @@ export class TabsetComponent implements OnDestroy {
     tab.active = this.tabs.length === 1 && tab.active !== false;
   }
 
-  public removeTab(tab:TabDirective):void {
+  public removeTab(tab: TabDirective, reselect:boolean = true):void {
     let index = this.tabs.indexOf(tab);
     if (index === -1 || this.isDestroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
-    if (tab.active && this.hasAvailableTabs(index)) {
+    if (reselect && tab.active && this.hasAvailableTabs(index)) {
       let newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }

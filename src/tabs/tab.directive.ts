@@ -61,6 +61,6 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.tabset.removeTab(this);
+    this.tabset.removeTab(this, false);
   }
 }
