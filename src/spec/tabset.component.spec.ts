@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabsetConfig } from '../tabs/tabset.config';
 
@@ -124,6 +124,18 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
     const tabTitlesAfter = getTabTitles(element);
     expect(tabTitlesAfter.length).toEqual(3);
+  });
+
+  it('should select another tab if the active tab is removed', () => {
+    context.tabs[0].active = true;
+    context.removeTab(context.tabs[0]);
+    expectActiveTabs(element, [true, false, false]);
+  });
+
+  it('should not select another tab if the active tab is removed and reselect is set to false', () => {
+    context.tabs[0].active = true;
+    context.removeTab(context.tabs[0], false);
+    expectActiveTabs(element, [false, false, false]);
   });
 
   it('should set tab as active on click and disable another active', () => {
