@@ -1,11 +1,12 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabsetConfig } from '../tabs/tabset.config';
 
 import { TabsModule } from '../tabs/tabs.module';
+import { TabsetComponent } from '../tabs/tabset.component';
 
 const html = `
-  <tabset [justified]="isJustified"
+  <tabset #tabset [justified]="isJustified"
           [vertical]="isVertical">
     <tab heading="tab0">tab0 content</tab>
     <tab *ngFor="let tab of tabs"
@@ -128,13 +129,13 @@ describe('Component: Tabs', () => {
 
   it('should select another tab if the active tab is removed', () => {
     context.tabs[0].active = true;
-    context.removeTab(context.tabs[0]);
+    context.tabset.removeTab(context.tabs[0]);
     expectActiveTabs(element, [true, false, false]);
   });
 
   it('should not select another tab if the active tab is removed and reselect is set to false', () => {
     context.tabs[0].active = true;
-    context.removeTab(context.tabs[0], false);
+    context.tabset.removeTab(context.tabs[0], false);
     expectActiveTabs(element, [false, false, false]);
   });
 
@@ -232,6 +233,8 @@ class TestTabsetComponent {
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
+  
+  @ViewChild('tabset') tabset: TabsetComponent;
 
   public constructor(config: TabsetConfig) {
     Object.assign(this, config);
