@@ -130,12 +130,14 @@ describe('Component: Tabs', () => {
   it('should select another tab if the active tab is removed', () => {
     context.tabs[0].active = true;
     context.tabset.removeTab(context.tabs[0]);
+    fixture.detectChanges();
     expectActiveTabs(element, [true, false, false]);
   });
 
   it('should not select another tab if the active tab is removed and reselect is set to false', () => {
     context.tabs[0].active = true;
     context.tabset.removeTab(context.tabs[0], false);
+    fixture.detectChanges();
     expectActiveTabs(element, [false, false, false]);
   });
 
