@@ -93,6 +93,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * Emits an event when the popover is shown
    */
   @Output() onShown: EventEmitter<any>;
+
   /**
    * Emits an event when the popover is hidden
    */
@@ -112,15 +113,15 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _isInited = false;
 
   constructor(private _elementRef: ElementRef,
-              private _renderer: Renderer,
-              private _viewContainerRef: ViewContainerRef,
-              private _cis: ComponentLoaderFactory,
-              private _config: BsDropdownConfig,
-              private _state: BsDropdownState) {
+    private _renderer: Renderer,
+    private _viewContainerRef: ViewContainerRef,
+    private _cis: ComponentLoaderFactory,
+    private _config: BsDropdownConfig,
+    private _state: BsDropdownState) {
     // create dropdown component loader
     this._dropdown = this._cis
       .createLoader<BsDropdownContainerComponent>(this._elementRef, this._viewContainerRef, this._renderer)
-      .provide({provide: BsDropdownState, useValue: this._state});
+      .provide({ provide: BsDropdownState, useValue: this._state });
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
@@ -133,7 +134,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // fix: seems there are an issue with `routerLinkActive`
     // which result in duplicated call ngOnInit without call to ngOnDestroy
     // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
-    if (this._isInited) {return;}
+    if (this._isInited) { return; }
     this._isInited = true;
 
     this._showInline = !this.container;
@@ -157,7 +158,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // attach dropdown menu inside of dropdown
     if (this._showInline) {
       this._state.dropdownMenu
-        .then((dropdownMenu:BsComponentRef<BsDropdownMenuDirective>) => {
+        .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
           this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
         });
     }
@@ -175,6 +176,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._showInline) {
       this._isInlineOpen = true;
       this._state.isOpenChange.emit(true);
+      this.onShown.emit(true);
       return;
     }
 
@@ -191,13 +193,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._dropdown
           .attach(BsDropdownContainerComponent)
           .to(this.container)
-          .position({attachment: _placement})
+          .position({ attachment: _placement })
           .show({
             content: dropdownMenu.templateRef,
             placement: _placement
           });
 
         this._state.isOpenChange.emit(true);
+        this.onShown.emit(true);
       });
   }
 
@@ -217,6 +220,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     this._state.isOpenChange.emit(false);
+    this.onHidden.emit(true);
   }
 
   /**
