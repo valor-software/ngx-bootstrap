@@ -38,11 +38,11 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "keywords": [
-    "ng",
-    "ng-bootstap",
     "angular",
+    "bootstap",
+    "ng",
+    "ng2",
     "angular2",
-    "bootstrap",
     "twitter-bootstrap"
   ],
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",

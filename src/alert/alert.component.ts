@@ -34,7 +34,7 @@ export class AlertComponent implements OnInit {
 
   public isClosed: boolean = false;
   public classes: string = '';
-  public dismissibleChange: EventEmitter<string> = new EventEmitter();
+  public dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public constructor(_config: AlertConfig) {
     Object.assign(this, _config);
