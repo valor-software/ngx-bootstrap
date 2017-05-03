@@ -1,4 +1,4 @@
-# ngx-bootstrap [![npm version](https://badge.fury.io/js/ngx-bootstrap.svg)](http://badge.fury.io/js/ngx-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ng2-bootstrap.svg)](https://npmjs.org/ngx-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
+# ngx-bootstrap [![npm version](https://badge.fury.io/js/ngx-bootstrap.svg)](http://badge.fury.io/js/ngx-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ngx-bootstrap.svg)](https://npmjs.org/ngx-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
 Native Angular directives for Bootstrap 3 and Bootstrap 4
 
 [![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
@@ -6,8 +6,8 @@ Native Angular directives for Bootstrap 3 and Bootstrap 4
 [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap)
 [![Dependency Status](https://david-dm.org/valor-software/ngx-bootstrap.svg)](https://david-dm.org/valor-software/ngx-bootstrap)
 
-[![NPM](https://nodei.co/npm/ng2-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ngx-bootstrap)
-[![NPM](https://nodei.co/npm-dl/ng2-bootstrap.png?height=3&months=6)](https://npmjs.org/ngx-bootstrap)
+[![NPM](https://nodei.co/npm/ngx-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ngx-bootstrap)
+[![NPM](https://nodei.co/npm-dl/ngx-bootstrap.png?height=3&months=6)](https://npmjs.org/ngx-bootstrap)
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
 
 ## Table of contents 
