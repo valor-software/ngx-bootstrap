@@ -6,7 +6,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 @Component({
   selector: 'yearpicker',
   template: `
-<table *ngIf="datePicker.datepickerMode==='year'" role="grid">
+<table [hidden]="datePicker.datepickerMode!=='year'" role="grid">
   <thead>
     <tr>
       <th>
