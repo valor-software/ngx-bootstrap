@@ -8,13 +8,10 @@ export class DemoDropdownBasicLinkComponent {
   public items: string[] = ['The first choice!',
     'And another choice for you.', 'but wait! A third!'];
 
-  public toggled(open: boolean): void {
-    console.log('Dropdown is now: ', open);
-  }
   public onHidden(): void {
-    console.log('Dropdown is hide');
+    console.log('Dropdown is hidden');
   }
   public onShown(): void {
-    console.log('Dropdown is Show');
+    console.log('Dropdown is shown');
   }
 }

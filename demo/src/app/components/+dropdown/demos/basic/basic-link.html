@@ -1,4 +1,4 @@
-<span dropdown (isOpenChange)="toggled($event)" (onShown)="onShown()" (onHidden)="onHidden()">
+<span dropdown (onShown)="onShown()" (onHidden)="onHidden()">
   <a href dropdownToggle (click)="false">Click me for a dropdown, yo!</a>
     <ul *dropdownMenu class="dropdown-menu">
       <li *ngFor="let choice of items">
