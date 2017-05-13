@@ -13,10 +13,23 @@ export class DemoTabsDynamicComponent {
   ];
 
   public setActiveTab(index: number): void {
-    this.tabs[index].active = true;
+    if(this.tabs[index]) {
+      this.tabs[index].active = true;
+    }
   }
 
-  public removeTabHandler(/*tab:any*/): void {
+  public addNewTab(): void {
+    const newTabIndex = this.tabs.length + 1;
+    this.tabs.push({
+      title: `Dynamic Title ${newTabIndex}`,
+      content: `Dynamic content ${newTabIndex}`,
+      disabled:false,
+      removable:true
+    });
+  }
+
+  public removeTabHandler(tab:any): void {
+    this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
   }
 }

@@ -36,7 +36,6 @@ function getTabContent(nativeEl: HTMLElement): NodeListOf<Element> {
 function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
   const tabItems = getTabItems(nativeEl);
   const tabContent = getTabContent(nativeEl);
-
   expect(tabItems.length).toBe(active.length);
   expect(tabContent.length).toBe(active.length);
 
@@ -128,15 +127,15 @@ describe('Component: Tabs', () => {
   });
 
   it('should select another tab if the active tab is removed', () => {
-    context.tabs[0].active = true;
-    context.tabset.removeTab(context.tabs[0]);
+    context.tabset.tabs[0].active = true;
+    context.tabset.removeTab(context.tabset.tabs[0]);
     fixture.detectChanges();
     expectActiveTabs(element, [true, false, false]);
   });
 
   it('should not select another tab if the active tab is removed and reselect is set to false', () => {
-    context.tabs[0].active = true;
-    context.tabset.removeTab(context.tabs[0], false);
+    context.tabset.tabs[0].active = true;
+    context.tabset.removeTab(context.tabset.tabs[0], false);
     fixture.detectChanges();
     expectActiveTabs(element, [false, false, false]);
   });
@@ -212,7 +211,7 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
     expect(tabItems[1].classList).toContain('testCustomClass');
     expectActiveTabs(element, [false, true, false, false]);
-    
+
     context.tabs[0].customClass = 'otherCustomClass';
     fixture.detectChanges();
 
@@ -235,7 +234,6 @@ class TestTabsetComponent {
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
-  
   @ViewChild('tabset') tabset: TabsetComponent;
 
   public constructor(config: TabsetConfig) {

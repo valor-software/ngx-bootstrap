@@ -89,9 +89,11 @@ export class TabsetComponent implements OnDestroy {
       let newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }
-
     tab.removed.emit(tab);
     this.tabs.splice(index, 1);
+    if(tab.elementRef.nativeElement && tab.elementRef.nativeElement.remove) {
+      tab.elementRef.nativeElement.remove();
+    }
   }
 
   protected getClosestTabIndex(index:number):number {

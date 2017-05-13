@@ -1,4 +1,5 @@
-﻿import { Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit, OnDestroy } from '@angular/core';
+﻿import {
+  Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
 @Directive({selector: 'tab, [tab]'})
@@ -51,7 +52,7 @@ export class TabDirective implements OnInit, OnDestroy {
   public tabset: TabsetComponent;
   protected _active: boolean;
 
-  public constructor(tabset: TabsetComponent) {
+  public constructor(tabset: TabsetComponent, public elementRef: ElementRef) {
     this.tabset = tabset;
     this.tabset.addTab(this);
   }
