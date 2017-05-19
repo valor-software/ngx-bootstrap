@@ -82,6 +82,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // todo: implement _dialog
   private _dialog: any;
 
+  private isNested: boolean = false;
+
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
@@ -143,7 +145,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.setScrollbar();
 
     if (document && document.body) {
-      this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+      if (document.body.classList.contains(ClassName.OPEN)) {
+        this.isNested = true;
+      } else {
+        this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+      }
     }
 
     this.showBackdrop(() => {
@@ -233,11 +239,13 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
     this._renderer.setElementStyle(this._element.nativeElement, 'display', 'none');
     this.showBackdrop(() => {
-      if (document && document.body) {
-        this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+      if (!this.isNested) {
+        if (document && document.body) {
+          this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+        }
+        this.resetScrollbar();
       }
       this.resetAdjustments();
-      this.resetScrollbar();
       this.onHidden.emit(this);
     });
   }
