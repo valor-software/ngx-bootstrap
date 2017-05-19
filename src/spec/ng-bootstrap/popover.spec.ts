@@ -232,6 +232,96 @@ describe('popover', () => {
       expect(windowEl.textContent.trim())
         .toBe('Great tip!');
     });
+
+    it('should set position to right when use auto position and fit on screen', () => {
+      const fixture = createTestComponent(`<div popover="Great tip!" placement="auto"></div>`);
+      const directive = fixture.debugElement.query(By.directive(PopoverDirective));
+
+      directive.triggerEventHandler('click', {});
+      fixture.detectChanges();
+      const windowEl = getWindow(fixture.nativeElement);
+
+      expect(windowEl)
+        .toHaveCssClass('popover');
+      expect(windowEl)
+        .toHaveCssClass('popover-auto');
+      expect(windowEl)
+        .toHaveCssClass('right');
+      expect(windowEl.textContent.trim())
+        .toBe('Great tip!');
+    });
+
+    it('should set position to bottom when use auto position', () => {
+      const fixture = createTestComponent(`<div popover="Great tip!" placement="auto bottom"></div>`);
+      const directive = fixture.debugElement.query(By.directive(PopoverDirective));
+
+      directive.triggerEventHandler('click', {});
+      fixture.detectChanges();
+      const windowEl = getWindow(fixture.nativeElement);
+
+      expect(windowEl)
+        .toHaveCssClass('popover');
+      expect(windowEl)
+        .toHaveCssClass('popover-auto');
+      expect(windowEl)
+        .toHaveCssClass('bottom');
+      expect(windowEl.textContent.trim())
+        .toBe('Great tip!');
+    });
+
+    it('should set position to top when use auto position and fit on screen', () => {
+      const fixture = createTestComponent(`<div popover="Great tip!" placement="auto top"></div>`);
+      const directive = fixture.debugElement.query(By.directive(PopoverDirective));
+
+      directive.triggerEventHandler('click', {});
+      fixture.detectChanges();
+      const windowEl = getWindow(fixture.nativeElement);
+
+      expect(windowEl)
+        .toHaveCssClass('popover');
+      expect(windowEl)
+        .toHaveCssClass('popover-auto');
+      expect(windowEl)
+        .toHaveCssClass('top');
+      expect(windowEl.textContent.trim())
+        .toBe('Great tip!');
+    });
+
+    it('should set position to right when use auto position and fit on screen', () => {
+      const fixture = createTestComponent(`<div popover="Great tip!" placement="auto right"></div>`);
+      const directive = fixture.debugElement.query(By.directive(PopoverDirective));
+
+      directive.triggerEventHandler('click', {});
+      fixture.detectChanges();
+      const windowEl = getWindow(fixture.nativeElement);
+
+      expect(windowEl)
+        .toHaveCssClass('popover');
+      expect(windowEl)
+        .toHaveCssClass('popover-auto');
+      expect(windowEl)
+        .toHaveCssClass('right');
+      expect(windowEl.textContent.trim())
+        .toBe('Great tip!');
+    });
+
+    it('should set position to left when use auto position and fit on screen', () => {
+      const fixture = createTestComponent(`<div popover="Great tip!" placement="auto left"></div>`);
+      const directive = fixture.debugElement.query(By.directive(PopoverDirective));
+
+      directive.triggerEventHandler('click', {});
+      fixture.detectChanges();
+      const windowEl = getWindow(fixture.nativeElement);
+
+      expect(windowEl)
+        .toHaveCssClass('popover');
+      expect(windowEl)
+        .toHaveCssClass('popover-auto');
+      expect(windowEl)
+        .toHaveCssClass('left');
+      expect(windowEl.textContent.trim())
+        .toBe('Great tip!');
+    });
   });
 
   describe('container', () => {

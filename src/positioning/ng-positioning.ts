@@ -83,7 +83,7 @@ export class Positioning {
       bottom: hostElPosition.top + hostElPosition.height
     };
     const targetElBCR = targetElement.getBoundingClientRect();
-    const placementPrimary = placement.split(' ')[0] || 'top';
+    let placementPrimary = placement.split(' ')[0] || 'top';
     const placementSecondary = placement.split(' ')[1] || 'center';
 
     let targetElPosition: ClientRect = {
@@ -94,6 +94,13 @@ export class Positioning {
       left: 0,
       right: targetElBCR.width || targetElement.offsetWidth
     };
+
+    if (placementPrimary==="auto") {
+      let newPlacementPrimary = this.autoPosition(targetElPosition, hostElPosition, targetElement, placementSecondary);
+      if (!newPlacementPrimary) newPlacementPrimary = this.autoPosition(targetElPosition, hostElPosition, targetElement);
+      if (newPlacementPrimary) placementPrimary = newPlacementPrimary;
+      targetElement.classList.add(placementPrimary);
+    }
 
     switch (placementPrimary) {
       case 'top':
@@ -128,6 +135,19 @@ export class Positioning {
     targetElPosition.right = Math.round(targetElPosition.right);
 
     return targetElPosition;
+  }
+
+  private autoPosition(targetElPosition: ClientRect, hostElPosition: ClientRect, targetElement: HTMLElement, preferredPosition?: string) {
+    if ((!preferredPosition || preferredPosition==="right") && targetElPosition.left + hostElPosition.left - targetElement.offsetWidth < 0) {
+      return "right";
+    } else if ((!preferredPosition || preferredPosition==="top") && targetElPosition.bottom + hostElPosition.bottom + targetElement.offsetHeight > window.innerHeight) {
+      return "top";
+    } else if ((!preferredPosition || preferredPosition==="bottom") && targetElPosition.top + hostElPosition.top - targetElement.offsetHeight < 0) {
+      return "bottom";
+    } else if ((!preferredPosition || preferredPosition==="left") && targetElPosition.right + hostElPosition.right + targetElement.offsetWidth > window.innerWidth ) {
+      return "left";
+    }
+    return null;
   }
 
   private getStyle(element: HTMLElement, prop: string): string { return (window.getComputedStyle(element) as any)[prop]; }

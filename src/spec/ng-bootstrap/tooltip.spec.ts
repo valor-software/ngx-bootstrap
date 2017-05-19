@@ -187,6 +187,20 @@ describe('tooltip', () => {
         expect(windowEl).toHaveCssClass('tooltip-left');
         expect(windowEl.textContent.trim()).toBe('Great tip!');
       });
+
+      it('should use auto position', () => {
+        const fixture = createTestComponent(`<div tooltip="Great tip!" placement="auto"></div>`);
+        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+
+        directive.triggerEventHandler('mouseenter', {});
+        fixture.detectChanges();
+        const windowEl = getWindow(fixture.nativeElement);
+
+        expect(windowEl).toHaveCssClass('tooltip');
+        expect(windowEl).toHaveCssClass('tooltip-auto');
+        expect(windowEl).toHaveCssClass('left');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
     });
 
     describe('triggers', () => {

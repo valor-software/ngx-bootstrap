@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PopoverConfig {
   /**
-   * Placement of a popover. Accepts: "top", "bottom", "left", "right"
+   * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
    */
   public placement: string = 'top';
   /**
