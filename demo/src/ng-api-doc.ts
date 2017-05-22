@@ -1660,7 +1660,7 @@ export const ngdoc: any = {
       },
       {
         "name": "removed",
-        "description": "<p>fired before tab will be removed </p>\n"
+        "description": "<p>fired before tab will be removed, $event:Tab equals to instance of removed tab. <br> It's <strong>strongly recommended</strong> to remove a tab object from component when using dynamic tabs, otherwise removed tab can be displayed again after change detection</p>\n"
       },
       {
         "name": "select",

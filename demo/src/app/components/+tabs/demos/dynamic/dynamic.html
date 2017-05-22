@@ -1,25 +1,4 @@
 <div (click)="$event.preventDefault()">
-  <div *ngIf="tabs.length">
-    <p>Select a tab by setting active binding to true:</p>
-    <p>
-      <button type="button" class="btn btn-primary btn-sm"
-              (click)="setActiveTab(0)">
-        Select second tab
-      </button>
-      <button type="button" class="btn btn-primary btn-sm"
-              (click)="setActiveTab(1)"
-              *ngIf="tabs.length > 1">
-        Select third tab
-      </button>
-    </p>
-    <p>Control tab state by setting disabled binding to true:</p>
-    <p>
-      <button type="button" class="btn btn-primary btn-sm"
-              (click)="tabs[0].disabled = ! tabs[0].disabled">
-        Enable / Disable second tab
-      </button>
-    </p>
-  </div>
     <p>Add / remove new tabs by manipulating tabs array:</p>
     <button type="button" class="btn btn-primary btn-sm" (click)="addNewTab()">
       Add new tab

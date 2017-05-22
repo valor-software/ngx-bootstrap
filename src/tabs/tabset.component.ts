@@ -79,17 +79,19 @@ export class TabsetComponent implements OnDestroy {
     tab.active = this.tabs.length === 1 && tab.active !== false;
   }
 
-  public removeTab(tab: TabDirective, reselect:boolean = true):void {
+  public removeTab(tab: TabDirective, options = {reselect: true, emit: true}):void {
     let index = this.tabs.indexOf(tab);
     if (index === -1 || this.isDestroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
-    if (reselect && tab.active && this.hasAvailableTabs(index)) {
+    if (options.reselect && tab.active && this.hasAvailableTabs(index)) {
       let newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }
-    tab.removed.emit(tab);
+    if(options.emit) {
+      tab.removed.emit(tab);
+    }
     this.tabs.splice(index, 1);
     if(tab.elementRef.nativeElement && tab.elementRef.nativeElement.remove) {
       tab.elementRef.nativeElement.remove();

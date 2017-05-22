@@ -19,7 +19,7 @@ export class TabDirective implements OnInit, OnDestroy {
   public get active(): boolean {
     return this._active;
   }
-
+  
   public set active(active: boolean) {
     if (this.disabled && active || !active) {
       if (!active) {
@@ -43,7 +43,7 @@ export class TabDirective implements OnInit, OnDestroy {
   @Output() public select: EventEmitter<TabDirective> = new EventEmitter();
   /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
   @Output() public deselect: EventEmitter<TabDirective> = new EventEmitter();
-  /** fired before tab will be removed */
+  /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
   @Output() public removed: EventEmitter<TabDirective> = new EventEmitter();
 
   @HostBinding('class.tab-pane') public addClass: boolean = true;
@@ -62,6 +62,6 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.tabset.removeTab(this, false);
+    this.tabset.removeTab(this, {reselect: false, emit: false});
   }
 }

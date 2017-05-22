@@ -12,12 +12,6 @@ export class DemoTabsDynamicComponent {
     {title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true}
   ];
 
-  public setActiveTab(index: number): void {
-    if(this.tabs[index]) {
-      this.tabs[index].active = true;
-    }
-  }
-
   public addNewTab(): void {
     const newTabIndex = this.tabs.length + 1;
     this.tabs.push({
