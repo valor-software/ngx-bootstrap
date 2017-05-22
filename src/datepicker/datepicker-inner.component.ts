@@ -105,6 +105,17 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-unused-variable
   public ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
+    this.checkIfActiveDateGotUpdated(changes.activeDate);
+  }
+  
+  //Check if activeDate has been update and then emit the activeDateChange with the new date
+  private checkIfActiveDateGotUpdated(activeDate: any): void {
+		if (activeDate && !activeDate.firstChange) {
+			let previousValue = activeDate.previousValue;
+			if (previousValue && previousValue.getTime() !== activeDate.currentValue.getTime()) {
+				this.activeDateChange.emit(this.activeDate);
+			}
+		} 
   }
 
   public setCompareHandler(handler: Function, type: string): void {
@@ -219,9 +230,6 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       }
 
       this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-      if (isManual) {
-        this.selectionDone.emit(this.activeDate);
-      }
     } else {
       this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
       this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
