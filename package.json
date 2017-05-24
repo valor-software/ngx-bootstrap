@@ -56,8 +56,7 @@
   },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "dependencies": {
-    "moment": "2.18.1",
-    "ngx-bootstrap": "file:dist"
+    "moment": "2.18.1"
   },
   "peerDependencies": {
     "@angular/common": "^2.3.1 || >=4.0.0",
