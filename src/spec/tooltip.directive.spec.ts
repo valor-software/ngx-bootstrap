@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from '../tooltip/tooltip.module';
-const { fireEvent } = require('../../scripts/helpers');
+import { fireEvent } from '../../scripts/helpers';
 
 const overTemplate = `
     <div class="form-group">
