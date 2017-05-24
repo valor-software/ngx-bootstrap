@@ -13,7 +13,7 @@
       "index": "index.html",
       "main": "main.ts",
       "test": "../../scripts/test.ts",
-      "tsconfig": "tsconfig.app.json",
+      "tsconfig": "tsconfig.json",
       "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "",
       "mobile": false,
