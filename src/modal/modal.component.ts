@@ -69,8 +69,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   protected originalBodyPadding: number = 0;
   protected scrollbarWidth: number = 0;
 
-  protected timerHideModal: number = 0;
-  protected timerRmBackDrop: number = 0;
+  protected timerHideModal: any = 0;
+  protected timerRmBackDrop: any = 0;
 
   // constructor props
   protected _element: ElementRef;
