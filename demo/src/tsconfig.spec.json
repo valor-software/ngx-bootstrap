@@ -5,32 +5,22 @@
     "baseUrl": ".",
     "module": "commonjs",
     "target": "es5",
+    "moduleResolution": "node",
+    "sourceType": "module",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "typeRoots": [
-      "node_modules/@types"
+      "../node_modules/@types"
     ],
     "paths": {
-      "ngx-bootstrap*": ["."]
+      "ngx-bootstrap*": ["../../src"]
     },
-    "types": [
-      "jasmine",
-      "node"
-    ],
-    "lib": [
-      "es2016",
-      "dom"
-    ]
+    "types": ["jasmine", "webpack"],
+    "lib": ["es2016", "dom"]
   },
-  "include": [
-    "./spec/**/*.spec.ts",
-    "**/*.d.ts"
-  ],
   "exclude": [
-    "../demo",
     "../node_modules"
   ]
 }

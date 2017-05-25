@@ -146,7 +146,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated */
   @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   /* tslint:enable */
-  protected _delayTimeoutId: any;
+  protected _delayTimeoutId: number;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 

@@ -4,10 +4,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noEmitHelpers" :true,
-    "baseUrl": ".",
-    "paths": {
-      "ngx-bootstrap*": ["../../src"]
-    },
     "lib": ["es6", "dom"],
     "types": [
       "jasmine",

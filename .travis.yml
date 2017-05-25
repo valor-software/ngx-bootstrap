@@ -15,7 +15,7 @@ before_install:
 script:
   - npm run lint
   - npm run build
-  - rm -rf node_modules/ng2-bootstrap
+  - rm -rf node_modules/ngx-bootstrap
   - npm i ./dist
   - npm run test-coverage
 
