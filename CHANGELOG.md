@@ -83,15 +83,16 @@
 
 ### BREAKING CHANGES
 
-* **dropdown:** - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
-- `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
-- `dropdownMenu` menu become a template selector, so `*` should be added
+* **dropdown:** 
+  - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+  - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+  - `dropdownMenu` menu become a template selector, so `*` should be added
 sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
-- `onToggle` event deprecated use `isOpenChange` instead
-- `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
-- `keyboardNav` deprecated
-- `disabled` renamed to `isDisabled`
-- `dropdownToggle` doesn't prevent default behaviour anymore
+  - `onToggle` event deprecated use `isOpenChange` instead
+  - `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+  - `keyboardNav` deprecated
+  - `disabled` renamed to `isDisabled`
+  - `dropdownToggle` doesn't prevent default behaviour anymore
 
 
 
@@ -121,15 +122,16 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 
 ### BREAKING CHANGES
 
-* **dropdown:** - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
-- `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
-- `dropdownMenu` menu become a template selector, so `*` should be added
+* **dropdown:**
+  - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+  - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+  - `dropdownMenu` menu become a template selector, so `*` should be added
 sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
-- `onToggle` event deprecated use `isOpenChange` instead
-- `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
-- `keyboardNav` deprecated
-- `disabled` renamed to `isDisabled`
-- `dropdownToggle` doesn't prevent default behaviour anymore
+  - `onToggle` event deprecated use `isOpenChange` instead
+  - `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+  - `keyboardNav` deprecated
+  - `disabled` renamed to `isDisabled`
+  - `dropdownToggle` doesn't prevent default behaviour anymore
 
 
 
