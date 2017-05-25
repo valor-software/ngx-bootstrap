@@ -97,7 +97,7 @@ describe('popover', () => {
 
     it('should open and close a popover - default settings and content from a template', () => {
       const fixture = createTestComponent(`
-          <template #t>Hello, {{name}}!</template>
+          <ng-template #t>Hello, {{name}}!</ng-template>
           <div [popover]="t" popoverTitle="Title"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
       const defaultConfig = new PopoverConfig();
@@ -120,7 +120,7 @@ describe('popover', () => {
 
     it('should properly destroy TemplateRef content', () => {
       const fixture = createTestComponent(`
-          <template #t><destroyable-cmpt></destroyable-cmpt></template>
+          <ng-template #t><destroyable-cmpt></destroyable-cmpt></ng-template>
           <div [popover]="t" popoverTitle="Title"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
       const spyService = fixture.debugElement.injector.get(SpyService);
@@ -165,7 +165,7 @@ describe('popover', () => {
 
     it('should not leave dangling popovers in the DOM', () => {
       const fixture =
-        createTestComponent(`<template [ngIf]="show"><div popover="Great tip!" popoverTitle="Title"></div></template>`);
+        createTestComponent(`<ng-template [ngIf]="show"><div popover="Great tip!" popoverTitle="Title"></div></ng-template>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
       directive.triggerEventHandler('click', {});
@@ -181,9 +181,9 @@ describe('popover', () => {
     });
 
     it('should properly cleanup popovers with manual triggers', () => {
-      const fixture = createTestComponent(`<template [ngIf]="show">
+      const fixture = createTestComponent(`<ng-template [ngIf]="show">
                                             <div popover="Great tip!" triggers="manual" #p="bs-popover" (mouseenter)="p.show()"></div>
-                                        </template>`);
+                                        </ng-template>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
       directive.triggerEventHandler('mouseenter', {});
@@ -496,8 +496,8 @@ describe('popover', () => {
     let config: PopoverConfig;
 
     beforeEach(() => {
-      TestBed.configureTestingModule({imports: [PopoverModule.forRoot()]});
-      TestBed.overrideComponent(TestComponent, {set: {template: `<div popover="Great tip!"></div>`}});
+      TestBed.configureTestingModule({ imports: [PopoverModule.forRoot()] });
+      TestBed.overrideComponent(TestComponent, { set: { template: `<div popover="Great tip!"></div>` } });
     });
 
     beforeEach(inject([PopoverConfig], (c: PopoverConfig) => {
@@ -531,7 +531,7 @@ describe('popover', () => {
       TestBed.configureTestingModule(
         {
           imports: [PopoverModule.forRoot()],
-          providers: [{provide: PopoverConfig, useValue: config}]
+          providers: [{ provide: PopoverConfig, useValue: config }]
         });
     });
 
@@ -547,7 +547,7 @@ describe('popover', () => {
   });
 });
 
-@Component({selector: 'test-cmpt', template: ``})
+@Component({ selector: 'test-cmpt', template: `` })
 export class TestComponent {
   public name: string = 'World';
   public show: boolean = true;
@@ -556,9 +556,9 @@ export class TestComponent {
 
   @ViewChild(PopoverDirective) public popover: PopoverDirective;
 
-  public shown(): void {return;}
+  public shown(): void { return; }
 
-  public hidden(): void {return;}
+  public hidden(): void { return; }
 }
 
 @Component({
@@ -569,7 +569,7 @@ export class TestComponent {
 export class TestOnPushComponent {
 }
 
-@Component({selector: 'destroyable-cmpt', template: 'Some content'})
+@Component({ selector: 'destroyable-cmpt', template: 'Some content' })
 export class DestroyableCmpt implements OnDestroy {
   private _spyService: SpyService;
 

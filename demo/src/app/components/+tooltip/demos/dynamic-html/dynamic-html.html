@@ -1,5 +1,6 @@
-<template #popTemplate>Here we go: <div [innerHtml]="html"></div></template>
-<button type="button" class="btn btn-success"
-        [tooltip]="popTemplate">
+<ng-template #popTemplate>Here we go:
+  <div [innerHtml]="html"></div>
+</ng-template>
+<button type="button" class="btn btn-success" [tooltip]="popTemplate">
   Show me tooltip with html
 </button>

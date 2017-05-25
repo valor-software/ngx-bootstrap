@@ -34,11 +34,11 @@ import { DraggableItemService } from './draggable-item.service';
         (dragend)="resetActiveItem($event)"
         (dragover)="onItemDragover($event, i)"
         (dragenter)="cancelEvent($event)"
-    ><template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
-  [ngOutletContext]="{item:item, index: i}"></template></div>
+    ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
+  [ngOutletContext]="{item:item, index: i}"></ng-template></div>
 </div>
 
-<template #defItemTemplate let-item="item">{{item.value}}</template>  
+<ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>  
 `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
@@ -57,25 +57,25 @@ export class SortableComponent implements ControlValueAccessor {
   @Input() public wrapperClass: string = '';
 
   /** style object for items wrapper */
-  @Input() public wrapperStyle: {[key: string]: string} = {};
+  @Input() public wrapperStyle: { [key: string]: string } = {};
 
   /** class name for item */
   @Input() public itemClass: string = '';
 
   /** style object for item */
-  @Input() public itemStyle: {[key: string]: string} = {};
+  @Input() public itemStyle: { [key: string]: string } = {};
 
   /** class name for active item */
   @Input() public itemActiveClass: string = '';
 
   /** style object for active item */
-  @Input() public itemActiveStyle: {[key: string]: string} = {};
+  @Input() public itemActiveStyle: { [key: string]: string } = {};
 
   /** class name for placeholder */
   @Input() public placeholderClass: string = '';
 
   /** style object for placeholder */
-  @Input() public placeholderStyle: {[key: string]: string} = {};
+  @Input() public placeholderStyle: { [key: string]: string } = {};
 
   /** placeholder item which will be shown if collection is empty */
   @Input() public placeholderItem: string = '';
