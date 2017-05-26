@@ -6,7 +6,7 @@ import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
 import { FormsModule } from '@angular/forms';
-const { fireEvent } = require('../../scripts/helpers');
+import { fireEvent } from '../../scripts/helpers';
 
 interface State {
   id:number;
