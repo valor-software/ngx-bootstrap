@@ -841,11 +841,15 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "onHidden",
-        "description": "<p>Emits an event when the popover is hidden</p>\n"
+        "description": "<p>Emits an event when the dropdown is hidden</p>\n"
       },
       {
         "name": "onShown",
-        "description": "<p>Emits an event when the popover is shown</p>\n"
+        "description": "<p>Emits an event when the dropdown is shown</p>\n"
+      },
+      {
+        "name": "isOpenChange",
+        "description": "<p>Emits an event when the dropdown is shown or hidden</p>\n"
       }
     ],
     "properties": [

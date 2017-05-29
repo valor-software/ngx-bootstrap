@@ -14,4 +14,7 @@ export class DemoDropdownBasicLinkComponent {
   public onShown(): void {
     console.log('Dropdown is shown');
   }
+  public isOpenChange(): void {
+    console.log('Dropdown state is changed');
+  }
 }
