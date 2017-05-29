@@ -1,0 +1,38 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "baseUrl": ".",
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "ngx-bootstrap*": [
+        "."
+      ]
+    },
+    "types": [
+      "jasmine",
+      "node"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
+    ]
+  },
+  "include": [
+    "./spec/**/*.spec.ts",
+    "**/*.d.ts"
+  ],
+  "exclude": [
+    "../demo",
+    "../node_modules"
+  ]
+}
