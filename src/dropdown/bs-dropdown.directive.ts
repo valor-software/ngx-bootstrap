@@ -90,6 +90,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   /**
+   * Emits an event when isOpen change
+   */
+  @Output() isOpenChange: EventEmitter<any>;
+  /**
    * Emits an event when the popover is shown
    */
   @Output() onShown: EventEmitter<any>;
@@ -125,6 +129,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
+    this.isOpenChange = this._state.isOpenChange;
 
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
@@ -175,6 +180,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     if (this._showInline) {
       this._isInlineOpen = true;
+      this.onShown.emit();
       this._state.isOpenChange.emit(true);
       this.onShown.emit(true);
       return;
@@ -215,6 +221,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     if (this._showInline) {
       this._isInlineOpen = false;
+      this.onHidden.emit();
     } else {
       this._dropdown.hide();
     }
