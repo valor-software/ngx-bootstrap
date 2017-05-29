@@ -14,7 +14,7 @@
       "main": "main.ts",
       "test": "../../scripts/test.ts",
       "tsconfig": "tsconfig.json",
-      "testTsconfig": "tsconfig.spec.json",
+      "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "",
       "mobile": false,
       "styles": [
