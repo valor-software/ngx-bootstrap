@@ -18,6 +18,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="static">Static modal</a></li>
         <li><a routerLink="." fragment="sizes">Optional sizes</a></li>
         <li><a routerLink="." fragment="child">Child modal</a></li>
+        <li><a routerLink="." fragment="nested">Nested modals</a></li>
         <li><a routerLink="." fragment="auto-shown">Auto shown modal</a></li>
       </ul>
     </li>
@@ -50,6 +51,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p>Control modal from parent component</p>
   <ng-sample-box [ts]="demos.child.component" [html]="demos.child.html">
     <demo-modal-child></demo-modal-child>
+  </ng-sample-box>
+
+  <h2 routerLink="." fragment="nested" id="nested">Nested modals</h2>
+  <p>Open a modal from another modal</p>
+  <ng-sample-box [ts]="demos.nested.component" [html]="demos.nested.html">
+    <demo-modal-nested></demo-modal-nested>
   </ng-sample-box>
 
   <h2 routerLink="." fragment="auto-shown" id="auto-shown">Auto shown modal</h2>
