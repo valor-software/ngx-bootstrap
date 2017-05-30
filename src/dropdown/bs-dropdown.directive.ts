@@ -90,6 +90,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   /**
+   * Emits an event when isOpen change
+   */
+  @Output() isOpenChange: EventEmitter<any>;
+
+  /**
    * Emits an event when the popover is shown
    */
   @Output() onShown: EventEmitter<any>;
@@ -113,11 +118,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _isInited = false;
 
   constructor(private _elementRef: ElementRef,
-    private _renderer: Renderer,
-    private _viewContainerRef: ViewContainerRef,
-    private _cis: ComponentLoaderFactory,
-    private _config: BsDropdownConfig,
-    private _state: BsDropdownState) {
+              private _renderer: Renderer,
+              private _viewContainerRef: ViewContainerRef,
+              private _cis: ComponentLoaderFactory,
+              private _config: BsDropdownConfig,
+              private _state: BsDropdownState) {
     // create dropdown component loader
     this._dropdown = this._cis
       .createLoader<BsDropdownContainerComponent>(this._elementRef, this._viewContainerRef, this._renderer)
@@ -125,6 +130,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
+    this.isOpenChange = this._state.isOpenChange;
 
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
