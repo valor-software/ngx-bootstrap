@@ -181,11 +181,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     if (this._showInline) {
       this._isInlineOpen = true;
-      this._state.isOpenChange.emit(true);
       this.onShown.emit(true);
+      this._state.isOpenChange.emit(true);
       return;
     }
-
     this._state.dropdownMenu
       .then((dropdownMenu) => {
         // check direction in which dropdown should be opened
@@ -206,8 +205,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           });
 
         this._state.isOpenChange.emit(true);
-        this.onShown.emit(true);
       });
+
   }
 
   /**
@@ -221,12 +220,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     if (this._showInline) {
       this._isInlineOpen = false;
+      this.onHidden.emit(true);
     } else {
       this._dropdown.hide();
     }
 
     this._state.isOpenChange.emit(false);
-    this.onHidden.emit(true);
   }
 
   /**
