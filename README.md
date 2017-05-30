@@ -1,4 +1,6 @@
 # ngx-bootstrap [![npm version](https://badge.fury.io/js/ngx-bootstrap.svg)](http://badge.fury.io/js/ngx-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ngx-bootstrap.svg)](https://npmjs.org/ngx-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
+[![Greenkeeper badge](https://badges.greenkeeper.io/valor-software/ngx-bootstrap.svg)](https://greenkeeper.io/)
+
 Native Angular directives for Bootstrap 3 and Bootstrap 4
 
 [![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
