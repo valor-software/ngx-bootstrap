@@ -26,18 +26,18 @@
       </div>
       <div class="modal-body">
         This is static modal <br>
-        <button type="button" class="btn btn-primary" (click)="childModall.show()">Open third modal</button>
+        <button type="button" class="btn btn-primary" (click)="thirdModal.show()">Open third modal</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" bsModal #childModall="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" bsModal #thirdModal="bs-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">Third modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="childModal.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="thirdModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
