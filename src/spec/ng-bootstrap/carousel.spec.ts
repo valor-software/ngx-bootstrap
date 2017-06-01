@@ -418,5 +418,5 @@ describe('ngb-carousel', () => {
 @Component({selector: 'test-cmp', template: ''})
 class TestComponent {
   public activeSlideIndex: number;
-  // keyboard = true;
+  keyboard:boolean;
 }
