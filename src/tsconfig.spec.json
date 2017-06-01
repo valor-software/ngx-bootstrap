@@ -20,7 +20,7 @@
     },
     "types": [
       "jasmine",
-      "node"
+      "webpack"
     ],
     "lib": [
       "es2016",
@@ -28,6 +28,7 @@
     ]
   },
   "include": [
+    "../scripts/typings.d.ts",
     "./spec/**/*.spec.ts",
     "**/*.d.ts"
   ],
