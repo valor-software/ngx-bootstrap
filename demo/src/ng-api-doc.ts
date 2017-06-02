@@ -1651,6 +1651,11 @@ export const ngdoc: any = {
         "name": "removable",
         "type": "boolean",
         "description": "<p>if true tab can be removable, additional button will appear </p>\n"
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "description": "<p>tab's ID</p>\n"
       }
     ],
     "outputs": [
