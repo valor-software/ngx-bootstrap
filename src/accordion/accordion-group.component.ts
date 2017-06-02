@@ -16,7 +16,7 @@ import { AccordionComponent } from './accordion.component';
   template: `
 <div class="panel card" [ngClass]="panelClass">
   <div class="panel-heading card-header" role="tab" (click)="toggleOpen($event)">
-    <div class="panel-title card-title">
+    <div class="panel-title">
       <div role="button" class="accordion-toggle" [attr.aria-expanded]="isOpen">
         <div *ngIf="heading"[ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
         <ng-content select="[accordion-heading]"></ng-content>
