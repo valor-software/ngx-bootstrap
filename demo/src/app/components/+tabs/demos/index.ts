@@ -5,9 +5,10 @@ import { DemoTabsPillsComponent } from './pills/pills';
 import { DemoTabsVerticalPillsComponent } from './vertical-pills/vertical-pills';
 import { DemoTabsJustifiedComponent } from './justified/justified';
 import { DemoTabsConfigComponent } from './config/config';
+import { DemoTabsManualComponent } from './manual/manual';
 
 export const DEMO_COMPONENTS = [
-  DemoTabsBasicComponent, DemoTabsDynamicComponent, DemoTabsStylingComponent, DemoTabsPillsComponent,
+  DemoTabsBasicComponent, DemoTabsManualComponent, DemoTabsDynamicComponent, DemoTabsStylingComponent, DemoTabsPillsComponent,
   DemoTabsVerticalPillsComponent, DemoTabsJustifiedComponent, DemoTabsConfigComponent
 ];
 
@@ -15,6 +16,10 @@ export const DEMOS = {
   basic: {
     component: require('!!raw-loader?lang=typescript!./basic/basic'),
     html: require('!!raw-loader?lang=markup!./basic/basic.html')
+  },
+  manual: {
+    component: require('!!raw-loader?lang=typescript!./manual/manual'),
+    html: require('!!raw-loader?lang=markup!./manual/manual.html')
   },
   dynamic: {
     component: require('!!raw-loader?lang=typescript!./dynamic/dynamic'),
