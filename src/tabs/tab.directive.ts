@@ -5,6 +5,8 @@ import { TabsetComponent } from './tabset.component';
 export class TabDirective implements OnInit {
   /** tab header text */
   @Input() public heading: string;
+  /** tab id */
+  @Input() public id: string;
   /** if true tab can not be activated */
   @Input() public disabled: boolean;
   /** if true tab can be removable, additional button will appear */
