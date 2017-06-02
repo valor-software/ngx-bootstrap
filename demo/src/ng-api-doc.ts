@@ -840,16 +840,16 @@ export const ngdoc: any = {
     ],
     "outputs": [
       {
+        "name": "isOpenChange",
+        "description": "<p>Emits an event when isOpen change</p>\n"
+      },
+      {
         "name": "onHidden",
-        "description": "<p>Emits an event when the dropdown is hidden</p>\n"
+        "description": "<p>Emits an event when the popover is hidden</p>\n"
       },
       {
         "name": "onShown",
-        "description": "<p>Emits an event when the dropdown is shown</p>\n"
-      },
-      {
-        "name": "isOpenChange",
-        "description": "<p>Emits an event when the dropdown is shown or hidden</p>\n"
+        "description": "<p>Emits an event when the popover is shown</p>\n"
       }
     ],
     "properties": [
@@ -1652,14 +1652,14 @@ export const ngdoc: any = {
         "description": "<p>tab header text </p>\n"
       },
       {
+        "name": "id",
+        "type": "string",
+        "description": "<p>tab id </p>\n"
+      },
+      {
         "name": "removable",
         "type": "boolean",
         "description": "<p>if true tab can be removable, additional button will appear </p>\n"
-      },
-      {
-        "name": "id",
-        "type": "string",
-        "description": "<p>tab's ID</p>\n"
       }
     ],
     "outputs": [
@@ -1669,7 +1669,7 @@ export const ngdoc: any = {
       },
       {
         "name": "removed",
-        "description": "<p>fired before tab will be removed, $event:Tab equals to instance of removed tab. <br> It's <strong>strongly recommended</strong> to remove a tab object from component when using dynamic tabs, otherwise removed tab can be displayed again after change detection</p>\n"
+        "description": "<p>fired before tab will be removed, $event:Tab equals to instance of removed tab </p>\n"
       },
       {
         "name": "select",
@@ -2047,6 +2047,7 @@ export const ngdoc: any = {
     "className": "TypeaheadDirective",
     "description": "",
     "selector": "[typeahead]",
+    "exportAs": "bs-typeahead",
     "inputs": [
       {
         "name": "container",
