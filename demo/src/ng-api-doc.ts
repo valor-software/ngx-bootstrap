@@ -1421,6 +1421,16 @@ export const ngdoc: any = {
         "description": "<p>maximum total value of progress element </p>\n"
       },
       {
+        "name": "stacked",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "stackedData",
+        "type": "any[]",
+        "description": ""
+      },
+      {
         "name": "type",
         "type": "string",
         "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code> </p>\n"

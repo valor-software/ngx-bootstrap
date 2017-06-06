@@ -26,7 +26,8 @@ export class DemoProgressbarStackedBs4Component {
       this.stacked.push({
         value,
         max: value, // i !== (n - 1) ? value : 100,
-        type: types[index]
+        type: types[index],
+        label: value + ' %'
       });
     }
   }

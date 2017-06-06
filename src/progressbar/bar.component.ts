@@ -1,6 +1,7 @@
-import { Component, Host, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { ProgressDirective } from './progress.directive';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 // todo: number pipe
 // todo: use query from progress?
@@ -10,8 +11,8 @@ import { ProgressDirective } from './progress.directive';
   <div class="progress-bar"
     style="min-width: 0;"
     role="progressbar"
-    [ngClass]="type && 'progress-bar-' + type"
-    [ngStyle]="{width: (percent < 100 ? percent : 100) + '%', transition: transition}"
+    [ngClass]="type && 'progress-bar-' + type + ' bg-' + type"
+    [ngStyle]="{width: (isBs3 ? (percent < 100 ? percent : 100) + '%' : '100%'), transition: transition}"
     aria-valuemin="0"
     [attr.aria-valuenow]="value"
     [attr.aria-valuetext]="percent.toFixed(0) + '%'"
@@ -28,6 +29,10 @@ export class BarComponent implements OnInit, OnDestroy {
   public get value():number {
     return this._value;
   }
+  @HostBinding('style.width.%') get setBarWidth(){
+    this.recalculatePercentage();
+    return this.isBs3 ? 'auto' : this.percent;
+  };
 
   public set value(v:number) {
     if (!v && v !== 0) {
@@ -37,6 +42,9 @@ export class BarComponent implements OnInit, OnDestroy {
     this.recalculatePercentage();
   }
 
+  public get isBs3(): boolean {
+    return isBs3();
+  }
   public percent:number = 0;
   public transition:string;
   public progress:ProgressDirective;
