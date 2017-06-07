@@ -96,7 +96,7 @@
     "google-code-prettify": "1.0.5",
     "html-loader": "0.4.5",
     "jasmine": "2.6.0",
-    "jasmine-core": "2.6.1",
+    "jasmine-core": "2.6.3",
     "jasmine-data-provider": "2.2.0",
     "jasmine-spec-reporter": "3.2.0",
     "karma": "1.7.0",
