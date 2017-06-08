@@ -4,14 +4,18 @@ import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalDirective } from './modal.component';
 import { PositioningService } from '../positioning';
 import { ComponentLoaderFactory } from '../component-loader';
+import { ModalContainerComponent } from './modal-container.component';
+import { ModalOptions } from './modal-options.class';
+import { BsModalService } from './bs-modal.service';
 
 @NgModule({
-  declarations: [ModalBackdropComponent, ModalDirective],
+  declarations: [ModalBackdropComponent, ModalDirective, ModalContainerComponent],
   exports: [ModalBackdropComponent, ModalDirective],
-  entryComponents: [ModalBackdropComponent]
+  providers: [BsModalService, ComponentLoaderFactory],
+  entryComponents: [ModalBackdropComponent, ModalContainerComponent]
 })
 export class ModalModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: ModalModule, providers: [ComponentLoaderFactory, PositioningService]};
+    return {ngModule: ModalModule, providers: [ComponentLoaderFactory, PositioningService, ModalOptions]};
   }
 }
