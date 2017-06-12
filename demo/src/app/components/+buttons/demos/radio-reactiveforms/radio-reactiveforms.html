@@ -1,0 +1,17 @@
+<pre class="card card-block card-header">{{myForm.controls.myControl.value}}</pre>
+<form [formGroup]="myForm">
+  <div class="btn-group">
+    <label class="btn btn-primary" [class.active]="myForm.controls.myControl.value == 'Left'">
+      <input type="radio" formControlName="myControl" style="display:none" value="Left">
+      Left
+    </label>
+    <label class="btn btn-primary" [class.active]="myForm.controls.myControl.value == 'Middle'">
+      <input type="radio" formControlName="myControl" style="display:none" value="Middle">
+      Middle
+    </label>
+    <label class="btn btn-primary" [class.active]="myForm.controls.myControl.value == 'Right'">
+      <input type="radio" formControlName="myControl" style="display:none" value="Right">
+      Right
+    </label>
+  </div>
+</form>

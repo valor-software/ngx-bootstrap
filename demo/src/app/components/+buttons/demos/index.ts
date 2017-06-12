@@ -1,10 +1,11 @@
 import { DemoButtonsBasicComponent } from './basic/basic';
 import { DemoButtonsCheckboxComponent } from './checkbox/checkbox';
 import { DemoButtonsRadioComponent } from './radio/radio';
+import { DemoButtonsRadioReactiveFormsComponent } from './radio-reactiveforms/radio-reactiveforms';
 import { DemoButtonsDisabledComponent } from './disabled/disabled';
 
 export const DEMO_COMPONENTS = [
-  DemoButtonsBasicComponent, DemoButtonsCheckboxComponent, DemoButtonsRadioComponent, DemoButtonsDisabledComponent
+  DemoButtonsBasicComponent, DemoButtonsCheckboxComponent, DemoButtonsRadioComponent, DemoButtonsRadioReactiveFormsComponent, DemoButtonsDisabledComponent
 ];
 
 export const DEMOS = {
@@ -19,6 +20,10 @@ export const DEMOS = {
   radio: {
     component: require('!!raw-loader?lang=typescript!./radio/radio.ts'),
     html: require('!!raw-loader?lang=markup!./radio/radio.html')
+  },
+  radioReactiveForms: {
+    component: require('!!raw-loader?lang=typescript!./radio-reactiveforms/radio-reactiveforms.ts'),
+    html: require('!!raw-loader?lang=markup!./radio-reactiveforms/radio-reactiveforms.html')
   },
   disabled: {
     component: require('!!raw-loader?lang=typescript!./disabled/disabled.ts'),
