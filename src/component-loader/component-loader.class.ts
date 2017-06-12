@@ -145,7 +145,7 @@ export class ComponentLoader<T> {
       this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
       this._componentRef = null;
 
-      if (this._contentRef.viewRef) {
+      if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {
         this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
         this._contentRef = null;
       }
@@ -236,6 +236,14 @@ export class ComponentLoader<T> {
       return new ContentRef([viewRef.rootNodes], viewRef);
     }
 
+    if (typeof content === 'function') {
+      console.log(`component`);
+      const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(content);
+      const modalContentInjector =
+        ReflectiveInjector.resolveAndCreate([content], this._injector);
+      const componentRef = contentCmptFactory.create(modalContentInjector);
+      return new ContentRef([[componentRef.location.nativeElement]], componentRef.hostView, componentRef);
+    }
     return new ContentRef([[this._renderer.createText(null, `${content}`)]]);
   }
 }

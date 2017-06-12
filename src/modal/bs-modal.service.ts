@@ -27,7 +27,7 @@ export class BsModalService {
   private modal: ModalDirective;
   public constructor(private clf: ComponentLoaderFactory) {}
 
-  public show(template: string | TemplateRef<any>, _element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer): ModalContainerComponent {
+  public show(template: string | TemplateRef<any> | any, _element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer): ModalContainerComponent {
     this._backdrop = this.clf.createLoader<ModalBackdropComponent>(_element, _viewContainerRef, _renderer);
     this._modal = this.clf
       .createLoader<ModalContainerComponent>(_element, _viewContainerRef, _renderer)

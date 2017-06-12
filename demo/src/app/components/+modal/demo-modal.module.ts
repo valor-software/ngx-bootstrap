@@ -8,10 +8,12 @@ import { SharedModule } from '../../shared';
 import { ModalSectionComponent } from './modal-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-modal.routes';
+import { ModalContentComponent } from './demos/static/modal-content.component';
 
 @NgModule({
   declarations: [
     ModalSectionComponent,
+    ModalContentComponent,
     ...DEMO_COMPONENTS
   ],
   imports: [
@@ -21,7 +23,8 @@ import { routes } from './demo-modal.routes';
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ModalSectionComponent]
+  exports: [ModalSectionComponent],
+  entryComponents: [ModalContentComponent]
 })
 export class DemoModalModule {
 

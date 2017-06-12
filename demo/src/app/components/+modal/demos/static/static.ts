@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BsModalService } from '../../../../../../../dist/modal/bs-modal.service';
 import { ModalContainerComponent } from '../../../../../../../dist/modal/modal-container.component';
+import { ModalContentComponent } from './modal-content.component';
 
 @Component({
   selector: 'demo-modal-static',
@@ -12,7 +13,7 @@ export class DemoModalStaticComponent {
   public openModal(template: string | TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.element, this.vcRef, this.renderer);
   }
-  public hideModal() {
-    this.modalRef.hide();
+  public openModalWithComponent() {
+    this.modalService.show(ModalContentComponent, this.element, this.vcRef, this.renderer);
   }
 }
