@@ -1,6 +1,4 @@
 <button type="button" class="btn btn-primary" (click)="staticModal.show()">Static modal</button>
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Create modal from service</button>
-<button type="button" class="btn btn-primary" (click)="openModalWithComponent()">Create modal from service with component</button>
 
 <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -19,19 +17,3 @@
     </div>
   </div>
 </div>
-<template #template>
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Static modal</h4>
-        <button type="button" class="close pull-right" aria-label="Close" data-bsmodal-close="true">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        This is static modal, backdrop click will not close it.
-        Click <b>&times;</b> to close modal.
-      </div>
-    </div>
-  </div>
-</template>

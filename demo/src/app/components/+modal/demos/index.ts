@@ -2,15 +2,16 @@ import { DemoModalSizesComponent } from './sizes/sizes';
 import { DemoModalStaticComponent } from './static/static';
 import { DemoModalChildComponent } from './child/child';
 import { DemoAutoShownModalComponent } from './auto-shown/auto-shown';
-import { DemoNestedDropdownsComponent } from '../../+dropdown/demos/nested-dropdowns/nested-dropdowns';
 import { DemoModalNestedComponent } from './nested/nested';
+import {DemoModalServiceComponent} from './service/service';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
   DemoModalChildComponent,
   DemoModalStaticComponent,
   DemoAutoShownModalComponent,
-  DemoModalNestedComponent
+  DemoModalNestedComponent,
+  DemoModalServiceComponent
 ];
 
 export const DEMOS = {
@@ -33,5 +34,9 @@ export const DEMOS = {
   autoShown: {
     component: require('!!raw-loader?lang=typescript!./auto-shown/auto-shown.ts'),
     html: require('!!raw-loader?lang=markup!./auto-shown/auto-shown.html')
+  },
+  service: {
+    component: require('!!raw-loader?lang=typescript!./service/service.ts'),
+    html: require('!!raw-loader?lang=markup!./service/service.html')
   }
 };

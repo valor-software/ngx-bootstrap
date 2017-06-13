@@ -12,8 +12,11 @@ import { Component } from '@angular/core';
           </button>
         </div>
         <div class="modal-body">
-          This is static modal, backdrop click will not close it.
+          This is a modal with component inside.
           Click <b>&times;</b> to close modal.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-bsmodal-close="true">Close</button>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ import { SharedModule } from '../../shared';
 import { ModalSectionComponent } from './modal-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-modal.routes';
-import { ModalContentComponent } from './demos/static/modal-content.component';
+import { ModalContentComponent } from './demos/service/modal-content.component';
 
 @NgModule({
   declarations: [

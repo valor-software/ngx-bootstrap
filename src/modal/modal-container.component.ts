@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, OnInit, Renderer } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnInit } from '@angular/core';
 import { ModalOptions } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 
@@ -27,7 +27,14 @@ export class ModalContainerComponent implements OnInit {
 
     this.hide();
   }
-  public constructor(options: ModalOptions, _element: ElementRef, private bsModalService: BsModalService, private renderer: Renderer) {
+  @HostListener('window:keydown.esc')
+  public onEsc(): void {
+    if (this.config.keyboard) {
+      this.hide();
+    }
+  }
+
+  public constructor(options: ModalOptions, _element: ElementRef, private bsModalService: BsModalService) {
     this._element = _element;
     this.config = Object.assign({}, options);
   }

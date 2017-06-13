@@ -20,6 +20,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="child">Child modal</a></li>
         <li><a routerLink="." fragment="nested">Nested modals</a></li>
         <li><a routerLink="." fragment="auto-shown">Auto shown modal</a></li>
+        <li><a routerLink="." fragment="service">Service</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -71,6 +72,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </p>
   <ng-sample-box [ts]="demos.autoShown.component" [html]="demos.autoShown.html">
     <demo-modal-auto-shown></demo-modal-auto-shown>
+  </ng-sample-box>
+
+  <h2 routerLink="." fragment="service" id="service">Modal service</h2>
+  <p>Open a modal from service</p>
+  <ng-sample-box [ts]="demos.service.component" [html]="demos.service.html">
+    <demo-modal-service></demo-modal-service>
   </ng-sample-box>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
