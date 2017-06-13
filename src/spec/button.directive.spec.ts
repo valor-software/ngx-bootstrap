@@ -491,6 +491,21 @@ describe('Directive: Buttons', () => {
       expect(btn.children[3].classList).not.toContain('active');
     }));
 
+    it('should not toggle when click in active button without uncheckable', () => {
+      fixture = createComponent(html, 'OnPush');
+      context = fixture.componentInstance;
+      element = fixture.nativeElement;
+
+      let btn = element.querySelector('.btn-group.radio');
+      expect(context.radioModel).toEqual('Middle');
+
+      (btn.children[1] as HTMLElement).click();
+      fixture.detectChanges();
+      expect(btn.children[0].classList).not.toContain('active');
+      expect(btn.children[1].classList).toContain('active');
+      expect(btn.children[2].classList).not.toContain('active');
+    });
+
     it('should unset active class via click', () => {
       fixture = createComponent(html);
       context = fixture.componentInstance;

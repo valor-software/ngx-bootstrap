@@ -1,5 +1,12 @@
 import {
-  Directive, ElementRef, HostBinding, forwardRef, HostListener, Input, OnInit, ChangeDetectorRef
+  Directive,
+  ElementRef,
+  HostBinding,
+  forwardRef,
+  HostListener,
+  Input,
+  OnInit,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -41,12 +48,17 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 
     if (this.uncheckable && this.btnRadio === this.value) {
       this.value = undefined;
-    } else {
-      this.value = this.btnRadio;
+      this.onTouched();
+      this.onChange(this.value);
+      return;
     }
 
-    this.onTouched();
-    this.onChange(this.value);
+    if (this.btnRadio !== this.value) {
+      this.value = this.btnRadio;
+      this.onTouched();
+      this.onChange(this.value);
+      return;
+    }
   }
 
   public constructor(el: ElementRef, private cdr: ChangeDetectorRef) {
