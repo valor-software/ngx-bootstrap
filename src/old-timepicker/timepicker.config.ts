@@ -4,23 +4,23 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TimepickerConfig {
   /** hours change step */
-  hourStep = 1;
+  public hourStep: number = 1;
   /** hours change step */
-  minuteStep = 5;
+  public minuteStep: number = 5;
   /** if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM */
-  showMeridian = true;
+  public showMeridian: boolean = true;
   /** meridian labels based on locale */
-  meridians = ['AM', 'PM'];
+  public meridians:string[] = ['AM', 'PM'];
   /** if true hours and minutes fields will be readonly */
-  readonlyInput = false;
+  public readonlyInput: boolean = false;
   /** if true scroll inside hours and minutes inputs will change time */
-  mousewheel = true;
+  public mousewheel: boolean = true;
   /** if true up/down arrowkeys inside hours and minutes inputs will change time */
-  arrowkeys = true;
+  public arrowkeys: boolean = true;
   /** if true spinner arrows above and below the inputs will be shown */
-  showSpinners = true;
+  public showSpinners: boolean = true;
   /** minimum time user can select */
-  min: Date;
+  public min: number = void 0;
   /** maximum time user can select */
-  max: Date;
+  public max: number = void 0;
 }
