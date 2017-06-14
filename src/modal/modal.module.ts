@@ -5,7 +5,6 @@ import { ModalDirective } from './modal.component';
 import { PositioningService } from '../positioning';
 import { ComponentLoaderFactory } from '../component-loader';
 import { ModalContainerComponent } from './modal-container.component';
-import { ModalOptions } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 
 @NgModule({
@@ -16,6 +15,6 @@ import { BsModalService } from './bs-modal.service';
 })
 export class ModalModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: ModalModule, providers: [ComponentLoaderFactory, PositioningService, ModalOptions]};
+    return {ngModule: ModalModule, providers: [ComponentLoaderFactory, PositioningService]};
   }
 }

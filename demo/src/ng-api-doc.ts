@@ -903,11 +903,28 @@ export const ngdoc: any = {
       }
     ]
   },
+  "BsModalService": {
+    "fileName": "src/modal/bs-modal.service.ts",
+    "className": "BsModalService",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
     "className": "ModalBackdropComponent",
     "description": "<p>This component will be added as background layout for modals if enabled </p>\n",
     "selector": "bs-modal-backdrop",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ModalContainerComponent": {
+    "fileName": "src/modal/modal-container.component.ts",
+    "className": "ModalContainerComponent",
+    "description": "",
+    "selector": "modal-container",
     "inputs": [],
     "outputs": [],
     "properties": [],

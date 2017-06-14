@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class ModalOptions {
   /**
    *  Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click.
