@@ -2,7 +2,12 @@
 
 <pre class="alert alert-info">Time is: {{mytime}}</pre>
 
-<hr>
+<br>
 
 <button type="button" class="btn btn-info" (click)="toggleMode()">12H / 24H</button>
 
+<hr>
+
+<timepicker [(ngModel)]="mytime2" [meridians]="meridianText"></timepicker>
+
+<pre class="alert alert-info">Time is: {{mytime2}}</pre>

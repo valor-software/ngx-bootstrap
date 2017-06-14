@@ -23,101 +23,122 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   template: `
     <table>
       <tbody>
-      <tr class="text-center" [class.hidden]="!isSpinnersVisible">
-        <!-- increment hours button-->
-        <td><a class="btn btn-link"
-               [class.disabled]="!canIncrementHours"
-               (click)="changeHours(hourStep)"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-        <!-- divider -->
-        <td>&nbsp;</td>
-        <!-- increment minutes button -->
-        <td><a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
-               (click)="changeMinutes(minuteStep)"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-        <!-- divider -->
-        <td *ngIf="showSeconds">&nbsp;</td>
-        <!-- increment seconds button -->
-        <td *ngIf="showSeconds"><a class="btn btn-link" [class.disabled]="!canIncrementSeconds"
-                                   (click)="changeSeconds(secondsStep)"><span
-          class="glyphicon glyphicon-chevron-up"></span></a></td>
-        <!-- meridian placeholder-->
-        <td *ngIf="showMeridian"></td>
-      </tr>
-      <tr>
-        <!-- hours -->
-        <td class="form-group" [class.has-error]="invalidHours">
-          <input type="text" style="width:50px;"
-                 class="form-control text-center"
-                 placeholder="HH"
-                 maxlength="2"
-                 #input_hours
-                 [readonly]="readonlyInput"
-                 [value]="hours"
-                 (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
-                 (keydown.ArrowUp)="changeHours(hourStep, 'key')"
-                 (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
-                 (change)="updateHours(input_hours.value)"></td>
-        <!-- divider -->
-        <td>:</td>
-        <!-- minutes -->
-        <td class="form-group" [class.has-error]="invalidMinutes">
-          <input style="width:50px;" type="text"
-                 class="form-control text-center"
-                 placeholder="MM"
-                 maxlength="2"
-                 #input_minutes
-                 [readonly]="readonlyInput"
-                 [value]="minutes"
-                 (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
-                 (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
-                 (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
-                 (change)="updateMinutes(input_minutes.value)">
-        </td>
-        <!-- divider -->
-        <td *ngIf="showSeconds">:</td>
-        <!-- seconds -->
-        <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
-          <input style="width:50px;" type="text"
-                 class="form-control text-center"
-                 placeholder="SS"
-                 maxlength="2"
-                 #input_seconds
-                 [readonly]="readonlyInput"
-                 [value]="seconds"
-                 (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
-                 (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
-                 (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
-                 (change)="updateSeconds(input_seconds.value)">
-        </td>
-        <!-- meridian -->
-        <td *ngIf="showMeridian">
-          <button type="button" class="btn btn-default text-center"
-                  [disabled]="readonlyInput"
-                  [class.disabled]="readonlyInput"
-                  (keydown)="toggleMeridian()"
-                  (click)="toggleMeridian()">{{meridian}}
-          </button>
-        </td>
-      </tr>
-      <tr class="text-center" [class.hidden]="!isSpinnersVisible">
-        <!-- decrement hours button-->
-        <td><a class="btn btn-link" [class.disabled]="!canDecrementHours"
-               (click)="changeHours(-hourStep)">
-          <span class="glyphicon glyphicon-chevron-down"></span></a></td>
-        <!-- divider -->
-        <td>&nbsp;</td>
-        <!-- decrement minutes button-->
-        <td><a class="btn btn-link" [class.disabled]="!canDecrementMinutes"
-               (click)="changeMinutes(-minuteStep)">
-          <span class="glyphicon glyphicon-chevron-down"></span></a></td>
-        <!-- divider -->
-        <td *ngIf="showSeconds">&nbsp;</td>
-        <!-- decrement seconds button-->
-        <td *ngIf="showSeconds"><a class="btn btn-link" [class.disabled]="!canDecrementSeconds"
-                                   (click)="changeSeconds(-secondsStep)">
-          <span class="glyphicon glyphicon-chevron-down"></span></a></td>
-        <!-- meridian placeholder-->
-        <td *ngIf="showMeridian"></td>
-      </tr>
+        <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+          <!-- increment hours button-->
+          <td>
+            <a class="btn btn-link" [class.disabled]="!canIncrementHours" (click)="changeHours(hourStep)">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+          </td>
+          <!-- divider -->
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <!-- increment minutes button -->
+          <td>
+            <a class="btn btn-link" [class.disabled]="!canIncrementMinutes" (click)="changeMinutes(minuteStep)">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+          </td>
+          <!-- divider -->
+          <td *ngIf="showSeconds">&nbsp;</td>
+          <!-- increment seconds button -->
+          <td *ngIf="showSeconds">
+            <a class="btn btn-link" [class.disabled]="!canIncrementSeconds" (click)="changeSeconds(secondsStep)">
+              <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+          </td>
+          <!-- space between -->
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <!-- meridian placeholder-->
+          <td *ngIf="showMeridian"></td>
+        </tr>
+        <tr>
+          <!-- hours -->
+          <td class="form-group" [class.has-error]="invalidHours">
+            <input type="text" style="width:50px;"
+                   class="form-control text-center"
+                   placeholder="HH"
+                   maxlength="2"
+                   #input_hours
+                   [readonly]="readonlyInput"
+                   [value]="hours"
+                   (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
+                   (keydown.ArrowUp)="changeHours(hourStep, 'key')"
+                   (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
+                   (keydown.Enter)="updateHours(input_hours.value)"
+                   (change)="updateHours(input_hours.value)"></td>
+          <!-- divider -->
+          <td>&nbsp;:&nbsp;</td>
+          <!-- minutes -->
+          <td class="form-group" [class.has-error]="invalidMinutes">
+            <input style="width:50px;" type="text"
+                   class="form-control text-center"
+                   placeholder="MM"
+                   maxlength="2"
+                   #input_minutes
+                   [readonly]="readonlyInput"
+                   [value]="minutes"
+                   (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
+                   (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
+                   (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
+                   (change)="updateMinutes(input_minutes.value)">
+          </td>
+          <!-- divider -->
+          <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
+          <!-- seconds -->
+          <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
+            <input style="width:50px;" type="text"
+                   class="form-control text-center"
+                   placeholder="SS"
+                   maxlength="2"
+                   #input_seconds
+                   [readonly]="readonlyInput"
+                   [value]="seconds"
+                   (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
+                   (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
+                   (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
+                   (change)="updateSeconds(input_seconds.value)">
+          </td>
+          <!-- space between -->
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <!-- meridian -->
+          <td *ngIf="showMeridian">
+            <button type="button" class="btn btn-default text-center"
+                    [disabled]="readonlyInput"
+                    [class.disabled]="readonlyInput"
+                    (keydown)="toggleMeridian()"
+                    (click)="toggleMeridian()">
+              {{meridian}}
+            </button>
+          </td>
+        </tr>
+        <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+          <!-- decrement hours button-->
+          <td>
+            <a class="btn btn-link" [class.disabled]="!canDecrementHours" (click)="changeHours(-hourStep)">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+          </td>
+          <!-- divider -->
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <!-- decrement minutes button-->
+          <td>
+            <a class="btn btn-link" [class.disabled]="!canDecrementMinutes" (click)="changeMinutes(-minuteStep)">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+          </td>
+          <!-- divider -->
+          <td *ngIf="showSeconds">&nbsp;</td>
+          <!-- decrement seconds button-->
+          <td *ngIf="showSeconds">
+            <a class="btn btn-link" [class.disabled]="!canDecrementSeconds" (click)="changeSeconds(-secondsStep)">
+              <span class="glyphicon glyphicon-chevron-down"></span>
+            </a>
+          </td>
+          <!-- space between -->
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <!-- meridian placeholder-->
+          <td *ngIf="showMeridian"></td>
+        </tr>
       </tbody>
     </table>
   `
@@ -221,8 +242,12 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerCont
       return;
     }
 
-    if (step > 0 && !this.canIncrementHours) { return; }
-    if (step < 0 && !this.canDecrementHours) { return; }
+    if (step > 0 && !this.canIncrementHours) {
+      return;
+    }
+    if (step < 0 && !this.canDecrementHours) {
+      return;
+    }
 
     this._store.dispatch(this._timepickerActions.changeHours(step));
   }
@@ -232,8 +257,12 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerCont
       return;
     }
 
-    if (step > 0 && !this.canIncrementMinutes) { return; }
-    if (step < 0 && !this.canDecrementMinutes) { return; }
+    if (step > 0 && !this.canIncrementMinutes) {
+      return;
+    }
+    if (step < 0 && !this.canDecrementMinutes) {
+      return;
+    }
 
     this._store.dispatch(this._timepickerActions.changeMinutes(step));
   }
@@ -243,8 +272,12 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerCont
       return;
     }
 
-    if (step > 0 && !this.canIncrementSeconds) { return; }
-    if (step < 0 && !this.canDecrementSeconds) { return; }
+    if (step > 0 && !this.canIncrementSeconds) {
+      return;
+    }
+    if (step < 0 && !this.canDecrementSeconds) {
+      return;
+    }
 
     this._store.dispatch(this._timepickerActions.changeSeconds(step));
   }
