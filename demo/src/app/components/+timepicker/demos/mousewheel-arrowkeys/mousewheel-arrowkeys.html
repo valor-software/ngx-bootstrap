@@ -1,0 +1,11 @@
+<p>Without mousewheel</p>
+
+<timepicker [(ngModel)]="myTime1" [mousewheel]="false"></timepicker>
+
+<pre class="alert alert-info">Time is: {{myTime1}}</pre>
+
+<p>Without arrowkeys</p>
+
+<timepicker [(ngModel)]="myTime2" [arrowkeys]="false" (change)="changed()"></timepicker>
+
+<pre class="alert alert-info">Time is: {{myTime2}}</pre>
