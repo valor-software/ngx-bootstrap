@@ -1,5 +1,5 @@
-import { Component, ElementRef, HostBinding, HostListener, OnInit } from '@angular/core';
-import { ModalOptions } from './modal-options.class';
+import {Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, Renderer} from '@angular/core';
+import { ClassName, ModalOptions } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 
 const TRANSITION_DURATION = 300;
@@ -14,7 +14,7 @@ const TRANSITION_DURATION = 300;
     style: 'display:block;'
   }
 })
-export class ModalContainerComponent implements OnInit {
+export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
   protected _element: ElementRef;
 
@@ -34,7 +34,7 @@ export class ModalContainerComponent implements OnInit {
     }
   }
 
-  public constructor(options: ModalOptions, _element: ElementRef, private bsModalService: BsModalService) {
+  public constructor(options: ModalOptions, _element: ElementRef, private bsModalService: BsModalService, private _renderer: Renderer) {
     this._element = _element;
     this.config = Object.assign({}, options);
   }
@@ -47,6 +47,15 @@ export class ModalContainerComponent implements OnInit {
     closeButtons.forEach((btn: any) => {
       btn.addEventListener('click', () => {this.hide();});
     });
+    if (document && document.body) {
+      this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (document && document.body) {
+      this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+    }
   }
 
   hide(): void {

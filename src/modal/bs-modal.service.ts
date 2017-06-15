@@ -1,4 +1,4 @@
-import { ComponentRef, ElementRef, Injectable, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
+import {ComponentRef, ElementRef, Injectable, Renderer, TemplateRef, ViewContainerRef} from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
@@ -52,12 +52,11 @@ export class BsModalService {
         this._modal.hide();
       }
       this.backdrop = null;
-      // this._modal = null;
     }, BACKDROP_TRANSITION_DURATION);
   }
   /** @internal */
   protected showBackdrop(callback?: Function): void {
-    if (this._isShown && this.config.backdrop && (!this.backdrop || !this.backdrop.instance.isShown)) {
+    if (this._isShown && (this.config.backdrop || this.config.backdrop === 'static') && (!this.backdrop || !this.backdrop.instance.isShown)) {
       this.removeBackdrop();
       this._backdrop
         .attach(ModalBackdropComponent)

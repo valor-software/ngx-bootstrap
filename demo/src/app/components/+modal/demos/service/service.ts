@@ -13,7 +13,7 @@ export class DemoModalServiceComponent {
     this.modalService = this.modalService.create(this.element, this.vcRef, this.renderer);
   }
   public openModal(template: string | TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {backdrop: false});
+    this.modalRef = this.modalService.show(template, {backdrop: 'static'});
   }
   public openModalWithComponent() {
     this.modalService.show(ModalContentComponent);
