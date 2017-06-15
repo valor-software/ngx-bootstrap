@@ -78,7 +78,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p>Open a modal from service</p>
   <p>To be able to open modals from service, inject BsModalService, ElementRef, ViewContainerRef and Renderer to your constructor. <br>
   Then prepare modal service like this <code>this.modalService = this.modalService.create(this.element, this.vcRef, this.renderer)</code>. <br>
-    Finally, call <code>.open()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). <br>
+    Finally, call <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). <br>
+    <code>.show()</code> method returns an object with <code>.hide()</code> method and <code>content</code> property where you'll find a component which you've passed to service <br>
     You can also define an area of template which should trigger hiding of modal by clicking on it. Just add <code>data-bsmodal-close="true"</code>
   </p>
   <ng-sample-box [ts]="demos.service.component" [html]="demos.service.html">

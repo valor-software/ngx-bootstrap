@@ -28,7 +28,7 @@ export class BsModalService {
     return this;
   }
 
-  public show(content: string | TemplateRef<any> | any, config: any = {}): ModalContainerComponent {
+  public show(content: string | TemplateRef<any> | any, config: any = {}): any {
     this.config = Object.assign({}, modalConfigDefaults, config);
     clearTimeout(this.timerRmBackDrop);
     this._isShown = true;
@@ -38,7 +38,10 @@ export class BsModalService {
       .attach(ModalContainerComponent)
       .to('body')
       .show({content});
-    return modalContainer.instance;
+    return {
+      hide: modalContainer.instance.hide.bind(modalContainer.instance),
+      content: modalContainer.instance._bsContent || null
+    };
   }
 
   public hide() {

@@ -9,6 +9,7 @@ import {
 import { ContentRef } from './content-ref.class';
 import { PositioningService, PositioningOptions } from '../positioning';
 import { listenToTriggers } from '../utils/triggers';
+import {logger} from 'codelyzer/util/logger';
 
 export interface ListenOptions {
   target?: ElementRef;
@@ -133,9 +134,15 @@ export class ComponentLoader<T> {
       // via
       // Renderer::listen() are not picked up by change detection with the
       // OnPush strategy
+      if (this._contentRef.componentRef) {
+        this._contentRef.componentRef.changeDetectorRef.markForCheck();
+        this._contentRef.componentRef.changeDetectorRef.detectChanges();
+        (<any>this._componentRef.instance)['_bsContent'] = this._contentRef.componentRef.instance;
+      }
       this._componentRef.changeDetectorRef.markForCheck();
       this.onShown.emit(this._componentRef.instance);
     }
+
     return this._componentRef;
   }
 
