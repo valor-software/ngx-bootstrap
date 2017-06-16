@@ -33,14 +33,14 @@ export class BsModalService {
     clearTimeout(this.timerRmBackDrop);
     this._isShown = true;
     this.showBackdrop();
-    const modalContainer = this._modal
+    this._modal
       .provide({provide: ModalOptions, useValue: this.config})
       .attach(ModalContainerComponent)
       .to('body')
       .show({content});
     return {
-      hide: modalContainer.instance.hide.bind(modalContainer.instance),
-      content: modalContainer.instance._bsContent || null
+      hide: () => {this.hide()},
+      content: this._modal.getInnerComponent() || null
     };
   }
 

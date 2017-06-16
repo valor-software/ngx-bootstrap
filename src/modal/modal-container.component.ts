@@ -17,7 +17,6 @@ const TRANSITION_DURATION = 300;
 export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
   protected _element: ElementRef;
-  public _bsContent: any;
 
   @HostBinding('class.in') public isShown: boolean = false;
   @HostListener('click', ['$event'])

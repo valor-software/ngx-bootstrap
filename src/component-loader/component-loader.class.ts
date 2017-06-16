@@ -33,6 +33,7 @@ export class ComponentLoader<T> {
   private _elementRef: ElementRef;
   private _zoneSubscription: any;
   private _contentRef: ContentRef;
+  private _innerComponent: ComponentRef<T>;
   private _viewContainerRef: ViewContainerRef;
   private _injector: Injector;
   private _renderer: Renderer;
@@ -114,6 +115,7 @@ export class ComponentLoader<T> {
 
   public show(opts: {content?: string | TemplateRef<any>, [key:string]: any} = {}): ComponentRef<T> {
     this._subscribePositioning();
+    this._innerComponent = null;
 
     if (!this._componentRef) {
       this.onBeforeShow.emit();
@@ -135,14 +137,13 @@ export class ComponentLoader<T> {
       // Renderer::listen() are not picked up by change detection with the
       // OnPush strategy
       if (this._contentRef.componentRef) {
+        this._innerComponent = this._contentRef.componentRef.instance;
         this._contentRef.componentRef.changeDetectorRef.markForCheck();
         this._contentRef.componentRef.changeDetectorRef.detectChanges();
-        (<any>this._componentRef.instance)['_bsContent'] = this._contentRef.componentRef.instance;
       }
       this._componentRef.changeDetectorRef.markForCheck();
       this.onShown.emit(this._componentRef.instance);
     }
-
     return this._componentRef;
   }
 
@@ -203,6 +204,10 @@ export class ComponentLoader<T> {
       listenOpts.toggle);
 
     return this;
+  }
+
+  public getInnerComponent(): ComponentRef<T> {
+    return this._innerComponent;
   }
 
   private _subscribePositioning(): void {
