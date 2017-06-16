@@ -62,7 +62,7 @@
     "@angular/common": "^2.3.1 || >=4.0.0",
     "@angular/compiler": "^2.3.1 || >=4.0.0",
     "@angular/core": "^2.3.1 || >=4.0.0",
-    "@angular/forms": "^2.3.1 || >=4.0.0"
+    "@angular/forms": "^4.2.3"
   },
   "devDependencies": {
     "@angular/cli": "^1.0.6",
