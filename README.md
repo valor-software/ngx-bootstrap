@@ -3,7 +3,7 @@
 
 Native Angular directives for Bootstrap 3 and Bootstrap 4
 
-[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
+[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/guide/styleguide)
 [![Build Status](https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=master)](https://travis-ci.org/valor-software/ngx-bootstrap)
 [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap)
 [![Dependency Status](https://david-dm.org/valor-software/ngx-bootstrap.svg)](https://david-dm.org/valor-software/ngx-bootstrap)
