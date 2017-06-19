@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'modal-content',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title pull-left">{{title}}</h4>
-          <button type="button" class="close pull-right" aria-label="Close" data-bsmodal-close="true">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -16,7 +17,7 @@ import { Component } from '@angular/core';
           Click <b>&times;</b> to close modal.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-bsmodal-close="true">Close</button>
+          <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
         </div>
       </div>
     </div>
@@ -24,4 +25,5 @@ import { Component } from '@angular/core';
 })
 export class ModalContentComponent {
   public title: string = 'Modal with component';
+  constructor(public bsModalRef: BsModalRef) {}
 }

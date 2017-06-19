@@ -1,10 +1,10 @@
-import {ComponentRef, ElementRef, Injectable, Renderer, TemplateRef, ViewContainerRef} from '@angular/core';
+import { ComponentRef, ElementRef, Injectable, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { Utils } from '../utils/utils.class';
-import { modalConfigDefaults, ModalOptions } from './modal-options.class';
+import { BsModalRef, modalConfigDefaults, ModalOptions } from './modal-options.class';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -33,13 +33,16 @@ export class BsModalService {
     clearTimeout(this.timerRmBackDrop);
     this._isShown = true;
     this.showBackdrop();
-    this._modal
+    const bsModalRef = new BsModalRef();
+    const modalContainerRef = this._modal
       .provide({provide: ModalOptions, useValue: this.config})
+      .provide({provide: BsModalRef, useValue: bsModalRef})
       .attach(ModalContainerComponent)
       .to('body')
       .show({content});
+    bsModalRef.hide = () => {modalContainerRef.instance.hide()};
     return {
-      hide: () => {this.hide()},
+      hide: () => {bsModalRef.hide()},
       content: this._modal.getInnerComponent() || null
     };
   }

@@ -250,7 +250,7 @@ export class ComponentLoader<T> {
 
     if (typeof content === 'function') {
       const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(content);
-      const modalContentInjector = ReflectiveInjector.resolveAndCreate([content], this._injector);
+      const modalContentInjector = ReflectiveInjector.resolveAndCreate([...this._providers, content], this._injector);
       const componentRef = contentCmptFactory.create(modalContentInjector);
       return new ContentRef([[componentRef.location.nativeElement]], componentRef.hostView, componentRef);
     }

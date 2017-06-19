@@ -22,6 +22,14 @@ export class ModalOptions {
   ignoreBackdropClick?:boolean;
 }
 
+@Injectable()
+export class BsModalRef {
+  /**
+   * Hides the modal
+   */
+  hide(): void {}
+}
+
 export const modalConfigDefaults:ModalOptions = {
   backdrop: true,
   keyboard: true,

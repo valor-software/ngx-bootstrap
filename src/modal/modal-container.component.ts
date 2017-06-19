@@ -1,4 +1,4 @@
-import {Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, Renderer} from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, Renderer } from '@angular/core';
 import { ClassName, ModalOptions } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 
@@ -17,11 +17,10 @@ const TRANSITION_DURATION = 300;
 export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
   protected _element: ElementRef;
-
   @HostBinding('class.in') public isShown: boolean = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
-    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
+    if (!this.checkCloseAttr(event.target) && (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement)) {
       return;
     }
 
@@ -42,11 +41,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     setTimeout(() => {
       this.isShown = true;
-    }, 50);
-    const closeButtons = this._element.nativeElement.querySelectorAll('[data-bsmodal-close="true"]');
-    closeButtons.forEach((btn: any) => {
-      btn.addEventListener('click', () => {this.hide();});
-    });
+    }, 0);
     if (document && document.body) {
       this._renderer.setElementClass(document.body, ClassName.OPEN, true);
     }
@@ -63,5 +58,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.bsModalService.hide();
     }, TRANSITION_DURATION);
+  }
+  private checkCloseAttr(node: any): boolean {
+    if (node.hasAttribute('data-bsmodal-close') && node.getAttribute('data-bsmodal-close') === 'true') {
+      return true;
+    } else {
+      return node.parentNode && node.parentNode.tagName !== 'BODY' ? this.checkCloseAttr(node.parentNode) : false;
+    }
   }
 }
