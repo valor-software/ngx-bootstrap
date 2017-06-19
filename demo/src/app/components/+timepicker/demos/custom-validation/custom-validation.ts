@@ -11,4 +11,6 @@ export class DemoTimepickerCustomValidationComponent {
   public ctrl = new FormControl('', (control: FormControl) => {
     const value = control.value;
     console.log('control', control);
+    return control;
+  });
 }

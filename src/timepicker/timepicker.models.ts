@@ -1,7 +1,8 @@
-export interface TimeUnit {
-  hour?: number;
-  minute?: number;
-  seconds?: number;
+export interface Time {
+  hour?: string | number;
+  minute?: string | number;
+  seconds?: string | number;
+  isPM?: boolean;
 }
 
 export interface TimepickerControls {
@@ -15,11 +16,28 @@ export interface TimepickerControls {
 }
 
 export interface TimepickerComponentState {
-  value: Date;
   min: Date;
   max: Date;
+
   hourStep: number;
   minuteStep: number;
   secondsStep: number;
+
+  readonlyInput: boolean;
+
+  mousewheel: boolean;
+  arrowkeys: boolean;
+
+  showSpinners: boolean;
+  showMeridian: boolean;
   showSeconds: boolean;
+
+  meridians: string[];
+}
+
+export type TimeChangeSource = 'wheel' | 'key' | '';
+
+export interface TimeChangeEvent {
+  step: number;
+  source: TimeChangeSource;
 }

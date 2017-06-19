@@ -5,7 +5,7 @@ import { TimepickerConfig } from '../../timepicker/timepicker.config';
 import { TimepickerActions } from '../../timepicker/reducer/timepicker.actions';
 import { Data } from '@angular/router';
 
-fdescribe('Component: timepicker', () => {
+describe('Component: timepicker', () => {
   let fixture: ComponentFixture<TimepickerComponent>;
   let context: TimepickerComponent;
   let nativeEl: any;
@@ -33,20 +33,20 @@ fdescribe('Component: timepicker', () => {
     context.wheelSign(new Event('customWheel'));
   });
 
-  it('should canBeChanged wheel', () => {
-    context.mousewheel = false;
-    context.canBeChanged('wheel');
-  });
-
-  it('should canBeChanged key', () => {
-    context.arrowkeys = false;
-    context.canBeChanged('key');
-  });
-
-  it('should canBeChanged true', () => {
-    context.readonlyInput = true;
-    context.canBeChanged();
-  });
+  // it('should canBeChanged wheel', () => {
+  //   context.mousewheel = false;
+  //   context.canBeChanged('wheel');
+  // });
+  //
+  // it('should canBeChanged key', () => {
+  //   context.arrowkeys = false;
+  //   context.canBeChanged('key');
+  // });
+  //
+  // it('should canBeChanged true', () => {
+  //   context.readonlyInput = true;
+  //   context.canBeChanged();
+  // });
 
   it('should changeHours', () => {
     context.changeHours(3);

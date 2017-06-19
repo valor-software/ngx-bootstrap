@@ -9,10 +9,6 @@ export class DemoTimepickerMeridianComponent {
 
   public mytime: Date = new Date();
 
-  public mytime2: Date = new Date();
-
-  public meridianText = ['12h', '24h'];
-
   public toggleMode(): void {
     this.ismeridian = !this.ismeridian;
   }

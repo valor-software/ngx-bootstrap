@@ -1,18 +1,96 @@
 import { setTime } from './timepicker.utils';
-import { TimepickerComponentState, TimepickerControls } from './timepicker.models';
+import { TimeChangeEvent, TimepickerComponentState, TimepickerControls } from './timepicker.models';
 
-export function timepickerControls(state: TimepickerComponentState): TimepickerControls {
-  const {min, max, value, hourStep, minuteStep, secondsStep, showSeconds} = state;
-  const res = {} as TimepickerControls;
+export function canChangeValue(state: TimepickerComponentState, event?: TimeChangeEvent): boolean {
+  if (state.readonlyInput) {
+    return false;
+  }
 
-  if (!min && !max) {
-    res.canIncrementHours = true;
-    res.canIncrementMinutes = true;
-    res.canIncrementSeconds = true;
-    res.canDecrementHours = true;
-    res.canDecrementMinutes = true;
-    res.canDecrementSeconds = true;
+  if (event) {
+    if (event.source === 'wheel' && !state.mousewheel) {
+      return false;
+    }
 
+    if (event.source === 'key' && !state.arrowkeys) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+export function canChangeHours(event: TimeChangeEvent, controls: TimepickerControls): boolean {
+  if (!event.step) {
+    return false;
+  }
+
+  if (event.step > 0 && !controls.canIncrementHours) {
+    return false;
+  }
+
+  if (event.step < 0 && !controls.canDecrementHours) {
+    return false;
+  }
+
+  return true;
+}
+
+export function canChangeMinutes(event: TimeChangeEvent, controls: TimepickerControls): boolean {
+  if (!event.step) {
+    return false;
+  }
+  if (event.step > 0 && !controls.canIncrementMinutes) {
+    return false;
+  }
+  if (event.step < 0 && !controls.canDecrementMinutes) {
+    return false;
+  }
+
+  return true;
+}
+
+export function canChangeSeconds(event: TimeChangeEvent, controls: TimepickerControls): boolean {
+  if (!event.step) {
+    return false;
+  }
+  if (event.step > 0 && !controls.canIncrementSeconds) {
+    return false;
+  }
+  if (event.step < 0 && !controls.canDecrementSeconds) {
+    return false;
+  }
+
+  return true;
+}
+
+export function getControlsValue(state: TimepickerComponentState): TimepickerComponentState {
+  const {
+    hourStep, minuteStep, secondsStep,
+    readonlyInput, mousewheel, arrowkeys,
+    showSpinners, showMeridian, showSeconds,
+    meridians, min, max
+  } = state;
+  return {
+    hourStep, minuteStep, secondsStep,
+    readonlyInput, mousewheel, arrowkeys,
+    showSpinners, showMeridian, showSeconds,
+    meridians, min, max
+  };
+}
+
+export function timepickerControls(value: Date, state: TimepickerComponentState): TimepickerControls {
+  const {min, max, hourStep, minuteStep, secondsStep, showSeconds} = state;
+  const res = {
+    canIncrementHours: true,
+    canIncrementMinutes: true,
+    canIncrementSeconds: true,
+
+    canDecrementHours: true,
+    canDecrementMinutes: true,
+    canDecrementSeconds: true
+  } as TimepickerControls;
+
+  if (!value) {
     return res;
   }
 
@@ -26,30 +104,25 @@ export function timepickerControls(state: TimepickerComponentState): TimepickerC
       hour: hour + hourStep,
       minute, seconds
     });
-    // res.canIncrementHours = max.getHours() >= (value.getHours() + hourStep);
     res.canIncrementHours = max >= _newHour;
-    if (res.canIncrementHours) {
-      res.canIncrementMinutes = true;
-      res.canIncrementSeconds = true;
-    } else {
+
+    if (!res.canIncrementHours) {
       const _newMinutes = setTime(max, {
         hour,
         minute: minute + minuteStep,
         seconds
       });
-      // res.canIncrementMinutes = max.getMinutes() >= (value.getMinutes() + minuteStep);
       res.canIncrementMinutes = max >= _newMinutes;
-      if (res.canIncrementMinutes) {
-        res.canIncrementSeconds = true;
-      } else {
-        const _newSeconds = setTime(max, {
-          hour,
-          minute,
-          seconds: seconds + secondsStep
-        });
+    }
 
-        res.canIncrementSeconds = max >= _newSeconds;
-      }
+    if (!res.canIncrementMinutes) {
+      const _newSeconds = setTime(max, {
+        hour,
+        minute,
+        seconds: seconds + secondsStep
+      });
+
+      res.canIncrementSeconds = max >= _newSeconds;
     }
   }
 
@@ -60,10 +133,8 @@ export function timepickerControls(state: TimepickerComponentState): TimepickerC
     });
     // res.canIncrementHours = min.getHours() >= (value.getHours() + hourStep);
     res.canDecrementHours = min <= _newHour;
-    if (res.canDecrementHours) {
-      res.canDecrementMinutes = true;
-      res.canDecrementSeconds = true;
-    } else {
+
+    if (!res.canDecrementHours) {
       const _newMinutes = setTime(min, {
         hour,
         minute: minute - minuteStep,
@@ -71,17 +142,16 @@ export function timepickerControls(state: TimepickerComponentState): TimepickerC
       });
       // res.canDecrementMinutes = min.getMinutes() <= (value.getMinutes() + minuteStep);
       res.canDecrementMinutes = min <= _newMinutes;
-      if (res.canDecrementMinutes) {
-        res.canDecrementSeconds = true;
-      } else {
-        const _newSeconds = setTime(min, {
-          hour,
-          minute,
-          seconds: seconds - secondsStep
-        });
+    }
 
-        res.canDecrementSeconds = min <= _newSeconds;
-      }
+    if (!res.canDecrementMinutes) {
+      const _newSeconds = setTime(min, {
+        hour,
+        minute,
+        seconds: seconds - secondsStep
+      });
+
+      res.canDecrementSeconds = min <= _newSeconds;
     }
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TimeUnit } from '../timepicker.models';
 import { Action } from '../../mini-ngrx/index';
+import { TimeChangeEvent, TimepickerComponentState, Time } from '../timepicker.models';
 
 @Injectable()
 export class TimepickerActions {
@@ -9,6 +9,7 @@ export class TimepickerActions {
   static readonly CHANGE_MINUTES = '[timepicker] change minutes';
   static readonly CHANGE_SECONDS = '[timepicker] change seconds';
   static readonly SET_TIME_UNIT = '[timepicker] set time unit';
+  static readonly UPDATE_CONTROLS = '[timepicker] update controls';
 
   writeValue(value: Date | string) {
     return {
@@ -17,30 +18,37 @@ export class TimepickerActions {
     };
   }
 
-  changeHours(value: number) {
+  changeHours(event: TimeChangeEvent) {
     return {
       type: TimepickerActions.CHANGE_HOURS,
-      payload: value
+      payload: event
     };
   }
 
-  changeMinutes(value: number) {
+  changeMinutes(event: TimeChangeEvent) {
     return {
       type: TimepickerActions.CHANGE_MINUTES,
-      payload: value
+      payload: event
     };
   }
 
-  changeSeconds(value: number): Action {
+  changeSeconds(event: TimeChangeEvent): Action {
     return {
       type: TimepickerActions.CHANGE_SECONDS,
+      payload: event
+    };
+  }
+
+  setTime(value: Time): Action {
+    return {
+      type: TimepickerActions.SET_TIME_UNIT,
       payload: value
     };
   }
 
-  setTimeUnit(value: TimeUnit): Action {
+  updateControls(value: TimepickerComponentState): Action {
     return {
-      type: TimepickerActions.SET_TIME_UNIT,
+      type: TimepickerActions.UPDATE_CONTROLS,
       payload: value
     };
   }

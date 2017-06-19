@@ -1,4 +1,10 @@
-import { TimeUnit } from './timepicker.models';
+import { Time } from './timepicker.models';
+
+const dex = 10;
+const hoursPerDay = 24;
+const hoursPerDayHalf = 12;
+const minutesPerHour = 60;
+const secondsPerMinute = 60;
 
 export function isValidDate(value?: string | Date): boolean {
   if (!value) {
@@ -16,6 +22,45 @@ export function isValidDate(value?: string | Date): boolean {
   return true;
 }
 
+export function toNumber(value: string | number): number {
+  if (typeof value === 'number') {
+    return value;
+  }
+
+  return parseInt(value, dex);
+}
+
+export function isNumber(value: string): boolean {
+  return !isNaN(toNumber(value));
+}
+
+export function parseHours(value: string | number): number {
+  const hour = toNumber(value);
+  if (isNaN(hour) || hour < 0 || hour > hoursPerDay) {
+    return NaN;
+  }
+
+  return hour;
+}
+
+export function parseMinutes(value: string | number): number {
+  const minute = toNumber(value);
+  if (isNaN(minute) || minute < 0 || minute > minutesPerHour) {
+    return NaN;
+  }
+
+  return minute;
+}
+
+export function parseSeconds(value: string | number): number {
+  const seconds = toNumber(value);
+  if (isNaN(seconds) || seconds < 0 || seconds > secondsPerMinute) {
+    return NaN;
+  }
+
+  return seconds;
+}
+
 export function parseTime(value: string | Date): Date {
   if (typeof value === 'string') {
     return new Date(value);
@@ -24,60 +69,61 @@ export function parseTime(value: string | Date): Date {
   return value;
 }
 
-export function changeTime(value: Date, diff: TimeUnit): Date {
+export function changeTime(value: Date, diff: Time): Date {
   if (!value) {
-    const _value = new Date();
-
-    return changeTime(new Date(_value.getFullYear(), _value.getMonth(), _value.getDate(),
-      0, 0, 0, _value.getMilliseconds()), diff);
+    return changeTime(createDate(new Date(),0,0, 0), diff);
   }
-
-  const _hoursPerDay = 24;
-  // const _minutesPerHour = 60;
-  // const _secondsPerMinute = 60;
 
   let hour = value.getHours();
   let minutes = value.getMinutes();
   let seconds = value.getSeconds();
 
   if (diff.hour) {
-    hour = (hour + diff.hour) % _hoursPerDay;
+    hour = (hour + toNumber(diff.hour)) % hoursPerDay;
     if (hour < 0) {
-      hour += _hoursPerDay;
+      hour += hoursPerDay;
     }
   }
 
   if (diff.minute) {
-    minutes = (minutes + diff.minute);
-    // minutes = (minutes + diff.minute) % _minutesPerHour;
-    // if (minutes < 0) {
-    //   minutes += _minutesPerHour;
-    // }
+    minutes = (minutes + toNumber(diff.minute));
   }
 
   if (diff.seconds) {
-    seconds = (seconds + diff.seconds);
-    // seconds = (seconds + diff.seconds) % _secondsPerMinute;
-    // if (seconds < 0) {
-    //   seconds += _secondsPerMinute;
-    // }
+    seconds = (seconds + toNumber(diff.seconds));
   }
 
-  return new Date(value.getFullYear(), value.getMonth(), value.getDate(),
-    hour, minutes, seconds, value.getMilliseconds());
+  return createDate(value, hour, minutes, seconds);
 }
 
-export function setTime(value: Date, opts: TimeUnit): Date {
+export function setTime(value: Date, opts: Time): Date {
+  let hour = parseHours(opts.hour);
+  const minute = parseMinutes(opts.minute);
+  const seconds = parseSeconds(opts.seconds) || 0;
+
+  if (opts.isPM) {
+    hour += hoursPerDayHalf;
+  }
+
   if (!value) {
+    if (!isNaN(hour) && !isNaN(minute)) {
+      return createDate(new Date(), hour, minute, seconds);
+    }
+
     return value;
   }
 
-  const hour = (opts.hour || opts.hour === 0) ? opts.hour : value.getHours();
-  const minute = (opts.minute || opts.minute === 0) ? opts.minute : value.getMinutes();
-  const seconds = (opts.seconds || opts.seconds === 0) ? opts.seconds : value.getSeconds();
+  if (isNaN(hour) || isNaN(minute)) {
+    return value;
+  }
 
-  return new Date(value.getFullYear(), value.getMonth(), value.getDate(),
-    hour, minute, seconds, value.getMilliseconds());
+  return createDate(value, hour, minute, seconds);
+}
+
+export function createDate(value: Date, hours: number, minutes: number, seconds: number): Date {
+  const _value = value || new Date();
+  return new Date(_value.getFullYear(), _value.getMonth(), _value.getDate(),
+    hours, minutes, seconds, _value.getMilliseconds());
 }
 
 export function padNumber(value: number): string {
