@@ -17,6 +17,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="basic">Single button</a></li>
         <li><a routerLink="." fragment="checkbox">Checkbox</a></li>
         <li><a routerLink="." fragment="radio">Radio & Uncheckable Radio</a></li>
+        <li><a routerLink="." fragment="radio-reactiveforms">Radio with ReactiveForms</a></li>
         <li><a routerLink="." fragment="disabled">Disabled Buttons</a></li>
       </ul>
     </li>
@@ -49,6 +50,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p>Radio buttons with checked/unchecked states</p>
   <ng-sample-box [ts]="demos.radio.component" [html]="demos.radio.html">
     <demo-buttons-radio></demo-buttons-radio>
+  </ng-sample-box>
+    
+  <h2 routerLink="." fragment="radio-reactiveforms" id="radio-reactiveforms">Radio with ReactiveForms</h2>
+  <p>Radio buttons with ReactiveForms</p>
+  <ng-sample-box [ts]="demos.radioReactiveForms.component" [html]="demos.radioReactiveForms.html">
+    <demo-buttons-radio-reactiveforms></demo-buttons-radio-reactiveforms>
   </ng-sample-box>
         
   <h2 routerLink="." fragment="disabled" id="disabled">Disabled Buttons</h2>
