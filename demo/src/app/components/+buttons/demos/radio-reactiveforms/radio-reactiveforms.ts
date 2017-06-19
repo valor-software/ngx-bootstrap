@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'demo-buttons-radio-reactiveforms',
   templateUrl: './radio-reactiveforms.html'
 })
-export class DemoButtonsRadioReactiveFormsComponent {
+export class DemoButtonsRadioReactiveFormsComponent implements OnInit {
   public myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.createForm();
+  constructor(private formBuilder: FormBuilder) {
   }
 
-  createForm() {
-    this.myForm = this.fb.group({
-      myControl: ['Middle', Validators.required]
+  ngOnInit() {
+    this.myForm = this.formBuilder.group({
+      left: false,
+      middle: true,
+      right: false
     });
   }
 }

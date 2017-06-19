@@ -53,7 +53,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </ng-sample-box>
     
   <h2 routerLink="." fragment="radio-reactiveforms" id="radio-reactiveforms">Radio with ReactiveForms</h2>
-  <p>Radio buttons with ReactiveForms</p>
+  <p>Checkbox buttons with ReactiveForms</p>
   <ng-sample-box [ts]="demos.radioReactiveForms.component" [html]="demos.radioReactiveForms.html">
     <demo-buttons-radio-reactiveforms></demo-buttons-radio-reactiveforms>
   </ng-sample-box>
