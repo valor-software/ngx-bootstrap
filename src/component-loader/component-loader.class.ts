@@ -243,8 +243,7 @@ export class ComponentLoader<T> {
     }
 
     if (content instanceof TemplateRef) {
-      const viewRef = this._viewContainerRef
-        .createEmbeddedView<TemplateRef<T>>(content);
+      const viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content);
       return new ContentRef([viewRef.rootNodes], viewRef);
     }
 

@@ -41,10 +41,8 @@ export class BsModalService {
       .to('body')
       .show({content});
     bsModalRef.hide = () => {modalContainerRef.instance.hide()};
-    return {
-      hide: () => {bsModalRef.hide()},
-      content: this._modal.getInnerComponent() || null
-    };
+    bsModalRef.content = this._modal.getInnerComponent() || null;
+    return bsModalRef;
   }
 
   public hide() {

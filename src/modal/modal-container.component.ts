@@ -20,7 +20,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   @HostBinding('class.in') public isShown: boolean = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
-    if (!this.checkCloseAttr(event.target) && (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement)) {
+    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
       return;
     }
 
@@ -58,12 +58,5 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.bsModalService.hide();
     }, TRANSITION_DURATION);
-  }
-  private checkCloseAttr(node: any): boolean {
-    if (node.hasAttribute('data-bsmodal-close') && node.getAttribute('data-bsmodal-close') === 'true') {
-      return true;
-    } else {
-      return node.parentNode && node.parentNode.tagName !== 'BODY' ? this.checkCloseAttr(node.parentNode) : false;
-    }
   }
 }
