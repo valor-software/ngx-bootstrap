@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, Renderer } from '@angular/core';
 import { ClassName, ModalOptions } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
+import { isBs3 } from '../utils/ng2-bootstrap-config';
 
 const TRANSITION_DURATION = 300;
 
@@ -17,7 +18,7 @@ const TRANSITION_DURATION = 300;
 export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
   protected _element: ElementRef;
-  @HostBinding('class.in') public isShown: boolean = false;
+  public isShown: boolean = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
@@ -41,6 +42,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     setTimeout(() => {
       this.isShown = true;
+      this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
     }, 0);
     if (document && document.body) {
       this._renderer.setElementClass(document.body, ClassName.OPEN, true);
@@ -48,15 +50,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (document && document.body) {
-      this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+    if (this.isShown) {
+      this.hide();
     }
   }
 
   hide(): void {
-    this.isShown = false;
+    this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, false);
     setTimeout(() => {
+      this.isShown = false;
       this.bsModalService.hide();
+      if (document && document.body) {
+        this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+      }
     }, TRANSITION_DURATION);
   }
 }
