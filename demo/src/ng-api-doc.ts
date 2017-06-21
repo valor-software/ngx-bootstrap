@@ -907,7 +907,42 @@ export const ngdoc: any = {
     "fileName": "src/modal/bs-modal.service.ts",
     "className": "BsModalService",
     "description": "",
-    "methods": [],
+    "methods": [
+      {
+        "name": "create",
+        "description": "<p>Initialization of BsModalService, requires ElementRef, ViewContainerRef and Renderer instances </p>\n",
+        "args": [
+          {
+            "name": "_element",
+            "type": "ElementRef"
+          },
+          {
+            "name": "_viewContainerRef",
+            "type": "ViewContainerRef"
+          },
+          {
+            "name": "_renderer",
+            "type": "Renderer"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "show",
+        "description": "<p>Shows a modal </p>\n",
+        "args": [
+          {
+            "name": "content",
+            "type": "TemplateRef | any"
+          },
+          {
+            "name": "config",
+            "type": "ModalOptions"
+          }
+        ],
+        "returnType": "BsModalRef"
+      }
+    ],
     "properties": []
   },
   "ModalBackdropComponent": {
@@ -955,6 +990,26 @@ export const ngdoc: any = {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
+      }
+    ]
+  },
+  "BsModalRef": {
+    "fileName": "src/modal/modal-options.class.ts",
+    "className": "BsModalRef",
+    "description": "",
+    "methods": [
+      {
+        "name": "hide",
+        "description": "<p>Hides the modal</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "Object",
+        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
       }
     ]
   },

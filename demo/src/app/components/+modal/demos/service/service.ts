@@ -1,6 +1,5 @@
 import { Component, ElementRef, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-// import { ModalContentComponent } from './modal-content.component';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({

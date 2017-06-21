@@ -9,7 +9,6 @@ import {
 import { ContentRef } from './content-ref.class';
 import { PositioningService, PositioningOptions } from '../positioning';
 import { listenToTriggers } from '../utils/triggers';
-import {logger} from 'codelyzer/util/logger';
 
 export interface ListenOptions {
   target?: ElementRef;

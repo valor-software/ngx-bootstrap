@@ -27,6 +27,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
       <ul>
         <li><a routerLink="." fragment="modal-directive">ModalDirective</a></li>
         <li><a routerLink="." fragment="modal-backdrop-component">ModalBackdropComponent</a></li>
+        <li><a routerLink="." fragment="bs-modal-service">BsModalService</a></li>
+        <li><a routerLink="." fragment="bs-modal-ref">BsModalRef</a></li>
         <li><a routerLink="." fragment="modal-options">ModalOptions</a></li>
       </ul>
     </li>
@@ -79,7 +81,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p>To be able to open modals from service, inject BsModalService, ElementRef, ViewContainerRef and Renderer to your constructor. <br>
   Then prepare modal service like this <code>this.modalService = this.modalService.create(this.element, this.vcRef, this.renderer)</code>. <br><br>
     Finally, call <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). If you're passing a component, add it to <code>entryComponents</code> of your <code>NgModule</code><br><br>
-    <code>.show()</code> method returns an object with <code>.hide()</code> method and <code>content</code> property where you'll find a component which you've passed to service <br>
+    <code>.show()</code> method returns an instance of BsModalRef class with <code>.hide()</code> method and <code>content</code> property where you'll find a component which you've passed to service <br>
     If you passed a component to <code>.show()</code> you can get access to opened modal by injecting BsModalRef. See example for more info
   </p>
   <ng-sample-box [ts]="demos.service.component" [html]="demos.service.html">
@@ -89,6 +91,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc routerLink="." fragment="modal-directive" id="modal-directive" directive="ModalDirective"></ng-api-doc>
   <ng-api-doc routerLink="." fragment="modal-backdrop-component" id="modal-backdrop-component" directive="ModalBackdropComponent"></ng-api-doc>
+  <ng-api-doc-class routerLink="." fragment="bs-modal-service" id="bs-modal-service" type="BsModalService"></ng-api-doc-class>
+  <ng-api-doc-class routerLink="." fragment="bs-modal-ref" id="bs-modal-ref" type="BsModalRef"></ng-api-doc-class>
   <ng-api-doc-config routerLink="." fragment="modal-options" id="modal-options" type="ModalOptions"></ng-api-doc-config>
 </demo-section>`
 })

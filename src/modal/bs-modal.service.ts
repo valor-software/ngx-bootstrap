@@ -16,11 +16,12 @@ export class BsModalService {
   public config: ModalOptions = modalConfigDefaults;
   protected _isShown: boolean = false;
   protected timerRmBackDrop: number = 0;
-  private _backdrop: ComponentLoader<ModalBackdropComponent>;
   protected backdrop: ComponentRef<ModalBackdropComponent>;
+  private _backdrop: ComponentLoader<ModalBackdropComponent>;
   private _modal: ComponentLoader<ModalContainerComponent>;
   public constructor(private clf: ComponentLoaderFactory) {}
 
+  /** Initialization of BsModalService, requires ElementRef, ViewContainerRef and Renderer instances */
   public create(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer) {
     this._backdrop = this.clf.createLoader<ModalBackdropComponent>(_element, _viewContainerRef, _renderer);
     this._modal = this.clf
@@ -28,7 +29,8 @@ export class BsModalService {
     return this;
   }
 
-  public show(content: string | TemplateRef<any> | any, config: any = {}): any {
+  /** Shows a modal */
+  public show(content: string | TemplateRef<any> | any, config: any = {}): BsModalRef {
     this.config = Object.assign({}, modalConfigDefaults, config);
     clearTimeout(this.timerRmBackDrop);
     this._isShown = true;
