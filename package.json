@@ -61,7 +61,7 @@
   "peerDependencies": {
     "@angular/common": "^2.3.1 || >=4.0.0",
     "@angular/compiler": "^2.3.1 || >=4.0.0",
-    "@angular/core": "^2.3.1 || >=4.0.0",
+    "@angular/core": "^4.2.4",
     "@angular/forms": "^2.3.1 || >=4.0.0"
   },
   "devDependencies": {
