@@ -77,7 +77,7 @@
     "@angular/platform-browser-dynamic": "^2.4.4",
     "@angular/router": "^3.4.4",
     "@angular/tsc-wrapped": "0.5.1",
-    "@types/jasmine": "2.5.41",
+    "@types/jasmine": "2.5.53",
     "@types/marked": "0.0.28",
     "@types/node": "7.0.15",
     "@types/webpack": "^2.2.2",
