@@ -40,7 +40,6 @@ export class BsModalService {
       .provide({provide: ModalOptions, useValue: this.config})
       .provide({provide: BsModalRef, useValue: bsModalRef})
       .attach(ModalContainerComponent)
-      .to('body')
       .show({content});
     bsModalRef.hide = () => {modalContainerRef.instance.hide()};
     bsModalRef.content = this._modal.getInnerComponent() || null;

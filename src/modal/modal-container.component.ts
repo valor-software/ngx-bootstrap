@@ -12,7 +12,8 @@ const TRANSITION_DURATION = 300;
   host: {
     class: 'modal fade',
     role: 'dialog',
-    style: 'display:block;'
+    style: 'display:block;',
+    tabindex: '-1'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
@@ -31,6 +32,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   public onEsc(): void {
     if (this.config.keyboard) {
       this.hide();
+    }
+  }
+
+  @HostListener('window:focusin', ['$event'])
+  public enforceFocus($event:any): void {
+    if (!(this._element.nativeElement === $event.target || this._element.nativeElement.contains($event.target))) {
+      this._element.nativeElement.focus();
+    }
+  }
+  @HostListener('focusout', ['$event'])
+  public preventFocusOut($event:any): void {
+    if (!$event.relatedTarget) {
+      this._element.nativeElement.focus();
     }
   }
 
