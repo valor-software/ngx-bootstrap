@@ -977,6 +977,11 @@ export const ngdoc: any = {
         "name": "config",
         "type": "ModalOptions",
         "description": "<p>allows to set modal configuration via element property </p>\n"
+      },
+      {
+        "name": "dismissReason",
+        "type": "string",
+        "description": "<p>This field contains last dismiss reason. Possible values: <code>backdrop-click</code>, <code>esc</code> and <code>null</code> (if modal was closed by direct call of <code>.hide()</code>). </p>\n"
       }
     ],
     "methods": [

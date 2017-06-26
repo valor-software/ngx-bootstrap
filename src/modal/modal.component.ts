@@ -57,6 +57,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // seems like an Options
   public isAnimated: boolean = true;
+  /** This field contains last dismiss reason. Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
+  public dismissReason: string;
 
   public get isShown(): boolean {
     return this._isShown;
@@ -89,7 +91,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
       return;
     }
-
+    this.dismissReason = 'backdrop-click';
     this.hide(event);
   }
 
@@ -98,6 +100,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   public onEsc(): void {
     if (this.config.keyboard) {
       this.hide();
+      this.dismissReason = 'esc';
     }
   }
 
@@ -132,6 +135,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   /** Allows to manually open modal */
   public show(): void {
+    this.dismissReason = null;
     this.onShow.emit(this);
     if (this._isShown) {
       return;
@@ -345,17 +349,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       return;
     }
 
-    const fixedEl = document.querySelector(Selector.FIXED_CONTENT);
-
-    if (!fixedEl) {
-      return;
-    }
-
-    const bodyPadding = parseInt(Utils.getStyles(fixedEl).paddingRight || 0, 10);
-    this.originalBodyPadding = parseInt(document.body.style.paddingRight || 0, 10);
+    this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || 0, 10);
 
     if (this.isBodyOverflowing) {
-      document.body.style.paddingRight = `${bodyPadding + this.scrollbarWidth}px`;
+      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
     }
   }
 
