@@ -1,3 +1,6 @@
+/**
+ * @copyright ngrx
+ */
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { Action, ActionReducer } from './index';
