@@ -1,9 +1,10 @@
 import { ComponentRef, ElementRef, Injectable, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
+
 import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ModalBackdropComponent } from './modal-backdrop.component';
-import { ModalContainerComponent } from './modal-container.component';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { Utils } from '../utils/utils.class';
+import { ModalBackdropComponent } from './modal-backdrop.component';
+import { ModalContainerComponent } from './modal-container.component';
 import { BsModalRef, modalConfigDefaults, ModalOptions } from './modal-options.class';
 
 const TRANSITION_DURATION = 300;
@@ -16,9 +17,10 @@ export class BsModalService {
   public config: ModalOptions = modalConfigDefaults;
   protected _isShown: boolean = false;
   protected timerRmBackDrop: number = 0;
-  protected backdrop: ComponentRef<ModalBackdropComponent>;
+  protected backdropRef: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
   private _modal: ComponentLoader<ModalContainerComponent>;
+
   public constructor(private clf: ComponentLoaderFactory) {}
 
   /** Initialization of BsModalService, requires ElementRef, ViewContainerRef and Renderer instances */
@@ -34,76 +36,69 @@ export class BsModalService {
     this.config = Object.assign({}, modalConfigDefaults, config);
     clearTimeout(this.timerRmBackDrop);
     this._isShown = true;
-    this.showBackdrop();
+    this.toggleBackdrop();
     const bsModalRef = new BsModalRef();
     const modalContainerRef = this._modal
       .provide({provide: ModalOptions, useValue: this.config})
       .provide({provide: BsModalRef, useValue: bsModalRef})
       .attach(ModalContainerComponent)
       .show({content});
-    bsModalRef.hide = () => {modalContainerRef.instance.hide()};
+    bsModalRef.hide = () => {modalContainerRef.instance.hide();};
     bsModalRef.content = this._modal.getInnerComponent() || null;
     return bsModalRef;
   }
 
   public hide() {
     this._isShown = false;
-    if (this.backdrop && this.backdrop.instance) {
-      this.backdrop.instance.isShown = false;
+    if (this.backdropRef && this.backdropRef.instance) {
+      this.backdropRef.instance.isShown = false;
     }
     setTimeout(() => {
       this.removeBackdrop();
       if (this._modal) {
         this._modal.hide();
       }
-      this.backdrop = null;
+      this.backdropRef = null;
     }, BACKDROP_TRANSITION_DURATION);
   }
+
   /** @internal */
-  protected showBackdrop(callback?: Function): void {
-    if (this._isShown && (this.config.backdrop || this.config.backdrop === 'static') && (!this.backdrop || !this.backdrop.instance.isShown)) {
-      this.removeBackdrop();
-      this._backdrop
-        .attach(ModalBackdropComponent)
-        .to('body')
-        .show({isAnimated: false});
-      this.backdrop = this._backdrop._componentRef;
+  protected toggleBackdrop(): void {
+    // this if will not happen
+    if (!this._isShown && this.backdropRef) {
+      return this._hideBackdrop();
+    }
 
-      if (this.isAnimated) {
-        this.backdrop.instance.isAnimated = this.isAnimated;
-        Utils.reflow(this.backdrop.instance.element.nativeElement);
-      }
-
-      this.backdrop.instance.isShown = true;
-      if (!callback) {
-        return;
-      }
-
-      if (!this.isAnimated) {
-        callback();
-        return;
-      }
-
-      setTimeout(callback, BACKDROP_TRANSITION_DURATION);
-    } else if (!this._isShown && this.backdrop) {
-      this.backdrop.instance.isShown = false;
-
-      let callbackRemove = () => {
-        this.removeBackdrop();
-        if (callback) {
-          callback();
-        }
-      };
-
-      if (this.backdrop.instance.isAnimated) {
-        this.timerRmBackDrop = setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
-      } else {
-        callbackRemove();
-      }
-    } else if (callback) {
-      callback();
+    const isBackdropEnabled = this.config.backdrop || this.config.backdrop === 'static';
+    const isBackdropInDOM = !this.backdropRef || !this.backdropRef.instance.isShown;
+    if (this._isShown && isBackdropEnabled && isBackdropInDOM) {
+      return this._showBackdrop();
     }
   }
+
+  _showBackdrop(): void {
+    this.removeBackdrop();
+    this._backdrop
+      .attach(ModalBackdropComponent)
+      .to('body')
+      // .show({isAnimated: false});
+      .show({isAnimated: this.isAnimated});
+    this.backdropRef = this._backdrop._componentRef;
+
+    // if (this.isAnimated) {
+    //   this.backdropRef.instance.isAnimated = this.isAnimated;
+    //   Utils.reflow(this.backdropRef.instance.element.nativeElement);
+    // }
+    //
+    // this.backdropRef.instance.isShown = true;
+  }
+
+  _hideBackdrop(): void {
+    this.backdropRef.instance.isShown = false;
+    const duration = this.backdropRef.instance.isAnimated ? BACKDROP_TRANSITION_DURATION: 0;
+    this.timerRmBackDrop = setTimeout(() => this.removeBackdrop(), duration);
+  }
+
   protected removeBackdrop(): void {
     this._backdrop.hide();
   }

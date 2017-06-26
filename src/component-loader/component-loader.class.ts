@@ -2,13 +2,23 @@
 // todo: merge events onShow, onShown, etc...
 // todo: add global positioning configuration?
 import {
-  NgZone, ViewContainerRef, ComponentFactoryResolver, Injector, Renderer,
-  ElementRef, ComponentRef, ComponentFactory, Type, TemplateRef, EventEmitter,
-  Provider, ReflectiveInjector
+  ComponentFactory,
+  ComponentFactoryResolver,
+  ComponentRef,
+  ElementRef,
+  EventEmitter,
+  Injector,
+  NgZone,
+  Provider,
+  ReflectiveInjector,
+  Renderer,
+  TemplateRef,
+  Type,
+  ViewContainerRef
 } from '@angular/core';
-import { ContentRef } from './content-ref.class';
-import { PositioningService, PositioningOptions } from '../positioning';
+import { PositioningOptions, PositioningService } from '../positioning';
 import { listenToTriggers } from '../utils/triggers';
+import { ContentRef } from './content-ref.class';
 
 export interface ListenOptions {
   target?: ElementRef;
@@ -112,7 +122,7 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  public show(opts: {content?: string | TemplateRef<any>, [key:string]: any} = {}): ComponentRef<T> {
+  public show(opts: { content?: string | TemplateRef<any>, [key: string]: any } = {}): ComponentRef<T> {
     this._subscribePositioning();
     this._innerComponent = null;
 
@@ -191,8 +201,8 @@ export class ComponentLoader<T> {
     listenOpts.show = listenOpts.show || (() => this.show());
     listenOpts.hide = listenOpts.hide || (() => this.hide());
     listenOpts.toggle = listenOpts.toggle || (() => this.isShown
-        ? listenOpts.hide()
-        : listenOpts.show());
+      ? listenOpts.hide()
+      : listenOpts.show());
 
     this._unregisterListenersFn = listenToTriggers(
       this._renderer,
