@@ -8,8 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 })
 export class DemoModalServiceComponent {
   public modalRef: BsModalRef;
-  constructor(private modalService: BsModalService, private element: ElementRef, private renderer: Renderer, private vcRef: ViewContainerRef) {
-    this.modalService = this.modalService.create(this.element, this.vcRef, this.renderer);
+  constructor(private modalService: BsModalService) {
   }
   public openModal(template: string | TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {backdrop: 'static'});
