@@ -1,0 +1,9 @@
+<div>
+  <rating [(ngModel)]="x" max="15" stateOn="glyphicon-ok-sign" stateOff="glyphicon-ok-circle"
+          style="color: #0275d8;"></rating>
+  <b>(<i>Rate:</i> {{x}})</b>
+</div>
+<div>
+  <rating [(ngModel)]="y" [ratingStates]="ratingStates"></rating>
+  <b>(<i>Rate:</i> {{y}})</b>
+</div>

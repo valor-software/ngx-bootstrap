@@ -1,0 +1,13 @@
+<progressbar [max]="max" [value]="dynamic">
+  <span style="color:white; white-space:nowrap;">{{dynamic}} / {{max}}</span>
+</progressbar>
+
+<small><em>No animation</em></small>
+<progressbar [animate]="false" [value]="dynamic" type="success"><b>{{dynamic}}%</b></progressbar>
+
+<small><em>Object (changes type based on value)</em></small>
+<progressbar class="progress-striped active" [value]="dynamic" [type]="type">
+  {{type}} <i *ngIf="showWarning">!!!Watch out !!!</i>
+</progressbar>
+
+<button type="button" class="btn btn-sm btn-primary" (click)="random()">Randomize</button>

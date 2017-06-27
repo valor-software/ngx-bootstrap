@@ -1,0 +1,16 @@
+  <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>
+  <input [(ngModel)]="asyncSelected"
+         [typeahead]="dataSource"
+         (typeaheadLoading)="changeTypeaheadLoading($event)"
+         (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+         (typeaheadOnSelect)="typeaheadOnSelect($event)"
+         typeaheadOptionsLimit="7"
+         typeaheadOptionField="name"
+         placeholder="Locations loaded with timeout"
+         class="form-control">
+  <div *ngIf="typeaheadLoading===true">
+    <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
+  </div>
+  <div *ngIf="typeaheadNoResults===true" class="" style="">
+    <i class="glyphicon glyphicon-remove"></i> No Results Found
+  </div>

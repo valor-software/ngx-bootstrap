@@ -1,0 +1,8 @@
+<button type="button" class="btn btn-info" [tooltip]="content">
+  Simple binding
+</button>
+
+<template #tolTemplate>Just another: {{content}}</template>
+<button type="button" class="btn btn-warning" [tooltip]="tolTemplate">
+  TemplateRef binding
+</button>
