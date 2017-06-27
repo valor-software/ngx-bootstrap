@@ -7,6 +7,6 @@ import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 })
 export class DemoModalEventsComponent {
   public handler(type: string, $event: ModalDirective) {
-    console.log(`event ${type} is fired, `, $event);
+    console.log(`event ${type} is fired${$event.dismissReason ? ', dismissed by ' + $event.dismissReason : ''}`);
   }
 }

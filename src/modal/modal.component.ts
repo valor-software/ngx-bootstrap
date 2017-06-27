@@ -29,6 +29,10 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
+const DISMISS_REASONS = {
+  BACKRDOP: 'backdrop-click',
+  ESC: 'esc'
+};
 
 /** Mark any code with directive to show it's content in modal */
 @Directive({
@@ -91,7 +95,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
       return;
     }
-    this.dismissReason = 'backdrop-click';
+    this.dismissReason = DISMISS_REASONS.BACKRDOP;
     this.hide(event);
   }
 
@@ -99,8 +103,8 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   @HostListener('keydown.esc')
   public onEsc(): void {
     if (this.config.keyboard) {
+      this.dismissReason = DISMISS_REASONS.ESC;
       this.hide();
-      this.dismissReason = 'esc';
     }
   }
 
