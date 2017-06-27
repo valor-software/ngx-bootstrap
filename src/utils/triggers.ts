@@ -6,7 +6,7 @@ import { Renderer } from '@angular/core';
 import { Trigger } from './trigger.class';
 
 const DEFAULT_ALIASES = {
-  hover: ['mouseenter', 'mouseleave'],
+  hover: ['mouseover', 'mouseout'],
   focus: ['focusin', 'focusout']
 };
 
