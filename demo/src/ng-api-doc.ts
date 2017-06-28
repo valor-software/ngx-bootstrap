@@ -903,6 +903,13 @@ export const ngdoc: any = {
       }
     ]
   },
+  "BsModalFactory": {
+    "fileName": "src/modal/bs-modal-factory.service.ts",
+    "className": "BsModalFactory",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "BsModalService": {
     "fileName": "src/modal/bs-modal.service.ts",
     "className": "BsModalService",
@@ -933,11 +940,11 @@ export const ngdoc: any = {
         "args": [
           {
             "name": "content",
-            "type": "TemplateRef | any"
+            "type": "any"
           },
           {
             "name": "config",
-            "type": "ModalOptions"
+            "type": "any"
           }
         ],
         "returnType": "BsModalRef"

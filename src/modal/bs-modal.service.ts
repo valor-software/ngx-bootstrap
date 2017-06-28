@@ -19,14 +19,9 @@ export class BsModalService {
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private _modalLoader: ComponentLoader<ModalContainerComponent>;
 
-  public constructor(private clf: ComponentLoaderFactory) {}
-
-  /** Initialization of BsModalService, requires ElementRef, ViewContainerRef and Renderer instances */
-  create(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer) {
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(_element, _viewContainerRef, _renderer);
-    this._modalLoader = this.clf
-      .createLoader<ModalContainerComponent>(_element, _viewContainerRef, _renderer);
-    return this;
+  public constructor(private clf: ComponentLoaderFactory) {
+    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
+    this._modalLoader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
   }
 
   /** Shows a modal */
@@ -72,6 +67,7 @@ export class BsModalService {
       .provide({provide: ModalOptions, useValue: this.config})
       .provide({provide: BsModalRef, useValue: bsModalRef})
       .attach(ModalContainerComponent)
+      .to('body')
       .show({content});
     bsModalRef.hide = () => {modalContainerRef.instance.hide();};
     bsModalRef.content = this._modalLoader.getInnerComponent() || null;
