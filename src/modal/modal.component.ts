@@ -258,15 +258,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({isAnimated: false});
+        .show({isAnimated: this.isAnimated});
       this.backdrop = this._backdrop._componentRef;
 
-      if (this.isAnimated) {
-        this.backdrop.instance.isAnimated = this.isAnimated;
-        Utils.reflow(this.backdrop.instance.element.nativeElement);
-      }
-
-      this.backdrop.instance.isShown = true;
       if (!callback) {
         return;
       }
