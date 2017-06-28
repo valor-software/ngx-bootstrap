@@ -20,6 +20,10 @@ export class ModalOptions {
    * Ignore the backdrop click
    */
   ignoreBackdropClick?:boolean;
+  /**
+   * Css class for opened modal
+   */
+  class?:string;
 }
 
 @Injectable()
@@ -39,7 +43,8 @@ export const modalConfigDefaults:ModalOptions = {
   keyboard: true,
   focus: true,
   show: false,
-  ignoreBackdropClick: false
+  ignoreBackdropClick: false,
+  class: ''
 };
 
 export const ClassName:any = {
@@ -56,4 +61,9 @@ export const Selector:any = {
   DATA_TOGGLE: '[data-toggle="modal"]',
   DATA_DISMISS: '[data-dismiss="modal"]',
   FIXED_CONTENT: '.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed'
+};
+
+export const TransitionDurations: any = {
+  MODAL: 300,
+  BACKDROP: 150
 };

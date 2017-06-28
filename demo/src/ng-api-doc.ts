@@ -903,37 +903,11 @@ export const ngdoc: any = {
       }
     ]
   },
-  "BsModalFactory": {
-    "fileName": "src/modal/bs-modal-factory.service.ts",
-    "className": "BsModalFactory",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
   "BsModalService": {
     "fileName": "src/modal/bs-modal.service.ts",
     "className": "BsModalService",
     "description": "",
     "methods": [
-      {
-        "name": "create",
-        "description": "<p>Initialization of BsModalService, requires ElementRef, ViewContainerRef and Renderer instances </p>\n",
-        "args": [
-          {
-            "name": "_element",
-            "type": "ElementRef"
-          },
-          {
-            "name": "_viewContainerRef",
-            "type": "ViewContainerRef"
-          },
-          {
-            "name": "_renderer",
-            "type": "Renderer"
-          }
-        ],
-        "returnType": "void"
-      },
       {
         "name": "show",
         "description": "<p>Shows a modal </p>\n",
@@ -982,6 +956,11 @@ export const ngdoc: any = {
         "name": "backdrop",
         "type": "boolean | \"static\"",
         "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "description": "<p>Css class for opened modal</p>\n"
       },
       {
         "name": "ignoreBackdropClick",

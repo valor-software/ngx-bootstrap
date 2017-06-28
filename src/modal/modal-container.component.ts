@@ -1,13 +1,16 @@
-import { Component, ElementRef, HostBinding, HostListener, OnDestroy, OnInit, Renderer } from '@angular/core';
-import { ClassName, ModalOptions } from './modal-options.class';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer } from '@angular/core';
+import { ClassName, ModalOptions, TransitionDurations } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 
-const TRANSITION_DURATION = 300;
 
 @Component({
   selector: 'modal-container',
-  template: `<ng-content></ng-content>`,
+  template: `
+    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
+      <div class="modal-content"><ng-content></ng-content></div>
+    </div>
+  `,
   // tslint:disable-next-line
   host: {
     class: 'modal fade',
@@ -57,7 +60,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isShown = true;
       this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
-    }, 0);
+    }, TransitionDurations.BACKDROP);
     if (document && document.body) {
       this._renderer.setElementClass(document.body, ClassName.OPEN, true);
     }
@@ -77,6 +80,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       if (document && document.body) {
         this._renderer.setElementClass(document.body, ClassName.OPEN, false);
       }
-    }, TRANSITION_DURATION);
+    }, TransitionDurations.MODAL);
   }
 }

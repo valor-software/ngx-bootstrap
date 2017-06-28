@@ -1,12 +1,11 @@
-import { ComponentRef, ElementRef, Injectable, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable, TemplateRef } from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
-import { BsModalRef, modalConfigDefaults, ModalOptions } from './modal-options.class';
+import { BsModalRef, modalConfigDefaults, ModalOptions, TransitionDurations } from './modal-options.class';
 
-const BACKDROP_TRANSITION_DURATION = 150;
 
 @Injectable()
 export class BsModalService {
@@ -34,7 +33,7 @@ export class BsModalService {
 
   hide() {
     this._hideBackdrop();
-    setTimeout(() => this._hideModal(), BACKDROP_TRANSITION_DURATION);
+    setTimeout(() => this._hideModal(), TransitionDurations.BACKDROP);
   }
 
   _showBackdrop(): void {
@@ -57,7 +56,7 @@ export class BsModalService {
       return;
     }
     this.backdropRef.instance.isShown = false;
-    const duration = this.isAnimated ? BACKDROP_TRANSITION_DURATION : 0;
+    const duration = this.isAnimated ? TransitionDurations.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
 
