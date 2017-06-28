@@ -19,6 +19,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="sizes">Optional sizes</a></li>
         <li><a routerLink="." fragment="child">Child modal</a></li>
         <li><a routerLink="." fragment="nested">Nested modals</a></li>
+        <li><a routerLink="." fragment="events">Modal events</a></li>
         <li><a routerLink="." fragment="auto-shown">Auto shown modal</a></li>
       </ul>
     </li>
@@ -59,6 +60,17 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-modal-nested></demo-modal-nested>
   </ng-sample-box>
 
+  <h2 routerLink="." fragment="events" id="events">Modal events</h2>
+  <p>
+    ModalDirective exposes 4 events: OnShow, OnShown, OnHide, OnHidden. See usage example below. <br>
+    <code>$event</code> is an instance of ModalDirective. There you may find some useful properties like <code>isShown</code>, <code>dismissReason</code>, etc. <br>
+    For example, you may want to know which one of user's actions caused closing of a modal. Just get the value of <code>dismissReason</code>, 
+    possible values are <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code>
+  </p>
+  <ng-sample-box [ts]="demos.events.component" [html]="demos.events.html">
+    <demo-modal-events></demo-modal-events>
+  </ng-sample-box>
+  
   <h2 routerLink="." fragment="auto-shown" id="auto-shown">Auto shown modal</h2>
   <p>
     Show modal right after it has been initialized.
