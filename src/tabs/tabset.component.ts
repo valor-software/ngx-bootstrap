@@ -93,8 +93,8 @@ export class TabsetComponent implements OnDestroy {
       tab.removed.emit(tab);
     }
     this.tabs.splice(index, 1);
-    if(tab.elementRef.nativeElement && tab.elementRef.nativeElement.remove) {
-      tab.elementRef.nativeElement.remove();
+    if (tab.elementRef.nativeElement.parentNode) {
+      tab.elementRef.nativeElement.parentNode.removeChild(tab.elementRef.nativeElement);
     }
   }
 
