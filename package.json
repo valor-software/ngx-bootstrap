@@ -75,7 +75,7 @@
     "@angular/language-service": "^2.4.4",
     "@angular/platform-browser": "^2.4.4",
     "@angular/platform-browser-dynamic": "^2.4.4",
-    "@angular/router": "^3.4.4",
+    "@angular/router": "^4.2.5",
     "@angular/tsc-wrapped": "0.5.1",
     "@types/jasmine": "2.5.41",
     "@types/marked": "0.0.28",
