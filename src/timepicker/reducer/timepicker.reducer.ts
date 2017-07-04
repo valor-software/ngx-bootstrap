@@ -61,7 +61,7 @@ export function timepickerReducer(state = initialState, action: Action) {
         return state;
       }
 
-      const _newTime = changeTime(state.value, {seconds: action.payload});
+      const _newTime = changeTime(state.value, {seconds: action.payload.step});
 
       return Object.assign({}, state, {value: _newTime});
     }
