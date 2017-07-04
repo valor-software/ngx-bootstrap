@@ -28,7 +28,6 @@ export class BsModalService {
   show(content: string | TemplateRef<any> | any, config?: any): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
-    console.log(`Now ${this.modalsCount} modals`);
     this.config = Object.assign({}, modalConfigDefaults, config);
 
     this._showBackdrop();
@@ -36,8 +35,7 @@ export class BsModalService {
   }
 
   hide() {
-    this.modalsCount--;
-    console.log(`Now ${this.modalsCount} modals`);
+    this.modalsCount = this.modalsCount >= 1 ? this.modalsCount - 1 : 0;
     this._hideBackdrop();
     setTimeout(() => {
       this._hideModal();
@@ -105,14 +103,12 @@ export class BsModalService {
       backdropLoader: this.clf.createLoader<ModalBackdropComponent>(null, null, null),
       modalLoader: this.clf.createLoader<ModalContainerComponent>(null, null, null)
     });
-    console.log(this.loaders);
     this.setCurrentLoaders();
   }
 
   private removeLoaders(): void {
     this.loaders.pop();
     this.setCurrentLoaders();
-    console.log(this.loaders);
   }
 
   private setCurrentLoaders(): void {

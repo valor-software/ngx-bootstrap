@@ -8,10 +8,14 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 })
 export class DemoModalServiceComponent {
   public modalRef: BsModalRef;
+  public modalRef2: BsModalRef;
   constructor(private modalService: BsModalService) {
   }
   public openModal(template: string | TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {backdrop: 'static'});
+  }
+  public openModal2(template: string | TemplateRef<any>) {
+    this.modalRef2 = this.modalService.show(template, {class: 'modal-lg'});
   }
   public openModalWithComponent() {
     this.modalService.show(ModalContentComponent, {class: 'modal-lg gray'});

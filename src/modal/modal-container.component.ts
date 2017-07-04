@@ -58,7 +58,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('this modal has level ', this.level);
     setTimeout(() => {
       this.isShown = true;
       this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
