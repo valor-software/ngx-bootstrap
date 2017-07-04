@@ -23,6 +23,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
   protected _element: ElementRef;
   public isShown: boolean = false;
+  public level: number;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
@@ -33,23 +34,23 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
   @HostListener('window:keydown.esc')
   public onEsc(): void {
-    if (this.config.keyboard) {
+    if (this.config.keyboard && this.level === this.bsModalService.getModalsCount()) {
       this.hide();
     }
   }
 
-  @HostListener('window:focusin', ['$event'])
-  public enforceFocus($event:any): void {
-    if (!(this._element.nativeElement === $event.target || this._element.nativeElement.contains($event.target))) {
-      this._element.nativeElement.focus();
-    }
-  }
-  @HostListener('focusout', ['$event'])
-  public preventFocusOut($event:any): void {
-    if (!$event.relatedTarget) {
-      this._element.nativeElement.focus();
-    }
-  }
+  // @HostListener('window:focusin', ['$event'])
+  // public enforceFocus($event:any): void {
+  //   if (!(this._element.nativeElement === $event.target || this._element.nativeElement.contains($event.target))) {
+  //     this._element.nativeElement.focus();
+  //   }
+  // }
+  // @HostListener('focusout', ['$event'])
+  // public preventFocusOut($event:any): void {
+  //   if (!$event.relatedTarget) {
+  //     this._element.nativeElement.focus();
+  //   }
+  // }
 
   public constructor(options: ModalOptions, _element: ElementRef, private bsModalService: BsModalService, private _renderer: Renderer) {
     this._element = _element;
@@ -57,6 +58,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('this modal has level ', this.level);
     setTimeout(() => {
       this.isShown = true;
       this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
@@ -76,10 +78,10 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, false);
     setTimeout(() => {
       this.isShown = false;
-      this.bsModalService.hide();
-      if (document && document.body) {
+      if (document && document.body && this.bsModalService.getModalsCount() === 1) {
         this._renderer.setElementClass(document.body, ClassName.OPEN, false);
       }
+      this.bsModalService.hide();
     }, TransitionDurations.MODAL);
   }
 }

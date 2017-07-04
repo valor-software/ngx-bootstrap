@@ -14,7 +14,7 @@ export class DemoModalServiceComponent {
     this.modalRef = this.modalService.show(template, {backdrop: 'static'});
   }
   public openModalWithComponent() {
-    this.modalRef = this.modalService.show(ModalContentComponent, {class: 'modal-lg green'});
+    this.modalService.show(ModalContentComponent, {class: 'modal-lg gray'});
   }
 }
 

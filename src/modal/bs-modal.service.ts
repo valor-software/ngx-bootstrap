@@ -17,14 +17,18 @@ export class BsModalService {
 
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private _modalLoader: ComponentLoader<ModalContainerComponent>;
+  private modalsCount: number = 0;
+  private loaders: any[] = [];
 
   public constructor(private clf: ComponentLoaderFactory) {
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
-    this._modalLoader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
+    // this._createLoaders();
   }
 
   /** Shows a modal */
   show(content: string | TemplateRef<any> | any, config?: any): BsModalRef {
+    this.modalsCount++;
+    this._createLoaders();
+    console.log(`Now ${this.modalsCount} modals`);
     this.config = Object.assign({}, modalConfigDefaults, config);
 
     this._showBackdrop();
@@ -32,22 +36,29 @@ export class BsModalService {
   }
 
   hide() {
+    this.modalsCount--;
+    console.log(`Now ${this.modalsCount} modals`);
     this._hideBackdrop();
-    setTimeout(() => this._hideModal(), TransitionDurations.BACKDROP);
+    setTimeout(() => {
+      this._hideModal();
+      this.removeLoaders();
+    }, TransitionDurations.BACKDROP);
   }
 
   _showBackdrop(): void {
     const isBackdropEnabled = this.config.backdrop || this.config.backdrop === 'static';
     const isBackdropInDOM = !this.backdropRef || !this.backdropRef.instance.isShown;
 
-    this.removeBackdrop();
+    if (this.modalsCount === 1) {
+      this.removeBackdrop();
 
-    if (isBackdropEnabled && isBackdropInDOM) {
-      this._backdropLoader
-        .attach(ModalBackdropComponent)
-        .to('body')
-        .show({isAnimated: this.isAnimated});
-      this.backdropRef = this._backdropLoader._componentRef;
+      if (isBackdropEnabled && isBackdropInDOM) {
+        this._backdropLoader
+          .attach(ModalBackdropComponent)
+          .to('body')
+          .show({isAnimated: this.isAnimated});
+        this.backdropRef = this._backdropLoader._componentRef;
+      }
     }
   }
 
@@ -68,6 +79,7 @@ export class BsModalService {
       .attach(ModalContainerComponent)
       .to('body')
       .show({content});
+    modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {modalContainerRef.instance.hide();};
     bsModalRef.content = this._modalLoader.getInnerComponent() || null;
     return bsModalRef;
@@ -79,8 +91,35 @@ export class BsModalService {
     }
   }
 
+  getModalsCount(): number {
+    return this.modalsCount;
+  }
+
   protected removeBackdrop(): void {
     this._backdropLoader.hide();
     this.backdropRef = null;
+  }
+
+  private _createLoaders(): void {
+    this.loaders.push({
+      backdropLoader: this.clf.createLoader<ModalBackdropComponent>(null, null, null),
+      modalLoader: this.clf.createLoader<ModalContainerComponent>(null, null, null)
+    });
+    console.log(this.loaders);
+    this.setCurrentLoaders();
+  }
+
+  private removeLoaders(): void {
+    this.loaders.pop();
+    this.setCurrentLoaders();
+    console.log(this.loaders);
+  }
+
+  private setCurrentLoaders(): void {
+    if (this.loaders.length) {
+      this._backdropLoader = this.loaders[this.loaders.length - 1].backdropLoader;
+      this._modalLoader = this.loaders[this.loaders.length - 1].modalLoader;
+      this.backdropRef = this._backdropLoader._componentRef;
+    }
   }
 }
