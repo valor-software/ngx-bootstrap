@@ -24,12 +24,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   protected _element: ElementRef;
   public isShown: boolean = false;
   public level: number;
+  private isModalHiding: boolean = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
       return;
     }
-
     this.hide();
   }
   @HostListener('window:keydown.esc')
@@ -74,13 +74,18 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   hide(): void {
+    if (this.isModalHiding || !this.isShown) {
+      return;
+    }
+    this.isModalHiding = true;
     this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, false);
     setTimeout(() => {
       this.isShown = false;
       if (document && document.body && this.bsModalService.getModalsCount() === 1) {
         this._renderer.setElementClass(document.body, ClassName.OPEN, false);
       }
-      this.bsModalService.hide();
+      this.bsModalService.hide(this.level);
+      this.isModalHiding = false;
     }, TransitionDurations.MODAL);
   }
 }

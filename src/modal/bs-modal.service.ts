@@ -4,8 +4,7 @@ import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
-import { BsModalRef, modalConfigDefaults, ModalOptions, TransitionDurations } from './modal-options.class';
-
+import { BsModalRef, ClassName, modalConfigDefaults, ModalOptions, TransitionDurations } from './modal-options.class';
 
 @Injectable()
 export class BsModalService {
@@ -13,15 +12,18 @@ export class BsModalService {
   public isAnimated = true;
   public config: ModalOptions = modalConfigDefaults;
 
+  protected isBodyOverflowing: boolean = false;
+  protected originalBodyPadding: number = 0;
+  protected scrollbarWidth: number = 0;
+
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
 
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
-  private _modalLoader: ComponentLoader<ModalContainerComponent>;
   private modalsCount: number = 0;
-  private loaders: any[] = [];
+  private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
   public constructor(private clf: ComponentLoaderFactory) {
-    // this._createLoaders();
+    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
   }
 
   /** Shows a modal */
@@ -29,17 +31,21 @@ export class BsModalService {
     this.modalsCount++;
     this._createLoaders();
     this.config = Object.assign({}, modalConfigDefaults, config);
-
+    this.checkScrollbar();
+    this.setScrollbar();
     this._showBackdrop();
     return this._showModal(content);
   }
 
-  hide() {
+  hide(level: number) {
+    if (this.modalsCount === 1) {
+      this._hideBackdrop();
+      this.resetScrollbar();
+    }
     this.modalsCount = this.modalsCount >= 1 ? this.modalsCount - 1 : 0;
-    this._hideBackdrop();
     setTimeout(() => {
-      this._hideModal();
-      this.removeLoaders();
+      this._hideModal(level);
+      this.removeLoaders(level);
     }, TransitionDurations.BACKDROP);
   }
 
@@ -70,22 +76,26 @@ export class BsModalService {
   }
 
   _showModal(content: any): BsModalRef {
+    const modalLoader = this.loaders[this.loaders.length - 1];
     const bsModalRef = new BsModalRef();
-    const modalContainerRef = this._modalLoader
+    const modalContainerRef = modalLoader
       .provide({provide: ModalOptions, useValue: this.config})
       .provide({provide: BsModalRef, useValue: bsModalRef})
       .attach(ModalContainerComponent)
       .to('body')
       .show({content});
     modalContainerRef.instance.level = this.getModalsCount();
-    bsModalRef.hide = () => {modalContainerRef.instance.hide();};
-    bsModalRef.content = this._modalLoader.getInnerComponent() || null;
+    bsModalRef.hide = () => {
+      modalContainerRef.instance.hide();
+    };
+    bsModalRef.content = modalLoader.getInnerComponent() || null;
     return bsModalRef;
   }
 
-  _hideModal(): void {
-    if (this._modalLoader) {
-      this._modalLoader.hide();
+  _hideModal(level: number): void {
+    const modalLoader = this.loaders[level - 1];
+    if (modalLoader) {
+      modalLoader.hide();
     }
   }
 
@@ -99,23 +109,48 @@ export class BsModalService {
   }
 
   private _createLoaders(): void {
-    this.loaders.push({
-      backdropLoader: this.clf.createLoader<ModalBackdropComponent>(null, null, null),
-      modalLoader: this.clf.createLoader<ModalContainerComponent>(null, null, null)
+    this.loaders.push(this.clf.createLoader<ModalContainerComponent>(null, null, null));
+  }
+
+  private removeLoaders(level: number): void {
+    this.loaders.splice(level - 1, 1);
+    this.loaders.forEach((loader: ComponentLoader<ModalContainerComponent>, i: number) => {
+      loader.instance.level = i + 1;
     });
-    this.setCurrentLoaders();
   }
 
-  private removeLoaders(): void {
-    this.loaders.pop();
-    this.setCurrentLoaders();
+  /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE*/
+  /** Scroll bar tricks */
+  /** @internal */
+  private checkScrollbar(): void {
+    this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
+    this.scrollbarWidth = this.getScrollbarWidth();
   }
 
-  private setCurrentLoaders(): void {
-    if (this.loaders.length) {
-      this._backdropLoader = this.loaders[this.loaders.length - 1].backdropLoader;
-      this._modalLoader = this.loaders[this.loaders.length - 1].modalLoader;
-      this.backdropRef = this._backdropLoader._componentRef;
+  private setScrollbar(): void {
+    if (!document) {
+      return;
     }
+
+    this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || '0', 10);
+
+    if (this.isBodyOverflowing) {
+      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
+    }
+  }
+
+  private resetScrollbar(): void {
+    document.body.style.paddingRight = this.originalBodyPadding + 'px';
+  }
+
+  // thx d.walsh
+  private getScrollbarWidth(): number {
+    const scrollDiv = document.createElement('div');
+    scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
+    document.body.appendChild(scrollDiv);
+    const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    document.body.removeChild(scrollDiv);
+    return scrollbarWidth;
+
   }
 }

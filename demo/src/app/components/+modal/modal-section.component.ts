@@ -79,7 +79,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="service" id="service">Modal service</h2>
   <p>Open a modal from service</p>
   <p>To be able to open modals from service, inject BsModalService to your constructor. <br>
-    Finally, call <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). If you're passing a component, add it to <code>entryComponents</code> of your <code>NgModule</code><br><br>
+    Then, call <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). If you're passing a component, add it to <code>entryComponents</code> of your <code>NgModule</code><br><br>
     <code>.show()</code> method returns an instance of BsModalRef class with <code>.hide()</code> method and <code>content</code> property where you'll find a component which you've passed to service <br>
     If you passed a component to <code>.show()</code> you can get access to opened modal by injecting BsModalRef. See example for more info
   </p>
