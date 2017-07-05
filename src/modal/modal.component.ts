@@ -254,6 +254,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         this.resetScrollbar();
       }
       this.resetAdjustments();
+      this.focusOtherModal();
       this.onHidden.emit(this);
     });
   }
@@ -334,6 +335,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   //   $(window).off(Event.RESIZE)
   // }
   // }
+
+  protected focusOtherModal() {
+    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
+    if (!otherOpenedModals.length) {
+      return;
+    }
+    this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+  }
 
   /** @internal */
   protected resetAdjustments(): void {
