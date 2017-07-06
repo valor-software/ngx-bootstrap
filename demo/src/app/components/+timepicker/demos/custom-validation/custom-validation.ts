@@ -10,7 +10,14 @@ export class DemoTimepickerCustomValidationComponent {
 
   public ctrl = new FormControl('', (control: FormControl) => {
     const value = control.value;
-    console.log('control', control);
-    return control;
+    if (!value) {
+      return null;
+    }
+    const hours = value.getHours();
+    if (hours < 11 || hours > 12) {
+      return {outOfRange: true};
+    }
+
+    return null;
   });
 }
