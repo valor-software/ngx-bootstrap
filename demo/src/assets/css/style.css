@@ -656,8 +656,11 @@ pre {
 .app-footer a:hover {
   text-decoration: underline;
 }
-.modal-dialog.gray{
-  margin: 3% auto;
+.modal-dialog.second{
+  margin: 60px auto;
+}
+.modal-dialog.third{
+  margin: 90px auto;
 }
 .modal-dialog.gray .modal-content{
   background: #5f5f5f;

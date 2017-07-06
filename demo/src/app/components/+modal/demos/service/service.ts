@@ -12,13 +12,17 @@ export class DemoModalServiceComponent {
   constructor(private modalService: BsModalService) {
   }
   public openModal(template: string | TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {backdrop: 'static'});
+    this.modalRef = this.modalService.show(template, {backdrop: 'static', class: 'modal-sm'});
   }
   public openModal2(template: string | TemplateRef<any>) {
-    this.modalRef2 = this.modalService.show(template, {class: 'modal-lg'});
+    this.modalRef2 = this.modalService.show(template, {class: 'second'});
   }
   public openModalWithComponent() {
-    this.modalService.show(ModalContentComponent, {class: 'modal-lg gray'});
+    this.modalService.show(ModalContentComponent, {class: 'modal-lg gray third'});
+  }
+  public closeFirstModal() {
+    this.modalRef.hide();
+    this.modalRef = null;
   }
 }
 

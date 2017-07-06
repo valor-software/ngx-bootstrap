@@ -26,6 +26,6 @@
     This is nested modal.<br>
     Click <b>&times;</b> to close modal. <br>
     <button type="button" class="btn btn-primary" (click)="openModalWithComponent()">Open another nested modal</button>
-    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close first modal</button>
+    <button *ngIf="modalRef" type="button" class="btn btn-danger" (click)="closeFirstModal()">Close first modal</button>
   </div>
 </template>

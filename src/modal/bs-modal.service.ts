@@ -31,8 +31,10 @@ export class BsModalService {
     this.modalsCount++;
     this._createLoaders();
     this.config = Object.assign({}, modalConfigDefaults, config);
-    this.checkScrollbar();
-    this.setScrollbar();
+    if (this.modalsCount === 1) {
+      this.checkScrollbar();
+      this.setScrollbar();
+    }
     this._showBackdrop();
     return this._showModal(content);
   }
