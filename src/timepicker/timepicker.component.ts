@@ -239,15 +239,15 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
     this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
   }
 
-  changeHours(step: number, source: TimeChangeSource): void {
+  changeHours(step: number, source: TimeChangeSource = ''): void {
     this._store.dispatch(this._timepickerActions.changeHours({step, source}));
   }
 
-  changeMinutes(step: number, source: TimeChangeSource): void {
+  changeMinutes(step: number, source: TimeChangeSource = ''): void {
     this._store.dispatch(this._timepickerActions.changeMinutes({step, source}));
   }
 
-  changeSeconds(step: number, source: TimeChangeSource): void {
+  changeSeconds(step: number, source: TimeChangeSource = ''): void {
     this._store.dispatch(this._timepickerActions.changeSeconds({step, source}));
   }
 
