@@ -63,6 +63,10 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
     }, TransitionDurations.BACKDROP);
     if (document && document.body) {
+      if (this.bsModalService.getModalsCount() === 1) {
+        this.bsModalService.checkScrollbar();
+        this.bsModalService.setScrollbar();
+      }
       this._renderer.setElementClass(document.body, ClassName.OPEN, true);
     }
   }

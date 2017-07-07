@@ -31,10 +31,6 @@ export class BsModalService {
     this.modalsCount++;
     this._createLoaders();
     this.config = Object.assign({}, modalConfigDefaults, config);
-    if (this.modalsCount === 1) {
-      this.checkScrollbar();
-      this.setScrollbar();
-    }
     this._showBackdrop();
     return this._showModal(content);
   }
@@ -110,26 +106,15 @@ export class BsModalService {
     this.backdropRef = null;
   }
 
-  private _createLoaders(): void {
-    this.loaders.push(this.clf.createLoader<ModalContainerComponent>(null, null, null));
-  }
-
-  private removeLoaders(level: number): void {
-    this.loaders.splice(level - 1, 1);
-    this.loaders.forEach((loader: ComponentLoader<ModalContainerComponent>, i: number) => {
-      loader.instance.level = i + 1;
-    });
-  }
-
   /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE*/
   /** Scroll bar tricks */
   /** @internal */
-  private checkScrollbar(): void {
+  public checkScrollbar(): void {
     this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
     this.scrollbarWidth = this.getScrollbarWidth();
   }
 
-  private setScrollbar(): void {
+  public setScrollbar(): void {
     if (!document) {
       return;
     }
@@ -154,5 +139,16 @@ export class BsModalService {
     document.body.removeChild(scrollDiv);
     return scrollbarWidth;
 
+  }
+
+  private _createLoaders(): void {
+    this.loaders.push(this.clf.createLoader<ModalContainerComponent>(null, null, null));
+  }
+
+  private removeLoaders(level: number): void {
+    this.loaders.splice(level - 1, 1);
+    this.loaders.forEach((loader: ComponentLoader<ModalContainerComponent>, i: number) => {
+      loader.instance.level = i + 1;
+    });
   }
 }
