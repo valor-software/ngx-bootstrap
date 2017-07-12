@@ -13,17 +13,17 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   `,
   // tslint:disable-next-line
   host: {
-    class: 'modal fade',
+    class: 'modal',
     role: 'dialog',
-    style: 'display:block;',
     tabindex: '-1'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
-  protected _element: ElementRef;
   public isShown: boolean = false;
   public level: number;
+  public isAnimated: boolean;
+  protected _element: ElementRef;
   private isModalHiding: boolean = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
@@ -58,10 +58,14 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.isAnimated) {
+      this._renderer.setElementClass(this._element.nativeElement, ClassName.FADE, true);
+    }
+    this._renderer.setElementStyle(this._element.nativeElement, 'display', 'block');
     setTimeout(() => {
       this.isShown = true;
       this._renderer.setElementClass(this._element.nativeElement, isBs3() ? ClassName.IN : ClassName.SHOW, true);
-    }, TransitionDurations.BACKDROP);
+    }, this.isAnimated ? TransitionDurations.BACKDROP : 0);
     if (document && document.body) {
       if (this.bsModalService.getModalsCount() === 1) {
         this.bsModalService.checkScrollbar();
@@ -90,6 +94,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       }
       this.bsModalService.hide(this.level);
       this.isModalHiding = false;
-    }, TransitionDurations.MODAL);
+    }, this.isAnimated ? TransitionDurations.MODAL : 0);
   }
 }

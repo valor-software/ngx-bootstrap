@@ -1,28 +1,16 @@
-import { Component, ElementRef, Renderer, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
-  selector: 'demo-modal-service',
-  templateUrl: './service.html'
+  selector: 'demo-modal-service-component',
+  templateUrl: './service-component.html'
 })
-export class DemoModalServiceComponent {
-  public modalRef: BsModalRef;
-  public modalRef2: BsModalRef;
-  constructor(private modalService: BsModalService) {
-  }
-  public openModal(template: string | TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {backdrop: 'static', class: 'modal-sm'});
-  }
-  public openModal2(template: string | TemplateRef<any>) {
-    this.modalRef2 = this.modalService.show(template, {class: 'second'});
-  }
+export class DemoModalServiceFromComponent {
+  constructor(private modalService: BsModalService) {}
+
   public openModalWithComponent() {
-    this.modalService.show(ModalContentComponent, {class: 'modal-lg gray third'});
-  }
-  public closeFirstModal() {
-    this.modalRef.hide();
-    this.modalRef = null;
+    this.modalService.show(ModalContentComponent);
   }
 }
 
@@ -47,6 +35,6 @@ export class DemoModalServiceComponent {
   `
 })
 export class ModalContentComponent {
-  public title: string = 'Modal with component and class';
+  public title: string = 'Modal with component';
   constructor(public bsModalRef: BsModalRef) {}
 }

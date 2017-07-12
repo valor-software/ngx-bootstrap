@@ -24,6 +24,10 @@ export class ModalOptions {
    * Css class for opened modal
    */
   class?:string;
+  /**
+   * Toggle animation
+   */
+  animated?: boolean;
 }
 
 @Injectable()
@@ -44,7 +48,8 @@ export const modalConfigDefaults:ModalOptions = {
   focus: true,
   show: false,
   ignoreBackdropClick: false,
-  class: ''
+  class: '',
+  animated: true
 };
 
 export const ClassName:any = {

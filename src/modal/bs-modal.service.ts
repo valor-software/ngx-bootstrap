@@ -9,7 +9,6 @@ import { BsModalRef, ClassName, modalConfigDefaults, ModalOptions, TransitionDur
 @Injectable()
 export class BsModalService {
   // constructor props
-  public isAnimated = true;
   public config: ModalOptions = modalConfigDefaults;
 
   protected isBodyOverflowing: boolean = false;
@@ -44,7 +43,7 @@ export class BsModalService {
     setTimeout(() => {
       this._hideModal(level);
       this.removeLoaders(level);
-    }, TransitionDurations.BACKDROP);
+    }, this.config.animated ? TransitionDurations.BACKDROP : 0);
   }
 
   _showBackdrop(): void {
@@ -58,7 +57,7 @@ export class BsModalService {
         this._backdropLoader
           .attach(ModalBackdropComponent)
           .to('body')
-          .show({isAnimated: this.isAnimated});
+          .show({isAnimated: this.config.animated});
         this.backdropRef = this._backdropLoader._componentRef;
       }
     }
@@ -69,7 +68,7 @@ export class BsModalService {
       return;
     }
     this.backdropRef.instance.isShown = false;
-    const duration = this.isAnimated ? TransitionDurations.BACKDROP : 0;
+    const duration = this.config.animated ? TransitionDurations.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
 
@@ -81,7 +80,7 @@ export class BsModalService {
       .provide({provide: BsModalRef, useValue: bsModalRef})
       .attach(ModalContainerComponent)
       .to('body')
-      .show({content});
+      .show({content, isAnimated: this.config.animated});
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       modalContainerRef.instance.hide();
