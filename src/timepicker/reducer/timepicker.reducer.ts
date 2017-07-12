@@ -1,12 +1,15 @@
-import { TimepickerActions } from './timepicker.actions';
-import { changeTime, setTime } from '../timepicker.utils';
 import { Action } from '../../mini-ngrx/index';
-import { TimepickerComponentState, TimepickerControls } from '../timepicker.models';
 import {
-  canChangeHours, canChangeMinutes, canChangeSeconds, canChangeValue,
+  canChangeHours,
+  canChangeMinutes,
+  canChangeSeconds,
+  canChangeValue,
   timepickerControls
 } from '../timepicker-controls.util';
 import { TimepickerConfig } from '../timepicker.config';
+import { TimepickerComponentState, TimepickerControls } from '../timepicker.models';
+import { changeTime, setTime } from '../timepicker.utils';
+import { TimepickerActions } from './timepicker.actions';
 
 export class TimepickerState {
   value: Date;

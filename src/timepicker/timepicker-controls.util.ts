@@ -1,4 +1,4 @@
-import { setTime } from './timepicker.utils';
+import { changeTime, setTime } from './timepicker.utils';
 import { TimeChangeEvent, TimepickerComponentState, TimepickerControls } from './timepicker.models';
 
 export function canChangeValue(state: TimepickerComponentState, event?: TimeChangeEvent): boolean {
@@ -94,63 +94,34 @@ export function timepickerControls(value: Date, state: TimepickerComponentState)
     return res;
   }
 
-  const hour = value.getHours();
-  const minute = value.getMinutes();
-  const seconds = showSeconds ? value.getSeconds() : 0;
-
 // compare dates
   if (max) {
-    const _newHour = setTime(max, {
-      hour: hour + hourStep,
-      minute, seconds
-    });
+    const _newHour = changeTime(value, { hour:  hourStep });
     res.canIncrementHours = max >= _newHour;
 
     if (!res.canIncrementHours) {
-      const _newMinutes = setTime(max, {
-        hour,
-        minute: minute + minuteStep,
-        seconds
-      });
+      const _newMinutes = changeTime(value, { minute: minuteStep });
       res.canIncrementMinutes = max >= _newMinutes;
     }
 
     if (!res.canIncrementMinutes) {
-      const _newSeconds = setTime(max, {
-        hour,
-        minute,
-        seconds: seconds + secondsStep
-      });
-
+      const _newSeconds = changeTime(value, { seconds: secondsStep });
       res.canIncrementSeconds = max >= _newSeconds;
     }
   }
 
   if (min) {
-    const _newHour = setTime(min, {
-      hour: hour - hourStep,
-      minute, seconds
-    });
-    // res.canIncrementHours = min.getHours() >= (value.getHours() + hourStep);
-    res.canDecrementHours = min <= _newHour;
+    const _newHour = changeTime(value, { hour:  -hourStep });
+    res.canDecrementHours = min < _newHour;
 
     if (!res.canDecrementHours) {
-      const _newMinutes = setTime(min, {
-        hour,
-        minute: minute - minuteStep,
-        seconds
-      });
-      // res.canDecrementMinutes = min.getMinutes() <= (value.getMinutes() + minuteStep);
-      res.canDecrementMinutes = min <= _newMinutes;
+      const _newMinutes = changeTime(value, { minute: -minuteStep });
+      res.canDecrementMinutes = showSeconds ? min < _newMinutes : min <= _newMinutes;
+      // res.canDecrementMinutes =  min < _newMinutes;
     }
 
     if (!res.canDecrementMinutes) {
-      const _newSeconds = setTime(min, {
-        hour,
-        minute,
-        seconds: seconds - secondsStep
-      });
-
+      const _newSeconds = changeTime(value, { seconds: -secondsStep });
       res.canDecrementSeconds = min <= _newSeconds;
     }
   }

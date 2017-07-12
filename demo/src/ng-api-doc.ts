@@ -1733,13 +1733,6 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
-  "TimepickerState": {
-    "fileName": "src/timepicker/reducer/timepicker.reducer.ts",
-    "className": "TimepickerState",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
   "TimepickerStore": {
     "fileName": "src/timepicker/reducer/timepicker.store.ts",
     "className": "TimepickerStore",
@@ -1870,10 +1863,22 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
+        "name": "secondsStep",
+        "defaultValue": "10",
+        "type": "number",
+        "description": "<p>seconds changes step </p>\n"
+      },
+      {
         "name": "showMeridian",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
+      },
+      {
+        "name": "showSeconds",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>show seconds in timepicker </p>\n"
       },
       {
         "name": "showSpinners",
@@ -1883,9 +1888,9 @@ export const ngdoc: any = {
       }
     ]
   },
-  "TimeUnit": {
+  "Time": {
     "fileName": "src/timepicker/timepicker.models.ts",
-    "className": "TimeUnit",
+    "className": "Time",
     "description": "",
     "methods": [],
     "properties": []
@@ -1900,6 +1905,13 @@ export const ngdoc: any = {
   "TimepickerComponentState": {
     "fileName": "src/timepicker/timepicker.models.ts",
     "className": "TimepickerComponentState",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimeChangeEvent": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimeChangeEvent",
     "description": "",
     "methods": [],
     "properties": []
