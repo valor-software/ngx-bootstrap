@@ -126,6 +126,6 @@
     "wallaby-webpack": "0.0.37",
     "webdriver-manager": "12.0.4",
     "webpack-bundle-analyzer": "2.8.2",
-    "zone.js": "0.7.7"
+    "zone.js": "0.8.13"
   }
 }
