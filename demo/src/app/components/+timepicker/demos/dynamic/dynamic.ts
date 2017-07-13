@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 export class DemoTimepickerDynamicComponent {
 
   public mytime: Date = new Date();
+  public isValid: boolean;
 
   public update(): void {
     let d = new Date();

@@ -2,10 +2,10 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Component, EventEmitter,
   forwardRef,
   Input,
-  OnChanges,
+  OnChanges, Output,
   SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -175,6 +175,8 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   /** maximum time user can select */
   @Input() max: Date;
 
+  @Output() isValid: EventEmitter<boolean> = new EventEmitter();
+
   // ui variables
   hours: string;
   minutes: string;
@@ -222,9 +224,14 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
     _store
       .select((state) => state.controls)
       .subscribe((controlsState) => {
+        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
         Object.assign(this, controlsState);
         _cd.markForCheck();
       });
+  }
+
+  isPM(): boolean {
+    return this.showMeridian && this.meridian === this.meridians[1];
   }
 
   prevDef($event: any) {
@@ -267,8 +274,7 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   }
 
   _updateTime() {
-    const isPM = this.showMeridian && this.meridian === this.meridians[1];
-    if (!isInputValid(this.hours, this.minutes, this.seconds, isPM)) {
+    if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
       this.ngOnChanges(null);
       return;
     }
@@ -277,7 +283,7 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
         hour: this.hours,
         minute: this.minutes,
         seconds: this.seconds,
-        isPM
+        isPM: this.isPM()
       }));
   }
 
