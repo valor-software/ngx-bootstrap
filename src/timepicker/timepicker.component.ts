@@ -15,7 +15,7 @@ import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
 import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
-import { isValidDate, padNumber, parseTime } from './timepicker.utils';
+import { isValidDate, padNumber, parseTime, validateInputs } from './timepicker.utils';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -268,6 +268,10 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
 
   _updateTime() {
     const isPM = this.showMeridian && this.meridian === this.meridians[1];
+    if (!validateInputs(this.hours, this.minutes, this.seconds)) {
+      this.ngOnChanges(null);
+      return;
+    }
     this._store.dispatch(this._timepickerActions
       .setTime({
         hour: this.hours,

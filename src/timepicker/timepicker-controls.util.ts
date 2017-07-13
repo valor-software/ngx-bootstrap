@@ -96,31 +96,31 @@ export function timepickerControls(value: Date, state: TimepickerComponentState)
 
 // compare dates
   if (max) {
-    const _newHour = changeTime(max, { hour:  hourStep });
-    res.canIncrementHours = max >= _newHour;
+    const _newHour = changeTime(value, { hour:  hourStep });
+    res.canIncrementHours = max > _newHour;
 
     if (!res.canIncrementHours) {
-      const _newMinutes = changeTime(max, { minute: minuteStep });
-      res.canIncrementMinutes = max >= _newMinutes;
+      const _newMinutes = changeTime(value, { minute: minuteStep });
+      res.canIncrementMinutes =  showSeconds ? max > _newMinutes : max >= _newMinutes ;
     }
 
     if (!res.canIncrementMinutes) {
-      const _newSeconds = changeTime(max, { seconds: secondsStep });
+      const _newSeconds = changeTime(value, { seconds: secondsStep });
       res.canIncrementSeconds = max >= _newSeconds;
     }
   }
 
   if (min) {
-    const _newHour = changeTime(min, { hour:  -hourStep });
+    const _newHour = changeTime(value, { hour:  -hourStep });
     res.canDecrementHours = min < _newHour;
 
     if (!res.canDecrementHours) {
-      const _newMinutes = changeTime(min, { minute: -minuteStep });
+      const _newMinutes = changeTime(value, { minute: -minuteStep });
       res.canDecrementMinutes = showSeconds ? min < _newMinutes : min <= _newMinutes;
     }
 
     if (!res.canDecrementMinutes) {
-      const _newSeconds = changeTime(min, { seconds: -secondsStep });
+      const _newSeconds = changeTime(value, { seconds: -secondsStep });
       res.canDecrementSeconds = min <= _newSeconds;
     }
   }

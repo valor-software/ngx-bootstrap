@@ -132,3 +132,10 @@ export function padNumber(value: number): string {
 
   return `0${_value}`;
 }
+
+export function validateInputs(hours: string, minutes: string, seconds: string): boolean {
+  if (isNaN(parseHours(hours)) || isNaN(parseMinutes(minutes)) || isNaN(parseSeconds(seconds))) {
+    return false;
+  }
+  return true;
+}
