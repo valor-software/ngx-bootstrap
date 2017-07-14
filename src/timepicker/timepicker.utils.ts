@@ -34,9 +34,9 @@ export function isNumber(value: string): boolean {
   return !isNaN(toNumber(value));
 }
 
-export function parseHours(value: string | number): number {
+export function parseHours(value: string | number, isPM: boolean = false): number {
   const hour = toNumber(value);
-  if (isNaN(hour) || hour < 0 || hour > hoursPerDay) {
+  if (isNaN(hour) || hour < 0 || hour > (isPM ? hoursPerDayHalf : hoursPerDay)) {
     return NaN;
   }
 
@@ -131,4 +131,11 @@ export function padNumber(value: number): string {
   if (_value.length > 1) { return _value; }
 
   return `0${_value}`;
+}
+
+export function isInputValid(hours: string, minutes: string, seconds: string = '0', isPM: boolean): boolean {
+  if (isNaN(parseHours(hours, isPM)) || isNaN(parseMinutes(minutes)) || isNaN(parseSeconds(seconds))) {
+    return false;
+  }
+  return true;
 }

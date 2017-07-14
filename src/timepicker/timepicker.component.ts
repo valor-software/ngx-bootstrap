@@ -2,10 +2,10 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Component, EventEmitter,
   forwardRef,
   Input,
-  OnChanges,
+  OnChanges, Output,
   SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -15,7 +15,7 @@ import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
 import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
-import { isValidDate, padNumber, parseTime } from './timepicker.utils';
+import { isValidDate, padNumber, parseTime, isInputValid } from './timepicker.utils';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -175,6 +175,8 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   /** maximum time user can select */
   @Input() max: Date;
 
+  @Output() isValid: EventEmitter<boolean> = new EventEmitter();
+
   // ui variables
   hours: string;
   minutes: string;
@@ -222,9 +224,14 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
     _store
       .select((state) => state.controls)
       .subscribe((controlsState) => {
+        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
         Object.assign(this, controlsState);
         _cd.markForCheck();
       });
+  }
+
+  isPM(): boolean {
+    return this.showMeridian && this.meridian === this.meridians[1];
   }
 
   prevDef($event: any) {
@@ -267,13 +274,16 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   }
 
   _updateTime() {
-    const isPM = this.showMeridian && this.meridian === this.meridians[1];
+    if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
+      this.ngOnChanges(null);
+      return;
+    }
     this._store.dispatch(this._timepickerActions
       .setTime({
         hour: this.hours,
         minute: this.minutes,
         seconds: this.seconds,
-        isPM
+        isPM: this.isPM()
       }));
   }
 
