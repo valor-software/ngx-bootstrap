@@ -3,6 +3,7 @@ import { DemoModalStaticComponent } from './static/static';
 import { DemoModalChildComponent } from './child/child';
 import { DemoAutoShownModalComponent } from './auto-shown/auto-shown';
 import { DemoModalNestedComponent } from './nested/nested';
+import { DemoModalEventsComponent } from './events/events';
 import { DemoModalServiceStaticComponent } from './service-template/service-template';
 import { DemoModalServiceFromComponent } from './service-component/service-component';
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
@@ -17,7 +18,8 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceStaticComponent,
   DemoModalServiceFromComponent,
   DemoModalServiceNestedComponent,
-  DemoModalServiceOptionsComponent
+  DemoModalServiceOptionsComponent,
+  DemoModalEventsComponent
 ];
 
 export const DEMOS = {
@@ -40,6 +42,10 @@ export const DEMOS = {
   autoShown: {
     component: require('!!raw-loader?lang=typescript!./auto-shown/auto-shown.ts'),
     html: require('!!raw-loader?lang=markup!./auto-shown/auto-shown.html')
+  },
+  events: {
+    component: require('!!raw-loader?lang=typescript!./events/events.ts'),
+    html: require('!!raw-loader?lang=markup!./events/events.html')
   },
   serviceTemplate: {
     component: require('!!raw-loader?lang=typescript!./service-template/service-template.ts'),

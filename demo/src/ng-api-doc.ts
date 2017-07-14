@@ -953,6 +953,11 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "animated",
+        "type": "boolean",
+        "description": "<p>Toggle animation</p>\n"
+      },
+      {
         "name": "backdrop",
         "type": "boolean | \"static\"",
         "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
@@ -1035,6 +1040,11 @@ export const ngdoc: any = {
         "name": "config",
         "type": "ModalOptions",
         "description": "<p>allows to set modal configuration via element property </p>\n"
+      },
+      {
+        "name": "dismissReason",
+        "type": "string",
+        "description": "<p>This field contains last dismiss reason. Possible values: <code>backdrop-click</code>, <code>esc</code> and <code>null</code> (if modal was closed by direct call of <code>.hide()</code>). </p>\n"
       }
     ],
     "methods": [
@@ -1059,6 +1069,12 @@ export const ngdoc: any = {
             "type": "Event"
           }
         ],
+        "returnType": "void"
+      },
+      {
+        "name": "focusOtherModal",
+        "description": "<p>Events tricks </p>\n",
+        "args": [],
         "returnType": "void"
       }
     ]

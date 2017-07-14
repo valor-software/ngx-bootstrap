@@ -14,22 +14,26 @@ import { AccordionComponent } from './accordion.component';
 @Component({
   selector: 'accordion-group, accordion-panel',
   template: `
-<div class="panel card" [ngClass]="panelClass">
-  <div class="panel-heading card-header" role="tab" (click)="toggleOpen($event)">
-    <div class="panel-title">
-      <div role="button" class="accordion-toggle" [attr.aria-expanded]="isOpen">
-        <div *ngIf="heading"[ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
-        <ng-content select="[accordion-heading]"></ng-content>
+    <div class="panel card" [ngClass]="panelClass">
+      <div class="panel-heading card-header" role="tab" (click)="toggleOpen($event)">
+        <div class="panel-title card-title">
+          <div role="button" class="accordion-toggle" [attr.aria-expanded]="isOpen">
+            <div *ngIf="heading"[ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
+            <ng-content select="[accordion-heading]"></ng-content>
+          </div>
+        </div>
+      </div>
+      <div class="panel-collapse collapse" role="tabpanel" [collapse]="!isOpen">
+        <div class="panel-body card-block">
+          <ng-content></ng-content>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="panel-collapse collapse" role="tabpanel" [collapse]="!isOpen">
-    <div class="panel-body card-block">
-      <ng-content></ng-content>
-    </div>
-  </div>
-</div>
-  `
+  `,
+  host: {
+    class: 'panel',
+    style: 'display: block'
+  }
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */

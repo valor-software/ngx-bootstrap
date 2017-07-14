@@ -9,7 +9,7 @@ export class DemoAccordionDynamicComponent {
 
   public status: any = {
     isFirstOpen: true,
-    isOpen: false
+    isOpen: true
   };
 
   public groups: any[] = [
