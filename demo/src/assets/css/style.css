@@ -623,6 +623,14 @@ pre {
   border-top-color: #ffff75;
 }
 
+/* Specify styling for popover contents */
+.popover.customClass, .popover.customClass .popover-content {
+  background: #94bada;
+}
+.popover.customClass.top>.arrow:after {
+  border-top-color: #94bada;
+}
+
 .nav-item.customClass {
 	float: right;
 }

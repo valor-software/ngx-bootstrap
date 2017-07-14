@@ -1007,6 +1007,12 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "void"
+      },
+      {
+        "name": "focusOtherModal",
+        "description": "<p>Events tricks </p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ]
   },
@@ -1251,6 +1257,11 @@ export const ngdoc: any = {
         "name": "container",
         "type": "string",
         "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "containerClass",
+        "type": "string",
+        "description": "<p>Css class for popover container</p>\n"
       },
       {
         "name": "isOpen",
@@ -1896,6 +1907,11 @@ export const ngdoc: any = {
         "name": "container",
         "type": "string",
         "description": "<p>A selector specifying the element the tooltip should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "containerClass",
+        "type": "string",
+        "description": "<p>Css class for tooltip container</p>\n"
       },
       {
         "name": "isDisabled",

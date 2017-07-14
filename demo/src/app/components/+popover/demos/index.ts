@@ -9,6 +9,7 @@ import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-glob
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
+import { DemoPopoverClassComponent } from './class/class';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
@@ -21,7 +22,8 @@ export const DEMO_COMPONENTS = [
   DemoPopoverStylingGlobalComponent,
   DemoPopoverStylingLocalComponent,
   DemoPopoverTriggersCustomComponent,
-  DemoPopoverTriggersManualComponent
+  DemoPopoverTriggersManualComponent,
+  DemoPopoverClassComponent
 ];
 
 export const DEMOS = {
@@ -68,5 +70,9 @@ export const DEMOS = {
   stylingGlobal: {
     component: require('!!raw-loader?lang=typescript!./styling-global/styling-global.ts'),
     html: require('!!raw-loader?lang=markup!./styling-global/styling-global.html')
+  },
+  class: {
+    component: require('!!raw-loader?lang=typescript!./class/class.ts'),
+    html: require('!!raw-loader?lang=markup!./class/class.html')
   }
 };
