@@ -9,6 +9,7 @@ import { DemoTooltipStylingLocalComponent } from './styling-local/styling-local'
 import { DemoTooltipTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoTooltipTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoTooltipDynamicHtmlComponent } from './dynamic-html/dynamic-html';
+import { DemoTooltipClassComponent } from './class/class';
 
 export const DEMO_COMPONENTS = [
   DemoTooltipBasicComponent,
@@ -21,7 +22,8 @@ export const DEMO_COMPONENTS = [
   DemoTooltipStylingGlobalComponent,
   DemoTooltipStylingLocalComponent,
   DemoTooltipTriggersCustomComponent,
-  DemoTooltipTriggersManualComponent
+  DemoTooltipTriggersManualComponent,
+  DemoTooltipClassComponent
 ];
 
 export const DEMOS = {
@@ -68,5 +70,9 @@ export const DEMOS = {
   stylingGlobal: {
     component: require('!!raw-loader?lang=typescript!./styling-global/styling-global.ts'),
     html: require('!!raw-loader?lang=markup!./styling-global/styling-global.html')
+  },
+  class: {
+    component: require('!!raw-loader?lang=typescript!./class/class.ts'),
+    html: require('!!raw-loader?lang=markup!./class/class.html')
   }
 };

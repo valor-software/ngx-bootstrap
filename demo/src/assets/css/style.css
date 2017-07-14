@@ -620,7 +620,7 @@ pre {
   transition: opacity 1s;
 }
 .tooltip.customClass .tooltip-arrow {
-  display: none;
+  border-top-color: #ffff75;
 }
 
 .nav-item.customClass {
