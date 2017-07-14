@@ -105,6 +105,7 @@ export function setTime(value: Date, opts: Time): Date {
     hour += hoursPerDayHalf;
   }
 
+  // fixme: unreachable code, value is mandatory
   if (!value) {
     if (!isNaN(hour) && !isNaN(minute)) {
       return createDate(new Date(), hour, minute, seconds);
@@ -121,6 +122,8 @@ export function setTime(value: Date, opts: Time): Date {
 }
 
 export function createDate(value: Date, hours: number, minutes: number, seconds: number): Date {
+
+  // fixme: unreachable code, value is mandatory
   const _value = value || new Date();
   return new Date(_value.getFullYear(), _value.getMonth(), _value.getDate(),
     hours, minutes, seconds, _value.getMilliseconds());
