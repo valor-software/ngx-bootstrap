@@ -11,11 +11,11 @@ import { latinize } from './typeahead-utils';
   // tslint:disable-next-line
   template: `
 <!-- inject options list template -->
-<template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
-  [ngOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></template>
+<ng-template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
+  [ngOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></ng-template>
 
 <!-- default options item template -->
-<template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="hightlight(match, query)"></span></template>
+<ng-template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="hightlight(match, query)"></span></ng-template>
 
 <!-- Bootstrap 3 options list template -->
 <ng-template #bs3Template>
@@ -33,21 +33,21 @@ import { latinize } from './typeahead-utils';
 </ng-template>
 
 <!-- Bootstrap 4 options list template -->
-<template #bs4Template >
-<template ngFor let-match let-i="index" [ngForOf]="matches">
+<ng-template #bs4Template >
+<ng-template ngFor let-match let-i="index" [ngForOf]="matches">
    <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
-   <template [ngIf]="!match.isHeader()">
+   <ng-template [ngIf]="!match.isHeader()">
       <button
         class="dropdown-item"
         (click)="selectMatch(match, $event)"
         (mouseenter)="selectActive(match)"
         [class.active]="isActive(match)">
-          <template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
-            [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></template>
+          <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
+            [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
       </button>
-  </template>
-</template>
-</template>
+  </ng-template>
+</ng-template>
+</ng-template>
 `,
   // tslint:disable
   host: {
