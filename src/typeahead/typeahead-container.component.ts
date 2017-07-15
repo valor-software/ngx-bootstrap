@@ -18,19 +18,19 @@ import { latinize } from './typeahead-utils';
 <template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="hightlight(match, query)"></span></template>
 
 <!-- Bootstrap 3 options list template -->
-<template #bs3Template>
+<ng-template #bs3Template>
 <ul class="dropdown-menu">
-  <template ngFor let-match let-i="index" [ngForOf]="matches">
+  <ng-template ngFor let-match let-i="index" [ngForOf]="matches">
     <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
     <li *ngIf="!match.isHeader()" [class.active]="isActive(match)" (mouseenter)="selectActive(match)">
       <a href="#" (click)="selectMatch(match, $event)" tabindex="-1">
-        <template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
-          [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></template>
+        <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
+          [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
       </a>
     </li>
-  </template>
+  </ng-template>
 </ul>
-</template>
+</ng-template>
 
 <!-- Bootstrap 4 options list template -->
 <template #bs4Template >
