@@ -1421,24 +1421,14 @@ export const ngdoc: any = {
         "description": "<p>maximum total value of progress element </p>\n"
       },
       {
-        "name": "stacked",
-        "type": "boolean",
-        "description": ""
-      },
-      {
-        "name": "stackedData",
-        "type": "any[]",
-        "description": ""
-      },
-      {
         "name": "type",
         "type": "string",
         "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code> </p>\n"
       },
       {
         "name": "value",
-        "type": "number",
-        "description": "<p>current value of progress bar </p>\n"
+        "type": "number | any[]",
+        "description": "<p>current value of progress bar. Could be a number or array of objects like {&quot;value&quot;:15,&quot;type&quot;:&quot;info&quot;,&quot;label&quot;:&quot;15 %&quot;} </p>\n"
       }
     ],
     "outputs": [],
