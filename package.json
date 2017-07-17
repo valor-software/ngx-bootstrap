@@ -112,7 +112,7 @@
     "markdown-loader": "github:valorkin/markdown-loader",
     "marked": "0.3.6",
     "ng2-page-scroll": "4.0.0-beta.7",
-    "ngm-cli": "0.5.2",
+    "ngm-cli": "0.6.1",
     "npm-run-all": "4.0.2",
     "protractor": "5.1.1",
     "reflect-metadata": "0.1.10",
