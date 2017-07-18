@@ -31,7 +31,7 @@ export class BarComponent implements OnInit, OnDestroy {
   }
   @HostBinding('style.width.%') get setBarWidth(){
     this.recalculatePercentage();
-    return this.isBs3 ? 'auto' : this.percent;
+    return this.isBs3 ? '' : this.percent;
   };
 
   public set value(v:number) {
