@@ -164,6 +164,9 @@ export class ComponentLoader<T> {
     const componentEl = this._componentRef.location.nativeElement;
     componentEl.parentNode.removeChild(componentEl);
     this._componentRef.destroy();
+    if (this._viewContainerRef && this._contentRef.viewRef) {
+      this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
+    }
     // this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
     //
     // if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {
@@ -256,9 +259,12 @@ export class ComponentLoader<T> {
     }
 
     if (content instanceof TemplateRef) {
+      if (this._viewContainerRef) {
+        const viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content);
+        return new ContentRef([viewRef.rootNodes], viewRef);
+      }
       const viewRef = content.createEmbeddedView({});
       this._applicationRef.attachView(viewRef);
-      // const viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content);
       return new ContentRef([viewRef.rootNodes], viewRef);
     }
 
