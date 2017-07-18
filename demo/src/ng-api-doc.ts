@@ -903,11 +903,44 @@ export const ngdoc: any = {
       }
     ]
   },
+  "BsModalService": {
+    "fileName": "src/modal/bs-modal.service.ts",
+    "className": "BsModalService",
+    "description": "",
+    "methods": [
+      {
+        "name": "show",
+        "description": "<p>Shows a modal </p>\n",
+        "args": [
+          {
+            "name": "content",
+            "type": "any"
+          },
+          {
+            "name": "config",
+            "type": "any"
+          }
+        ],
+        "returnType": "BsModalRef"
+      }
+    ],
+    "properties": []
+  },
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
     "className": "ModalBackdropComponent",
     "description": "<p>This component will be added as background layout for modals if enabled </p>\n",
     "selector": "bs-modal-backdrop",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ModalContainerComponent": {
+    "fileName": "src/modal/modal-container.component.ts",
+    "className": "ModalContainerComponent",
+    "description": "",
+    "selector": "modal-container",
     "inputs": [],
     "outputs": [],
     "properties": [],
@@ -920,9 +953,19 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "animated",
+        "type": "boolean",
+        "description": "<p>Toggle animation</p>\n"
+      },
+      {
         "name": "backdrop",
         "type": "boolean | \"static\"",
         "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "description": "<p>Css class for opened modal</p>\n"
       },
       {
         "name": "ignoreBackdropClick",
@@ -938,6 +981,26 @@ export const ngdoc: any = {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
+      }
+    ]
+  },
+  "BsModalRef": {
+    "fileName": "src/modal/modal-options.class.ts",
+    "className": "BsModalRef",
+    "description": "",
+    "methods": [
+      {
+        "name": "hide",
+        "description": "<p>Hides the modal</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "Object",
+        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
       }
     ]
   },

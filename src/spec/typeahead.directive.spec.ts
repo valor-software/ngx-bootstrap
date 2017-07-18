@@ -106,8 +106,7 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('should render the typeahead-container child element', () => {
-      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
-
+      let typeaheadContainer = fixture.debugElement.nativeElement.querySelector('typeahead-container');
       expect(typeaheadContainer).not.toBeNull();
     });
 
@@ -173,7 +172,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Alab';
       fireEvent(inputElement, 'keyup');
- 
+
       fixture.detectChanges();
       tick(100);
     }));
