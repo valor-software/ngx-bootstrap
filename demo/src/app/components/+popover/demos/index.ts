@@ -71,7 +71,7 @@ export const DEMOS = {
     component: require('!!raw-loader?lang=typescript!./styling-global/styling-global.ts'),
     html: require('!!raw-loader?lang=markup!./styling-global/styling-global.html')
   },
-  class: {
+  customClass: {
     component: require('!!raw-loader?lang=typescript!./class/class.ts'),
     html: require('!!raw-loader?lang=markup!./class/class.html')
   }

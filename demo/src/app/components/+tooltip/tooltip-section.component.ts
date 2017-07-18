@@ -98,7 +98,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </ng-sample-box>
 
   <h2 routerLink="." fragment="custom-class" id="custom-class">Custom class</h2>
-  <ng-sample-box [ts]="demos.class.component" [html]="demos.class.html">
+  <ng-sample-box [ts]="demos.customClass.component" [html]="demos.customClass.html">
     <demo-tooltip-class></demo-tooltip-class>
   </ng-sample-box>
       
