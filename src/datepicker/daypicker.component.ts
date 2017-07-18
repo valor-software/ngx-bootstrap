@@ -1,22 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
-
-// write an interface for template options
-const TEMPLATE_OPTIONS: any = {
-  'bs4': {
-    ARROW_LEFT: '&lt;',
-    ARROW_RIGHT: '&gt;'
-  },
-  'bs3': {
-    ARROW_LEFT: `
-    <i class="glyphicon glyphicon-chevron-left"></i>
-    `,
-    ARROW_RIGHT: `
-    <i class="glyphicon glyphicon-chevron-right"></i>
-    `
-  }
-};
+import { DatePickerTemplateOptions } from './datepicker-template-options.class';
 
 @Component({
   selector: 'daypicker',
@@ -25,12 +10,7 @@ const TEMPLATE_OPTIONS: any = {
   <thead>
     <tr>
       <th>
-        <button type="button" 
-                class="btn btn-default btn-secondary btn-sm pull-left" 
-                (click)="datePicker.move(-1)" 
-                tabindex="-1"
-                [innerHTML]="CURRENT_THEME_TEMPLATE.ARROW_LEFT">
-        </button>
+        <datepicker-menu-left [theme]="theme" (click)="datePicker.move(-1)"></datepicker-menu-left>
       </th>
       <th [attr.colspan]="5 + (datePicker.showWeeks ? 1 : 0)">
         <button [id]="datePicker.uniqueId + '-title'"
@@ -42,12 +22,7 @@ const TEMPLATE_OPTIONS: any = {
         </button>
       </th>
       <th>
-        <button type="button" 
-                class="btn btn-default btn-secondary btn-sm pull-right" 
-                (click)="datePicker.move(1)" 
-                tabindex="-1"
-                [innerHTML]="CURRENT_THEME_TEMPLATE.ARROW_RIGHT">
-        </button>
+        <datepicker-menu-right [theme]="theme" (click)="datePicker.move(1)"></datepicker-menu-right>
       </th>
     </tr>
     <tr>
@@ -79,18 +54,15 @@ const TEMPLATE_OPTIONS: any = {
   `
 })
 export class DayPickerComponent implements OnInit {
+  @Input() theme: DatePickerTemplateOptions;
 
   public labels: any[] = [];
   public title: string;
   public rows: any[] = [];
   public weekNumbers: number[] = [];
   public datePicker: DatePickerInnerComponent;
-  public CURRENT_THEME_TEMPLATE: any;
 
   public constructor(datePicker: DatePickerInnerComponent) {
-    this.CURRENT_THEME_TEMPLATE = isBs3()
-      ? TEMPLATE_OPTIONS.bs3
-      : TEMPLATE_OPTIONS.bs4;
     this.datePicker = datePicker;
   }
 

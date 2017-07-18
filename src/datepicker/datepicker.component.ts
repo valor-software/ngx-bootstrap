@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output, ViewChild, forwardRef } from '@
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { DatepickerConfig } from './datepicker.config';
+import { DatepickerService } from './datepicker.service';
+import { DatePickerTemplateOptions } from './datepicker-template-options.class';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -38,9 +40,9 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [yearColLimit]="yearColLimit"
                       (selectionDone)="onSelectionDone($event)"
                       (activeDateChange)="onActiveDateChange($event)">
-      <daypicker tabindex="0"></daypicker>
-      <monthpicker tabindex="0"></monthpicker>
-      <yearpicker tabindex="0"></yearpicker>
+      <daypicker tabindex="0" [theme]="themeTemplate"></daypicker>
+      <monthpicker tabindex="0" [theme]="themeTemplate"></monthpicker>
+      <yearpicker tabindex="0" [theme]="themeTemplate"></yearpicker>
     </datepicker-inner>
     `,
   providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
@@ -113,10 +115,12 @@ export class DatePickerComponent implements ControlValueAccessor {
   protected _now: Date = new Date();
   protected _activeDate: Date;
   protected config: DatepickerConfig;
+  public themeTemplate: DatePickerTemplateOptions;
 
-  public constructor(config: DatepickerConfig) {
+  public constructor(config: DatepickerConfig, datePickerService: DatepickerService) {
     this.config = config;
     this.configureOptions();
+    this.themeTemplate = datePickerService.getTemplateOptions();
   }
 
   public configureOptions(): void {
