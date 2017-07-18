@@ -35,6 +35,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Input() public container: string;
 
   /**
+   * Css class for popover container
+   */
+  @Input() public containerClass: string;
+
+  /**
    * Returns whether or not the popover is currently being shown
    */
   @Input()
@@ -95,7 +100,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .show({
         content: this.popover,
         placement: this.placement,
-        title: this.popoverTitle
+        title: this.popoverTitle,
+        containerClass: this.containerClass
       });
     this.isOpen = true;
   }

@@ -51,6 +51,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() public isDisabled: boolean;
 
   /**
+   * Css class for tooltip container
+   */
+  @Input() public containerClass: string;
+
+  /**
    * Emits an event when the tooltip is shown
    */
   @Output() public onShown: EventEmitter<any>;
@@ -204,7 +209,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
       .position({attachment: this.placement})
       .show({
         content: this.tooltip,
-        placement: this.placement
+        placement: this.placement,
+        containerClass: this.containerClass
       });
 
     if (this._delay) {
