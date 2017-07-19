@@ -18,8 +18,9 @@ function isDefined(value: any): boolean {
   return typeof value !== 'undefined';
 }
 
-function addMinutes(date: any, minutes: number): Date {
-  let dt = new Date(date.getTime() + minutes * 60000);
+
+function addMinutes(date: any, minutes: number, minuteRoundBeforeStep?:boolean): Date {
+  let dt = new Date(date.getTime() + (minuteRoundBeforeStep?(minutes - (date.getMinutes() % minutes )):minutes) * 60000);
   let newDate = new Date(date);
   newDate.setHours(dt.getHours(), dt.getMinutes());
   return newDate;
@@ -76,6 +77,8 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   @Input() public max: Date;
   /** meridian labels based on locale */
   @Input() public meridians: string[];
+  /** Round current time to nearest step before stepping */
+  @Input() public minuteRoundBeforeStep: boolean;
 
   /** if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM */
   @Input()
@@ -274,25 +277,25 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   }
 
   public noIncrementHours(): boolean {
-    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
+    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60, this.minuteRoundBeforeStep);
     return incrementedSelected > this.max ||
       (incrementedSelected < this.selected && incrementedSelected < this.min);
   }
 
   public noDecrementHours(): boolean {
-    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
+    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60, this.minuteRoundBeforeStep);
     return decrementedSelected < this.min ||
       (decrementedSelected > this.selected && decrementedSelected > this.max);
   }
 
   public noIncrementMinutes(): boolean {
-    let incrementedSelected = addMinutes(this.selected, this.minuteStep);
+    let incrementedSelected = addMinutes(this.selected, this.minuteStep, this.minuteRoundBeforeStep);
     return incrementedSelected > this.max ||
       (incrementedSelected < this.selected && incrementedSelected < this.min);
   }
 
   public noDecrementMinutes(): boolean {
-    let decrementedSelected = addMinutes(this.selected, -this.minuteStep);
+    let decrementedSelected = addMinutes(this.selected, -this.minuteStep, this.minuteRoundBeforeStep);
     return decrementedSelected < this.min ||
       (decrementedSelected > this.selected && decrementedSelected > this.max);
 
@@ -311,9 +314,9 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
     }
 
     if (this.selected.getHours() < 13) {
-      return addMinutes(this.selected, 12 * 60) > this.max;
+      return addMinutes(this.selected, 12 * 60, this.minuteRoundBeforeStep) > this.max;
     } else {
-      return addMinutes(this.selected, -12 * 60) < this.min;
+      return addMinutes(this.selected, -12 * 60, this.minuteRoundBeforeStep) < this.min;
     }
   }
 
@@ -380,7 +383,7 @@ export class TimepickerComponent implements ControlValueAccessor, OnInit {
   }
 
   protected addMinutesToSelected(minutes: any): void {
-    this.selected = addMinutes(this.selected, minutes);
+    this.selected = addMinutes(this.selected, minutes, this.minuteRoundBeforeStep);
     this.refresh();
   }
 }

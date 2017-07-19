@@ -23,4 +23,6 @@ export class TimepickerConfig {
   public min: number = void 0;
   /** maximum time user can select */
   public max: number = void 0;
+  /** Round current time to nearest step before stepping */
+  public minuteRoundBeforeStep: boolean = true;
 }
