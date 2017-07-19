@@ -275,7 +275,7 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
 
   _updateTime() {
     if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
-      this.ngOnChanges(null);
+      this.onChange(null);
       return;
     }
     this._store.dispatch(this._timepickerActions

@@ -249,35 +249,23 @@ describe('Component: timepicker', () => {
       component = fixture.componentInstance;
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
+      buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    // изменить значение поля ввода на указанное максимальное значение,
-    // если оно приывшает указанное максимальное значение, в фотмате времени 12h
-    it('expected to fail, wait to fix. should change the input field to specified value if it exceed the specified value 12h', () => {
+    // заблокировать кнопку увеличения часов
+    it('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
       component.max = testTime(18);
-
-      component.writeValue(testTime(19,22));
-
+      component.writeValue(testTime(17,50));
       fixture.detectChanges();
-      fixture.whenStable()
-        .then(() => {
-          expect(inputHours.value).toBe('06');
-          expect(inputMinutes.value).toBe('00');
-        });
-    });
-    // изменить значение поля ввода на указанное максимальное значение,
-    // если оно приывшает указанное максимальное значение, в фотмате времени 24h
-    it('expected to fail, wait to fix. should change the input field to specified value if it exceed the specified value 24h', () => {
-      component.max = testTime(18);
 
-      component.writeValue(testTime(19,22));
+      expect(buttonChanges[0]).toHaveCssClass('disabled');
+      expect(buttonChanges[1]).not.toHaveCssClass('disabled');
 
+      component.writeValue(testTime(17,57));
       fixture.detectChanges();
-      fixture.whenStable()
-        .then(() => {
-          expect(inputHours.value).toBe('18');
-          expect(inputMinutes.value).toBe('00');
-        });
+
+      expect(buttonChanges[0]).toHaveCssClass('disabled');
+      expect(buttonChanges[1]).toHaveCssClass('disabled');
     });
   });
 
@@ -289,36 +277,24 @@ describe('Component: timepicker', () => {
       component = fixture.componentInstance;
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
+      buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    // изменить значение поля ввода на указанное минимальное значение,
-    // если оно приывшает указанное минимальное значение, в фотмате времени 12h
-    it('expected to fail, wait to fix. should not value of the input field less the specified value 12h', () => {
+    // заблокировать кнопку уменьшения часов
+    it('should block the hours / minutes decrement button if clicking on it will cause exceeding the min value', () => {
       component.min = testTime(13);
-
-      component.writeValue(testTime(14,22));
-
-      fixture.detectChanges();
-      fixture.whenStable()
-        .then(() => {
-          expect(inputHours.value).toBe('01');
-          expect(inputMinutes.value).toBe('00');
-        });
-    });
-    // изменить значение поля ввода на указанное минимальное значение,
-    // если оно приывшает указанное минимальное значение, в фотмате времени 24h
-    it('expected to fail, wait to fix. should change the input field to specified value if it less the specified value 24h', () => {
-      component.showMeridian = false;
-      component.min = testTime(14);
-
       component.writeValue(testTime(13,22));
-
       fixture.detectChanges();
-      fixture.whenStable()
-        .then(() => {
-          expect(inputHours.value).toBe('14');
-          expect(inputMinutes.value).toBe('00');
-        });
+
+      expect(buttonChanges[2]).toHaveCssClass('disabled');
+      expect(buttonChanges[3]).not.toHaveCssClass('disabled');
+
+      component.writeValue(testTime(13, 2));
+      fixture.detectChanges();
+
+      expect(buttonChanges[2]).toHaveCssClass('disabled');
+      expect(buttonChanges[3]).toHaveCssClass('disabled');
+
     });
   });
 
@@ -982,21 +958,25 @@ describe('Component: timepicker', () => {
       expect(inputHours.value).toBe('');
       expect(inputMinutes.value).toBe('');
     });
-    // не верное значение поля должно сбрасывать состояние
-    it('expected to fail, wait to fix. should clear input fields if invalid value', () => {
+    // не верное значение поля должно сбрасывать время
+    it('should clear model if values are invalid', () => {
       component.showSeconds = true;
-
-      component.writeValue(testTime(99,99,99));
-
-      expect(inputHours.value).toBe('');
-      expect(inputMinutes.value).toBe('');
-
+      component.writeValue(testTime(12,12,12));
       fixture.detectChanges();
-      fixture.whenStable()
-        .then(() => {
-          inputSeconds = getInputElements(fixture)[2];
-          expect(inputSeconds.value).toBe('');
-        });
+      inputSeconds = getInputElements(fixture)[2];
+
+      expect(inputHours.value).toBe('12');
+      expect(inputMinutes.value).toBe('12');
+      expect(inputSeconds.value).toBe('12');
+
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      component.hours = '99';
+      component.minutes = '99';
+      component.seconds = '99';
+      component._updateTime();
+      fixture.detectChanges();
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
     });
     // верное значение поля
     it('should valid value in input fields', () => {
