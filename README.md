@@ -63,6 +63,21 @@ To enable bootstrap 4 theme templates in ngx-bootstrap, please read
  - `AoT using ngc and rollup` please refer to [ngx-bootstrap-with-aot](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/aot.md)
  - `Bootstrap 4 and angular-cli` please refer to [using-with-bootstrap-4-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap4.md)
 
+# How to build lib for development
+
+First time
+ - clone repository
+ - `npm install`
+ - `npm run test` it will run build and link
+ To run bootstrap 3 and 4 demo:
+ - `npm run demo.serve` to serve local demo. This is for testing only, without watchers.
+ 
+ For local development run
+ - `npm run build.watch` in first terminal
+ - `ng serve` in second
+ 
+ Run `npm run link` after clean install and rebuild
+
 # Usage & Demo
 
 Main source of API documentation and usage scenarios available here: 
