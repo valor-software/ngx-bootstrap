@@ -175,6 +175,7 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   /** maximum time user can select */
   @Input() max: Date;
 
+  /** emits true if value is a valid date */
   @Output() isValid: EventEmitter<boolean> = new EventEmitter();
 
   // ui variables

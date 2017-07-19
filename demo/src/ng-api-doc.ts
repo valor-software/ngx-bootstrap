@@ -903,13 +903,6 @@ export const ngdoc: any = {
       }
     ]
   },
-  "Action": {
-    "fileName": "src/mini-ngrx/index.ts",
-    "className": "Action",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
     "className": "ModalBackdropComponent",
@@ -1807,7 +1800,12 @@ export const ngdoc: any = {
         "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isValid",
+        "description": "<p>emits true if value is a valid date </p>\n"
+      }
+    ],
     "properties": [],
     "methods": []
   },
