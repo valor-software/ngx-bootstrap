@@ -1798,6 +1798,20 @@ export const ngdoc: any = {
       }
     ]
   },
+  "TimepickerActions": {
+    "fileName": "src/timepicker/reducer/timepicker.actions.ts",
+    "className": "TimepickerActions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimepickerStore": {
+    "fileName": "src/timepicker/reducer/timepicker.store.ts",
+    "className": "TimepickerStore",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "TimepickerComponent": {
     "fileName": "src/timepicker/timepicker.component.ts",
     "className": "TimepickerComponent",
@@ -1845,9 +1859,19 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
+        "name": "secondsStep",
+        "type": "number",
+        "description": "<p>seconds change step </p>\n"
+      },
+      {
         "name": "showMeridian",
         "type": "boolean",
-        "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
+        "description": ""
+      },
+      {
+        "name": "showSeconds",
+        "type": "boolean",
+        "description": ""
       },
       {
         "name": "showSpinners",
@@ -1855,7 +1879,12 @@ export const ngdoc: any = {
         "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isValid",
+        "description": "<p>emits true if value is a valid date </p>\n"
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -1879,7 +1908,7 @@ export const ngdoc: any = {
       },
       {
         "name": "max",
-        "type": "number",
+        "type": "Date",
         "description": "<p>maximum time user can select </p>\n"
       },
       {
@@ -1889,7 +1918,7 @@ export const ngdoc: any = {
       },
       {
         "name": "min",
-        "type": "number",
+        "type": "Date",
         "description": "<p>minimum time user can select </p>\n"
       },
       {
@@ -1911,10 +1940,22 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
+        "name": "secondsStep",
+        "defaultValue": "10",
+        "type": "number",
+        "description": "<p>seconds changes step </p>\n"
+      },
+      {
         "name": "showMeridian",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
+      },
+      {
+        "name": "showSeconds",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>show seconds in timepicker </p>\n"
       },
       {
         "name": "showSpinners",
@@ -1923,6 +1964,34 @@ export const ngdoc: any = {
         "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ]
+  },
+  "Time": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "Time",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimepickerControls": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimepickerControls",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimepickerComponentState": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimepickerComponentState",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimeChangeEvent": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimeChangeEvent",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "TooltipContainerComponent": {
     "fileName": "src/tooltip/tooltip-container.component.ts",

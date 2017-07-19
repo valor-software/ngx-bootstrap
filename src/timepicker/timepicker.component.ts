@@ -1,386 +1,360 @@
-// tslint:disable max-file-line-count
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+/* tslint:disable:no-forward-ref max-file-line-count */
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component, EventEmitter,
+  forwardRef,
+  Input,
+  OnChanges, Output,
+  SimpleChanges
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { TimepickerActions } from './reducer/timepicker.actions';
+import { TimepickerStore } from './reducer/timepicker.store';
+import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
+import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
+import { isValidDate, padNumber, parseTime, isInputValid } from './timepicker.utils';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => TimepickerComponent),
   multi: true
 };
 
-// todo: refactor directive has to many functions! (extract to stateless helper)
-// todo: use moment js?
-// todo: implement `time` validator
-// todo: replace increment/decrement blockers with getters, or extract
-// todo: unify work with selected
-function isDefined(value: any): boolean {
-  return typeof value !== 'undefined';
-}
-
-function addMinutes(date: any, minutes: number): Date {
-  let dt = new Date(date.getTime() + minutes * 60000);
-  let newDate = new Date(date);
-  newDate.setHours(dt.getHours(), dt.getMinutes());
-  return newDate;
-}
-
 @Component({
   selector: 'timepicker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore],
   template: `
     <table>
       <tbody>
-        <tr class="text-center" [ngClass]="{hidden: !showSpinners || readonlyInput}">
-          <td><a (click)="incrementHours()" [ngClass]="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-          <td>&nbsp;</td>
-          <td><a (click)="incrementMinutes()" [ngClass]="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
-          <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"></td>
-        </tr>
-        <tr>
-          <td class="form-group" [ngClass]="{'has-error': invalidHours}">
-            <input style="width:50px;" type="text" [(ngModel)]="hours" (change)="updateHours()" class="form-control text-center" [readonly]="readonlyInput" (blur)="hoursOnBlur()" maxlength="2">
-          </td>
-          <td>:</td>
-          <td class="form-group" [ngClass]="{'has-error': invalidMinutes}">
-            <input style="width:50px;" type="text" [(ngModel)]="minutes" (change)="updateMinutes()" class="form-control text-center" [readonly]="readonlyInput" (blur)="minutesOnBlur()" maxlength="2">
-          </td>
-          <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"><button type="button" [ngClass]="{disabled: noToggleMeridian() || readonlyInput}" class="btn btn-default text-center" (click)="toggleMeridian()">{{meridian}}</button></td>
-        </tr>
-        <tr class="text-center" [ngClass]="{hidden: !showSpinners || readonlyInput}">
-          <td><a (click)="decrementHours()" [ngClass]="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-          <td>&nbsp;</td>
-          <td><a (click)="decrementMinutes()" [ngClass]="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
-          <td [ngClass]="{hidden: !showMeridian}" *ngIf="showMeridian"></td>
-        </tr>
+      <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+        <!-- increment hours button-->
+        <td>
+          <a class="btn btn-link" [class.disabled]="!canIncrementHours"
+             (click)="changeHours(hourStep)">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </a>
+        </td>
+        <!-- divider -->
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <!-- increment minutes button -->
+        <td>
+          <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
+             (click)="changeMinutes(minuteStep)">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </a>
+        </td>
+        <!-- divider -->
+        <td *ngIf="showSeconds">&nbsp;</td>
+        <!-- increment seconds button -->
+        <td *ngIf="showSeconds">
+          <a class="btn btn-link" [class.disabled]="!canIncrementSeconds"
+             (click)="changeSeconds(secondsStep)">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </a>
+        </td>
+        <!-- space between -->
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <!-- meridian placeholder-->
+        <td *ngIf="showMeridian"></td>
+      </tr>
+      <tr>
+        <!-- hours -->
+        <td class="form-group" [class.has-error]="invalidHours">
+          <input type="text" style="width:50px;"
+                 class="form-control text-center"
+                 placeholder="HH"
+                 maxlength="2"
+                 [readonly]="readonlyInput"
+                 [value]="hours"
+                 (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
+                 (keydown.ArrowUp)="changeHours(hourStep, 'key')"
+                 (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
+                 (change)="updateHours($event.target.value)"></td>
+        <!-- divider -->
+        <td>&nbsp;:&nbsp;</td>
+        <!-- minutes -->
+        <td class="form-group" [class.has-error]="invalidMinutes">
+          <input style="width:50px;" type="text"
+                 class="form-control text-center"
+                 placeholder="MM"
+                 maxlength="2"
+                 [readonly]="readonlyInput"
+                 [value]="minutes"
+                 (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
+                 (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
+                 (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
+                 (change)="updateMinutes($event.target.value)">
+        </td>
+        <!-- divider -->
+        <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
+        <!-- seconds -->
+        <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
+          <input style="width:50px;" type="text"
+                 class="form-control text-center"
+                 placeholder="SS"
+                 maxlength="2"
+                 [readonly]="readonlyInput"
+                 [value]="seconds"
+                 (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
+                 (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
+                 (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
+                 (change)="updateSeconds($event.target.value)">
+        </td>
+        <!-- space between -->
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <!-- meridian -->
+        <td *ngIf="showMeridian">
+          <button type="button" class="btn btn-default text-center"
+                  [disabled]="readonlyInput"
+                  [class.disabled]="readonlyInput"
+                  (click)="toggleMeridian()">
+            {{meridian}}
+          </button>
+        </td>
+      </tr>
+      <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+        <!-- decrement hours button-->
+        <td>
+          <a class="btn btn-link" [class.disabled]="!canDecrementHours" (click)="changeHours(-hourStep)">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+        </td>
+        <!-- divider -->
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <!-- decrement minutes button-->
+        <td>
+          <a class="btn btn-link" [class.disabled]="!canDecrementMinutes" (click)="changeMinutes(-minuteStep)">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+        </td>
+        <!-- divider -->
+        <td *ngIf="showSeconds">&nbsp;</td>
+        <!-- decrement seconds button-->
+        <td *ngIf="showSeconds">
+          <a class="btn btn-link" [class.disabled]="!canDecrementSeconds" (click)="changeSeconds(-secondsStep)">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </a>
+        </td>
+        <!-- space between -->
+        <td>&nbsp;&nbsp;&nbsp;</td>
+        <!-- meridian placeholder-->
+        <td *ngIf="showMeridian"></td>
+      </tr>
       </tbody>
     </table>
-  `,
-  providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR]
+  `
 })
-export class TimepickerComponent implements ControlValueAccessor, OnInit {
+export class TimepickerComponent implements ControlValueAccessor, TimepickerComponentState, TimepickerControls, OnChanges {
   /** hours change step */
-  @Input() public hourStep: number;
+  @Input() hourStep: number;
   /** hours change step */
-  @Input() public minuteStep: number;
+  @Input() minuteStep: number;
+  /** seconds change step */
+  @Input() secondsStep: number;
   /** if true hours and minutes fields will be readonly */
-  @Input() public readonlyInput: boolean;
+  @Input() readonlyInput: boolean;
   /** if true scroll inside hours and minutes inputs will change time */
-  @Input() public mousewheel: boolean;
+  @Input() mousewheel: boolean;
   /** if true up/down arrowkeys inside hours and minutes inputs will change time */
-  @Input() public arrowkeys: boolean;
+  @Input() arrowkeys: boolean;
   /** if true spinner arrows above and below the inputs will be shown */
-  @Input() public showSpinners: boolean;
-  /** minimum time user can select */
-  @Input() public min: Date;
-  /** maximum time user can select */
-  @Input() public max: Date;
+  @Input() showSpinners: boolean;
+  @Input() showMeridian: boolean;
+  @Input() showSeconds: boolean;
+
   /** meridian labels based on locale */
-  @Input() public meridians: string[];
+  @Input() meridians: string[];
 
-  /** if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM */
-  @Input()
-  public get showMeridian(): boolean {
-    return this._showMeridian;
+  /** minimum time user can select */
+  @Input() min: Date;
+  /** maximum time user can select */
+  @Input() max: Date;
+
+  /** emits true if value is a valid date */
+  @Output() isValid: EventEmitter<boolean> = new EventEmitter();
+
+  // ui variables
+  hours: string;
+  minutes: string;
+  seconds: string;
+  meridian: string;
+
+  get isSpinnersVisible(): boolean {
+    return this.showSpinners && !this.readonlyInput;
   }
 
-  public set showMeridian(value: boolean) {
-    this._showMeridian = value;
-    // || !this.$error.time
-    // if (true) {
-    this.updateTemplate();
-    return;
-    // }
-    // Evaluate from template
-    /*let hours = this.getHoursFromTemplate();
-     let minutes = this.getMinutesFromTemplate();
-     if (isDefined(hours) && isDefined(minutes)) {
-     this.selected.setHours(hours);
-     this.refresh();
-     }*/
-  }
+  // min\max validation for input fields
+  invalidHours = false;
+  invalidMinutes = false;
+  invalidSeconds = false;
 
-  public onChange: any = Function.prototype;
-  public onTouched: any = Function.prototype;
+  // time picker controls state
+  canIncrementHours: boolean;
+  canIncrementMinutes: boolean;
+  canIncrementSeconds: boolean;
 
-  // input values
-  public hours: string;
-  public minutes: string;
+  canDecrementHours: boolean;
+  canDecrementMinutes: boolean;
+  canDecrementSeconds: boolean;
 
-  // validation
-  public invalidHours: any;
-  public invalidMinutes: any;
+  // control value accessor methods
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
 
-  public meridian: any; // ??
-
-  // result value
-  protected _selected: Date = new Date();
-  protected _showMeridian: boolean;
-
-  protected get selected(): Date {
-    return this._selected;
-  }
-
-  protected set selected(v: Date) {
-    if (v) {
-      this._selected = v;
-      this.updateTemplate();
-      this.onChange(this.selected);
-    }
-  }
-
-  protected config: TimepickerConfig;
-
-  public constructor(_config: TimepickerConfig) {
-    this.config = _config;
+  constructor(_config: TimepickerConfig,
+              private _cd: ChangeDetectorRef,
+              private _store: TimepickerStore,
+              private _timepickerActions: TimepickerActions) {
     Object.assign(this, _config);
+    // todo: add unsubscribe
+    _store
+      .select((state) => state.value)
+      .subscribe((value) => {
+        // update UI values if date changed
+        this._renderTime(value);
+        this.onChange(value);
+
+        this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
+      });
+
+    _store
+      .select((state) => state.controls)
+      .subscribe((controlsState) => {
+        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
+        Object.assign(this, controlsState);
+        _cd.markForCheck();
+      });
   }
 
-  // todo: add formatter value to Date object
-  public ngOnInit(): void {
-    // todo: take in account $locale.DATETIME_FORMATS.AMPMS;
-    if (this.mousewheel) {
-      // this.setupMousewheelEvents();
-    }
-
-    if (this.arrowkeys) {
-      // this.setupArrowkeyEvents();
-    }
-
-    // this.setupInputEvents();
+  isPM(): boolean {
+    return this.showMeridian && this.meridian === this.meridians[1];
   }
 
-  public writeValue(v: any): void {
-    if (v === this.selected) {
+  prevDef($event: any) {
+    $event.preventDefault();
+  }
+
+  wheelSign($event: any): number {
+    return Math.sign($event.deltaY as number) * -1;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
+  }
+
+  changeHours(step: number, source: TimeChangeSource = ''): void {
+    this._store.dispatch(this._timepickerActions.changeHours({step, source}));
+  }
+
+  changeMinutes(step: number, source: TimeChangeSource = ''): void {
+    this._store.dispatch(this._timepickerActions.changeMinutes({step, source}));
+  }
+
+  changeSeconds(step: number, source: TimeChangeSource = ''): void {
+    this._store.dispatch(this._timepickerActions.changeSeconds({step, source}));
+  }
+
+  updateHours(hours: string): void {
+    this.hours = hours;
+    this._updateTime();
+  }
+
+  updateMinutes(minutes: string) {
+    this.minutes = minutes;
+    this._updateTime();
+  }
+
+  updateSeconds(seconds: string) {
+    this.seconds = seconds;
+    this._updateTime();
+  }
+
+  _updateTime() {
+    if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
+      this.onChange(null);
       return;
     }
-    if (v && v instanceof Date) {
-      this.selected = v;
-      return;
-    }
-    this.selected = v ? new Date(v) : void 0;
+    this._store.dispatch(this._timepickerActions
+      .setTime({
+        hour: this.hours,
+        minute: this.minutes,
+        seconds: this.seconds,
+        isPM: this.isPM()
+      }));
   }
 
-  public registerOnChange(fn: (_: any) => {}): void {
+  toggleMeridian(): void {
+    if (!this.showMeridian || this.readonlyInput) {
+      return;
+    }
+
+    const _hoursPerDayHalf = 12;
+    this._store.dispatch(this._timepickerActions.changeHours({step: _hoursPerDayHalf, source: ''}));
+  }
+
+  /**
+   * Write a new value to the element.
+   */
+  writeValue(obj: any): void {
+    if (isValidDate(obj)) {
+      this._store.dispatch(this._timepickerActions.writeValue(parseTime(obj)));
+    }
+  }
+
+  /**
+   * Set the function to be called when the control receives a change event.
+   */
+  registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: () => {}): void {
+  /**
+   * Set the function to be called when the control receives a touch event.
+   */
+  registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 
-  public setDisabledState(isDisabled: boolean): void {
+  /**
+   * This function is called when the control status changes to or from "DISABLED".
+   * Depending on the value, it will enable or disable the appropriate DOM element.
+   *
+   * @param isDisabled
+   */
+  setDisabledState(isDisabled: boolean): void {
     this.readonlyInput = isDisabled;
   }
 
-  public updateHours(): void {
-    if (this.readonlyInput) {
+  private _renderTime(value: string | Date): void {
+    if (!isValidDate(value)) {
+      this.hours = '';
+      this.minutes = '';
+      this.seconds = '';
+      this.meridian = this.meridians[0];
+
       return;
     }
 
-    let hours = this.getHoursFromTemplate();
-    let minutes = this.getMinutesFromTemplate();
-    this.invalidHours = !isDefined(hours);
-    this.invalidMinutes = !isDefined(minutes);
-
-    if (this.invalidHours || this.invalidMinutes) {
-      // TODO: needed a validation functionality.
-      return;
-      // todo: validation?
-      // invalidate(true);
-    }
-
-    this.selected.setHours(hours);
-    this.invalidHours = (this.selected < this.min || this.selected > this.max);
-    if (this.invalidHours) {
-      // todo: validation?
-      // invalidate(true);
-      return;
-    } else {
-      this.refresh(/*'h'*/);
-    }
-  }
-
-  public hoursOnBlur(): void {
-    if (this.readonlyInput) {
-      return;
-    }
-
-    // todo: binded with validation
-    if (!this.invalidHours && parseInt(this.hours, 10) < 10) {
-      this.hours = this.pad(this.hours);
-    }
-  }
-
-  public updateMinutes(): void {
-    if (this.readonlyInput) {
-      return;
-    }
-
-    let minutes = this.getMinutesFromTemplate();
-    let hours = this.getHoursFromTemplate();
-    this.invalidMinutes = !isDefined(minutes);
-    this.invalidHours = !isDefined(hours);
-
-    if (this.invalidMinutes || this.invalidHours) {
-      // TODO: needed a validation functionality.
-      return;
-      // todo: validation
-      // invalidate(undefined, true);
-    }
-
-    this.selected.setMinutes(minutes);
-    this.invalidMinutes = (this.selected < this.min || this.selected > this.max);
-    if (this.invalidMinutes) {
-      // todo: validation
-      // invalidate(undefined, true);
-      return;
-    } else {
-      this.refresh(/*'m'*/);
-    }
-  }
-
-  public minutesOnBlur(): void {
-    if (this.readonlyInput) {
-      return;
-    }
-
-    if (!this.invalidMinutes && parseInt(this.minutes, 10) < 10) {
-      this.minutes = this.pad(this.minutes);
-    }
-  }
-
-  public incrementHours(): void {
-    if (!this.noIncrementHours()) {
-      this.addMinutesToSelected(this.hourStep * 60);
-    }
-  }
-
-  public decrementHours(): void {
-    if (!this.noDecrementHours()) {
-      this.addMinutesToSelected(-this.hourStep * 60);
-    }
-  }
-
-  public incrementMinutes(): void {
-    if (!this.noIncrementMinutes()) {
-      this.addMinutesToSelected(this.minuteStep);
-    }
-  }
-
-  public decrementMinutes(): void {
-    if (!this.noDecrementMinutes()) {
-      this.addMinutesToSelected(-this.minuteStep);
-    }
-  }
-
-  public noIncrementHours(): boolean {
-    let incrementedSelected = addMinutes(this.selected, this.hourStep * 60);
-    return incrementedSelected > this.max ||
-      (incrementedSelected < this.selected && incrementedSelected < this.min);
-  }
-
-  public noDecrementHours(): boolean {
-    let decrementedSelected = addMinutes(this.selected, -this.hourStep * 60);
-    return decrementedSelected < this.min ||
-      (decrementedSelected > this.selected && decrementedSelected > this.max);
-  }
-
-  public noIncrementMinutes(): boolean {
-    let incrementedSelected = addMinutes(this.selected, this.minuteStep);
-    return incrementedSelected > this.max ||
-      (incrementedSelected < this.selected && incrementedSelected < this.min);
-  }
-
-  public noDecrementMinutes(): boolean {
-    let decrementedSelected = addMinutes(this.selected, -this.minuteStep);
-    return decrementedSelected < this.min ||
-      (decrementedSelected > this.selected && decrementedSelected > this.max);
-
-  }
-
-  public toggleMeridian(): void {
-    if (!this.noToggleMeridian()) {
-      let sign = this.selected.getHours() < 12 ? 1 : -1;
-      this.addMinutesToSelected(12 * 60 * sign);
-    }
-  }
-
-  public noToggleMeridian(): boolean {
-    if (this.readonlyInput) {
-      return true;
-    }
-
-    if (this.selected.getHours() < 13) {
-      return addMinutes(this.selected, 12 * 60) > this.max;
-    } else {
-      return addMinutes(this.selected, -12 * 60) < this.min;
-    }
-  }
-
-  protected refresh(/*type?:string*/): void {
-    // this.makeValid();
-    this.updateTemplate();
-    this.onChange(this.selected);
-  }
-
-  protected updateTemplate(/*keyboardChange?:any*/): void {
-    let hours = this.selected.getHours();
-    let minutes = this.selected.getMinutes();
+    const _value = parseTime(value);
+    const _hoursPerDayHalf = 12;
+    let _hours = _value.getHours();
 
     if (this.showMeridian) {
-      // Convert 24 to 12 hour system
-      hours = (hours === 0 || hours === 12) ? 12 : hours % 12;
-    }
-
-    // this.hours = keyboardChange === 'h' ? hours : this.pad(hours);
-    // if (keyboardChange !== 'm') {
-    //  this.minutes = this.pad(minutes);
-    // }
-    this.hours = this.pad(hours);
-    this.minutes = this.pad(minutes);
-
-    if (!this.meridians) {
-      this.meridians = this.config.meridians;
-    }
-
-    this.meridian = this.selected.getHours() < 12
-      ? this.meridians[0]
-      : this.meridians[1];
-  }
-
-  protected getHoursFromTemplate(): number {
-    let hours = parseInt(this.hours, 10);
-    let valid = this.showMeridian
-      ? (hours > 0 && hours < 13)
-      : (hours >= 0 && hours < 24);
-    if (!valid) {
-      return void 0;
-    }
-
-    if (this.showMeridian) {
-      if (hours === 12) {
-        hours = 0;
-      }
-      if (this.meridian === this.meridians[1]) {
-        hours = hours + 12;
+      this.meridian = this.meridians[_hours >= _hoursPerDayHalf ? 1 : 0];
+      _hours = _hours % _hoursPerDayHalf;
+      // should be 12 PM, not 00 PM
+      if (_hours === 0) {
+        _hours = _hoursPerDayHalf;
       }
     }
-    return hours;
-  }
 
-  protected getMinutesFromTemplate(): number {
-    let minutes = parseInt(this.minutes, 10);
-    return (minutes >= 0 && minutes < 60) ? minutes : undefined;
-  }
-
-  protected pad(value: string|number): string {
-    return (isDefined(value) && value.toString().length < 2)
-      ? '0' + value
-      : value.toString();
-  }
-
-  protected addMinutesToSelected(minutes: any): void {
-    this.selected = addMinutes(this.selected, minutes);
-    this.refresh();
+    this.hours = padNumber(_hours);
+    this.minutes = padNumber(_value.getMinutes());
+    this.seconds = padNumber(_value.getUTCSeconds());
   }
 }
