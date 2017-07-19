@@ -840,6 +840,10 @@ export const ngdoc: any = {
     ],
     "outputs": [
       {
+        "name": "isOpenChange",
+        "description": "<p>Emits an event when isOpen change</p>\n"
+      },
+      {
         "name": "onHidden",
         "description": "<p>Emits an event when the popover is hidden</p>\n"
       },
@@ -899,11 +903,44 @@ export const ngdoc: any = {
       }
     ]
   },
+  "BsModalService": {
+    "fileName": "src/modal/bs-modal.service.ts",
+    "className": "BsModalService",
+    "description": "",
+    "methods": [
+      {
+        "name": "show",
+        "description": "<p>Shows a modal </p>\n",
+        "args": [
+          {
+            "name": "content",
+            "type": "any"
+          },
+          {
+            "name": "config",
+            "type": "any"
+          }
+        ],
+        "returnType": "BsModalRef"
+      }
+    ],
+    "properties": []
+  },
   "ModalBackdropComponent": {
     "fileName": "src/modal/modal-backdrop.component.ts",
     "className": "ModalBackdropComponent",
     "description": "<p>This component will be added as background layout for modals if enabled </p>\n",
     "selector": "bs-modal-backdrop",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "ModalContainerComponent": {
+    "fileName": "src/modal/modal-container.component.ts",
+    "className": "ModalContainerComponent",
+    "description": "",
+    "selector": "modal-container",
     "inputs": [],
     "outputs": [],
     "properties": [],
@@ -916,9 +953,19 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "animated",
+        "type": "boolean",
+        "description": "<p>Toggle animation</p>\n"
+      },
+      {
         "name": "backdrop",
         "type": "boolean | \"static\"",
         "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "description": "<p>Css class for opened modal</p>\n"
       },
       {
         "name": "ignoreBackdropClick",
@@ -934,6 +981,26 @@ export const ngdoc: any = {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
+      }
+    ]
+  },
+  "BsModalRef": {
+    "fileName": "src/modal/modal-options.class.ts",
+    "className": "BsModalRef",
+    "description": "",
+    "methods": [
+      {
+        "name": "hide",
+        "description": "<p>Hides the modal</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ],
+    "properties": [
+      {
+        "name": "content",
+        "type": "Object",
+        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
       }
     ]
   },
@@ -973,6 +1040,11 @@ export const ngdoc: any = {
         "name": "config",
         "type": "ModalOptions",
         "description": "<p>allows to set modal configuration via element property </p>\n"
+      },
+      {
+        "name": "dismissReason",
+        "type": "string",
+        "description": "<p>This field contains last dismiss reason. Possible values: <code>backdrop-click</code>, <code>esc</code> and <code>null</code> (if modal was closed by direct call of <code>.hide()</code>). </p>\n"
       }
     ],
     "methods": [
@@ -997,6 +1069,12 @@ export const ngdoc: any = {
             "type": "Event"
           }
         ],
+        "returnType": "void"
+      },
+      {
+        "name": "focusOtherModal",
+        "description": "<p>Events tricks </p>\n",
+        "args": [],
         "returnType": "void"
       }
     ]
@@ -1244,6 +1322,11 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
+        "name": "containerClass",
+        "type": "string",
+        "description": "<p>Css class for popover container</p>\n"
+      },
+      {
         "name": "isOpen",
         "type": "boolean",
         "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
@@ -1423,8 +1506,8 @@ export const ngdoc: any = {
       },
       {
         "name": "value",
-        "type": "number",
-        "description": "<p>current value of progress bar </p>\n"
+        "type": "number | any[]",
+        "description": "<p>current value of progress bar. Could be a number or array of objects like {&quot;value&quot;:15,&quot;type&quot;:&quot;info&quot;,&quot;label&quot;:&quot;15 %&quot;} </p>\n"
       }
     ],
     "outputs": [],
@@ -1648,6 +1731,11 @@ export const ngdoc: any = {
         "description": "<p>tab header text </p>\n"
       },
       {
+        "name": "id",
+        "type": "string",
+        "description": "<p>tab id </p>\n"
+      },
+      {
         "name": "removable",
         "type": "boolean",
         "description": "<p>if true tab can be removable, additional button will appear </p>\n"
@@ -1660,7 +1748,7 @@ export const ngdoc: any = {
       },
       {
         "name": "removed",
-        "description": "<p>fired before tab will be removed </p>\n"
+        "description": "<p>fired before tab will be removed, $event:Tab equals to instance of removed tab </p>\n"
       },
       {
         "name": "select",
@@ -1710,6 +1798,20 @@ export const ngdoc: any = {
       }
     ]
   },
+  "TimepickerActions": {
+    "fileName": "src/timepicker/reducer/timepicker.actions.ts",
+    "className": "TimepickerActions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimepickerStore": {
+    "fileName": "src/timepicker/reducer/timepicker.store.ts",
+    "className": "TimepickerStore",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "TimepickerComponent": {
     "fileName": "src/timepicker/timepicker.component.ts",
     "className": "TimepickerComponent",
@@ -1757,9 +1859,19 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
+        "name": "secondsStep",
+        "type": "number",
+        "description": "<p>seconds change step </p>\n"
+      },
+      {
         "name": "showMeridian",
         "type": "boolean",
-        "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
+        "description": ""
+      },
+      {
+        "name": "showSeconds",
+        "type": "boolean",
+        "description": ""
       },
       {
         "name": "showSpinners",
@@ -1767,7 +1879,12 @@ export const ngdoc: any = {
         "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isValid",
+        "description": "<p>emits true if value is a valid date </p>\n"
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -1791,7 +1908,7 @@ export const ngdoc: any = {
       },
       {
         "name": "max",
-        "type": "number",
+        "type": "Date",
         "description": "<p>maximum time user can select </p>\n"
       },
       {
@@ -1801,7 +1918,7 @@ export const ngdoc: any = {
       },
       {
         "name": "min",
-        "type": "number",
+        "type": "Date",
         "description": "<p>minimum time user can select </p>\n"
       },
       {
@@ -1823,10 +1940,22 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be readonly </p>\n"
       },
       {
+        "name": "secondsStep",
+        "defaultValue": "10",
+        "type": "number",
+        "description": "<p>seconds changes step </p>\n"
+      },
+      {
         "name": "showMeridian",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
+      },
+      {
+        "name": "showSeconds",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>show seconds in timepicker </p>\n"
       },
       {
         "name": "showSpinners",
@@ -1835,6 +1964,34 @@ export const ngdoc: any = {
         "description": "<p>if true spinner arrows above and below the inputs will be shown </p>\n"
       }
     ]
+  },
+  "Time": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "Time",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimepickerControls": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimepickerControls",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimepickerComponentState": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimepickerComponentState",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimeChangeEvent": {
+    "fileName": "src/timepicker/timepicker.models.ts",
+    "className": "TimeChangeEvent",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "TooltipContainerComponent": {
     "fileName": "src/tooltip/tooltip-container.component.ts",
@@ -1882,6 +2039,11 @@ export const ngdoc: any = {
         "name": "container",
         "type": "string",
         "description": "<p>A selector specifying the element the tooltip should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "containerClass",
+        "type": "string",
+        "description": "<p>Css class for tooltip container</p>\n"
       },
       {
         "name": "isDisabled",
@@ -2038,6 +2200,7 @@ export const ngdoc: any = {
     "className": "TypeaheadDirective",
     "description": "",
     "selector": "[typeahead]",
+    "exportAs": "bs-typeahead",
     "inputs": [
       {
         "name": "container",

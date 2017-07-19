@@ -1,3 +1,41 @@
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.7.0...v1.7.1) (2017-06-02)
+
+
+### Bug Fixes
+
+* **accoridon:** remove unneeded card-title class ([#2024](https://github.com/valor-software/ngx-bootstrap/issues/2024)) ([ba56e64](https://github.com/valor-software/ngx-bootstrap/commit/ba56e64))
+* **popover:** prevent ng router active link double ngOnInit issue ([dab394c](https://github.com/valor-software/ngx-bootstrap/commit/dab394c))
+* **tabs:** fixed tabs duplication issue ([#1941](https://github.com/valor-software/ngx-bootstrap/issues/1941)) ([40335aa](https://github.com/valor-software/ngx-bootstrap/commit/40335aa)), closes [#1629](https://github.com/valor-software/ngx-bootstrap/issues/1629)
+
+
+### Features
+
+* **tabs:** added id parameter in tab directive ([#1909](https://github.com/valor-software/ngx-bootstrap/issues/1909)) ([20c7fb8](https://github.com/valor-software/ngx-bootstrap/commit/20c7fb8)), closes [#1908](https://github.com/valor-software/ngx-bootstrap/issues/1908)
+
+
+
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.6...v1.7.0) (2017-06-01)
+
+
+### Bug Fixes
+
+* **alert:** dismissibleChange emits boolean values ([#1896](https://github.com/valor-software/ngx-bootstrap/issues/1896)) ([10bfd7f](https://github.com/valor-software/ngx-bootstrap/commit/10bfd7f))
+* **build:** fix most of ts errors ([1384eb1](https://github.com/valor-software/ngx-bootstrap/commit/1384eb1))
+* **demo:** fix close btns in nested modals ([7ef989a](https://github.com/valor-software/ngx-bootstrap/commit/7ef989a))
+* **dropdown:** fix duplicated events, add spec ([da92081](https://github.com/valor-software/ngx-bootstrap/commit/da92081))
+* **dropdown:** fixed onShow and onHidden events for inline dropdown module ([#1951](https://github.com/valor-software/ngx-bootstrap/issues/1951)) ([ead8d52](https://github.com/valor-software/ngx-bootstrap/commit/ead8d52))
+
+
+### Features
+
+* **dropdown:** add isOpenChange output ([#2006](https://github.com/valor-software/ngx-bootstrap/issues/2006)) ([1c9f767](https://github.com/valor-software/ngx-bootstrap/commit/1c9f767))
+* **modals:** add docs for nested modals ([e28d821](https://github.com/valor-software/ngx-bootstrap/commit/e28d821))
+* **modals:** add support for nested modals (fix scroll) ([48ef8b7](https://github.com/valor-software/ngx-bootstrap/commit/48ef8b7))
+
+
+
 <a name="1.6.6"></a>
 ## [1.6.6](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.5...v1.6.6) (2017-04-10)
 
@@ -83,15 +121,16 @@
 
 ### BREAKING CHANGES
 
-* **dropdown:** - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
-- `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
-- `dropdownMenu` menu become a template selector, so `*` should be added
+* **dropdown:** 
+  - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+  - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+  - `dropdownMenu` menu become a template selector, so `*` should be added
 sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
-- `onToggle` event deprecated use `isOpenChange` instead
-- `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
-- `keyboardNav` deprecated
-- `disabled` renamed to `isDisabled`
-- `dropdownToggle` doesn't prevent default behaviour anymore
+  - `onToggle` event deprecated use `isOpenChange` instead
+  - `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+  - `keyboardNav` deprecated
+  - `disabled` renamed to `isDisabled`
+  - `dropdownToggle` doesn't prevent default behaviour anymore
 
 
 
@@ -121,15 +160,16 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 
 ### BREAKING CHANGES
 
-* **dropdown:** - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
-- `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
-- `dropdownMenu` menu become a template selector, so `*` should be added
+* **dropdown:**
+  - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+  - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+  - `dropdownMenu` menu become a template selector, so `*` should be added
 sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
-- `onToggle` event deprecated use `isOpenChange` instead
-- `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
-- `keyboardNav` deprecated
-- `disabled` renamed to `isDisabled`
-- `dropdownToggle` doesn't prevent default behaviour anymore
+  - `onToggle` event deprecated use `isOpenChange` instead
+  - `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+  - `keyboardNav` deprecated
+  - `disabled` renamed to `isDisabled`
+  - `dropdownToggle` doesn't prevent default behaviour anymore
 
 
 

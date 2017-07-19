@@ -118,11 +118,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // For `<input>`s, use the `value` property. For others that don't have a
-    // `value` (such as `<span contenteditable="true">`, use `innerText`.
+    // `value` (such as `<span contenteditable="true">`), use either
+    // `textContent` or `innerText` (depending on which one is supported, i.e.
+    // Firefox or IE).
     const value = e.target.value !== undefined
       ? e.target.value
-      : e.target.innerText;
-    if (value.trim().length >= this.typeaheadMinLength) {
+      : e.target.textContent !== undefined
+        ? e.target.textContent
+        : e.target.innerText;
+    if (value && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {

@@ -1,7 +1,9 @@
 # ngx-bootstrap [![npm version](https://badge.fury.io/js/ngx-bootstrap.svg)](http://badge.fury.io/js/ngx-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ngx-bootstrap.svg)](https://npmjs.org/ngx-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
+[![Greenkeeper badge](https://badges.greenkeeper.io/valor-software/ngx-bootstrap.svg)](https://greenkeeper.io/)
+
 Native Angular directives for Bootstrap 3 and Bootstrap 4
 
-[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
+[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/guide/styleguide)
 [![Build Status](https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=master)](https://travis-ci.org/valor-software/ngx-bootstrap)
 [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap)
 [![Dependency Status](https://david-dm.org/valor-software/ngx-bootstrap.svg)](https://david-dm.org/valor-software/ngx-bootstrap)
@@ -60,6 +62,21 @@ To enable bootstrap 4 theme templates in ngx-bootstrap, please read
  - `plnkr` sample available [here](http://bit.ly/ngx-bootstrap-plnkr)
  - `AoT using ngc and rollup` please refer to [ngx-bootstrap-with-aot](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/aot.md)
  - `Bootstrap 4 and angular-cli` please refer to [using-with-bootstrap-4-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap4.md)
+
+# How to build lib for development
+
+First time
+ - clone repository
+ - `npm install`
+ - `npm run test` it will run build and link
+ To run bootstrap 3 and 4 demo:
+ - `npm run demo.serve` to serve local demo. This is for testing only, without watchers.
+ 
+ For local development run
+ - `npm run build.watch` in first terminal
+ - `ng serve` in second
+ 
+ Run `npm run link` after clean install and rebuild
 
 # Usage & Demo
 

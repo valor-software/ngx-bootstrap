@@ -72,7 +72,7 @@ describe('Component: TypeaheadContainer', () => {
       xit('should highlight query for match', () => {
         // expect(matches[1].children[0].innerHTML).toBe('<strong>fo</strong>od');
         const ms = fixture.debugElement.queryAll(By.css('.dropdown-menu li span'));
-        expect(ms[1].innerHTML).toBe('<strong>fo</strong>od');
+        expect(ms[1].nativeElement.innerHTML).toBe('<strong>fo</strong>od');
       });
 
       it('should set the \"active\" class on the first match', () => {
@@ -139,7 +139,7 @@ describe('Component: TypeaheadContainer', () => {
 
       xit('should highlight query for item match', () => {
         const im = fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header) span'));
-        expect(im[1].innerHTML).toBe('<strong>a</strong>pple');
+        expect(im[1].nativeElement.innerHTML).toBe('<strong>a</strong>pple');
       });
 
       it('should set the \"active\" class on the first item match', () => {

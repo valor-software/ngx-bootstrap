@@ -16,10 +16,14 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
       <ul>
         <li><a routerLink="." fragment="basic">Timepicker</a></li>
         <li><a routerLink="." fragment="meridian">Meridian</a></li>
+        <li><a routerLink="." fragment="min-max">Min - Max</a></li>
+        <li><a routerLink="." fragment="seconds">Show seconds</a></li>
         <li><a routerLink="." fragment="disabled">Disabled</a></li>
         <li><a routerLink="." fragment="custom">Custom steps</a></li>
+        <li><a routerLink="." fragment="custom-validation">Custom validation</a></li>
         <li><a routerLink="." fragment="dynamic">Dynamic</a></li>
         <li><a routerLink="." fragment="config">Configuring defaults</a></li>
+        <li><a routerLink="." fragment="mouse-wheel">Mouse wheel and Arrow keys</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -45,6 +49,16 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-sample-box [ts]="demos.meridian.component" [html]="demos.meridian.html">
     <demo-timepicker-meridian></demo-timepicker-meridian>
   </ng-sample-box>
+      
+  <h2 routerLink="." fragment="min-max" id="min-max">Min - Max</h2>
+  <ng-sample-box [ts]="demos.minmax.component" [html]="demos.minmax.html">
+    <demo-timepicker-min-max></demo-timepicker-min-max>
+  </ng-sample-box>
+      
+  <h2 routerLink="." fragment="seconds" id="seconds">Show seconds</h2>
+  <ng-sample-box [ts]="demos.seconds.component" [html]="demos.seconds.html">
+    <demo-timepicker-seconds></demo-timepicker-seconds>
+  </ng-sample-box>
               
   <h2 routerLink="." fragment="disabled" id="disabled">Disabled</h2>
   <ng-sample-box [ts]="demos.disabled.component" [html]="demos.disabled.html">
@@ -54,6 +68,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="custom" id="custom">Custom steps</h2>
   <ng-sample-box [ts]="demos.custom.component" [html]="demos.custom.html">
     <demo-timepicker-custom></demo-timepicker-custom>
+  </ng-sample-box> 
+                      
+  <h2 routerLink="." fragment="custom-validation" id="custom-validation">Custom validation</h2>
+  <ng-sample-box [ts]="demos.customvalidation.component" [html]="demos.customvalidation.html">
+    <demo-timepicker-custom-validation></demo-timepicker-custom-validation>
   </ng-sample-box>     
                    
   <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h2>
@@ -64,6 +83,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-timepicker-config></demo-timepicker-config>
+  </ng-sample-box>
+        
+  <h2 routerLink="." fragment="mouse-wheel" id="mouse-wheel">Mouse wheel and Arrow keys</h2>
+  <ng-sample-box [ts]="demos.mousewheel.component" [html]="demos.mousewheel.html">
+    <demo-timepicker-mousewheel-arrowkeys></demo-timepicker-mousewheel-arrowkeys>
   </ng-sample-box>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
