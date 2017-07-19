@@ -65,12 +65,18 @@ To enable bootstrap 4 theme templates in ngx-bootstrap, please read
 
 # How to build lib for development
 
+First time
  - clone repository
  - `npm install`
  - `npm run test` it will run build and link
+ To run bootstrap 3 and 4 demo:
  - `npm run demo.serve` to serve local demo. This is for testing only, without watchers.
- - `npm run build.watch`
- - `ng serve`
+ 
+ For local development run
+ - `npm run build.watch` in first terminal
+ - `ng serve` in second
+ 
+ Run `npm run link` after clean install and rebuild
 
 # Usage & Demo
 
