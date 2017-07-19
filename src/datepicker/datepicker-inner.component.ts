@@ -105,17 +105,17 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-unused-variable
   public ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
-    this.checkIfActiveDateGotUpdated(changes.activeDate);
+    this.checkIfActiveDateGotUpdated(changes['activeDate']);
   }
-  
-  //Check if activeDate has been update and then emit the activeDateChange with the new date
+
+  // Check if activeDate has been update and then emit the activeDateChange with the new date
   private checkIfActiveDateGotUpdated(activeDate: any): void {
 		if (activeDate && !activeDate.firstChange) {
 			let previousValue = activeDate.previousValue;
-			if (previousValue && previousValue.getTime() !== activeDate.currentValue.getTime()) {
+			if (previousValue && previousValue instanceof Date && previousValue.getTime() !== activeDate.currentValue.getTime()) {
 				this.activeDateChange.emit(this.activeDate);
 			}
-		} 
+		}
   }
 
   public setCompareHandler(handler: Function, type: string): void {
