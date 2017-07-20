@@ -95,6 +95,7 @@
     "gitignore-to-glob": "0.3.0",
     "google-code-prettify": "1.0.5",
     "html-loader": "0.4.5",
+    "intl": "^1.2.5",
     "jasmine": "2.6.0",
     "jasmine-core": "2.6.1",
     "jasmine-data-provider": "2.2.0",
