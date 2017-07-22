@@ -1,19 +1,21 @@
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+
 import { TimepickerComponent } from './timepicker.component';
+import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerConfig } from './timepicker.config';
+import { TimepickerStore } from './reducer/timepicker.store';
 
 @NgModule({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   declarations: [TimepickerComponent],
-  exports: [TimepickerComponent, FormsModule]
+  exports: [TimepickerComponent]
 })
 export class TimepickerModule {
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: TimepickerModule,
-      providers: [TimepickerConfig]
+      providers: [TimepickerConfig, TimepickerActions, TimepickerStore]
     };
   }
 }

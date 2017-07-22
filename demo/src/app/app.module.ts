@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Ng2PageScrollModule } from 'ng2-page-scroll/ng2-page-scroll';
 import { AppComponent } from './app.component';

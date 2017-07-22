@@ -10,7 +10,8 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
     files: [
@@ -19,19 +20,16 @@ module.exports = function (config) {
     preprocessors: {
       './scripts/test.ts': ['@angular/cli']
     },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
+    coverageIstanbulReporter: {
+      reports: [ 'html', 'lcovonly' ],
+      fixWebpackSourcePaths: true
     },
     angularCli: {
-      config: './.angular-cli.json',
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-      ? ['dots', 'karma-remap-istanbul']
-      : ['dots'],
+      ? ['dots', 'coverage-istanbul']
+      : ['dots', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -45,7 +43,7 @@ module.exports = function (config) {
       }
     },
     mime: { 'text/x-typescript': ['ts','tsx'] },
-    client: { captureConsole: true }
+    client: { captureConsole: true, clearContext: false }
   };
 
   if (process.env.TRAVIS) {

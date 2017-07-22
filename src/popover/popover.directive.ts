@@ -39,6 +39,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Input() public popoverCloseOnClickOutside: boolean;
 
   /**
+   * Css class for popover container
+   */
+  @Input() public containerClass: string;
+
+  /**
    * Returns whether or not the popover is currently being shown
    */
   @Input()
@@ -62,6 +67,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   protected _elementRef: ElementRef;
   protected _renderer: Renderer;
   protected _viewContainerRef: ViewContainerRef;
+  protected _isInited = false;
 
   public constructor(_elementRef: ElementRef,
                      _renderer: Renderer,
@@ -77,6 +83,16 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._elementRef = _elementRef;
     this._renderer = _renderer;
     this._viewContainerRef = _viewContainerRef;
+
+    // fix: no focus on button on Mac OS #1795
+    _elementRef.nativeElement.addEventListener('click', function() {
+      try {
+         _elementRef.nativeElement.focus();
+      } catch(err) {
+        return;
+      }
+    });
+
   }
 
   /**
@@ -95,7 +111,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .show({
         content: this.popover,
         placement: this.placement,
-        title: this.popoverTitle
+        title: this.popoverTitle,
+        containerClass: this.containerClass
       });
 
     if (this.popoverCloseOnClickOutside) {
@@ -133,6 +150,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): any {
+    // fix: seems there are an issue with `routerLinkActive`
+    // which result in duplicated call ngOnInit without call to ngOnDestroy
+    // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
+    if (this._isInited) { return; }
+    this._isInited = true;
+
     this._popover.listen({
       triggers: this.triggers,
       show: () => this.show()
