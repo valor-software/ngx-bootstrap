@@ -132,6 +132,16 @@ describe('Directive: Typeahead', () => {
 
       expect(directive.matches.length).toBe(0);
     }));
+
+    it('should not display null item', fakeAsync(() => {
+      component.states.push({id: 3, name: null, region: 'West'});
+      inputElement.value = 'Ala';
+      fireEvent(inputElement, 'keyup');
+      fixture.detectChanges();
+      tick(100);
+
+      expect(directive.matches.length).toBe(2);
+    }));
   });
 
   describe('onChange grouped', () => {
