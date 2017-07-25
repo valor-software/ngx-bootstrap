@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer } from '@angular/core';
-import { ClassName, ModalOptions, TransitionDurations } from './modal-options.class';
+import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 
@@ -30,11 +30,13 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
       return;
     }
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
     this.hide();
   }
   @HostListener('window:keydown.esc')
   public onEsc(): void {
     if (this.config.keyboard && this.level === this.bsModalService.getModalsCount()) {
+      this.bsModalService.setDismissReason(DISMISS_REASONS.ESC);
       this.hide();
     }
   }

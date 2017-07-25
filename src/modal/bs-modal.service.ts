@@ -1,4 +1,4 @@
-import { ComponentRef, Injectable, TemplateRef } from '@angular/core';
+import { ComponentRef, Injectable, TemplateRef, EventEmitter } from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
@@ -11,14 +11,21 @@ export class BsModalService {
   // constructor props
   public config: ModalOptions = modalConfigDefaults;
 
+  public onShow: EventEmitter<any> = new EventEmitter();
+  public onShown: EventEmitter<any> = new EventEmitter();
+  public onHide: EventEmitter<any> = new EventEmitter();
+  public onHidden: EventEmitter<any> = new EventEmitter();
+
   protected isBodyOverflowing: boolean = false;
   protected originalBodyPadding: number = 0;
+
   protected scrollbarWidth: number = 0;
 
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
-
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount: number = 0;
+  private lastDismissReason: string = '';
+
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
   public constructor(private clf: ComponentLoaderFactory) {
@@ -31,6 +38,7 @@ export class BsModalService {
     this._createLoaders();
     this.config = Object.assign({}, modalConfigDefaults, config);
     this._showBackdrop();
+    this.lastDismissReason = null;
     return this._showModal(content);
   }
 
@@ -100,6 +108,10 @@ export class BsModalService {
     return this.modalsCount;
   }
 
+  setDismissReason(reason: string) {
+    this.lastDismissReason = reason;
+  }
+
   protected removeBackdrop(): void {
     this._backdropLoader.hide();
     this.backdropRef = null;
@@ -141,13 +153,24 @@ export class BsModalService {
   }
 
   private _createLoaders(): void {
-    this.loaders.push(this.clf.createLoader<ModalContainerComponent>(null, null, null));
+    const loader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
+    this.copyEvent(loader.onBeforeShow, this.onShow);
+    this.copyEvent(loader.onShown, this.onShown);
+    this.copyEvent(loader.onBeforeHide, this.onHide);
+    this.copyEvent(loader.onHidden, this.onHidden);
+    this.loaders.push(loader);
   }
 
   private removeLoaders(level: number): void {
     this.loaders.splice(level - 1, 1);
     this.loaders.forEach((loader: ComponentLoader<ModalContainerComponent>, i: number) => {
       loader.instance.level = i + 1;
+    });
+  }
+
+  private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
+    from.subscribe(() => {
+      to.emit(this.lastDismissReason);
     });
   }
 }
