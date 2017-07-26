@@ -18,8 +18,13 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   public set customClass(customClass: string) {
-    if (customClass) {
-      this._customClass = customClass;
+    if (this._customClass && this._customClass !== customClass) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, this._customClass, false);
+    }
+
+    this._customClass = customClass;
+
+    if (this._customClass) {
       this.renderer.setElementClass(this.elementRef.nativeElement, this._customClass, true);
     }
   }
