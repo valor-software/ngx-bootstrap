@@ -21,7 +21,7 @@ import { document } from  '../utils/facade/browser';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
-import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modal-options.class';
+import { ClassName, modalConfigDefaults, ModalOptions, Selector, DISMISS_REASONS } from './modal-options.class';
 
 import { window } from '../utils/facade/browser';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -29,10 +29,6 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
-const DISMISS_REASONS = {
-  BACKRDOP: 'backdrop-click',
-  ESC: 'esc'
-};
 
 /** Mark any code with directive to show it's content in modal */
 @Directive({

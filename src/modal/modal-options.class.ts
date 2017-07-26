@@ -72,3 +72,8 @@ export const TransitionDurations: any = {
   MODAL: 300,
   BACKDROP: 150
 };
+
+export const DISMISS_REASONS = {
+  BACKRDOP: 'backdrop-click',
+  ESC: 'esc'
+};
