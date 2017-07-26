@@ -8,6 +8,7 @@ import { DemoModalServiceStaticComponent } from './service-template/service-temp
 import { DemoModalServiceFromComponent } from './service-component/service-component';
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
 import { DemoModalServiceOptionsComponent } from './service-options/service-options';
+import { DemoModalServiceEventsComponent } from './service-events/service-events';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -19,7 +20,8 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceFromComponent,
   DemoModalServiceNestedComponent,
   DemoModalServiceOptionsComponent,
-  DemoModalEventsComponent
+  DemoModalEventsComponent,
+  DemoModalServiceEventsComponent
 ];
 
 export const DEMOS = {
@@ -62,5 +64,9 @@ export const DEMOS = {
   serviceOptions: {
     component: require('!!raw-loader?lang=typescript!./service-options/service-options.ts'),
     html: require('!!raw-loader?lang=markup!./service-options/service-options.html')
+  },
+  serviceEvents: {
+    component: require('!!raw-loader?lang=typescript!./service-events/service-events.ts'),
+    html: require('!!raw-loader?lang=markup!./service-events/service-events.html')
   }
 };
