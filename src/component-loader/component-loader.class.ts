@@ -134,7 +134,7 @@ export class ComponentLoader<T> {
           .appendChild(this._componentRef.location.nativeElement);
       }
 
-      if (!this.container && this._elementRef) {
+      if (!this.container && this._elementRef && this._elementRef.nativeElement.parentElement) {
         this._elementRef.nativeElement.parentElement
           .appendChild(this._componentRef.location.nativeElement);
       }
@@ -149,6 +149,7 @@ export class ComponentLoader<T> {
         this._contentRef.componentRef.changeDetectorRef.detectChanges();
       }
       this._componentRef.changeDetectorRef.markForCheck();
+      this._componentRef.changeDetectorRef.detectChanges();
       this.onShown.emit(this._componentRef.instance);
     }
     return this._componentRef;

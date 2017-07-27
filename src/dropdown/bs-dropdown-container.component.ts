@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { BsDropdownState } from './bs-dropdown.state';
 
 @Component({
@@ -23,9 +23,11 @@ export class BsDropdownContainerComponent implements OnDestroy {
 
   private _subscription: any;
 
-  constructor(private _state: BsDropdownState) {
+  constructor(private _state: BsDropdownState, private cd: ChangeDetectorRef) {
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
+      this.cd.markForCheck();
+      this.cd.detectChanges();
     });
   }
 

@@ -42,9 +42,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   public get isOpen(): boolean { return this._tooltip.isShown; }
 
   public set isOpen(value: boolean) {
-    setTimeout(() => {
-      if (value) {this.show();} else {this.hide();}
-    }, 0);
+    if (value) {this.show();} else {this.hide();}
   }
 
   /**
