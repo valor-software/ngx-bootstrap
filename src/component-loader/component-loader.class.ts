@@ -134,7 +134,7 @@ export class ComponentLoader<T> {
           .appendChild(this._componentRef.location.nativeElement);
       }
 
-      if (!this.container && this._elementRef) {
+      if (!this.container && this._elementRef && this._elementRef.nativeElement.parentElement) {
         this._elementRef.nativeElement.parentElement
           .appendChild(this._componentRef.location.nativeElement);
       }
