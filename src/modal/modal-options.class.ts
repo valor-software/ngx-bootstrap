@@ -39,7 +39,7 @@ export class BsModalRef {
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
-  content?: Object | null;
+  content?: any | null;
 }
 
 export const modalConfigDefaults:ModalOptions = {
