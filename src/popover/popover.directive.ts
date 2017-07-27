@@ -46,9 +46,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   public get isOpen(): boolean { return this._popover.isShown; }
 
   public set isOpen(value: boolean) {
-    setTimeout(() => {
-      if (value) {this.show();} else {this.hide();}
-    }, 0);
+    if (value) {this.show();} else {this.hide();}
   }
 
   /**

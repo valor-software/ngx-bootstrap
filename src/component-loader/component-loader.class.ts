@@ -149,6 +149,7 @@ export class ComponentLoader<T> {
         this._contentRef.componentRef.changeDetectorRef.detectChanges();
       }
       this._componentRef.changeDetectorRef.markForCheck();
+      this._componentRef.changeDetectorRef.detectChanges();
       this.onShown.emit(this._componentRef.instance);
     }
     return this._componentRef;
