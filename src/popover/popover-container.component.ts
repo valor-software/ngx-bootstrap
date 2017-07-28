@@ -7,7 +7,7 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"popover in popover-" + placement + " " + placement',
+    '[class]': '"popover in popover-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
     role: 'tooltip',
     style: 'display:block;'
@@ -20,6 +20,7 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
 export class PopoverContainerComponent {
   @Input() public placement: string;
   @Input() public title: string;
+  public containerClass: string;
 
   public get isBs3(): boolean {
     return isBs3();

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
@@ -17,6 +17,7 @@ import { routes } from './demo-timepicker.routes';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     TimepickerModule.forRoot(),
     RouterModule.forChild(routes)

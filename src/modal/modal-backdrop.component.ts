@@ -1,12 +1,13 @@
-import { Component, ElementRef, Renderer } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
 
 import { ClassName } from './modal-options.class';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { Utils } from '../utils/utils.class';
 
 export class ModalBackdropOptions {
-  public animate:boolean = true;
+  public animate: boolean = true;
 
-  public constructor(options:ModalBackdropOptions) {
+  public constructor(options: ModalBackdropOptions) {
     Object.assign(this, options);
   }
 }
@@ -18,21 +19,21 @@ export class ModalBackdropOptions {
   // tslint:disable-next-line
   host: {'class': ClassName.BACKDROP}
 })
-export class ModalBackdropComponent {
-  public get isAnimated():boolean {
+export class ModalBackdropComponent implements OnInit {
+  public get isAnimated(): boolean {
     return this._isAnimated;
   }
 
-  public set isAnimated(value:boolean) {
+  public set isAnimated(value: boolean) {
     this._isAnimated = value;
-    this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, value);
+    // this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, value);
   }
 
-  public get isShown():boolean {
+  public get isShown(): boolean {
     return this._isShown;
   }
 
-  public set isShown(value:boolean) {
+  public set isShown(value: boolean) {
     this._isShown = value;
     this.renderer.setElementClass(this.element.nativeElement, `${ClassName.IN}`, value);
     if (!isBs3()) {
@@ -40,14 +41,22 @@ export class ModalBackdropComponent {
     }
   }
 
-  public element:ElementRef;
-  public renderer:Renderer;
+  public element: ElementRef;
+  public renderer: Renderer;
 
-  protected _isAnimated:boolean;
-  protected _isShown:boolean = false;
+  protected _isAnimated: boolean;
+  protected _isShown = false;
 
-  public constructor(element:ElementRef, renderer:Renderer) {
+  public constructor(element: ElementRef, renderer: Renderer) {
     this.element = element;
     this.renderer = renderer;
+  }
+
+  ngOnInit(): void {
+    if (this.isAnimated) {
+      this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, this.isAnimated);
+      Utils.reflow(this.element.nativeElement);
+    }
+    this.isShown = true;
   }
 }

@@ -9,7 +9,7 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"tooltip in tooltip-" + placement + " " + placement',
+    '[class]': '"tooltip in tooltip-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
     role: 'tooltip'
   },
@@ -40,7 +40,7 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
 export class TooltipContainerComponent implements AfterViewInit {
   public classMap: any;
   public placement: string;
-  public popupClass: string;
+  public containerClass: string;
   public animation: boolean;
 
   public get isBs3(): boolean {
@@ -61,8 +61,8 @@ export class TooltipContainerComponent implements AfterViewInit {
       this.classMap.fade = true;
     }
 
-    if (this.popupClass) {
-      this.classMap[this.popupClass] = true;
+    if (this.containerClass) {
+      this.classMap[this.containerClass] = true;
     }
   }
 }

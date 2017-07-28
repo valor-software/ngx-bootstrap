@@ -1,4 +1,4 @@
-<div class="btn-group" dropdown [isOpen]="status.isopen">
+<div class="btn-group" dropdown [isOpen]="status.isopen" (isOpenChange)="change($event)">
   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
     Button dropdown <span class="caret"></span>
   </button>
