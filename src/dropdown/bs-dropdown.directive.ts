@@ -109,7 +109,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
   // todo: move to component loader
   private _isInlineOpen = false;
-  private _showInline: boolean;
+  private get _showInline(): boolean {
+    return !this.container;
+  };
   private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
 
   private _isDisabled: boolean;
@@ -143,8 +145,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._isInited) { return; }
     this._isInited = true;
 
-    this._showInline = !this.container;
-
     // attach DOM listeners
     this._dropdown.listen({
       triggers: this.triggers,
@@ -161,13 +161,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       .filter((value: boolean) => value === true)
       .subscribe((value: boolean) => this.hide()));
 
-    // attach dropdown menu inside of dropdown
-    if (this._showInline) {
-      this._state.dropdownMenu
-        .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
-          this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
-        });
-    }
   }
 
   /**
@@ -180,6 +173,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     if (this._showInline) {
+      if (!this._inlinedMenu) {
+        this._state.dropdownMenu
+          .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
+            this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
+          });
+      }
+
       this._isInlineOpen = true;
       this.onShown.emit(true);
       this._state.isOpenChange.emit(true);
