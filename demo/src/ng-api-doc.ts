@@ -68,15 +68,15 @@ export const ngdoc: any = {
     "selector": "alert,ngx-alert",
     "inputs": [
       {
-        "name": "dismissOnTimeout",
-        "type": "string | number",
-        "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
-      },
-      {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>If set, displays an inline &quot;Close&quot; button </p>\n"
+      },
+      {
+        "name": "dismissOnTimeout",
+        "type": "string | number",
+        "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
       },
       {
         "name": "type",
@@ -112,16 +112,16 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
-        "name": "dismissOnTimeout",
-        "defaultValue": "undefined",
-        "type": "number",
-        "description": "<p>default time before alert will dismiss </p>\n"
-      },
-      {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>is alerts are dismissible by default </p>\n"
+      },
+      {
+        "name": "dismissOnTimeout",
+        "defaultValue": "undefined",
+        "type": "number",
+        "description": "<p>default time before alert will dismiss </p>\n"
       },
       {
         "name": "type",
@@ -1006,7 +1006,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "content",
-        "type": "Object",
+        "type": "any",
         "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
       }
     ]
