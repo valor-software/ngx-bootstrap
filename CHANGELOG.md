@@ -1,3 +1,25 @@
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.0...v1.8.1) (2017-07-28)
+
+
+### Bug Fixes
+
+* **datepicker:** fix selectionDone event [fixes [#2260](https://github.com/valor-software/ngx-bootstrap/issues/2260)] ([#2282](https://github.com/valor-software/ngx-bootstrap/issues/2282)) ([763b2b7](https://github.com/valor-software/ngx-bootstrap/commit/763b2b7))
+* **dropdown:** fix isOpen [fixes [#2310](https://github.com/valor-software/ngx-bootstrap/issues/2310)] ([#2313](https://github.com/valor-software/ngx-bootstrap/issues/2313)) ([a63f902](https://github.com/valor-software/ngx-bootstrap/commit/a63f902))
+* **modal:** fix system.js [fixes [#2291](https://github.com/valor-software/ngx-bootstrap/issues/2291)] ([#2311](https://github.com/valor-software/ngx-bootstrap/issues/2311)) ([8ce315b](https://github.com/valor-software/ngx-bootstrap/commit/8ce315b))
+* **popover:** fix undefined container class ([#2283](https://github.com/valor-software/ngx-bootstrap/issues/2283)) ([91fc1cd](https://github.com/valor-software/ngx-bootstrap/commit/91fc1cd))
+* **popover & tooltip:** fix isOpen  ([#2286](https://github.com/valor-software/ngx-bootstrap/issues/2286)) ([eb3cd04](https://github.com/valor-software/ngx-bootstrap/commit/eb3cd04))
+* **tabs:** fix customClass [fixes [#2253](https://github.com/valor-software/ngx-bootstrap/issues/2253)] ([#2273](https://github.com/valor-software/ngx-bootstrap/issues/2273)) ([0d67ef8](https://github.com/valor-software/ngx-bootstrap/commit/0d67ef8))
+* **tooltip:** fix isOpen and undefined containerClass [fixes [#2257](https://github.com/valor-software/ngx-bootstrap/issues/2257)] ([#2262](https://github.com/valor-software/ngx-bootstrap/issues/2262)) ([8664bb1](https://github.com/valor-software/ngx-bootstrap/commit/8664bb1))
+
+
+### Features
+
+* **modal:** add ability to pass data to modal component ([#2293](https://github.com/valor-software/ngx-bootstrap/issues/2293)) ([8ac13f9](https://github.com/valor-software/ngx-bootstrap/commit/8ac13f9)), closes [#2290](https://github.com/valor-software/ngx-bootstrap/issues/2290) [#2275](https://github.com/valor-software/ngx-bootstrap/issues/2275) [#2251](https://github.com/valor-software/ngx-bootstrap/issues/2251) [#2294](https://github.com/valor-software/ngx-bootstrap/issues/2294)
+* **modal:** add modal service events, fix modal content onDestroy [fixes [#2256](https://github.com/valor-software/ngx-bootstrap/issues/2256)] ([#2272](https://github.com/valor-software/ngx-bootstrap/issues/2272)) ([c9f85e6](https://github.com/valor-software/ngx-bootstrap/commit/c9f85e6))
+
+
+
 <a name="1.8.0"></a>
 # [1.8.0](https://github.com/valor-software/ngx-bootstrap/compare/v1.7.1...v1.8.0) (2017-07-20)
 
