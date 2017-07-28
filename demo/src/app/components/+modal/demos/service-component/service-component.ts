@@ -7,11 +7,18 @@ import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
   templateUrl: './service-component.html'
 })
 export class DemoModalServiceFromComponent {
+  bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
   public openModalWithComponent() {
-    this.modalService.show(ModalContentComponent);
-  }
+    let list = ['Open a modal with component', 'Pass your data', 'Do something else', '...'];
+    this.bsModalRef = this.modalService.show(ModalContentComponent);
+    this.bsModalRef.content.title = 'Modal with component';
+    this.bsModalRef.content.list = list;
+    setTimeout(() => {
+      list.push('PROFIT!!!');
+    }, 2000);
+}
 }
 
 /* This is a component which we pass in modal*/
@@ -26,8 +33,9 @@ export class DemoModalServiceFromComponent {
       </button>
     </div>
     <div class="modal-body">
-      This is a modal with component inside.
-      Click <b>&times;</b> to close modal.
+      <ul *ngIf="list.length">
+        <li *ngFor="let item of list">{{item}}</li>
+      </ul>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
@@ -35,6 +43,7 @@ export class DemoModalServiceFromComponent {
   `
 })
 export class ModalContentComponent {
-  public title: string = 'Modal with component';
+  public title: string;
+  public list: any[] = [];
   constructor(public bsModalRef: BsModalRef) {}
 }
