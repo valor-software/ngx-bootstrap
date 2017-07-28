@@ -72,7 +72,7 @@
     "@angular/core": "^2.4.4",
     "@angular/forms": "^2.4.4",
     "@angular/http": "^2.4.4",
-    "@angular/language-service": "^2.4.4",
+    "@angular/language-service": "^4.3.2",
     "@angular/platform-browser": "^2.4.4",
     "@angular/platform-browser-dynamic": "^2.4.4",
     "@angular/router": "^3.4.4",
