@@ -132,6 +132,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('click')
   @HostListener('focus')
   public onFocus(): void {
     if (this.typeaheadMinLength === 0) {
