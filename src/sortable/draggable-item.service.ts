@@ -31,7 +31,7 @@ export class DraggableItemService {
         return this.draggableItem;
     }
 
-    public onCaptureItem(): Observable<DraggableItem> {
+    public onCaptureItem(): Subject<DraggableItem> {
         return this.onCapture;
     }
 }
