@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { TypeaheadModule } from 'ng2-bootstrap/typeahead';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { SharedModule } from '../../shared';
 import { TypeaheadSectionComponent } from './typeahead-section.component';

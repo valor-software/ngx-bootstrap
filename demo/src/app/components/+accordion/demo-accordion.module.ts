@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 import { SharedModule } from '../../shared';
 import { AccordionSectionComponent } from './accordion-section.component';

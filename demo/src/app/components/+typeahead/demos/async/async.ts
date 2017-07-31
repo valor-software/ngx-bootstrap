@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { TypeaheadMatch } from 'ng2-bootstrap/typeahead';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
   selector: 'demo-typeahead-async',

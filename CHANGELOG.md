@@ -1,3 +1,236 @@
+<a name="1.8.1"></a>
+## [1.8.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.0...v1.8.1) (2017-07-28)
+
+
+### Bug Fixes
+
+* **datepicker:** fix selectionDone event [fixes [#2260](https://github.com/valor-software/ngx-bootstrap/issues/2260)] ([#2282](https://github.com/valor-software/ngx-bootstrap/issues/2282)) ([763b2b7](https://github.com/valor-software/ngx-bootstrap/commit/763b2b7))
+* **dropdown:** fix isOpen [fixes [#2310](https://github.com/valor-software/ngx-bootstrap/issues/2310)] ([#2313](https://github.com/valor-software/ngx-bootstrap/issues/2313)) ([a63f902](https://github.com/valor-software/ngx-bootstrap/commit/a63f902))
+* **modal:** fix system.js [fixes [#2291](https://github.com/valor-software/ngx-bootstrap/issues/2291)] ([#2311](https://github.com/valor-software/ngx-bootstrap/issues/2311)) ([8ce315b](https://github.com/valor-software/ngx-bootstrap/commit/8ce315b))
+* **popover:** fix undefined container class ([#2283](https://github.com/valor-software/ngx-bootstrap/issues/2283)) ([91fc1cd](https://github.com/valor-software/ngx-bootstrap/commit/91fc1cd))
+* **popover & tooltip:** fix isOpen  ([#2286](https://github.com/valor-software/ngx-bootstrap/issues/2286)) ([eb3cd04](https://github.com/valor-software/ngx-bootstrap/commit/eb3cd04))
+* **tabs:** fix customClass [fixes [#2253](https://github.com/valor-software/ngx-bootstrap/issues/2253)] ([#2273](https://github.com/valor-software/ngx-bootstrap/issues/2273)) ([0d67ef8](https://github.com/valor-software/ngx-bootstrap/commit/0d67ef8))
+* **tooltip:** fix isOpen and undefined containerClass [fixes [#2257](https://github.com/valor-software/ngx-bootstrap/issues/2257)] ([#2262](https://github.com/valor-software/ngx-bootstrap/issues/2262)) ([8664bb1](https://github.com/valor-software/ngx-bootstrap/commit/8664bb1))
+
+
+### Features
+
+* **modal:** add ability to pass data to modal component ([#2293](https://github.com/valor-software/ngx-bootstrap/issues/2293)) ([8ac13f9](https://github.com/valor-software/ngx-bootstrap/commit/8ac13f9)), closes [#2290](https://github.com/valor-software/ngx-bootstrap/issues/2290) [#2275](https://github.com/valor-software/ngx-bootstrap/issues/2275) [#2251](https://github.com/valor-software/ngx-bootstrap/issues/2251) [#2294](https://github.com/valor-software/ngx-bootstrap/issues/2294)
+* **modal:** add modal service events, fix modal content onDestroy [fixes [#2256](https://github.com/valor-software/ngx-bootstrap/issues/2256)] ([#2272](https://github.com/valor-software/ngx-bootstrap/issues/2272)) ([c9f85e6](https://github.com/valor-software/ngx-bootstrap/commit/c9f85e6))
+
+
+
+<a name="1.8.0"></a>
+# [1.8.0](https://github.com/valor-software/ngx-bootstrap/compare/v1.7.1...v1.8.0) (2017-07-20)
+
+
+### Bug Fixes
+
+* **acordion:** space beetween accordion groups ([#2014](https://github.com/valor-software/ngx-bootstrap/issues/2014)) ([ad2da54](https://github.com/valor-software/ngx-bootstrap/commit/ad2da54)), closes [#1854](https://github.com/valor-software/ngx-bootstrap/issues/1854)
+* **button:** should work within onPush components ([#2038](https://github.com/valor-software/ngx-bootstrap/issues/2038)) ([aec0f86](https://github.com/valor-software/ngx-bootstrap/commit/aec0f86)), closes [#1689](https://github.com/valor-software/ngx-bootstrap/issues/1689)
+* **datepicker:** datepickerMode does change when selection is manual ([#1976](https://github.com/valor-software/ngx-bootstrap/issues/1976)) ([e7795f7](https://github.com/valor-software/ngx-bootstrap/commit/e7795f7)), closes [#1911](https://github.com/valor-software/ngx-bootstrap/issues/1911)
+* **datepicker:** fix SimpleChanges issue, add date check ([#2223](https://github.com/valor-software/ngx-bootstrap/issues/2223)) ([501d878](https://github.com/valor-software/ngx-bootstrap/commit/501d878))
+* **datepicker:** for issue [#1962](https://github.com/valor-software/ngx-bootstrap/issues/1962) ([#1991](https://github.com/valor-software/ngx-bootstrap/issues/1991)) ([deb7f63](https://github.com/valor-software/ngx-bootstrap/commit/deb7f63))
+* **datepicker:** refix issue with moment import ([#2023](https://github.com/valor-software/ngx-bootstrap/issues/2023)) ([8ed0c06](https://github.com/valor-software/ngx-bootstrap/commit/8ed0c06)), closes [#1556](https://github.com/valor-software/ngx-bootstrap/issues/1556)
+* **datepicker:** using icons instead of innerHTML chevrons to fix issue with webworkers ([#2166](https://github.com/valor-software/ngx-bootstrap/issues/2166)) ([2fedac2](https://github.com/valor-software/ngx-bootstrap/commit/2fedac2))
+* **demo:** add Intl polyfill [fixes [#2215](https://github.com/valor-software/ngx-bootstrap/issues/2215)] ([#2238](https://github.com/valor-software/ngx-bootstrap/issues/2238)) ([e195549](https://github.com/valor-software/ngx-bootstrap/commit/e195549))
+* **demo:** fix buttons reactive forms sample ([325b510](https://github.com/valor-software/ngx-bootstrap/commit/325b510))
+* **demo:** remove gitter links, fix source links to modal & sortable, fix download count ([#2240](https://github.com/valor-software/ngx-bootstrap/issues/2240)) ([9211643](https://github.com/valor-software/ngx-bootstrap/commit/9211643))
+* **modals:** hotfix/modal-nested-close-on-esc solved ([#2173](https://github.com/valor-software/ngx-bootstrap/issues/2173)) ([41f11e6](https://github.com/valor-software/ngx-bootstrap/commit/41f11e6))
+* **popover:** no focus on button on Mac OS [#1795](https://github.com/valor-software/ngx-bootstrap/issues/1795) ([#2031](https://github.com/valor-software/ngx-bootstrap/issues/2031)) ([d039a8d](https://github.com/valor-software/ngx-bootstrap/commit/d039a8d))
+* **positioning:** don't modify readonly value ([#2042](https://github.com/valor-software/ngx-bootstrap/issues/2042)) ([d12593d](https://github.com/valor-software/ngx-bootstrap/commit/d12593d))
+* **readme:** fix angular style guide link ([#2092](https://github.com/valor-software/ngx-bootstrap/issues/2092)) ([bb7bd75](https://github.com/valor-software/ngx-bootstrap/commit/bb7bd75))
+* **tabs:** fix removing tabs in IE ([#2145](https://github.com/valor-software/ngx-bootstrap/issues/2145)) ([fc5e135](https://github.com/valor-software/ngx-bootstrap/commit/fc5e135))
+* **typeahead:** Fix crash on Firefox and `contenteditable` input ([#2057](https://github.com/valor-software/ngx-bootstrap/issues/2057)) ([8656326](https://github.com/valor-software/ngx-bootstrap/commit/8656326))
+
+
+### Features
+
+* **docs:** add lib build for development steps ([#2220](https://github.com/valor-software/ngx-bootstrap/issues/2220)) ([c3a7aa4](https://github.com/valor-software/ngx-bootstrap/commit/c3a7aa4))
+* **modal:** add dissmissReason, fix body padding, add events section… ([#2131](https://github.com/valor-software/ngx-bootstrap/issues/2131)) ([dde6620](https://github.com/valor-software/ngx-bootstrap/commit/dde6620))
+* **modal:** modal service wip ([#2047](https://github.com/valor-software/ngx-bootstrap/issues/2047)) ([2d02faa](https://github.com/valor-software/ngx-bootstrap/commit/2d02faa)), closes [#1998](https://github.com/valor-software/ngx-bootstrap/issues/1998) [#1995](https://github.com/valor-software/ngx-bootstrap/issues/1995) [#1830](https://github.com/valor-software/ngx-bootstrap/issues/1830) [#1181](https://github.com/valor-software/ngx-bootstrap/issues/1181) [#579](https://github.com/valor-software/ngx-bootstrap/issues/579)
+* **popover & tooltip:** add container classes ([#2190](https://github.com/valor-software/ngx-bootstrap/issues/2190)) ([690d811](https://github.com/valor-software/ngx-bootstrap/commit/690d811)), closes [#1707](https://github.com/valor-software/ngx-bootstrap/issues/1707) [#1395](https://github.com/valor-software/ngx-bootstrap/issues/1395)
+* **popups:** use events with better support ([#1211](https://github.com/valor-software/ngx-bootstrap/issues/1211)) ([46419e3](https://github.com/valor-software/ngx-bootstrap/commit/46419e3))
+* **progressbar:** value input can handle array of staked data  ([#2037](https://github.com/valor-software/ngx-bootstrap/issues/2037)) ([2bf9ad8](https://github.com/valor-software/ngx-bootstrap/commit/2bf9ad8))
+* **timepicker:** new timepicker implementation ([#2058](https://github.com/valor-software/ngx-bootstrap/issues/2058)) ([4a37406](https://github.com/valor-software/ngx-bootstrap/commit/4a37406)), closes [#2036](https://github.com/valor-software/ngx-bootstrap/issues/2036) [#1981](https://github.com/valor-software/ngx-bootstrap/issues/1981) [#1973](https://github.com/valor-software/ngx-bootstrap/issues/1973) [#1957](https://github.com/valor-software/ngx-bootstrap/issues/1957) [#1935](https://github.com/valor-software/ngx-bootstrap/issues/1935) [#1672](https://github.com/valor-software/ngx-bootstrap/issues/1672) [#962](https://github.com/valor-software/ngx-bootstrap/issues/962) [#793](https://github.com/valor-software/ngx-bootstrap/issues/793) [#173](https://github.com/valor-software/ngx-bootstrap/issues/173) [#1271](https://github.com/valor-software/ngx-bootstrap/issues/1271) [#1539](https://github.com/valor-software/ngx-bootstrap/issues/1539) [#1253](https://github.com/valor-software/ngx-bootstrap/issues/1253)
+
+
+
+<a name="1.7.1"></a>
+## [1.7.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.7.0...v1.7.1) (2017-06-02)
+
+
+### Bug Fixes
+
+* **accoridon:** remove unneeded card-title class ([#2024](https://github.com/valor-software/ngx-bootstrap/issues/2024)) ([ba56e64](https://github.com/valor-software/ngx-bootstrap/commit/ba56e64))
+* **popover:** prevent ng router active link double ngOnInit issue ([dab394c](https://github.com/valor-software/ngx-bootstrap/commit/dab394c))
+* **tabs:** fixed tabs duplication issue ([#1941](https://github.com/valor-software/ngx-bootstrap/issues/1941)) ([40335aa](https://github.com/valor-software/ngx-bootstrap/commit/40335aa)), closes [#1629](https://github.com/valor-software/ngx-bootstrap/issues/1629)
+
+
+### Features
+
+* **tabs:** added id parameter in tab directive ([#1909](https://github.com/valor-software/ngx-bootstrap/issues/1909)) ([20c7fb8](https://github.com/valor-software/ngx-bootstrap/commit/20c7fb8)), closes [#1908](https://github.com/valor-software/ngx-bootstrap/issues/1908)
+
+
+
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.6...v1.7.0) (2017-06-01)
+
+
+### Bug Fixes
+
+* **alert:** dismissibleChange emits boolean values ([#1896](https://github.com/valor-software/ngx-bootstrap/issues/1896)) ([10bfd7f](https://github.com/valor-software/ngx-bootstrap/commit/10bfd7f))
+* **build:** fix most of ts errors ([1384eb1](https://github.com/valor-software/ngx-bootstrap/commit/1384eb1))
+* **demo:** fix close btns in nested modals ([7ef989a](https://github.com/valor-software/ngx-bootstrap/commit/7ef989a))
+* **dropdown:** fix duplicated events, add spec ([da92081](https://github.com/valor-software/ngx-bootstrap/commit/da92081))
+* **dropdown:** fixed onShow and onHidden events for inline dropdown module ([#1951](https://github.com/valor-software/ngx-bootstrap/issues/1951)) ([ead8d52](https://github.com/valor-software/ngx-bootstrap/commit/ead8d52))
+
+
+### Features
+
+* **dropdown:** add isOpenChange output ([#2006](https://github.com/valor-software/ngx-bootstrap/issues/2006)) ([1c9f767](https://github.com/valor-software/ngx-bootstrap/commit/1c9f767))
+* **modals:** add docs for nested modals ([e28d821](https://github.com/valor-software/ngx-bootstrap/commit/e28d821))
+* **modals:** add support for nested modals (fix scroll) ([48ef8b7](https://github.com/valor-software/ngx-bootstrap/commit/48ef8b7))
+
+
+
+<a name="1.6.6"></a>
+## [1.6.6](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.5...v1.6.6) (2017-04-10)
+
+
+### Bug Fixes
+
+* **dropdown:** prevent ng router active link double ngOnInit issue ([7ded538](https://github.com/valor-software/ngx-bootstrap/commit/7ded538))
+
+
+
+<a name="1.6.5"></a>
+## [1.6.5](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.4...v1.6.5) (2017-04-06)
+
+
+### Features
+
+* **typeahead:** deprecated typeahead utils for ngv4 aot mode work ([df499e9](https://github.com/valor-software/ngx-bootstrap/commit/df499e9))
+
+
+
+<a name="1.6.4"></a>
+## [1.6.4](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.3...v1.6.4) (2017-04-06)
+
+
+
+<a name="1.6.3"></a>
+## [1.6.3](https://github.com/valor-software/ngx-bootstrap/compare/v1.6.1...v1.6.3) (2017-04-05)
+
+
+### Bug Fixes
+
+* **dropdowns:** fixed styling of dropdowns with bootstrap 4 ([9c8c74b](https://github.com/valor-software/ngx-bootstrap/commit/9c8c74b))
+
+
+<a name="1.6.2"></a>
+## [1.6.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.6.1...v1.6.2) (2017-04-05)
+
+
+### Bug Fixes
+
+* **dropdown:** Add missing rxjs filter operator dependency ([#1836](https://github.com/valor-software/ng2-bootstrap/issues/1836)) ([838821a](https://github.com/valor-software/ng2-bootstrap/commit/838821a))
+* **dropdown:** fixed auto close input behavior ([b023ca6](https://github.com/valor-software/ng2-bootstrap/commit/b023ca6)), closes [#1840](https://github.com/valor-software/ng2-bootstrap/issues/1840)
+
+
+### Features
+
+* **dropdown:** added inline style of adding dropdown, enabled by default ([f4334a8](https://github.com/valor-software/ng2-bootstrap/commit/f4334a8)), closes [#1860](https://github.com/valor-software/ng2-bootstrap/issues/1860) [#1862](https://github.com/valor-software/ng2-bootstrap/issues/1862)
+
+
+
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.6.1) (2017-03-30)
+
+
+### Features
+
+* **dropdown:** now you can bind to dropup property ([d6f6d25](https://github.com/valor-software/ng2-bootstrap/commit/d6f6d25))
+
+
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.6.0) (2017-03-29)
+
+
+### Bug Fixes
+
+* **dropdown,rating,typeahead:** remove global in order to be usable in System.js ([#1734](https://github.com/valor-software/ng2-bootstrap/issues/1734)) ([4a7719b](https://github.com/valor-software/ng2-bootstrap/commit/4a7719b))
+* **styling-local:** fix tooltip arrow styles ([b1f04d9](https://github.com/valor-software/ng2-bootstrap/commit/b1f04d9))
+* **universal:** to not through on unrecognized Keyboard and Mouse events ([b81e9de](https://github.com/valor-software/ng2-bootstrap/commit/b81e9de))
+
+
+### Features
+
+* **build:** rename .angular-cli.json and refactor ([#1736](https://github.com/valor-software/ng2-bootstrap/issues/1736)) ([d60dcfb](https://github.com/valor-software/ng2-bootstrap/commit/d60dcfb))
+* **datepicker:** added active date changed event ([#1703](https://github.com/valor-software/ng2-bootstrap/issues/1703)) ([8120c88](https://github.com/valor-software/ng2-bootstrap/commit/8120c88))
+* **demo:** add example for `show` modal option ([a33dc10](https://github.com/valor-software/ng2-bootstrap/commit/a33dc10))
+* **docs:** added Instructions for BS4 and ng-cli ([#1714](https://github.com/valor-software/ng2-bootstrap/issues/1714)) ([98b9b2e](https://github.com/valor-software/ng2-bootstrap/commit/98b9b2e)), closes [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637) [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637)
+* **dropdown:** rollout completely rewritten bs-dropdown version ([#1771](https://github.com/valor-software/ng2-bootstrap/issues/1771)) ([31cba41](https://github.com/valor-software/ng2-bootstrap/commit/31cba41)), closes [#1674](https://github.com/valor-software/ng2-bootstrap/issues/1674) [#1749](https://github.com/valor-software/ng2-bootstrap/issues/1749) [#1623](https://github.com/valor-software/ng2-bootstrap/issues/1623) [#1415](https://github.com/valor-software/ng2-bootstrap/issues/1415) [#802](https://github.com/valor-software/ng2-bootstrap/issues/802) [#569](https://github.com/valor-software/ng2-bootstrap/issues/569) [#530](https://github.com/valor-software/ng2-bootstrap/issues/530) [#6](https://github.com/valor-software/ng2-bootstrap/issues/6) [#1540](https://github.com/valor-software/ng2-bootstrap/issues/1540) [#1217](https://github.com/valor-software/ng2-bootstrap/issues/1217) [#591](https://github.com/valor-software/ng2-bootstrap/issues/591) [#478](https://github.com/valor-software/ng2-bootstrap/issues/478)
+* **modal:** make `show` config option work ([#1680](https://github.com/valor-software/ng2-bootstrap/issues/1680)) ([0abd801](https://github.com/valor-software/ng2-bootstrap/commit/0abd801))
+* **package:** changed the way moment is imported ([#1556](https://github.com/valor-software/ng2-bootstrap/issues/1556)) ([27a0229](https://github.com/valor-software/ng2-bootstrap/commit/27a0229))
+* **popover:** Updated property 'isOpen' in show and hide methods ([#1765](https://github.com/valor-software/ng2-bootstrap/issues/1765)) ([363d9e6](https://github.com/valor-software/ng2-bootstrap/commit/363d9e6))
+* **typeahead:** added export as bs-typeahead ([#1783](https://github.com/valor-software/ng2-bootstrap/issues/1783)) ([9ef6fa6](https://github.com/valor-software/ng2-bootstrap/commit/9ef6fa6))
+
+
+### BREAKING CHANGES
+
+* **dropdown:** 
+  - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+  - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+  - `dropdownMenu` menu become a template selector, so `*` should be added
+sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
+  - `onToggle` event deprecated use `isOpenChange` instead
+  - `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+  - `keyboardNav` deprecated
+  - `disabled` renamed to `isDisabled`
+  - `dropdownToggle` doesn't prevent default behaviour anymore
+
+
+
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.5.0) (2017-03-29)
+
+
+### Bug Fixes
+
+* **dropdown,rating,typeahead:** remove global in order to be usable in System.js ([#1734](https://github.com/valor-software/ng2-bootstrap/issues/1734)) ([4a7719b](https://github.com/valor-software/ng2-bootstrap/commit/4a7719b))
+* **styling-local:** fix tooltip arrow styles ([b1f04d9](https://github.com/valor-software/ng2-bootstrap/commit/b1f04d9))
+* **universal:** to not through on unrecognized Keyboard and Mouse events ([b81e9de](https://github.com/valor-software/ng2-bootstrap/commit/b81e9de))
+
+
+### Features
+
+* **build:** rename .angular-cli.json and refactor ([#1736](https://github.com/valor-software/ng2-bootstrap/issues/1736)) ([d60dcfb](https://github.com/valor-software/ng2-bootstrap/commit/d60dcfb))
+* **datepicker:** added active date changed event ([#1703](https://github.com/valor-software/ng2-bootstrap/issues/1703)) ([8120c88](https://github.com/valor-software/ng2-bootstrap/commit/8120c88))
+* **demo:** add example for `show` modal option ([a33dc10](https://github.com/valor-software/ng2-bootstrap/commit/a33dc10))
+* **docs:** added Instructions for BS4 and ng-cli ([#1714](https://github.com/valor-software/ng2-bootstrap/issues/1714)) ([98b9b2e](https://github.com/valor-software/ng2-bootstrap/commit/98b9b2e)), closes [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637) [#1637](https://github.com/valor-software/ng2-bootstrap/issues/1637)
+* **dropdown:** rollout completely rewritten bs-dropdown version ([#1771](https://github.com/valor-software/ng2-bootstrap/issues/1771)) ([31cba41](https://github.com/valor-software/ng2-bootstrap/commit/31cba41)), closes [#1674](https://github.com/valor-software/ng2-bootstrap/issues/1674) [#1749](https://github.com/valor-software/ng2-bootstrap/issues/1749) [#1623](https://github.com/valor-software/ng2-bootstrap/issues/1623) [#1415](https://github.com/valor-software/ng2-bootstrap/issues/1415) [#802](https://github.com/valor-software/ng2-bootstrap/issues/802) [#569](https://github.com/valor-software/ng2-bootstrap/issues/569) [#530](https://github.com/valor-software/ng2-bootstrap/issues/530) [#6](https://github.com/valor-software/ng2-bootstrap/issues/6) [#1540](https://github.com/valor-software/ng2-bootstrap/issues/1540) [#1217](https://github.com/valor-software/ng2-bootstrap/issues/1217) [#591](https://github.com/valor-software/ng2-bootstrap/issues/591) [#478](https://github.com/valor-software/ng2-bootstrap/issues/478)
+* **modal:** make `show` config option work ([#1680](https://github.com/valor-software/ng2-bootstrap/issues/1680)) ([0abd801](https://github.com/valor-software/ng2-bootstrap/commit/0abd801))
+* **package:** changed the way moment is imported ([#1556](https://github.com/valor-software/ng2-bootstrap/issues/1556)) ([27a0229](https://github.com/valor-software/ng2-bootstrap/commit/27a0229))
+* **popover:** Updated property 'isOpen' in show and hide methods ([#1765](https://github.com/valor-software/ng2-bootstrap/issues/1765)) ([363d9e6](https://github.com/valor-software/ng2-bootstrap/commit/363d9e6))
+* **typeahead:** added export as bs-typeahead ([#1783](https://github.com/valor-software/ng2-bootstrap/issues/1783)) ([9ef6fa6](https://github.com/valor-software/ng2-bootstrap/commit/9ef6fa6))
+
+
+### BREAKING CHANGES
+
+* **dropdown:**
+  - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
+  - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
+  - `dropdownMenu` menu become a template selector, so `*` should be added
+sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
+  - `onToggle` event deprecated use `isOpenChange` instead
+  - `appendToBody` deprecated, use `container="body"` instead, now dropdown behaviour and attachment params alligned with tooltips and popovers
+  - `keyboardNav` deprecated
+  - `disabled` renamed to `isDisabled`
+  - `dropdownToggle` doesn't prevent default behaviour anymore
+
+
+
 <a name="1.4.2"></a>
 ## [1.4.2](https://github.com/valor-software/ng2-bootstrap/compare/v1.4.0...v1.4.2) (2017-03-17)
 

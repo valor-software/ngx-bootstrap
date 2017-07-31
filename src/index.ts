@@ -41,7 +41,7 @@ export {
 
 export {
   ModalDirective, ModalOptions, ModalBackdropOptions, ModalBackdropComponent,
-  ModalModule
+  ModalModule, BsModalRef, BsModalService
 } from './modal';
 
 export {
@@ -81,7 +81,7 @@ export {
 
 export {
   TypeaheadOptions, TypeaheadContainerComponent, TypeaheadDirective,
-  TypeaheadMatch, TypeaheadModule, TypeaheadUtils,
+  TypeaheadMatch, TypeaheadModule
 } from './typeahead';
 
 export {

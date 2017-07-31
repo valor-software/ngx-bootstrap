@@ -1,6 +1,7 @@
 sudo: false
 language: node_js
 node_js: "7"
+dist: precise
 
 env:
   global:
@@ -15,8 +16,9 @@ before_install:
 script:
   - npm run lint
   - npm run build
-  - rm -rf node_modules/ng2-bootstrap
+  - rm -rf node_modules/ngx-bootstrap
   - npm i ./dist
+  - npm run demo.build
   - npm run test-coverage
 
 after_success:

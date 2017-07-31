@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { PopoverModule } from 'ng2-bootstrap/popover';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 // or
-import { PopoverModule } from 'ng2-bootstrap';
+import { PopoverModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [PopoverModule.forRoot(),...]

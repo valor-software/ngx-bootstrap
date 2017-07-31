@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './dropup.html'
 })
 export class DemoDropupComponent {
+  isDropup = true;
 }

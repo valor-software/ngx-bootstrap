@@ -2,10 +2,20 @@
 import { Component } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { BsDropdownConfig, BsDropdownModule } from './';
+import { BsDropdownConfig, BsDropdownModule } from '../dropdown/index';
 
 const defaultHtml = `
   <div dropdown>
+    <button dropdownToggle>Dropdown</button>
+    <ul *dropdownMenu>
+      <li><a href="#">One</a></li>
+      <li><a href="#">Two</a></li>
+    </ul>
+  </div>
+`;
+
+const htmlWithBinding = `
+  <div dropdown [(isOpen)]="isOpen">
     <button dropdownToggle>Dropdown</button>
     <ul *dropdownMenu>
       <li><a href="#">One</a></li>
@@ -25,37 +35,28 @@ describe('Directive: Dropdown', () => {
     let fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   });
 
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {
-    const html = `
-      <div dropdown [(isOpen)]="isOpen">
-        <button dropdownToggle>Dropdown</button>
-        <ul *dropdownMenu>
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-        </ul>
-      </div>
-    `;
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [BsDropdownModule.forRoot()]
     });
-    TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
+    TestBed.overrideComponent(TestDropdownComponent, {set: {template: htmlWithBinding}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
     context.isOpen = true;
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     context.isOpen = false;
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     context.isOpen = true;
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
   });
 
   it('should toggle by click', () => {
@@ -67,14 +68,56 @@ describe('Directive: Dropdown', () => {
     let fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   });
+
+  it('should be closed if was opened by click and then isOpen === false was set', () => {
+    TestBed.configureTestingModule({
+      declarations: [TestDropdownComponent],
+      imports: [BsDropdownModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestDropdownComponent, {set: {template: htmlWithBinding}});
+    let fixture = TestBed.createComponent(TestDropdownComponent);
+    fixture.detectChanges();
+    const element = fixture.nativeElement;
+    const context = fixture.componentInstance;
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    element.querySelector('button').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    context.isOpen = false;
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+  });
+
+  it('should change and update isOpen when it is opened or closed', fakeAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestDropdownComponent],
+      imports: [BsDropdownModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestDropdownComponent, {set: {template: htmlWithBinding}});
+    let fixture = TestBed.createComponent(TestDropdownComponent);
+    fixture.detectChanges();
+    tick();
+    const element = fixture.nativeElement;
+    const context = fixture.componentInstance;
+    fixture.detectChanges();
+    element.querySelector('button').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(context.isOpen).toBe(true);
+    tick();
+    element.querySelector('li').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(context.isOpen).toBe(false);
+  }));
 
   it('should close by click on nonInput menu item', fakeAsync(() => {
     const html = `
@@ -93,18 +136,19 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
+    tick();
     const element = fixture.nativeElement;
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
-    element.querySelector('li').click();
     tick();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    element.querySelector('li').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   }));
 
-  it('should not close by click on input or textarea menu item', () => {
+  xit('should not close by click on input or textarea menu item', fakeAsync(() => {
     const html = `
       <div dropdown>
         <button dropdownToggle>Dropdown</button>
@@ -122,20 +166,21 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
+    tick();
     const element = fixture.nativeElement;
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('input').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('textarea').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
-  });
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+  }));
 
-  it('should not close by click on menu item if autoClose === disabled', () => {
+  it('should not close by click on menu item if autoClose === false', fakeAsync(() => {
     const html = `
       <div dropdown [autoClose]="autoClose">
         <button dropdownToggle>Dropdown</button>
@@ -154,15 +199,17 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
-    context.autoClose = 'disabled';
+    context.autoClose = false;
+    tick();
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    tick();
     element.querySelector('li').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
-  });
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+  }));
 
   xit('should close by click on input in menu if autoClose === always', () => {
     const html = `
@@ -183,14 +230,14 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
-    context.autoClose = 'always';
+    context.autoClose = true;
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('input').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   });
 
   xit('should close by click on any element outside the dropdown', () => {
@@ -213,17 +260,17 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
-    context.autoClose = 'outsideClick';
+    context.autoClose = true;
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('li').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('span').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   });
 
   xit('should enable navigation of dropdown list elements with the arrow keys if keyboardNav is true', () => {
@@ -249,15 +296,15 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
-    expect(element.querySelector('.dropdown').classList).toContain('open');
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     // todo: emulate keypress, check if item has hover
   });
-
-  describe('Directive: dropdownToggle', () => {
+});
+describe('Directive: dropdownToggle', () => {
     it('should not open if toggle isDisabled', () => {
       const html = `
-      <div dropdown>
-        <button dropdownToggle [isDisabled]="isDisabled">Dropdown</button>
+      <div dropdown [isDisabled]="isDisabled">
+        <button dropdownToggle>Dropdown</button>
         <ul *dropdownMenu>
           <li><a href="#">One</a></li>
           <li><a href="#">Two</a></li>
@@ -275,74 +322,31 @@ describe('Directive: Dropdown', () => {
       const context = fixture.componentInstance;
       context.isDisabled = true;
       fixture.detectChanges();
-      expect(element.querySelector('.dropdown').classList).not.toContain('open');
+      expect(element.querySelector('[dropdown]').classList).not.toContain('open');
       element.querySelector('button').click();
       fixture.detectChanges();
-      expect(element.querySelector('.dropdown').classList).not.toContain('open');
+      expect(element.querySelector('[dropdown]').classList).not.toContain('open');
       context.isDisabled = false;
       fixture.detectChanges();
       element.querySelector('button').click();
       fixture.detectChanges();
-      expect(element.querySelector('.dropdown').classList).toContain('open');
-    });
-
-    it('should have dropdown-toggle class by default', () => {
-      const html = `
-      <div dropdown>
-        <button dropdownToggle>Dropdown</button>
-        <ul *dropdownMenu>
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-        </ul>
-      </div>
-    `;
-      TestBed.configureTestingModule({
-        declarations: [TestDropdownComponent],
-        imports: [BsDropdownModule.forRoot()]
-      });
-      TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
-      let fixture = TestBed.createComponent(TestDropdownComponent);
-      fixture.detectChanges();
-      const element = fixture.nativeElement;
-      expect(element.querySelector('button').classList).toContain('dropdown-toggle');
-    });
-
-    it('should not add dropdown-toggle class if addToggleClass is false', () => {
-      const html = `
-      <div dropdown>
-        <button dropdownToggle [addToggleClass]="addToggleClass">Dropdown</button>
-        <ul *dropdownMenu>
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-        </ul>
-      </div>
-    `;
-      TestBed.configureTestingModule({
-        declarations: [TestDropdownComponent],
-        imports: [BsDropdownModule.forRoot()]
-      });
-      TestBed.overrideComponent(TestDropdownComponent, {set: {template: html}});
-      let fixture = TestBed.createComponent(TestDropdownComponent);
-      fixture.detectChanges();
-      const element = fixture.nativeElement;
-      expect(element.querySelector('button').classList).not.toContain('dropdown-toggle');
+      expect(element.querySelector('[dropdown]').classList).toContain('open');
     });
   });
-});
 
-@Component({
-  selector: 'dropdown-test',
-  template: ''
-})
+  @Component({
+    selector: 'dropdown-test',
+    template: ''
+  })
 
-class TestDropdownComponent {
-  public isOpen: Boolean = false;
-  public isDisabled: Boolean = false;
-  public addToggleClass: Boolean = false;
-  public autoClose: string = 'nonInput';
-  public keyboardNav: Boolean = false;
+  class TestDropdownComponent {
+    public isOpen: Boolean = false;
+    public isDisabled: Boolean = false;
+    public addToggleClass: Boolean = false;
+    public autoClose: boolean = false;
+    public keyboardNav: Boolean = false;
 
-  public constructor(config: BsDropdownConfig) {
-    Object.assign(this, config);
+    public constructor(config: BsDropdownConfig) {
+      Object.assign(this, config);
+    }
   }
-}

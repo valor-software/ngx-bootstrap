@@ -1,6 +1,5 @@
 {
-  "name": "ng2-bootstrap",
-  "version": "1.4.2",
+  "name": "ngx-bootstrap",
   "dependencies": {
     "moment": "*"
   },

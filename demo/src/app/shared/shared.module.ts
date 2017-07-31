@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TabsModule } from 'ng2-bootstrap/tabs';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { DemoSectionComponent } from './demo-section/demo-section.component';
