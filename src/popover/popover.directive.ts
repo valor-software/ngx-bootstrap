@@ -35,6 +35,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Input() public container: string;
 
   /**
+   * Css class for popover container
+   */
+  @Input() public containerClass: string = '';
+
+  /**
    * Returns whether or not the popover is currently being shown
    */
   @Input()
@@ -67,6 +72,16 @@ export class PopoverDirective implements OnInit, OnDestroy {
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
+
+    // fix: no focus on button on Mac OS #1795
+    _elementRef.nativeElement.addEventListener('click', function() {
+      try {
+         _elementRef.nativeElement.focus();
+      } catch(err) {
+        return;
+      }
+    });
+
   }
 
   /**
@@ -85,7 +100,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .show({
         content: this.popover,
         placement: this.placement,
-        title: this.popoverTitle
+        title: this.popoverTitle,
+        containerClass: this.containerClass
       });
     this.isOpen = true;
   }

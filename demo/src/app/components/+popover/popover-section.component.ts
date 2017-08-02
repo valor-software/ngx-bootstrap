@@ -24,6 +24,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
         <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
         <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
+        <li><a routerLink="." fragment="class">Custom class</a></li>
         <!--<li><a routerLink="." fragment="styling-global">Global styling</a></li>-->
       </ul>
     </li>
@@ -98,7 +99,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-popover-styling-local></demo-popover-styling-local>
   </ng-sample-box>
 
-  <!-- todo: add custom class -->
+  <h2 routerLink="." fragment="class" id="class">Custom class</h2>
+  <ng-sample-box [ts]="demos.customClass.component" [html]="demos.customClass.html">
+    <demo-popover-class></demo-popover-class>
+  </ng-sample-box>
+  
   <!--<h2 routerLink="." fragment="styling-global" id="styling-global">Global styling</h2>-->
   <!--<ng-sample-box [ts]="demos.stylingGlobal.component" [html]="demos.stylingGlobal.html">-->
     <!--<demo-popover-styling-global></demo-popover-styling-global>-->

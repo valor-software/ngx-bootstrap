@@ -21,7 +21,7 @@ import { document } from  '../utils/facade/browser';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
-import { ClassName, modalConfigDefaults, ModalOptions, Selector } from './modal-options.class';
+import { ClassName, modalConfigDefaults, ModalOptions, Selector, DISMISS_REASONS } from './modal-options.class';
 
 import { window } from '../utils/facade/browser';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -29,10 +29,6 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
-const DISMISS_REASONS = {
-  BACKRDOP: 'backdrop-click',
-  ESC: 'esc'
-};
 
 /** Mark any code with directive to show it's content in modal */
 @Directive({
@@ -125,9 +121,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   public ngAfterViewInit(): any {
     this._config = this._config || this.getConfig();
-    if (this._config.show) {
-      this.show();
-    }
+    setTimeout(() => {
+      if (this._config.show) {
+        this.show();
+      }
+    }, 0);
   }
 
   /* Public methods */
@@ -254,6 +252,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
         this.resetScrollbar();
       }
       this.resetAdjustments();
+      this.focusOtherModal();
       this.onHidden.emit(this);
     });
   }
@@ -266,15 +265,9 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({isAnimated: false});
+        .show({isAnimated: this.isAnimated});
       this.backdrop = this._backdrop._componentRef;
 
-      if (this.isAnimated) {
-        this.backdrop.instance.isAnimated = this.isAnimated;
-        Utils.reflow(this.backdrop.instance.element.nativeElement);
-      }
-
-      this.backdrop.instance.isShown = true;
       if (!callback) {
         return;
       }
@@ -334,6 +327,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   //   $(window).off(Event.RESIZE)
   // }
   // }
+
+  protected focusOtherModal() {
+    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
+    if (!otherOpenedModals.length) {
+      return;
+    }
+    this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+  }
 
   /** @internal */
   protected resetAdjustments(): void {
