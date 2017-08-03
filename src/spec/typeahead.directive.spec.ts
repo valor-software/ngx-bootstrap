@@ -6,7 +6,7 @@ import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { Observable } from 'rxjs';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
 import { FormsModule } from '@angular/forms';
-const { fireEvent } = require('../../scripts/helpers');
+import { fireEvent } from '../../scripts/helpers';
 
 interface State {
   id:number;
@@ -106,8 +106,7 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('should render the typeahead-container child element', () => {
-      let typeaheadContainer = fixture.debugElement.query(By.css('typeahead-container'));
-
+      let typeaheadContainer = fixture.debugElement.nativeElement.querySelector('typeahead-container');
       expect(typeaheadContainer).not.toBeNull();
     });
 
@@ -132,6 +131,16 @@ describe('Directive: Typeahead', () => {
       tick(100);
 
       expect(directive.matches.length).toBe(0);
+    }));
+
+    it('should not display null item', fakeAsync(() => {
+      component.states.push({id: 3, name: null, region: 'West'});
+      inputElement.value = 'Ala';
+      fireEvent(inputElement, 'keyup');
+      fixture.detectChanges();
+      tick(100);
+
+      expect(directive.matches.length).toBe(2);
     }));
   });
 
@@ -173,7 +182,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Alab';
       fireEvent(inputElement, 'keyup');
- 
+
       fixture.detectChanges();
       tick(100);
     }));

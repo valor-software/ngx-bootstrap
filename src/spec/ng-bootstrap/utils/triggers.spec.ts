@@ -85,9 +85,9 @@ describe('triggers', () => {
       expect(t.length)
         .toBe(1);
       expect(t[0].open)
-        .toBe('mouseenter');
+        .toBe('mouseover');
       expect(t[0].close)
-        .toBe('mouseleave');
+        .toBe('mouseout');
     });
 
     it('should detect manual triggers', () => {

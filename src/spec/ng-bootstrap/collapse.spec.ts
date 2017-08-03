@@ -9,8 +9,8 @@ import { CollapseModule } from '../../collapse';
 const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
 
-function getCollapsibleContent(element: HTMLElement): HTMLDivElement {
-  return (element as HTMLDivElement).querySelector('.collapse');
+function getCollapsibleContent(element: HTMLElement): Element {
+  return (element).querySelector('.collapse');
 }
 
 describe('bs-collapse', () => {
@@ -90,5 +90,5 @@ describe('bs-collapse', () => {
 
 @Component({selector: 'test-cmp', template: ''})
 class TestComponent {
-  public collapsed:string = false;
+  public collapsed:boolean = false;
 }

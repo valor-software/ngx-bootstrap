@@ -54,5 +54,6 @@ export function getValueFromObject(object: any, option: string): string {
       object = object[property];
     }
   }
+  if (!object) return "";
   return object.toString();
 }

@@ -1,6 +1,6 @@
 import { LinkedList } from '../../utils/linked-list.class';
 
-let list: LinkedList;
+let list: LinkedList<any>;
 
 describe('Linked List. Base functions.', () => {
 
