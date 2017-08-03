@@ -59,7 +59,8 @@
     "@angular/common": ">=4.3.0",
     "@angular/compiler": ">=4.3.0",
     "@angular/core": ">=4.3.0",
-    "@angular/forms": ">=4.3.0"
+    "@angular/forms": ">=4.3.0",
+    "moment": "^2.18.1"
   },
   "devDependencies": {
     "@angular/animations": "4.3.3",
@@ -112,6 +113,7 @@
     "lodash": "4.17.4",
     "markdown-loader": "github:valorkin/markdown-loader",
     "marked": "0.3.6",
+    "moment": "2.18.1",
     "ng2-page-scroll": "4.0.0-beta.7",
     "ngm-cli": "0.6.1",
     "npm-run-all": "4.0.2",
