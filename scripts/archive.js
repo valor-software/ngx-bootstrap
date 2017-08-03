@@ -8,7 +8,7 @@ if (!fs.existsSync('demo/dist')) {
   throw 'demo/dist dir wasn\'t found. Run `npm run demo.build`';
 }
 
-const rimraf = require('rimraf');
+const del = require('del');
 const hostname = 'ngx-bootstrap';
 const dir = 'demo/dist/old/';
 const version = require('../gh-pages/assets/json/current-version.json').version;
@@ -33,9 +33,7 @@ fs.rename('gh-pages', dir + version, function (err) {
             if (err) throw err;
           });
         }
-        rimraf(dir + version + '/old', function (err) {
-          if (err) throw err;
-        });
+        del(dir + version + '/old');
         generateJson();
       }
     });
