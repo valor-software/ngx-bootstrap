@@ -17,6 +17,7 @@
       "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "",
       "mobile": false,
+      "serviceWorker": true,
       "styles": [
       ],
       "scripts": [],

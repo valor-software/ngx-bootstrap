@@ -290,13 +290,13 @@ export const ngdoc: any = {
       },
       {
         "name": "getCurrentSlideIndex",
-        "description": "<p>Finds and returns index of currently displayed slide\n@returns {number}</p>\n",
+        "description": "<p>Finds and returns index of currently displayed slide</p>\n",
         "args": [],
         "returnType": "number"
       },
       {
         "name": "isLast",
-        "description": "<p>Defines, whether the specified index is last in collection\n@returns {boolean}</p>\n",
+        "description": "<p>Defines, whether the specified index is last in collection</p>\n",
         "args": [
           {
             "name": "index",
@@ -304,6 +304,44 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "boolean"
+      },
+      {
+        "name": "findNextSlideIndex",
+        "description": "<p>Defines next slide index, depending of direction</p>\n",
+        "args": [
+          {
+            "name": "direction",
+            "type": "Direction"
+          },
+          {
+            "name": "force",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "number"
+      },
+      {
+        "name": "_select",
+        "description": "<p>Sets a slide, which specified through index, as active</p>\n",
+        "args": [
+          {
+            "name": "index",
+            "type": "number"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "restartTimer",
+        "description": "<p>Starts loop of auto changing of slides</p>\n",
+        "args": [],
+        "returnType": "any"
+      },
+      {
+        "name": "resetTimer",
+        "description": "<p>Stops loop of auto changing of slides</p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ]
   },
@@ -423,27 +461,7 @@ export const ngdoc: any = {
     "fileName": "src/component-loader/component-loader.factory.ts",
     "className": "ComponentLoaderFactory",
     "description": "",
-    "methods": [
-      {
-        "name": "createLoader",
-        "description": "<p>@returns {ComponentLoader}</p>\n",
-        "args": [
-          {
-            "name": "_elementRef",
-            "type": "ElementRef"
-          },
-          {
-            "name": "_viewContainerRef",
-            "type": "ViewContainerRef"
-          },
-          {
-            "name": "_renderer",
-            "type": "Renderer"
-          }
-        ],
-        "returnType": "ComponentLoader<T>"
-      }
-    ],
+    "methods": [],
     "properties": []
   },
   "DatePickerInnerComponent": {
@@ -749,6 +767,289 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
+  "BsDatePickerViewComponent": {
+    "fileName": "src/datepicker2/bs-date-picker-view.component.ts",
+    "className": "BsDatePickerViewComponent",
+    "description": "",
+    "selector": "bs-date-picker-view",
+    "exportAs": "bs-date-picker-view",
+    "inputs": [
+      {
+        "name": "bsRole",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatePickerComponent": {
+    "fileName": "src/datepicker2/bs-date-picker.component.ts",
+    "className": "BsDatePickerComponent",
+    "description": "",
+    "selector": "bs-datepicker",
+    "exportAs": "bs-datepicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsCalendarOptions": {
+    "fileName": "src/datepicker2/common/bs-calendar-options.provider.ts",
+    "className": "BsCalendarOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "BsCalendarOptionsClass": {
+    "fileName": "src/datepicker2/common/bs-calendar-options.provider.ts",
+    "className": "BsCalendarOptionsClass",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DatePickerCustomDates": {
+    "fileName": "src/datepicker2/common/bs-date-picker-options.provider.ts",
+    "className": "DatePickerCustomDates",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "css",
+        "type": "string | Object | string[]",
+        "description": "<p>css classes which will be applied to date,\nread more about available options in NgClass description</p>\n"
+      },
+      {
+        "name": "date",
+        "type": "any",
+        "description": "<p>Any parse-able date format (new Date(), moment(), string, number) </p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>should this date be disabled </p>\n"
+      }
+    ]
+  },
+  "DatePickerDateOptions": {
+    "fileName": "src/datepicker2/common/bs-date-picker-options.provider.ts",
+    "className": "DatePickerDateOptions",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "initial",
+        "type": "any",
+        "description": "<p>initially viewed, not selected, date if value is not set </p>\n"
+      },
+      {
+        "name": "max",
+        "type": "any",
+        "description": "<p>maximum available date </p>\n"
+      },
+      {
+        "name": "min",
+        "type": "any",
+        "description": "<p>minimum available date </p>\n"
+      },
+      {
+        "name": "selected",
+        "type": "any",
+        "description": "<p>initially selected date, if value is not set, in date picker mode </p>\n"
+      },
+      {
+        "name": "selectedEnd",
+        "type": "any",
+        "description": "<p>initially selected end date in date range picker mode </p>\n"
+      }
+    ]
+  },
+  "BsDatePickerOptions": {
+    "fileName": "src/datepicker2/common/bs-date-picker-options.provider.ts",
+    "className": "BsDatePickerOptions",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "mode",
+        "defaultValue": "date",
+        "type": "\"date\" | \"daterange\"",
+        "description": "<p>current date picker mode </p>\n"
+      },
+      {
+        "name": "ranges",
+        "type": "{ [key: string]: string[] | Moment[] | Date[]; }",
+        "description": "<p>predefined set of ranges {&#39;today&#39;: [moment(), moment()]} </p>\n"
+      },
+      {
+        "name": "viewMode",
+        "defaultValue": "days",
+        "type": "BsDatePickerViewMode",
+        "description": "<p>current date picker view mode (if supported) </p>\n"
+      }
+    ]
+  },
+  "BsDatePickerState": {
+    "fileName": "src/datepicker2/common/bs-date-picker-state.provider.ts",
+    "className": "BsDatePickerState",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "BsCurrentDateComponent": {
+    "fileName": "src/datepicker2/current-date/bs-current-date.component.ts",
+    "className": "BsCurrentDateComponent",
+    "description": "",
+    "selector": "bs-current-date",
+    "exportAs": "bs-current-date",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsCustomRangePickerComponent": {
+    "fileName": "src/datepicker2/custom-range/bs-custom-range-picker.component.ts",
+    "className": "BsCustomRangePickerComponent",
+    "description": "",
+    "selector": "bs-custom-range-picker",
+    "exportAs": "bs-custom-range-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDayPickerComponent": {
+    "fileName": "src/datepicker2/day/bs-day-picker.component.ts",
+    "className": "BsDayPickerComponent",
+    "description": "",
+    "selector": "bs-day-picker",
+    "exportAs": "bs-day-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsMonthPickerComponent": {
+    "fileName": "src/datepicker2/month/bs-month-picker.component.ts",
+    "className": "BsMonthPickerComponent",
+    "description": "",
+    "selector": "bs-month-picker",
+    "exportAs": "bs-month-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatePickerContainer": {
+    "fileName": "src/datepicker2/popup/bs-date-picker-container.component.ts",
+    "className": "BsDatePickerContainer",
+    "description": "",
+    "selector": "bs-date-picker-container",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatePickerPopupDirective": {
+    "fileName": "src/datepicker2/popup/bs-date-picker-popup.directive.ts",
+    "className": "BsDatePickerPopupDirective",
+    "description": "<p>A lightweight, extensible directive for fancy popover creation.</p>\n",
+    "selector": "[bsDatePickerPopup]",
+    "exportAs": "bs-date-picker-popup",
+    "inputs": [
+      {
+        "name": "bsValue",
+        "type": "any",
+        "description": ""
+      },
+      {
+        "name": "config",
+        "type": "BsDatePickerOptions",
+        "description": ""
+      },
+      {
+        "name": "container",
+        "defaultValue": "body",
+        "type": "string",
+        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
+      },
+      {
+        "name": "placement",
+        "defaultValue": "bottom",
+        "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+      },
+      {
+        "name": "triggers",
+        "defaultValue": "click",
+        "type": "string",
+        "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bsValueChange",
+        "description": ""
+      },
+      {
+        "name": "onHidden",
+        "description": "<p>Emits an event when the popover is hidden</p>\n"
+      },
+      {
+        "name": "onShown",
+        "description": "<p>Emits an event when the popover is shown</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": [
+      {
+        "name": "show",
+        "description": "<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "<p>Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "toggle",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
+  },
+  "BsDateTimePickerComponent": {
+    "fileName": "src/datepicker2/time/bs-date-time-picker.component.ts",
+    "className": "BsDateTimePickerComponent",
+    "description": "",
+    "selector": "bs-datetimepicker",
+    "exportAs": "bs-datetimepicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsYearPickerComponent": {
+    "fileName": "src/datepicker2/year/bs-year-picker.component.ts",
+    "className": "BsYearPickerComponent",
+    "description": "",
+    "selector": "bs-year-picker",
+    "exportAs": "bs-year-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
   "BsDropdownContainerComponent": {
     "fileName": "src/dropdown/bs-dropdown-container.component.ts",
     "className": "BsDropdownContainerComponent",
@@ -898,7 +1199,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "any",
+        "type": "Promise<BsComponentRef<any>>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]
@@ -929,6 +1230,12 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "BsModalRef"
+      },
+      {
+        "name": "checkScrollbar",
+        "description": "<p>AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE\nScroll bar tricks </p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ],
     "properties": []
@@ -1079,8 +1386,20 @@ export const ngdoc: any = {
         "returnType": "void"
       },
       {
+        "name": "showElement",
+        "description": "<p>Show dialog</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
         "name": "focusOtherModal",
         "description": "<p>Events tricks </p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "checkScrollbar",
+        "description": "<p>Scroll bar tricks </p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -1391,13 +1710,6 @@ export const ngdoc: any = {
       }
     ]
   },
-  "Positioning": {
-    "fileName": "src/positioning/ng-positioning.ts",
-    "className": "Positioning",
-    "description": "<p>@copyright Valor Software\n@copyright Angular ng-bootstrap team</p>\n",
-    "methods": [],
-    "properties": []
-  },
   "PositioningOptions": {
     "fileName": "src/positioning/positioning.service.ts",
     "className": "PositioningOptions",
@@ -1416,7 +1728,7 @@ export const ngdoc: any = {
       },
       {
         "name": "element",
-        "type": "string | ElementRef | HTMLElement",
+        "type": "string | HTMLElement | ElementRef",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which will be moved </p>\n"
       },
       {
@@ -1426,7 +1738,7 @@ export const ngdoc: any = {
       },
       {
         "name": "target",
-        "type": "string | ElementRef | HTMLElement",
+        "type": "string | HTMLElement | ElementRef",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which the element will be attached to  </p>\n"
       },
       {
@@ -1672,7 +1984,7 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "onChange",
-        "description": "<p>fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.\n Returns new items collection as a payload.</p>\n"
+        "description": "<p>fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.\nReturns new items collection as a payload.</p>\n"
       }
     ],
     "properties": [],
@@ -2076,59 +2388,59 @@ export const ngdoc: any = {
         "name": "tooltipAnimation",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>@deprecated - removed, will be added to configuration </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipAppendToBody",
         "type": "boolean",
-        "description": "<p>@deprecated - please use <code>container=&quot;body&quot;</code> instead </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipClass",
         "type": "string",
-        "description": "<p>@deprecated - will replaced with customClass </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipContext",
         "type": "any",
-        "description": "<p>@deprecated - removed </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipEnable",
         "type": "boolean",
-        "description": "<p>@deprecated - please use <code>isDisabled</code> instead </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipFadeDuration",
         "defaultValue": "150",
         "type": "number",
-        "description": "<p>@deprecated </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipHtml",
         "type": "string | TemplateRef<any>",
-        "description": "<p>@deprecated - please use <code>tooltip</code> instead </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipIsOpen",
         "type": "boolean",
-        "description": "<p>@deprecated - please use <code>isOpen</code> instead</p>\n"
+        "description": ""
       },
       {
         "name": "tooltipPlacement",
         "type": "string",
-        "description": "<p>@deprecated - please use <code>placement</code> instead </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipPopupDelay",
         "defaultValue": "0",
         "type": "number",
-        "description": "<p>@deprecated </p>\n"
+        "description": ""
       },
       {
         "name": "tooltipTrigger",
         "type": "string | string[]",
-        "description": "<p>@deprecated -  please use <code>triggers</code> instead </p>\n"
+        "description": ""
       },
       {
         "name": "triggers",
@@ -2151,26 +2463,10 @@ export const ngdoc: any = {
       },
       {
         "name": "tooltipStateChanged",
-        "description": "<p>@deprecated </p>\n"
+        "description": ""
       }
     ],
-    "properties": [
-      {
-        "name": "_appendToBody",
-        "type": "boolean",
-        "description": "<p>@deprecated - please use <code>container=&quot;body&quot;</code> instead </p>\n"
-      },
-      {
-        "name": "_enable",
-        "type": "boolean",
-        "description": "<p>@deprecated - please use <code>isDisabled</code> instead </p>\n"
-      },
-      {
-        "name": "_isOpen",
-        "type": "boolean",
-        "description": "<p>@deprecated - please use <code>isOpen</code> instead</p>\n"
-      }
-    ],
+    "properties": [],
     "methods": [
       {
         "name": "toggle",
@@ -2310,12 +2606,5 @@ export const ngdoc: any = {
       }
     ],
     "methods": []
-  },
-  "Trigger": {
-    "fileName": "src/utils/trigger.class.ts",
-    "className": "Trigger",
-    "description": "<p>@copyright Valor Software\n@copyright Angular ng-bootstrap team</p>\n",
-    "methods": [],
-    "properties": []
   }
 };
