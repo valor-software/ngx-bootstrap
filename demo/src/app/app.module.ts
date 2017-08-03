@@ -31,6 +31,8 @@ import { AppFooterComponent } from './common/app-footer/app-footer.component';
 import { NgApiDocModule } from './api-docs/index';
 import { NgApiDoc } from './api-docs/api-docs.model';
 import { ngdoc } from '../ng-api-doc';
+import { HttpModule } from '@angular/http';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { ngdoc } from '../ng-api-doc';
     FormsModule,
     RouterModule.forRoot(routes, {useHash: true}),
     Ng2PageScrollModule.forRoot(),
+    HttpModule,
+    BsDropdownModule.forRoot(),
     // will be lazy loaded later on
     // DemoAccordionModule,
     // DemoAlertsModule,

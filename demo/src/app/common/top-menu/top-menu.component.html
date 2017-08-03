@@ -1,6 +1,14 @@
 <div id="top-menu">
   <div class="title">
-    <h2 [routerLink]="['']">ngx-bootstrap</h2>
+    <h2 [routerLink]="['']">ngx-bootstrap {{currentVersion ? 'v' + currentVersion : ''}}</h2>
+  </div>
+  <div class="prev-docs" dropdown *ngIf="previousDocs.length">
+      <div dropdownToggle class="dropdown-toggle">
+        Previous docs <span class="caret"></span>
+      </div>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem" *ngFor="let item of previousDocs"><a class="dropdown-item" href="{{appUrl + item.url}}/{{appHash}}">{{item.version}}</a></li>
+      </ul>
   </div>
 
   <div id="mobile-main-menu" (click)="toggle()">
