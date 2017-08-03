@@ -1,3 +1,21 @@
+<a name="2.0.0-beta.3"></a>
+# [2.0.0-beta.3](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.1...v2.0.0-beta.3) (2017-08-03)
+
+
+### Bug Fixes
+
+* **datepicker:** for ng v4 ([d21b6f7](https://github.com/valor-software/ngx-bootstrap/commit/d21b6f7))
+* **demo:** fix carousel demo error ([ddb0e55](https://github.com/valor-software/ngx-bootstrap/commit/ddb0e55))
+* **tests:** add matchers, fix fn output type in draggable service ([e1dda6a](https://github.com/valor-software/ngx-bootstrap/commit/e1dda6a))
+
+
+### Features
+
+* **package:** dropped support of ng v2 ([fc323cc](https://github.com/valor-software/ngx-bootstrap/commit/fc323cc))
+* **package:** upgrading ng v4 ([9002ed5](https://github.com/valor-software/ngx-bootstrap/commit/9002ed5))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.0...v1.8.1) (2017-07-28)
 
