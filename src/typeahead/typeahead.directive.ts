@@ -126,7 +126,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       : e.target.textContent !== undefined
         ? e.target.textContent
         : e.target.innerText;
-    if (value && value.trim().length >= this.typeaheadMinLength) {
+    if (this.typeaheadMinLength === 0 || (value && value.trim().length >= this.typeaheadMinLength)) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
