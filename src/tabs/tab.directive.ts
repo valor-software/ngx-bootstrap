@@ -37,12 +37,15 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   public set active(active: boolean) {
+    if (this._active === active) {
+      return;
+    }
     if (this.disabled && active || !active) {
-      if (!active) {
+      if (this._active && !active) {
+        this.deselect.emit(this);
         this._active = active;
       }
 
-      this.deselect.emit(this);
       return;
     }
 
