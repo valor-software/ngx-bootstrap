@@ -26,20 +26,12 @@ fs.rename('gh-pages', dir + version, function (err) {
   if (fs.existsSync(dir + version + '/old')) {
     fs.readdir(dir + version + '/old', function (err, files) {
       if (err) throw err;
-      for (let i in files) {
-        if (!fs.existsSync(dir + files[i])) {
-          console.log(files[i], 'version found');
-          fs.rename(dir + version + '/old/' + files[i], dir + files[i], function (err) {
-            if (err) throw err;
-          });
-        }
-        del(dir + version + '/old');
-        generateJson();
-      }
+      moveOldVersions(files);
     });
-  } else {
-    generateJson();
+    return;
   }
+  generateJson();
+
 });
 
 function generateJson() {
@@ -65,4 +57,17 @@ function generateJson() {
       if (err) return console.log(err);
     });
   });
+}
+
+function moveOldVersions(files) {
+  for (let i in files) {
+    if (!fs.existsSync(dir + files[i])) {
+      console.log(files[i], 'version found');
+      fs.rename(dir + version + '/old/' + files[i], dir + files[i], function (err) {
+        if (err) throw err;
+      });
+    }
+    del(dir + version + '/old');
+    generateJson();
+  }
 }
