@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 export class DemoCarouselDynamicComponent {
   public myInterval: number = 1500;
   public slides: any[] = [];
-  public activeSlideIndex: number;
+  public activeSlideIndex: number = 0;
   public noWrapSlides:boolean = false;
 
   public constructor() {
