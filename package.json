@@ -8,7 +8,7 @@
     "typedoc": "typedoc --exclude '**/*.spec.ts' ./src/",
     "demo.docs": "node scripts/docs/get-doc.js",
     "demo.serve": "run-s build link demo.docs demo.build lite-server",
-    "demo.gh-pages": "run-s build demo.docs demo.build demo.deploy",
+    "demo.gh-pages": "run-s build demo.docs demo.build docs.archive demo.deploy",
     "demo.build": "ng build -prod --aot && npm run generate-bs4",
     "demo.deploy": "gh-pages -d demo/dist",
     "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ngx-bootstrap.git -b gh-pages",
