@@ -132,7 +132,4 @@ export class Ng2BootstrapModule {
 
 
 // temporary solution
-export * from './datepicker2'
-
-// temporary solution
-export * from './datepicker2'
+export * from './datepicker2';
