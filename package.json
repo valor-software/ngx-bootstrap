@@ -78,7 +78,7 @@
     "@angular/router": "^3.4.4",
     "@angular/tsc-wrapped": "0.5.1",
     "@types/jasmine": "2.5.41",
-    "@types/marked": "0.0.28",
+    "@types/marked": "0.3.0",
     "@types/node": "7.0.15",
     "@types/webpack": "^2.2.2",
     "bootstrap": "3.3.7",
