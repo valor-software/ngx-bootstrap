@@ -443,7 +443,7 @@ export abstract class DatePickerBase implements OnInit, OnDestroy {
 
     let currWeek = viewDate;
     for (let i = 0; i < calendarH; i++) {
-      weeks[i] = this.options.ui.showISOWeekNumbers ? startDay.format('ww') : startDay.format('WW');
+      weeks[i] = this.options.ui.showISOWeekNumbers ? +startDay.format('ww') + i : +startDay.format('WW') + i;
       currWeek = viewDate.clone().add(1, 'week');
     }
 
