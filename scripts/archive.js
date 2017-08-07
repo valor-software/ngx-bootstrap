@@ -39,9 +39,9 @@ function generateJson() {
   fs.readdir(dir, function (err, files) {
     if (err) throw err;
     for (let i in files) {
-      savedVersions.push({version: files[i], url: hostname + '/old/' + files[i]});
+      savedVersions.push({version: files[i], url: hostname + '/old/' + files[i], unprefixedUrl: 'old/' + files[i]});
     }
-    savedVersions.push({version: 'Current', url: hostname});
+    savedVersions.push({version: 'Current', url: hostname, unprefixedUrl: ''});
     savedVersions.reverse();
     savedVersions.forEach((ver) => {
       if (ver.version !== 'Current') {

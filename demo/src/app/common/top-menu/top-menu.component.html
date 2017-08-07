@@ -7,7 +7,7 @@
         Previous docs <span class="caret"></span>
       </div>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li role="menuitem" *ngFor="let item of previousDocs"><a class="dropdown-item" href="{{appUrl + item.url}}/{{appHash}}">{{item.version}}</a></li>
+        <li role="menuitem" *ngFor="let item of previousDocs"><a class="dropdown-item" href="{{appUrl + (isLocalhost ? item.unprefixedUrl : item.url)}}{{appHash ? '/' + appHash : ''}}">{{item.version}}</a></li>
       </ul>
   </div>
 
