@@ -25,6 +25,7 @@ npm-debug.log
 /demo/dist
 /demo/temp
 /logs
+/gh-pages
 
 #System Files
 .DS_Store

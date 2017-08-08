@@ -1,4 +1,5 @@
-const fs = require('fs');
+const fs = require('fs-extra');
+const del = require('del');
 
 if (!fs.existsSync('gh-pages')) {
   throw 'gh-pages dir wasn\'t found. Run `npm run docs.fetch`';
@@ -8,66 +9,68 @@ if (!fs.existsSync('demo/dist')) {
   throw 'demo/dist dir wasn\'t found. Run `npm run demo.build`';
 }
 
-const del = require('del');
 const hostname = 'ngx-bootstrap';
-const dir = 'demo/dist/old/';
+const dir = 'gh-pages/old/';
 const version = require('../gh-pages/assets/json/current-version.json').version;
 const newVersion = require('../package.json').version;
 
 console.log('Previous version:', version);
 console.log('New version:', newVersion);
+const isVersionChanged = version !== newVersion;
 
-if (!fs.existsSync(dir)) {
-  fs.mkdirSync(dir);
-}
-fs.rename('gh-pages', dir + version, function (err) {
+fs.readdir('gh-pages', function (err, files) {
   if (err) throw err;
-  console.log('previous version of docs was saved to ', dir + version);
-  if (fs.existsSync(dir + version + '/old')) {
-    fs.readdir(dir + version + '/old', function (err, files) {
-      if (err) throw err;
-      moveOldVersions(files);
+  let filesToMove = getFilesToMove(files);
+  if (!isVersionChanged) {
+    console.log('Version hasn\'t changed. Current gh-pages version will be replaced with the one from demo/dist');
+    del(filesToMove.map(file => 'gh-pages/' + file)).then(() => {
+      copyDist();
     });
     return;
   }
-  generateJson();
-
+  fs.ensureDir('gh-pages/old/' + version, err => {
+    if (err) throw err;
+    filesToMove.forEach((file) => {
+      fs.rename('gh-pages/' + file, 'gh-pages/old/' + version + '/' + file, function (err) {
+        if (err) throw err;
+      });
+    });
+    copyDist();
+  });
 });
+
+function getFilesToMove(files) {
+  return files.filter((file) => {return file !== 'old' && file !== '.git'});
+}
 
 function generateJson() {
   let savedVersions = [];
-  fs.readdir(dir, function (err, files) {
+  fs.readdir(dir, (err, files) => {
     if (err) throw err;
-    for (let i in files) {
-      savedVersions.push({version: files[i], url: hostname + '/old/' + files[i], unprefixedUrl: 'old/' + files[i]});
-    }
+    files.forEach((file) => {
+      savedVersions.push({version: file, url: hostname + '/old/' + file, unprefixedUrl: 'old/' + file});
+    });
     savedVersions.push({version: 'Current', url: hostname, unprefixedUrl: ''});
     savedVersions.reverse();
     savedVersions.forEach((ver) => {
       if (ver.version !== 'Current') {
-        fs.writeFile(dir + ver.version + '/assets/json/versions.json', JSON.stringify(savedVersions), 'utf8', function (err) {
-          if (err) return console.log(err);
-        });
+        writeFile(dir + ver.version + '/assets/json/versions.json', JSON.stringify(savedVersions));
       }
     });
-    fs.writeFile('demo/dist/assets/json/versions.json', JSON.stringify(savedVersions), 'utf8', function (err) {
-      if (err) return console.log(err);
-    });
-    fs.writeFile('demo/dist/assets/json/current-version.json', JSON.stringify({version: newVersion}), 'utf8', function (err) {
-      if (err) return console.log(err);
-    });
+    writeFile('gh-pages/assets/json/versions.json', JSON.stringify(savedVersions));
+    writeFile('gh-pages/assets/json/current-version.json', JSON.stringify({version: newVersion}));
   });
 }
 
-function moveOldVersions(files) {
-  for (let i in files) {
-    if (!fs.existsSync(dir + files[i])) {
-      console.log(files[i], 'version found');
-      fs.rename(dir + version + '/old/' + files[i], dir + files[i], function (err) {
-        if (err) throw err;
-      });
-    }
-    del(dir + version + '/old');
+function writeFile(path, content) {
+  fs.writeFile(path, content, 'utf8', (err) => {
+    if (err) return console.log(err);
+  });
+}
+
+function copyDist() {
+  fs.copy('demo/dist', 'gh-pages', function (err) {
+    if (err) return console.error(err);
     generateJson();
-  }
+  });
 }
