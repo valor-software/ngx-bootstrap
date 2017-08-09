@@ -13,7 +13,7 @@
     "demo.deploy": "gh-pages -d gh-pages",
     "demo-beta-deploy": "gh-pages -d demo/dist -r git@github.com:valorkin/ngx-bootstrap.git -b gh-pages",
     "docs.archive": "npm run docs.fetch && node scripts/archive.js",
-    "docs.fetch": "git clone -b gh-pages --single-branch --depth 1 https://github.com/valor-software/ngx-bootstrap.git gh-pages",
+    "docs.fetch": "node scripts/fetch-docs.js",
     "link": "ngm link -p src --here",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
