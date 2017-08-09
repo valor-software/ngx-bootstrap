@@ -13,13 +13,13 @@
  * 4) default interval should be equal 5000
  */
 
-import { Component, EventEmitter, Input, NgZone, OnDestroy, Output } from '@angular/core';
+import { Component, Input, OnDestroy, Output, EventEmitter, NgZone } from '@angular/core';
 
 import { isBs3, LinkedList } from '../utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 
-export enum Direction { UNKNOWN, NEXT, PREV }
+export enum Direction {UNKNOWN, NEXT, PREV}
 
 /**
  * Base element to create carousel
@@ -52,7 +52,7 @@ export class CarouselComponent implements OnDestroy {
   protected _currentActiveSlide: number;
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
-  @Output() public activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
+  @Output() public activeSlideChange: EventEmitter <any> = new EventEmitter<any>(false);
 
   /** Index of currently displayed slide(started for 0) */
   @Input()
@@ -88,7 +88,7 @@ export class CarouselComponent implements OnDestroy {
   protected isPlaying: boolean;
   protected destroyed: boolean = false;
 
-  public get isBs4(): boolean {
+  public get isBs4():boolean {
     return !isBs3();
   }
 
@@ -226,12 +226,12 @@ export class CarouselComponent implements OnDestroy {
       case Direction.NEXT:
         // if this is last slide, not force, looping is disabled and need to going forward - select current slide, as a next
         nextSlideIndex = (!this.isLast(this._currentActiveSlide)) ? this._currentActiveSlide + 1 :
-          (!force && this.noWrap) ? this._currentActiveSlide : 0;
+          (!force && this.noWrap ) ? this._currentActiveSlide : 0;
         break;
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled and need to going backward - select current slide, as a next
         nextSlideIndex = (this._currentActiveSlide > 0) ? this._currentActiveSlide - 1 :
-          (!force && this.noWrap) ? this._currentActiveSlide : this._slides.length - 1;
+          (!force && this.noWrap ) ? this._currentActiveSlide : this._slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');
