@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-typeahead-static',
-  templateUrl: './static.html'
+  selector: 'demo-typeahead-dropup',
+  templateUrl: './dropup.html'
 })
-export class DemoTypeaheadStaticComponent {
+export class DemoTypeaheadDropupComponent {
   public selected:string;
   public states:string[] = ['Alabama', 'Alaska', 'Arizona', 'Arkansas',
     'California', 'Colorado',
