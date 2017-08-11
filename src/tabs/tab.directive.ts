@@ -6,7 +6,8 @@ import { TabsetComponent } from './tabset.component';
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() public heading: string;
-  /** tab id */
+  /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
+  @HostBinding('attr.id')
   @Input() public id: string;
   /** if true tab can not be activated */
   @Input() public disabled: boolean;

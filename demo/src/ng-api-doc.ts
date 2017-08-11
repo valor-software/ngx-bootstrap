@@ -1740,7 +1740,7 @@ export const ngdoc: any = {
       {
         "name": "id",
         "type": "string",
-        "description": "<p>tab id </p>\n"
+        "description": "<p>tab id. The same id with suffix &#39;-link&#39; will be added to the corresponding &lt;li&gt; element  </p>\n"
       },
       {
         "name": "removable",
