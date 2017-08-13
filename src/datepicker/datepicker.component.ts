@@ -36,6 +36,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [shortcutPropagation]="shortcutPropagation"
                       [monthColLimit]="monthColLimit"
                       [yearColLimit]="yearColLimit"
+                      [locale]="locale"
                       (selectionDone)="onSelectionDone($event)"
                       (activeDateChange)="onActiveDateChange($event)">
       <daypicker tabindex="0"></daypicker>
@@ -90,6 +91,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** array of disabled dates */
   @Input() public dateDisabled: { date: Date, mode: string }[];
 
+  @Input() public locale: string;
+  
   /** currently active date */
   @Input()
   public get activeDate(): Date {

@@ -12,7 +12,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
       <th>
         <button type="button" class="btn btn-default btn-sm pull-left"
                 (click)="datePicker.move(-1)" tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-left"></i>
+          <i class="ion-md-arrow-dropleft" style="font-size: 22pt;"></i>
         </button></th>
       <th [attr.colspan]="((datePicker.monthColLimit - 2) <= 0) ? 1 : datePicker.monthColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'"
@@ -26,7 +26,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
       <th>
         <button type="button" class="btn btn-default btn-sm pull-right"
                 (click)="datePicker.move(1)" tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-right"></i>
+          <i class="ion-md-arrow-dropright" style="font-size: 22pt;"></i>
         </button>
       </th>
     </tr>

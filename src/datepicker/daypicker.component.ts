@@ -14,7 +14,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 class="btn btn-default btn-secondary btn-sm pull-left"
                 (click)="datePicker.move(-1)"
                 tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-left"></i>
+          <i class="ion-md-arrow-dropleft" style="font-size: 22pt;"></i>
         </button>
         <button *ngIf="isBs4"
                 type="button"
@@ -38,7 +38,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 class="btn btn-default btn-secondary btn-sm pull-right"
                 (click)="datePicker.move(1)"
                 tabindex="-1">
-          <i  class="glyphicon glyphicon-chevron-right"></i>
+          <i class="ion-md-arrow-dropright" style="font-size: 22pt;"></i>
         </button>
         <button *ngIf="isBs4"
                 type="button"

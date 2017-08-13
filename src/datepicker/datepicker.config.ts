@@ -18,4 +18,5 @@ export class DatepickerConfig {
   public monthColLimit: number = 3;
   public yearColLimit: number = 5;
   public shortcutPropagation: boolean = false;
+  public locale: string = 'en';
 }
