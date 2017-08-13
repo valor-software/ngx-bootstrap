@@ -36,6 +36,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [shortcutPropagation]="shortcutPropagation"
                       [monthColLimit]="monthColLimit"
                       [yearColLimit]="yearColLimit"
+                      [locale]="locale"
                       (selectionDone)="onSelectionDone($event)">
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
