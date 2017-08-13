@@ -23,6 +23,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
         <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
         <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
+        <li><a routerLink="." fragment="custom-class">Custom class</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -95,6 +96,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-sample-box [ts]="demos.stylingComponent.component" [html]="demos.stylingComponent.html">
     <demo-tooltip-styling-local></demo-tooltip-styling-local>
   </ng-sample-box>
+
+  <h2 routerLink="." fragment="custom-class" id="custom-class">Custom class</h2>
+  <ng-sample-box [ts]="demos.customClass.component" [html]="demos.customClass.html">
+    <demo-tooltip-class></demo-tooltip-class>
+  </ng-sample-box>
       
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   
@@ -104,7 +110,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class TooltipSectionComponent {
   public name:string = 'Tooltip';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/tooltip';
+  public src:string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
   public demos: any = DEMOS;
   public titleDoc:string = titleDoc;
 }

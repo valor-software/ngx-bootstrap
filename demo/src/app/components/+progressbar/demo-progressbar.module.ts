@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 import { SharedModule } from '../../shared';
 import { ProgressbarSectionComponent } from './progressbar-section.component';

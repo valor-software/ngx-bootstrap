@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SortableModule } from 'ng2-bootstrap/sortable';
+import { SortableModule } from 'ngx-bootstrap/sortable';
 
 import { SharedModule } from '../../shared';
 import { SortableSectionComponent } from './sortable-section.component';

@@ -35,6 +35,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Input() public container: string;
 
   /**
+   * Css class for popover container
+   */
+  @Input() public containerClass: string = '';
+
+  /**
    * Returns whether or not the popover is currently being shown
    */
   @Input()
@@ -54,6 +59,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Output() public onHidden: EventEmitter<any>;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
+  private _isInited = false;
 
   public constructor(_elementRef: ElementRef,
                      _renderer: Renderer,
@@ -66,6 +72,16 @@ export class PopoverDirective implements OnInit, OnDestroy {
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
+
+    // fix: no focus on button on Mac OS #1795
+    _elementRef.nativeElement.addEventListener('click', function() {
+      try {
+         _elementRef.nativeElement.focus();
+      } catch(err) {
+        return;
+      }
+    });
+
   }
 
   /**
@@ -84,8 +100,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .show({
         content: this.popover,
         placement: this.placement,
-        title: this.popoverTitle
+        title: this.popoverTitle,
+        containerClass: this.containerClass
       });
+    this.isOpen = true;
   }
 
   /**
@@ -95,6 +113,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   public hide(): void {
     if (this.isOpen) {
       this._popover.hide();
+      this.isOpen = false;
     }
   }
 
@@ -111,6 +130,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): any {
+    // fix: seems there are an issue with `routerLinkActive`
+    // which result in duplicated call ngOnInit without call to ngOnDestroy
+    // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
+    if (this._isInited) { return; }
+    this._isInited = true;
+
     this._popover.listen({
       triggers: this.triggers,
       show: () => this.show()

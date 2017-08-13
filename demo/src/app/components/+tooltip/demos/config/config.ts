@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TooltipConfig } from 'ng2-bootstrap/tooltip';
+import { TooltipConfig } from 'ngx-bootstrap/tooltip';
 
 // such override allows to keep some initial values
 

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+﻿import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabsetConfig } from '../tabs/tabset.config';
 
 import { TabsModule } from '../tabs/tabs.module';
+import { TabsetComponent } from '../tabs/tabset.component';
 
 const html = `
-  <tabset [justified]="isJustified"
+  <tabset #tabset [justified]="isJustified"
           [vertical]="isVertical">
-    <tab heading="tab0">tab0 content</tab>
+    <tab heading="tab0" (deselect)="_deselect($event)">tab0 content</tab>
     <tab *ngFor="let tab of tabs"
          [disabled]="tab.disabled"
          [customClass]="tab.customClass"
@@ -35,7 +36,6 @@ function getTabContent(nativeEl: HTMLElement): NodeListOf<Element> {
 function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
   const tabItems = getTabItems(nativeEl);
   const tabContent = getTabContent(nativeEl);
-
   expect(tabItems.length).toBe(active.length);
   expect(tabContent.length).toBe(active.length);
 
@@ -126,6 +126,20 @@ describe('Component: Tabs', () => {
     expect(tabTitlesAfter.length).toEqual(3);
   });
 
+  it('should select another tab if the active tab is removed', () => {
+    context.tabset.tabs[0].active = true;
+    context.tabset.removeTab(context.tabset.tabs[0]);
+    fixture.detectChanges();
+    expectActiveTabs(element, [true, false, false]);
+  });
+
+  it('should not select another tab if the active tab is removed and reselect is set to false', () => {
+    context.tabset.tabs[0].active = true;
+    context.tabset.removeTab(context.tabset.tabs[0], {reselect: false, emit: false});
+    fixture.detectChanges();
+    expectActiveTabs(element, [false, false, false]);
+  });
+
   it('should set tab as active on click and disable another active', () => {
     const tabTitles = getTabTitles(element);
 
@@ -197,7 +211,7 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
     expect(tabItems[1].classList).toContain('testCustomClass');
     expectActiveTabs(element, [false, true, false, false]);
-    
+
     context.tabs[0].customClass = 'otherCustomClass';
     fixture.detectChanges();
 
@@ -220,6 +234,7 @@ class TestTabsetComponent {
     {title: 'tab2', content: 'tab2 content', disabled: true},
     {title: 'tab3', content: 'tab3 content', removable: true}
   ];
+  @ViewChild('tabset') tabset: TabsetComponent;
 
   public constructor(config: TabsetConfig) {
     Object.assign(this, config);

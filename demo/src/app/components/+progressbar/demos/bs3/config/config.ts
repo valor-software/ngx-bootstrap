@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProgressbarConfig } from 'ng2-bootstrap/progressbar';
+import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 
 // such override allows to keep some initial values
 

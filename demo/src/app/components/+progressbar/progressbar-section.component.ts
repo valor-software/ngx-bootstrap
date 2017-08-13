@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { isBs3 } from 'ng2-bootstrap/utils';
+import { isBs3 } from 'ngx-bootstrap/utils';
 import { DEMOS } from './demos';
 
 // webpack html imports
@@ -89,7 +89,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class ProgressbarSectionComponent {
   public name: string = 'Progressbar';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/progressbar';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
 
   public get isBs3(): boolean {
     return isBs3();

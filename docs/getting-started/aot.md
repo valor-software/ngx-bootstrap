@@ -1,22 +1,22 @@
-### How to use ng2-bootstrap in Angular2 with AoT compilation using ngc and rollup
+### How to use ngx-bootstrap in Angular2 with AoT compilation using ngc and rollup
 
 The compilation process is described on the official Angular2 website here: https://angular.io/docs/ts/latest/cookbook/aot-compiler.html
 
 Note that you also have to include bootstrap CSS from the official Bootrstrap site or Bootstrap CDN in your index.html HEAD section.
  
-#### 1) Install `ng2-bootstrap`
+#### 1) Install `ngx-bootstrap`
 
 ```bash
-npm install ng2-bootstrap bootstrap --save
+npm install ngx-bootstrap bootstrap --save
 ```
  
-#### 2) Edit Angular 2 module
+#### 2) Edit Angular module
 
-Open the module file where you want to include ng2-bootstrap (most probably `app.module.ts`) and import either specific ng2-bootstrap modules by listing them in the import statement and then in the import array of the Angular 2 module
+Open the module file where you want to include ngx-bootstrap (most probably `app.module.ts`) and import either specific ngx-bootstrap modules by listing them in the import statement and then in the import array of the Angular module
 
 ```typescript
-import { AlertModule } from 'ng2-bootstrap/alert';
-import { ModalModule } from 'ng2-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { ModalModule } from 'ngx-bootstrap/modal';
 ...
 
 @NgModule({
@@ -29,7 +29,7 @@ import { ModalModule } from 'ng2-bootstrap/modal';
  **NOT RECOMMENDED**: or use Ng2BootstrapModule to import all of the modules at once:
 
 ```typescript
-import { Ng2BootstrapModule } from 'ng2-bootstrap';
+import { Ng2BootstrapModule } from 'ngx-bootstrap';
 ...
 
 @NgModule({
@@ -47,7 +47,7 @@ You have to use CommonJS rollup plugin, which you should be using anyway due to 
 npm install rollup-plugin-commonjs --save --dev
 ```
 
-Then you have to import the CommonJS plugin, include it in the plugins array and add ng2-bootstrap to the list of modules:
+Then you have to import the CommonJS plugin, include it in the plugins array and add ngx-bootstrap to the list of modules:
 
 ```javascript
 ...
@@ -62,7 +62,7 @@ export default {
 		commonjs({
 			include: [
 				'node_modules/rxjs/**',
-				'node_modules/ng2-bootstrap/**'
+				'node_modules/ngx-bootstrap/**'
 			]
 		}),
 		...

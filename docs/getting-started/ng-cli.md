@@ -11,18 +11,18 @@ cd my-app
 ng serve
 ```
 
-#### Adding ng2-bootstrap
+#### Adding ngx-bootstrap
  
- - install `ng2-bootstrap` and `bootstrap`
+ - install `ngx-bootstrap` and `bootstrap`
 
  ```bash
-   npm install ng2-bootstrap bootstrap --save
+   npm install ngx-bootstrap bootstrap --save
  ```
  
 - open `src/app/app.module.ts` and add
 
 ```typescript
-import { AlertModule } from 'ng2-bootstrap';
+import { AlertModule } from 'ngx-bootstrap';
 ...
 
 @NgModule({
@@ -32,7 +32,7 @@ import { AlertModule } from 'ng2-bootstrap';
 })
 ```
 
-- open `angular-cli.json` and insert a new entry into the styles array 
+- open `.angular-cli.json` and insert a new entry into the styles array 
 
 ```json
       "styles": [

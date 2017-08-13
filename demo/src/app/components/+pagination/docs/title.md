@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { PaginationModule } from 'ng2-bootstrap/pagination';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 // or
-import { PaginationModule } from 'ng2-bootstrap';
+import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [PaginationModule.forRoot(),...]

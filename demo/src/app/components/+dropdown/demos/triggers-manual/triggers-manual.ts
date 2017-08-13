@@ -12,4 +12,8 @@ export class DemoDropdownTriggersManualComponent {
     $event.stopPropagation();
     this.status.isopen = !this.status.isopen;
   }
+
+  public change(value: boolean): void {
+    this.status.isopen = value;
+  }
 }
