@@ -91,6 +91,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** array of disabled dates */
   @Input() public dateDisabled: { date: Date, mode: string }[];
 
+  @Input() public locale: string;
+  
   /** currently active date */
   @Input()
   public get activeDate(): Date {
