@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+  <form id="mainForm" method="post" action="http://plnkr.co/edit/?p=preview">
+    <input type="hidden" name="description" value="Example usage of the accordion from http://valor-software.com/ngx-bootstrap/">
+    <input type="hidden" name="files[index.html]" value="&#x3C;!DOCTYPE html&#x3E;
+&#x3C;html&#x3E;
+  &#x3C;head&#x3E;
+    &#x3C;title&#x3E;ngx-bootstrap plunkr&#x3C;/title&#x3E;
+    &#x3C;!-- Load common libraries --&#x3E;
+    &#x3C;script src=&#x22;https://cdnjs.cloudflare.com/ajax/libs/typescript/2.1.6/typescript.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+    &#x3C;script src=&#x22;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+    &#x3C;script src=&#x22;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.7.2/zone.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+    &#x3C;script src=&#x22;https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.47/system.js&#x22;&#x3E;&#x3C;/script&#x3E;
+    &#x3C;!-- Configure SystemJS --&#x3E;
+    &#x3C;script src=&#x22;systemjs.config.js&#x22;&#x3E;&#x3C;/script&#x3E;
+    &#x3C;script&#x3E;
+      System
+        .import(&#x27;main.ts&#x27;)
+        .catch(console.error.bind(console));
+    &#x3C;/script&#x3E;
+    &#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&#x22; /&#x3E;
+    &#x3C;style&#x3E;body { font-family: Roboto, Arial, sans-serif; margin: 0 }&#x3C;/style&#x3E;
+  &#x3C;/head&#x3E;
+
+  &#x3C;body&#x3E;
+    &#x3C;demo-accordion-basic&#x3E;Loading ngx-bootstrap...&#x3C;/demo-accordion-basic&#x3E;
+  &#x3C;/body&#x3E;
+&#x3C;/html&#x3E;">
+    <input type="hidden" name="files[systemjs.config.js]" value="
+System.config({
+  transpiler: &#x27;typescript&#x27;,
+  typescriptOptions: {
+    emitDecoratorMetadata: true
+  },
+  packages: {
+    &#x27;.&#x27;: {
+      defaultExtension: &#x27;ts&#x27;
+    },
+    &#x27;vendor&#x27;: {
+      defaultExtension: &#x27;js&#x27;
+    }
+  }
+});
+
+System.config({
+  map: {
+    &#x27;main&#x27;: &#x27;main.js&#x27;,
+    
+    // Angular specific mappings.
+    &#x27;@angular/core&#x27;: &#x27;https://unpkg.com/@angular/core/bundles/core.umd.js&#x27;,
+    &#x27;@angular/common&#x27;: &#x27;https://unpkg.com/@angular/common/bundles/common.umd.js&#x27;,
+    &#x27;@angular/compiler&#x27;: &#x27;https://unpkg.com/@angular/compiler/bundles/compiler.umd.js&#x27;,
+    &#x27;@angular/forms&#x27;: &#x27;https://unpkg.com/@angular/forms/bundles/forms.umd.js&#x27;,
+    &#x27;@angular/platform-browser&#x27;: &#x27;https://unpkg.com/@angular/platform-browser/bundles/platform-browser.umd.js&#x27;,
+    &#x27;@angular/platform-browser-dynamic&#x27;: &#x27;https://unpkg.com/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js&#x27;,
+    
+    // Third party libraries
+    &#x27;tslib&#x27;: &#x27;https://unpkg.com/tslib@1.7.1&#x27;,
+    &#x27;rxjs&#x27;: &#x27;https://unpkg.com/rxjs&#x27;,
+    &#x27;ngx-bootstrap&#x27;: &#x27;https://unpkg.com/ngx-bootstrap@1.8.1/bundles/ngx-bootstrap.umd.min.js&#x27;
+  },
+  packages: {
+    // Thirdparty barrels.
+    &#x27;rxjs&#x27;: { main: &#x27;index&#x27; },
+  }
+});
+">
+    <input type="hidden" name="files[main.ts]" value="
+import { NgModule } from &#x27;@angular/core&#x27;;
+import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
+import { platformBrowserDynamic } from &#x27;@angular/platform-browser-dynamic&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { AccordionModule } from &#x27;ngx-bootstrap&#x27;;
+import { DemoAccordionBasicComponent } from &#x27;./basic&#x27;;
+
+@NgModule({
+  declarations: [DemoAccordionBasicComponent],
+  imports: [
+    AccordionModule.forRoot(),
+    CommonModule,
+    FormsModule,
+    BrowserModule
+  ],
+  bootstrap: [DemoAccordionBasicComponent]
+})
+export class DemoAccordionModule {
+}
+platformBrowserDynamic().bootstrapModule(DemoAccordionModule);
+">
+    <input type="hidden" name="files[basic.ts]" value="import { Component } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;demo-accordion-basic&#x27;,
+  templateUrl: &#x27;./basic.html&#x27;
+})
+export class DemoAccordionBasicComponent {
+
+}
+">
+    <input type="hidden" name="files[basic.html]" value="&#x3C;accordion&#x3E;
+  &#x3C;accordion-group heading=&#x22;Static Header, initially expanded&#x22;&#x3E;
+    This content is straight in the template.
+  &#x3C;/accordion-group&#x3E;
+  &#x3C;accordion-group #group&#x3E;
+    &#x3C;div accordion-heading&#x3E;
+      I can have markup, too!
+      &#x3C;i class=&#x22;pull-right float-xs-right glyphicon&#x22;
+         [ngClass]=&#x22;{&#x27;glyphicon-chevron-down&#x27;: group?.isOpen, &#x27;glyphicon-chevron-right&#x27;: !group?.isOpen}&#x22;&#x3E;&#x3C;/i&#x3E;
+    &#x3C;/div&#x3E;
+    This is just some content to illustrate fancy headings.
+  &#x3C;/accordion-group&#x3E;
+  &#x3C;accordion-group heading=&#x22;Content 1&#x22;&#x3E;
+    &#x3C;p&#x3E;Content 1&#x3C;/p&#x3E;
+  &#x3C;/accordion-group&#x3E;
+  &#x3C;accordion-group heading=&#x22;Content 2&#x22;&#x3E;
+    &#x3C;p&#x3E;Content 2&#x3C;/p&#x3E;
+  &#x3C;/accordion-group&#x3E;
+&#x3C;/accordion&#x3E;
+">
+  </form>
+  <script>document.getElementById("mainForm").submit();</script>
+</body>
+</html>
