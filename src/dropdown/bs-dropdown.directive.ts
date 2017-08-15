@@ -177,9 +177,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._state.dropdownMenu
           .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
             this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
+            this.addBs4Polyfills();
           });
       }
-
+      this.addBs4Polyfills();
       this._isInlineOpen = true;
       this.onShown.emit(true);
       this._state.isOpenChange.emit(true);
@@ -219,6 +220,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     if (this._showInline) {
+      this.removeShowClass();
       this._isInlineOpen = false;
       this.onHidden.emit(true);
     } else {
@@ -246,5 +248,43 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       sub.unsubscribe();
     }
     this._dropdown.dispose();
+  }
+
+  private addBs4Polyfills(): void {
+    if (!isBs3()) {
+      this.addShowClass();
+      this.checkRightAlignment();
+      this.checkDropup();
+    }
+  }
+
+  private addShowClass(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      this._renderer.setElementClass(this._inlinedMenu.rootNodes[0], 'show', true);
+    }
+  }
+
+  private removeShowClass(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      this._renderer.setElementClass(this._inlinedMenu.rootNodes[0], 'show', false);
+    }
+  }
+
+  private checkRightAlignment(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      const isRightAligned = this._inlinedMenu.rootNodes[0].classList.contains('dropdown-menu-right');
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'left', isRightAligned ? 'auto' : '0');
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'right', isRightAligned ? '0' : 'auto');
+    }
+  }
+
+  private checkDropup(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      // a little hack to not break support of bootstrap 4 beta
+      const top = getComputedStyle(this._inlinedMenu.rootNodes[0])['top'];
+      const topAuto = top === 'auto' || top === '100%';
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'top', this.dropup ? 'auto' : '100%');
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'transform', this.dropup && !topAuto ? 'translateY(-101%)' : 'translateY(0)');
+    }
   }
 }
