@@ -55,16 +55,16 @@ export abstract class DatePickerBase implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.subscriptions.forEach((sub:Subscription) => sub.unsubscribe());
+    this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
   }
 
   public abstract refresh(date: any): void;
 
-  public viewPrev(unitOfTime: 'days'|'months'|'years', step:number = 1): void {
+  public viewPrev(unitOfTime: 'days' | 'months' | 'years', step: number = 1): void {
     this.datePickerState.viewDate = this.datePickerState.viewDate.clone().subtract(step, unitOfTime);
   }
 
-  public viewNext(unitOfTime: 'days'|'months'|'years', step:number = 1): void {
+  public viewNext(unitOfTime: 'days' | 'months' | 'years', step: number = 1): void {
     this.datePickerState.viewDate = this.datePickerState.viewDate.clone().add(step, unitOfTime);
   }
 
@@ -79,7 +79,7 @@ export abstract class DatePickerBase implements OnInit, OnDestroy {
     }
   }
 
-  public viewDate(date: moment.Moment, _opts: { degrade: boolean }): void {
+  public viewDate(date: moment.Moment, _opts: {degrade: boolean}): void {
     const opts = Object.assign({}, {degrade: false}, _opts);
     this.datePickerState.viewDate = date;
 
@@ -435,19 +435,9 @@ export abstract class DatePickerBase implements OnInit, OnDestroy {
     return yearsMatrix;
   }
 
-  public getWeeksNumbers(viewDate: moment.Moment): number[] {
-    // initialize weeks row
-    const calendarH = this.options.ui.dayRows;
-    const startDay = this.getStartingDay(viewDate);
-    const weeks = new Array(calendarH);
-
-    let currWeek = viewDate;
-    for (let i = 0; i < calendarH; i++) {
-      weeks[i] = this.options.ui.showISOWeekNumbers ? startDay.format('ww') : startDay.format('WW');
-      currWeek = viewDate.clone().add(1, 'week');
-    }
-
-    return weeks;
+  public getWeeksNumbers(calendar: DatePickerDate[][]): number[] {
+    const weekFormat = this.options.ui.showISOWeekNumbers ? 'WW' : 'ww';
+    return calendar.map(row => parseInt(moment(row[0].date).format(weekFormat), 10));
   }
 
   public getLocale(): any {
