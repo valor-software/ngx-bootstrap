@@ -1,8 +1,8 @@
-//! moment.js locale configuration
-//! locale : Arabic [ar]
-//! author : Abdel Said: https://github.com/abdelsaid
-//! author : Ahmed Elkhatib
-//! author : forabi https://github.com/forabi
+// moment.js locale configuration
+// locale : Arabic [ar]
+// author : Abdel Said: https://github.com/abdelsaid
+// author : Ahmed Elkhatib
+// author : forabi https://github.com/forabi
 
 const symbolMap: { [key: string]: string } = {
   '1': '١',

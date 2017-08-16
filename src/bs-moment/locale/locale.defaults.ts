@@ -30,4 +30,3 @@ export const baseConfig: LocaleData = {
 
   // meridiemParse: defaultLocaleMeridiemParse
 };
-

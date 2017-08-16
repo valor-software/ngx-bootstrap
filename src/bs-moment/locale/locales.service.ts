@@ -93,30 +93,3 @@ export function defineLocale(name: string, config?: LocaleData): Locale {
 
   return locales[name];
 }
-
-// export function updateLocale(name, config) {
-//   if (config != null) {
-//     let locale, parentConfig = baseConfig;
-//     // MERGE
-//     if (locales[name] != null) {
-//       parentConfig = locales[name]._config;
-//     }
-//     config = mergeConfigs(parentConfig, config);
-//     locale = new Locale(config);
-//     locale.parentLocale = locales[name];
-//     locales[name] = locale;
-//
-//     // backwards compat for now: also set the locale
-//     getSetGlobalLocale(name);
-//   } else {
-//     // pass null for config to unupdate, useful for tests
-//     if (locales[name] != null) {
-//       if (locales[name].parentLocale != null) {
-//         locales[name] = locales[name].parentLocale;
-//       } else if (locales[name] != null) {
-//         delete locales[name];
-//       }
-//     }
-//   }
-//   return locales[name];
-// }
