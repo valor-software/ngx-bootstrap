@@ -12,6 +12,7 @@ import { BsDropdownState } from './bs-dropdown.state';
 import { BsComponentRef } from '../component-loader/bs-component-ref.class';
 import { BsDropdownMenuDirective } from './';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',
@@ -177,12 +178,22 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._state.dropdownMenu
           .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
             this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
+            if (this.autoClose) {
+              this._dropdown.attachOutsideClickListener(this._inlinedMenu.rootNodes[0], () => {
+                this._state.toggleClick.emit(false);
+              });
+            }
           });
       }
 
       this._isInlineOpen = true;
       this.onShown.emit(true);
       this._state.isOpenChange.emit(true);
+      if (this._inlinedMenu && this.autoClose) {
+        this._dropdown.attachOutsideClickListener(this._inlinedMenu.rootNodes[0], () => {
+          this._state.toggleClick.emit(false);
+        });
+      }
       return;
     }
     this._state.dropdownMenu
@@ -203,6 +214,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
             content: dropdownMenu.templateRef,
             placement: _placement
           });
+        if (this.autoClose) {
+          this._dropdown.attachOutsideClickListener(this._dropdown._componentRef.location.nativeElement, () => {
+            this._state.toggleClick.emit(false);
+          });
+        }
 
         this._state.isOpenChange.emit(true);
       });
@@ -224,7 +240,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     } else {
       this._dropdown.hide();
     }
-
+    this._dropdown.removeOutsideClickListener();
     this._state.isOpenChange.emit(false);
   }
 
