@@ -20,6 +20,7 @@ import {
 import { PositioningOptions, PositioningService } from '../positioning';
 import { listenToTriggers } from '../utils/triggers';
 import { ContentRef } from './content-ref.class';
+import set = Reflect.set;
 
 export interface ListenOptions {
   target?: ElementRef;
@@ -27,6 +28,7 @@ export interface ListenOptions {
   show?: Function;
   hide?: Function;
   toggle?: Function;
+  outsideClick?: Function;
 }
 
 export class ComponentLoader<T> {
@@ -45,6 +47,7 @@ export class ComponentLoader<T> {
   private _innerComponent: ComponentRef<T>;
 
   private _unregisterListenersFn: Function;
+  private _removeOutsideClickListener: Function;
 
   public get isShown(): boolean {
     return !!this._componentRef;
@@ -211,21 +214,43 @@ export class ComponentLoader<T> {
     listenOpts.target = listenOpts.target || this._elementRef;
     listenOpts.show = listenOpts.show || (() => this.show());
     listenOpts.hide = listenOpts.hide || (() => this.hide());
-    listenOpts.toggle = listenOpts.toggle || (() => this.isShown
-      ? listenOpts.hide()
-      : listenOpts.show());
+    listenOpts.outsideClick = listenOpts.outsideClick || (() => {});
+    const showFn = (() => {
+      console.log('showFn called');
+      listenOpts.show();
+      setTimeout(() => {
+        this.attachOutsideClickListener(listenOpts.target, listenOpts.outsideClick);
+      });
+    });
+    const hideFn = (() => {
+      console.log('removing outside click listener');
+      this._removeOutsideClickListener();
+      listenOpts.hide();
+    });
 
+    listenOpts.toggle = listenOpts.toggle || (() => this.isShown
+        ? hideFn()
+        : showFn());
     this._unregisterListenersFn = listenToTriggers(
       this._renderer,
       listenOpts.target.nativeElement,
       this.triggers,
-      listenOpts.show,
-      listenOpts.hide,
+      showFn,
+      hideFn,
       listenOpts.toggle);
 
     return this;
   }
 
+  public attachOutsideClickListener(target: any, outsideClickFn: Function) {
+    this._removeOutsideClickListener = this._renderer.listenGlobal('document', 'click', (event: any) => {
+      console.log('OUTSIDE CLICK!!', event);
+      console.log('removing outside click listener');
+      this._removeOutsideClickListener();
+      outsideClickFn();
+    });
+    console.log('outside click listener has been attached', target);
+  }
   public getInnerComponent(): ComponentRef<T> {
     return this._innerComponent;
   }
