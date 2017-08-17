@@ -18,16 +18,9 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { PositioningOptions, PositioningService } from '../positioning';
-import { listenToTriggers } from '../utils/triggers';
+import { listenToTriggers, listenToTriggersV2, registerOutsideClick } from '../utils/triggers';
 import { ContentRef } from './content-ref.class';
-
-export interface ListenOptions {
-  target?: ElementRef;
-  triggers?: string;
-  show?: Function;
-  hide?: Function;
-  toggle?: Function;
-}
+import { ListenOptions } from './listen-options.model';
 
 export class ComponentLoader<T> {
   public onBeforeShow: EventEmitter<any> = new EventEmitter();
@@ -209,19 +202,44 @@ export class ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
 
     listenOpts.target = listenOpts.target || this._elementRef;
-    listenOpts.show = listenOpts.show || (() => this.show());
-    listenOpts.hide = listenOpts.hide || (() => this.hide());
-    listenOpts.toggle = listenOpts.toggle || (() => this.isShown
-      ? listenOpts.hide()
-      : listenOpts.show());
+    let _removeGlobalListener = Function.prototype;
 
-    this._unregisterListenersFn = listenToTriggers(
-      this._renderer,
-      listenOpts.target.nativeElement,
-      this.triggers,
-      listenOpts.show,
-      listenOpts.hide,
-      listenOpts.toggle);
+    const hide = () => {
+      if (listenOpts.hide) {
+        listenOpts.hide();
+      } else {
+        this.hide();
+      }
+
+      _removeGlobalListener();
+    };
+
+    const show = (registerHide: Function) => {
+      listenOpts.show ? listenOpts.show() : this.show();
+      // register hide listeners
+      // register outsideClick
+      registerHide();
+      if (this._componentRef && this._componentRef.location) {
+        // why: should run after first event bubble
+        setTimeout(() => {
+          _removeGlobalListener = registerOutsideClick(this._renderer, {
+            target: this._componentRef.location,
+            outsideClick: listenOpts.outsideClick,
+            hide
+          });
+        });
+      }
+    };
+
+    const toggle = (registerHide: Function) => {
+      this.isShown ? hide() : show(registerHide);
+    };
+
+    this._unregisterListenersFn = listenToTriggersV2(this._renderer, {
+      target: listenOpts.target,
+      triggers: listenOpts.triggers,
+      show, hide, toggle
+    });
 
     return this;
   }
