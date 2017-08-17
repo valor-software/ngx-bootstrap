@@ -30,7 +30,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p [innerHtml]="titleDoc"></p>
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-
+    
+  <ng-sample-box [ts]="demos.pop.component" [html]="demos.pop.html">
+    <demo-date-picker-popup></demo-date-picker-popup>
+  </ng-sample-box>
+  
   <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <datepicker-demo></datepicker-demo>
   </ng-sample-box>
