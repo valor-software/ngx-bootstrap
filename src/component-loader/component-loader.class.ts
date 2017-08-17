@@ -18,7 +18,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { PositioningOptions, PositioningService } from '../positioning';
-import { listenToTriggers, listenToTriggersV2, registerOutsideClick } from '../utils/triggers';
+import { listenToTriggersV2, registerOutsideClick } from '../utils/triggers';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
@@ -221,9 +221,10 @@ export class ComponentLoader<T> {
       registerHide();
       if (this._componentRef && this._componentRef.location) {
         // why: should run after first event bubble
+        const target = this._componentRef.location;
         setTimeout(() => {
           _removeGlobalListener = registerOutsideClick(this._renderer, {
-            target: this._componentRef.location,
+            target,
             outsideClick: listenOpts.outsideClick,
             hide
           });
