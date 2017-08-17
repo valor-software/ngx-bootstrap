@@ -94,6 +94,7 @@ describe('Component: Sortable', () => {
     let spyCaptureItem: jasmine.Spy;
     let sort1ZoneNumber: number;
     let spyPreventDefault: jasmine.Spy;
+    let spyOnTransfer: jasmine.Spy;
     let spyOnDrop: jasmine.Spy;
 
     beforeEach(inject([DraggableItemService], (service: DraggableItemService) => {
@@ -106,7 +107,7 @@ describe('Component: Sortable', () => {
       spyGetItem = spyOn(transfer, 'getItem').and.returnValue(draggableItem);
       spyCaptureItem = spyOn(transfer, 'captureItem').and.returnValue(draggableItem);
       spyPreventDefault = spyOn(event, 'preventDefault');
-      spyOnDrop = spyOn(sort1, 'onDrop').and.callThrough();
+      spyOnTransfer = spyOn(sort1, 'onTransfer').and.callThrough();
     }));
 
     it('should pass dragged item to transfer', () => {
@@ -152,19 +153,19 @@ describe('Component: Sortable', () => {
       expect(spyPreventDefault).not.toHaveBeenCalled();
     });
 
-    it('should remove item if it was captured or dropped in another continer', () => {
+    it('should remove item if it was captured or dropped in another container', () => {
       // arrange
       draggableItem.overZoneIndex = -1;
       // act
-      sort1.onDrop(draggableItem);
+      sort1.onTransfer(draggableItem);
       // assert
       expect(spyOnChanged).toHaveBeenCalledWith([ HEROES[1], HEROES[2], HEROES[3] ]);
     });
 
-    it('shouldn NOT remove item if it was dropped in the same continer', () => {
+    it('shouldn NOT remove item if it was dropped in the same container', () => {
       // arrange
       // act
-      sort1.onDrop(draggableItem);
+      sort1.onTransfer(draggableItem);
       // assert
       expect(spyOnChanged).not.toHaveBeenCalled();
     });
@@ -239,7 +240,7 @@ describe('Component: Sortable', () => {
       // act
       let capturedItem = transfer.captureItem(-1, 0);
       // assert
-      transfer.onCaptureItem().subscribe(() => expect(spyOnDrop).toHaveBeenCalledWith(capturedItem));
+      transfer.onCaptureItem().subscribe(() => expect(spyOnTransfer).toHaveBeenCalledWith(capturedItem));
     }));
 
     it('should remove item when it is over an another container', fakeAsync(() => {

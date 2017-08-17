@@ -29,6 +29,7 @@
         <li><a routerLink="." fragment="stringItems">String items</a></li>
         <li><a routerLink="." fragment="complexDatamodel">Complex datamodel</a></li>
         <li><a routerLink="." fragment="itemTemplate">Custom item template</a></li>
+        <li><a routerLink="." fragment="onDropEvent">On Drop Event</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -58,6 +59,12 @@
   <ng-sample-box [ts]="demos.itemTemplate.component" [html]="demos.itemTemplate.html">
     <custom-item-template-demo></custom-item-template-demo>
   </ng-sample-box>
+
+  <h2 routerLink="." fragment="onDropEvent" id="onDropEvent">On Drop Event:</h2>
+  <ng-sample-box [ts]="demos.onDropEvent.component" [html]="demos.onDropEvent.html">
+    <on-drop-event-demo></on-drop-event-demo>
+  </ng-sample-box>
+
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc id="sortable-component" directive="SortableComponent"></ng-api-doc>
