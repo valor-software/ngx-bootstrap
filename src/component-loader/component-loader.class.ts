@@ -60,6 +60,9 @@ export class ComponentLoader<T> {
    */
   private triggers: string;
 
+  _listenOpts: ListenOptions = {};
+  _globalListener = Function.prototype;
+
   /**
    * Do not use this directly, it should be instanced via
    * `ComponentLoadFactory.attach`
@@ -145,6 +148,9 @@ export class ComponentLoader<T> {
       this._componentRef.changeDetectorRef.detectChanges();
       this.onShown.emit(this._componentRef.instance);
     }
+
+    this._registerOutsideClick();
+
     return this._componentRef;
   }
 
@@ -172,8 +178,10 @@ export class ComponentLoader<T> {
 
     this._contentRef = null;
     this._componentRef = null;
+    this._removeGlobalListener();
 
     this.onHidden.emit();
+
     return this;
   }
 
@@ -200,36 +208,13 @@ export class ComponentLoader<T> {
 
   public listen(listenOpts: ListenOptions): ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
-
+    this._listenOpts.outsideClick = listenOpts.outsideClick;
     listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
-    let _removeGlobalListener = Function.prototype;
 
-    const hide = () => {
-      if (listenOpts.hide) {
-        listenOpts.hide();
-      } else {
-        this.hide();
-      }
-
-      _removeGlobalListener();
-    };
-
-    const show = (registerHide: Function) => {
-      listenOpts.show ? listenOpts.show() : this.show();
-      // register hide listeners
-      // register outsideClick
+    const hide = this._listenOpts.hide = () => listenOpts.hide ? listenOpts.hide() : this.hide();
+    const show = this._listenOpts.show = (registerHide: Function) => {
+      listenOpts.show ? listenOpts.show(registerHide) : this.show(registerHide);
       registerHide();
-      if (this._componentRef && this._componentRef.location) {
-        // why: should run after first event bubble
-        const target = this._componentRef.location.nativeElement;
-        setTimeout(() => {
-          _removeGlobalListener = registerOutsideClick(this._renderer, {
-            targets: [target, listenOpts.target],
-            outsideClick: listenOpts.outsideClick,
-            hide
-          });
-        });
-      }
     };
 
     const toggle = (registerHide: Function) => {
@@ -243,6 +228,28 @@ export class ComponentLoader<T> {
     });
 
     return this;
+  }
+
+  _removeGlobalListener() {
+    if (this._globalListener) {
+      this._globalListener();
+      this._globalListener = null;
+    }
+  }
+
+  _registerOutsideClick(): void {
+    if (!this._componentRef || !this._componentRef.location) {
+      return;
+    }
+    // why: should run after first event bubble
+    const target = this._componentRef.location.nativeElement;
+    setTimeout(() => {
+      this._globalListener = registerOutsideClick(this._renderer, {
+        targets: [target, this._elementRef.nativeElement],
+        outsideClick: this._listenOpts.outsideClick,
+        hide: () => this._listenOpts.hide()
+      });
+    });
   }
 
   public getInnerComponent(): ComponentRef<T> {
