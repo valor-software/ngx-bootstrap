@@ -16,9 +16,9 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 
 @Component({
-  selector: 'bs-datepicker',
+  selector: 'bs-datepicker,[bsDatepicker]',
   exportAs: 'bsDatepicker',
-  template: ''
+  template: ' '
 })
 export class BsDatepickerComponent implements OnInit, OnDestroy {
   /**
@@ -30,6 +30,8 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
    * event names.
    */
   @Input() triggers = 'click';
+
+  @Input() outsideClick = true;
   /**
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".
@@ -61,8 +63,14 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
   // @Input()  config: BsDatePickerOptions;
   // configChange: EventEmitter<BsDatePickerOptions> = new EventEmitter();
 
-  @Input() value: Date;
-  @Output() valueChange: EventEmitter<Date> = new EventEmitter();
+  _bsValue: Date;
+  @Input()
+  set bsValue(value: Date) {
+    this._bsValue = value;
+    this.bsValueChange.emit(value);
+  }
+
+  @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
   protected subscriptions: Subscription[] = [];
 
@@ -79,10 +87,6 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
     // Object.assign(this, _config);
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
-
-    this.valueChange
-      .filter(value => !!value)
-      .subscribe(value => this.hide());
   }
 
   /**
@@ -101,9 +105,21 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
       .show({placement: this.placement});
 
     // link with datepicker
-    this._datepickerRef.instance.value = this.value;
+    // set initial value of picker
+    this._datepickerRef.instance.value = this._bsValue;
+
+    // if date changes from external source (model -> view)
+    this.bsValueChange.subscribe((value: Date) => {
+      this._datepickerRef.instance.value = value;
+    });
+
+    // if date changes from picker (view -> model)
     this.subscriptions.push(this._datepickerRef.instance
-      .valueChange.subscribe((value: Date) => this.valueChange.emit(value)));
+      .valueChange.subscribe((value: Date) => {
+        if (value === this._bsValue) {return; }
+        this.bsValueChange.emit(value);
+        this.hide();
+      }));
   }
 
   /**
@@ -130,6 +146,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): any {
     this._datepicker.listen({
+      outsideClick: this.outsideClick,
       triggers: this.triggers,
       show: () => this.show()
     });

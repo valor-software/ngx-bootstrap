@@ -64,7 +64,7 @@ export function listenToTriggers(renderer: Renderer, target: any, triggers: stri
 
 export function listenToTriggersV2(renderer: Renderer, options: ListenOptions): Function {
   const parsedTriggers = parseTriggers(options.triggers);
-  const target = options.target.hasOwnProperty('nativeElement') ? (options.target as ElementRef).nativeElement : options.target;
+  const target = options.target;
   // do nothing
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
     return Function.prototype;
@@ -77,7 +77,7 @@ export function listenToTriggersV2(renderer: Renderer, options: ListenOptions): 
   const _registerHide: Function[] = [];
   const registerHide = () => {
     // add hide listeners to unregister array
-    _registerHide.forEach((fn) => listeners.push(fn()));
+    _registerHide.forEach((fn: Function) => listeners.push(fn()));
     // register hide events only once
     _registerHide.length = 0;
   };
@@ -94,8 +94,6 @@ export function listenToTriggersV2(renderer: Renderer, options: ListenOptions): 
     listeners.push(renderer.listen(target, trigger.open, () => showFn(registerHide)));
   });
 
-  // register outside click
-  // _registerHide.push(() => registerOutsideClick(renderer, options));
   return () => {
     listeners.forEach((unsubscribeFn: Function) => unsubscribeFn());
   };
@@ -105,10 +103,14 @@ export function registerOutsideClick(renderer: Renderer, options: ListenOptions)
   if (!options.outsideClick) {
     return Function.prototype;
   }
-  const target = options.target.hasOwnProperty('nativeElement') ? (options.target as ElementRef).nativeElement : options.target;
+
   return renderer.listenGlobal('document', 'click', (event: any) => {
-    if (!target.contains(event.target)) {
-      options.hide();
+    if (options.target && options.target.contains(event.target)) {
+      return;
     }
+    if (options.targets && options.targets.some(target => target.contains(event.target))) {
+      return;
+    }
+    options.hide();
   });
 }
