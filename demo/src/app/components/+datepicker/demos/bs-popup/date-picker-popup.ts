@@ -5,12 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './date-picker-popup.html'
 })
 export class DemoDatePickerPopupComponent {
-  public bsValue:any;
-  public bsValueArr:any[];
-  public config: any = {
-    mode: 'date',
-    format: {
-      currentDate: 'LL'
-    }
-  };
+  public bsValue = new Date(2017, 7, 4);
+  public bsRangeValue = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
 }

@@ -23,22 +23,22 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="datepicker-component">DatePickerComponent</a></li>
       </ul>
     </li>
-  </ul>   
-      
+  </ul>
+
   <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
 
   <p [innerHtml]="titleDoc"></p>
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-  
-  <ng-sample-box [ts]="demos.popup.component" [html]="demos.popup.html">
+
+  <ng-sample-box [ts]="demos.pop.component" [html]="demos.pop.html">
     <demo-date-picker-popup></demo-date-picker-popup>
   </ng-sample-box>
 
   <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
     <datepicker-demo></datepicker-demo>
   </ng-sample-box>
-  
+
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc id="datepicker-component" directive="DatePickerComponent"></ng-api-doc>
 </demo-section>`

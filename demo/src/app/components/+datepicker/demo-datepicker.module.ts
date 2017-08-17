@@ -2,22 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DatepickerModule } from 'ngx-bootstrap/datepicker';
-import { BsDatePickerModule } from 'ngx-bootstrap/datepicker2';
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { SharedModule } from '../../shared';
 import { DatepickerSectionComponent } from './datepicker-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-datepicker.routes';
+import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup';
 
 @NgModule({
-  declarations:[
+  declarations: [
+    DemoDatePickerPopupComponent,
     DatepickerSectionComponent,
     ...DEMO_COMPONENTS
   ],
-  imports:[
+  imports: [
     DatepickerModule.forRoot(),
-    BsDatePickerModule,
+    BsDatepickerModule.forRoot(),
     CommonModule,
     FormsModule,
     SharedModule,

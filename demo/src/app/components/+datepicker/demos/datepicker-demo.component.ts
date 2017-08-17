@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as moment from 'moment';
 
 @Component({
   selector: 'datepicker-demo',
@@ -11,7 +10,7 @@ export class DatepickerDemoComponent {
   public events: any[];
   public tomorrow: Date;
   public afterTomorrow: Date;
-  public dateDisabled: {date: Date, mode: string}[];
+  public dateDisabled: {date: Date; mode: string}[];
   public formats: string[] = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY',
     'shortDate'];
   public format: string = this.formats[0];
@@ -41,8 +40,7 @@ export class DatepickerDemoComponent {
   }
 
   public d20090824(): void {
-    this.dt = moment('2009-08-24', 'YYYY-MM-DD')
-      .toDate();
+    this.dt = new Date(2009,7,24);
   }
 
   public disableTomorrow(): void {
