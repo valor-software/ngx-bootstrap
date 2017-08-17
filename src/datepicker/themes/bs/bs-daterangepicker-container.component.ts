@@ -27,7 +27,7 @@ import 'rxjs/add/operator/filter';
 export class BsDaterangepickerContainerComponent implements OnInit {
   @Input()
   set value(value: Date[]) {
-    this._bsDatepickerStore.dispatch(this._actions.selectRange(value));
+    this._bsDatepickerStore.dispatch(this._actions.selectRange(value || []));
   }
 
   @Output() valueChange = new EventEmitter<Date[]>();

@@ -9,7 +9,7 @@ declare const ENV:string;
 declare const PR:any;
 
 declare module jasmine {
-  interface Matchers {
+  interface Matchers<T> {
     toHaveCssClass(expected: any): boolean;
   }
 }
