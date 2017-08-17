@@ -20,6 +20,7 @@ import {
 import { PositioningOptions, PositioningService } from '../positioning';
 import { listenToTriggers } from '../utils/triggers';
 import { ContentRef } from './content-ref.class';
+import set = Reflect.set;
 
 export interface ListenOptions {
   target?: ElementRef;
@@ -37,14 +38,16 @@ export class ComponentLoader<T> {
 
   public instance: T;
   public _componentRef: ComponentRef<T>;
-
   private _providers: Provider[] = [];
+
   private _componentFactory: ComponentFactory<T>;
   private _zoneSubscription: any;
   private _contentRef: ContentRef;
   private _innerComponent: ComponentRef<T>;
 
   private _unregisterListenersFn: Function;
+  private _outsideClickTarget: HTMLElement;
+  private _outsideClickListener: Function;
 
   public get isShown(): boolean {
     return !!this._componentRef;
@@ -179,7 +182,7 @@ export class ComponentLoader<T> {
 
     this._contentRef = null;
     this._componentRef = null;
-
+    this.removeOutsideClickListener();
     this.onHidden.emit();
     return this;
   }
@@ -197,7 +200,7 @@ export class ComponentLoader<T> {
     if (this.isShown) {
       this.hide();
     }
-
+    this.removeOutsideClickListener();
     this._unsubscribePositioning();
 
     if (this._unregisterListenersFn) {
@@ -224,6 +227,28 @@ export class ComponentLoader<T> {
       listenOpts.toggle);
 
     return this;
+  }
+
+  public attachOutsideClickListener(target: any, outsideClickFn: Function) {
+    if (!this._outsideClickListener) {
+      setTimeout(() => {
+        this._outsideClickTarget = target;
+        this._outsideClickListener = this._renderer.listenGlobal('document', 'click', (event: any) => {
+          if (!this._outsideClickTarget.contains(event.target)) {
+            outsideClickFn(event);
+          }
+        });
+        console.log('outside click listener has been attached');
+      });
+    }
+  }
+
+  public removeOutsideClickListener(): void {
+    if (this._outsideClickListener) {
+      console.log('removing outside click listener');
+      this._outsideClickListener();
+      this._outsideClickListener = null;
+    }
   }
 
   public getInnerComponent(): ComponentRef<T> {

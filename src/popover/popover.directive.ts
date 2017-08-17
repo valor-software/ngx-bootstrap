@@ -103,6 +103,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
         title: this.popoverTitle,
         containerClass: this.containerClass
       });
+    this._popover.attachOutsideClickListener(this._popover._componentRef.location.nativeElement, (event: MouseEvent) => {
+      console.log('outside click catched in component', event);
+    });
     this.isOpen = true;
   }
 
@@ -112,6 +115,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    */
   public hide(): void {
     if (this.isOpen) {
+      this._popover.removeOutsideClickListener();
       this._popover.hide();
       this.isOpen = false;
     }
