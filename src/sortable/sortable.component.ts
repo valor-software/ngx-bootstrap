@@ -16,7 +16,7 @@ import { DraggableItemService } from './draggable-item.service';
     [ngStyle]="wrapperStyle"
     (dragover)="cancelEvent($event)"
     (dragenter)="cancelEvent($event)"
-    (drop)="resetActiveItem($event)"
+    (drop)="onDropped($event)"
     (mouseleave)="resetActiveItem($event)">
   <div
         *ngIf="showPlaceholder"
@@ -38,7 +38,7 @@ import { DraggableItemService } from './draggable-item.service';
   [ngOutletContext]="{item:item, index: i}"></template></div>
 </div>
 
-<template #defItemTemplate let-item="item">{{item.value}}</template>  
+<template #defItemTemplate let-item="item">{{item.value}}</template>
 `,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
@@ -88,6 +88,11 @@ export class SortableComponent implements ControlValueAccessor {
    */
   @Output() public onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
+  /** fired on drop of an element.
+   *  Returns new items collection as a payload.
+   */
+  @Output() public onDrop: EventEmitter<any[]> = new EventEmitter<any[]>();
+
   public showPlaceholder: boolean = false;
   public activeItem: number = -1;
 
@@ -113,7 +118,7 @@ export class SortableComponent implements ControlValueAccessor {
     this.transfer = transfer;
     this.currentZoneIndex = SortableComponent.globalZoneIndex++;
     this.transfer.onCaptureItem()
-      .subscribe((item: DraggableItem) => this.onDrop(item));
+      .subscribe((item: DraggableItem) => this.onTransfer(item));
   }
 
   public onItemDragstart(event: DragEvent, item: SortableItem, i: number): void {
@@ -166,7 +171,7 @@ export class SortableComponent implements ControlValueAccessor {
     event.preventDefault();
   }
 
-  public onDrop(item: DraggableItem): void {
+  public onTransfer(item: DraggableItem): void {
     if (item &&
       item.overZoneIndex !== this.currentZoneIndex &&
       item.lastZoneIndex === this.currentZoneIndex
@@ -175,6 +180,11 @@ export class SortableComponent implements ControlValueAccessor {
       this.updatePlaceholderState();
     }
     this.resetActiveItem(undefined);
+  }
+
+  public onDropped(event: DragEvent): void {
+    this.onDrop.emit(this.items);
+    this.resetActiveItem(event);
   }
 
   public resetActiveItem(event: DragEvent): void {
