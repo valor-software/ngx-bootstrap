@@ -23,6 +23,8 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
    * event names.
    */
   @Input() triggers = 'click';
+
+  @Input() outsideClick = true;
   /**
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".
@@ -139,6 +141,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): any {
     this._datepicker.listen({
+      outsideClick: this.outsideClick,
       triggers: this.triggers,
       show: () => this.show()
     });

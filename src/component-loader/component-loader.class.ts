@@ -201,7 +201,7 @@ export class ComponentLoader<T> {
   public listen(listenOpts: ListenOptions): ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
 
-    listenOpts.target = listenOpts.target || this._elementRef;
+    listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
     let _removeGlobalListener = Function.prototype;
 
     const hide = () => {
@@ -221,7 +221,7 @@ export class ComponentLoader<T> {
       registerHide();
       if (this._componentRef && this._componentRef.location) {
         // why: should run after first event bubble
-        const target = this._componentRef.location;
+        const target = this._componentRef.location.nativeElement;
         setTimeout(() => {
           _removeGlobalListener = registerOutsideClick(this._renderer, {
             target,

@@ -1,7 +1,5 @@
-import { ElementRef } from '@angular/core';
-
 export interface ListenOptions {
-  target?: ElementRef | HTMLElement;
+  target?: HTMLElement;
   triggers?: string;
   outsideClick?: boolean;
   show?: Function;
