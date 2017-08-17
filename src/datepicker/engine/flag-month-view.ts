@@ -27,7 +27,7 @@ export function flagMonthView(formattedMonth: MonthViewModel,
 
         const isInRange = !isOtherMonth && isDateInRange(day.date, options.selectedRange, options.hoveredDate);
         // decide update or not
-        const newDay = Object.assign({}, day, {
+        const newDay = Object.assign(/*{},*/ day, {
           isOtherMonth,
           isHovered,
           isSelected,

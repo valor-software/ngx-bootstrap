@@ -224,7 +224,7 @@ export class ComponentLoader<T> {
         const target = this._componentRef.location.nativeElement;
         setTimeout(() => {
           _removeGlobalListener = registerOutsideClick(this._renderer, {
-            target,
+            targets: [target, listenOpts.target],
             outsideClick: listenOpts.outsideClick,
             hide
           });

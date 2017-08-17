@@ -14,6 +14,7 @@ import { BsDaterangepickerComponent } from './bs-daterangepicker.component';
 import { BsDatepickerComponent } from './bs-datepicker.component';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { PositioningService } from '../positioning/positioning.service';
+import { BsDatepickerDayDecoratorComponent } from './themes/bs/bs-datepicker-day-decorator.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -22,6 +23,7 @@ import { PositioningService } from '../positioning/positioning.service';
     BsDatepickerViewComponent,
     BsDatepickerNavigationViewComponent,
     BsDatepickerDayViewComponent,
+    BsDatepickerDayDecoratorComponent,
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,
     BsDatepickerComponent,

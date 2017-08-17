@@ -105,8 +105,12 @@ export function registerOutsideClick(renderer: Renderer, options: ListenOptions)
   }
 
   return renderer.listenGlobal('document', 'click', (event: any) => {
-    if (!options.target.contains(event.target)) {
-      options.hide();
+    if (options.target && options.target.contains(event.target)) {
+      return;
     }
+    if (options.targets && options.targets.some(target => target.contains(event.target))) {
+      return;
+    }
+    options.hide();
   });
 }
