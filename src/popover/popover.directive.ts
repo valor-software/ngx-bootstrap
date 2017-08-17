@@ -35,6 +35,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Currently only supports "body".
    */
   @Input() public container: string;
+  /**
+   * Specifies if popover should be closed after clicking outside
+   */
+  @Input() public popoverCloseOnClickOutside: boolean;
 
   /**
    * Css class for popover container
@@ -60,8 +64,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
    */
   @Output() public onHidden: EventEmitter<any>;
 
-  private _popover: ComponentLoader<PopoverContainerComponent>;
-  private _isInited = false;
+  protected _popover: ComponentLoader<PopoverContainerComponent>;
+  protected _outsideClickListener: Function;
+  protected _elementRef: ElementRef;
+  protected _renderer: Renderer;
+  protected _viewContainerRef: ViewContainerRef;
+  protected _isInited = false;
 
   public constructor(_elementRef: ElementRef,
                      _renderer: Renderer,
@@ -74,6 +82,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
+    this._elementRef = _elementRef;
+    this._renderer = _renderer;
+    this._viewContainerRef = _viewContainerRef;
 
     // fix: no focus on button on Mac OS #1795
     _elementRef.nativeElement.addEventListener('click', function() {
@@ -105,6 +116,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
         title: this.popoverTitle,
         containerClass: this.containerClass
       });
+
+    if (this.popoverCloseOnClickOutside) {
+      this._outsideClickListener = this._renderer.listenGlobal('document', 'mousedown',
+        ($event: MouseEvent) => this.onMouseDown($event.target));
+    }
+
     this.isOpen = true;
   }
 
@@ -116,6 +133,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
     if (this.isOpen) {
       this._popover.hide();
       this.isOpen = false;
+    }
+    if (this._outsideClickListener) {
+      this._outsideClickListener();
     }
   }
 
@@ -147,5 +167,19 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   public ngOnDestroy(): any {
     this._popover.dispose();
+  }
+
+  protected onMouseDown(target: EventTarget): void {
+    if (!this.popoverCloseOnClickOutside) return;
+    if (!this._getContainerNativeElement()) return;
+    if (this._elementRef.nativeElement === target) return; // if popover toggle element was clicked
+    if (this._getContainerNativeElement().contains(target)) return; // if clicked on popover content
+
+    this.hide();
+  }
+
+  protected _getContainerNativeElement(): any {
+    if (!this._popover._componentRef) return null;
+    return (<any>this._popover._componentRef)._nativeElement;
   }
 }

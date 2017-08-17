@@ -24,4 +24,8 @@ export class PopoverConfig {
    * Currently only supports "body".
    */
   public container: string;
+  /**
+   * Specifies if popover should be closed after clicking outside
+   */
+  public popoverCloseOnClickOutside: boolean;
 }

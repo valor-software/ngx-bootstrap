@@ -23,6 +23,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="config">Configuring defaults</a></li>
         <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
         <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
+        <li><a routerLink="." fragment="outside-click">Close on outside click</a></li>
         <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
         <li><a routerLink="." fragment="class">Custom class</a></li>
         <!--<li><a routerLink="." fragment="styling-global">Global styling</a></li>-->
@@ -92,6 +93,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggering</h2>
   <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
     <demo-popover-triggers-manual></demo-popover-triggers-manual>
+  </ng-sample-box>
+  
+  <h2 routerLink="." fragment="outside-click" id="outside-click">Close on outside click</h2>
+  <ng-sample-box [ts]="demos.outsideClick.component" [html]="demos.outsideClick.html">
+    <demo-popover-outside-click></demo-popover-outside-click>
   </ng-sample-box>
 
   <h2 routerLink="." fragment="styling-local" id="styling-local">Component level styling</h2>
