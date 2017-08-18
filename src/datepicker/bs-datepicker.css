@@ -103,7 +103,7 @@
 .bs-datepicker-body {
   padding: 10px;
   border-radius: 0 0 3px 3px;
-  height: 230px;
+  min-height: 230px;
   border: 1px solid #eee;
 }
 
@@ -115,6 +115,7 @@
 .bs-datepicker-body table {
   width: 100%;
   border-collapse: separate;
+  border-spacing: 0;
 }
 
 .bs-datepicker-body table th {
@@ -128,6 +129,7 @@
   color: #54708b;
   text-align: center;
   position: relative;
+  padding: 0;
 }
 
 .bs-datepicker-body table td span {
