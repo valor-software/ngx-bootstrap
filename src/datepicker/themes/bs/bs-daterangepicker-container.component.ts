@@ -21,6 +21,7 @@ import 'rxjs/add/operator/filter';
     ></bs-datepicker-view>
   `,
   host: {
+    '(click)': '_stopPropagation($event)',
     style: 'position: absolute; display: block;'
   }
 })
@@ -129,5 +130,9 @@ export class BsDaterangepickerContainerComponent implements OnInit {
     if (this._rangeStack.length === 2) {
       this._rangeStack = [];
     }
+  }
+
+  _stopPropagation(event: any): void {
+    event.stopPropagation();
   }
 }

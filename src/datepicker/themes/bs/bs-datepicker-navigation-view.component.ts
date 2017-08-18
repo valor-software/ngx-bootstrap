@@ -9,9 +9,9 @@ import { BsNavigationEvent, MonthViewModel, TimeUnit } from '../../models/index'
             [style.visibility]="month.hideLeftArrow ? 'hidden' : 'visible'"
             (click)="navTo({month: -1})"><span>&lsaquo;</span>
     </button>
-    <button class="current" (click)="viewMode('months')"><span>{{month.monthTitle}}</span>
+    <button class="current"><span>{{ month.monthTitle }}</span>
     </button>
-    <button class="current" (click)="viewMode('years')"><span>{{month.yearTitle}}</span>
+    <button class="current"><span>{{ month.yearTitle }}</span>
     </button>
     <button class="next"
             [style.visibility]="month.hideRightArrow ? 'hidden' : 'visible'"
@@ -26,6 +26,4 @@ export class BsDatepickerNavigationViewComponent {
   navTo(step: TimeUnit): void {
     this.onNavigate.emit({step});
   }
-
-  viewMode(v: string) {}
 }
