@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -77,9 +77,8 @@
     "@angular/service-worker": "1.0.0-beta.16",
     "@angular/tsc-wrapped": "4.3.3",
     "@types/jasmine": "2.5.53",
-    "@types/webpack": "3.0.9",
-    "@types/node": "8.0.19",
     "@types/webpack": "3.0.5",
+    "@types/node": "8.0.19",
     "bootstrap": "3.3.7",
     "classlist-polyfill": "1.2.0",
     "codecov": "2.3.0",
