@@ -56,7 +56,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
     </tr>
   </thead>
   <tbody>
-    <template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
+    <ng-template ngFor [ngForOf]="rows" let-rowz="$implicit" let-index="index">
       <tr *ngIf="!(datePicker.onlyCurrentMonth && rowz[0].secondary && rowz[6].secondary)">
         <td *ngIf="datePicker.showWeeks" class="h6" class="text-center">
           <em>{{ weekNumbers[index] }}</em>
@@ -71,7 +71,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
           </button>
         </td>
       </tr>
-    </template>
+    </ng-template>
   </tbody>
 </table>
   `
