@@ -20,9 +20,11 @@ import { DatepickerRenderOptions, DayHoverEvent, DayViewModel, MonthViewModel } 
         <td class="week" *ngIf="options.showWeekNumbers"><span>{{ month.weekNumbers[i] }}</span>
         </td>
         <td *ngFor="let day of week.days" role="gridcell">
-          <span bsDatepickerDayDecorator [day]="day"
-               (onSelect)="selectDay($event)"
-               (onHover)="hoverDay($event)">{{ day.label }}</span>
+          <span bsDatepickerDayDecorator
+                [day]="day"
+                (click)="selectDay(day)"
+                (mouseenter)="hoverDay(day, true)"
+                (mouseleave)="hoverDay(day, false)">{{ day.label }}</span>
         </td>
       </tr>
       </tbody>

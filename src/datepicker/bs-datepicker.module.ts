@@ -6,7 +6,6 @@ import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-contai
 import { BsDatepickerMonthViewComponent } from './themes/bs/bs-datepicker-month-view.component';
 import { BsDatepickerNavigationViewComponent } from './themes/bs/bs-datepicker-navigation-view.component';
 import { BsDatepickerViewComponent } from './themes/bs/bs-datepicker-view.component';
-import { BsDatepickerDayViewComponent } from './themes/bs/bs-datepicker-day-view.component';
 import { BsDatepickerConfig } from './bs-datepicker-config';
 import { BsDatepickerEffects } from './reducer/bs-datepicker.effects';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
@@ -22,7 +21,6 @@ import { BsDatepickerDayDecoratorComponent } from './themes/bs/bs-datepicker-day
     BsDatepickerMonthViewComponent,
     BsDatepickerViewComponent,
     BsDatepickerNavigationViewComponent,
-    BsDatepickerDayViewComponent,
     BsDatepickerDayDecoratorComponent,
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,
