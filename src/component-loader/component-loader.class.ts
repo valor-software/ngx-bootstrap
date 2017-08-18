@@ -6,7 +6,7 @@ import {
   ComponentFactory,
   ComponentFactoryResolver,
   ComponentRef,
-  ElementRef,
+  ElementRef, EmbeddedViewRef,
   EventEmitter,
   Injector,
   NgZone,
@@ -30,6 +30,7 @@ export class ComponentLoader<T> {
 
   public instance: T;
   public _componentRef: ComponentRef<T>;
+  public _inlineViewRef: EmbeddedViewRef<T>;
 
   private _providers: Provider[] = [];
   private _componentFactory: ComponentFactory<T>;
@@ -235,6 +236,11 @@ export class ComponentLoader<T> {
       this._globalListener();
       this._globalListener = null;
     }
+  }
+
+  attachInline(vRef: ViewContainerRef, template: TemplateRef<any>): ComponentLoader<T> {
+    this._inlineViewRef = vRef.createEmbeddedView(template);
+    return this;
   }
 
   _registerOutsideClick(): void {
