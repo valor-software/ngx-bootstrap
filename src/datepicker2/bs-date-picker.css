@@ -1,3 +1,7 @@
+.label-success {
+  background-color: #419641;
+}
+
 .bs-datepicker {
   display: inline-block;
   vertical-align: top;
@@ -76,7 +80,7 @@
 .bs-datepicker-body {
   padding: 10px;
   border-radius: 0 0 3px 3px;
-  height: 230px;
+  min-height: 230px;
   border: 1px solid #eee;
 }
 
