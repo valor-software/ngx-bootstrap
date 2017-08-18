@@ -27,14 +27,6 @@ export class BsDropdownToggleDirective implements OnDestroy {
     this._state.toggleClick.emit();
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: any): void {
-    if (this._state.autoClose && event.button !== 2 &&
-      !this._element.nativeElement.contains(event.target)) {
-      this._state.toggleClick.emit(false);
-    }
-  }
-
   @HostListener('keyup.esc')
   onEsc(): void {
     if (this._state.autoClose) {

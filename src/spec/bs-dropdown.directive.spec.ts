@@ -38,7 +38,7 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   });
 
-  it('should be opened if isOpen === true and toggle on isOpen changes', () => {
+  it('should be opened if isOpen === true and toggle on isOpen changes', fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [BsDropdownModule.forRoot()]
@@ -51,15 +51,17 @@ describe('Directive: Dropdown', () => {
     context.isOpen = true;
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+    tick();
     context.isOpen = false;
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     context.isOpen = true;
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
-  });
+    tick();
+  }));
 
-  it('should toggle by click', () => {
+  it('should toggle by click', fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [BsDropdownModule.forRoot()]
@@ -70,14 +72,15 @@ describe('Directive: Dropdown', () => {
     const element = fixture.nativeElement;
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     element.querySelector('button').click();
+    tick();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-  });
+  }));
 
-  it('should be closed if was opened by click and then isOpen === false was set', () => {
+  it('should be closed if was opened by click and then isOpen === false was set', fakeAsync(() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [BsDropdownModule.forRoot()]
@@ -89,12 +92,13 @@ describe('Directive: Dropdown', () => {
     const context = fixture.componentInstance;
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     element.querySelector('button').click();
+    tick();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
     context.isOpen = false;
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-  });
+  }));
 
   it('should change and update isOpen when it is opened or closed', fakeAsync(() => {
     TestBed.configureTestingModule({
@@ -104,16 +108,16 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {set: {template: htmlWithBinding}});
     let fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
-    tick();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
     fixture.detectChanges();
     element.querySelector('button').click();
+    tick();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
     expect(context.isOpen).toBe(true);
+    element.querySelector('button').click();
     tick();
-    element.querySelector('li').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     expect(context.isOpen).toBe(false);
@@ -182,7 +186,7 @@ describe('Directive: Dropdown', () => {
 
   it('should not close by click on menu item if autoClose === false', fakeAsync(() => {
     const html = `
-      <div dropdown [autoClose]="autoClose">
+      <div dropdown [autoClose]="false">
         <button dropdownToggle>Dropdown</button>
         <ul *dropdownMenu>
           <li><a href="#">One</a></li>
@@ -199,7 +203,6 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
-    context.autoClose = false;
     tick();
     fixture.detectChanges();
     element.querySelector('button').click();

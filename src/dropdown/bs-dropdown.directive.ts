@@ -19,8 +19,8 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   providers: [BsDropdownState],
   host: {
     '[class.dropup]': 'dropup',
-    '[class.open]': 'isOpen',
-    '[class.show]': 'isOpen && isBs4'
+    // '[class.open]': 'isOpen',
+    // '[class.show]': 'isOpen && isBs4'
   }
 })
 export class BsDropdownDirective implements OnInit, OnDestroy {
@@ -129,6 +129,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._dropdown = this._cis
       .createLoader<BsDropdownContainerComponent>(this._elementRef, this._viewContainerRef, this._renderer)
       .provide({ provide: BsDropdownState, useValue: this._state });
+    this._dropdown.emptyOutsideClickTargets = true;
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
@@ -148,7 +149,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // attach DOM listeners
     this._dropdown.listen({
       triggers: this.triggers,
-      show: () => this.show()
+      outsideClick: this.autoClose,
+      show: () => this.show(),
+      hide: () => this.hide()
     });
 
     // toggle visibility on toggle element click
@@ -171,19 +174,25 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this.isOpen || this.isDisabled) {
       return;
     }
-
+    this._renderer.setElementClass(this._elementRef.nativeElement, isBs3() ? 'open' : 'show', true);
     if (this._showInline) {
-      if (!this._inlinedMenu) {
-        this._state.dropdownMenu
-          .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
-            this._dropdown.attachInline(dropdownMenu.viewContainer, dropdownMenu.templateRef);
-            this._inlinedMenu = this._dropdown._inlineViewRef;
-          });
+      if (this._inlinedMenu) {
+        this._dropdown.show();
+        this._isInlineOpen = true;
+        this.onShown.emit(true);
+        this._state.isOpenChange.emit(true);
+        return;
       }
-
-      this._isInlineOpen = true;
-      this.onShown.emit(true);
-      this._state.isOpenChange.emit(true);
+      this._state.dropdownMenu
+        .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
+          this._dropdown
+            .attachInline(dropdownMenu.viewContainer, dropdownMenu.templateRef)
+            .show();
+          this._inlinedMenu = this._dropdown._inlineViewRef;
+          this._isInlineOpen = true;
+          this.onShown.emit(true);
+          this._state.isOpenChange.emit(true);
+        });
       return;
     }
     this._state.dropdownMenu
@@ -222,10 +231,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._showInline) {
       this._isInlineOpen = false;
       this.onHidden.emit(true);
+      this._dropdown.hide();
     } else {
       this._dropdown.hide();
     }
-
+    this._renderer.setElementClass(this._elementRef.nativeElement, isBs3() ? 'open' : 'show', false);
     this._state.isOpenChange.emit(false);
   }
 
