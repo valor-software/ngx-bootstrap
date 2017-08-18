@@ -1,9 +1,21 @@
 <pre>{{bsValue}}</pre>
-<bs-datepicker #dp [(value)]="bsValue"></bs-datepicker>
-<button class="btn btn-success" (click)="dp.toggle()">Date Picker popup</button>
+<input type="text"
+       value="{{ bsValue | date:'yMd'}}"
+       bsDatepicker [(bsValue)]="bsValue">
+<span style="display: inline-block">
+  <button class="btn btn-success" (click)="dp.toggle()">Date Picker popup</button>
+  <bs-datepicker #dp [(bsValue)]="bsValue" style="display: block"></bs-datepicker>
+</span>
 
+<br>
 <br>
 
 <pre>{{bsRangeValue}}</pre>
-<bs-daterangepicker #drp [(value)]="bsRangeValue"></bs-daterangepicker>
-<button class="btn btn-success" (click)="drp.toggle()">Date Range Picker popup</button>
+<input type="text"
+       value="{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}"
+       bsDaterangepicker [(bsValue)]="bsRangeValue">
+<span style="display: inline-block">
+  <button class="btn btn-success" (click)="drp.toggle()">Date Range Picker popup</button>
+  <bs-daterangepicker #drp [(bsValue)]="bsRangeValue" placement="right" style="display: block"></bs-daterangepicker>
+</span>
+

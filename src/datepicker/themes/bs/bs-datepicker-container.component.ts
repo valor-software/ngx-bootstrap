@@ -12,7 +12,6 @@ import 'rxjs/add/operator/filter';
   providers: [BsDatepickerStore],
   template: `
     <bs-datepicker-view
-      *ngIf="months && options"
       [months]="months"
       [options]="options"
       (onNavigate)="navigateTo($event)"
@@ -21,6 +20,7 @@ import 'rxjs/add/operator/filter';
     ></bs-datepicker-view>
   `,
   host: {
+    '(click)': '_stopPropagation($event)',
     style: 'position: absolute; display: block;'
   }
 })
@@ -51,7 +51,6 @@ export class BsDatepickerContainerComponent {
       displayMonths: 1,
       showWeekNumbers: true
     }));
-
 
     // on selected date change
     this._bsDatepickerStore.select(state => state.selectedDate)
@@ -108,5 +107,9 @@ export class BsDatepickerContainerComponent {
       return;
     }
     this._bsDatepickerStore.dispatch(this._actions.select(day.date));
+  }
+
+  _stopPropagation(event: any): void {
+    event.stopPropagation();
   }
 }

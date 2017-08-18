@@ -11,7 +11,7 @@ import { DatepickerRenderOptions, DayHoverEvent, DayViewModel, MonthViewModel } 
       <tr>
         <th *ngIf="options.showWeekNumbers"></th><!--if show weeks-->
         <th *ngFor="let weekday of month.weekdays; let i = index"
-            aria-label="weekday">{{month.weekdays[i]}}
+            aria-label="weekday">{{ month.weekdays[i] }}
         </th>
       </tr>
       </thead>
@@ -20,11 +20,9 @@ import { DatepickerRenderOptions, DayHoverEvent, DayViewModel, MonthViewModel } 
         <td class="week" *ngIf="options.showWeekNumbers"><span>{{ month.weekNumbers[i] }}</span>
         </td>
         <td *ngFor="let day of week.days" role="gridcell">
-          <bs-datepicker-day-view
-            [day]="day"
-            (onSelect)="selectDay($event)"
-            (onHover)="hoverDay($event)"
-          ></bs-datepicker-day-view>
+          <span bsDatepickerDayDecorator [day]="day"
+               (onSelect)="selectDay($event)"
+               (onHover)="hoverDay($event)">{{ day.label }}</span>
         </td>
       </tr>
       </tbody>

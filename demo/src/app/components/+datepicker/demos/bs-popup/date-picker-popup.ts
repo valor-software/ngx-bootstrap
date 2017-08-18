@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './date-picker-popup.html'
 })
 export class DemoDatePickerPopupComponent {
-  public bsValue = new Date(2017, 7, 4);
+  public bsValue: any ;
   public bsRangeValue = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
 }

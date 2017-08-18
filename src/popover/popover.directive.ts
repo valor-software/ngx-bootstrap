@@ -24,6 +24,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
    */
   @Input() public placement: 'top' | 'bottom' | 'left' | 'right';
   /**
+   * Close popover on outside click
+   */
+  @Input() outsideClick = false;
+  /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
@@ -138,6 +142,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
     this._popover.listen({
       triggers: this.triggers,
+      outsideClick: this.outsideClick,
       show: () => this.show()
     });
   }

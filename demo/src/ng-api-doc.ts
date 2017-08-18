@@ -464,16 +464,16 @@ export const ngdoc: any = {
       }
     ]
   },
-  "ListenOptions": {
-    "fileName": "src/component-loader/component-loader.class.ts",
-    "className": "ListenOptions",
+  "ComponentLoaderFactory": {
+    "fileName": "src/component-loader/component-loader.factory.ts",
+    "className": "ComponentLoaderFactory",
     "description": "",
     "methods": [],
     "properties": []
   },
-  "ComponentLoaderFactory": {
-    "fileName": "src/component-loader/component-loader.factory.ts",
-    "className": "ComponentLoaderFactory",
+  "ListenOptions": {
+    "fileName": "src/component-loader/listen-options.model.ts",
+    "className": "ListenOptions",
     "description": "",
     "methods": [],
     "properties": []
@@ -2070,6 +2070,12 @@ export const ngdoc: any = {
         "name": "isOpen",
         "type": "boolean",
         "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
+      },
+      {
+        "name": "outsideClick",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Close popover on outside click</p>\n"
       },
       {
         "name": "placement",

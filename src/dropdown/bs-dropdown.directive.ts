@@ -176,7 +176,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       if (!this._inlinedMenu) {
         this._state.dropdownMenu
           .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
-            this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
+            this._dropdown.attachInline(dropdownMenu.viewContainer, dropdownMenu.templateRef);
+            this._inlinedMenu = this._dropdown._inlineViewRef;
           });
       }
 
