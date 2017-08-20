@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { isDevMode, ModuleWithProviders, NgModule } from '@angular/core';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
 import { BsDatepickerStore } from './reducer/bs-datepicker.store';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
@@ -32,6 +32,13 @@ import { BsDatepickerDayDecoratorComponent } from './themes/bs/bs-datepicker-day
     BsDatepickerComponent, BsDaterangepickerComponent]
 })
 export class BsDatepickerModule {
+  constructor() {
+    if (isDevMode()) {
+      console.warn(`BsDatepickerModule is under development,
+      BREAKING CHANGES are possible,
+      PLEASE, read changelog`);
+    }
+  }
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: BsDatepickerModule,

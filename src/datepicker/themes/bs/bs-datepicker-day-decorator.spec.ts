@@ -7,8 +7,8 @@ function getDayElement(fixture: ComponentFixture<TestComponent>): HTMLElement {
   return fixture.nativeElement.querySelector('[bsDatepickerDayDecorator]') as HTMLElement;
 }
 
-function setDay(fixture: ComponentFixture<TestComponent>, day: DayViewModel): void {
-  fixture.componentInstance.day = day;
+function setDay(fixture: ComponentFixture<TestComponent>, day: Partial<DayViewModel>): void {
+  fixture.componentInstance.day = day as DayViewModel;
   fixture.detectChanges();
 }
 
@@ -72,5 +72,5 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
   template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
 })
 class TestComponent {
-  day: DayViewModel = {};
+  day: DayViewModel = {} as DayViewModel;
 }
