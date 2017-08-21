@@ -8,11 +8,11 @@ addFormatToken('d', null, 'do', function (date: Date): string {
 });
 
 addFormatToken('dd', null, null, function (date: Date, format: string, locale?: Locale): string {
-  return locale.weekdaysMin(date) as string;
+  return locale.weekdaysShort(date) as string;
 });
 
 addFormatToken('ddd', null, null, function (date: Date, format: string, locale?: Locale): string {
-  return locale.weekdaysShort(date) as string;
+  return locale.weekdaysMin(date) as string;
 });
 
 addFormatToken('dddd', null, null, function (date: Date, format: string, locale?: Locale): string {

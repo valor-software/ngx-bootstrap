@@ -4,7 +4,7 @@
 import { DaysCalendarModel, MonthViewOptions } from '../models/index';
 import { getFirstDayOfMonth } from '../../bs-moment/utils/date-getters';
 import { getStartingDayOfCalendar } from '../utils/bs-calendar-utils';
-import { changeDate } from '../utils/date-utils';
+import { shiftDate } from '../../bs-moment/utils/date-setters';
 
 export function calculateMonthModel(date: Date, options: MonthViewOptions): DaysCalendarModel {
   const firstDay = getFirstDayOfMonth(date);
@@ -15,7 +15,7 @@ export function calculateMonthModel(date: Date, options: MonthViewOptions): Days
     daysCalendar[i] = new Array(options.width);
     for (let j = 0; j < options.width; j++) {
       daysCalendar[i][j] = prevValue;
-      prevValue = changeDate(prevValue, {day: 1});
+      prevValue = shiftDate(prevValue, {day: 1});
     }
   }
 

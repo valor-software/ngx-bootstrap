@@ -11,6 +11,8 @@ export const defaultLocaleWeek = {
   doy : 6  // The week that contains Jan 1st is the first week of the year.
 };
 
+export const defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
+
 export const baseConfig: LocaleData = {
   // calendar: defaultCalendar,
   // longDateFormat: defaultLongDateFormat,
@@ -28,5 +30,5 @@ export const baseConfig: LocaleData = {
   weekdaysMin: defaultLocaleWeekdaysMin,
   weekdaysShort: defaultLocaleWeekdaysShort,
 
-  // meridiemParse: defaultLocaleMeridiemParse
+  meridiemParse: defaultLocaleMeridiemParse
 };

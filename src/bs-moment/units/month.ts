@@ -10,6 +10,7 @@ export function daysInMonth(year: number, month: number): number {
   }
   const modMonth = mod(month, 12);
   year += (month - modMonth) / 12;
+
   return modMonth === 1 ? (isLeapYear(year) ? 29 : 28) : (31 - modMonth % 7 % 2);
 }
 

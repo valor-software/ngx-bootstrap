@@ -139,8 +139,15 @@ export const ngdoc: any = {
     "properties": []
   },
   "LocaleData": {
-    "fileName": "src/datepicker/models/index.ts",
+    "fileName": "src/bs-moment/locale/locale.class.ts",
     "className": "LocaleData",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimeUnit": {
+    "fileName": "src/bs-moment/types.ts",
+    "className": "TimeUnit",
     "description": "",
     "methods": [],
     "properties": []
@@ -489,9 +496,14 @@ export const ngdoc: any = {
     "fileName": "src/datepicker/bs-datepicker.component.ts",
     "className": "BsDatepickerComponent",
     "description": "",
-    "selector": "bs-datepicker",
+    "selector": "bs-datepicker,[bsDatepicker]",
     "exportAs": "bsDatepicker",
     "inputs": [
+      {
+        "name": "bsValue",
+        "type": "Date",
+        "description": ""
+      },
       {
         "name": "container",
         "defaultValue": "body",
@@ -504,6 +516,12 @@ export const ngdoc: any = {
         "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
       },
       {
+        "name": "outsideClick",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
         "name": "placement",
         "defaultValue": "bottom",
         "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
@@ -514,14 +532,13 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
-      },
-      {
-        "name": "value",
-        "type": "Date",
-        "description": ""
       }
     ],
     "outputs": [
+      {
+        "name": "bsValueChange",
+        "description": ""
+      },
       {
         "name": "onHidden",
         "description": "<p>Emits an event when the popover is hidden</p>\n"
@@ -529,10 +546,6 @@ export const ngdoc: any = {
       {
         "name": "onShown",
         "description": "<p>Emits an event when the popover is shown</p>\n"
-      },
-      {
-        "name": "valueChange",
-        "description": ""
       }
     ],
     "properties": [],
@@ -561,8 +574,14 @@ export const ngdoc: any = {
     "fileName": "src/datepicker/bs-daterangepicker.component.ts",
     "className": "BsDaterangepickerComponent",
     "description": "",
-    "selector": "bs-daterangepicker",
+    "selector": "bs-daterangepicker,[bsDaterangepicker]",
+    "exportAs": "bsDaterangepicker",
     "inputs": [
+      {
+        "name": "bsValue",
+        "type": "Date[]",
+        "description": ""
+      },
       {
         "name": "container",
         "defaultValue": "body",
@@ -575,6 +594,12 @@ export const ngdoc: any = {
         "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
       },
       {
+        "name": "outsideClick",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
+      },
+      {
         "name": "placement",
         "defaultValue": "bottom",
         "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
@@ -585,14 +610,13 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
-      },
-      {
-        "name": "value",
-        "type": "Date[]",
-        "description": ""
       }
     ],
     "outputs": [
+      {
+        "name": "bsValueChange",
+        "description": ""
+      },
       {
         "name": "onHidden",
         "description": "<p>Emits an event when the popover is hidden</p>\n"
@@ -600,10 +624,6 @@ export const ngdoc: any = {
       {
         "name": "onShown",
         "description": "<p>Emits an event when the popover is shown</p>\n"
-      },
-      {
-        "name": "valueChange",
-        "description": ""
       }
     ],
     "properties": [],
@@ -967,13 +987,6 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
-  "TimeUnit": {
-    "fileName": "src/datepicker/models/index.ts",
-    "className": "TimeUnit",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
   "BsNavigationEvent": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "BsNavigationEvent",
@@ -1040,11 +1053,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDatepickerDayViewComponent": {
-    "fileName": "src/datepicker/themes/bs/bs-datepicker-day-view.component.ts",
-    "className": "BsDatepickerDayViewComponent",
+  "BsDatepickerDayDecoratorComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-datepicker-day-decorator.directive.ts",
+    "className": "BsDatepickerDayDecoratorComponent",
     "description": "",
-    "selector": "bs-datepicker-day-view",
+    "selector": "[bsDatepickerDayDecorator]",
     "inputs": [
       {
         "name": "day",
@@ -1052,16 +1065,7 @@ export const ngdoc: any = {
         "description": ""
       }
     ],
-    "outputs": [
-      {
-        "name": "onHover",
-        "description": ""
-      },
-      {
-        "name": "onSelect",
-        "description": ""
-      }
-    ],
+    "outputs": [],
     "properties": [],
     "methods": []
   },

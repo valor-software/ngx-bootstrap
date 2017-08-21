@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { BsNavigationEvent, MonthViewModel, TimeUnit } from '../../models/index';
+import { BsNavigationEvent, MonthViewModel } from '../../models/index';
+import { TimeUnit } from '../../../bs-moment/types';
 
 @Component({
   selector: 'bs-datepicker-navigation-view',

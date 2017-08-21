@@ -31,8 +31,10 @@ export interface LocaleData {
   week?: { dow: number, doy: number };
 
   dayOfMonthOrdinalParse?: RegExp;
-  ordinal?: (num: number) => string;
-  postformat?: (num: string) => string;
+  meridiemParse?: RegExp;
+
+  ordinal?(num: number, token?: string): string;
+  postformat?(num: string): string;
 }
 
 export class Locale {
@@ -57,7 +59,7 @@ export class Locale {
     }
   }
 
-  set (config: LocaleData): void {
+  set(config: LocaleData): void {
     for (const i in config) {
       if (!config.hasOwnProperty(i)) {
         continue;
@@ -99,7 +101,7 @@ export class Locale {
       return (this._monthsShort as string[])[getMonth(date)];
     }
     let key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
-    return  ((this._monthsShort as any)[key] as string[])[getMonth(date)];
+    return ((this._monthsShort as any)[key] as string[])[getMonth(date)];
   }
 
   // Days of week
@@ -139,6 +141,14 @@ export class Locale {
 
   firstDayOfYear(): number {
     return this._week.doy;
+  }
+
+  meridiem(hours: number, minutes: number, isLower: boolean): string {
+    if (hours > 11) {
+      return isLower ? 'pm' : 'PM';
+    }
+
+    return isLower ? 'am' : 'AM';
   }
 
   ordinal(num: number, token?: string): string {
