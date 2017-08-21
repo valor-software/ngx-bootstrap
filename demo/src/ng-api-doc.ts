@@ -2648,6 +2648,12 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the typeahead should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
+        "name": "dropup",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>This attribute indicates that the dropdown should be opened upwards </p>\n"
+      },
+      {
         "name": "optionsListTemplate",
         "type": "TemplateRef<any>",
         "description": "<p>used to specify a custom options list template. Template variables: matches, itemTemplate, query </p>\n"
