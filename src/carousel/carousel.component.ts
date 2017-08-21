@@ -13,7 +13,7 @@
  * 4) default interval should be equal 5000
  */
 
-import { Component, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnDestroy, Output, EventEmitter, NgZone } from '@angular/core';
 
 import { isBs3, LinkedList } from '../utils';
 import { SlideComponent } from './slide.component';
@@ -92,7 +92,7 @@ export class CarouselComponent implements OnDestroy {
     return !isBs3();
   }
 
-  public constructor(config: CarouselConfig) {
+  public constructor(config: CarouselConfig, private ngZone: NgZone) {
     Object.assign(this, config);
   }
 
@@ -269,16 +269,18 @@ export class CarouselComponent implements OnDestroy {
     this.resetTimer();
     let interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
-      this.currentInterval = setInterval(
-        () => {
+      this.currentInterval = this.ngZone.runOutsideAngular(() => {
+        return setInterval(() => {
           let nInterval = +this.interval;
-          if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
-            this.nextSlide();
-          } else {
-            this.pause();
-          }
-        },
-        interval);
+          this.ngZone.run(() => {
+            if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
+              this.nextSlide();
+            } else {
+              this.pause();
+            }
+          });
+        }, interval);
+      });
     }
   }
 
