@@ -31,6 +31,7 @@ export class ComponentLoader<T> {
   public instance: T;
   public _componentRef: ComponentRef<T>;
   public _inlineViewRef: EmbeddedViewRef<T>;
+  public emptyOutsideClickTargets: boolean;
 
   private _providers: Provider[] = [];
   private _componentFactory: ComponentFactory<T>;
@@ -108,7 +109,7 @@ export class ComponentLoader<T> {
     this._subscribePositioning();
     this._innerComponent = null;
 
-    if (!this._componentRef) {
+    if (!this._componentRef && !this._inlineViewRef) {
       this.onBeforeShow.emit();
       this._contentRef = this._getContentRef(opts.content);
       const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
@@ -156,29 +157,26 @@ export class ComponentLoader<T> {
   }
 
   public hide(): ComponentLoader<T> {
-    if (!this._componentRef) {
+    if (!this._componentRef && !this._inlineViewRef) {
       return this;
     }
 
-    this.onBeforeHide.emit(this._componentRef.instance);
+    this.onBeforeHide.emit(!this._inlineViewRef ? this._componentRef.instance : this._inlineViewRef);
 
-    const componentEl = this._componentRef.location.nativeElement;
-    componentEl.parentNode.removeChild(componentEl);
-    if (this._contentRef.componentRef) {
-      this._contentRef.componentRef.destroy();
-    }
-    this._componentRef.destroy();
-    if (this._viewContainerRef && this._contentRef.viewRef) {
-      this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
-    }
-    // this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
-    //
-    // if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {
-    //   this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
-    // }
+    if (!this._inlineViewRef) {
+      const componentEl = this._componentRef.location.nativeElement;
+      componentEl.parentNode.removeChild(componentEl);
+      if (this._contentRef.componentRef) {
+        this._contentRef.componentRef.destroy();
+      }
+      this._componentRef.destroy();
+      if (this._viewContainerRef && this._contentRef.viewRef) {
+        this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
+      }
 
-    this._contentRef = null;
-    this._componentRef = null;
+      this._contentRef = null;
+      this._componentRef = null;
+    }
     this._removeGlobalListener();
 
     this.onHidden.emit();
@@ -244,14 +242,14 @@ export class ComponentLoader<T> {
   }
 
   _registerOutsideClick(): void {
-    if (!this._componentRef || !this._componentRef.location) {
+    if (!this._inlineViewRef && (!this._componentRef || !this._componentRef.location)) {
       return;
     }
     // why: should run after first event bubble
-    const target = this._componentRef.location.nativeElement;
+    const target = !this._inlineViewRef ? this._componentRef.location.nativeElement : this._inlineViewRef.rootNodes[0];
     setTimeout(() => {
       this._globalListener = registerOutsideClick(this._renderer, {
-        targets: [target, this._elementRef.nativeElement],
+        targets: !this.emptyOutsideClickTargets ? [target, this._elementRef.nativeElement] : [],
         outsideClick: this._listenOpts.outsideClick,
         hide: () => this._listenOpts.hide()
       });
