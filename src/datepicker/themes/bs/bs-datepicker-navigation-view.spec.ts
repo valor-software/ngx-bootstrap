@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BsNavigationEvent, MonthViewModel } from '../../models/index';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BsNavigationDirection, BsNavigationEvent, DaysCalendarViewModel } from '../../models/index';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 
 type TestFixture = ComponentFixture<TestComponent>;
@@ -25,12 +25,12 @@ function getNextNavButton(fixture: TestFixture): HTMLElement {
     .querySelector(nextNavSelector) as HTMLElement;
 }
 
-function getNavEvent(fixture: TestFixture): BsNavigationEvent {
+function getNavEvent(fixture: TestFixture): BsNavigationDirection {
   return fixture.componentInstance._navTo;
 }
 
-function setMonth(fixture: TestFixture, month: Partial<MonthViewModel>): void {
-  fixture.componentInstance.month = month as MonthViewModel;
+function setMonth(fixture: TestFixture, month: Partial<DaysCalendarViewModel>): void {
+  fixture.componentInstance.month = month as DaysCalendarViewModel;
   fixture.detectChanges();
 }
 
@@ -77,16 +77,16 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
     expect(next.style.visibility).toBe('hidden');
   });
 
-  it('on prev nav button click should decrease month on 1', () => {
+  it('on prev nav button click should nav DOWN', () => {
     const prev = getPrevNavButton(fixture);
     prev.click();
-    expect(getNavEvent(fixture).step.month).toBe(-1);
+    expect(getNavEvent(fixture)).toBe(BsNavigationDirection.DOWN);
   });
 
-  it('on next nav button click should increase month on 1', () => {
+  it('on next nav button click should nav UP', () => {
     const next = getNextNavButton(fixture);
     next.click();
-    expect(getNavEvent(fixture).step.month).toBe(1);
+    expect(getNavEvent(fixture)).toBe(BsNavigationDirection.UP);
   });
 });
 
@@ -94,15 +94,15 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
   selector: 'test-cmp',
   template: `
     <bs-datepicker-navigation-view
-      [month]="month"
+      [calendar]="month"
       (onNavigate)="navTo($event)"
     ></bs-datepicker-navigation-view>`
 })
 class TestComponent {
-  month: MonthViewModel;
-  _navTo: BsNavigationEvent;
+  month: DaysCalendarViewModel;
+  _navTo: BsNavigationDirection;
 
-  navTo(event: BsNavigationEvent): void {
+  navTo(event: BsNavigationDirection): void {
     this._navTo = event;
   }
 }

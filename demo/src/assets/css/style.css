@@ -150,7 +150,7 @@ a:hover {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  /*z-index: 999;*/
   -webkit-transition: left .5s ease;
   -moz-transition: left .5s ease;
   -ms-transition: left .5s ease;
@@ -585,6 +585,7 @@ a:hover {
 
   .isOpenMenu #main-menu {
     left: 0;
+    z-index: 999;
   }
 
   #main {

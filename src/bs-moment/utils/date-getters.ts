@@ -1,4 +1,3 @@
-
 import { createDate } from './date-setters';
 
 export function getHours(date: Date, isUTC = false): number {
@@ -47,6 +46,23 @@ export function isFirstDayOfWeek(date: Date, firstDayOfWeek: number): boolean {
 }
 
 export function isSameMonth(date1: Date, date2: Date) {
-  if (!date1 || !date2) {return false;}
-  return getFullYear(date1) === getFullYear(date2) && getMonth(date1) === getMonth(date2);
+  if (!date1 || !date2) {return false; }
+
+  return isSameYear(date1, date2) && getMonth(date1) === getMonth(date2);
 }
+
+export function isSameYear(date1: Date, date2: Date) {
+  if (!date1 || !date2) {return false; }
+
+  return getFullYear(date1) === getFullYear(date2);
+}
+
+export function isSameDay(date1: Date, date2: Date): boolean {
+  if (!date1 || !date2) {
+    return false;
+  }
+
+  return isSameYear(date1, date2) && isSameMonth(date1, date2)
+    && getDate(date1) === getDate(date2);
+}
+
