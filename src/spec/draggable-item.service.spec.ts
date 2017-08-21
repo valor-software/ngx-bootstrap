@@ -1,10 +1,6 @@
-import { TestBed, fakeAsync, inject } from '@angular/core/testing';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { DraggableItemService } from '../sortable';
-import { DraggableItem } from '../sortable';
-import { SortableItem } from '../sortable';
+import { fakeAsync, inject, TestBed } from '@angular/core/testing';
+import { DraggableItem, DraggableItemService, SortableItem } from '../sortable';
 
 @Component({
   template: `<h1>Test</h1>`
@@ -39,7 +35,7 @@ describe('Service: DraggableItem', () => {
 
   it('should fire onCapture if item was captured by another zone', () => {
     // arrange
-    let spy = spyOn(transfer.onCaptureItem(), 'next');
+    let spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
     let item = transfer.captureItem(2, 0);
@@ -50,7 +46,7 @@ describe('Service: DraggableItem', () => {
 
   it('should NOT fire onCapture if item was captured by the same zone', () => {
     // arrange
-    let spy = spyOn(transfer.onCaptureItem(), 'next');
+    let spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
     let item = transfer.captureItem(1, 0);
@@ -60,14 +56,12 @@ describe('Service: DraggableItem', () => {
   });
 
   function getItemToDrag(): SortableItem {
-    return { id: 0, value: 'item text', initData: 'item text'};
+    return {id: 0, value: 'item text', initData: 'item text'};
   }
 
-  function getDraggableItem(
-    sortableItem: SortableItem,
-    dragEvent: DragEvent,
-    zone: number
-  ): DraggableItem {
+  function getDraggableItem(sortableItem: SortableItem,
+                            dragEvent: DragEvent,
+                            zone: number): DraggableItem {
     return {
       event: dragEvent,
       item: sortableItem,

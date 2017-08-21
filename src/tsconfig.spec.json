@@ -11,7 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "typeRoots": [
-      "node_modules/@types"
+      "../node_modules/@types"
     ],
     "paths": {
       "ngx-bootstrap*": [
@@ -29,7 +29,7 @@
   },
   "include": [
     "../scripts/typings.d.ts",
-    "./spec/**/*.spec.ts",
+    "**/*.spec.ts",
     "**/*.d.ts"
   ],
   "exclude": [
