@@ -2,12 +2,14 @@
   <div class="title">
     <h2 [routerLink]="['']">ngx-bootstrap {{currentVersion ? 'v' + currentVersion : ''}}</h2>
   </div>
-  <div class="prev-docs" dropdown *ngIf="previousDocs.length">
+  <div class="prev-docs hidden-xs hidden-xs-down" dropdown *ngIf="previousDocs.length" container="body">
       <div dropdownToggle class="dropdown-toggle">
         Previous docs <span class="caret"></span>
       </div>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li role="menuitem" *ngFor="let item of previousDocs"><a class="dropdown-item" href="{{appUrl + (isLocalhost ? item.unprefixedUrl : item.url)}}{{appHash ? '/' + appHash : ''}}">{{item.version}}</a></li>
+        <li role="menuitem" *ngFor="let item of previousDocs">
+          <a class="dropdown-item" [href]="appUrl + (isLocalhost ? item.unprefixedUrl : item.url) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
+        </li>
       </ul>
   </div>
 

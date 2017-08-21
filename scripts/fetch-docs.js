@@ -3,7 +3,7 @@ const exec = require('child_process').exec;
 
 if (!fs.existsSync('gh-pages')) {
   console.log('Cloning the latest version of gh-pages');
-  runCmd("git clone -b gh-pages --single-branch --depth 1 https://github.com/valor-software/ngx-bootstrap.git gh-pages");
+  runCmd("git clone -b gh-pages --single-branch --depth 1 git@github.com:valor-software/ngx-bootstrap.git gh-pages");
   return;
 }
 console.log('Pulling the latest version of gh-pages');
