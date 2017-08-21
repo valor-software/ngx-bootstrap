@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { DatepickerRenderOptions, DayHoverEvent, DayViewModel, MonthViewModel } from '../../models/index';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  DatepickerRenderOptions, DayHoverEvent, DayViewModel, DaysCalendarViewModel
+} from '../../models/index';
 
 @Component({
-  selector: `bs-datepicker-month-view`,
+  selector: `bs-days-matrix-view`,
   // FIX: day select and hover should mutate day or use separate component
   // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -10,14 +12,15 @@ import { DatepickerRenderOptions, DayHoverEvent, DayViewModel, MonthViewModel } 
       <thead>
       <tr>
         <th *ngIf="options.showWeekNumbers"></th><!--if show weeks-->
-        <th *ngFor="let weekday of month.weekdays; let i = index"
-            aria-label="weekday">{{ month.weekdays[i] }}
+        <th *ngFor="let weekday of calendar.weekdays; let i = index"
+            aria-label="weekday">{{ calendar.weekdays[i] }}
         </th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let week of month.weeks; let i = index">
-        <td class="week" *ngIf="options.showWeekNumbers"><span>{{ month.weekNumbers[i] }}</span>
+      <tr *ngFor="let week of calendar.weeks; let i = index">
+        <td class="week" *ngIf="options.showWeekNumbers">
+          <span>{{ calendar.weekNumbers[i] }}</span>
         </td>
         <td *ngFor="let day of week.days" role="gridcell">
           <span bsDatepickerDayDecorator
@@ -31,8 +34,8 @@ import { DatepickerRenderOptions, DayHoverEvent, DayViewModel, MonthViewModel } 
     </table>
   `
 })
-export class BsDatepickerMonthViewComponent {
-  @Input() month: MonthViewModel;
+export class BsDaysMatrixViewComponent {
+  @Input() calendar: DaysCalendarViewModel;
   @Input() options: DatepickerRenderOptions;
 
   @Output() onSelect = new EventEmitter<DayViewModel>();

@@ -1,11 +1,9 @@
-import { Locale } from '../../bs-moment/locale/locale.class';
 import { TimeUnit } from '../../bs-moment/types';
 
-export interface DaysCalendarModel {
-  daysMatrix: Date[][];
-  month: Date;
-}
+export type BsDatepickerViewMode = 'day' | 'month' | 'year';
 
+/** *************** */
+// days matrix: day view model
 export interface DayViewModel {
   date: Date;
   label: string;
@@ -27,30 +25,88 @@ export interface WeekViewModel {
   days: DayViewModel[];
 }
 
-export interface MonthViewModel {
+// todo: split navigation settings
+export interface DaysCalendarViewModel {
   weeks: WeekViewModel[];
-  // format step
+  // additional information
   month: Date;
-  monthTitle: string;
-  yearTitle: string;
   weekNumbers: string[];
   weekdays: string[];
-  // flag step
+  // navigation details
+  monthTitle: string;
+  yearTitle: string;
   hideLeftArrow?: boolean;
   hideRightArrow?: boolean;
 }
 
+/** *************** */
+// months matrix: month view model
+export interface MonthViewModel {
+  date: Date;
+  label: string;
+  isDisabled?: boolean;
+  isHovered?: boolean;
+}
+
+// months calendar
+export interface MonthsCalendarViewModel {
+  months: MonthViewModel[][];
+  // navigation
+  monthTitle: string;
+  yearTitle: string;
+  hideLeftArrow?: boolean;
+  hideRightArrow?: boolean;
+}
+
+/** *************** */
+// years matrix: year view model
+export interface YearViewModel {
+  date: Date;
+  label: string;
+  isDisabled?: boolean;
+  isHovered?: boolean;
+}
+
+// years calendar
+export interface YearsCalendarViewModel {
+  years: YearViewModel[][];
+  // navigation
+  monthTitle: string;
+  yearTitle: string;
+  hideLeftArrow?: boolean;
+  hideRightArrow?: boolean;
+}
+
+/** *************** */
+// math model
+/** *************** */
+
+// days Date's array
+export interface DaysCalendarModel {
+  daysMatrix: Date[][];
+  month: Date;
+}
+
+/** *************** */
+// some func options
 export interface MonthViewOptions {
   width?: number;
   height?: number;
   firstDayOfWeek?: number;
 }
 
+/** *************** */
+// rendering options
 export interface DatepickerFormatOptions {
   locale: string;
+
   monthTitle: string;
   yearTitle: string;
+
   dayLabel: string;
+  monthLabel: string;
+  yearLabel: string;
+
   weekNumbers: string;
 }
 
@@ -59,15 +115,36 @@ export interface DatepickerRenderOptions {
   displayMonths?: number;
 }
 
-export type DateFormatterFn = (date: Date, format: string, locale?: Locale) => string;
-
+/** *************** */
 // events
+/** *************** */
+export enum BsNavigationDirection {UP, DOWN}
 
+// used for navigation events, to change view date in state
 export interface BsNavigationEvent {
-  step: TimeUnit;
+  direction?: BsNavigationDirection;
+  step?: TimeUnit;
 }
 
+export interface BsViewNavigationEvent {
+  dateChange?: TimeUnit;
+  viewMode: BsDatepickerViewMode;
+}
+
+// used to mark hovered day on days matrix
 export interface DayHoverEvent {
   day: DayViewModel;
+  isHovered: boolean;
+}
+
+// used to mark hovered month on months matrix
+export interface MonthHoverEvent {
+  month: MonthViewModel;
+  isHovered: boolean;
+}
+
+// used to mark hovered year on months matrix
+export interface YearHoverEvent {
+  year: YearViewModel;
   isHovered: boolean;
 }

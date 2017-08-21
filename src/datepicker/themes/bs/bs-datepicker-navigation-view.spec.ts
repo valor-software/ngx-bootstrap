@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsNavigationEvent, MonthViewModel } from '../../models/index';
+import { BsNavigationEvent, DaysCalendarViewModel } from '../../models/index';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 
@@ -29,8 +29,8 @@ function getNavEvent(fixture: TestFixture): BsNavigationEvent {
   return fixture.componentInstance._navTo;
 }
 
-function setMonth(fixture: TestFixture, month: Partial<MonthViewModel>): void {
-  fixture.componentInstance.month = month as MonthViewModel;
+function setMonth(fixture: TestFixture, month: Partial<DaysCalendarViewModel>): void {
+  fixture.componentInstance.month = month as DaysCalendarViewModel;
   fixture.detectChanges();
 }
 
@@ -94,12 +94,12 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
   selector: 'test-cmp',
   template: `
     <bs-datepicker-navigation-view
-      [month]="month"
+      [calendar]="month"
       (onNavigate)="navTo($event)"
     ></bs-datepicker-navigation-view>`
 })
 class TestComponent {
-  month: MonthViewModel;
+  month: DaysCalendarViewModel;
   _navTo: BsNavigationEvent;
 
   navTo(event: BsNavigationEvent): void {

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DatepickerRenderOptions, DayHoverEvent } from '../models/index';
+import {
+  BsDatepickerViewMode, DatepickerRenderOptions, DayHoverEvent
+} from '../models/index';
 import { Action } from '../../mini-ngrx/index';
 import { TimeUnit } from '../../bs-moment/types';
 
@@ -9,30 +11,19 @@ export class BsDatepickerActions {
   static readonly FORMAT = '[datepicker] format datepicker values';
   static readonly FLAG = '[datepicker] set flags';
   static readonly SELECT = '[datepicker] select date';
-  static readonly STEP_NAVIGATION = '[datepicker] shift view date';
+  static readonly NAVIGATE_OFFSET = '[datepicker] shift view date';
+  static readonly NAVIGATE_TO = '[datepicker] change view date';
   static readonly RENDER_OPTIONS = '[datepicker] update render options';
   static readonly HOVER = '[datepicker] hover date';
+  static readonly CHANGE_VIEWMODE = '[datepicker] switch view mode';
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
 
-  calculate(viewDate: Date): Action {
-    return {
-      type: BsDatepickerActions.CALCULATE,
-      payload: viewDate
-    };
-  }
+  calculate(): Action {return {type: BsDatepickerActions.CALCULATE}; }
 
-  format(): Action {
-    return {
-      type: BsDatepickerActions.FORMAT
-    };
-  }
+  format(): Action {return {type: BsDatepickerActions.FORMAT}; }
 
-  flag(): Action {
-    return {
-      type: BsDatepickerActions.FLAG
-    };
-  }
+  flag(): Action { return {type: BsDatepickerActions.FLAG}; }
 
   select(date: Date): Action {
     return {
@@ -41,9 +32,23 @@ export class BsDatepickerActions {
     };
   }
 
+  changeViewMode(event: BsDatepickerViewMode): Action {
+    return {
+      type: BsDatepickerActions.CHANGE_VIEWMODE,
+      payload: event
+    };
+  }
+
+  navigateTo(dateChange: TimeUnit): Action {
+    return {
+      type: BsDatepickerActions.NAVIGATE_OFFSET,
+      payload: dateChange
+    };
+  }
+
   navigateStep(step: TimeUnit): Action {
     return {
-      type: BsDatepickerActions.STEP_NAVIGATION,
+      type: BsDatepickerActions.NAVIGATE_OFFSET,
       payload: step
     };
   }
@@ -63,7 +68,7 @@ export class BsDatepickerActions {
     };
   }
 
-  hover(event: DayHoverEvent): Action {
+  hoverDay(event: DayHoverEvent): Action {
     return {
       type: BsDatepickerActions.HOVER,
       payload: event.isHovered ? event.day.date : null

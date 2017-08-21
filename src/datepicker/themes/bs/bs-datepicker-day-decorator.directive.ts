@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Directive } from '@angular/core';
-import { DayHoverEvent, DayViewModel } from '../../models/index';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DayViewModel } from '../../models/index';
 
 @Component({
   selector: '[bsDatepickerDayDecorator]',

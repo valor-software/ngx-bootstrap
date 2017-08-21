@@ -1,7 +1,7 @@
-import { DayViewModel, MonthViewModel, WeekViewModel } from '../models/index';
+import { DayViewModel, DaysCalendarViewModel, WeekViewModel } from '../models/index';
 import { isSameMonth } from '../../bs-moment/utils/date-getters';
 
-export interface FlagMonthViewOptions {
+export interface FlagDaysCalendarOptions {
   hoveredDate: Date;
   selectedDate: Date;
   selectedRange: Date[];
@@ -9,8 +9,8 @@ export interface FlagMonthViewOptions {
   monthIndex: number;
 }
 
-export function flagMonthView(formattedMonth: MonthViewModel,
-                              options: FlagMonthViewOptions): MonthViewModel {
+export function flagDaysCalendar(formattedMonth: DaysCalendarViewModel,
+                                 options: FlagDaysCalendarOptions): DaysCalendarViewModel {
   formattedMonth.weeks
     .forEach((week: WeekViewModel, weekIndex: number) => {
       week.days.forEach((day: DayViewModel, dayIndex: number) => {
@@ -52,6 +52,7 @@ export function flagMonthView(formattedMonth: MonthViewModel,
     && options.monthIndex !== options.displayMonths;
   formattedMonth.hideRightArrow = options.monthIndex < options.displayMonths
     && (options.monthIndex + 1) !== options.displayMonths;
+
   return formattedMonth;
 }
 
