@@ -1,1 +1,1 @@
-export { arLocale as ar } from './bs-moment/i18n/ar';
+export { ar } from './bs-moment/i18n/ar';

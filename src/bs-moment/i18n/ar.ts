@@ -4,6 +4,8 @@
 // author : Ahmed Elkhatib
 // author : forabi https://github.com/forabi
 
+import { LocaleData } from '../locale/locale.class';
+
 const symbolMap: { [key: string]: string } = {
   '1': '١',
   '2': '٢',
@@ -31,7 +33,7 @@ const numberMap: { [key: string]: string } = {
 const pluralForm = function (n: number): number {
   return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
 };
-const plurals = {
+const plurals: any = {
   s: ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
   m: ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
   h: ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
@@ -39,14 +41,15 @@ const plurals = {
   M: ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
   y: ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
 };
-const pluralize = function (u) {
-  return function (number, withoutSuffix, string, isFuture) {
-    const f = pluralForm(number);
-    let str = plurals[u][pluralForm(number)];
+const pluralize = function (u: string) {
+  return function (num: number, withoutSuffix: boolean/*, string, isFuture*/) {
+    const f = pluralForm(num);
+    let str = plurals[u][pluralForm(num)];
     if (f === 2) {
       str = str[withoutSuffix ? 0 : 1];
     }
-    return str.replace(/%d/i, number);
+
+    return str.replace(/%d/i, num);
   };
 };
 const months = [
@@ -64,9 +67,9 @@ const months = [
   'كانون الأول ديسمبر'
 ];
 
-export const arLocale = {
+export const ar: LocaleData = {
   abbr: 'ar',
-  months: months,
+  months,
   monthsShort: months,
   weekdays: 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
   weekdaysShort: 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
@@ -81,10 +84,10 @@ export const arLocale = {
     LLLL: 'dddd D MMMM YYYY HH:mm'
   },
   meridiemParse: /ص|م/,
-  isPM: function (input) {
-    return 'م' === input;
+  isPM(input: string): boolean {
+    return input === 'م';
   },
-  meridiem: function (hour, minute, isLower) {
+  meridiem(hour: number, minute: number, isLower: boolean): string {
     if (hour < 12) {
       return 'ص';
     } else {
@@ -114,13 +117,13 @@ export const arLocale = {
     y: pluralize('y'),
     yy: pluralize('y')
   },
-  preparse: function (string) {
-    return string.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
+  preparse(str: string): string {
+    return str.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
       return numberMap[match];
     }).replace(/،/g, ',');
   },
-  postformat: function (string) {
-    return string.replace(/\d/g, function (match) {
+  postformat(str: string): string {
+    return str.replace(/\d/g, function (match) {
       return symbolMap[match];
     }).replace(/,/g, '،');
   },

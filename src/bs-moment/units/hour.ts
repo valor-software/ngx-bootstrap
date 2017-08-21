@@ -50,7 +50,7 @@ addFormatToken('Hmmss', null, null, function (date: Date, format: string, locale
   return `${getHours(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(getSeconds(date), 2)}`;
 });
 
-function meridiem(token, lowercase): void {
+function meridiem(token: string, lowercase: boolean): void {
   addFormatToken(token, null, null, function (date: Date, format: string, locale?: Locale): string {
     return locale.meridiem(getHours(date), getMinutes(date), lowercase);
   });
