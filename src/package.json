@@ -1,8 +1,5 @@
 {
   "name": "ngx-bootstrap",
-  "dependencies": {
-    "moment": "*"
-  },
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/compiler": "*",
