@@ -10,7 +10,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   <thead>
     <tr>
       <th>
-        <button type="button" class="btn btn-default btn-sm pull-left"
+        <button type="button" class="btn btn-default btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
@@ -25,7 +25,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
         </button>
       </th>
       <th>
-        <button type="button" class="btn btn-default btn-sm pull-right"
+        <button type="button" class="btn btn-default btn-sm pull-right float-right"
                 (click)="datePicker.move(1)" tabindex="-1">
           <i class="glyphicon glyphicon-chevron-right"></i>
         </button>
@@ -45,7 +45,12 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
     </tr>
   </tbody>
 </table>
-  `
+  `,
+  styles: [`
+    :host .btn-info .text-success {
+      color: #fff !important;
+    }
+  `]
 })
 export class YearPickerComponent implements OnInit {
   public datePicker:DatePickerInnerComponent;
