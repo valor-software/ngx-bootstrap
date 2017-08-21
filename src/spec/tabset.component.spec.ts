@@ -8,7 +8,7 @@ import { TabsetComponent } from '../tabs/tabset.component';
 const html = `
   <tabset #tabset [justified]="isJustified"
           [vertical]="isVertical">
-    <tab heading="tab0">tab0 content</tab>
+    <tab heading="tab0" (deselect)="_deselect($event)">tab0 content</tab>
     <tab *ngFor="let tab of tabs"
          [disabled]="tab.disabled"
          [customClass]="tab.customClass"

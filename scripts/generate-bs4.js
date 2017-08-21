@@ -8,7 +8,7 @@ const files = {
 const toReplace = [
   {
     from: '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">',
-    to: `<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+    to: `<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/glyphicons.css">`
   }, {
     from: '<script src="assets/js/prettify.min.js"></script>',

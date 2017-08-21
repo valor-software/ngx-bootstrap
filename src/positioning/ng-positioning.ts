@@ -80,6 +80,7 @@ export class Positioning {
   public positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean):
   ClientRect {
     const hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
+    const targetElStyles = this.getAllStyles(targetElement);
     const shiftWidth: any = {
       left: hostElPosition.left,
       center: hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2,
@@ -105,7 +106,7 @@ export class Positioning {
 
     switch (placementPrimary) {
       case 'top':
-        targetElPosition.top = hostElPosition.top - targetElement.offsetHeight;
+        targetElPosition.top = hostElPosition.top - (targetElement.offsetHeight + parseFloat(targetElStyles.marginBottom));
         targetElPosition.bottom += hostElPosition.top - targetElement.offsetHeight;
         targetElPosition.left = shiftWidth[placementSecondary];
         targetElPosition.right += shiftWidth[placementSecondary];
@@ -119,7 +120,7 @@ export class Positioning {
       case 'left':
         targetElPosition.top = shiftHeight[placementSecondary];
         targetElPosition.bottom += shiftHeight[placementSecondary];
-        targetElPosition.left = hostElPosition.left - targetElement.offsetWidth;
+        targetElPosition.left = hostElPosition.left - (targetElement.offsetWidth + parseFloat(targetElStyles.marginRight));
         targetElPosition.right += hostElPosition.left - targetElement.offsetWidth;
         break;
       case 'right':
@@ -138,7 +139,9 @@ export class Positioning {
     return targetElPosition;
   }
 
-  private getStyle(element: HTMLElement, prop: string): string { return (window.getComputedStyle(element) as any)[prop]; }
+  private getAllStyles(element: HTMLElement) { return window.getComputedStyle(element); }
+
+  private getStyle(element: HTMLElement, prop: string): string { return (this.getAllStyles(element) as any)[prop]; }
 
   private isStaticPositioned(element: HTMLElement): boolean {
     return (this.getStyle(element, 'position') || 'static') === 'static';

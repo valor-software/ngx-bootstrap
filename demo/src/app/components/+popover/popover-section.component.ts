@@ -21,6 +21,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="dynamic-html">Dynamic Html</a></li>
         <li><a routerLink="." fragment="container-body">Append to body</a></li>
         <li><a routerLink="." fragment="config">Configuring defaults</a></li>
+        <li><a routerLink="." fragment="outside-click">Outside click</a></li>
         <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
         <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
         <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
@@ -82,6 +83,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-popover-config></demo-popover-config>
+  </ng-sample-box>
+  
+  <h2 routerLink="." fragment="outside-click" id="outside-click">Outside click</h2>
+  <ng-sample-box [ts]="demos.outsideClick.component" [html]="demos.outsideClick.html">
+    <demo-popover-outside-click></demo-popover-outside-click>
   </ng-sample-box>
   
   <h2 routerLink="." fragment="triggers-custom" id="triggers-custom">Custom triggers</h2>

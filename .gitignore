@@ -20,6 +20,7 @@ yarn.lock
 npm-debug.log
 
 # ignore build and dist for now
+.tmp
 /dist
 /temp
 /demo/dist
