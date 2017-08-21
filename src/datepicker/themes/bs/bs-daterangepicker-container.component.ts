@@ -3,7 +3,7 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import {
   BsNavigationEvent, DatepickerRenderOptions, DayHoverEvent, DayViewModel,
-  MonthViewModel
+  DaysCalendarViewModel
 } from '../../models/index';
 import 'rxjs/add/operator/filter';
 
@@ -11,14 +11,14 @@ import 'rxjs/add/operator/filter';
   selector: 'bs-daterangepicker-container',
   providers: [BsDatepickerStore],
   template: `
-    <bs-datepicker-view
+    <bs-days-calendar-view
       *ngIf="months && options"
-      [months]="months"
+      [calendars]="months"
       [options]="options"
       (onNavigate)="navigateTo($event)"
       (onHover)="hoverHandler($event)"
       (onSelect)="selectHandler($event)"
-    ></bs-datepicker-view>
+    ></bs-days-calendar-view>
   `,
   host: {
     '(click)': '_stopPropagation($event)',
@@ -33,7 +33,7 @@ export class BsDaterangepickerContainerComponent implements OnInit {
 
   @Output() valueChange = new EventEmitter<Date[]>();
 
-  months: MonthViewModel[];
+  months: DaysCalendarViewModel[];
   options: DatepickerRenderOptions;
   _rangeStack: Date[] = [];
 
@@ -62,8 +62,7 @@ export class BsDaterangepickerContainerComponent implements OnInit {
     // calculate month model on view model change
     this._bsDatepickerStore
       .select(state => state.viewDate)
-      .subscribe(viewDate =>
-        this._bsDatepickerStore.dispatch(this._actions.calculate(viewDate)));
+      .subscribe(() => this._bsDatepickerStore.dispatch(this._actions.calculate()));
 
     // format calendar values on month model change
     this._bsDatepickerStore
@@ -104,7 +103,7 @@ export class BsDaterangepickerContainerComponent implements OnInit {
     if (event.day.isOtherMonth) {
       return;
     }
-    this._bsDatepickerStore.dispatch(this._actions.hover(event));
+    this._bsDatepickerStore.dispatch(this._actions.hoverDay(event));
     event.day.isHovered = event.isHovered;
   }
 

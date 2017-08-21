@@ -8,9 +8,14 @@ export const defaultMonthOptions: MonthViewOptions = {
 
 export const defaultFormatOptions: DatepickerFormatOptions = {
   locale: 'en',
+
   monthTitle: 'MMMM',
   yearTitle: 'YYYY',
+
   dayLabel: 'D',
+  monthLabel: 'MMMM',
+  yearLabel: 'YYYY',
+
   weekNumbers: 'w'
 };
 
