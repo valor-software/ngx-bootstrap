@@ -1809,6 +1809,11 @@ export const ngdoc: any = {
         "description": "<p>Content to be displayed as popover.</p>\n"
       },
       {
+        "name": "popoverContext",
+        "type": "any",
+        "description": "<p>Context to be used if popover is a template.</p>\n"
+      },
+      {
         "name": "popoverTitle",
         "type": "string",
         "description": "<p>Title of a popover.</p>\n"
