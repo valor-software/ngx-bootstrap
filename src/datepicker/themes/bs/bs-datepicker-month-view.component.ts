@@ -42,8 +42,8 @@ export class BsDatepickerMonthViewComponent {
     this.onSelect.emit(event);
   }
 
-  hoverDay(event: DayHoverEvent): void {
-    this.onHover.emit(event);
+  hoverDay(day: DayViewModel, isHovered: boolean): void {
+    this.onHover.emit({day, isHovered});
   }
 }
 

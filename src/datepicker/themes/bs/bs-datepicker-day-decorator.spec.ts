@@ -72,5 +72,5 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
   template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
 })
 class TestComponent {
-  day: DayViewModel = {} as DayViewModel;
+  day: DayViewModel = { } as DayViewModel;
 }

@@ -7,5 +7,6 @@ export function getStartingDayOfCalendar(date: Date, options: {firstDayOfWeek?: 
   }
 
   const weekDay = getDayOfWeek(date);
+
   return changeDate(date, {day: -weekDay});
 }
