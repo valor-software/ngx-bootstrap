@@ -6,9 +6,9 @@
 
 import { formatFunctions, makeFormatFunction } from './format-functions';
 import './locale';
+import './units';
 import { Locale } from './locale/locale.class';
 import { getLocale } from './locale/locales.service';
-import './units';
 import { isDateValid } from './utils/type-checks';
 
 export function formatDate(date: Date, format: string, locale = 'en'): string {

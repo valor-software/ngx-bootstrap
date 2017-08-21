@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DatepickerRenderOptions, DayHoverEvent, TimeUnit } from '../models/index';
+import { DatepickerRenderOptions, DayHoverEvent } from '../models/index';
 import { Action } from '../../mini-ngrx/index';
+import { TimeUnit } from '../../bs-moment/types';
 
 @Injectable()
 export class BsDatepickerActions {

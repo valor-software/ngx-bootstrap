@@ -139,8 +139,15 @@ export const ngdoc: any = {
     "properties": []
   },
   "LocaleData": {
-    "fileName": "src/datepicker/models/index.ts",
+    "fileName": "src/bs-moment/locale/locale.class.ts",
     "className": "LocaleData",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TimeUnit": {
+    "fileName": "src/bs-moment/types.ts",
+    "className": "TimeUnit",
     "description": "",
     "methods": [],
     "properties": []
@@ -976,13 +983,6 @@ export const ngdoc: any = {
   "DatepickerRenderOptions": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DatepickerRenderOptions",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
-  "TimeUnit": {
-    "fileName": "src/datepicker/models/index.ts",
-    "className": "TimeUnit",
     "description": "",
     "methods": [],
     "properties": []
