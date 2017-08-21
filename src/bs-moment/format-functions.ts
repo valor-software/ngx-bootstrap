@@ -1,9 +1,9 @@
 import { Locale } from './locale/locale.class';
-import { DateFormatterFn } from '../datepicker/models/index';
 import { zeroFill } from './utils';
 import { isFunction } from './utils/type-checks';
+import { DateFormatterFn } from '../datepicker/models/index';
 
-export let formatFunctions: {[key:string]: (date: Date, locale: Locale) => string} = {};
+export let formatFunctions: { [key: string]: (date: Date, locale: Locale) => string } = {};
 export let formatTokenFunctions: { [key: string]: DateFormatterFn } = {};
 
 export const formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
@@ -13,14 +13,14 @@ export const formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DD
 // ordinal:  'Mo'
 // callback: function () { this.month() + 1 }
 export function addFormatToken(token: string,
-                               padded: {[key: number]: any},
+                               padded: { [key: number]: any },
                                ordinal: string,
                                callback: DateFormatterFn): void {
   let func: DateFormatterFn = callback;
   if (token) {
     formatTokenFunctions[token] = func;
   }
-  if (padded as {[key: number]: any}) {
+  if (padded as { [key: number]: any }) {
     let key = padded[0] as string;
     formatTokenFunctions[key] = function (date: Date, format: string, locale?: Locale): string {
       return zeroFill(func.apply(null, arguments), padded[1] as number, padded[2] as boolean);

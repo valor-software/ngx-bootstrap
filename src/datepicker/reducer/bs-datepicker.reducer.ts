@@ -3,8 +3,8 @@ import { Action } from '../../mini-ngrx/index';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { calculateMonthModel } from '../engine/calc-month-view';
 import { formatMonthView } from '../engine/format-month-view';
-import { changeDate } from '../utils/date-utils';
 import { flagMonthView } from '../engine/flag-month-view';
+import { shiftDate } from '../../bs-moment/utils/date-setters';
 
 export function bsDatepickerReducer(state = initialDatepickerState, action: Action): BsDatepickerState {
   switch (action.type) {
@@ -25,7 +25,7 @@ export function bsDatepickerReducer(state = initialDatepickerState, action: Acti
       for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
         // todo: for unlinked calendars it will be harder
          monthsModel[monthIndex] = calculateMonthModel(viewDate, state.monthViewOptions);
-         viewDate = changeDate(viewDate, {month: 1});
+         viewDate = shiftDate(viewDate, {month: 1});
       }
       return Object.assign({}, state, {monthsModel});
     }
@@ -49,7 +49,7 @@ export function bsDatepickerReducer(state = initialDatepickerState, action: Acti
     }
 
     case(BsDatepickerActions.STEP_NAVIGATION): {
-      const viewDate = changeDate(state.viewDate, action.payload);
+      const viewDate = shiftDate(state.viewDate, action.payload);
       return Object.assign({}, state, {viewDate});
     }
 

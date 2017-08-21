@@ -1,7 +1,7 @@
-export function zeroFill(number: number, targetLength: number, forceSign: boolean): string {
-  const absNumber = '' + Math.abs(number);
+export function zeroFill(num: number, targetLength: number, forceSign?: boolean): string {
+  const absNumber = `${Math.abs(num)}`;
   const zerosToFill = targetLength - absNumber.length;
-  const sign = number >= 0;
+  const sign = num >= 0;
   return (sign ? (forceSign ? '+' : '') : '-') +
     Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
 }

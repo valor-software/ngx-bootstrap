@@ -1,4 +1,5 @@
 import { Locale } from '../../bs-moment/locale/locale.class';
+import { TimeUnit } from '../../bs-moment/types';
 
 export interface DaysCalendarModel {
   daysMatrix: Date[][];
@@ -58,22 +59,7 @@ export interface DatepickerRenderOptions {
   displayMonths?: number;
 }
 
-export interface TimeUnit {
-  year?: number;
-  month?: number;
-  day?: number;
-  hour?: number;
-  minute?: number;
-  seconds?: number;
-}
-
 export type DateFormatterFn = (date: Date, format: string, locale?: Locale) => string;
-
-export interface LocaleData {
-  invalidDate: string;
-  postformat: (str: string) => string;
-  ordinal: (str: string) => string;
-}
 
 // events
 

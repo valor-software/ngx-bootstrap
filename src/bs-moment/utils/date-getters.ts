@@ -1,8 +1,22 @@
-import { createDate } from '../../datepicker/utils/date-utils';
+
+import { createDate } from './date-setters';
+
+export function getHours(date: Date, isUTC = false): number {
+  return isUTC ? date.getUTCHours() : date.getHours();
+}
+
+export function getMinutes(date: Date, isUTC = false): number {
+  return isUTC ? date.getUTCMinutes() : date.getMinutes();
+}
+
+export function getSeconds(date: Date, isUTC = false): number {
+  return isUTC ? date.getUTCSeconds() : date.getSeconds();
+}
 
 export function getDayOfWeek(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCDay() : date.getDay();
 }
+
 export function getDate(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCDate() : date.getDate();
 }

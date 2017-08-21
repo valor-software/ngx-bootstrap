@@ -29,7 +29,7 @@
   },
   "include": [
     "../scripts/typings.d.ts",
-    "**/*.spec.ts",
+    "**/*.ts",
     "**/*.d.ts"
   ],
   "exclude": [
