@@ -34,6 +34,7 @@ Thumbs.db
 
 /demo/e2e/*.js
 /demo/e2e/*.map
+/demo/src/ng-api-doc.ts
 src/**/*.js
 src/**/*.map
 scripts/**/*.js
