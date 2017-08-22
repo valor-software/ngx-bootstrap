@@ -32,6 +32,18 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
     
   <ng-sample-box [ts]="demos.pop.component" [html]="demos.pop.html">
+    <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
+    <p>Notebale change is additional css for it <code> "/datepicker/bs-datepicker.css"</code></p>
+    <p>In nearest time will be added:</p>
+    <ul>
+      <li>1. Month and year selection</li>
+      <li>2. Min/max dates restrcitions</li>
+      <li>3. Theming - this will be a small breaking change</li>
+      <li>4. Options to replace any part of template</li>
+      <li>5. Configuration</li>
+      <li>6. Integration with forms, only for input fields</li>
+      <li>etc.</li>
+    </ul>
     <demo-date-picker-popup></demo-date-picker-popup>
   </ng-sample-box>
   
