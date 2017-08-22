@@ -1,3 +1,33 @@
+<a name="1.9.0"></a>
+# [1.9.0](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.1...v1.9.0) (2017-08-22)
+
+
+### Bug Fixes
+
+* **bs4:** fix dropdown, tooltip, popover, datepicker, accordion for bs4 beta ([#2418](https://github.com/valor-software/ngx-bootstrap/issues/2418)) ([f398576](https://github.com/valor-software/ngx-bootstrap/commit/f398576))
+* **carousel:** fix demo expressionChanged error ([#2358](https://github.com/valor-software/ngx-bootstrap/issues/2358)) ([c0347d7](https://github.com/valor-software/ngx-bootstrap/commit/c0347d7))
+* **carousel:** setInterval by running it outside of Angular zone. ([#2388](https://github.com/valor-software/ngx-bootstrap/issues/2388)) ([da073df](https://github.com/valor-software/ngx-bootstrap/commit/da073df))
+* **datepicker:** add fix for datepicker table ([#2461](https://github.com/valor-software/ngx-bootstrap/issues/2461)) ([e0a6adf](https://github.com/valor-software/ngx-bootstrap/commit/e0a6adf))
+* **datepicker:** prevent outside click to close datepicker on navigation ([6472b6f](https://github.com/valor-software/ngx-bootstrap/commit/6472b6f))
+* **tabs:** fix select/deselect multiple calls ([#2361](https://github.com/valor-software/ngx-bootstrap/issues/2361)) ([5dd456b](https://github.com/valor-software/ngx-bootstrap/commit/5dd456b)), closes [#2005](https://github.com/valor-software/ngx-bootstrap/issues/2005) [#1820](https://github.com/valor-software/ngx-bootstrap/issues/1820) [#1129](https://github.com/valor-software/ngx-bootstrap/issues/1129)
+
+
+### Features
+
+* **bs-moment:** add localization tests ([#2466](https://github.com/valor-software/ngx-bootstrap/issues/2466)) ([6589ee9](https://github.com/valor-software/ngx-bootstrap/commit/6589ee9))
+* **datepicker:** initial version of new datepicker ([#2426](https://github.com/valor-software/ngx-bootstrap/issues/2426)) ([b11776c](https://github.com/valor-software/ngx-bootstrap/commit/b11776c))
+* **datepicker:** removed dependency on moment.js ([#2465](https://github.com/valor-software/ngx-bootstrap/issues/2465)) ([7c87162](https://github.com/valor-software/ngx-bootstrap/commit/7c87162))
+* **datepicker:** use as directives ([#2446](https://github.com/valor-software/ngx-bootstrap/issues/2446)) ([d7f9a2a](https://github.com/valor-software/ngx-bootstrap/commit/d7f9a2a))
+* **demo:** add popover outside click demo ([#2449](https://github.com/valor-software/ngx-bootstrap/issues/2449)) ([da7d352](https://github.com/valor-software/ngx-bootstrap/commit/da7d352))
+* **docs:** add versioning implementation ([#2350](https://github.com/valor-software/ngx-bootstrap/issues/2350)) ([91cee71](https://github.com/valor-software/ngx-bootstrap/commit/91cee71))
+* **loader:** added ability to attach inline elements via component loader ([#2458](https://github.com/valor-software/ngx-bootstrap/issues/2458)) ([0c7d21c](https://github.com/valor-software/ngx-bootstrap/commit/0c7d21c))
+* **popover:** added outsideClick ([#2441](https://github.com/valor-software/ngx-bootstrap/issues/2441)) ([a606a7f](https://github.com/valor-software/ngx-bootstrap/commit/a606a7f)), closes [#1477](https://github.com/valor-software/ngx-bootstrap/issues/1477)
+* **popover:** support passing template context ([#2428](https://github.com/valor-software/ngx-bootstrap/issues/2428)) ([38e562d](https://github.com/valor-software/ngx-bootstrap/commit/38e562d)), closes [#1682](https://github.com/valor-software/ngx-bootstrap/issues/1682)
+* **typeahead:** add dropup option ([#2390](https://github.com/valor-software/ngx-bootstrap/issues/2390)) ([c6ef77b](https://github.com/valor-software/ngx-bootstrap/commit/c6ef77b))
+* **typeahead:** show results when typeaheadMinLength is 0 and the search string is empty ([#2352](https://github.com/valor-software/ngx-bootstrap/issues/2352)) ([4b68adb](https://github.com/valor-software/ngx-bootstrap/commit/4b68adb))
+
+
+
 <a name="1.8.1"></a>
 ## [1.8.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.0...v1.8.1) (2017-07-28)
 
