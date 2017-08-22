@@ -8,8 +8,8 @@ import {
   selector: 'bs-datepicker-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="bs-datepicker bs-timepicker label-success">
-      <div class="bs-datepicker-head label-success">
+    <div class="bs-datepicker bs-timepicker theme-green">
+      <div class="bs-datepicker-head">
         <bs-datepicker-navigation-view
           *ngFor="let month of months"
           [month]="month"
