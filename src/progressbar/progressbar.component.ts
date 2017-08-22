@@ -9,9 +9,9 @@ import { isBs3 } from '../utils';
       <bar [type]="type" [value]="_value" *ngIf="!isStacked">
           <ng-content></ng-content>
       </bar>
-      <template [ngIf]="isStacked">
+      <ng-template [ngIf]="isStacked">
         <bar *ngFor="let item of _value" [type]="item.type" [value]="item.value">{{item.label}}</bar>
-      </template>
+      </ng-template>
     </div>
   `,
   styles: [`
