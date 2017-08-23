@@ -20,6 +20,7 @@ import { yearsPerCalendar } from '../../engine/format-years-calendar';
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
     </div>
+    
     <div class="bs-datepicker-body">
       <table role="grid" class="years">
         <tbody>
@@ -36,6 +37,9 @@ import { yearsPerCalendar } from '../../engine/format-years-calendar';
         </tbody>
       </table>
     </div>
+
+    <!--timepicker-->
+    <bs-timepicker></bs-timepicker>
   `
 })
 export class BsYearsCalendarViewComponent {

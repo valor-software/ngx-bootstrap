@@ -19,6 +19,7 @@ import {
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
     </div>
+    
     <div class="bs-datepicker-body">
       <table role="grid" class="months">
         <tbody>
@@ -35,6 +36,9 @@ import {
         </tbody>
       </table>
     </div>
+
+    <!--timepicker-->
+    <bs-timepicker></bs-timepicker>
   `
 })
 export class BsMonthCalendarViewComponent {

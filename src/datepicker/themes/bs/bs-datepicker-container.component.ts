@@ -17,7 +17,7 @@ import { BsCustomDates } from './bs-custom-dates-view.component';
   template: `
     <!-- days calendar view mode -->
     <div class="bs-datepicker theme-green">
-      <div class="bs-calendars-container">
+      <div class="bs-datepicker-container">
 
         <!--calendars-->
         <div class="bs-calendar-container" [ngSwitch]="viewMode | async">
@@ -69,7 +69,7 @@ import { BsCustomDates } from './bs-custom-dates-view.component';
       </div>
 
       <!--custom dates or date ranges picker-->
-      <div class="custom">
+      <div class="bs-datepicker-custom-range">
         <bs-custom-date-view [ranges]="_customRangesFish"></bs-custom-date-view>
       </div>
     </div>`,

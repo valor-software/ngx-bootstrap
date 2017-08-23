@@ -49,10 +49,9 @@ import {
         </tr>
         </tbody>
       </table>
-      <!--timepicker-->
-
     </div>
-    
+
+    <!--timepicker-->
     <bs-timepicker></bs-timepicker>
   `
 })

@@ -22,4 +22,6 @@ import { Component } from '@angular/core';
 })
 export class BsTimepickerViewComponent {
   ampm = 'ok';
+  hours = 0;
+  minutes = 0;
 }
