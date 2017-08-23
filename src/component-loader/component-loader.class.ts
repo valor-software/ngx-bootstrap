@@ -248,14 +248,16 @@ export class ComponentLoader<T> {
       return;
     }
     // why: should run after first event bubble
-    const target = this._componentRef.location.nativeElement;
-    setTimeout(() => {
-      this._globalListener = registerOutsideClick(this._renderer, {
-        targets: [target, this._elementRef.nativeElement],
-        outsideClick: this._listenOpts.outsideClick,
-        hide: () => this._listenOpts.hide()
+    if (this._listenOpts.outsideClick) {
+      const target = this._componentRef.location.nativeElement;
+      setTimeout(() => {
+        this._globalListener = registerOutsideClick(this._renderer, {
+          targets: [target, this._elementRef.nativeElement],
+          outsideClick: this._listenOpts.outsideClick,
+          hide: () => this._listenOpts.hide()
+        });
       });
-    });
+    }
   }
 
   public getInnerComponent(): ComponentRef<T> {
