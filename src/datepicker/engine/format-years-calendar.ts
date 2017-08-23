@@ -4,8 +4,8 @@ import {
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 import { formatDate } from '../../bs-moment/format';
 
-const height = 3;
-const width = 5;
+const height = 4;
+const width = 4;
 export const yearsPerCalendar = height * width;
 
 export function formatYearsCalendar(viewDate: Date, formatOptions: DatepickerFormatOptions): YearsCalendarViewModel {

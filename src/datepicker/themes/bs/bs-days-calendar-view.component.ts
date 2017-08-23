@@ -11,21 +11,23 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="bs-datepicker bs-timepicker theme-green">
-      <div class="bs-datepicker-head">
-        <bs-datepicker-navigation-view
-          *ngFor="let month of calendars"
-          [calendar]="month"
-          (onNavigate)="navigateTo($event)"
-          (onViewMode)="changeViewMode($event)"
-        ></bs-datepicker-navigation-view>
-      </div>
-      <div class="bs-datepicker-body" *ngFor="let month of calendars">
-        <bs-days-matrix-view
-          [calendar]="month"
-          [options]="options"
-          (onHover)="hoverHandler($event)"
-          (onSelect)="selectHandler($event)"
-        ></bs-days-matrix-view>
+      <div *ngFor="let month of calendars"
+           [class.bs-datepicker-multiple]="calendars.length > 1">
+        <div class="bs-datepicker-head">
+          <bs-datepicker-navigation-view
+            [calendar]="month"
+            (onNavigate)="navigateTo($event)"
+            (onViewMode)="changeViewMode($event)"
+          ></bs-datepicker-navigation-view>
+        </div>
+        <div class="bs-datepicker-body">
+          <bs-days-matrix-view
+            [calendar]="month"
+            [options]="options"
+            (onHover)="hoverHandler($event)"
+            (onSelect)="selectHandler($event)"
+          ></bs-days-matrix-view>
+        </div>
       </div>
     </div>
   `
