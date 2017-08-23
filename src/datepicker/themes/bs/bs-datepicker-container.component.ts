@@ -9,39 +9,69 @@ import {
 } from '../../models/index';
 import 'rxjs/add/operator/filter';
 import { Observable } from 'rxjs/Observable';
+import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
   selector: 'bs-datepicker-container',
   providers: [BsDatepickerStore],
   template: `
     <!-- days calendar view mode -->
-    <div [ngSwitch]="viewMode | async">
-      <bs-days-calendar-view
-        *ngSwitchCase="'day'"
-        [calendars]="daysCalendar | async"
-        [options]="options | async"
-        (onNavigate)="navigateTo($event)"
-        (onViewMode)="changeViewMode($event)"
-        (onHover)="dayHoverHandler($event)"
-        (onSelect)="daySelectHandler($event)"
-      ></bs-days-calendar-view>
+    <div class="bs-datepicker theme-green">
+      <div class="bs-calendars-container">
 
-      <bs-month-calendar-view
-        *ngSwitchCase="'month'"
-        [calendars]="monthsCalendar | async"
-        (onNavigate)="navigateTo($event)"
-        (onViewMode)="changeViewMode($event)"
-        (onHover)="monthHoverHandler($event)"
-        (onSelect)="monthSelectHandler($event)"
-      ></bs-month-calendar-view>
+        <!--calendars-->
+        <div class="bs-calendar-container" [ngSwitch]="viewMode | async">
+          <!--days calendar-->
+          <div *ngSwitchCase="'day'">
+            <bs-days-calendar-view
+              *ngFor="let calendar of (daysCalendar | async)"
+              [class.bs-datepicker-multiple]="(daysCalendar | async).length > 1"
+              [calendar]="calendar"
+              [options]="options | async"
+              (onNavigate)="navigateTo($event)"
+              (onViewMode)="changeViewMode($event)"
+              (onHover)="dayHoverHandler($event)"
+              (onSelect)="daySelectHandler($event)"
+            ></bs-days-calendar-view>
+          </div>
 
-      <bs-years-calendar-view
-        *ngSwitchCase="'year'"
-        [calendars]="yearsCalendar | async"
-        (onNavigate)="navigateTo($event)"
-        (onViewMode)="changeViewMode($event)"
-        (onHover)="yearHoverHandler($event)"
-      ></bs-years-calendar-view>
+          <!--months calendar-->
+          <div *ngSwitchCase="'month'">
+            <bs-month-calendar-view
+              *ngFor="let calendar of (monthsCalendar | async)"
+              [calendar]="calendar"
+              (onNavigate)="navigateTo($event)"
+              (onViewMode)="changeViewMode($event)"
+              (onHover)="monthHoverHandler($event)"
+              (onSelect)="monthSelectHandler($event)"
+            ></bs-month-calendar-view>
+          </div>
+
+          <!--years calendar-->
+          <div *ngSwitchCase="'year'">
+            <bs-years-calendar-view
+              *ngFor="let calendar of (yearsCalendar | async)"
+              [calendar]="calendar"
+              (onNavigate)="navigateTo($event)"
+              (onViewMode)="changeViewMode($event)"
+              (onHover)="yearHoverHandler($event)"
+            ></bs-years-calendar-view>
+          </div>
+
+        </div>
+
+        <!--apply\cancel buttons-->
+        <div class="bs-datepicker-buttons">
+          <button class="btn btn-success">Apply</button>
+          <button class="btn btn-default">Cancel</button>
+        </div>
+
+      </div>
+
+      <!--custom dates or date ranges picker-->
+      <div class="custom">
+        <bs-custom-date-view [ranges]="_customRangesFish"></bs-custom-date-view>
+      </div>
     </div>`,
   host: {
     '(click)': '_stopPropagation($event)',
@@ -61,6 +91,14 @@ export class BsDatepickerContainerComponent {
   monthsCalendar: Observable<MonthsCalendarViewModel[]>;
   yearsCalendar: Observable<YearsCalendarViewModel[]>;
   options: Observable<DatepickerRenderOptions>;
+
+  /** @deperecated */
+  _customRangesFish: BsCustomDates[] = [
+    {label: 'today', value: new Date()},
+    {label: 'today1', value: new Date()},
+    {label: 'today2', value: new Date()},
+    {label: 'today3', value: new Date()}
+  ];
 
   constructor(private _bsDatepickerStore: BsDatepickerStore,
               private _actions: BsDatepickerActions) {

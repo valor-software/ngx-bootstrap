@@ -9,29 +9,36 @@ import {
 @Component({
   selector: 'bs-month-calendar-view',
   template: `
-    <div class="bs-datepicker bs-timepicker theme-green">
-      <div *ngFor="let month of calendars"
-           [class.bs-datepicker-multiple]="calendars.length > 1">
-        <div class="bs-datepicker-head">
-          <bs-datepicker-navigation-view
-            [calendar]="month"
-            (onNavigate)="navigateTo($event)"
-            (onViewMode)="changeViewMode($event)"
-          ></bs-datepicker-navigation-view>
-        </div>
-        <div class="bs-datepicker-body">
-          <bs-month-matrix-view
-            [calendar]="month"
-            (onHover)="hoverHandler($event)"
-            (onSelect)="selectHandler($event)"
-          ></bs-month-matrix-view>
-        </div>
-      </div>
+    <!--current date-->
+    <bs-current-date title="hey there"></bs-current-date>
+    
+    <div class="bs-datepicker-head">
+      <bs-datepicker-navigation-view
+        [calendar]="calendar"
+        (onNavigate)="navigateTo($event)"
+        (onViewMode)="changeViewMode($event)"
+      ></bs-datepicker-navigation-view>
+    </div>
+    <div class="bs-datepicker-body">
+      <table role="grid" class="months">
+        <tbody>
+        <tr *ngFor="let row of calendar.months">
+          <td *ngFor="let month of row" role="gridcell"
+              (click)="viewMonth(month)"
+              (mouseenter)="hoverMonth(month, true)"
+              (mouseleave)="hoverMonth(month, false)"
+              [class.disabled]="month.isDisabled"
+              [class.is-highlighted]="month.isHovered">
+            <span>{{ month.label }}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   `
 })
 export class BsMonthCalendarViewComponent {
-  @Input() calendars: MonthsCalendarViewModel[];
+  @Input() calendar: MonthsCalendarViewModel;
 
   @Output() onNavigate = new EventEmitter<BsNavigationEvent>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();
@@ -44,12 +51,12 @@ export class BsMonthCalendarViewComponent {
     this.onNavigate.emit({step: {year: step}});
   }
 
-  hoverHandler(event: MonthHoverEvent): void {
-    this.onHover.emit(event);
+  viewMonth(month: MonthViewModel) {
+    this.onSelect.emit(month);
   }
 
-  selectHandler(event: MonthViewModel): void {
-    this.onSelect.emit(event);
+  hoverMonth(month: MonthViewModel, isHovered: boolean) {
+    this.onHover.emit({month, isHovered});
   }
 
   changeViewMode(event: BsDatepickerViewMode): void {

@@ -10,30 +10,54 @@ import {
   selector: 'bs-days-calendar-view',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="bs-datepicker bs-timepicker theme-green">
-      <div *ngFor="let month of calendars"
-           [class.bs-datepicker-multiple]="calendars.length > 1">
-        <div class="bs-datepicker-head">
-          <bs-datepicker-navigation-view
-            [calendar]="month"
-            (onNavigate)="navigateTo($event)"
-            (onViewMode)="changeViewMode($event)"
-          ></bs-datepicker-navigation-view>
-        </div>
-        <div class="bs-datepicker-body">
-          <bs-days-matrix-view
-            [calendar]="month"
-            [options]="options"
-            (onHover)="hoverHandler($event)"
-            (onSelect)="selectHandler($event)"
-          ></bs-days-matrix-view>
-        </div>
-      </div>
+    <!--current date-->
+    <bs-current-date title="hey there"></bs-current-date>
+    
+    <!--navigation-->
+    <div class="bs-datepicker-head">
+      <bs-datepicker-navigation-view
+        [calendar]="calendar"
+        (onNavigate)="navigateTo($event)"
+        (onViewMode)="changeViewMode($event)"
+      ></bs-datepicker-navigation-view>
     </div>
+    
+    <div class="bs-datepicker-body">
+      <!--days matrix-->
+      <table role="grid" class="days weeks">
+        <thead>
+        <tr>
+          <!--if show weeks-->
+          <th *ngIf="options.showWeekNumbers"></th>
+          <th *ngFor="let weekday of calendar.weekdays; let i = index"
+              aria-label="weekday">{{ calendar.weekdays[i] }}
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let week of calendar.weeks; let i = index">
+          <td class="week" *ngIf="options.showWeekNumbers">
+            <span>{{ calendar.weekNumbers[i] }}</span>
+          </td>
+          <td *ngFor="let day of week.days" role="gridcell">
+          <span bsDatepickerDayDecorator
+                [day]="day"
+                (click)="selectDay(day)"
+                (mouseenter)="hoverDay(day, true)"
+                (mouseleave)="hoverDay(day, false)">{{ day.label }}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <!--timepicker-->
+
+    </div>
+    
+    <bs-timepicker></bs-timepicker>
   `
 })
 export class BsDaysCalendarViewComponent {
-  @Input() calendars: DaysCalendarViewModel[];
+  @Input() calendar: DaysCalendarViewModel;
   @Input() options: DatepickerRenderOptions;
 
   @Output() onNavigate = new EventEmitter<BsNavigationEvent>();
@@ -51,11 +75,11 @@ export class BsDaysCalendarViewComponent {
     this.onViewMode.emit(event);
   }
 
-  hoverHandler(event: DayHoverEvent): void {
-    this.onHover.emit(event);
+  selectDay(event: DayViewModel): void {
+    this.onSelect.emit(event);
   }
 
-  selectHandler(event: DayViewModel): void {
-    this.onSelect.emit(event);
+  hoverDay(day: DayViewModel, isHovered: boolean): void {
+    this.onHover.emit({day, isHovered});
   }
 }

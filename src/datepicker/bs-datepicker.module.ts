@@ -3,7 +3,6 @@ import { isDevMode, ModuleWithProviders, NgModule } from '@angular/core';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
 import { BsDatepickerStore } from './reducer/bs-datepicker.store';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { BsDaysMatrixViewComponent } from './themes/bs/bs-days-matrix-view.component';
 import { BsDatepickerNavigationViewComponent } from './themes/bs/bs-datepicker-navigation-view.component';
 import { BsDaysCalendarViewComponent } from './themes/bs/bs-days-calendar-view.component';
 import { BsDatepickerConfig } from './bs-datepicker-config';
@@ -14,26 +13,25 @@ import { BsDatepickerComponent } from './bs-datepicker.component';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { PositioningService } from '../positioning/positioning.service';
 import { BsDatepickerDayDecoratorComponent } from './themes/bs/bs-datepicker-day-decorator.directive';
-import { BsMonthsMatrixViewComponent } from './themes/bs/bs-months-matrix-view.component';
 import { BsMonthCalendarViewComponent } from './themes/bs/bs-months-calendar-view.component';
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
-import { BsYearsMatrixViewComponent } from './themes/bs/bs-years-matrix-view.component';
+import { BsCustomDatesViewComponent } from './themes/bs/bs-custom-dates-view.component';
+import { BsCurrentDateViewComponent } from './themes/bs/bs-current-date-view.component';
+import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.component';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
     BsDatepickerDayDecoratorComponent,
+    BsCurrentDateViewComponent,
+    BsDatepickerNavigationViewComponent,
+    BsTimepickerViewComponent,
 
-    BsDaysMatrixViewComponent,
     BsDaysCalendarViewComponent,
-
-    BsMonthsMatrixViewComponent,
     BsMonthCalendarViewComponent,
-
-    BsYearsMatrixViewComponent,
     BsYearsCalendarViewComponent,
 
-    BsDatepickerNavigationViewComponent,
+    BsCustomDatesViewComponent,
 
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,

@@ -3,23 +3,73 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import {
   BsNavigationEvent, DatepickerRenderOptions, DayHoverEvent, DayViewModel,
-  DaysCalendarViewModel
+  DaysCalendarViewModel, BsDatepickerViewMode, MonthsCalendarViewModel, YearsCalendarViewModel
 } from '../../models/index';
 import 'rxjs/add/operator/filter';
+import { Observable } from 'rxjs/Observable';
+import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
   selector: 'bs-daterangepicker-container',
   providers: [BsDatepickerStore],
   template: `
-    <bs-days-calendar-view
-      *ngIf="months && options"
-      [calendars]="months"
-      [options]="options"
-      (onNavigate)="navigateTo($event)"
-      (onHover)="hoverHandler($event)"
-      (onSelect)="selectHandler($event)"
-    ></bs-days-calendar-view>
-  `,
+    <div class="bs-datepicker theme-green">
+      <div class="bs-calendars-container">
+
+        <!--calendars-->
+        <div class="bs-calendar-container" [ngSwitch]="viewMode | async">
+          <!--days calendar-->
+          <div *ngSwitchCase="'day'">
+            <bs-days-calendar-view
+              *ngFor="let calendar of (daysCalendar | async)"
+              [class.bs-datepicker-multiple]="(daysCalendar | async).length > 1"
+              [calendar]="calendar"
+              [options]="options | async"
+              (onNavigate)="navigateTo($event)"
+              (onViewMode)="changeViewMode($event)"
+              (onHover)="dayHoverHandler($event)"
+              (onSelect)="daySelectHandler($event)"
+            ></bs-days-calendar-view>
+          </div>
+
+          <!--months calendar-->
+          <div *ngSwitchCase="'month'">
+            <bs-month-calendar-view
+              *ngFor="let calendar of (monthsCalendar | async)"
+              [calendar]="calendar"
+              (onNavigate)="navigateTo($event)"
+              (onViewMode)="changeViewMode($event)"
+              (onHover)="monthHoverHandler($event)"
+              (onSelect)="monthSelectHandler($event)"
+            ></bs-month-calendar-view>
+          </div>
+
+          <!--years calendar-->
+          <div *ngSwitchCase="'year'">
+            <bs-years-calendar-view
+              *ngFor="let calendar of (yearsCalendar | async)"
+              [calendar]="calendar"
+              (onNavigate)="navigateTo($event)"
+              (onViewMode)="changeViewMode($event)"
+              (onHover)="yearHoverHandler($event)"
+            ></bs-years-calendar-view>
+          </div>
+
+        </div>
+
+        <!--apply\cancel buttons-->
+        <div class="bs-datepicker-buttons">
+          <button class="btn btn-success">Apply</button>
+          <button class="btn btn-default">Cancel</button>
+        </div>
+
+      </div>
+
+      <!--custom dates or date ranges picker-->
+      <div class="custom">
+        <bs-custom-date-view [ranges]="_customRangesFish"></bs-custom-date-view>
+      </div>
+    </div>`,
   host: {
     '(click)': '_stopPropagation($event)',
     style: 'position: absolute; display: block;'
@@ -33,26 +83,50 @@ export class BsDaterangepickerContainerComponent implements OnInit {
 
   @Output() valueChange = new EventEmitter<Date[]>();
 
-  months: DaysCalendarViewModel[];
-  options: DatepickerRenderOptions;
+  viewMode: Observable<BsDatepickerViewMode>;
+  daysCalendar: Observable<DaysCalendarViewModel[]>;
+  monthsCalendar: Observable<MonthsCalendarViewModel[]>;
+  yearsCalendar: Observable<YearsCalendarViewModel[]>;
+  options: Observable<DatepickerRenderOptions>;
+
   _rangeStack: Date[] = [];
+  /** @deperecated */
+  _customRangesFish: BsCustomDates[] = [
+    {label: 'today', value: new Date()},
+    {label: 'today1', value: new Date()},
+    {label: 'today2', value: new Date()},
+    {label: 'today3', value: new Date()}
+  ];
 
   constructor(private _bsDatepickerStore: BsDatepickerStore,
               private _actions: BsDatepickerActions) {
     // data binding state <--> model
-    this._bsDatepickerStore.select(state => state.flaggedMonths)
-      .filter(months => !!months)
-      .subscribe(months => this.months = months);
+    // days calendar
+    this.daysCalendar = this._bsDatepickerStore.select(state => state.flaggedMonths)
+      .filter(months => !!months);
 
-    this._bsDatepickerStore.select(state => state.renderOptions)
-      .filter(options => !!options)
-      .subscribe(options => this.options = options);
+    // month calendar
+    this.monthsCalendar = this._bsDatepickerStore.select(state => state.flaggedMonthsCalendar)
+      .filter(months => !!months);
+
+    // year calendar
+    this.yearsCalendar = this._bsDatepickerStore.select(state => state.yearsCalendarFlagged)
+      .filter(years => !!years);
+
+    this.options = this._bsDatepickerStore.select(state => state.renderOptions)
+      .filter(options => !!options);
+
+    this.viewMode = this._bsDatepickerStore.select(state => state.viewMode);
 
     // set render options
     this._bsDatepickerStore.dispatch(this._actions.renderOptions({
       displayMonths: 2,
       showWeekNumbers: true
     }));
+
+    // recalculate on view mode change
+    this._bsDatepickerStore.select(state => state.viewMode)
+      .subscribe(() => this._bsDatepickerStore.dispatch(this._actions.calculate()));
 
     // on selected date change
     this._bsDatepickerStore.select(state => state.selectedRange)
