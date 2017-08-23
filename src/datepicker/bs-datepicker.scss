@@ -314,6 +314,10 @@
           }
         }
       }
+
+      &.months {
+        width: 100%;
+      }
     }
   }
 
@@ -327,7 +331,6 @@
 
     .bs-datepicker-body {
       border: 1px solid $border-color;
-      float: left;
     }
   }
 
@@ -366,9 +369,11 @@
   /* .bs-datepicker-multiple */
   &-multiple {
     display: inline-block;
-    border-radius: 4px;
-    box-shadow: 0 3px 11px rgba(33, 37, 39, 0.2);
-    background-color: $main-bg;
+    border-radius: 4px 0 0 4px;
+
+    & + & {
+      border-radius: 0 4px 4px 0;
+    }
 
     .bs-datepicker {
       box-shadow: none;

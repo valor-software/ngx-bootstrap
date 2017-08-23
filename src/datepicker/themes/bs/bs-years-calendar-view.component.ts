@@ -10,21 +10,23 @@ import { yearsPerCalendar } from '../../engine/format-years-calendar';
 @Component({
   selector: 'bs-years-calendar-view',
   template: `
-    <div class="bs-datepicker bs-timepicker label-success">
-      <div class="bs-datepicker-head label-success">
-        <bs-datepicker-navigation-view
-          *ngFor="let calendar of calendars"
-          [calendar]="calendar"
-          (onNavigate)="navigateTo($event)"
-          (onViewMode)="changeViewMode($event)"
-        ></bs-datepicker-navigation-view>
-      </div>
-      <div class="bs-datepicker-body" *ngFor="let calendar of calendars">
-        <bs-years-matrix-view
-          [calendar]="calendar"
-          (onHover)="hoverHandler($event)"
-          (onSelect)="selectHandler($event)"
-        ></bs-years-matrix-view>
+    <div class="bs-datepicker bs-timepicker theme-green">
+      <div *ngFor="let calendar of calendars"
+           [class.bs-datepicker-multiple]="calendars.length > 1">
+        <div class="bs-datepicker-head">
+          <bs-datepicker-navigation-view
+            [calendar]="calendar"
+            (onNavigate)="navigateTo($event)"
+            (onViewMode)="changeViewMode($event)"
+          ></bs-datepicker-navigation-view>
+        </div>
+        <div class="bs-datepicker-body">
+          <bs-years-matrix-view
+            [calendar]="calendar"
+            (onHover)="hoverHandler($event)"
+            (onSelect)="selectHandler($event)"
+          ></bs-years-matrix-view>
+        </div>
       </div>
     </div>
   `
