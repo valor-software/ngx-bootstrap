@@ -1,3 +1,20 @@
+<a name="1.9.1"></a>
+## [1.9.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.0...v1.9.1) (2017-08-23)
+
+
+### Bug Fixes
+
+* **modals:** don't try to register outside click handler ([d8e614c](https://github.com/valor-software/ngx-bootstrap/commit/d8e614c)), closes [#2477](https://github.com/valor-software/ngx-bootstrap/issues/2477)
+* **tabs:** fixed tabs vertical pills for bs4 ([646e033](https://github.com/valor-software/ngx-bootstrap/commit/646e033)), closes [#2481](https://github.com/valor-software/ngx-bootstrap/issues/2481)
+* **timepicker:** when showMeridian changes value, time is rerendered ([e59172f](https://github.com/valor-software/ngx-bootstrap/commit/e59172f)), closes [#2476](https://github.com/valor-software/ngx-bootstrap/issues/2476)
+
+
+### Features
+
+* **datepicker:** change css to scss, add own styles ([#2478](https://github.com/valor-software/ngx-bootstrap/issues/2478)) ([08170ed](https://github.com/valor-software/ngx-bootstrap/commit/08170ed))
+
+
+
 <a name="1.9.0"></a>
 # [1.9.0](https://github.com/valor-software/ngx-bootstrap/compare/v1.8.1...v1.9.0) (2017-08-22)
 
