@@ -97,7 +97,7 @@
     "google-code-prettify": "1.0.5",
     "html-loader": "0.5.1",
     "intl": "^1.2.5",
-    "jasmine": "2.7.0",
+    "jasmine": "2.8.0",
     "jasmine-core": "2.7.0",
     "jasmine-data-provider": "2.2.0",
     "jasmine-spec-reporter": "4.2.1",
