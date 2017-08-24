@@ -98,7 +98,7 @@
     "html-loader": "0.5.1",
     "intl": "^1.2.5",
     "jasmine": "2.7.0",
-    "jasmine-core": "2.7.0",
+    "jasmine-core": "2.8.0",
     "jasmine-data-provider": "2.2.0",
     "jasmine-spec-reporter": "4.2.1",
     "karma": "1.7.0",
