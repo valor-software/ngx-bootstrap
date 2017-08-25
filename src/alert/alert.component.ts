@@ -5,13 +5,17 @@ import { OnChange } from '../utils/decorators';
 @Component({
   selector: 'alert,ngx-alert',
   template: `
-  <div *ngIf="!isClosed" [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
-      <button *ngIf="dismissible" type="button" class="close" aria-label="Close" (click)="close()">
+<ng-template [ngIf]="!isClosed">
+  <div [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
+    <ng-template [ngIf]="dismissible">
+      <button type="button" class="close" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
         <span class="sr-only">Close</span>
       </button>
+    </ng-template>
     <ng-content></ng-content>
   </div>
+</ng-template>
   `
 })
 export class AlertComponent implements OnInit {
