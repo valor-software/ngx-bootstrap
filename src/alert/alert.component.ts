@@ -5,8 +5,7 @@ import { OnChange } from '../utils/decorators';
 @Component({
   selector: 'alert,ngx-alert',
   template: `
-<template [ngIf]="!isClosed">
-  <div [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
+  <div *ngIf="!isClosed" [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
     <template [ngIf]="dismissible">
       <button type="button" class="close" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
@@ -15,7 +14,6 @@ import { OnChange } from '../utils/decorators';
     </template>
     <ng-content></ng-content>
   </div>
-</template>
   `
 })
 export class AlertComponent implements OnInit {
