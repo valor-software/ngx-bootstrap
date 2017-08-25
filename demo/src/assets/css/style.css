@@ -52,6 +52,17 @@ a:hover {
   float: left;
 }
 
+#top-menu .prev-docs {
+  position: relative;
+}
+ #top-menu .prev-docs .dropdown-toggle {
+   color: #fff;
+   font-size: 18px;
+   padding-top: 22px;
+   cursor: pointer;
+ }
+
+
 #top-menu .title {
   border-right: 1px solid #191924;
   min-width: 270px;

@@ -60,6 +60,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    */
   @Input() public container: string;
 
+  /** This attribute indicates that the dropdown should be opened upwards */
+  @Input() public dropup: boolean = false;
+
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
   // @Input() protected typeaheadEditable:boolean;
@@ -126,7 +129,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       : e.target.textContent !== undefined
         ? e.target.textContent
         : e.target.innerText;
-    if (value && value.trim().length >= this.typeaheadMinLength) {
+    if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
@@ -214,11 +217,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
       .to(this.container)
-      .position({attachment: 'bottom left'})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
-        animation: false
+        animation: false,
+        dropup: this.dropup
       });
 
     this._container = this._typeahead.instance;

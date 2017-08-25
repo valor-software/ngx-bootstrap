@@ -1,5 +1,5 @@
 ﻿import {
-  Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit, OnDestroy, ElementRef } from '@angular/core';
+  Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit, OnDestroy, ElementRef, Renderer } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
 @Directive({selector: 'tab, [tab]'})
@@ -13,7 +13,21 @@ export class TabDirective implements OnInit, OnDestroy {
   /** if true tab can be removable, additional button will appear */
   @Input() public removable: boolean;
   /** if set, will be added to the tab's class atribute */
-  @Input() public customClass: string;
+  @Input() public get customClass(): string {
+    return this._customClass;
+  }
+
+  public set customClass(customClass: string) {
+    if (this._customClass && this._customClass !== customClass) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, this._customClass, false);
+    }
+
+    this._customClass = customClass;
+
+    if (this._customClass) {
+      this.renderer.setElementClass(this.elementRef.nativeElement, this._customClass, true);
+    }
+  }
 
   /** tab active state toggle */
   @HostBinding('class.active')
@@ -21,14 +35,17 @@ export class TabDirective implements OnInit, OnDestroy {
   public get active(): boolean {
     return this._active;
   }
-  
+
   public set active(active: boolean) {
+    if (this._active === active) {
+      return;
+    }
     if (this.disabled && active || !active) {
-      if (!active) {
+      if (this._active && !active) {
+        this.deselect.emit(this);
         this._active = active;
       }
 
-      this.deselect.emit(this);
       return;
     }
 
@@ -53,8 +70,9 @@ export class TabDirective implements OnInit, OnDestroy {
   public headingRef: TemplateRef<any>;
   public tabset: TabsetComponent;
   protected _active: boolean;
+  protected _customClass: string;
 
-  public constructor(tabset: TabsetComponent, public elementRef: ElementRef) {
+  public constructor(tabset: TabsetComponent, public elementRef: ElementRef, public renderer: Renderer) {
     this.tabset = tabset;
     this.tabset.addTab(this);
   }

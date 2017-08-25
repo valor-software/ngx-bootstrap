@@ -1,6 +1,7 @@
 sudo: false
 language: node_js
-node_js: "7"
+node_js: "8"
+dist: precise
 
 env:
   global:
@@ -18,7 +19,9 @@ script:
   - rm -rf node_modules/ngx-bootstrap
   - npm i ./dist
   - npm run demo.build
-  - npm run test-coverage
+  # istanbul is broken, should be fixed
+  #- npm run test-coverage
+  - ./node_modules/.bin/ng test -sr
 
 after_success:
   - ./node_modules/.bin/codecov

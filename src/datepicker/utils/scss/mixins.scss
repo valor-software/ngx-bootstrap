@@ -1,0 +1,24 @@
+@mixin theming($name, $color) {
+  .theme-#{$name} {
+    .bs-datepicker-head {
+      background-color: $color;
+    }
+
+    .bs-datepicker-body {
+      table {
+        td {
+          span.selected,
+          &.selected span,
+          span[class*="select-"]:after,
+          &[class*="select-"] span:after {
+            background-color: $color;
+          }
+
+          &.week span {
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+}

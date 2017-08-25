@@ -39,7 +39,7 @@ export class BsModalRef {
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
-  content?: Object | null;
+  content?: any | null;
 }
 
 export const modalConfigDefaults:ModalOptions = {
@@ -71,4 +71,9 @@ export const Selector:any = {
 export const TransitionDurations: any = {
   MODAL: 300,
   BACKDROP: 150
+};
+
+export const DISMISS_REASONS = {
+  BACKRDOP: 'backdrop-click',
+  ESC: 'esc'
 };

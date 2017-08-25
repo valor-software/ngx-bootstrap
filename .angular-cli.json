@@ -18,6 +18,7 @@
       "prefix": "",
       "mobile": false,
       "styles": [
+        "../../src/datepicker/bs-datepicker.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -40,7 +41,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

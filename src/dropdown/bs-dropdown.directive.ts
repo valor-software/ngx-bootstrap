@@ -109,7 +109,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
   // todo: move to component loader
   private _isInlineOpen = false;
-  private _showInline: boolean;
+  private get _showInline(): boolean {
+    return !this.container;
+  };
   private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
 
   private _isDisabled: boolean;
@@ -143,8 +145,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._isInited) { return; }
     this._isInited = true;
 
-    this._showInline = !this.container;
-
     // attach DOM listeners
     this._dropdown.listen({
       triggers: this.triggers,
@@ -161,13 +161,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       .filter((value: boolean) => value === true)
       .subscribe((value: boolean) => this.hide()));
 
-    // attach dropdown menu inside of dropdown
-    if (this._showInline) {
-      this._state.dropdownMenu
-        .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
-          this._inlinedMenu = dropdownMenu.viewContainer.createEmbeddedView(dropdownMenu.templateRef);
-        });
-    }
   }
 
   /**
@@ -180,6 +173,15 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     if (this._showInline) {
+      if (!this._inlinedMenu) {
+        this._state.dropdownMenu
+          .then((dropdownMenu: BsComponentRef<BsDropdownMenuDirective>) => {
+            this._dropdown.attachInline(dropdownMenu.viewContainer, dropdownMenu.templateRef);
+            this._inlinedMenu = this._dropdown._inlineViewRef;
+            this.addBs4Polyfills();
+          });
+      }
+      this.addBs4Polyfills();
       this._isInlineOpen = true;
       this.onShown.emit(true);
       this._state.isOpenChange.emit(true);
@@ -219,6 +221,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     if (this._showInline) {
+      this.removeShowClass();
       this._isInlineOpen = false;
       this.onHidden.emit(true);
     } else {
@@ -246,5 +249,43 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       sub.unsubscribe();
     }
     this._dropdown.dispose();
+  }
+
+  private addBs4Polyfills(): void {
+    if (!isBs3()) {
+      this.addShowClass();
+      this.checkRightAlignment();
+      this.checkDropup();
+    }
+  }
+
+  private addShowClass(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      this._renderer.setElementClass(this._inlinedMenu.rootNodes[0], 'show', true);
+    }
+  }
+
+  private removeShowClass(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      this._renderer.setElementClass(this._inlinedMenu.rootNodes[0], 'show', false);
+    }
+  }
+
+  private checkRightAlignment(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      const isRightAligned = this._inlinedMenu.rootNodes[0].classList.contains('dropdown-menu-right');
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'left', isRightAligned ? 'auto' : '0');
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'right', isRightAligned ? '0' : 'auto');
+    }
+  }
+
+  private checkDropup(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      // a little hack to not break support of bootstrap 4 beta
+      const top = getComputedStyle(this._inlinedMenu.rootNodes[0])['top'];
+      const topAuto = top === 'auto' || top === '100%';
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'top', this.dropup ? 'auto' : '100%');
+      this._renderer.setElementStyle(this._inlinedMenu.rootNodes[0], 'transform', this.dropup && !topAuto ? 'translateY(-101%)' : 'translateY(0)');
+    }
   }
 }

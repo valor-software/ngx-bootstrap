@@ -20,6 +20,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
             <li><a routerLink="." fragment="service-template">Template</a></li>
             <li><a routerLink="." fragment="service-component">Component</a></li>
             <li><a routerLink="." fragment="service-nested">Nested</a></li>
+            <li><a routerLink="." fragment="service-events">Events</a></li>
             <li><a routerLink="." fragment="service-options">Options</a></li>
           </ul>
         </li>
@@ -76,6 +77,13 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p>Nested modals are supported</p>
   <ng-sample-box [ts]="demos.serviceNested.component" [html]="demos.serviceNested.html">
     <demo-modal-service-nested></demo-modal-service-nested>
+  </ng-sample-box>
+
+  <h3 routerLink="." fragment="service-events" id="service-events">Events</h3>
+  <p>Modal service events. Modal service exposes 4 events: onShow, onShown, onHide, onHidden. See usage example below.</p>
+  <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>
+  <ng-sample-box [ts]="demos.serviceEvents.component" [html]="demos.serviceEvents.html">
+    <demo-modal-service-events></demo-modal-service-events>
   </ng-sample-box>
 
   <h3 routerLink="." fragment="service-options" id="service-options">Options</h3>
@@ -146,7 +154,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class ModalSectionComponent {
   public name: string = 'Modals';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/master/components/modal';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
   public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
 
