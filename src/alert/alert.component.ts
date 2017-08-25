@@ -6,12 +6,10 @@ import { OnChange } from '../utils/decorators';
   selector: 'alert,ngx-alert',
   template: `
   <div *ngIf="!isClosed" [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
-    <template [ngIf]="dismissible">
-      <button type="button" class="close" aria-label="Close" (click)="close()">
+      <button *ngIf="dismissible" type="button" class="close" aria-label="Close" (click)="close()">
         <span aria-hidden="true">&times;</span>
         <span class="sr-only">Close</span>
       </button>
-    </template>
     <ng-content></ng-content>
   </div>
   `
