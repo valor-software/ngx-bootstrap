@@ -115,7 +115,7 @@
     "marked": "0.3.6",
     "ng2-page-scroll": "4.0.0-beta.7",
     "ngm-cli": "0.6.1",
-    "npm-run-all": "4.0.2",
+    "npm-run-all": "4.1.0",
     "protractor": "5.1.2",
     "reflect-metadata": "0.1.10",
     "require-dir": "0.3.2",
