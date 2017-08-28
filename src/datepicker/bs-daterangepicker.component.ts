@@ -59,6 +59,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
   _bsValue: Date[];
   @Input()
   set bsValue(value: Date[]) {
+    if (this._bsValue === value) { return; }
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -111,8 +112,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
       .valueChange
       .filter((range: Date[]) => range && range[0] && !!range[1])
       .subscribe((value: Date[]) => {
-        if (value === this._bsValue) {return; }
-        this.bsValueChange.emit(value);
+        this.bsValue = value;
         this.hide();
       }));
   }
