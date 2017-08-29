@@ -51,6 +51,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <!-- four directions -->
   <h2 routerLink="." fragment="four-directions" id="four-directions">Four directions</h2>
   Four positioning options are available: top, right, bottom, and left aligned.
+  Besides that, auto option may be used to detect a position that fits the component on screen.
   <ng-sample-box [ts]="demos.forDirections.component" [html]="demos.forDirections.html">
     <demo-popover-four-directions></demo-popover-four-directions>
   </ng-sample-box>
