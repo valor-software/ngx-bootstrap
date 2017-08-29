@@ -16,7 +16,7 @@ ng serve
  - install `ngx-bootstrap` and `bootstrap`
 
  ```bash
-   npm install ngx-bootstrap bootstrap --save
+   npm install ngx-bootstrap@next bootstrap --save
  ```
  
 - open `src/app/app.module.ts` and add
