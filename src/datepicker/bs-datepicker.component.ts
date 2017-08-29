@@ -66,6 +66,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
   _bsValue: Date;
   @Input()
   set bsValue(value: Date) {
+    if (this._bsValue === value) { return; }
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -116,8 +117,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy {
     // if date changes from picker (view -> model)
     this.subscriptions.push(this._datepickerRef.instance
       .valueChange.subscribe((value: Date) => {
-        if (value === this._bsValue) {return; }
-        this.bsValueChange.emit(value);
+        this.bsValue = value;
         this.hide();
       }));
   }
