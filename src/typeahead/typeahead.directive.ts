@@ -7,6 +7,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
@@ -91,6 +92,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected renderer: Renderer;
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
+  private _subscriptions: Subscription[] = [];
 
   @HostListener('keyup', ['$event'])
   public onChange(e: any): void {
@@ -247,11 +249,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): any {
+    // clean up subscriptions
+    for (const sub of this._subscriptions) {
+      sub.unsubscribe();
+    }
     this._typeahead.dispose();
   }
 
   protected asyncActions(): void {
-    this.keyUpEventEmitter
+    this._subscriptions.push(this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap(() => this.typeahead)
       .subscribe(
@@ -261,11 +267,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         (err: any) => {
           console.error(err);
         }
-      );
+      ));
   }
 
   protected syncActions(): void {
-    this.keyUpEventEmitter
+    this._subscriptions.push(this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap((value: string) => {
         let normalizedQuery = this.normalizeQuery(value);
@@ -283,7 +289,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         (err: any) => {
           console.error(err);
         }
-      );
+      ));
   }
 
   protected normalizeOption(option: any): any {
