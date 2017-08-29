@@ -6,7 +6,7 @@ import { fakeAsync, discardPeriodicTasks, tick, TestBed, ComponentFixture, injec
 import { createGenericTestComponent } from './test/common';
 
 import { By } from '@angular/platform-browser';
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 import { CarouselModule, CarouselComponent, CarouselConfig } from '../../carousel';
 
@@ -33,12 +33,12 @@ function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[]): void {
 
 describe('ngb-carousel', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestComponent], imports: [CarouselModule.forRoot()]});
+    TestBed.configureTestingModule({ declarations: [TestComponent], imports: [CarouselModule.forRoot()] });
   });
 
   it('should initialize inputs with default values', () => {
     const defaultConfig = new CarouselConfig();
-    const carousel = new CarouselComponent(new CarouselConfig());
+    const carousel = new CarouselComponent(new CarouselConfig(), new NgZone({}));
 
     expect(carousel.interval).toBe(defaultConfig.interval);
     expect(carousel.noWrap).toBe(defaultConfig.noWrap);
@@ -83,7 +83,7 @@ describe('ngb-carousel', () => {
       <carousel [activeSlide] = "activeSlideIndex">
         <slide>slide1</slide>
         <slide>slide2</slide>
-      </carousel>       
+      </carousel>
      `;
 
     const fixture = createTestComponent(html);
@@ -370,7 +370,7 @@ describe('ngb-carousel', () => {
     let config: CarouselConfig;
 
     beforeEach(() => {
-      TestBed.configureTestingModule({imports: [CarouselModule.forRoot()]});
+      TestBed.configureTestingModule({ imports: [CarouselModule.forRoot()] });
     });
 
     beforeEach(inject([CarouselConfig], (c: CarouselConfig) => {
@@ -399,7 +399,7 @@ describe('ngb-carousel', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule(
-        {imports: [CarouselModule.forRoot()], providers: [{provide: CarouselConfig, useValue: config}]});
+        { imports: [CarouselModule.forRoot()], providers: [{ provide: CarouselConfig, useValue: config }] });
     });
 
     it('should initialize inputs with provided config as provider', () => {
@@ -415,8 +415,8 @@ describe('ngb-carousel', () => {
 
 });
 
-@Component({selector: 'test-cmp', template: ''})
+@Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
   public activeSlideIndex: number;
-  // keyboard = true;
+  keyboard: boolean;
 }

@@ -17,6 +17,8 @@ export class PopoverConfig {
    * event names.
    */
   public triggers: string = 'click';
+
+  outsideClick = false;
   /**
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".

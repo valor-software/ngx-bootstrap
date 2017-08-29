@@ -36,12 +36,13 @@ export { CollapseDirective, CollapseModule } from './collapse';
 
 export {
   DateFormatter, DatePickerComponent, DatepickerConfig, DatepickerModule,
-  DayPickerComponent, MonthPickerComponent, YearPickerComponent
+  DayPickerComponent, MonthPickerComponent, YearPickerComponent,
+  BsDatepickerModule
 } from './datepicker';
 
 export {
   ModalDirective, ModalOptions, ModalBackdropOptions, ModalBackdropComponent,
-  ModalModule
+  ModalModule, BsModalRef, BsModalService
 } from './modal';
 
 export {

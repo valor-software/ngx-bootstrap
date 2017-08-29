@@ -12,11 +12,18 @@ export class DemoTabsDynamicComponent {
     {title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true}
   ];
 
-  public setActiveTab(index: number): void {
-    this.tabs[index].active = true;
+  public addNewTab(): void {
+    const newTabIndex = this.tabs.length + 1;
+    this.tabs.push({
+      title: `Dynamic Title ${newTabIndex}`,
+      content: `Dynamic content ${newTabIndex}`,
+      disabled:false,
+      removable:true
+    });
   }
 
-  public removeTabHandler(/*tab:any*/): void {
+  public removeTabHandler(tab:any): void {
+    this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
   }
 }

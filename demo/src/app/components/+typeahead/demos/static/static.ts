@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import 'rxjs/add/observable/of';
 
 @Component({
   selector: 'demo-typeahead-static',

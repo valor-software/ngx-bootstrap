@@ -182,11 +182,11 @@ describe('popover', () => {
 
     it('should properly cleanup popovers with manual triggers', () => {
       const fixture = createTestComponent(`<template [ngIf]="show">
-                                            <div popover="Great tip!" triggers="manual" #p="bs-popover" (mouseenter)="p.show()"></div>
+                                            <div popover="Great tip!" triggers="manual" #p="bs-popover" (mouseover)="p.show()"></div>
                                         </template>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
-      directive.triggerEventHandler('mouseenter', {});
+      directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement))
         .not
@@ -473,10 +473,10 @@ describe('popover', () => {
     });
 
     it('should non-default toggle triggers', () => {
-      const fixture = createTestComponent(`<div popover="Great tip!" triggers="mouseenter:click"></div>`);
+      const fixture = createTestComponent(`<div popover="Great tip!" triggers="mouseover:click"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
-      directive.triggerEventHandler('mouseenter', {});
+      directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement))
         .not
@@ -489,10 +489,10 @@ describe('popover', () => {
     });
 
     it('should support multiple triggers', () => {
-      const fixture = createTestComponent(`<div popover="Great tip!" triggers="mouseenter:mouseleave click"></div>`);
+      const fixture = createTestComponent(`<div popover="Great tip!" triggers="mouseover:mouseout click"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
-      directive.triggerEventHandler('mouseenter', {});
+      directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement))
         .not
@@ -508,7 +508,7 @@ describe('popover', () => {
       const fixture = createTestComponent(`<div popover="Great tip!" triggers="manual"></div>`);
       const directive = fixture.debugElement.query(By.directive(PopoverDirective));
 
-      directive.triggerEventHandler('mouseenter', {});
+      directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement))
         .toBeNull();

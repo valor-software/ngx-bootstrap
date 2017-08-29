@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
+﻿import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -79,19 +79,23 @@ export class TabsetComponent implements OnDestroy {
     tab.active = this.tabs.length === 1 && tab.active !== false;
   }
 
-  public removeTab(tab:TabDirective):void {
+  public removeTab(tab: TabDirective, options = {reselect: true, emit: true}):void {
     let index = this.tabs.indexOf(tab);
     if (index === -1 || this.isDestroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
-    if (tab.active && this.hasAvailableTabs(index)) {
+    if (options.reselect && tab.active && this.hasAvailableTabs(index)) {
       let newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }
-
-    tab.removed.emit(tab);
+    if(options.emit) {
+      tab.removed.emit(tab);
+    }
     this.tabs.splice(index, 1);
+    if (tab.elementRef.nativeElement.parentNode) {
+      tab.elementRef.nativeElement.parentNode.removeChild(tab.elementRef.nativeElement);
+    }
   }
 
   protected getClosestTabIndex(index:number):number {
@@ -130,6 +134,7 @@ export class TabsetComponent implements OnDestroy {
   protected setClassMap():void {
     this.classMap = {
       'nav-stacked': this.vertical,
+      'flex-column': this.vertical,
       'nav-justified': this.justified,
       [`nav-${this.type}`]: true
     };
