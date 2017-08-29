@@ -192,7 +192,7 @@ describe('tooltip', () => {
         const fixture = createTestComponent(`<div tooltip="Great tip!" placement="auto"></div>`);
         const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
-        directive.triggerEventHandler('mouseenter', {});
+        directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
