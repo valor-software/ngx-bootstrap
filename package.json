@@ -81,7 +81,7 @@
     "@angular/tsc-wrapped": "0.5.1",
     "@types/jasmine": "2.5.53",
     "@types/marked": "0.3.0",
-    "@types/node": "8.0.24",
+    "@types/node": "8.0.26",
     "@types/webpack": "3.0.9",
     "bootstrap": "3.3.7",
     "classlist-polyfill": "1.2.0",
