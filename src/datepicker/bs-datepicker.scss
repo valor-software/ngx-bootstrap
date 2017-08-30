@@ -359,7 +359,7 @@
     border-radius: 4px 0 0 4px;
 
     & + & {
-      margin-left: 2px;
+      margin-left: 10px;
     }
 
     .bs-datepicker {
@@ -500,6 +500,28 @@
     img {
       vertical-align: initial;
       margin-left: 4px;
+    }
+  }
+}
+
+/* screen size < 1024px */
+@media (max-width: 1023px) {
+  bs-datepicker-container,
+  bs-daterangepicker-container {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+
+  .bs-datepicker {
+    &-multiple {
+      display: flex;
+
+      & + & {
+        margin-top: 10px;
+        margin-left: 0;
+      }
     }
   }
 }
