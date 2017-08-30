@@ -24,7 +24,6 @@ export class BsDatepickerContainerComponent
   set value(value: Date) {
     this._effects.setValue(value);
   }
-
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   _subs: Subscription[] = [];
@@ -37,6 +36,7 @@ export class BsDatepickerContainerComponent
   }
 
   ngOnInit(): void {
+    this.containerClass = this._config.containerClass;
     this._effects
       .init(this._store)
       // intial state options

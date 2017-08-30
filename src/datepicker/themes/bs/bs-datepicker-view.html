@@ -1,5 +1,5 @@
 <!-- days calendar view mode -->
-<div class="bs-datepicker theme-green" *ngIf="viewMode | async">
+<div class="bs-datepicker" [ngClass]="containerClass" *ngIf="viewMode | async">
   <div class="bs-datepicker-container">
 
     <!--calendars-->

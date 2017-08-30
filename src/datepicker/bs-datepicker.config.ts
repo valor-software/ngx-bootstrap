@@ -9,6 +9,8 @@ export class BsDatepickerConfig implements DatepickerRenderOptions,
   minDate?: Date;
   maxDate?: Date;
 
+  containerClass = 'theme-green';
+
   // DatepickerRenderOptions
   displayMonths = 1;
   showWeekNumbers = true;

@@ -44,7 +44,7 @@ describe('tooltip', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule(
-        {declarations: [TestComponent, TestOnPushComponent], imports: [TooltipModule.forRoot()]});
+      {declarations: [TestComponent, TestOnPushComponent], imports: [TooltipModule.forRoot()]});
   });
 
   function getWindow(element: any): HTMLElement { return element.querySelector('bs-tooltip-container'); }
@@ -233,7 +233,7 @@ describe('tooltip', () => {
 
       it('should support multiple triggers', () => {
         const fixture =
-            createTestComponent(`<div tooltip="Great tip!" triggers="mouseover:mouseout click"></div>`);
+          createTestComponent(`<div tooltip="Great tip!" triggers="mouseover:mouseout click"></div>`);
         const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
         directive.triggerEventHandler('mouseover', {});
@@ -333,7 +333,7 @@ describe('tooltip', () => {
     it('should properly destroy tooltips when the "container" option is used', () => {
       const selector = 'body';
       const fixture =
-          createTestComponent(`<div *ngIf="show" tooltip="Great tip!" container="` + selector + `"></div>`);
+        createTestComponent(`<div *ngIf="show" tooltip="Great tip!" container="` + selector + `"></div>`);
       const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
       directive.triggerEventHandler('mouseover', {});
@@ -349,7 +349,7 @@ describe('tooltip', () => {
   describe('visibility', () => {
     it('should emit events when showing and hiding popover', () => {
       const fixture = createTestComponent(
-          `<div tooltip="Great tip!" triggers="click" (onShown)="shown()" (onHidden)="hidden()"></div>`);
+        `<div tooltip="Great tip!" triggers="click" (onShown)="shown()" (onHidden)="hidden()"></div>`);
       const directive = fixture.debugElement.query(By.directive(TooltipDirective));
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
@@ -368,7 +368,7 @@ describe('tooltip', () => {
 
     it('should not emit close event when already closed', () => {
       const fixture = createTestComponent(
-          `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
+        `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
       let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
@@ -387,7 +387,7 @@ describe('tooltip', () => {
 
     it('should not emit open event when already opened', () => {
       const fixture = createTestComponent(
-          `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
+        `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
 
       let shownSpy = spyOn(fixture.componentInstance, 'shown');
       let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
@@ -450,7 +450,7 @@ describe('tooltip', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule(
-          {imports: [TooltipModule.forRoot()], providers: [{provide: TooltipConfig, useValue: config}]});
+        {imports: [TooltipModule.forRoot()], providers: [{provide: TooltipConfig, useValue: config}]});
     });
 
     it('should initialize inputs with provided config as provider', () => {

@@ -5,7 +5,7 @@ import { getDayOfWeek, getMonth } from '../utils/date-getters';
 export interface LocaleOptionsFormat {
   format: string[];
   standalone: string[];
-  isFormat: RegExp;
+  isFormat?: RegExp;
 }
 
 export type LocaleOptions = string[] | LocaleOptionsFormat;
@@ -24,7 +24,7 @@ export interface LocaleData {
   abbr?: string;
 
   months?: LocaleOptions;
-  monthsShort?: string[];
+  monthsShort?: LocaleOptions;
   weekdays?: LocaleOptions;
   weekdaysMin?: string[];
   weekdaysShort?: string[];

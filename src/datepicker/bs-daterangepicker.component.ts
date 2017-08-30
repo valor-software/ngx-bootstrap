@@ -53,10 +53,6 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
    */
   @Output() onHidden: EventEmitter<any>;
 
-  // here will be parsed options and set defaults
-  // @Input()  config: BsDatePickerOptions;
-  // configChange: EventEmitter<BsDatePickerOptions> = new EventEmitter();
-
   _bsValue: Date[];
   @Input()
   set bsValue(value: Date[]) {
@@ -65,12 +61,13 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
     this.bsValueChange.emit(value);
   }
 
+  @Input() bsConfig: Partial<BsDatepickerConfig>;
   @Input() minDate: Date;
   @Input() maxDate: Date;
 
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
-  protected subscriptions: Subscription[] = [];
+  protected _subs: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
@@ -118,12 +115,15 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
       return;
     }
 
-    const config = Object.assign({}, this._config, {
-      displayMonths: 2,
-      value: this._bsValue,
-      minDate: this.minDate || this._config.minDate,
-      maxDate: this.maxDate || this._config.maxDate
-    });
+    const config = Object.assign({},
+      this._config,
+      {displayMonths: 2},
+      this.bsConfig,
+      {
+        value: this._bsValue,
+        minDate: this.minDate || this._config.minDate,
+        maxDate: this.maxDate || this._config.maxDate
+      });
 
     this._datepickerRef = this._datepicker
       .provide({provide: BsDatepickerConfig, useValue: config})
@@ -133,12 +133,12 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
       .show({placement: this.placement});
 
     // if date changes from external source (model -> view)
-    this.subscriptions.push(this.bsValueChange.subscribe((value: Date[]) => {
+    this._subs.push(this.bsValueChange.subscribe((value: Date[]) => {
       this._datepickerRef.instance.value = value;
     }));
 
     // if date changes from picker (view -> model)
-    this.subscriptions.push(this._datepickerRef.instance
+    this._subs.push(this._datepickerRef.instance
       .valueChange
       .filter((range: Date[]) => range && range[0] && !!range[1])
       .subscribe((value: Date[]) => {
@@ -154,6 +154,9 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
   hide(): void {
     if (this.isOpen) {
       this._datepicker.hide();
+    }
+    for (const sub of this._subs) {
+      sub.unsubscribe();
     }
   }
 

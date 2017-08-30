@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { BsDatepickerContainer } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { DayViewModel } from '../../models/index';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -17,16 +18,16 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 })
 export class BsDaterangepickerContainerComponent
   extends BsDatepickerContainer
-  implements OnInit {
+  implements OnInit, OnDestroy {
 
   set value(value: Date[]) {
-    this._store.dispatch(this._actions.selectRange(value || []));
+    this._effects.setRangeValue(value);
   }
 
   valueChange = new EventEmitter<Date[]>();
 
   _rangeStack: Date[] = [];
-
+  _subs: Subscription[] = [];
   constructor(private _config: BsDatepickerConfig,
               private _store: BsDatepickerStore,
               private _actions: BsDatepickerActions,
@@ -36,6 +37,7 @@ export class BsDaterangepickerContainerComponent
   }
 
   ngOnInit(): void {
+    this.containerClass = this._config.containerClass;
     this._effects
       .init(this._store)
       // intial state options
@@ -49,8 +51,9 @@ export class BsDaterangepickerContainerComponent
 
     // todo: move it somewhere else
     // on selected date change
-    this._store.select(state => state.selectedRange)
-      .subscribe(date => this.valueChange.emit(date));
+    this._subs.push(this._store
+      .select(state => state.selectedRange)
+      .subscribe(date => this.valueChange.emit(date)));
   }
 
   daySelectHandler(day: DayViewModel): void {
@@ -78,5 +81,12 @@ export class BsDaterangepickerContainerComponent
     if (this._rangeStack.length === 2) {
       this._rangeStack = [];
     }
+  }
+
+  ngOnDestroy(): void {
+    for (const sub of this._subs) {
+      sub.unsubscribe();
+    }
+    this._effects.destroy();
   }
 }
