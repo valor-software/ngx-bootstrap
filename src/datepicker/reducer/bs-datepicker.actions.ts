@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DatepickerRenderOptions, DayHoverEvent } from '../models/index';
-import { Action } from '../../mini-ngrx/index';
 import { TimeUnit } from '../../bs-moment/types';
+import { Action } from '../../mini-ngrx/index';
+import { BsDatepickerViewMode, BsViewNavigationEvent, CellHoverEvent, DatepickerRenderOptions } from '../models/index';
 
 @Injectable()
 export class BsDatepickerActions {
@@ -9,30 +9,22 @@ export class BsDatepickerActions {
   static readonly FORMAT = '[datepicker] format datepicker values';
   static readonly FLAG = '[datepicker] set flags';
   static readonly SELECT = '[datepicker] select date';
-  static readonly STEP_NAVIGATION = '[datepicker] shift view date';
-  static readonly RENDER_OPTIONS = '[datepicker] update render options';
+  static readonly NAVIGATE_OFFSET = '[datepicker] shift view date';
+  static readonly NAVIGATE_TO = '[datepicker] change view date';
+  static readonly SET_OPTIONS = '[datepicker] update render options';
   static readonly HOVER = '[datepicker] hover date';
+  static readonly CHANGE_VIEWMODE = '[datepicker] switch view mode';
+
+  static readonly SET_MIN_DATE = '[datepicker] set min date';
+  static readonly SET_MAX_DATE = '[datepicker] set max date';
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
 
-  calculate(viewDate: Date): Action {
-    return {
-      type: BsDatepickerActions.CALCULATE,
-      payload: viewDate
-    };
-  }
+  calculate(): Action {return {type: BsDatepickerActions.CALCULATE}; }
 
-  format(): Action {
-    return {
-      type: BsDatepickerActions.FORMAT
-    };
-  }
+  format(): Action {return {type: BsDatepickerActions.FORMAT}; }
 
-  flag(): Action {
-    return {
-      type: BsDatepickerActions.FLAG
-    };
-  }
+  flag(): Action { return {type: BsDatepickerActions.FLAG}; }
 
   select(date: Date): Action {
     return {
@@ -41,16 +33,30 @@ export class BsDatepickerActions {
     };
   }
 
+  changeViewMode(event: BsDatepickerViewMode): Action {
+    return {
+      type: BsDatepickerActions.CHANGE_VIEWMODE,
+      payload: event
+    };
+  }
+
+  navigateTo(event: BsViewNavigationEvent): Action {
+    return {
+      type: BsDatepickerActions.NAVIGATE_TO,
+      payload: event
+    };
+  }
+
   navigateStep(step: TimeUnit): Action {
     return {
-      type: BsDatepickerActions.STEP_NAVIGATION,
+      type: BsDatepickerActions.NAVIGATE_OFFSET,
       payload: step
     };
   }
 
-  renderOptions(options: DatepickerRenderOptions): Action {
+  setOptions(options: DatepickerRenderOptions): Action {
     return {
-      type: BsDatepickerActions.RENDER_OPTIONS,
+      type: BsDatepickerActions.SET_OPTIONS,
       payload: options
     };
   }
@@ -63,10 +69,24 @@ export class BsDatepickerActions {
     };
   }
 
-  hover(event: DayHoverEvent): Action {
+  hoverDay(event: CellHoverEvent): Action {
     return {
       type: BsDatepickerActions.HOVER,
-      payload: event.isHovered ? event.day.date : null
+      payload: event.isHovered ? event.cell.date : null
+    };
+  }
+
+  minDate(date: Date): Action {
+    return {
+      type: BsDatepickerActions.SET_MIN_DATE,
+      payload: date
+    };
+  }
+
+  maxDate(date: Date): Action {
+    return {
+      type: BsDatepickerActions.SET_MAX_DATE,
+      payload: date
     };
   }
 }

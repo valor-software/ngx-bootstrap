@@ -3,14 +3,14 @@
 
 /* .bs-datepicker */
 .bs-datepicker {
-  display: inline-block;
-  vertical-align: top;
-  min-width: 279px;
-  min-height: 250px;
+  display: flex;
+  align-items: stretch;
+  flex-flow: row wrap;
   background: $main-bg;
-  box-shadow: 0 10px 20px rgba(84, 112, 139, 0.1);
+  box-shadow: 0 0 10px 0 $main-box-shadow;
   position: relative;
   z-index: 1;
+
 
   &:after {
     clear: both;
@@ -97,27 +97,14 @@
         padding: 0 13px;
       }
     }
-
-    /* .bs-datepicker-head.years button.current,
-       .bs-datepicker-head.months button.current */
-    &.years,
-    &.months {
-      button.current {
-        width: 155px;
-        padding: 0;
-      }
-    }
   }
 
-  &-head,
-  &-btns {
+  &-head {
     button {
-      &:hover,
-      &.colored:hover:after {
+      &:hover {
         background-color: rgba(0, 0, 0, 0.1);
       }
-      :active,
-      &.colored:active:after {
+      &:active {
         background-color: rgba(0, 0, 0, 0.2);
       }
     }
@@ -127,7 +114,8 @@
   &-body {
     padding: 10px;
     border-radius: 0 0 3px 3px;
-    min-height: 230px;
+    min-height: 232px;
+    min-width: 278px;
     border: 1px solid $border-color;
 
     .days.weeks {
@@ -158,9 +146,6 @@
           display: block;
           margin: 0 auto;
           font-size: 13px;
-          width: 32px;
-          height: 32px;
-          line-height: 32px;
           border-radius: 50%;
           position: relative;
           /*z-index: 1;*/
@@ -258,6 +243,10 @@
         }
 
         span {
+          width: 32px;
+          height: 32px;
+          line-height: 32px;
+
           &.select-start {
             z-index: 2;
           }
@@ -305,7 +294,6 @@
         }
       }
 
-      &.months,
       &.years {
         td {
           span {
@@ -324,26 +312,18 @@
           }
         }
       }
-    }
-  }
 
-  /* .bs-timepicker */
-  &.bs-timepicker {
-    &:after {
-      content: '';
-      display: block;
-      clear: both;
-    }
+      &.months {
+        td {
+          height: 52px;
 
-    .bs-datepicker-body {
-      border: 1px solid $border-color;
-      float: left;
+          span {
+            padding: 6px;
+            border-radius: 15px;
+          }
+        }
+      }
     }
-  }
-
-  &.bs-timepicker,
-  &.bs-padding {
-    padding: 15px;
   }
 
   /* .current-timedate */
@@ -376,9 +356,11 @@
   /* .bs-datepicker-multiple */
   &-multiple {
     display: inline-block;
-    border-radius: 4px;
-    box-shadow: 0 3px 11px rgba(33, 37, 39, 0.2);
-    background-color: $main-bg;
+    border-radius: 4px 0 0 4px;
+
+    & + & {
+      margin-left: 2px;
+    }
 
     .bs-datepicker {
       box-shadow: none;
@@ -410,58 +392,18 @@
   }
 
   /* .bs-datepicker-btns */
-  &-container + &-btns {
-    border-top: 1px solid $border-color;
+  &-container {
+    padding: 15px;
   }
 
-  &-btns {
-    padding: 10px 0;
-    text-align: right;
-    clear: both;
-    border-top: 1px solid $border-color;
-
-    button {
-      padding: 0 16px;
-      border: 0;
-      border-radius: 15px;
-      height: 30px;
-      color: $font-color-03;
-      position: relative;
-
-      &:after {
-        content: "";
-        transition: 0.3s;
-        border-radius: 15px;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-
-      span {
-        position: relative;
-        z-index: 1;
-      }
-
-      &.colored {
-        color: $font-color-01;
-      }
-
-      &:not(.colored) {
-        background: transparent;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+  /*.bs-datepicker-custom-range */
+  &-custom-range {
+    padding: 15px;
+    background: $custom-range-bg;
   }
 
   /* .bs-datepicker-predefined-btns */
   &-predefined-btns {
-    padding: 15px;
-
     button {
       width: 100%;
       display: block;
@@ -476,7 +418,7 @@
       transition: 0.3s;
 
       &:active,
-      &hover {
+      &:hover {
         background-color: $btn-bg2-hover;
       }
     }
@@ -486,12 +428,25 @@
   .is-other-month {
     color: rgba(0, 0, 0, 0.25);
   }
+
+  /* .bs-datepicker-buttons */
+  &-buttons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    padding-top: 10px;
+    border-top: 1px solid $border-color;
+
+    .btn-default {
+      margin-left: 10px;
+    }
+  }
 }
 
 /* .bs-timepicker */
 .bs-timepicker {
   &-container {
-    text-align: center;
+    padding: 10px 0;
   }
 
   &-label {

@@ -1,19 +1,20 @@
 import {
   Component, EventEmitter, Input, OnDestroy, OnInit, Output, ComponentRef, ElementRef,
   Renderer,
-  ViewContainerRef
+  ViewContainerRef, SimpleChanges, OnChanges
 } from '@angular/core';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ComponentLoader } from '../component-loader/component-loader.class';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 
 @Component({
   selector: 'bs-daterangepicker,[bsDaterangepicker]',
   exportAs: 'bsDaterangepicker',
   template: ' '
 })
-export class BsDaterangepickerComponent implements OnInit, OnDestroy {
+export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
@@ -64,6 +65,9 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
     this.bsValueChange.emit(value);
   }
 
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
+
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
   protected subscriptions: Subscription[] = [];
@@ -71,16 +75,38 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
 
-  constructor(_elementRef: ElementRef,
+  constructor(private _config: BsDatepickerConfig,
+              _elementRef: ElementRef,
               _renderer: Renderer,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
     this._datepicker = cis
       .createLoader<BsDaterangepickerContainerComponent>(_elementRef, _viewContainerRef, _renderer);
-    // .provide({provide: PopoverConfig, useValue: _config});
-    // Object.assign(this, _config);
+    Object.assign(this, _config);
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
+  }
+
+  ngOnInit(): any {
+    this._datepicker.listen({
+      outsideClick: this.outsideClick,
+      triggers: this.triggers,
+      show: () => this.show()
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this._datepickerRef || !this._datepickerRef.instance) {
+      return;
+    }
+
+    if (changes.minDate) {
+      this._datepickerRef.instance.minDate = this.minDate;
+    }
+
+    if (changes.maxDate) {
+      this._datepickerRef.instance.maxDate = this.maxDate;
+    }
   }
 
   /**
@@ -92,15 +118,19 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
       return;
     }
 
+    const config = Object.assign({}, this._config, {
+      displayMonths: 2,
+      value: this._bsValue,
+      minDate: this.minDate || this._config.minDate,
+      maxDate: this.maxDate || this._config.maxDate
+    });
+
     this._datepickerRef = this._datepicker
+      .provide({provide: BsDatepickerConfig, useValue: config})
       .attach(BsDaterangepickerContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})
       .show({placement: this.placement});
-
-    // link with datepicker
-    // set initial value of picker
-    this._datepickerRef.instance.value = this._bsValue;
 
     // if date changes from external source (model -> view)
     this.subscriptions.push(this.bsValueChange.subscribe((value: Date[]) => {
@@ -137,14 +167,6 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy {
     }
 
     this.show();
-  }
-
-  ngOnInit(): any {
-    this._datepicker.listen({
-      outsideClick: this.outsideClick,
-      triggers: this.triggers,
-      show: () => this.show()
-    });
   }
 
   ngOnDestroy(): any {

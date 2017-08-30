@@ -36,11 +36,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <p>Notebale change is additional css for it <code> "/datepicker/bs-datepicker.css"</code></p>
     <p>In nearest time will be added:</p>
     <ul>
-      <li>1. Month and year selection</li>
-      <li>2. Min/max dates restrcitions</li>
+      <li><s>1. Month and year selection</s></li>
+      <li><s>2. Min/max dates restrcitions</s></li>
       <li>3. Theming - this will be a small breaking change</li>
       <li>4. Options to replace any part of template</li>
-      <li>5. Configuration</li>
+      <li><s>5. Configuration</s></li>
       <li>6. Integration with forms, only for input fields</li>
       <li>etc.</li>
     </ul>

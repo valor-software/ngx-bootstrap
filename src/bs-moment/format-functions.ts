@@ -1,7 +1,7 @@
 import { Locale } from './locale/locale.class';
 import { zeroFill } from './utils';
 import { isFunction } from './utils/type-checks';
-import { DateFormatterFn } from '../datepicker/models/index';
+import { DateFormatterFn } from './types';
 
 export let formatFunctions: { [key: string]: (date: Date, locale: Locale) => string } = {};
 export let formatTokenFunctions: { [key: string]: DateFormatterFn } = {};
