@@ -19,6 +19,9 @@ $theme-dark-blue: #337ab7;
 $theme-red:       #d9534f;
 $theme-orange:    #f0ad4e;
 
+$disabled-background:  rgba(221, 221, 221, 0.3);
+$disabled-color:       #f5f5f5;
+
 $theme-list: (
   'default': $theme-gray,
   'green': $theme-green,
