@@ -24,6 +24,9 @@ export abstract class BsDatepickerContainer {
     this._effects.setMaxDate(value);
   }
 
+  set isDisabled(value: boolean) {
+    // todo: implement is disabled effect
+  }
 
   viewMode: Observable<BsDatepickerViewMode>;
   daysCalendar: Observable<DaysCalendarViewModel[]>;

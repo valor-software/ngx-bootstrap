@@ -72,6 +72,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   @Input() bsConfig: Partial<BsDatepickerConfig>;
+  @Input() isDisabled: boolean;
   @Input() minDate: Date;
   @Input() maxDate: Date;
 
@@ -87,6 +88,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
               _renderer: Renderer,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
+    // todo: assign only subset of fields
     Object.assign(this, this._config);
     this._datepicker = cis
       .createLoader<BsDatepickerContainerComponent>(_elementRef, _viewContainerRef, _renderer);
@@ -113,6 +115,10 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
+    }
+
+    if (changes.maxDate) {
+      this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
   }
 

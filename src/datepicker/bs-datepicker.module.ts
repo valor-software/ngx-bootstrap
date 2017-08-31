@@ -19,6 +19,7 @@ import { BsCurrentDateViewComponent } from './themes/bs/bs-current-date-view.com
 import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.component';
+import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -39,11 +40,16 @@ import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.compon
     BsDaterangepickerContainerComponent,
 
     BsDatepickerComponent,
+    BsDatepickerInputDirective,
     BsDaterangepickerComponent
   ],
   entryComponents: [BsDatepickerContainerComponent, BsDaterangepickerContainerComponent],
-  exports: [BsDatepickerContainerComponent, BsDaterangepickerContainerComponent,
-    BsDatepickerComponent, BsDaterangepickerComponent]
+  exports: [
+    BsDatepickerContainerComponent,
+    BsDaterangepickerContainerComponent,
+    BsDatepickerComponent,
+    BsDatepickerInputDirective,
+    BsDaterangepickerComponent]
 })
 export class BsDatepickerModule {
   constructor() {

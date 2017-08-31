@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 export class DemoDatePickerPopupComponent {
   minDate = new Date(2017, 5, 10);
   maxDate = new Date(2018, 9, 15);
-  bsValue: any ;
+  bsValue: any;
   bsRangeValue: any = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
+
+  log(v: any) {console.log(v);}
 }

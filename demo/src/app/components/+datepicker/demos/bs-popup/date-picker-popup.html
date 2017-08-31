@@ -5,6 +5,12 @@
        [maxDate]="maxDate"
        #dp="bsDatepicker"
        bsDatepicker [(bsValue)]="bsValue">
+<input type="text"
+       value="{{ bsValue | date:'yMd'}}"
+       [minDate]="minDate"
+       [maxDate]="maxDate"
+       [(ngModel)]="bsValue"
+       bsDatepicker>
 <span style="display: inline-block">
   <button class="btn btn-success" (click)="dp.toggle()">Date Picker popup</button>
 </span>
