@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class DatepickerConfig {
-  locale = 'ar';
+  locale = 'en';
   public datepickerMode: string = 'day';
   public startingDay: number = 0;
   public yearRange: number = 20;
