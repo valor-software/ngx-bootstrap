@@ -198,7 +198,7 @@ describe('tooltip', () => {
 
         expect(windowEl).toHaveCssClass('tooltip');
         expect(windowEl).toHaveCssClass('tooltip-auto');
-        expect(windowEl).toHaveCssClass('left');
+        expect(windowEl).toHaveCssClass('right');
         expect(windowEl.textContent.trim()).toBe('Great tip!');
       });
     });
