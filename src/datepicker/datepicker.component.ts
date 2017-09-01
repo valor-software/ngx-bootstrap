@@ -15,6 +15,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   template: `
     <datepicker-inner [activeDate]="activeDate"
                       (update)="onUpdate($event)"
+                      [locale]="config.locale"
                       [datepickerMode]="datepickerMode"
                       [initDate]="initDate"
                       [minDate]="minDate"
