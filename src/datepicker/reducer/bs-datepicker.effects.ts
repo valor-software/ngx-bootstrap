@@ -43,8 +43,12 @@ export class BsDatepickerEffects {
 
   /** setters */
 
-  setValue(value: Date) {
+  setValue(value: Date): void {
     this._store.dispatch(this._actions.select(value));
+  }
+
+  setRangeValue(value: Date[]): void {
+    this._store.dispatch(this._actions.selectRange(value));
   }
 
   setMinDate(value: Date): BsDatepickerEffects {

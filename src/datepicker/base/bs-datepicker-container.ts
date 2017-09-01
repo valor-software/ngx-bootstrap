@@ -11,15 +11,10 @@ import {
 } from '../models/index';
 
 export abstract class BsDatepickerContainer {
-  /** @deperecated */
-  _customRangesFish: BsCustomDates[] = [
-    {label: 'today', value: new Date()},
-    {label: 'today1', value: new Date()},
-    {label: 'today2', value: new Date()},
-    {label: 'today3', value: new Date()}
-  ];
+  containerClass: string;
 
   _effects: BsDatepickerEffects;
+  _customRangesFish: BsCustomDates[] = [];
 
   set minDate(value: Date) {
     this._effects.setMinDate(value);

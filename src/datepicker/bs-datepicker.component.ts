@@ -19,7 +19,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 @Component({
   selector: 'bs-datepicker,[bsDatepicker]',
   exportAs: 'bsDatepicker',
-  template: ' '
+  template: '<ng-content></ng-content>'
 })
 export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   /**
@@ -71,6 +71,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     this.bsValueChange.emit(value);
   }
 
+  @Input() bsConfig: Partial<BsDatepickerConfig>;
   @Input() minDate: Date;
   @Input() maxDate: Date;
 
@@ -124,7 +125,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
-    const config = Object.assign({}, this._config, {
+    const config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
       minDate: this.minDate || this._config.minDate,
       maxDate: this.maxDate || this._config.maxDate

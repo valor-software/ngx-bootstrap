@@ -18,9 +18,6 @@ import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index'
 import { isArray } from '../../bs-moment/utils/type-checks';
 
 export function bsDatepickerReducer(state = initialDatepickerState, action: Action): BsDatepickerState {
-  if (!(/hover/.test(action.type))) {
-    console.log(action);
-  }
   switch (action.type) {
     case(BsDatepickerActions.CALCULATE): {
       return calculateReducer(state);

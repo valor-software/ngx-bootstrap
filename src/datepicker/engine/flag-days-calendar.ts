@@ -24,13 +24,19 @@ export function flagDaysCalendar(formattedMonth: DaysCalendarViewModel,
 
         const isHovered = !isOtherMonth && isSameDay(day.date, options.hoveredDate);
         // date range picker
-        const isSelectionStart = !isOtherMonth && isSameDay(day.date, options.selectedRange[0]);
-        const isSelectionEnd = !isOtherMonth && isSameDay(day.date, options.selectedRange[1]);
+        const isSelectionStart = !isOtherMonth
+          && options.selectedRange
+          && isSameDay(day.date, options.selectedRange[0]);
+        const isSelectionEnd = !isOtherMonth
+          && options.selectedRange
+          && isSameDay(day.date, options.selectedRange[1]);
 
         const isSelected = !isOtherMonth && isSameDay(day.date, options.selectedDate) ||
           isSelectionStart || isSelectionEnd;
 
-        const isInRange = !isOtherMonth && isDateInRange(day.date, options.selectedRange, options.hoveredDate);
+        const isInRange = !isOtherMonth
+          && options.selectedRange
+          && isDateInRange(day.date, options.selectedRange, options.hoveredDate);
 
         const isDisabled = isSameOrBefore(day.date, options.minDate, 'day')
           || isSameOrAfter(day.date, options.maxDate, 'day');

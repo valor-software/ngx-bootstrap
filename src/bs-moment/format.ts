@@ -13,7 +13,11 @@ import { isDateValid } from './utils/type-checks';
 
 export function formatDate(date: Date, format: string, locale = 'en'): string {
   const _locale = getLocale(locale);
+  if (!_locale) {
+    throw new Error(`Locale "${locale}" is not defined, please add it with "defineLocale(...)"`);
+  }
   const output = formatMoment(date, format, _locale);
+
   return _locale.postformat(output);
 }
 
