@@ -111,9 +111,11 @@ export class DatePickerComponent implements ControlValueAccessor {
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
 
+  config: DatepickerConfig;
+
   protected _now: Date = new Date();
   protected _activeDate: Date;
-  protected config: DatepickerConfig;
+
 
   public constructor(config: DatepickerConfig) {
     this.config = config;
