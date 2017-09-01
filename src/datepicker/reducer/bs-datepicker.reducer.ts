@@ -16,6 +16,7 @@ import {
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
 import { isArray } from '../../bs-moment/utils/type-checks';
+import { startOf } from '../../bs-moment/utils/start-end-of';
 
 export function bsDatepickerReducer(state = initialDatepickerState, action: Action): BsDatepickerState {
   switch (action.type) {
@@ -32,7 +33,7 @@ export function bsDatepickerReducer(state = initialDatepickerState, action: Acti
     }
 
     case(BsDatepickerActions.NAVIGATE_OFFSET): {
-      const date = shiftDate(state.view.date, action.payload);
+      const date = shiftDate(startOf(state.view.date, 'month'), action.payload);
       const newState = {
         view: {
           mode: state.view.mode,
