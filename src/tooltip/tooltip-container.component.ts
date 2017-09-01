@@ -13,7 +13,10 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
     '[class.show]': '!isBs3',
     role: 'tooltip'
   },
-  styles: [`
+  styles: [`    
+    :host.tooltip {
+      display: block;
+    }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: calc(50% - 2.5px);
     }
