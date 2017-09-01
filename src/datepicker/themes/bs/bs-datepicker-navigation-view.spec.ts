@@ -53,8 +53,8 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
     setMonth(fixture, {monthTitle, yearTitle});
     const titles = getTitles(fixture);
 
-    expect(titles[0]).toBe(monthTitle);
-    expect(titles[1]).toBe(yearTitle);
+    expect(titles[0].trim()).toBe(monthTitle);
+    expect(titles[1].trim()).toBe(yearTitle);
   });
 
   it('should display navigation buttons by default', () => {
