@@ -80,7 +80,7 @@
     "@angular/platform-browser": "^2.4.4",
     "@angular/platform-browser-dynamic": "^2.4.4",
     "@angular/router": "^3.4.4",
-    "@angular/tsc-wrapped": "0.5.1",
+    "@angular/tsc-wrapped": "4.4.0-RC.0",
     "@types/jasmine": "2.5.54",
     "@types/marked": "0.3.0",
     "@types/node": "8.0.25",
