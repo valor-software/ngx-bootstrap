@@ -11,19 +11,19 @@
        [maxDate]="maxDate"
        [(ngModel)]="bsValue"
        bsDatepicker>
-<span style="display: inline-block">
-  <button class="btn btn-success" (click)="dp.toggle()">Date Picker popup</button>
-</span>
+<button class="btn btn-success" (click)="dp.toggle()">Date Picker popup</button>
 
 <br>
 <br>
 
 <pre>{{bsRangeValue}}</pre>
+<pre>{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}</pre>
 <input type="text"
        value="{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}"
        #drp="bsDaterangepicker"
        bsDaterangepicker [(bsValue)]="bsRangeValue">
-<span style="display: inline-block">
-  <button class="btn btn-success" (click)="drp.toggle()">Date Range Picker popup</button>
-</span>
+<input value="{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}"
+       bsDaterangepicker [(ngModel)]="bsRangeValue">
+<input [(ngModel)]="bsRangeValue">
+<button class="btn btn-success" (click)="drp.toggle()">Date Range Picker popup</button>
 

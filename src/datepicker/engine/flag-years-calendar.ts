@@ -4,6 +4,7 @@ import { isYearDisabled } from '../utils/bs-calendar-utils';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 
 export interface FlagYearsCalendarOptions {
+  isDisabled: boolean;
   minDate: Date;
   maxDate: Date;
   hoveredYear: Date;
@@ -16,7 +17,8 @@ export function flagYearsCalendar(yearsCalendar: YearsCalendarViewModel, options
     .forEach((years: CalendarCellViewModel[], rowIndex: number) => {
       years.forEach((year: CalendarCellViewModel, yearIndex: number) => {
         const isHovered = isSameYear(year.date, options.hoveredYear);
-        const isDisabled = isYearDisabled(year.date, options.minDate, options.maxDate);
+        const isDisabled = options.isDisabled
+          || isYearDisabled(year.date, options.minDate, options.maxDate);
 
         const newMonth = Object.assign(/*{},*/ year, {isHovered, isDisabled});
         if (year.isHovered !== newMonth.isHovered

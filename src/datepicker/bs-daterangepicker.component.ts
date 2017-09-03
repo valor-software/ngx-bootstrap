@@ -61,9 +61,10 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
     this.bsValueChange.emit(value);
   }
 
-  @Input() bsConfig: Partial<BsDatepickerConfig>;
   @Input() minDate: Date;
   @Input() maxDate: Date;
+  @Input() isDisabled: boolean;
+  @Input() bsConfig: Partial<BsDatepickerConfig>;
 
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
@@ -104,6 +105,10 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
+
+    if (changes.isDisabled) {
+      this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
   }
 
   /**
@@ -121,6 +126,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
       this.bsConfig,
       {
         value: this._bsValue,
+        isDisabled: this.isDisabled,
         minDate: this.minDate || this._config.minDate,
         maxDate: this.maxDate || this._config.maxDate
       });

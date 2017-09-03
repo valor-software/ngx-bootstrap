@@ -123,6 +123,11 @@ export function bsDatepickerReducer(state = initialDatepickerState, action: Acti
         maxDate: action.payload
       });
     }
+    case(BsDatepickerActions.SET_IS_DISABLED): {
+      return Object.assign({}, state, {
+        isDisabled: action.payload
+      });
+    }
 
     default:
       return state;
@@ -215,6 +220,7 @@ function flagReducer(state: BsDatepickerState, action: Action): BsDatepickerStat
   if (state.view.mode === 'day') {
     const flaggedMonths = state.formattedMonths
       .map((formattedMonth, monthIndex) => flagDaysCalendar(formattedMonth, {
+        isDisabled: state.isDisabled,
         minDate: state.minDate,
         maxDate: state.maxDate,
         hoveredDate: state.hoveredDate,
@@ -230,6 +236,7 @@ function flagReducer(state: BsDatepickerState, action: Action): BsDatepickerStat
   if (state.view.mode === 'month') {
     const flaggedMonthsCalendar = state.monthsCalendar
       .map((formattedMonth, monthIndex) => flagMonthsCalendar(formattedMonth, {
+        isDisabled: state.isDisabled,
         minDate: state.minDate,
         maxDate: state.maxDate,
         hoveredMonth: state.hoveredMonth,
@@ -243,6 +250,7 @@ function flagReducer(state: BsDatepickerState, action: Action): BsDatepickerStat
   if (state.view.mode === 'year') {
     const yearsCalendarFlagged = state.yearsCalendarModel
       .map((formattedMonth, yearIndex) => flagYearsCalendar(formattedMonth, {
+        isDisabled: state.isDisabled,
         minDate: state.minDate,
         maxDate: state.maxDate,
         hoveredYear: state.hoveredYear,

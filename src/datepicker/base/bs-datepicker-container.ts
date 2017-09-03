@@ -10,7 +10,7 @@ import {
   YearsCalendarViewModel
 } from '../models/index';
 
-export abstract class BsDatepickerContainer {
+export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
 
   _effects: BsDatepickerEffects;
@@ -25,7 +25,7 @@ export abstract class BsDatepickerContainer {
   }
 
   set isDisabled(value: boolean) {
-    // todo: implement is disabled effect
+    this._effects.setDisabled(value);
   }
 
   viewMode: Observable<BsDatepickerViewMode>;
