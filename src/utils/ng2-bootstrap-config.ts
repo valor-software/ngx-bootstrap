@@ -2,7 +2,7 @@ import { window } from './facade/browser';
 
 let guessedVersion: 'bs3' | 'bs4';
 
-function _guessBsVersion(): string {
+function _guessBsVersion(): 'bs3' | 'bs4' {
   if (typeof document === 'undefined') {
     return null;
   }
@@ -26,7 +26,7 @@ export function isBs3(): boolean {
 
   if (typeof window.__theme === 'undefined') {
     if (guessedVersion) {
-      return guessedVersion;
+      return guessedVersion === 'bs3';
     }
     guessedVersion = _guessBsVersion();
 
