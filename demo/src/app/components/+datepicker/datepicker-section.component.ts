@@ -62,9 +62,10 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
           <code>theme-dark-blue</code>, <code>theme-red</code>, <code>theme-orange</code></p>
         <demo-datepicker-color-theming></demo-datepicker-color-theming>
       </ng-sample-box>
-      
+
       <h3 routerLink="." fragment="locales" id="locales">Locales</h3>
-      <ng-sample-box [ts]="demos.changeLocale.component" [html]="demos.changeLocale.html">
+
+    <ng-sample-box [ts]="demos.changeLocale.component" [html]="demos.changeLocale.html">
         <p>Datepicker is fully compatible with any locale. It's possible to change a locale by changing <code>locale</code> property in <code>bsConfig</code> object</p>
         <demo-datepicker-change-locale></demo-datepicker-change-locale>
       </ng-sample-box>
@@ -81,6 +82,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <p>If you want to disable datepicker set is <code>isDisabled</code> property to true</p>
         <demo-datepicker-disabled></demo-datepicker-disabled>
       </ng-sample-box>
+
 
       <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
         <datepicker-demo></datepicker-demo>

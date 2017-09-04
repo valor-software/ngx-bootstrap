@@ -5,6 +5,7 @@ import { isMonthDisabled } from '../utils/bs-calendar-utils';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 
 export interface FlagDaysCalendarOptions {
+  isDisabled: boolean;
   minDate: Date;
   maxDate: Date;
   hoveredDate: Date;
@@ -38,7 +39,8 @@ export function flagDaysCalendar(formattedMonth: DaysCalendarViewModel,
           && options.selectedRange
           && isDateInRange(day.date, options.selectedRange, options.hoveredDate);
 
-        const isDisabled = isSameOrBefore(day.date, options.minDate, 'day')
+        const isDisabled = options.isDisabled
+          || isSameOrBefore(day.date, options.minDate, 'day')
           || isSameOrAfter(day.date, options.maxDate, 'day');
 
         // decide update or not
@@ -65,10 +67,12 @@ export function flagDaysCalendar(formattedMonth: DaysCalendarViewModel,
     });
 
   // todo: add check for linked calendars
-  formattedMonth.hideLeftArrow = options.monthIndex > 0
-    && options.monthIndex !== options.displayMonths;
-  formattedMonth.hideRightArrow = options.monthIndex < options.displayMonths
-    && (options.monthIndex + 1) !== options.displayMonths;
+  formattedMonth.hideLeftArrow = options.isDisabled
+    || (options.monthIndex > 0
+      && options.monthIndex !== options.displayMonths);
+  formattedMonth.hideRightArrow = options.isDisabled
+    || (options.monthIndex < options.displayMonths
+      && (options.monthIndex + 1) !== options.displayMonths);
 
   formattedMonth.disableLeftArrow = isMonthDisabled(
     shiftDate(formattedMonth.month, {month: -1}),

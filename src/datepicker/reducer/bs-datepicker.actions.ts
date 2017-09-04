@@ -17,6 +17,7 @@ export class BsDatepickerActions {
 
   static readonly SET_MIN_DATE = '[datepicker] set min date';
   static readonly SET_MAX_DATE = '[datepicker] set max date';
+  static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
 
@@ -87,6 +88,13 @@ export class BsDatepickerActions {
     return {
       type: BsDatepickerActions.SET_MAX_DATE,
       payload: date
+    };
+  }
+
+  isDisabled(value: boolean): Action {
+    return {
+      type: BsDatepickerActions.SET_IS_DISABLED,
+      payload: value
     };
   }
 }

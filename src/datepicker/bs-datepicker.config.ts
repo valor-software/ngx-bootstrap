@@ -6,6 +6,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions,
   DatepickerFormatOptions {
 
   value?: Date | Date[];
+  isDisabled?: boolean;
   minDate?: Date;
   maxDate?: Date;
 
@@ -14,6 +15,9 @@ export class BsDatepickerConfig implements DatepickerRenderOptions,
   // DatepickerRenderOptions
   displayMonths = 1;
   showWeekNumbers = true;
+
+  // range picker
+  rangeSeparator = ' - ';
 
   // DatepickerFormatOptions
   locale = 'en';

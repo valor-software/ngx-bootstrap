@@ -62,9 +62,6 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    */
   @Output() onHidden: EventEmitter<any>;
 
-  // @Input()  config: BsDatePickerOptions;
-  // configChange: EventEmitter<BsDatePickerOptions> = new EventEmitter();
-
   _bsValue: Date;
   /**
    * Initial value of datepicker
@@ -136,7 +133,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
 
-    if (changes.maxDate) {
+    if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
   }
@@ -152,6 +149,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
 
     const config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
+      isDisabled: this.isDisabled,
       minDate: this.minDate || this._config.minDate,
       maxDate: this.maxDate || this._config.maxDate
     });

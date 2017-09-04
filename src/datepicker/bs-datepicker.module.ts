@@ -20,6 +20,18 @@ import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.compon
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.component';
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
+import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
+
+const _exports = [
+  BsDatepickerContainerComponent,
+  BsDaterangepickerContainerComponent,
+
+  BsDatepickerComponent,
+  BsDatepickerInputDirective,
+
+  BsDaterangepickerInputDirective,
+  BsDaterangepickerComponent
+]
 
 @NgModule({
   imports: [CommonModule],
@@ -36,20 +48,10 @@ import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 
     BsCustomDatesViewComponent,
 
-    BsDatepickerContainerComponent,
-    BsDaterangepickerContainerComponent,
-
-    BsDatepickerComponent,
-    BsDatepickerInputDirective,
-    BsDaterangepickerComponent
+    ..._exports
   ],
   entryComponents: [BsDatepickerContainerComponent, BsDaterangepickerContainerComponent],
-  exports: [
-    BsDatepickerContainerComponent,
-    BsDaterangepickerContainerComponent,
-    BsDatepickerComponent,
-    BsDatepickerInputDirective,
-    BsDaterangepickerComponent]
+  exports: _exports
 })
 export class BsDatepickerModule {
   constructor() {
