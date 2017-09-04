@@ -24,7 +24,9 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
    * event names.
    */
   @Input() triggers = 'click';
-
+  /**
+   * Close daterangepicker on outside click
+   */
   @Input() outsideClick = true;
   /**
    * A selector specifying the element the popover should be appended to.
@@ -54,17 +56,30 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date[];
+  /**
+   * Initial value of daterangepicker
+   */
   @Input()
   set bsValue(value: Date[]) {
     if (this._bsValue === value) { return; }
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
-
+  /**
+   * Config object for daterangepicker
+   */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
+  /**
+   * Minimum date which is available for selection
+   */
   @Input() minDate: Date;
+  /**
+   * Maximum date which is available for selection
+   */
   @Input() maxDate: Date;
-
+  /**
+   * Emits when daterangepicker value has been changed
+   */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
   protected _subs: Subscription[] = [];

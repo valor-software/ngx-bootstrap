@@ -31,7 +31,9 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    * event names.
    */
   @Input() triggers = 'click';
-
+  /**
+   * Close datepicker on outside click
+   */
   @Input() outsideClick = true;
   /**
    * A selector specifying the element the popover should be appended to.
@@ -64,6 +66,9 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   // configChange: EventEmitter<BsDatePickerOptions> = new EventEmitter();
 
   _bsValue: Date;
+  /**
+   * Initial value of datepicker
+   */
   @Input()
   set bsValue(value: Date) {
     if (this._bsValue === value) { return; }
@@ -71,11 +76,25 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     this.bsValueChange.emit(value);
   }
 
+  /**
+   * Config object for datepicker
+   */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
+  /**
+   * Indicates whether datepicker is enabled or not
+   */
   @Input() isDisabled: boolean;
+  /**
+   * Minimum date which is available for selection
+   */
   @Input() minDate: Date;
+  /**
+   * Maximum date which is available for selection
+   */
   @Input() maxDate: Date;
-
+  /**
+   * Emits when datepicker value has been changed
+   */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
   protected _subs: Subscription[] = [];
