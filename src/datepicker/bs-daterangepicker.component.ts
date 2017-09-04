@@ -16,7 +16,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 })
 export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges {
   /**
-   * Placement of a popover. Accepts: "top", "bottom", "left", "right"
+   * Placement of a daterangepicker. Accepts: "top", "bottom", "left", "right"
    */
   @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
   /**
@@ -29,13 +29,13 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
    */
   @Input() outsideClick = true;
   /**
-   * A selector specifying the element the popover should be appended to.
+   * A selector specifying the element the daterangepicker should be appended to.
    * Currently only supports "body".
    */
   @Input() container = 'body';
 
   /**
-   * Returns whether or not the popover is currently being shown
+   * Returns whether or not the daterangepicker is currently being shown
    */
   @Input()
   public get isOpen(): boolean {
@@ -47,11 +47,11 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   /**
-   * Emits an event when the popover is shown
+   * Emits an event when the daterangepicker is shown
    */
   @Output() onShown: EventEmitter<any>;
   /**
-   * Emits an event when the popover is hidden
+   * Emits an event when the daterangepicker is hidden
    */
   @Output() onHidden: EventEmitter<any>;
 

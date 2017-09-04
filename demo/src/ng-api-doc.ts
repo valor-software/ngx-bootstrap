@@ -68,15 +68,15 @@ export const ngdoc: any = {
     "selector": "alert,ngx-alert",
     "inputs": [
       {
-        "name": "dismissOnTimeout",
-        "type": "string | number",
-        "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
-      },
-      {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>If set, displays an inline &quot;Close&quot; button </p>\n"
+      },
+      {
+        "name": "dismissOnTimeout",
+        "type": "string | number",
+        "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
       },
       {
         "name": "type",
@@ -112,16 +112,16 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
-        "name": "dismissOnTimeout",
-        "defaultValue": "undefined",
-        "type": "number",
-        "description": "<p>default time before alert will dismiss </p>\n"
-      },
-      {
         "name": "dismissible",
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>is alerts are dismissible by default </p>\n"
+      },
+      {
+        "name": "dismissOnTimeout",
+        "defaultValue": "undefined",
+        "type": "number",
+        "description": "<p>default time before alert will dismiss </p>\n"
       },
       {
         "name": "type",
@@ -485,12 +485,15 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
-  "BsDatepickerConfig": {
-    "fileName": "src/datepicker/bs-datepicker-config.ts",
-    "className": "BsDatepickerConfig",
+  "BsDatepickerInputDirective": {
+    "fileName": "src/datepicker/bs-datepicker-input.directive.ts",
+    "className": "BsDatepickerInputDirective",
     "description": "",
-    "methods": [],
-    "properties": []
+    "selector": "input[bsDatepicker]",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
   },
   "BsDatepickerComponent": {
     "fileName": "src/datepicker/bs-datepicker.component.ts",
@@ -500,32 +503,52 @@ export const ngdoc: any = {
     "exportAs": "bsDatepicker",
     "inputs": [
       {
+        "name": "bsConfig",
+        "type": "Partial<BsDatepickerConfig>",
+        "description": "<p>Config object for datepicker</p>\n"
+      },
+      {
         "name": "bsValue",
         "type": "Date",
-        "description": ""
+        "description": "<p>Initial value of datepicker</p>\n"
       },
       {
         "name": "container",
         "defaultValue": "body",
         "type": "string",
-        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+        "description": "<p>A selector specifying the element the datepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
+        "description": "<p>Returns whether or not the datepicker is currently being shown</p>\n"
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": "<p>Maximum date which is available for selection</p>\n"
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": "<p>Minimum date which is available for selection</p>\n"
       },
       {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "<p>Close datepicker on outside click</p>\n"
       },
       {
         "name": "placement",
         "defaultValue": "bottom",
         "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+        "description": "<p>Placement of a datepicker. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
         "name": "triggers",
@@ -537,15 +560,15 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "bsValueChange",
-        "description": ""
+        "description": "<p>Emits when datepicker value has been changed</p>\n"
       },
       {
         "name": "onHidden",
-        "description": "<p>Emits an event when the popover is hidden</p>\n"
+        "description": "<p>Emits an event when the datepicker is hidden</p>\n"
       },
       {
         "name": "onShown",
-        "description": "<p>Emits an event when the popover is shown</p>\n"
+        "description": "<p>Emits an event when the datepicker is shown</p>\n"
       }
     ],
     "properties": [],
@@ -570,6 +593,13 @@ export const ngdoc: any = {
       }
     ]
   },
+  "BsDatepickerConfig": {
+    "fileName": "src/datepicker/bs-datepicker.config.ts",
+    "className": "BsDatepickerConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "BsDaterangepickerComponent": {
     "fileName": "src/datepicker/bs-daterangepicker.component.ts",
     "className": "BsDaterangepickerComponent",
@@ -578,32 +608,47 @@ export const ngdoc: any = {
     "exportAs": "bsDaterangepicker",
     "inputs": [
       {
+        "name": "bsConfig",
+        "type": "Partial<BsDatepickerConfig>",
+        "description": "<p>Config object for daterangepicker</p>\n"
+      },
+      {
         "name": "bsValue",
         "type": "Date[]",
-        "description": ""
+        "description": "<p>Initial value of daterangepicker</p>\n"
       },
       {
         "name": "container",
         "defaultValue": "body",
         "type": "string",
-        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+        "description": "<p>A selector specifying the element the daterangepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
+        "description": "<p>Returns whether or not the daterangepicker is currently being shown</p>\n"
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": "<p>Maximum date which is available for selection</p>\n"
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": "<p>Minimum date which is available for selection</p>\n"
       },
       {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
-        "description": ""
+        "description": "<p>Close daterangepicker on outside click</p>\n"
       },
       {
         "name": "placement",
         "defaultValue": "bottom",
         "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
-        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+        "description": "<p>Placement of a daterangepicker. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
         "name": "triggers",
@@ -615,15 +660,15 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "bsValueChange",
-        "description": ""
+        "description": "<p>Emits when daterangepicker value has been changed</p>\n"
       },
       {
         "name": "onHidden",
-        "description": "<p>Emits an event when the popover is hidden</p>\n"
+        "description": "<p>Emits an event when the daterangepicker is hidden</p>\n"
       },
       {
         "name": "onShown",
-        "description": "<p>Emits an event when the popover is shown</p>\n"
+        "description": "<p>Emits an event when the daterangepicker is shown</p>\n"
       }
     ],
     "properties": [],
@@ -707,6 +752,11 @@ export const ngdoc: any = {
       {
         "name": "initDate",
         "type": "Date",
+        "description": ""
+      },
+      {
+        "name": "locale",
+        "type": "string",
         "description": ""
       },
       {
@@ -931,16 +981,37 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "FlagMonthViewOptions": {
-    "fileName": "src/datepicker/engine/flag-month-view.ts",
-    "className": "FlagMonthViewOptions",
+  "FlagDaysCalendarOptions": {
+    "fileName": "src/datepicker/engine/flag-days-calendar.ts",
+    "className": "FlagDaysCalendarOptions",
     "description": "",
     "methods": [],
     "properties": []
   },
-  "DaysCalendarModel": {
+  "FlagMonthCalendarOptions": {
+    "fileName": "src/datepicker/engine/flag-months-calendar.ts",
+    "className": "FlagMonthCalendarOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "FlagYearsCalendarOptions": {
+    "fileName": "src/datepicker/engine/flag-years-calendar.ts",
+    "className": "FlagYearsCalendarOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "NavigationViewModel": {
     "fileName": "src/datepicker/models/index.ts",
-    "className": "DaysCalendarModel",
+    "className": "NavigationViewModel",
+    "description": "<hr>\n",
+    "methods": [],
+    "properties": []
+  },
+  "CalendarCellViewModel": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "CalendarCellViewModel",
     "description": "",
     "methods": [],
     "properties": []
@@ -948,7 +1019,7 @@ export const ngdoc: any = {
   "DayViewModel": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DayViewModel",
-    "description": "",
+    "description": "<hr>\n",
     "methods": [],
     "properties": []
   },
@@ -959,24 +1030,45 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
-  "MonthViewModel": {
+  "DaysCalendarViewModel": {
     "fileName": "src/datepicker/models/index.ts",
-    "className": "MonthViewModel",
+    "className": "DaysCalendarViewModel",
     "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "MonthsCalendarViewModel": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "MonthsCalendarViewModel",
+    "description": "<hr>\n",
+    "methods": [],
+    "properties": []
+  },
+  "YearsCalendarViewModel": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "YearsCalendarViewModel",
+    "description": "<hr>\n",
+    "methods": [],
+    "properties": []
+  },
+  "DaysCalendarModel": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "DaysCalendarModel",
+    "description": "<hr>\n<hr>\n",
     "methods": [],
     "properties": []
   },
   "MonthViewOptions": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "MonthViewOptions",
-    "description": "",
+    "description": "<hr>\n",
     "methods": [],
     "properties": []
   },
   "DatepickerFormatOptions": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DatepickerFormatOptions",
-    "description": "",
+    "description": "<hr>\n",
     "methods": [],
     "properties": []
   },
@@ -994,9 +1086,16 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
-  "DayHoverEvent": {
+  "BsViewNavigationEvent": {
     "fileName": "src/datepicker/models/index.ts",
-    "className": "DayHoverEvent",
+    "className": "BsViewNavigationEvent",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "CellHoverEvent": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "CellHoverEvent",
     "description": "",
     "methods": [],
     "properties": []
@@ -1022,6 +1121,47 @@ export const ngdoc: any = {
     "fileName": "src/datepicker/reducer/bs-datepicker.effects.ts",
     "className": "BsDatepickerEffects",
     "description": "",
+    "methods": [
+      {
+        "name": "setValue",
+        "description": "<p>setters </p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "Date"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "setBindings",
+        "description": "<p>view to mode bindings </p>\n",
+        "args": [
+          {
+            "name": "container",
+            "type": "BsDatepickerContainer"
+          }
+        ],
+        "returnType": "BsDatepickerEffects"
+      },
+      {
+        "name": "setEventHandlers",
+        "description": "<p>event handlers</p>\n",
+        "args": [
+          {
+            "name": "container",
+            "type": "BsDatepickerContainer"
+          }
+        ],
+        "returnType": "BsDatepickerEffects"
+      }
+    ],
+    "properties": []
+  },
+  "BsDatepickerViewState": {
+    "fileName": "src/datepicker/reducer/bs-datepicker.state.ts",
+    "className": "BsDatepickerViewState",
+    "description": "",
     "methods": [],
     "properties": []
   },
@@ -1032,24 +1172,67 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "BsCalendarLayoutComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-calendar-layout.component.ts",
+    "className": "BsCalendarLayoutComponent",
+    "description": "",
+    "selector": "bs-calendar-layout",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsCurrentDateViewComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-current-date-view.component.ts",
+    "className": "BsCurrentDateViewComponent",
+    "description": "",
+    "selector": "bs-current-date",
+    "inputs": [
+      {
+        "name": "title",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsCustomDates": {
+    "fileName": "src/datepicker/themes/bs/bs-custom-dates-view.component.ts",
+    "className": "BsCustomDates",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "BsCustomDatesViewComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-custom-dates-view.component.ts",
+    "className": "BsCustomDatesViewComponent",
+    "description": "",
+    "selector": "bs-custom-date-view",
+    "inputs": [
+      {
+        "name": "isCustomRangeShown",
+        "type": "true",
+        "description": ""
+      },
+      {
+        "name": "ranges",
+        "type": "BsCustomDates[]",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
   "BsDatepickerContainerComponent": {
     "fileName": "src/datepicker/themes/bs/bs-datepicker-container.component.ts",
     "className": "BsDatepickerContainerComponent",
     "description": "",
     "selector": "bs-datepicker-container",
-    "inputs": [
-      {
-        "name": "value",
-        "type": "Date",
-        "description": ""
-      }
-    ],
-    "outputs": [
-      {
-        "name": "valueChange",
-        "description": ""
-      }
-    ],
+    "inputs": [],
+    "outputs": [],
     "properties": [],
     "methods": []
   },
@@ -1069,36 +1252,6 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDatepickerMonthViewComponent": {
-    "fileName": "src/datepicker/themes/bs/bs-datepicker-month-view.component.ts",
-    "className": "BsDatepickerMonthViewComponent",
-    "description": "",
-    "selector": "bs-datepicker-month-view",
-    "inputs": [
-      {
-        "name": "month",
-        "type": "MonthViewModel",
-        "description": ""
-      },
-      {
-        "name": "options",
-        "type": "DatepickerRenderOptions",
-        "description": ""
-      }
-    ],
-    "outputs": [
-      {
-        "name": "onHover",
-        "description": ""
-      },
-      {
-        "name": "onSelect",
-        "description": ""
-      }
-    ],
-    "properties": [],
-    "methods": []
-  },
   "BsDatepickerNavigationViewComponent": {
     "fileName": "src/datepicker/themes/bs/bs-datepicker-navigation-view.component.ts",
     "className": "BsDatepickerNavigationViewComponent",
@@ -1106,8 +1259,8 @@ export const ngdoc: any = {
     "selector": "bs-datepicker-navigation-view",
     "inputs": [
       {
-        "name": "month",
-        "type": "MonthViewModel",
+        "name": "calendar",
+        "type": "DaysCalendarViewModel",
         "description": ""
       }
     ],
@@ -1115,39 +1268,9 @@ export const ngdoc: any = {
       {
         "name": "onNavigate",
         "description": ""
-      }
-    ],
-    "properties": [],
-    "methods": []
-  },
-  "BsDatepickerViewComponent": {
-    "fileName": "src/datepicker/themes/bs/bs-datepicker-view.component.ts",
-    "className": "BsDatepickerViewComponent",
-    "description": "",
-    "selector": "bs-datepicker-view",
-    "inputs": [
-      {
-        "name": "months",
-        "type": "MonthViewModel[]",
-        "description": ""
       },
       {
-        "name": "options",
-        "type": "DatepickerRenderOptions",
-        "description": ""
-      }
-    ],
-    "outputs": [
-      {
-        "name": "onHover",
-        "description": ""
-      },
-      {
-        "name": "onNavigate",
-        "description": ""
-      },
-      {
-        "name": "onSelect",
+        "name": "onViewMode",
         "description": ""
       }
     ],
@@ -1159,21 +1282,131 @@ export const ngdoc: any = {
     "className": "BsDaterangepickerContainerComponent",
     "description": "",
     "selector": "bs-daterangepicker-container",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDaysCalendarViewComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-days-calendar-view.component.ts",
+    "className": "BsDaysCalendarViewComponent",
+    "description": "",
+    "selector": "bs-days-calendar-view",
     "inputs": [
       {
-        "name": "value",
-        "type": "Date[]",
+        "name": "calendar",
+        "type": "DaysCalendarViewModel",
+        "description": ""
+      },
+      {
+        "name": "options",
+        "type": "DatepickerRenderOptions",
         "description": ""
       }
     ],
     "outputs": [
       {
-        "name": "valueChange",
+        "name": "onHover",
+        "description": ""
+      },
+      {
+        "name": "onNavigate",
+        "description": ""
+      },
+      {
+        "name": "onSelect",
+        "description": ""
+      },
+      {
+        "name": "onViewMode",
         "description": ""
       }
     ],
     "properties": [],
     "methods": []
+  },
+  "BsMonthCalendarViewComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-months-calendar-view.component.ts",
+    "className": "BsMonthCalendarViewComponent",
+    "description": "",
+    "selector": "bs-month-calendar-view",
+    "inputs": [
+      {
+        "name": "calendar",
+        "type": "MonthsCalendarViewModel",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onHover",
+        "description": ""
+      },
+      {
+        "name": "onNavigate",
+        "description": ""
+      },
+      {
+        "name": "onSelect",
+        "description": ""
+      },
+      {
+        "name": "onViewMode",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "BsTimepickerViewComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-timepicker-view.component.ts",
+    "className": "BsTimepickerViewComponent",
+    "description": "",
+    "selector": "bs-timepicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsYearsCalendarViewComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-years-calendar-view.component.ts",
+    "className": "BsYearsCalendarViewComponent",
+    "description": "",
+    "selector": "bs-years-calendar-view",
+    "inputs": [
+      {
+        "name": "calendar",
+        "type": "YearsCalendarViewModel",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onHover",
+        "description": ""
+      },
+      {
+        "name": "onNavigate",
+        "description": ""
+      },
+      {
+        "name": "onSelect",
+        "description": ""
+      },
+      {
+        "name": "onViewMode",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "MatrixOptions": {
+    "fileName": "src/datepicker/utils/matrix-utils.ts",
+    "className": "MatrixOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "YearPickerComponent": {
     "fileName": "src/datepicker/yearpicker.component.ts",
@@ -1760,7 +1993,7 @@ export const ngdoc: any = {
         "name": "placement",
         "defaultValue": "top",
         "type": "string",
-        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;, &quot;auto&quot;</p>\n"
       },
       {
         "name": "triggers",
@@ -1800,7 +2033,7 @@ export const ngdoc: any = {
       },
       {
         "name": "placement",
-        "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+        "type": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\"",
         "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
