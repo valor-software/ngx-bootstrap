@@ -2,14 +2,16 @@ import { DatepickerDemoComponent } from './datepicker-demo.component';
 import { DemoDatePickerPopupComponent } from './bs-popup/date-picker-popup';
 import { DemoDatepickerColorThemingComponent } from './color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';
-import { DemoDisabledDatepickerComponent } from './is-disabled/disabled-datepicker';
+import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
+import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
   DemoDatePickerPopupComponent,
   DemoDatepickerColorThemingComponent,
   DemoDatepickerChangeLocaleComponent,
-  DemoDisabledDatepickerComponent
+  DemoDatepickerMinMaxComponent,
+  DemoDatepickerDisabledComponent
 ];
 
 export const DEMOS = {
@@ -29,8 +31,12 @@ export const DEMOS = {
     component: require('!!raw-loader?lang=typescript!./change-locale/change-locale.ts'),
     html: require('!!raw-loader?lang=markup!./change-locale/change-locale.html')
   },
+  minMax: {
+    component: require('!!raw-loader?lang=typescript!./min-max/min-max.component.ts'),
+    html: require('!!raw-loader?lang=markup!./min-max/min-max.component.html')
+  },
   disabled: {
-    component: require('!!raw-loader?lang=typescript!./is-disabled/disabled-datepicker.ts'),
-    html: require('!!raw-loader?lang=markup!./is-disabled/disabled-datepicker.html')
+    component: require('!!raw-loader?lang=typescript!./disabled/disabled.component.ts'),
+    html: require('!!raw-loader?lang=markup!./disabled/disabled.component.html')
   }
 };

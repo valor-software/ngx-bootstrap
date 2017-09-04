@@ -23,7 +23,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 })
 export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   /**
-   * Placement of a popover. Accepts: "top", "bottom", "left", "right"
+   * Placement of a datepicker. Accepts: "top", "bottom", "left", "right"
    */
   @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
   /**
@@ -31,16 +31,18 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    * event names.
    */
   @Input() triggers = 'click';
-
+  /**
+   * Close datepicker on outside click
+   */
   @Input() outsideClick = true;
   /**
-   * A selector specifying the element the popover should be appended to.
+   * A selector specifying the element the datepicker should be appended to.
    * Currently only supports "body".
    */
   @Input() container = 'body';
 
   /**
-   * Returns whether or not the popover is currently being shown
+   * Returns whether or not the datepicker is currently being shown
    */
   @Input()
   public get isOpen(): boolean {
@@ -52,15 +54,18 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /**
-   * Emits an event when the popover is shown
+   * Emits an event when the datepicker is shown
    */
   @Output() onShown: EventEmitter<any>;
   /**
-   * Emits an event when the popover is hidden
+   * Emits an event when the datepicker is hidden
    */
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date;
+  /**
+   * Initial value of datepicker
+   */
   @Input()
   set bsValue(value: Date) {
     if (this._bsValue === value) { return; }
@@ -68,11 +73,25 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     this.bsValueChange.emit(value);
   }
 
-  @Input() minDate: Date;
-  @Input() maxDate: Date;
-  @Input() isDisabled: boolean;
+  /**
+   * Config object for datepicker
+   */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
-
+  /**
+   * Indicates whether datepicker is enabled or not
+   */
+  @Input() isDisabled: boolean;
+  /**
+   * Minimum date which is available for selection
+   */
+  @Input() minDate: Date;
+  /**
+   * Maximum date which is available for selection
+   */
+  @Input() maxDate: Date;
+  /**
+   * Emits when datepicker value has been changed
+   */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
   protected _subs: Subscription[] = [];
