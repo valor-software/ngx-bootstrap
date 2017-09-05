@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 export class DemoDatepickerFormsComponent {
   datepickerModel: Date;
-  daterangepickerModel: Date[] = [];
+  daterangepickerModel: Date[];
 }

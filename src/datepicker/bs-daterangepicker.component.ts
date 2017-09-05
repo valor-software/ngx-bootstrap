@@ -91,7 +91,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
 
-  constructor(private _config: BsDatepickerConfig,
+  constructor(public _config: BsDatepickerConfig,
               _elementRef: ElementRef,
               _renderer: Renderer,
               _viewContainerRef: ViewContainerRef,
@@ -138,7 +138,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
       return;
     }
 
-    const config = Object.assign({},
+    this._config = Object.assign({},
       this._config,
       {displayMonths: 2},
       this.bsConfig,
@@ -150,7 +150,7 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
       });
 
     this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: config})
+      .provide({provide: BsDatepickerConfig, useValue: this._config})
       .attach(BsDaterangepickerContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})

@@ -2,6 +2,8 @@ import { Directive, ElementRef, forwardRef, Host, OnInit, Renderer } from '@angu
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerComponent } from './bs-daterangepicker.component';
+import { formatDate } from '../bs-moment/format';
+import { getLocale } from '../bs-moment/locale/locales.service';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -29,7 +31,16 @@ export class BsDaterangepickerInputDirective
   }
 
   ngOnInit(): void {
-    this._picker.bsValueChange.subscribe((v: Date) => this._onChange(v));
+    this._picker.bsValueChange.subscribe((v: Date[]) => {
+      let range = '';
+      if (v) {
+        const start = formatDate(v[0], this._picker._config.rangeInputFormat, this._picker._config.locale);
+        const end = formatDate(v[1], this._picker._config.rangeInputFormat, this._picker._config.locale);
+        range = start + this._picker._config.rangeSeparator + end;
+      }
+      this._renderer.setElementProperty(this._elRef.nativeElement, 'value', range);
+      this._onChange(v);
+    });
   }
 
   onChange(event: any) {
@@ -41,10 +52,14 @@ export class BsDaterangepickerInputDirective
       this._picker.bsValue = null;
     }
 
+    const _locale = getLocale(this._picker._config.locale);
+    if (!_locale) {
+      throw new Error(`Locale "${this._picker._config.locale}" is not defined, please add it with "defineLocale(...)"`);
+    }
     if (typeof value === 'string') {
       this._picker.bsValue = value
-        .split(this._config.rangeSeparator)
-        .map(date => new Date(date))
+        .split(this._picker._config.rangeSeparator)
+        .map(date => new Date(_locale.preparse(date)))
         .map(date => isNaN(date.valueOf()) ? null : date);
     }
 

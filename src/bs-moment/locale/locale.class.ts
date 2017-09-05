@@ -16,6 +16,14 @@ export const defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct
 export const defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 export const defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
 export const defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+export const defaultLongDateFormat: { [index: string]: string } = {
+  LTS  : 'h:mm:ss A',
+  LT   : 'h:mm A',
+  L    : 'MM/DD/YYYY',
+  LL   : 'MMMM D, YYYY',
+  LLL  : 'MMMM D, YYYY h:mm A',
+  LLLL : 'dddd, MMMM D, YYYY h:mm A'
+};
 
 export interface LocaleData {
   [key: string]: any;
@@ -155,5 +163,22 @@ export class Locale {
     return this._ordinal.replace('%d', num.toString(10));
   }
 
+  preparse(str: string) { return str; }
+
   postformat(str: string) { return str; }
+
+  longDateFormat(key: string) {
+    const format = defaultLongDateFormat[key];
+    const formatUpper = defaultLongDateFormat[key.toUpperCase()];
+
+    if (format || !formatUpper) {
+      return format;
+    }
+
+    defaultLongDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, (val: string) => {
+      return val.slice(1);
+    });
+
+    return defaultLongDateFormat[key];
+  }
 }
