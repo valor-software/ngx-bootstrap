@@ -41,8 +41,6 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
 
-Additionally to allow reach experience while working with Dates we are using [moment.js](http://momentjs.com/), de facto base date manipulation library at the moment.
-
 # Installation instructions
 
 Install `ngx-bootstrap` from `npm`
