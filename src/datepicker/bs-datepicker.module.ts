@@ -19,6 +19,7 @@ import { BsCurrentDateViewComponent } from './themes/bs/bs-current-date-view.com
 import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.component';
+import { warnOnce } from '../utils/warn-once';
 
 @NgModule({
   imports: [CommonModule],
@@ -47,11 +48,9 @@ import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.compon
 })
 export class BsDatepickerModule {
   constructor() {
-    if (isDevMode()) {
-      console.warn(`BsDatepickerModule is under development,
+    warnOnce(`BsDatepickerModule is under development,
       BREAKING CHANGES are possible,
       PLEASE, read changelog`);
-    }
   }
 
   static forRoot(): ModuleWithProviders {
