@@ -70,6 +70,10 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
    */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
   /**
+   * Indicates whether daterangepicker is enabled or not
+   */
+  @Input() isDisabled: boolean;
+  /**
    * Minimum date which is available for selection
    */
   @Input() minDate: Date;

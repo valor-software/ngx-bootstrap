@@ -11,7 +11,7 @@ export class DemoDatepickerMinMaxComponent {
   constructor() {
     this.minDate = new Date();
     this.maxDate = new Date();
-    this.minDate.setDate(this.minDate.getDate() - 2);
-    this.maxDate.setDate(this.maxDate.getDate() + 8);
+    this.minDate.setDate(this.minDate.getDate() - 1);
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
   }
 }

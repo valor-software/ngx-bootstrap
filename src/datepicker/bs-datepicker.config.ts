@@ -16,8 +16,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions,
   displayMonths = 1;
   showWeekNumbers = true;
 
+  dateInputFormat = 'L';
   // range picker
   rangeSeparator = ' - ';
+  rangeInputFormat = 'L';
 
   // DatepickerFormatOptions
   locale = 'en';

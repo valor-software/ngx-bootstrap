@@ -1,6 +1,6 @@
-import { DayViewModel, DaysCalendarViewModel, WeekViewModel } from '../models/index';
+import { DaysCalendarViewModel, DayViewModel, WeekViewModel } from '../models/index';
 import { isSameDay, isSameMonth } from '../../bs-moment/utils/date-getters';
-import { isSameOrAfter, isSameOrBefore } from '../../bs-moment/utils/date-compare';
+import { isAfter, isBefore } from '../../bs-moment/utils/date-compare';
 import { isMonthDisabled } from '../utils/bs-calendar-utils';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 
@@ -40,8 +40,8 @@ export function flagDaysCalendar(formattedMonth: DaysCalendarViewModel,
           && isDateInRange(day.date, options.selectedRange, options.hoveredDate);
 
         const isDisabled = options.isDisabled
-          || isSameOrBefore(day.date, options.minDate, 'day')
-          || isSameOrAfter(day.date, options.maxDate, 'day');
+          || isBefore(day.date, options.minDate, 'day')
+          || isAfter(day.date, options.maxDate, 'day');
 
         // decide update or not
         const newDay = Object.assign({}, day, {
@@ -69,10 +69,10 @@ export function flagDaysCalendar(formattedMonth: DaysCalendarViewModel,
   // todo: add check for linked calendars
   formattedMonth.hideLeftArrow = options.isDisabled
     || (options.monthIndex > 0
-      && options.monthIndex !== options.displayMonths);
+    && options.monthIndex !== options.displayMonths);
   formattedMonth.hideRightArrow = options.isDisabled
     || (options.monthIndex < options.displayMonths
-      && (options.monthIndex + 1) !== options.displayMonths);
+    && (options.monthIndex + 1) !== options.displayMonths);
 
   formattedMonth.disableLeftArrow = isMonthDisabled(
     shiftDate(formattedMonth.month, {month: -1}),

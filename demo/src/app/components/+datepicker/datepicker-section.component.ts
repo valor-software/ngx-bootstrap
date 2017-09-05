@@ -21,6 +21,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
             <li><a routerLink="." fragment="locales">Locales</a></li>
             <li><a routerLink="." fragment="min-max">Min-max</a></li>
             <li><a routerLink="." fragment="disabled">Disabled</a></li>
+            <li><a routerLink="." fragment="forms">Forms</a></li>
           </ul>
         </li>
         <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -40,7 +41,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
       <h3 routerLink="." fragment="basic" id="basic">Basic</h3>
       <ng-sample-box [ts]="demos.pop.component" [html]="demos.pop.html">
         <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
-        <p>Notebale change is additional css for it <code> "/datepicker/bs-datepicker.css"</code></p>
+        <p>Notebale change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
+        <p>There are two ways of adding css:</p> 
+        <ul>
+          <li>Load it from CDN. Add <code>&lt;link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"&gt;</code> to your <code>index.html</code></li>
+          <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler like Angular CLI, if you're using one.</li>
+        </ul>
         <p>In nearest time will be added:</p>
         <ul>
           <li><s>1. Month and year selection</s></li>
@@ -83,6 +89,10 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <demo-datepicker-disabled></demo-datepicker-disabled>
       </ng-sample-box>
 
+      <h3 routerLink="." fragment="forms" id="forms">Forms</h3>
+      <ng-sample-box [ts]="demos.forms.component" [html]="demos.forms.html">
+        <demo-datepicker-forms></demo-datepicker-forms>
+      </ng-sample-box>
 
       <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
         <datepicker-demo></datepicker-demo>

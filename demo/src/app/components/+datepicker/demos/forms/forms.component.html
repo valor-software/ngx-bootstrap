@@ -1,0 +1,11 @@
+<input type="text"
+       value="{{ datepickerModel | date:'yMd'}}"
+       bsDatepicker
+       [(ngModel)]="datepickerModel"
+       />
+<input type="text"
+       value="{{ daterangepickerModel[0] | date:'yMd'}} - {{ daterangepickerModel[1] | date:'yMd'}}"
+       bsDaterangepicker
+       [(ngModel)]="daterangepickerModel"
+       />
+

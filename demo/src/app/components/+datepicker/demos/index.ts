@@ -4,6 +4,7 @@ import { DemoDatepickerColorThemingComponent } from './color-theming/color-themi
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
+import { DemoDatepickerFormsComponent } from './forms/forms.component';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -11,7 +12,8 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerColorThemingComponent,
   DemoDatepickerChangeLocaleComponent,
   DemoDatepickerMinMaxComponent,
-  DemoDatepickerDisabledComponent
+  DemoDatepickerDisabledComponent,
+  DemoDatepickerFormsComponent
 ];
 
 export const DEMOS = {
@@ -38,5 +40,9 @@ export const DEMOS = {
   disabled: {
     component: require('!!raw-loader?lang=typescript!./disabled/disabled.component.ts'),
     html: require('!!raw-loader?lang=markup!./disabled/disabled.component.html')
+  },
+  forms: {
+    component: require('!!raw-loader?lang=typescript!./forms/forms.component.ts'),
+    html: require('!!raw-loader?lang=markup!./forms/forms.component.html')
   }
 };
