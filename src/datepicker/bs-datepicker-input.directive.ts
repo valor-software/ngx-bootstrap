@@ -14,7 +14,9 @@ const BS_DATEPICKER_VALUE_ACCESSOR = {
 @Directive({
   selector: `input[bsDatepicker]`,
   host: {
-    '(change)': 'onChange($event)'
+    '(change)': 'onChange($event)',
+    '(keyup.esc)': 'hide()',
+    '(blur)': 'onBlur()'
   },
   providers: [BS_DATEPICKER_VALUE_ACCESSOR]
 })
@@ -43,6 +45,7 @@ export class BsDatepickerInputDirective
 
   onChange(event: any) {
     this.writeValue(event.target.value);
+    this._onTouched();
   }
 
   writeValue(value: Date | string) {
@@ -71,4 +74,10 @@ export class BsDatepickerInputDirective
   registerOnChange(fn: (value: any) => any): void { this._onChange = fn; }
 
   registerOnTouched(fn: () => any): void { this._onTouched = fn; }
+
+  onBlur() { this._onTouched(); }
+
+  hide() {
+    this._picker.hide();
+  }
 }

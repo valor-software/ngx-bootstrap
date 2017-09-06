@@ -1,11 +1,11 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 // or
-import { DatepickerModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [DatepickerModule.forRoot(),...]
+  imports: [BsDatepickerModule.forRoot(),...]
 })
-export class AppModule(){} 
+export class AppModule(){}
 ```

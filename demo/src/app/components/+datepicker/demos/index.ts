@@ -5,6 +5,7 @@ import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-loca
 import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
+import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -13,7 +14,8 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerChangeLocaleComponent,
   DemoDatepickerMinMaxComponent,
   DemoDatepickerDisabledComponent,
-  DemoDatepickerFormsComponent
+  DemoDatepickerFormsComponent,
+  DemoDatepickerReactiveFormsComponent
 ];
 
 export const DEMOS = {
@@ -44,5 +46,9 @@ export const DEMOS = {
   forms: {
     component: require('!!raw-loader?lang=typescript!./forms/forms.component.ts'),
     html: require('!!raw-loader?lang=markup!./forms/forms.component.html')
+  },
+  reactive: {
+    component: require('!!raw-loader?lang=typescript!./reactive-forms/reactive-forms.component.ts'),
+    html: require('!!raw-loader?lang=markup!./reactive-forms/reactive-forms.component.html')
   }
 };
