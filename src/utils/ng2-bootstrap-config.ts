@@ -9,13 +9,14 @@ function _guessBsVersion(): 'bs3' | 'bs4' {
   const spanEl = document.createElement('span');
   spanEl.innerText = 'test bs version';
   document.body.appendChild(spanEl);
-  spanEl.classList.add('hide');
+  spanEl.classList.add('d-none');
   const rect = spanEl.getBoundingClientRect();
   document.body.removeChild(spanEl);
-  if (rect) {
-    return null;
+  if (!rect) {
+    return 'bs3';
   }
-  return rect.top === 0 ? 'bs3' : 'bs4';
+
+  return rect.top === 0 ? 'bs4' : 'bs3';
 }
 
 // todo: in ngx-bootstrap, bs4 will became a default one
