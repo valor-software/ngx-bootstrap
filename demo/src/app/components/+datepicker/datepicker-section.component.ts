@@ -7,7 +7,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 
 @Component({
   selector: 'datepicker-section',
-  template: `    
+  template: `
     <demo-section [name]="name" [src]="src">
       <tabset>
         <tab heading="Overview">
@@ -31,6 +31,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
               <ul>
                 <li><a routerLink="." fragment="bs-datepicker-component">BsDatepickerComponent</a></li>
                 <li><a routerLink="." fragment="bs-daterangepicker-component">BsDaterangepickerComponent</a></li>
+                <li><a routerLink="." fragment="bs-daterangepicker-config">BsDatepickerConfig</a></li>
               </ul>
             </li>
           </ul>
@@ -46,8 +47,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
             <p>Notebale change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
             <p>There are two ways of adding css:</p>
             <ul>
-              <li>Load it from CDN. Add <code>&lt;link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"&gt;</code> to your <code>index.html</code></li>
-              <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler like Angular CLI, if you're using one.</li>
+              <li>Load it from CDN. Add <code>&lt;link rel="stylesheet"
+                href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"&gt;</code> to your
+                <code>index.html</code></li>
+              <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler
+                like Angular CLI, if you're using one.
+              </li>
             </ul>
             <p>In nearest time will be added:</p>
             <ul>
@@ -74,7 +79,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
           <h3 routerLink="." fragment="locales" id="locales">Locales</h3>
 
           <ng-sample-box [ts]="demos.changeLocale.component" [html]="demos.changeLocale.html">
-            <p>Datepicker can use different locales. <br>It's possible to change a locale by changing <code>locale</code>
+            <p>Datepicker can use different locales. <br>It's possible to change a locale by changing
+              <code>locale</code>
               property in <code>bsConfig</code> object, list of available locales is in dropdown below.</p>
             <p>To use a different locale, you have to import it from <code>ngx-bootstrap/bs-moment</code> and define it
               in your <code>@NgModule</code> using function <code>defineLocale</code></p>
@@ -88,8 +94,10 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 
           <h3 routerLink="." fragment="min-max" id="min-max">Min-max</h3>
           <ng-sample-box [ts]="demos.minMax.component" [html]="demos.minMax.html">
-            <p>You can set min and max date of datepicker/daterangepicker using <code>minDate</code> and <code>maxDate</code> properties</p>
-            <p>In the following example <code>minDate</code> is set to yesterday and <code>maxDate</code> to the current day in the next week</p>
+            <p>You can set min and max date of datepicker/daterangepicker using <code>minDate</code> and
+              <code>maxDate</code> properties</p>
+            <p>In the following example <code>minDate</code> is set to yesterday and <code>maxDate</code> to the current
+              day in the next week</p>
             <demo-datepicker-min-max></demo-datepicker-min-max>
           </ng-sample-box>
 
@@ -114,24 +122,28 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
           <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
           <ng-api-doc id="bs-datepicker-component" directive="BsDatepickerComponent"></ng-api-doc>
           <ng-api-doc id="bs-daterangepicker-component" directive="BsDaterangepickerComponent"></ng-api-doc>
+          <ng-api-doc id="bs-datepicker-config" directive="BsDaterangepickerComponent"></ng-api-doc>
+          <ng-api-doc-config routerLink="." fragment="bs-datepicker-config" id="bs-datepicker-config" type="BsDatepickerConfig"></ng-api-doc-config>
         </tab>
+        
+        <!-- Old datepicker part-->
         <tab heading="Old">
           <p>This is a legacy version of datepicker without support of daterangepicker, locales, themes, etc.</p>
           <h2>Contents</h2>
           <ul>
             <li><a routerLink="." fragment="usageOld">Usage</a></li>
-            <li><a routerLink="." fragment="examplesOld">Example</a> </li>
+            <li><a routerLink="." fragment="examplesOld">Example</a></li>
             <li><a routerLink="." fragment="api-referenceOld">API Reference</a>
               <ul>
                 <li><a routerLink="." fragment="datepicker-component">DatePickerComponent</a></li>
               </ul>
             </li>
           </ul>
-          
+
           <h2 routerLink="." fragment="usageOld" id="usageOld">Usage</h2>
 
-          <p [innerHtml]="oldTitleDoc"></p> 
-          
+          <p [innerHtml]="oldTitleDoc"></p>
+
           <h2 routerLink="." fragment="examplesOld" id="examplesOld">Example</h2>
           <ng-sample-box [ts]="demos.old.component" [html]="demos.old.html">
             <datepicker-demo></datepicker-demo>

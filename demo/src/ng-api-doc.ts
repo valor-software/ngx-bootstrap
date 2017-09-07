@@ -598,7 +598,36 @@ export const ngdoc: any = {
     "className": "BsDatepickerConfig",
     "description": "",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "containerClass",
+        "defaultValue": "theme-green",
+        "type": "string",
+        "description": "<p>CSS class which will be applied to datepicker container,\nusually used to set color theme</p>\n"
+      },
+      {
+        "name": "locale",
+        "defaultValue": "en",
+        "type": "string",
+        "description": "<p>Allows to globally set default locale of datepicker,\nsee documentation on how to enable custom locales</p>\n"
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": "<p>Default max date for all date/range pickers</p>\n"
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": "<p>Default min date for all date/range pickers</p>\n"
+      },
+      {
+        "name": "showWeekNumbers",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Allows to hide week numbers in datepicker</p>\n"
+      }
+    ]
   },
   "BsDaterangepickerInputDirective": {
     "fileName": "src/datepicker/bs-daterangepicker-input.directive.ts",
