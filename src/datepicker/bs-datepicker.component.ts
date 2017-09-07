@@ -23,7 +23,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 })
 export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   /**
-   * Placement of a popover. Accepts: "top", "bottom", "left", "right"
+   * Placement of a datepicker. Accepts: "top", "bottom", "left", "right"
    */
   @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
   /**
@@ -31,16 +31,18 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    * event names.
    */
   @Input() triggers = 'click';
-
+  /**
+   * Close datepicker on outside click
+   */
   @Input() outsideClick = true;
   /**
-   * A selector specifying the element the popover should be appended to.
+   * A selector specifying the element the datepicker should be appended to.
    * Currently only supports "body".
    */
   @Input() container = 'body';
 
   /**
-   * Returns whether or not the popover is currently being shown
+   * Returns whether or not the datepicker is currently being shown
    */
   @Input()
   public get isOpen(): boolean {
@@ -52,18 +54,18 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /**
-   * Emits an event when the popover is shown
+   * Emits an event when the datepicker is shown
    */
   @Output() onShown: EventEmitter<any>;
   /**
-   * Emits an event when the popover is hidden
+   * Emits an event when the datepicker is hidden
    */
   @Output() onHidden: EventEmitter<any>;
 
-  // @Input()  config: BsDatePickerOptions;
-  // configChange: EventEmitter<BsDatePickerOptions> = new EventEmitter();
-
   _bsValue: Date;
+  /**
+   * Initial value of datepicker
+   */
   @Input()
   set bsValue(value: Date) {
     if (this._bsValue === value) { return; }
@@ -71,10 +73,25 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     this.bsValueChange.emit(value);
   }
 
+  /**
+   * Config object for datepicker
+   */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
+  /**
+   * Indicates whether datepicker is enabled or not
+   */
+  @Input() isDisabled: boolean;
+  /**
+   * Minimum date which is available for selection
+   */
   @Input() minDate: Date;
+  /**
+   * Maximum date which is available for selection
+   */
   @Input() maxDate: Date;
-
+  /**
+   * Emits when datepicker value has been changed
+   */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
   protected _subs: Subscription[] = [];
@@ -82,11 +99,12 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
 
-  constructor(private _config: BsDatepickerConfig,
+  constructor(public _config: BsDatepickerConfig,
               _elementRef: ElementRef,
               _renderer: Renderer,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
+    // todo: assign only subset of fields
     Object.assign(this, this._config);
     this._datepicker = cis
       .createLoader<BsDatepickerContainerComponent>(_elementRef, _viewContainerRef, _renderer);
@@ -114,6 +132,10 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
+
+    if (changes.isDisabled) {
+      this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
   }
 
   /**
@@ -125,14 +147,15 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
-    const config = Object.assign({}, this._config, this.bsConfig, {
+    this._config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
+      isDisabled: this.isDisabled,
       minDate: this.minDate || this._config.minDate,
       maxDate: this.maxDate || this._config.maxDate
     });
 
     this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: config})
+      .provide({provide: BsDatepickerConfig, useValue: this._config})
       .attach(BsDatepickerContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})

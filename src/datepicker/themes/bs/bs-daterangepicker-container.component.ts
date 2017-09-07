@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { BsDatepickerContainer } from '../../base/bs-datepicker-container';
+import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { DayViewModel } from '../../models/index';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
   }
 })
 export class BsDaterangepickerContainerComponent
-  extends BsDatepickerContainer
+  extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
 
   set value(value: Date[]) {

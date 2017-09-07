@@ -4,6 +4,7 @@ import { isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 
 export interface FlagMonthCalendarOptions {
+  isDisabled: boolean;
   minDate: Date;
   maxDate: Date;
   hoveredMonth: Date;
@@ -17,7 +18,8 @@ export function flagMonthsCalendar(monthCalendar: MonthsCalendarViewModel,
     .forEach((months: CalendarCellViewModel[], rowIndex: number) => {
       months.forEach((month: CalendarCellViewModel, monthIndex: number) => {
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
-        const isDisabled = isMonthDisabled(month.date, options.minDate, options.maxDate);
+        const isDisabled = options.isDisabled
+          || isMonthDisabled(month.date, options.minDate, options.maxDate);
         const newMonth = Object.assign(/*{},*/ month, {isHovered, isDisabled});
         if (month.isHovered !== newMonth.isHovered
           || month.isDisabled !== newMonth.isDisabled) {

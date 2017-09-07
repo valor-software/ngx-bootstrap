@@ -1,0 +1,17 @@
+<div class="row">
+  <form [formGroup]="myForm">
+    <div class="col-xs-3 form-group">
+      <input type="text" class="form-control" placeholder="Datepicker" bsDatepicker formControlName="date" />
+    </div>
+    <div class="col-xs-3 form-group">
+      <input type="text" class="form-control" placeholder="Daterangepicker" bsDaterangepicker formControlName="range" />
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <pre>{{myForm.value | json}}</pre>
+  </div>
+</div>
+
+

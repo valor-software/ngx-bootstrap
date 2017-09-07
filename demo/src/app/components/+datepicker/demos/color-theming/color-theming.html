@@ -11,37 +11,17 @@
       <option value="theme-orange">orange</option>
     </select>
   </div>
-  <div class="col-xs-6 col-sm-9">
-    <input type="button"
-           class="btn btn-success"
-           value="Date Picker"
-           bsDatepicker
-           #dp="bsDatepicker"
-           [bsConfig]="bsConfig"/>
+  <div class="col-xs-6 col-sm-3">
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig">
+        <div class="input-group-btn">
+          <button class="btn btn-success" (click)="dp.show() ">Open</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <br>
 
-<div class="row">
-  <div class="col-xs-6 col-sm-3">
-    <select
-      class="custom-select form-control "
-      [(ngModel)]="colorTheme" (ngModelChange)="applyTheme(dpr);">
-      <option value="theme-default">default</option>
-      <option value="theme-green">green</option>
-      <option value="theme-blue">blue</option>
-      <option value="theme-dark-blue">dark-blue</option>
-      <option value="theme-red">red</option>
-      <option value="theme-orange">orange</option>
-    </select>
-  </div>
-  <div class="col-xs-6 col-sm-9">
-    <input type="button"
-           class="btn btn-success"
-           value="Date Range Picker"
-           bsDaterangepicker
-           #dpr="bsDaterangepicker"
-           [bsConfig]="bsConfig"/>
-  </div>
-</div>
 

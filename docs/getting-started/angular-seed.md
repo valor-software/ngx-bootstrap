@@ -34,16 +34,6 @@
   {
     name:'ngx-bootstrap/*',
     path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
-  },
-  
-  // mandatory dependency for ngx-bootstrap datepicker 
-  {
-    name:'moment',
-    path:'node_modules/moment',
-    packageMeta:{
-      main: 'moment.js',
-      defaultExtension: 'js'
-    }
   }
   ];    
   this.addPackagesBundles(additionalPackages);
