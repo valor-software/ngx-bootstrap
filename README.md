@@ -1,4 +1,4 @@
-<a href="https://bootstrap-vue.js.org">
+<a href="http://valor-software.com/ngx-bootstrap/#/">
     <h1 align="center">ngx-bootstrap</h1>
 </a>
 

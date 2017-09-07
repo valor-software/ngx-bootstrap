@@ -1,9 +1,8 @@
-# ngx-bootstrap [![npm version](https://badge.fury.io/js/ngx-bootstrap.svg)](http://badge.fury.io/js/ngx-bootstrap) [![npm downloads](https://img.shields.io/npm/dm/ngx-bootstrap.svg)](https://npmjs.org/ngx-bootstrap)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
+## Links
 
-[![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
-[![Build Status](https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=master)](https://travis-ci.org/valor-software/ngx-bootstrap)
-[![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap)
-[![Dependency Status](https://david-dm.org/valor-software/ngx-bootstrap.svg)](https://david-dm.org/valor-software/ngx-bootstrap)
+- [Documentation](http://valor-software.com/ngx-bootstrap/)
+- [Release Notes](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md)
+- [Slack Community](https://ngx-slack.herokuapp.com)
 
 ## Table of contents
 1. [Getting Started](#getting-started)

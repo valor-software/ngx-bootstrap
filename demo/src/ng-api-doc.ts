@@ -600,6 +600,16 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "BsDaterangepickerInputDirective": {
+    "fileName": "src/datepicker/bs-daterangepicker-input.directive.ts",
+    "className": "BsDaterangepickerInputDirective",
+    "description": "",
+    "selector": "input[bsDaterangepicker]",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
   "BsDaterangepickerComponent": {
     "fileName": "src/datepicker/bs-daterangepicker.component.ts",
     "className": "BsDaterangepickerComponent",
@@ -622,6 +632,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the daterangepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>Indicates whether daterangepicker is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
@@ -1139,7 +1154,7 @@ export const ngdoc: any = {
         "args": [
           {
             "name": "container",
-            "type": "BsDatepickerContainer"
+            "type": "BsDatepickerAbstractComponent"
           }
         ],
         "returnType": "BsDatepickerEffects"
@@ -1150,7 +1165,7 @@ export const ngdoc: any = {
         "args": [
           {
             "name": "container",
-            "type": "BsDatepickerContainer"
+            "type": "BsDatepickerAbstractComponent"
           }
         ],
         "returnType": "BsDatepickerEffects"
