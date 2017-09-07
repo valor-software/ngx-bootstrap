@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
