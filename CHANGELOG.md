@@ -1,3 +1,26 @@
+<a name="1.9.2"></a>
+## [1.9.2](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.1...v1.9.2) (2017-09-07)
+
+
+### Bug Fixes
+
+* **datepicker:** fix nav to next month when today is 31 of month, and next month has only 30 days ([#2557](https://github.com/valor-software/ngx-bootstrap/issues/2557)) ([2bcc1d2](https://github.com/valor-software/ngx-bootstrap/commit/2bcc1d2))
+* **tooltip:** fix width property in chrome for custom element ([#2559](https://github.com/valor-software/ngx-bootstrap/issues/2559)) ([dfc736e](https://github.com/valor-software/ngx-bootstrap/commit/dfc736e))
+
+
+### Features
+
+* **core:** try to guess bs version ([#2580](https://github.com/valor-software/ngx-bootstrap/issues/2580)) ([84f09e4](https://github.com/valor-software/ngx-bootstrap/commit/84f09e4))
+* **datepicker:** add onTouched support, add forms demos, split demos for old and new datepicker ([17405b7](https://github.com/valor-software/ngx-bootstrap/commit/17405b7))
+* **datepicker:** added bsConfig input, locales and color themes with containerClass ([#2549](https://github.com/valor-software/ngx-bootstrap/issues/2549)) ([7cbb128](https://github.com/valor-software/ngx-bootstrap/commit/7cbb128))
+* **datepicker:** added locale option to Datepicker Configuration ([#2560](https://github.com/valor-software/ngx-bootstrap/issues/2560)) ([8ac689a](https://github.com/valor-software/ngx-bootstrap/commit/8ac689a)), closes [#455](https://github.com/valor-software/ngx-bootstrap/issues/455)
+* **datepicker:** added month and year view ([#2540](https://github.com/valor-software/ngx-bootstrap/issues/2540)) ([571a00b](https://github.com/valor-software/ngx-bootstrap/commit/571a00b))
+* **datepicker:** update input according to model, fix value parsing ([16affdd](https://github.com/valor-software/ngx-bootstrap/commit/16affdd))
+* **positioning:** auto option for positioning ([#1986](https://github.com/valor-software/ngx-bootstrap/issues/1986)) ([114ed42](https://github.com/valor-software/ngx-bootstrap/commit/114ed42)), closes [#1111](https://github.com/valor-software/ngx-bootstrap/issues/1111)
+* **typeahead:** added subscription and unsubscribe on destroy ([#2508](https://github.com/valor-software/ngx-bootstrap/issues/2508)) ([9f833eb](https://github.com/valor-software/ngx-bootstrap/commit/9f833eb))
+
+
+
 <a name="1.9.1"></a>
 ## [1.9.1](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.0...v1.9.1) (2017-08-23)
 
