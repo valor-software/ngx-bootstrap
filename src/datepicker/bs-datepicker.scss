@@ -505,7 +505,7 @@
 }
 
 /* screen size < 1024px */
-@media (max-width: 1023px) {
+@media (max-width: 768px) {
   bs-datepicker-container,
   bs-daterangepicker-container {
     position: fixed !important;

@@ -3,7 +3,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { getFullYear, getMonth } from '../../bs-moment/utils/date-getters';
-import { BsDatepickerContainer } from '../base/bs-datepicker-container';
+import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 import {
   BsDatepickerViewMode,
@@ -63,6 +63,12 @@ export class BsDatepickerEffects {
     return this;
   }
 
+  setDisabled(value: boolean): BsDatepickerEffects {
+    this._store.dispatch(this._actions.isDisabled(value));
+
+    return this;
+  }
+
   /* Set rendering options */
   setOptions(_config: BsDatepickerConfig): BsDatepickerEffects {
     this._store.dispatch(this._actions.setOptions(_config));
@@ -71,7 +77,7 @@ export class BsDatepickerEffects {
   }
 
   /** view to mode bindings */
-  setBindings(container: BsDatepickerContainer): BsDatepickerEffects {
+  setBindings(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.daysCalendar = this._store
       .select(state => state.flaggedMonths)
       .filter(months => !!months);
@@ -96,7 +102,7 @@ export class BsDatepickerEffects {
   }
 
   /** event handlers*/
-  setEventHandlers(container: BsDatepickerContainer): BsDatepickerEffects {
+  setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.setViewMode = (event: BsDatepickerViewMode): void => {
       this._store.dispatch(this._actions.changeViewMode(event));
     };

@@ -21,6 +21,7 @@ export class BsDatepickerState implements DatepickerRenderOptions, DatepickerFor
   // initial date of calendar, today by default
   view: BsDatepickerViewState;
 
+  isDisabled?: boolean;
   // bounds
   minDate?: Date;
   maxDate?: Date;

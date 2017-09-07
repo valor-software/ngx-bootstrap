@@ -10,7 +10,7 @@ import {
   YearsCalendarViewModel
 } from '../models/index';
 
-export abstract class BsDatepickerContainer {
+export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
 
   _effects: BsDatepickerEffects;
@@ -24,6 +24,9 @@ export abstract class BsDatepickerContainer {
     this._effects.setMaxDate(value);
   }
 
+  set isDisabled(value: boolean) {
+    this._effects.setDisabled(value);
+  }
 
   viewMode: Observable<BsDatepickerViewMode>;
   daysCalendar: Observable<DaysCalendarViewModel[]>;

@@ -6,12 +6,13 @@
       <option *ngFor="let loc of locales" [value]="loc">{{ loc }}</option>
     </select>
   </div>
+  <div class="col-xs-6 col-sm-3">
+    <input placeholder="Datepicker" type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig">
+  </div>
   <input type="button"
          class="btn btn-success"
          value="Date Picker"
-         bsDatepicker
-         #dp="bsDatepicker"
-         [bsConfig]="bsConfig"/>
+         (click)="dp.show()" />
 </div>
 <br>
 
@@ -23,11 +24,11 @@
       <option *ngFor="let loc of locales" [value]="loc">{{ loc }}</option>
     </select>
   </div>
+  <div class="col-xs-6 col-sm-3">
+    <input placeholder="Daterangepicker" type="text" class="form-control" bsDaterangepicker #dpr="bsDaterangepicker" [bsConfig]="bsConfig">
+  </div>
   <input type="button"
          class="btn btn-success"
-         value="Date Range Picker"
-         bsDaterangepicker
-         #dpr="bsDaterangepicker"
-         [bsConfig]="bsConfig"/>
+         value="Date Range Picker" (click)="dpr.show()"/>
 </div>
 
