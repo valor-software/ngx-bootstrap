@@ -5,7 +5,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 @Component({
   selector: 'daypicker',
   template: `
-<table *ngIf="datePicker.datepickerMode==='day'" role="grid" [attr.aria-labelledby]="datePicker.uniqueId+'-title'" aria-activedescendant="activeDateId">
+<table [hidden]="datePicker.datepickerMode!=='day'" role="grid" [attr.aria-labelledby]="datePicker.uniqueId+'-title'" aria-activedescendant="activeDateId">
   <thead>
     <tr>
       <th>
