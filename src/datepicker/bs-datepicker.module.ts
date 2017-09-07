@@ -22,16 +22,18 @@ import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.compon
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
 
+import { warnOnce } from '../utils/warn-once';
+
 const _exports = [
-  BsDatepickerContainerComponent,
-  BsDaterangepickerContainerComponent,
+BsDatepickerContainerComponent,
+BsDaterangepickerContainerComponent,
 
-  BsDatepickerComponent,
-  BsDatepickerInputDirective,
+BsDatepickerComponent,
+BsDatepickerInputDirective,
 
-  BsDaterangepickerInputDirective,
-  BsDaterangepickerComponent
-]
+BsDaterangepickerInputDirective,
+BsDaterangepickerComponent
+];
 
 @NgModule({
   imports: [CommonModule],
@@ -55,11 +57,9 @@ const _exports = [
 })
 export class BsDatepickerModule {
   constructor() {
-    if (isDevMode()) {
-      console.warn(`BsDatepickerModule is under development,
+    warnOnce(`BsDatepickerModule is under development,
       BREAKING CHANGES are possible,
       PLEASE, read changelog`);
-    }
   }
 
   static forRoot(): ModuleWithProviders {
