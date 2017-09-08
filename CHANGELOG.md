@@ -1,3 +1,13 @@
+<a name="1.9.3"></a>
+## [1.9.3](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.2...v1.9.3) (2017-09-08)
+
+
+### Bug Fixes
+
+* **core:** workaround on angular issue with isProdMode ([#2603](https://github.com/valor-software/ngx-bootstrap/issues/2603)) ([f9665ac](https://github.com/valor-software/ngx-bootstrap/commit/f9665ac)), closes [#2596](https://github.com/valor-software/ngx-bootstrap/issues/2596)
+
+
+
 <a name="1.9.2"></a>
 ## [1.9.2](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.1...v1.9.2) (2017-09-07)
 
