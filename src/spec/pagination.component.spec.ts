@@ -240,4 +240,125 @@ describe('Component: Pagination:', () => {
     expect(listItems[8].classList).toContain('disabled');
     expect(context._totalPages).toEqual(8);
   }));
+
+  it('check clicks(rotate)', fakeAsync(() => {
+    context.totalItems = 175;
+    context.maxSize = 5;
+    context.boundaryLinks = true;
+    context.boundaryLinkNumbers = false;
+    context.rotate = false;
+
+    context.ngOnInit();
+    fixture.detectChanges();
+
+    let listItems = element.querySelectorAll('li');
+    let links = element.querySelectorAll('a');
+
+    // <~First~> <~Previous~> _1_ 2 3 4 5 ... <Next> <Last>
+    expect(listItems[0].classList).toContain('disabled');
+    expect(listItems[1].classList).toContain('disabled');
+    expect(listItems[2].classList).toContain('active');
+    expect(listItems[8].classList).not.toContain('disabled');
+    expect(listItems[9].classList).not.toContain('disabled');
+
+    expect(listItems.length).toEqual(10);
+    expect(context._page).toEqual(1);
+
+    expect(links[2].innerHTML).toEqual('1');
+    expect(links[6].innerHTML).toEqual('5');
+    expect(links[7].innerHTML).toEqual('...');
+
+    links[7].click();
+    tick(200);
+    fixture.detectChanges();
+
+    expect(context._page).toEqual(6);
+
+    listItems = element.querySelectorAll('li');
+    links = element.querySelectorAll('a');
+
+    // <~First~> <~Previous~> ... _6_ 7 8 9 10 ... <Next> <Last>
+    expect(listItems.length).toEqual(11);
+
+    expect(listItems[3].classList).toContain('active');
+
+    expect(links[2].innerHTML).toEqual('...');
+    expect(links[3].innerHTML).toEqual('6');
+  }));
+
+  it('check clicks(boundary links numbers)', fakeAsync(() => {
+    context.totalItems = 175;
+    context.maxSize = 5;
+    context.boundaryLinks = true;
+    context.boundaryLinkNumbers = true;
+    context.rotate = false;
+
+    context.ngOnInit();
+    fixture.detectChanges();
+
+    let listItems = element.querySelectorAll('li');
+    let links = element.querySelectorAll('a');
+
+    // <~First~> <~Previous~> _1_ 2 3 4 5 ... 18 <Next> <Last>
+    expect(listItems[0].classList).toContain('disabled');
+    expect(listItems[1].classList).toContain('disabled');
+    expect(listItems[2].classList).toContain('active');
+    expect(listItems[9].classList).not.toContain('disabled');
+    expect(listItems[10].classList).not.toContain('disabled');
+
+    expect(listItems.length).toEqual(11);
+    expect(context._page).toEqual(1);
+
+    expect(links[2].innerHTML).toEqual('1');
+    expect(links[6].innerHTML).toEqual('5');
+    expect(links[7].innerHTML).toEqual('...');
+    expect(links[8].innerHTML).toEqual('18');
+
+    links[7].click();
+    tick(200);
+    fixture.detectChanges();
+
+    expect(context._page).toEqual(6);
+
+    listItems = element.querySelectorAll('li');
+    links = element.querySelectorAll('a');
+
+    // <~First~> <~Previous~> 1 ... _6_ 7 8 9 10 ... 18 <Next> <Last>
+    expect(listItems[0].classList).not.toContain('disabled');
+    expect(listItems[1].classList).not.toContain('disabled');
+    expect(listItems[4].classList).toContain('active');
+    expect(listItems[11].classList).not.toContain('disabled');
+    expect(listItems[12].classList).not.toContain('disabled');
+
+    expect(listItems.length).toEqual(13);
+
+    expect(links[2].innerHTML).toEqual('1');
+    expect(links[3].innerHTML).toEqual('...');
+    expect(links[4].innerHTML).toEqual('6');
+    expect(links[9].innerHTML).toEqual('...');
+    expect(links[10].innerHTML).toEqual('18');
+
+    links[10].click();
+    tick(200);
+    fixture.detectChanges();
+
+    expect(context._page).toEqual(18);
+
+    listItems = element.querySelectorAll('li');
+    links = element.querySelectorAll('a');
+
+    // <~First~> <~Previous~> 1 ... 16 17 _18_ <Next> <Last>
+    expect(listItems[0].classList).not.toContain('disabled');
+    expect(listItems[1].classList).not.toContain('disabled');
+    expect(listItems[6].classList).toContain('active');
+    expect(listItems[7].classList).toContain('disabled');
+    expect(listItems[8].classList).toContain('disabled');
+
+    expect(listItems.length).toEqual(9);
+
+    expect(links[2].innerHTML).toEqual('1');
+    expect(links[3].innerHTML).toEqual('...');
+    expect(links[4].innerHTML).toEqual('16');
+    expect(links[6].innerHTML).toEqual('18');
+  }));
 });

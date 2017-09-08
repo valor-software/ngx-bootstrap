@@ -8,6 +8,7 @@ export class PaginationConfig {
     maxSize: void 0,
     itemsPerPage: 10,
     boundaryLinks: false,
+    boundaryLinkNumbers: false,
     directionLinks: true,
     firstText: 'First',
     previousText: 'Previous',
