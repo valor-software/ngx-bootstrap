@@ -67,8 +67,13 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   
   <h3 routerLink="." fragment="service-component" id="service-component">Component</h3>
   <p>Creating a modal with component just as easy as it is with template. Just pass your component in <code>.show()</code> method as in example, and don't forget to include your component to <code>entryComponents</code> of your NgModule<br>
-  If you passed a component to <code>.show()</code> you can get access to opened modal by injecting BsModalRef. See example for more info
-  </p>
+  If you passed a component to <code>.show()</code> you can get access to opened modal by injecting BsModalRef. See example for more info</p>
+  <p>There are two ways to pass your data in the modal component:</p>
+  <ul>
+    <li>Pass your data in <code>options</code> object. In this case data will be present in the component at the stage of <code>OnInit</code></li>
+    <li>Get an instance of component you've passed and change its properties.At the stage of <code>OnInit</code> there will be no data.</li>
+  </ul>
+  <p>Both ways are shown in demo</p>
   <ng-sample-box [ts]="demos.serviceComponent.component" [html]="demos.serviceComponent.html">
     <demo-modal-service-component></demo-modal-service-component>
   </ng-sample-box>
