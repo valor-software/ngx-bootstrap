@@ -17,7 +17,8 @@ export class TimepickerState {
   controls: TimepickerControls;
 }
 
-export const initialState = {
+export const initialState: TimepickerState = {
+  value: null,
   config: new TimepickerConfig(),
   controls: {
     canIncrementHours: true,
@@ -28,7 +29,7 @@ export const initialState = {
     canDecrementMinutes: true,
     canDecrementSeconds: true
   }
-} as TimepickerState;
+};
 
 export function timepickerReducer(state = initialState, action: Action) {
   switch (action.type) {
@@ -81,11 +82,17 @@ export function timepickerReducer(state = initialState, action: Action) {
 
     case (TimepickerActions.UPDATE_CONTROLS): {
       const _newControlsState = timepickerControls(state.value, action.payload);
-
-      return Object.assign({}, state, {
+      const _newState: TimepickerState = {
+        value: state.value,
         config: action.payload,
         controls: _newControlsState
-      });
+      };
+
+      if (state.config.showMeridian !== _newState.config.showMeridian) {
+        _newState.value = new Date(state.value);
+      }
+
+      return Object.assign({}, state, _newState);
     }
 
     default:

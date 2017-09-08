@@ -19,7 +19,7 @@
       "mobile": false,
       "serviceWorker": true,
       "styles": [
-        "../../src/datepicker/bs-datepicker.css"
+        "../../src/datepicker/bs-datepicker.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -42,7 +42,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

@@ -134,6 +134,7 @@ export class TabsetComponent implements OnDestroy {
   protected setClassMap():void {
     this.classMap = {
       'nav-stacked': this.vertical,
+      'flex-column': this.vertical,
       'nav-justified': this.justified,
       [`nav-${this.type}`]: true
     };

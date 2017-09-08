@@ -31,6 +31,7 @@ import { DateFormatter } from './date-formatter';
   `
 })
 export class DatePickerInnerComponent implements OnInit, OnChanges {
+  @Input() locale: string;
   @Input() public datepickerMode: string;
   @Input() public startingDay: number;
   @Input() public yearRange: number;
@@ -181,7 +182,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   public dateFilter(date: Date, format: string): string {
-    return this.dateFormatter.format(date, format);
+    return this.dateFormatter.format(date, format, this.locale);
   }
 
   public isActive(dateObject: any): boolean {

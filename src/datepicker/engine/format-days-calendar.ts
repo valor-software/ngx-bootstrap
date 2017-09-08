@@ -1,10 +1,12 @@
-import { DatepickerFormatOptions, DaysCalendarModel, MonthViewModel, MonthViewOptions } from '../models/index';
+import {
+  DatepickerFormatOptions, DaysCalendarModel, DaysCalendarViewModel
+} from '../models/index';
 import { formatDate } from '../../bs-moment/format';
 import { getLocale } from '../../bs-moment/locale/locales.service';
 
-export function formatMonthView(daysCalendar: DaysCalendarModel,
-                                formatOptions: DatepickerFormatOptions,
-                                monthIndex: number): MonthViewModel {
+export function formatDaysCalendar(daysCalendar: DaysCalendarModel,
+                                   formatOptions: DatepickerFormatOptions,
+                                   monthIndex: number): DaysCalendarViewModel {
   return {
     month: daysCalendar.month,
     monthTitle: formatDate(daysCalendar.month, formatOptions.monthTitle, formatOptions.locale),
@@ -19,10 +21,12 @@ export function formatMonthView(daysCalendar: DaysCalendarModel,
             monthIndex, weekIndex, dayIndex
           }))
         })
-      ),
+      )
   };
 }
 
 export function getWeekNumbers(daysMatrix: Date[][], format: string, locale: string): string[] {
-  return daysMatrix.map((days: Date[]) => days[0] ? formatDate(days[0], format, locale) : '');
+  return daysMatrix.map((days: Date[]) => days[0]
+    ? formatDate(days[0], format, locale)
+    : '');
 }

@@ -1,0 +1,36 @@
+$main-bg:         #fff;
+$custom-range-bg: #eee;
+
+$main-box-shadow: #aaa;
+
+$font-color-01:   #fff;
+$font-color-02:   #9aaec1;
+$font-color-03:   #54708b;
+
+$border-color:    #e9edf0;
+$highlighted:     #e9edf0;
+
+$btn-bg:          #e9edf0;
+$btn-bg-hover:    #d5dadd;
+
+$btn-bg2:         #9aaec1;
+$btn-bg2-hover:   #54708b;
+
+$theme-gray:      #777;
+$theme-green:     #5cb85c;
+$theme-blue:      #5bc0de;
+$theme-dark-blue: #337ab7;
+$theme-red:       #d9534f;
+$theme-orange:    #f0ad4e;
+
+$disabled-background:  rgba(221, 221, 221, 0.3);
+$disabled-color:       #f5f5f5;
+
+$theme-list: (
+  'default': $theme-gray,
+  'green': $theme-green,
+  'blue': $theme-blue,
+  'dark-blue': $theme-dark-blue,
+  'red': $theme-red,
+  'orange': $theme-orange,
+);

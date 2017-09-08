@@ -35,18 +35,16 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
         <!-- increment hours button-->
         <td>
           <a class="btn btn-link" [class.disabled]="!canIncrementHours"
-             (click)="changeHours(hourStep)">
-            <span class="glyphicon glyphicon-chevron-up"></span>
-          </a>
+             (click)="changeHours(hourStep)"
+          ><span class="glyphicon glyphicon-chevron-up"></span></a>
         </td>
         <!-- divider -->
         <td>&nbsp;&nbsp;&nbsp;</td>
         <!-- increment minutes button -->
         <td>
           <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
-             (click)="changeMinutes(minuteStep)">
-            <span class="glyphicon glyphicon-chevron-up"></span>
-          </a>
+             (click)="changeMinutes(minuteStep)"
+          ><span class="glyphicon glyphicon-chevron-up"></span></a>
         </td>
         <!-- divider -->
         <td *ngIf="showSeconds">&nbsp;</td>
@@ -112,8 +110,8 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
           <button type="button" class="btn btn-default text-center"
                   [disabled]="readonlyInput"
                   [class.disabled]="readonlyInput"
-                  (click)="toggleMeridian()">
-            {{meridian}}
+                  (click)="toggleMeridian()"
+          >{{ meridian }}
           </button>
         </td>
       </tr>

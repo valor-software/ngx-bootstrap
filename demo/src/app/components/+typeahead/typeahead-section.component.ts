@@ -12,7 +12,13 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <li><a routerLink="." fragment="usage">Usage</a></li>
     <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
-        <!--<li><a routerLink="." fragment="link-color">Link color</a></li>-->
+        <li><a routerLink="." fragment="static">Static array</a></li>
+        <li><a routerLink="." fragment="item-template">Item template</a></li>
+        <li><a routerLink="." fragment="option-field">Option field</a></li>
+        <li><a routerLink="." fragment="async">Async data</a></li>
+        <li><a routerLink="." fragment="forms">Reactive forms</a></li>
+        <li><a routerLink="." fragment="grouping-results">Grouping results</a></li>
+        <li><a routerLink="." fragment="dropup">Dropup</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -62,6 +68,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="grouping-results" id="grouping-results">Grouping results</h2>
   <ng-sample-box [ts]="demos.grouping.component" [html]="demos.grouping.html">
     <demo-typeahead-grouping></demo-typeahead-grouping>
+  </ng-sample-box>
+
+  <!-- Dropup -->
+  <h2 routerLink="." fragment="dropup" id="dropup">Dropup</h2>
+  <ng-sample-box [ts]="demos.dropup.component" [html]="demos.dropup.html">
+    <demo-typeahead-dropup></demo-typeahead-dropup>
   </ng-sample-box>
   
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>

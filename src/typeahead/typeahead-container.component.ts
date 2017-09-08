@@ -53,6 +53,7 @@ import { latinize } from './typeahead-utils';
   host: {
     'class': 'dropdown open',
     '[class.dropdown-menu]':'isBs4',
+    '[class.dropup]':'dropup',
     style: 'position: absolute;display: block;'
   },
   // tslint: enable
@@ -67,6 +68,7 @@ export class TypeaheadContainerComponent {
   public left: string;
   public display: string;
   public placement: string;
+  public dropup: boolean;
 
   public get isBs4():boolean {
     return !isBs3();

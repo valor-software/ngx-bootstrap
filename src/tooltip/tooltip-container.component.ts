@@ -9,12 +9,23 @@ import { isBs3 } from '../utils/ng2-bootstrap-config';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"tooltip in tooltip-" + placement + " " + placement + " " + containerClass',
+    '[class]': '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
     role: 'tooltip'
   },
+  styles: [`    
+    :host.tooltip {
+      display: block;
+    }
+    :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
+      left: calc(50% - 2.5px);
+    }
+    :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
+      top: calc(50% - 2.5px);
+    }
+  `],
   template: `
-    <div class="tooltip-arrow"></div>
+    <div class="tooltip-arrow arrow"></div>
     <div class="tooltip-inner"><ng-content></ng-content></div>
     `
   // template: `<div class="tooltip" role="tooltip"

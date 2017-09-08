@@ -109,13 +109,13 @@ export class ComponentLoader<T> {
   }
 
   // todo: appendChild to element or document.querySelector(this.container)
-  public show(opts: { content?: string | TemplateRef<any>, [key: string]: any } = {}): ComponentRef<T> {
+  public show(opts: { content?: string | TemplateRef<any>, context?: any, [key: string]: any } = {}): ComponentRef<T> {
     this._subscribePositioning();
     this._innerComponent = null;
 
     if (!this._componentRef) {
       this.onBeforeShow.emit();
-      this._contentRef = this._getContentRef(opts.content);
+      this._contentRef = this._getContentRef(opts.content, opts.context);
       const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
@@ -253,14 +253,16 @@ export class ComponentLoader<T> {
       return;
     }
     // why: should run after first event bubble
-    const target = this._componentRef.location.nativeElement;
-    setTimeout(() => {
-      this._globalListener = registerOutsideClick(this._renderer, {
-        targets: [target, this._elementRef.nativeElement],
-        outsideClick: this._listenOpts.outsideClick,
-        hide: () => this._listenOpts.hide()
+    if (this._listenOpts.outsideClick) {
+      const target = this._componentRef.location.nativeElement;
+      setTimeout(() => {
+        this._globalListener = registerOutsideClick(this._renderer, {
+          targets: [target, this._elementRef.nativeElement],
+          outsideClick: this._listenOpts.outsideClick,
+          hide: () => this._listenOpts.hide()
+        });
       });
-    });
+    }
   }
 
   public getInnerComponent(): ComponentRef<T> {
@@ -294,14 +296,15 @@ export class ComponentLoader<T> {
     this._zoneSubscription = null;
   }
 
-  private _getContentRef(content: string | TemplateRef<any> | any): ContentRef {
+  private _getContentRef(content: string | TemplateRef<any> | any, context?: any): ContentRef {
     if (!content) {
       return new ContentRef([]);
     }
 
     if (content instanceof TemplateRef) {
       if (this._viewContainerRef) {
-        const viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content);
+        const viewRef = this._viewContainerRef.createEmbeddedView<TemplateRef<T>>(content, context);
+        viewRef.markForCheck();
         return new ContentRef([viewRef.rootNodes], viewRef);
       }
       const viewRef = content.createEmbeddedView({});

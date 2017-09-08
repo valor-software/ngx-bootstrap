@@ -11,14 +11,14 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
       <th>
         <button *ngIf="!isBs4"
                 type="button"
-                class="btn btn-default btn-secondary btn-sm pull-left"
+                class="btn btn-default btn-secondary btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)"
                 tabindex="-1">
           <i class="glyphicon glyphicon-chevron-left"></i>
         </button>
         <button *ngIf="isBs4"
                 type="button"
-                class="btn btn-default btn-secondary btn-sm pull-left"
+                class="btn btn-default btn-secondary btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)"
                 tabindex="-1">&lt;
         </button>
@@ -35,14 +35,14 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
       <th>
         <button *ngIf="!isBs4"
                 type="button"
-                class="btn btn-default btn-secondary btn-sm pull-right"
+                class="btn btn-default btn-secondary btn-sm pull-right float-right"
                 (click)="datePicker.move(1)"
                 tabindex="-1">
           <i  class="glyphicon glyphicon-chevron-right"></i>
         </button>
         <button *ngIf="isBs4"
                 type="button"
-                class="btn btn-default btn-secondary btn-sm pull-right"
+                class="btn btn-default btn-secondary btn-sm pull-right float-right"
                 (click)="datePicker.move(1)"
                 tabindex="-1">&gt;
         </button>
@@ -74,7 +74,17 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
     </ng-template>
   </tbody>
 </table>
-  `
+  `,
+  styles: [`
+    :host .btn-secondary {
+      color: #292b2c;
+      background-color: #fff;
+      border-color: #ccc;
+    }
+    :host .btn-info .text-muted {
+      color: #292b2c !important;
+    }
+  `]
 })
 export class DayPickerComponent implements OnInit {
 

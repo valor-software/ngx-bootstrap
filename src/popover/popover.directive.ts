@@ -16,13 +16,17 @@ export class PopoverDirective implements OnInit, OnDestroy {
    */
   @Input() public popover: string | TemplateRef<any>;
   /**
+   * Context to be used if popover is a template.
+   */
+  @Input() public popoverContext: any;
+  /**
    * Title of a popover.
    */
   @Input() public popoverTitle: string;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() public placement: 'top' | 'bottom' | 'left' | 'right';
+  @Input() public placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
   /**
    * Close popover on outside click
    */
@@ -103,6 +107,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .position({attachment: this.placement})
       .show({
         content: this.popover,
+        context: this.popoverContext,
         placement: this.placement,
         title: this.popoverTitle,
         containerClass: this.containerClass

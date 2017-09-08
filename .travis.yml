@@ -20,12 +20,11 @@ script:
   - npm i ./dist
   - npm run demo.build
   # istanbul is broken, should be fixed
-  #- npm run test-coverage
-  - ./node_modules/.bin/ng test -sr
+  - npm run test-coverage
 
 after_success:
   - ./node_modules/.bin/codecov
-  - npm run test-cross
+  #- npm run test-cross
 
 addons:
   # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )

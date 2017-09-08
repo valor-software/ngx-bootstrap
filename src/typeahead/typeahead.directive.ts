@@ -8,6 +8,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { latinize, tokenize, getValueFromObject } from './typeahead-utils';
 
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
@@ -61,6 +62,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    */
   @Input() public container: string;
 
+  /** This attribute indicates that the dropdown should be opened upwards */
+  @Input() public dropup: boolean = false;
+
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
   // @Input() protected typeaheadEditable:boolean;
@@ -89,6 +93,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected renderer: Renderer;
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
+  private _subscriptions: Subscription[] = [];
 
   @HostListener('keyup', ['$event'])
   public onChange(e: any): void {
@@ -127,7 +132,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       : e.target.textContent !== undefined
         ? e.target.textContent
         : e.target.innerText;
-    if (value && value.trim().length >= this.typeaheadMinLength) {
+    if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
     } else {
@@ -215,11 +220,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
       .to(this.container)
-      .position({attachment: 'bottom left'})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
-        animation: false
+        animation: false,
+        dropup: this.dropup
       });
 
     this._container = this._typeahead.instance;
@@ -244,11 +250,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): any {
+    // clean up subscriptions
+    for (const sub of this._subscriptions) {
+      sub.unsubscribe();
+    }
     this._typeahead.dispose();
   }
 
   protected asyncActions(): void {
-    this.keyUpEventEmitter
+    this._subscriptions.push(this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap(() => this.typeahead)
       .subscribe(
@@ -258,11 +268,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         (err: any) => {
           console.error(err);
         }
-      );
+      ));
   }
 
   protected syncActions(): void {
-    this.keyUpEventEmitter
+    this._subscriptions.push(this.keyUpEventEmitter
       .debounceTime(this.typeaheadWaitMs)
       .mergeMap((value: string) => {
         let normalizedQuery = this.normalizeQuery(value);
@@ -280,7 +290,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         (err: any) => {
           console.error(err);
         }
-      );
+      ));
   }
 
   protected normalizeOption(option: any): any {

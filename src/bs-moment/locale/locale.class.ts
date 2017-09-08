@@ -5,7 +5,7 @@ import { getDayOfWeek, getMonth } from '../utils/date-getters';
 export interface LocaleOptionsFormat {
   format: string[];
   standalone: string[];
-  isFormat: RegExp;
+  isFormat?: RegExp;
 }
 
 export type LocaleOptions = string[] | LocaleOptionsFormat;
@@ -16,6 +16,14 @@ export const defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct
 export const defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
 export const defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
 export const defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+export const defaultLongDateFormat: { [index: string]: string } = {
+  LTS  : 'h:mm:ss A',
+  LT   : 'h:mm A',
+  L    : 'MM/DD/YYYY',
+  LL   : 'MMMM D, YYYY',
+  LLL  : 'MMMM D, YYYY h:mm A',
+  LLLL : 'dddd, MMMM D, YYYY h:mm A'
+};
 
 export interface LocaleData {
   [key: string]: any;
@@ -24,15 +32,17 @@ export interface LocaleData {
   abbr?: string;
 
   months?: LocaleOptions;
-  monthsShort?: string[];
+  monthsShort?: LocaleOptions;
   weekdays?: LocaleOptions;
   weekdaysMin?: string[];
   weekdaysShort?: string[];
   week?: { dow: number, doy: number };
 
   dayOfMonthOrdinalParse?: RegExp;
-  ordinal?: (num: number) => string;
-  postformat?: (num: string) => string;
+  meridiemParse?: RegExp;
+
+  ordinal?(num: number, token?: string): string;
+  postformat?(num: string): string;
 }
 
 export class Locale {
@@ -57,7 +67,7 @@ export class Locale {
     }
   }
 
-  set (config: LocaleData): void {
+  set(config: LocaleData): void {
     for (const i in config) {
       if (!config.hasOwnProperty(i)) {
         continue;
@@ -99,7 +109,7 @@ export class Locale {
       return (this._monthsShort as string[])[getMonth(date)];
     }
     let key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
-    return  ((this._monthsShort as any)[key] as string[])[getMonth(date)];
+    return ((this._monthsShort as any)[key] as string[])[getMonth(date)];
   }
 
   // Days of week
@@ -141,9 +151,34 @@ export class Locale {
     return this._week.doy;
   }
 
+  meridiem(hours: number, minutes: number, isLower: boolean): string {
+    if (hours > 11) {
+      return isLower ? 'pm' : 'PM';
+    }
+
+    return isLower ? 'am' : 'AM';
+  }
+
   ordinal(num: number, token?: string): string {
     return this._ordinal.replace('%d', num.toString(10));
   }
 
+  preparse(str: string) { return str; }
+
   postformat(str: string) { return str; }
+
+  longDateFormat(key: string) {
+    const format = defaultLongDateFormat[key];
+    const formatUpper = defaultLongDateFormat[key.toUpperCase()];
+
+    if (format || !formatUpper) {
+      return format;
+    }
+
+    defaultLongDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, (val: string) => {
+      return val.slice(1);
+    });
+
+    return defaultLongDateFormat[key];
+  }
 }

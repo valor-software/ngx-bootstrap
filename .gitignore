@@ -26,6 +26,7 @@ npm-debug.log
 /demo/dist
 /demo/temp
 /logs
+/gh-pages
 
 #System Files
 .DS_Store
@@ -34,6 +35,7 @@ Thumbs.db
 
 /demo/e2e/*.js
 /demo/e2e/*.map
+/demo/src/ng-api-doc.ts
 src/**/*.js
 src/**/*.map
 scripts/**/*.js

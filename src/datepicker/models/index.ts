@@ -1,16 +1,32 @@
-import { Locale } from '../../bs-moment/locale/locale.class';
+import { TimeUnit } from '../../bs-moment/types';
+import { Observable } from 'rxjs/Observable';
+import { EventEmitter } from '@angular/core';
+import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
+import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 
-export interface DaysCalendarModel {
-  daysMatrix: Date[][];
-  month: Date;
+export type BsDatepickerViewMode = 'day' | 'month' | 'year';
+
+/** *************** */
+// navigation bar settings
+export interface NavigationViewModel {
+  monthTitle: string;
+  yearTitle: string;
+  hideLeftArrow?: boolean;
+  hideRightArrow?: boolean;
+  disableLeftArrow?: boolean;
+  disableRightArrow?: boolean;
 }
 
-export interface DayViewModel {
+export interface CalendarCellViewModel {
   date: Date;
   label: string;
-  // flag step
   isDisabled?: boolean;
   isHovered?: boolean;
+}
+
+/** *************** */
+// days matrix: day cell view model
+export interface DayViewModel extends CalendarCellViewModel {
   isOtherMonth?: boolean;
   isInRange?: boolean;
   isSelectionStart?: boolean;
@@ -26,30 +42,58 @@ export interface WeekViewModel {
   days: DayViewModel[];
 }
 
-export interface MonthViewModel {
+// todo: split navigation settings
+export interface DaysCalendarViewModel extends NavigationViewModel {
   weeks: WeekViewModel[];
-  // format step
+  // additional information
   month: Date;
-  monthTitle: string;
-  yearTitle: string;
   weekNumbers: string[];
   weekdays: string[];
-  // flag step
-  hideLeftArrow?: boolean;
-  hideRightArrow?: boolean;
 }
 
+/** *************** */
+// months calendar
+export interface MonthsCalendarViewModel extends NavigationViewModel {
+  months: CalendarCellViewModel[][];
+}
+
+/** *************** */
+// years calendar
+export interface YearsCalendarViewModel extends NavigationViewModel {
+  years: CalendarCellViewModel[][];
+}
+
+/** *************** */
+
+// math model
+/** *************** */
+
+// days Date's array
+export interface DaysCalendarModel {
+  daysMatrix: Date[][];
+  month: Date;
+}
+
+/** *************** */
+// some func options
 export interface MonthViewOptions {
   width?: number;
   height?: number;
   firstDayOfWeek?: number;
 }
 
+/** *************** */
+// rendering options
 export interface DatepickerFormatOptions {
   locale: string;
+
   monthTitle: string;
   yearTitle: string;
+
   dayLabel: string;
+  monthLabel: string;
+  yearLabel: string;
+
   weekNumbers: string;
 }
 
@@ -58,30 +102,23 @@ export interface DatepickerRenderOptions {
   displayMonths?: number;
 }
 
-export interface TimeUnit {
-  year?: number;
-  month?: number;
-  day?: number;
-  hour?: number;
-  minute?: number;
-  seconds?: number;
-}
-
-export type DateFormatterFn = (date: Date, format: string, locale?: Locale) => string;
-
-export interface LocaleData {
-  invalidDate: string;
-  postformat: (str: string) => string;
-  ordinal: (str: string) => string;
-}
-
+/** *************** */
 // events
+/** *************** */
+export enum BsNavigationDirection {UP, DOWN}
 
+// used for navigation events, to change view date in state
 export interface BsNavigationEvent {
-  step: TimeUnit;
+  direction?: BsNavigationDirection;
+  step?: TimeUnit;
 }
 
-export interface DayHoverEvent {
-  day: DayViewModel;
+export interface BsViewNavigationEvent {
+  unit?: TimeUnit;
+  viewMode: BsDatepickerViewMode;
+}
+
+export interface CellHoverEvent {
+  cell: CalendarCellViewModel;
   isHovered: boolean;
 }
