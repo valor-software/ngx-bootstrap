@@ -2,9 +2,9 @@ import {
   Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener
 } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
-import { TypeaheadUtils } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { latinize } from './typeahead-utils';
 
 @Component({
   selector: 'typeahead-container',
@@ -53,6 +53,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
   host: {
     'class': 'dropdown open',
     '[class.dropdown-menu]':'isBs4',
+    '[class.dropup]':'dropup',
     style: 'position: absolute;display: block;'
   },
   // tslint: enable
@@ -67,6 +68,7 @@ export class TypeaheadContainerComponent {
   public left: string;
   public display: string;
   public placement: string;
+  public dropup: boolean;
 
   public get isBs4():boolean {
     return !isBs3();
@@ -139,7 +141,7 @@ export class TypeaheadContainerComponent {
   public hightlight(match: TypeaheadMatch, query: any): string {
     let itemStr: string = match.value;
     let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
-      ? TypeaheadUtils.latinize(itemStr)
+      ? latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx: number;
     let tokenLen: number;

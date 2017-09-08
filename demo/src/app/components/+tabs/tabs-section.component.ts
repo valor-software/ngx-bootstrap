@@ -15,6 +15,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <li><a routerLink="." fragment="examples">Examples</a>
       <ul>
         <li><a routerLink="." fragment="static">Static tabs</a></li>
+        <li><a routerLink="." fragment="manual">Manual selection</a></li>
         <li><a routerLink="." fragment="dynamic">Dynamic tabs</a></li>
         <li><a routerLink="." fragment="pills">Pills</a></li>
         <li><a routerLink="." fragment="vertical-pills">Vertical Pills</a></li>
@@ -43,7 +44,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
       <demo-tabs-basic></demo-tabs-basic>
   </ng-sample-box>
-       
+
+  <h2 routerLink="." fragment="manual" id="manual">Manual selection</h2>
+  <ng-sample-box [ts]="demos.manual.component" [html]="demos.manual.html">
+    <demo-tabs-manual></demo-tabs-manual>
+  </ng-sample-box>
+  
   <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic tabs</h2>    
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
       <demo-tabs-dynamic></demo-tabs-dynamic>
@@ -85,7 +91,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class TabsSectionComponent {
   public name: string = 'Tabs';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/tabs';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tabs';
   public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
 }

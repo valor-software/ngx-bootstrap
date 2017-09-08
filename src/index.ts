@@ -36,12 +36,13 @@ export { CollapseDirective, CollapseModule } from './collapse';
 
 export {
   DateFormatter, DatePickerComponent, DatepickerConfig, DatepickerModule,
-  DayPickerComponent, MonthPickerComponent, YearPickerComponent
+  DayPickerComponent, MonthPickerComponent, YearPickerComponent,
+  BsDatepickerModule
 } from './datepicker';
 
 export {
   ModalDirective, ModalOptions, ModalBackdropOptions, ModalBackdropComponent,
-  ModalModule
+  ModalModule, BsModalRef, BsModalService
 } from './modal';
 
 export {
@@ -81,7 +82,7 @@ export {
 
 export {
   TypeaheadOptions, TypeaheadContainerComponent, TypeaheadDirective,
-  TypeaheadMatch, TypeaheadModule, TypeaheadUtils,
+  TypeaheadMatch, TypeaheadModule
 } from './typeahead';
 
 export {
@@ -97,6 +98,8 @@ export {
 export {
   Positioning, PositioningOptions, PositioningService, positionElements
 } from './positioning';
+
+export { defineLocale, getSetGlobalLocale } from './bs-moment';
 
 const MODULES = [
   AccordionModule, AlertModule, ButtonsModule,

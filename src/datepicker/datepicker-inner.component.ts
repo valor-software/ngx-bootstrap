@@ -31,6 +31,7 @@ import { DateFormatter } from './date-formatter';
   `
 })
 export class DatePickerInnerComponent implements OnInit, OnChanges {
+  @Input() locale: string;
   @Input() public datepickerMode: string;
   @Input() public startingDay: number;
   @Input() public yearRange: number;
@@ -105,6 +106,17 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-unused-variable
   public ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
+    this.checkIfActiveDateGotUpdated(changes['activeDate']);
+  }
+
+  // Check if activeDate has been update and then emit the activeDateChange with the new date
+  private checkIfActiveDateGotUpdated(activeDate: any): void {
+		if (activeDate && !activeDate.firstChange) {
+			let previousValue = activeDate.previousValue;
+			if (previousValue && previousValue instanceof Date && previousValue.getTime() !== activeDate.currentValue.getTime()) {
+				this.activeDateChange.emit(this.activeDate);
+			}
+		}
   }
 
   public setCompareHandler(handler: Function, type: string): void {
@@ -170,7 +182,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   public dateFilter(date: Date, format: string): string {
-    return this.dateFormatter.format(date, format);
+    return this.dateFormatter.format(date, format, this.locale);
   }
 
   public isActive(dateObject: any): boolean {
@@ -224,7 +236,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       }
     } else {
       this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-      this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
+      if (isManual) {
+        this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
+      }
     }
 
     this.selectedDate = new Date(this.activeDate.valueOf() as number);

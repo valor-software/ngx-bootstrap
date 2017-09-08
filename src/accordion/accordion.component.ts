@@ -8,9 +8,11 @@ import { AccordionConfig } from './accordion.config';
   template: `<ng-content></ng-content>`,
   // tslint:disable-next-line
   host: {
-    '[class.panel-group]': 'true',
+    //'[.class.panel-group]': 'true',
     '[attr.aria-multiselectable]':'closeOthers',
-    role: 'tablist'
+    role: 'tablist',
+    class: 'panel-group',
+    style: 'display: block'
   }
 })
 export class AccordionComponent {

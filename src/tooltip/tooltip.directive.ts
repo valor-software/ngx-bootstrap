@@ -6,6 +6,7 @@ import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
 import { OnChange } from '../utils/decorators';
+import { warnOnce } from '../utils/warn-once';
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -51,6 +52,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() public isDisabled: boolean;
 
   /**
+   * Css class for tooltip container
+   */
+  @Input() public containerClass: string = '';
+
+  /**
    * Emits an event when the tooltip is shown
    */
   @Output() public onShown: EventEmitter<any>;
@@ -63,50 +69,50 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
   public set htmlContent(value: string | TemplateRef<any>) {
-    console.warn('tooltipHtml was deprecated, please use `tooltip` instead');
+    warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }
 
   /** @deprecated - please use `placement` instead */
   @Input('tooltipPlacement')
   public set _placement(value: string) {
-    console.warn('tooltipPlacement was deprecated, please use `placement` instead');
+    warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
     this.placement = value;
   }
 
   /** @deprecated - please use `isOpen` instead*/
   @Input('tooltipIsOpen')
   public set _isOpen(value: boolean) {
-    console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
+    warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
     this.isOpen = value;
   }
 
   public get _isOpen(): boolean {
-    console.warn('tooltipIsOpen was deprecated, please use `isOpen` instead');
+    warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
     return this.isOpen;
   }
 
   /** @deprecated - please use `isDisabled` instead */
   @Input('tooltipEnable')
   public set _enable(value: boolean) {
-    console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
+    warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
     this.isDisabled = value === true;
   }
 
   public get _enable(): boolean {
-    console.warn('tooltipEnable was deprecated, please use `isDisabled` instead');
+    warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
     return this.isDisabled === true;
   }
 
   /** @deprecated - please use `container="body"` instead */
   @Input('tooltipAppendToBody')
   public set _appendToBody(value: boolean) {
-    console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
     this.container = value ? 'body' : this.container;
   }
 
   public get _appendToBody(): boolean {
-    console.warn('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
     return this.container === 'body';
   }
 
@@ -116,13 +122,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated - will replaced with customClass */
   @Input('tooltipClass')
   public set _popupClass(value: string) {
-    console.warn('tooltipClass deprecated');
+    warnOnce('tooltipClass deprecated');
   }
 
   /** @deprecated - removed */
   @Input('tooltipContext')
   public set _tooltipContext(value: any) {
-    console.warn('tooltipContext deprecated');
+    warnOnce('tooltipContext deprecated');
   }
 
   /** @deprecated */
@@ -134,19 +140,19 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated -  please use `triggers` instead */
   @Input('tooltipTrigger')
   public get _tooltipTrigger(): string|Array<string> {
-    console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
+    warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
     return this.triggers;
   };
 
   public set _tooltipTrigger(value: string|Array<string>) {
-    console.warn('tooltipTrigger was deprecated, please use `triggers` instead');
+    warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
     this.triggers = (value || '').toString();
   };
 
   /** @deprecated */
   @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   /* tslint:enable */
-  protected _delayTimeoutId: number;
+  protected _delayTimeoutId: number | any;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
@@ -204,7 +210,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
       .position({attachment: this.placement})
       .show({
         content: this.tooltip,
-        placement: this.placement
+        placement: this.placement,
+        containerClass: this.containerClass
       });
 
     if (this._delay) {

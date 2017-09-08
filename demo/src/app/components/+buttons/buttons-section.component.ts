@@ -17,6 +17,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="basic">Single button</a></li>
         <li><a routerLink="." fragment="checkbox">Checkbox</a></li>
         <li><a routerLink="." fragment="radio">Radio & Uncheckable Radio</a></li>
+        <li><a routerLink="." fragment="radio-reactiveforms">Radio with ReactiveForms</a></li>
         <li><a routerLink="." fragment="disabled">Disabled Buttons</a></li>
       </ul>
     </li>
@@ -50,6 +51,12 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-sample-box [ts]="demos.radio.component" [html]="demos.radio.html">
     <demo-buttons-radio></demo-buttons-radio>
   </ng-sample-box>
+    
+  <h2 routerLink="." fragment="radio-reactiveforms" id="radio-reactiveforms">Radio with ReactiveForms</h2>
+  <p>Checkbox buttons with ReactiveForms</p>
+  <ng-sample-box [ts]="demos.radioReactiveForms.component" [html]="demos.radioReactiveForms.html">
+    <demo-buttons-radio-reactiveforms></demo-buttons-radio-reactiveforms>
+  </ng-sample-box>
         
   <h2 routerLink="." fragment="disabled" id="disabled">Disabled Buttons</h2>
   <ng-sample-box [ts]="demos.disabled.component" [html]="demos.disabled.html">
@@ -63,7 +70,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class ButtonsSectionComponent {
   public name:string = 'Buttons';
-  public src:string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/buttons';
+  public src:string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
   public titleDoc:string = titleDoc;
   public demos: any = DEMOS;
 }

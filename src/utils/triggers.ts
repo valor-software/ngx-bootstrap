@@ -2,11 +2,12 @@
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
-import { Renderer } from '@angular/core';
+import { ElementRef, Renderer } from '@angular/core';
 import { Trigger } from './trigger.class';
+import { ListenOptions } from '../component-loader/listen-options.model';
 
 const DEFAULT_ALIASES = {
-  hover: ['mouseenter', 'mouseleave'],
+  hover: ['mouseover', 'mouseout'],
   focus: ['focusin', 'focusout']
 };
 
@@ -59,4 +60,57 @@ export function listenToTriggers(renderer: Renderer, target: any, triggers: stri
   });
 
   return () => { listeners.forEach((unsubscribeFn: Function) => unsubscribeFn()); };
+}
+
+export function listenToTriggersV2(renderer: Renderer, options: ListenOptions): Function {
+  const parsedTriggers = parseTriggers(options.triggers);
+  const target = options.target;
+  // do nothing
+  if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
+    return Function.prototype;
+  }
+
+  // all listeners
+  const listeners: any[] = [];
+
+  // lazy listeners registration
+  const _registerHide: Function[] = [];
+  const registerHide = () => {
+    // add hide listeners to unregister array
+    _registerHide.forEach((fn: Function) => listeners.push(fn()));
+    // register hide events only once
+    _registerHide.length = 0;
+  };
+
+  // register open\close\toggle listeners
+  parsedTriggers.forEach((trigger: Trigger) => {
+    const useToggle = trigger.open === trigger.close;
+    const showFn = useToggle ? options.toggle : options.show;
+
+    if (!useToggle) {
+      _registerHide.push(() => renderer.listen(target, trigger.close, options.hide));
+    }
+
+    listeners.push(renderer.listen(target, trigger.open, () => showFn(registerHide)));
+  });
+
+  return () => {
+    listeners.forEach((unsubscribeFn: Function) => unsubscribeFn());
+  };
+}
+
+export function registerOutsideClick(renderer: Renderer, options: ListenOptions) {
+  if (!options.outsideClick) {
+    return Function.prototype;
+  }
+
+  return renderer.listenGlobal('document', 'click', (event: any) => {
+    if (options.target && options.target.contains(event.target)) {
+      return;
+    }
+    if (options.targets && options.targets.some(target => target.contains(event.target))) {
+      return;
+    }
+    options.hide();
+  });
 }

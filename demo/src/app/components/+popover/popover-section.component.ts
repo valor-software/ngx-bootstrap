@@ -21,9 +21,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         <li><a routerLink="." fragment="dynamic-html">Dynamic Html</a></li>
         <li><a routerLink="." fragment="container-body">Append to body</a></li>
         <li><a routerLink="." fragment="config">Configuring defaults</a></li>
+        <li><a routerLink="." fragment="outside-click">Outside click</a></li>
         <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
         <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
         <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
+        <li><a routerLink="." fragment="class">Custom class</a></li>
         <!--<li><a routerLink="." fragment="styling-global">Global styling</a></li>-->
       </ul>
     </li>
@@ -49,6 +51,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <!-- four directions -->
   <h2 routerLink="." fragment="four-directions" id="four-directions">Four directions</h2>
   Four positioning options are available: top, right, bottom, and left aligned.
+  Besides that, auto option may be used to detect a position that fits the component on screen.
   <ng-sample-box [ts]="demos.forDirections.component" [html]="demos.forDirections.html">
     <demo-popover-four-directions></demo-popover-four-directions>
   </ng-sample-box>
@@ -83,6 +86,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-popover-config></demo-popover-config>
   </ng-sample-box>
   
+  <h2 routerLink="." fragment="outside-click" id="outside-click">Outside click</h2>
+  <ng-sample-box [ts]="demos.outsideClick.component" [html]="demos.outsideClick.html">
+    <demo-popover-outside-click></demo-popover-outside-click>
+  </ng-sample-box>
+  
   <h2 routerLink="." fragment="triggers-custom" id="triggers-custom">Custom triggers</h2>
   <ng-sample-box [ts]="demos.triggersCustom.component" [html]="demos.triggersCustom.html">
     <demo-popover-triggers-custom></demo-popover-triggers-custom>
@@ -98,7 +106,11 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-popover-styling-local></demo-popover-styling-local>
   </ng-sample-box>
 
-  <!-- todo: add custom class -->
+  <h2 routerLink="." fragment="class" id="class">Custom class</h2>
+  <ng-sample-box [ts]="demos.customClass.component" [html]="demos.customClass.html">
+    <demo-popover-class></demo-popover-class>
+  </ng-sample-box>
+  
   <!--<h2 routerLink="." fragment="styling-global" id="styling-global">Global styling</h2>-->
   <!--<ng-sample-box [ts]="demos.stylingGlobal.component" [html]="demos.stylingGlobal.html">-->
     <!--<demo-popover-styling-global></demo-popover-styling-global>-->
@@ -112,7 +124,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 })
 export class PopoverSectionComponent  {
   public name: string = 'Popover';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/popover';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
   public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
 }

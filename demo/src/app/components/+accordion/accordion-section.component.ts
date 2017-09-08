@@ -82,7 +82,7 @@ console.log('loaded async')
 })
 export class AccordionSectionComponent {
   public name: string = 'Accordion';
-  public src: string = 'https://github.com/valor-software/ng2-bootstrap/tree/development/src/accordion';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   public titleDoc: string = titleDoc;
   public demos: any = DEMOS;
 }

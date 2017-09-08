@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "ng2-bootstrap"
+    "name": "ngx-bootstrap"
   },
   "apps": [
     {
@@ -14,9 +14,11 @@
       "main": "main.ts",
       "test": "../../scripts/test.ts",
       "tsconfig": "tsconfig.json",
+      "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "",
       "mobile": false,
       "styles": [
+        "../../src/datepicker/bs-datepicker.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -39,7 +41,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
       "style": false,

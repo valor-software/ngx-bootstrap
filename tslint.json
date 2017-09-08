@@ -12,6 +12,9 @@
     "only-arrow-functions": false,
     "no-access-missing-member": false,
     "directive-selector": false,
-    "component-selector": false
+    "component-selector": false,
+    "no-magic-numbers": false,
+    "no-any": false,
+    "prefer-object-spread": false
   }
 }

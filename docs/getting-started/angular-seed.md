@@ -1,7 +1,7 @@
 # Documenting full steps to install and test with [angular-seed](https://github.com/mgechev/angular-seed)  
   
   ```bash
-  npm install --save ng2-bootstrap bootstrap
+  npm install --save ngx-bootstrap bootstrap
   ```
 
 ### In **project.config.ts**
@@ -26,24 +26,14 @@
   let additionalPackages: ExtendPackages[] = [
   // required for dev build 
   {
-    name:'ng2-bootstrap',
-    path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
+    name:'ngx-bootstrap',
+    path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
   },    
   
   // required for prod build
   {
-    name:'ng2-bootstrap/*',
-    path:'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.min.js'
-  },
-  
-  // mandatory dependency for ng2-bootstrap datepicker 
-  {
-    name:'moment',
-    path:'node_modules/moment',
-    packageMeta:{
-      main: 'moment.js',
-      defaultExtension: 'js'
-    }
+    name:'ngx-bootstrap/*',
+    path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
   }
   ];    
   this.addPackagesBundles(additionalPackages);
@@ -55,7 +45,7 @@
 ### In **home.module.ts:**
 
   ```
-  import { AlertModule } from 'ng2-bootstrap/alert';
+  import { AlertModule } from 'ngx-bootstrap/alert';
   
   @NgModule({
     imports: [CommonModule, HomeRoutingModule, SharedModule, AlertModule.forRoot()],

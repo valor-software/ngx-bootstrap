@@ -1,8 +1,8 @@
 ```typescript
 // RECOMMENDED (doesn't work with system.js)
-import { RatingModule } from 'ng2-bootstrap/rating';
+import { RatingModule } from 'ngx-bootstrap/rating';
 // or
-import { RatingModule } from 'ng2-bootstrap';
+import { RatingModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [RatingModule.forRoot(),...]

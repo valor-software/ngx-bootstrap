@@ -52,6 +52,17 @@ a:hover {
   float: left;
 }
 
+#top-menu .prev-docs {
+  position: relative;
+}
+ #top-menu .prev-docs .dropdown-toggle {
+   color: #fff;
+   font-size: 18px;
+   padding-top: 22px;
+   cursor: pointer;
+ }
+
+
 #top-menu .title {
   border-right: 1px solid #191924;
   min-width: 270px;
@@ -139,7 +150,7 @@ a:hover {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 999;
+  /*z-index: 999;*/
   -webkit-transition: left .5s ease;
   -moz-transition: left .5s ease;
   -ms-transition: left .5s ease;
@@ -574,6 +585,7 @@ a:hover {
 
   .isOpenMenu #main-menu {
     left: 0;
+    z-index: 999;
   }
 
   #main {
@@ -620,7 +632,15 @@ pre {
   transition: opacity 1s;
 }
 .tooltip.customClass .tooltip-arrow {
-  display: none;
+  border-top-color: #ffff75;
+}
+
+/* Specify styling for popover contents */
+.popover.customClass, .popover.customClass .popover-content {
+  background: #94bada;
+}
+.popover.customClass.top>.arrow:after {
+  border-top-color: #94bada;
 }
 
 .nav-item.customClass {
@@ -656,7 +676,17 @@ pre {
 .app-footer a:hover {
   text-decoration: underline;
 }
-
+.modal-dialog.second{
+  margin: 60px auto;
+}
+.modal-dialog.third{
+  margin: 90px auto;
+}
+.modal-dialog.gray .modal-content{
+  background: #5f5f5f;
+  border-radius: 0;
+  color: #fff;
+}
 /* bootstrap doc styles */
 .bd-example-row .row + .row {
   margin-top: 1rem;
