@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
 import { PopoverConfig } from './popover.config';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 
 @Component({
   selector: 'popover-container',

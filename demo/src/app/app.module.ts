@@ -16,6 +16,8 @@ import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { ThemeStorage } from './theme/theme-storage';
+import { StyleManager } from './theme/style-manager';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { GettingStartedComponent } from './getting-started/getting-started.compo
     BsDropdownModule.forRoot()
   ],
   providers: [
+    ThemeStorage,
+    StyleManager,
     {provide: NgApiDoc, useValue: ngdoc}
   ],
   bootstrap: [AppComponent]

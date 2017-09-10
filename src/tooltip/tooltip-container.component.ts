@@ -2,7 +2,7 @@ import {
   AfterViewInit, Component, ChangeDetectionStrategy, Inject
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 
 @Component({
   selector: 'bs-tooltip-container',

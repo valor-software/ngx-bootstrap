@@ -19,7 +19,9 @@
       "mobile": false,
       "serviceWorker": true,
       "styles": [
-        "../../src/datepicker/bs-datepicker.scss"
+        "../../src/datepicker/bs-datepicker.scss",
+        "assets/css/style.css",
+        "assets/css/prettify-angulario.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

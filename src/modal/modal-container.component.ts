@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer } from '@angular/core';
 import { ClassName, DISMISS_REASONS, ModalOptions, TransitionDurations } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 
 
 @Component({

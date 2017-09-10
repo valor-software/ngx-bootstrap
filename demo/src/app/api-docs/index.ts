@@ -23,7 +23,8 @@ export { SampleBoxComponent } from './sample-box/sample-box.component';
   imports: [CommonModule, TabsModule],
   declarations: [NgApiDocComponent, NgApiDocClassComponent,
     NgApiDocConfigComponent, SampleBoxComponent],
-  exports: [NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent, SampleBoxComponent],
+  exports: [NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent,
+    SampleBoxComponent],
   providers: [Analytics]
 })
 export class NgApiDocModule {

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
 
 import { ClassName } from './modal-options.class';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 
 export class ModalBackdropOptions {

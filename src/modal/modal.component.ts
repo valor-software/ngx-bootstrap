@@ -18,7 +18,7 @@ import {
 
 import { document } from  '../utils/facade/browser';
 
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ClassName, modalConfigDefaults, ModalOptions, Selector, DISMISS_REASONS } from './modal-options.class';

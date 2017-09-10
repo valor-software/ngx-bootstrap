@@ -1,7 +1,7 @@
 import { Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { ProgressDirective } from './progress.directive';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 
 // todo: number pipe
 // todo: use query from progress?

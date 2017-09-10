@@ -1,7 +1,7 @@
 import {
   Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener
 } from '@angular/core';
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 import { TypeaheadDirective } from './typeahead.directive';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { latinize } from './typeahead-utils';
