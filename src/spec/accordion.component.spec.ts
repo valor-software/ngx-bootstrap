@@ -9,19 +9,22 @@ const html = `
 
     <accordion-group heading="Panel 1"
                      [isOpen]="panels[0].isOpen"
-                     [isDisabled]="panels[0].isDisabled">
+                     [isDisabled]="panels[0].isDisabled"
+                     (isOpenChanges)="panels[0].isOpenChangesValue = $event">
       Content of panel 1
     </accordion-group>
 
     <accordion-group heading="Panel 2"
                      [isOpen]="panels[1].isOpen"
-                     [isDisabled]="panels[1].isDisabled">
+                     [isDisabled]="panels[1].isDisabled"
+                     (isOpenChanges)="panels[1].isOpenChangesValue = $event">
       Content of panel 2
     </accordion-group>
 
     <accordion-group heading="Panel 3"
                      [isOpen]="panels[2].isOpen"
-                     [isDisabled]="panels[2].isDisabled">
+                     [isDisabled]="panels[2].isDisabled"
+                     (isOpenChanges)="panels[2].isOpenChangesValue = $event">
       Content of panel 3
     </accordion-group>
 
@@ -137,6 +140,31 @@ describe('Component: Accordion', () => {
     fixture.detectChanges();
     expectOpenPanels(element, [false, false, false]);
   });
+
+  it('should output the open state when it is changed internally', () => {
+    const headingLinks = element.querySelectorAll('.accordion-toggle');
+
+    // Clicking (internal state modified)
+    headingLinks[0].click();
+    fixture.detectChanges();
+    expect(context.panels[0].isOpenChangesValue).toBe(true);
+    expect(context.panels[1].isOpenChangesValue).toBe(false);
+    expect(context.panels[2].isOpenChangesValue).toBe(false);
+
+    // State modified by parent component
+    headingLinks[2].click();
+    fixture.detectChanges();
+    expect(context.panels[0].isOpenChangesValue).toBe(false);
+    expect(context.panels[1].isOpenChangesValue).toBe(false);
+    expect(context.panels[2].isOpenChangesValue).toBe(true);
+
+    // Modified by binding
+    context.panels[1].isOpen = true;
+    fixture.detectChanges();
+    expect(context.panels[0].isOpenChangesValue).toBe(false);
+    expect(context.panels[1].isOpenChangesValue).toBe(true);
+    expect(context.panels[2].isOpenChangesValue).toBe(false);
+  });
 });
 
 @Component({
@@ -147,9 +175,9 @@ describe('Component: Accordion', () => {
 class TestAccordionComponent {
   public oneAtATime:boolean = true;
   public panels:any[] = [
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false}
+    {isOpen: false, isDisabled: false, isOpenChangesValue: null},
+    {isOpen: false, isDisabled: false, isOpenChangesValue: null},
+    {isOpen: false, isDisabled: false, isOpenChangesValue: null}
   ];
 
   public constructor(config: AccordionConfig) {

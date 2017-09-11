@@ -1,5 +1,5 @@
 import {
-  Component, HostBinding, Inject, Input, OnDestroy, OnInit
+  Component, HostBinding, Inject, Input, OnDestroy, OnInit, Output, EventEmitter
 } from '@angular/core';
 import { isBs3 } from '../utils/ng2-bootstrap-config';
 import { AccordionComponent } from './accordion.component';
@@ -18,7 +18,7 @@ import { AccordionComponent } from './accordion.component';
       <div class="panel-heading card-header" role="tab" (click)="toggleOpen($event)">
         <div class="panel-title">
           <div role="button" class="accordion-toggle" [attr.aria-expanded]="isOpen">
-            <div *ngIf="heading"[ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
+            <div *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
             <ng-content select="[accordion-heading]"></ng-content>
           </div>
         </div>
@@ -42,6 +42,8 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   @Input() public panelClass: string;
   /** if <code>true</code> — disables accordion group */
   @Input() public isDisabled: boolean;
+  /** Emits when the opened state changes */
+  @Output() public isOpenChanges: EventEmitter<boolean> = new EventEmitter();
 
   // Questionable, maybe .panel-open should be on child div.panel element?
   /** Is accordion group open or closed */
@@ -53,6 +55,8 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
 
   public set isOpen(value: boolean) {
     this._isOpen = value;
+    this.isOpenChanges.emit(this.isOpen);
+
     if (value) {
       this.accordion.closeOtherPanels(this);
     }
