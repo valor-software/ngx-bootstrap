@@ -329,6 +329,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // }
 
   protected focusOtherModal() {
+    if (this._element.nativeElement.parentElement == null) return;
     const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
     if (!otherOpenedModals.length) {
       return;
