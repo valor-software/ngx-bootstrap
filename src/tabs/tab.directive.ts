@@ -84,7 +84,7 @@ export class TabDirective implements OnInit, OnDestroy {
   /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
   @Output() public removed: EventEmitter<TabDirective> = new EventEmitter();
 
-  @HostBinding('class.tab-pane') public addClass: boolean = true;
+  @HostBinding('class.tab-pane') public addClass = true;
 
   public headingRef: TemplateRef<any>;
   public tabset: TabsetComponent;

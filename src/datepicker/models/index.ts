@@ -1,8 +1,4 @@
 import { TimeUnit } from '../../bs-moment/types';
-import { Observable } from 'rxjs/Observable';
-import { EventEmitter } from '@angular/core';
-import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
-import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 
 export type BsDatepickerViewMode = 'day' | 'month' | 'year';
 

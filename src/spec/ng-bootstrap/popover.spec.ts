@@ -21,18 +21,14 @@ import { createGenericTestComponent } from './test/common';
 
 @Injectable()
 class SpyService {
-  public called: boolean = false;
+  public called = false;
 }
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<
-    TestComponent
-  >;
+  createGenericTestComponent(html, TestComponent);
 
 const createOnPushTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestOnPushComponent) as ComponentFixture<
-    TestOnPushComponent
-  >;
+  createGenericTestComponent(html, TestOnPushComponent);
 
 describe('popover-container', () => {
   beforeEach(() => {
@@ -372,8 +368,8 @@ describe('popover', () => {
         By.directive(PopoverDirective)
       );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
@@ -391,8 +387,8 @@ describe('popover', () => {
         `<div popover="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`
       );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       fixture.componentInstance.popover.show();
       fixture.detectChanges();
@@ -411,8 +407,8 @@ describe('popover', () => {
         `<div popover="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`
       );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       fixture.componentInstance.popover.hide();
       fixture.detectChanges();
@@ -600,7 +596,7 @@ describe('popover', () => {
   });
 
   describe('Custom config as provider', () => {
-    let config = new PopoverConfig();
+    const config = new PopoverConfig();
     config.placement = 'bottom';
     config.triggers = 'hover';
 
@@ -623,8 +619,8 @@ describe('popover', () => {
 
 @Component({ selector: 'test-cmpt', template: `` })
 export class TestComponent {
-  public name: string = 'World';
-  public show: boolean = true;
+  public name = 'World';
+  public show = true;
   public title: string;
   public placement: string;
 

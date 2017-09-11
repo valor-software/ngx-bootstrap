@@ -2,7 +2,7 @@
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
-import { ElementRef, Renderer } from '@angular/core';
+import { Renderer } from '@angular/core';
 import { Trigger } from './trigger.class';
 import { ListenOptions } from '../component-loader/listen-options.model';
 
@@ -25,7 +25,7 @@ export function parseTriggers(
     .split(/\s+/)
     .map((trigger: string) => trigger.split(':'))
     .map((triggerPair: string[]) => {
-      let alias = aliases[triggerPair[0]] || triggerPair;
+      const alias = aliases[triggerPair[0]] || triggerPair;
       return new Trigger(alias[0], alias[1]);
     });
 
@@ -34,11 +34,11 @@ export function parseTriggers(
   );
 
   if (manualTriggers.length > 1) {
-    throw 'Triggers parse error: only one manual trigger is allowed';
+    throw new Error('Triggers parse error: only one manual trigger is allowed');
   }
 
   if (manualTriggers.length === 1 && parsedTriggers.length > 1) {
-    throw 'Triggers parse error: manual trigger can\'t be mixed with other triggers';
+    throw new Error('Triggers parse error: manual trigger can\'t be mixed with other triggers');
   }
 
   return parsedTriggers;

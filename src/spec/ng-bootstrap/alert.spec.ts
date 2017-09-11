@@ -8,16 +8,14 @@ import { Component } from '@angular/core';
 import { AlertModule, AlertComponent, AlertConfig } from '../../alert';
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<
-    TestComponent
-  >;
+  createGenericTestComponent(html, TestComponent);
 
 function getAlertElement(element: HTMLElement): HTMLDivElement {
   return element.querySelector('.alert') as HTMLDivElement;
 }
 
 function getCloseButton(element: HTMLElement): HTMLButtonElement {
-  return element.querySelector('button') as HTMLButtonElement;
+  return element.querySelector('button');
 }
 
 describe('ngb-alert', () => {
@@ -85,7 +83,7 @@ describe('ngb-alert', () => {
   });
 
   describe('Custom config as provider', () => {
-    let config = new AlertConfig();
+    const config = new AlertConfig();
     config.dismissible = false;
     config.type = 'success';
 
@@ -113,6 +111,6 @@ describe('ngb-alert', () => {
   entryComponents: [AlertComponent]
 })
 class TestComponent {
-  public name: string = 'World';
-  public closed: boolean = false;
+  public name = 'World';
+  public closed = false;
 }

@@ -36,7 +36,7 @@ describe('Directive: Collapse', () => {
   });
 
   it('should have collapse class', () => {
-    let div = fixture.nativeElement.querySelector('div');
+    const div = fixture.nativeElement.querySelector('div');
     expect(div.classList).toContain('collapse');
   });
 
@@ -125,10 +125,10 @@ describe('Directive: Collapse', () => {
       context.isCollapsed = false;
       context.isHidden = true;
       fixture.detectChanges();
-      let heightWithoutDynamic = element.offsetHeight;
+      const heightWithoutDynamic = element.offsetHeight;
       context.isHidden = false;
       fixture.detectChanges();
-      let heightWithDynamic = element.offsetHeight;
+      const heightWithDynamic = element.offsetHeight;
       expect(heightWithDynamic).toBeGreaterThanOrEqual(heightWithoutDynamic);
     });
 
@@ -136,10 +136,10 @@ describe('Directive: Collapse', () => {
       context.isCollapsed = false;
       context.isHidden = false;
       fixture.detectChanges();
-      let heightWithDynamic = element.offsetHeight;
+      const heightWithDynamic = element.offsetHeight;
       context.isHidden = true;
       fixture.detectChanges();
-      let heightWithoutDynamic = element.offsetHeight;
+      const heightWithoutDynamic = element.offsetHeight;
       expect(heightWithoutDynamic).toBeLessThanOrEqual(heightWithDynamic);
     });
   });

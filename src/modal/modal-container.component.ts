@@ -22,7 +22,6 @@ import { isBs3 } from '../utils/theme-provider';
       <div class="modal-content"><ng-content></ng-content></div>
     </div>
   `,
-  // tslint:disable-next-line
   host: {
     class: 'modal',
     role: 'dialog',
@@ -31,11 +30,11 @@ import { isBs3 } from '../utils/theme-provider';
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
   public config: ModalOptions;
-  public isShown: boolean = false;
+  public isShown = false;
   public level: number;
   public isAnimated: boolean;
   protected _element: ElementRef;
-  private isModalHiding: boolean = false;
+  private isModalHiding = false;
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
     if (
@@ -59,20 +58,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  // @HostListener('window:focusin', ['$event'])
-  // public enforceFocus($event:any): void {
-  //   if (!(this._element.nativeElement === $event.target || this._element.nativeElement.contains($event.target))) {
-  //     this._element.nativeElement.focus();
-  //   }
-  // }
-  // @HostListener('focusout', ['$event'])
-  // public preventFocusOut($event:any): void {
-  //   if (!$event.relatedTarget) {
-  //     this._element.nativeElement.focus();
-  //   }
-  // }
 
-  public constructor(
+  constructor(
     options: ModalOptions,
     _element: ElementRef,
     private bsModalService: BsModalService,

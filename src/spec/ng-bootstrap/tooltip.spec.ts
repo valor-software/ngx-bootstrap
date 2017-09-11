@@ -23,14 +23,10 @@ import {
 } from '../../tooltip';
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<
-    TestComponent
-  >;
+  createGenericTestComponent(html, TestComponent);
 
 const createOnPushTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestOnPushComponent) as ComponentFixture<
-    TestOnPushComponent
-  >;
+  createGenericTestComponent(html, TestOnPushComponent);
 
 describe('tooltip-container', () => {
   beforeEach(() => {
@@ -181,7 +177,7 @@ describe('tooltip', () => {
     it('should properly cleanup tooltips with manual triggers', () => {
       const fixture = createTestComponent(`
             <ng-template [ngIf]="show">
-              <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip" (mouseover)="t.show()"></div>  
+              <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip" (mouseover)="t.show()"></div>
             </ng-template>`);
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
@@ -430,8 +426,8 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
@@ -449,8 +445,8 @@ describe('tooltip', () => {
         `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`
       );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       fixture.componentInstance.tooltip.show();
       fixture.detectChanges();
@@ -469,8 +465,8 @@ describe('tooltip', () => {
         `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`
       );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       fixture.componentInstance.tooltip.hide();
       fixture.detectChanges();
@@ -532,7 +528,7 @@ describe('tooltip', () => {
   });
 
   describe('Custom config as provider', () => {
-    let config = new TooltipConfig();
+    const config = new TooltipConfig();
     config.placement = 'bottom';
     config.triggers = 'click';
     config.container = 'body';
@@ -557,8 +553,8 @@ describe('tooltip', () => {
 
 @Component({ selector: 'test-cmpt', template: `` })
 export class TestComponent {
-  public name: string = 'World';
-  public show: boolean = true;
+  public name = 'World';
+  public show = true;
 
   @ViewChild(TooltipDirective) public tooltip: TooltipDirective;
 

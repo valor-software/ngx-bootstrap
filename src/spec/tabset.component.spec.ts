@@ -90,7 +90,7 @@ describe('Component: Tabs', () => {
   });
 
   it('should set tab header', () => {
-    const str: string = 'test title';
+    const str = 'test title';
     context.tabs[1].title = str;
     fixture.detectChanges();
     const tabTitles = getTabTitles(element);

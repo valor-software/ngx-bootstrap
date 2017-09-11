@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { isDevMode, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
 import { BsDatepickerStore } from './reducer/bs-datepicker.store';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';

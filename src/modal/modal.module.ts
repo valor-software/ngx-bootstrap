@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { ModalBackdropComponent } from './modal-backdrop.component';
-import { ModalDirective } from './modal.component';
+import { ModalDirective } from './modal.directive';
 import { PositioningService } from '../positioning';
 import { ComponentLoaderFactory } from '../component-loader';
 import { ModalContainerComponent } from './modal-container.component';

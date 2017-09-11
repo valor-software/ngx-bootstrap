@@ -17,19 +17,12 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
 
 @Component({
   selector: 'rating',
-  template: `
-    <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" [attr.aria-valuemax]="range.length" [attr.aria-valuenow]="value">
-      <ng-template ngFor let-r [ngForOf]="range" let-index="index">
-        <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
-        <i (mouseenter)="enter(index + 1)" (click)="rate(index + 1)" class="glyphicon" [ngClass]="index < value ? r.stateOn : r.stateOff" [title]="r.title" ></i>
-      </ng-template>
-    </span>
-  `,
+  templateUrl: './rating.component.html',
   providers: [RATING_CONTROL_VALUE_ACCESSOR]
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */
-  @Input() public max: number = 5;
+  @Input() public max = 5;
   /** selected icon class */
   @Input() public stateOn: string;
   /** unselected icon class */
@@ -60,13 +53,13 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
     event.preventDefault();
     event.stopPropagation();
-    let sign = event.which === 38 || event.which === 39 ? 1 : -1;
+    const sign = event.which === 38 || event.which === 39 ? 1 : -1;
     this.rate(this.value + sign);
   }
 
   public ngOnInit(): void {
     this.max = typeof this.max !== 'undefined' ? this.max : 5;
-    this.readonly = this.readonly === true;
+    this.readonly = this.readonly;
     this.stateOn =
       typeof this.stateOn !== 'undefined' ? this.stateOn : 'glyphicon-star';
     this.stateOff =
@@ -121,8 +114,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   protected buildTemplateObjects(ratingStates: any[], max: number): any[] {
     ratingStates = ratingStates || [];
-    let count = ratingStates.length || max;
-    let result: any[] = [];
+    const count = ratingStates.length || max;
+    const result: any[] = [];
     for (let i = 0; i < count; i++) {
       result.push(
         Object.assign(

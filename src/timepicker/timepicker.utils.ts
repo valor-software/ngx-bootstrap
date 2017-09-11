@@ -36,7 +36,7 @@ export function isNumber(value: string): boolean {
 
 export function parseHours(
   value: string | number,
-  isPM: boolean = false
+  isPM = false
 ): number {
   const hour = toNumber(value);
   if (
@@ -159,7 +159,7 @@ export function padNumber(value: number): string {
 export function isInputValid(
   hours: string,
   minutes: string,
-  seconds: string = '0',
+  seconds = '0',
   isPM: boolean
 ): boolean {
   if (

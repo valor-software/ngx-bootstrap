@@ -21,7 +21,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"
                 [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" tabindex="-1" style="width:100%;">
-          <strong>{{title}}</strong>
+          <strong>{{ title }}</strong>
         </button>
       </th>
       <th>
@@ -39,7 +39,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 [ngClass]="{'btn-link': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || (isBs4 && !dtz.selected && datePicker.isActive(dtz)), disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz)}"
                 [disabled]="dtz.disabled"
                 (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ngClass]="{'text-success': isBs4 && dtz.current, 'text-info': !isBs4 && dtz.current}">{{dtz.label}}</span>
+          <span [ngClass]="{'text-success': isBs4 && dtz.current, 'text-info': !isBs4 && dtz.current}">{{ dtz.label }}</span>
         </button>
       </td>
     </tr>
@@ -68,14 +68,14 @@ export class YearPickerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    let self = this;
+    const self = this;
 
     this.datePicker.stepYear = { years: this.datePicker.yearRange };
 
     this.datePicker.setRefreshViewHandler(function(): void {
-      let years: any[] = new Array(this.yearRange);
+      const years: any[] = new Array(this.yearRange);
       let date: Date;
-      let start = self.getStartingYear(this.activeDate.getFullYear());
+      const start = self.getStartingYear(this.activeDate.getFullYear());
 
       for (let i = 0; i < this.yearRange; i++) {
         date = new Date(start + i, 0, 1);

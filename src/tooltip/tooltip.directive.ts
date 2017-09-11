@@ -72,7 +72,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Css class for tooltip container
    */
-  @Input() public containerClass: string = '';
+  @Input() public containerClass = '';
 
   /**
    * Emits an event when the tooltip is shown

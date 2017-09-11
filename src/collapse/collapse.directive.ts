@@ -5,29 +5,16 @@ import {
   EventEmitter,
   HostBinding,
   Input,
-  OnInit,
   Output,
-  Renderer,
-  style
+  Renderer
 } from '@angular/core';
 
 @Directive({
   selector: '[collapse]',
   exportAs: 'bs-collapse',
-  /* tslint:disable-next-line */
   host: {
     '[class.collapse]': 'true'
-  } /*,
-  animations: [
-    trigger('active', [
-      state('void', style({height: 0})),
-      state('closed', style({height: 0})),
-      state('open', style({height: '*'})),
-      transition('void => closed', [animate(0)]),
-      transition('closed => open', [animate('350ms ease-out')]),
-      transition('open => closed', [animate('350ms ease-out')])
-    ])
-  ]*/
+  }
 })
 export class CollapseDirective {
   /** This event fires as soon as content collapses */
@@ -40,13 +27,13 @@ export class CollapseDirective {
   @HostBinding('class.in')
   @HostBinding('class.show')
   @HostBinding('attr.aria-expanded')
-  public isExpanded: boolean = true;
+  public isExpanded = true;
   // hidden
-  @HostBinding('attr.aria-hidden') public isCollapsed: boolean = false;
+  @HostBinding('attr.aria-hidden') public isCollapsed = false;
   // stale state
-  @HostBinding('class.collapse') public isCollapse: boolean = true;
+  @HostBinding('class.collapse') public isCollapse = true;
   // animation state
-  @HostBinding('class.collapsing') public isCollapsing: boolean = false;
+  @HostBinding('class.collapsing') public isCollapsing = false;
 
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()

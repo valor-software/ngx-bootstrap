@@ -80,7 +80,7 @@ export class Locale {
       if (!config.hasOwnProperty(i)) {
         continue;
       }
-      const prop = config[i] as any;
+      const prop = config[i];
       const key = isFunction(prop) ? i : `_${i}`;
       this[key] = prop;
     }
@@ -119,7 +119,7 @@ export class Locale {
     if (isArray(this._monthsShort)) {
       return (this._monthsShort as string[])[getMonth(date)];
     }
-    let key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
+    const key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
     return ((this._monthsShort as any)[key] as string[])[getMonth(date)];
   }
 

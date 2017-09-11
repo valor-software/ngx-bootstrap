@@ -74,7 +74,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() public container: string;
 
   /** This attribute indicates that the dropdown should be opened upwards */
-  @Input() public dropup: boolean = false;
+  @Input() public dropup = false;
 
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
@@ -228,7 +228,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   public changeModel(match: TypeaheadMatch): void {
-    let valueStr: string = match.value;
+    const valueStr: string = match.value;
     this.ngControl.viewToModelUpdate(valueStr);
     (this.ngControl.control as FormControl).setValue(valueStr);
     this.hide();
@@ -254,7 +254,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._container = this._typeahead.instance;
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
-    let normalizedQuery = (this.typeaheadLatinize
+    const normalizedQuery = (this.typeaheadLatinize
       ? latinize(this.ngControl.control.value)
       : this.ngControl.control.value)
       .toString()
@@ -306,7 +306,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.keyUpEventEmitter
         .debounceTime(this.typeaheadWaitMs)
         .mergeMap((value: string) => {
-          let normalizedQuery = this.normalizeQuery(value);
+          const normalizedQuery = this.normalizeQuery(value);
 
           return Observable.from(this.typeahead)
             .filter((option: any) => {
@@ -329,11 +329,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected normalizeOption(option: any): any {
-    let optionValue: string = getValueFromObject(
+    const optionValue: string = getValueFromObject(
       option,
       this.typeaheadOptionField
     );
-    let normalizedOption = this.typeaheadLatinize
+    const normalizedOption = this.typeaheadLatinize
       ? latinize(optionValue)
       : optionValue;
 
@@ -387,7 +387,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     if (this._container) {
       // This improves the speed as it won't have to be done for each list item
-      let normalizedQuery = (this.typeaheadLatinize
+      const normalizedQuery = (this.typeaheadLatinize
         ? latinize(this.ngControl.control.value)
         : this.ngControl.control.value)
         .toString()
@@ -406,13 +406,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected prepareMatches(options: any[]): void {
-    let limited: any[] = options.slice(0, this.typeaheadOptionsLimit);
+    const limited: any[] = options.slice(0, this.typeaheadOptionsLimit);
 
     if (this.typeaheadGroupField) {
       let matches: TypeaheadMatch[] = [];
 
       // extract all group names
-      let groups = limited
+      const groups = limited
         .map((option: any) =>
           getValueFromObject(option, this.typeaheadGroupField)
         )

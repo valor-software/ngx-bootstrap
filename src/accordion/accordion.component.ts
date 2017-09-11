@@ -6,9 +6,7 @@ import { AccordionConfig } from './accordion.config';
 @Component({
   selector: 'accordion',
   template: `<ng-content></ng-content>`,
-  // tslint:disable-next-line
   host: {
-    //'[.class.panel-group]': 'true',
     '[attr.aria-multiselectable]': 'closeOthers',
     role: 'tablist',
     class: 'panel-group',
@@ -42,7 +40,7 @@ export class AccordionComponent {
   }
 
   public removeGroup(group: AccordionPanelComponent): void {
-    let index = this.groups.indexOf(group);
+    const index = this.groups.indexOf(group);
     if (index !== -1) {
       this.groups.splice(index, 1);
     }

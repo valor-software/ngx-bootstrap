@@ -53,7 +53,7 @@ export class BarComponent implements OnInit, OnDestroy {
   public get isBs3(): boolean {
     return isBs3();
   }
-  public percent: number = 0;
+  public percent = 0;
   public transition: string;
   public progress: ProgressDirective;
 
@@ -74,7 +74,7 @@ export class BarComponent implements OnInit, OnDestroy {
   public recalculatePercentage(): void {
     this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 
-    let totalPercentage = this.progress.bars.reduce(function(
+    const totalPercentage = this.progress.bars.reduce(function(
       total: number,
       bar: BarComponent
     ): number {

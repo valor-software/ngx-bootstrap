@@ -26,7 +26,6 @@ import {
   ClassName,
   modalConfigDefaults,
   ModalOptions,
-  Selector,
   DISMISS_REASONS
 } from './modal-options.class';
 
@@ -75,7 +74,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   >();
 
   // seems like an Options
-  public isAnimated: boolean = true;
+  public isAnimated = true;
   /** This field contains last dismiss reason. Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
   public dismissReason: string;
 
@@ -84,11 +83,11 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   }
 
   protected _config: ModalOptions;
-  protected _isShown: boolean = false;
+  protected _isShown = false;
 
-  protected isBodyOverflowing: boolean = false;
-  protected originalBodyPadding: number = 0;
-  protected scrollbarWidth: number = 0;
+  protected isBodyOverflowing = false;
+  protected originalBodyPadding = 0;
+  protected scrollbarWidth = 0;
 
   protected timerHideModal: any = 0;
   protected timerRmBackDrop: any = 0;
@@ -103,7 +102,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // todo: implement _dialog
   private _dialog: any;
 
-  private isNested: boolean = false;
+  private isNested = false;
 
   @HostListener('click', ['$event'])
   public onClick(event: any): void {
@@ -358,7 +357,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     } else if (!this._isShown && this.backdrop) {
       this.backdrop.instance.isShown = false;
 
-      let callbackRemove = () => {
+      const callbackRemove = () => {
         this.removeBackdrop();
         if (callback) {
           callback();

@@ -22,8 +22,8 @@ interface State {
 @Component({
   // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
-  <input [(ngModel)]="selectedState" 
-         [typeahead]="states" 
+  <input [(ngModel)]="selectedState"
+         [typeahead]="states"
          [typeaheadOptionField]="'name'"
          (typeaheadOnBlur)="onBlurEvent($event)">
 `
@@ -57,7 +57,7 @@ describe('Directive: Typeahead', () => {
       .nativeElement as HTMLInputElement;
 
     // get the typeahead directive instance
-    let inputs = fixture.debugElement.queryAll(
+    const inputs = fixture.debugElement.queryAll(
       By.directive(TypeaheadDirective)
     );
     directive = inputs.map(
@@ -95,7 +95,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should not render the typeahead-container', () => {
-      let typeaheadContainer = fixture.debugElement.query(
+      const typeaheadContainer = fixture.debugElement.query(
         By.css('typeahead-container')
       );
 
@@ -119,7 +119,7 @@ describe('Directive: Typeahead', () => {
     );
 
     it('should render the typeahead-container child element', () => {
-      let typeaheadContainer = fixture.debugElement.nativeElement.querySelector(
+      const typeaheadContainer = fixture.debugElement.nativeElement.querySelector(
         'typeahead-container'
       );
       expect(typeaheadContainer).not.toBeNull();

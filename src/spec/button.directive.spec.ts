@@ -72,7 +72,7 @@ function createComponent(
 
   const fixture = TestBed.createComponent(TestButtonsComponent);
   fixture.detectChanges();
-  return fixture as ComponentFixture<TestButtonsComponent>;
+  return fixture;
 }
 
 describe('Directive: Buttons', () => {
@@ -170,7 +170,7 @@ describe('Directive: Buttons', () => {
 
       context.singleModel = false;
       fixture.detectChanges();
-      let btn = element.querySelector('#default');
+      const btn = element.querySelector('#default');
 
       btn.click();
       fixture.detectChanges();
@@ -192,7 +192,7 @@ describe('Directive: Buttons', () => {
 
       context.singleModel = false;
       fixture.detectChanges();
-      let btn = element.querySelector('#default');
+      const btn = element.querySelector('#default');
 
       btn.click();
       fixture.detectChanges();
@@ -210,7 +210,7 @@ describe('Directive: Buttons', () => {
       context = fixture.componentInstance;
       element = fixture.nativeElement;
 
-      let btn = element.querySelector('#custom');
+      const btn = element.querySelector('#custom');
 
       btn.click();
       fixture.detectChanges();
@@ -230,7 +230,7 @@ describe('Directive: Buttons', () => {
 
       context.cdRef.markForCheck();
 
-      let btn = element.querySelector('#custom');
+      const btn = element.querySelector('#custom');
 
       btn.click();
       fixture.detectChanges();
@@ -250,7 +250,7 @@ describe('Directive: Buttons', () => {
 
       context.singleModel = false;
       fixture.detectChanges();
-      let btn = element.querySelector('#disabled');
+      const btn = element.querySelector('#disabled');
 
       btn.click();
       fixture.detectChanges();
@@ -272,7 +272,7 @@ describe('Directive: Buttons', () => {
 
       context.singleModel = false;
       fixture.detectChanges();
-      let btn = element.querySelector('#disabled');
+      const btn = element.querySelector('#disabled');
 
       btn.click();
       fixture.detectChanges();
@@ -296,7 +296,7 @@ describe('Directive: Buttons', () => {
         fixture.whenStable().then(() => {
           fixture.detectChanges();
 
-          let btn = element.querySelector('.btn-group.checkbox');
+          const btn = element.querySelector('.btn-group.checkbox');
           expect(btn.children[0].classList).not.toContain('active');
           expect(btn.children[1].classList).toContain('active');
           expect(btn.children[2].classList).not.toContain('active');
@@ -314,7 +314,7 @@ describe('Directive: Buttons', () => {
         context.cdRef.markForCheck();
 
         fixture.whenStable().then(() => {
-          let btn = element.querySelector('.btn-group.checkbox');
+          const btn = element.querySelector('.btn-group.checkbox');
           expect(btn.children[0].classList).not.toContain('active');
           expect(btn.children[1].classList).toContain('active');
           expect(btn.children[2].classList).not.toContain('active');
@@ -335,7 +335,7 @@ describe('Directive: Buttons', () => {
         tick();
         fixture.detectChanges();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         expect(btn.children[0].classList).not.toContain('active');
         expect(btn.children[1].classList).toContain('active');
         expect(btn.children[2].classList).not.toContain('active');
@@ -362,7 +362,7 @@ describe('Directive: Buttons', () => {
 
         context.cdRef.markForCheck();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         expect(btn.children[0].classList).not.toContain('active');
         expect(btn.children[1].classList).toContain('active');
         expect(btn.children[2].classList).not.toContain('active');
@@ -387,7 +387,7 @@ describe('Directive: Buttons', () => {
         tick();
         fixture.detectChanges();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         delete context.radioModel;
         expect(context.radioModel).toBeUndefined();
         (btn.children[2] as HTMLElement).click();
@@ -420,7 +420,7 @@ describe('Directive: Buttons', () => {
 
         context.cdRef.markForCheck();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         delete context.radioModel;
         expect(context.radioModel).toBeUndefined();
         (btn.children[2] as HTMLElement).click();
@@ -451,7 +451,7 @@ describe('Directive: Buttons', () => {
         tick();
         fixture.detectChanges();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         expect(context.radioModel).toEqual('Middle');
         expect(btn.children[0].classList).not.toContain('active');
         expect(btn.children[1].classList).toContain('active');
@@ -478,7 +478,7 @@ describe('Directive: Buttons', () => {
 
         context.cdRef.markForCheck();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         expect(context.radioModel).toEqual('Middle');
         expect(btn.children[0].classList).not.toContain('active');
         expect(btn.children[1].classList).toContain('active');
@@ -503,7 +503,7 @@ describe('Directive: Buttons', () => {
         tick();
         fixture.detectChanges();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         expect(context.radioModel).toEqual('Middle');
         expect(btn.children[1].classList).toContain('active');
         expect(btn.children[3].classList).not.toContain('active');
@@ -532,7 +532,7 @@ describe('Directive: Buttons', () => {
 
         context.cdRef.markForCheck();
 
-        let btn = element.querySelector('.btn-group.radio');
+        const btn = element.querySelector('.btn-group.radio');
         expect(context.radioModel).toEqual('Middle');
         expect(btn.children[1].classList).toContain('active');
         expect(btn.children[3].classList).not.toContain('active');
@@ -553,7 +553,7 @@ describe('Directive: Buttons', () => {
       context = fixture.componentInstance;
       element = fixture.nativeElement;
 
-      let btn = element.querySelector('.btn-group.radio');
+      const btn = element.querySelector('.btn-group.radio');
       expect(context.radioModel).toEqual('Middle');
       (btn.children[1] as HTMLElement).click();
       fixture.detectChanges();
@@ -567,7 +567,7 @@ describe('Directive: Buttons', () => {
       context = fixture.componentInstance;
       element = fixture.nativeElement;
 
-      let btn = element.querySelector('.btn-group.radioUncheckable');
+      const btn = element.querySelector('.btn-group.radioUncheckable');
       expect(context.radioUncheckableModel).toBeUndefined();
       (btn.children[0] as HTMLElement).click();
       fixture.detectChanges();
@@ -590,7 +590,7 @@ describe('Directive: Buttons', () => {
 
       context.cdRef.markForCheck();
 
-      let btn = element.querySelector('.btn-group.radioUncheckable');
+      const btn = element.querySelector('.btn-group.radioUncheckable');
       expect(context.radioUncheckableModel).toBeUndefined();
       (btn.children[0] as HTMLElement).click();
       fixture.detectChanges();
@@ -613,9 +613,9 @@ describe('Directive: Buttons', () => {
   template: ''
 })
 class TestButtonsComponent {
-  public singleModel: string = '0';
+  public singleModel = '0';
   public checkModel: any = { left: false, middle: true, right: false };
-  public radioModel: string = 'Middle';
+  public radioModel = 'Middle';
 
   constructor(public cdRef: ChangeDetectorRef) {}
 }

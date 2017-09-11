@@ -31,7 +31,7 @@ describe('Service: DraggableItem', () => {
   it('should return draggable item', () => {
     // arrange
     // act
-    let item = transfer.getItem();
+    const item = transfer.getItem();
 
     // assert
     expect(item).toBe(draggableItem);
@@ -39,10 +39,10 @@ describe('Service: DraggableItem', () => {
 
   it('should fire onCapture if item was captured by another zone', () => {
     // arrange
-    let spy = spyOn<any>(transfer.onCaptureItem(), 'next');
+    const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
-    let item = transfer.captureItem(2, 0);
+    const item = transfer.captureItem(2, 0);
 
     // assert
     expect(spy).toHaveBeenCalledWith(draggableItem);
@@ -50,10 +50,10 @@ describe('Service: DraggableItem', () => {
 
   it('should NOT fire onCapture if item was captured by the same zone', () => {
     // arrange
-    let spy = spyOn<any>(transfer.onCaptureItem(), 'next');
+    const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
-    let item = transfer.captureItem(1, 0);
+    const item = transfer.captureItem(1, 0);
 
     // assert
     expect(spy).not.toHaveBeenCalled();

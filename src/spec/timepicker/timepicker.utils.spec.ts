@@ -13,7 +13,7 @@ import {
 } from '../../timepicker/timepicker.utils';
 
 function testTime(hours?: number, minutes?: number, seconds?: number) {
-  let time = new Date();
+  const time = new Date();
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
   time.setSeconds(seconds || 0);
@@ -26,7 +26,7 @@ function modelTime(
   second: string | number,
   PM: boolean
 ) {
-  let time = {
+  const time = {
     hour: hours || null,
     minute: minutes || null,
     seconds: second || null,
@@ -45,7 +45,7 @@ describe('Runtime coverage. Utils: Timepicker', () => {
   });
 
   it('should date is interface Data', () => {
-    let time = new Date();
+    const time = new Date();
     time.setHours(NaN);
     isValidDate(time);
   });

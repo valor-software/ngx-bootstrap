@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
   Renderer,
-  Self,
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -24,42 +23,9 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
   multi: true
 };
 
-const PAGINATION_TEMPLATE = `
-  <ul class="pagination" [ngClass]="classMap">
-    <li class="pagination-first page-item"
-        *ngIf="boundaryLinks"
-        [class.disabled]="noPrevious()||disabled">
-      <a class="page-link" href (click)="selectPage(1, $event)" [innerHTML]="getText('first')"></a>
-    </li>
-
-    <li class="pagination-prev page-item"
-        *ngIf="directionLinks"
-        [class.disabled]="noPrevious()||disabled">
-      <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
-      </li>
-
-    <li *ngFor="let pg of pages"
-        [class.active]="pg.active"
-        [class.disabled]="disabled&&!pg.active"
-        class="pagination-page page-item">
-      <a class="page-link" href (click)="selectPage(pg.number, $event)" [innerHTML]="pg.text"></a>
-    </li>
-
-    <li class="pagination-next page-item"
-        *ngIf="directionLinks"
-        [class.disabled]="noNext()||disabled">
-      <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
-
-    <li class="pagination-last page-item"
-        *ngIf="boundaryLinks"
-        [class.disabled]="noNext()||disabled">
-      <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
-  </ul>
-  `;
-
 @Component({
   selector: 'pagination',
-  template: PAGINATION_TEMPLATE,
+  templateUrl: './pagination.component.html',
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {
@@ -92,11 +58,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   /** fired when total pages count changes, $event:number equals to total pages count */
   @Output() public numPages: EventEmitter<number> = new EventEmitter<number>();
-  /** fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page */
+  /** fired when page was changed, $event:{page, itemsPerPage} equals to object
+   * with current page index and number of items per page
+   */
   @Output()
-  public pageChanged: EventEmitter<PageChangedEvent> = new EventEmitter<
-    PageChangedEvent
-  >();
+  public pageChanged = new EventEmitter<PageChangedEvent>();
 
   /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
@@ -160,8 +126,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _itemsPerPage: number;
   protected _totalItems: number;
   protected _totalPages: number;
-  protected inited: boolean = false;
-  protected _page: number = 1;
+  protected inited = false;
+  protected _page = 1;
 
   public constructor(
     renderer: Renderer,
@@ -242,7 +208,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     if (!this.disabled) {
       if (event && event.target) {
-        let target: any = event.target;
+        const target: any = event.target;
         target.blur();
       }
       this.writeValue(page);
@@ -260,12 +226,12 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   protected getPages(currentPage: number, totalPages: number): any[] {
-    let pages: any[] = [];
+    const pages: any[] = [];
 
     // Default page limits
     let startPage = 1;
     let endPage = totalPages;
-    let isMaxSized =
+    const isMaxSized =
       typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
 
     // recompute if maxSize
@@ -292,19 +258,19 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     // Add page number links
     for (let num = startPage; num <= endPage; num++) {
-      let page = this.makePage(num, num.toString(), num === currentPage);
+      const page = this.makePage(num, num.toString(), num === currentPage);
       pages.push(page);
     }
 
     // Add links to move between page sets
     if (isMaxSized && !this.rotate) {
       if (startPage > 1) {
-        let previousPageSet = this.makePage(startPage - 1, '...', false);
+        const previousPageSet = this.makePage(startPage - 1, '...', false);
         pages.unshift(previousPageSet);
       }
 
       if (endPage < totalPages) {
-        let nextPageSet = this.makePage(endPage + 1, '...', false);
+        const nextPageSet = this.makePage(endPage + 1, '...', false);
         pages.push(nextPageSet);
       }
     }
@@ -314,7 +280,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   // base class
   protected calculateTotalPages(): number {
-    let totalPages =
+    const totalPages =
       this.itemsPerPage < 1
         ? 1
         : Math.ceil(this.totalItems / this.itemsPerPage);

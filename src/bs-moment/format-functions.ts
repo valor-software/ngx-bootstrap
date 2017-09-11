@@ -20,12 +20,12 @@ export function addFormatToken(
   ordinal: string,
   callback: DateFormatterFn
 ): void {
-  let func: DateFormatterFn = callback;
+  const func: DateFormatterFn = callback;
   if (token) {
     formatTokenFunctions[token] = func;
   }
   if (padded as { [key: number]: any }) {
-    let key = padded[0] as string;
+    const key = padded[0] as string;
     formatTokenFunctions[key] = function(
       date: Date,
       format: string,

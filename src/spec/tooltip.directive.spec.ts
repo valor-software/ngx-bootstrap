@@ -14,7 +14,7 @@ const overTemplate = `
       <label>Or use custom triggers, like focus: </label>
       <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
     </div>
-  
+
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
       <label>Disable tooltips conditionally:</label>
       <input type="text" name="inputModel"  class="form-control"
@@ -22,7 +22,7 @@ const overTemplate = `
              tooltip="Enter something in this input field to disable this tooltip"
              placement="top" />
     </div>
-             
+
     <p>
     Programatically show/hide tooltip
      <a href="#" [tooltip]="'Foo'"
@@ -131,5 +131,5 @@ xdescribe('Directives: Tooltips', () => {
   template: ''
 })
 class TestTooltipComponent {
-  public delay: number = 0;
+  public delay = 0;
 }

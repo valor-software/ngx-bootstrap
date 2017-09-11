@@ -1,8 +1,7 @@
 import {
   AfterViewInit,
   Component,
-  ChangeDetectionStrategy,
-  Inject
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
 import { isBs3 } from '../utils/theme-provider';
@@ -18,7 +17,7 @@ import { isBs3 } from '../utils/theme-provider';
     role: 'tooltip'
   },
   styles: [
-    `    
+    `
     :host.tooltip {
       display: block;
     }
@@ -34,25 +33,6 @@ import { isBs3 } from '../utils/theme-provider';
     <div class="tooltip-arrow arrow"></div>
     <div class="tooltip-inner"><ng-content></ng-content></div>
     `
-  // template: `<div class="tooltip" role="tooltip"
-  //    [ngStyle]="{top: top, left: left, display: display}"
-  //    [ngClass]="classMap">
-  //     <div class="tooltip-arrow"></div>
-  //     <div class="tooltip-inner"
-  //          *ngIf="htmlContent && !isTemplate"
-  //          innerHtml="{{htmlContent}}">
-  //     </div>
-  //     <div class="tooltip-inner"
-  //          *ngIf="htmlContent && isTemplate">
-  //       <ng-template [ngTemplateOutlet]="htmlContent"
-  //                 [ngOutletContext]="{model: context}">
-  //       </ng-template>
-  //     </div>
-  //     <div class="tooltip-inner"
-  //          *ngIf="content">
-  //       {{content}}
-  //     </div>
-  //   </div>`
 })
 export class TooltipContainerComponent implements AfterViewInit {
   public classMap: any;

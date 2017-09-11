@@ -85,7 +85,7 @@ describe('Component: Progress Bar', () => {
       set: { template: tpl }
     });
     fixture = TestBed.createComponent(TestProgressbarComponent);
-    let context = fixture.debugElement.componentInstance;
+    const context = fixture.debugElement.componentInstance;
     element = fixture.nativeElement;
     const barInnerDiv = element.querySelector('bar').querySelector('div');
 

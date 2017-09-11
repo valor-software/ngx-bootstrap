@@ -107,7 +107,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
     if (this.initDate) {
       this.activeDate = this.initDate;
-      this.selectedDate = new Date(this.activeDate.valueOf() as number);
+      this.selectedDate = new Date(this.activeDate.valueOf());
       this.update.emit(this.activeDate);
     } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
@@ -118,13 +118,13 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // tslint:disable-next-line:no-unused-variable
   public ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
-    this.checkIfActiveDateGotUpdated(changes['activeDate']);
+    this.checkIfActiveDateGotUpdated(changes.activeDate);
   }
 
   // Check if activeDate has been update and then emit the activeDateChange with the new date
   private checkIfActiveDateGotUpdated(activeDate: any): void {
     if (activeDate && !activeDate.firstChange) {
-      let previousValue = activeDate.previousValue;
+      const previousValue = activeDate.previousValue;
       if (
         previousValue &&
         previousValue instanceof Date &&
@@ -211,7 +211,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   public createDateObject(date: Date, format: string): any {
-    let dateObject: any = {};
+    const dateObject: any = {};
     dateObject.date = new Date(
       date.getFullYear(),
       date.getMonth(),
@@ -226,7 +226,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   public split(arr: any[], size: number): any[] {
-    let arrays: any[] = [];
+    const arrays: any[] = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
     }
@@ -240,7 +240,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // console.log(date.getFullYear(), date.getMonth(), date.getDate(),
   // date.getHours()); can result in "2013 11 31 23" because of the bug.
   public fixTimeZone(date: Date): Date {
-    let hours = date.getHours();
+    const hours = date.getHours();
     return new Date(
       date.getFullYear(),
       date.getMonth(),
@@ -249,7 +249,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     );
   }
 
-  public select(date: Date, isManual: boolean = true): void {
+  public select(date: Date, isManual = true): void {
     if (this.datepickerMode === this.minMode) {
       if (!this.activeDate) {
         this.activeDate = new Date(0, 0, 0, 0, 0, 0, 0);
@@ -276,7 +276,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       }
     }
 
-    this.selectedDate = new Date(this.activeDate.valueOf() as number);
+    this.selectedDate = new Date(this.activeDate.valueOf());
     this.update.emit(this.activeDate);
     this.refreshView();
   }
@@ -296,9 +296,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
 
     if (expectedStep) {
-      let year =
+      const year =
         this.activeDate.getFullYear() + direction * (expectedStep.years || 0);
-      let month =
+      const month =
         this.activeDate.getMonth() + direction * (expectedStep.months || 0);
       this.activeDate = new Date(year, month, 1);
 
@@ -365,7 +365,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   protected isDisabled(date: Date): boolean {
-    let isDateDisabled: boolean = false;
+    let isDateDisabled = false;
     if (this.dateDisabled) {
       this.dateDisabled.forEach(
         (disabledDate: { date: Date; mode: string }) => {

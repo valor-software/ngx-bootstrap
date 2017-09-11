@@ -1,4 +1,4 @@
-import { changeTime, setTime } from './timepicker.utils';
+import { changeTime } from './timepicker.utils';
 import {
   TimeChangeEvent,
   TimepickerComponentState,

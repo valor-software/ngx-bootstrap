@@ -3,7 +3,7 @@ export class TypeaheadMatch {
   public readonly item: any;
   protected header: boolean;
 
-  public constructor(item: any, value: string = item, header: boolean = false) {
+  public constructor(item: any, value: string = item, header = false) {
     this.item = item;
     this.value = value;
     this.header = header;

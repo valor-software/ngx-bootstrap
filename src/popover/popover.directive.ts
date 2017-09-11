@@ -53,7 +53,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Css class for popover container
    */
-  @Input() public containerClass: string = '';
+  @Input() public containerClass = '';
 
   /**
    * Returns whether or not the popover is currently being shown

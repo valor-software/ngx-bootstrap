@@ -213,7 +213,7 @@ describe('Component: Pagination:', () => {
       fixture.detectChanges();
 
       let listItems = element.querySelectorAll('li');
-      let links = element.querySelectorAll('a');
+      const links = element.querySelectorAll('a');
 
       // <~First~> <~Previous~> _1_ 2 3 4 5 <Next> <Last>
       expect(listItems[0].classList).toContain('disabled');

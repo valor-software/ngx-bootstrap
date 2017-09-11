@@ -25,7 +25,7 @@ export class SlideComponent implements OnInit, OnDestroy {
   /** Wraps element by appropriate CSS classes */
   @HostBinding('class.item')
   @HostBinding('class.carousel-item')
-  public addClass: boolean = true;
+  public addClass = true;
 
   /** Link to Parent(container-collection) component */
   protected carousel: CarouselComponent;

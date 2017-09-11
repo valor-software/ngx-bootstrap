@@ -22,9 +22,7 @@ import {
 } from '../../carousel';
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<
-    TestComponent
-  >;
+  createGenericTestComponent(html, TestComponent);
 
 function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[]): void {
   const slideElms = nativeEl.querySelectorAll('.carousel-item');

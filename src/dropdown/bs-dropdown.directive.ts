@@ -1,15 +1,6 @@
 import {
-  Directive,
-  ElementRef,
-  EmbeddedViewRef,
-  EventEmitter,
-  HostBinding,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer,
-  ViewContainerRef
+  Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
+  OnInit, Output, Renderer, ViewContainerRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
@@ -121,11 +112,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   get isBs4(): boolean {
     return !isBs3();
   }
+
   // todo: move to component loader
   private _isInlineOpen = false;
+
   private get _showInline(): boolean {
     return !this.container;
   }
+
   private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
 
   private _isDisabled: boolean;
@@ -133,14 +127,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
 
-  constructor(
-    private _elementRef: ElementRef,
-    private _renderer: Renderer,
-    private _viewContainerRef: ViewContainerRef,
-    private _cis: ComponentLoaderFactory,
-    private _config: BsDropdownConfig,
-    private _state: BsDropdownState
-  ) {
+  constructor(private _elementRef: ElementRef,
+              private _renderer: Renderer,
+              private _viewContainerRef: ViewContainerRef,
+              private _cis: ComponentLoaderFactory,
+              private _config: BsDropdownConfig,
+              private _state: BsDropdownState) {
     // create dropdown component loader
     this._dropdown = this._cis
       .createLoader<BsDropdownContainerComponent>(
@@ -148,7 +140,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._viewContainerRef,
         this._renderer
       )
-      .provide({ provide: BsDropdownState, useValue: this._state });
+      .provide({provide: BsDropdownState, useValue: this._state});
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
@@ -181,7 +173,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // hide dropdown if set disabled while opened
     this._subscriptions.push(
       this._state.isDisabledChange
-        .filter((value: boolean) => value === true)
+        .filter((value: boolean) => value)
         .subscribe((value: boolean) => this.hide())
     );
   }
@@ -217,7 +209,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._state.dropdownMenu.then(dropdownMenu => {
       // check direction in which dropdown should be opened
       const _dropup =
-        this.dropup === true ||
+        this.dropup ||
         (typeof this.dropup !== 'undefined' && this.dropup !== false);
       this._state.direction = _dropup ? 'up' : 'down';
       const _placement =
@@ -227,7 +219,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this._dropdown
         .attach(BsDropdownContainerComponent)
         .to(this.container)
-        .position({ attachment: _placement })
+        .position({attachment: _placement})
         .show({
           content: dropdownMenu.templateRef,
           placement: _placement
@@ -262,7 +254,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * the popover.
    */
   toggle(value?: boolean): void {
-    if (this.isOpen || value === false) {
+    if (this.isOpen || !value) {
       return this.hide();
     }
 
@@ -326,7 +318,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private checkDropup(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       // a little hack to not break support of bootstrap 4 beta
-      const top = getComputedStyle(this._inlinedMenu.rootNodes[0])['top'];
+      const top = getComputedStyle(this._inlinedMenu.rootNodes[0]).top;
       const topAuto = top === 'auto' || top === '100%';
       this._renderer.setElementStyle(
         this._inlinedMenu.rootNodes[0],

@@ -5,7 +5,6 @@ import {
 } from '../models/index';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 import { formatDate } from '../../bs-moment/format';
-import { TimeUnit } from '../../bs-moment/types';
 import { createMatrix } from '../utils/matrix-utils';
 
 const height = 4;

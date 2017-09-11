@@ -27,15 +27,15 @@ export class BsModalService {
   public onHide: EventEmitter<any> = new EventEmitter();
   public onHidden: EventEmitter<any> = new EventEmitter();
 
-  protected isBodyOverflowing: boolean = false;
-  protected originalBodyPadding: number = 0;
+  protected isBodyOverflowing = false;
+  protected originalBodyPadding = 0;
 
-  protected scrollbarWidth: number = 0;
+  protected scrollbarWidth = 0;
 
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
-  private modalsCount: number = 0;
-  private lastDismissReason: string = '';
+  private modalsCount = 0;
+  private lastDismissReason = '';
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 

@@ -56,7 +56,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
   /** sets datepicker mode, supports: `day`, `month`, `year` */
-  @Input() public datepickerMode: string = 'day';
+  @Input() public datepickerMode = 'day';
   /** default date to show if `ng-model` value is not specified */
   @Input() public initDate: Date;
   /**  oldest selectable date */
@@ -68,7 +68,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** sets upper datepicker mode, supports: `day`, `month`, `year` */
   @Input() public maxMode: string;
   /** if false week numbers will be hidden */
-  @Input() public showWeeks: boolean = true;
+  @Input() public showWeeks = true;
   /** format of day in month */
   @Input() public formatDay: string;
   /** format of month in year */

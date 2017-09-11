@@ -158,7 +158,7 @@ describe('Component: Accordion', () => {
   template: ''
 })
 class TestAccordionComponent {
-  public oneAtATime: boolean = true;
+  public oneAtATime = true;
   public panels: any[] = [
     { isOpen: false, isDisabled: false },
     { isOpen: false, isDisabled: false },

@@ -111,8 +111,8 @@ describe('Component: Rating. Clicks:', () => {
   it(
     'check simple click',
     fakeAsync(() => {
-      let items = element.querySelectorAll('.sr-only');
-      let icons = element.querySelectorAll('i');
+      const items = element.querySelectorAll('.sr-only');
+      const icons = element.querySelectorAll('i');
 
       expect(items[0].innerHTML).toEqual('( )');
       expect(icons[0].classList).toContain('glyphicon-star-empty');
@@ -131,8 +131,8 @@ describe('Component: Rating. Clicks:', () => {
   it(
     'check disabling',
     fakeAsync(() => {
-      let items = element.querySelectorAll('.sr-only');
-      let icons = element.querySelectorAll('i');
+      const items = element.querySelectorAll('.sr-only');
+      const icons = element.querySelectorAll('i');
 
       expect(items[0].innerHTML).toEqual('( )');
       expect(icons[0].classList).toContain('glyphicon-star-empty');
@@ -168,8 +168,8 @@ describe('Component: Rating. Clicks:', () => {
   template: ''
 })
 class TestRatingComponent {
-  public max: number = 5;
-  public rate: number = 0;
-  public isReadonly: boolean = false;
+  public max = 5;
+  public rate = 0;
+  public isReadonly = false;
   public titles: [string] = ['one', 'two', 'three', 'four', 'five'];
 }

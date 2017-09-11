@@ -2014,7 +2014,7 @@ export const ngdoc: any = {
     ]
   },
   "ModalDirective": {
-    "fileName": "src/modal/modal.component.ts",
+    "fileName": "src/modal/modal.directive.ts",
     "className": "ModalDirective",
     "description": "<p>Mark any code with directive to show it&#39;s content in modal </p>\n",
     "selector": "[bsModal]",

@@ -1,40 +1,19 @@
 import {
-  Component,
-  HostBinding,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit
+  Component, HostBinding, Inject, Input, OnDestroy, OnInit
 } from '@angular/core';
 import { isBs3 } from '../utils/theme-provider';
 import { AccordionComponent } from './accordion.component';
 
-/*
+/**
  * ### Accordion heading
-
- Instead of using `heading` attribute on the `accordion-group`, you can use an `accordion-heading` attribute on `any` element inside of a group that will be used as group's header template.
-
+ * Instead of using `heading` attribute on the `accordion-group`, you can use
+ * an `accordion-heading` attribute on `any` element inside of a group that
+ * will be used as group's header template.
  * */
 
 @Component({
   selector: 'accordion-group, accordion-panel',
-  template: `
-    <div class="panel card" [ngClass]="panelClass">
-      <div class="panel-heading card-header" role="tab" (click)="toggleOpen($event)">
-        <div class="panel-title">
-          <div role="button" class="accordion-toggle" [attr.aria-expanded]="isOpen">
-            <div *ngIf="heading"[ngClass]="{'text-muted': isDisabled}">{{heading}}</div>
-            <ng-content select="[accordion-heading]"></ng-content>
-          </div>
-        </div>
-      </div>
-      <div class="panel-collapse collapse" role="tabpanel" [collapse]="!isOpen">
-        <div class="panel-body card-block card-body">
-          <ng-content></ng-content>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './accordion-group.component.html',
   host: {
     class: 'panel',
     style: 'display: block'
@@ -43,7 +22,11 @@ import { AccordionComponent } from './accordion.component';
 export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
   @Input() public heading: string;
-  /** Provides an ability to use Bootstrap's contextual panel classes (`panel-primary`, `panel-success`, `panel-info`, etc...). List of all available classes [available here](http://getbootstrap.com/components/#panels-alternatives) */
+  /** Provides an ability to use Bootstrap's contextual panel classes
+   * (`panel-primary`, `panel-success`, `panel-info`, etc...).
+   * List of all available classes [available here]
+   * (http://getbootstrap.com/components/#panels-alternatives)
+   */
   @Input() public panelClass: string;
   /** if <code>true</code> — disables accordion group */
   @Input() public isDisabled: boolean;
@@ -70,9 +53,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   protected _isOpen: boolean;
   protected accordion: AccordionComponent;
 
-  public constructor(
-    @Inject(AccordionComponent) accordion: AccordionComponent
-  ) {
+  public constructor(@Inject(AccordionComponent) accordion: AccordionComponent) {
     this.accordion = accordion;
   }
 

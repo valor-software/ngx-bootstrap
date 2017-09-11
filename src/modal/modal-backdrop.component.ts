@@ -5,7 +5,7 @@ import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 
 export class ModalBackdropOptions {
-  public animate: boolean = true;
+  public animate = true;
 
   public constructor(options: ModalBackdropOptions) {
     Object.assign(this, options);
@@ -15,8 +15,7 @@ export class ModalBackdropOptions {
 /** This component will be added as background layout for modals if enabled */
 @Component({
   selector: 'bs-modal-backdrop',
-  template: '',
-  // tslint:disable-next-line
+  template: ' ',
   host: { class: ClassName.BACKDROP }
 })
 export class ModalBackdropComponent implements OnInit {

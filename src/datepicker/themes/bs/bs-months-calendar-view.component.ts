@@ -3,7 +3,6 @@ import {
   BsDatepickerViewMode,
   BsNavigationDirection,
   BsNavigationEvent,
-  DatepickerRenderOptions,
   CellHoverEvent,
   MonthsCalendarViewModel,
   CalendarCellViewModel

@@ -29,7 +29,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Falsy value, will be set to ngModel */
   @Input() public btnCheckboxFalse: any = false;
 
-  @HostBinding('class.active') public state: boolean = false;
+  @HostBinding('class.active') public state = false;
 
   protected value: any;
   protected isDisabled: boolean;

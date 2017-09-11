@@ -4,7 +4,6 @@ import {
   CalendarCellViewModel
 } from '../models/index';
 import { startOf } from '../../bs-moment/utils/start-end-of';
-import { shiftDate } from '../../bs-moment/utils/date-setters';
 import { formatDate } from '../../bs-moment/format';
 import { createMatrix } from '../utils/matrix-utils';
 

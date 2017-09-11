@@ -11,12 +11,12 @@ export class PopoverConfig {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
    */
-  public placement: string = 'top';
+  public placement = 'top';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  public triggers: string = 'click';
+  public triggers = 'click';
 
   outsideClick = false;
   /**

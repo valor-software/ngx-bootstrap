@@ -22,7 +22,7 @@ function getDebugElements(fixture: any, selector: string) {
 }
 
 function testTime(hours?: number, minutes?: number, seconds?: number) {
-  let time = new Date();
+  const time = new Date();
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
   time.setSeconds(seconds || 0);
@@ -586,7 +586,7 @@ describe('Component: timepicker', () => {
       fixture.whenStable().then(() => {
         inputDebugSeconds = getDebugElements(fixture, 'input')[2];
 
-        let wheelEvent = { deltaY: -1, preventDefault: () => {} };
+        const wheelEvent = { deltaY: -1, preventDefault: () => {} };
         inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
 
         fixture.detectChanges();

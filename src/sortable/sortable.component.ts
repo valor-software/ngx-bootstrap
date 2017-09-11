@@ -55,37 +55,37 @@ import { DraggableItemService } from './draggable-item.service';
 })
 /* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
-  private static globalZoneIndex: number = 0;
+  private static globalZoneIndex = 0;
 
   /** field name if input array consists of objects */
   @Input() public fieldName: string;
 
   /** class name for items wrapper */
-  @Input() public wrapperClass: string = '';
+  @Input() public wrapperClass = '';
 
   /** style object for items wrapper */
   @Input() public wrapperStyle: { [key: string]: string } = {};
 
   /** class name for item */
-  @Input() public itemClass: string = '';
+  @Input() public itemClass = '';
 
   /** style object for item */
   @Input() public itemStyle: { [key: string]: string } = {};
 
   /** class name for active item */
-  @Input() public itemActiveClass: string = '';
+  @Input() public itemActiveClass = '';
 
   /** style object for active item */
   @Input() public itemActiveStyle: { [key: string]: string } = {};
 
   /** class name for placeholder */
-  @Input() public placeholderClass: string = '';
+  @Input() public placeholderClass = '';
 
   /** style object for placeholder */
   @Input() public placeholderStyle: { [key: string]: string } = {};
 
   /** placeholder item which will be shown if collection is empty */
-  @Input() public placeholderItem: string = '';
+  @Input() public placeholderItem = '';
 
   /** used to specify a custom item template. Template variables: item and index; */
   @Input() public itemTemplate: TemplateRef<any>;
@@ -95,8 +95,8 @@ export class SortableComponent implements ControlValueAccessor {
    */
   @Output() public onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  public showPlaceholder: boolean = false;
-  public activeItem: number = -1;
+  public showPlaceholder = false;
+  public activeItem = -1;
 
   public get items(): SortableItem[] {
     return this._items;
@@ -104,7 +104,7 @@ export class SortableComponent implements ControlValueAccessor {
 
   public set items(value: SortableItem[]) {
     this._items = value;
-    let out = this.items.map((x: SortableItem) => x.initData);
+    const out = this.items.map((x: SortableItem) => x.initData);
     this.onChanged(out);
     this.onChange.emit(out);
   }
@@ -146,7 +146,7 @@ export class SortableComponent implements ControlValueAccessor {
       return;
     }
     event.preventDefault();
-    let dragItem = this.transfer.captureItem(
+    const dragItem = this.transfer.captureItem(
       this.currentZoneIndex,
       this.items.length
     );

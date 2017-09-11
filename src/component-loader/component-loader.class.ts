@@ -48,7 +48,7 @@ export class ComponentLoader<T> {
     return !!this._componentRef;
   }
 
-  private _isHiding: boolean = false;
+  private _isHiding = false;
 
   /**
    * Placement of a component. Accepts: "top", "bottom", "left", "right"

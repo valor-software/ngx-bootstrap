@@ -23,11 +23,11 @@ export class ProgressDirective {
     });
   }
 
-  @HostBinding('class.progress') public addClass: boolean = true;
+  @HostBinding('class.progress') public addClass = true;
 
   public bars: any[] = [];
 
-  protected _max: number = 100;
+  protected _max = 100;
 
   public addBar(bar: BarComponent): void {
     if (!this.animate) {

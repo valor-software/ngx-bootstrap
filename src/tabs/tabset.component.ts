@@ -6,24 +6,7 @@ import { TabsetConfig } from './tabset.config';
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  template: `
-    <ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
-        <li *ngFor="let tabz of tabs" [ngClass]="['nav-item', tabz.customClass || '']"
-          [class.active]="tabz.active" [class.disabled]="tabz.disabled">
-          <a href="javascript:void(0);" class="nav-link"
-            [class.active]="tabz.active" [class.disabled]="tabz.disabled"
-            (click)="tabz.active = true">
-            <span [ngTransclude]="tabz.headingRef">{{tabz.heading}}</span>
-            <span *ngIf="tabz.removable">
-              <span (click)="$event.preventDefault(); removeTab(tabz);" class="glyphicon glyphicon-remove-circle"></span>
-            </span>
-          </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-      <ng-content></ng-content>
-    </div>
-  `
+  templateUrl: './tabset.component.html'
 })
 export class TabsetComponent implements OnDestroy {
   /** if true tabs will be placed vertically */
@@ -56,7 +39,7 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
-  @HostBinding('class.tab-container') public clazz: boolean = true;
+  @HostBinding('class.tab-container') public clazz = true;
 
   public tabs: TabDirective[] = [];
   public classMap: any = {};
@@ -76,20 +59,20 @@ export class TabsetComponent implements OnDestroy {
 
   public addTab(tab: TabDirective): void {
     this.tabs.push(tab);
-    tab.active = this.tabs.length === 1 && tab.active !== false;
+    tab.active = this.tabs.length === 1 && tab.active;
   }
 
   public removeTab(
     tab: TabDirective,
     options = { reselect: true, emit: true }
   ): void {
-    let index = this.tabs.indexOf(tab);
+    const index = this.tabs.indexOf(tab);
     if (index === -1 || this.isDestroyed) {
       return;
     }
     // Select a new tab if the tab to be removed is selected and not destroyed
     if (options.reselect && tab.active && this.hasAvailableTabs(index)) {
-      let newActiveIndex = this.getClosestTabIndex(index);
+      const newActiveIndex = this.getClosestTabIndex(index);
       this.tabs[newActiveIndex].active = true;
     }
     if (options.emit) {
@@ -104,14 +87,14 @@ export class TabsetComponent implements OnDestroy {
   }
 
   protected getClosestTabIndex(index: number): number {
-    let tabsLength = this.tabs.length;
+    const tabsLength = this.tabs.length;
     if (!tabsLength) {
       return -1;
     }
 
     for (let step = 1; step <= tabsLength; step += 1) {
-      let prevIndex = index - step;
-      let nextIndex = index + step;
+      const prevIndex = index - step;
+      const nextIndex = index + step;
       if (this.tabs[prevIndex] && !this.tabs[prevIndex].disabled) {
         return prevIndex;
       }
@@ -123,7 +106,7 @@ export class TabsetComponent implements OnDestroy {
   }
 
   protected hasAvailableTabs(index: number): boolean {
-    let tabsLength = this.tabs.length;
+    const tabsLength = this.tabs.length;
     if (!tabsLength) {
       return false;
     }

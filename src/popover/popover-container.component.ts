@@ -23,10 +23,7 @@ import { isBs3 } from '../utils/theme-provider';
     }
   `
   ],
-  template: `
-<div class="popover-arrow arrow"></div>
-<h3 class="popover-title popover-header" *ngIf="title">{{title}}</h3><div class="popover-content popover-body"><ng-content></ng-content></div>
-    `
+  templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {
   @Input() public placement: string;

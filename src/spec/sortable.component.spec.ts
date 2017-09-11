@@ -2,7 +2,6 @@ import {
   ComponentFixture,
   TestBed,
   fakeAsync,
-  tick,
   ComponentFixtureAutoDetect,
   inject
 } from '@angular/core/testing';
@@ -51,7 +50,7 @@ describe('Component: Sortable', () => {
 
       fixture.detectChanges();
 
-      let sortableComponents = fixture.debugElement
+      const sortableComponents = fixture.debugElement
         .queryAll(By.directive(SortableComponent))
         .map(
           (de: DebugElement) =>
@@ -78,7 +77,7 @@ describe('Component: Sortable', () => {
       fakeAsync(() => {
         // arrange
         // act
-        let renderedItems = getItemsByContainerId();
+        const renderedItems = getItemsByContainerId();
         // assert
         expect(renderedItems).toEqual(HEROES);
       })
@@ -87,7 +86,7 @@ describe('Component: Sortable', () => {
     it('should render list of complex models', () => {
       // arrange
       // act
-      let renderedItems = getItemsByContainerId('sort2');
+      const renderedItems = getItemsByContainerId('sort2');
       // assert
       expect(renderedItems).toEqual(HEROES_OBJ.map((h: any) => h.name));
     });
@@ -95,22 +94,22 @@ describe('Component: Sortable', () => {
 
   it('should apply active item style over item style', () => {
     // arrange
-    let activeItemStyle = Object.assign(
+    const activeItemStyle = Object.assign(
       {},
       sort1.itemStyle,
       sort1.itemActiveStyle
     );
     // act
-    let style = sort1.getItemStyle(true);
+    const style = sort1.getItemStyle(true);
     // assert
     expect(style).toEqual(activeItemStyle);
   });
 
   it('should return normal item style', () => {
     // arrange
-    let normalItemStyle = Object.assign({}, sort1.itemStyle);
+    const normalItemStyle = Object.assign({}, sort1.itemStyle);
     // act
-    let style = sort1.getItemStyle(false);
+    const style = sort1.getItemStyle(false);
     // assert
     expect(style).toEqual(normalItemStyle);
   });
@@ -149,7 +148,7 @@ describe('Component: Sortable', () => {
 
     it('should pass dragged item to transfer', () => {
       // arrange
-      let spy = spyOn(transfer, 'dragStart');
+      const spy = spyOn(transfer, 'dragStart');
       // act
       sort1.onItemDragstart(event, item, 0);
       // assert
@@ -298,7 +297,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        let capturedItem = transfer.captureItem(-1, 0);
+        const capturedItem = transfer.captureItem(-1, 0);
         // assert
         transfer
           .onCaptureItem()
@@ -316,7 +315,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        let capturedItem = transfer.captureItem(-1, 0);
+        const capturedItem = transfer.captureItem(-1, 0);
         // assert
         transfer
           .onCaptureItem()
@@ -338,7 +337,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        let capturedItem = transfer.captureItem(draggableItem.overZoneIndex, 4);
+        const capturedItem = transfer.captureItem(draggableItem.overZoneIndex, 4);
         // assert
         transfer
           .onCaptureItem()
@@ -356,7 +355,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        let capturedItem = transfer.captureItem(draggableItem.overZoneIndex, 4);
+        const capturedItem = transfer.captureItem(draggableItem.overZoneIndex, 4);
         // assert
         transfer
           .onCaptureItem()
@@ -384,7 +383,7 @@ describe('Component: Sortable', () => {
     }
   });
 
-  function getItemsByContainerId(id: string = 'sort1'): string[] {
+  function getItemsByContainerId(id = 'sort1'): string[] {
     return fixture.debugElement
       .queryAll(By.css(`#${id} div[draggable]`))
       .map((item: any) => item.nativeElement.innerText);

@@ -25,10 +25,10 @@ import { latinize } from './typeahead-utils';
 <ng-template #bs3Template>
 <ul class="dropdown-menu">
   <ng-template ngFor let-match let-i="index" [ngForOf]="matches">
-    <li *ngIf="match.isHeader()" class="dropdown-header">{{match}}</li>
+    <li *ngIf="match.isHeader()" class="dropdown-header">{{ match }}</li>
     <li *ngIf="!match.isHeader()" [class.active]="isActive(match)" (mouseenter)="selectActive(match)">
       <a href="#" (click)="selectMatch(match, $event)" tabindex="-1">
-        <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
+        <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate"
           [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
       </a>
     </li>
@@ -39,14 +39,14 @@ import { latinize } from './typeahead-utils';
 <!-- Bootstrap 4 options list template -->
 <ng-template #bs4Template >
 <ng-template ngFor let-match let-i="index" [ngForOf]="matches">
-   <h6 *ngIf="match.isHeader()" class="dropdown-header">{{match}}</h6>
+   <h6 *ngIf="match.isHeader()" class="dropdown-header">{{ match }}</h6>
    <ng-template [ngIf]="!match.isHeader()">
       <button
         class="dropdown-item"
         (click)="selectMatch(match, $event)"
         (mouseenter)="selectActive(match)"
         [class.active]="isActive(match)">
-          <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate" 
+          <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate"
             [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
       </button>
   </ng-template>

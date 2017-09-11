@@ -18,20 +18,9 @@ export const PAGER_CONTROL_VALUE_ACCESSOR: any = {
   multi: true
 };
 
-const PAGER_TEMPLATE = `
-    <ul class="pager">
-      <li [class.disabled]="noPrevious()" [class.previous]="align" [ngClass]="{'pull-right': align, 'float-right': align}" class="{{ pageBtnClass }}">
-        <a href (click)="selectPage(page - 1, $event)">{{getText('previous')}}</a>
-      </li>
-      <li [class.disabled]="noNext()" [class.next]="align" [ngClass]="{'pull-right': align, 'float-right': align}" class="{{ pageBtnClass }}">
-        <a href (click)="selectPage(page + 1, $event)">{{getText('next')}}</a>
-      </li>
-  </ul>
-`;
-
 @Component({
   selector: 'pager',
-  template: PAGER_TEMPLATE,
+  templateUrl: './pager.component.html',
   providers: [PAGER_CONTROL_VALUE_ACCESSOR]
 })
 export class PagerComponent implements ControlValueAccessor, OnInit {
@@ -134,8 +123,8 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   protected _itemsPerPage: number;
   protected _totalItems: number;
   protected _totalPages: number;
-  protected inited: boolean = false;
-  protected _page: number = 1;
+  protected inited = false;
+  protected _page = 1;
 
   public constructor(
     renderer: Renderer,
@@ -218,7 +207,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
     if (!this.disabled) {
       if (event && event.target) {
-        let target: any = event.target;
+        const target: any = event.target;
         target.blur();
       }
       this.writeValue(page);
@@ -236,12 +225,12 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   protected getPages(currentPage: number, totalPages: number): any[] {
-    let pages: any[] = [];
+    const pages: any[] = [];
 
     // Default page limits
     let startPage = 1;
     let endPage = totalPages;
-    let isMaxSized =
+    const isMaxSized =
       typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
 
     // recompute if maxSize
@@ -268,19 +257,19 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
     // Add page number links
     for (let num = startPage; num <= endPage; num++) {
-      let page = this.makePage(num, num.toString(), num === currentPage);
+      const page = this.makePage(num, num.toString(), num === currentPage);
       pages.push(page);
     }
 
     // Add links to move between page sets
     if (isMaxSized && !this.rotate) {
       if (startPage > 1) {
-        let previousPageSet = this.makePage(startPage - 1, '...', false);
+        const previousPageSet = this.makePage(startPage - 1, '...', false);
         pages.unshift(previousPageSet);
       }
 
       if (endPage < totalPages) {
-        let nextPageSet = this.makePage(endPage + 1, '...', false);
+        const nextPageSet = this.makePage(endPage + 1, '...', false);
         pages.push(nextPageSet);
       }
     }
@@ -290,7 +279,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
   // base class
   protected calculateTotalPages(): number {
-    let totalPages =
+    const totalPages =
       this.itemsPerPage < 1
         ? 1
         : Math.ceil(this.totalItems / this.itemsPerPage);

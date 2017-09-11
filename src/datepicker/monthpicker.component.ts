@@ -20,7 +20,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 (click)="datePicker.toggleMode()"
                 [disabled]="datePicker.datepickerMode === maxMode"
                 [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
-          <strong>{{title}}</strong>
+          <strong>{{ title }}</strong>
         </button>
       </th>
       <th>
@@ -38,7 +38,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 [ngClass]="{'btn-link': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || (isBs4 && !dtz.selected && datePicker.isActive(dtz)), disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz)}"
                 [disabled]="dtz.disabled"
                 (click)="datePicker.select(dtz.date)" tabindex="-1">
-          <span [ngClass]="{'text-success': isBs4 && dtz.current, 'text-info': !isBs4 && dtz.current}">{{dtz.label}}</span>
+          <span [ngClass]="{'text-success': isBs4 && dtz.current, 'text-info': !isBs4 && dtz.current}">{{ dtz.label }}</span>
         </button>
       </td>
     </tr>
@@ -68,13 +68,13 @@ export class MonthPickerComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    let self = this;
+    const self = this;
 
     this.datePicker.stepMonth = { years: 1 };
 
     this.datePicker.setRefreshViewHandler(function(): void {
-      let months: any[] = new Array(12);
-      let year: number = this.activeDate.getFullYear();
+      const months: any[] = new Array(12);
+      const year: number = this.activeDate.getFullYear();
       let date: Date;
 
       for (let i = 0; i < 12; i++) {
@@ -92,8 +92,8 @@ export class MonthPickerComponent implements OnInit {
       date1: Date,
       date2: Date
     ): number {
-      let d1 = new Date(date1.getFullYear(), date1.getMonth());
-      let d2 = new Date(date2.getFullYear(), date2.getMonth());
+      const d1 = new Date(date1.getFullYear(), date1.getMonth());
+      const d2 = new Date(date2.getFullYear(), date2.getMonth());
       return d1.getTime() - d2.getTime();
     }, 'month');
 

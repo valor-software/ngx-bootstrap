@@ -33,7 +33,7 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: defaultHtml }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
@@ -47,7 +47,7 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: htmlWithBinding }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
@@ -70,7 +70,7 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: defaultHtml }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
@@ -90,7 +90,7 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: htmlWithBinding }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
@@ -113,7 +113,7 @@ describe('Directive: Dropdown', () => {
       TestBed.overrideComponent(TestDropdownComponent, {
         set: { template: htmlWithBinding }
       });
-      let fixture = TestBed.createComponent(TestDropdownComponent);
+      const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
       tick();
       const element = fixture.nativeElement;
@@ -152,7 +152,7 @@ describe('Directive: Dropdown', () => {
       TestBed.overrideComponent(TestDropdownComponent, {
         set: { template: html }
       });
-      let fixture = TestBed.createComponent(TestDropdownComponent);
+      const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
       tick();
       const element = fixture.nativeElement;
@@ -189,7 +189,7 @@ describe('Directive: Dropdown', () => {
       TestBed.overrideComponent(TestDropdownComponent, {
         set: { template: html }
       });
-      let fixture = TestBed.createComponent(TestDropdownComponent);
+      const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
       tick();
       const element = fixture.nativeElement;
@@ -225,7 +225,7 @@ describe('Directive: Dropdown', () => {
       TestBed.overrideComponent(TestDropdownComponent, {
         set: { template: html }
       });
-      let fixture = TestBed.createComponent(TestDropdownComponent);
+      const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
       const element = fixture.nativeElement;
       const context = fixture.componentInstance;
@@ -259,7 +259,7 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: html }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
@@ -291,7 +291,7 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: html }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
@@ -327,7 +327,7 @@ describe('Directive: Dropdown', () => {
       TestBed.overrideComponent(TestDropdownComponent, {
         set: { template: html }
       });
-      let fixture = TestBed.createComponent(TestDropdownComponent);
+      const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
       const element = fixture.nativeElement;
       const context = fixture.componentInstance;
@@ -358,7 +358,7 @@ describe('Directive: dropdownToggle', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: { template: html }
     });
-    let fixture = TestBed.createComponent(TestDropdownComponent);
+    const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
     const element = fixture.nativeElement;
     const context = fixture.componentInstance;
@@ -384,7 +384,7 @@ class TestDropdownComponent {
   public isOpen: Boolean = false;
   public isDisabled: Boolean = false;
   public addToggleClass: Boolean = false;
-  public autoClose: boolean = false;
+  public autoClose = false;
   public keyboardNav: Boolean = false;
 
   public constructor(config: BsDropdownConfig) {

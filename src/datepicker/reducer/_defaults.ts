@@ -1,6 +1,4 @@
 import {
-  DatepickerFormatOptions,
-  DatepickerRenderOptions,
   MonthViewOptions
 } from '../models/index';
 
