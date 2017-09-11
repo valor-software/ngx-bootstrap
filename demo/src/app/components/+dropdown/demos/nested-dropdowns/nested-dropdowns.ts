@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-nested-dropdowns',
   templateUrl: './nested-dropdowns.html'
 })
-export class DemoNestedDropdownsComponent {
-}
+export class DemoNestedDropdownsComponent {}

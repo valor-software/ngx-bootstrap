@@ -17,6 +17,7 @@
     "docs.archive": "npm run docs.fetch && node scripts/archive.js",
     "docs.fetch": "node scripts/fetch-docs.js",
     "link": "ngm link -p src --here",
+    "lint-pretty": "prettier --config .prettierrc --write -l  \"{demo/src,src}/**/*.ts\"",
     "lint-src": "tslint \"src/**/*.ts\" -c tslint.json --type-check -p src/tsconfig.spec.json",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",

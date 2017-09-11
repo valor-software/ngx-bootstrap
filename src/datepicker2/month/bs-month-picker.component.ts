@@ -40,7 +40,10 @@ export class BsMonthPickerComponent extends DatePickerBase {
   public calendar: any[][];
   public title: string;
 
-  public constructor(datePickerService: BsDatePickerState, options: BsDatePickerOptions) {
+  public constructor(
+    datePickerService: BsDatePickerState,
+    options: BsDatePickerOptions
+  ) {
     super(datePickerService, options);
   }
 

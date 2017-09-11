@@ -1,6 +1,14 @@
 import {
-  Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer,
-  ElementRef, TemplateRef, ViewContainerRef
+  Directive,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+  Renderer,
+  ElementRef,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
 import { PopoverConfig } from './popover.config';
 import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
@@ -9,7 +17,7 @@ import { PopoverContainerComponent } from './popover-container.component';
 /**
  * A lightweight, extensible directive for fancy popover creation.
  */
-@Directive({selector: '[popover]', exportAs: 'bs-popover'})
+@Directive({ selector: '[popover]', exportAs: 'bs-popover' })
 export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Content to be displayed as popover.
@@ -51,10 +59,16 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Returns whether or not the popover is currently being shown
    */
   @Input()
-  public get isOpen(): boolean { return this._popover.isShown; }
+  public get isOpen(): boolean {
+    return this._popover.isShown;
+  }
 
   public set isOpen(value: boolean) {
-    if (value) {this.show();} else {this.hide();}
+    if (value) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   /**
@@ -69,14 +83,20 @@ export class PopoverDirective implements OnInit, OnDestroy {
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
 
-  public constructor(_elementRef: ElementRef,
-                     _renderer: Renderer,
-                     _viewContainerRef: ViewContainerRef,
-                     _config: PopoverConfig,
-                     cis: ComponentLoaderFactory) {
+  public constructor(
+    _elementRef: ElementRef,
+    _renderer: Renderer,
+    _viewContainerRef: ViewContainerRef,
+    _config: PopoverConfig,
+    cis: ComponentLoaderFactory
+  ) {
     this._popover = cis
-      .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
-      .provide({provide: PopoverConfig, useValue: _config});
+      .createLoader<PopoverContainerComponent>(
+        _elementRef,
+        _viewContainerRef,
+        _renderer
+      )
+      .provide({ provide: PopoverConfig, useValue: _config });
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
@@ -84,12 +104,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
     // fix: no focus on button on Mac OS #1795
     _elementRef.nativeElement.addEventListener('click', function() {
       try {
-         _elementRef.nativeElement.focus();
-      } catch(err) {
+        _elementRef.nativeElement.focus();
+      } catch (err) {
         return;
       }
     });
-
   }
 
   /**
@@ -104,7 +123,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._popover
       .attach(PopoverContainerComponent)
       .to(this.container)
-      .position({attachment: this.placement})
+      .position({ attachment: this.placement })
       .show({
         content: this.popover,
         context: this.popoverContext,
@@ -142,7 +161,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
     // fix: seems there are an issue with `routerLinkActive`
     // which result in duplicated call ngOnInit without call to ngOnDestroy
     // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
-    if (this._isInited) { return; }
+    if (this._isInited) {
+      return;
+    }
     this._isInited = true;
 
     this._popover.listen({

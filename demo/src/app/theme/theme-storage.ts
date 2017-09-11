@@ -26,6 +26,6 @@ export class ThemeStorage {
   public clearStorage() {
     try {
       window.localStorage.removeItem(ThemeStorage.storageKey);
-    } catch (e) { }
+    } catch (e) {}
   }
 }

@@ -13,13 +13,24 @@
  * 4) default interval should be equal 5000
  */
 
-import { Component, Input, OnDestroy, Output, EventEmitter, NgZone } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  Output,
+  EventEmitter,
+  NgZone
+} from '@angular/core';
 
 import { isBs3, LinkedList } from '../utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 
-export enum Direction {UNKNOWN, NEXT, PREV}
+export enum Direction {
+  UNKNOWN,
+  NEXT,
+  PREV
+}
 
 /**
  * Base element to create carousel
@@ -52,7 +63,8 @@ export class CarouselComponent implements OnDestroy {
   protected _currentActiveSlide: number;
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
-  @Output() public activeSlideChange: EventEmitter <any> = new EventEmitter<any>(false);
+  @Output()
+  public activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
 
   /** Index of currently displayed slide(started for 0) */
   @Input()
@@ -79,7 +91,9 @@ export class CarouselComponent implements OnDestroy {
     this.restartTimer();
   }
 
-  protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
+  protected _slides: LinkedList<SlideComponent> = new LinkedList<
+    SlideComponent
+  >();
   public get slides(): SlideComponent[] {
     return this._slides.toArray();
   }
@@ -88,7 +102,7 @@ export class CarouselComponent implements OnDestroy {
   protected isPlaying: boolean;
   protected destroyed: boolean = false;
 
-  public get isBs4():boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 
@@ -121,14 +135,14 @@ export class CarouselComponent implements OnDestroy {
     const remIndex = this._slides.indexOf(slide);
 
     if (this._currentActiveSlide === remIndex) {
-
       // removing of active slide
       let nextSlideIndex: number = void 0;
       if (this._slides.length > 1) {
         // if this slide last - will roll to first slide, if noWrap flag is FALSE or to previous, if noWrap is TRUE
         // in case, if this slide in middle of collection, index of next slide is same to removed
-        nextSlideIndex = !this.isLast(remIndex) ? remIndex :
-          this.noWrap ? remIndex - 1 : 0;
+        nextSlideIndex = !this.isLast(remIndex)
+          ? remIndex
+          : this.noWrap ? remIndex - 1 : 0;
       }
       this._slides.remove(remIndex);
 
@@ -144,7 +158,6 @@ export class CarouselComponent implements OnDestroy {
         this._currentActiveSlide = currentSlideIndex;
         this.activeSlideChange.emit(this._currentActiveSlide);
       }, 0);
-
     }
   }
 
@@ -218,20 +231,30 @@ export class CarouselComponent implements OnDestroy {
   private findNextSlideIndex(direction: Direction, force: boolean): number {
     let nextSlideIndex: number = 0;
 
-    if (!force && (this.isLast(this.activeSlide) && direction !== Direction.PREV && this.noWrap)) {
+    if (
+      !force &&
+      (this.isLast(this.activeSlide) &&
+        direction !== Direction.PREV &&
+        this.noWrap)
+    ) {
       return void 0;
     }
 
     switch (direction) {
       case Direction.NEXT:
         // if this is last slide, not force, looping is disabled and need to going forward - select current slide, as a next
-        nextSlideIndex = (!this.isLast(this._currentActiveSlide)) ? this._currentActiveSlide + 1 :
-          (!force && this.noWrap ) ? this._currentActiveSlide : 0;
+        nextSlideIndex = !this.isLast(this._currentActiveSlide)
+          ? this._currentActiveSlide + 1
+          : !force && this.noWrap ? this._currentActiveSlide : 0;
         break;
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled and need to going backward - select current slide, as a next
-        nextSlideIndex = (this._currentActiveSlide > 0) ? this._currentActiveSlide - 1 :
-          (!force && this.noWrap ) ? this._currentActiveSlide : this._slides.length - 1;
+        nextSlideIndex =
+          this._currentActiveSlide > 0
+            ? this._currentActiveSlide - 1
+            : !force && this.noWrap
+              ? this._currentActiveSlide
+              : this._slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');
@@ -273,7 +296,12 @@ export class CarouselComponent implements OnDestroy {
         return setInterval(() => {
           let nInterval = +this.interval;
           this.ngZone.run(() => {
-            if (this.isPlaying && !isNaN(this.interval) && nInterval > 0 && this.slides.length) {
+            if (
+              this.isPlaying &&
+              !isNaN(this.interval) &&
+              nInterval > 0 &&
+              this.slides.length
+            ) {
               this.nextSlide();
             } else {
               this.pause();

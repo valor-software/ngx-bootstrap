@@ -33,16 +33,15 @@ import { StyleManager } from './theme/style-manager';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, {useHash: true}),
+    RouterModule.forRoot(routes, { useHash: true }),
     Ng2PageScrollModule.forRoot(),
     BsDropdownModule.forRoot()
   ],
   providers: [
     ThemeStorage,
     StyleManager,
-    {provide: NgApiDoc, useValue: ngdoc}
+    { provide: NgApiDoc, useValue: ngdoc }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

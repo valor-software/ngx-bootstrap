@@ -1,14 +1,23 @@
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
-  Directive, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output,
-  Renderer, style
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output,
+  Renderer,
+  style
 } from '@angular/core';
 
 @Directive({
   selector: '[collapse]',
   exportAs: 'bs-collapse',
   /* tslint:disable-next-line */
-  host: {'[class.collapse]': 'true'}/*,
+  host: {
+    '[class.collapse]': 'true'
+  } /*,
   animations: [
     trigger('active', [
       state('void', style({height: 0})),
@@ -26,22 +35,18 @@ export class CollapseDirective {
   /** This event fires as soon as content becomes visible */
   @Output() public expanded: EventEmitter<any> = new EventEmitter();
 
-  @HostBinding('style.display')
-  public display: string;
+  @HostBinding('style.display') public display: string;
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
   @HostBinding('attr.aria-expanded')
   public isExpanded: boolean = true;
   // hidden
-  @HostBinding('attr.aria-hidden')
-  public isCollapsed: boolean = false;
+  @HostBinding('attr.aria-hidden') public isCollapsed: boolean = false;
   // stale state
-  @HostBinding('class.collapse')
-  public isCollapse: boolean = true;
+  @HostBinding('class.collapse') public isCollapse: boolean = true;
   // animation state
-  @HostBinding('class.collapsing')
-  public isCollapsing: boolean = false;
+  @HostBinding('class.collapsing') public isCollapsing: boolean = false;
 
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
@@ -98,7 +103,11 @@ export class CollapseDirective {
     // this.height = 'auto';
     this.isCollapse = true;
     this.isCollapsing = false;
-    this._renderer.setElementStyle(this._el.nativeElement, 'overflow', 'visible');
+    this._renderer.setElementStyle(
+      this._el.nativeElement,
+      'overflow',
+      'visible'
+    );
     this._renderer.setElementStyle(this._el.nativeElement, 'height', 'auto');
     this.expanded.emit(this);
   }

@@ -7,18 +7,23 @@ import { Component } from '@angular/core';
 import { CollapseModule } from '../../collapse';
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
+  createGenericTestComponent(html, TestComponent) as ComponentFixture<
+    TestComponent
+  >;
 
 function getCollapsibleContent(element: HTMLElement): Element {
-  return (element).querySelector('.collapse');
+  return element.querySelector('.collapse');
 }
 
 describe('bs-collapse', () => {
   let html = `<div [collapse]="collapsed">Some content</div>`;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestComponent], imports: [CollapseModule]});
-    TestBed.overrideComponent(TestComponent, {set: {template: html}});
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [CollapseModule]
+    });
+    TestBed.overrideComponent(TestComponent, { set: { template: html } });
   });
 
   it('should have content open and aria-expanded true', () => {
@@ -88,7 +93,7 @@ describe('bs-collapse', () => {
   });
 });
 
-@Component({selector: 'test-cmp', template: ''})
+@Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
-  public collapsed:boolean = false;
+  public collapsed: boolean = false;
 }

@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
-  BsDatepickerViewMode, BsNavigationDirection,
+  BsDatepickerViewMode,
+  BsNavigationDirection,
   BsNavigationEvent,
-  DatepickerRenderOptions, CellHoverEvent, MonthsCalendarViewModel,
+  DatepickerRenderOptions,
+  CellHoverEvent,
+  MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../../models/index';
 
@@ -44,7 +47,7 @@ export class BsMonthCalendarViewComponent {
 
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
-    this.onNavigate.emit({step: {year: step}});
+    this.onNavigate.emit({ step: { year: step } });
   }
 
   viewMonth(month: CalendarCellViewModel) {
@@ -52,7 +55,7 @@ export class BsMonthCalendarViewComponent {
   }
 
   hoverMonth(cell: CalendarCellViewModel, isHovered: boolean) {
-    this.onHover.emit({cell, isHovered});
+    this.onHover.emit({ cell, isHovered });
   }
 
   changeViewMode(event: BsDatepickerViewMode): void {

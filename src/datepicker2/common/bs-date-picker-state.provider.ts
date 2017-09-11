@@ -6,17 +6,27 @@ import * as moment from 'moment';
 @Injectable()
 export class BsDatePickerState {
   @OnChange() public selectedDate: moment.Moment;
-  public selectedDateChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
+  public selectedDateChange: EventEmitter<moment.Moment> = new EventEmitter<
+    moment.Moment
+  >();
 
   @OnChange() public selectedEndDate: moment.Moment;
-  public selectedEndDateChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
+  public selectedEndDateChange: EventEmitter<moment.Moment> = new EventEmitter<
+    moment.Moment
+  >();
 
   @OnChange() public activeDate: moment.Moment;
-  public activeDateChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
+  public activeDateChange: EventEmitter<moment.Moment> = new EventEmitter<
+    moment.Moment
+  >();
 
   @OnChange() public viewDate: moment.Moment;
-  public viewDateChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
+  public viewDateChange: EventEmitter<moment.Moment> = new EventEmitter<
+    moment.Moment
+  >();
 
   @OnChange() public showCalendars: boolean;
-  public showCalendarsChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
+  public showCalendarsChange: EventEmitter<moment.Moment> = new EventEmitter<
+    moment.Moment
+  >();
 }

@@ -12,5 +12,7 @@ export class Trigger {
     this.close = close || open;
   }
 
-  public isManual(): boolean { return this.open === 'manual' || this.close === 'manual'; }
+  public isManual(): boolean {
+    return this.open === 'manual' || this.close === 'manual';
+  }
 }

@@ -1,5 +1,4 @@
-export class LinkedList <T> {
-
+export class LinkedList<T> {
   public length: number = 0;
   protected head: any;
   protected tail: any;
@@ -80,7 +79,6 @@ export class LinkedList <T> {
         node.previous = currentPreviousNode;
         node.next = currentNextNode;
       }
-
     }
     this.length++;
     this.createInternalArrayRepresentation();
@@ -136,7 +134,7 @@ export class LinkedList <T> {
     let result: any[] = [];
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
-        result.push({index, value: current.value});
+        result.push({ index, value: current.value });
       }
       current = current.next;
     }
@@ -190,7 +188,6 @@ export class LinkedList <T> {
 
     for (let index = 0; index < this.length; index++) {
       if (current.value === value) {
-
         position = index;
         break;
       }
@@ -201,7 +198,7 @@ export class LinkedList <T> {
 
   public some(fn: any): boolean {
     let current = this.head;
-    let result  = false;
+    let result = false;
     while (current && !result) {
       if (fn(current.value)) {
         result = true;
@@ -214,8 +211,8 @@ export class LinkedList <T> {
 
   public every(fn: any): boolean {
     let current = this.head;
-    let result  = true;
-    while (current && result)  {
+    let result = true;
+    while (current && result) {
       if (!fn(current.value)) {
         result = false;
       }

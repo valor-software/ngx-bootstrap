@@ -8,8 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DemoButtonsRadioReactiveFormsComponent implements OnInit {
   public myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-  }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({

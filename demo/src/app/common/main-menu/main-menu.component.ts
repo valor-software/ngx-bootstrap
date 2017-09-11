@@ -5,8 +5,10 @@ import { routes } from '../../app.routing';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 
-const _bs3Css = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
-const _bs4Css = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css';
+const _bs3Css =
+  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+const _bs4Css =
+  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css';
 
 @Component({
   selector: 'main-menu',
@@ -22,9 +24,11 @@ export class MainMenuComponent {
 
   currentTheme: 'bs3' | 'bs4';
 
-  public constructor(private router: Router,
-                     public styleManager: StyleManager,
-                     private _themeStorage: ThemeStorage) {
+  public constructor(
+    private router: Router,
+    public styleManager: StyleManager,
+    private _themeStorage: ThemeStorage
+  ) {
     const currentTheme = this._themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
@@ -43,5 +47,4 @@ export class MainMenuComponent {
       this._themeStorage.storeTheme(this.currentTheme);
     }
   }
-
 }

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Action } from '../../mini-ngrx/index';
-import { TimeChangeEvent, TimepickerComponentState, Time } from '../timepicker.models';
+import {
+  TimeChangeEvent,
+  TimepickerComponentState,
+  Time
+} from '../timepicker.models';
 
 @Injectable()
 export class TimepickerActions {

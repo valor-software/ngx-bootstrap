@@ -31,8 +31,12 @@ const numberMap: any = {
 
 export const hi: LocaleData = {
   abbr: 'hi',
-  months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split('_'),
-  monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split('_'),
+  months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split(
+    '_'
+  ),
+  monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split(
+    '_'
+  ),
   monthsParseExact: true,
   weekdays: 'रविवार_सोमवार_मंगलवार_बुधवार_गुरूवार_शुक्रवार_शनिवार'.split('_'),
   weekdaysShort: 'रवि_सोम_मंगल_बुध_गुरू_शुक्र_शनि'.split('_'),
@@ -69,12 +73,12 @@ export const hi: LocaleData = {
     yy: '%d वर्ष'
   },
   preparse(str: string): string {
-    return str.replace(/[१२३४५६७८९०]/g, function (match) {
+    return str.replace(/[१२३४५६७८९०]/g, function(match) {
       return numberMap[match];
     });
   },
   postformat(str: string): string {
-    return str.replace(/\d/g, function (match) {
+    return str.replace(/\d/g, function(match) {
       return symbolMap[match];
     });
   },
@@ -110,6 +114,6 @@ export const hi: LocaleData = {
   },
   week: {
     dow: 0, // Sunday is the first day of the week.
-    doy: 6  // The week that contains Jan 1st is the first week of the year.
+    doy: 6 // The week that contains Jan 1st is the first week of the year.
   }
 };

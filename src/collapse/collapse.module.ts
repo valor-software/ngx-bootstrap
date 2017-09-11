@@ -8,6 +8,6 @@ import { CollapseDirective } from './collapse.directive';
 })
 export class CollapseModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: CollapseModule, providers: []};
+    return { ngModule: CollapseModule, providers: [] };
   }
 }

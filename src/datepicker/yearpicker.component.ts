@@ -46,33 +46,35 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   </tbody>
 </table>
   `,
-  styles: [`
+  styles: [
+    `
     :host .btn-info .text-success {
       color: #fff !important;
     }
-  `]
+  `
+  ]
 })
 export class YearPickerComponent implements OnInit {
-  public datePicker:DatePickerInnerComponent;
-  public title:string;
-  public rows:any[] = [];
+  public datePicker: DatePickerInnerComponent;
+  public title: string;
+  public rows: any[] = [];
 
-  public constructor(datePicker:DatePickerInnerComponent) {
+  public constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 
-  public get isBs4():boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     let self = this;
 
-    this.datePicker.stepYear = {years: this.datePicker.yearRange};
+    this.datePicker.stepYear = { years: this.datePicker.yearRange };
 
-    this.datePicker.setRefreshViewHandler(function ():void {
-      let years:any[] = new Array(this.yearRange);
-      let date:Date;
+    this.datePicker.setRefreshViewHandler(function(): void {
+      let years: any[] = new Array(this.yearRange);
+      let date: Date;
       let start = self.getStartingYear(this.activeDate.getFullYear());
 
       for (let i = 0; i < this.yearRange; i++) {
@@ -82,20 +84,26 @@ export class YearPickerComponent implements OnInit {
         years[i].uid = this.uniqueId + '-' + i;
       }
 
-      self.title = [years[0].label,
-        years[this.yearRange - 1].label].join(' - ');
+      self.title = [years[0].label, years[this.yearRange - 1].label].join(
+        ' - '
+      );
       self.rows = this.split(years, self.datePicker.yearColLimit);
     }, 'year');
 
-    this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
+    this.datePicker.setCompareHandler(function(
+      date1: Date,
+      date2: Date
+    ): number {
       return date1.getFullYear() - date2.getFullYear();
     }, 'year');
 
     this.datePicker.refreshView();
   }
 
-  protected getStartingYear(year:number):number {
+  protected getStartingYear(year: number): number {
     // todo: parseInt
-    return ((year - 1) / this.datePicker.yearRange) * this.datePicker.yearRange + 1;
+    return (
+      (year - 1) / this.datePicker.yearRange * this.datePicker.yearRange + 1
+    );
   }
 }

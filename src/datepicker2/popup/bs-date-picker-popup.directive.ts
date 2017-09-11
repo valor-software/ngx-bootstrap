@@ -1,10 +1,22 @@
 import {
-  Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer,
-  ElementRef, TemplateRef, ViewContainerRef, ChangeDetectionStrategy
+  Directive,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  OnDestroy,
+  Renderer,
+  ElementRef,
+  TemplateRef,
+  ViewContainerRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 // import { BsCalendarOptionsClass } from '../common/bs-calendar-options.provider';
-import { ComponentLoaderFactory, ComponentLoader } from '../../component-loader';
+import {
+  ComponentLoaderFactory,
+  ComponentLoader
+} from '../../component-loader';
 import { BsDatePickerContainer } from './bs-date-picker-container.component';
 import { BsDatePickerState } from '../common/bs-date-picker-state.provider';
 import { OnChange } from '../../utils/decorators';
@@ -61,80 +73,102 @@ export class BsDatePickerPopupDirective implements OnInit, OnDestroy {
   @Output() public onHidden: EventEmitter<any>;
 
   // here will be parsed options and set defaults
-  @Input() @OnChange() public config: BsDatePickerOptions;
+  @Input()
+  @OnChange()
+  public config: BsDatePickerOptions;
   public configChange: EventEmitter<BsDatePickerOptions> = new EventEmitter();
 
-  @Input() @OnChange() public bsValue: any;
+  @Input()
+  @OnChange()
+  public bsValue: any;
   @Output() public bsValueChange: EventEmitter<any> = new EventEmitter();
 
   protected subscriptions: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDatePickerContainer>;
 
-  public constructor(_elementRef: ElementRef,
-                     _renderer: Renderer,
-                     _viewContainerRef: ViewContainerRef,
-                     datePickerOptions: BsDatePickerOptions,
-                     _state: BsDatePickerState,
-                     cis: ComponentLoaderFactory) {
+  public constructor(
+    _elementRef: ElementRef,
+    _renderer: Renderer,
+    _viewContainerRef: ViewContainerRef,
+    datePickerOptions: BsDatePickerOptions,
+    _state: BsDatePickerState,
+    cis: ComponentLoaderFactory
+  ) {
     this._datepicker = cis
-      .createLoader<BsDatePickerContainer>(_elementRef, _viewContainerRef, _renderer)
-      .provide({provide: BsDatePickerState, useValue: _state})
-      .provide({provide: BsDatePickerOptions, useValue: datePickerOptions});
+      .createLoader<BsDatePickerContainer>(
+        _elementRef,
+        _viewContainerRef,
+        _renderer
+      )
+      .provide({ provide: BsDatePickerState, useValue: _state })
+      .provide({ provide: BsDatePickerOptions, useValue: datePickerOptions });
     // Object.assign(this, _state);
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
 
-    this.subscriptions.push(this.configChange.subscribe((v: any) => {
-      datePickerOptions.update(v);
-    }));
+    this.subscriptions.push(
+      this.configChange.subscribe((v: any) => {
+        datePickerOptions.update(v);
+      })
+    );
 
-    this.subscriptions.push(_state.selectedDateChange.subscribe((v: any) => {
-      if (datePickerOptions.mode !== 'date') {
-        return;
-      }
-      if (v && (!this.bsValue || this.bsValue && v.toDate().getTime() !== this.bsValue.getTime())) {
-        this.bsValue = v && v.toDate && v.toDate() || v;
-        this.hide();
-      }
-    }));
+    this.subscriptions.push(
+      _state.selectedDateChange.subscribe((v: any) => {
+        if (datePickerOptions.mode !== 'date') {
+          return;
+        }
+        if (
+          v &&
+          (!this.bsValue ||
+            (this.bsValue && v.toDate().getTime() !== this.bsValue.getTime()))
+        ) {
+          this.bsValue = (v && v.toDate && v.toDate()) || v;
+          this.hide();
+        }
+      })
+    );
 
     this.bsValue = this.bsValue || [];
     let startDate = this.bsValue[0];
     let endDate = this.bsValue[1];
     let newDate = false;
-    this.subscriptions.push(_state.selectedDateChange.subscribe((v: any) => {
-      if (datePickerOptions.mode !== 'daterange') {
-        return;
-      }
-      if (v) {
-        startDate = v && v.toDate && v.toDate();
-      }
-    }));
+    this.subscriptions.push(
+      _state.selectedDateChange.subscribe((v: any) => {
+        if (datePickerOptions.mode !== 'daterange') {
+          return;
+        }
+        if (v) {
+          startDate = v && v.toDate && v.toDate();
+        }
+      })
+    );
 
-    this.subscriptions.push(_state.selectedEndDateChange.subscribe((v: any) => {
-      if (datePickerOptions.mode !== 'daterange') {
-        return;
-      }
+    this.subscriptions.push(
+      _state.selectedEndDateChange.subscribe((v: any) => {
+        if (datePickerOptions.mode !== 'daterange') {
+          return;
+        }
 
-      if (!v || !endDate) {
-        newDate = true;
-      }
+        if (!v || !endDate) {
+          newDate = true;
+        }
 
-      if (!v) {
-        return;
-      }
+        if (!v) {
+          return;
+        }
 
-      if (v) {
-        endDate = v && v.toDate && v.toDate();
-      }
+        if (v) {
+          endDate = v && v.toDate && v.toDate();
+        }
 
-      if (newDate) {
-        this.bsValue = [startDate, endDate];
-        newDate = false;
-        this.hide();
-      }
-    }));
+        if (newDate) {
+          this.bsValue = [startDate, endDate];
+          newDate = false;
+          this.hide();
+        }
+      })
+    );
   }
 
   /**
@@ -149,7 +183,7 @@ export class BsDatePickerPopupDirective implements OnInit, OnDestroy {
     this._datepicker
       .attach(BsDatePickerContainer)
       .to(this.container)
-      .position({attachment: this.placement})
+      .position({ attachment: this.placement })
       .show({});
   }
 

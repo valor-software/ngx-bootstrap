@@ -18,5 +18,5 @@ export class TypeaheadModule {
       ngModule: TypeaheadModule,
       providers: [ComponentLoaderFactory, PositioningService]
     };
-  };
+  }
 }

@@ -1,10 +1,21 @@
-import { ComponentRef, Injectable, TemplateRef, EventEmitter } from '@angular/core';
+import {
+  ComponentRef,
+  Injectable,
+  TemplateRef,
+  EventEmitter
+} from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
-import { BsModalRef, ClassName, modalConfigDefaults, ModalOptions, TransitionDurations } from './modal-options.class';
+import {
+  BsModalRef,
+  ClassName,
+  modalConfigDefaults,
+  ModalOptions,
+  TransitionDurations
+} from './modal-options.class';
 
 @Injectable()
 export class BsModalService {
@@ -29,7 +40,11 @@ export class BsModalService {
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
   public constructor(private clf: ComponentLoaderFactory) {
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(null, null, null);
+    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
+      null,
+      null,
+      null
+    );
   }
 
   /** Shows a modal */
@@ -55,8 +70,10 @@ export class BsModalService {
   }
 
   _showBackdrop(): void {
-    const isBackdropEnabled = this.config.backdrop || this.config.backdrop === 'static';
-    const isBackdropInDOM = !this.backdropRef || !this.backdropRef.instance.isShown;
+    const isBackdropEnabled =
+      this.config.backdrop || this.config.backdrop === 'static';
+    const isBackdropInDOM =
+      !this.backdropRef || !this.backdropRef.instance.isShown;
 
     if (this.modalsCount === 1) {
       this.removeBackdrop();
@@ -65,7 +82,7 @@ export class BsModalService {
         this._backdropLoader
           .attach(ModalBackdropComponent)
           .to('body')
-          .show({isAnimated: this.config.animated});
+          .show({ isAnimated: this.config.animated });
         this.backdropRef = this._backdropLoader._componentRef;
       }
     }
@@ -84,11 +101,11 @@ export class BsModalService {
     const modalLoader = this.loaders[this.loaders.length - 1];
     const bsModalRef = new BsModalRef();
     const modalContainerRef = modalLoader
-      .provide({provide: ModalOptions, useValue: this.config})
-      .provide({provide: BsModalRef, useValue: bsModalRef})
+      .provide({ provide: ModalOptions, useValue: this.config })
+      .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({content, isAnimated: this.config.animated});
+      .show({ content, isAnimated: this.config.animated });
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       modalContainerRef.instance.hide();
@@ -130,10 +147,16 @@ export class BsModalService {
       return;
     }
 
-    this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || '0', 10);
+    this.originalBodyPadding = parseInt(
+      window
+        .getComputedStyle(document.body)
+        .getPropertyValue('padding-right') || '0',
+      10
+    );
 
     if (this.isBodyOverflowing) {
-      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
+      document.body.style.paddingRight = `${this.originalBodyPadding +
+        this.scrollbarWidth}px`;
     }
   }
 
@@ -149,11 +172,14 @@ export class BsModalService {
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
     document.body.removeChild(scrollDiv);
     return scrollbarWidth;
-
   }
 
   private _createLoaders(): void {
-    const loader = this.clf.createLoader<ModalContainerComponent>(null, null, null);
+    const loader = this.clf.createLoader<ModalContainerComponent>(
+      null,
+      null,
+      null
+    );
     this.copyEvent(loader.onBeforeShow, this.onShow);
     this.copyEvent(loader.onShown, this.onShown);
     this.copyEvent(loader.onBeforeHide, this.onHide);
@@ -163,9 +189,11 @@ export class BsModalService {
 
   private removeLoaders(level: number): void {
     this.loaders.splice(level - 1, 1);
-    this.loaders.forEach((loader: ComponentLoader<ModalContainerComponent>, i: number) => {
-      loader.instance.level = i + 1;
-    });
+    this.loaders.forEach(
+      (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
+        loader.instance.level = i + 1;
+      }
+    );
   }
 
   private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {

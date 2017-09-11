@@ -1,8 +1,16 @@
 import * as moment from 'moment';
 import { Injectable, EventEmitter } from '@angular/core';
 
-export const DatePickerViewModes: { [key: string]: number, days: number, months: number, years: number }
-  = {days: 0, months: 1, years: 2};
+export const DatePickerViewModes: {
+  [key: string]: number;
+  days: number;
+  months: number;
+  years: number;
+} = {
+  days: 0,
+  months: 1,
+  years: 2
+};
 export type BsDatePickerViewMode = 'days' | 'months' | 'years';
 
 export interface DatePickerCustomDates {
@@ -108,7 +116,7 @@ export class BsDatePickerOptions {
 
   public customDates: DatePickerCustomDates[];
   /** predefined set of ranges {'today': [moment(), moment()]} */
-  public ranges: { [key: string]: moment.Moment[]|string[]|Date[] };
+  public ranges: { [key: string]: moment.Moment[] | string[] | Date[] };
 
   public onUpdate: EventEmitter<BsDatePickerOptions> = new EventEmitter();
 
@@ -117,7 +125,17 @@ export class BsDatePickerOptions {
   // }
 
   public update(options: any): BsDatePickerOptions {
-    const {mode, viewMode, ui, date, format, locale, timepicker, customDates, ranges} = options;
+    const {
+      mode,
+      viewMode,
+      ui,
+      date,
+      format,
+      locale,
+      timepicker,
+      customDates,
+      ranges
+    } = options;
     if (mode && (mode === 'date' || mode === 'daterange')) {
       this.mode = mode;
     }
@@ -134,7 +152,10 @@ export class BsDatePickerOptions {
       }
 
       if (ui.maxMode in DatePickerViewModes) {
-        if (DatePickerViewModes[this.ui.maxMode] > DatePickerViewModes[this.ui.minMode]) {
+        if (
+          DatePickerViewModes[this.ui.maxMode] >
+          DatePickerViewModes[this.ui.minMode]
+        ) {
           this.ui.maxMode = ui.maxMode;
         } else {
           this.ui.maxMode = this.ui.minMode;
@@ -142,12 +163,18 @@ export class BsDatePickerOptions {
       }
 
       // if view mode is lesser than min -> fix view mode
-      if (DatePickerViewModes[this.ui.minMode] > DatePickerViewModes[this.viewMode]) {
+      if (
+        DatePickerViewModes[this.ui.minMode] >
+        DatePickerViewModes[this.viewMode]
+      ) {
         this.viewMode = this.ui.minMode;
       }
 
       // if view mode is gt than max -> fix view mode
-      if (DatePickerViewModes[this.ui.maxMode] < DatePickerViewModes[this.viewMode]) {
+      if (
+        DatePickerViewModes[this.ui.maxMode] <
+        DatePickerViewModes[this.viewMode]
+      ) {
         this.viewMode = this.ui.maxMode;
       }
 

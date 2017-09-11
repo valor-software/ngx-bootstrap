@@ -47,8 +47,11 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
     BsDatePickerComponent
   ],
   entryComponents: [BsDatePickerContainer],
-  providers: [BsCalendarOptionsClass, BsDatePickerOptions,
-    ComponentLoaderFactory, PositioningService]
+  providers: [
+    BsCalendarOptionsClass,
+    BsDatePickerOptions,
+    ComponentLoaderFactory,
+    PositioningService
+  ]
 })
-export class BsDatePickerModule {
-}
+export class BsDatePickerModule {}

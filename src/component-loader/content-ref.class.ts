@@ -10,7 +10,11 @@ export class ContentRef {
   public viewRef?: ViewRef;
   public componentRef?: ComponentRef<any>;
 
-  public constructor( nodes: any[],  viewRef?: ViewRef,  componentRef?: ComponentRef<any>) {
+  public constructor(
+    nodes: any[],
+    viewRef?: ViewRef,
+    componentRef?: ComponentRef<any>
+  ) {
     this.nodes = nodes;
     this.viewRef = viewRef;
     this.componentRef = componentRef;

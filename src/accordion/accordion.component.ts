@@ -9,7 +9,7 @@ import { AccordionConfig } from './accordion.config';
   // tslint:disable-next-line
   host: {
     //'[.class.panel-group]': 'true',
-    '[attr.aria-multiselectable]':'closeOthers',
+    '[attr.aria-multiselectable]': 'closeOthers',
     role: 'tablist',
     class: 'panel-group',
     style: 'display: block'

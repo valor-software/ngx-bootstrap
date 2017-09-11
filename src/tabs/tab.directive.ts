@@ -1,8 +1,18 @@
-﻿import {
-  Directive, EventEmitter, HostBinding, Input, Output, TemplateRef, OnInit, OnDestroy, ElementRef, Renderer } from '@angular/core';
+import {
+  Directive,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+  TemplateRef,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  Renderer
+} from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
-@Directive({selector: 'tab, [tab]'})
+@Directive({ selector: 'tab, [tab]' })
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() public heading: string;
@@ -13,19 +23,28 @@ export class TabDirective implements OnInit, OnDestroy {
   /** if true tab can be removable, additional button will appear */
   @Input() public removable: boolean;
   /** if set, will be added to the tab's class atribute */
-  @Input() public get customClass(): string {
+  @Input()
+  public get customClass(): string {
     return this._customClass;
   }
 
   public set customClass(customClass: string) {
     if (this._customClass && this._customClass !== customClass) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, this._customClass, false);
+      this.renderer.setElementClass(
+        this.elementRef.nativeElement,
+        this._customClass,
+        false
+      );
     }
 
     this._customClass = customClass;
 
     if (this._customClass) {
-      this.renderer.setElementClass(this.elementRef.nativeElement, this._customClass, true);
+      this.renderer.setElementClass(
+        this.elementRef.nativeElement,
+        this._customClass,
+        true
+      );
     }
   }
 
@@ -40,7 +59,7 @@ export class TabDirective implements OnInit, OnDestroy {
     if (this._active === active) {
       return;
     }
-    if (this.disabled && active || !active) {
+    if ((this.disabled && active) || !active) {
       if (this._active && !active) {
         this.deselect.emit(this);
         this._active = active;
@@ -72,7 +91,11 @@ export class TabDirective implements OnInit, OnDestroy {
   protected _active: boolean;
   protected _customClass: string;
 
-  public constructor(tabset: TabsetComponent, public elementRef: ElementRef, public renderer: Renderer) {
+  public constructor(
+    tabset: TabsetComponent,
+    public elementRef: ElementRef,
+    public renderer: Renderer
+  ) {
     this.tabset = tabset;
     this.tabset.addTab(this);
   }
@@ -82,6 +105,6 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.tabset.removeTab(this, {reselect: false, emit: false});
+    this.tabset.removeTab(this, { reselect: false, emit: false });
   }
 }

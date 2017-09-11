@@ -7,19 +7,22 @@ import { isBs3 } from '../utils/theme-provider';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
+    '[class]':
+      '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
     role: 'tooltip',
     style: 'display:block;'
   },
-  styles: [`
+  styles: [
+    `
     :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {
       left: calc(50% - 5px);
     }
     :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {
       top: calc(50% - 2.5px);
     }
-  `],
+  `
+  ],
   template: `
 <div class="popover-arrow arrow"></div>
 <h3 class="popover-title popover-header" *ngIf="title">{{title}}</h3><div class="popover-content popover-body"><ng-content></ng-content></div>

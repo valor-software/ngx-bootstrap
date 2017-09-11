@@ -22,12 +22,15 @@ import * as moment from 'moment';
 export class BsCustomRangePickerComponent extends DatePickerBase {
   public isShown: boolean = false;
   public isCustomRangeShown: boolean = true;
-  public ranges: { key: string, value: moment.Moment[] }[];
+  public ranges: { key: string; value: moment.Moment[] }[];
 
   private _showCalendars: boolean = false;
   private _prevSelected: moment.Moment[];
 
-  public constructor(datePickerService: BsDatePickerState, options: BsDatePickerOptions) {
+  public constructor(
+    datePickerService: BsDatePickerState,
+    options: BsDatePickerOptions
+  ) {
     super(datePickerService, options);
     this.subscriptions.push(options.onUpdate.subscribe(() => this.refresh()));
   }
@@ -56,11 +59,14 @@ export class BsCustomRangePickerComponent extends DatePickerBase {
     this.isShown = true;
 
     this.ranges = keys.map((key: string) => {
-      const value = (this.options.ranges[key] as string[]).map((date: any) => moment(date));
-      return {key, value};
+      const value = (this.options.ranges[key] as string[]).map((date: any) =>
+        moment(date)
+      );
+      return { key, value };
     });
 
-    this.datePickerState.showCalendars = this._showCalendars || this.options.ui.alwaysShowCalendars;
+    this.datePickerState.showCalendars =
+      this._showCalendars || this.options.ui.alwaysShowCalendars;
   }
 
   public selectRange(range: moment.Moment[]): void {
@@ -73,7 +79,10 @@ export class BsCustomRangePickerComponent extends DatePickerBase {
 
   public previewRange(range: moment.Moment[]): void {
     if (!this._prevSelected) {
-      this._prevSelected = [this.datePickerState.selectedDate, this.datePickerState.selectedEndDate];
+      this._prevSelected = [
+        this.datePickerState.selectedDate,
+        this.datePickerState.selectedEndDate
+      ];
     }
     this.resetSelection();
     this.selectDate(range[0]);

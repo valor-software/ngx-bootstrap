@@ -25,12 +25,18 @@ export class BsDatePickerViewComponent implements OnInit, OnDestroy {
   public cOptions: BsCalendarOptionsClass;
   @Input() public bsRole: string;
 
-  private _subscription:any;
+  private _subscription: any;
 
-  public constructor(datePickerState: BsDatePickerState, datePickerOptions: BsDatePickerOptions, cOptions: BsCalendarOptionsClass) {
+  public constructor(
+    datePickerState: BsDatePickerState,
+    datePickerOptions: BsDatePickerOptions,
+    cOptions: BsCalendarOptionsClass
+  ) {
     this.options = datePickerOptions;
     this.cOptions = cOptions;
-    this._subscription = datePickerState.showCalendarsChange.subscribe((v: boolean) => this.isShown = v);
+    this._subscription = datePickerState.showCalendarsChange.subscribe(
+      (v: boolean) => (this.isShown = v)
+    );
   }
 
   public ngOnInit(): void {

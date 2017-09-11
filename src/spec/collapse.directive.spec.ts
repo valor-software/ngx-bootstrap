@@ -14,16 +14,15 @@ const template = `
   selector: 'collapse-test',
   template
 })
-class TestCollapseComponent {
-}
+class TestCollapseComponent {}
 
 // TODO: - add animate
 //       - check callbacks have been called or not called (expanding, expanded, collapsing, collapsed)
 
 describe('Directive: Collapse', () => {
-  let fixture:ComponentFixture<TestCollapseComponent>;
-  let element:any;
-  let context:any;
+  let fixture: ComponentFixture<TestCollapseComponent>;
+  let element: any;
+  let context: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -54,9 +53,12 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = true', () => {
-    expect(true);
-  });
+  xit(
+    'should not trigger any animation on initialization if isCollapsed = true',
+    () => {
+      expect(true);
+    }
+  );
 
   it('should collapse if isCollapsed = true on subsequent use', () => {
     context.isCollapsed = false;
@@ -75,9 +77,12 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).not.toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = false', () => {
-    expect(true);
-  });
+  xit(
+    'should not trigger any animation on initialization if isCollapsed = false',
+    () => {
+      expect(true);
+    }
+  );
 
   it('should expand if isCollapsed = false on subsequent use', () => {
     context.isCollapsed = false;

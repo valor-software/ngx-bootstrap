@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TooltipModule } from '../tooltip/tooltip.module';
@@ -35,7 +40,9 @@ xdescribe('Directives: Tooltips', () => {
       declarations: [TestTooltipComponent],
       imports: [TooltipModule.forRoot(), FormsModule]
     });
-    TestBed.overrideComponent(TestTooltipComponent, {set: {template: overTemplate}});
+    TestBed.overrideComponent(TestTooltipComponent, {
+      set: { template: overTemplate }
+    });
     fixture = TestBed.createComponent(TestTooltipComponent);
     context = fixture.componentInstance;
     fixture.detectChanges();
@@ -51,57 +58,72 @@ xdescribe('Directives: Tooltips', () => {
     expect(element.querySelector('.tooltip-inner')).toBeNull();
   });
 
-  it('tooltip should be displayed by focus event after 0 ms by default', fakeAsync(() => {
-    const element: HTMLElement = fixture.debugElement.nativeElement;
-    const tooltipElement: any = element.querySelector('#test-tooltip1');
-    tooltipElement.focus();
-    fixture.detectChanges();
-    tick(0);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
-  }));
+  it(
+    'tooltip should be displayed by focus event after 0 ms by default',
+    fakeAsync(() => {
+      const element: HTMLElement = fixture.debugElement.nativeElement;
+      const tooltipElement: any = element.querySelector('#test-tooltip1');
+      tooltipElement.focus();
+      fixture.detectChanges();
+      tick(0);
+      fixture.detectChanges();
+      expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+    })
+  );
 
-  it('tooltip should be displayed after specified delay', fakeAsync(() => {
-    const element: HTMLElement = fixture.debugElement.nativeElement;
-    const tooltipElement: any = element.querySelector('#test-tooltip1');
-    context._delay = 1000;
-    fixture.detectChanges();
-    tooltipElement.focus();
-    fixture.detectChanges();
-    tick(1100);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
-  }));
+  it(
+    'tooltip should be displayed after specified delay',
+    fakeAsync(() => {
+      const element: HTMLElement = fixture.debugElement.nativeElement;
+      const tooltipElement: any = element.querySelector('#test-tooltip1');
+      context._delay = 1000;
+      fixture.detectChanges();
+      tooltipElement.focus();
+      fixture.detectChanges();
+      tick(1100);
+      fixture.detectChanges();
+      expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+    })
+  );
 
-  xit('tooltip should be displayed by mouseenter event', fakeAsync(() => {
-    const element: HTMLElement = fixture.debugElement.nativeElement;
-    const tooltipElement: any = element.querySelector('#test-tooltip1');
-    fireEvent(tooltipElement, 'mouseenter');
-    fixture.detectChanges();
-    tick(context.delay);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
-  }));
+  xit(
+    'tooltip should be displayed by mouseenter event',
+    fakeAsync(() => {
+      const element: HTMLElement = fixture.debugElement.nativeElement;
+      const tooltipElement: any = element.querySelector('#test-tooltip1');
+      fireEvent(tooltipElement, 'mouseenter');
+      fixture.detectChanges();
+      tick(context.delay);
+      fixture.detectChanges();
+      expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+    })
+  );
 
-  it('tooltip should be displayed after user clicks on specified DOM element which refers to showing the tooltip', fakeAsync(() => {
-    const element: Element = fixture.debugElement.nativeElement;
-    const showTooltipBtn: any = element.querySelector('#showTooltipBtn');
-    showTooltipBtn.click();
-    fixture.detectChanges();
-    tick(context.delay);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).not.toBeNull();
-  }));
+  it(
+    'tooltip should be displayed after user clicks on specified DOM element which refers to showing the tooltip',
+    fakeAsync(() => {
+      const element: Element = fixture.debugElement.nativeElement;
+      const showTooltipBtn: any = element.querySelector('#showTooltipBtn');
+      showTooltipBtn.click();
+      fixture.detectChanges();
+      tick(context.delay);
+      fixture.detectChanges();
+      expect(element.querySelector('.tooltip-inner')).not.toBeNull();
+    })
+  );
 
-  it('tooltip should be hidden after user clicks on specified DOM element which refers to hiding the tooltip', fakeAsync(() => {
-    const element: Element = fixture.debugElement.nativeElement;
-    const showTooltipBtn: any = element.querySelector('#hideTooltipBtn');
-    showTooltipBtn.click();
-    fixture.detectChanges();
-    tick(context.delay);
-    fixture.detectChanges();
-    expect(element.querySelector('.tooltip-inner')).toBeNull();
-  }));
+  it(
+    'tooltip should be hidden after user clicks on specified DOM element which refers to hiding the tooltip',
+    fakeAsync(() => {
+      const element: Element = fixture.debugElement.nativeElement;
+      const showTooltipBtn: any = element.querySelector('#hideTooltipBtn');
+      showTooltipBtn.click();
+      fixture.detectChanges();
+      tick(context.delay);
+      fixture.detectChanges();
+      expect(element.querySelector('.tooltip-inner')).toBeNull();
+    })
+  );
 });
 
 @Component({

@@ -105,7 +105,10 @@ export interface DatepickerRenderOptions {
 /** *************** */
 // events
 /** *************** */
-export enum BsNavigationDirection {UP, DOWN}
+export enum BsNavigationDirection {
+  UP,
+  DOWN
+}
 
 // used for navigation events, to change view date in state
 export interface BsNavigationEvent {

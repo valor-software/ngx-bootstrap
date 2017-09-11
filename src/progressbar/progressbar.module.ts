@@ -13,6 +13,6 @@ import { ProgressbarConfig } from './progressbar.config';
 })
 export class ProgressbarModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: ProgressbarModule, providers: [ProgressbarConfig]};
+    return { ngModule: ProgressbarModule, providers: [ProgressbarConfig] };
   }
 }

@@ -41,14 +41,21 @@ export class BsYearPickerComponent extends DatePickerBase {
   public calendar: any;
 
   public get yearsStep(): number {
-    return this.options ? (this.options.ui.yearRows * this.options.ui.yearColumns) : 5;
+    return this.options
+      ? this.options.ui.yearRows * this.options.ui.yearColumns
+      : 5;
   }
 
-  public constructor(datePickerService: BsDatePickerState, options: BsDatePickerOptions) {
+  public constructor(
+    datePickerService: BsDatePickerState,
+    options: BsDatePickerOptions
+  ) {
     super(datePickerService, options);
-    this.subscriptions.push(datePickerService.selectedDateChange.subscribe(() => {
-      this.refresh(datePickerService.viewDate);
-    }));
+    this.subscriptions.push(
+      datePickerService.selectedDateChange.subscribe(() => {
+        this.refresh(datePickerService.viewDate);
+      })
+    );
   }
 
   public refresh(viewDate: any): void {
@@ -60,8 +67,12 @@ export class BsYearPickerComponent extends DatePickerBase {
     const yearStart = this.getStartingYear(viewDate.year());
     const yearEnd = yearStart + yearsStep;
     this.title = [
-      moment().year(yearStart).format(this.options.format.yearTitle),
-      moment().year(yearEnd).format(this.options.format.yearTitle)
+      moment()
+        .year(yearStart)
+        .format(this.options.format.yearTitle),
+      moment()
+        .year(yearEnd)
+        .format(this.options.format.yearTitle)
     ].join(' - ');
     this.calendar = this.getYearsCalendarMatrix(viewDate);
   }

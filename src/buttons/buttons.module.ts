@@ -9,6 +9,6 @@ import { ButtonRadioDirective } from './button-radio.directive';
 })
 export class ButtonsModule {
   public static forRoot(): ModuleWithProviders {
-    return {ngModule: ButtonsModule, providers: []};
+    return { ngModule: ButtonsModule, providers: [] };
   }
 }

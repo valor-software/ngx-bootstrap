@@ -1,4 +1,11 @@
-import { Directive, HostBinding, HostListener, Input, OnInit, forwardRef } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  forwardRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // TODO: config: activeClass - Class to apply to the checked buttons
@@ -12,7 +19,10 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * Add checkbox functionality to any element
  */
-@Directive({selector: '[btnCheckbox]', providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]})
+@Directive({
+  selector: '[btnCheckbox]',
+  providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]
+})
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */
   @Input() public btnCheckboxTrue: any = true;

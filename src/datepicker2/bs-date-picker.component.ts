@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'bs-datepicker',
   exportAs: 'bs-datepicker',
-  template:`
+  template: `
 <div class="bs-datepicker-multiple">
   <div class="left">
     <bs-date-picker-view bsRole="left"></bs-date-picker-view>
@@ -20,5 +20,4 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BsDatePickerComponent {
-}
+export class BsDatePickerComponent {}

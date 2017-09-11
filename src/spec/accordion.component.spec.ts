@@ -28,11 +28,14 @@ const html = `
   </accordion>
 `;
 
-function getPanels(element:HTMLElement):Element[] {
+function getPanels(element: HTMLElement): Element[] {
   return Array.from(element.querySelectorAll('accordion-group'));
 }
 
-function expectOpenPanels(nativeEl:HTMLElement, openPanelsDef:boolean[]):void {
+function expectOpenPanels(
+  nativeEl: HTMLElement,
+  openPanelsDef: boolean[]
+): void {
   const panels = getPanels(nativeEl);
   expect(panels.length).toBe(openPanelsDef.length);
   for (let i = 0; i < panels.length; i++) {
@@ -44,18 +47,23 @@ function expectOpenPanels(nativeEl:HTMLElement, openPanelsDef:boolean[]):void {
   }
 }
 
-function hasTitle(element:HTMLElement, str:string):boolean {
+function hasTitle(element: HTMLElement, str: string): boolean {
   return element.textContent === str;
 }
 
 describe('Component: Accordion', () => {
-  let fixture:ComponentFixture<TestAccordionComponent>;
-  let context:any;
-  let element:any;
+  let fixture: ComponentFixture<TestAccordionComponent>;
+  let context: any;
+  let element: any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAccordionComponent], imports: [AccordionModule.forRoot()]});
-    TestBed.overrideComponent(TestAccordionComponent, {set: {template: html}});
+    TestBed.configureTestingModule({
+      declarations: [TestAccordionComponent],
+      imports: [AccordionModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestAccordionComponent, {
+      set: { template: html }
+    });
     fixture = TestBed.createComponent(TestAccordionComponent);
     context = fixture.componentInstance;
     element = fixture.nativeElement;
@@ -101,8 +109,12 @@ describe('Component: Accordion', () => {
   });
 
   it('should have the appropriate heading', () => {
-    const titles = Array.from(element.querySelectorAll('.panel-heading .accordion-toggle span'));
-    titles.forEach((title:HTMLElement, idx:number) => expect(hasTitle(title, `Panel ${idx + 1}`)).toBe(true));
+    const titles = Array.from(
+      element.querySelectorAll('.panel-heading .accordion-toggle span')
+    );
+    titles.forEach((title: HTMLElement, idx: number) =>
+      expect(hasTitle(title, `Panel ${idx + 1}`)).toBe(true)
+    );
   });
 
   it('should only open one at a time', () => {
@@ -132,7 +144,9 @@ describe('Component: Accordion', () => {
   it('should not open disabled panels from click', () => {
     context.panels[0].isDisabled = true;
     fixture.detectChanges();
-    const headingLinks = element.querySelectorAll('.panel-title .accordion-toggle');
+    const headingLinks = element.querySelectorAll(
+      '.panel-title .accordion-toggle'
+    );
     headingLinks[0].click();
     fixture.detectChanges();
     expectOpenPanels(element, [false, false, false]);
@@ -143,13 +157,12 @@ describe('Component: Accordion', () => {
   selector: 'accordion-test',
   template: ''
 })
-
 class TestAccordionComponent {
-  public oneAtATime:boolean = true;
-  public panels:any[] = [
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false}
+  public oneAtATime: boolean = true;
+  public panels: any[] = [
+    { isOpen: false, isDisabled: false },
+    { isOpen: false, isDisabled: false },
+    { isOpen: false, isDisabled: false }
   ];
 
   public constructor(config: AccordionConfig) {

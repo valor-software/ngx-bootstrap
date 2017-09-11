@@ -1,5 +1,10 @@
 import {
-  Component, HostBinding, Inject, Input, OnDestroy, OnInit
+  Component,
+  HostBinding,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit
 } from '@angular/core';
 import { isBs3 } from '../utils/theme-provider';
 import { AccordionComponent } from './accordion.component';
@@ -65,7 +70,9 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   protected _isOpen: boolean;
   protected accordion: AccordionComponent;
 
-  public constructor(@Inject(AccordionComponent) accordion: AccordionComponent) {
+  public constructor(
+    @Inject(AccordionComponent) accordion: AccordionComponent
+  ) {
     this.accordion = accordion;
   }
 

@@ -1,4 +1,12 @@
-import { Component, EventEmitter, HostListener, Input, OnInit, Output, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  forwardRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RATING_CONTROL_VALUE_ACCESSOR: any = {
@@ -31,7 +39,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
   @Input() public titles: string[];
   /** array of custom icons classes */
-  @Input() public ratingStates: {stateOn: string, stateOff: string}[];
+  @Input() public ratingStates: { stateOn: string; stateOff: string }[];
   /** fired when icon selected, $event:number equals to selected rating */
   @Output() public onHover: EventEmitter<number> = new EventEmitter();
   /** fired when icon selected, $event:number equals to previous rating value */
@@ -59,15 +67,16 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   public ngOnInit(): void {
     this.max = typeof this.max !== 'undefined' ? this.max : 5;
     this.readonly = this.readonly === true;
-    this.stateOn = typeof this.stateOn !== 'undefined'
-      ? this.stateOn
-      : 'glyphicon-star';
-    this.stateOff = typeof this.stateOff !== 'undefined'
-      ? this.stateOff
-      : 'glyphicon-star-empty';
-    this.titles = typeof this.titles !== 'undefined' && this.titles.length > 0
-      ? this.titles
-      : ['one', 'two', 'three', 'four', 'five'];
+    this.stateOn =
+      typeof this.stateOn !== 'undefined' ? this.stateOn : 'glyphicon-star';
+    this.stateOff =
+      typeof this.stateOff !== 'undefined'
+        ? this.stateOff
+        : 'glyphicon-star-empty';
+    this.titles =
+      typeof this.titles !== 'undefined' && this.titles.length > 0
+        ? this.titles
+        : ['one', 'two', 'three', 'four', 'five'];
     this.range = this.buildTemplateObjects(this.ratingStates, this.max);
   }
 
@@ -115,12 +124,17 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     let count = ratingStates.length || max;
     let result: any[] = [];
     for (let i = 0; i < count; i++) {
-      result.push(Object.assign({
-        index: i,
-        stateOn: this.stateOn,
-        stateOff: this.stateOff,
-        title: this.titles[i] || i + 1
-      }, ratingStates[i] || {}));
+      result.push(
+        Object.assign(
+          {
+            index: i,
+            stateOn: this.stateOn,
+            stateOff: this.stateOff,
+            title: this.titles[i] || i + 1
+          },
+          ratingStates[i] || {}
+        )
+      );
     }
     return result;
   }

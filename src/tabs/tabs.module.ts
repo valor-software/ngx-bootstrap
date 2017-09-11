@@ -9,8 +9,18 @@ import { TabsetConfig } from './tabset.config';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [NgTranscludeDirective, TabDirective, TabsetComponent, TabHeadingDirective],
-  exports: [TabDirective, TabsetComponent, TabHeadingDirective, NgTranscludeDirective]
+  declarations: [
+    NgTranscludeDirective,
+    TabDirective,
+    TabsetComponent,
+    TabHeadingDirective
+  ],
+  exports: [
+    TabDirective,
+    TabsetComponent,
+    TabHeadingDirective,
+    NgTranscludeDirective
+  ]
 })
 export class TabsModule {
   public static forRoot(): ModuleWithProviders {

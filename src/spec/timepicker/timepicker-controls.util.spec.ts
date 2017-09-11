@@ -5,8 +5,12 @@ import {
 } from '../../timepicker/timepicker.models';
 
 import {
-  canChangeHours, canChangeMinutes, canChangeSeconds,
-  canChangeValue, getControlsValue, timepickerControls
+  canChangeHours,
+  canChangeMinutes,
+  canChangeSeconds,
+  canChangeValue,
+  getControlsValue,
+  timepickerControls
 } from '../../timepicker/timepicker-controls.util';
 
 function testTime(hours?: number, minutes?: number, seconds?: number) {

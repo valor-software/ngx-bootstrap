@@ -1,7 +1,16 @@
 import {
-  Component, EventEmitter, Input, OnDestroy, OnInit, Output, ComponentRef, ElementRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ComponentRef,
+  ElementRef,
   Renderer,
-  ViewContainerRef, SimpleChanges, OnChanges
+  ViewContainerRef,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,7 +23,8 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
   exportAs: 'bsDaterangepicker',
   template: ' '
 })
-export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges {
+export class BsDaterangepickerComponent
+  implements OnInit, OnDestroy, OnChanges {
   /**
    * Placement of a daterangepicker. Accepts: "top", "bottom", "left", "right"
    */
@@ -43,7 +53,11 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
   }
 
   public set isOpen(value: boolean) {
-    if (value) { this.show(); } else { this.hide(); }
+    if (value) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   /**
@@ -61,7 +75,9 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
    */
   @Input()
   set bsValue(value: Date[]) {
-    if (this._bsValue === value) { return; }
+    if (this._bsValue === value) {
+      return;
+    }
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -91,13 +107,18 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
 
-  constructor(public _config: BsDatepickerConfig,
-              _elementRef: ElementRef,
-              _renderer: Renderer,
-              _viewContainerRef: ViewContainerRef,
-              cis: ComponentLoaderFactory) {
-    this._datepicker = cis
-      .createLoader<BsDaterangepickerContainerComponent>(_elementRef, _viewContainerRef, _renderer);
+  constructor(
+    public _config: BsDatepickerConfig,
+    _elementRef: ElementRef,
+    _renderer: Renderer,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory
+  ) {
+    this._datepicker = cis.createLoader<BsDaterangepickerContainerComponent>(
+      _elementRef,
+      _viewContainerRef,
+      _renderer
+    );
     Object.assign(this, _config);
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
@@ -138,37 +159,42 @@ export class BsDaterangepickerComponent implements OnInit, OnDestroy, OnChanges 
       return;
     }
 
-    this._config = Object.assign({},
+    this._config = Object.assign(
+      {},
       this._config,
-      {displayMonths: 2},
+      { displayMonths: 2 },
       this.bsConfig,
       {
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this._config.minDate,
         maxDate: this.maxDate || this._config.maxDate
-      });
+      }
+    );
 
     this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: this._config})
+      .provide({ provide: BsDatepickerConfig, useValue: this._config })
       .attach(BsDaterangepickerContainerComponent)
       .to(this.container)
-      .position({attachment: this.placement})
-      .show({placement: this.placement});
+      .position({ attachment: this.placement })
+      .show({ placement: this.placement });
 
     // if date changes from external source (model -> view)
-    this._subs.push(this.bsValueChange.subscribe((value: Date[]) => {
-      this._datepickerRef.instance.value = value;
-    }));
+    this._subs.push(
+      this.bsValueChange.subscribe((value: Date[]) => {
+        this._datepickerRef.instance.value = value;
+      })
+    );
 
     // if date changes from picker (view -> model)
-    this._subs.push(this._datepickerRef.instance
-      .valueChange
-      .filter((range: Date[]) => range && range[0] && !!range[1])
-      .subscribe((value: Date[]) => {
-        this.bsValue = value;
-        this.hide();
-      }));
+    this._subs.push(
+      this._datepickerRef.instance.valueChange
+        .filter((range: Date[]) => range && range[0] && !!range[1])
+        .subscribe((value: Date[]) => {
+          this.bsValue = value;
+          this.hide();
+        })
+    );
   }
 
   /**

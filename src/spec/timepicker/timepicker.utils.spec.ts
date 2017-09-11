@@ -20,7 +20,12 @@ function testTime(hours?: number, minutes?: number, seconds?: number) {
   return time;
 }
 
-function modelTime(hours: string | number, minutes: string | number, second: string | number, PM: boolean) {
+function modelTime(
+  hours: string | number,
+  minutes: string | number,
+  second: string | number,
+  PM: boolean
+) {
   let time = {
     hour: hours || null,
     minute: minutes || null,

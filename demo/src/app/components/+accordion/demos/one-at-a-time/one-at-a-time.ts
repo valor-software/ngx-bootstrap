@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
 })
 export class DemoAccordionOneAtATimeComponent {
   public oneAtATime: boolean = true;
-
 }

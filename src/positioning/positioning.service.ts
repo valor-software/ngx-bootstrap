@@ -35,15 +35,18 @@ export interface PositioningOptions {
 @Injectable()
 export class PositioningService {
   public position(options: PositioningOptions): void {
-    const {element, target, attachment, appendToBody} = options;
+    const { element, target, attachment, appendToBody } = options;
     positionElements(
       this._getHtmlElement(target),
       this._getHtmlElement(element),
       attachment,
-      appendToBody);
+      appendToBody
+    );
   }
 
-  private _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
+  private _getHtmlElement(
+    element: HTMLElement | ElementRef | string
+  ): HTMLElement {
     // it means that we got a selector
     if (typeof element === 'string') {
       return document.querySelector(element) as HTMLElement;

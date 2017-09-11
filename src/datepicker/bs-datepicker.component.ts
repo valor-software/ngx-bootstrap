@@ -1,12 +1,15 @@
 import {
-  Component, ComponentRef,
+  Component,
+  ComponentRef,
   ElementRef,
   EventEmitter,
-  Input, OnChanges,
+  Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
-  Renderer, SimpleChanges,
+  Renderer,
+  SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -50,7 +53,11 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public set isOpen(value: boolean) {
-    if (value) { this.show(); } else { this.hide(); }
+    if (value) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   /**
@@ -68,7 +75,9 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    */
   @Input()
   set bsValue(value: Date) {
-    if (this._bsValue === value) { return; }
+    if (this._bsValue === value) {
+      return;
+    }
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -99,15 +108,20 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
 
-  constructor(public _config: BsDatepickerConfig,
-              _elementRef: ElementRef,
-              _renderer: Renderer,
-              _viewContainerRef: ViewContainerRef,
-              cis: ComponentLoaderFactory) {
+  constructor(
+    public _config: BsDatepickerConfig,
+    _elementRef: ElementRef,
+    _renderer: Renderer,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory
+  ) {
     // todo: assign only subset of fields
     Object.assign(this, this._config);
-    this._datepicker = cis
-      .createLoader<BsDatepickerContainerComponent>(_elementRef, _viewContainerRef, _renderer);
+    this._datepicker = cis.createLoader<BsDatepickerContainerComponent>(
+      _elementRef,
+      _viewContainerRef,
+      _renderer
+    );
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
   }
@@ -155,23 +169,26 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     });
 
     this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: this._config})
+      .provide({ provide: BsDatepickerConfig, useValue: this._config })
       .attach(BsDatepickerContainerComponent)
       .to(this.container)
-      .position({attachment: this.placement})
-      .show({placement: this.placement});
+      .position({ attachment: this.placement })
+      .show({ placement: this.placement });
 
     // if date changes from external source (model -> view)
-    this._subs.push(this.bsValueChange.subscribe((value: Date) => {
-      this._datepickerRef.instance.value = value;
-    }));
+    this._subs.push(
+      this.bsValueChange.subscribe((value: Date) => {
+        this._datepickerRef.instance.value = value;
+      })
+    );
 
     // if date changes from picker (view -> model)
-    this._subs.push(this._datepickerRef.instance
-      .valueChange.subscribe((value: Date) => {
+    this._subs.push(
+      this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
         this.bsValue = value;
         this.hide();
-      }));
+      })
+    );
   }
 
   /**

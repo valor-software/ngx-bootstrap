@@ -19,11 +19,19 @@ export class BsCurrentDateComponent extends DatePickerBase {
   public isShown: boolean = true;
   private cOptions: BsCalendarOptionsClass;
 
-  public constructor(datePickerState: BsDatePickerState, options: BsDatePickerOptions, cOptions: BsCalendarOptionsClass) {
+  public constructor(
+    datePickerState: BsDatePickerState,
+    options: BsDatePickerOptions,
+    cOptions: BsCalendarOptionsClass
+  ) {
     super(datePickerState, options);
     this.cOptions = cOptions;
-    this.subscriptions.push(datePickerState.selectedDateChange.subscribe(() => this.refresh()));
-    this.subscriptions.push(datePickerState.activeDateChange.subscribe(() => this.refresh()));
+    this.subscriptions.push(
+      datePickerState.selectedDateChange.subscribe(() => this.refresh())
+    );
+    this.subscriptions.push(
+      datePickerState.activeDateChange.subscribe(() => this.refresh())
+    );
     this.subscriptions.push(options.onUpdate.subscribe(() => this.refresh()));
   }
 
@@ -51,7 +59,9 @@ export class BsCurrentDateComponent extends DatePickerBase {
       if (this.cOptions.isLeft) {
         // if selection end date not selected - show selection start or active date
         // if selection end date selected - show selection start date
-        this.title = this.getTitle(!selectedEnd ? (selected || active) : (active || selected));
+        this.title = this.getTitle(
+          !selectedEnd ? selected || active : active || selected
+        );
       }
 
       if (this.cOptions.isRight) {

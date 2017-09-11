@@ -75,7 +75,8 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   </tbody>
 </table>
   `,
-  styles: [`
+  styles: [
+    `
     :host .btn-secondary {
       color: #292b2c;
       background-color: #fff;
@@ -84,10 +85,10 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
     :host .btn-info .text-muted {
       color: #292b2c !important;
     }
-  `]
+  `
+  ]
 })
 export class DayPickerComponent implements OnInit {
-
   public labels: any[] = [];
   public title: string;
   public rows: any[] = [];
@@ -109,16 +110,15 @@ export class DayPickerComponent implements OnInit {
   public ngOnInit(): void {
     let self = this;
 
-    this.datePicker.stepDay = {months: 1};
+    this.datePicker.stepDay = { months: 1 };
 
-    this.datePicker.setRefreshViewHandler(function (): void {
+    this.datePicker.setRefreshViewHandler(function(): void {
       let year = this.activeDate.getFullYear();
       let month = this.activeDate.getMonth();
       let firstDayOfMonth = new Date(year, month, 1);
       let difference = this.startingDay - firstDayOfMonth.getDay();
-      let numDisplayedFromPreviousMonth = (difference > 0)
-        ? 7 - difference
-        : -difference;
+      let numDisplayedFromPreviousMonth =
+        difference > 0 ? 7 - difference : -difference;
       let firstDate = new Date(firstDayOfMonth.getTime());
 
       if (numDisplayedFromPreviousMonth > 0) {
@@ -138,7 +138,10 @@ export class DayPickerComponent implements OnInit {
       self.labels = [];
       for (let j = 0; j < 7; j++) {
         self.labels[j] = {};
-        self.labels[j].abbr = this.dateFilter(days[j].date, this.formatDayHeader);
+        self.labels[j].abbr = this.dateFilter(
+          days[j].date,
+          this.formatDayHeader
+        );
         self.labels[j].full = this.dateFilter(days[j].date, 'EEEE');
       }
 
@@ -150,12 +153,17 @@ export class DayPickerComponent implements OnInit {
         let thursdayIndex = (4 + 7 - this.startingDay) % 7;
         let numWeeks = self.rows.length;
         for (let curWeek = 0; curWeek < numWeeks; curWeek++) {
-          self.weekNumbers.push(self.getISO8601WeekNumber(self.rows[curWeek][thursdayIndex].date));
+          self.weekNumbers.push(
+            self.getISO8601WeekNumber(self.rows[curWeek][thursdayIndex].date)
+          );
         }
       }
     }, 'day');
 
-    this.datePicker.setCompareHandler(function (date1: Date, date2: Date): number {
+    this.datePicker.setCompareHandler(function(
+      date1: Date,
+      date2: Date
+    ): number {
       let d1 = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
       let d2 = new Date(date2.getFullYear(), date2.getMonth(), date2.getDate());
       return d1.getTime() - d2.getTime();
@@ -173,7 +181,11 @@ export class DayPickerComponent implements OnInit {
       date = new Date(current.getTime());
       date = this.datePicker.fixTimeZone(date);
       dates[i++] = date;
-      current = new Date(current.getFullYear(), current.getMonth(), current.getDate() + 1);
+      current = new Date(
+        current.getFullYear(),
+        current.getMonth(),
+        current.getDate() + 1
+      );
     }
     return dates;
   }
@@ -186,7 +198,9 @@ export class DayPickerComponent implements OnInit {
     // Compare with Jan 1
     checkDate.setMonth(0);
     checkDate.setDate(1);
-    return Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1;
+    return (
+      Math.floor(Math.round((time - checkDate.getTime()) / 86400000) / 7) + 1
+    );
   }
 
   // todo: key events implementation

@@ -8,7 +8,7 @@ export class DemoCarouselDynamicComponent {
   public myInterval: number = 1500;
   public slides: any[] = [];
   public activeSlideIndex: number = 0;
-  public noWrapSlides:boolean = false;
+  public noWrapSlides: boolean = false;
 
   public constructor() {
     for (let i = 0; i < 4; i++) {
@@ -18,7 +18,7 @@ export class DemoCarouselDynamicComponent {
 
   public addSlide(): void {
     this.slides.push({
-      image: `assets/images/nature/${ this.slides.length % 8 + 1 }.jpg`
+      image: `assets/images/nature/${this.slides.length % 8 + 1}.jpg`
     });
   }
 

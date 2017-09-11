@@ -18,5 +18,5 @@ export class TooltipModule {
       ngModule: TooltipModule,
       providers: [TooltipConfig, ComponentLoaderFactory, PositioningService]
     };
-  };
+  }
 }

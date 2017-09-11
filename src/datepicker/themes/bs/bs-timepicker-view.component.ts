@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'bs-timepicker',
-  template:`
+  template: `
 <div class="bs-timepicker-container">
   <div class="bs-timepicker-controls">
     <button class="bs-decrease">-</button>

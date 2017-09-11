@@ -14,7 +14,9 @@ import { isDateValid } from './utils/type-checks';
 export function formatDate(date: Date, format: string, locale = 'en'): string {
   const _locale = getLocale(locale);
   if (!_locale) {
-    throw new Error(`Locale "${locale}" is not defined, please add it with "defineLocale(...)"`);
+    throw new Error(
+      `Locale "${locale}" is not defined, please add it with "defineLocale(...)"`
+    );
   }
   const output = formatMoment(date, format, _locale);
 
@@ -27,7 +29,8 @@ export function formatMoment(date: Date, format: string, locale: Locale) {
     return locale.invalidDate;
   }
   format = expandFormat(format, locale);
-  formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
+  formatFunctions[format] =
+    formatFunctions[format] || makeFormatFunction(format);
   return formatFunctions[format](date, locale);
 }
 
@@ -48,4 +51,3 @@ export function expandFormat(format: string, locale: Locale) {
 
   return format;
 }
-

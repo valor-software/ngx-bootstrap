@@ -17,7 +17,7 @@ export class ModalBackdropOptions {
   selector: 'bs-modal-backdrop',
   template: '',
   // tslint:disable-next-line
-  host: {'class': ClassName.BACKDROP}
+  host: { class: ClassName.BACKDROP }
 })
 export class ModalBackdropComponent implements OnInit {
   public get isAnimated(): boolean {
@@ -35,9 +35,17 @@ export class ModalBackdropComponent implements OnInit {
 
   public set isShown(value: boolean) {
     this._isShown = value;
-    this.renderer.setElementClass(this.element.nativeElement, `${ClassName.IN}`, value);
+    this.renderer.setElementClass(
+      this.element.nativeElement,
+      `${ClassName.IN}`,
+      value
+    );
     if (!isBs3()) {
-      this.renderer.setElementClass(this.element.nativeElement, `${ClassName.SHOW}`, value);
+      this.renderer.setElementClass(
+        this.element.nativeElement,
+        `${ClassName.SHOW}`,
+        value
+      );
     }
   }
 
@@ -54,7 +62,11 @@ export class ModalBackdropComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.isAnimated) {
-      this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, this.isAnimated);
+      this.renderer.setElementClass(
+        this.element.nativeElement,
+        `${ClassName.FADE}`,
+        this.isAnimated
+      );
       Utils.reflow(this.element.nativeElement);
     }
     this.isShown = true;

@@ -5,13 +5,18 @@ import { ProgressbarComponent } from '../progressbar/progressbar.component';
 import { ProgressbarModule } from '../progressbar/progressbar.module';
 
 describe('Component: Progress Bar', () => {
-  let fixture:ComponentFixture<TestProgressbarComponent>;
+  let fixture: ComponentFixture<TestProgressbarComponent>;
   let element: any;
 
   it('should work correctly with default values', () => {
     const tpl = `<progressbar></progressbar>`;
-    TestBed.configureTestingModule({declarations: [TestProgressbarComponent], imports: [ProgressbarModule.forRoot()]});
-    TestBed.overrideComponent(TestProgressbarComponent, {set: {template: tpl}});
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestProgressbarComponent, {
+      set: { template: tpl }
+    });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
@@ -22,8 +27,13 @@ describe('Component: Progress Bar', () => {
 
   it('checking appropriate styles after setting up of type', () => {
     const tpl = `<progressbar [type]="'warning'"></progressbar>`;
-    TestBed.configureTestingModule({declarations: [TestProgressbarComponent], imports: [ProgressbarModule.forRoot()]});
-    TestBed.overrideComponent(TestProgressbarComponent, {set: {template: tpl}});
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestProgressbarComponent, {
+      set: { template: tpl }
+    });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
@@ -33,8 +43,13 @@ describe('Component: Progress Bar', () => {
 
   it('checking of correct calculation of percent value(bar length)', () => {
     const tpl = `<progressbar [max]="100" [value]="60"></progressbar>`;
-    TestBed.configureTestingModule({declarations: [TestProgressbarComponent], imports: [ProgressbarModule.forRoot()]});
-    TestBed.overrideComponent(TestProgressbarComponent, {set: {template: tpl}});
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestProgressbarComponent, {
+      set: { template: tpl }
+    });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
@@ -62,8 +77,13 @@ describe('Component: Progress Bar', () => {
         </bar>
       </div>
     `;
-    TestBed.configureTestingModule({declarations: [TestProgressbarComponent], imports: [ProgressbarModule.forRoot()]});
-    TestBed.overrideComponent(TestProgressbarComponent, {set: {template: tpl}});
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestProgressbarComponent, {
+      set: { template: tpl }
+    });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     let context = fixture.debugElement.componentInstance;
     element = fixture.nativeElement;
@@ -83,13 +103,10 @@ describe('Component: Progress Bar', () => {
     expect(barInnerDiv.classList).toContain('progress-bar-danger');
     expect(barInnerDiv.style.width).toEqual('50%');
   });
-
 });
 
 @Component({
   selector: 'progressbar-test',
   template: ''
 })
-
-class TestProgressbarComponent extends ProgressbarComponent {
-}
+class TestProgressbarComponent extends ProgressbarComponent {}

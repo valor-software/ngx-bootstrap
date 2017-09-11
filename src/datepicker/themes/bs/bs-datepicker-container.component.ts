@@ -17,20 +17,20 @@ import { Subscription } from 'rxjs/Subscription';
     style: 'position: absolute; display: block;'
   }
 })
-export class BsDatepickerContainerComponent
-  extends BsDatepickerAbstractComponent
+export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
-
   set value(value: Date) {
     this._effects.setValue(value);
   }
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   _subs: Subscription[] = [];
-  constructor(private _config: BsDatepickerConfig,
-              private _store: BsDatepickerStore,
-              private _actions: BsDatepickerActions,
-              _effects: BsDatepickerEffects) {
+  constructor(
+    private _config: BsDatepickerConfig,
+    private _store: BsDatepickerStore,
+    private _actions: BsDatepickerActions,
+    _effects: BsDatepickerEffects
+  ) {
     super();
     this._effects = _effects;
   }
@@ -49,9 +49,11 @@ export class BsDatepickerContainerComponent
 
     // todo: move it somewhere else
     // on selected date change
-    this._subs.push(this._store
-      .select(state => state.selectedDate)
-      .subscribe(date => this.valueChange.emit(date)));
+    this._subs.push(
+      this._store
+        .select(state => state.selectedDate)
+        .subscribe(date => this.valueChange.emit(date))
+    );
   }
 
   daySelectHandler(day: DayViewModel): void {

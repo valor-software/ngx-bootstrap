@@ -1,6 +1,14 @@
 import {
-  Directive, Input, TemplateRef, ViewContainerRef, Output, EventEmitter,
-  Renderer, ElementRef, OnInit, OnDestroy
+  Directive,
+  Input,
+  TemplateRef,
+  ViewContainerRef,
+  Output,
+  EventEmitter,
+  Renderer,
+  ElementRef,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
@@ -17,9 +25,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Content to be displayed as tooltip.
    */
   @OnChange()
-  @Input() public tooltip: string | TemplateRef<any>;
+  @Input()
+  public tooltip: string | TemplateRef<any>;
   /** Fired when tooltip content changes */
-  @Output() public tooltipChange: EventEmitter<string | TemplateRef<any>> = new EventEmitter();
+  @Output()
+  public tooltipChange: EventEmitter<
+    string | TemplateRef<any>
+  > = new EventEmitter();
 
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
@@ -40,10 +52,16 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Returns whether or not the tooltip is currently being shown
    */
   @Input()
-  public get isOpen(): boolean { return this._tooltip.isShown; }
+  public get isOpen(): boolean {
+    return this._tooltip.isShown;
+  }
 
   public set isOpen(value: boolean) {
-    if (value) {this.show();} else {this.hide();}
+    if (value) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   /**
@@ -107,12 +125,16 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated - please use `container="body"` instead */
   @Input('tooltipAppendToBody')
   public set _appendToBody(value: boolean) {
-    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+    warnOnce(
+      'tooltipAppendToBody was deprecated, please use `container="body"` instead'
+    );
     this.container = value ? 'body' : this.container;
   }
 
   public get _appendToBody(): boolean {
-    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+    warnOnce(
+      'tooltipAppendToBody was deprecated, please use `container="body"` instead'
+    );
     return this.container === 'body';
   }
 
@@ -139,32 +161,41 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /** @deprecated -  please use `triggers` instead */
   @Input('tooltipTrigger')
-  public get _tooltipTrigger(): string|Array<string> {
+  public get _tooltipTrigger(): string | Array<string> {
     warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
     return this.triggers;
-  };
+  }
 
-  public set _tooltipTrigger(value: string|Array<string>) {
+  public set _tooltipTrigger(value: string | Array<string>) {
     warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
     this.triggers = (value || '').toString();
-  };
+  }
 
   /** @deprecated */
-  @Output() public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output()
+  public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<
+    boolean
+  >();
   /* tslint:enable */
   protected _delayTimeoutId: number | any;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
   // tslint:disable-next-line
-  public constructor(_viewContainerRef: ViewContainerRef,
-                     _renderer: Renderer,
-                     _elementRef: ElementRef,
-                     cis: ComponentLoaderFactory,
-                     config: TooltipConfig) {
+  public constructor(
+    _viewContainerRef: ViewContainerRef,
+    _renderer: Renderer,
+    _elementRef: ElementRef,
+    cis: ComponentLoaderFactory,
+    config: TooltipConfig
+  ) {
     this._tooltip = cis
-      .createLoader<TooltipContainerComponent>(_elementRef, _viewContainerRef, _renderer)
-      .provide({provide: TooltipConfig, useValue: config});
+      .createLoader<TooltipContainerComponent>(
+        _elementRef,
+        _viewContainerRef,
+        _renderer
+      )
+      .provide({ provide: TooltipConfig, useValue: config });
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
@@ -200,22 +231,30 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * the tooltip.
    */
   public show(): void {
-    if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.tooltip) {
+    if (
+      this.isOpen ||
+      this.isDisabled ||
+      this._delayTimeoutId ||
+      !this.tooltip
+    ) {
       return;
     }
 
-    const showTooltip = () => this._tooltip
-      .attach(TooltipContainerComponent)
-      .to(this.container)
-      .position({attachment: this.placement})
-      .show({
-        content: this.tooltip,
-        placement: this.placement,
-        containerClass: this.containerClass
-      });
+    const showTooltip = () =>
+      this._tooltip
+        .attach(TooltipContainerComponent)
+        .to(this.container)
+        .position({ attachment: this.placement })
+        .show({
+          content: this.tooltip,
+          placement: this.placement,
+          containerClass: this.containerClass
+        });
 
     if (this._delay) {
-      this._delayTimeoutId = setTimeout(() => { showTooltip(); }, this._delay);
+      this._delayTimeoutId = setTimeout(() => {
+        showTooltip();
+      }, this._delay);
     } else {
       showTooltip();
     }

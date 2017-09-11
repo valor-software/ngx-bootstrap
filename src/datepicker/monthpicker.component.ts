@@ -45,35 +45,37 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   </tbody>
 </table>
   `,
-  styles: [`
+  styles: [
+    `
     :host .btn-info .text-success {
       color: #fff !important;
     }
-  `]
+  `
+  ]
 })
 export class MonthPickerComponent implements OnInit {
-  public title:string;
-  public rows:any[] = [];
-  public datePicker:DatePickerInnerComponent;
-  public maxMode:string;
+  public title: string;
+  public rows: any[] = [];
+  public datePicker: DatePickerInnerComponent;
+  public maxMode: string;
 
-  public constructor(datePicker:DatePickerInnerComponent) {
+  public constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 
-  public get isBs4():boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     let self = this;
 
-    this.datePicker.stepMonth = {years: 1};
+    this.datePicker.stepMonth = { years: 1 };
 
-    this.datePicker.setRefreshViewHandler(function ():void {
-      let months:any[] = new Array(12);
-      let year:number = this.activeDate.getFullYear();
-      let date:Date;
+    this.datePicker.setRefreshViewHandler(function(): void {
+      let months: any[] = new Array(12);
+      let year: number = this.activeDate.getFullYear();
+      let date: Date;
 
       for (let i = 0; i < 12; i++) {
         date = new Date(year, i, 1);
@@ -86,7 +88,10 @@ export class MonthPickerComponent implements OnInit {
       self.rows = this.split(months, self.datePicker.monthColLimit);
     }, 'month');
 
-    this.datePicker.setCompareHandler(function (date1:Date, date2:Date):number {
+    this.datePicker.setCompareHandler(function(
+      date1: Date,
+      date2: Date
+    ): number {
       let d1 = new Date(date1.getFullYear(), date1.getMonth());
       let d2 = new Date(date2.getFullYear(), date2.getMonth());
       return d1.getTime() - d2.getTime();

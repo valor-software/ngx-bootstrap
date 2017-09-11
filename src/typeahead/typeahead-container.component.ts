@@ -1,5 +1,9 @@
 import {
-  Component, ElementRef, TemplateRef, ViewEncapsulation, HostListener
+  Component,
+  ElementRef,
+  TemplateRef,
+  ViewEncapsulation,
+  HostListener
 } from '@angular/core';
 import { isBs3 } from '../utils/theme-provider';
 import { TypeaheadDirective } from './typeahead.directive';
@@ -51,9 +55,9 @@ import { latinize } from './typeahead-utils';
 `,
   // tslint:disable
   host: {
-    'class': 'dropdown open',
-    '[class.dropdown-menu]':'isBs4',
-    '[class.dropup]':'dropup',
+    class: 'dropdown open',
+    '[class.dropdown-menu]': 'isBs4',
+    '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
   },
   // tslint: enable
@@ -70,7 +74,7 @@ export class TypeaheadContainerComponent {
   public placement: string;
   public dropup: boolean;
 
-  public get isBs4():boolean {
+  public get isBs4(): boolean {
     return !isBs3();
   }
 
@@ -114,20 +118,19 @@ export class TypeaheadContainerComponent {
 
   public prevActiveMatch(): void {
     let index = this.matches.indexOf(this._active);
-    this._active = this.matches[index - 1 < 0
-      ? this.matches.length - 1
-      : index - 1];
+    this._active = this.matches[
+      index - 1 < 0 ? this.matches.length - 1 : index - 1
+    ];
     if (this._active.isHeader()) {
       this.prevActiveMatch();
     }
-
   }
 
   public nextActiveMatch(): void {
     let index = this.matches.indexOf(this._active);
-    this._active = this.matches[index + 1 > this.matches.length - 1
-      ? 0
-      : index + 1];
+    this._active = this.matches[
+      index + 1 > this.matches.length - 1 ? 0 : index + 1
+    ];
     if (this._active.isHeader()) {
       this.nextActiveMatch();
     }
@@ -153,8 +156,18 @@ export class TypeaheadContainerComponent {
         startIdx = itemStrHelper.indexOf(query[i]);
         tokenLen = query[i].length;
         if (startIdx >= 0 && tokenLen > 0) {
-          itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
-          itemStrHelper = itemStrHelper.substring(0, startIdx) + '        ' + ' '.repeat(tokenLen) + '         ' + itemStrHelper.substring(startIdx + tokenLen);
+          itemStr =
+            itemStr.substring(0, startIdx) +
+            '<strong>' +
+            itemStr.substring(startIdx, startIdx + tokenLen) +
+            '</strong>' +
+            itemStr.substring(startIdx + tokenLen);
+          itemStrHelper =
+            itemStrHelper.substring(0, startIdx) +
+            '        ' +
+            ' '.repeat(tokenLen) +
+            '         ' +
+            itemStrHelper.substring(startIdx + tokenLen);
         }
       }
     } else if (query) {
@@ -162,7 +175,12 @@ export class TypeaheadContainerComponent {
       startIdx = itemStrHelper.indexOf(query);
       tokenLen = query.length;
       if (startIdx >= 0 && tokenLen > 0) {
-        itemStr = itemStr.substring(0, startIdx) + '<strong>' + itemStr.substring(startIdx, startIdx + tokenLen) + '</strong>' + itemStr.substring(startIdx + tokenLen);
+        itemStr =
+          itemStr.substring(0, startIdx) +
+          '<strong>' +
+          itemStr.substring(startIdx, startIdx + tokenLen) +
+          '</strong>' +
+          itemStr.substring(startIdx + tokenLen);
       }
     }
     return itemStr;
@@ -184,9 +202,7 @@ export class TypeaheadContainerComponent {
       e.preventDefault();
     }
     this.parent.changeModel(value);
-    setTimeout(() =>
-      this.parent.typeaheadOnSelect.emit(value), 0
-    );
+    setTimeout(() => this.parent.typeaheadOnSelect.emit(value), 0);
     return false;
   }
 }

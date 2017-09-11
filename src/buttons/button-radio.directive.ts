@@ -20,9 +20,11 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
  * Create radio buttons or groups of buttons.
  * A value of a selected button is bound to a variable specified via ngModel.
  */
-@Directive({selector: '[btnRadio]', providers: [RADIO_CONTROL_VALUE_ACCESSOR]})
+@Directive({
+  selector: '[btnRadio]',
+  providers: [RADIO_CONTROL_VALUE_ACCESSOR]
+})
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
-
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
 

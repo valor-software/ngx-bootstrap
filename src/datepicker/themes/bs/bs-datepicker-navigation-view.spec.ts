@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BsNavigationDirection, BsNavigationEvent, DaysCalendarViewModel } from '../../models/index';
+import {
+  BsNavigationDirection,
+  BsNavigationEvent,
+  DaysCalendarViewModel
+} from '../../models/index';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 
 type TestFixture = ComponentFixture<TestComponent>;
@@ -9,39 +13,40 @@ const prevNavSelector = '.previous';
 const nextNavSelector = '.next';
 
 function getTitles(fixture: TestFixture): string[] {
-  const elements = fixture.nativeElement
-    .querySelectorAll(titleSelector);
+  const elements = fixture.nativeElement.querySelectorAll(titleSelector);
 
   return [elements[0].innerText, elements[1].innerText];
 }
 
 function getPrevNavButton(fixture: TestFixture): HTMLElement {
-  return fixture.nativeElement
-    .querySelector(prevNavSelector) as HTMLElement;
+  return fixture.nativeElement.querySelector(prevNavSelector) as HTMLElement;
 }
 
 function getNextNavButton(fixture: TestFixture): HTMLElement {
-  return fixture.nativeElement
-    .querySelector(nextNavSelector) as HTMLElement;
+  return fixture.nativeElement.querySelector(nextNavSelector) as HTMLElement;
 }
 
 function getNavEvent(fixture: TestFixture): BsNavigationDirection {
   return fixture.componentInstance._navTo;
 }
 
-function setMonth(fixture: TestFixture, month: Partial<DaysCalendarViewModel>): void {
+function setMonth(
+  fixture: TestFixture,
+  month: Partial<DaysCalendarViewModel>
+): void {
   fixture.componentInstance.month = month as DaysCalendarViewModel;
   fixture.detectChanges();
 }
 
 describe('datepicker: bs-datepicker-navigation-view', () => {
   let fixture: TestFixture;
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent, BsDatepickerNavigationViewComponent]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestComponent, BsDatepickerNavigationViewComponent]
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
   });
@@ -50,7 +55,7 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
     const monthTitle = 'Some month';
     const yearTitle = 'Some year';
 
-    setMonth(fixture, {monthTitle, yearTitle});
+    setMonth(fixture, { monthTitle, yearTitle });
     const titles = getTitles(fixture);
 
     expect(titles[0].trim()).toBe(monthTitle);
@@ -67,13 +72,13 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
 
   it('should hide prev nav button', () => {
     const prev = getPrevNavButton(fixture);
-    setMonth(fixture, {hideLeftArrow: true});
+    setMonth(fixture, { hideLeftArrow: true });
     expect(prev.style.visibility).toBe('hidden');
   });
 
   it('should hide next nav button', () => {
     const next = getNextNavButton(fixture);
-    setMonth(fixture, {hideRightArrow: true});
+    setMonth(fixture, { hideRightArrow: true });
     expect(next.style.visibility).toBe('hidden');
   });
 

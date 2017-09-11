@@ -1,4 +1,8 @@
-import { Component, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { DatePickerBase } from '../common/bs-date-picker-base.class';
 import { BsDatePickerState } from '../common/bs-date-picker-state.provider';
 import { BsDatePickerOptions } from '../common/bs-date-picker-options.provider';
@@ -9,7 +13,7 @@ import { OnChange } from '../../utils/decorators';
 @Component({
   selector: 'bs-datetimepicker',
   exportAs: 'bs-datetimepicker',
-  template:`
+  template: `
 <div class="bs-timepicker-container">
   <div class="bs-timepicker-controls">
     <button class="bs-decrease" (click)="subtract('hours')">-</button>
@@ -37,14 +41,19 @@ export class BsDateTimePickerComponent extends DatePickerBase {
   public ampm: string;
   public showAmPm: boolean = true;
 
-  public constructor(datePickerService: BsDatePickerState, options: BsDatePickerOptions) {
+  public constructor(
+    datePickerService: BsDatePickerState,
+    options: BsDatePickerOptions
+  ) {
     super(datePickerService, options);
-    this.subscriptions.push(this.dateChange.subscribe((date: moment.Moment) => {
-      if (!this.datePickerState.viewDate.isSame(date)) {
-        this.datePickerState.viewDate = date;
-        this.refresh();
-      }
-    }));
+    this.subscriptions.push(
+      this.dateChange.subscribe((date: moment.Moment) => {
+        if (!this.datePickerState.viewDate.isSame(date)) {
+          this.datePickerState.viewDate = date;
+          this.refresh();
+        }
+      })
+    );
   }
 
   public refresh(): void {
@@ -54,32 +63,53 @@ export class BsDateTimePickerComponent extends DatePickerBase {
     this.date = this.datePickerState.viewDate;
 
     const mins = this.date.minutes();
-    const roundMins = mins - (mins % this.options.timepicker.minutesInc);
+    const roundMins = mins - mins % this.options.timepicker.minutesInc;
     this.date.minutes(roundMins);
     this.minutes = this.date.format('mm');
-    this.hours = this.options.timepicker.showAmPm ?
-      this.date.format('hh') : this.date.format('HH');
+    this.hours = this.options.timepicker.showAmPm
+      ? this.date.format('hh')
+      : this.date.format('HH');
     this.ampm = this.date.format('a');
     this.showAmPm = this.options.timepicker.showAmPm;
   }
 
   public add(granularity: string): void {
     if (granularity === 'minutes') {
-      this.date = this.date.clone().add(this.options.timepicker.minutesInc, granularity as moment.unitOfTime.Base);
+      this.date = this.date
+        .clone()
+        .add(
+          this.options.timepicker.minutesInc,
+          granularity as moment.unitOfTime.Base
+        );
       return;
     }
     if (granularity === 'hours') {
-      this.date = this.date.clone().add(this.options.timepicker.hoursInc, granularity as moment.unitOfTime.Base);
+      this.date = this.date
+        .clone()
+        .add(
+          this.options.timepicker.hoursInc,
+          granularity as moment.unitOfTime.Base
+        );
     }
   }
 
   public subtract(granularity: string): void {
     if (granularity === 'minutes') {
-      this.date = this.date.clone().subtract(this.options.timepicker.minutesInc, granularity as moment.unitOfTime.Base);
+      this.date = this.date
+        .clone()
+        .subtract(
+          this.options.timepicker.minutesInc,
+          granularity as moment.unitOfTime.Base
+        );
       return;
     }
     if (granularity === 'hours') {
-      this.date = this.date.clone().subtract(this.options.timepicker.hoursInc, granularity as moment.unitOfTime.Base);
+      this.date = this.date
+        .clone()
+        .subtract(
+          this.options.timepicker.hoursInc,
+          granularity as moment.unitOfTime.Base
+        );
     }
   }
 

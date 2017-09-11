@@ -5,25 +5,25 @@ export class ModalOptions {
   /**
    *  Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click.
    */
-  backdrop?:boolean | 'static';
+  backdrop?: boolean | 'static';
   /**
    * Closes the modal when escape key is pressed.
    */
-  keyboard?:boolean;
+  keyboard?: boolean;
 
-  focus?:boolean;
+  focus?: boolean;
   /**
    * Shows the modal when initialized.
    */
-  show?:boolean;
+  show?: boolean;
   /**
    * Ignore the backdrop click
    */
-  ignoreBackdropClick?:boolean;
+  ignoreBackdropClick?: boolean;
   /**
    * Css class for opened modal
    */
-  class?:string;
+  class?: string;
   /**
    * Toggle animation
    */
@@ -42,7 +42,7 @@ export class BsModalRef {
   content?: any | null;
 }
 
-export const modalConfigDefaults:ModalOptions = {
+export const modalConfigDefaults: ModalOptions = {
   backdrop: true,
   keyboard: true,
   focus: true,
@@ -52,16 +52,16 @@ export const modalConfigDefaults:ModalOptions = {
   animated: true
 };
 
-export const ClassName:any = {
+export const ClassName: any = {
   SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
   BACKDROP: 'modal-backdrop',
   OPEN: 'modal-open',
   FADE: 'fade',
-  IN: 'in',         // bs3
-  SHOW: 'show'  // bs4
+  IN: 'in', // bs3
+  SHOW: 'show' // bs4
 };
 
-export const Selector:any = {
+export const Selector: any = {
   DIALOG: '.modal-dialog',
   DATA_TOGGLE: '[data-toggle="modal"]',
   DATA_DISMISS: '[data-dismiss="modal"]',

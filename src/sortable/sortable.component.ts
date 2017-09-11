@@ -1,5 +1,10 @@
 import {
-  Component, Input, Output, EventEmitter, forwardRef, TemplateRef
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+  TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
@@ -40,11 +45,13 @@ import { DraggableItemService } from './draggable-item.service';
 
 <ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>  
 `,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SortableComponent),
-    multi: true
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SortableComponent),
+      multi: true
+    }
+  ]
 })
 /* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
@@ -57,25 +64,25 @@ export class SortableComponent implements ControlValueAccessor {
   @Input() public wrapperClass: string = '';
 
   /** style object for items wrapper */
-  @Input() public wrapperStyle: {[key: string]: string} = {};
+  @Input() public wrapperStyle: { [key: string]: string } = {};
 
   /** class name for item */
   @Input() public itemClass: string = '';
 
   /** style object for item */
-  @Input() public itemStyle: {[key: string]: string} = {};
+  @Input() public itemStyle: { [key: string]: string } = {};
 
   /** class name for active item */
   @Input() public itemActiveClass: string = '';
 
   /** style object for active item */
-  @Input() public itemActiveStyle: {[key: string]: string} = {};
+  @Input() public itemActiveStyle: { [key: string]: string } = {};
 
   /** class name for placeholder */
   @Input() public placeholderClass: string = '';
 
   /** style object for placeholder */
-  @Input() public placeholderStyle: {[key: string]: string} = {};
+  @Input() public placeholderStyle: { [key: string]: string } = {};
 
   /** placeholder item which will be shown if collection is empty */
   @Input() public placeholderItem: string = '';
@@ -112,11 +119,16 @@ export class SortableComponent implements ControlValueAccessor {
   public constructor(transfer: DraggableItemService) {
     this.transfer = transfer;
     this.currentZoneIndex = SortableComponent.globalZoneIndex++;
-    this.transfer.onCaptureItem()
+    this.transfer
+      .onCaptureItem()
       .subscribe((item: DraggableItem) => this.onDrop(item));
   }
 
-  public onItemDragstart(event: DragEvent, item: SortableItem, i: number): void {
+  public onItemDragstart(
+    event: DragEvent,
+    item: SortableItem,
+    i: number
+  ): void {
     this.initDragstartEvent(event);
     this.onTouched();
     this.transfer.dragStart({
@@ -134,7 +146,10 @@ export class SortableComponent implements ControlValueAccessor {
       return;
     }
     event.preventDefault();
-    let dragItem = this.transfer.captureItem(this.currentZoneIndex, this.items.length);
+    let dragItem = this.transfer.captureItem(
+      this.currentZoneIndex,
+      this.items.length
+    );
     let newArray: any[] = [];
     if (!this.items.length) {
       newArray = [dragItem.item];
@@ -145,7 +160,8 @@ export class SortableComponent implements ControlValueAccessor {
         ...this.items.slice(i, dragItem.i),
         ...this.items.slice(dragItem.i + 1)
       ];
-    } else { // this.draggedItem.i < i
+    } else {
+      // this.draggedItem.i < i
       newArray = [
         ...this.items.slice(0, dragItem.i),
         ...this.items.slice(dragItem.i + 1, i + 1),
@@ -167,11 +183,14 @@ export class SortableComponent implements ControlValueAccessor {
   }
 
   public onDrop(item: DraggableItem): void {
-    if (item &&
+    if (
+      item &&
       item.overZoneIndex !== this.currentZoneIndex &&
       item.lastZoneIndex === this.currentZoneIndex
     ) {
-      this.items = this.items.filter((x: SortableItem, i: number) => i !== item.i);
+      this.items = this.items.filter(
+        (x: SortableItem, i: number) => i !== item.i
+      );
       this.updatePlaceholderState();
     }
     this.resetActiveItem(undefined);

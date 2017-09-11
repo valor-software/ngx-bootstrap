@@ -1,5 +1,8 @@
 import {
-  AfterViewInit, Component, ChangeDetectionStrategy, Inject
+  AfterViewInit,
+  Component,
+  ChangeDetectionStrategy,
+  Inject
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
 import { isBs3 } from '../utils/theme-provider';
@@ -9,11 +12,13 @@ import { isBs3 } from '../utils/theme-provider';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
-    '[class]': '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
+    '[class]':
+      '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
     role: 'tooltip'
   },
-  styles: [`    
+  styles: [
+    `    
     :host.tooltip {
       display: block;
     }
@@ -23,7 +28,8 @@ import { isBs3 } from '../utils/theme-provider';
     :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
       top: calc(50% - 2.5px);
     }
-  `],
+  `
+  ],
   template: `
     <div class="tooltip-arrow arrow"></div>
     <div class="tooltip-inner"><ng-content></ng-content></div>
@@ -63,7 +69,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit(): void {
-    this.classMap = {in: false, fade: false};
+    this.classMap = { in: false, fade: false };
     this.classMap[this.placement] = true;
     this.classMap['tooltip-' + this.placement] = true;
 

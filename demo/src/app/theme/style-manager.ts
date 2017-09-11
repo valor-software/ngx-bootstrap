@@ -29,7 +29,9 @@ function getLinkElementForKey(key: string) {
 }
 
 function getExistingLinkElementByKey(key: string) {
-  return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
+  return document.head.querySelector(
+    `link[rel="stylesheet"].${getClassNameForKey(key)}`
+  );
 }
 
 function createLinkElementWithKey(key: string) {

@@ -2,10 +2,12 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, EventEmitter,
+  Component,
+  EventEmitter,
   forwardRef,
   Input,
-  OnChanges, Output,
+  OnChanges,
+  Output,
   SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -14,8 +16,17 @@ import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
-import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
-import { isValidDate, padNumber, parseTime, isInputValid } from './timepicker.utils';
+import {
+  TimeChangeSource,
+  TimepickerComponentState,
+  TimepickerControls
+} from './timepicker.models';
+import {
+  isValidDate,
+  padNumber,
+  parseTime,
+  isInputValid
+} from './timepicker.utils';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -147,7 +158,11 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
     </table>
   `
 })
-export class TimepickerComponent implements ControlValueAccessor, TimepickerComponentState, TimepickerControls, OnChanges {
+export class TimepickerComponent
+  implements ControlValueAccessor,
+    TimepickerComponentState,
+    TimepickerControls,
+    OnChanges {
   /** hours change step */
   @Input() hourStep: number;
   /** hours change step */
@@ -204,29 +219,31 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  constructor(_config: TimepickerConfig,
-              private _cd: ChangeDetectorRef,
-              private _store: TimepickerStore,
-              private _timepickerActions: TimepickerActions) {
+  constructor(
+    _config: TimepickerConfig,
+    private _cd: ChangeDetectorRef,
+    private _store: TimepickerStore,
+    private _timepickerActions: TimepickerActions
+  ) {
     Object.assign(this, _config);
     // todo: add unsubscribe
-    _store
-      .select((state) => state.value)
-      .subscribe((value) => {
-        // update UI values if date changed
-        this._renderTime(value);
-        this.onChange(value);
+    _store.select(state => state.value).subscribe(value => {
+      // update UI values if date changed
+      this._renderTime(value);
+      this.onChange(value);
 
-        this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
-      });
+      this._store.dispatch(
+        this._timepickerActions.updateControls(getControlsValue(this))
+      );
+    });
 
-    _store
-      .select((state) => state.controls)
-      .subscribe((controlsState) => {
-        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
-        Object.assign(this, controlsState);
-        _cd.markForCheck();
-      });
+    _store.select(state => state.controls).subscribe(controlsState => {
+      this.isValid.emit(
+        isInputValid(this.hours, this.minutes, this.seconds, this.isPM())
+      );
+      Object.assign(this, controlsState);
+      _cd.markForCheck();
+    });
   }
 
   isPM(): boolean {
@@ -242,19 +259,25 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
+    this._store.dispatch(
+      this._timepickerActions.updateControls(getControlsValue(this))
+    );
   }
 
   changeHours(step: number, source: TimeChangeSource = ''): void {
-    this._store.dispatch(this._timepickerActions.changeHours({step, source}));
+    this._store.dispatch(this._timepickerActions.changeHours({ step, source }));
   }
 
   changeMinutes(step: number, source: TimeChangeSource = ''): void {
-    this._store.dispatch(this._timepickerActions.changeMinutes({step, source}));
+    this._store.dispatch(
+      this._timepickerActions.changeMinutes({ step, source })
+    );
   }
 
   changeSeconds(step: number, source: TimeChangeSource = ''): void {
-    this._store.dispatch(this._timepickerActions.changeSeconds({step, source}));
+    this._store.dispatch(
+      this._timepickerActions.changeSeconds({ step, source })
+    );
   }
 
   updateHours(hours: string): void {
@@ -277,13 +300,14 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
       this.onChange(null);
       return;
     }
-    this._store.dispatch(this._timepickerActions
-      .setTime({
+    this._store.dispatch(
+      this._timepickerActions.setTime({
         hour: this.hours,
         minute: this.minutes,
         seconds: this.seconds,
         isPM: this.isPM()
-      }));
+      })
+    );
   }
 
   toggleMeridian(): void {
@@ -292,7 +316,12 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
     }
 
     const _hoursPerDayHalf = 12;
-    this._store.dispatch(this._timepickerActions.changeHours({step: _hoursPerDayHalf, source: ''}));
+    this._store.dispatch(
+      this._timepickerActions.changeHours({
+        step: _hoursPerDayHalf,
+        source: ''
+      })
+    );
   }
 
   /**

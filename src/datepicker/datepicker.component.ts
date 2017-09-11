@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewChild, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  forwardRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { DatepickerConfig } from './datepicker.config';
@@ -87,9 +94,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** number of years displayed in a single row of year picker */
   @Input() public yearColLimit: number;
   /** array of custom css classes to be applied to targeted dates */
-  @Input() public customClass: { date: Date, mode: string, clazz: string }[];
+  @Input() public customClass: { date: Date; mode: string; clazz: string }[];
   /** array of disabled dates */
-  @Input() public dateDisabled: { date: Date, mode: string }[];
+  @Input() public dateDisabled: { date: Date; mode: string }[];
 
   /** currently active date */
   @Input()
@@ -101,12 +108,17 @@ export class DatePickerComponent implements ControlValueAccessor {
     this._activeDate = value;
   }
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output()
+  public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   /** callback to invoke when the activeDate is changed. */
-  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output()
+  public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(
+    undefined
+  );
 
-  @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
+  @ViewChild(DatePickerInnerComponent)
+  public _datePicker: DatePickerInnerComponent;
 
   public onChange: any = Function.prototype;
   public onTouched: any = Function.prototype;
@@ -115,7 +127,6 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   protected _now: Date = new Date();
   protected _activeDate: Date;
-
 
   public constructor(config: DatepickerConfig) {
     this.config = config;

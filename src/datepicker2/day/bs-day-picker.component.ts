@@ -62,7 +62,11 @@ export class BsDayPickerComponent extends DatePickerBase {
 
   private cOptions: BsCalendarOptionsClass;
 
-  public constructor(datePickerState: BsDatePickerState, options: BsDatePickerOptions, cOptions: BsCalendarOptionsClass) {
+  public constructor(
+    datePickerState: BsDatePickerState,
+    options: BsDatePickerOptions,
+    cOptions: BsCalendarOptionsClass
+  ) {
     super(datePickerState, options);
     this.cOptions = cOptions;
     this.refresh(datePickerState.viewDate);

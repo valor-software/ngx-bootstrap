@@ -25,9 +25,11 @@ const html = `
   </div>
 `;
 
-function expectActiveSlides(nativeEl:HTMLDivElement, active:boolean[]):void {
+function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[]): void {
   const slideElms = nativeEl.querySelectorAll('.carousel-item');
-  const indicatorElms = nativeEl.querySelectorAll('ol.carousel-indicators > li');
+  const indicatorElms = nativeEl.querySelectorAll(
+    'ol.carousel-indicators > li'
+  );
 
   expect(slideElms.length).toBe(active.length);
   expect(indicatorElms.length).toBe(active.length);
@@ -44,17 +46,19 @@ function expectActiveSlides(nativeEl:HTMLDivElement, active:boolean[]):void {
 }
 
 describe('Component: Carousel', () => {
-  let fixture:ComponentFixture<any>;
-  let context:TestCarouselComponent;
-  let element:any;
-  let clean:any;
+  let fixture: ComponentFixture<any>;
+  let context: TestCarouselComponent;
+  let element: any;
+  let clean: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestCarouselComponent],
       imports: [CarouselModule]
     });
-    TestBed.overrideComponent(TestCarouselComponent, {set: {template: html}});
+    TestBed.overrideComponent(TestCarouselComponent, {
+      set: { template: html }
+    });
     fixture = TestBed.createComponent(TestCarouselComponent);
     context = fixture.componentInstance;
     element = fixture.nativeElement.querySelector('#c1');
@@ -199,13 +203,12 @@ describe('Component: Carousel', () => {
   selector: 'carousel-test',
   template: ''
 })
-
 class TestCarouselComponent {
-  public myInterval:number = 5000;
-  public noWrapSlides:boolean = false;
-  public slides:any[] = [
-    {image: '//placekitten.com/600/300', text: 'slide0'},
-    {image: '//placekitten.com/600/300', text: 'slide1'},
-    {image: '//placekitten.com/600/300', text: 'slide2'}
+  public myInterval: number = 5000;
+  public noWrapSlides: boolean = false;
+  public slides: any[] = [
+    { image: '//placekitten.com/600/300', text: 'slide0' },
+    { image: '//placekitten.com/600/300', text: 'slide1' },
+    { image: '//placekitten.com/600/300', text: 'slide2' }
   ];
 }

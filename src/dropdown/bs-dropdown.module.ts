@@ -27,13 +27,16 @@ import { BsDropdownState } from './bs-dropdown.state';
 export class BsDropdownModule {
   public static forRoot(config?: any): ModuleWithProviders {
     return {
-      ngModule: BsDropdownModule, providers: [
+      ngModule: BsDropdownModule,
+      providers: [
         ComponentLoaderFactory,
         PositioningService,
         BsDropdownState,
-        {provide: BsDropdownConfig, useValue: config ? config : {autoClose: true}}
+        {
+          provide: BsDropdownConfig,
+          useValue: config ? config : { autoClose: true }
+        }
       ]
     };
-  };
-
+  }
 }

@@ -16,8 +16,8 @@ export function getTimepickerConfig(): TimepickerConfig {
 @Component({
   selector: 'demo-timepicker-config',
   templateUrl: './config.html',
-  providers: [{provide: TimepickerConfig, useFactory: getTimepickerConfig}]
+  providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]
 })
 export class DemoTimepickerConfigComponent {
-  public mytime:string;
+  public mytime: string;
 }

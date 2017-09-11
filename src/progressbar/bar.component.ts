@@ -1,4 +1,11 @@
-import { Component, Host, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  Host,
+  HostBinding,
+  Input,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 
 import { ProgressDirective } from './progress.directive';
 import { isBs3 } from '../utils/theme-provider';
@@ -20,21 +27,22 @@ import { isBs3 } from '../utils/theme-provider';
 `
 })
 export class BarComponent implements OnInit, OnDestroy {
-  public max:number;
+  public max: number;
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() public type:string;
+  @Input() public type: string;
   /** current value of progress bar */
   @Input()
-  public get value():number {
+  public get value(): number {
     return this._value;
   }
-  @HostBinding('style.width.%') get setBarWidth(){
+  @HostBinding('style.width.%')
+  get setBarWidth() {
     this.recalculatePercentage();
     return this.isBs3 ? '' : this.percent;
-  };
+  }
 
-  public set value(v:number) {
+  public set value(v: number) {
     if (!v && v !== 0) {
       return;
     }
@@ -45,28 +53,31 @@ export class BarComponent implements OnInit, OnDestroy {
   public get isBs3(): boolean {
     return isBs3();
   }
-  public percent:number = 0;
-  public transition:string;
-  public progress:ProgressDirective;
+  public percent: number = 0;
+  public transition: string;
+  public progress: ProgressDirective;
 
-  protected _value:number;
+  protected _value: number;
 
-  public constructor(@Host() progress:ProgressDirective) {
+  public constructor(@Host() progress: ProgressDirective) {
     this.progress = progress;
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.progress.addBar(this);
   }
 
-  public ngOnDestroy():void {
+  public ngOnDestroy(): void {
     this.progress.removeBar(this);
   }
 
-  public recalculatePercentage():void {
+  public recalculatePercentage(): void {
     this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 
-    let totalPercentage = this.progress.bars.reduce(function (total:number, bar:BarComponent):number {
+    let totalPercentage = this.progress.bars.reduce(function(
+      total: number,
+      bar: BarComponent
+    ): number {
       return total + bar.percent;
     }, 0);
 

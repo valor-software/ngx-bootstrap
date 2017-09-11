@@ -11,18 +11,22 @@ describe('Service: DraggableItem', () => {
   let transfer: DraggableItemService;
   let draggableItem: DraggableItem;
 
-  beforeEach(fakeAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      providers: [DraggableItemService]
-    }).createComponent(TestComponent);
-  }));
+  beforeEach(
+    fakeAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestComponent],
+        providers: [DraggableItemService]
+      }).createComponent(TestComponent);
+    })
+  );
 
-  beforeEach(inject([DraggableItemService], (service: DraggableItemService) => {
-    draggableItem = getDraggableItem(getItemToDrag(), undefined, 1);
-    transfer = service;
-    transfer.dragStart(draggableItem);
-  }));
+  beforeEach(
+    inject([DraggableItemService], (service: DraggableItemService) => {
+      draggableItem = getDraggableItem(getItemToDrag(), undefined, 1);
+      transfer = service;
+      transfer.dragStart(draggableItem);
+    })
+  );
 
   it('should return draggable item', () => {
     // arrange
@@ -56,12 +60,14 @@ describe('Service: DraggableItem', () => {
   });
 
   function getItemToDrag(): SortableItem {
-    return {id: 0, value: 'item text', initData: 'item text'};
+    return { id: 0, value: 'item text', initData: 'item text' };
   }
 
-  function getDraggableItem(sortableItem: SortableItem,
-                            dragEvent: DragEvent,
-                            zone: number): DraggableItem {
+  function getDraggableItem(
+    sortableItem: SortableItem,
+    dragEvent: DragEvent,
+    zone: number
+  ): DraggableItem {
     return {
       event: dragEvent,
       item: sortableItem,
