@@ -1,3 +1,4 @@
+// tslint:disable
 /**
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team

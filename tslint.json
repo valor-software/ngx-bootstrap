@@ -3,7 +3,8 @@
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
     "member-access": [true, "no-public"],
-    "no-void-expression": [true, "ignore-arrow-function-shorthand"],
+    "no-void-expression": ["ignore-arrow-function-shorthand"],
+    "space-before-function-paren": [true, {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
     "use-host-property-decorator": false,
     "no-parameter-properties": false,
     "typedef": true,

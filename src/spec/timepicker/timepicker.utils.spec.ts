@@ -17,21 +17,21 @@ function testTime(hours?: number, minutes?: number, seconds?: number) {
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
   time.setSeconds(seconds || 0);
+
   return time;
 }
 
-function modelTime(
-  hours: string | number,
-  minutes: string | number,
-  second: string | number,
-  PM: boolean
-) {
+function modelTime(hours: string | number,
+                   minutes: string | number,
+                   second: string | number,
+                   PM: boolean) {
   const time = {
     hour: hours || null,
     minute: minutes || null,
     seconds: second || null,
     isPM: PM || null
   };
+
   return time;
 }
 

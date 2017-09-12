@@ -1,3 +1,4 @@
+// tslint:disable:deprecation
 import {
   Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
   Renderer2, TemplateRef, ViewContainerRef
@@ -73,55 +74,54 @@ export class TooltipDirective implements OnInit, OnDestroy {
    */
   @Output() onHidden: EventEmitter<any>;
 
-  /* tslint:disable */
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
-  public set htmlContent(value: string | TemplateRef<any>) {
+  set htmlContent(value: string | TemplateRef<any>) {
     warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }
 
   /** @deprecated - please use `placement` instead */
   @Input('tooltipPlacement')
-  public set _placement(value: string) {
+  set _placement(value: string) {
     warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
     this.placement = value;
   }
 
   /** @deprecated - please use `isOpen` instead*/
   @Input('tooltipIsOpen')
-  public set _isOpen(value: boolean) {
+  set _isOpen(value: boolean) {
     warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
     this.isOpen = value;
   }
 
-  public get _isOpen(): boolean {
+  get _isOpen(): boolean {
     warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
     return this.isOpen;
   }
 
   /** @deprecated - please use `isDisabled` instead */
   @Input('tooltipEnable')
-  public set _enable(value: boolean) {
+  set _enable(value: boolean) {
     warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
-    this.isDisabled = value === true;
+    this.isDisabled = value;
   }
 
-  public get _enable(): boolean {
+  get _enable(): boolean {
     warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
-    return this.isDisabled === true;
+    return this.isDisabled;
   }
 
   /** @deprecated - please use `container="body"` instead */
   @Input('tooltipAppendToBody')
-  public set _appendToBody(value: boolean) {
+  set _appendToBody(value: boolean) {
     warnOnce(
       'tooltipAppendToBody was deprecated, please use `container="body"` instead'
     );
     this.container = value ? 'body' : this.container;
   }
 
-  public get _appendToBody(): boolean {
+  get _appendToBody(): boolean {
     warnOnce(
       'tooltipAppendToBody was deprecated, please use `container="body"` instead'
     );
@@ -129,48 +129,46 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /** @deprecated - removed, will be added to configuration */
-  @Input('tooltipAnimation') public _animation: boolean = true;
+  @Input('tooltipAnimation') _animation = true;
 
   /** @deprecated - will replaced with customClass */
   @Input('tooltipClass')
-  public set _popupClass(value: string) {
+  set _popupClass(value: string) {
     warnOnce('tooltipClass deprecated');
   }
 
   /** @deprecated - removed */
   @Input('tooltipContext')
-  public set _tooltipContext(value: any) {
+  set _tooltipContext(value: any) {
     warnOnce('tooltipContext deprecated');
   }
 
   /** @deprecated */
-  @Input('tooltipPopupDelay') public _delay: number = 0;
+  @Input('tooltipPopupDelay') _delay = 0;
 
   /** @deprecated */
-  @Input('tooltipFadeDuration') public _fadeDuration: number = 150;
+  @Input('tooltipFadeDuration') _fadeDuration = 150;
 
   /** @deprecated -  please use `triggers` instead */
   @Input('tooltipTrigger')
-  public get _tooltipTrigger(): string | Array<string> {
+  get _tooltipTrigger(): string | string[] {
     warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
     return this.triggers;
   }
 
-  public set _tooltipTrigger(value: string | Array<string>) {
+  set _tooltipTrigger(value: string | string[]) {
     warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
     this.triggers = (value || '').toString();
   }
 
   /** @deprecated */
   @Output()
-  public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-  /* tslint:enable */
+  tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   protected _delayTimeoutId: number | any;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
-  // tslint:disable-next-line
-  public constructor(_viewContainerRef: ViewContainerRef,
+  constructor(_viewContainerRef: ViewContainerRef,
                      _renderer: Renderer2,
                      _elementRef: ElementRef,
                      cis: ComponentLoaderFactory,

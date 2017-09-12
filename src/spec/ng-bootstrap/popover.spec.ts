@@ -19,6 +19,44 @@ import {
 } from '../../popover';
 import { createGenericTestComponent } from './test/common';
 
+@Component({selector: 'test-cmpt', template: ``})
+export class TestComponent {
+  name = 'World';
+  show = true;
+  title: string;
+  placement: string;
+
+  @ViewChild(PopoverDirective) popover: PopoverDirective;
+
+  shown(): void {
+    return;
+  }
+
+  hidden(): void {
+    return;
+  }
+}
+
+@Component({
+  selector: 'test-onpush-cmpt',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: ``
+})
+export class TestOnPushComponent {}
+
+@Component({selector: 'destroyable-cmpt', template: 'Some content'})
+export class DestroyableCmpt implements OnDestroy {
+  private _spyService: SpyService;
+
+  constructor(_spyService: SpyService) {
+    this._spyService = _spyService;
+  }
+
+  ngOnDestroy(): void {
+    this._spyService.called = true;
+  }
+}
+
 @Injectable()
 class SpyService {
   called = false;
@@ -179,9 +217,10 @@ describe('popover', () => {
     });
 
     it('should properly cleanup popovers with manual triggers', () => {
-      const fixture = createTestComponent(`<ng-template [ngIf]="show">
-                                            <div popover="Great tip!" triggers="manual" #p="bs-popover" (mouseover)="p.show()"></div>
-                                        </ng-template>`);
+      const fixture = createTestComponent(`
+<ng-template [ngIf]="show">
+  <div popover="Great tip!" triggers="manual" #p="bs-popover" (mouseover)="p.show()"></div>
+</ng-template>`);
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
       );
@@ -325,9 +364,7 @@ describe('popover', () => {
   describe('container', () => {
     it('should be appended to the element matching the selector passed to "container"', () => {
       const selector = 'body';
-      const fixture = createTestComponent(
-        `<div popover="Great tip!" container="` + selector + `"></div>`
-      );
+      const fixture = createTestComponent(`<div popover="Great tip!" container="${selector}"></div>`);
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
       );
@@ -340,11 +377,7 @@ describe('popover', () => {
 
     it('should properly destroy popovers when the "container" option is used', () => {
       const selector = 'body';
-      const fixture = createTestComponent(
-        `<div *ngIf="show" popover="Great tip!" container="` +
-          selector +
-          `"></div>`
-      );
+      const fixture = createTestComponent(`<div *ngIf="show" popover="Great tip!" container="${selector}"></div>`);
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
       );
@@ -568,9 +601,9 @@ describe('popover', () => {
     let config: PopoverConfig;
 
     beforeEach(() => {
-      TestBed.configureTestingModule({ imports: [PopoverModule.forRoot()] });
+      TestBed.configureTestingModule({imports: [PopoverModule.forRoot()]});
       TestBed.overrideComponent(TestComponent, {
-        set: { template: `<div popover="Great tip!"></div>` }
+        set: {template: `<div popover="Great tip!"></div>`}
       });
     });
 
@@ -603,7 +636,7 @@ describe('popover', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [PopoverModule.forRoot()],
-        providers: [{ provide: PopoverConfig, useValue: config }]
+        providers: [{provide: PopoverConfig, useValue: config}]
       });
     });
 
@@ -616,41 +649,3 @@ describe('popover', () => {
     });
   });
 });
-
-@Component({ selector: 'test-cmpt', template: `` })
-export class TestComponent {
-  name = 'World';
-  show = true;
-  title: string;
-  placement: string;
-
-  @ViewChild(PopoverDirective) popover: PopoverDirective;
-
-  shown(): void {
-    return;
-  }
-
-  hidden(): void {
-    return;
-  }
-}
-
-@Component({
-  selector: 'test-onpush-cmpt',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ``
-})
-export class TestOnPushComponent {}
-
-@Component({ selector: 'destroyable-cmpt', template: 'Some content' })
-export class DestroyableCmpt implements OnDestroy {
-  private _spyService: SpyService;
-
-  constructor(_spyService: SpyService) {
-    this._spyService = _spyService;
-  }
-
-  ngOnDestroy(): void {
-    this._spyService.called = true;
-  }
-}

@@ -1,33 +1,24 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  ComponentFixtureAutoDetect,
-  inject
-} from '@angular/core/testing';
+// tslint:disable:max-file-line-count
 import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  SortableModule,
-  SortableComponent,
-  DraggableItemService
-} from '../sortable';
-import { DraggableItem } from '../sortable';
-import { SortableItem } from '../sortable';
+import { DraggableItem, DraggableItemService, SortableComponent, SortableItem, SortableModule } from '../sortable';
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
 const HEROES_OBJ: any[] = [
-  { id: 1, name: 'Windstorm' },
-  { id: 2, name: 'Bombasto' },
-  { id: 3, name: 'Magneta' }
+  {id: 1, name: 'Windstorm'},
+  {id: 2, name: 'Bombasto'},
+  {id: 3, name: 'Magneta'}
 ];
 
 @Component({
   template: `
-    <bs-sortable id="sort1" [(ngModel)]="heroes" [placeholderItem]="'empty'" [itemStyle]="{ 'background-color': 'white', margin: '10px' }" [itemActiveStyle]="{ 'background-color': 'lightgray' }"></bs-sortable>
+    <bs-sortable id="sort1" [(ngModel)]="heroes" [placeholderItem]="'empty'"
+                 [itemStyle]="{ 'background-color': 'white', margin: '10px' }"
+                 [itemActiveStyle]="{ 'background-color': 'lightgray' }"></bs-sortable>
     <bs-sortable id="sort2" [(ngModel)]="heroesObj" [fieldName]="'name'" [placeholderItem]="'empty'"></bs-sortable>
-`
+  `
 })
 class TestSortableComponent {
   selectedState: string;
@@ -45,7 +36,7 @@ describe('Component: Sortable', () => {
       fixture = TestBed.configureTestingModule({
         declarations: [TestSortableComponent],
         imports: [SortableModule.forRoot(), FormsModule],
-        providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
+        providers: [{provide: ComponentFixtureAutoDetect, useValue: true}]
       }).createComponent(TestSortableComponent);
 
       fixture.detectChanges();
@@ -131,8 +122,8 @@ describe('Component: Sortable', () => {
         transfer = service;
         item = getItemToDrag();
         event = {
-          preventDefault: () => void 0,
-          dataTransfer: { setData: () => void 0 } as any
+          preventDefault: Function.prototype,
+          dataTransfer: {setData: Function.prototype}
         } as DragEvent;
         sort1ZoneNumber = (sort1 as any).currentZoneIndex;
         draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
@@ -315,7 +306,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        const capturedItem = transfer.captureItem(-1, 0);
+        transfer.captureItem(-1, 0);
         // assert
         transfer
           .onCaptureItem()
@@ -337,7 +328,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        const capturedItem = transfer.captureItem(draggableItem.overZoneIndex, 4);
+        transfer.captureItem(draggableItem.overZoneIndex, 4);
         // assert
         transfer
           .onCaptureItem()
@@ -355,7 +346,7 @@ describe('Component: Sortable', () => {
         spyCaptureItem.and.callThrough();
         sort1.onItemDragstart(event, item, 0);
         // act
-        const capturedItem = transfer.captureItem(draggableItem.overZoneIndex, 4);
+        transfer.captureItem(draggableItem.overZoneIndex, 4);
         // assert
         transfer
           .onCaptureItem()
@@ -364,14 +355,12 @@ describe('Component: Sortable', () => {
     );
 
     function getItemToDrag(): SortableItem {
-      return { id: 0, value: HEROES[0], initData: HEROES[0] };
+      return {id: 0, value: HEROES[0], initData: HEROES[0]};
     }
 
-    function getDraggableItem(
-      sortableItem: SortableItem,
-      dragEvent: DragEvent,
-      zone: number
-    ): DraggableItem {
+    function getDraggableItem(sortableItem: SortableItem,
+                              dragEvent: DragEvent,
+                              zone: number): DraggableItem {
       return {
         event: dragEvent,
         item: sortableItem,

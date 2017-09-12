@@ -1,3 +1,4 @@
+// tslint:disable
 /**
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
@@ -11,6 +12,7 @@ export function createGenericTestComponent<T>(
   TestBed.overrideComponent(type, { set: { template: html } });
   const fixture = TestBed.createComponent(type);
   fixture.detectChanges();
+
   return fixture;
 }
 

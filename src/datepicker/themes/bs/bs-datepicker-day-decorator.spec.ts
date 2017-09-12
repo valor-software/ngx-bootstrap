@@ -3,29 +3,33 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DayViewModel } from '../../models/index';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
 
+@Component({
+  selector: 'test-cmp',
+  template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
+})
+class TestComponent {
+  day: DayViewModel = {date: new Date(), label: ''};
+}
+
 function getDayElement(fixture: ComponentFixture<TestComponent>): HTMLElement {
   return fixture.nativeElement.querySelector(
     '[bsDatepickerDayDecorator]'
   ) as HTMLElement;
 }
 
-function setDay(
-  fixture: ComponentFixture<TestComponent>,
-  day: Partial<DayViewModel>
-): void {
+function setDay(fixture: ComponentFixture<TestComponent>,
+                day: Partial<DayViewModel>): void {
   fixture.componentInstance.day = day as DayViewModel;
   fixture.detectChanges();
 }
 
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
   let fixture: ComponentFixture<TestComponent>;
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [TestComponent, BsDatepickerDayDecoratorComponent]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() =>
+    TestBed.configureTestingModule({
+      declarations: [TestComponent, BsDatepickerDayDecoratorComponent]
+    }).compileComponents()
+  ));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
@@ -34,7 +38,7 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
   it('should display date', () => {
     // arrange
     const label = 'some label';
-    setDay(fixture, { label });
+    setDay(fixture, {label});
     const el = getDayElement(fixture);
     // assert
     expect(el.innerText).toBe(label);
@@ -72,11 +76,3 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     expect(el).toHaveCssClass('selected');
   });
 });
-
-@Component({
-  selector: 'test-cmp',
-  template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
-})
-class TestComponent {
-  day: DayViewModel = {} as DayViewModel;
-}

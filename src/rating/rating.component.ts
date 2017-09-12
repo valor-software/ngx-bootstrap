@@ -11,6 +11,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RATING_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => RatingComponent),
   multi: true
 };
@@ -78,6 +79,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     if (value % 1 !== value) {
       this.value = Math.round(value);
       this.preValue = value;
+
       return;
     }
 
@@ -112,8 +114,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  protected buildTemplateObjects(ratingStates: any[], max: number): any[] {
-    ratingStates = ratingStates || [];
+  protected buildTemplateObjects(_ratingStates: any[], max: number): any[] {
+    const ratingStates = _ratingStates || [];
     const count = ratingStates.length || max;
     const result: any[] = [];
     for (let i = 0; i < count; i++) {
@@ -129,6 +131,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
         )
       );
     }
+
     return result;
   }
 }

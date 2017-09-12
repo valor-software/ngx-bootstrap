@@ -22,6 +22,23 @@ export class BsDropdownToggleDirective implements OnDestroy {
   // @HostBinding('class.active')
   @HostBinding('attr.aria-expanded') isOpen: boolean;
 
+  private _subscriptions: Subscription[] = [];
+
+  constructor(private _state: BsDropdownState, private _element: ElementRef) {
+    // sync is open value with state
+    this._subscriptions.push(
+      this._state.isOpenChange.subscribe(
+        (value: boolean) => (this.isOpen = value)
+      )
+    );
+    // populate disabled state
+    this._subscriptions.push(
+      this._state.isDisabledChange.subscribe(
+        (value: boolean) => (this.isDisabled = value || null)
+      )
+    );
+  }
+
   @HostListener('click')
   onClick(): void {
     if (this.isDisabled) {
@@ -46,23 +63,6 @@ export class BsDropdownToggleDirective implements OnDestroy {
     if (this._state.autoClose) {
       this._state.toggleClick.emit(false);
     }
-  }
-
-  private _subscriptions: Subscription[] = [];
-
-  constructor(private _state: BsDropdownState, private _element: ElementRef) {
-    // sync is open value with state
-    this._subscriptions.push(
-      this._state.isOpenChange.subscribe(
-        (value: boolean) => (this.isOpen = value)
-      )
-    );
-    // populate disabled state
-    this._subscriptions.push(
-      this._state.isDisabledChange.subscribe(
-        (value: boolean) => (this.isDisabled = value || null)
-      )
-    );
   }
 
   ngOnDestroy(): void {

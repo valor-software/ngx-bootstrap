@@ -1,13 +1,14 @@
+// tslint:disable:no-floating-promises
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { fireEvent } from '../../../scripts/helpers';
+import { TimepickerActions } from '../../timepicker/reducer/timepicker.actions';
+import { TimepickerComponent } from '../../timepicker/timepicker.component';
 
 import { TimepickerConfig } from '../../timepicker/timepicker.config';
-import { TimepickerActions } from '../../timepicker/reducer/timepicker.actions';
 import { TimepickerModule } from '../../timepicker/timepicker.module';
-import { TimepickerComponent } from '../../timepicker/timepicker.component';
-import { By } from '@angular/platform-browser';
 
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement;
@@ -26,6 +27,7 @@ function testTime(hours?: number, minutes?: number, seconds?: number) {
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
   time.setSeconds(seconds || 0);
+
   return time;
 }
 
@@ -539,7 +541,7 @@ describe('Component: timepicker', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = { deltaY: -1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: -1, preventDefault: () => {}};
 
       inputDebugHours.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -560,7 +562,7 @@ describe('Component: timepicker', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = { deltaY: -1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: -1, preventDefault: Function.prototype};
 
       inputDebugMinutes.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -586,7 +588,7 @@ describe('Component: timepicker', () => {
       fixture.whenStable().then(() => {
         inputDebugSeconds = getDebugElements(fixture, 'input')[2];
 
-        const wheelEvent = { deltaY: -1, preventDefault: () => {} };
+        const wheelEvent = {deltaY: -1, preventDefault: () => Function.prototype};
         inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
 
         fixture.detectChanges();
@@ -608,7 +610,7 @@ describe('Component: timepicker', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = { deltaY: 1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: 1, preventDefault: Function.prototype };
 
       inputDebugHours.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -629,7 +631,7 @@ describe('Component: timepicker', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = { deltaY: 1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
 
       inputDebugMinutes.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -655,7 +657,7 @@ describe('Component: timepicker', () => {
         inputSeconds = getInputElements(fixture)[2];
         inputDebugSeconds = getDebugElements(fixture, 'input')[2];
 
-        const wheelEvent = { deltaY: 1, preventDefault: () => {} };
+        const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
 
         inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
 
@@ -677,7 +679,7 @@ describe('Component: timepicker', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = { deltaY: 1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
 
       inputDebugHours.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -699,7 +701,7 @@ describe('Component: timepicker', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = { deltaY: 1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
 
       inputDebugMinutes.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -721,7 +723,7 @@ describe('Component: timepicker', () => {
 
       component.writeValue(testTime(6, 30, 30));
 
-      const wheelEvent = { deltaY: 1, preventDefault: () => {} };
+      const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {

@@ -232,6 +232,7 @@ export class SortableComponent implements ControlValueAccessor {
       : this.itemStyle;
   }
 
+  // tslint:disable-next-line
   private initDragstartEvent(event: DragEvent): void {
     // it is necessary for mozilla
     // data type should be 'Text' instead of 'text/plain' to keep compatibility

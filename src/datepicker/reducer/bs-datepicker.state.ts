@@ -68,10 +68,12 @@ export class BsDatepickerState
   weekNumbers: string;
 }
 
+const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };
+
 export const initialDatepickerState: BsDatepickerState = Object.assign(
   new BsDatepickerConfig(),
   {
-    view: { date: new Date(), mode: 'day' } as BsDatepickerViewState,
+    view: _initialView,
     selectedRange: [],
     monthViewOptions: defaultMonthOptions
   }

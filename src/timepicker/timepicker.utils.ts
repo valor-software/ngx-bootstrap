@@ -136,6 +136,7 @@ export function createDate(
 ): Date {
   // fixme: unreachable code, value is mandatory
   const _value = value || new Date();
+
   return new Date(
     _value.getFullYear(),
     _value.getMonth(),
@@ -162,12 +163,7 @@ export function isInputValid(
   seconds = '0',
   isPM: boolean
 ): boolean {
-  if (
-    isNaN(parseHours(hours, isPM)) ||
-    isNaN(parseMinutes(minutes)) ||
-    isNaN(parseSeconds(seconds))
-  ) {
-    return false;
-  }
-  return true;
+  return isNaN(parseHours(hours, isPM))
+    || isNaN(parseMinutes(minutes))
+    || isNaN(parseSeconds(seconds));
 }

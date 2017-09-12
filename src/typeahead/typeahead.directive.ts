@@ -1,22 +1,31 @@
 /* tslint:disable:max-file-line-count */
 import {
-  Directive, ElementRef, EventEmitter, HostListener, Input, OnDestroy, OnInit,
-  Output, Renderer, Renderer2, TemplateRef, ViewContainerRef
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
-import { FormControl, NgControl } from '@angular/forms';
-import { TypeaheadContainerComponent } from './typeahead-container.component';
-import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { NgControl } from '@angular/forms';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/toArray';
-import { TypeaheadMatch } from './typeahead-match.class';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
+import { TypeaheadContainerComponent } from './typeahead-container.component';
+import { TypeaheadMatch } from './typeahead-match.class';
+import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -124,9 +133,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
 
   constructor(private ngControl: NgControl,
-              private viewContainerRef: ViewContainerRef,
               private element: ElementRef,
-              private renderer: Renderer2,
+              viewContainerRef: ViewContainerRef,
+              renderer: Renderer2,
               cis: ComponentLoaderFactory) {
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
@@ -246,7 +255,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   changeModel(match: TypeaheadMatch): void {
     const valueStr: string = match.value;
     this.ngControl.viewToModelUpdate(valueStr);
-    (this.ngControl.control as FormControl).setValue(valueStr);
+    (this.ngControl.control).setValue(valueStr);
     this.hide();
   }
 
@@ -307,8 +316,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         .debounceTime(this.typeaheadWaitMs)
         .mergeMap(() => this.typeahead)
         .subscribe((matches: any[]) => {
-            this.finalizeAsyncCall(matches);
-          })
+          this.finalizeAsyncCall(matches);
+        })
     );
   }
 
@@ -329,8 +338,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
             .toArray();
         })
         .subscribe((matches: any[]) => {
-            this.finalizeAsyncCall(matches);
-          })
+          this.finalizeAsyncCall(matches);
+        })
     );
   }
 

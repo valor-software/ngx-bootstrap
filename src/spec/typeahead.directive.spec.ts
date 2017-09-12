@@ -1,17 +1,13 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick
-} from '@angular/core/testing';
-import { TypeaheadModule } from '../typeahead/typeahead.module';
 import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { TypeaheadDirective } from '../typeahead/typeahead.directive';
-import { Observable } from 'rxjs';
-import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Observable';
 import { fireEvent } from '../../scripts/helpers';
+import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
+import { TypeaheadDirective } from '../typeahead/typeahead.directive';
+import { TypeaheadModule } from '../typeahead/typeahead.module';
+import 'rxjs/add/observable/of';
 
 interface State {
   id: number;
@@ -22,17 +18,17 @@ interface State {
 @Component({
   // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
-  <input [(ngModel)]="selectedState"
-         [typeahead]="states"
-         [typeaheadOptionField]="'name'"
-         (typeaheadOnBlur)="onBlurEvent($event)">
-`
+    <input [(ngModel)]="selectedState"
+           [typeahead]="states"
+           [typeaheadOptionField]="'name'"
+           (typeaheadOnBlur)="onBlurEvent($event)">
+  `
 })
 class TestTypeaheadComponent {
   selectedState: string;
   states: State[] = [
-    { id: 1, name: 'Alabama', region: 'South' },
-    { id: 2, name: 'Alaska', region: 'West' }
+    {id: 1, name: 'Alabama', region: 'South'},
+    {id: 2, name: 'Alaska', region: 'West'}
   ];
 
   onBlurEvent(activeItem) {}
@@ -141,13 +137,13 @@ describe('Directive: Typeahead', () => {
       fakeAsync(() => {
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            { id: 1, name: 'Alabama', region: 'South' },
+            {id: 1, name: 'Alabama', region: 'South'},
             'Alabama'
           )
         );
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            { id: 2, name: 'Alaska', region: 'West' },
+            {id: 2, name: 'Alaska', region: 'West'},
             'Alaska'
           )
         );
@@ -170,7 +166,7 @@ describe('Directive: Typeahead', () => {
     it(
       'should not display null item',
       fakeAsync(() => {
-        component.states.push({ id: 3, name: null, region: 'West' });
+        component.states.push({id: 3, name: null, region: 'West'});
         inputElement.value = 'Ala';
         fireEvent(inputElement, 'keyup');
         fixture.detectChanges();
@@ -217,13 +213,13 @@ describe('Directive: Typeahead', () => {
       fakeAsync(() => {
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            { id: 1, name: 'Alabama', region: 'South' },
+            {id: 1, name: 'Alabama', region: 'South'},
             'Alabama'
           )
         );
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            { id: 2, name: 'Alaska', region: 'West' },
+            {id: 2, name: 'Alaska', region: 'West'},
             'Alaska'
           )
         );
@@ -235,7 +231,7 @@ describe('Directive: Typeahead', () => {
     it('should set the selectedState value', () => {
       directive.changeModel(
         new TypeaheadMatch(
-          { id: 1, name: 'Alabama', region: 'South' },
+          {id: 1, name: 'Alabama', region: 'South'},
           'Alabama'
         )
       );

@@ -5,6 +5,37 @@ import { TabsetConfig } from '../tabs/tabset.config';
 import { TabsModule } from '../tabs/tabs.module';
 import { TabsetComponent } from '../tabs/tabset.component';
 
+@Component({
+  selector: 'tabs-test',
+  template: ''
+})
+class TestTabsetComponent {
+  isVertical: Boolean = false;
+  isJustified: Boolean = false;
+  tabs: any[] = [
+    { title: 'tab1', content: 'tab1 content', customClass: 'testCustomClass' },
+    { title: 'tab2', content: 'tab2 content', disabled: true },
+    { title: 'tab3', content: 'tab3 content', removable: true }
+  ];
+  @ViewChild('tabset') tabset: TabsetComponent;
+
+  constructor(config: TabsetConfig) {
+    Object.assign(this, config);
+  }
+
+  _select(e: TabsModule): TabsModule {
+    return e;
+  }
+
+  _deselect(e: TabsModule): TabsModule {
+    return e;
+  }
+
+  _removed(e: TabsModule): TabsModule {
+    return e;
+  }
+}
+
 const html = `
   <tabset #tabset [justified]="isJustified"
           [vertical]="isVertical">
@@ -243,34 +274,3 @@ describe('Component: Tabs', () => {
     expectActiveTabs(element, [false, true, false, false]);
   });
 });
-
-@Component({
-  selector: 'tabs-test',
-  template: ''
-})
-class TestTabsetComponent {
-  isVertical: Boolean = false;
-  isJustified: Boolean = false;
-  tabs: any[] = [
-    { title: 'tab1', content: 'tab1 content', customClass: 'testCustomClass' },
-    { title: 'tab2', content: 'tab2 content', disabled: true },
-    { title: 'tab3', content: 'tab3 content', removable: true }
-  ];
-  @ViewChild('tabset') tabset: TabsetComponent;
-
-  constructor(config: TabsetConfig) {
-    Object.assign(this, config);
-  }
-
-  _select(e: TabsModule): TabsModule {
-    return e;
-  }
-
-  _deselect(e: TabsModule): TabsModule {
-    return e;
-  }
-
-  _removed(e: TabsModule): TabsModule {
-    return e;
-  }
-}

@@ -104,7 +104,7 @@ export class TimepickerComponent
 
   constructor(
     _config: TimepickerConfig,
-    private _cd: ChangeDetectorRef,
+    _cd: ChangeDetectorRef,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
@@ -181,6 +181,7 @@ export class TimepickerComponent
   _updateTime() {
     if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
       this.onChange(null);
+
       return;
     }
     this._store.dispatch(

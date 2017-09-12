@@ -1,24 +1,20 @@
+import { Component, NgZone } from '@angular/core';
 /* tslint:disable:max-classes-per-file max-file-line-count component-class-suffix */
 /**
  * @copyright Angular ng-bootstrap team
  */
-import {
-  fakeAsync,
-  discardPeriodicTasks,
-  tick,
-  TestBed,
-  inject
-} from '@angular/core/testing';
-import { createGenericTestComponent } from './test/common';
+import { discardPeriodicTasks, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
-import { Component, NgZone } from '@angular/core';
 
-import {
-  CarouselModule,
-  CarouselComponent,
-  CarouselConfig
-} from '../../carousel';
+import { CarouselComponent, CarouselConfig, CarouselModule } from '../../carousel';
+import { createGenericTestComponent } from './test/common';
+
+@Component({selector: 'test-cmp', template: ''})
+class TestComponent {
+  activeSlideIndex: number;
+  keyboard: boolean;
+}
 
 const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent);
@@ -459,7 +455,7 @@ describe('ngb-carousel', () => {
     let config: CarouselConfig;
 
     beforeEach(() => {
-      TestBed.configureTestingModule({ imports: [CarouselModule.forRoot()] });
+      TestBed.configureTestingModule({imports: [CarouselModule.forRoot()]});
     });
 
     beforeEach(
@@ -491,7 +487,7 @@ describe('ngb-carousel', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [CarouselModule.forRoot()],
-        providers: [{ provide: CarouselConfig, useValue: config }]
+        providers: [{provide: CarouselConfig, useValue: config}]
       });
     });
 
@@ -506,9 +502,3 @@ describe('ngb-carousel', () => {
     });
   });
 });
-
-@Component({ selector: 'test-cmp', template: '' })
-class TestComponent {
-  activeSlideIndex: number;
-  keyboard: boolean;
-}

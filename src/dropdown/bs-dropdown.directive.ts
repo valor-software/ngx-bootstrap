@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 import {
   Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
   OnInit, Output, Renderer2, ViewContainerRef
@@ -199,7 +200,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
             this._inlinedMenu = this._dropdown._inlineViewRef;
             this.addBs4Polyfills();
           }
-        );
+        )
+        // swallow errors
+          .catch();
       }
       this.addBs4Polyfills();
       this._isInlineOpen = true;
@@ -228,7 +231,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         });
 
       this._state.isOpenChange.emit(true);
-    });
+    })
+    // swallow error
+      .catch();
   }
 
   /**

@@ -14,6 +14,7 @@ import { PaginationConfig } from './pagination.config';
 
 export const PAGER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => PagerComponent),
   multi: true
 };
@@ -53,11 +54,11 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
   /** fired when total pages count changes, $event:number equals to total pages count */
   @Output() numPages: EventEmitter<number> = new EventEmitter<number>();
-  /** fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page */
+  /** fired when page was changed, $event:{page, itemsPerPage} equals to
+   * object with current page index and number of items per page
+   */
   @Output()
-  pageChanged: EventEmitter<PageChangedEvent> = new EventEmitter<
-    PageChangedEvent
-  >();
+  pageChanged: EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>();
 
   /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
@@ -126,11 +127,9 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   protected inited = false;
   protected _page = 1;
 
-  constructor(
-    renderer: Renderer,
-    elementRef: ElementRef,
-    paginationConfig: PaginationConfig
-  ) {
+  constructor(renderer: Renderer,
+              elementRef: ElementRef,
+              paginationConfig: PaginationConfig) {
     this.renderer = renderer;
     this.elementRef = elementRef;
     if (!this.config) {
@@ -181,7 +180,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string): string {
-    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
+    return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }
 
   noPrevious(): boolean {
@@ -216,12 +215,10 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   // Create page object used in template
-  protected makePage(
-    num: number,
-    text: string,
-    active: boolean
-  ): { number: number; text: string; active: boolean } {
-    return { text, number: num, active };
+  protected makePage(num: number,
+                     text: string,
+                     active: boolean): { number: number; text: string; active: boolean } {
+    return {text, number: num, active};
   }
 
   protected getPages(currentPage: number, totalPages: number): any[] {
@@ -283,6 +280,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
       this.itemsPerPage < 1
         ? 1
         : Math.ceil(this.totalItems / this.itemsPerPage);
+
     return Math.max(totalPages || 0, 1);
   }
 }

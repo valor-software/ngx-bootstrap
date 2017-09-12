@@ -1,5 +1,5 @@
 // datepicker container component
-/* tslint:disable no-empty */
+/* tslint:disable:no-empty */
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
 import { Observable } from 'rxjs/Observable';

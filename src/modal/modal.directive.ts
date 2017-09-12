@@ -14,7 +14,7 @@ import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
-  ClassName, DISMISS_REASONS, modalConfigDefaults, ModalOptions
+  CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
 } from './modal-options.class';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
@@ -82,15 +82,13 @@ export class ModalDirective implements OnDestroy {
   // reference to backdrop component
   protected backdrop: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
-  // todo: implement _dialog
-  private _dialog: any;
 
   private isNested = false;
 
   constructor(private _element: ElementRef,
-              private _viewContainerRef: ViewContainerRef,
+              _viewContainerRef: ViewContainerRef,
               private _renderer: Renderer2,
-              private clf: ComponentLoaderFactory) {
+              clf: ComponentLoaderFactory) {
     this._backdrop = clf.createLoader<ModalBackdropComponent>(
       _element,
       _viewContainerRef,
@@ -161,10 +159,10 @@ export class ModalDirective implements OnDestroy {
     this.setScrollbar();
 
     if (document && document.body) {
-      if (document.body.classList.contains(ClassName.OPEN)) {
+      if (document.body.classList.contains(CLASS_NAME.OPEN)) {
         this.isNested = true;
       } else {
-        this._renderer.addClass(document.body, ClassName.OPEN);
+        this._renderer.addClass(document.body, CLASS_NAME.OPEN);
       }
     }
 
@@ -190,9 +188,9 @@ export class ModalDirective implements OnDestroy {
     clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
-    this._renderer.removeClass(this._element.nativeElement, ClassName.IN);
+    this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.IN);
     if (!isBs3()) {
-      this._renderer.removeClass(this._element.nativeElement, ClassName.SHOW);
+      this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
     }
     // this._addClassIn = false;
 
@@ -248,9 +246,9 @@ export class ModalDirective implements OnDestroy {
     }
 
     // this._addClassIn = true;
-    this._renderer.addClass(this._element.nativeElement, ClassName.IN);
+    this._renderer.addClass(this._element.nativeElement, CLASS_NAME.IN);
     if (!isBs3()) {
-      this._renderer.addClass(this._element.nativeElement, ClassName.SHOW);
+      this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
     }
 
     const transitionComplete = () => {
@@ -282,7 +280,7 @@ export class ModalDirective implements OnDestroy {
     this.showBackdrop(() => {
       if (!this.isNested) {
         if (document && document.body) {
-          this._renderer.removeClass(document.body, ClassName.OPEN);
+          this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
         }
         this.resetScrollbar();
       }
@@ -428,7 +426,7 @@ export class ModalDirective implements OnDestroy {
   // thx d.walsh
   protected getScrollbarWidth(): number {
     const scrollDiv = this._renderer.createElement('div');
-    this._renderer.addClass(scrollDiv, ClassName.SCROLLBAR_MEASURER);
+    this._renderer.addClass(scrollDiv, CLASS_NAME.SCROLLBAR_MEASURER);
     this._renderer.appendChild('body', scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
     this._renderer.removeChild('body', scrollDiv);

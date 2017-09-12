@@ -19,6 +19,7 @@ export interface PageChangedEvent {
 
 export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => PaginationComponent),
   multi: true
 };
@@ -182,7 +183,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string): string {
-    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
+    return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }
 
   noPrevious(): boolean {
@@ -284,6 +285,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       this.itemsPerPage < 1
         ? 1
         : Math.ceil(this.totalItems / this.itemsPerPage);
+
     return Math.max(totalPages || 0, 1);
   }
 }

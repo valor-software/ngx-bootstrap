@@ -3,6 +3,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarouselModule } from '../carousel/carousel.module';
 
+@Component({selector: 'carousel-test', template: ''})
+class TestCarouselComponent {
+  myInterval = 5000;
+  noWrapSlides = false;
+  slides: any[] = [
+    {image: '//placekitten.com/600/300', text: 'slide0'},
+    {image: '//placekitten.com/600/300', text: 'slide1'},
+    {image: '//placekitten.com/600/300', text: 'slide2'}
+  ];
+}
+
 const html = `
   <div id="c1">
     <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
@@ -57,7 +68,7 @@ describe('Component: Carousel', () => {
       imports: [CarouselModule]
     });
     TestBed.overrideComponent(TestCarouselComponent, {
-      set: { template: html }
+      set: {template: html}
     });
     fixture = TestBed.createComponent(TestCarouselComponent);
     context = fixture.componentInstance;
@@ -199,16 +210,3 @@ describe('Component: Carousel', () => {
   });
 });
 
-@Component({
-  selector: 'carousel-test',
-  template: ''
-})
-class TestCarouselComponent {
-  myInterval = 5000;
-  noWrapSlides = false;
-  slides: any[] = [
-    { image: '//placekitten.com/600/300', text: 'slide0' },
-    { image: '//placekitten.com/600/300', text: 'slide1' },
-    { image: '//placekitten.com/600/300', text: 'slide2' }
-  ];
-}

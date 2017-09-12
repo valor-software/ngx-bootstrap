@@ -4,6 +4,22 @@ import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { BsDropdownConfig, BsDropdownModule } from '../dropdown/index';
 
+@Component({
+  selector: 'dropdown-test',
+  template: ''
+})
+class TestDropdownComponent {
+  isOpen: Boolean = false;
+  isDisabled: Boolean = false;
+  addToggleClass: Boolean = false;
+  autoClose = false;
+  keyboardNav: Boolean = false;
+
+  constructor(config: BsDropdownConfig) {
+    Object.assign(this, config);
+  }
+}
+
 const defaultHtml = `
   <div dropdown>
     <button dropdownToggle>Dropdown</button>
@@ -31,7 +47,7 @@ describe('Directive: Dropdown', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: defaultHtml }
+      set: {template: defaultHtml}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -45,7 +61,7 @@ describe('Directive: Dropdown', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: htmlWithBinding }
+      set: {template: htmlWithBinding}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -68,7 +84,7 @@ describe('Directive: Dropdown', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: defaultHtml }
+      set: {template: defaultHtml}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -88,7 +104,7 @@ describe('Directive: Dropdown', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: htmlWithBinding }
+      set: {template: htmlWithBinding}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -111,7 +127,7 @@ describe('Directive: Dropdown', () => {
         imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {
-        set: { template: htmlWithBinding }
+        set: {template: htmlWithBinding}
       });
       const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
@@ -150,7 +166,7 @@ describe('Directive: Dropdown', () => {
         imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {
-        set: { template: html }
+        set: {template: html}
       });
       const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
@@ -187,7 +203,7 @@ describe('Directive: Dropdown', () => {
         imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {
-        set: { template: html }
+        set: {template: html}
       });
       const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
@@ -223,7 +239,7 @@ describe('Directive: Dropdown', () => {
         imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {
-        set: { template: html }
+        set: {template: html}
       });
       const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
@@ -257,7 +273,7 @@ describe('Directive: Dropdown', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: html }
+      set: {template: html}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -289,7 +305,7 @@ describe('Directive: Dropdown', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: html }
+      set: {template: html}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -325,7 +341,7 @@ describe('Directive: Dropdown', () => {
         imports: [BsDropdownModule.forRoot()]
       });
       TestBed.overrideComponent(TestDropdownComponent, {
-        set: { template: html }
+        set: {template: html}
       });
       const fixture = TestBed.createComponent(TestDropdownComponent);
       fixture.detectChanges();
@@ -356,7 +372,7 @@ describe('Directive: dropdownToggle', () => {
       imports: [BsDropdownModule.forRoot()]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
-      set: { template: html }
+      set: {template: html}
     });
     const fixture = TestBed.createComponent(TestDropdownComponent);
     fixture.detectChanges();
@@ -375,19 +391,3 @@ describe('Directive: dropdownToggle', () => {
     expect(element.querySelector('[dropdown]').classList).toContain('open');
   });
 });
-
-@Component({
-  selector: 'dropdown-test',
-  template: ''
-})
-class TestDropdownComponent {
-  isOpen: Boolean = false;
-  isDisabled: Boolean = false;
-  addToggleClass: Boolean = false;
-  autoClose = false;
-  keyboardNav: Boolean = false;
-
-  constructor(config: BsDropdownConfig) {
-    Object.assign(this, config);
-  }
-}

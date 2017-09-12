@@ -12,6 +12,7 @@ import { DatepickerConfig } from './datepicker.config';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
@@ -157,6 +158,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     if (value && value instanceof Date) {
       this.activeDate = value;
       this._datePicker.select(value, false);
+
       return;
     }
 

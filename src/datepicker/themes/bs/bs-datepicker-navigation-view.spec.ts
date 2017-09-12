@@ -6,6 +6,23 @@ import {
 } from '../../models/index';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 
+@Component({
+  selector: 'test-cmp',
+  template: `
+    <bs-datepicker-navigation-view
+      [calendar]="month"
+      (onNavigate)="navTo($event)"
+    ></bs-datepicker-navigation-view>`
+})
+class TestComponent {
+  month: DaysCalendarViewModel;
+  _navTo: BsNavigationDirection;
+
+  navTo(event: BsNavigationDirection): void {
+    this._navTo = event;
+  }
+}
+
 type TestFixture = ComponentFixture<TestComponent>;
 const titleSelector = '.current';
 const prevNavSelector = '.previous';
@@ -29,10 +46,8 @@ function getNavEvent(fixture: TestFixture): BsNavigationDirection {
   return fixture.componentInstance._navTo;
 }
 
-function setMonth(
-  fixture: TestFixture,
-  month: Partial<DaysCalendarViewModel>
-): void {
+function setMonth(fixture: TestFixture,
+                  month: Partial<DaysCalendarViewModel>): void {
   fixture.componentInstance.month = month as DaysCalendarViewModel;
   fixture.detectChanges();
 }
@@ -40,12 +55,10 @@ function setMonth(
 describe('datepicker: bs-datepicker-navigation-view', () => {
   let fixture: TestFixture;
   beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
+    async(() => TestBed.configureTestingModule({
         declarations: [TestComponent, BsDatepickerNavigationViewComponent]
-      }).compileComponents();
-    })
-  );
+      }).compileComponents()
+    ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
   });
@@ -54,7 +67,7 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
     const monthTitle = 'Some month';
     const yearTitle = 'Some year';
 
-    setMonth(fixture, { monthTitle, yearTitle });
+    setMonth(fixture, {monthTitle, yearTitle});
     const titles = getTitles(fixture);
 
     expect(titles[0].trim()).toBe(monthTitle);
@@ -71,13 +84,13 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
 
   it('should hide prev nav button', () => {
     const prev = getPrevNavButton(fixture);
-    setMonth(fixture, { hideLeftArrow: true });
+    setMonth(fixture, {hideLeftArrow: true});
     expect(prev.style.visibility).toBe('hidden');
   });
 
   it('should hide next nav button', () => {
     const next = getNextNavButton(fixture);
-    setMonth(fixture, { hideRightArrow: true });
+    setMonth(fixture, {hideRightArrow: true});
     expect(next.style.visibility).toBe('hidden');
   });
 
@@ -93,20 +106,3 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
     expect(getNavEvent(fixture)).toBe(BsNavigationDirection.UP);
   });
 });
-
-@Component({
-  selector: 'test-cmp',
-  template: `
-    <bs-datepicker-navigation-view
-      [calendar]="month"
-      (onNavigate)="navTo($event)"
-    ></bs-datepicker-navigation-view>`
-})
-class TestComponent {
-  month: DaysCalendarViewModel;
-  _navTo: BsNavigationDirection;
-
-  navTo(event: BsNavigationDirection): void {
-    this._navTo = event;
-  }
-}

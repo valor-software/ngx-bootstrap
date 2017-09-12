@@ -102,6 +102,7 @@ export class TabsetComponent implements OnDestroy {
         return nextIndex;
       }
     }
+
     return -1;
   }
 
@@ -116,6 +117,7 @@ export class TabsetComponent implements OnDestroy {
         return true;
       }
     }
+
     return false;
   }
 

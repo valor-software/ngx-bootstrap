@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ModalOptions {
   /**
-   *  Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn't close the modal on click.
+   *  Includes a modal-backdrop element. Alternatively,
+   *  specify static for a backdrop which doesn't close the modal on click.
    */
   backdrop?: boolean | 'static';
   /**
@@ -30,17 +31,6 @@ export class ModalOptions {
   animated?: boolean;
 }
 
-@Injectable()
-export class BsModalRef {
-  /**
-   * Hides the modal
-   */
-  hide(): void {}
-  /**
-   * Reference to a component inside the modal. Null if modal's been created with TemplateRef
-   */
-  content?: any | null;
-}
 
 export const modalConfigDefaults: ModalOptions = {
   backdrop: true,
@@ -52,7 +42,7 @@ export const modalConfigDefaults: ModalOptions = {
   animated: true
 };
 
-export const ClassName: any = {
+export const CLASS_NAME: any = {
   SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
   BACKDROP: 'modal-backdrop',
   OPEN: 'modal-open',
@@ -61,14 +51,14 @@ export const ClassName: any = {
   SHOW: 'show' // bs4
 };
 
-export const Selector: any = {
+export const SELECTOR: any = {
   DIALOG: '.modal-dialog',
   DATA_TOGGLE: '[data-toggle="modal"]',
   DATA_DISMISS: '[data-dismiss="modal"]',
   FIXED_CONTENT: '.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed'
 };
 
-export const TransitionDurations: any = {
+export const TRANSITION_DURATIONS: any = {
   MODAL: 300,
   BACKDROP: 150
 };

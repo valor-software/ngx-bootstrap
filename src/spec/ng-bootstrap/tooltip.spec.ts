@@ -3,23 +3,36 @@
  * @copyright Angular ng-bootstrap team
  */
 
-import {
-  TestBed,
-  inject,
-  fakeAsync,
-  tick
-} from '@angular/core/testing';
-import { createGenericTestComponent } from './test/common';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
-import {
-  TooltipModule,
-  TooltipConfig,
-  TooltipContainerComponent,
-  TooltipDirective
-} from '../../tooltip';
+import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
+import { createGenericTestComponent } from './test/common';
+
+@Component({
+  selector: 'test-onpush-cmpt',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: ``
+})
+export class TestOnPushComponent {}
+
+@Component({selector: 'test-cmpt', template: ``})
+export class TestComponent {
+  name = 'World';
+  show = true;
+
+  @ViewChild(TooltipDirective) tooltip: TooltipDirective;
+
+  shown(): void {
+    return;
+  }
+
+  hidden(): void {
+    return;
+  }
+}
 
 const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent);
@@ -29,7 +42,7 @@ const createOnPushTestComponent = (html: string) =>
 
 describe('tooltip-container', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [TooltipModule.forRoot()] });
+    TestBed.configureTestingModule({imports: [TooltipModule.forRoot()]});
   });
 
   it('should render tooltip on top by default', () => {
@@ -399,8 +412,8 @@ describe('tooltip', () => {
       const selector = 'body';
       const fixture = createTestComponent(
         `<div *ngIf="show" tooltip="Great tip!" container="` +
-          selector +
-          `"></div>`
+        selector +
+        `"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
@@ -500,9 +513,9 @@ describe('tooltip', () => {
     let config: TooltipConfig;
 
     beforeEach(() => {
-      TestBed.configureTestingModule({ imports: [TooltipModule.forRoot()] });
+      TestBed.configureTestingModule({imports: [TooltipModule.forRoot()]});
       TestBed.overrideComponent(TestComponent, {
-        set: { template: `<div tooltip="Great tip!"></div>` }
+        set: {template: `<div tooltip="Great tip!"></div>`}
       });
     });
 
@@ -535,7 +548,7 @@ describe('tooltip', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [TooltipModule.forRoot()],
-        providers: [{ provide: TooltipConfig, useValue: config }]
+        providers: [{provide: TooltipConfig, useValue: config}]
       });
     });
 
@@ -550,24 +563,3 @@ describe('tooltip', () => {
   });
 });
 
-@Component({ selector: 'test-cmpt', template: `` })
-export class TestComponent {
-  name = 'World';
-  show = true;
-
-  @ViewChild(TooltipDirective) tooltip: TooltipDirective;
-
-  shown(): void {
-    return;
-  }
-  hidden(): void {
-    return;
-  }
-}
-
-@Component({
-  selector: 'test-onpush-cmpt',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: ``
-})
-export class TestOnPushComponent {}

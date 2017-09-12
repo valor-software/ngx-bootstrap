@@ -22,11 +22,9 @@ export class AlertComponent implements OnInit {
   /** This event fires immediately after close instance method is called,
    * $event is an instance of Alert component.
    */
-  @Output()
-  onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
+  @Output() onClose = new EventEmitter<AlertComponent>();
   /** This event fires when alert closed, $event is an instance of Alert component */
-  @Output()
-  onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
+  @Output() onClosed = new EventEmitter<AlertComponent>();
 
   isClosed = false;
   classes = '';
@@ -43,7 +41,7 @@ export class AlertComponent implements OnInit {
     if (this.dismissOnTimeout) {
       // if dismissOnTimeout used as attr without binding, it will be a string
       setTimeout(
-        () => void this.close(),
+        () => this.close(),
         parseInt(this.dismissOnTimeout as string, 10)
       );
     }

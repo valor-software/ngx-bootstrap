@@ -26,6 +26,7 @@ export class DraggableItemService {
         i: newIndex
       });
     }
+
     return this.draggableItem;
   }
 

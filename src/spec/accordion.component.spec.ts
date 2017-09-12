@@ -1,8 +1,25 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AccordionConfig } from '../accordion/accordion.config';
 
 import { AccordionModule } from '../accordion/accordion.module';
-import { AccordionConfig } from '../accordion/accordion.config';
+
+@Component({
+  selector: 'accordion-test',
+  template: ''
+})
+class TestAccordionComponent {
+  oneAtATime = true;
+  panels: any[] = [
+    {isOpen: false, isDisabled: false},
+    {isOpen: false, isDisabled: false},
+    {isOpen: false, isDisabled: false}
+  ];
+
+  constructor(config: AccordionConfig) {
+    Object.assign(this, config);
+  }
+}
 
 const html = `
   <accordion [closeOthers]="oneAtATime">
@@ -32,10 +49,8 @@ function getPanels(element: HTMLElement): Element[] {
   return Array.from(element.querySelectorAll('accordion-group'));
 }
 
-function expectOpenPanels(
-  nativeEl: HTMLElement,
-  openPanelsDef: boolean[]
-): void {
+function expectOpenPanels(nativeEl: HTMLElement,
+                          openPanelsDef: boolean[]): void {
   const panels = getPanels(nativeEl);
   expect(panels.length).toBe(openPanelsDef.length);
   for (let i = 0; i < panels.length; i++) {
@@ -62,7 +77,7 @@ describe('Component: Accordion', () => {
       imports: [AccordionModule.forRoot()]
     });
     TestBed.overrideComponent(TestAccordionComponent, {
-      set: { template: html }
+      set: {template: html}
     });
     fixture = TestBed.createComponent(TestAccordionComponent);
     context = fixture.componentInstance;
@@ -152,20 +167,3 @@ describe('Component: Accordion', () => {
     expectOpenPanels(element, [false, false, false]);
   });
 });
-
-@Component({
-  selector: 'accordion-test',
-  template: ''
-})
-class TestAccordionComponent {
-  oneAtATime = true;
-  panels: any[] = [
-    { isOpen: false, isDisabled: false },
-    { isOpen: false, isDisabled: false },
-    { isOpen: false, isDisabled: false }
-  ];
-
-  constructor(config: AccordionConfig) {
-    Object.assign(this, config);
-  }
-}

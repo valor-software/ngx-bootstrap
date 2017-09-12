@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 import {
   BsDatepickerState,
   initialDatepickerState

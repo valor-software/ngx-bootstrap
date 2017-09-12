@@ -1,18 +1,23 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick
-} from '@angular/core/testing';
 import { Component } from '@angular/core';
+/* tslint:disable:max-classes-per-file max-file-line-count component-class-suffix */
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { TooltipModule } from '../tooltip/tooltip.module';
 import { fireEvent } from '../../scripts/helpers';
+import { TooltipModule } from '../tooltip/tooltip.module';
+
+@Component({
+  selector: 'test-tooltip',
+  template: ''
+})
+class TestTooltipComponent {
+  delay = 0;
+}
 
 const overTemplate = `
     <div class="form-group">
       <label>Or use custom triggers, like focus: </label>
-      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!" [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
+      <input type="text" name="clickMe" id="test-tooltip1" value="Click me!"
+      [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
     </div>
 
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
@@ -41,7 +46,7 @@ xdescribe('Directives: Tooltips', () => {
       imports: [TooltipModule.forRoot(), FormsModule]
     });
     TestBed.overrideComponent(TestTooltipComponent, {
-      set: { template: overTemplate }
+      set: {template: overTemplate}
     });
     fixture = TestBed.createComponent(TestTooltipComponent);
     context = fixture.componentInstance;
@@ -126,10 +131,3 @@ xdescribe('Directives: Tooltips', () => {
   );
 });
 
-@Component({
-  selector: 'test-tooltip',
-  template: ''
-})
-class TestTooltipComponent {
-  delay = 0;
-}

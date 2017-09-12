@@ -94,15 +94,13 @@ export class BsDatepickerEffects {
 
     container.options = this._store
       .select(state => state.showWeekNumbers)
-      .map(showWeekNumbers => ({ showWeekNumbers }));
+      .map(showWeekNumbers => ({showWeekNumbers}));
 
     return this;
   }
 
-  /** event handlers*/
-  setEventHandlers(
-    container: BsDatepickerAbstractComponent
-  ): BsDatepickerEffects {
+  /** event handlers */
+  setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.setViewMode = (event: BsDatepickerViewMode): void => {
       this._store.dispatch(this._actions.changeViewMode(event));
     };
@@ -143,7 +141,7 @@ export class BsDatepickerEffects {
       }
       this._store.dispatch(
         this._actions.navigateTo({
-          unit: { month: getMonth(event.date) },
+          unit: {month: getMonth(event.date)},
           viewMode: 'day'
         })
       );
@@ -155,7 +153,7 @@ export class BsDatepickerEffects {
       }
       this._store.dispatch(
         this._actions.navigateTo({
-          unit: { year: getFullYear(event.date) },
+          unit: {year: getFullYear(event.date)},
           viewMode: 'month'
         })
       );

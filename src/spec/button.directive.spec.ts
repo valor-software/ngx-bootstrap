@@ -1,18 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component
-} from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-  ComponentFixtureAutoDetect
-} from '@angular/core/testing';
+// tslint:disable:max-file-line-count no-floating-promises
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { ButtonsModule } from '../buttons/buttons.module';
+
+@Component({selector: 'buttons-test', template: ''})
+class TestButtonsComponent {
+  singleModel = '0';
+  checkModel: any = {left: false, middle: true, right: false};
+  radioModel = 'Middle';
+
+  constructor(public cdRef: ChangeDetectorRef) {}
+}
 
 const html = `
   <div>
@@ -51,10 +51,8 @@ const html = `
   </div>
 `;
 
-function createComponent(
-  htmlTemplate,
-  dtc?: string
-): ComponentFixture<TestButtonsComponent> {
+function createComponent(htmlTemplate,
+                         dtc?: string): ComponentFixture<TestButtonsComponent> {
   switch (dtc) {
     case 'OnPush':
       TestBed.overrideComponent(TestButtonsComponent, {
@@ -66,12 +64,13 @@ function createComponent(
       break;
     default:
       TestBed.overrideComponent(TestButtonsComponent, {
-        set: { template: htmlTemplate }
+        set: {template: htmlTemplate}
       });
   }
 
   const fixture = TestBed.createComponent(TestButtonsComponent);
   fixture.detectChanges();
+
   return fixture;
 }
 
@@ -85,7 +84,7 @@ describe('Directive: Buttons', () => {
       TestBed.configureTestingModule({
         declarations: [TestButtonsComponent],
         imports: [ButtonsModule, FormsModule],
-        providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
+        providers: [{provide: ComponentFixtureAutoDetect, useValue: true}]
       });
     })
   );
@@ -607,15 +606,3 @@ describe('Directive: Buttons', () => {
     });
   });
 });
-
-@Component({
-  selector: 'buttons-test',
-  template: ''
-})
-class TestButtonsComponent {
-  singleModel = '0';
-  checkModel: any = { left: false, middle: true, right: false };
-  radioModel = 'Middle';
-
-  constructor(public cdRef: ChangeDetectorRef) {}
-}

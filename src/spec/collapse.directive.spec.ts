@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 

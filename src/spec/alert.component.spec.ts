@@ -2,8 +2,15 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertComponent } from '../alert/alert.component';
-import { AlertModule } from '../alert/alert.module';
 import { AlertConfig } from '../alert/alert.config';
+import { AlertModule } from '../alert/alert.module';
+
+@Component({selector: 'alert-test', template: ''})
+class TestAlertComponent extends AlertComponent {
+  constructor(config: AlertConfig) {
+    super(config);
+  }
+}
 
 describe('Component: Alert', () => {
   let fixture: ComponentFixture<TestAlertComponent>;
@@ -23,7 +30,7 @@ describe('Component: Alert', () => {
       imports: [AlertModule.forRoot()]
     });
     TestBed.overrideComponent(TestAlertComponent, {
-      set: { template: overTemplate }
+      set: {template: overTemplate}
     });
     fixture = TestBed.createComponent(TestAlertComponent);
     context = fixture.debugElement.componentInstance;
@@ -57,13 +64,3 @@ describe('Component: Alert', () => {
     expect(context.isClosed).toBeTruthy();
   });
 });
-
-@Component({
-  selector: 'alert-test',
-  template: ''
-})
-class TestAlertComponent extends AlertComponent {
-  constructor(config: AlertConfig) {
-    super(config);
-  }
-}

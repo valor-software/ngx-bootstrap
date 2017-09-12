@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { RatingComponent } from '../rating/rating.component';
 import { RatingModule } from '../rating/rating.module';
-import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'rating-test',
+  template: ''
+})
+class TestRatingComponent {
+  max = 5;
+  rate = 0;
+  isReadonly = false;
+  titles: [string] = ['one', 'two', 'three', 'four', 'five'];
+}
 
 describe('Component: Rating. Init:', () => {
   let fixture: ComponentFixture<RatingComponent>;
@@ -64,11 +70,11 @@ describe('Component: Rating. Init:', () => {
 
   it('checking of working with custom icons', () => {
     context.ratingStates = [
-      { stateOff: 'glyphicon-ok-circle' },
-      { stateOff: 'glyphicon-star-empty' },
-      { stateOff: 'glyphicon-ban-circle' },
-      { stateOff: 'glyphicon-heart' },
-      { stateOff: 'glyphicon-off' }
+      {stateOff: 'glyphicon-ok-circle'},
+      {stateOff: 'glyphicon-star-empty'},
+      {stateOff: 'glyphicon-ban-circle'},
+      {stateOff: 'glyphicon-heart'},
+      {stateOff: 'glyphicon-off'}
     ];
 
     context.ngOnInit();
@@ -99,7 +105,7 @@ describe('Component: Rating. Clicks:', () => {
         imports: [RatingModule.forRoot(), FormsModule]
       });
       TestBed.overrideComponent(TestRatingComponent, {
-        set: { template: tpl }
+        set: {template: tpl}
       });
       fixture = TestBed.createComponent(TestRatingComponent);
       context = fixture.debugElement.componentInstance;
@@ -163,13 +169,3 @@ describe('Component: Rating. Clicks:', () => {
   );
 });
 
-@Component({
-  selector: 'rating-test',
-  template: ''
-})
-class TestRatingComponent {
-  max = 5;
-  rate = 0;
-  isReadonly = false;
-  titles: [string] = ['one', 'two', 'three', 'four', 'five'];
-}

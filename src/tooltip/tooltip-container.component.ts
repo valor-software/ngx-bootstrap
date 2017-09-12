@@ -51,7 +51,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.classMap = { in: false, fade: false };
     this.classMap[this.placement] = true;
-    this.classMap['tooltip-' + this.placement] = true;
+    this.classMap[`tooltip-${this.placement}`] = true;
 
     this.classMap.in = true;
     if (this.animation) {

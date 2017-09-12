@@ -1,22 +1,15 @@
 import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
 
-import { ClassName } from './modal-options.class';
+import { CLASS_NAME } from './modal-options.class';
 import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 
-export class ModalBackdropOptions {
-  animate = true;
-
-  constructor(options: ModalBackdropOptions) {
-    Object.assign(this, options);
-  }
-}
 
 /** This component will be added as background layout for modals if enabled */
 @Component({
   selector: 'bs-modal-backdrop',
   template: ' ',
-  host: { class: ClassName.BACKDROP }
+  host: { class: CLASS_NAME.BACKDROP }
 })
 export class ModalBackdropComponent implements OnInit {
   get isAnimated(): boolean {
@@ -36,13 +29,13 @@ export class ModalBackdropComponent implements OnInit {
     this._isShown = value;
     this.renderer.setElementClass(
       this.element.nativeElement,
-      `${ClassName.IN}`,
+      `${CLASS_NAME.IN}`,
       value
     );
     if (!isBs3()) {
       this.renderer.setElementClass(
         this.element.nativeElement,
-        `${ClassName.SHOW}`,
+        `${CLASS_NAME.SHOW}`,
         value
       );
     }
@@ -63,7 +56,7 @@ export class ModalBackdropComponent implements OnInit {
     if (this.isAnimated) {
       this.renderer.setElementClass(
         this.element.nativeElement,
-        `${ClassName.FADE}`,
+        `${CLASS_NAME.FADE}`,
         this.isAnimated
       );
       Utils.reflow(this.element.nativeElement);

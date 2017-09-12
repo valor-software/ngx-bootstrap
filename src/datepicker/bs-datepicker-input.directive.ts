@@ -8,6 +8,7 @@ import { getLocale } from '../bs-moment/locale/locales.service';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };

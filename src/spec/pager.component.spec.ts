@@ -1,3 +1,4 @@
+// tslint:disable:no-floating-promises
 import {
   ComponentFixture,
   TestBed,

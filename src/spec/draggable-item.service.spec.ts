@@ -42,7 +42,7 @@ describe('Service: DraggableItem', () => {
     const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
-    const item = transfer.captureItem(2, 0);
+    transfer.captureItem(2, 0);
 
     // assert
     expect(spy).toHaveBeenCalledWith(draggableItem);
@@ -53,7 +53,7 @@ describe('Service: DraggableItem', () => {
     const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
-    const item = transfer.captureItem(1, 0);
+    transfer.captureItem(1, 0);
 
     // assert
     expect(spy).not.toHaveBeenCalled();

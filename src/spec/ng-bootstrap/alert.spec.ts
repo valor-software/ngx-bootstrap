@@ -7,6 +7,16 @@ import { createGenericTestComponent } from './test/common';
 import { Component } from '@angular/core';
 import { AlertModule, AlertComponent, AlertConfig } from '../../alert';
 
+@Component({
+  selector: 'test-cmp',
+  template: '',
+  entryComponents: [AlertComponent]
+})
+class TestComponent {
+  name = 'World';
+  closed = false;
+}
+
 const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent);
 
@@ -105,12 +115,3 @@ describe('ngb-alert', () => {
   });
 });
 
-@Component({
-  selector: 'test-cmp',
-  template: '',
-  entryComponents: [AlertComponent]
-})
-class TestComponent {
-  name = 'World';
-  closed = false;
-}

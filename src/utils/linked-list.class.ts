@@ -5,30 +5,6 @@ export class LinkedList<T> {
   protected current: any;
   protected asArray: T[] = [];
 
-  protected getNode(position: number): any {
-    if (this.length === 0 || position < 0 || position >= this.length) {
-      throw new Error('Position is out of the list');
-    }
-
-    let current = this.head;
-
-    for (let index = 0; index < position; index++) {
-      current = current.next;
-    }
-    return current;
-  }
-
-  protected createInternalArrayRepresentation(): void {
-    const outArray: any[] = [];
-    let current = this.head;
-
-    while (current) {
-      outArray.push(current.value);
-      current = current.next;
-    }
-    this.asArray = outArray;
-  }
-
   get(position: number): T {
     if (this.length === 0 || position < 0 || position >= this.length) {
       return void 0;
@@ -39,6 +15,7 @@ export class LinkedList<T> {
     for (let index = 0; index < position; index++) {
       current = current.next;
     }
+
     return current.value;
   }
 
@@ -134,17 +111,20 @@ export class LinkedList<T> {
     const result: any[] = [];
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
-        result.push({ index, value: current.value });
+        result.push({index, value: current.value});
       }
       current = current.next;
     }
+
     return result;
   }
+
   // Array methods overriding start
   push(...args: T[]): number {
     args.forEach((arg: any) => {
       this.add(arg);
     });
+
     return this.length;
   }
 
@@ -154,6 +134,7 @@ export class LinkedList<T> {
     }
     const last = this.tail;
     this.remove(this.length - 1);
+
     return last.value;
   }
 
@@ -162,6 +143,7 @@ export class LinkedList<T> {
     args.forEach((arg: any) => {
       this.add(arg, 0);
     });
+
     return this.length;
   }
 
@@ -171,6 +153,7 @@ export class LinkedList<T> {
     }
     const lastItem = this.head.value;
     this.remove();
+
     return lastItem;
   }
 
@@ -193,6 +176,7 @@ export class LinkedList<T> {
       }
       current = current.next;
     }
+
     return position;
   }
 
@@ -206,6 +190,7 @@ export class LinkedList<T> {
       }
       current = current.next;
     }
+
     return result;
   }
 
@@ -218,6 +203,7 @@ export class LinkedList<T> {
       }
       current = current.next;
     }
+
     return result;
   }
 
@@ -235,6 +221,7 @@ export class LinkedList<T> {
       }
       current = current.next;
     }
+
     return result;
   }
 
@@ -248,7 +235,33 @@ export class LinkedList<T> {
       }
       current = current.next;
     }
+
     return result;
+  }
+
+  protected getNode(position: number): any {
+    if (this.length === 0 || position < 0 || position >= this.length) {
+      throw new Error('Position is out of the list');
+    }
+
+    let current = this.head;
+
+    for (let index = 0; index < position; index++) {
+      current = current.next;
+    }
+
+    return current;
+  }
+
+  protected createInternalArrayRepresentation(): void {
+    const outArray: any[] = [];
+    let current = this.head;
+
+    while (current) {
+      outArray.push(current.value);
+      current = current.next;
+    }
+    this.asArray = outArray;
   }
 
   // Array methods overriding END

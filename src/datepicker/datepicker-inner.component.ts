@@ -33,7 +33,8 @@ import { DateFormatter } from './date-formatter';
 @Component({
   selector: 'datepicker-inner',
   template: `
-    <div *ngIf="datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
+    <!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
+    <div *ngIf="datepickerMode" class="well well-sm bg-faded p-a card" role="application" >
       <ng-content></ng-content>
     </div>
   `
@@ -103,7 +104,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // todo: add formatter value to Date object
   ngOnInit(): void {
     // todo: use date for unique value
-    this.uniqueId = 'datepicker-' + '-' + Math.floor(Math.random() * 10000);
+    this.uniqueId =  `datepicker--${Math.floor(Math.random() * 10000)}`;
 
     if (this.initDate) {
       this.activeDate = this.initDate;
@@ -122,7 +123,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   // Check if activeDate has been update and then emit the activeDateChange with the new date
-  private checkIfActiveDateGotUpdated(activeDate: any): void {
+  checkIfActiveDateGotUpdated(activeDate: any): void {
     if (activeDate && !activeDate.firstChange) {
       const previousValue = activeDate.previousValue;
       if (
@@ -204,6 +205,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   isActive(dateObject: any): boolean {
     if (this.compare(dateObject.date, this.activeDate) === 0) {
       this.activeDateId = dateObject.uid;
+
       return true;
     }
 
@@ -222,6 +224,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     dateObject.disabled = this.isDisabled(date);
     dateObject.current = this.compare(date, new Date()) === 0;
     dateObject.customClass = this.getCustomClassForDate(dateObject.date);
+
     return dateObject;
   }
 
@@ -230,6 +233,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
     }
+
     return arrays;
   }
 
@@ -241,6 +245,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // date.getHours()); can result in "2013 11 31 23" because of the bug.
   fixTimeZone(date: Date): Date {
     const hours = date.getHours();
+
     return new Date(
       date.getFullYear(),
       date.getMonth(),
@@ -307,8 +312,8 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  toggleMode(direction: number): void {
-    direction = direction || 1;
+  toggleMode(_direction: number): void {
+    const direction = _direction || 1;
 
     if (
       (this.datepickerMode === this.maxMode && direction === 1) ||
@@ -338,6 +343,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
         customClass.mode === this.datepickerMode
       );
     }, this);
+
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 

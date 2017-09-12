@@ -1,3 +1,5 @@
+// @deprecated
+// tslint:disable
 import { Component, OnInit } from '@angular/core';
 
 import { isBs3 } from '../utils/theme-provider';

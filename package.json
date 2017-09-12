@@ -18,7 +18,7 @@
     "docs.fetch": "node scripts/fetch-docs.js",
     "link": "ngm link -p src --here",
     "lint-pretty": "prettier --config .prettierrc --write -l  \"{demo/src,src}/**/*.ts\"",
-    "lint-src": "tslint \"src/**/*.ts\" -c tslint.json --type-check -p src/tsconfig.spec.json -e \"src/bs-moment/**\"",
+    "lint-src": "tslint \"src/**/*.ts\" -c tslint.json --type-check -p src/tsconfig.spec.json -e \"src/bs-moment/**\" -e \"src/**/bs-datepicker-view.html\"",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",

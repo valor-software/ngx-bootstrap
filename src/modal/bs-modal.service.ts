@@ -2,7 +2,7 @@ import {
   ComponentRef,
   Injectable,
   TemplateRef,
-  EventEmitter
+  EventEmitter, Renderer2
 } from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -10,12 +10,12 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
 import {
-  BsModalRef,
-  ClassName,
+  CLASS_NAME,
   modalConfigDefaults,
   ModalOptions,
-  TransitionDurations
+  TRANSITION_DURATIONS
 } from './modal-options.class';
+import { BsModalRef } from './bs-modal-ref.service';
 
 @Injectable()
 export class BsModalService {
@@ -39,7 +39,7 @@ export class BsModalService {
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
-  constructor(private clf: ComponentLoaderFactory) {
+  constructor(private _renderer: Renderer2, private clf: ComponentLoaderFactory) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
@@ -54,6 +54,7 @@ export class BsModalService {
     this.config = Object.assign({}, modalConfigDefaults, config);
     this._showBackdrop();
     this.lastDismissReason = null;
+
     return this._showModal(content);
   }
 
@@ -66,7 +67,7 @@ export class BsModalService {
     setTimeout(() => {
       this._hideModal(level);
       this.removeLoaders(level);
-    }, this.config.animated ? TransitionDurations.BACKDROP : 0);
+    }, this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0);
   }
 
   _showBackdrop(): void {
@@ -93,7 +94,7 @@ export class BsModalService {
       return;
     }
     this.backdropRef.instance.isShown = false;
-    const duration = this.config.animated ? TransitionDurations.BACKDROP : 0;
+    const duration = this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
 
@@ -111,6 +112,7 @@ export class BsModalService {
       modalContainerRef.instance.hide();
     };
     bsModalRef.content = modalLoader.getInnerComponent() || null;
+
     return bsModalRef;
   }
 
@@ -129,12 +131,12 @@ export class BsModalService {
     this.lastDismissReason = reason;
   }
 
-  protected removeBackdrop(): void {
+  removeBackdrop(): void {
     this._backdropLoader.hide();
     this.backdropRef = null;
   }
 
-  /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE*/
+  /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE */
   /** Scroll bar tricks */
   /** @internal */
   checkScrollbar(): void {
@@ -161,16 +163,17 @@ export class BsModalService {
   }
 
   private resetScrollbar(): void {
-    document.body.style.paddingRight = this.originalBodyPadding + 'px';
+    document.body.style.paddingRight = `${this.originalBodyPadding}px`;
   }
 
   // thx d.walsh
   private getScrollbarWidth(): number {
-    const scrollDiv = document.createElement('div');
-    scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
-    document.body.appendChild(scrollDiv);
+    const scrollDiv = this._renderer.createElement('div');
+    this._renderer.addClass(scrollDiv, CLASS_NAME.SCROLLBAR_MEASURER);
+    this._renderer.appendChild('body', scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
+    this._renderer.removeChild('body', scrollDiv);
+
     return scrollbarWidth;
   }
 

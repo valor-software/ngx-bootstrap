@@ -4,6 +4,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProgressbarComponent } from '../progressbar/progressbar.component';
 import { ProgressbarModule } from '../progressbar/progressbar.module';
 
+@Component({
+  selector: 'progressbar-test',
+  template: ''
+})
+class TestProgressbarComponent extends ProgressbarComponent {}
+
 describe('Component: Progress Bar', () => {
   let fixture: ComponentFixture<TestProgressbarComponent>;
   let element: any;
@@ -104,9 +110,3 @@ describe('Component: Progress Bar', () => {
     expect(barInnerDiv.style.width).toEqual('50%');
   });
 });
-
-@Component({
-  selector: 'progressbar-test',
-  template: ''
-})
-class TestProgressbarComponent extends ProgressbarComponent {}

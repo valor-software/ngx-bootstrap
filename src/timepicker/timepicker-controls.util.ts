@@ -96,6 +96,7 @@ export function getControlsValue(
     min,
     max
   } = state;
+
   return {
     hourStep,
     minuteStep,
@@ -117,7 +118,7 @@ export function timepickerControls(
   state: TimepickerComponentState
 ): TimepickerControls {
   const { min, max, hourStep, minuteStep, secondsStep, showSeconds } = state;
-  const res = {
+  const res: TimepickerControls = {
     canIncrementHours: true,
     canIncrementMinutes: true,
     canIncrementSeconds: true,
@@ -125,7 +126,7 @@ export function timepickerControls(
     canDecrementHours: true,
     canDecrementMinutes: true,
     canDecrementSeconds: true
-  } as TimepickerControls;
+  };
 
   if (!value) {
     return res;

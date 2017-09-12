@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
 
 import { CollapseModule } from '../../collapse';
 
+@Component({ selector: 'test-cmp', template: '' })
+class TestComponent {
+  collapsed = false;
+}
+
 const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent);
 
@@ -90,8 +95,3 @@ describe('bs-collapse', () => {
     expect(collapseEl).toHaveCssClass('show');
   });
 });
-
-@Component({ selector: 'test-cmp', template: '' })
-class TestComponent {
-  collapsed = false;
-}
