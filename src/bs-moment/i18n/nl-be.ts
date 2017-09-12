@@ -24,6 +24,8 @@ const monthsParse = [
   /^nov/i,
   /^dec/i
 ];
+
+// tslint:disable-next-line
 const monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
 
 export const nlBe: LocaleData = {
@@ -90,7 +92,9 @@ export const nlBe: LocaleData = {
   },
   dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
   ordinal(num: number): string {
-    return num + (num === 1 || num === 8 || num >= 20 ? 'ste' : 'de');
+    const ending = num === 1 || num === 8 || num >= 20 ? 'ste' : 'de';
+
+    return `${num}${ending}`;
   },
   week: {
     dow: 1, // Monday is the first day of the week.

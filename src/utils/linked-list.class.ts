@@ -1,5 +1,5 @@
 export class LinkedList<T> {
-  public length = 0;
+  length = 0;
   protected head: any;
   protected tail: any;
   protected current: any;
@@ -29,7 +29,7 @@ export class LinkedList<T> {
     this.asArray = outArray;
   }
 
-  public get(position: number): T {
+  get(position: number): T {
     if (this.length === 0 || position < 0 || position >= this.length) {
       return void 0;
     }
@@ -42,7 +42,7 @@ export class LinkedList<T> {
     return current.value;
   }
 
-  public add(value: T, position: number = this.length): void {
+  add(value: T, position: number = this.length): void {
     if (position < 0 || position > this.length) {
       throw new Error('Position is out of the list');
     }
@@ -84,7 +84,7 @@ export class LinkedList<T> {
     this.createInternalArrayRepresentation();
   }
 
-  public remove(position = 0): void {
+  remove(position = 0): void {
     if (this.length === 0 || position < 0 || position >= this.length) {
       throw new Error('Position is out of the list');
     }
@@ -115,7 +115,7 @@ export class LinkedList<T> {
     this.createInternalArrayRepresentation();
   }
 
-  public set(position: number, value: T): void {
+  set(position: number, value: T): void {
     if (this.length === 0 || position < 0 || position >= this.length) {
       throw new Error('Position is out of the list');
     }
@@ -125,11 +125,11 @@ export class LinkedList<T> {
     this.createInternalArrayRepresentation();
   }
 
-  public toArray(): T[] {
+  toArray(): T[] {
     return this.asArray;
   }
 
-  public findAll(fn: any): any[] {
+  findAll(fn: any): any[] {
     let current = this.head;
     const result: any[] = [];
     for (let index = 0; index < this.length; index++) {
@@ -141,14 +141,14 @@ export class LinkedList<T> {
     return result;
   }
   // Array methods overriding start
-  public push(...args: T[]): number {
+  push(...args: T[]): number {
     args.forEach((arg: any) => {
       this.add(arg);
     });
     return this.length;
   }
 
-  public pop(): T {
+  pop(): T {
     if (this.length === 0) {
       return undefined;
     }
@@ -157,7 +157,7 @@ export class LinkedList<T> {
     return last.value;
   }
 
-  public unshift(...args: T[]): number {
+  unshift(...args: T[]): number {
     args.reverse();
     args.forEach((arg: any) => {
       this.add(arg, 0);
@@ -165,7 +165,7 @@ export class LinkedList<T> {
     return this.length;
   }
 
-  public shift(): T {
+  shift(): T {
     if (this.length === 0) {
       return undefined;
     }
@@ -174,7 +174,7 @@ export class LinkedList<T> {
     return lastItem;
   }
 
-  public forEach(fn: any): void {
+  forEach(fn: any): void {
     let current = this.head;
     for (let index = 0; index < this.length; index++) {
       fn(current.value, index);
@@ -182,7 +182,7 @@ export class LinkedList<T> {
     }
   }
 
-  public indexOf(value: T): number {
+  indexOf(value: T): number {
     let current = this.head;
     let position = 0;
 
@@ -196,7 +196,7 @@ export class LinkedList<T> {
     return position;
   }
 
-  public some(fn: any): boolean {
+  some(fn: any): boolean {
     let current = this.head;
     let result = false;
     while (current && !result) {
@@ -209,7 +209,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  public every(fn: any): boolean {
+  every(fn: any): boolean {
     let current = this.head;
     let result = true;
     while (current && result) {
@@ -221,11 +221,11 @@ export class LinkedList<T> {
     return result;
   }
 
-  public toString(): string {
+  toString(): string {
     return '[Linked List]';
   }
 
-  public find(fn: any): T {
+  find(fn: any): T {
     let current = this.head;
     let result: T;
     for (let index = 0; index < this.length; index++) {
@@ -238,7 +238,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  public findIndex(fn: any): number {
+  findIndex(fn: any): number {
     let current = this.head;
     let result: number;
     for (let index = 0; index < this.length; index++) {

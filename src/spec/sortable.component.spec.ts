@@ -30,9 +30,9 @@ const HEROES_OBJ: any[] = [
 `
 })
 class TestSortableComponent {
-  public selectedState: string;
-  public heroes: string[] = [...HEROES];
-  public heroesObj: any[] = [...HEROES_OBJ];
+  selectedState: string;
+  heroes: string[] = [...HEROES];
+  heroesObj: any[] = [...HEROES_OBJ];
 }
 
 describe('Component: Sortable', () => {

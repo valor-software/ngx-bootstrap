@@ -168,8 +168,8 @@ describe('Component: Rating. Clicks:', () => {
   template: ''
 })
 class TestRatingComponent {
-  public max = 5;
-  public rate = 0;
-  public isReadonly = false;
-  public titles: [string] = ['one', 'two', 'three', 'four', 'five'];
+  max = 5;
+  rate = 0;
+  isReadonly = false;
+  titles: [string] = ['one', 'two', 'three', 'four', 'five'];
 }

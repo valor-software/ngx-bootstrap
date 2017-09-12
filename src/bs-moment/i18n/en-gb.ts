@@ -50,7 +50,7 @@ export const enGb: LocaleData = {
   ordinal(num) {
     const b = num % 10;
     const output =
-      ~~((num % 100) / 10) === 1
+      Math.trunc((num % 100) / 10) === 1
         ? 'th'
         : b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
 

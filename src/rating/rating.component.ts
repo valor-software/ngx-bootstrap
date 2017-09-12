@@ -22,31 +22,31 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */
-  @Input() public max = 5;
+  @Input() max = 5;
   /** selected icon class */
-  @Input() public stateOn: string;
+  @Input() stateOn: string;
   /** unselected icon class */
-  @Input() public stateOff: string;
+  @Input() stateOff: string;
   /** if true will not react on any user events */
-  @Input() public readonly: boolean;
+  @Input() readonly: boolean;
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
-  @Input() public titles: string[];
+  @Input() titles: string[];
   /** array of custom icons classes */
-  @Input() public ratingStates: { stateOn: string; stateOff: string }[];
+  @Input() ratingStates: { stateOn: string; stateOff: string }[];
   /** fired when icon selected, $event:number equals to selected rating */
-  @Output() public onHover: EventEmitter<number> = new EventEmitter();
+  @Output() onHover: EventEmitter<number> = new EventEmitter();
   /** fired when icon selected, $event:number equals to previous rating value */
-  @Output() public onLeave: EventEmitter<number> = new EventEmitter();
+  @Output() onLeave: EventEmitter<number> = new EventEmitter();
 
-  public onChange: any = Function.prototype;
-  public onTouched: any = Function.prototype;
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
 
-  public range: any[];
-  public value: number;
+  range: any[];
+  value: number;
   protected preValue: number;
 
   @HostListener('keydown', ['$event'])
-  public onKeydown(event: any): void {
+  onKeydown(event: any): void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
@@ -57,7 +57,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.rate(this.value + sign);
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.max = typeof this.max !== 'undefined' ? this.max : 5;
     this.readonly = this.readonly;
     this.stateOn =
@@ -74,7 +74,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   // model -> view
-  public writeValue(value: number): void {
+  writeValue(value: number): void {
     if (value % 1 !== value) {
       this.value = Math.round(value);
       this.preValue = value;
@@ -85,27 +85,27 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.value = value;
   }
 
-  public enter(value: number): void {
+  enter(value: number): void {
     if (!this.readonly) {
       this.value = value;
       this.onHover.emit(value);
     }
   }
 
-  public reset(): void {
+  reset(): void {
     this.value = this.preValue;
     this.onLeave.emit(this.value);
   }
 
-  public registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 
-  public rate(value: number): void {
+  rate(value: number): void {
     if (!this.readonly && value >= 0 && value <= this.range.length) {
       this.writeValue(value);
       this.onChange(value);

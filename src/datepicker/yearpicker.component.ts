@@ -55,19 +55,19 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   ]
 })
 export class YearPickerComponent implements OnInit {
-  public datePicker: DatePickerInnerComponent;
-  public title: string;
-  public rows: any[] = [];
+  datePicker: DatePickerInnerComponent;
+  title: string;
+  rows: any[] = [];
 
-  public constructor(datePicker: DatePickerInnerComponent) {
+  constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 
-  public get isBs4(): boolean {
+  get isBs4(): boolean {
     return !isBs3();
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     const self = this;
 
     this.datePicker.stepYear = { years: this.datePicker.yearRange };

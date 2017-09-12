@@ -1,16 +1,6 @@
 import {
-  Component,
-  ComponentRef,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer,
-  SimpleChanges,
-  ViewContainerRef
+  Component, ComponentRef, ElementRef, EventEmitter, Input, OnChanges,
+  OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
@@ -48,11 +38,11 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    * Returns whether or not the datepicker is currently being shown
    */
   @Input()
-  public get isOpen(): boolean {
+  get isOpen(): boolean {
     return this._datepicker.isShown;
   }
 
-  public set isOpen(value: boolean) {
+  set isOpen(value: boolean) {
     if (value) {
       this.show();
     } else {
@@ -108,13 +98,11 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
 
-  constructor(
-    public _config: BsDatepickerConfig,
-    _elementRef: ElementRef,
-    _renderer: Renderer,
-    _viewContainerRef: ViewContainerRef,
-    cis: ComponentLoaderFactory
-  ) {
+  constructor(public _config: BsDatepickerConfig,
+              _elementRef: ElementRef,
+              _renderer: Renderer2,
+              _viewContainerRef: ViewContainerRef,
+              cis: ComponentLoaderFactory) {
     // todo: assign only subset of fields
     Object.assign(this, this._config);
     this._datepicker = cis.createLoader<BsDatepickerContainerComponent>(
@@ -169,11 +157,11 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     });
 
     this._datepickerRef = this._datepicker
-      .provide({ provide: BsDatepickerConfig, useValue: this._config })
+      .provide({provide: BsDatepickerConfig, useValue: this._config})
       .attach(BsDatepickerContainerComponent)
       .to(this.container)
-      .position({ attachment: this.placement })
-      .show({ placement: this.placement });
+      .position({attachment: this.placement})
+      .show({placement: this.placement});
 
     // if date changes from external source (model -> view)
     this._subs.push(
@@ -205,8 +193,8 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /**
-   * Toggles an element’s datepicker. This is considered a “manual” triggering of
-   * the datepicker.
+   * Toggles an element’s datepicker. This is considered a “manual” triggering
+   * of the datepicker.
    */
   toggle(): void {
     if (this.isOpen) {

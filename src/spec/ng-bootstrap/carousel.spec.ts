@@ -7,7 +7,6 @@ import {
   discardPeriodicTasks,
   tick,
   TestBed,
-  ComponentFixture,
   inject
 } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
@@ -510,6 +509,6 @@ describe('ngb-carousel', () => {
 
 @Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
-  public activeSlideIndex: number;
+  activeSlideIndex: number;
   keyboard: boolean;
 }

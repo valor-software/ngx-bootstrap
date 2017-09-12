@@ -15,15 +15,15 @@ import { AccordionConfig } from './accordion.config';
 })
 export class AccordionComponent {
   /** if `true` expanding one item will close all others */
-  @Input() public closeOthers: boolean;
+  @Input() closeOthers: boolean;
 
   protected groups: AccordionPanelComponent[] = [];
 
-  public constructor(config: AccordionConfig) {
+  constructor(config: AccordionConfig) {
     Object.assign(this, config);
   }
 
-  public closeOtherPanels(openGroup: AccordionPanelComponent): void {
+  closeOtherPanels(openGroup: AccordionPanelComponent): void {
     if (!this.closeOthers) {
       return;
     }
@@ -35,11 +35,11 @@ export class AccordionComponent {
     });
   }
 
-  public addGroup(group: AccordionPanelComponent): void {
+  addGroup(group: AccordionPanelComponent): void {
     this.groups.push(group);
   }
 
-  public removeGroup(group: AccordionPanelComponent): void {
+  removeGroup(group: AccordionPanelComponent): void {
     const index = this.groups.indexOf(group);
     if (index !== -1) {
       this.groups.splice(index, 1);

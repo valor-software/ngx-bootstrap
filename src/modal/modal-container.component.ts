@@ -29,14 +29,14 @@ import { isBs3 } from '../utils/theme-provider';
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
-  public config: ModalOptions;
-  public isShown = false;
-  public level: number;
-  public isAnimated: boolean;
+  config: ModalOptions;
+  isShown = false;
+  level: number;
+  isAnimated: boolean;
   protected _element: ElementRef;
   private isModalHiding = false;
   @HostListener('click', ['$event'])
-  public onClick(event: any): void {
+  onClick(event: any): void {
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
@@ -48,7 +48,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.hide();
   }
   @HostListener('window:keydown.esc')
-  public onEsc(): void {
+  onEsc(): void {
     if (
       this.config.keyboard &&
       this.level === this.bsModalService.getModalsCount()

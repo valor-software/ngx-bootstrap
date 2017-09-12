@@ -613,9 +613,9 @@ describe('Directive: Buttons', () => {
   template: ''
 })
 class TestButtonsComponent {
-  public singleModel = '0';
-  public checkModel: any = { left: false, middle: true, right: false };
-  public radioModel = 'Middle';
+  singleModel = '0';
+  checkModel: any = { left: false, middle: true, right: false };
+  radioModel = 'Middle';
 
   constructor(public cdRef: ChangeDetectorRef) {}
 }

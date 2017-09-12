@@ -131,5 +131,5 @@ xdescribe('Directives: Tooltips', () => {
   template: ''
 })
 class TestTooltipComponent {
-  public delay = 0;
+  delay = 0;
 }

@@ -5,9 +5,9 @@ import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 
 export class ModalBackdropOptions {
-  public animate = true;
+  animate = true;
 
-  public constructor(options: ModalBackdropOptions) {
+  constructor(options: ModalBackdropOptions) {
     Object.assign(this, options);
   }
 }
@@ -19,20 +19,20 @@ export class ModalBackdropOptions {
   host: { class: ClassName.BACKDROP }
 })
 export class ModalBackdropComponent implements OnInit {
-  public get isAnimated(): boolean {
+  get isAnimated(): boolean {
     return this._isAnimated;
   }
 
-  public set isAnimated(value: boolean) {
+  set isAnimated(value: boolean) {
     this._isAnimated = value;
     // this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, value);
   }
 
-  public get isShown(): boolean {
+  get isShown(): boolean {
     return this._isShown;
   }
 
-  public set isShown(value: boolean) {
+  set isShown(value: boolean) {
     this._isShown = value;
     this.renderer.setElementClass(
       this.element.nativeElement,
@@ -48,13 +48,13 @@ export class ModalBackdropComponent implements OnInit {
     }
   }
 
-  public element: ElementRef;
-  public renderer: Renderer;
+  element: ElementRef;
+  renderer: Renderer;
 
   protected _isAnimated: boolean;
   protected _isShown = false;
 
-  public constructor(element: ElementRef, renderer: Renderer) {
+  constructor(element: ElementRef, renderer: Renderer) {
     this.element = element;
     this.renderer = renderer;
   }

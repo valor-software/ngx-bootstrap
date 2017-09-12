@@ -1,12 +1,7 @@
+// tslint:disable:no-use-before-declare
 import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  forwardRef,
-  HostListener,
-  Input,
-  OnInit,
-  ChangeDetectorRef
+  ChangeDetectorRef, Directive, ElementRef, forwardRef, HostBinding,
+  HostListener, Input, OnInit
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -25,25 +20,26 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
   providers: [RADIO_CONTROL_VALUE_ACCESSOR]
 })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
-  public onChange: any = Function.prototype;
-  public onTouched: any = Function.prototype;
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
 
   /** Radio button value, will be set to `ngModel` */
-  @Input() public btnRadio: any;
+  @Input() btnRadio: any;
   /** If `true` — radio button can be unchecked */
-  @Input() public uncheckable: boolean;
+  @Input() uncheckable: boolean;
   /** Current value of radio component or group */
-  @Input() public value: any;
-
-  protected el: ElementRef;
+  @Input() value: any;
 
   @HostBinding('class.active')
-  public get isActive(): boolean {
+  get isActive(): boolean {
     return this.btnRadio === this.value;
   }
 
+  constructor(private el: ElementRef, private cdr: ChangeDetectorRef) {
+  }
+
   @HostListener('click')
-  public onClick(): void {
+  onClick(): void {
     if (this.el.nativeElement.attributes.disabled) {
       return;
     }
@@ -52,6 +48,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
       this.value = undefined;
       this.onTouched();
       this.onChange(this.value);
+
       return;
     }
 
@@ -59,34 +56,29 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
       this.value = this.btnRadio;
       this.onTouched();
       this.onChange(this.value);
-      return;
     }
   }
 
-  public constructor(el: ElementRef, private cdr: ChangeDetectorRef) {
-    this.el = el;
-  }
-
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.uncheckable = typeof this.uncheckable !== 'undefined';
   }
 
-  public onBlur(): void {
+  onBlur(): void {
     this.onTouched();
   }
 
   // ControlValueAccessor
   // model -> view
-  public writeValue(value: any): void {
+  writeValue(value: any): void {
     this.value = value;
     this.cdr.markForCheck();
   }
 
-  public registerOnChange(fn: any): void {
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 }

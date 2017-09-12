@@ -8,15 +8,15 @@ export class DraggableItemService {
 
   private onCapture: Subject<DraggableItem> = new Subject<DraggableItem>();
 
-  public dragStart(item: DraggableItem): void {
+  dragStart(item: DraggableItem): void {
     this.draggableItem = item;
   }
 
-  public getItem(): DraggableItem {
+  getItem(): DraggableItem {
     return this.draggableItem;
   }
 
-  public captureItem(overZoneIndex: number, newIndex: number): DraggableItem {
+  captureItem(overZoneIndex: number, newIndex: number): DraggableItem {
     if (this.draggableItem.overZoneIndex !== overZoneIndex) {
       this.draggableItem.lastZoneIndex = this.draggableItem.overZoneIndex;
       this.draggableItem.overZoneIndex = overZoneIndex;
@@ -29,7 +29,7 @@ export class DraggableItemService {
     return this.draggableItem;
   }
 
-  public onCaptureItem(): Subject<DraggableItem> {
+  onCaptureItem(): Subject<DraggableItem> {
     return this.onCapture;
   }
 }

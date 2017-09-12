@@ -2,19 +2,18 @@
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
-import { Renderer } from '@angular/core';
+import { Renderer2 } from '@angular/core';
 import { Trigger } from './trigger.class';
-import { ListenOptions } from '../component-loader/listen-options.model';
+import {
+  BsEventCallback, ListenOptions
+} from '../component-loader/listen-options.model';
 
 const DEFAULT_ALIASES = {
   hover: ['mouseover', 'mouseout'],
   focus: ['focusin', 'focusout']
 };
 
-export function parseTriggers(
-  triggers: string,
-  aliases: any = DEFAULT_ALIASES
-): Trigger[] {
+export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();
 
   if (trimmedTriggers.length === 0) {
@@ -26,6 +25,7 @@ export function parseTriggers(
     .map((trigger: string) => trigger.split(':'))
     .map((triggerPair: string[]) => {
       const alias = aliases[triggerPair[0]] || triggerPair;
+
       return new Trigger(alias[0], alias[1]);
     });
 
@@ -44,14 +44,12 @@ export function parseTriggers(
   return parsedTriggers;
 }
 
-export function listenToTriggers(
-  renderer: Renderer,
-  target: any,
-  triggers: string,
-  showFn: Function,
-  hideFn: Function,
-  toggleFn: Function
-): Function {
+export function listenToTriggers(renderer: Renderer2,
+                                 target: any,
+                                 triggers: string,
+                                 showFn: BsEventCallback,
+                                 hideFn: BsEventCallback,
+                                 toggleFn: BsEventCallback): Function {
   const parsedTriggers = parseTriggers(triggers);
   const listeners: any[] = [];
 
@@ -62,6 +60,7 @@ export function listenToTriggers(
   parsedTriggers.forEach((trigger: Trigger) => {
     if (trigger.open === trigger.close) {
       listeners.push(renderer.listen(target, trigger.open, toggleFn));
+
       return;
     }
 
@@ -76,10 +75,8 @@ export function listenToTriggers(
   };
 }
 
-export function listenToTriggersV2(
-  renderer: Renderer,
-  options: ListenOptions
-): Function {
+export function listenToTriggersV2(renderer: Renderer2,
+                                   options: ListenOptions): Function {
   const parsedTriggers = parseTriggers(options.triggers);
   const target = options.target;
   // do nothing
@@ -120,15 +117,13 @@ export function listenToTriggersV2(
   };
 }
 
-export function registerOutsideClick(
-  renderer: Renderer,
-  options: ListenOptions
-) {
+export function registerOutsideClick(renderer: Renderer2,
+                                     options: ListenOptions) {
   if (!options.outsideClick) {
     return Function.prototype;
   }
 
-  return renderer.listenGlobal('document', 'click', (event: any) => {
+  return renderer.listen('document', 'click', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
       return;
     }
@@ -138,6 +133,7 @@ export function registerOutsideClick(
     ) {
       return;
     }
+
     options.hide();
   });
 }

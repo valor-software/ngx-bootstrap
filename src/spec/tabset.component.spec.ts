@@ -249,28 +249,28 @@ describe('Component: Tabs', () => {
   template: ''
 })
 class TestTabsetComponent {
-  public isVertical: Boolean = false;
-  public isJustified: Boolean = false;
-  public tabs: any[] = [
+  isVertical: Boolean = false;
+  isJustified: Boolean = false;
+  tabs: any[] = [
     { title: 'tab1', content: 'tab1 content', customClass: 'testCustomClass' },
     { title: 'tab2', content: 'tab2 content', disabled: true },
     { title: 'tab3', content: 'tab3 content', removable: true }
   ];
   @ViewChild('tabset') tabset: TabsetComponent;
 
-  public constructor(config: TabsetConfig) {
+  constructor(config: TabsetConfig) {
     Object.assign(this, config);
   }
 
-  public _select(e: TabsModule): TabsModule {
+  _select(e: TabsModule): TabsModule {
     return e;
   }
 
-  public _deselect(e: TabsModule): TabsModule {
+  _deselect(e: TabsModule): TabsModule {
     return e;
   }
 
-  public _removed(e: TabsModule): TabsModule {
+  _removed(e: TabsModule): TabsModule {
     return e;
   }
 }

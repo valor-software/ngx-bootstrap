@@ -1,15 +1,9 @@
 import {
-  Directive,
-  ElementRef,
-  forwardRef,
-  Host,
-  OnInit,
-  Renderer
+  Directive, ElementRef, forwardRef, Host, OnInit, Renderer2
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDatepickerComponent } from './bs-datepicker.component';
 import { formatDate } from '../bs-moment/format';
-import { BsDatepickerConfig } from './bs-datepicker.config';
 import { getLocale } from '../bs-moment/locale/locales.service';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {
@@ -32,24 +26,18 @@ export class BsDatepickerInputDirective
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
 
-  constructor(
-    @Host() private _picker: BsDatepickerComponent,
-    private _config: BsDatepickerConfig,
-    private _renderer: Renderer,
-    private _elRef: ElementRef
-  ) {}
+  constructor(@Host() private _picker: BsDatepickerComponent,
+              private _renderer: Renderer2,
+              private _elRef: ElementRef) {}
 
   ngOnInit(): void {
     this._picker.bsValueChange.subscribe((v: Date) => {
-      this._renderer.setElementProperty(
-        this._elRef.nativeElement,
-        'value',
-        formatDate(
-          v,
-          this._picker._config.dateInputFormat,
-          this._picker._config.locale
-        ) || ''
-      );
+      const initialDate = formatDate(
+        v,
+        this._picker._config.dateInputFormat,
+        this._picker._config.locale
+      ) || '';
+      this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
       this._onChange(v);
     });
   }
@@ -82,11 +70,7 @@ export class BsDatepickerInputDirective
 
   setDisabledState(isDisabled: boolean): void {
     this._picker.isDisabled = isDisabled;
-    this._renderer.setElementAttribute(
-      this._elRef.nativeElement,
-      'disabled',
-      'disabled'
-    );
+    this._renderer.setAttribute(this._elRef.nativeElement, 'disabled', 'disabled');
   }
 
   registerOnChange(fn: (value: any) => any): void {

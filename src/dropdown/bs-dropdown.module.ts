@@ -25,7 +25,7 @@ import { BsDropdownState } from './bs-dropdown.state';
   entryComponents: [BsDropdownContainerComponent]
 })
 export class BsDropdownModule {
-  public static forRoot(config?: any): ModuleWithProviders {
+  static forRoot(config?: any): ModuleWithProviders {
     return {
       ngModule: BsDropdownModule,
       providers: [

@@ -18,8 +18,7 @@ import { TypeaheadModule } from './typeahead/typeahead.module';
 
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
   beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
+    async(() => TestBed.configureTestingModule({
         imports: [
           AccordionModule.forRoot(),
           AlertModule.forRoot(),
@@ -38,10 +37,6 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
           TooltipModule.forRoot(),
           TypeaheadModule.forRoot()
         ]
-      }).compileComponents();
-    })
-  );
-
-  // beforeEach(() => {
-  // });
+      }).compileComponents()
+    ));
 });

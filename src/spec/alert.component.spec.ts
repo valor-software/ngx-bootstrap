@@ -63,7 +63,7 @@ describe('Component: Alert', () => {
   template: ''
 })
 class TestAlertComponent extends AlertComponent {
-  public constructor(config: AlertConfig) {
+  constructor(config: AlertConfig) {
     super(config);
   }
 }

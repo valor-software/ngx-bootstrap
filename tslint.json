@@ -2,7 +2,8 @@
   "extends": "tslint-config-valorsoft",
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
-    "member-access": false,
+    "member-access": [true, "no-public"],
+    "no-void-expression": [true, "ignore-arrow-function-shorthand"],
     "use-host-property-decorator": false,
     "no-parameter-properties": false,
     "typedef": true,

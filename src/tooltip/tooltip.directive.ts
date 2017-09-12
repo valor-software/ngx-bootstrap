@@ -1,18 +1,10 @@
 import {
-  Directive,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-  Output,
-  EventEmitter,
-  Renderer,
-  ElementRef,
-  OnInit,
-  OnDestroy
+  Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
+  Renderer2, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
-import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
+import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
 import { OnChange } from '../utils/decorators';
 import { warnOnce } from '../utils/warn-once';
 
@@ -26,37 +18,35 @@ export class TooltipDirective implements OnInit, OnDestroy {
    */
   @OnChange()
   @Input()
-  public tooltip: string | TemplateRef<any>;
+  tooltip: string | TemplateRef<any>;
   /** Fired when tooltip content changes */
   @Output()
-  public tooltipChange: EventEmitter<
-    string | TemplateRef<any>
-  > = new EventEmitter();
+  tooltipChange: EventEmitter<string | TemplateRef<any>> = new EventEmitter();
 
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() public placement: string;
+  @Input() placement: string;
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() public triggers: string;
+  @Input() triggers: string;
   /**
    * A selector specifying the element the tooltip should be appended to.
    * Currently only supports "body".
    */
-  @Input() public container: string;
+  @Input() container: string;
 
   /**
    * Returns whether or not the tooltip is currently being shown
    */
   @Input()
-  public get isOpen(): boolean {
+  get isOpen(): boolean {
     return this._tooltip.isShown;
   }
 
-  public set isOpen(value: boolean) {
+  set isOpen(value: boolean) {
     if (value) {
       this.show();
     } else {
@@ -67,21 +57,21 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Allows to disable tooltip
    */
-  @Input() public isDisabled: boolean;
+  @Input() isDisabled: boolean;
 
   /**
    * Css class for tooltip container
    */
-  @Input() public containerClass = '';
+  @Input() containerClass = '';
 
   /**
    * Emits an event when the tooltip is shown
    */
-  @Output() public onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the tooltip is hidden
    */
-  @Output() public onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<any>;
 
   /* tslint:disable */
   /** @deprecated - please use `tooltip` instead */
@@ -173,36 +163,32 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /** @deprecated */
   @Output()
-  public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<
-    boolean
-  >();
+  public tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   /* tslint:enable */
   protected _delayTimeoutId: number | any;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
   // tslint:disable-next-line
-  public constructor(
-    _viewContainerRef: ViewContainerRef,
-    _renderer: Renderer,
-    _elementRef: ElementRef,
-    cis: ComponentLoaderFactory,
-    config: TooltipConfig
-  ) {
+  public constructor(_viewContainerRef: ViewContainerRef,
+                     _renderer: Renderer2,
+                     _elementRef: ElementRef,
+                     cis: ComponentLoaderFactory,
+                     config: TooltipConfig) {
     this._tooltip = cis
       .createLoader<TooltipContainerComponent>(
         _elementRef,
         _viewContainerRef,
         _renderer
       )
-      .provide({ provide: TooltipConfig, useValue: config });
+      .provide({provide: TooltipConfig, useValue: config});
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
     this.onHidden = this._tooltip.onHidden;
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this._tooltip.listen({
       triggers: this.triggers,
       show: () => this.show()
@@ -218,7 +204,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Toggles an element’s tooltip. This is considered a “manual” triggering of
    * the tooltip.
    */
-  public toggle(): void {
+  toggle(): void {
     if (this.isOpen) {
       return this.hide();
     }
@@ -230,7 +216,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Opens an element’s tooltip. This is considered a “manual” triggering of
    * the tooltip.
    */
-  public show(): void {
+  show(): void {
     if (
       this.isOpen ||
       this.isDisabled ||
@@ -244,7 +230,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
-        .position({ attachment: this.placement })
+        .position({attachment: this.placement})
         .show({
           content: this.tooltip,
           placement: this.placement,
@@ -264,7 +250,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Closes an element’s tooltip. This is considered a “manual” triggering of
    * the tooltip.
    */
-  public hide(): void {
+  hide(): void {
     if (this._delayTimeoutId) {
       clearTimeout(this._delayTimeoutId);
       this._delayTimeoutId = undefined;
@@ -280,7 +266,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }, this._fadeDuration);
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this._tooltip.dispose();
   }
 }

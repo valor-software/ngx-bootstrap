@@ -2,7 +2,7 @@
 /**
  * @copyright Angular ng-bootstrap team
  */
-import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 import { Component } from '@angular/core';
 import { AlertModule, AlertComponent, AlertConfig } from '../../alert';
@@ -111,6 +111,6 @@ describe('ngb-alert', () => {
   entryComponents: [AlertComponent]
 })
 class TestComponent {
-  public name = 'World';
-  public closed = false;
+  name = 'World';
+  closed = false;
 }

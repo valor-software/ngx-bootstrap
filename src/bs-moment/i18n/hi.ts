@@ -73,22 +73,22 @@ export const hi: LocaleData = {
     yy: '%d वर्ष'
   },
   preparse(str: string): string {
-    return str.replace(/[१२३४५६७८९०]/g, function(match) {
+    return str.replace(/[१२३४५६७८९०]/g, function (match) {
       return numberMap[match];
     });
   },
   postformat(str: string): string {
-    return str.replace(/\d/g, function(match) {
+    return str.replace(/\d/g, function (match) {
       return symbolMap[match];
     });
   },
-  // Hindi notation for meridiems are quite fuzzy in practice. While there exists
-  // a rigid notion of a 'Pahar' it is not used as rigidly in modern Hindi.
+  // Hindi notation for meridiems are quite fuzzy in practice. While there
+  // exists a rigid notion of a 'Pahar' it is not used as rigidly in modern
+  // Hindi.
   meridiemParse: /रात|सुबह|दोपहर|शाम/,
-  meridiemHour(hour: number, meridiem: string): number {
-    if (hour === 12) {
-      hour = 0;
-    }
+  meridiemHour(_hour: number, meridiem: string): number {
+    const hour = _hour === 12 ? 0 : _hour;
+    // tslint:disable
     if (meridiem === 'रात') {
       return hour < 4 ? hour : hour + 12;
     } else if (meridiem === 'सुबह') {

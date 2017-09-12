@@ -197,7 +197,7 @@ export class BsRootModule {}
 
 @NgModule({ exports: MODULES })
 export class Ng2BootstrapModule {
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return { ngModule: BsRootModule };
   }
 }

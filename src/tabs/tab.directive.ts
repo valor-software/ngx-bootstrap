@@ -15,20 +15,20 @@ import { TabsetComponent } from './tabset.component';
 @Directive({ selector: 'tab, [tab]' })
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
-  @Input() public heading: string;
+  @Input() heading: string;
   /** tab id */
-  @Input() public id: string;
+  @Input() id: string;
   /** if true tab can not be activated */
-  @Input() public disabled: boolean;
+  @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
-  @Input() public removable: boolean;
+  @Input() removable: boolean;
   /** if set, will be added to the tab's class atribute */
   @Input()
-  public get customClass(): string {
+  get customClass(): string {
     return this._customClass;
   }
 
-  public set customClass(customClass: string) {
+  set customClass(customClass: string) {
     if (this._customClass && this._customClass !== customClass) {
       this.renderer.setElementClass(
         this.elementRef.nativeElement,
@@ -51,11 +51,11 @@ export class TabDirective implements OnInit, OnDestroy {
   /** tab active state toggle */
   @HostBinding('class.active')
   @Input()
-  public get active(): boolean {
+  get active(): boolean {
     return this._active;
   }
 
-  public set active(active: boolean) {
+  set active(active: boolean) {
     if (this._active === active) {
       return;
     }
@@ -78,20 +78,20 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   /** fired when tab became active, $event:Tab equals to selected instance of Tab component */
-  @Output() public select: EventEmitter<TabDirective> = new EventEmitter();
+  @Output() select: EventEmitter<TabDirective> = new EventEmitter();
   /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
-  @Output() public deselect: EventEmitter<TabDirective> = new EventEmitter();
+  @Output() deselect: EventEmitter<TabDirective> = new EventEmitter();
   /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
-  @Output() public removed: EventEmitter<TabDirective> = new EventEmitter();
+  @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 
-  @HostBinding('class.tab-pane') public addClass = true;
+  @HostBinding('class.tab-pane') addClass = true;
 
-  public headingRef: TemplateRef<any>;
-  public tabset: TabsetComponent;
+  headingRef: TemplateRef<any>;
+  tabset: TabsetComponent;
   protected _active: boolean;
   protected _customClass: string;
 
-  public constructor(
+  constructor(
     tabset: TabsetComponent,
     public elementRef: ElementRef,
     public renderer: Renderer
@@ -100,11 +100,11 @@ export class TabDirective implements OnInit, OnDestroy {
     this.tabset.addTab(this);
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.removable = this.removable;
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.tabset.removeTab(this, { reselect: false, emit: false });
   }
 }

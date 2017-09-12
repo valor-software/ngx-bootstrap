@@ -27,13 +27,13 @@ import { isBs3 } from '../utils/theme-provider';
 `
 })
 export class BarComponent implements OnInit, OnDestroy {
-  public max: number;
+  max: number;
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() public type: string;
+  @Input() type: string;
   /** current value of progress bar */
   @Input()
-  public get value(): number {
+  get value(): number {
     return this._value;
   }
   @HostBinding('style.width.%')
@@ -42,7 +42,7 @@ export class BarComponent implements OnInit, OnDestroy {
     return this.isBs3 ? '' : this.percent;
   }
 
-  public set value(v: number) {
+  set value(v: number) {
     if (!v && v !== 0) {
       return;
     }
@@ -50,28 +50,28 @@ export class BarComponent implements OnInit, OnDestroy {
     this.recalculatePercentage();
   }
 
-  public get isBs3(): boolean {
+  get isBs3(): boolean {
     return isBs3();
   }
-  public percent = 0;
-  public transition: string;
-  public progress: ProgressDirective;
+  percent = 0;
+  transition: string;
+  progress: ProgressDirective;
 
   protected _value: number;
 
-  public constructor(@Host() progress: ProgressDirective) {
+  constructor(@Host() progress: ProgressDirective) {
     this.progress = progress;
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.progress.addBar(this);
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.progress.removeBar(this);
   }
 
-  public recalculatePercentage(): void {
+  recalculatePercentage(): void {
     this.percent = +(100 * this.value / this.progress.max).toFixed(2);
 
     const totalPercentage = this.progress.bars.reduce(function(

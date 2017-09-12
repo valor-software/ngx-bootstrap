@@ -158,14 +158,14 @@ describe('Component: Accordion', () => {
   template: ''
 })
 class TestAccordionComponent {
-  public oneAtATime = true;
-  public panels: any[] = [
+  oneAtATime = true;
+  panels: any[] = [
     { isOpen: false, isDisabled: false },
     { isOpen: false, isDisabled: false },
     { isOpen: false, isDisabled: false }
   ];
 
-  public constructor(config: AccordionConfig) {
+  constructor(config: AccordionConfig) {
     Object.assign(this, config);
   }
 }

@@ -11,39 +11,39 @@ export class AlertComponent implements OnInit {
    * Provides one of four bootstrap supported contextual classes:
    * `success`, `info`, `warning` and `danger`
    */
-  @Input() public type = 'warning';
+  @Input() type = 'warning';
   /** If set, displays an inline "Close" button */
   @OnChange()
   @Input()
-  public dismissible = false;
+  dismissible = false;
   /** Number in milliseconds, after which alert will be closed */
-  @Input() public dismissOnTimeout: number | string;
+  @Input() dismissOnTimeout: number | string;
 
   /** This event fires immediately after close instance method is called,
    * $event is an instance of Alert component.
    */
   @Output()
-  public onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
+  onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
   /** This event fires when alert closed, $event is an instance of Alert component */
   @Output()
-  public onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
+  onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
 
-  public isClosed = false;
-  public classes = '';
-  public dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  isClosed = false;
+  classes = '';
+  dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public constructor(_config: AlertConfig) {
+  constructor(_config: AlertConfig) {
     Object.assign(this, _config);
     this.dismissibleChange.subscribe((dismissible: boolean) => {
       this.classes = this.dismissible ? 'alert-dismissible' : '';
     });
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     if (this.dismissOnTimeout) {
       // if dismissOnTimeout used as attr without binding, it will be a string
       setTimeout(
-        () => this.close(),
+        () => void this.close(),
         parseInt(this.dismissOnTimeout as string, 10)
       );
     }
@@ -54,7 +54,7 @@ export class AlertComponent implements OnInit {
   /**
    * Closes an alert by removing it from the DOM.
    */
-  public close(): void {
+  close(): void {
     if (this.isClosed) {
       return;
     }

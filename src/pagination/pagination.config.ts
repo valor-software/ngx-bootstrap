@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 /** Provides default values for Pagination and pager components */
 @Injectable()
 export class PaginationConfig {
-  public main: any = {
+  main: any = {
     maxSize: void 0,
     itemsPerPage: 10,
     boundaryLinks: false,
@@ -16,7 +16,7 @@ export class PaginationConfig {
     pageBtnClass: '',
     rotate: true
   };
-  public pager: any = {
+  pager: any = {
     itemsPerPage: 15,
     previousText: '« Previous',
     nextText: 'Next »',

@@ -55,7 +55,9 @@ export const fr: LocaleData = {
       // block for masculine words below.
       // See https://github.com/moment/moment/issues/3375
       case 'D':
-        return num + (num === 1 ? 'er' : '');
+        const endingD = num === 1 ? 'er' : '';
+
+        return `${num}${endingD}`;
 
       // Words with masculine grammatical gender: mois, trimestre, jour
       default:
@@ -63,12 +65,15 @@ export const fr: LocaleData = {
       case 'Q':
       case 'DDD':
       case 'd':
-        return num + (num === 1 ? 'er' : 'e');
+        const endingd = num === 1 ? 'er' : 'e';
 
+        return `${num}${endingd}`;
       // Words with feminine grammatical gender: semaine
       case 'w':
       case 'W':
-        return num + (num === 1 ? 're' : 'e');
+        const endingW = num === 1 ? 're' : 'e';
+
+        return `${num}${endingW}`;
     }
   },
   week: {

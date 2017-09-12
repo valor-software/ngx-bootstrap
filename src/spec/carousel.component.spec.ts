@@ -204,9 +204,9 @@ describe('Component: Carousel', () => {
   template: ''
 })
 class TestCarouselComponent {
-  public myInterval = 5000;
-  public noWrapSlides = false;
-  public slides: any[] = [
+  myInterval = 5000;
+  noWrapSlides = false;
+  slides: any[] = [
     { image: '//placekitten.com/600/300', text: 'slide0' },
     { image: '//placekitten.com/600/300', text: 'slide1' },
     { image: '//placekitten.com/600/300', text: 'slide2' }

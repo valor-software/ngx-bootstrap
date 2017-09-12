@@ -1,6 +1,6 @@
 import {
   Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
-  OnInit, Output, Renderer, ViewContainerRef
+  OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
@@ -83,6 +83,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._showInline) {
       return this._isInlineOpen;
     }
+
     return this._dropdown.isShown;
   }
 
@@ -128,7 +129,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _isInited = false;
 
   constructor(private _elementRef: ElementRef,
-              private _renderer: Renderer,
+              private _renderer: Renderer2,
               private _viewContainerRef: ViewContainerRef,
               private _cis: ComponentLoaderFactory,
               private _config: BsDropdownConfig,
@@ -204,13 +205,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this._isInlineOpen = true;
       this.onShown.emit(true);
       this._state.isOpenChange.emit(true);
+
       return;
     }
     this._state.dropdownMenu.then(dropdownMenu => {
       // check direction in which dropdown should be opened
       const _dropup =
         this.dropup ||
-        (typeof this.dropup !== 'undefined' && this.dropup !== false);
+        (typeof this.dropup !== 'undefined' && this.dropup);
       this._state.direction = _dropup ? 'up' : 'down';
       const _placement =
         this.placement || (_dropup ? 'top left' : 'bottom left');
@@ -279,21 +281,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   private addShowClass(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
-      this._renderer.setElementClass(
-        this._inlinedMenu.rootNodes[0],
-        'show',
-        true
-      );
+      this._renderer.addClass(this._inlinedMenu.rootNodes[0], 'show');
     }
   }
 
   private removeShowClass(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
-      this._renderer.setElementClass(
-        this._inlinedMenu.rootNodes[0],
-        'show',
-        false
-      );
+      this._renderer.removeClass(this._inlinedMenu.rootNodes[0], 'show');
     }
   }
 
@@ -302,12 +296,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       const isRightAligned = this._inlinedMenu.rootNodes[0].classList.contains(
         'dropdown-menu-right'
       );
-      this._renderer.setElementStyle(
+      this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'left',
         isRightAligned ? 'auto' : '0'
       );
-      this._renderer.setElementStyle(
+      this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'right',
         isRightAligned ? '0' : 'auto'
@@ -320,12 +314,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       // a little hack to not break support of bootstrap 4 beta
       const top = getComputedStyle(this._inlinedMenu.rootNodes[0]).top;
       const topAuto = top === 'auto' || top === '100%';
-      this._renderer.setElementStyle(
+      this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'top',
         this.dropup ? 'auto' : '100%'
       );
-      this._renderer.setElementStyle(
+      this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'transform',
         this.dropup && !topAuto ? 'translateY(-101%)' : 'translateY(0)'

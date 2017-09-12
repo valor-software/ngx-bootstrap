@@ -89,17 +89,17 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   ]
 })
 export class DayPickerComponent implements OnInit {
-  public labels: any[] = [];
-  public title: string;
-  public rows: any[] = [];
-  public weekNumbers: number[] = [];
-  public datePicker: DatePickerInnerComponent;
+  labels: any[] = [];
+  title: string;
+  rows: any[] = [];
+  weekNumbers: number[] = [];
+  datePicker: DatePickerInnerComponent;
 
-  public constructor(datePicker: DatePickerInnerComponent) {
+  constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 
-  public get isBs4(): boolean {
+  get isBs4(): boolean {
     return !isBs3();
   }
 
@@ -107,7 +107,7 @@ export class DayPickerComponent implements OnInit {
    return ((month === 1) && (year % 4 === 0) &&
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
-  public ngOnInit(): void {
+  ngOnInit(): void {
     const self = this;
 
     this.datePicker.stepDay = { months: 1 };

@@ -28,7 +28,7 @@ import { DatepickerConfig } from './datepicker.config';
   entryComponents: [DatePickerComponent]
 })
 export class DatepickerModule {
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return { ngModule: DatepickerModule, providers: [DatepickerConfig] };
   }
 }

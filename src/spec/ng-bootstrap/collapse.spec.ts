@@ -1,5 +1,5 @@
 // revision 6c0b585aa4a7c13c44631915d13488e6967162f4
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 
 import { Component } from '@angular/core';
@@ -93,5 +93,5 @@ describe('bs-collapse', () => {
 
 @Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
-  public collapsed = false;
+  collapsed = false;
 }

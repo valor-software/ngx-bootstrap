@@ -34,7 +34,7 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
-  public position(options: PositioningOptions): void {
+  position(options: PositioningOptions): void {
     const { element, target, attachment, appendToBody } = options;
     positionElements(
       this._getHtmlElement(target),

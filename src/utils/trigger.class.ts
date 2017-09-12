@@ -4,15 +4,15 @@
  */
 
 export class Trigger {
-  public open: string;
-  public close?: string;
+  open: string;
+  close?: string;
 
-  public constructor(open: string, close?: string) {
+  constructor(open: string, close?: string) {
     this.open = open;
     this.close = close || open;
   }
 
-  public isManual(): boolean {
+  isManual(): boolean {
     return this.open === 'manual' || this.close === 'manual';
   }
 }

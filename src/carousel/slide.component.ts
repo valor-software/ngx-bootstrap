@@ -20,27 +20,27 @@ export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */
   @HostBinding('class.active')
   @Input()
-  public active: boolean;
+  active: boolean;
 
   /** Wraps element by appropriate CSS classes */
   @HostBinding('class.item')
   @HostBinding('class.carousel-item')
-  public addClass = true;
+  addClass = true;
 
   /** Link to Parent(container-collection) component */
   protected carousel: CarouselComponent;
 
-  public constructor(carousel: CarouselComponent) {
+  constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
   }
 
   /** Fires changes in container collection after adding a new slide instance */
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.carousel.addSlide(this);
   }
 
   /** Fires changes in container collection after removing of this slide instance */
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.carousel.removeSlide(this);
   }
 }

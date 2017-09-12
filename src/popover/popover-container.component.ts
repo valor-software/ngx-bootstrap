@@ -26,15 +26,15 @@ import { isBs3 } from '../utils/theme-provider';
   templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {
-  @Input() public placement: string;
-  @Input() public title: string;
-  public containerClass: string;
+  @Input() placement: string;
+  @Input() title: string;
+  containerClass: string;
 
-  public get isBs3(): boolean {
+  get isBs3(): boolean {
     return isBs3();
   }
 
-  public constructor(config: PopoverConfig) {
+  constructor(config: PopoverConfig) {
     Object.assign(this, config);
   }
 }

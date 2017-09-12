@@ -24,17 +24,19 @@ export function formatDate(date: Date, format: string, locale = 'en'): string {
 }
 
 // format date using native date object
-export function formatMoment(date: Date, format: string, locale: Locale) {
+export function formatMoment(date: Date, _format: string, locale: Locale) {
   if (!isDateValid(date)) {
     return locale.invalidDate;
   }
-  format = expandFormat(format, locale);
+  const format = expandFormat(_format, locale);
   formatFunctions[format] =
     formatFunctions[format] || makeFormatFunction(format);
+
   return formatFunctions[format](date, locale);
 }
 
-export function expandFormat(format: string, locale: Locale) {
+export function expandFormat(_format: string, locale: Locale) {
+  let format = _format;
   let i = 5;
   const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
 

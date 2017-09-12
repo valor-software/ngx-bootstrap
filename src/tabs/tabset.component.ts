@@ -11,58 +11,58 @@ import { TabsetConfig } from './tabset.config';
 export class TabsetComponent implements OnDestroy {
   /** if true tabs will be placed vertically */
   @Input()
-  public get vertical(): boolean {
+  get vertical(): boolean {
     return this._vertical;
   }
-  public set vertical(value: boolean) {
+  set vertical(value: boolean) {
     this._vertical = value;
     this.setClassMap();
   }
 
   /** if true tabs fill the container and have a consistent width */
   @Input()
-  public get justified(): boolean {
+  get justified(): boolean {
     return this._justified;
   }
-  public set justified(value: boolean) {
+  set justified(value: boolean) {
     this._justified = value;
     this.setClassMap();
   }
 
   /** navigation context class: 'tabs' or 'pills' */
   @Input()
-  public get type(): string {
+  get type(): string {
     return this._type;
   }
-  public set type(value: string) {
+  set type(value: string) {
     this._type = value;
     this.setClassMap();
   }
 
-  @HostBinding('class.tab-container') public clazz = true;
+  @HostBinding('class.tab-container') clazz = true;
 
-  public tabs: TabDirective[] = [];
-  public classMap: any = {};
+  tabs: TabDirective[] = [];
+  classMap: any = {};
 
   protected isDestroyed: boolean;
   protected _vertical: boolean;
   protected _justified: boolean;
   protected _type: string;
 
-  public constructor(config: TabsetConfig) {
+  constructor(config: TabsetConfig) {
     Object.assign(this, config);
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this.isDestroyed = true;
   }
 
-  public addTab(tab: TabDirective): void {
+  addTab(tab: TabDirective): void {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && tab.active;
   }
 
-  public removeTab(
+  removeTab(
     tab: TabDirective,
     options = { reselect: true, emit: true }
   ): void {

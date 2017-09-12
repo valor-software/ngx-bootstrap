@@ -1,16 +1,6 @@
 import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ComponentRef,
-  ElementRef,
-  Renderer,
-  ViewContainerRef,
-  SimpleChanges,
-  OnChanges
+  Component, ComponentRef, ElementRef, EventEmitter, Input, OnChanges,
+  OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs/Subscription';
@@ -39,8 +29,8 @@ export class BsDaterangepickerComponent
    */
   @Input() outsideClick = true;
   /**
-   * A selector specifying the element the daterangepicker should be appended to.
-   * Currently only supports "body".
+   * A selector specifying the element the daterangepicker should be appended
+   * to. Currently only supports "body".
    */
   @Input() container = 'body';
 
@@ -48,11 +38,11 @@ export class BsDaterangepickerComponent
    * Returns whether or not the daterangepicker is currently being shown
    */
   @Input()
-  public get isOpen(): boolean {
+  get isOpen(): boolean {
     return this._datepicker.isShown;
   }
 
-  public set isOpen(value: boolean) {
+  set isOpen(value: boolean) {
     if (value) {
       this.show();
     } else {
@@ -81,6 +71,7 @@ export class BsDaterangepickerComponent
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
+
   /**
    * Config object for daterangepicker
    */
@@ -107,13 +98,11 @@ export class BsDaterangepickerComponent
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
 
-  constructor(
-    public _config: BsDatepickerConfig,
-    _elementRef: ElementRef,
-    _renderer: Renderer,
-    _viewContainerRef: ViewContainerRef,
-    cis: ComponentLoaderFactory
-  ) {
+  constructor(public _config: BsDatepickerConfig,
+              _elementRef: ElementRef,
+              _renderer: Renderer2,
+              _viewContainerRef: ViewContainerRef,
+              cis: ComponentLoaderFactory) {
     this._datepicker = cis.createLoader<BsDaterangepickerContainerComponent>(
       _elementRef,
       _viewContainerRef,
@@ -162,7 +151,7 @@ export class BsDaterangepickerComponent
     this._config = Object.assign(
       {},
       this._config,
-      { displayMonths: 2 },
+      {displayMonths: 2},
       this.bsConfig,
       {
         value: this._bsValue,
@@ -173,11 +162,11 @@ export class BsDaterangepickerComponent
     );
 
     this._datepickerRef = this._datepicker
-      .provide({ provide: BsDatepickerConfig, useValue: this._config })
+      .provide({provide: BsDatepickerConfig, useValue: this._config})
       .attach(BsDaterangepickerContainerComponent)
       .to(this.container)
-      .position({ attachment: this.placement })
-      .show({ placement: this.placement });
+      .position({attachment: this.placement})
+      .show({placement: this.placement});
 
     // if date changes from external source (model -> view)
     this._subs.push(
@@ -211,8 +200,8 @@ export class BsDaterangepickerComponent
   }
 
   /**
-   * Toggles an element’s datepicker. This is considered a “manual” triggering of
-   * the datepicker.
+   * Toggles an element’s datepicker. This is considered a “manual” triggering
+   * of the datepicker.
    */
   toggle(): void {
     if (this.isOpen) {

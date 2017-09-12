@@ -3,20 +3,20 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class DatepickerConfig {
   locale = 'en';
-  public datepickerMode = 'day';
-  public startingDay = 0;
-  public yearRange = 20;
-  public minMode = 'day';
-  public maxMode = 'year';
-  public showWeeks = true;
-  public formatDay = 'DD';
-  public formatMonth = 'MMMM';
-  public formatYear = 'YYYY';
-  public formatDayHeader = 'dd';
-  public formatDayTitle = 'MMMM YYYY';
-  public formatMonthTitle = 'YYYY';
-  public onlyCurrentMonth = false;
-  public monthColLimit = 3;
-  public yearColLimit = 5;
-  public shortcutPropagation = false;
+  datepickerMode = 'day';
+  startingDay = 0;
+  yearRange = 20;
+  minMode = 'day';
+  maxMode = 'year';
+  showWeeks = true;
+  formatDay = 'DD';
+  formatMonth = 'MMMM';
+  formatYear = 'YYYY';
+  formatDayHeader = 'dd';
+  formatDayTitle = 'MMMM YYYY';
+  formatMonthTitle = 'YYYY';
+  onlyCurrentMonth = false;
+  monthColLimit = 3;
+  yearColLimit = 5;
+  shortcutPropagation = false;
 }

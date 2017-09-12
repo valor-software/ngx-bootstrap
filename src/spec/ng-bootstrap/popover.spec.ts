@@ -2,7 +2,7 @@
 /**
  * @copyright Angular ng-bootstrap team
  */
-import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   Component,
@@ -21,7 +21,7 @@ import { createGenericTestComponent } from './test/common';
 
 @Injectable()
 class SpyService {
-  public called = false;
+  called = false;
 }
 
 const createTestComponent = (html: string) =>
@@ -619,18 +619,18 @@ describe('popover', () => {
 
 @Component({ selector: 'test-cmpt', template: `` })
 export class TestComponent {
-  public name = 'World';
-  public show = true;
-  public title: string;
-  public placement: string;
+  name = 'World';
+  show = true;
+  title: string;
+  placement: string;
 
-  @ViewChild(PopoverDirective) public popover: PopoverDirective;
+  @ViewChild(PopoverDirective) popover: PopoverDirective;
 
-  public shown(): void {
+  shown(): void {
     return;
   }
 
-  public hidden(): void {
+  hidden(): void {
     return;
   }
 }
@@ -646,11 +646,11 @@ export class TestOnPushComponent {}
 export class DestroyableCmpt implements OnDestroy {
   private _spyService: SpyService;
 
-  public constructor(_spyService: SpyService) {
+  constructor(_spyService: SpyService) {
     this._spyService = _spyService;
   }
 
-  public ngOnDestroy(): void {
+  ngOnDestroy(): void {
     this._spyService.called = true;
   }
 }

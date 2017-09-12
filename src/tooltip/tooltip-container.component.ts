@@ -35,20 +35,20 @@ import { isBs3 } from '../utils/theme-provider';
     `
 })
 export class TooltipContainerComponent implements AfterViewInit {
-  public classMap: any;
-  public placement: string;
-  public containerClass: string;
-  public animation: boolean;
+  classMap: any;
+  placement: string;
+  containerClass: string;
+  animation: boolean;
 
-  public get isBs3(): boolean {
+  get isBs3(): boolean {
     return isBs3();
   }
 
-  public constructor(config: TooltipConfig) {
+  constructor(config: TooltipConfig) {
     Object.assign(this, config);
   }
 
-  public ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     this.classMap = { in: false, fade: false };
     this.classMap[this.placement] = true;
     this.classMap['tooltip-' + this.placement] = true;

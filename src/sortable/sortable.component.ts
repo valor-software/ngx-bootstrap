@@ -58,65 +58,65 @@ export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;
 
   /** field name if input array consists of objects */
-  @Input() public fieldName: string;
+  @Input() fieldName: string;
 
   /** class name for items wrapper */
-  @Input() public wrapperClass = '';
+  @Input() wrapperClass = '';
 
   /** style object for items wrapper */
-  @Input() public wrapperStyle: { [key: string]: string } = {};
+  @Input() wrapperStyle: { [key: string]: string } = {};
 
   /** class name for item */
-  @Input() public itemClass = '';
+  @Input() itemClass = '';
 
   /** style object for item */
-  @Input() public itemStyle: { [key: string]: string } = {};
+  @Input() itemStyle: { [key: string]: string } = {};
 
   /** class name for active item */
-  @Input() public itemActiveClass = '';
+  @Input() itemActiveClass = '';
 
   /** style object for active item */
-  @Input() public itemActiveStyle: { [key: string]: string } = {};
+  @Input() itemActiveStyle: { [key: string]: string } = {};
 
   /** class name for placeholder */
-  @Input() public placeholderClass = '';
+  @Input() placeholderClass = '';
 
   /** style object for placeholder */
-  @Input() public placeholderStyle: { [key: string]: string } = {};
+  @Input() placeholderStyle: { [key: string]: string } = {};
 
   /** placeholder item which will be shown if collection is empty */
-  @Input() public placeholderItem = '';
+  @Input() placeholderItem = '';
 
   /** used to specify a custom item template. Template variables: item and index; */
-  @Input() public itemTemplate: TemplateRef<any>;
+  @Input() itemTemplate: TemplateRef<any>;
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.
    */
-  @Output() public onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  public showPlaceholder = false;
-  public activeItem = -1;
+  showPlaceholder = false;
+  activeItem = -1;
 
-  public get items(): SortableItem[] {
+  get items(): SortableItem[] {
     return this._items;
   }
 
-  public set items(value: SortableItem[]) {
+  set items(value: SortableItem[]) {
     this._items = value;
     const out = this.items.map((x: SortableItem) => x.initData);
     this.onChanged(out);
     this.onChange.emit(out);
   }
 
-  public onTouched: any = Function.prototype;
-  public onChanged: any = Function.prototype;
+  onTouched: any = Function.prototype;
+  onChanged: any = Function.prototype;
 
   private transfer: DraggableItemService;
   private currentZoneIndex: number;
   private _items: SortableItem[];
 
-  public constructor(transfer: DraggableItemService) {
+  constructor(transfer: DraggableItemService) {
     this.transfer = transfer;
     this.currentZoneIndex = SortableComponent.globalZoneIndex++;
     this.transfer
@@ -124,7 +124,7 @@ export class SortableComponent implements ControlValueAccessor {
       .subscribe((item: DraggableItem) => this.onDrop(item));
   }
 
-  public onItemDragstart(
+  onItemDragstart(
     event: DragEvent,
     item: SortableItem,
     i: number
@@ -141,7 +141,7 @@ export class SortableComponent implements ControlValueAccessor {
     });
   }
 
-  public onItemDragover(event: DragEvent, i: number): void {
+  onItemDragover(event: DragEvent, i: number): void {
     if (!this.transfer.getItem()) {
       return;
     }
@@ -175,14 +175,14 @@ export class SortableComponent implements ControlValueAccessor {
     this.updatePlaceholderState();
   }
 
-  public cancelEvent(event: DragEvent): void {
+  cancelEvent(event: DragEvent): void {
     if (!this.transfer.getItem() || !event) {
       return;
     }
     event.preventDefault();
   }
 
-  public onDrop(item: DraggableItem): void {
+  onDrop(item: DraggableItem): void {
     if (
       item &&
       item.overZoneIndex !== this.currentZoneIndex &&
@@ -196,20 +196,20 @@ export class SortableComponent implements ControlValueAccessor {
     this.resetActiveItem(undefined);
   }
 
-  public resetActiveItem(event: DragEvent): void {
+  resetActiveItem(event: DragEvent): void {
     this.cancelEvent(event);
     this.activeItem = -1;
   }
 
-  public registerOnChange(callback: (_: any) => void): void {
+  registerOnChange(callback: (_: any) => void): void {
     this.onChanged = callback;
   }
 
-  public registerOnTouched(callback: () => void): void {
+  registerOnTouched(callback: () => void): void {
     this.onTouched = callback;
   }
 
-  public writeValue(value: any[]): void {
+  writeValue(value: any[]): void {
     if (value) {
       this.items = value.map((x: any, i: number) => ({
         id: i,
@@ -222,11 +222,11 @@ export class SortableComponent implements ControlValueAccessor {
     this.updatePlaceholderState();
   }
 
-  public updatePlaceholderState(): void {
+  updatePlaceholderState(): void {
     this.showPlaceholder = !this._items.length;
   }
 
-  public getItemStyle(isActive: boolean): {} {
+  getItemStyle(isActive: boolean): {} {
     return isActive
       ? Object.assign({}, this.itemStyle, this.itemActiveStyle)
       : this.itemStyle;

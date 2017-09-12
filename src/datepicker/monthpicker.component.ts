@@ -54,20 +54,20 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   ]
 })
 export class MonthPickerComponent implements OnInit {
-  public title: string;
-  public rows: any[] = [];
-  public datePicker: DatePickerInnerComponent;
-  public maxMode: string;
+  title: string;
+  rows: any[] = [];
+  datePicker: DatePickerInnerComponent;
+  maxMode: string;
 
-  public constructor(datePicker: DatePickerInnerComponent) {
+  constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
   }
 
-  public get isBs4(): boolean {
+  get isBs4(): boolean {
     return !isBs3();
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     const self = this;
 
     this.datePicker.stepMonth = { years: 1 };

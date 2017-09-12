@@ -20,12 +20,12 @@ import {
 @Injectable()
 export class BsModalService {
   // constructor props
-  public config: ModalOptions = modalConfigDefaults;
+  config: ModalOptions = modalConfigDefaults;
 
-  public onShow: EventEmitter<any> = new EventEmitter();
-  public onShown: EventEmitter<any> = new EventEmitter();
-  public onHide: EventEmitter<any> = new EventEmitter();
-  public onHidden: EventEmitter<any> = new EventEmitter();
+  onShow: EventEmitter<any> = new EventEmitter();
+  onShown: EventEmitter<any> = new EventEmitter();
+  onHide: EventEmitter<any> = new EventEmitter();
+  onHidden: EventEmitter<any> = new EventEmitter();
 
   protected isBodyOverflowing = false;
   protected originalBodyPadding = 0;
@@ -39,7 +39,7 @@ export class BsModalService {
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
-  public constructor(private clf: ComponentLoaderFactory) {
+  constructor(private clf: ComponentLoaderFactory) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
@@ -137,12 +137,12 @@ export class BsModalService {
   /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE*/
   /** Scroll bar tricks */
   /** @internal */
-  public checkScrollbar(): void {
+  checkScrollbar(): void {
     this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
     this.scrollbarWidth = this.getScrollbarWidth();
   }
 
-  public setScrollbar(): void {
+  setScrollbar(): void {
     if (!document) {
       return;
     }

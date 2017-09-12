@@ -5,7 +5,6 @@
 
 import {
   TestBed,
-  ComponentFixture,
   inject,
   fakeAsync,
   tick
@@ -553,15 +552,15 @@ describe('tooltip', () => {
 
 @Component({ selector: 'test-cmpt', template: `` })
 export class TestComponent {
-  public name = 'World';
-  public show = true;
+  name = 'World';
+  show = true;
 
-  @ViewChild(TooltipDirective) public tooltip: TooltipDirective;
+  @ViewChild(TooltipDirective) tooltip: TooltipDirective;
 
-  public shown(): void {
+  shown(): void {
     return;
   }
-  public hidden(): void {
+  hidden(): void {
     return;
   }
 }

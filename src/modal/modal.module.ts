@@ -17,7 +17,7 @@ import { BsModalService } from './bs-modal.service';
   entryComponents: [ModalBackdropComponent, ModalContainerComponent]
 })
 export class ModalModule {
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: ModalModule,
       providers: [BsModalService, ComponentLoaderFactory, PositioningService]

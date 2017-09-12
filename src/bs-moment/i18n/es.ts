@@ -23,6 +23,7 @@ const monthsParse = [
   /^nov/i,
   /^dic/i
 ];
+// tslint:disable-next-line
 const monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
 
 export const es: LocaleData = {

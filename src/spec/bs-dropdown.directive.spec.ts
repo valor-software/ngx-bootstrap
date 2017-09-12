@@ -381,13 +381,13 @@ describe('Directive: dropdownToggle', () => {
   template: ''
 })
 class TestDropdownComponent {
-  public isOpen: Boolean = false;
-  public isDisabled: Boolean = false;
-  public addToggleClass: Boolean = false;
-  public autoClose = false;
-  public keyboardNav: Boolean = false;
+  isOpen: Boolean = false;
+  isDisabled: Boolean = false;
+  addToggleClass: Boolean = false;
+  autoClose = false;
+  keyboardNav: Boolean = false;
 
-  public constructor(config: BsDropdownConfig) {
+  constructor(config: BsDropdownConfig) {
     Object.assign(this, config);
   }
 }

@@ -29,13 +29,13 @@ interface State {
 `
 })
 class TestTypeaheadComponent {
-  public selectedState: string;
-  public states: State[] = [
+  selectedState: string;
+  states: State[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' }
   ];
 
-  public onBlurEvent(activeItem) {}
+  onBlurEvent(activeItem) {}
 }
 
 describe('Directive: Typeahead', () => {

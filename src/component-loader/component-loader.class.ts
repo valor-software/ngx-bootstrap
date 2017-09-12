@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 // todo: add delay support
 // todo: merge events onShow, onShown, etc...
 // todo: add global positioning configuration?
@@ -13,7 +14,7 @@ import {
   NgZone,
   Provider,
   ReflectiveInjector,
-  Renderer,
+  Renderer2,
   TemplateRef,
   Type,
   ViewContainerRef
@@ -24,14 +25,14 @@ import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
 export class ComponentLoader<T> {
-  public onBeforeShow: EventEmitter<any> = new EventEmitter();
-  public onShown: EventEmitter<any> = new EventEmitter();
-  public onBeforeHide: EventEmitter<any> = new EventEmitter();
-  public onHidden: EventEmitter<any> = new EventEmitter();
+  onBeforeShow: EventEmitter<any> = new EventEmitter();
+  onShown: EventEmitter<any> = new EventEmitter();
+  onBeforeHide: EventEmitter<any> = new EventEmitter();
+  onHidden: EventEmitter<any> = new EventEmitter();
 
-  public instance: T;
-  public _componentRef: ComponentRef<T>;
-  public _inlineViewRef: EmbeddedViewRef<T>;
+  instance: T;
+  _componentRef: ComponentRef<T>;
+  _inlineViewRef: EmbeddedViewRef<T>;
 
   private _providers: Provider[] = [];
   private _componentFactory: ComponentFactory<T>;
@@ -41,10 +42,11 @@ export class ComponentLoader<T> {
 
   private _unregisterListenersFn: Function;
 
-  public get isShown(): boolean {
+  get isShown(): boolean {
     if (this._isHiding) {
       return false;
     }
+
     return !!this._componentRef;
   }
 
@@ -67,8 +69,8 @@ export class ComponentLoader<T> {
    */
   private triggers: string;
 
-  _listenOpts: ListenOptions = {};
-  _globalListener = Function.prototype;
+  private _listenOpts: ListenOptions = {};
+  private _globalListener = Function.prototype;
 
   /**
    * Do not use this directly, it should be instanced via
@@ -78,7 +80,7 @@ export class ComponentLoader<T> {
   // tslint:disable-next-line
   public constructor(
     private _viewContainerRef: ViewContainerRef,
-    private _renderer: Renderer,
+    private _renderer: Renderer2,
     private _elementRef: ElementRef,
     private _injector: Injector,
     private _componentFactoryResolver: ComponentFactoryResolver,
@@ -87,32 +89,35 @@ export class ComponentLoader<T> {
     private _posService: PositioningService
   ) {}
 
-  public attach(compType: Type<T>): ComponentLoader<T> {
-    this._componentFactory = this._componentFactoryResolver.resolveComponentFactory<
-      T
-    >(compType);
+  attach(compType: Type<T>): ComponentLoader<T> {
+    this._componentFactory = this._componentFactoryResolver
+      .resolveComponentFactory<T>(compType);
+
     return this;
   }
 
   // todo: add behaviour: to target element, `body`, custom element
-  public to(container?: string): ComponentLoader<T> {
+  to(container?: string): ComponentLoader<T> {
     this.container = container || this.container;
+
     return this;
   }
 
-  public position(opts?: PositioningOptions): ComponentLoader<T> {
+  position(opts?: PositioningOptions): ComponentLoader<T> {
     this.attachment = opts.attachment || this.attachment;
     this._elementRef = (opts.target as ElementRef) || this._elementRef;
+
     return this;
   }
 
-  public provide(provider: Provider): ComponentLoader<T> {
+  provide(provider: Provider): ComponentLoader<T> {
     this._providers.push(provider);
+
     return this;
   }
 
   // todo: appendChild to element or document.querySelector(this.container)
-  public show(
+  show(
     opts: {
       content?: string | TemplateRef<any>;
       context?: any;
@@ -182,7 +187,7 @@ export class ComponentLoader<T> {
     return this._componentRef;
   }
 
-  public hide(): ComponentLoader<T> {
+  hide(): ComponentLoader<T> {
     if (!this._componentRef) {
       return this;
     }
@@ -215,16 +220,17 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  public toggle(): void {
+  toggle(): void {
     if (this.isShown) {
       this.hide();
+
       return;
     }
 
     this.show();
   }
 
-  public dispose(): void {
+  dispose(): void {
     if (this.isShown) {
       this.hide();
     }
@@ -236,13 +242,13 @@ export class ComponentLoader<T> {
     }
   }
 
-  public listen(listenOpts: ListenOptions): ComponentLoader<T> {
+  listen(listenOpts: ListenOptions): ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
     this._listenOpts.outsideClick = listenOpts.outsideClick;
     listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
 
     const hide = (this._listenOpts.hide = () =>
-      listenOpts.hide ? listenOpts.hide() : this.hide());
+      listenOpts.hide ? listenOpts.hide() : void this.hide());
     const show = (this._listenOpts.show = (registerHide: Function) => {
       listenOpts.show ? listenOpts.show(registerHide) : this.show(registerHide);
       registerHide();
@@ -275,6 +281,7 @@ export class ComponentLoader<T> {
     template: TemplateRef<any>
   ): ComponentLoader<T> {
     this._inlineViewRef = vRef.createEmbeddedView(template);
+
     return this;
   }
 
@@ -295,7 +302,7 @@ export class ComponentLoader<T> {
     }
   }
 
-  public getInnerComponent(): ComponentRef<T> {
+  getInnerComponent(): ComponentRef<T> {
     return this._innerComponent;
   }
 
@@ -335,14 +342,15 @@ export class ComponentLoader<T> {
 
     if (content instanceof TemplateRef) {
       if (this._viewContainerRef) {
-        const viewRef = this._viewContainerRef.createEmbeddedView<
-          TemplateRef<T>
-        >(content, context);
-        viewRef.markForCheck();
-        return new ContentRef([viewRef.rootNodes], viewRef);
+        const _viewRef = this._viewContainerRef
+          .createEmbeddedView<TemplateRef<T>>(content, context);
+        _viewRef.markForCheck();
+
+        return new ContentRef([_viewRef.rootNodes], _viewRef);
       }
       const viewRef = content.createEmbeddedView({});
       this._applicationRef.attachView(viewRef);
+
       return new ContentRef([viewRef.rootNodes], viewRef);
     }
 
@@ -356,12 +364,14 @@ export class ComponentLoader<T> {
       );
       const componentRef = contentCmptFactory.create(modalContentInjector);
       this._applicationRef.attachView(componentRef.hostView);
+
       return new ContentRef(
         [[componentRef.location.nativeElement]],
         componentRef.hostView,
         componentRef
       );
     }
-    return new ContentRef([[this._renderer.createText(null, `${content}`)]]);
+
+    return new ContentRef([[this._renderer.createText(`${content}`)]]);
   }
 }

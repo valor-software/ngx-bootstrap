@@ -23,7 +23,7 @@ import { TabsetConfig } from './tabset.config';
   ]
 })
 export class TabsModule {
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: TabsModule,
       providers: [TabsetConfig]
