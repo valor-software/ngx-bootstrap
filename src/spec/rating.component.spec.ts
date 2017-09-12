@@ -40,17 +40,16 @@ describe('Component: Rating. Init:', () => {
     expect(items[4].innerHTML).toEqual('( )');
     expect(items[5]).toBeUndefined();
 
-    const icons = element.querySelectorAll('i');
+    const icons = element.querySelectorAll('span.bs-rating-star');
 
-    expect(icons[0].classList).toContain('glyphicon-star-empty');
-    expect(icons[4].classList).toContain('glyphicon-star-empty');
+    expect(icons[0].classList).not.toContain('active');
+    expect(icons[4].classList).not.toContain('active');
     expect(icons[4].getAttribute('title')).toEqual('five');
   });
 
   it('checking of working with changed values', () => {
     context.max = 3;
     context.titles = ['one', 'two', 'new title'];
-    context.stateOff = 'glyphicon-ok-circle';
 
     context.ngOnInit();
     fixture.detectChanges();
@@ -62,35 +61,47 @@ describe('Component: Rating. Init:', () => {
     expect(items[2].innerHTML).toEqual('( )');
     expect(items[3]).toBeUndefined();
 
-    const icons = element.querySelectorAll('i');
+    const icons = element.querySelectorAll('span.bs-rating-star');
 
-    expect(icons[0].classList).toContain('glyphicon-ok-circle');
+    expect(icons[0].classList).not.toContain('active');
     expect(icons[2].getAttribute('title')).toEqual('new title');
   });
+});
+
+describe('Component: Rating. Custom template:', () => {
+  let fixture: ComponentFixture<TestRatingComponent>;
+  let context: any;
+  let element: any;
+
+  beforeEach(
+    fakeAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestRatingComponent],
+        imports: [RatingModule.forRoot(), FormsModule]
+      });
+      TestBed.overrideComponent(TestRatingComponent, {
+        set: { template: `
+        <rating max="5" [customTemplate]="tt" style="font-size: 32px;"></rating>
+  <ng-template #tt let-i="index" let-v="value">
+    <span class="label label-{{i < v ? 'warning' : 'default'}}">{{i < v ? '&#9733;' : '&#9734;'}}</span>
+  </ng-template>` }
+      });
+      fixture = TestBed.createComponent(TestRatingComponent);
+      context = fixture.debugElement.componentInstance;
+      element = fixture.nativeElement;
+      fixture.detectChanges();
+    })
+  );
 
   it('checking of working with custom icons', () => {
-    context.ratingStates = [
-      {stateOff: 'glyphicon-ok-circle'},
-      {stateOff: 'glyphicon-star-empty'},
-      {stateOff: 'glyphicon-ban-circle'},
-      {stateOff: 'glyphicon-heart'},
-      {stateOff: 'glyphicon-off'}
-    ];
-
-    context.ngOnInit();
-    fixture.detectChanges();
-
-    const icons = element.querySelectorAll('i');
-    expect(icons[0].classList).toContain('glyphicon-ok-circle');
-    expect(icons[1].classList).toContain('glyphicon-star-empty');
-    expect(icons[2].classList).toContain('glyphicon-ban-circle');
-    expect(icons[3].classList).toContain('glyphicon-heart');
-    expect(icons[4].classList).toContain('glyphicon-off');
+    const icons = element.querySelectorAll('span.bs-rating-star');
+    expect(icons[0].querySelector('span').classList).toContain('label-default');
   });
 });
+
 describe('Component: Rating. Clicks:', () => {
   const tpl = `
-      <rating [(ngModel)]="rate" [readonly]="isReadonly" [stateOn]="stateOn"
+      <rating [(ngModel)]="rate" [readonly]="isReadonly"
         (onHover)="hoveringOver($event)" (onLeave)="resetStar($event)"
         [titles]="titles"></rating>
     `;
@@ -118,19 +129,17 @@ describe('Component: Rating. Clicks:', () => {
     'check simple click',
     fakeAsync(() => {
       const items = element.querySelectorAll('.sr-only');
-      const icons = element.querySelectorAll('i');
+      const icons = element.querySelectorAll('span.bs-rating-star');
 
       expect(items[0].innerHTML).toEqual('( )');
-      expect(icons[0].classList).toContain('glyphicon-star-empty');
-      expect(icons[0].classList).not.toContain('glyphicon-star');
+      expect(icons[0].classList).not.toContain('active');
 
       icons[1].click();
       tick(200);
       fixture.detectChanges();
 
       expect(items[0].innerHTML).toEqual('(*)');
-      expect(icons[0].classList).not.toContain('glyphicon-star-empty');
-      expect(icons[0].classList).toContain('glyphicon-star');
+      expect(icons[0].classList).toContain('active');
     })
   );
 
@@ -138,11 +147,10 @@ describe('Component: Rating. Clicks:', () => {
     'check disabling',
     fakeAsync(() => {
       const items = element.querySelectorAll('.sr-only');
-      const icons = element.querySelectorAll('i');
+      const icons = element.querySelectorAll('span.bs-rating-star');
 
       expect(items[0].innerHTML).toEqual('( )');
-      expect(icons[0].classList).toContain('glyphicon-star-empty');
-      expect(icons[0].classList).not.toContain('glyphicon-star');
+      expect(icons[0].classList).not.toContain('active');
 
       context.isReadonly = true;
       fixture.detectChanges();
@@ -152,8 +160,7 @@ describe('Component: Rating. Clicks:', () => {
       fixture.detectChanges();
 
       expect(items[0].innerHTML).toEqual('( )');
-      expect(icons[0].classList).toContain('glyphicon-star-empty');
-      expect(icons[0].classList).not.toContain('glyphicon-star');
+      expect(icons[0].classList).not.toContain('active');
 
       context.isReadonly = false;
       fixture.detectChanges();
@@ -163,8 +170,7 @@ describe('Component: Rating. Clicks:', () => {
       fixture.detectChanges();
 
       expect(items[0].innerHTML).toEqual('(*)');
-      expect(icons[0].classList).not.toContain('glyphicon-star-empty');
-      expect(icons[0].classList).toContain('glyphicon-star');
+      expect(icons[0].classList).toContain('active');
     })
   );
 });
