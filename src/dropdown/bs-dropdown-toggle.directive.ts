@@ -44,7 +44,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
     if (this.isDisabled) {
       return;
     }
-    this._state.toggleClick.emit();
+    this._state.toggleClick.emit(true);
   }
 
   @HostListener('document:click', ['$event'])
