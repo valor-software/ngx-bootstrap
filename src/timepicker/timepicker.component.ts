@@ -8,7 +8,7 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges
+  SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -39,7 +39,28 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'timepicker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore],
-  templateUrl: './timepicker.component.html'
+  templateUrl: './timepicker.component.html',
+  styles: [`
+    .bs-chevron{
+      border-style: solid;
+      display: block;
+      width: 9px;
+      height: 9px;
+      position: relative;
+      border-width: 3px 0px 0 3px;
+    }
+    .bs-chevron-up{
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      top: 2px;
+    }
+    .bs-chevron-down{
+      -webkit-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+      top: -2px;
+    }
+  `],
+  encapsulation: ViewEncapsulation.None
 })
 export class TimepickerComponent
   implements ControlValueAccessor,
