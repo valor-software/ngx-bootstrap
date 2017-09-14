@@ -66,6 +66,7 @@ export class Locale {
   private _weekdaysShort: string[];
   private _weekdaysMin: string[];
   private _week: { dow: number; doy: number };
+  private _longDateFormat: {[key: string]: any};
 
   private _ordinal: string;
 
@@ -184,20 +185,21 @@ export class Locale {
     return str;
   }
 
-  longDateFormat(key: string) {
-    const format = defaultLongDateFormat[key];
-    const formatUpper = defaultLongDateFormat[key.toUpperCase()];
+  formatLongDate(key: string) {
+    this._longDateFormat = this._longDateFormat ? this._longDateFormat : defaultLongDateFormat;
+    const format = this._longDateFormat[key];
+    const formatUpper = this._longDateFormat[key.toUpperCase()];
 
     if (format || !formatUpper) {
       return format;
     }
 
-    defaultLongDateFormat[
+    this._longDateFormat[
       key
     ] = formatUpper.replace(/MMMM|MM|DD|dddd/g, (val: string) => {
       return val.slice(1);
     });
 
-    return defaultLongDateFormat[key];
+    return this._longDateFormat[key];
   }
 }

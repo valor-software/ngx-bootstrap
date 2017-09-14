@@ -41,7 +41,7 @@ export function expandFormat(_format: string, locale: Locale) {
   const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
 
   const replaceLongDateFormatTokens = (input: any) => {
-    return locale.longDateFormat(input) || input;
+    return locale.formatLongDate(input) || input;
   };
 
   localFormattingTokens.lastIndex = 0;
