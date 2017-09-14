@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { CLASS_NAME } from './modal-options.class';
 import { isBs3 } from '../utils/theme-provider';
@@ -27,37 +27,48 @@ export class ModalBackdropComponent implements OnInit {
 
   set isShown(value: boolean) {
     this._isShown = value;
-    this.renderer.setElementClass(
-      this.element.nativeElement,
-      `${CLASS_NAME.IN}`,
-      value
-    );
-    if (!isBs3()) {
-      this.renderer.setElementClass(
+    if (value) {
+      this.renderer.addClass(
         this.element.nativeElement,
-        `${CLASS_NAME.SHOW}`,
-        value
+        `${CLASS_NAME.IN}`
       );
+    } else {
+      this.renderer.removeClass(
+        this.element.nativeElement,
+        `${CLASS_NAME.IN}`
+      );
+    }
+    if (!isBs3()) {
+      if (value) {
+        this.renderer.addClass(
+          this.element.nativeElement,
+          `${CLASS_NAME.SHOW}`
+        );
+      } else {
+        this.renderer.removeClass(
+          this.element.nativeElement,
+          `${CLASS_NAME.SHOW}`
+        );
+      }
     }
   }
 
   element: ElementRef;
-  renderer: Renderer;
+  renderer: Renderer2;
 
   protected _isAnimated: boolean;
   protected _isShown = false;
 
-  constructor(element: ElementRef, renderer: Renderer) {
+  constructor(element: ElementRef, renderer: Renderer2) {
     this.element = element;
     this.renderer = renderer;
   }
 
   ngOnInit(): void {
     if (this.isAnimated) {
-      this.renderer.setElementClass(
+      this.renderer.addClass(
         this.element.nativeElement,
-        `${CLASS_NAME.FADE}`,
-        this.isAnimated
+        `${CLASS_NAME.FADE}`
       );
       Utils.reflow(this.element.nativeElement);
     }

@@ -1190,7 +1190,7 @@ export const ngdoc: any = {
       },
       {
         "name": "setEventHandlers",
-        "description": "<p>event handlers</p>\n",
+        "description": "<p>event handlers </p>\n",
         "args": [
           {
             "name": "container",
@@ -1623,6 +1623,25 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "BsModalRef": {
+    "fileName": "src/modal/bs-modal-ref.service.ts",
+    "className": "BsModalRef",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "content",
+        "type": "any",
+        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
+      },
+      {
+        "name": "hide",
+        "defaultValue": "Function",
+        "type": "() => void",
+        "description": "<p>Hides the modal</p>\n"
+      }
+    ]
+  },
   "BsModalService": {
     "fileName": "src/modal/bs-modal.service.ts",
     "className": "BsModalService",
@@ -1645,7 +1664,7 @@ export const ngdoc: any = {
       },
       {
         "name": "checkScrollbar",
-        "description": "<p>AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE\nScroll bar tricks </p>\n",
+        "description": "<p>AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE \nScroll bar tricks </p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -1686,7 +1705,7 @@ export const ngdoc: any = {
       {
         "name": "backdrop",
         "type": "boolean | \"static\"",
-        "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
+        "description": "<p>Includes a modal-backdrop element. Alternatively,\nspecify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
       },
       {
         "name": "class",
@@ -1707,26 +1726,6 @@ export const ngdoc: any = {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
-      }
-    ]
-  },
-  "BsModalRef": {
-    "fileName": "src/modal/modal-options.class.ts",
-    "className": "BsModalRef",
-    "description": "",
-    "methods": [
-      {
-        "name": "hide",
-        "description": "<p>Hides the modal</p>\n",
-        "args": [],
-        "returnType": "void"
-      }
-    ],
-    "properties": [
-      {
-        "name": "content",
-        "type": "any",
-        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
       }
     ]
   },
@@ -1896,7 +1895,7 @@ export const ngdoc: any = {
       },
       {
         "name": "pageChanged",
-        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page </p>\n"
+        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to\nobject with current page index and number of items per page</p>\n"
       }
     ],
     "properties": [],
@@ -2167,7 +2166,7 @@ export const ngdoc: any = {
       {
         "name": "targetAttachment",
         "type": "string",
-        "description": "<p>A string similar to <code>attachment</code>. The one difference is that, if it&#39;s not provided, <code>targetAttachment</code> will assume the mirror image of <code>attachment</code>. </p>\n"
+        "description": "<p>A string similar to <code>attachment</code>. The one difference is that, if it&#39;s not provided,\n<code>targetAttachment</code> will assume the mirror image of <code>attachment</code>.</p>\n"
       },
       {
         "name": "targetOffset",

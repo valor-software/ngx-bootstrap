@@ -2,7 +2,7 @@ import {
   ComponentRef,
   Injectable,
   TemplateRef,
-  EventEmitter, Renderer2
+  EventEmitter, Renderer2, Injector
 } from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -39,7 +39,9 @@ export class BsModalService {
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
-  constructor(private _renderer: Renderer2, private clf: ComponentLoaderFactory) {
+  private _renderer: Renderer2;
+
+  constructor(private _injector: Injector, private clf: ComponentLoaderFactory) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
@@ -168,6 +170,7 @@ export class BsModalService {
 
   // thx d.walsh
   private getScrollbarWidth(): number {
+    this._renderer = this._renderer || this._injector.get(Renderer2);
     const scrollDiv = this._renderer.createElement('div');
     this._renderer.addClass(scrollDiv, CLASS_NAME.SCROLLBAR_MEASURER);
     this._renderer.appendChild('body', scrollDiv);

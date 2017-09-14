@@ -5,7 +5,7 @@ import {
   Input,
   OnInit,
   Output,
-  Renderer,
+  Renderer2,
   forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -119,7 +119,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
-  renderer: Renderer;
+  renderer: Renderer2;
   elementRef: ElementRef;
   classMap: string;
   pages: any[];
@@ -131,7 +131,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _page = 1;
 
   constructor(
-    renderer: Renderer,
+    renderer: Renderer2,
     elementRef: ElementRef,
     paginationConfig: PaginationConfig
   ) {

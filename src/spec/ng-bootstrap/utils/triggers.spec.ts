@@ -77,14 +77,14 @@ describe('triggers', () => {
     it('should throw when more than one manual trigger detected', () => {
       expect(() => {
         parseTriggers('manual click manual');
-      }).toThrow('Triggers parse error: only one manual trigger is allowed');
+      }).toThrow(new Error('Triggers parse error: only one manual trigger is allowed'));
     });
 
     it('should throw when manual trigger is mixed with other triggers', () => {
       expect(() => {
         parseTriggers('click manual');
       }).toThrow(
-        `Triggers parse error: manual trigger can\'t be mixed with other triggers`
+        new Error('Triggers parse error: manual trigger can\'t be mixed with other triggers')
       );
     });
   });
