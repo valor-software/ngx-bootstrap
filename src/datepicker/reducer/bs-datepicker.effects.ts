@@ -22,7 +22,6 @@ import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
 export class BsDatepickerEffects {
-
   viewMode: Observable<BsDatepickerViewMode>;
   daysCalendar: Observable<DaysCalendarViewModel[]>;
   monthsCalendar: Observable<MonthsCalendarViewModel[]>;
@@ -32,8 +31,7 @@ export class BsDatepickerEffects {
   private _store: BsDatepickerStore;
   private _subs: Subscription[] = [];
 
-  constructor(private _actions: BsDatepickerActions) {
-  }
+  constructor(private _actions: BsDatepickerActions) {}
 
   init(_bsDatepickerStore: BsDatepickerStore): BsDatepickerEffects {
     this._store = _bsDatepickerStore;
@@ -92,16 +90,16 @@ export class BsDatepickerEffects {
       .select(state => state.yearsCalendarFlagged)
       .filter(years => !!years);
 
-    container.viewMode = this._store
-      .select(state => state.view.mode);
+    container.viewMode = this._store.select(state => state.view.mode);
 
-    container.options = this._store.select(state => state.showWeekNumbers)
+    container.options = this._store
+      .select(state => state.showWeekNumbers)
       .map(showWeekNumbers => ({showWeekNumbers}));
 
     return this;
   }
 
-  /** event handlers*/
+  /** event handlers */
   setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.setViewMode = (event: BsDatepickerViewMode): void => {
       this._store.dispatch(this._actions.changeViewMode(event));
@@ -138,19 +136,27 @@ export class BsDatepickerEffects {
     // };
 
     container.monthSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) { return; }
-      this._store.dispatch(this._actions.navigateTo({
-        unit: {month: getMonth(event.date)},
-        viewMode: 'day'
-      }));
+      if (event.isDisabled) {
+        return;
+      }
+      this._store.dispatch(
+        this._actions.navigateTo({
+          unit: {month: getMonth(event.date)},
+          viewMode: 'day'
+        })
+      );
     };
 
     container.yearSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) { return; }
-      this._store.dispatch(this._actions.navigateTo({
-        unit: {year: getFullYear(event.date)},
-        viewMode: 'month'
-      }));
+      if (event.isDisabled) {
+        return;
+      }
+      this._store.dispatch(
+        this._actions.navigateTo({
+          unit: {year: getFullYear(event.date)},
+          viewMode: 'month'
+        })
+      );
     };
 
     return this;
@@ -158,60 +164,65 @@ export class BsDatepickerEffects {
 
   registerDatepickerSideEffects(): BsDatepickerEffects {
     this._subs.push(
-      this._store.select(state => state.view)
-        .subscribe(view => {
-          this._store.dispatch(this._actions.calculate());
-        }));
+      this._store.select(state => state.view).subscribe(view => {
+        this._store.dispatch(this._actions.calculate());
+      })
+    );
 
     // format calendar values on month model change
     this._subs.push(
       this._store
         .select(state => state.monthsModel)
         .filter(monthModel => !!monthModel)
-        .subscribe(month =>
-          this._store.dispatch(this._actions.format())));
+        .subscribe(month => this._store.dispatch(this._actions.format()))
+    );
 
     // flag day values
     this._subs.push(
       this._store
         .select(state => state.formattedMonths)
         .filter(month => !!month)
-        .subscribe(month =>
-          this._store.dispatch(this._actions.flag())));
+        .subscribe(month => this._store.dispatch(this._actions.flag()))
+    );
 
     // flag day values
     this._subs.push(
-      this._store.select(state => state.selectedDate)
+      this._store
+        .select(state => state.selectedDate)
         .filter(selectedDate => !!selectedDate)
-        .subscribe(selectedDate =>
-          this._store.dispatch(this._actions.flag())));
+        .subscribe(selectedDate => this._store.dispatch(this._actions.flag()))
+    );
 
     // flag for date range picker
     this._subs.push(
-      this._store.select(state => state.selectedRange)
+      this._store
+        .select(state => state.selectedRange)
         .filter(selectedRange => !!selectedRange)
-        .subscribe(selectedRange =>
-          this._store.dispatch(this._actions.flag())));
+        .subscribe(selectedRange => this._store.dispatch(this._actions.flag()))
+    );
 
     // monthsCalendar
     this._subs.push(
       this._store
         .select(state => state.monthsCalendar)
-        .subscribe(() => this._store.dispatch(this._actions.flag())));
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
+    );
 
     // years calendar
     this._subs.push(
       this._store
         .select(state => state.yearsCalendarModel)
         .filter(state => !!state)
-        .subscribe(() => this._store.dispatch(this._actions.flag())));
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
+    );
 
     // on hover
     this._subs.push(
-      this._store.select(state => state.hoveredDate)
+      this._store
+        .select(state => state.hoveredDate)
         .filter(hoveredDate => !!hoveredDate)
-        .subscribe(hoveredDate =>
-          this._store.dispatch(this._actions.flag())));
+        .subscribe(hoveredDate => this._store.dispatch(this._actions.flag()))
+    );
 
     return this;
   }

@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-tooltip-dismiss',
   templateUrl: './dismiss.html'
 })
-export class DemoTooltipDismissComponent {
-}
+export class DemoTooltipDismissComponent {}

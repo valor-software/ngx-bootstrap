@@ -12,7 +12,7 @@ import { CarouselConfig } from './carousel.config';
   providers: [CarouselConfig]
 })
 export class CarouselModule {
-  public static forRoot(): ModuleWithProviders {
-    return {ngModule: CarouselModule, providers: []};
+  static forRoot(): ModuleWithProviders {
+    return { ngModule: CarouselModule, providers: [] };
   }
 }

@@ -11,14 +11,19 @@ export class DemoModalServiceFromComponent {
   constructor(private modalService: BsModalService) {}
 
   public openModalWithComponent() {
-    let list = ['Open a modal with component', 'Pass your data', 'Do something else', '...'];
+    let list = [
+      'Open a modal with component',
+      'Pass your data',
+      'Do something else',
+      '...'
+    ];
     this.bsModalRef = this.modalService.show(ModalContentComponent);
     this.bsModalRef.content.title = 'Modal with component';
     this.bsModalRef.content.list = list;
     setTimeout(() => {
       list.push('PROFIT!!!');
     }, 2000);
-}
+  }
 }
 
 /* This is a component which we pass in modal*/

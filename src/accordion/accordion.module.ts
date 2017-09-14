@@ -12,5 +12,7 @@ import { AccordionConfig } from './accordion.config';
   exports: [AccordionComponent, AccordionPanelComponent]
 })
 export class AccordionModule {
-  public static forRoot(): ModuleWithProviders {return {ngModule: AccordionModule, providers: [AccordionConfig]};}
+  static forRoot(): ModuleWithProviders {
+    return { ngModule: AccordionModule, providers: [AccordionConfig] };
+  }
 }

@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-tooltip-triggers-custom',
   templateUrl: './triggers-custom.html'
 })
-export class DemoTooltipTriggersCustomComponent {
-}
+export class DemoTooltipTriggersCustomComponent {}

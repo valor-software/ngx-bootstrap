@@ -11,10 +11,7 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-accordion.routes';
 
 @NgModule({
-  declarations: [
-    AccordionSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [AccordionSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     AccordionModule.forRoot(),
     CommonModule,
@@ -25,5 +22,5 @@ import { routes } from './demo-accordion.routes';
   exports: [AccordionSectionComponent]
 })
 export class DemoAccordionModule {
-  public static routes:any = routes;
+  public static routes: any = routes;
 }

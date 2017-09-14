@@ -22,7 +22,7 @@ export class DemoAlertDynamicHtmlComponent {
   ];
 
   public constructor(sanitizer: DomSanitizer) {
-    this.alerts = this.alerts.map((alert:any) => ({
+    this.alerts = this.alerts.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)
     }));

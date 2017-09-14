@@ -12,6 +12,7 @@ import { routes } from './demo-datepicker.routes';
 
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import {
+
   ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, ru, zhCn
 } from 'ngx-bootstrap/locale';
 
@@ -19,12 +20,8 @@ const locales = [ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe,
 
 locales.forEach(locale => defineLocale(locale.abbr, locale));
 
-
 @NgModule({
-  declarations: [
-    DatepickerSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [DatepickerSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     DatepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
@@ -37,5 +34,4 @@ locales.forEach(locale => defineLocale(locale.abbr, locale));
   ],
   exports: [DatepickerSectionComponent]
 })
-export class DemoDatepickerModule {
-}
+export class DemoDatepickerModule {}

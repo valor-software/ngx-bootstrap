@@ -5,5 +5,4 @@ import { Component, ViewEncapsulation } from '@angular/core';
   templateUrl: './styling-global.html',
   encapsulation: ViewEncapsulation.None
 })
-export class DemoAlertStylingGlobalComponent {
-}
+export class DemoAlertStylingGlobalComponent {}

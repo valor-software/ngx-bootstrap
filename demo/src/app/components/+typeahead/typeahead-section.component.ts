@@ -81,8 +81,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class TypeaheadSectionComponent {
-  public name:string = 'Typeahead';
-  public src:string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
+  public name: string = 'Typeahead';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
   public demos: any = DEMOS;
-  public titleDoc:string = titleDoc;
+  public titleDoc: string = titleDoc;
 }

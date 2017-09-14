@@ -6,13 +6,13 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   templateUrl: './child.html'
 })
 export class DemoModalChildComponent {
-  @ViewChild('childModal') public childModal:ModalDirective;
+  @ViewChild('childModal') public childModal: ModalDirective;
 
-  public showChildModal():void {
+  public showChildModal(): void {
     this.childModal.show();
   }
 
-  public hideChildModal():void {
+  public hideChildModal(): void {
     this.childModal.hide();
   }
 }

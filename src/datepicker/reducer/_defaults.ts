@@ -1,4 +1,6 @@
-import { DatepickerFormatOptions, DatepickerRenderOptions, MonthViewOptions } from '../models/index';
+import {
+  MonthViewOptions
+} from '../models/index';
 
 export const defaultMonthOptions: MonthViewOptions = {
   width: 7,

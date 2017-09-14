@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
 })
 export class DemoButtonsDisabledComponent {
   public disabled: boolean = false;
-
 }

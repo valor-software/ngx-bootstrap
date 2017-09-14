@@ -16,10 +16,8 @@ import { Subscription } from 'rxjs/Subscription';
     style: 'position: absolute; display: block;'
   }
 })
-export class BsDaterangepickerContainerComponent
-  extends BsDatepickerAbstractComponent
+export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
-
   set value(value: Date[]) {
     this._effects.setRangeValue(value);
   }
@@ -28,10 +26,12 @@ export class BsDaterangepickerContainerComponent
 
   _rangeStack: Date[] = [];
   _subs: Subscription[] = [];
-  constructor(private _config: BsDatepickerConfig,
-              private _store: BsDatepickerStore,
-              private _actions: BsDatepickerActions,
-              _effects: BsDatepickerEffects) {
+  constructor(
+    private _config: BsDatepickerConfig,
+    private _store: BsDatepickerStore,
+    private _actions: BsDatepickerActions,
+    _effects: BsDatepickerEffects
+  ) {
     super();
     this._effects = _effects;
   }
@@ -51,9 +51,11 @@ export class BsDaterangepickerContainerComponent
 
     // todo: move it somewhere else
     // on selected date change
-    this._subs.push(this._store
-      .select(state => state.selectedRange)
-      .subscribe(date => this.valueChange.emit(date)));
+    this._subs.push(
+      this._store
+        .select(state => state.selectedRange)
+        .subscribe(date => this.valueChange.emit(date))
+    );
   }
 
   daySelectHandler(day: DayViewModel): void {
@@ -67,9 +69,10 @@ export class BsDaterangepickerContainerComponent
     // but if new date is after initial one
     // than finish selection
     if (this._rangeStack.length === 1) {
-      this._rangeStack = day.date >= this._rangeStack[0]
-        ? [this._rangeStack[0], day.date]
-        : [day.date];
+      this._rangeStack =
+        day.date >= this._rangeStack[0]
+          ? [this._rangeStack[0], day.date]
+          : [day.date];
     }
 
     if (this._rangeStack.length === 0) {

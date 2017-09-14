@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { isDevMode, ModuleWithProviders, NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
 import { BsDatepickerStore } from './reducer/bs-datepicker.store';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
@@ -25,14 +25,14 @@ import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.dire
 import { warnOnce } from '../utils/warn-once';
 
 const _exports = [
-BsDatepickerContainerComponent,
-BsDaterangepickerContainerComponent,
+  BsDatepickerContainerComponent,
+  BsDaterangepickerContainerComponent,
 
-BsDatepickerComponent,
-BsDatepickerInputDirective,
+  BsDatepickerComponent,
+  BsDatepickerInputDirective,
 
-BsDaterangepickerInputDirective,
-BsDaterangepickerComponent
+  BsDaterangepickerInputDirective,
+  BsDaterangepickerComponent
 ];
 
 @NgModule({
@@ -52,7 +52,10 @@ BsDaterangepickerComponent
 
     ..._exports
   ],
-  entryComponents: [BsDatepickerContainerComponent, BsDaterangepickerContainerComponent],
+  entryComponents: [
+    BsDatepickerContainerComponent,
+    BsDaterangepickerContainerComponent
+  ],
   exports: _exports
 })
 export class BsDatepickerModule {
@@ -66,8 +69,13 @@ export class BsDatepickerModule {
     return {
       ngModule: BsDatepickerModule,
       providers: [
-        ComponentLoaderFactory, PositioningService,
-        BsDatepickerStore, BsDatepickerActions, BsDatepickerConfig, BsDatepickerEffects]
+        ComponentLoaderFactory,
+        PositioningService,
+        BsDatepickerStore,
+        BsDatepickerActions,
+        BsDatepickerConfig,
+        BsDatepickerEffects
+      ]
     };
   }
 }
