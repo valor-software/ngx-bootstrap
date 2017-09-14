@@ -5,7 +5,7 @@ import {
   Input,
   OnInit,
   Output,
-  forwardRef
+  forwardRef, TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -24,16 +24,12 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
 export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */
   @Input() max = 5;
-  /** selected icon class */
-  @Input() stateOn: string;
-  /** unselected icon class */
-  @Input() stateOff: string;
   /** if true will not react on any user events */
   @Input() readonly: boolean;
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
   @Input() titles: string[];
-  /** array of custom icons classes */
-  @Input() ratingStates: { stateOn: string; stateOff: string }[];
+  /** custom template for icons */
+  @Input() customTemplate: TemplateRef<any>;
   /** fired when icon selected, $event:number equals to selected rating */
   @Output() onHover: EventEmitter<number> = new EventEmitter();
   /** fired when icon selected, $event:number equals to previous rating value */
@@ -60,18 +56,11 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit(): void {
     this.max = typeof this.max !== 'undefined' ? this.max : 5;
-    this.readonly = this.readonly;
-    this.stateOn =
-      typeof this.stateOn !== 'undefined' ? this.stateOn : 'glyphicon-star';
-    this.stateOff =
-      typeof this.stateOff !== 'undefined'
-        ? this.stateOff
-        : 'glyphicon-star-empty';
     this.titles =
       typeof this.titles !== 'undefined' && this.titles.length > 0
         ? this.titles
         : ['one', 'two', 'three', 'four', 'five'];
-    this.range = this.buildTemplateObjects(this.ratingStates, this.max);
+    this.range = this.buildTemplateObjects(this.max);
   }
 
   // model -> view
@@ -114,22 +103,13 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  protected buildTemplateObjects(_ratingStates: any[], max: number): any[] {
-    const ratingStates = _ratingStates || [];
-    const count = ratingStates.length || max;
+  protected buildTemplateObjects(max: number): any[] {
     const result: any[] = [];
-    for (let i = 0; i < count; i++) {
-      result.push(
-        Object.assign(
-          {
-            index: i,
-            stateOn: this.stateOn,
-            stateOff: this.stateOff,
-            title: this.titles[i] || i + 1
-          },
-          ratingStates[i] || {}
-        )
-      );
+    for (let i = 0; i < max; i++) {
+      result.push({
+          index: i,
+          title: this.titles[i] || i + 1
+        });
     }
 
     return result;

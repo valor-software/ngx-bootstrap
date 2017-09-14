@@ -1,9 +1,15 @@
 <div>
-  <rating [(ngModel)]="x" max="15" stateOn="glyphicon-ok-sign" stateOff="glyphicon-ok-circle"
-          style="color: #0275d8;"></rating>
+  <rating max="10" [(ngModel)]="x" [customTemplate]="t" style="color: #0275d8;font-size: 20px;"></rating>
   <b>(<i>Rate:</i> {{x}})</b>
+  <ng-template #t let-index="index" let-value="value">{{index < value ? '&#9745;' : '&#9744;'}}</ng-template>
 </div>
+
 <div>
-  <rating [(ngModel)]="y" [ratingStates]="ratingStates"></rating>
+  <rating max="10" [(ngModel)]="y" [customTemplate]="tt"></rating>
   <b>(<i>Rate:</i> {{y}})</b>
+  <ng-template #tt let-i="index" let-v="value">
+    <button class="btn btn-{{i < v ? 'warning' : 'default'}}">
+      {{i < v ? '&#9733;' : '&#9734;'}}
+    </button>
+  </ng-template>
 </div>
