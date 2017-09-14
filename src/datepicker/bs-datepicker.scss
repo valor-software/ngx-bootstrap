@@ -504,6 +504,11 @@
   }
 }
 
+bs-datepicker-container,
+bs-daterangepicker-container {
+  z-index: 3;
+}
+
 /* screen size < 1024px */
 @media (max-width: 768px) {
   bs-datepicker-container,

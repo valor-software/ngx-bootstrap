@@ -16,11 +16,12 @@ export class TopMenuComponent implements AfterViewInit {
   public previousDocs: string[] = [];
   public isLocalhost = false;
 
-  public constructor(private renderer: Renderer,
-                     @Inject(DOCUMENT) private document: any,
-                     private router: Router,
-                     private http: Http) {
-  }
+  public constructor(
+    private renderer: Renderer,
+    @Inject(DOCUMENT) private document: any,
+    private router: Router,
+    private http: Http
+  ) {}
 
   public ngAfterViewInit(): any {
     // todo: remove this sh**
@@ -40,24 +41,34 @@ export class TopMenuComponent implements AfterViewInit {
       }
     });
 
-    this.http.get('assets/json/versions.json')
+    this.http
+      .get('assets/json/versions.json')
       .map(res => res.json())
       .subscribe((data: any) => {
         this.previousDocs = data;
       });
-    this.http.get('assets/json/current-version.json')
+    this.http
+      .get('assets/json/current-version.json')
       .map(res => res.json())
       .subscribe((data: any) => {
         this.currentVersion = data.version;
       });
 
-    this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
+    this.appUrl =
+      location.protocol +
+      '//' +
+      location.hostname +
+      (this.isLocalhost ? ':' + location.port + '/' : '/');
   }
 
   public toggle(isShown?: boolean): void {
     this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
     if (this.document && this.document.body) {
-      this.renderer.setElementClass(this.document.body, 'isOpenMenu', this.isShown);
+      this.renderer.setElementClass(
+        this.document.body,
+        'isOpenMenu',
+        this.isShown
+      );
       if (this.isShown === false) {
         this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
       }

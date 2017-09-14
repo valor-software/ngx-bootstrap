@@ -8,5 +8,4 @@ export class DemoTimepickerDisabledComponent {
   public ismeridian: boolean = false;
   public isEnabled: boolean = true;
   public mytime: Date = new Date();
-
 }

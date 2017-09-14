@@ -4,6 +4,7 @@ export function latinize(str: string): string {
   if (!str) {
     return '';
   }
+
   return str.replace(/[^A-Za-z0-9\[\] ]/g, function (a: string): string {
     return latinMap[a] || a;
   });
@@ -17,14 +18,17 @@ export function escapeRegexp(queryToEscape: string): string {
 }
 
 /* tslint:disable */
-export function tokenize(str: string, wordRegexDelimiters = ' ', phraseRegexDelimiters = ''): Array<string> {
+export function tokenize(str: string,
+                         wordRegexDelimiters = ' ',
+                         phraseRegexDelimiters = ''): Array<string> {
   /* tslint:enable */
-  let regexStr: string = '(?:[' + phraseRegexDelimiters + '])([^' + phraseRegexDelimiters + ']+)(?:[' + phraseRegexDelimiters + '])|([^' + wordRegexDelimiters + ']+)';
-  let preTokenized: string[] = str.split(new RegExp(regexStr, 'g'));
-  let result: string[] = [];
-  let preTokenizedLength: number = preTokenized.length;
+  const regexStr = `(?:[${phraseRegexDelimiters}])([^${phraseRegexDelimiters}]+)` +
+    `(?:[${phraseRegexDelimiters}])|([^${wordRegexDelimiters}]+)`;
+  const preTokenized: string[] = str.split(new RegExp(regexStr, 'g'));
+  const result: string[] = [];
+  const preTokenizedLength: number = preTokenized.length;
   let token: string;
-  let replacePhraseDelimiters = new RegExp('[' + phraseRegexDelimiters + ']+', 'g');
+  const replacePhraseDelimiters = new RegExp(`[${phraseRegexDelimiters}]+`, 'g');
 
   for (let i = 0; i < preTokenizedLength; i += 1) {
     token = preTokenized[i];
@@ -42,19 +46,23 @@ export function getValueFromObject(object: any, option: string): string {
   }
 
   if (option.endsWith('()')) {
-    let functionName = option.slice(0, option.length - 2);
+    const functionName = option.slice(0, option.length - 2);
+
     return object[functionName]().toString();
   }
 
-  let properties: string = option.replace(/\[(\w+)\]/g, '.$1')
+  const properties: string = option
+    .replace(/\[(\w+)\]/g, '.$1')
     .replace(/^\./, '');
-  let propertiesArray: string[] = properties.split('.');
+  const propertiesArray: string[] = properties.split('.');
 
-  for (let property of propertiesArray) {
+  for (const property of propertiesArray) {
     if (property in object) {
+      // tslint:disable-next-line
       object = object[property];
     }
   }
-  if (!object) return "";
+  if (!object) {return ''; }
+
   return object.toString();
 }

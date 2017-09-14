@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 import {
   BsDatepickerViewMode,
   BsNavigationDirection,
@@ -62,7 +67,7 @@ export class BsDaysCalendarViewComponent {
 
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
-    this.onNavigate.emit({step: {month: step}});
+    this.onNavigate.emit({ step: { month: step } });
   }
 
   changeViewMode(event: BsDatepickerViewMode): void {
@@ -74,6 +79,6 @@ export class BsDaysCalendarViewComponent {
   }
 
   hoverDay(cell: DayViewModel, isHovered: boolean): void {
-    this.onHover.emit({cell, isHovered});
+    this.onHover.emit({ cell, isHovered });
   }
 }

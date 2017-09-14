@@ -16,6 +16,8 @@ import { MainMenuComponent } from './common/main-menu/main-menu.component';
 import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { ThemeStorage } from './theme/theme-storage';
+import { StyleManager } from './theme/style-manager';
 
 @NgModule({
   declarations: [
@@ -31,14 +33,15 @@ import { GettingStartedComponent } from './getting-started/getting-started.compo
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, {useHash: true}),
+    RouterModule.forRoot(routes, { useHash: true }),
     Ng2PageScrollModule.forRoot(),
     BsDropdownModule.forRoot()
   ],
   providers: [
-    {provide: NgApiDoc, useValue: ngdoc}
+    ThemeStorage,
+    StyleManager,
+    { provide: NgApiDoc, useValue: ngdoc }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

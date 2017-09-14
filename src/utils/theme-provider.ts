@@ -19,6 +19,10 @@ function _guessBsVersion(): 'bs3' | 'bs4' {
   return rect.top === 0 ? 'bs4' : 'bs3';
 }
 
+export function setTheme(theme: 'bs3' | 'bs4'): void {
+  guessedVersion = theme;
+}
+
 // todo: in ngx-bootstrap, bs4 will became a default one
 export function isBs3(): boolean {
   if (typeof window === 'undefined') {

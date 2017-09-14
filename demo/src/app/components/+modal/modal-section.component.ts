@@ -157,5 +157,4 @@ export class ModalSectionComponent {
   public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
   public demos: any = DEMOS;
   public titleDoc: string = titleDoc;
-
 }

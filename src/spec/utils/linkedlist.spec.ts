@@ -3,9 +3,7 @@ import { LinkedList } from '../../utils/linked-list.class';
 let list: LinkedList<any>;
 
 describe('Linked List. Base functions.', () => {
-
   beforeEach(() => {
-
     list = new LinkedList<string>();
     list.add('1');
     list.add('2');
@@ -59,7 +57,6 @@ describe('Linked List. Base functions.', () => {
 });
 
 describe('Linked List. Overridden (from Array) methods.', () => {
-
   beforeEach(() => {
     list = new LinkedList<string>();
     list.add('1');
@@ -119,18 +116,16 @@ describe('Linked List. Overridden (from Array) methods.', () => {
   it('Positive check every()', () => {
     expect(list.every((item: string) => item !== '0')).toBeTruthy();
   });
-
 });
 
 describe('Linked List. Working with objects.', () => {
-
   beforeEach(() => {
     list = new LinkedList<any>();
-    list.add({stringProperty: 'String1', numberProperty: 10});
-    list.add({stringProperty: 'String2', numberProperty: 20});
-    list.add({stringProperty: 'String3', numberProperty: 30});
-    list.add({stringProperty: 'String4', numberProperty: 40});
-    list.add({stringProperty: 'String5', numberProperty: 50});
+    list.add({ stringProperty: 'String1', numberProperty: 10 });
+    list.add({ stringProperty: 'String2', numberProperty: 20 });
+    list.add({ stringProperty: 'String3', numberProperty: 30 });
+    list.add({ stringProperty: 'String4', numberProperty: 40 });
+    list.add({ stringProperty: 'String5', numberProperty: 50 });
   });
 
   it('Check find', () => {
@@ -142,7 +137,9 @@ describe('Linked List. Working with objects.', () => {
   });
 
   it('Check findIndex', () => {
-    let result: number = list.findIndex((item: any) => item.numberProperty === 20);
+    let result: number = list.findIndex(
+      (item: any) => item.numberProperty === 20
+    );
     expect(result).toEqual(1);
 
     result = list.findIndex((item: any, index: number) => index === 2);

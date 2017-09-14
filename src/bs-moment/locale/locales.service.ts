@@ -13,7 +13,6 @@ function chooseLocale(name: string) {
 
 // returns locale data
 export function getLocale(key: string): Locale {
-
   if (!key) {
     return globalLocale;
   }
@@ -25,7 +24,10 @@ export function listLocales(): string[] {
   return Object.keys(locales);
 }
 
-export function mergeConfigs(parentConfig: LocaleData, childConfig: LocaleData) {
+export function mergeConfigs(
+  parentConfig: LocaleData,
+  childConfig: LocaleData
+) {
   const res: { [key: string]: any } = Object.assign({}, parentConfig);
 
   for (const childProp in childConfig) {
@@ -33,21 +35,23 @@ export function mergeConfigs(parentConfig: LocaleData, childConfig: LocaleData) 
       continue;
     }
     if (isObject(parentConfig[childProp]) && isObject(childConfig[childProp])) {
-      (res[childProp]) = {};
+      res[childProp] = {};
       Object.assign(res[childProp], parentConfig[childProp]);
       Object.assign(res[childProp], childConfig[childProp]);
     } else if (childConfig[childProp] != null) {
-      (res[childProp] ) = childConfig[childProp];
+      res[childProp] = childConfig[childProp];
     } else {
       delete res[childProp];
     }
   }
   for (const parentProp in parentConfig) {
-    if (hasOwnProp(parentConfig, parentProp) &&
+    if (
+      hasOwnProp(parentConfig, parentProp) &&
       !hasOwnProp(childConfig, parentProp) &&
-      isObject(parentConfig[parentProp])) {
+      isObject(parentConfig[parentProp])
+    ) {
       // make sure changes to properties don't modify parent config
-      (res[parentProp] ) = Object.assign({}, res[parentProp]);
+      res[parentProp] = Object.assign({}, res[parentProp]);
     }
   }
   return res;
@@ -81,7 +85,7 @@ export function defineLocale(name: string, config?: LocaleData): Locale {
   locales[name] = new Locale(mergeConfigs(baseConfig, config));
 
   if (localeFamilies[name]) {
-    localeFamilies[name].forEach(function (x: Locale) {
+    localeFamilies[name].forEach(function(x: Locale) {
       defineLocale(x.name, x.config);
     });
   }

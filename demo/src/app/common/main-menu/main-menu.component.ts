@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { isBs3 } from 'ngx-bootstrap/utils';
+import { Router } from '@angular/router';
+import { isBs3, setTheme } from 'ngx-bootstrap/utils';
 import { routes } from '../../app.routing';
+import { StyleManager } from '../../theme/style-manager';
+import { ThemeStorage } from '../../theme/theme-storage';
+
+const _bs3Css =
+  '/assets/css/bootstrap.min.css';
+const _bs4Css =
+  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css';
 
 @Component({
   selector: 'main-menu',
@@ -14,17 +21,30 @@ export class MainMenuComponent {
 
   public routes: any = routes;
   public search: any = {};
-  public hash: string = '';
 
-  private router: Router;
+  currentTheme: 'bs3' | 'bs4';
 
-  public constructor(router: Router) {
+  public constructor(
+    private router: Router,
+    public styleManager: StyleManager,
+    private _themeStorage: ThemeStorage
+  ) {
+    const currentTheme = this._themeStorage.getStoredTheme();
+    if (currentTheme) {
+      this.installTheme(currentTheme);
+    }
+
     this.router = router;
     this.routes = this.routes.filter((v: any) => v.path !== '**');
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        this.hash = event.url;
-      }
-    });
+  }
+
+  installTheme(theme: 'bs3' | 'bs4') {
+    setTheme(theme);
+    this.currentTheme = this.isBs3 ? 'bs3' : 'bs4';
+    this.styleManager.setStyle('theme', this.isBs3 ? _bs3Css : _bs4Css);
+
+    if (this.currentTheme) {
+      this._themeStorage.storeTheme(this.currentTheme);
+    }
   }
 }

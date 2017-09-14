@@ -122,7 +122,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <ng-api-doc-config routerLink="." fragment="popover-config" id="popover-config" type="PopoverConfig"></ng-api-doc-config>
 </demo-section>`
 })
-export class PopoverSectionComponent  {
+export class PopoverSectionComponent {
   public name: string = 'Popover';
   public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
   public demos: any = DEMOS;

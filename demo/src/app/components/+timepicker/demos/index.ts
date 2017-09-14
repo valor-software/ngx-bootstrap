@@ -10,9 +10,15 @@ import { DemoTimepickerMousewheelArrowkeysComponent } from './mousewheel-arrowke
 import { DemoTimepickerCustomValidationComponent } from './custom-validation/custom-validation';
 
 export const DEMO_COMPONENTS = [
-  DemoTimepickerBasicComponent, DemoTimepickerConfigComponent, DemoTimepickerMeridianComponent,
-  DemoTimepickerMinMaxComponent, DemoTimepickerDisabledComponent, DemoTimepickerCustomComponent,
-  DemoTimepickerDynamicComponent, DemoTimepickerSecondsComponent, DemoTimepickerMousewheelArrowkeysComponent,
+  DemoTimepickerBasicComponent,
+  DemoTimepickerConfigComponent,
+  DemoTimepickerMeridianComponent,
+  DemoTimepickerMinMaxComponent,
+  DemoTimepickerDisabledComponent,
+  DemoTimepickerCustomComponent,
+  DemoTimepickerDynamicComponent,
+  DemoTimepickerSecondsComponent,
+  DemoTimepickerMousewheelArrowkeysComponent,
   DemoTimepickerCustomValidationComponent
 ];
 

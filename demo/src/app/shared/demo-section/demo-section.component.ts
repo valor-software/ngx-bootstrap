@@ -18,8 +18,7 @@ export class DemoSectionComponent {
 
   public set titleDoc(value: string) {
     if (this._sanitizer) {
-      this._titleDoc = this._sanitizer
-        .sanitize(SecurityContext.HTML, value);
+      this._titleDoc = this._sanitizer.sanitize(SecurityContext.HTML, value);
     }
   }
 
@@ -30,8 +29,7 @@ export class DemoSectionComponent {
 
   public set doc(value: string) {
     if (this._sanitizer) {
-      this._doc = this._sanitizer
-        .sanitize(SecurityContext.HTML, value);
+      this._doc = this._sanitizer.sanitize(SecurityContext.HTML, value);
     }
   }
 

@@ -1,6 +1,6 @@
-<template #customItemTemplate let-model="item" let-index="index">
+<ng-template #customItemTemplate let-model="item" let-index="index">
   <h5>This is: {{model | json}} Index: {{ index }}</h5>
-</template>
+</ng-template>
 
 <pre class="card card-block card-header">Model: {{selected | json}}</pre>
 <input [(ngModel)]="selected"

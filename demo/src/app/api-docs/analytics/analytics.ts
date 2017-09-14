@@ -3,7 +3,7 @@
  * @copyright ng-bootstrap
  */
 import { Injectable } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/filter';
@@ -11,8 +11,9 @@ import 'rxjs/add/operator/filter';
 declare const ga: any;
 
 /**
- * Simple Google Analytics service. Note that all its methods don't do anything unless the app
- * is deployed on ng-bootstrap.github.io. This avoids sending events and page views during development.
+ * Simple Google Analytics service. Note that all its methods don't do anything
+ * unless the app is deployed on ng-bootstrap.github.io. This avoids sending
+ * events and page views during development.
  */
 @Injectable()
 export class Analytics {
@@ -27,8 +28,8 @@ export class Analytics {
   }
 
   /**
-   * Intended to be called only once. Subscribes to router events and sends a page view
-   * after each ended navigation event.
+   * Intended to be called only once. Subscribes to router events and sends a
+   * page view after each ended navigation event.
    */
   public trackPageViews(): void {
     if (!this._enabled) {
@@ -38,7 +39,7 @@ export class Analytics {
       .filter((event: any) => event instanceof NavigationEnd)
       .subscribe(() => {
         if (typeof ga !== 'undefined') {
-          ga('send', {hitType: 'pageview', page: this._location.path()});
+          ga('send', { hitType: 'pageview', page: this._location.path() });
         }
       });
   }
@@ -51,7 +52,11 @@ export class Analytics {
       return;
     }
     if (typeof ga !== 'undefined') {
-      ga('send', {hitType: 'event', eventCategory: category, eventAction: action});
+      ga('send', {
+        hitType: 'event',
+        eventCategory: category,
+        eventAction: action
+      });
     }
   }
 }

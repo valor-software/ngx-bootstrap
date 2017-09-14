@@ -10,9 +10,13 @@ export class DatepickerDemoComponent {
   public events: any[];
   public tomorrow: Date;
   public afterTomorrow: Date;
-  public dateDisabled: {date: Date, mode: string}[];
-  public formats: string[] = ['DD-MM-YYYY', 'YYYY/MM/DD', 'DD.MM.YYYY',
-    'shortDate'];
+  public dateDisabled: { date: Date; mode: string }[];
+  public formats: string[] = [
+    'DD-MM-YYYY',
+    'YYYY/MM/DD',
+    'DD.MM.YYYY',
+    'shortDate'
+  ];
   public format: string = this.formats[0];
   public dateOptions: any = {
     formatYear: 'YY',
@@ -24,15 +28,15 @@ export class DatepickerDemoComponent {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
     (this.afterTomorrow = new Date()).setDate(this.tomorrow.getDate() + 2);
     (this.minDate = new Date()).setDate(this.minDate.getDate() - 1000);
-    (this.dateDisabled = []);
+    this.dateDisabled = [];
     this.events = [
-      {date: this.tomorrow, status: 'full'},
-      {date: this.afterTomorrow, status: 'partially'}
+      { date: this.tomorrow, status: 'full' },
+      { date: this.afterTomorrow, status: 'partially' }
     ];
   }
 
   public getDate(): number {
-    return this.dt && this.dt.getTime() || new Date().getTime();
+    return (this.dt && this.dt.getTime()) || new Date().getTime();
   }
 
   public today(): void {
@@ -40,11 +44,11 @@ export class DatepickerDemoComponent {
   }
 
   public d20090824(): void {
-    this.dt = new Date(2009,7,24);
+    this.dt = new Date(2009, 7, 24);
   }
 
   public disableTomorrow(): void {
-    this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
+    this.dateDisabled = [{ date: this.tomorrow, mode: 'day' }];
   }
 
   // todo: implement custom class cases
@@ -65,7 +69,7 @@ export class DatepickerDemoComponent {
   }
 
   public disabled(date: Date, mode: string): boolean {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
   }
 
   public open(): void {

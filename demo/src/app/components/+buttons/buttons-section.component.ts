@@ -69,8 +69,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class ButtonsSectionComponent {
-  public name:string = 'Buttons';
-  public src:string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
-  public titleDoc:string = titleDoc;
+  public name: string = 'Buttons';
+  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
+  public titleDoc: string = titleDoc;
   public demos: any = DEMOS;
 }

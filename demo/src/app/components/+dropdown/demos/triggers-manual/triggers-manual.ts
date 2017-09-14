@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './triggers-manual.html'
 })
 export class DemoDropdownTriggersManualComponent {
-  public status: {isopen: boolean} = {isopen: false};
+  public status: { isopen: boolean } = { isopen: false };
 
   public toggleDropdown($event: MouseEvent): void {
     $event.preventDefault();

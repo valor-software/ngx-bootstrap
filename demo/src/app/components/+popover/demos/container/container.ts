@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-popover-container',
   templateUrl: './container.html'
 })
-export class DemoPopoverContainerComponent {
-}
+export class DemoPopoverContainerComponent {}

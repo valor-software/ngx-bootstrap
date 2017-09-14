@@ -2,11 +2,13 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, EventEmitter,
+  Component,
+  EventEmitter,
   forwardRef,
   Input,
-  OnChanges, Output,
-  SimpleChanges
+  OnChanges,
+  Output,
+  SimpleChanges, ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -14,8 +16,17 @@ import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
-import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
-import { isValidDate, padNumber, parseTime, isInputValid } from './timepicker.utils';
+import {
+  TimeChangeSource,
+  TimepickerComponentState,
+  TimepickerControls
+} from './timepicker.models';
+import {
+  isValidDate,
+  padNumber,
+  parseTime,
+  isInputValid
+} from './timepicker.utils';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,126 +39,34 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   selector: 'timepicker',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore],
-  template: `
-    <table>
-      <tbody>
-      <tr class="text-center" [class.hidden]="!isSpinnersVisible">
-        <!-- increment hours button-->
-        <td>
-          <a class="btn btn-link" [class.disabled]="!canIncrementHours"
-             (click)="changeHours(hourStep)"
-          ><span class="glyphicon glyphicon-chevron-up"></span></a>
-        </td>
-        <!-- divider -->
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <!-- increment minutes button -->
-        <td>
-          <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
-             (click)="changeMinutes(minuteStep)"
-          ><span class="glyphicon glyphicon-chevron-up"></span></a>
-        </td>
-        <!-- divider -->
-        <td *ngIf="showSeconds">&nbsp;</td>
-        <!-- increment seconds button -->
-        <td *ngIf="showSeconds">
-          <a class="btn btn-link" [class.disabled]="!canIncrementSeconds"
-             (click)="changeSeconds(secondsStep)">
-            <span class="glyphicon glyphicon-chevron-up"></span>
-          </a>
-        </td>
-        <!-- space between -->
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <!-- meridian placeholder-->
-        <td *ngIf="showMeridian"></td>
-      </tr>
-      <tr>
-        <!-- hours -->
-        <td class="form-group" [class.has-error]="invalidHours">
-          <input type="text" style="width:50px;"
-                 class="form-control text-center"
-                 placeholder="HH"
-                 maxlength="2"
-                 [readonly]="readonlyInput"
-                 [value]="hours"
-                 (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
-                 (keydown.ArrowUp)="changeHours(hourStep, 'key')"
-                 (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
-                 (change)="updateHours($event.target.value)"></td>
-        <!-- divider -->
-        <td>&nbsp;:&nbsp;</td>
-        <!-- minutes -->
-        <td class="form-group" [class.has-error]="invalidMinutes">
-          <input style="width:50px;" type="text"
-                 class="form-control text-center"
-                 placeholder="MM"
-                 maxlength="2"
-                 [readonly]="readonlyInput"
-                 [value]="minutes"
-                 (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
-                 (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
-                 (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
-                 (change)="updateMinutes($event.target.value)">
-        </td>
-        <!-- divider -->
-        <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
-        <!-- seconds -->
-        <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
-          <input style="width:50px;" type="text"
-                 class="form-control text-center"
-                 placeholder="SS"
-                 maxlength="2"
-                 [readonly]="readonlyInput"
-                 [value]="seconds"
-                 (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
-                 (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
-                 (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
-                 (change)="updateSeconds($event.target.value)">
-        </td>
-        <!-- space between -->
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <!-- meridian -->
-        <td *ngIf="showMeridian">
-          <button type="button" class="btn btn-default text-center"
-                  [disabled]="readonlyInput"
-                  [class.disabled]="readonlyInput"
-                  (click)="toggleMeridian()"
-          >{{ meridian }}
-          </button>
-        </td>
-      </tr>
-      <tr class="text-center" [class.hidden]="!isSpinnersVisible">
-        <!-- decrement hours button-->
-        <td>
-          <a class="btn btn-link" [class.disabled]="!canDecrementHours" (click)="changeHours(-hourStep)">
-            <span class="glyphicon glyphicon-chevron-down"></span>
-          </a>
-        </td>
-        <!-- divider -->
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <!-- decrement minutes button-->
-        <td>
-          <a class="btn btn-link" [class.disabled]="!canDecrementMinutes" (click)="changeMinutes(-minuteStep)">
-            <span class="glyphicon glyphicon-chevron-down"></span>
-          </a>
-        </td>
-        <!-- divider -->
-        <td *ngIf="showSeconds">&nbsp;</td>
-        <!-- decrement seconds button-->
-        <td *ngIf="showSeconds">
-          <a class="btn btn-link" [class.disabled]="!canDecrementSeconds" (click)="changeSeconds(-secondsStep)">
-            <span class="glyphicon glyphicon-chevron-down"></span>
-          </a>
-        </td>
-        <!-- space between -->
-        <td>&nbsp;&nbsp;&nbsp;</td>
-        <!-- meridian placeholder-->
-        <td *ngIf="showMeridian"></td>
-      </tr>
-      </tbody>
-    </table>
-  `
+  templateUrl: './timepicker.component.html',
+  styles: [`
+    .bs-chevron{
+      border-style: solid;
+      display: block;
+      width: 9px;
+      height: 9px;
+      position: relative;
+      border-width: 3px 0px 0 3px;
+    }
+    .bs-chevron-up{
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      top: 2px;
+    }
+    .bs-chevron-down{
+      -webkit-transform: rotate(-135deg);
+      transform: rotate(-135deg);
+      top: -2px;
+    }
+  `],
+  encapsulation: ViewEncapsulation.None
 })
-export class TimepickerComponent implements ControlValueAccessor, TimepickerComponentState, TimepickerControls, OnChanges {
+export class TimepickerComponent
+  implements ControlValueAccessor,
+    TimepickerComponentState,
+    TimepickerControls,
+    OnChanges {
   /** hours change step */
   @Input() hourStep: number;
   /** hours change step */
@@ -204,29 +123,31 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  constructor(_config: TimepickerConfig,
-              private _cd: ChangeDetectorRef,
-              private _store: TimepickerStore,
-              private _timepickerActions: TimepickerActions) {
+  constructor(
+    _config: TimepickerConfig,
+    _cd: ChangeDetectorRef,
+    private _store: TimepickerStore,
+    private _timepickerActions: TimepickerActions
+  ) {
     Object.assign(this, _config);
     // todo: add unsubscribe
-    _store
-      .select((state) => state.value)
-      .subscribe((value) => {
-        // update UI values if date changed
-        this._renderTime(value);
-        this.onChange(value);
+    _store.select(state => state.value).subscribe(value => {
+      // update UI values if date changed
+      this._renderTime(value);
+      this.onChange(value);
 
-        this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
-      });
+      this._store.dispatch(
+        this._timepickerActions.updateControls(getControlsValue(this))
+      );
+    });
 
-    _store
-      .select((state) => state.controls)
-      .subscribe((controlsState) => {
-        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
-        Object.assign(this, controlsState);
-        _cd.markForCheck();
-      });
+    _store.select(state => state.controls).subscribe(controlsState => {
+      this.isValid.emit(
+        isInputValid(this.hours, this.minutes, this.seconds, this.isPM())
+      );
+      Object.assign(this, controlsState);
+      _cd.markForCheck();
+    });
   }
 
   isPM(): boolean {
@@ -242,19 +163,25 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this._store.dispatch(this._timepickerActions.updateControls(getControlsValue(this)));
+    this._store.dispatch(
+      this._timepickerActions.updateControls(getControlsValue(this))
+    );
   }
 
   changeHours(step: number, source: TimeChangeSource = ''): void {
-    this._store.dispatch(this._timepickerActions.changeHours({step, source}));
+    this._store.dispatch(this._timepickerActions.changeHours({ step, source }));
   }
 
   changeMinutes(step: number, source: TimeChangeSource = ''): void {
-    this._store.dispatch(this._timepickerActions.changeMinutes({step, source}));
+    this._store.dispatch(
+      this._timepickerActions.changeMinutes({ step, source })
+    );
   }
 
   changeSeconds(step: number, source: TimeChangeSource = ''): void {
-    this._store.dispatch(this._timepickerActions.changeSeconds({step, source}));
+    this._store.dispatch(
+      this._timepickerActions.changeSeconds({ step, source })
+    );
   }
 
   updateHours(hours: string): void {
@@ -275,15 +202,17 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
   _updateTime() {
     if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
       this.onChange(null);
+
       return;
     }
-    this._store.dispatch(this._timepickerActions
-      .setTime({
+    this._store.dispatch(
+      this._timepickerActions.setTime({
         hour: this.hours,
         minute: this.minutes,
         seconds: this.seconds,
         isPM: this.isPM()
-      }));
+      })
+    );
   }
 
   toggleMeridian(): void {
@@ -292,7 +221,12 @@ export class TimepickerComponent implements ControlValueAccessor, TimepickerComp
     }
 
     const _hoursPerDayHalf = 12;
-    this._store.dispatch(this._timepickerActions.changeHours({step: _hoursPerDayHalf, source: ''}));
+    this._store.dispatch(
+      this._timepickerActions.changeHours({
+        step: _hoursPerDayHalf,
+        source: ''
+      })
+    );
   }
 
   /**

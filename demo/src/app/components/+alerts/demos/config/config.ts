@@ -4,13 +4,12 @@ import { AlertConfig } from 'ngx-bootstrap/alert';
 // such override allows to keep some initial values
 
 export function getAlertConfig(): AlertConfig {
-  return Object.assign(new AlertConfig(), {type: 'success'});
+  return Object.assign(new AlertConfig(), { type: 'success' });
 }
 
 @Component({
   selector: 'demo-alert-config',
   templateUrl: './config.html',
-  providers: [{provide: AlertConfig, useFactory: getAlertConfig}]
+  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
 })
-export class DemoAlertConfigComponent {
-}
+export class DemoAlertConfigComponent {}

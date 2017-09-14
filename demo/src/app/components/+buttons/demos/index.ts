@@ -5,7 +5,11 @@ import { DemoButtonsRadioReactiveFormsComponent } from './radio-reactiveforms/ra
 import { DemoButtonsDisabledComponent } from './disabled/disabled';
 
 export const DEMO_COMPONENTS = [
-  DemoButtonsBasicComponent, DemoButtonsCheckboxComponent, DemoButtonsRadioComponent, DemoButtonsRadioReactiveFormsComponent, DemoButtonsDisabledComponent
+  DemoButtonsBasicComponent,
+  DemoButtonsCheckboxComponent,
+  DemoButtonsRadioComponent,
+  DemoButtonsRadioReactiveFormsComponent,
+  DemoButtonsDisabledComponent
 ];
 
 export const DEMOS = {

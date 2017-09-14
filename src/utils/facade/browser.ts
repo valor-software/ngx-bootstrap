@@ -10,9 +10,9 @@
 /**
  * JS version of browser APIs. This library can only run in the browser.
  */
-var win = typeof window !== 'undefined' && window || <any>{};
+var win = (typeof window !== 'undefined' && window) || <any>{};
 
-export {win as window};
+export { win as window };
 export var document = win.document;
 export var location = win.location;
 export var gc = win['gc'] ? () => win['gc']() : (): any => null;

@@ -1,5 +1,10 @@
 import {
-  Component, Input, Output, EventEmitter, forwardRef, TemplateRef
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+  TemplateRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
@@ -34,89 +39,96 @@ import { DraggableItemService } from './draggable-item.service';
         (dragend)="resetActiveItem($event)"
         (dragover)="onItemDragover($event, i)"
         (dragenter)="cancelEvent($event)"
-    ><template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
-  [ngOutletContext]="{item:item, index: i}"></template></div>
+    ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
+  [ngOutletContext]="{item:item, index: i}"></ng-template></div>
 </div>
 
-<template #defItemTemplate let-item="item">{{item.value}}</template>  
+<ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>  
 `,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => SortableComponent),
-    multi: true
-  }],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SortableComponent),
+      multi: true
+    }
+  ]
 })
 /* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
-  private static globalZoneIndex: number = 0;
+  private static globalZoneIndex = 0;
 
   /** field name if input array consists of objects */
-  @Input() public fieldName: string;
+  @Input() fieldName: string;
 
   /** class name for items wrapper */
-  @Input() public wrapperClass: string = '';
+  @Input() wrapperClass = '';
 
   /** style object for items wrapper */
-  @Input() public wrapperStyle: {[key: string]: string} = {};
+  @Input() wrapperStyle: { [key: string]: string } = {};
 
   /** class name for item */
-  @Input() public itemClass: string = '';
+  @Input() itemClass = '';
 
   /** style object for item */
-  @Input() public itemStyle: {[key: string]: string} = {};
+  @Input() itemStyle: { [key: string]: string } = {};
 
   /** class name for active item */
-  @Input() public itemActiveClass: string = '';
+  @Input() itemActiveClass = '';
 
   /** style object for active item */
-  @Input() public itemActiveStyle: {[key: string]: string} = {};
+  @Input() itemActiveStyle: { [key: string]: string } = {};
 
   /** class name for placeholder */
-  @Input() public placeholderClass: string = '';
+  @Input() placeholderClass = '';
 
   /** style object for placeholder */
-  @Input() public placeholderStyle: {[key: string]: string} = {};
+  @Input() placeholderStyle: { [key: string]: string } = {};
 
   /** placeholder item which will be shown if collection is empty */
-  @Input() public placeholderItem: string = '';
+  @Input() placeholderItem = '';
 
   /** used to specify a custom item template. Template variables: item and index; */
-  @Input() public itemTemplate: TemplateRef<any>;
+  @Input() itemTemplate: TemplateRef<any>;
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.
    */
-  @Output() public onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  public showPlaceholder: boolean = false;
-  public activeItem: number = -1;
+  showPlaceholder = false;
+  activeItem = -1;
 
-  public get items(): SortableItem[] {
+  get items(): SortableItem[] {
     return this._items;
   }
 
-  public set items(value: SortableItem[]) {
+  set items(value: SortableItem[]) {
     this._items = value;
-    let out = this.items.map((x: SortableItem) => x.initData);
+    const out = this.items.map((x: SortableItem) => x.initData);
     this.onChanged(out);
     this.onChange.emit(out);
   }
 
-  public onTouched: any = Function.prototype;
-  public onChanged: any = Function.prototype;
+  onTouched: any = Function.prototype;
+  onChanged: any = Function.prototype;
 
   private transfer: DraggableItemService;
   private currentZoneIndex: number;
   private _items: SortableItem[];
 
-  public constructor(transfer: DraggableItemService) {
+  constructor(transfer: DraggableItemService) {
     this.transfer = transfer;
     this.currentZoneIndex = SortableComponent.globalZoneIndex++;
-    this.transfer.onCaptureItem()
+    this.transfer
+      .onCaptureItem()
       .subscribe((item: DraggableItem) => this.onDrop(item));
   }
 
-  public onItemDragstart(event: DragEvent, item: SortableItem, i: number): void {
+  onItemDragstart(
+    event: DragEvent,
+    item: SortableItem,
+    i: number
+  ): void {
     this.initDragstartEvent(event);
     this.onTouched();
     this.transfer.dragStart({
@@ -129,12 +141,15 @@ export class SortableComponent implements ControlValueAccessor {
     });
   }
 
-  public onItemDragover(event: DragEvent, i: number): void {
+  onItemDragover(event: DragEvent, i: number): void {
     if (!this.transfer.getItem()) {
       return;
     }
     event.preventDefault();
-    let dragItem = this.transfer.captureItem(this.currentZoneIndex, this.items.length);
+    const dragItem = this.transfer.captureItem(
+      this.currentZoneIndex,
+      this.items.length
+    );
     let newArray: any[] = [];
     if (!this.items.length) {
       newArray = [dragItem.item];
@@ -145,7 +160,8 @@ export class SortableComponent implements ControlValueAccessor {
         ...this.items.slice(i, dragItem.i),
         ...this.items.slice(dragItem.i + 1)
       ];
-    } else { // this.draggedItem.i < i
+    } else {
+      // this.draggedItem.i < i
       newArray = [
         ...this.items.slice(0, dragItem.i),
         ...this.items.slice(dragItem.i + 1, i + 1),
@@ -159,38 +175,41 @@ export class SortableComponent implements ControlValueAccessor {
     this.updatePlaceholderState();
   }
 
-  public cancelEvent(event: DragEvent): void {
+  cancelEvent(event: DragEvent): void {
     if (!this.transfer.getItem() || !event) {
       return;
     }
     event.preventDefault();
   }
 
-  public onDrop(item: DraggableItem): void {
-    if (item &&
+  onDrop(item: DraggableItem): void {
+    if (
+      item &&
       item.overZoneIndex !== this.currentZoneIndex &&
       item.lastZoneIndex === this.currentZoneIndex
     ) {
-      this.items = this.items.filter((x: SortableItem, i: number) => i !== item.i);
+      this.items = this.items.filter(
+        (x: SortableItem, i: number) => i !== item.i
+      );
       this.updatePlaceholderState();
     }
     this.resetActiveItem(undefined);
   }
 
-  public resetActiveItem(event: DragEvent): void {
+  resetActiveItem(event: DragEvent): void {
     this.cancelEvent(event);
     this.activeItem = -1;
   }
 
-  public registerOnChange(callback: (_: any) => void): void {
+  registerOnChange(callback: (_: any) => void): void {
     this.onChanged = callback;
   }
 
-  public registerOnTouched(callback: () => void): void {
+  registerOnTouched(callback: () => void): void {
     this.onTouched = callback;
   }
 
-  public writeValue(value: any[]): void {
+  writeValue(value: any[]): void {
     if (value) {
       this.items = value.map((x: any, i: number) => ({
         id: i,
@@ -203,16 +222,17 @@ export class SortableComponent implements ControlValueAccessor {
     this.updatePlaceholderState();
   }
 
-  public updatePlaceholderState(): void {
+  updatePlaceholderState(): void {
     this.showPlaceholder = !this._items.length;
   }
 
-  public getItemStyle(isActive: boolean): {} {
+  getItemStyle(isActive: boolean): {} {
     return isActive
       ? Object.assign({}, this.itemStyle, this.itemActiveStyle)
       : this.itemStyle;
   }
 
+  // tslint:disable-next-line
   private initDragstartEvent(event: DragEvent): void {
     // it is necessary for mozilla
     // data type should be 'Text' instead of 'text/plain' to keep compatibility
