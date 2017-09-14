@@ -30,7 +30,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** if <code>true</code> — disables accordion group */
   @Input() isDisabled: boolean;
   /** Emits when the opened state changes */
-  @Output() public isOpenChanges: EventEmitter<boolean> = new EventEmitter();
+  @Output() isOpenChange: EventEmitter<boolean> = new EventEmitter();
 
   // Questionable, maybe .panel-open should be on child div.panel element?
   /** Is accordion group open or closed */
@@ -42,8 +42,6 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
 
   set isOpen(value: boolean) {
     this._isOpen = value;
-    this.isOpenChanges.emit(this.isOpen);
-
     if (value) {
       this.accordion.closeOtherPanels(this);
     }
@@ -71,7 +69,18 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
 
   toggleOpen(event: Event): any {
     if (!this.isDisabled) {
-      this.isOpen = !this.isOpen;
+      this.setOpenState(!this.isOpen);
+    }
+  }
+
+  /**
+   * Sets the isOpen state internally
+   * @param {boolean} isOpen
+   */
+  setOpenState(isOpen: boolean): void {
+    if (isOpen !== this._isOpen) {
+      this._isOpen = isOpen;
+      this.isOpenChange.emit(this._isOpen);
     }
   }
 }

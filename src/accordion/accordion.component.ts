@@ -30,7 +30,7 @@ export class AccordionComponent {
 
     this.groups.forEach((group: AccordionPanelComponent) => {
       if (group !== openGroup) {
-        group.isOpen = false;
+        group.setOpenState(false);
       }
     });
   }

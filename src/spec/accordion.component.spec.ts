@@ -11,9 +11,9 @@ import { AccordionModule } from '../accordion/accordion.module';
 class TestAccordionComponent {
   oneAtATime = true;
   panels: any[] = [
-    {isOpen: false, isDisabled: false, isOpenChangesValue: null},
-    {isOpen: false, isDisabled: false, isOpenChangesValue: null},
-    {isOpen: false, isDisabled: false, isOpenChangesValue: null}
+    {isOpen: false, isDisabled: false},
+    {isOpen: false, isDisabled: false},
+    {isOpen: false, isDisabled: false}
   ];
 
   constructor(config: AccordionConfig) {
@@ -25,23 +25,20 @@ const html = `
   <accordion [closeOthers]="oneAtATime">
 
     <accordion-group heading="Panel 1"
-                     [isOpen]="panels[0].isOpen"
-                     [isDisabled]="panels[0].isDisabled"
-                     (isOpenChanges)="panels[0].isOpenChangesValue = $event">
+                     [(isOpen)]="panels[0].isOpen"
+                     [isDisabled]="panels[0].isDisabled">
       Content of panel 1
     </accordion-group>
 
     <accordion-group heading="Panel 2"
-                     [isOpen]="panels[1].isOpen"
-                     [isDisabled]="panels[1].isDisabled"
-                     (isOpenChanges)="panels[1].isOpenChangesValue = $event">
+                     [(isOpen)]="panels[1].isOpen"
+                     [isDisabled]="panels[1].isDisabled">
       Content of panel 2
     </accordion-group>
 
     <accordion-group heading="Panel 3"
-                     [isOpen]="panels[2].isOpen"
-                     [isDisabled]="panels[2].isDisabled"
-                     (isOpenChanges)="panels[2].isOpenChangesValue = $event">
+                     [(isOpen)]="panels[2].isOpen"
+                     [isDisabled]="panels[2].isDisabled">
       Content of panel 3
     </accordion-group>
 
@@ -170,28 +167,28 @@ describe('Component: Accordion', () => {
     expectOpenPanels(element, [false, false, false]);
   });
 
-  it('should output the open state when it is changed internally', () => {
+  it('should modify the parent isOpen state when changed internally (2 way binding)', () => {
     const headingLinks = element.querySelectorAll('.accordion-toggle');
 
     // Clicking (internal state modified)
     headingLinks[0].click();
     fixture.detectChanges();
-    expect(context.panels[0].isOpenChangesValue).toBe(true);
-    expect(context.panels[1].isOpenChangesValue).toBe(false);
-    expect(context.panels[2].isOpenChangesValue).toBe(false);
+    expect(context.panels[0].isOpen).toBe(true);
+    expect(context.panels[1].isOpen).toBe(false);
+    expect(context.panels[2].isOpen).toBe(false);
 
     // State modified by parent component
     headingLinks[2].click();
     fixture.detectChanges();
-    expect(context.panels[0].isOpenChangesValue).toBe(false);
-    expect(context.panels[1].isOpenChangesValue).toBe(false);
-    expect(context.panels[2].isOpenChangesValue).toBe(true);
+    expect(context.panels[0].isOpen).toBe(false);
+    expect(context.panels[1].isOpen).toBe(false);
+    expect(context.panels[2].isOpen).toBe(true);
 
     // Modified by binding
     context.panels[1].isOpen = true;
     fixture.detectChanges();
-    expect(context.panels[0].isOpenChangesValue).toBe(false);
-    expect(context.panels[1].isOpenChangesValue).toBe(true);
-    expect(context.panels[2].isOpenChangesValue).toBe(false);
+    expect(context.panels[0].isOpen).toBe(false);
+    expect(context.panels[1].isOpen).toBe(true);
+    expect(context.panels[2].isOpen).toBe(false);
   });
 });
