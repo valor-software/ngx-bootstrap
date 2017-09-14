@@ -8,7 +8,7 @@ import {
   OnInit,
   OnDestroy,
   ElementRef,
-  Renderer
+  Renderer2
 } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
@@ -30,20 +30,18 @@ export class TabDirective implements OnInit, OnDestroy {
 
   set customClass(customClass: string) {
     if (this._customClass && this._customClass !== customClass) {
-      this.renderer.setElementClass(
+      this.renderer.removeClass(
         this.elementRef.nativeElement,
-        this._customClass,
-        false
+        this._customClass
       );
     }
 
     this._customClass = customClass;
 
     if (this._customClass) {
-      this.renderer.setElementClass(
+      this.renderer.addClass(
         this.elementRef.nativeElement,
-        this._customClass,
-        true
+        this._customClass
       );
     }
   }
@@ -94,7 +92,7 @@ export class TabDirective implements OnInit, OnDestroy {
   constructor(
     tabset: TabsetComponent,
     public elementRef: ElementRef,
-    public renderer: Renderer
+    public renderer: Renderer2
   ) {
     this.tabset = tabset;
     this.tabset.addTab(this);

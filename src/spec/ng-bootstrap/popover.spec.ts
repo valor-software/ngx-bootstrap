@@ -44,22 +44,20 @@ export class TestComponent {
 })
 export class TestOnPushComponent {}
 
+@Injectable()
+class SpyService {
+  called = false;
+}
+
 @Component({selector: 'destroyable-cmpt', template: 'Some content'})
 export class DestroyableCmpt implements OnDestroy {
-  private _spyService: SpyService;
-
-  constructor(_spyService: SpyService) {
+  constructor(private _spyService: SpyService) {
     this._spyService = _spyService;
   }
 
   ngOnDestroy(): void {
     this._spyService.called = true;
   }
-}
-
-@Injectable()
-class SpyService {
-  called = false;
 }
 
 const createTestComponent = (html: string) =>
@@ -125,7 +123,8 @@ describe('popover', () => {
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-top');
-      expect(windowEl.textContent.trim()).toBe('TitleGreat tip!');
+      expect(windowEl.querySelector('.popover-title').textContent.trim()).toBe('Title');
+      expect(windowEl.querySelector('.popover-content').textContent.trim()).toBe('Great tip!');
       expect(windowEl.getAttribute('role')).toBe('tooltip');
       expect(windowEl.parentNode).toBe(fixture.nativeElement);
 
@@ -149,7 +148,8 @@ describe('popover', () => {
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass(`popover-${defaultConfig.placement}`);
-      expect(windowEl.textContent.trim()).toBe('TitleHello, World!');
+      expect(windowEl.querySelector('.popover-title').textContent.trim()).toBe('Title');
+      expect(windowEl.querySelector('.popover-content').textContent.trim()).toBe('Hello, World!');
       expect(windowEl.getAttribute('role')).toBe('tooltip');
       expect(windowEl.parentNode).toBe(fixture.nativeElement);
 

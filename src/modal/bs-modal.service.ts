@@ -2,7 +2,7 @@ import {
   ComponentRef,
   Injectable,
   TemplateRef,
-  EventEmitter, Renderer2
+  EventEmitter, Renderer2, RendererFactory2
 } from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';

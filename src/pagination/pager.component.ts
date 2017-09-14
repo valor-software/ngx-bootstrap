@@ -2,7 +2,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  Renderer,
+  Renderer2,
   Input,
   Output,
   EventEmitter,
@@ -115,7 +115,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  renderer: Renderer;
+  renderer: Renderer2;
   elementRef: ElementRef;
 
   classMap: string;
@@ -127,7 +127,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   protected inited = false;
   protected _page = 1;
 
-  constructor(renderer: Renderer,
+  constructor(renderer: Renderer2,
               elementRef: ElementRef,
               paginationConfig: PaginationConfig) {
     this.renderer = renderer;

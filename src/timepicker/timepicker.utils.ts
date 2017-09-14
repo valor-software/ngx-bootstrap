@@ -163,7 +163,7 @@ export function isInputValid(
   seconds = '0',
   isPM: boolean
 ): boolean {
-  return isNaN(parseHours(hours, isPM))
+  return !(isNaN(parseHours(hours, isPM))
     || isNaN(parseMinutes(minutes))
-    || isNaN(parseSeconds(seconds));
+    || isNaN(parseSeconds(seconds)));
 }

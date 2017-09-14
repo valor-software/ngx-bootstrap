@@ -4,7 +4,7 @@ import {
   HostListener,
   OnDestroy,
   OnInit,
-  Renderer
+  Renderer2
 } from '@angular/core';
 import {
   CLASS_NAME,
@@ -40,29 +40,27 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   constructor(options: ModalOptions,
               protected _element: ElementRef,
               private bsModalService: BsModalService,
-              private _renderer: Renderer) {
+              private _renderer: Renderer2) {
     this.config = Object.assign({}, options);
   }
 
   ngOnInit(): void {
     if (this.isAnimated) {
-      this._renderer.setElementClass(
+      this._renderer.addClass(
         this._element.nativeElement,
-        CLASS_NAME.FADE,
-        true
+        CLASS_NAME.FADE
       );
     }
-    this._renderer.setElementStyle(
+    this._renderer.setStyle(
       this._element.nativeElement,
       'display',
       'block'
     );
     setTimeout(() => {
       this.isShown = true;
-      this._renderer.setElementClass(
+      this._renderer.addClass(
         this._element.nativeElement,
-        isBs3() ? CLASS_NAME.IN : CLASS_NAME.SHOW,
-        true
+        isBs3() ? CLASS_NAME.IN : CLASS_NAME.SHOW
       );
     }, this.isAnimated ? TRANSITION_DURATIONS.BACKDROP : 0);
     if (document && document.body) {
@@ -70,7 +68,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         this.bsModalService.checkScrollbar();
         this.bsModalService.setScrollbar();
       }
-      this._renderer.setElementClass(document.body, CLASS_NAME.OPEN, true);
+      this._renderer.addClass(document.body, CLASS_NAME.OPEN);
     }
   }
 
@@ -109,10 +107,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.isModalHiding = true;
-    this._renderer.setElementClass(
+    this._renderer.removeClass(
       this._element.nativeElement,
-      isBs3() ? CLASS_NAME.IN : CLASS_NAME.SHOW,
-      false
+      isBs3() ? CLASS_NAME.IN : CLASS_NAME.SHOW
     );
     setTimeout(() => {
       this.isShown = false;
@@ -121,7 +118,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         document.body &&
         this.bsModalService.getModalsCount() === 1
       ) {
-        this._renderer.setElementClass(document.body, CLASS_NAME.OPEN, false);
+        this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
       }
       this.bsModalService.hide(this.level);
       this.isModalHiding = false;
