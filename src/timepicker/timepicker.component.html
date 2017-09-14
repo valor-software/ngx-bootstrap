@@ -5,7 +5,7 @@
     <td>
       <a class="btn btn-link" [class.disabled]="!canIncrementHours"
          (click)="changeHours(hourStep)"
-      ><span class="glyphicon glyphicon-chevron-up"></span></a>
+      ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
     <td>&nbsp;&nbsp;&nbsp;</td>
@@ -13,7 +13,7 @@
     <td>
       <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
          (click)="changeMinutes(minuteStep)"
-      ><span class="glyphicon glyphicon-chevron-up"></span></a>
+      ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;</td>
@@ -21,7 +21,7 @@
     <td *ngIf="showSeconds">
       <a class="btn btn-link" [class.disabled]="!canIncrementSeconds"
          (click)="changeSeconds(secondsStep)">
-        <span class="glyphicon glyphicon-chevron-up"></span>
+        <span class="bs-chevron bs-chevron-up"></span>
       </a>
     </td>
     <!-- space between -->
@@ -90,7 +90,7 @@
     <td>
       <a class="btn btn-link" [class.disabled]="!canDecrementHours"
          (click)="changeHours(-hourStep)">
-        <span class="glyphicon glyphicon-chevron-down"></span>
+        <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
     <!-- divider -->
@@ -99,7 +99,7 @@
     <td>
       <a class="btn btn-link" [class.disabled]="!canDecrementMinutes"
          (click)="changeMinutes(-minuteStep)">
-        <span class="glyphicon glyphicon-chevron-down"></span>
+        <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
     <!-- divider -->
@@ -108,7 +108,7 @@
     <td *ngIf="showSeconds">
       <a class="btn btn-link" [class.disabled]="!canDecrementSeconds"
          (click)="changeSeconds(-secondsStep)">
-        <span class="glyphicon glyphicon-chevron-down"></span>
+        <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
     <!-- space between -->
