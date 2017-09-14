@@ -1462,6 +1462,289 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
+  "BsDatePickerViewComponent": {
+    "fileName": "src/datepicker2/bs-date-picker-view.component.ts",
+    "className": "BsDatePickerViewComponent",
+    "description": "",
+    "selector": "bs-date-picker-view",
+    "exportAs": "bs-date-picker-view",
+    "inputs": [
+      {
+        "name": "bsRole",
+        "type": "string",
+        "description": ""
+      }
+    ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatePickerComponent": {
+    "fileName": "src/datepicker2/bs-date-picker.component.ts",
+    "className": "BsDatePickerComponent",
+    "description": "",
+    "selector": "bs-datepicker",
+    "exportAs": "bs-datepicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsCalendarOptions": {
+    "fileName": "src/datepicker2/common/bs-calendar-options.provider.ts",
+    "className": "BsCalendarOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "BsCalendarOptionsClass": {
+    "fileName": "src/datepicker2/common/bs-calendar-options.provider.ts",
+    "className": "BsCalendarOptionsClass",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DatePickerCustomDates": {
+    "fileName": "src/datepicker2/common/bs-date-picker-options.provider.ts",
+    "className": "DatePickerCustomDates",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "css",
+        "type": "string | Object | string[]",
+        "description": "<p>css classes which will be applied to date,\nread more about available options in NgClass description</p>\n"
+      },
+      {
+        "name": "date",
+        "type": "any",
+        "description": "<p>Any parse-able date format (new Date(), moment(), string, number) </p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>should this date be disabled </p>\n"
+      }
+    ]
+  },
+  "DatePickerDateOptions": {
+    "fileName": "src/datepicker2/common/bs-date-picker-options.provider.ts",
+    "className": "DatePickerDateOptions",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "initial",
+        "type": "any",
+        "description": "<p>initially viewed, not selected, date if value is not set </p>\n"
+      },
+      {
+        "name": "max",
+        "type": "any",
+        "description": "<p>maximum available date </p>\n"
+      },
+      {
+        "name": "min",
+        "type": "any",
+        "description": "<p>minimum available date </p>\n"
+      },
+      {
+        "name": "selected",
+        "type": "any",
+        "description": "<p>initially selected date, if value is not set, in date picker mode </p>\n"
+      },
+      {
+        "name": "selectedEnd",
+        "type": "any",
+        "description": "<p>initially selected end date in date range picker mode </p>\n"
+      }
+    ]
+  },
+  "BsDatePickerOptions": {
+    "fileName": "src/datepicker2/common/bs-date-picker-options.provider.ts",
+    "className": "BsDatePickerOptions",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "mode",
+        "defaultValue": "date",
+        "type": "\"date\" | \"daterange\"",
+        "description": "<p>current date picker mode </p>\n"
+      },
+      {
+        "name": "ranges",
+        "type": "{ [key: string]: Date[] | string[] | Moment[]; }",
+        "description": "<p>predefined set of ranges {&#39;today&#39;: [moment(), moment()]} </p>\n"
+      },
+      {
+        "name": "viewMode",
+        "defaultValue": "days",
+        "type": "BsDatePickerViewMode",
+        "description": "<p>current date picker view mode (if supported) </p>\n"
+      }
+    ]
+  },
+  "BsDatePickerState": {
+    "fileName": "src/datepicker2/common/bs-date-picker-state.provider.ts",
+    "className": "BsDatePickerState",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "BsCurrentDateComponent": {
+    "fileName": "src/datepicker2/current-date/bs-current-date.component.ts",
+    "className": "BsCurrentDateComponent",
+    "description": "",
+    "selector": "bs-current-date",
+    "exportAs": "bs-current-date",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsCustomRangePickerComponent": {
+    "fileName": "src/datepicker2/custom-range/bs-custom-range-picker.component.ts",
+    "className": "BsCustomRangePickerComponent",
+    "description": "",
+    "selector": "bs-custom-range-picker",
+    "exportAs": "bs-custom-range-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDayPickerComponent": {
+    "fileName": "src/datepicker2/day/bs-day-picker.component.ts",
+    "className": "BsDayPickerComponent",
+    "description": "",
+    "selector": "bs-day-picker",
+    "exportAs": "bs-day-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsMonthPickerComponent": {
+    "fileName": "src/datepicker2/month/bs-month-picker.component.ts",
+    "className": "BsMonthPickerComponent",
+    "description": "",
+    "selector": "bs-month-picker",
+    "exportAs": "bs-month-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatePickerContainer": {
+    "fileName": "src/datepicker2/popup/bs-date-picker-container.component.ts",
+    "className": "BsDatePickerContainer",
+    "description": "",
+    "selector": "bs-date-picker-container",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatePickerPopupDirective": {
+    "fileName": "src/datepicker2/popup/bs-date-picker-popup.directive.ts",
+    "className": "BsDatePickerPopupDirective",
+    "description": "<p>A lightweight, extensible directive for fancy popover creation.</p>\n",
+    "selector": "[bsDatePickerPopup]",
+    "exportAs": "bs-date-picker-popup",
+    "inputs": [
+      {
+        "name": "bsValue",
+        "type": "any",
+        "description": ""
+      },
+      {
+        "name": "config",
+        "type": "BsDatePickerOptions",
+        "description": ""
+      },
+      {
+        "name": "container",
+        "defaultValue": "body",
+        "type": "string",
+        "description": "<p>A selector specifying the element the popover should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "isOpen",
+        "type": "boolean",
+        "description": "<p>Returns whether or not the popover is currently being shown</p>\n"
+      },
+      {
+        "name": "placement",
+        "defaultValue": "bottom",
+        "type": "\"top\" | \"bottom\" | \"left\" | \"right\"",
+        "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
+      },
+      {
+        "name": "triggers",
+        "defaultValue": "click",
+        "type": "string",
+        "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bsValueChange",
+        "description": ""
+      },
+      {
+        "name": "onHidden",
+        "description": "<p>Emits an event when the popover is hidden</p>\n"
+      },
+      {
+        "name": "onShown",
+        "description": "<p>Emits an event when the popover is shown</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": [
+      {
+        "name": "show",
+        "description": "<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "hide",
+        "description": "<p>Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "toggle",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
+  },
+  "BsDateTimePickerComponent": {
+    "fileName": "src/datepicker2/time/bs-date-time-picker.component.ts",
+    "className": "BsDateTimePickerComponent",
+    "description": "",
+    "selector": "bs-datetimepicker",
+    "exportAs": "bs-datetimepicker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsYearPickerComponent": {
+    "fileName": "src/datepicker2/year/bs-year-picker.component.ts",
+    "className": "BsYearPickerComponent",
+    "description": "",
+    "selector": "bs-year-picker",
+    "exportAs": "bs-year-picker",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
   "BsDropdownContainerComponent": {
     "fileName": "src/dropdown/bs-dropdown-container.component.ts",
     "className": "BsDropdownContainerComponent",
@@ -1731,7 +2014,7 @@ export const ngdoc: any = {
     ]
   },
   "ModalDirective": {
-    "fileName": "src/modal/modal.component.ts",
+    "fileName": "src/modal/modal.directive.ts",
     "className": "ModalDirective",
     "description": "<p>Mark any code with directive to show it&#39;s content in modal </p>\n",
     "selector": "[bsModal]",
@@ -2439,7 +2722,7 @@ export const ngdoc: any = {
   "TabHeadingDirective": {
     "fileName": "src/tabs/tab-heading.directive.ts",
     "className": "TabHeadingDirective",
-    "description": "<p>Should be used to mark <template> element as a template for tab heading </p>\n",
+    "description": "<p>Should be used to mark <ng-template> element as a template for tab heading </p>\n",
     "selector": "[tabHeading]",
     "inputs": [],
     "outputs": [],

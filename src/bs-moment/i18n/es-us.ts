@@ -5,11 +5,15 @@
 import { LocaleData } from '../locale/locale.class';
 
 // const monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
-const monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+const monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split(
+  '_'
+);
 
 export const esUs: LocaleData = {
   abbr: 'es-us',
-  months: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
+  months: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split(
+    '_'
+  ),
   monthsShort,
   // monthsShort(date: Date, format: string): string {
   //   if (!date) {
@@ -49,9 +53,11 @@ export const esUs: LocaleData = {
     yy: '%d años'
   },
   dayOfMonthOrdinalParse: /\d{1,2}º/,
-  ordinal(num: number): string { return `${num}º`; },
+  ordinal(num: number): string {
+    return `${num}º`;
+  },
   week: {
     dow: 0, // Sunday is the first day of the week.
-    doy: 6  // The week that contains Jan 1st is the first week of the year.
+    doy: 6 // The week that contains Jan 1st is the first week of the year.
   }
 };

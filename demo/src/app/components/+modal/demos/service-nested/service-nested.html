@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary" (click)="openModal(template)">Open first modal</button>
 
-<template #template>
+<ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">First modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -11,9 +11,9 @@
     This is a first modal
     <button type="button" class="btn btn-primary" (click)="openModal2(templateNested)">Open second modal</button>
   </div>
-</template>
+</ng-template>
 
-<template #templateNested>
+<ng-template #templateNested>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Second modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2.hide()">
@@ -24,4 +24,4 @@
     This is nested modal.<br>
     <button *ngIf="modalRef" type="button" class="btn btn-danger" (click)="closeFirstModal()">Close first modal</button>
   </div>
-</template>
+</ng-template>

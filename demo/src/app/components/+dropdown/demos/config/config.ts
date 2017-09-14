@@ -4,7 +4,6 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 @Component({
   selector: 'demo-dropdown-config',
   templateUrl: './config.html',
-  providers: [{provide: BsDropdownConfig, useValue: {autoClose: false}}]
+  providers: [{ provide: BsDropdownConfig, useValue: { autoClose: false } }]
 })
-export class DemoDropdownConfigComponent {
-}
+export class DemoDropdownConfigComponent {}

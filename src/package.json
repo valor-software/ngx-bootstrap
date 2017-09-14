@@ -4,6 +4,8 @@
     "@angular/common": "*",
     "@angular/compiler": "*",
     "@angular/core": "*",
-    "@angular/forms": "*"
+    "@angular/forms": "*",
+    "typescript": "*",
+    "rxjs": "*"
   }
 }

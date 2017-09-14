@@ -10,10 +10,7 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-timepicker.routes';
 
 @NgModule({
-  declarations: [
-    TimepickerSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [TimepickerSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,5 +21,4 @@ import { routes } from './demo-timepicker.routes';
   ],
   exports: [TimepickerSectionComponent]
 })
-export class DemoTimepickerModule {
-}
+export class DemoTimepickerModule {}

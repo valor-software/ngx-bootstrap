@@ -15,7 +15,7 @@ export class DemoTimepickerCustomValidationComponent {
     }
     const hours = value.getHours();
     if (hours < 11 || hours > 12) {
-      return {outOfRange: true};
+      return { outOfRange: true };
     }
 
     return null;

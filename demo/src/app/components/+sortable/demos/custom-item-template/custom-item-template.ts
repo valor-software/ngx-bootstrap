@@ -12,8 +12,5 @@ export class CustomItemTemplateDemoComponent {
     'Tornado'
   ];
 
-  public itemStringsRight: any[] = [
-    'Mr. O',
-    'Tomato'
-  ];
+  public itemStringsRight: any[] = ['Mr. O', 'Tomato'];
 }

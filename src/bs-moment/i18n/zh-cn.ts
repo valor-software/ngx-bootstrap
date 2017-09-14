@@ -29,8 +29,7 @@ export const zhCn: LocaleData = {
     if (hour === 12) {
       hour = 0;
     }
-    if (meridiem === '凌晨' || meridiem === '早上' ||
-      meridiem === '上午') {
+    if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
       return hour;
     } else if (meridiem === '下午' || meridiem === '晚上') {
       return hour + 12;
@@ -97,6 +96,6 @@ export const zhCn: LocaleData = {
   week: {
     // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
     dow: 1, // Monday is the first day of the week.
-    doy: 4  // The week that contains Jan 4th is the first week of the year.
+    doy: 4 // The week that contains Jan 4th is the first week of the year.
   }
 };

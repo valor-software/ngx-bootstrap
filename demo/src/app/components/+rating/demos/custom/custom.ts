@@ -9,10 +9,10 @@ export class DemoRatingCustomComponent {
   public y: number = 2;
 
   public ratingStates: any = [
-    {stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle'},
-    {stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty'},
-    {stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle'},
-    {stateOn: 'glyphicon-heart'},
-    {stateOff: 'glyphicon-off'}
+    { stateOn: 'glyphicon-ok-sign', stateOff: 'glyphicon-ok-circle' },
+    { stateOn: 'glyphicon-star', stateOff: 'glyphicon-star-empty' },
+    { stateOn: 'glyphicon-heart', stateOff: 'glyphicon-ban-circle' },
+    { stateOn: 'glyphicon-heart' },
+    { stateOff: 'glyphicon-off' }
   ];
 }

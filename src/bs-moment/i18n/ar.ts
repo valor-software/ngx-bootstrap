@@ -7,16 +7,16 @@
 import { LocaleData } from '../locale/locale.class';
 
 const symbolMap: { [key: string]: string } = {
-  '1': '١',
-  '2': '٢',
-  '3': '٣',
-  '4': '٤',
-  '5': '٥',
-  '6': '٦',
-  '7': '٧',
-  '8': '٨',
-  '9': '٩',
-  '0': '٠'
+  1: '١',
+  2: '٢',
+  3: '٣',
+  4: '٤',
+  5: '٥',
+  6: '٦',
+  7: '٧',
+  8: '٨',
+  9: '٩',
+  0: '٠'
 };
 const numberMap: { [key: string]: string } = {
   '١': '1',
@@ -30,19 +30,65 @@ const numberMap: { [key: string]: string } = {
   '٩': '9',
   '٠': '0'
 };
-const pluralForm = function (n: number): number {
-  return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
+const pluralForm = function(n: number): number {
+  return n === 0
+    ? 0
+    : n === 1
+      ? 1
+      : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
 };
 const plurals: any = {
-  s: ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
-  m: ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
-  h: ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
-  d: ['أقل من يوم', 'يوم واحد', ['يومان', 'يومين'], '%d أيام', '%d يومًا', '%d يوم'],
-  M: ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
-  y: ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
+  s: [
+    'أقل من ثانية',
+    'ثانية واحدة',
+    ['ثانيتان', 'ثانيتين'],
+    '%d ثوان',
+    '%d ثانية',
+    '%d ثانية'
+  ],
+  m: [
+    'أقل من دقيقة',
+    'دقيقة واحدة',
+    ['دقيقتان', 'دقيقتين'],
+    '%d دقائق',
+    '%d دقيقة',
+    '%d دقيقة'
+  ],
+  h: [
+    'أقل من ساعة',
+    'ساعة واحدة',
+    ['ساعتان', 'ساعتين'],
+    '%d ساعات',
+    '%d ساعة',
+    '%d ساعة'
+  ],
+  d: [
+    'أقل من يوم',
+    'يوم واحد',
+    ['يومان', 'يومين'],
+    '%d أيام',
+    '%d يومًا',
+    '%d يوم'
+  ],
+  M: [
+    'أقل من شهر',
+    'شهر واحد',
+    ['شهران', 'شهرين'],
+    '%d أشهر',
+    '%d شهرا',
+    '%d شهر'
+  ],
+  y: [
+    'أقل من عام',
+    'عام واحد',
+    ['عامان', 'عامين'],
+    '%d أعوام',
+    '%d عامًا',
+    '%d عام'
+  ]
 };
-const pluralize = function (u: string) {
-  return function (num: number, withoutSuffix: boolean/*, string, isFuture*/) {
+const pluralize = function(u: string) {
+  return function(num: number, withoutSuffix: boolean /*, string, isFuture*/) {
     const f = pluralForm(num);
     let str = plurals[u][pluralForm(num)];
     if (f === 2) {
@@ -118,17 +164,21 @@ export const ar: LocaleData = {
     yy: pluralize('y')
   },
   preparse(str: string): string {
-    return str.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
-      return numberMap[match];
-    }).replace(/،/g, ',');
+    return str
+      .replace(/[١٢٣٤٥٦٧٨٩٠]/g, function(match) {
+        return numberMap[match];
+      })
+      .replace(/،/g, ',');
   },
   postformat(str: string): string {
-    return str.replace(/\d/g, function (match) {
-      return symbolMap[match];
-    }).replace(/,/g, '،');
+    return str
+      .replace(/\d/g, function(match) {
+        return symbolMap[match];
+      })
+      .replace(/,/g, '،');
   },
   week: {
     dow: 6, // Saturday is the first day of the week.
-    doy: 12  // The week that contains Jan 1st is the first week of the year.
+    doy: 12 // The week that contains Jan 1st is the first week of the year.
   }
 };

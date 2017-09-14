@@ -26,5 +26,7 @@ export class DemoDatePickerPopupComponent {
     this._bsRangeValue = v;
   }
 
-  log(v: any) {console.log(v);}
+  log(v: any) {
+    console.log(v);
+  }
 }

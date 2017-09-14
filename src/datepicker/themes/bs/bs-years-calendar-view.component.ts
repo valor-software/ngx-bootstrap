@@ -47,7 +47,7 @@ export class BsYearsCalendarViewComponent {
 
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
-    this.onNavigate.emit({step: {year: step * yearsPerCalendar}});
+    this.onNavigate.emit({ step: { year: step * yearsPerCalendar } });
   }
 
   viewYear(year: CalendarCellViewModel) {
@@ -55,7 +55,7 @@ export class BsYearsCalendarViewComponent {
   }
 
   hoverYear(cell: CalendarCellViewModel, isHovered: boolean) {
-    this.onHover.emit({cell, isHovered});
+    this.onHover.emit({ cell, isHovered });
   }
 
   changeViewMode(event: BsDatepickerViewMode): void {

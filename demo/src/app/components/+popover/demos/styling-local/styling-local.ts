@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'demo-popover-styling-local',
   templateUrl: './styling-local.html',
   /* tslint:disable no-unused-css*/
-  styles: [`
+  styles: [
+    `
 :host >>> .popover {
   background-color: #009688;
   color: #fff;
@@ -12,7 +13,7 @@ import { Component } from '@angular/core';
 :host >>> .popover>.arrow:after {
   border-top-color: #009688;
 }
-  `]
+  `
+  ]
 })
-export class DemoPopoverStylingLocalComponent {
-}
+export class DemoPopoverStylingLocalComponent {}

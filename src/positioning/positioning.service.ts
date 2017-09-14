@@ -17,7 +17,9 @@ export interface PositioningOptions {
    */
   attachment?: string;
 
-  /** A string similar to `attachment`. The one difference is that, if it's not provided, `targetAttachment` will assume the mirror image of `attachment`. */
+  /** A string similar to `attachment`. The one difference is that, if it's not provided,
+   * `targetAttachment` will assume the mirror image of `attachment`.
+   */
   targetAttachment?: string;
 
   /** A string of the form 'vert-offset horiz-offset'
@@ -34,25 +36,27 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
-  public position(options: PositioningOptions): void {
+  position(options: PositioningOptions): void {
     const {element, target, attachment, appendToBody} = options;
     positionElements(
-      this._getHtmlElement(target),
-      this._getHtmlElement(element),
+      _getHtmlElement(target),
+      _getHtmlElement(element),
       attachment,
-      appendToBody);
+      appendToBody
+    );
   }
 
-  private _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
-    // it means that we got a selector
-    if (typeof element === 'string') {
-      return document.querySelector(element) as HTMLElement;
-    }
+}
 
-    if (element instanceof ElementRef) {
-      return element.nativeElement;
-    }
-
-    return element as HTMLElement;
+function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
+  // it means that we got a selector
+  if (typeof element === 'string') {
+    return document.querySelector(element) as HTMLElement;
   }
+
+  if (element instanceof ElementRef) {
+    return element.nativeElement;
+  }
+
+  return element as HTMLElement;
 }

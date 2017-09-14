@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { TimeUnit } from '../../bs-moment/types';
 import { Action } from '../../mini-ngrx/index';
-import { BsDatepickerViewMode, BsViewNavigationEvent, CellHoverEvent, DatepickerRenderOptions } from '../models/index';
+import {
+  BsDatepickerViewMode,
+  BsViewNavigationEvent,
+  CellHoverEvent,
+  DatepickerRenderOptions
+} from '../models/index';
 
 @Injectable()
 export class BsDatepickerActions {
@@ -21,11 +26,17 @@ export class BsDatepickerActions {
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
 
-  calculate(): Action {return {type: BsDatepickerActions.CALCULATE}; }
+  calculate(): Action {
+    return { type: BsDatepickerActions.CALCULATE };
+  }
 
-  format(): Action {return {type: BsDatepickerActions.FORMAT}; }
+  format(): Action {
+    return { type: BsDatepickerActions.FORMAT };
+  }
 
-  flag(): Action { return {type: BsDatepickerActions.FLAG}; }
+  flag(): Action {
+    return { type: BsDatepickerActions.FLAG };
+  }
 
   select(date: Date): Action {
     return {

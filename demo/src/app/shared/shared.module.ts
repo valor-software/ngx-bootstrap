@@ -23,5 +23,4 @@ import { NgApiDocModule } from '../api-docs';
     RouterModule
   ]
 })
-export class SharedModule {
-}
+export class SharedModule {}

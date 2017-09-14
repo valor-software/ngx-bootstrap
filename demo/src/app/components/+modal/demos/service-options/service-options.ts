@@ -21,7 +21,9 @@ export class DemoModalServiceOptionsComponent {
   }
 
   public openModalWithClass(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, Object.assign({}, this.config, {class: 'gray modal-lg'}));
+    this.modalRef = this.modalService.show(
+      template,
+      Object.assign({}, this.config, { class: 'gray modal-lg' })
+    );
   }
-
 }

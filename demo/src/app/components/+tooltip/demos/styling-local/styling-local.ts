@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   selector: 'demo-tooltip-styling-local',
   templateUrl: './styling-local.html',
   /* tslint:disable no-unused-css*/
-  styles: [`
+  styles: [
+    `
 :host >>> .tooltip-inner {
   background-color: #009688;
   color: #fff;
@@ -12,7 +13,7 @@ import { Component } from '@angular/core';
 :host >>> .tooltip .tooltip-arrow {
   border-bottom-color: #009688;
 }
-  `]
+  `
+  ]
 })
-export class DemoTooltipStylingLocalComponent {
-}
+export class DemoTooltipStylingLocalComponent {}
