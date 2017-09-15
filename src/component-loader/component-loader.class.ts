@@ -359,7 +359,7 @@ export class ComponentLoader<T> {
         content
       );
       const modalContentInjector = ReflectiveInjector.resolveAndCreate(
-        [...this._providers, content],
+        [...this._providers],
         this._injector
       );
       const componentRef = contentCmptFactory.create(modalContentInjector);

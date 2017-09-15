@@ -15,15 +15,12 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)"
-                tabindex="-1">
-          <i class="glyphicon glyphicon-chevron-left"></i>
-        </button>
+                tabindex="-1">‹</button>
         <button *ngIf="isBs4"
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-left float-left"
                 (click)="datePicker.move(-1)"
-                tabindex="-1">&lt;
-        </button>
+                tabindex="-1">&lt;</button>
       </th>
       <th [attr.colspan]="5 + (datePicker.showWeeks ? 1 : 0)">
         <button [id]="datePicker.uniqueId + '-title'"
@@ -39,9 +36,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-right float-right"
                 (click)="datePicker.move(1)"
-                tabindex="-1">
-          <i  class="glyphicon glyphicon-chevron-right"></i>
-        </button>
+                tabindex="-1">›</button>
         <button *ngIf="isBs4"
                 type="button"
                 class="btn btn-default btn-secondary btn-sm pull-right float-right"
