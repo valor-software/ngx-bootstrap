@@ -37,13 +37,13 @@ export class BsDaterangepickerInputDirective
           v[0],
           this._picker._config.rangeInputFormat,
           this._picker._config.locale
-        );
+        ) || '';
         const end = formatDate(
           v[1],
           this._picker._config.rangeInputFormat,
           this._picker._config.locale
-        );
-        range = start + this._picker._config.rangeSeparator + end;
+        ) || '';
+        range = (start && end) ? start + this._picker._config.rangeSeparator + end : '';
       }
       this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
       this._onChange(v);
@@ -58,6 +58,7 @@ export class BsDaterangepickerInputDirective
   writeValue(value: Date[] | string) {
     if (!value) {
       this._picker.bsValue = null;
+      return;
     }
 
     const _locale = getLocale(this._picker._config.locale);
