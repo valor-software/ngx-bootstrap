@@ -12,8 +12,9 @@ import { NgApiDocModule } from './api-docs/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
 import { AppFooterComponent } from './common/app-footer/app-footer.component';
-import { MainMenuComponent } from './common/main-menu/main-menu.component';
-import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { AddNavComponent } from './common/add-nav/add-nav.component';
+import { SearchFilterPipe } from './common/sidebar/search-filter.pipe';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { ThemeStorage } from './theme/theme-storage';
@@ -24,7 +25,8 @@ import { StyleManager } from './theme/style-manager';
     AppComponent,
     GettingStartedComponent,
     TopMenuComponent,
-    MainMenuComponent,
+    SidebarComponent,
+    AddNavComponent,
     SearchFilterPipe,
     AppFooterComponent
   ],

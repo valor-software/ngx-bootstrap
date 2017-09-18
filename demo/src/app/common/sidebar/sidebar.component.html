@@ -1,0 +1,32 @@
+<form class="sidebar-search">
+  <input type="text"
+         aria-label="Search in docs" name="search"
+         placeholder="Search..." [(ngModel)]="search.text"/>
+
+  <button id="mobile-main-menu" (click)="toggle()">
+    <img src="assets/images/icons/menu-left.svg" alt="left menu">
+  </button>
+</form>
+<div class="mobile-menu">
+  <div class="bootstrap-version">
+    <button class="btn" [class.selected]="isBs3" (click)="installTheme('bs3')">Bootstrap 3</button>
+    <button class="btn" [class.selected]="!isBs3" (click)="installTheme('bs4')">Bootstrap 4</button>
+  </div>
+  <div class="sidebar-content" *ngIf="routes && routes.length">
+    <ul class="sidebar-list">
+      <li [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="[routes[0].path]">{{routes[0].data}}</a>
+      </li>
+    </ul>
+
+    <h4 class="sidebar-title">Components</h4>
+    <ul class="sidebar-list">
+      <li *ngFor="let route of routes | slice:1 | SearchFilter:search.text"
+          [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="[route.path]">{{route.data[0]}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Inject, Renderer  } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { isBs3, setTheme } from 'ngx-bootstrap/utils';
 import { routes } from '../../app.routing';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
+import { DOCUMENT } from '@angular/platform-browser';
 
 const _bs3Css =
-  '/assets/css/bootstrap.min.css';
+  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
 const _bs4Css =
   'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css';
 
 @Component({
-  selector: 'main-menu',
-  templateUrl: './main-menu.component.html'
+  selector: 'sidebar',
+  templateUrl: './sidebar.component.html'
 })
-export class MainMenuComponent {
+export class SidebarComponent {
+  public isShown = false;
+
   public get isBs3(): boolean {
     return isBs3();
   }
@@ -27,7 +30,9 @@ export class MainMenuComponent {
   public constructor(
     private router: Router,
     public styleManager: StyleManager,
-    private _themeStorage: ThemeStorage
+    private _themeStorage: ThemeStorage,
+    private renderer: Renderer,
+    @Inject(DOCUMENT) private document: any
   ) {
     const currentTheme = this._themeStorage.getStoredTheme();
     if (currentTheme) {
@@ -36,6 +41,26 @@ export class MainMenuComponent {
 
     this.router = router;
     this.routes = this.routes.filter((v: any) => v.path !== '**');
+
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.toggle(false);
+      }
+    });
+  }
+
+  public toggle(isShown?: boolean): void {
+    this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
+    if (this.document && this.document.body) {
+      this.renderer.setElementClass(
+        this.document.body,
+        'isOpenMenu',
+        this.isShown
+      );
+      if (this.isShown === false) {
+        this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
+      }
+    }
   }
 
   installTheme(theme: 'bs3' | 'bs4') {

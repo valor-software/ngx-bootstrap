@@ -11,6 +11,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-section [name]="name" [src]="src">
       <tabset>
         <tab heading="Overview">
+          <br>
           <p>Datepicker is a highly configurable component that adds datepicker functionality to your pages. You can
             customize the date format and language, restrict the selectable date ranges.</p>
           <h2>Contents</h2>
@@ -128,6 +129,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         
         <!-- Old datepicker part-->
         <tab heading="Old">
+          <br>
           <p>This is a legacy version of datepicker without support of daterangepicker, locales, themes, etc.</p>
           <h2>Contents</h2>
           <ul>

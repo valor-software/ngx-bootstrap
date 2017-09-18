@@ -1,14 +1,14 @@
 <top-menu></top-menu>
-<main-menu></main-menu>
+<main class="main">
+  <sidebar class="sidebar"></sidebar>
 
-<div id="main">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-xs-12 col-md-offset-1 push-md-1">
-        <router-outlet></router-outlet>
-      </div>
+  <section class="main-container">
+    <div class="content">
+      <router-outlet></router-outlet>
     </div>
-  </div>
-  <app-footer></app-footer>
-</div>
+    <app-footer></app-footer>
+  </section>
 
+  <add-nav class="add-nav"></add-nav>
+
+</main>

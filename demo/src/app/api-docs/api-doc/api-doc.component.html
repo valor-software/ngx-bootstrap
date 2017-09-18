@@ -3,7 +3,7 @@
     <a (click)="trackSourceClick()" href="https://github.com/valor-software/ngx-bootstrap/tree/development/{{apiDocs.fileName}}" target="_blank" rel="noopener">{{apiDocs.className}}</a>
   </h3>
   <p [innerHtml]="apiDocs.description"></p>
-    <table class="table table-sm table-hover">
+    <table class="table table-sm">
       <tbody>
         <tr>
           <td class="col-xs-3">Selector</td>
@@ -19,7 +19,7 @@
   <ng-template [ngIf]="apiDocs.inputs.length">
     <section>
       <h3 id="inputs">Inputs</h3>
-      <table class="table table-sm table-hover">
+      <table class="table table-sm">
         <tbody>
         <tr *ngFor="let input of apiDocs.inputs">
           <td class="col-xs-3"><code>{{input.name}}</code></td>
@@ -42,7 +42,7 @@
   <ng-template [ngIf]="apiDocs.outputs.length">
     <section>
       <h3 id="outputs">Outputs</h3>
-      <table class="table table-sm table-hover">
+      <table class="table table-sm">
         <tbody>
           <tr *ngFor="let output of apiDocs.outputs">
             <td class="col-xs-3"><code>{{output.name}}</code></td>
@@ -56,7 +56,7 @@
   <ng-template [ngIf]="apiDocs.methods.length && apiDocs.exportAs">
     <section>
       <h3 id="methods">Methods</h3>
-      <table class="table table-sm table-hover">
+      <table class="table table-sm">
         <tbody>
         <tr *ngFor="let method of apiDocs.methods">
           <td class="col-xs-3"><code>{{method.name}}</code></td>
@@ -71,4 +71,3 @@
     </section>
   </ng-template>
 </div>
-<hr/>
