@@ -5,7 +5,7 @@
 
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input,
-  OnDestroy, Output, Renderer2, ViewContainerRef
+  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 
 import { document, window } from '../utils/facade/browser';
@@ -27,7 +27,7 @@ const BACKDROP_TRANSITION_DURATION = 150;
   selector: '[bsModal]',
   exportAs: 'bs-modal'
 })
-export class ModalDirective implements OnDestroy {
+export class ModalDirective implements OnDestroy, OnInit {
   /** allows to set modal configuration via element property */
   @Input()
   set config(conf: ModalOptions) {
@@ -127,14 +127,14 @@ export class ModalDirective implements OnDestroy {
     }
   }
 
-  // ngAfterViewInit(): any {
-  //   this._config = this._config || this.getConfig();
-  //   setTimeout(() => {
-  //     if (this._config.show) {
-  //       this.show();
-  //     }
-  //   }, 0);
-  // }
+  ngOnInit(): any {
+    this._config = this._config || this.getConfig();
+    setTimeout(() => {
+      if (this._config.show) {
+        this.show();
+      }
+    }, 0);
+  }
 
   /* Public methods */
 
@@ -427,9 +427,9 @@ export class ModalDirective implements OnDestroy {
   protected getScrollbarWidth(): number {
     const scrollDiv = this._renderer.createElement('div');
     this._renderer.addClass(scrollDiv, CLASS_NAME.SCROLLBAR_MEASURER);
-    this._renderer.appendChild('body', scrollDiv);
+    this._renderer.appendChild(document.body, scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    this._renderer.removeChild('body', scrollDiv);
+    this._renderer.removeChild(document.body, scrollDiv);
 
     return scrollbarWidth;
   }

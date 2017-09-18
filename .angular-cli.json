@@ -19,7 +19,7 @@
       "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "",
       "mobile": false,
-      "serviceWorker": true,
+      "serviceWorker": false,
       "styles": [
         "../../src/datepicker/bs-datepicker.scss",
         "assets/css/style.css",
