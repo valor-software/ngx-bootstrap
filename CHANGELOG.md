@@ -26,34 +26,12 @@
 
 ### BREAKING CHANGES
 
-* **rating:** - removed input properties stateOn, stateOff and ratingStates
-- custom icons now working via customTemplate
+* **rating:** 
+  - removed input properties `stateOn`, `stateOff` and `ratingStates`
+  - custom icons now working via customTemplate
 * **package:** - dropped support of ng v2
 
 * feat(package): upgrading ng v4
-
-* feat(package): dropped support of ng v2
-
-* chore(datepicker): initial commit
-
-* chore(package): beta.6
-
-* fix(datepicker): for ng v4
-
-* chore(core): after merge fix
-
-* fix(demo): fix carousel demo error
-
-* fix(tests): add matchers, fix fn output type in draggable service
-
-* chore(package): upgraded angular dependencies
-
-* 2.0.0-beta.3
-
-* chore(changelog): update
-
-* chore(package): fixed missing moment dependecy
-
 
 
 <a name="1.9.3"></a>

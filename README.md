@@ -20,6 +20,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 - [Documentation](http://valor-software.com/ngx-bootstrap/)
 - [Release Notes](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md)
 - [Slack Community](https://ngx-slack.herokuapp.com)
+- 
 
 <!-- [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap) -->
 
