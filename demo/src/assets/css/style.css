@@ -1023,3 +1023,9 @@ pre {
     max-width: 100%;
   }
 }
+
+@media (max-width: 575px) {
+  .hidden-xs-down {
+    display:none!important
+  }
+}
