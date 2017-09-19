@@ -82,7 +82,7 @@
     "@angular/platform-browser-dynamic": "4.3.6",
     "@angular/router": "4.3.6",
     "@angular/service-worker": "1.0.0-beta.16",
-    "@angular/tsc-wrapped": "4.3.6",
+    "@angular/tsc-wrapped": "4.4.2",
     "@types/jasmine": "2.5.54",
     "@types/marked": "0.3.0",
     "@types/node": "8.0.28",
