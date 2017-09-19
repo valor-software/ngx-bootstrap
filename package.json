@@ -79,7 +79,7 @@
     "@angular/http": "4.3.6",
     "@angular/language-service": "4.3.6",
     "@angular/platform-browser": "4.3.6",
-    "@angular/platform-browser-dynamic": "4.3.6",
+    "@angular/platform-browser-dynamic": "4.4.2",
     "@angular/router": "4.3.6",
     "@angular/service-worker": "1.0.0-beta.16",
     "@angular/tsc-wrapped": "4.3.6",
