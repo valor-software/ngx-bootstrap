@@ -46,59 +46,59 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </ng-sample-box>      
   
   <!-- four directions -->
-  <h2 routerLink="." fragment="four-directions" id="four-directions">Four directions</h2>
+  <h3 routerLink="." fragment="four-directions" id="four-directions">Four directions</h3>
   Four positioning options are available: top, right, bottom, and left aligned.
   Besides that, auto option may be used to detect a position that fits the component on screen.
   <ng-sample-box [ts]="demos.forDirections.component" [html]="demos.forDirections.html">
     <demo-tooltip-four-directions></demo-tooltip-four-directions>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="dismiss" id="dismiss">Dismiss on next click</h2>
+  <h3 routerLink="." fragment="dismiss" id="dismiss">Dismiss on next click</h3>
   <p>Use the <code>focus</code> trigger to dismiss tooltips on the next click that the user makes.</p>
   <ng-sample-box [ts]="demos.dismiss.component" [html]="demos.dismiss.html">
     <demo-tooltip-dismiss></demo-tooltip-dismiss>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="dynamic-content" id="dynamic-content">Dynamic Content</h2>
+  <h3 routerLink="." fragment="dynamic-content" id="dynamic-content">Dynamic Content</h3>
   <p>tooltip content can contain any html template. Just create <code>&lt;template #myId></code> with any
   html allowed by Angular, and provide template ref (<code>#myId</code>) as tooltip content.</p>
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
     <demo-tooltip-dynamic></demo-tooltip-dynamic>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="dynamic-html" id="dynamic-html">Dynamic Html</h2>
+  <h3 routerLink="." fragment="dynamic-html" id="dynamic-html">Dynamic Html</h3>
   <p>By using small trick you can display any dynamic html, which you got from ajax request for example.</p>
   <ng-sample-box [ts]="demos.dynamicHtml.component" [html]="demos.dynamicHtml.html">
     <demo-tooltip-dynamic-html></demo-tooltip-dynamic-html>
   </ng-sample-box>  
   
-  <h2 routerLink="." fragment="container-body" id="container-body">Append to body</h2>
+  <h3 routerLink="." fragment="container-body" id="container-body">Append to body</h3>
   <p>When you have some styles on a parent element that interfere with a tooltip, you’ll want to specify a <code>container="body"</code> so that the tooltip’s HTML will be appended to body. This will help to avoid rendering problems in more complex components (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>
   <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
     <demo-tooltip-container></demo-tooltip-container>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+  <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-tooltip-config></demo-tooltip-config>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="triggers-custom" id="triggers-custom">Custom triggers</h2>
+  <h3 routerLink="." fragment="triggers-custom" id="triggers-custom">Custom triggers</h3>
   <ng-sample-box [ts]="demos.triggersCustom.component" [html]="demos.triggersCustom.html">
     <demo-tooltip-triggers-custom></demo-tooltip-triggers-custom>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggering</h2>
+  <h3 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggering</h3>
   <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
     <demo-tooltip-triggers-manual></demo-tooltip-triggers-manual>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="styling-local" id="styling-local">Component level styling</h2>
+  <h3 routerLink="." fragment="styling-local" id="styling-local">Component level styling</h3>
   <ng-sample-box [ts]="demos.stylingComponent.component" [html]="demos.stylingComponent.html">
     <demo-tooltip-styling-local></demo-tooltip-styling-local>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="custom-class" id="custom-class">Custom class</h2>
+  <h3 routerLink="." fragment="custom-class" id="custom-class">Custom class</h3>
   <ng-sample-box [ts]="demos.customClass.component" [html]="demos.customClass.html">
     <demo-tooltip-class></demo-tooltip-class>
   </ng-sample-box>

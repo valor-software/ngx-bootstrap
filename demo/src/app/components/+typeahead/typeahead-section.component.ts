@@ -35,43 +35,43 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
       
   <!-- static -->
-  <h2 routerLink="." fragment="static" id="static">Static array</h2>
+  <h3 routerLink="." fragment="static" id="static">Static array</h3>
   <ng-sample-box [ts]="demos.static.component" [html]="demos.static.html">
     <demo-typeahead-static></demo-typeahead-static>
   </ng-sample-box>
       
   <!-- Custom item template -->
-  <h2 routerLink="." fragment="item-template" id="item-template">Item template</h2>
+  <h3 routerLink="." fragment="item-template" id="item-template">Item template</h3>
   <ng-sample-box [ts]="demos.itemTemplate.component" [html]="demos.itemTemplate.html">
     <demo-typeahead-item-template></demo-typeahead-item-template>
   </ng-sample-box>
   
   <!-- Option field -->
-  <h2 routerLink="." fragment="option-field" id="option-field">Option field</h2>
+  <h3 routerLink="." fragment="option-field" id="option-field">Option field</h3>
   <ng-sample-box [ts]="demos.field.component" [html]="demos.field.html">
     <demo-typeahead-field></demo-typeahead-field>
   </ng-sample-box>  
   
   <!-- Async data -->
-  <h2 routerLink="." fragment="async" id="async">Async data</h2>
+  <h3 routerLink="." fragment="async" id="async">Async data</h3>
   <ng-sample-box [ts]="demos.async.component" [html]="demos.async.html">
     <demo-typeahead-async></demo-typeahead-async>
   </ng-sample-box>
   
   <!-- With reactive forms -->
-  <h2 routerLink="." fragment="forms" id="forms">Reactive forms</h2>
+  <h3 routerLink="." fragment="forms" id="forms">Reactive forms</h3>
   <ng-sample-box [ts]="demos.inForm.component" [html]="demos.inForm.html">
     <demo-typeahead-forms></demo-typeahead-forms>
   </ng-sample-box>
     
   <!-- Grouping results -->
-  <h2 routerLink="." fragment="grouping-results" id="grouping-results">Grouping results</h2>
+  <h3 routerLink="." fragment="grouping-results" id="grouping-results">Grouping results</h3>
   <ng-sample-box [ts]="demos.grouping.component" [html]="demos.grouping.html">
     <demo-typeahead-grouping></demo-typeahead-grouping>
   </ng-sample-box>
 
   <!-- Dropup -->
-  <h2 routerLink="." fragment="dropup" id="dropup">Dropup</h2>
+  <h3 routerLink="." fragment="dropup" id="dropup">Dropup</h3>
   <ng-sample-box [ts]="demos.dropup.component" [html]="demos.dropup.html">
     <demo-typeahead-dropup></demo-typeahead-dropup>
   </ng-sample-box>

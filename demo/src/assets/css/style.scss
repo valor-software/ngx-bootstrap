@@ -1,4 +1,4 @@
-@import "reboot";
+@import "./reboot";
 
 /* variables */
 $header-height: 64px;
@@ -15,6 +15,12 @@ body {
   min-width: 320px;
 }
 
+h1, h2, h3, h4 {
+  &:focus {
+    outline: none;
+  }
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -26,7 +32,7 @@ a:hover {
 /* header */
 .header {
   min-height: $header-height;
-  padding: 20px;
+  padding: 12px 20px;
   background-color: #1976d2;
   display: flex;
   flex-flow: row nowrap;
@@ -37,6 +43,19 @@ a:hover {
     color: #fff;
     margin-bottom: 0;
     font-size: 1.375rem;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    img {
+      display: block;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
   }
 
   &-info {
@@ -57,16 +76,20 @@ a:hover {
       width: 21px;
       height: 21px;
       margin-left: 16px;
-      opacity: 0.7;
+
+      a {
+        display: block;
+        opacity: 0.7;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
 
       img {
         width: 100%;
         height: 100%;
         display: block;
-      }
-
-      &:hover {
-        opacity: 1;
       }
     }
   }
@@ -205,7 +228,6 @@ a:hover {
 .main-container {
   flex: 0 0 66.666667%;
   max-width: 66.666667%;
-  overflow: hidden;
 }
 .content {
   padding: 30px 30px 120px;
@@ -216,7 +238,11 @@ a:hover {
 
   ng-sample-box {
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 60px;
+
+      &.bd-example {
+        margin-bottom: 10px;
+      }
     }
 
     .tab-content {
@@ -231,13 +257,15 @@ a:hover {
 .api-doc-component {
   .table {
     td {
-      border: 1px solid #dadada;
       padding: 1rem;
 
       p {
         margin-bottom: 0;
       }
     }
+  }
+  .table-b {
+    overflow-x: auto;
   }
 }
 /* add-nav */
@@ -269,6 +297,40 @@ a:hover {
   }
 }
 
+/* specific styles */
+.bd-example {
+  position: relative;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+.card.customClass,
+.card.customClass .card-header,
+.panel.customClass {
+  background-color: #5bc0de;
+  color: #fff;
+}
+.panel.customClass .panel-body {
+  background-color: #337aa7;
+}
+.code-preview {
+  display: block;
+  padding: 10px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
 /*** Media Query ***/
 /* above 768px */
 @media (min-width: 768px) {
@@ -276,7 +338,7 @@ a:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 9999;
+    z-index: 1000;
   }
   .sidebar {
     position: -webkit-sticky;

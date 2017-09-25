@@ -39,22 +39,22 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
 
   <div *ngIf="isBs3">
-    <h2 routerLink="." fragment="static" id="static">Static</h2>
+    <h3 routerLink="." fragment="static" id="static">Static</h3>
     <ng-sample-box [ts]="demos.bs3static.component" [html]="demos.bs3static.html">
       <demo-progressbar-static></demo-progressbar-static>
     </ng-sample-box>
     
-    <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h2>
+    <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h3>
     <ng-sample-box [ts]="demos.bs3dynamic.component" [html]="demos.bs3dynamic.html">
       <demo-progressbar-dynamic></demo-progressbar-dynamic>
     </ng-sample-box>
     
-    <h2 routerLink="." fragment="stacked" id="stacked">Stacked</h2>
+    <h3 routerLink="." fragment="stacked" id="stacked">Stacked</h3>
     <ng-sample-box [ts]="demos.bs3stacked.component" [html]="demos.bs3stacked.html">
       <demo-progressbar-stacked></demo-progressbar-stacked>
     </ng-sample-box>
         
-    <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+    <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
     <ng-sample-box [ts]="demos.bs3config.component" [html]="demos.bs3config.html">
       <demo-progressbar-config></demo-progressbar-config>
     </ng-sample-box>
@@ -64,17 +64,17 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <br>
     <h3>In bootstrap 4 progress has a different concept, no inner text, no default transition animation</h3>
     <br>
-    <h2 routerLink="." fragment="static" id="static">Static</h2>
+    <h3 routerLink="." fragment="static" id="static">Static</h3>
     <ng-sample-box [ts]="demos.bs4static.component" [html]="demos.bs4static.html">
       <demo-bs4-progressbar-static></demo-bs4-progressbar-static>
     </ng-sample-box>
     
-    <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h2>
+    <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h3>
     <ng-sample-box [ts]="demos.bs4dynamic.component" [html]="demos.bs4dynamic.html">
       <demo-bs4-progressbar-dynamic></demo-bs4-progressbar-dynamic>
     </ng-sample-box>
     
-    <h2 routerLink="." fragment="stacked" id="stacked">Stacked</h2>
+    <h3 routerLink="." fragment="stacked" id="stacked">Stacked</h3>
     <ng-sample-box [ts]="demos.bs4stacked.component" [html]="demos.bs4stacked.html">
       <demo-bs4-progressbar-stacked></demo-bs4-progressbar-stacked>
     </ng-sample-box>

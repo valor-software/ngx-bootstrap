@@ -49,69 +49,69 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </ng-sample-box>      
   
   <!-- four directions -->
-  <h2 routerLink="." fragment="four-directions" id="four-directions">Four directions</h2>
+  <h3 routerLink="." fragment="four-directions" id="four-directions">Four directions</h3>
   Four positioning options are available: top, right, bottom, and left aligned.
   Besides that, auto option may be used to detect a position that fits the component on screen.
   <ng-sample-box [ts]="demos.forDirections.component" [html]="demos.forDirections.html">
     <demo-popover-four-directions></demo-popover-four-directions>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="dismiss" id="dismiss">Dismiss on next click</h2>
+  <h3 routerLink="." fragment="dismiss" id="dismiss">Dismiss on next click</h3>
   <p>Use the <code>focus</code> trigger to dismiss popovers on the next click that the user makes.</p>
   <ng-sample-box [ts]="demos.dismiss.component" [html]="demos.dismiss.html">
     <demo-popover-dismiss></demo-popover-dismiss>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="dynamic-content" id="dynamic-content">Dynamic Content</h2>
+  <h3 routerLink="." fragment="dynamic-content" id="dynamic-content">Dynamic Content</h3>
   <p>Popover content can contain any html template. Just create <code>&lt;template #myId></code> with any
   html allowed by Angular, and provide template ref (<code>#myId</code>) as popover content.</p>
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
     <demo-popover-dynamic></demo-popover-dynamic>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="dynamic-html" id="dynamic-html">Dynamic Html</h2>
+  <h3 routerLink="." fragment="dynamic-html" id="dynamic-html">Dynamic Html</h3>
   <p>By using small trick you can display any dynamic html, which you got from ajax request for example.</p>
   <ng-sample-box [ts]="demos.dynamicHtml.component" [html]="demos.dynamicHtml.html">
     <demo-popover-dynamic-html></demo-popover-dynamic-html>
   </ng-sample-box>  
   
-  <h2 routerLink="." fragment="container-body" id="container-body">Append to body</h2>
+  <h3 routerLink="." fragment="container-body" id="container-body">Append to body</h3>
   <p>When you have some styles on a parent element that interfere with a popover, you’ll want to specify a <code>container="body"</code> so that the popover’s HTML will be appended to body. This will help to avoid rendering problems in more complex components (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>
   <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
     <demo-popover-container></demo-popover-container>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+  <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-popover-config></demo-popover-config>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="outside-click" id="outside-click">Outside click</h2>
+  <h3 routerLink="." fragment="outside-click" id="outside-click">Outside click</h3>
   <ng-sample-box [ts]="demos.outsideClick.component" [html]="demos.outsideClick.html">
     <demo-popover-outside-click></demo-popover-outside-click>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="triggers-custom" id="triggers-custom">Custom triggers</h2>
+  <h3 routerLink="." fragment="triggers-custom" id="triggers-custom">Custom triggers</h3>
   <ng-sample-box [ts]="demos.triggersCustom.component" [html]="demos.triggersCustom.html">
     <demo-popover-triggers-custom></demo-popover-triggers-custom>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggering</h2>
+  <h3 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggering</h3>
   <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
     <demo-popover-triggers-manual></demo-popover-triggers-manual>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="styling-local" id="styling-local">Component level styling</h2>
+  <h3 routerLink="." fragment="styling-local" id="styling-local">Component level styling</h3>
   <ng-sample-box [ts]="demos.stylingComponent.component" [html]="demos.stylingComponent.html">
     <demo-popover-styling-local></demo-popover-styling-local>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="class" id="class">Custom class</h2>
+  <h3 routerLink="." fragment="class" id="class">Custom class</h3>
   <ng-sample-box [ts]="demos.customClass.component" [html]="demos.customClass.html">
     <demo-popover-class></demo-popover-class>
   </ng-sample-box>
   
-  <!--<h2 routerLink="." fragment="styling-global" id="styling-global">Global styling</h2>-->
+  <!--<h3 routerLink="." fragment="styling-global" id="styling-global">Global styling</h3>-->
   <!--<ng-sample-box [ts]="demos.stylingGlobal.component" [html]="demos.stylingGlobal.html">-->
     <!--<demo-popover-styling-global></demo-popover-styling-global>-->
   <!--</ng-sample-box>-->

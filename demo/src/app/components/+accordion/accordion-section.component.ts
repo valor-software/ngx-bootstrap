@@ -43,32 +43,32 @@ let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
       
   <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
   
-  <h2 routerLink="." fragment="simple" id="simple">Simple accordion</h2>
+  <h3 routerLink="." fragment="simple" id="simple">Simple accordion</h3>
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
     <demo-accordion-basic></demo-accordion-basic>
   </ng-sample-box>
         
-  <h2 routerLink="." fragment="disabled" id="disabled">Disabled</h2>
+  <h3 routerLink="." fragment="disabled" id="disabled">Disabled</h3>
   <ng-sample-box [ts]="demos.disabled.component" [html]="demos.disabled.html">
     <demo-accordion-disabled></demo-accordion-disabled>
   </ng-sample-box>  
         
-  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic accordion</h2>
+  <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic accordion</h3>
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
     <demo-accordion-dynamic></demo-accordion-dynamic>
   </ng-sample-box>   
        
-  <h2 routerLink="." fragment="one-time" id="one-time">Open only one at a time</h2>
+  <h3 routerLink="." fragment="one-time" id="one-time">Open only one at a time</h3>
   <ng-sample-box [ts]="demos.oneAtATime.component" [html]="demos.oneAtATime.html">
     <demo-accordion-one-time></demo-accordion-one-time>
   </ng-sample-box>
                 
-  <h2 routerLink="." fragment="styling" id="styling">Styling</h2>
+  <h3 routerLink="." fragment="styling" id="styling">Styling</h3>
   <ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html" [style]="demos.styling.css">
     <demo-accordion-styling></demo-accordion-styling>
   </ng-sample-box>
                 
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+  <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-accordion-config></demo-accordion-config>
   </ng-sample-box>
