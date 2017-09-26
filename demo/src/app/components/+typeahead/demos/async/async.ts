@@ -74,4 +74,8 @@ export class DemoTypeaheadAsyncComponent {
   public typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
   }
+
+  public typeaheadError(error) {
+    console.log('error', error)
+  }
 }
