@@ -13,18 +13,36 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
-script:
-  - npm run lint
-  - npm run build
-  - rm -rf node_modules/ngx-bootstrap
-  - npm i ./dist
-  - npm run demo.ng-build
-  # istanbul is broken, should be fixed
-  - npm run test-coverage
 
-after_success:
-  - ./node_modules/.bin/codecov
-  #- npm run test-cross
+jobs:
+  include:
+    - stage: test
+      script: npm run lint
+    - script:
+      - npm run build
+      - rm -rf node_modules/ngx-bootstrap
+      - npm i ./dist
+      # istanbul is broken, should be fixed
+      - npm run test-coverage
+      after_success:
+        - ./node_modules/.bin/codecov
+    - stage: build
+      script:
+        - npm run build
+        - rm -rf node_modules/ngx-bootstrap
+        - npm i ./dist
+        - npm run demo.ng-build
+#script:
+#  - npm run lint
+#  - npm run build
+#  - rm -rf node_modules/ngx-bootstrap
+#  - npm i ./dist
+#  - npm run demo.ng-build
+#  # istanbul is broken, should be fixed
+#  - npm run test-coverage
+#
+#
+#  #- npm run test-cross
 
 addons:
   # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
