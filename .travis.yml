@@ -35,10 +35,9 @@ before_install:
 install:
 # npm install will be done at precache stage
   - npm run build > /dev/null
-  - npm i ./dist  > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-
+  - npm i ./dist  > /dev/null
 
 jobs:
   fast_finish: true
