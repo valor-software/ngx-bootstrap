@@ -32,7 +32,7 @@ install:
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm run build > /dev/null
   - rm -rf node_modules/ngx-bootstrap
-  - npm i ./dist
+  - npm i ./dist  > /dev/null
 
 jobs:
   exclude:
@@ -43,7 +43,7 @@ jobs:
       script: npm install > /dev/null
       addons:
         # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-        sauce_connect: true
+#        sauce_connect: true
         firefox: "latest"
         apt:
           sources:
