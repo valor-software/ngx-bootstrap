@@ -15,9 +15,11 @@ env:
     - SAUCE_USERNAME=valorkin
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
 
-#matrix:
-#  exlude:
-#    - stage: lint
+matrix:
+  exlude:
+    - stage: lint
+    - stage: test
+      env: NGV=current
 
 stages:
   - lint
