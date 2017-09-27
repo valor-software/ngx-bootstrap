@@ -28,6 +28,9 @@ install:
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
 
 jobs:
+  fast_finish: true
+  allow_failures:
+    - env: NGV=next
   include:
 # precache npm and apt dependencies
     - stage: precache
@@ -59,7 +62,6 @@ jobs:
         - ./node_modules/.bin/codecov
     - <<: *test
       env: NGV=latest
-      allow_failures: true
     - <<: *test
       env: NGV=next
 #    check prod build
@@ -70,7 +72,6 @@ jobs:
       env: NGV=latest
     - <<: *build
       env: NGV=next
-
 cache:
   apt: true
   npm: true
