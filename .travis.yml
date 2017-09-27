@@ -8,15 +8,16 @@ git:
 
 env:
   matrix:
+    - NGV=current
     - NGV=latest
     - NGV=next
   global:
     - SAUCE_USERNAME=valorkin
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
 
-matrix:
-  exlude:
-    - stage: lint
+#matrix:
+#  exlude:
+#    - stage: lint
 
 stages:
   - lint
@@ -39,6 +40,11 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
+      env:
+        matrix:
+          - NGV=current
+          - NGV=latest
+          - NGV=next
       before_install:
         - export CHROME_BIN=chromium-browser
         - export DISPLAY=:99.0
@@ -54,8 +60,12 @@ jobs:
           packages:
           - g++-4.8
     - stage: build
-      script:
-        - npm run demo.ng-build
+      env:
+        matrix:
+          - NGV=current
+          - NGV=latest
+          - NGV=next
+      script: npm run demo.ng-build
 #script:
 #  - npm run lint
 #  - npm run build
