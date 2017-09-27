@@ -33,7 +33,9 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-# npm install will be done at precache stage
+  - npm install > /dev/null
+
+after_install:
   - npm run build > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
