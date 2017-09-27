@@ -8,9 +8,10 @@ git:
   submodules: false
 
 env:
-  - NGV=current
-  - NGV=latest
-  - NGV=next
+  matrix:
+    - NGV=current
+    - NGV=latest
+    - NGV=next
   global:
     - SAUCE_USERNAME=valorkin
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
