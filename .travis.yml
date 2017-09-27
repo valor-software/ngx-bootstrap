@@ -34,9 +34,11 @@ before_install:
 
 install:
 # npm install will be done at precache stage
+  - npm run build > /dev/null
+  - npm i ./dist  > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-  - npm i ./dist  > /dev/null
+
 
 jobs:
   fast_finish: true
@@ -45,9 +47,7 @@ jobs:
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install:
-        - npm install > /dev/null
-        - npm run build > /dev/null
+      install: npm install > /dev/null
       script: true
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
@@ -95,4 +95,3 @@ cache:
   npm: true
   directories:
     - node_modules
-    - dist
