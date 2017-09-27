@@ -16,6 +16,10 @@ env:
     - SAUCE_USERNAME=valorkin
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
 
+matrix:
+  exlude:
+    - stage: lint
+
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
@@ -31,14 +35,10 @@ install:
 
 jobs:
   include:
-    - stage: test
+    - stage: lint
       script: npm run lint
-    - script:
-      - npm run build
-      - rm -rf node_modules/ngx-bootstrap
-      - npm i ./dist
-      # istanbul is broken, should be fixed
-      - npm run test-coverage
+    - stage: test
+      script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
     - stage: build
