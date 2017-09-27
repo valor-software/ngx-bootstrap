@@ -34,8 +34,6 @@ before_install:
 
 install:
   - npm install > /dev/null
-
-after_install:
   - npm run build > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
