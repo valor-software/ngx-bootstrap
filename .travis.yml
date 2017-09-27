@@ -27,22 +27,15 @@ stages:
     if: branch = development AND type = push
 
 before_install:
-#  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" != "development" ]; then
-#      echo "push build not in dev branch, exiting";
-#      exit 0;
-#    fi
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - rm -rf node_modules/ngx-bootstrap
 
 install:
 # npm install will be done at precache stage
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-
-after_install:
-  - npm run build > /dev/null
-  - rm -rf node_modules/ngx-bootstrap
   - npm i ./dist  > /dev/null
 
 jobs:
@@ -52,7 +45,9 @@ jobs:
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install: npm install > /dev/null
+      install:
+        - npm install > /dev/null
+        - npm run build > /dev/null
       script: true
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
@@ -100,3 +95,4 @@ cache:
   npm: true
   directories:
     - node_modules
+    - dist
