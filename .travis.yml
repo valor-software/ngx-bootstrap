@@ -47,7 +47,7 @@ jobs:
       addons:
         # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
 #        sauce_connect: true
-        firefox: stable
+#        firefox: stable
         chrome: stable
         apt:
           sources:
@@ -58,7 +58,6 @@ jobs:
 #   lint code
     - stage: lint
       script: npm run lint
-      env: NGV=current
 #   test
     - &ci-test
       stage: ci-test
