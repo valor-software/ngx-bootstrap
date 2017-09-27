@@ -8,7 +8,6 @@ git:
 
 env:
   matrix:
-    - NGV=current
     - NGV=latest
     - NGV=next
   global:
@@ -23,11 +22,6 @@ stages:
   - lint
   - test
   - build
-
-before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
 
 install:
   - npm install > /dev/null
@@ -45,6 +39,20 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
+      before_install:
+        - export CHROME_BIN=chromium-browser
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+      addons:
+        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
+        sauce_connect: true
+        firefox: "latest"
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          # required by node-gyp to build some packages
+          packages:
+          - g++-4.8
     - stage: build
       script:
         - npm run demo.ng-build
@@ -64,18 +72,9 @@ cache:
   apt: true
   directories:
     - node_modules
+    - /tmp
 
 before_cache:
  - rm -rf node_modules/ngx-bootstrap
  - rm -rf node_modules/@angular
 
-addons:
-  # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-  sauce_connect: true
-  firefox: "latest"
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    # required by node-gyp to build some packages
-    packages:
-    - g++-4.8
