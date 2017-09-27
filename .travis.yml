@@ -44,12 +44,13 @@ jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
+  exclude:
+    - if: branch = development AND type = push OR type
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install: true
-      script:
-        - npm install > /dev/null
+      install: npm install > /dev/null
+      script: true
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
 #        sauce_connect: true
