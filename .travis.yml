@@ -15,15 +15,15 @@ env:
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
 
 stages:
-  - precache
+  - name: precache
     if: ( branch != development AND type = push ) OR type != pull_request
-  - lint
+  - name: lint
     if: ( branch != development AND type = push ) OR type != pull_request
-  - test
+  - name: test
     if: ( branch != development AND type = push ) OR type != pull_request
-  - build
+  - name: build
     if: ( branch != development AND type = push ) OR type != pull_request
-  - deploy-surge
+  - name: deploy-surge
     if: branch = development AND type = push
 
 before_install:
