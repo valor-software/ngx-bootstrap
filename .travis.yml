@@ -21,7 +21,7 @@ stages:
   - build
 
 before_install:
-  - if [ $TRAVIS_PULL_REQUEST == false ] && [ $TRAVIS_BRANCH" != "development" ]; then
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" != "development" ]; then
       echo "push build on non dev, exiting";
       exit 0;
     else
