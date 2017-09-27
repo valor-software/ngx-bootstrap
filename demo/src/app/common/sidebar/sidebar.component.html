@@ -25,7 +25,7 @@
       <li *ngFor="let route of routes | slice:1 | SearchFilter:search.text"
           [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
-        <a [routerLink]="[route.path]">{{route.data[0]}}</a>
+        <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
       </li>
     </ul>
   </div>

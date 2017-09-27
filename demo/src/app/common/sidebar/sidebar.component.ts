@@ -7,9 +7,9 @@ import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCUMENT } from '@angular/platform-browser';
 
 const _bs3Css =
-  'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css';
+  'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css =
-  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css';
+  'assets/css/bootstrap-4.0.0-beta/css/bootstrap.min.css';
 
 @Component({
   selector: 'sidebar',

@@ -11,26 +11,25 @@ import { NgApiDoc } from './api-docs/api-docs.model';
 import { NgApiDocModule } from './api-docs/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
-import { AppFooterComponent } from './common/app-footer/app-footer.component';
-import { SidebarComponent } from './common/sidebar/sidebar.component';
-import { AddNavComponent } from './common/add-nav/add-nav.component';
+import { LandingComponent } from './common/landing/landing.component';
+import { DocumentationComponent } from './common/documentation/documentation.component';
 import { SearchFilterPipe } from './common/sidebar/search-filter.pipe';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     GettingStartedComponent,
     TopMenuComponent,
-    SidebarComponent,
-    AddNavComponent,
-    SearchFilterPipe,
-    AppFooterComponent
+    LandingComponent,
+    DocumentationComponent
   ],
   imports: [
+    SharedModule,
     NgApiDocModule,
     BrowserModule,
     FormsModule,
