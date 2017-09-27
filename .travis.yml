@@ -16,16 +16,21 @@ env:
 
 stages:
   - precache
+    if: ( branch != development AND type = push ) OR type != pull_request
   - lint
+    if: ( branch != development AND type = push ) OR type != pull_request
   - test
+    if: ( branch != development AND type = push ) OR type != pull_request
   - build
+    if: ( branch != development AND type = push ) OR type != pull_request
   - deploy-surge
+    if: branch = development AND type = push
 
 before_install:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" != "development" ]; then
-      echo "push build not in dev branch, exiting";
-      exit 0;
-    fi
+#  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" != "development" ]; then
+#      echo "push build not in dev branch, exiting";
+#      exit 0;
+#    fi
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
@@ -44,8 +49,6 @@ jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
-  exclude:
-    - if: ( branch != development AND type = push ) OR type != pull_request
   include:
 # precache npm and apt dependencies
     - stage: precache
@@ -85,7 +88,6 @@ jobs:
       env: NGV=next
 #   deploy to ngx-bootstrap.surge.sh
     - stage: deploy-surge
-      if: branch = development AND type = push
       script: npm run demo.build
       deploy:
         provider: surge
