@@ -72,11 +72,17 @@ jobs:
       env: NGV=latest
     - <<: *build
       env: NGV=next
+#   deploy to ngx-bootstrap.surge.sh
+    - stage: deploy-surge
+      if: branch = development AND type = push
+      script: npm run demo.build
+      deploy:
+        provider: surge
+        project: ./gh-pages/
+        domain: ngx-bootstrap.surge.sh
+        on: development
 cache:
   apt: true
   npm: true
   directories:
     - node_modules
-
-before_cache:
- - rm -rf node_modules/ngx-bootstrap
