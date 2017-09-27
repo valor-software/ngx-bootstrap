@@ -16,6 +16,7 @@ env:
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
 
 stages:
+  - precache
   - lint
   - test
   - build
@@ -26,7 +27,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 install:
-  - npm install > /dev/null
+#  - npm install > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm run build > /dev/null
@@ -37,13 +38,9 @@ jobs:
   exclude:
     - env: NGV=current
   include:
-    - stage: lint
-      script: npm run lint
-      env: NGV=current
-    - stage: test
-      script: npm run test-coverage
-      after_success:
-        - ./node_modules/.bin/codecov
+    - stage: precache
+      install: true
+      script: npm install > /dev/null
       addons:
         # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
         sauce_connect: true
@@ -54,14 +51,21 @@ jobs:
           # required by node-gyp to build some packages
           packages:
           - g++-4.8
+    - stage: lint
+      script: npm run lint
+      env: NGV=current
+    - stage: test
+      script: npm run test-coverage
+      after_success:
+        - ./node_modules/.bin/codecov
     - stage: build
       script: npm run demo.ng-build
 
 cache:
   apt: true
+  npm: true
   directories:
     - node_modules
-    - /tmp
 
 before_cache:
  - rm -rf node_modules/ngx-bootstrap
