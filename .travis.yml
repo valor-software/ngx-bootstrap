@@ -45,7 +45,7 @@ jobs:
   allow_failures:
     - env: NGV=next
   exclude:
-    - if: branch = development AND type = push OR type
+    - if: ( branch != development AND type = push ) OR type != pull_request
   include:
 # precache npm and apt dependencies
     - stage: precache
