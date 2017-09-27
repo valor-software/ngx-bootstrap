@@ -7,10 +7,6 @@ git:
   submodules: false
 
 env:
-  #matrix:
-#    - NGV=current
-#    - NGV=latest
-#    - NGV=next
   global:
     - SAUCE_USERNAME=valorkin
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
@@ -18,7 +14,7 @@ env:
 stages:
   - precache
   - lint
-  - ci-test
+  - test
   - build
 
 before_install:
@@ -27,27 +23,23 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 
 install:
-#  - npm install > /dev/null
+# npm install will be done at precache stage
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-  - npm run build > /dev/null
-  - rm -rf node_modules/ngx-bootstrap
-  - npm i ./dist  > /dev/null
-
-#script: true
 
 jobs:
-#  exclude:
-#    - env: NGV=current
   include:
-  # precache
+# precache npm and apt dependencies
     - stage: precache
       install: true
-      script: npm install > /dev/null
+      script:
+        - npm install > /dev/null
+        - npm run build > /dev/null
+        - rm -rf node_modules/ngx-bootstrap
+        - npm i ./dist  > /dev/null
       addons:
-        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
+       # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
 #        sauce_connect: true
-#        firefox: stable
         chrome: stable
         apt:
           sources:
@@ -57,20 +49,21 @@ jobs:
           - g++-4.8
 #   lint code
     - stage: lint
+      install: true
       script: npm run lint
 #   test
-    - &ci-test
-      stage: ci-test
+    - &test
+      stage: test
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-    - <<: *ci-test
+    - <<: *test
       env: NGV=latest
       allow_failures: true
-    - <<: *ci-test
+    - <<: *test
       env: NGV=next
+#    check prod build
     - &build
-    # check prod build
       stage: build
       script: npm run demo.ng-build
     - <<: *build
