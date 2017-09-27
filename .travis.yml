@@ -24,39 +24,62 @@ stages:
   - test
   - build
 
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
 install:
   - npm install > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-  - npm run build
+  - npm run build > /dev/null
   - rm -rf node_modules/ngx-bootstrap
   - npm i ./dist
 
-jobs:
-  include:
-    - stage: lint
-      script: npm run lint
-      env: NGV=current
-    - stage: test
-      script: npm run test-coverage
-      after_success:
-        - ./node_modules/.bin/codecov
-      before_install:
-        - export CHROME_BIN=chromium-browser
-        - export DISPLAY=:99.0
-        - sh -e /etc/init.d/xvfb start
-      addons:
-        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-        sauce_connect: true
-        firefox: "latest"
-        apt:
-          sources:
-          - ubuntu-toolchain-r-test
-          # required by node-gyp to build some packages
-          packages:
-          - g++-4.8
-    - stage: build
-      script: npm run demo.ng-build
+stage: lint
+  script: npm run lint
+  env: NGV=current
+
+stage: test
+  script: npm run test-coverage
+  after_success:
+    - ./node_modules/.bin/codecov
+  addons:
+    # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
+    sauce_connect: true
+    firefox: "latest"
+    apt:
+      sources:
+      - ubuntu-toolchain-r-test
+      # required by node-gyp to build some packages
+      packages:
+      - g++-4.8
+
+- stage: build
+    script: npm run demo.ng-build
+
+#jobs:
+#  include:
+#    - stage: lint
+#      script: npm run lint
+#      env: NGV=current
+#    - stage: test
+#      script: npm run test-coverage
+#      after_success:
+#        - ./node_modules/.bin/codecov
+#      addons:
+#        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
+#        sauce_connect: true
+#        firefox: "latest"
+#        apt:
+#          sources:
+#          - ubuntu-toolchain-r-test
+#          # required by node-gyp to build some packages
+#          packages:
+#          - g++-4.8
+#    - stage: build
+#      script: npm run demo.ng-build
 #script:
 #  - npm run lint
 #  - npm run build
