@@ -18,7 +18,7 @@ env:
 stages:
   - precache
   - lint
-  - test
+  - ci-test
   - build
 
 before_install:
@@ -60,16 +60,16 @@ jobs:
       script: npm run lint
       env: NGV=current
 #   test
-    - &test
-      stage: test
+    - &ci-test
+      stage: ci-test
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-      - <<: *test
-        env: NGV=latest
-        allow_failures: true
-      - <<: *test
-        env: NGV=next
+    - <<: *ci-test
+      env: NGV=latest
+      allow_failures: true
+    - <<: *ci-test
+      env: NGV=next
     - &build
     # check prod build
       stage: build
