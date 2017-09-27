@@ -3,7 +3,14 @@ language: node_js
 node_js: "8"
 dist: precise
 
+git:
+  depth: 3
+  submodules: false
+
 env:
+  - NGV=current
+  - NGV=latest
+  - NGV=next
   global:
     - SAUCE_USERNAME=valorkin
     - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
@@ -13,6 +20,13 @@ before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
+install:
+  - npm install > /dev/null
+  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+  - npm run build
+  - rm -rf node_modules/ngx-bootstrap
+  - npm i ./dist
 
 jobs:
   include:
@@ -28,9 +42,6 @@ jobs:
         - ./node_modules/.bin/codecov
     - stage: build
       script:
-        - npm run build
-        - rm -rf node_modules/ngx-bootstrap
-        - npm i ./dist
         - npm run demo.ng-build
 #script:
 #  - npm run lint
@@ -43,6 +54,15 @@ jobs:
 #
 #
 #  #- npm run test-cross
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+before_cache:
+ - rm -rf node_modules/ngx-bootstrap
+ - rm -rf node_modules/@angular
 
 addons:
   # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
