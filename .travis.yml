@@ -58,8 +58,13 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-    - stage: build
+    - &build
+      stage: build
       script: npm run demo.ng-build
+    - <<: *build
+      env: NGV=latest
+    - <<: *build
+      env: NGV=next
 
 cache:
   apt: true
