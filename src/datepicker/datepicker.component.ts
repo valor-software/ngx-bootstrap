@@ -41,6 +41,7 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
                       [yearRange]="yearRange"
                       [customClass]="customClass"
                       [dateDisabled]="dateDisabled"
+                      [dayDisabled]="dayDisabled"
                       [onlyCurrentMonth]="onlyCurrentMonth"
                       [shortcutPropagation]="shortcutPropagation"
                       [monthColLimit]="monthColLimit"
@@ -98,6 +99,8 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() customClass: { date: Date; mode: string; clazz: string }[];
   /** array of disabled dates */
   @Input() dateDisabled: { date: Date; mode: string }[];
+  /** disabled days of the week from 0-6 (0=Sunday, ..., 6=Saturday)*/
+  @Input() dayDisabled: number[];
 
   /** currently active date */
   @Input()
