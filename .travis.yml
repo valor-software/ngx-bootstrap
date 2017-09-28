@@ -10,16 +10,16 @@ git:
   submodules: false
 
 stages:
-  - name: precache
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: lint
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: test
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: build
-    if: ( branch = development AND type = push ) OR type = pull_request
+#  - name: precache
+#    if: ( branch = development AND type = push ) OR type = pull_request
+#  - name: lint
+#    if: ( branch = development AND type = push ) OR type = pull_request
+#  - name: test
+#    if: ( branch = development AND type = push ) OR type = pull_request
+#  - name: build
+#    if: ( branch = development AND type = push ) OR type = pull_request
   - name: deploy-surge
-    if: branch = development AND type = push
+#    if: branch = development AND type = push
 
 before_install:
   - export CHROME_BIN=chromium-browser
