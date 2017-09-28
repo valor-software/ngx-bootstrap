@@ -1,4 +1,5 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "name": "ngx-bootstrap"
   },
@@ -12,13 +13,17 @@
       ],
       "index": "index.html",
       "main": "main.ts",
+      "polyfills": "polyfills.ts",
       "test": "../../scripts/test.ts",
       "tsconfig": "tsconfig.json",
       "testTsconfig": "../../src/tsconfig.spec.json",
       "prefix": "",
       "mobile": false,
+      "serviceWorker": false,
       "styles": [
-        "../../src/datepicker/bs-datepicker.scss"
+        "../../src/datepicker/bs-datepicker.scss",
+        "assets/css/style.css",
+        "assets/css/prettify-angulario.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -35,6 +40,11 @@
       "config": "protractor.conf.js"
     }
   },
+  "lint": [
+    {
+      "project": "../tslint.json"
+    }
+  ],
   "test": {
     "karma": {
       "config": "karma.conf.js"

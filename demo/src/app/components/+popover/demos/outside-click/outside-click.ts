@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-popover-outside-click',
   templateUrl: './outside-click.html'
 })
-export class DemoPopoverOutsideClickComponent {
-}
+export class DemoPopoverOutsideClickComponent {}

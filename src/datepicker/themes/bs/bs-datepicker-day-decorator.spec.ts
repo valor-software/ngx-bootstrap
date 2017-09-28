@@ -3,23 +3,33 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DayViewModel } from '../../models/index';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
 
-function getDayElement(fixture: ComponentFixture<TestComponent>): HTMLElement {
-  return fixture.nativeElement.querySelector('[bsDatepickerDayDecorator]') as HTMLElement;
+@Component({
+  selector: 'test-cmp',
+  template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
+})
+class TestComponent {
+  day: DayViewModel = {date: new Date(), label: ''};
 }
 
-function setDay(fixture: ComponentFixture<TestComponent>, day: Partial<DayViewModel>): void {
+function getDayElement(fixture: ComponentFixture<TestComponent>): HTMLElement {
+  return fixture.nativeElement.querySelector(
+    '[bsDatepickerDayDecorator]'
+  ) as HTMLElement;
+}
+
+function setDay(fixture: ComponentFixture<TestComponent>,
+                day: Partial<DayViewModel>): void {
   fixture.componentInstance.day = day as DayViewModel;
   fixture.detectChanges();
 }
 
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
   let fixture: ComponentFixture<TestComponent>;
-  beforeEach(async(() => {
+  beforeEach(async(() =>
     TestBed.configureTestingModule({
       declarations: [TestComponent, BsDatepickerDayDecoratorComponent]
-    })
-      .compileComponents();
-  }));
+    }).compileComponents()
+  ));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
@@ -66,11 +76,3 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     expect(el).toHaveCssClass('selected');
   });
 });
-
-@Component({
-  selector: 'test-cmp',
-  template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
-})
-class TestComponent {
-  day: DayViewModel = { } as DayViewModel;
-}

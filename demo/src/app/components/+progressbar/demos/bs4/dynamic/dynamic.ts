@@ -15,7 +15,7 @@ export class DemoProgressbarDynamicBs4Component {
   }
 
   public random(): void {
-    let value = Math.floor((Math.random() * 100) + 1);
+    let value = Math.floor(Math.random() * 100 + 1);
     let type: string;
 
     if (value < 25) {
@@ -28,9 +28,8 @@ export class DemoProgressbarDynamicBs4Component {
       type = 'danger';
     }
 
-    this.showWarning = (type === 'danger' || type === 'warning');
+    this.showWarning = type === 'danger' || type === 'warning';
     this.dynamic = value;
     this.type = type;
   }
-
 }

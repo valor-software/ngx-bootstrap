@@ -11,14 +11,20 @@ import { DemoDropdownAlignmentComponent } from './alignment/menu-alignment';
 import { DemoNestedDropdownsComponent } from './nested-dropdowns/nested-dropdowns';
 
 export const DEMO_COMPONENTS = [
-  DemoDropdownBasicComponent, DemoDropdownBasicLinkComponent, DemoDropdownSplitComponent,
-  DemoDropdownContainerComponent, DemoDropdownKeyboardComponent, DemoDropdownConfigComponent, DemoDropupComponent,
-  DemoDropdownTriggersManualComponent, DemoDropdownDisabledComponent, DemoDropdownAlignmentComponent,
+  DemoDropdownBasicComponent,
+  DemoDropdownBasicLinkComponent,
+  DemoDropdownSplitComponent,
+  DemoDropdownContainerComponent,
+  DemoDropdownKeyboardComponent,
+  DemoDropdownConfigComponent,
+  DemoDropupComponent,
+  DemoDropdownTriggersManualComponent,
+  DemoDropdownDisabledComponent,
+  DemoDropdownAlignmentComponent,
   DemoNestedDropdownsComponent
 ];
 
 export const DEMOS = {
-
   basic: {
     component: require('!!raw-loader?lang=typescript!./basic/basic.ts'),
     html: require('!!raw-loader?lang=markup!./basic/basic.html')
@@ -63,5 +69,4 @@ export const DEMOS = {
     component: require('!!raw-loader?lang=typescript!./config/config.ts'),
     html: require('!!raw-loader?lang=markup!./config/config.html')
   }
-
 };

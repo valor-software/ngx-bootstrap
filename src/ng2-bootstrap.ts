@@ -1,4 +1,0 @@
-import { warnOnce } from './utils/warn-once';
-
-warnOnce('DEPRECATED: please replace import of `ng2-bootstrap/ng2-bootstrap` with `ng2-bootstrap`');
-export * from './index';

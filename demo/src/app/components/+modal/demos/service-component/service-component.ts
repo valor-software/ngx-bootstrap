@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'demo-modal-service-component',
@@ -11,14 +11,19 @@ export class DemoModalServiceFromComponent {
   constructor(private modalService: BsModalService) {}
 
   public openModalWithComponent() {
-    let list = ['Open a modal with component', 'Pass your data', 'Do something else', '...'];
+    let list = [
+      'Open a modal with component',
+      'Pass your data',
+      'Do something else',
+      '...'
+    ];
     this.bsModalRef = this.modalService.show(ModalContentComponent);
     this.bsModalRef.content.title = 'Modal with component';
     this.bsModalRef.content.list = list;
     setTimeout(() => {
       list.push('PROFIT!!!');
     }, 2000);
-}
+  }
 }
 
 /* This is a component which we pass in modal*/

@@ -11,23 +11,27 @@ describe('Service: DraggableItem', () => {
   let transfer: DraggableItemService;
   let draggableItem: DraggableItem;
 
-  beforeEach(fakeAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent],
-      providers: [DraggableItemService]
-    }).createComponent(TestComponent);
-  }));
+  beforeEach(
+    fakeAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TestComponent],
+        providers: [DraggableItemService]
+      }).createComponent(TestComponent);
+    })
+  );
 
-  beforeEach(inject([DraggableItemService], (service: DraggableItemService) => {
-    draggableItem = getDraggableItem(getItemToDrag(), undefined, 1);
-    transfer = service;
-    transfer.dragStart(draggableItem);
-  }));
+  beforeEach(
+    inject([DraggableItemService], (service: DraggableItemService) => {
+      draggableItem = getDraggableItem(getItemToDrag(), undefined, 1);
+      transfer = service;
+      transfer.dragStart(draggableItem);
+    })
+  );
 
   it('should return draggable item', () => {
     // arrange
     // act
-    let item = transfer.getItem();
+    const item = transfer.getItem();
 
     // assert
     expect(item).toBe(draggableItem);
@@ -35,10 +39,10 @@ describe('Service: DraggableItem', () => {
 
   it('should fire onCapture if item was captured by another zone', () => {
     // arrange
-    let spy = spyOn<any>(transfer.onCaptureItem(), 'next');
+    const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
-    let item = transfer.captureItem(2, 0);
+    transfer.captureItem(2, 0);
 
     // assert
     expect(spy).toHaveBeenCalledWith(draggableItem);
@@ -46,22 +50,24 @@ describe('Service: DraggableItem', () => {
 
   it('should NOT fire onCapture if item was captured by the same zone', () => {
     // arrange
-    let spy = spyOn<any>(transfer.onCaptureItem(), 'next');
+    const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
-    let item = transfer.captureItem(1, 0);
+    transfer.captureItem(1, 0);
 
     // assert
     expect(spy).not.toHaveBeenCalled();
   });
 
   function getItemToDrag(): SortableItem {
-    return {id: 0, value: 'item text', initData: 'item text'};
+    return { id: 0, value: 'item text', initData: 'item text' };
   }
 
-  function getDraggableItem(sortableItem: SortableItem,
-                            dragEvent: DragEvent,
-                            zone: number): DraggableItem {
+  function getDraggableItem(
+    sortableItem: SortableItem,
+    dragEvent: DragEvent,
+    zone: number
+  ): DraggableItem {
     return {
       event: dragEvent,
       item: sortableItem,

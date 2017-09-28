@@ -1,4 +1,12 @@
-import { Directive, HostBinding, HostListener, Input, OnInit, forwardRef } from '@angular/core';
+// tslint:disable:no-use-before-declare
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  forwardRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // TODO: config: activeClass - Class to apply to the checked buttons
@@ -12,14 +20,17 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 /**
  * Add checkbox functionality to any element
  */
-@Directive({selector: '[btnCheckbox]', providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]})
+@Directive({
+  selector: '[btnCheckbox]',
+  providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]
+})
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */
-  @Input() public btnCheckboxTrue: any = true;
+  @Input() btnCheckboxTrue: any = true;
   /** Falsy value, will be set to ngModel */
-  @Input() public btnCheckboxFalse: any = false;
+  @Input() btnCheckboxFalse: any = false;
 
-  @HostBinding('class.active') public state: boolean = false;
+  @HostBinding('class.active') state = false;
 
   protected value: any;
   protected isDisabled: boolean;
@@ -29,7 +40,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
 
   // view -> model
   @HostListener('click')
-  public onClick(): void {
+  onClick(): void {
     if (this.isDisabled) {
       return;
     }
@@ -38,7 +49,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.onChange(this.value);
   }
 
-  public ngOnInit(): any {
+  ngOnInit(): any {
     this.toggle(this.trueValue === this.value);
   }
 
@@ -54,27 +65,27 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
       : false;
   }
 
-  public toggle(state: boolean): void {
+  toggle(state: boolean): void {
     this.state = state;
     this.value = this.state ? this.trueValue : this.falseValue;
   }
 
   // ControlValueAccessor
   // model -> view
-  public writeValue(value: any): void {
+  writeValue(value: any): void {
     this.state = this.trueValue === value;
     this.value = value ? this.trueValue : this.falseValue;
   }
 
-  public setDisabledState(isDisabled: boolean): void {
+  setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
   }
 
-  public registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 }

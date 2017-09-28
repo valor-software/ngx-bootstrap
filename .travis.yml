@@ -18,7 +18,7 @@ script:
   - npm run build
   - rm -rf node_modules/ngx-bootstrap
   - npm i ./dist
-  - npm run demo.build
+  - npm run demo.ng-build
   # istanbul is broken, should be fixed
   - npm run test-coverage
 

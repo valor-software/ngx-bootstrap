@@ -5,8 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './basic-link.html'
 })
 export class DemoDropdownBasicLinkComponent {
-  public items: string[] = ['The first choice!',
-    'And another choice for you.', 'but wait! A third!'];
+  public items: string[] = [
+    'The first choice!',
+    'And another choice for you.',
+    'but wait! A third!'
+  ];
 
   public onHidden(): void {
     console.log('Dropdown is hidden');

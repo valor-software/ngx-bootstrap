@@ -5,16 +5,18 @@ import { Component, ViewEncapsulation } from '@angular/core';
   // encapsulation: ViewEncapsulation.None,
   templateUrl: './styling-global.html',
   /* tslint:disable no-unused-css*/
-  styles: [`
+  styles: [
+    `
     .btn-custom a {
        background: #31b0d5;
     }
-  `]
+  `
+  ]
 })
 export class DemoPaginationStylingComponent {
   public totalItems: number = 64;
   public currentPage: number = 4;
-  public smallnumPages:number = 0;
+  public smallnumPages: number = 0;
 
   public pageChanged(event: any): void {
     console.log('Page changed to: ' + event.page);

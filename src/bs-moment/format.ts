@@ -14,7 +14,9 @@ import { isDateValid } from './utils/type-checks';
 export function formatDate(date: Date, format: string, locale = 'en'): string {
   const _locale = getLocale(locale);
   if (!_locale) {
-    throw new Error(`Locale "${locale}" is not defined, please add it with "defineLocale(...)"`);
+    throw new Error(
+      `Locale "${locale}" is not defined, please add it with "defineLocale(...)"`
+    );
   }
   const output = formatMoment(date, format, _locale);
 
@@ -22,21 +24,24 @@ export function formatDate(date: Date, format: string, locale = 'en'): string {
 }
 
 // format date using native date object
-export function formatMoment(date: Date, format: string, locale: Locale) {
+export function formatMoment(date: Date, _format: string, locale: Locale) {
   if (!isDateValid(date)) {
     return locale.invalidDate;
   }
-  format = expandFormat(format, locale);
-  formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
+  const format = expandFormat(_format, locale);
+  formatFunctions[format] =
+    formatFunctions[format] || makeFormatFunction(format);
+
   return formatFunctions[format](date, locale);
 }
 
-export function expandFormat(format: string, locale: Locale) {
+export function expandFormat(_format: string, locale: Locale) {
+  let format = _format;
   let i = 5;
   const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
 
   const replaceLongDateFormatTokens = (input: any) => {
-    return locale.longDateFormat(input) || input;
+    return locale.formatLongDate(input) || input;
   };
 
   localFormattingTokens.lastIndex = 0;
@@ -48,4 +53,3 @@ export function expandFormat(format: string, locale: Locale) {
 
   return format;
 }
-

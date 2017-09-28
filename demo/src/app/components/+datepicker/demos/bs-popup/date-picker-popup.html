@@ -15,7 +15,7 @@
 <br>
 
 <pre>{{bsRangeValue}}</pre>
-<pre>{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}</pre>
+<pre *ngIf="bsRangeValue">{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}</pre>
 <input #drp="bsDaterangepicker" bsDaterangepicker [(bsValue)]="bsRangeValue">
 <input bsDaterangepicker [(ngModel)]="bsRangeValue">
 <input [(ngModel)]="bsRangeValue">

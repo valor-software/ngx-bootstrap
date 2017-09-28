@@ -11,18 +11,26 @@ export interface LocaleOptionsFormat {
 export type LocaleOptions = string[] | LocaleOptionsFormat;
 
 const MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s)+MMMM?/;
-export const defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
-export const defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
-export const defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
-export const defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+export const defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split(
+  '_'
+);
+export const defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split(
+  '_'
+);
+export const defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split(
+  '_'
+);
+export const defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split(
+  '_'
+);
 export const defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
 export const defaultLongDateFormat: { [index: string]: string } = {
-  LTS  : 'h:mm:ss A',
-  LT   : 'h:mm A',
-  L    : 'MM/DD/YYYY',
-  LL   : 'MMMM D, YYYY',
-  LLL  : 'MMMM D, YYYY h:mm A',
-  LLLL : 'dddd, MMMM D, YYYY h:mm A'
+  LTS: 'h:mm:ss A',
+  LT: 'h:mm A',
+  L: 'MM/DD/YYYY',
+  LL: 'MMMM D, YYYY',
+  LLL: 'MMMM D, YYYY h:mm A',
+  LLLL: 'dddd, MMMM D, YYYY h:mm A'
 };
 
 export interface LocaleData {
@@ -36,7 +44,7 @@ export interface LocaleData {
   weekdays?: LocaleOptions;
   weekdaysMin?: string[];
   weekdaysShort?: string[];
-  week?: { dow: number, doy: number };
+  week?: { dow: number; doy: number };
 
   dayOfMonthOrdinalParse?: RegExp;
   meridiemParse?: RegExp;
@@ -57,7 +65,8 @@ export class Locale {
   private _weekdays: LocaleOptions;
   private _weekdaysShort: string[];
   private _weekdaysMin: string[];
-  private _week: { dow: number, doy: number };
+  private _week: { dow: number; doy: number };
+  private _longDateFormat: {[key: string]: any};
 
   private _ordinal: string;
 
@@ -72,7 +81,7 @@ export class Locale {
       if (!config.hasOwnProperty(i)) {
         continue;
       }
-      const prop = (config[i] as any);
+      const prop = config[i];
       const key = isFunction(prop) ? i : `_${i}`;
       this[key] = prop;
     }
@@ -85,35 +94,38 @@ export class Locale {
   months(date?: Date, format?: string): string | string[] {
     if (!date) {
       return isArray(this._months)
-        ? (this._months as string[])
+        ? this._months as string[]
         : (this._months as LocaleOptionsFormat).standalone;
     }
 
     if (isArray(this._months)) {
-      return (this._months  as string[])[getMonth(date)];
+      return (this._months as string[])[getMonth(date)];
     }
 
-    const key = ((this._months as LocaleOptionsFormat).isFormat || MONTHS_IN_FORMAT)
-      .test(format) ? 'format' : 'standalone';
+    const key = ((this._months as LocaleOptionsFormat).isFormat ||
+      MONTHS_IN_FORMAT)
+      .test(format)
+      ? 'format'
+      : 'standalone';
     return ((this._months as any)[key] as string[])[getMonth(date)];
   }
 
   monthsShort(date?: Date, format?: string): string | string[] {
     if (!date) {
       return isArray(this._monthsShort)
-        ? (this._monthsShort as string[])
+        ? this._monthsShort as string[]
         : (this._monthsShort as LocaleOptionsFormat).standalone;
     }
 
     if (isArray(this._monthsShort)) {
       return (this._monthsShort as string[])[getMonth(date)];
     }
-    let key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
+    const key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
     return ((this._monthsShort as any)[key] as string[])[getMonth(date)];
   }
 
   // Days of week
-// LOCALES
+  // LOCALES
 
   weekdays(date?: Date, format?: string): string | string[] {
     const _isArray = isArray(this._weekdays as string[]);
@@ -127,16 +139,18 @@ export class Locale {
       return (this._weekdays as string[])[getDayOfWeek(date)];
     }
 
-    const _key = (this._weekdays as LocaleOptionsFormat).isFormat.test(format) ? 'format' : 'standalone';
+    const _key = (this._weekdays as LocaleOptionsFormat).isFormat.test(format)
+      ? 'format'
+      : 'standalone';
     return ((this._weekdays as any)[_key] as string[])[getDayOfWeek(date)];
   }
 
   weekdaysMin(date?: Date): string | string[] {
-    return (date) ? this._weekdaysShort[getDayOfWeek(date)] : this._weekdaysShort;
+    return date ? this._weekdaysShort[getDayOfWeek(date)] : this._weekdaysShort;
   }
 
   weekdaysShort(date?: Date): string | string[] {
-    return (date) ? this._weekdaysMin[getDayOfWeek(date)] : this._weekdaysMin;
+    return date ? this._weekdaysMin[getDayOfWeek(date)] : this._weekdaysMin;
   }
 
   week(date: Date): number {
@@ -163,22 +177,29 @@ export class Locale {
     return this._ordinal.replace('%d', num.toString(10));
   }
 
-  preparse(str: string) { return str; }
+  preparse(str: string) {
+    return str;
+  }
 
-  postformat(str: string) { return str; }
+  postformat(str: string) {
+    return str;
+  }
 
-  longDateFormat(key: string) {
-    const format = defaultLongDateFormat[key];
-    const formatUpper = defaultLongDateFormat[key.toUpperCase()];
+  formatLongDate(key: string) {
+    this._longDateFormat = this._longDateFormat ? this._longDateFormat : defaultLongDateFormat;
+    const format = this._longDateFormat[key];
+    const formatUpper = this._longDateFormat[key.toUpperCase()];
 
     if (format || !formatUpper) {
       return format;
     }
 
-    defaultLongDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, (val: string) => {
+    this._longDateFormat[
+      key
+    ] = formatUpper.replace(/MMMM|MM|DD|dddd/g, (val: string) => {
       return val.slice(1);
     });
 
-    return defaultLongDateFormat[key];
+    return this._longDateFormat[key];
   }
 }

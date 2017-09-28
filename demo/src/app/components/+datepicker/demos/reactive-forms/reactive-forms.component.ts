@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class DemoDatepickerReactiveFormsComponent implements OnInit {
   myForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({

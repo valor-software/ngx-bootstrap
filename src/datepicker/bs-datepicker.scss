@@ -1,5 +1,5 @@
-@import 'utils/scss/variables';
-@import 'utils/scss/mixins';
+@import './utils/scss/variables';
+@import './utils/scss/mixins';
 
 /* .bs-datepicker */
 .bs-datepicker {
@@ -502,6 +502,11 @@
       margin-left: 4px;
     }
   }
+}
+
+bs-datepicker-container,
+bs-daterangepicker-container {
+  z-index: 3;
 }
 
 /* screen size < 1024px */

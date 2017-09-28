@@ -1,0 +1,35 @@
+{
+  "name": "ngx-bootstrap",
+  "short_name": "ngx-bs",
+  "description": "ngx-bootstrap documentation",
+  "lang": "en-GB",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1d1d2b",
+  "background_color": "#1d1d2b",
+  "external": {
+    "urls": [
+      {
+        "url": "/assets/css/bootstrap.min.css"
+      },
+      {
+        "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+      }
+    ]
+  },
+  "routing": {
+    "index": "/index.html"
+  },
+  "icons": [
+    {
+      "src":"assets/images/favicons/favicon-194x194.png",
+      "sizes": "194x194 512x512",
+      "type": "image/png"
+    },
+    {
+      "src":"assets/images/favicons/apple-touch-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}

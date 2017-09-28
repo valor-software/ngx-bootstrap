@@ -1,3 +1,39 @@
+<a name="2.0.0-beta.5"></a>
+# [2.0.0-beta.5](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.3...v2.0.0-beta.5) (2017-09-18)
+
+
+### Bug Fixes
+
+* **datepicker:** added zindex to show datepicker above input fields ([0ec46af](https://github.com/valor-software/ngx-bootstrap/commit/0ec46af))
+* **datepicker:** fix daterangepicker crash on empty value ([a30a283](https://github.com/valor-software/ngx-bootstrap/commit/a30a283))
+* **datepicker:** fix long date format ([#2630](https://github.com/valor-software/ngx-bootstrap/issues/2630)) ([4e40497](https://github.com/valor-software/ngx-bootstrap/commit/4e40497)), closes [#2611](https://github.com/valor-software/ngx-bootstrap/issues/2611)
+* **dropdown:** fix ngv4 dropdowns ([#2644](https://github.com/valor-software/ngx-bootstrap/issues/2644)) ([ed464c8](https://github.com/valor-software/ngx-bootstrap/commit/ed464c8))
+* **dropdown:** prevent event propogation if dropdown toggle clicked ([04cab1e](https://github.com/valor-software/ngx-bootstrap/commit/04cab1e))
+* **modal:** fix bsModalRef paths in demos ([#2638](https://github.com/valor-software/ngx-bootstrap/issues/2638)) ([13043fc](https://github.com/valor-software/ngx-bootstrap/commit/13043fc))
+* **modals:** fix issues with renderer2 in modal service ([73c8c6b](https://github.com/valor-software/ngx-bootstrap/commit/73c8c6b))
+* **modals:** fix modals crash, remove glyphicons, disable service worker ([6b7a8c4](https://github.com/valor-software/ngx-bootstrap/commit/6b7a8c4))
+* **tabs:** fix default tab selection ([#2643](https://github.com/valor-software/ngx-bootstrap/issues/2643)) ([ff7a390](https://github.com/valor-software/ngx-bootstrap/commit/ff7a390))
+* **tests:** fixed tests, change renderer to renderer2 ([18036ff](https://github.com/valor-software/ngx-bootstrap/commit/18036ff))
+
+
+### Features
+
+* **moment-ts:** added czech locale ([#2642](https://github.com/valor-software/ngx-bootstrap/issues/2642)) ([61e6ed9](https://github.com/valor-software/ngx-bootstrap/commit/61e6ed9))
+* **package:** drop support of ng v2 and add support of ng v4 and v5 ([#2602](https://github.com/valor-software/ngx-bootstrap/issues/2602)) ([31c5f62](https://github.com/valor-software/ngx-bootstrap/commit/31c5f62)), closes [#2357](https://github.com/valor-software/ngx-bootstrap/issues/2357)
+* **rating:** remove glyphicons, add custom template support ([#2631](https://github.com/valor-software/ngx-bootstrap/issues/2631)) ([ea39858](https://github.com/valor-software/ngx-bootstrap/commit/ea39858))
+* **timepicker:** replace glyphicons with custom icons ([#2640](https://github.com/valor-software/ngx-bootstrap/issues/2640)) ([cf3fdc8](https://github.com/valor-software/ngx-bootstrap/commit/cf3fdc8))
+
+
+### BREAKING CHANGES
+
+* **rating:** 
+  - removed input properties `stateOn`, `stateOff` and `ratingStates`
+  - custom icons now working via customTemplate
+* **package:** - dropped support of ng v2
+
+* feat(package): upgrading ng v4
+
+
 <a name="1.9.3"></a>
 ## [1.9.3](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.2...v1.9.3) (2017-09-08)
 

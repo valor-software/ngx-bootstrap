@@ -3,7 +3,7 @@ export const ngdoc: any = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",
     "className": "AccordionPanelComponent",
-    "description": "",
+    "description": "<h3 id=\"accordion-heading\">Accordion heading</h3>\n<p>Instead of using <code>heading</code> attribute on the <code>accordion-group</code>, you can use\nan <code>accordion-heading</code> attribute on <code>any</code> element inside of a group that\nwill be used as group&#39;s header template.</p>\n",
     "selector": "accordion-group, accordion-panel",
     "inputs": [
       {
@@ -24,7 +24,7 @@ export const ngdoc: any = {
       {
         "name": "panelClass",
         "type": "string",
-        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes (<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...). List of all available classes <a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">available here</a> </p>\n"
+        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">http://getbootstrap.com/components/#panels-alternatives</a>)</p>\n"
       }
     ],
     "outputs": [],
@@ -65,7 +65,7 @@ export const ngdoc: any = {
     "fileName": "src/alert/alert.component.ts",
     "className": "AlertComponent",
     "description": "",
-    "selector": "alert,ngx-alert",
+    "selector": "alert,bs-alert",
     "inputs": [
       {
         "name": "dismissible",
@@ -82,13 +82,13 @@ export const ngdoc: any = {
         "name": "type",
         "defaultValue": "warning",
         "type": "string",
-        "description": "<p>Alert type. Provides one of four bootstrap supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code> and <code>danger</code> </p>\n"
+        "description": "<p>Alert type.\nProvides one of four bootstrap supported contextual classes:\n<code>success</code>, <code>info</code>, <code>warning</code> and <code>danger</code></p>\n"
       }
     ],
     "outputs": [
       {
         "name": "onClose",
-        "description": "<p>This event fires immediately after close instance method is called, $event is an instance of Alert component. </p>\n"
+        "description": "<p>This event fires immediately after close instance method is called,\n$event is an instance of Alert component.</p>\n"
       },
       {
         "name": "onClosed",
@@ -215,7 +215,7 @@ export const ngdoc: any = {
       {
         "name": "interval",
         "type": "number",
-        "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle automatically.</p>\n"
+        "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle\nautomatically.</p>\n"
       },
       {
         "name": "noPause",
@@ -244,7 +244,7 @@ export const ngdoc: any = {
     "methods": [
       {
         "name": "addSlide",
-        "description": "<p>Adds new slide. If this slide is first in collection - set it as active and starts auto changing</p>\n",
+        "description": "<p>Adds new slide. If this slide is first in collection - set it as active\nand starts auto changing</p>\n",
         "args": [
           {
             "name": "slide",
@@ -255,7 +255,7 @@ export const ngdoc: any = {
       },
       {
         "name": "removeSlide",
-        "description": "<p>Removes specified slide. If this slide is active - will roll to another slide</p>\n",
+        "description": "<p>Removes specified slide. If this slide is active - will roll to another\nslide</p>\n",
         "args": [
           {
             "name": "slide",
@@ -587,7 +587,7 @@ export const ngdoc: any = {
       },
       {
         "name": "toggle",
-        "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering of\nthe datepicker.</p>\n",
+        "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering\nof the datepicker.</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -660,7 +660,7 @@ export const ngdoc: any = {
         "name": "container",
         "defaultValue": "body",
         "type": "string",
-        "description": "<p>A selector specifying the element the daterangepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+        "description": "<p>A selector specifying the element the daterangepicker should be appended\nto. Currently only supports &quot;body&quot;.</p>\n"
       },
       {
         "name": "isDisabled",
@@ -731,7 +731,7 @@ export const ngdoc: any = {
       },
       {
         "name": "toggle",
-        "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering of\nthe datepicker.</p>\n",
+        "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering\nof the datepicker.</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -1190,7 +1190,7 @@ export const ngdoc: any = {
       },
       {
         "name": "setEventHandlers",
-        "description": "<p>event handlers</p>\n",
+        "description": "<p>event handlers </p>\n",
         "args": [
           {
             "name": "container",
@@ -1623,6 +1623,25 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "BsModalRef": {
+    "fileName": "src/modal/bs-modal-ref.service.ts",
+    "className": "BsModalRef",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "content",
+        "type": "any",
+        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
+      },
+      {
+        "name": "hide",
+        "defaultValue": "Function",
+        "type": "() => void",
+        "description": "<p>Hides the modal</p>\n"
+      }
+    ]
+  },
   "BsModalService": {
     "fileName": "src/modal/bs-modal.service.ts",
     "className": "BsModalService",
@@ -1645,7 +1664,7 @@ export const ngdoc: any = {
       },
       {
         "name": "checkScrollbar",
-        "description": "<p>AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE\nScroll bar tricks </p>\n",
+        "description": "<p>AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE \nScroll bar tricks </p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -1686,7 +1705,7 @@ export const ngdoc: any = {
       {
         "name": "backdrop",
         "type": "boolean | \"static\"",
-        "description": "<p>Includes a modal-backdrop element. Alternatively, specify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
+        "description": "<p>Includes a modal-backdrop element. Alternatively,\nspecify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
       },
       {
         "name": "class",
@@ -1710,28 +1729,8 @@ export const ngdoc: any = {
       }
     ]
   },
-  "BsModalRef": {
-    "fileName": "src/modal/modal-options.class.ts",
-    "className": "BsModalRef",
-    "description": "",
-    "methods": [
-      {
-        "name": "hide",
-        "description": "<p>Hides the modal</p>\n",
-        "args": [],
-        "returnType": "void"
-      }
-    ],
-    "properties": [
-      {
-        "name": "content",
-        "type": "any",
-        "description": "<p>Reference to a component inside the modal. Null if modal&#39;s been created with TemplateRef</p>\n"
-      }
-    ]
-  },
   "ModalDirective": {
-    "fileName": "src/modal/modal.component.ts",
+    "fileName": "src/modal/modal.directive.ts",
     "className": "ModalDirective",
     "description": "<p>Mark any code with directive to show it&#39;s content in modal </p>\n",
     "selector": "[bsModal]",
@@ -1746,11 +1745,11 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "onHidden",
-        "description": "<p>This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). </p>\n"
+        "description": "<p>This event is fired when the modal has finished being\nhidden from the user (will wait for CSS transitions to complete).</p>\n"
       },
       {
         "name": "onHide",
-        "description": "<p>This event is fired immediately when the hide instance method has been called. </p>\n"
+        "description": "<p>This event is fired immediately when\nthe hide instance method has been called.</p>\n"
       },
       {
         "name": "onShow",
@@ -1758,7 +1757,7 @@ export const ngdoc: any = {
       },
       {
         "name": "onShown",
-        "description": "<p>This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) </p>\n"
+        "description": "<p>This event is fired when the modal has been made visible to the user\n(will wait for CSS transitions to complete)</p>\n"
       }
     ],
     "properties": [
@@ -1770,7 +1769,7 @@ export const ngdoc: any = {
       {
         "name": "dismissReason",
         "type": "string",
-        "description": "<p>This field contains last dismiss reason. Possible values: <code>backdrop-click</code>, <code>esc</code> and <code>null</code> (if modal was closed by direct call of <code>.hide()</code>). </p>\n"
+        "description": "<p>This field contains last dismiss reason.\nPossible values: <code>backdrop-click</code>, <code>esc</code> and <code>null</code>\n(if modal was closed by direct call of <code>.hide()</code>).</p>\n"
       }
     ],
     "methods": [
@@ -1896,7 +1895,7 @@ export const ngdoc: any = {
       },
       {
         "name": "pageChanged",
-        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page </p>\n"
+        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to\nobject with current page index and number of items per page</p>\n"
       }
     ],
     "properties": [],
@@ -1988,7 +1987,7 @@ export const ngdoc: any = {
       },
       {
         "name": "pageChanged",
-        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page </p>\n"
+        "description": "<p>fired when page was changed, $event:{page, itemsPerPage} equals to object\nwith current page index and number of items per page</p>\n"
       }
     ],
     "properties": [],
@@ -2167,7 +2166,7 @@ export const ngdoc: any = {
       {
         "name": "targetAttachment",
         "type": "string",
-        "description": "<p>A string similar to <code>attachment</code>. The one difference is that, if it&#39;s not provided, <code>targetAttachment</code> will assume the mirror image of <code>attachment</code>. </p>\n"
+        "description": "<p>A string similar to <code>attachment</code>. The one difference is that, if it&#39;s not provided,\n<code>targetAttachment</code> will assume the mirror image of <code>attachment</code>.</p>\n"
       },
       {
         "name": "targetOffset",
@@ -2249,7 +2248,7 @@ export const ngdoc: any = {
       {
         "name": "value",
         "type": "number | any[]",
-        "description": "<p>current value of progress bar. Could be a number or array of objects like {&quot;value&quot;:15,&quot;type&quot;:&quot;info&quot;,&quot;label&quot;:&quot;15 %&quot;} </p>\n"
+        "description": "<p>current value of progress bar. Could be a number or array of objects\nlike {&quot;value&quot;:15,&quot;type&quot;:&quot;info&quot;,&quot;label&quot;:&quot;15 %&quot;}</p>\n"
       }
     ],
     "outputs": [],
@@ -2283,30 +2282,20 @@ export const ngdoc: any = {
     "selector": "rating",
     "inputs": [
       {
+        "name": "customTemplate",
+        "type": "TemplateRef<any>",
+        "description": "<p>custom template for icons </p>\n"
+      },
+      {
         "name": "max",
         "defaultValue": "5",
         "type": "number",
         "description": "<p>number of icons </p>\n"
       },
       {
-        "name": "ratingStates",
-        "type": "{ stateOn: string; stateOff: string; }[]",
-        "description": "<p>array of custom icons classes </p>\n"
-      },
-      {
         "name": "readonly",
         "type": "boolean",
         "description": "<p>if true will not react on any user events </p>\n"
-      },
-      {
-        "name": "stateOff",
-        "type": "string",
-        "description": "<p>unselected icon class </p>\n"
-      },
-      {
-        "name": "stateOn",
-        "type": "string",
-        "description": "<p>selected icon class </p>\n"
       },
       {
         "name": "titles",
@@ -2439,7 +2428,7 @@ export const ngdoc: any = {
   "TabHeadingDirective": {
     "fileName": "src/tabs/tab-heading.directive.ts",
     "className": "TabHeadingDirective",
-    "description": "<p>Should be used to mark <template> element as a template for tab heading </p>\n",
+    "description": "<p>Should be used to mark <ng-template> element as a template for tab heading </p>\n",
     "selector": "[tabHeading]",
     "inputs": [],
     "outputs": [],
@@ -2942,43 +2931,43 @@ export const ngdoc: any = {
       {
         "name": "optionsListTemplate",
         "type": "TemplateRef<any>",
-        "description": "<p>used to specify a custom options list template. Template variables: matches, itemTemplate, query </p>\n"
+        "description": "<p>used to specify a custom options list template.\nTemplate variables: matches, itemTemplate, query</p>\n"
       },
       {
         "name": "typeahead",
         "type": "any",
-        "description": "<p>options source, can be Array of strings, objects or an Observable for external matching process </p>\n"
+        "description": "<p>options source, can be Array of strings, objects or\nan Observable for external matching process</p>\n"
       },
       {
         "name": "typeaheadAsync",
         "type": "boolean",
-        "description": "<p>should be used only in case of typeahead attribute is array. If true - loading of options will be async, otherwise - sync. true make sense if options array is large. </p>\n"
+        "description": "<p>should be used only in case of typeahead attribute is array.\nIf true - loading of options will be async, otherwise - sync.\ntrue make sense if options array is large.</p>\n"
       },
       {
         "name": "typeaheadGroupField",
         "type": "string",
-        "description": "<p>when options source is an array of objects, the name of field that contains the group value, matches are grouped by this field when set. </p>\n"
+        "description": "<p>when options source is an array of objects, the name of field that\ncontains the group value, matches are grouped by this field when set.</p>\n"
       },
       {
         "name": "typeaheadItemTemplate",
         "type": "TemplateRef<any>",
-        "description": "<p>used to specify a custom item template. Template variables exposed are called item and index; </p>\n"
+        "description": "<p>used to specify a custom item template.\nTemplate variables exposed are called item and index;</p>\n"
       },
       {
         "name": "typeaheadLatinize",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>match latin symbols. If true the word súper would match super and vice versa. </p>\n"
+        "description": "<p>match latin symbols.\nIf true the word súper would match super and vice versa.</p>\n"
       },
       {
         "name": "typeaheadMinLength",
         "type": "number",
-        "description": "<p>minimal no of characters that needs to be entered before typeahead kicks-in. When set to 0, typeahead shows on focus with full list of options (limited as normal by typeaheadOptionsLimit) </p>\n"
+        "description": "<p>minimal no of characters that needs to be entered before\ntypeahead kicks-in. When set to 0, typeahead shows on focus with full\nlist of options (limited as normal by typeaheadOptionsLimit)</p>\n"
       },
       {
         "name": "typeaheadOptionField",
         "type": "string",
-        "description": "<p>when options source is an array of objects, the name of field that contains the options value, we use array item as option in case of this field is missing. Supports nested properties and methods. </p>\n"
+        "description": "<p>when options source is an array of objects, the name of field\nthat contains the options value, we use array item as option in case\nof this field is missing. Supports nested properties and methods.</p>\n"
       },
       {
         "name": "typeaheadOptionsLimit",
@@ -2989,13 +2978,13 @@ export const ngdoc: any = {
         "name": "typeaheadPhraseDelimiters",
         "defaultValue": "'\"",
         "type": "string",
-        "description": "<p>should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to match exact phrase. Defaults to simple and double quotes. </p>\n"
+        "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to match exact phrase.\nDefaults to simple and double quotes.</p>\n"
       },
       {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>break words with spaces. If true the text &quot;exact phrase&quot; here match would match with match exact phrase here but not with phrase here exact match (kind of &quot;google style&quot;). </p>\n"
+        "description": "<p>break words with spaces. If true the text &quot;exact phrase&quot;\nhere match would match with match exact phrase here\nbut not with phrase here exact match (kind of &quot;google style&quot;).</p>\n"
       },
       {
         "name": "typeaheadWaitMs",
@@ -3006,17 +2995,17 @@ export const ngdoc: any = {
         "name": "typeaheadWordDelimiters",
         "defaultValue": " ",
         "type": "string",
-        "description": "<p>should be used only in case typeaheadSingleWords attribute is true. Sets the word delimiter to break words. Defaults to space. </p>\n"
+        "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to break words. Defaults to space.</p>\n"
       }
     ],
     "outputs": [
       {
         "name": "typeaheadLoading",
-        "description": "<p>fired when &#39;busy&#39; state of this component was changed, fired on async mode only, returns boolean </p>\n"
+        "description": "<p>fired when &#39;busy&#39; state of this component was changed,\nfired on async mode only, returns boolean</p>\n"
       },
       {
         "name": "typeaheadNoResults",
-        "description": "<p>fired on every key event and returns true in case of matches are not detected </p>\n"
+        "description": "<p>fired on every key event and returns true\nin case of matches are not detected</p>\n"
       },
       {
         "name": "typeaheadOnBlur",

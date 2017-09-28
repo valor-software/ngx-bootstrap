@@ -8,9 +8,5 @@
          typeaheadOptionField="name"
          placeholder="Locations loaded with timeout"
          class="form-control">
-  <div *ngIf="typeaheadLoading===true">
-    <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
-  </div>
-  <div *ngIf="typeaheadNoResults===true" class="" style="">
-    <i class="glyphicon glyphicon-remove"></i> No Results Found
-  </div>
+  <div *ngIf="typeaheadLoading===true">Loading</div>
+  <div *ngIf="typeaheadNoResults===true">&#10060; No Results Found</div>

@@ -3,25 +3,47 @@
  * @copyright Angular ng-bootstrap team
  */
 
-import {
-  TestBed, ComponentFixture, inject, fakeAsync, tick
-} from '@angular/core/testing';
-import { createGenericTestComponent } from './test/common';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
-import { TooltipModule, TooltipConfig, TooltipContainerComponent, TooltipDirective } from '../../tooltip';
+import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
+import { createGenericTestComponent } from './test/common';
+
+@Component({
+  selector: 'test-onpush-cmpt',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: ``
+})
+export class TestOnPushComponent {}
+
+@Component({selector: 'test-cmpt', template: ``})
+export class TestComponent {
+  name = 'World';
+  show = true;
+
+  @ViewChild(TooltipDirective) tooltip: TooltipDirective;
+
+  shown(): void {
+    return;
+  }
+
+  hidden(): void {
+    return;
+  }
+}
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
+  createGenericTestComponent(html, TestComponent);
 
-const createOnPushTestComponent =
-  (html: string) => createGenericTestComponent(html, TestOnPushComponent) as
-    ComponentFixture<TestOnPushComponent>;
+const createOnPushTestComponent = (html: string) =>
+  createGenericTestComponent(html, TestOnPushComponent);
 
 describe('tooltip-container', () => {
-  beforeEach(() => { TestBed.configureTestingModule({imports: [TooltipModule.forRoot()]}); });
+  beforeEach(() => {
+    TestBed.configureTestingModule({imports: [TooltipModule.forRoot()]});
+  });
 
   it('should render tooltip on top by default', () => {
     const fixture = TestBed.createComponent(TooltipContainerComponent);
@@ -41,19 +63,23 @@ describe('tooltip-container', () => {
 });
 
 describe('tooltip', () => {
-
   beforeEach(() => {
-    TestBed.configureTestingModule(
-      {declarations: [TestComponent, TestOnPushComponent], imports: [TooltipModule.forRoot()]});
+    TestBed.configureTestingModule({
+      declarations: [TestComponent, TestOnPushComponent],
+      imports: [TooltipModule.forRoot()]
+    });
   });
 
-  function getWindow(element: any): HTMLElement { return element.querySelector('bs-tooltip-container'); }
+  function getWindow(element: any): HTMLElement {
+    return element.querySelector('bs-tooltip-container');
+  }
 
   describe('basic functionality', () => {
-
     it('should open and close a tooltip - default settings and content as string', () => {
       const fixture = createTestComponent(`<div tooltip="Great tip!"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
       const defaultConfig = new TooltipConfig();
 
       directive.triggerEventHandler('mouseover', {});
@@ -72,8 +98,12 @@ describe('tooltip', () => {
     });
 
     it('should open and close a tooltip - default settings and content from a template', () => {
-      const fixture = createTestComponent(`<template #t>Hello, {{name}}!</template><div [tooltip]="t"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const fixture = createTestComponent(
+        `<ng-template #t>Hello, {{name}}!</ng-template><div [tooltip]="t"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -91,8 +121,12 @@ describe('tooltip', () => {
     });
 
     it('should not open a tooltip if content is falsy', () => {
-      const fixture = createTestComponent(`<div [tooltip]="notExisting"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const fixture = createTestComponent(
+        `<div [tooltip]="notExisting"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -103,7 +137,9 @@ describe('tooltip', () => {
 
     it('should close the tooltip tooltip if content becomes falsy', () => {
       const fixture = createTestComponent(`<div [tooltip]="name"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -116,7 +152,9 @@ describe('tooltip', () => {
 
     it('should allow re-opening previously closed tooltips', () => {
       const fixture = createTestComponent(`<div tooltip="Great tip!"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -132,8 +170,12 @@ describe('tooltip', () => {
     });
 
     it('should not leave dangling tooltips in the DOM', () => {
-      const fixture = createTestComponent(`<template [ngIf]="show"><div tooltip="Great tip!"></div></template>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const fixture = createTestComponent(
+        `<ng-template [ngIf]="show"><div tooltip="Great tip!"></div></ng-template>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -146,10 +188,12 @@ describe('tooltip', () => {
 
     it('should properly cleanup tooltips with manual triggers', () => {
       const fixture = createTestComponent(`
-            <template [ngIf]="show">
-              <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip" (mouseover)="t.show()"></div>  
-            </template>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+            <ng-template [ngIf]="show">
+              <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip" (mouseover)="t.show()"></div>
+            </ng-template>`);
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -161,10 +205,13 @@ describe('tooltip', () => {
     });
 
     describe('positioning', () => {
-
       it('should use requested position', () => {
-        const fixture = createTestComponent(`<div tooltip="Great tip!" placement="left"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" placement="left"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
@@ -176,8 +223,12 @@ describe('tooltip', () => {
       });
 
       it('should properly position tooltips when a component is using the OnPush strategy', () => {
-        const fixture = createOnPushTestComponent(`<div tooltip="Great tip!" placement="left"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createOnPushTestComponent(
+          `<div tooltip="Great tip!" placement="left"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
@@ -189,8 +240,12 @@ describe('tooltip', () => {
       });
 
       it('should use auto position', () => {
-        const fixture = createTestComponent(`<div tooltip="Great tip!" placement="auto"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" placement="auto"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
@@ -204,10 +259,13 @@ describe('tooltip', () => {
     });
 
     describe('triggers', () => {
-
       it('should support toggle triggers', () => {
-        const fixture = createTestComponent(`<div tooltip="Great tip!" triggers="click"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" triggers="click"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('click', {});
         fixture.detectChanges();
@@ -219,8 +277,12 @@ describe('tooltip', () => {
       });
 
       it('should non-default toggle triggers', () => {
-        const fixture = createTestComponent(`<div tooltip="Great tip!" triggers="mouseover:click"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" triggers="mouseover:click"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
@@ -232,9 +294,12 @@ describe('tooltip', () => {
       });
 
       it('should support multiple triggers', () => {
-        const fixture =
-          createTestComponent(`<div tooltip="Great tip!" triggers="mouseover:mouseout click"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" triggers="mouseover:mouseout click"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
@@ -246,47 +311,57 @@ describe('tooltip', () => {
       });
 
       it('should not use default for manual triggers', () => {
-        const fixture = createTestComponent(`<div tooltip="Great tip!" triggers="manual"></div>`);
-        const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" triggers="manual"></div>`
+        );
+        const directive = fixture.debugElement.query(
+          By.directive(TooltipDirective)
+        );
 
         directive.triggerEventHandler('mouseover', {});
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
 
-      it('should allow toggling for manual triggers', fakeAsync(() => {
-        const fixture = createTestComponent(`
+      it(
+        'should allow toggling for manual triggers',
+        fakeAsync(() => {
+          const fixture = createTestComponent(`
                 <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip"></div>
                 <button (click)="t.toggle()">T</button>`);
-        const button = fixture.nativeElement.querySelector('button');
+          const button = fixture.nativeElement.querySelector('button');
 
-        button.click();
-        fixture.detectChanges();
-        expect(getWindow(fixture.nativeElement)).not.toBeNull();
+          button.click();
+          fixture.detectChanges();
+          expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-        button.click();
-        fixture.detectChanges();
-        tick(150);
-        expect(getWindow(fixture.nativeElement)).toBeNull();
-      }));
+          button.click();
+          fixture.detectChanges();
+          tick(150);
+          expect(getWindow(fixture.nativeElement)).toBeNull();
+        })
+      );
 
-      it('should allow open / close for manual triggers', fakeAsync(() => {
-        const fixture = createTestComponent(`
+      it(
+        'should allow open / close for manual triggers',
+        fakeAsync(() => {
+          const fixture = createTestComponent(`
                 <div tooltip="Great tip!" triggers="manual" #t="bs-tooltip"></div>
                 <button (click)="t.show()">O</button>
                 <button (click)="t.hide()">C</button>`);
 
-        const buttons = fixture.nativeElement.querySelectorAll('button');
+          const buttons = fixture.nativeElement.querySelectorAll('button');
 
-        buttons[0].click();  // open
-        fixture.detectChanges();
-        expect(getWindow(fixture.nativeElement)).not.toBeNull();
+          buttons[0].click(); // open
+          fixture.detectChanges();
+          expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-        buttons[1].click();  // close
-        fixture.detectChanges();
-        tick(150);
-        expect(getWindow(fixture.nativeElement)).toBeNull();
-      }));
+          buttons[1].click(); // close
+          fixture.detectChanges();
+          tick(150);
+          expect(getWindow(fixture.nativeElement)).toBeNull();
+        })
+      );
 
       it('should not throw when open called for manual triggers and open tooltip', () => {
         const fixture = createTestComponent(`
@@ -294,11 +369,11 @@ describe('tooltip', () => {
                 <button (click)="t.show()">O</button>`);
         const button = fixture.nativeElement.querySelector('button');
 
-        button.click();  // open
+        button.click(); // open
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-        button.click();  // open
+        button.click(); // open
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).not.toBeNull();
       });
@@ -310,7 +385,7 @@ describe('tooltip', () => {
 
         const button = fixture.nativeElement.querySelector('button');
 
-        button.click();  // close
+        button.click(); // close
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
@@ -318,11 +393,14 @@ describe('tooltip', () => {
   });
 
   describe('container', () => {
-
     it('should be appended to the element matching the selector passed to "container"', () => {
       const selector = 'body';
-      const fixture = createTestComponent(`<div tooltip="Great tip!" container="` + selector + `"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const fixture = createTestComponent(
+        `<div tooltip="Great tip!" container="` + selector + `"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -332,9 +410,14 @@ describe('tooltip', () => {
 
     it('should properly destroy tooltips when the "container" option is used', () => {
       const selector = 'body';
-      const fixture =
-        createTestComponent(`<div *ngIf="show" tooltip="Great tip!" container="` + selector + `"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+      const fixture = createTestComponent(
+        `<div *ngIf="show" tooltip="Great tip!" container="` +
+        selector +
+        `"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
       directive.triggerEventHandler('mouseover', {});
       fixture.detectChanges();
@@ -349,11 +432,14 @@ describe('tooltip', () => {
   describe('visibility', () => {
     it('should emit events when showing and hiding popover', () => {
       const fixture = createTestComponent(
-        `<div tooltip="Great tip!" triggers="click" (onShown)="shown()" (onHidden)="hidden()"></div>`);
-      const directive = fixture.debugElement.query(By.directive(TooltipDirective));
+        `<div tooltip="Great tip!" triggers="click" (onShown)="shown()" (onHidden)="hidden()"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(TooltipDirective)
+      );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
@@ -368,10 +454,11 @@ describe('tooltip', () => {
 
     it('should not emit close event when already closed', () => {
       const fixture = createTestComponent(
-        `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
+        `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`
+      );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       fixture.componentInstance.tooltip.show();
       fixture.detectChanges();
@@ -387,10 +474,11 @@ describe('tooltip', () => {
 
     it('should not emit open event when already opened', () => {
       const fixture = createTestComponent(
-        `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`);
+        `<div tooltip="Great tip!" triggers="manual" (onShown)="shown()" (onHidden)="hidden()"></div>`
+      );
 
-      let shownSpy = spyOn(fixture.componentInstance, 'shown');
-      let hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
+      const shownSpy = spyOn(fixture.componentInstance, 'shown');
+      const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
       fixture.componentInstance.tooltip.hide();
       fixture.detectChanges();
@@ -399,21 +487,26 @@ describe('tooltip', () => {
       expect(hiddenSpy).not.toHaveBeenCalled();
     });
 
-    it('should report correct visibility', fakeAsync(() => {
-      const fixture = createTestComponent(`<div tooltip="Great tip!" triggers="manual"></div>`);
-      fixture.detectChanges();
-      expect(fixture.componentInstance.tooltip.isOpen).toBeFalsy();
+    it(
+      'should report correct visibility',
+      fakeAsync(() => {
+        const fixture = createTestComponent(
+          `<div tooltip="Great tip!" triggers="manual"></div>`
+        );
+        fixture.detectChanges();
+        expect(fixture.componentInstance.tooltip.isOpen).toBeFalsy();
 
-      fixture.componentInstance.tooltip.show();
-      fixture.detectChanges();
-      tick(150);
-      expect(fixture.componentInstance.tooltip.isOpen).toBeTruthy();
+        fixture.componentInstance.tooltip.show();
+        fixture.detectChanges();
+        tick(150);
+        expect(fixture.componentInstance.tooltip.isOpen).toBeTruthy();
 
-      fixture.componentInstance.tooltip.hide();
-      fixture.detectChanges();
-      tick(150);
-      expect(fixture.componentInstance.tooltip.isOpen).toBeFalsy();
-    }));
+        fixture.componentInstance.tooltip.hide();
+        fixture.detectChanges();
+        tick(150);
+        expect(fixture.componentInstance.tooltip.isOpen).toBeFalsy();
+      })
+    );
   });
 
   describe('Custom config', () => {
@@ -421,15 +514,19 @@ describe('tooltip', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({imports: [TooltipModule.forRoot()]});
-      TestBed.overrideComponent(TestComponent, {set: {template: `<div tooltip="Great tip!"></div>`}});
+      TestBed.overrideComponent(TestComponent, {
+        set: {template: `<div tooltip="Great tip!"></div>`}
+      });
     });
 
-    beforeEach(inject([TooltipConfig], (c: TooltipConfig) => {
-      config = c;
-      config.placement = 'bottom';
-      config.triggers = 'click';
-      config.container = 'body';
-    }));
+    beforeEach(
+      inject([TooltipConfig], (c: TooltipConfig) => {
+        config = c;
+        config.placement = 'bottom';
+        config.triggers = 'click';
+        config.container = 'body';
+      })
+    );
 
     it('should initialize inputs with provided config', () => {
       const fixture = TestBed.createComponent(TestComponent);
@@ -443,14 +540,16 @@ describe('tooltip', () => {
   });
 
   describe('Custom config as provider', () => {
-    let config = new TooltipConfig();
+    const config = new TooltipConfig();
     config.placement = 'bottom';
     config.triggers = 'click';
     config.container = 'body';
 
     beforeEach(() => {
-      TestBed.configureTestingModule(
-        {imports: [TooltipModule.forRoot()], providers: [{provide: TooltipConfig, useValue: config}]});
+      TestBed.configureTestingModule({
+        imports: [TooltipModule.forRoot()],
+        providers: [{provide: TooltipConfig, useValue: config}]
+      });
     });
 
     it('should initialize inputs with provided config as provider', () => {
@@ -464,17 +563,3 @@ describe('tooltip', () => {
   });
 });
 
-@Component({selector: 'test-cmpt', template: ``})
-export class TestComponent {
-  public name: string = 'World';
-  public show: boolean = true;
-
-  @ViewChild(TooltipDirective) public tooltip: TooltipDirective;
-
-  public shown(): void {return;}
-  public hidden(): void {return;}
-}
-
-@Component({selector: 'test-onpush-cmpt', changeDetection: ChangeDetectionStrategy.OnPush, template: ``})
-export class TestOnPushComponent {
-}

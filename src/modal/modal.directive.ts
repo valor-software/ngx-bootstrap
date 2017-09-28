@@ -4,26 +4,18 @@
 // todo: original modal had resize events
 
 import {
-  AfterViewInit,
-  ComponentRef,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnDestroy,
-  Output,
-  Renderer, ViewContainerRef
+  ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input,
+  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 
-import { document } from  '../utils/facade/browser';
+import { document, window } from '../utils/facade/browser';
 
-import { isBs3 } from '../utils/ng2-bootstrap-config';
+import { isBs3 } from '../utils/theme-provider';
 import { Utils } from '../utils/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
-import { ClassName, modalConfigDefaults, ModalOptions, Selector, DISMISS_REASONS } from './modal-options.class';
-
-import { window } from '../utils/facade/browser';
+import {
+  CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
+} from './modal-options.class';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 
@@ -35,60 +27,82 @@ const BACKDROP_TRANSITION_DURATION = 150;
   selector: '[bsModal]',
   exportAs: 'bs-modal'
 })
-export class ModalDirective implements AfterViewInit, OnDestroy {
+export class ModalDirective implements OnDestroy, OnInit {
   /** allows to set modal configuration via element property */
   @Input()
-  public set config(conf: ModalOptions) {
+  set config(conf: ModalOptions) {
     this._config = this.getConfig(conf);
   }
 
-  public get config(): ModalOptions {
+  get config(): ModalOptions {
     return this._config;
   }
 
   /** This event fires immediately when the `show` instance method is called. */
-  @Output() public onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-  /** This event is fired when the modal has been made visible to the user (will wait for CSS transitions to complete) */
-  @Output() public onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-  /** This event is fired immediately when the hide instance method has been called. */
-  @Output() public onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-  /** This event is fired when the modal has finished being hidden from the user (will wait for CSS transitions to complete). */
-  @Output() public onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  @Output()
+  onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  /** This event is fired when the modal has been made visible to the user
+   * (will wait for CSS transitions to complete)
+   */
+  @Output()
+  onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  /** This event is fired immediately when
+   * the hide instance method has been called.
+   */
+  @Output()
+  onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
+  /** This event is fired when the modal has finished being
+   * hidden from the user (will wait for CSS transitions to complete).
+   */
+  @Output()
+  onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   // seems like an Options
-  public isAnimated: boolean = true;
-  /** This field contains last dismiss reason. Possible values: `backdrop-click`, `esc` and `null` (if modal was closed by direct call of `.hide()`). */
-  public dismissReason: string;
+  isAnimated = true;
+  /** This field contains last dismiss reason.
+   * Possible values: `backdrop-click`, `esc` and `null`
+   * (if modal was closed by direct call of `.hide()`).
+   */
+  dismissReason: string;
 
-  public get isShown(): boolean {
+  get isShown(): boolean {
     return this._isShown;
   }
 
   protected _config: ModalOptions;
-  protected _isShown: boolean = false;
+  protected _isShown = false;
 
-  protected isBodyOverflowing: boolean = false;
-  protected originalBodyPadding: number = 0;
-  protected scrollbarWidth: number = 0;
+  protected isBodyOverflowing = false;
+  protected originalBodyPadding = 0;
+  protected scrollbarWidth = 0;
 
   protected timerHideModal: any = 0;
   protected timerRmBackDrop: any = 0;
 
-  // constructor props
-  protected _element: ElementRef;
-  protected _renderer: Renderer;
-
   // reference to backdrop component
   protected backdrop: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
-  // todo: implement _dialog
-  private _dialog: any;
 
-  private isNested: boolean = false;
+  private isNested = false;
+
+  constructor(private _element: ElementRef,
+              _viewContainerRef: ViewContainerRef,
+              private _renderer: Renderer2,
+              clf: ComponentLoaderFactory) {
+    this._backdrop = clf.createLoader<ModalBackdropComponent>(
+      _element,
+      _viewContainerRef,
+      _renderer
+    );
+  }
 
   @HostListener('click', ['$event'])
-  public onClick(event: any): void {
-    if (this.config.ignoreBackdropClick || this.config.backdrop === 'static' || event.target !== this._element.nativeElement) {
+  onClick(event: any): void {
+    if (
+      this.config.ignoreBackdropClick ||
+      this.config.backdrop === 'static' ||
+      event.target !== this._element.nativeElement
+    ) {
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
@@ -97,20 +111,14 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // todo: consider preventing default and stopping propagation
   @HostListener('keydown.esc')
-  public onEsc(): void {
+  onEsc(): void {
     if (this.config.keyboard) {
       this.dismissReason = DISMISS_REASONS.ESC;
       this.hide();
     }
   }
 
-  public constructor(_element: ElementRef, _viewContainerRef: ViewContainerRef, _renderer: Renderer, clf: ComponentLoaderFactory) {
-    this._element = _element;
-    this._renderer = _renderer;
-    this._backdrop = clf.createLoader<ModalBackdropComponent>(_element, _viewContainerRef, _renderer);
-  }
-
-  public ngOnDestroy(): any {
+  ngOnDestroy(): any {
     this.config = void 0;
     if (this._isShown) {
       this._isShown = false;
@@ -119,7 +127,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     }
   }
 
-  public ngAfterViewInit(): any {
+  ngOnInit(): any {
     this._config = this._config || this.getConfig();
     setTimeout(() => {
       if (this._config.show) {
@@ -131,12 +139,12 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   /* Public methods */
 
   /** Allows to manually toggle modal visibility */
-  public toggle(): void {
+  toggle(): void {
     return this._isShown ? this.hide() : this.show();
   }
 
   /** Allows to manually open modal */
-  public show(): void {
+  show(): void {
     this.dismissReason = null;
     this.onShow.emit(this);
     if (this._isShown) {
@@ -151,10 +159,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     this.setScrollbar();
 
     if (document && document.body) {
-      if (document.body.classList.contains(ClassName.OPEN)) {
+      if (document.body.classList.contains(CLASS_NAME.OPEN)) {
         this.isNested = true;
       } else {
-        this._renderer.setElementClass(document.body, ClassName.OPEN, true);
+        this._renderer.addClass(document.body, CLASS_NAME.OPEN);
       }
     }
 
@@ -164,7 +172,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   }
 
   /** Allows to manually close modal */
-  public hide(event?: Event): void {
+  hide(event?: Event): void {
     if (event) {
       event.preventDefault();
     }
@@ -180,14 +188,17 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, false);
+    this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.IN);
     if (!isBs3()) {
-      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, false);
+      this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
     }
     // this._addClassIn = false;
 
     if (this.isAnimated) {
-      this.timerHideModal = setTimeout(() => this.hideModal(), TRANSITION_DURATION);
+      this.timerHideModal = setTimeout(
+        () => this.hideModal(),
+        TRANSITION_DURATION
+      );
     } else {
       this.hideModal();
     }
@@ -204,26 +215,40 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
    */
   protected showElement(): void {
     // todo: replace this with component loader usage
-    if (!this._element.nativeElement.parentNode ||
-      (this._element.nativeElement.parentNode.nodeType !== Node.ELEMENT_NODE)) {
+    if (
+      !this._element.nativeElement.parentNode ||
+      this._element.nativeElement.parentNode.nodeType !== Node.ELEMENT_NODE
+    ) {
       // don't move modals dom position
       if (document && document.body) {
         document.body.appendChild(this._element.nativeElement);
       }
     }
 
-    this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'false');
-    this._renderer.setElementStyle(this._element.nativeElement, 'display', 'block');
-    this._renderer.setElementProperty(this._element.nativeElement, 'scrollTop', 0);
+    this._renderer.setAttribute(
+      this._element.nativeElement,
+      'aria-hidden',
+      'false'
+    );
+    this._renderer.setStyle(
+      this._element.nativeElement,
+      'display',
+      'block'
+    );
+    this._renderer.setProperty(
+      this._element.nativeElement,
+      'scrollTop',
+      0
+    );
 
     if (this.isAnimated) {
       Utils.reflow(this._element.nativeElement);
     }
 
     // this._addClassIn = true;
-    this._renderer.setElementClass(this._element.nativeElement, ClassName.IN, true);
+    this._renderer.addClass(this._element.nativeElement, CLASS_NAME.IN);
     if (!isBs3()) {
-      this._renderer.setElementClass(this._element.nativeElement, ClassName.SHOW, true);
+      this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
     }
 
     const transitionComplete = () => {
@@ -242,12 +267,20 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   /** @internal */
   protected hideModal(): void {
-    this._renderer.setElementAttribute(this._element.nativeElement, 'aria-hidden', 'true');
-    this._renderer.setElementStyle(this._element.nativeElement, 'display', 'none');
+    this._renderer.setAttribute(
+      this._element.nativeElement,
+      'aria-hidden',
+      'true'
+    );
+    this._renderer.setStyle(
+      this._element.nativeElement,
+      'display',
+      'none'
+    );
     this.showBackdrop(() => {
       if (!this.isNested) {
         if (document && document.body) {
-          this._renderer.setElementClass(document.body, ClassName.OPEN, false);
+          this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
         }
         this.resetScrollbar();
       }
@@ -257,10 +290,15 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     });
   }
 
-  // todo: original show was calling a callback when done, but we can use promise
+  // todo: original show was calling a callback when done, but we can use
+  // promise
   /** @internal */
   protected showBackdrop(callback?: Function): void {
-    if (this._isShown && this.config.backdrop && (!this.backdrop || !this.backdrop.instance.isShown)) {
+    if (
+      this._isShown &&
+      this.config.backdrop &&
+      (!this.backdrop || !this.backdrop.instance.isShown)
+    ) {
       this.removeBackdrop();
       this._backdrop
         .attach(ModalBackdropComponent)
@@ -274,6 +312,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
       if (!this.isAnimated) {
         callback();
+
         return;
       }
 
@@ -281,7 +320,7 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
     } else if (!this._isShown && this.backdrop) {
       this.backdrop.instance.isShown = false;
 
-      let callbackRemove = () => {
+      const callbackRemove = () => {
         this.removeBackdrop();
         if (callback) {
           callback();
@@ -289,7 +328,10 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       };
 
       if (this.backdrop.instance.isAnimated) {
-        this.timerRmBackDrop = setTimeout(callbackRemove, BACKDROP_TRANSITION_DURATION);
+        this.timerRmBackDrop = setTimeout(
+          callbackRemove,
+          BACKDROP_TRANSITION_DURATION
+        );
       } else {
         callbackRemove();
       }
@@ -329,17 +371,27 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
   // }
 
   protected focusOtherModal() {
-    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
+    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll(
+      '.in[bsModal]'
+    );
     if (!otherOpenedModals.length) {
       return;
     }
-    this._renderer.invokeElementMethod(otherOpenedModals[otherOpenedModals.length - 1], 'focus');
+    otherOpenedModals[otherOpenedModals.length - 1].focus();
   }
 
   /** @internal */
   protected resetAdjustments(): void {
-    this._renderer.setElementStyle(this._element.nativeElement, 'paddingLeft', '');
-    this._renderer.setElementStyle(this._element.nativeElement, 'paddingRight', '');
+    this._renderer.setStyle(
+      this._element.nativeElement,
+      'paddingLeft',
+      ''
+    );
+    this._renderer.setStyle(
+      this._element.nativeElement,
+      'paddingRight',
+      ''
+    );
   }
 
   /** Scroll bar tricks */
@@ -354,10 +406,16 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
       return;
     }
 
-    this.originalBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right') || 0, 10);
+    this.originalBodyPadding = parseInt(
+      window
+        .getComputedStyle(document.body)
+        .getPropertyValue('padding-right') || 0,
+      10
+    );
 
     if (this.isBodyOverflowing) {
-      document.body.style.paddingRight = `${this.originalBodyPadding + this.scrollbarWidth}px`;
+      document.body.style.paddingRight = `${this.originalBodyPadding +
+      this.scrollbarWidth}px`;
     }
   }
 
@@ -367,10 +425,12 @@ export class ModalDirective implements AfterViewInit, OnDestroy {
 
   // thx d.walsh
   protected getScrollbarWidth(): number {
-    const scrollDiv = this._renderer.createElement(document.body, 'div', void 0);
-    scrollDiv.className = ClassName.SCROLLBAR_MEASURER;
+    const scrollDiv = this._renderer.createElement('div');
+    this._renderer.addClass(scrollDiv, CLASS_NAME.SCROLLBAR_MEASURER);
+    this._renderer.appendChild(document.body, scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
+    this._renderer.removeChild(document.body, scrollDiv);
+
     return scrollbarWidth;
   }
 }

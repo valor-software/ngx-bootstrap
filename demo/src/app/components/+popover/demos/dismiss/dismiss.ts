@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-popover-dismiss',
   templateUrl: './dismiss.html'
 })
-export class DemoPopoverDismissComponent {
-}
+export class DemoPopoverDismissComponent {}

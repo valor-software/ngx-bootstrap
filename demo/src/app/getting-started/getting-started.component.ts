@@ -8,5 +8,5 @@ let doc = require('html-loader!markdown-loader!./getting-started.md');
 })
 export class GettingStartedComponent {
   public name = `Native Angular widgets for Bootstrap 3 and Bootstrap 4`;
-  public doc:string = doc;
+  public doc: string = doc;
 }
