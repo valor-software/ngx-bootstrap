@@ -145,10 +145,11 @@ a:hover {
   background: #f8f8f8;
 
   .holder {
-    padding: 120px 10%;
+    padding: 80px 10%;
 
-    .row:first-child {
-      padding-bottom: 80px;
+    .col-12 {
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
   }
 
@@ -437,7 +438,8 @@ a:hover {
   }
   .advantages {
     .holder {
-      padding: 120px 5%;
+      padding-left: 5%;
+      padding-right: 5%;
     }
   }
   .sidebar {
@@ -467,7 +469,7 @@ a:hover {
   }
   .advantages {
     .holder {
-      padding: 60px 0;
+      padding: 30px 0;
     }
   }
 
@@ -566,8 +568,10 @@ a:hover {
       }
     }
     .holder {
+
       .col-12 {
-        padding-bottom: 60px;
+        padding-top: 30px;
+        padding-bottom: 30px;
 
         &:last-child {
           padding-bottom: 0;

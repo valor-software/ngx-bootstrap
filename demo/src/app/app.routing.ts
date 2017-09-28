@@ -1,11 +1,10 @@
-import { GettingStartedComponent } from './getting-started/getting-started.component';
-import { DocumentationComponent } from './common/documentation/documentation.component';
 import { LandingComponent } from './common/landing/landing.component';
+import { GettingStartedComponent } from './common/getting-started/getting-started.component';
 
 export const routes = [
   {
     path: '',
-    data: ['DIE BICH DIE'],
+    data: ['Landing page'],
     component: LandingComponent
   },
   {
@@ -52,11 +51,6 @@ export const routes = [
     // component: DatepickerSectionComponent
     loadChildren:
       './components/+datepicker/demo-datepicker.module#DemoDatepickerModule'
-  },
-  {
-    path: 'docs',
-    data: ['Docs'],
-    component: DocumentationComponent
   },
   {
     path: 'dropdowns',
