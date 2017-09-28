@@ -327,7 +327,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
 
     if (this.dayDisabled) {
-      isDateDisabled = this.dayDisabled.indexOf(date.getDay()) > -1;
+      isDateDisabled = isDateDisabled || this.dayDisabled.indexOf(date.getDay()) > -1;
     }
 
     return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
