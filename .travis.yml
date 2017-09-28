@@ -9,11 +9,6 @@ git:
   depth: 3
   submodules: false
 
-env:
-  global:
-    - SAUCE_USERNAME=valorkin
-    - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
-
 stages:
   - name: precache
     if: ( branch = development AND type = push ) OR type = pull_request
