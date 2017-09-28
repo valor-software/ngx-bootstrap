@@ -12,12 +12,12 @@ import { routes } from './demo-buttons.routes';
 @NgModule({
   declarations: [ButtonsSectionComponent, ...DEMO_COMPONENTS],
   imports: [
-    ButtonsModule.forRoot(),
-    CommonModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ButtonsModule.forRoot()
   ],
   exports: [ButtonsSectionComponent]
 })

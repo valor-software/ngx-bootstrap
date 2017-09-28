@@ -5,10 +5,7 @@
        [class.active]="tabz.active" [class.disabled]="tabz.disabled"
        (click)="tabz.active = true">
       <span [ngTransclude]="tabz.headingRef">{{ tabz.heading }}</span>
-      <span *ngIf="tabz.removable">
-              <span (click)="$event.preventDefault(); removeTab(tabz);"
-                    class="glyphicon glyphicon-remove-circle"></span>
-            </span>
+      <span *ngIf="tabz.removable" (click)="$event.preventDefault(); removeTab(tabz);" class="bs-remove-tab"> &#10060;</span>
     </a>
   </li>
 </ul>

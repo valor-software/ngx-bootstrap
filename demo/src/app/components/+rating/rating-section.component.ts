@@ -8,7 +8,6 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   template: `
 <demo-section [name]="name" [src]="src">
   <p>Rating component that will take care of visualising a star rating bar</p>
-  <p><em>Note</em>: Bootstrap 4 do not include glyphicons anymore, so if you want to continue use this font, you will need to add a link to <a href="https://github.com/valor-software/ngx-bootstrap/blob/master/demo/assets/css/glyphicons.css"><code>glyphicons.css</code></a></p>
   
   <h2>Contents</h2>
   <ul>

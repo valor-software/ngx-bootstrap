@@ -18,12 +18,7 @@
     ]
   },
   "routing": {
-    "index": "/index.html",
-    "routes": {
-      "^.*$": {
-        "match": "regex"
-      }
-    }
+    "index": "/index.html"
   },
   "icons": [
     {

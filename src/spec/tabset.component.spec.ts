@@ -148,7 +148,7 @@ describe('Component: Tabs', () => {
     const tabTitles = getTabTitles(element);
     expect(
       (tabTitles[3] as HTMLAnchorElement).querySelectorAll(
-        'span span.glyphicon-remove-circle'
+        'span.bs-remove-tab'
       ).length
     ).toEqual(1);
   });
@@ -157,7 +157,7 @@ describe('Component: Tabs', () => {
     const tabTitlesBefore = getTabTitles(element);
     expect(tabTitlesBefore.length).toEqual(4);
     const el = (tabTitlesBefore[3] as HTMLAnchorElement).querySelectorAll(
-      'span span.glyphicon-remove-circle'
+      'span.bs-remove-tab'
     )[0];
     (el as HTMLSpanElement).click();
 
@@ -238,7 +238,7 @@ describe('Component: Tabs', () => {
   it('should emit remove on remove tab', () => {
     const tabTitles = getTabTitles(element);
     const el = (tabTitles[3] as HTMLAnchorElement).querySelectorAll(
-      'span span.glyphicon-remove-circle'
+      'span.bs-remove-tab'
     )[0];
     (el as HTMLSpanElement).click();
     fixture.detectChanges();
