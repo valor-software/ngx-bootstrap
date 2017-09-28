@@ -53,6 +53,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public monthColLimit: number;
   @Input() public yearColLimit: number;
   @Input() public dateDisabled: { date: Date, mode: string }[];
+  @Input() public dayDisabled: number[];
   @Input() public initDate: Date;
 
   @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
@@ -323,6 +324,10 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
           isDateDisabled = true;
         }
       });
+    }
+
+    if (this.dayDisabled) {
+      isDateDisabled = this.dayDisabled.indexOf(date.getDay()) > -1;
     }
 
     return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
