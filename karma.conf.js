@@ -38,8 +38,8 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+        base: 'ChromeHeadless',
+        flags: ['--disable-translate', '--disable-extensions']
       }
     },
     mime: { 'text/x-typescript': ['ts','tsx'] },
@@ -47,7 +47,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = ['ChromeHeadless'];
   }
 
   if (process.env.SAUCE) {
