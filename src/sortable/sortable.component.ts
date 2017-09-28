@@ -40,7 +40,7 @@ import { DraggableItemService } from './draggable-item.service';
         (dragover)="onItemDragover($event, i)"
         (dragenter)="cancelEvent($event)"
     ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
-  [ngOutletContext]="{item:item, index: i}"></ng-template></div>
+  [ngTemplateOutletContext]="{item:item, index: i}"></ng-template></div>
 </div>
 
 <ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>  
