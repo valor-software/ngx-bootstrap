@@ -16,3 +16,4 @@ export { pl } from './bs-moment/i18n/pl';
 export { ptBr } from './bs-moment/i18n/pt-br';
 export { ru } from './bs-moment/i18n/ru';
 export { zhCn } from './bs-moment/i18n/zh-cn';
+export { tr } from './bs-moment/i18n/tr';
