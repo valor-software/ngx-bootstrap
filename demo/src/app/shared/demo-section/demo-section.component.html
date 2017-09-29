@@ -4,7 +4,7 @@
   <section class="main-container">
     <div class="content">
 <div class="content-header">
-  <h1>{{name}}
+  <h1 *ngIf="name || src">{{name}}
     <a [href]="src" target="_blank" rel="noopener">
       <img src="assets/images/link-doc.png" alt="link to doc"/>
     </a>
