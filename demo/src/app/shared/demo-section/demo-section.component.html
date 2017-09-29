@@ -1,3 +1,8 @@
+<main class="main">
+  <sidebar class="sidebar"></sidebar>
+
+  <section class="main-container">
+    <div class="content">
 <div class="content-header">
   <h1>{{name}}
     <a [href]="src" target="_blank" rel="noopener">
@@ -38,3 +43,10 @@
     <div class="item list-container" [innerHTML]="doc" ngNonBindable></div>
   </div>
 </div>
+    </div>
+    <app-footer></app-footer>
+  </section>
+
+  <add-nav class="add-nav"></add-nav>
+
+</main>

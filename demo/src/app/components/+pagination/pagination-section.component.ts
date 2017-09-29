@@ -11,7 +11,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p><strong>Pagination</strong> - provide pagination links for your site or app with the multi-page pagination component, or the simpler pager alternative.</p>
   <p><strong>Pager</strong> - quick previous and next links for simple pagination implementations with light markup and styles. It's great for simple sites like blogs or magazines.</p>
   
-    <h2>Contents</h2>
+  <h2>Contents</h2>
   <ul>
     <li><a routerLink="." fragment="usage">Usage</a></li>
     <li><a routerLink="." fragment="examples">Examples</a>
@@ -36,25 +36,26 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p [innerHtml]="titleDoc"></p>
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
+  <p>On small screens bootstrap4 pagination can be cropped</p>
   
-  <h2 routerLink="." fragment="default" id="default">Default</h2>
+  <h3 routerLink="." fragment="default" id="default">Default</h3>
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
     <demo-pagination-basic></demo-pagination-basic>
   </ng-sample-box>  
   
-  <h2 routerLink="." fragment="limit" id="limit">States & Limits</h2>
+  <h3 routerLink="." fragment="limit" id="limit">States & Limits</h3>
   <p>Limit the maximum visible buttons</p>
   <ng-sample-box [ts]="demos.limit.component" [html]="demos.limit.html">
     <demo-pagination-limit></demo-pagination-limit>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="pager" id="pager">Pager</h2>
+  <h3 routerLink="." fragment="pager" id="pager">Pager</h3>
   <ng-sample-box [ts]="demos.pager.component" [html]="demos.pager.html">
     <demo-pagination-pager></demo-pagination-pager>
   </ng-sample-box>
     
   <!--TODO: temporary disabled pageBtnClass option-->
-  <!--<h2 routerLink="." fragment="styling" id="styling">Styling</h2>-->
+  <!--<h3 routerLink="." fragment="styling" id="styling">Styling</h3>-->
   <!--<ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html">-->
     <!--<demo-pagination-styling></demo-pagination-styling>-->
   <!--</ng-sample-box>-->

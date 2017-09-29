@@ -119,7 +119,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-modal-nested></demo-modal-nested>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="events" id="events">Modal events</h2>
+  <h3 routerLink="." fragment="events" id="events">Modal events</h3>
   <p>
     ModalDirective exposes 4 events: OnShow, OnShown, OnHide, OnHidden. See usage example below. <br>
     <code>$event</code> is an instance of ModalDirective. There you may find some useful properties like <code>isShown</code>, <code>dismissReason</code>, etc. <br>
@@ -130,7 +130,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-modal-events></demo-modal-events>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="auto-shown" id="auto-shown">Auto shown modal</h2>
+  <h3 routerLink="." fragment="auto-shown" id="auto-shown">Auto shown modal</h3>
   <p>
     Show modal right after it has been initialized.
     This allows you to keep DOM clean by only appending visible modals to the DOM using <code>*ngIf</code> directive.

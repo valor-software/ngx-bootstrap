@@ -42,7 +42,8 @@
   margin-bottom: 5px;
   line-height: normal;
   list-style-type: decimal;
-  font-size: 12px
+  font-size: 12px;
+  white-space: pre;
 }
 
 .prettyprint ol li:last-child {

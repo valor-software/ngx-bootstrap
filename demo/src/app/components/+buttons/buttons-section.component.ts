@@ -34,36 +34,36 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p [innerHtml]="titleDoc"></p>
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-  <h2 routerLink="." fragment="basic" id="basic">Single button</h2>
+  <h3 routerLink="." fragment="basic" id="basic">Single button</h3>
   <p>Default static button with two states</p>
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
     <demo-buttons-basic></demo-buttons-basic>
   </ng-sample-box>
    
-  <h2 routerLink="." fragment="checkbox" id="checkbox">Checkbox</h2>
+  <h3 routerLink="." fragment="checkbox" id="checkbox">Checkbox</h3>
   <p>Checkbox-like buttons set with variable states</p>
   <ng-sample-box [ts]="demos.checkbox.component" [html]="demos.checkbox.html">
     <demo-buttons-checkbox></demo-buttons-checkbox>
   </ng-sample-box>
     
-  <h2 routerLink="." fragment="radio" id="radio">Radio & Uncheckable Radio</h2>
+  <h3 routerLink="." fragment="radio" id="radio">Radio & Uncheckable Radio</h3>
   <p>Radio buttons with checked/unchecked states</p>
   <ng-sample-box [ts]="demos.radio.component" [html]="demos.radio.html">
     <demo-buttons-radio></demo-buttons-radio>
   </ng-sample-box>
     
-  <h2 routerLink="." fragment="radio-reactiveforms" id="radio-reactiveforms">Radio with ReactiveForms</h2>
+  <h3 routerLink="." fragment="radio-reactiveforms" id="radio-reactiveforms">Radio with ReactiveForms</h3>
   <p>Checkbox buttons with ReactiveForms</p>
   <ng-sample-box [ts]="demos.radioReactiveForms.component" [html]="demos.radioReactiveForms.html">
     <demo-buttons-radio-reactiveforms></demo-buttons-radio-reactiveforms>
   </ng-sample-box>
         
-  <h2 routerLink="." fragment="disabled" id="disabled">Disabled Buttons</h2>
+  <h3 routerLink="." fragment="disabled" id="disabled">Disabled Buttons</h3>
   <ng-sample-box [ts]="demos.disabled.component" [html]="demos.disabled.html">
     <demo-buttons-disabled></demo-buttons-disabled>
   </ng-sample-box>
     
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <h3 routerLink="." fragment="api-reference" id="api-reference">API Reference</h3>
   <ng-api-doc id="button-checkbox-directive" directive="ButtonCheckboxDirective"></ng-api-doc>
   <ng-api-doc id="button-radio-directive" directive="ButtonRadioDirective"></ng-api-doc>
 </demo-section>`

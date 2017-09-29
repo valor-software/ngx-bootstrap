@@ -41,7 +41,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </ng-sample-box>
     
   <!-- captions -->
-  <h2 routerLink="." fragment="captions" id="captions">Optional captions</h2>
+  <h3 routerLink="." fragment="captions" id="captions">Optional captions</h3>
   <p>Add captions to your slides easily with the <code>.carousel-caption</code> element within any <code>&lt;slide></code>.
  Place just about any optional HTML within there and it will be automatically aligned and formatted.</p>
   <ng-sample-box [ts]="demos.captions.component" [html]="demos.captions.html">
@@ -49,18 +49,18 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   </ng-sample-box>
     
   <!-- config -->
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+  <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-carousel-config></demo-carousel-config>
   </ng-sample-box>
   
   <!-- dynamic -->
-  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic Slides</h2>
+  <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic Slides</h3>
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
     <demo-carousel-dynamic></demo-carousel-dynamic>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <h3 routerLink="." fragment="api-reference" id="api-reference">API Reference</h3>
   <ng-api-doc id="carousel-component" directive="CarouselComponent"></ng-api-doc>
   <ng-api-doc id="slide-component" directive="SlideComponent"></ng-api-doc>
   <ng-api-doc-config id="carousel-config" type="CarouselConfig"></ng-api-doc-config>

@@ -11,6 +11,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-section [name]="name" [src]="src">
       <tabset>
         <tab heading="Overview">
+          <br>
           <p>Datepicker is a highly configurable component that adds datepicker functionality to your pages. You can
             customize the date format and language, restrict the selectable date ranges.</p>
           <h2>Contents</h2>
@@ -53,16 +54,6 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
               <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler
                 like Angular CLI, if you're using one.
               </li>
-            </ul>
-            <p>In nearest time will be added:</p>
-            <ul>
-              <li><s>1. Month and year selection</s></li>
-              <li><s>2. Min/max dates restrcitions</s></li>
-              <li><s>3. Color theming</s></li>
-              <li>4. Options to replace any part of template</li>
-              <li><s>5. Configuration</s></li>
-              <li><s>6. Integration with forms, only for input fields</s></li>
-              <li>etc.</li>
             </ul>
             <demo-date-picker-popup></demo-date-picker-popup>
           </ng-sample-box>
@@ -128,6 +119,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
         
         <!-- Old datepicker part-->
         <tab heading="Old">
+          <br>
           <p>This is a legacy version of datepicker without support of daterangepicker, locales, themes, etc.</p>
           <h2>Contents</h2>
           <ul>

@@ -32,17 +32,17 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
   
-  <h2 routerLink="." fragment="static" id="static">Static rating</h2>
+  <h3 routerLink="." fragment="static" id="static">Static rating</h3>
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
     <demo-rating-basic></demo-rating-basic>
   </ng-sample-box>  
   
-  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic rating</h2>
+  <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic rating</h3>
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
     <demo-rating-dynamic></demo-rating-dynamic>
   </ng-sample-box> 
    
-  <h2 routerLink="." fragment="custom" id="custom">Custom icons</h2>
+  <h3 routerLink="." fragment="custom" id="custom">Custom icons</h3>
   <ng-sample-box [ts]="demos.custom.component" [html]="demos.custom.html">
     <demo-rating-custom></demo-rating-custom>
   </ng-sample-box>

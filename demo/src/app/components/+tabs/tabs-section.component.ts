@@ -40,43 +40,43 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
   
-  <h2 routerLink="." fragment="static" id="static">Static tabs</h2>    
+  <h3 routerLink="." fragment="static" id="static">Static tabs</h3>    
   <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
       <demo-tabs-basic></demo-tabs-basic>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="manual" id="manual">Manual selection</h2>
+  <h3 routerLink="." fragment="manual" id="manual">Manual selection</h3>
   <ng-sample-box [ts]="demos.manual.component" [html]="demos.manual.html">
     <demo-tabs-manual></demo-tabs-manual>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic tabs</h2>    
+  <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic tabs</h3>    
   <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
       <demo-tabs-dynamic></demo-tabs-dynamic>
   </ng-sample-box>
           
-  <h2 routerLink="." fragment="pills" id="pills">Pills</h2>    
+  <h3 routerLink="." fragment="pills" id="pills">Pills</h3>    
   <ng-sample-box [ts]="demos.pills.component" [html]="demos.pills.html">
       <demo-tabs-pills></demo-tabs-pills>
   </ng-sample-box>
                  
-  <h2 routerLink="." fragment="vertical-pills" id="vertical-pills">Vertical Pills</h2>    
+  <h3 routerLink="." fragment="vertical-pills" id="vertical-pills">Vertical Pills</h3>    
   <ng-sample-box [ts]="demos.verticalPills.component" [html]="demos.verticalPills.html">
       <demo-tabs-vertical-pills></demo-tabs-vertical-pills>
   </ng-sample-box>
                        
-  <h2 routerLink="." fragment="justified" id="justified">Justified</h2>   
+  <h3 routerLink="." fragment="justified" id="justified">Justified</h3>   
   <p><i>Bootstrap 4 doesn't have justified classes</i></p>
   <ng-sample-box [ts]="demos.justified.component" [html]="demos.justified.html">
       <demo-tabs-justified></demo-tabs-justified>
   </ng-sample-box>
        
-  <h2 routerLink="." fragment="styling" id="styling">Styling</h2>    
+  <h3 routerLink="." fragment="styling" id="styling">Styling</h3>    
   <ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html">
       <demo-tabs-styling></demo-tabs-styling>
   </ng-sample-box>
          
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>    
+  <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>    
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
       <demo-tabs-config></demo-tabs-config>
   </ng-sample-box>

@@ -44,7 +44,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   <p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within <code>dropdown</code>. 
   Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code> elements to better fit your potential needs.</p>
 
-  <h2 routerLink="." fragment="single-button" id="single-button">Single button dropdowns</h2>
+  <h3 routerLink="." fragment="single-button" id="single-button">Single button dropdowns</h3>
       
   <p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes. 
   Here’s how you can put them to work with either  <code> &lt;button&gt; </code> elements:</p>
@@ -59,7 +59,7 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-dropdown-basic-link></demo-dropdown-basic-link>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="split-button" id="split-button">Split button dropdowns</h2>
+  <h3 routerLink="." fragment="split-button" id="split-button">Split button dropdowns</h3>
   <p>Similarly, create split button dropdowns with virtually the same markup as single button dropdowns,
    but with the addition of <code>.dropdown-toggle-split</code> for proper spacing around the dropdown caret.</p>
   
@@ -67,36 +67,36 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <demo-dropdown-split></demo-dropdown-split>
   </ng-sample-box>
   
-   <h2 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggers</h2>
-   
-   <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
-    <demo-dropdown-triggers-manual></demo-dropdown-triggers-manual>
-   </ng-sample-box>
-   
-   <h2 routerLink="." fragment="disabled-menu" id="disabled-menu">Disabled menu</h2>
-   
-   <ng-sample-box [ts]="demos.disabledMenu.component" [html]="demos.disabledMenu.html">
+  <h3 routerLink="." fragment="triggers-manual" id="triggers-manual">Manual triggers</h3>
+  
+  <ng-sample-box [ts]="demos.triggersManual.component" [html]="demos.triggersManual.html">
+   <demo-dropdown-triggers-manual></demo-dropdown-triggers-manual>
+  </ng-sample-box>
+  
+  <h3 routerLink="." fragment="disabled-menu" id="disabled-menu">Disabled menu</h3>
+  
+  <ng-sample-box [ts]="demos.disabledMenu.component" [html]="demos.disabledMenu.html">
     <demo-dropdown-disabled></demo-dropdown-disabled>
-   </ng-sample-box>
-      
-   <h2 routerLink="." fragment="alignment" id="alignment">Menu alignment</h2>
-   
-   <p>By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. 
-   Add class <code>.dropdown-menu-right</code> to a <code>dropdownMenu</code> to right align the dropdown menu.</p>
-   
-   <ng-sample-box [ts]="demos.alignment.component" [html]="demos.alignment.html">
-    <demo-dropdown-alignment></demo-dropdown-alignment>
-   </ng-sample-box>
+  </ng-sample-box>
+    
+  <h3 routerLink="." fragment="alignment" id="alignment">Menu alignment</h3>
   
-  <h2 routerLink="." fragment="nested" id="nested">Nested dropdowns (experimental)</h2>
-   
-   <ng-sample-box [ts]="demos.nested.component" [html]="demos.nested.html">
-     <demo-nested-dropdowns></demo-nested-dropdowns>
-   </ng-sample-box>
+  <p>By default, a dropdown menu is automatically positioned 100% from the top and along the left side of its parent. 
+  Add class <code>.dropdown-menu-right</code> to a <code>dropdownMenu</code> to right align the dropdown menu.</p>
   
-   <h2 routerLink="." fragment="container-body" id="container-body">Append to body</h2>
-   
-   <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
+  <ng-sample-box [ts]="demos.alignment.component" [html]="demos.alignment.html">
+   <demo-dropdown-alignment></demo-dropdown-alignment>
+  </ng-sample-box>
+  
+  <h3 routerLink="." fragment="nested" id="nested">Nested dropdowns (experimental)</h3>
+ 
+  <ng-sample-box [ts]="demos.nested.component" [html]="demos.nested.html">
+   <demo-nested-dropdowns></demo-nested-dropdowns>
+  </ng-sample-box>
+  
+  <h3 routerLink="." fragment="container-body" id="container-body">Append to body</h3>
+  
+  <ng-sample-box [ts]="demos.container.component" [html]="demos.container.html">
     <demo-dropdown-container></demo-dropdown-container>
   </ng-sample-box>
 
@@ -106,13 +106,13 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
     <!--<demo-dropdown-keyboard></demo-dropdown-keyboard>-->
   <!--</ng-sample-box>-->
     
-  <h2 routerLink="." fragment="dropup" id="dropup">Dropup variation</h2>
+  <h3 routerLink="." fragment="dropup" id="dropup">Dropup variation</h3>
   <p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the parent element.</p>
    <ng-sample-box [ts]="demos.dropup.component" [html]="demos.dropup.html">
     <demo-dropup></demo-dropup>
   </ng-sample-box>
   
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
+  <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
   <p>It is possible to override default dropdown config partially or completely.</p>
   <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
     <demo-dropdown-config></demo-dropdown-config>
