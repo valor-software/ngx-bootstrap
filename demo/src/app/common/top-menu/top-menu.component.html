@@ -10,7 +10,7 @@
       </div>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
         <li role="menuitem" *ngFor="let item of previousDocs">
-          <a class="dropdown-item" [href]="appUrl + (isLocalhost ? item.unprefixedUrl : item.url) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
+          <a class="dropdown-item" [href]="appUrl + (needPrefix ? item.url : item.unprefixedUrl) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
         </li>
       </ul>
     </div>

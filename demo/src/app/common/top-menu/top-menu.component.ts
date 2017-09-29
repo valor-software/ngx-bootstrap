@@ -13,6 +13,7 @@ export class TopMenuComponent implements AfterViewInit {
   public currentVersion: string;
   public previousDocs: string[] = [];
   public isLocalhost = false;
+  public needPrefix = false;
 
   public constructor(
     private router: Router,
@@ -22,6 +23,7 @@ export class TopMenuComponent implements AfterViewInit {
   public ngAfterViewInit(): any {
     // todo: remove this sh**
     this.isLocalhost = location.hostname === 'localhost';
+    this.needPrefix = location.pathname !== '/';
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');
 
