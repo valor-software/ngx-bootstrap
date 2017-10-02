@@ -1,6 +1,6 @@
-# Contributing to ngx-bootstrap
+# Contributing to `ngx-bootstrap`
 
-We would love for you to contribute to ngx-bootstrap and help make it even better than it is
+We would love for you to contribute to `ngx-bootstrap` and help make it even better than it is
 today! As a contributor, here are the guidelines we would like you to follow:
 
  - [Code of Conduct](#coc)
@@ -16,7 +16,7 @@ Please read and follow our [Code of Conduct][coc].
 
 ## Got a Question or Problem?
 
-Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests. You've got much better chances of getting your question answered on [Stack Overflow](https://stackoverflow.com/questions/tagged/ngx-bootstrap) where the questions should be tagged with tag `ngx-bootstrap`.
+Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests. You've got much better chances of getting your question answered on [Stack Overflow](https://stackoverflow.com/questions/tagged/ngx-bootstrap) where the questions should be tagged with tag `ngx-bootstrap`, or you can join to our [slack] channel.
 
 Stack Overflow is a much better place to ask questions since:
 
@@ -30,8 +30,8 @@ If you would like to chat about the question in real-time, you can reach out via
 
 ## Found a Bug?
 If you find a bug in the source code, you can help us by
-[submitting an issue](#submit-issue) to our [GitHub Repository][github]. Even better, you can
-[submit a Pull Request](#submit-pr) with a fix.
+[submitting an issue][submit-issue] to our [GitHub Repository][github]. Even better, you can
+[submit a Pull Request][submit-pr] with a fix.
 
 ## Missing a Feature?
 You can *request* a new feature by [submitting an issue](#submit-issue) to our GitHub
@@ -50,13 +50,14 @@ and help you to craft the change so that it is successfully accepted into the pr
 
 Before you submit an issue, please search the issue tracker, maybe an issue for your problem already exists and the discussion might inform you of workarounds readily available.
 
-We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using http://plnkr.co. Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
+We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using [plunker]. Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
 
 - version of Angular used
 - version on ngx-bootstrap used
+- build system: angular cli, system.js, starter seed used
 - and most importantly - a use-case that fails
 
-A minimal reproduce scenario using http://plnkr.co/ allows us to quickly confirm a bug (or point out coding problem) as well as confirm that we are fixing the right problem. If plunker is not a suitable way to demonstrate the problem (for example for issues related to our npm packaging), please create a standalone git repository demonstrating the problem.
+A minimal reproduce scenario using [plunker] allows us to quickly confirm a bug (or point out coding problem) as well as confirm that we are fixing the right problem. If plunker is not a suitable way to demonstrate the problem (for example for issues related to our npm packaging), please create a standalone git repository demonstrating the problem.
 
 We will be insisting on a minimal reproduce scenario in order to save maintainers time and ultimately be able to fix more bugs. Interestingly, from our experience users often find coding problems themselves while preparing a minimal plunk. We understand that sometimes it might be hard to extract essentials bits of code from a larger code-base but we really need to isolate the problem before we can fix it.
 
@@ -248,3 +249,5 @@ This `CONTRIBUTING.md` is adapted from the Angular's `CONTRIBUTING.md`, availabl
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html
 [plunker]: http://plnkr.co/edit
 [stackoverflow]: http://stackoverflow.com/questions/tagged/ngx-bootstrap
+[submit-issue]: https://github.com/valor-software/ngx-bootstrap/issues/new
+[submit-pr]: https://github.com/valor-software/ngx-bootstrap/compare
