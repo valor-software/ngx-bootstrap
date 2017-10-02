@@ -47,7 +47,7 @@ jobs:
       script: true
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-#        sauce_connect: true
+        sauce_connect: true
         chrome: stable
         apt:
           sources:
