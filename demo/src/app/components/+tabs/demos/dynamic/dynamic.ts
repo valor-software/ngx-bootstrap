@@ -6,13 +6,13 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoTabsDynamicComponent {
-  public tabs: any[] = [
+  tabs: any[] = [
     { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
     { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true },
     { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true }
   ];
 
-  public addNewTab(): void {
+  addNewTab(): void {
     const newTabIndex = this.tabs.length + 1;
     this.tabs.push({
       title: `Dynamic Title ${newTabIndex}`,
@@ -22,7 +22,7 @@ export class DemoTabsDynamicComponent {
     });
   }
 
-  public removeTabHandler(tab: any): void {
+  removeTabHandler(tab: any): void {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
   }

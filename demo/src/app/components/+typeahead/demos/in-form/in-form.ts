@@ -8,13 +8,13 @@ import 'rxjs/add/observable/of';
   templateUrl: './in-form.html'
 })
 export class DemoTypeaheadFormsComponent {
-  public stateCtrl: FormControl = new FormControl();
+  stateCtrl: FormControl = new FormControl();
 
-  public myForm: FormGroup = new FormGroup({
+  myForm: FormGroup = new FormGroup({
     state: this.stateCtrl
   });
 
-  public states: string[] = [
+  states: string[] = [
     'Alabama',
     'Alaska',
     'Arizona',

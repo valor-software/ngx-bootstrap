@@ -88,13 +88,13 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class ProgressbarSectionComponent {
-  public name: string = 'Progressbar';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
+  name: string = 'Progressbar';
+  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
 
-  public get isBs3(): boolean {
+  get isBs3(): boolean {
     return isBs3();
   }
 
-  public demos: any = DEMOS;
-  public titleDoc: string = titleDoc;
+  demos: any = DEMOS;
+  titleDoc: string = titleDoc;
 }

@@ -52,8 +52,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class RatingSectionComponent {
-  public name: string = 'Rating';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
-  public demos: any = DEMOS;
-  public titleDoc: string = titleDoc;
+  name: string = 'Rating';
+  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
+  demos: any = DEMOS;
+  titleDoc: string = titleDoc;
 }

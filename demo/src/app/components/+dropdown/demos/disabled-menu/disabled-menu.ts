@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './disabled-menu.html'
 })
 export class DemoDropdownDisabledComponent {
-  public disabled: boolean = false;
+  disabled: boolean = false;
 }

@@ -97,8 +97,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class TimepickerSectionComponent {
-  public name: string = 'Timepicker';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
-  public demos: any = DEMOS;
-  public titleDoc: string = titleDoc;
+  name: string = 'Timepicker';
+  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
+  demos: any = DEMOS;
+  titleDoc: string = titleDoc;
 }

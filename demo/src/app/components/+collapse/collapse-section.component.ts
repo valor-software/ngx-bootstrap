@@ -41,8 +41,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class CollapseSectionComponent {
-  public name: string = 'Collapse';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/collapse';
-  public demos: any = DEMOS;
-  public titleDoc: string = titleDoc;
+  name: string = 'Collapse';
+  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/collapse';
+  demos: any = DEMOS;
+  titleDoc: string = titleDoc;
 }

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'SearchFilter' })
 export class SearchFilterPipe implements PipeTransform {
-  public transform(value: any, text: any): any {
+  transform(value: any, text: any): any {
     if (!text) {
       return value;
     }
