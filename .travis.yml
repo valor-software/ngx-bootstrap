@@ -12,6 +12,7 @@ git:
 stages:
   - name: precache
     if: ( branch = development AND type = push ) OR type = pull_request
+  - name: sauce-tests
   - name: lint
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: test
@@ -38,6 +39,7 @@ jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
+    - stage: sauce-tests
   include:
 # precache npm and apt dependencies
     - stage: precache
@@ -75,6 +77,8 @@ jobs:
       env: NGV=latest
     - <<: *build
       env: NGV=next
+    - stage: sauce-tests
+      script: npm run test-cross
 #   deploy to ngx-bootstrap.surge.sh
     - stage: deploy-surge
       script: npm run demo.build
