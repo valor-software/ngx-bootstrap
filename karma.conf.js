@@ -56,15 +56,14 @@ module.exports = function (config) {
       process.exit(1);
     }
 
-    // configuration.browsers = Object.keys(configuration.customLaunchers);
-
     configuration.logLevel = config.LOG_DEBUG;
 
     configuration.plugins.push(require('karma-sauce-launcher'));
-    configuration.reporters.push('saucelabs');
+    configuration.reporters = ['progress', 'saucelabs'];
     configuration.sauceLabs = {
       testName: 'ng2-bootstrap unit tests',
       startConnect: false,
+      build: process.env.TRAVIS_JOB_NUMBER,
       tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
       verbose: true,
       recordScreenshots: false,
