@@ -36,13 +36,13 @@ install:
   - npm i ./dist  > /dev/null
 
   before_script:
-  -./scripts/sauce/sauce_connect_setup.sh
+  - ./scripts/sauce/sauce_connect_setup.sh
 
   script:
-  -./scripts/sauce/sauce_connect_block.sh
+  - ./scripts/sauce/sauce_connect_block.sh
 
   after_script:
-  -./scripts/sauce/sauce_connect_teardown.sh
+  - ./scripts/sauce/sauce_connect_teardown.sh
 
 jobs:
   fast_finish: true
