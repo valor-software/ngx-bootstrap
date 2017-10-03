@@ -49,7 +49,6 @@ module.exports = function (config) {
 
   if (process.env.TRAVIS) {
     configuration.browsers = ['ChromeHeadless'];
-    // configuration.browsers = Object.keys(configuration.customLaunchers);
   }
 
   if (process.env.SAUCE) {
@@ -58,13 +57,16 @@ module.exports = function (config) {
       process.exit(1);
     }
 
+    configuration.logLevel = config.LOG_DEBUG;
+
     configuration.plugins.push(require('karma-sauce-launcher'));
-    configuration.reporters.push('saucelabs');
+    configuration.reporters = ['progress', 'saucelabs'];
     configuration.sauceLabs = {
-      startConnect: false,
-      // tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      verbose: true,
       testName: 'ng2-bootstrap unit tests',
+      startConnect: false,
+      build: process.env.TRAVIS_JOB_NUMBER,
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+      verbose: true,
       recordScreenshots: false,
       username: process.env.SAUCE_USERNAME,
       accessKey: process.env.SAUCE_ACCESS_KEY,
@@ -75,6 +77,7 @@ module.exports = function (config) {
       public: 'public'
     };
     configuration.captureTimeout = 0;
+    configuration.singleRun =false;
     configuration.customLaunchers = customLaunchers();
     configuration.browsers = Object.keys(configuration.customLaunchers);
     configuration.concurrency = 3;

@@ -56,7 +56,7 @@ jobs:
       script: true
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-        sauce_connect: true
+        #sauce_connect: true
         chrome: stable
         apt:
           sources:
@@ -88,6 +88,9 @@ jobs:
       env: NGV=next
     - stage: sauce-tests
       script: npm run test-cross
+      addons:
+       # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
+        sauce_connect: true
 #   deploy to ngx-bootstrap.surge.sh
     - stage: deploy-surge
       script: npm run demo.build
