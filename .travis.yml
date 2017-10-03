@@ -35,6 +35,15 @@ install:
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
 
+  before_script:
+  -./scripts/sauce/sauce_connect_setup.sh
+
+  script:
+  -./scripts/sauce/sauce_connect_block.sh
+
+  after_script:
+  -./scripts/sauce/sauce_connect_teardown.sh
+
 jobs:
   fast_finish: true
   allow_failures:

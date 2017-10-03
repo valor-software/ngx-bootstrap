@@ -12,7 +12,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('karma-sauce-launcher')
     ],
     files: [
       {pattern: './scripts/test.ts', watched: false}
@@ -47,8 +48,8 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    // configuration.browsers = ['ChromeHeadless'];
-    configuration.browsers = Object.keys(configuration.customLaunchers);
+    configuration.browsers = ['ChromeHeadless'];
+    // configuration.browsers = Object.keys(configuration.customLaunchers);
   }
 
   if (process.env.SAUCE) {
@@ -61,7 +62,7 @@ module.exports = function (config) {
     configuration.reporters.push('saucelabs');
     configuration.sauceLabs = {
       startConnect: false,
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+      // tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
       verbose: true,
       testName: 'ng2-bootstrap unit tests',
       recordScreenshots: false,
