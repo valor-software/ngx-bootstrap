@@ -49,6 +49,7 @@ module.exports = function (config) {
   if (process.env.TRAVIS) {
     // configuration.browsers = ['ChromeHeadless'];
     configuration.browsers = Object.keys(configuration.customLaunchers);
+    configuration.logLevel = config.LOG_DEBUG;
   }
 
   if (process.env.SAUCE) {
