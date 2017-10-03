@@ -56,7 +56,8 @@ module.exports = function (config) {
       process.exit(1);
     }
 
-    configuration.browsers = Object.keys(configuration.customLaunchers);
+    // configuration.browsers = Object.keys(configuration.customLaunchers);
+
     configuration.logLevel = config.LOG_DEBUG;
 
     configuration.plugins.push(require('karma-sauce-launcher'));
