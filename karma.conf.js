@@ -48,7 +48,6 @@ module.exports = function (config) {
 
   if (process.env.TRAVIS) {
     configuration.browsers = ['ChromeHeadless'];
-    configuration.logLevel = config.LOG_DEBUG;
   }
 
   if (process.env.SAUCE) {
