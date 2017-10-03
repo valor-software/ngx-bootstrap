@@ -79,8 +79,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
 </demo-section>`
 })
 export class AccordionSectionComponent {
-  public name: string = 'Accordion';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
-  public titleDoc: string = titleDoc;
-  public demos: any = DEMOS;
+  name = 'Accordion';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
+  titleDoc: string = titleDoc;
+  demos: any = DEMOS;
 }

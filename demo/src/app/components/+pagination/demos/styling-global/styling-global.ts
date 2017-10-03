@@ -14,11 +14,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
   ]
 })
 export class DemoPaginationStylingComponent {
-  public totalItems: number = 64;
-  public currentPage: number = 4;
-  public smallnumPages: number = 0;
+  totalItems: number = 64;
+  currentPage: number = 4;
+  smallnumPages: number = 0;
 
-  public pageChanged(event: any): void {
+  pageChanged(event: any): void {
     console.log('Page changed to: ' + event.page);
     console.log('Number items per page: ' + event.itemsPerPage);
   }

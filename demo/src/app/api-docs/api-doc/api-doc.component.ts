@@ -29,7 +29,7 @@ import { Analytics } from '../analytics/analytics';
 })
 export class NgApiDocComponent {
   @Input()
-  public set directive(directiveName: string) {
+  set directive(directiveName: string) {
     this.apiDocs = this.docs[directiveName];
     this.configServiceName = `${directiveName}Config`;
     const configApiDocs = this.docs[this.configServiceName];
@@ -45,8 +45,8 @@ export class NgApiDocComponent {
     }
   }
 
-  public apiDocs: DirectiveDesc;
-  public configServiceName: string;
+  apiDocs: DirectiveDesc;
+  configServiceName: string;
 
   /**
    * Object which contains, for each input name of the directive, the corresponding property of the associated config
@@ -56,7 +56,7 @@ export class NgApiDocComponent {
   private _analytics: Analytics;
   private docs: NgApiDoc;
 
-  public constructor(_analytics: Analytics, docs: NgApiDoc) {
+  constructor(_analytics: Analytics, docs: NgApiDoc) {
     this._analytics = _analytics;
     // todo: inject docs
     this.docs = docs;
@@ -66,7 +66,7 @@ export class NgApiDocComponent {
    * Returns the default value of the given directive input by first looking for it in the matching config service
    * property. If there is no matching config property, it reads it from the input.
    */
-  public defaultInputValue(input: InputDesc): string {
+  defaultInputValue(input: InputDesc): string {
     const configProperty = this._configProperties[input.name];
     return configProperty ? configProperty.defaultValue : input.defaultValue;
   }
@@ -74,15 +74,15 @@ export class NgApiDocComponent {
   /**
    * Returns true if there is a config service property matching with the given directive input
    */
-  public hasConfigProperty(input: InputDesc): boolean {
+  hasConfigProperty(input: InputDesc): boolean {
     return !!this._configProperties[input.name];
   }
 
-  public methodSignature(method: MethodDesc): string {
+  methodSignature(method: MethodDesc): string {
     return signature(method);
   }
 
-  public trackSourceClick(): void {
+  trackSourceClick(): void {
     this._analytics.trackEvent('Source File View', this.apiDocs.className);
   }
 

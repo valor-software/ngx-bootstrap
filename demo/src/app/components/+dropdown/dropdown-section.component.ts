@@ -126,8 +126,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
 </demo-section>`
 })
 export class DropdownSectionComponent {
-  public name: string = 'Dropdowns';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/dropdown';
-  public demos: any = DEMOS;
-  public titleDoc: string = titleDoc;
+  name: string = 'Dropdowns';
+  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/dropdown';
+  demos: any = DEMOS;
+  titleDoc: string = titleDoc;
 }

@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './custom.html'
 })
 export class DemoRatingCustomComponent {
-  public x: number = 5;
-  public y: number = 2;
+  x: number = 5;
+  y: number = 2;
 }

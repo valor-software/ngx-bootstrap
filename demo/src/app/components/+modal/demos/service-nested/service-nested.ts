@@ -7,17 +7,17 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './service-nested.html'
 })
 export class DemoModalServiceNestedComponent {
-  public modalRef: BsModalRef;
-  public modalRef2: BsModalRef;
+  modalRef: BsModalRef;
+  modalRef2: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
-  public openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
-  public openModal2(template: TemplateRef<any>) {
+  openModal2(template: TemplateRef<any>) {
     this.modalRef2 = this.modalService.show(template, { class: 'second' });
   }
-  public closeFirstModal() {
+  closeFirstModal() {
     this.modalRef.hide();
     this.modalRef = null;
   }

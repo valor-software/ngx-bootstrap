@@ -16,20 +16,20 @@ const _bs4Css =
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
-  public isShown = false;
+  isShown = false;
 
-  public get isBs3(): boolean {
+  get isBs3(): boolean {
     return isBs3();
   }
 
-  public routes: any = routes;
-  public search: any = {};
+  routes: any = routes;
+  search: any = {};
 
   currentTheme: 'bs3' | 'bs4';
 
-  public constructor(
-    private router: Router,
+  constructor(
     public styleManager: StyleManager,
+    private router: Router,
     private _themeStorage: ThemeStorage,
     private renderer: Renderer,
     @Inject(DOCUMENT) private document: any
@@ -49,7 +49,7 @@ export class SidebarComponent {
     });
   }
 
-  public toggle(isShown?: boolean): void {
+  toggle(isShown?: boolean): void {
     this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
     if (this.document && this.document.body) {
       this.renderer.setElementClass(

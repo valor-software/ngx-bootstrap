@@ -9,11 +9,11 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
   templateUrl: './async.html'
 })
 export class DemoTypeaheadAsyncComponent {
-  public asyncSelected: string;
-  public typeaheadLoading: boolean;
-  public typeaheadNoResults: boolean;
-  public dataSource: Observable<any>;
-  public statesComplex: any[] = [
+  asyncSelected: string;
+  typeaheadLoading: boolean;
+  typeaheadNoResults: boolean;
+  dataSource: Observable<any>;
+  statesComplex: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     {
@@ -70,14 +70,14 @@ export class DemoTypeaheadAsyncComponent {
     { id: 51, name: 'Wyoming', region: 'West' }
   ];
 
-  public constructor() {
+  constructor() {
     this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
     }).mergeMap((token: string) => this.getStatesAsObservable(token));
   }
 
-  public getStatesAsObservable(token: string): Observable<any> {
+  getStatesAsObservable(token: string): Observable<any> {
     let query = new RegExp(token, 'ig');
 
     return Observable.of(
@@ -87,15 +87,15 @@ export class DemoTypeaheadAsyncComponent {
     );
   }
 
-  public changeTypeaheadLoading(e: boolean): void {
+  changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
   }
 
-  public changeTypeaheadNoResults(e: boolean): void {
+  changeTypeaheadNoResults(e: boolean): void {
     this.typeaheadNoResults = e;
   }
 
-  public typeaheadOnSelect(e: TypeaheadMatch): void {
+  typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
   }
 }
