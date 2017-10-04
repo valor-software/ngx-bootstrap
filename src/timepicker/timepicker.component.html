@@ -1,0 +1,120 @@
+<table>
+  <tbody>
+  <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+    <!-- increment hours button-->
+    <td>
+      <a class="btn btn-link" [class.disabled]="!canIncrementHours"
+         (click)="changeHours(hourStep)"
+      ><span class="bs-chevron bs-chevron-up"></span></a>
+    </td>
+    <!-- divider -->
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <!-- increment minutes button -->
+    <td>
+      <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
+         (click)="changeMinutes(minuteStep)"
+      ><span class="bs-chevron bs-chevron-up"></span></a>
+    </td>
+    <!-- divider -->
+    <td *ngIf="showSeconds">&nbsp;</td>
+    <!-- increment seconds button -->
+    <td *ngIf="showSeconds">
+      <a class="btn btn-link" [class.disabled]="!canIncrementSeconds"
+         (click)="changeSeconds(secondsStep)">
+        <span class="bs-chevron bs-chevron-up"></span>
+      </a>
+    </td>
+    <!-- space between -->
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <!-- meridian placeholder-->
+    <td *ngIf="showMeridian"></td>
+  </tr>
+  <tr>
+    <!-- hours -->
+    <td class="form-group" [class.has-error]="invalidHours">
+      <input type="text" style="width:50px;"
+             class="form-control text-center"
+             placeholder="HH"
+             maxlength="2"
+             [readonly]="readonlyInput"
+             [value]="hours"
+             (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
+             (keydown.ArrowUp)="changeHours(hourStep, 'key')"
+             (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
+             (change)="updateHours($event.target.value)"></td>
+    <!-- divider -->
+    <td>&nbsp;:&nbsp;</td>
+    <!-- minutes -->
+    <td class="form-group" [class.has-error]="invalidMinutes">
+      <input style="width:50px;" type="text"
+             class="form-control text-center"
+             placeholder="MM"
+             maxlength="2"
+             [readonly]="readonlyInput"
+             [value]="minutes"
+             (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
+             (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
+             (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
+             (change)="updateMinutes($event.target.value)">
+    </td>
+    <!-- divider -->
+    <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
+    <!-- seconds -->
+    <td class="form-group" *ngIf="showSeconds"
+        [class.has-error]="invalidSeconds">
+      <input style="width:50px;" type="text"
+             class="form-control text-center"
+             placeholder="SS"
+             maxlength="2"
+             [readonly]="readonlyInput"
+             [value]="seconds"
+             (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
+             (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
+             (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
+             (change)="updateSeconds($event.target.value)">
+    </td>
+    <!-- space between -->
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <!-- meridian -->
+    <td *ngIf="showMeridian">
+      <button type="button" class="btn btn-default text-center"
+              [disabled]="readonlyInput"
+              [class.disabled]="readonlyInput"
+              (click)="toggleMeridian()"
+      >{{ meridian }}
+      </button>
+    </td>
+  </tr>
+  <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+    <!-- decrement hours button-->
+    <td>
+      <a class="btn btn-link" [class.disabled]="!canDecrementHours"
+         (click)="changeHours(-hourStep)">
+        <span class="bs-chevron bs-chevron-down"></span>
+      </a>
+    </td>
+    <!-- divider -->
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <!-- decrement minutes button-->
+    <td>
+      <a class="btn btn-link" [class.disabled]="!canDecrementMinutes"
+         (click)="changeMinutes(-minuteStep)">
+        <span class="bs-chevron bs-chevron-down"></span>
+      </a>
+    </td>
+    <!-- divider -->
+    <td *ngIf="showSeconds">&nbsp;</td>
+    <!-- decrement seconds button-->
+    <td *ngIf="showSeconds">
+      <a class="btn btn-link" [class.disabled]="!canDecrementSeconds"
+         (click)="changeSeconds(-secondsStep)">
+        <span class="bs-chevron bs-chevron-down"></span>
+      </a>
+    </td>
+    <!-- space between -->
+    <td>&nbsp;&nbsp;&nbsp;</td>
+    <!-- meridian placeholder-->
+    <td *ngIf="showMeridian"></td>
+  </tr>
+  </tbody>
+</table>

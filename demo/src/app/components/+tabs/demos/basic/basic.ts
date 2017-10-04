@@ -5,10 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './basic.html'
 })
 export class DemoTabsBasicComponent {
-
-  public alertMe(): void {
-    setTimeout(function (): void {
-      alert('You\'ve selected the alert tab!');
+  alertMe(): void {
+    setTimeout(function(): void {
+      alert("You've selected the alert tab!");
     });
   }
 }

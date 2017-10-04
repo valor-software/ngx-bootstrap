@@ -34,9 +34,16 @@ export function isNumber(value: string): boolean {
   return !isNaN(toNumber(value));
 }
 
-export function parseHours(value: string | number, isPM: boolean = false): number {
+export function parseHours(
+  value: string | number,
+  isPM = false
+): number {
   const hour = toNumber(value);
-  if (isNaN(hour) || hour < 0 || hour > (isPM ? hoursPerDayHalf : hoursPerDay)) {
+  if (
+    isNaN(hour) ||
+    hour < 0 ||
+    hour > (isPM ? hoursPerDayHalf : hoursPerDay)
+  ) {
     return NaN;
   }
 
@@ -71,7 +78,7 @@ export function parseTime(value: string | Date): Date {
 
 export function changeTime(value: Date, diff: Time): Date {
   if (!value) {
-    return changeTime(createDate(new Date(),0,0, 0), diff);
+    return changeTime(createDate(new Date(), 0, 0, 0), diff);
   }
 
   let hour = value.getHours();
@@ -86,11 +93,11 @@ export function changeTime(value: Date, diff: Time): Date {
   }
 
   if (diff.minute) {
-    minutes = (minutes + toNumber(diff.minute));
+    minutes = minutes + toNumber(diff.minute);
   }
 
   if (diff.seconds) {
-    seconds = (seconds + toNumber(diff.seconds));
+    seconds = seconds + toNumber(diff.seconds);
   }
 
   return createDate(value, hour, minutes, seconds);
@@ -121,24 +128,42 @@ export function setTime(value: Date, opts: Time): Date {
   return createDate(value, hour, minute, seconds);
 }
 
-export function createDate(value: Date, hours: number, minutes: number, seconds: number): Date {
-
+export function createDate(
+  value: Date,
+  hours: number,
+  minutes: number,
+  seconds: number
+): Date {
   // fixme: unreachable code, value is mandatory
   const _value = value || new Date();
-  return new Date(_value.getFullYear(), _value.getMonth(), _value.getDate(),
-    hours, minutes, seconds, _value.getMilliseconds());
+
+  return new Date(
+    _value.getFullYear(),
+    _value.getMonth(),
+    _value.getDate(),
+    hours,
+    minutes,
+    seconds,
+    _value.getMilliseconds()
+  );
 }
 
 export function padNumber(value: number): string {
   const _value = value.toString();
-  if (_value.length > 1) { return _value; }
+  if (_value.length > 1) {
+    return _value;
+  }
 
   return `0${_value}`;
 }
 
-export function isInputValid(hours: string, minutes: string, seconds: string = '0', isPM: boolean): boolean {
-  if (isNaN(parseHours(hours, isPM)) || isNaN(parseMinutes(minutes)) || isNaN(parseSeconds(seconds))) {
-    return false;
-  }
-  return true;
+export function isInputValid(
+  hours: string,
+  minutes: string,
+  seconds = '0',
+  isPM: boolean
+): boolean {
+  return !(isNaN(parseHours(hours, isPM))
+    || isNaN(parseMinutes(minutes))
+    || isNaN(parseSeconds(seconds)));
 }

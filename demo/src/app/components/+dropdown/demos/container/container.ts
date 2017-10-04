@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-dropdown-container',
   templateUrl: './container.html'
 })
-export class DemoDropdownContainerComponent {
-
-}
+export class DemoDropdownContainerComponent {}

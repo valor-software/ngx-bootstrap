@@ -1,12 +1,11 @@
 {
   "name": "ngx-bootstrap",
-  "dependencies": {
-    "moment": "*"
-  },
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/compiler": "*",
     "@angular/core": "*",
-    "@angular/forms": "*"
+    "@angular/forms": "*",
+    "typescript": "*",
+    "rxjs": "*"
   }
 }

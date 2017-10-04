@@ -38,8 +38,8 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+        base: 'ChromeHeadless',
+        flags: ['--disable-translate', '--disable-extensions']
       }
     },
     mime: { 'text/x-typescript': ['ts','tsx'] },
@@ -47,7 +47,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = ['ChromeHeadless'];
   }
 
   if (process.env.SAUCE) {
@@ -59,6 +59,8 @@ module.exports = function (config) {
     configuration.plugins.push(require('karma-sauce-launcher'));
     configuration.reporters.push('saucelabs');
     configuration.sauceLabs = {
+      startConnect: false,
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
       verbose: true,
       testName: 'ng2-bootstrap unit tests',
       recordScreenshots: false,

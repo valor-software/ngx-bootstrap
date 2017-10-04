@@ -2,26 +2,39 @@
 /**
  * @copyright Angular ng-bootstrap team
  */
-import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 import { Component } from '@angular/core';
 import { AlertModule, AlertComponent, AlertConfig } from '../../alert';
 
+@Component({
+  selector: 'test-cmp',
+  template: '',
+  entryComponents: [AlertComponent]
+})
+class TestComponent {
+  name = 'World';
+  closed = false;
+}
+
 const createTestComponent = (html: string) =>
-    createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
+  createGenericTestComponent(html, TestComponent);
 
 function getAlertElement(element: HTMLElement): HTMLDivElement {
   return element.querySelector('.alert') as HTMLDivElement;
 }
 
 function getCloseButton(element: HTMLElement): HTMLButtonElement {
-  return element.querySelector('button') as HTMLButtonElement;
+  return element.querySelector('button');
 }
 
 describe('ngb-alert', () => {
-
-  beforeEach(
-      () => { TestBed.configureTestingModule({declarations: [TestComponent], imports: [AlertModule.forRoot()]}); });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [AlertModule.forRoot()]
+    });
+  });
 
   it('should initialize inputs with default values', () => {
     const defaultConfig = new AlertConfig();
@@ -40,26 +53,34 @@ describe('ngb-alert', () => {
   });
 
   it('should render close button when dismissible', () => {
-    const fixture = createTestComponent('<alert [dismissible]="true">Watch out!</alert>');
+    const fixture = createTestComponent(
+      '<alert [dismissible]="true">Watch out!</alert>'
+    );
 
     expect(getCloseButton(getAlertElement(fixture.nativeElement))).toBeTruthy();
   });
 
   it('should render close button only if dismissible', () => {
-    const fixture = createTestComponent(`<alert [dismissible]="false">Don't close!</alert>`);
+    const fixture = createTestComponent(
+      `<alert [dismissible]="false">Don't close!</alert>`
+    );
     expect(getCloseButton(getAlertElement(fixture.nativeElement))).toBeFalsy();
   });
 
   describe('Custom config', () => {
     let config: AlertConfig;
 
-    beforeEach(() => { TestBed.configureTestingModule({imports: [AlertModule.forRoot()]}); });
+    beforeEach(() => {
+      TestBed.configureTestingModule({ imports: [AlertModule.forRoot()] });
+    });
 
-    beforeEach(inject([AlertConfig], (c: AlertConfig) => {
-      config = c;
-      config.dismissible = false;
-      config.type = 'success';
-    }));
+    beforeEach(
+      inject([AlertConfig], (c: AlertConfig) => {
+        config = c;
+        config.dismissible = false;
+        config.type = 'success';
+      })
+    );
 
     it('should initialize inputs with provided config', () => {
       const fixture = TestBed.createComponent(AlertComponent);
@@ -72,13 +93,15 @@ describe('ngb-alert', () => {
   });
 
   describe('Custom config as provider', () => {
-    let config = new AlertConfig();
+    const config = new AlertConfig();
     config.dismissible = false;
     config.type = 'success';
 
     beforeEach(() => {
-      TestBed.configureTestingModule(
-          {imports: [AlertModule.forRoot()], providers: [{provide: AlertConfig, useValue: config}]});
+      TestBed.configureTestingModule({
+        imports: [AlertModule.forRoot()],
+        providers: [{ provide: AlertConfig, useValue: config }]
+      });
     });
 
     it('should initialize inputs with provided config as provider', () => {
@@ -92,8 +115,3 @@ describe('ngb-alert', () => {
   });
 });
 
-@Component({selector: 'test-cmp', template: '', entryComponents: [AlertComponent]})
-class TestComponent {
-  public name: string = 'World';
-  public closed: boolean = false;
-}

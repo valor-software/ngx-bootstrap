@@ -3,51 +3,47 @@ import { AlertConfig } from './alert.config';
 import { OnChange } from '../utils/decorators';
 
 @Component({
-  selector: 'alert,ngx-alert',
-  template: `
-<template [ngIf]="!isClosed">
-  <div [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
-    <template [ngIf]="dismissible">
-      <button type="button" class="close" aria-label="Close" (click)="close()">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Close</span>
-      </button>
-    </template>
-    <ng-content></ng-content>
-  </div>
-</template>
-  `
+  selector: 'alert,bs-alert',
+  templateUrl: './alert.component.html'
 })
 export class AlertComponent implements OnInit {
-  /** Alert type. Provides one of four bootstrap supported contextual classes: `success`, `info`, `warning` and `danger` */
-  @Input() public type: string = 'warning';
+  /** Alert type.
+   * Provides one of four bootstrap supported contextual classes:
+   * `success`, `info`, `warning` and `danger`
+   */
+  @Input() type = 'warning';
   /** If set, displays an inline "Close" button */
   @OnChange()
-  @Input() public dismissible: boolean = false;
+  @Input()
+  dismissible = false;
   /** Number in milliseconds, after which alert will be closed */
-  @Input() public dismissOnTimeout: number | string;
+  @Input() dismissOnTimeout: number | string;
 
-  /** This event fires immediately after close instance method is called, $event is an instance of Alert component. */
-  @Output() public onClose: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
+  /** This event fires immediately after close instance method is called,
+   * $event is an instance of Alert component.
+   */
+  @Output() onClose = new EventEmitter<AlertComponent>();
   /** This event fires when alert closed, $event is an instance of Alert component */
-  @Output() public onClosed: EventEmitter<AlertComponent> = new EventEmitter<AlertComponent>();
+  @Output() onClosed = new EventEmitter<AlertComponent>();
 
-  public isClosed: boolean = false;
-  public classes: string = '';
-  public dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  isClosed = false;
+  classes = '';
+  dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  public constructor(_config: AlertConfig) {
+  constructor(_config: AlertConfig) {
     Object.assign(this, _config);
     this.dismissibleChange.subscribe((dismissible: boolean) => {
       this.classes = this.dismissible ? 'alert-dismissible' : '';
     });
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     if (this.dismissOnTimeout) {
       // if dismissOnTimeout used as attr without binding, it will be a string
-      setTimeout(() => this.close(),
-        parseInt(this.dismissOnTimeout as string, 10));
+      setTimeout(
+        () => this.close(),
+        parseInt(this.dismissOnTimeout as string, 10)
+      );
     }
   }
 
@@ -56,7 +52,7 @@ export class AlertComponent implements OnInit {
   /**
    * Closes an alert by removing it from the DOM.
    */
-  public close(): void {
+  close(): void {
     if (this.isClosed) {
       return;
     }
