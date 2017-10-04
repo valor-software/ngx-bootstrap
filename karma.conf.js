@@ -22,7 +22,7 @@ module.exports = function (config) {
       './scripts/test.ts': ['@angular/cli']
     },
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
+      reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
     angularCli: {
@@ -43,8 +43,8 @@ module.exports = function (config) {
         flags: ['--disable-translate', '--disable-extensions']
       }
     },
-    mime: { 'text/x-typescript': ['ts','tsx'] },
-    client: { captureConsole: true, clearContext: false }
+    mime: {'text/x-typescript': ['ts', 'tsx']},
+    client: {captureConsole: true, clearContext: false}
   };
 
   if (process.env.TRAVIS) {
@@ -60,31 +60,53 @@ module.exports = function (config) {
     configuration.logLevel = config.LOG_DEBUG;
 
     configuration.plugins.push(require('karma-sauce-launcher'));
-    configuration.reporters = ['progress', 'saucelabs'];
+    configuration.reporters = ['dots', 'saucelabs'];
     configuration.sauceLabs = {
-      testName: 'ng2-bootstrap unit tests',
-      startConnect: false,
-      build: process.env.TRAVIS_JOB_NUMBER,
-      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-      verbose: true,
-      recordScreenshots: false,
-      username: process.env.SAUCE_USERNAME,
-      accessKey: process.env.SAUCE_ACCESS_KEY,
-      connectOptions: {
-        port: 5757,
-        logfile: 'sauce_connect.log'
-      },
-      public: 'public'
+      testName: 'ngx-bootstrap',
+        build: process.env.TRAVIS_JOB_NUMBER,
+        tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+        retryLimit: 3,
+        startConnect: false,
+        recordVideo: false,
+        recordScreenshots: false,
+        options: {
+        'command-timeout': 600,
+          'idle-timeout': 600,
+          'max-duration': 5400
+      }
     };
-    configuration.captureTimeout = 0;
-    configuration.singleRun =false;
-    configuration.customLaunchers = customLaunchers();
-    configuration.browsers = Object.keys(configuration.customLaunchers);
-    configuration.concurrency = 3;
-    configuration.browserDisconnectTolerance = 2;
+
+    // configuration.sauceLabs = {
+    //   testName: 'ng2-bootstrap unit tests',
+    //   startConnect: false,
+    //   build: process.env.TRAVIS_JOB_NUMBER,
+    //   tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+    //   verbose: true,
+    //   recordScreenshots: false,
+    //   username: process.env.SAUCE_USERNAME,
+    //   accessKey: process.env.SAUCE_ACCESS_KEY,
+    //   connectOptions: {
+    //     port: 5757,
+    //     logfile: 'sauce_connect.log'
+    //   },
+    //   public: 'public'
+    // };
+    configuration.singleRun = false;
+    configuration.customLaunchers = {
+      'SL_CHROME': {
+        base: 'SauceLabs',
+        browserName: 'chrome',
+        version: 'latest'
+      };
+    // configuration.browsers = Object.keys(configuration.customLaunchers);
+    configuration.browsers = ['SL_CHROME'];
+    // configuration.concurrency = 3;
+    // configuration.browserDisconnectTolerance = 2;
+    configuration.captureTimeout = 60000;
     configuration.browserNoActivityTimeout = 20000;
     configuration.browserDisconnectTimeout = 5000;
   }
 
-  config.set(configuration);
-};
+    config.set(configuration);
+  }
+  ;
