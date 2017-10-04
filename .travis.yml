@@ -9,6 +9,11 @@ git:
   depth: 3
   submodules: false
 
+env:
+  global:
+    - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
+    - LOGS_DIR=/tmp/logs
+
 stages:
   - name: precache
     if: ( branch = development AND type = push ) OR type = pull_request
