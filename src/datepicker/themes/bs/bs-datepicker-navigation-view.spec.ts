@@ -1,7 +1,27 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BsNavigationDirection, BsNavigationEvent, DaysCalendarViewModel } from '../../models/index';
+import {
+  BsNavigationDirection,
+  DaysCalendarViewModel
+} from '../../models/index';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
+
+@Component({
+  selector: 'test-cmp',
+  template: `
+    <bs-datepicker-navigation-view
+      [calendar]="month"
+      (onNavigate)="navTo($event)"
+    ></bs-datepicker-navigation-view>`
+})
+class TestComponent {
+  month: DaysCalendarViewModel;
+  _navTo: BsNavigationDirection;
+
+  navTo(event: BsNavigationDirection): void {
+    this._navTo = event;
+  }
+}
 
 type TestFixture = ComponentFixture<TestComponent>;
 const titleSelector = '.current';
@@ -9,39 +29,36 @@ const prevNavSelector = '.previous';
 const nextNavSelector = '.next';
 
 function getTitles(fixture: TestFixture): string[] {
-  const elements = fixture.nativeElement
-    .querySelectorAll(titleSelector);
+  const elements = fixture.nativeElement.querySelectorAll(titleSelector);
 
   return [elements[0].innerText, elements[1].innerText];
 }
 
 function getPrevNavButton(fixture: TestFixture): HTMLElement {
-  return fixture.nativeElement
-    .querySelector(prevNavSelector) as HTMLElement;
+  return fixture.nativeElement.querySelector(prevNavSelector) as HTMLElement;
 }
 
 function getNextNavButton(fixture: TestFixture): HTMLElement {
-  return fixture.nativeElement
-    .querySelector(nextNavSelector) as HTMLElement;
+  return fixture.nativeElement.querySelector(nextNavSelector) as HTMLElement;
 }
 
 function getNavEvent(fixture: TestFixture): BsNavigationDirection {
   return fixture.componentInstance._navTo;
 }
 
-function setMonth(fixture: TestFixture, month: Partial<DaysCalendarViewModel>): void {
+function setMonth(fixture: TestFixture,
+                  month: Partial<DaysCalendarViewModel>): void {
   fixture.componentInstance.month = month as DaysCalendarViewModel;
   fixture.detectChanges();
 }
 
 describe('datepicker: bs-datepicker-navigation-view', () => {
   let fixture: TestFixture;
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [TestComponent, BsDatepickerNavigationViewComponent]
-    })
-      .compileComponents();
-  }));
+  beforeEach(
+    async(() => TestBed.configureTestingModule({
+        declarations: [TestComponent, BsDatepickerNavigationViewComponent]
+      }).compileComponents()
+    ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
   });
@@ -89,20 +106,3 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
     expect(getNavEvent(fixture)).toBe(BsNavigationDirection.UP);
   });
 });
-
-@Component({
-  selector: 'test-cmp',
-  template: `
-    <bs-datepicker-navigation-view
-      [calendar]="month"
-      (onNavigate)="navTo($event)"
-    ></bs-datepicker-navigation-view>`
-})
-class TestComponent {
-  month: DaysCalendarViewModel;
-  _navTo: BsNavigationDirection;
-
-  navTo(event: BsNavigationDirection): void {
-    this._navTo = event;
-  }
-}

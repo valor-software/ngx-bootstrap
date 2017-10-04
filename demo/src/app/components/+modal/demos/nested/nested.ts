@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-modal-nested',
   templateUrl: './nested.html'
 })
-export class DemoModalNestedComponent {
-
-}
+export class DemoModalNestedComponent {}

@@ -8,8 +8,14 @@ import { DemoTabsConfigComponent } from './config/config';
 import { DemoTabsManualComponent } from './manual/manual';
 
 export const DEMO_COMPONENTS = [
-  DemoTabsBasicComponent, DemoTabsManualComponent, DemoTabsDynamicComponent, DemoTabsStylingComponent, DemoTabsPillsComponent,
-  DemoTabsVerticalPillsComponent, DemoTabsJustifiedComponent, DemoTabsConfigComponent
+  DemoTabsBasicComponent,
+  DemoTabsManualComponent,
+  DemoTabsDynamicComponent,
+  DemoTabsStylingComponent,
+  DemoTabsPillsComponent,
+  DemoTabsVerticalPillsComponent,
+  DemoTabsJustifiedComponent,
+  DemoTabsConfigComponent
 ];
 
 export const DEMOS = {

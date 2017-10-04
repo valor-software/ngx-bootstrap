@@ -6,7 +6,12 @@
 
 import { LocaleData } from '../locale/locale.class';
 
-function processRelativeTime(num: number, withoutSuffix: boolean, key: string, isFuture: boolean): string {
+function processRelativeTime(
+  num: number,
+  withoutSuffix: boolean,
+  key: string,
+  isFuture: boolean
+): string {
   const str = num.toString();
 
   const format: any = {
@@ -25,10 +30,16 @@ function processRelativeTime(num: number, withoutSuffix: boolean, key: string, i
 
 export const de: LocaleData = {
   abbr: 'de',
-  months: 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-  monthsShort: 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split('_'),
+  months: 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split(
+    '_'
+  ),
+  monthsShort: 'Jan._Feb._März_Apr._Mai_Juni_Juli_Aug._Sep._Okt._Nov._Dez.'.split(
+    '_'
+  ),
   monthsParseExact: true,
-  weekdays: 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
+  weekdays: 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split(
+    '_'
+  ),
   weekdaysShort: 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
   weekdaysMin: 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
   weekdaysParseExact: true,
@@ -64,9 +75,11 @@ export const de: LocaleData = {
     yy: processRelativeTime
   },
   dayOfMonthOrdinalParse: /\d{1,2}\./,
-  ordinal(num: number, token?: string): string { return `${num}.`; },
+  ordinal(num: number, token?: string): string {
+    return `${num}.`;
+  },
   week: {
     dow: 1, // Monday is the first day of the week.
-    doy: 4  // The week that contains Jan 4th is the first week of the year.
+    doy: 4 // The week that contains Jan 4th is the first week of the year.
   }
 };

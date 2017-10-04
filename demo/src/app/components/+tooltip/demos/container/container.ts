@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-tooltip-container',
   templateUrl: './container.html'
 })
-export class DemoTooltipContainerComponent {
-}
+export class DemoTooltipContainerComponent {}

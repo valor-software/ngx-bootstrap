@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -14,16 +15,15 @@ const template = `
   selector: 'collapse-test',
   template
 })
-class TestCollapseComponent {
-}
+class TestCollapseComponent {}
 
 // TODO: - add animate
 //       - check callbacks have been called or not called (expanding, expanded, collapsing, collapsed)
 
 describe('Directive: Collapse', () => {
-  let fixture:ComponentFixture<TestCollapseComponent>;
-  let element:any;
-  let context:any;
+  let fixture: ComponentFixture<TestCollapseComponent>;
+  let element: any;
+  let context: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,7 +37,7 @@ describe('Directive: Collapse', () => {
   });
 
   it('should have collapse class', () => {
-    let div = fixture.nativeElement.querySelector('div');
+    const div = fixture.nativeElement.querySelector('div');
     expect(div.classList).toContain('collapse');
   });
 
@@ -54,9 +54,12 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = true', () => {
-    expect(true);
-  });
+  xit(
+    'should not trigger any animation on initialization if isCollapsed = true',
+    () => {
+      expect(true);
+    }
+  );
 
   it('should collapse if isCollapsed = true on subsequent use', () => {
     context.isCollapsed = false;
@@ -75,9 +78,12 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).not.toBe(0);
   });
 
-  xit('should not trigger any animation on initialization if isCollapsed = false', () => {
-    expect(true);
-  });
+  xit(
+    'should not trigger any animation on initialization if isCollapsed = false',
+    () => {
+      expect(true);
+    }
+  );
 
   it('should expand if isCollapsed = false on subsequent use', () => {
     context.isCollapsed = false;
@@ -120,10 +126,10 @@ describe('Directive: Collapse', () => {
       context.isCollapsed = false;
       context.isHidden = true;
       fixture.detectChanges();
-      let heightWithoutDynamic = element.offsetHeight;
+      const heightWithoutDynamic = element.offsetHeight;
       context.isHidden = false;
       fixture.detectChanges();
-      let heightWithDynamic = element.offsetHeight;
+      const heightWithDynamic = element.offsetHeight;
       expect(heightWithDynamic).toBeGreaterThanOrEqual(heightWithoutDynamic);
     });
 
@@ -131,10 +137,10 @@ describe('Directive: Collapse', () => {
       context.isCollapsed = false;
       context.isHidden = false;
       fixture.detectChanges();
-      let heightWithDynamic = element.offsetHeight;
+      const heightWithDynamic = element.offsetHeight;
       context.isHidden = true;
       fixture.detectChanges();
-      let heightWithoutDynamic = element.offsetHeight;
+      const heightWithoutDynamic = element.offsetHeight;
       expect(heightWithoutDynamic).toBeLessThanOrEqual(heightWithDynamic);
     });
   });

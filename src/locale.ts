@@ -1,4 +1,5 @@
 export { ar } from './bs-moment/i18n/ar';
+export { cs } from './bs-moment/i18n/cs';
 export { de } from './bs-moment/i18n/de';
 export { enGb } from './bs-moment/i18n/en-gb';
 export { es } from './bs-moment/i18n/es';
@@ -15,3 +16,4 @@ export { pl } from './bs-moment/i18n/pl';
 export { ptBr } from './bs-moment/i18n/pt-br';
 export { ru } from './bs-moment/i18n/ru';
 export { zhCn } from './bs-moment/i18n/zh-cn';
+export { tr } from './bs-moment/i18n/tr';

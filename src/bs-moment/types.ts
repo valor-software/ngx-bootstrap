@@ -1,7 +1,14 @@
 import { Locale } from './locale/locale.class';
 
-export type UnitOfTime = 'year' | 'month' | 'week' | 'day' | 'hour' |
-  'minute' | 'seconds' | 'milliseconds';
+export type UnitOfTime =
+  | 'year'
+  | 'month'
+  | 'week'
+  | 'day'
+  | 'hour'
+  | 'minute'
+  | 'seconds'
+  | 'milliseconds';
 
 export interface TimeUnit {
   year?: number;
@@ -12,4 +19,8 @@ export interface TimeUnit {
   seconds?: number;
 }
 
-export type DateFormatterFn = (date: Date, format: string, locale?: Locale) => string;
+export type DateFormatterFn = (
+  date: Date,
+  format: string,
+  locale?: Locale
+) => string;

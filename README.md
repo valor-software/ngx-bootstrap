@@ -20,6 +20,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 - [Documentation](http://valor-software.com/ngx-bootstrap/)
 - [Release Notes](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md)
 - [Slack Community](https://ngx-slack.herokuapp.com)
+-
 
 <!-- [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap) -->
 
@@ -82,7 +83,8 @@ To enable bootstrap 4 theme templates in ngx-bootstrap, please read
 First time
  - clone repository
  - `npm install`
- - `npm run test` it will run build and link
+ - `npm run test` it will build the lib and create a link in `node_modules`
+
  To run bootstrap 3 and 4 demo:
  - `npm run demo.serve` to serve local demo. This is for testing only, without watchers.
 
@@ -90,7 +92,6 @@ First time
  - `npm run build.watch` in first terminal
  - `ng serve` in second
 
- Run `npm run link` after clean install and rebuild
 
 # Usage & Demo
 

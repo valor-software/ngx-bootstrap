@@ -10,7 +10,7 @@ import { AlertConfig } from './alert.config';
   entryComponents: [AlertComponent]
 })
 export class AlertModule {
-  public static forRoot(): ModuleWithProviders {
-    return {ngModule: AlertModule, providers: [AlertConfig]};
+  static forRoot(): ModuleWithProviders {
+    return { ngModule: AlertModule, providers: [AlertConfig] };
   }
 }

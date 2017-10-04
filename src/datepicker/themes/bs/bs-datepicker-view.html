@@ -21,8 +21,8 @@
       <!--months calendar-->
       <div *ngSwitchCase="'month'">
         <bs-month-calendar-view
-          *ngFor="let calendar of (monthsCalendar | async)"
-          [class.bs-datepicker-multiple]="(daysCalendar | async).length > 1"
+          *ngFor="let calendar of (monthsCalendar   | async)"
+          [class.bs-datepicker-multiple]="(daysCalendar   | async).length > 1"
           [calendar]="calendar"
           (onNavigate)="navigateTo($event)"
           (onViewMode)="setViewMode($event)"
@@ -34,7 +34,7 @@
       <!--years calendar-->
       <div *ngSwitchCase="'year'">
         <bs-years-calendar-view
-          *ngFor="let calendar of (yearsCalendar | async)"
+          *ngFor="let calendar of (yearsCalendar   | async)"
           [class.bs-datepicker-multiple]="(daysCalendar | async).length > 1"
           [calendar]="calendar"
           (onNavigate)="navigateTo($event)"

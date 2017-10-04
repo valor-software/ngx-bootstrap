@@ -10,15 +10,19 @@ describe('Component: TypeaheadContainer', () => {
   let component: TypeaheadContainerComponent;
 
   beforeEach(() => {
-    fixture = TestBed
-      .configureTestingModule({
-        declarations: [TypeaheadContainerComponent],
-        providers: [{
+    fixture = TestBed.configureTestingModule({
+      declarations: [TypeaheadContainerComponent],
+      providers: [
+        {
           provide: TypeaheadOptions,
-          useValue: new TypeaheadOptions({animation: false, placement: 'bottom-left', typeaheadRef: undefined})
-        }]
-      })
-      .createComponent(TypeaheadContainerComponent);
+          useValue: new TypeaheadOptions({
+            animation: false,
+            placement: 'bottom-left',
+            typeaheadRef: undefined
+          })
+        }
+      ]
+    }).createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -28,11 +32,11 @@ describe('Component: TypeaheadContainer', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have an \"element\" property', () => {
+  it('should have an "element" property', () => {
     expect(component.element).toBeTruthy();
   });
 
-  it('should have an empty \"matches\" array', () => {
+  it('should have an empty "matches" array', () => {
     expect(component.matches.length).toBe(0);
   });
 
@@ -42,7 +46,8 @@ describe('Component: TypeaheadContainer', () => {
     beforeEach(() => {
       fixture.detectChanges();
 
-      dropDown = fixture.debugElement.query(By.css('.dropdown-menu')).nativeElement as HTMLElement;
+      dropDown = fixture.debugElement.query(By.css('.dropdown-menu'))
+        .nativeElement as HTMLElement;
     });
 
     it('should be rendered', () => {
@@ -56,12 +61,14 @@ describe('Component: TypeaheadContainer', () => {
     beforeEach(() => {
       component.query = 'fo';
       component.matches = [
-        new TypeaheadMatch({id: 0, name: 'foo'}, 'foo'),
-        new TypeaheadMatch({id: 1, name: 'food'}, 'food')
+        new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
+        new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
       ];
       fixture.detectChanges();
 
-      matches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li')));
+      matches = asNativeElements(
+        fixture.debugElement.queryAll(By.css('.dropdown-menu li'))
+      );
     });
 
     describe('rendering', () => {
@@ -71,15 +78,17 @@ describe('Component: TypeaheadContainer', () => {
 
       xit('should highlight query for match', () => {
         // expect(matches[1].children[0].innerHTML).toBe('<strong>fo</strong>od');
-        const ms = fixture.debugElement.queryAll(By.css('.dropdown-menu li span'));
+        const ms = fixture.debugElement.queryAll(
+          By.css('.dropdown-menu li span')
+        );
         expect(ms[1].nativeElement.innerHTML).toBe('<strong>fo</strong>od');
       });
 
-      it('should set the \"active\" class on the first match', () => {
+      it('should set the "active" class on the first match', () => {
         expect(matches[0].classList.contains('active')).toBeTruthy();
       });
 
-      it('should not set the \"active\" class on other matches', () => {
+      it('should not set the "active" class on other matches', () => {
         expect(matches[1].classList.contains('active')).toBeFalsy();
       });
     });
@@ -123,13 +132,24 @@ describe('Component: TypeaheadContainer', () => {
       component.query = 'a';
       component.matches = [
         new TypeaheadMatch('fruits', 'fruits', true),
-        new TypeaheadMatch({id: 0, name: 'banana', category: 'fruits'}, 'banana'),
-        new TypeaheadMatch({id: 0, name: 'apple', category: 'fruits'}, 'apple')
+        new TypeaheadMatch(
+          { id: 0, name: 'banana', category: 'fruits' },
+          'banana'
+        ),
+        new TypeaheadMatch(
+          { id: 0, name: 'apple', category: 'fruits' },
+          'apple'
+        )
       ];
 
       fixture.detectChanges();
-      headerMatch = fixture.debugElement.query(By.css('.dropdown-header')).nativeElement;
-      itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
+      headerMatch = fixture.debugElement.query(By.css('.dropdown-header'))
+        .nativeElement;
+      itemMatches = asNativeElements(
+        fixture.debugElement.queryAll(
+          By.css('.dropdown-menu li:not(.dropdown-header)')
+        )
+      );
     });
 
     describe('rendering', () => {
@@ -138,15 +158,17 @@ describe('Component: TypeaheadContainer', () => {
       });
 
       xit('should highlight query for item match', () => {
-        const im = fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header) span'));
+        const im = fixture.debugElement.queryAll(
+          By.css('.dropdown-menu li:not(.dropdown-header) span')
+        );
         expect(im[1].nativeElement.innerHTML).toBe('<strong>a</strong>pple');
       });
 
-      it('should set the \"active\" class on the first item match', () => {
+      it('should set the "active" class on the first item match', () => {
         expect(itemMatches[0].classList.contains('active')).toBeTruthy();
       });
 
-      it('should not set the \"active\" class on the header match', () => {
+      it('should not set the "active" class on the header match', () => {
         expect(headerMatch.classList.contains('active')).toBeFalsy();
       });
 
@@ -197,5 +219,4 @@ describe('Component: TypeaheadContainer', () => {
       expect(component.isFocused).toBeFalsy();
     });
   });
-
 });

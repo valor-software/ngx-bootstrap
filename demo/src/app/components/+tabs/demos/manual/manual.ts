@@ -6,7 +6,6 @@ import { TabsetComponent } from 'ngx-bootstrap';
   templateUrl: './manual.html'
 })
 export class DemoTabsManualComponent {
-
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
   selectTab(tab_id: number) {
@@ -14,6 +13,6 @@ export class DemoTabsManualComponent {
   }
 
   disableEnable() {
-    this.staticTabs.tabs[2].disabled = ! this.staticTabs.tabs[2].disabled
+    this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled;
   }
 }

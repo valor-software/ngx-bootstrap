@@ -1,9 +1,13 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from '@angular/core/testing';
 import { PaginationModule } from '../pagination/pagination.module';
 import { PaginationComponent } from '../pagination/pagination.component';
 
 describe('Component: Pagination:', () => {
-
   let fixture: ComponentFixture<PaginationComponent>;
   let context: any;
   let element: any;
@@ -111,133 +115,139 @@ describe('Component: Pagination:', () => {
     expect(listItems.length).toEqual(5);
   });
 
-  it('check clicks(many page links)', fakeAsync(() => {
+  it(
+    'check clicks(many page links)',
+    fakeAsync(() => {
+      context.totalItems = 30;
+      context.itemsPerPage = 4;
 
-    context.totalItems = 30;
-    context.itemsPerPage = 4;
+      context.ngOnInit();
+      fixture.detectChanges();
 
-    context.ngOnInit();
-    fixture.detectChanges();
+      let listItems = element.querySelectorAll('li');
+      let links = element.querySelectorAll('a');
 
-    let listItems = element.querySelectorAll('li');
-    let links = element.querySelectorAll('a');
+      expect(listItems[0].classList).toContain('disabled');
+      expect(listItems[1].classList).toContain('active');
 
-    expect(listItems[0].classList).toContain('disabled');
-    expect(listItems[1].classList).toContain('active');
+      // <Previous> 1 2 3 4 _5_ 6 7 8 <Next>
+      links[5].click();
+      tick(200);
+      fixture.detectChanges();
 
-    // <Previous> 1 2 3 4 _5_ 6 7 8 <Next>
-    links[5].click();
-    tick(200);
-    fixture.detectChanges();
+      listItems = element.querySelectorAll('li');
+      links = element.querySelectorAll('a');
 
-    listItems = element.querySelectorAll('li');
-    links = element.querySelectorAll('a');
+      expect(listItems[0].classList).not.toContain('disabled');
+      expect(listItems[1].classList).not.toContain('active');
+      expect(listItems[5].classList).toContain('active');
 
-    expect(listItems[0].classList).not.toContain('disabled');
-    expect(listItems[1].classList).not.toContain('active');
-    expect(listItems[5].classList).toContain('active');
+      expect(context._page).toEqual(5);
 
-    expect(context._page).toEqual(5);
+      // <Previous> 1 2 3 4 5 6 7 _8_ <~Next~>
+      links[8].click();
+      tick(200);
+      fixture.detectChanges();
 
-    // <Previous> 1 2 3 4 5 6 7 _8_ <~Next~>
-    links[8].click();
-    tick(200);
-    fixture.detectChanges();
+      listItems = element.querySelectorAll('li');
 
-    listItems = element.querySelectorAll('li');
+      expect(listItems[9].classList).toContain('disabled');
+      expect(listItems[0].classList).not.toContain('disabled');
+      expect(listItems[1].classList).not.toContain('active');
+      expect(listItems[8].classList).toContain('active');
 
-    expect(listItems[9].classList).toContain('disabled');
-    expect(listItems[0].classList).not.toContain('disabled');
-    expect(listItems[1].classList).not.toContain('active');
-    expect(listItems[8].classList).toContain('active');
+      expect(context._page).toEqual(8);
+      expect(context._totalPages).toEqual(8);
+    })
+  );
 
-    expect(context._page).toEqual(8);
-    expect(context._totalPages).toEqual(8);
-  }));
+  it(
+    'check clicks(several page links)',
+    fakeAsync(() => {
+      context.totalItems = 30;
+      context.itemsPerPage = 4;
+      context.maxSize = 3;
 
-  it('check clicks(several page links)', fakeAsync(() => {
+      context.ngOnInit();
+      fixture.detectChanges();
 
-    context.totalItems = 30;
-    context.itemsPerPage = 4;
-    context.maxSize = 3;
+      let listItems = element.querySelectorAll('li');
+      let links = element.querySelectorAll('a');
 
-    context.ngOnInit();
-    fixture.detectChanges();
+      // <~Previous~> _1_ 2 3 <Next>
 
-    let listItems = element.querySelectorAll('li');
-    let links = element.querySelectorAll('a');
+      expect(listItems[0].classList).toContain('disabled');
+      expect(listItems[1].classList).toContain('active');
+      expect(listItems.length).toEqual(5);
 
-    // <~Previous~> _1_ 2 3 <Next>
+      expect(context._page).toEqual(1);
 
-    expect(listItems[0].classList).toContain('disabled');
-    expect(listItems[1].classList).toContain('active');
-    expect(listItems.length).toEqual(5);
+      links[3].click();
+      tick(200);
+      fixture.detectChanges();
+      //
+      listItems = element.querySelectorAll('li');
+      links = element.querySelectorAll('a');
 
-    expect(context._page).toEqual(1);
+      // <Previous> 2 _3_ 4 <Next>
+      expect(listItems[0].classList).not.toContain('disabled');
+      expect(listItems[1].classList).not.toContain('active');
+      expect(listItems[2].classList).toContain('active');
+      expect(listItems[4].classList).not.toContain('disabled');
 
-    links[3].click();
-    tick(200);
-    fixture.detectChanges();
-    //
-    listItems = element.querySelectorAll('li');
-    links = element.querySelectorAll('a');
+      expect(context._page).toEqual(3);
+      expect(links[1].innerHTML).toEqual('2');
+      expect(context._totalPages).toEqual(8);
+    })
+  );
 
-    // <Previous> 2 _3_ 4 <Next>
-    expect(listItems[0].classList).not.toContain('disabled');
-    expect(listItems[1].classList).not.toContain('active');
-    expect(listItems[2].classList).toContain('active');
-    expect(listItems[4].classList).not.toContain('disabled');
+  it(
+    'check clicks(boundary links)',
+    fakeAsync(() => {
+      context.totalItems = 30;
+      context.itemsPerPage = 4;
+      context.maxSize = 5;
+      context.boundaryLinks = true;
 
-    expect(context._page).toEqual(3);
-    expect(links[1].innerHTML).toEqual('2');
-    expect(context._totalPages).toEqual(8);
-  }));
+      context.ngOnInit();
+      fixture.detectChanges();
 
-  it('check clicks(boundary links)', fakeAsync(() => {
+      let listItems = element.querySelectorAll('li');
+      const links = element.querySelectorAll('a');
 
-    context.totalItems = 30;
-    context.itemsPerPage = 4;
-    context.maxSize = 5;
-    context.boundaryLinks = true;
+      // <~First~> <~Previous~> _1_ 2 3 4 5 <Next> <Last>
+      expect(listItems[0].classList).toContain('disabled');
+      expect(listItems[1].classList).toContain('disabled');
+      expect(listItems[7].classList).not.toContain('disabled');
+      expect(listItems[8].classList).not.toContain('disabled');
+      expect(listItems[2].classList).toContain('active');
+      expect(listItems.length).toEqual(9);
+      expect(context._page).toEqual(1);
 
-    context.ngOnInit();
-    fixture.detectChanges();
+      expect(links[2].innerHTML).toEqual('1');
+      expect(links[6].innerHTML).toEqual('5');
 
-    let listItems = element.querySelectorAll('li');
-    let links = element.querySelectorAll('a');
+      links[0].click();
+      tick(200);
+      fixture.detectChanges();
 
-    // <~First~> <~Previous~> _1_ 2 3 4 5 <Next> <Last>
-    expect(listItems[0].classList).toContain('disabled');
-    expect(listItems[1].classList).toContain('disabled');
-    expect(listItems[7].classList).not.toContain('disabled');
-    expect(listItems[8].classList).not.toContain('disabled');
-    expect(listItems[2].classList).toContain('active');
-    expect(listItems.length).toEqual(9);
-    expect(context._page).toEqual(1);
+      // Click to disabled "First" link -> page should'nt change
+      expect(context._page).toEqual(1);
 
-    expect(links[2].innerHTML).toEqual('1');
-    expect(links[6].innerHTML).toEqual('5');
+      links[8].click();
+      tick(200);
+      fixture.detectChanges();
 
-    links[0].click();
-    tick(200);
-    fixture.detectChanges();
+      listItems = element.querySelectorAll('li');
 
-    // Click to disabled "First" link -> page should'nt change
-    expect(context._page).toEqual(1);
-
-    links[8].click();
-    tick(200);
-    fixture.detectChanges();
-
-    listItems = element.querySelectorAll('li');
-
-    // <First> <Previous> 4 5 6 7 _8_ <~Next~> <~Last~>
-    expect(context._page).toEqual(8);
-    expect(listItems[0].classList).not.toContain('disabled');
-    expect(listItems[1].classList).not.toContain('disabled');
-    expect(listItems[6].classList).toContain('active');
-    expect(listItems[7].classList).toContain('disabled');
-    expect(listItems[8].classList).toContain('disabled');
-    expect(context._totalPages).toEqual(8);
-  }));
+      // <First> <Previous> 4 5 6 7 _8_ <~Next~> <~Last~>
+      expect(context._page).toEqual(8);
+      expect(listItems[0].classList).not.toContain('disabled');
+      expect(listItems[1].classList).not.toContain('disabled');
+      expect(listItems[6].classList).toContain('active');
+      expect(listItems[7].classList).toContain('disabled');
+      expect(listItems[8].classList).toContain('disabled');
+      expect(context._totalPages).toEqual(8);
+    })
+  );
 });

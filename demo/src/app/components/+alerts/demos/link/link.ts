@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-alert-link',
   templateUrl: './link.html'
 })
-export class DemoAlertLinkComponent {
-}
+export class DemoAlertLinkComponent {}

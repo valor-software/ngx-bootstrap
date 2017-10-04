@@ -1,119 +1,97 @@
 import {
-  Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, Self, forwardRef
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Renderer2,
+  forwardRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { PaginationConfig } from './pagination.config';
 
 export interface PageChangedEvent {
-  itemsPerPage:number;
-  page:number;
+  itemsPerPage: number;
+  page: number;
 }
 
 export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => PaginationComponent),
   multi: true
 };
 
-const PAGINATION_TEMPLATE = `
-  <ul class="pagination" [ngClass]="classMap">
-    <li class="pagination-first page-item"
-        *ngIf="boundaryLinks"
-        [class.disabled]="noPrevious()||disabled">
-      <a class="page-link" href (click)="selectPage(1, $event)" [innerHTML]="getText('first')"></a>
-    </li>
-
-    <li class="pagination-prev page-item"
-        *ngIf="directionLinks"
-        [class.disabled]="noPrevious()||disabled">
-      <a class="page-link" href (click)="selectPage(page - 1, $event)" [innerHTML]="getText('previous')"></a>
-      </li>
-
-    <li *ngFor="let pg of pages"
-        [class.active]="pg.active"
-        [class.disabled]="disabled&&!pg.active"
-        class="pagination-page page-item">
-      <a class="page-link" href (click)="selectPage(pg.number, $event)" [innerHTML]="pg.text"></a>
-    </li>
-
-    <li class="pagination-next page-item"
-        *ngIf="directionLinks"
-        [class.disabled]="noNext()||disabled">
-      <a class="page-link" href (click)="selectPage(page + 1, $event)" [innerHTML]="getText('next')"></a></li>
-
-    <li class="pagination-last page-item"
-        *ngIf="boundaryLinks"
-        [class.disabled]="noNext()||disabled">
-      <a class="page-link" href (click)="selectPage(totalPages, $event)" [innerHTML]="getText('last')"></a></li>
-  </ul>
-  `;
-
 @Component({
   selector: 'pagination',
-  template: PAGINATION_TEMPLATE,
+  templateUrl: './pagination.component.html',
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {
-  public config:any;
+  config: any;
   /** if `true` aligns each link to the sides of pager */
-  @Input() public align:boolean;
+  @Input() align: boolean;
   /** limit number for page links in pager */
-  @Input() public maxSize:number;
+  @Input() maxSize: number;
   /** if false first and last buttons will be hidden */
-  @Input() public boundaryLinks:boolean;
+  @Input() boundaryLinks: boolean;
   /** if false previous and next buttons will be hidden */
-  @Input() public directionLinks:boolean;
+  @Input() directionLinks: boolean;
   // labels
   /** first button text */
-  @Input() public firstText:string;
+  @Input() firstText: string;
   /** previous button text */
-  @Input() public previousText:string;
+  @Input() previousText: string;
   /** next button text */
-  @Input() public nextText:string;
+  @Input() nextText: string;
   /** last button text */
-  @Input() public lastText:string;
+  @Input() lastText: string;
   /** if true current page will in the middle of pages list */
-  @Input() public rotate:boolean;
+  @Input() rotate: boolean;
   // css
   /** add class to <li> */
-  @Input() public pageBtnClass:string;
+  @Input() pageBtnClass: string;
 
   /** if true pagination component will be disabled */
-  @Input() public disabled:boolean;
+  @Input() disabled: boolean;
 
   /** fired when total pages count changes, $event:number equals to total pages count */
-  @Output() public numPages:EventEmitter<number> = new EventEmitter<number>();
-  /** fired when page was changed, $event:{page, itemsPerPage} equals to object with current page index and number of items per page */
-  @Output() public pageChanged:EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>();
+  @Output() numPages: EventEmitter<number> = new EventEmitter<number>();
+  /** fired when page was changed, $event:{page, itemsPerPage} equals to object
+   * with current page index and number of items per page
+   */
+  @Output()
+  pageChanged = new EventEmitter<PageChangedEvent>();
 
   /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
-  public get itemsPerPage():number {
+  get itemsPerPage(): number {
     return this._itemsPerPage;
   }
 
-  public set itemsPerPage(v:number) {
+  set itemsPerPage(v: number) {
     this._itemsPerPage = v;
     this.totalPages = this.calculateTotalPages();
   }
 
   /** total number of items in all pages */
   @Input()
-  public get totalItems():number {
+  get totalItems(): number {
     return this._totalItems;
   }
 
-  public set totalItems(v:number) {
+  set totalItems(v: number) {
     this._totalItems = v;
     this.totalPages = this.calculateTotalPages();
   }
 
-  public get totalPages():number {
+  get totalPages(): number {
     return this._totalPages;
   }
 
-  public set totalPages(v:number) {
+  set totalPages(v: number) {
     this._totalPages = v;
     this.numPages.emit(v);
     if (this.inited) {
@@ -121,9 +99,9 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  public set page(value:number) {
+  set page(value: number) {
     const _previous = this._page;
-    this._page = (value > this.totalPages) ? this.totalPages : (value || 1);
+    this._page = value > this.totalPages ? this.totalPages : value || 1;
 
     if (_previous === this._page || typeof _previous === 'undefined') {
       return;
@@ -135,24 +113,28 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     });
   }
 
-  public get page():number {
+  get page(): number {
     return this._page;
   }
 
-  public onChange:any = Function.prototype;
-  public onTouched:any = Function.prototype;
-  public renderer:Renderer;
-  public elementRef:ElementRef;
-  public classMap:string;
-  public pages:any[];
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
+  renderer: Renderer2;
+  elementRef: ElementRef;
+  classMap: string;
+  pages: any[];
 
-  protected _itemsPerPage:number;
-  protected _totalItems:number;
-  protected _totalPages:number;
-  protected inited:boolean = false;
-  protected _page:number = 1;
+  protected _itemsPerPage: number;
+  protected _totalItems: number;
+  protected _totalPages: number;
+  protected inited = false;
+  protected _page = 1;
 
-  public constructor(renderer:Renderer, elementRef:ElementRef, paginationConfig: PaginationConfig) {
+  constructor(
+    renderer: Renderer2,
+    elementRef: ElementRef,
+    paginationConfig: PaginationConfig
+  ) {
     this.renderer = renderer;
     this.elementRef = elementRef;
     if (!this.config) {
@@ -160,72 +142,74 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  public configureOptions(config: any): void {
+  configureOptions(config: any): void {
     this.config = Object.assign({}, config);
   }
 
-  public ngOnInit():void {
+  ngOnInit(): void {
     this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
     // watch for maxSize
-    this.maxSize = typeof this.maxSize !== 'undefined'
-      ? this.maxSize
-      : this.config.maxSize;
-    this.rotate = typeof this.rotate !== 'undefined'
-      ? this.rotate
-      : this.config.rotate;
-    this.boundaryLinks = typeof this.boundaryLinks !== 'undefined'
-      ? this.boundaryLinks
-      : this.config.boundaryLinks;
-    this.directionLinks = typeof this.directionLinks !== 'undefined'
-      ? this.directionLinks
-      : this.config.directionLinks;
-    this.pageBtnClass = typeof this.pageBtnClass !== 'undefined'
-    ? this.pageBtnClass
-    : this.config.pageBtnClass;
+    this.maxSize =
+      typeof this.maxSize !== 'undefined' ? this.maxSize : this.config.maxSize;
+    this.rotate =
+      typeof this.rotate !== 'undefined' ? this.rotate : this.config.rotate;
+    this.boundaryLinks =
+      typeof this.boundaryLinks !== 'undefined'
+        ? this.boundaryLinks
+        : this.config.boundaryLinks;
+    this.directionLinks =
+      typeof this.directionLinks !== 'undefined'
+        ? this.directionLinks
+        : this.config.directionLinks;
+    this.pageBtnClass =
+      typeof this.pageBtnClass !== 'undefined'
+        ? this.pageBtnClass
+        : this.config.pageBtnClass;
 
     // base class
-    this.itemsPerPage = typeof this.itemsPerPage !== 'undefined'
-      ? this.itemsPerPage
-      : this.config.itemsPerPage;
+    this.itemsPerPage =
+      typeof this.itemsPerPage !== 'undefined'
+        ? this.itemsPerPage
+        : this.config.itemsPerPage;
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
     this.inited = true;
   }
 
-  public writeValue(value:number):void {
+  writeValue(value: number): void {
     this.page = value;
     this.pages = this.getPages(this.page, this.totalPages);
   }
 
-  public getText(key:string):string {
-    return (this as any)[key + 'Text'] || this.config[key + 'Text'];
+  getText(key: string): string {
+    return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }
 
-  public noPrevious():boolean {
+  noPrevious(): boolean {
     return this.page === 1;
   }
 
-  public noNext():boolean {
+  noNext(): boolean {
     return this.page === this.totalPages;
   }
 
-  public registerOnChange(fn:(_:any) => {}):void {
+  registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn:() => {}):void {
+  registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 
-  public selectPage(page:number, event?:Event):void {
+  selectPage(page: number, event?: Event): void {
     if (event) {
       event.preventDefault();
     }
 
     if (!this.disabled) {
       if (event && event.target) {
-        let target:any = event.target;
+        const target: any = event.target;
         target.blur();
       }
       this.writeValue(page);
@@ -234,17 +218,22 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   // Create page object used in template
-  protected makePage(num:number, text:string, active:boolean):{number:number, text:string, active:boolean} {
-    return { text, number:num, active };
+  protected makePage(
+    num: number,
+    text: string,
+    active: boolean
+  ): { number: number; text: string; active: boolean } {
+    return { text, number: num, active };
   }
 
-  protected getPages(currentPage:number, totalPages:number):any[] {
-    let pages:any[] = [];
+  protected getPages(currentPage: number, totalPages: number): any[] {
+    const pages: any[] = [];
 
     // Default page limits
     let startPage = 1;
     let endPage = totalPages;
-    let isMaxSized = typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
+    const isMaxSized =
+      typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
 
     // recompute if maxSize
     if (isMaxSized) {
@@ -260,7 +249,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
         }
       } else {
         // Visible pages are paginated with maxSize
-        startPage = ((Math.ceil(currentPage / this.maxSize) - 1) * this.maxSize) + 1;
+        startPage =
+          (Math.ceil(currentPage / this.maxSize) - 1) * this.maxSize + 1;
 
         // Adjust last page if limit is exceeded
         endPage = Math.min(startPage + this.maxSize - 1, totalPages);
@@ -269,19 +259,19 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     // Add page number links
     for (let num = startPage; num <= endPage; num++) {
-      let page = this.makePage(num, num.toString(), num === currentPage);
+      const page = this.makePage(num, num.toString(), num === currentPage);
       pages.push(page);
     }
 
     // Add links to move between page sets
     if (isMaxSized && !this.rotate) {
       if (startPage > 1) {
-        let previousPageSet = this.makePage(startPage - 1, '...', false);
+        const previousPageSet = this.makePage(startPage - 1, '...', false);
         pages.unshift(previousPageSet);
       }
 
       if (endPage < totalPages) {
-        let nextPageSet = this.makePage(endPage + 1, '...', false);
+        const nextPageSet = this.makePage(endPage + 1, '...', false);
         pages.push(nextPageSet);
       }
     }
@@ -290,10 +280,12 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   // base class
-  protected calculateTotalPages():number {
-    let totalPages = this.itemsPerPage < 1
-      ? 1
-      : Math.ceil(this.totalItems / this.itemsPerPage);
+  protected calculateTotalPages(): number {
+    const totalPages =
+      this.itemsPerPage < 1
+        ? 1
+        : Math.ceil(this.totalItems / this.itemsPerPage);
+
     return Math.max(totalPages || 0, 1);
   }
 }

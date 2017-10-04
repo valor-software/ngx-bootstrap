@@ -1,8 +1,14 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, Output
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
 } from '@angular/core';
 import {
-  BsDatepickerViewMode, BsNavigationDirection, DaysCalendarViewModel
+  BsDatepickerViewMode,
+  BsNavigationDirection,
+  DaysCalendarViewModel
 } from '../../models/index';
 
 @Component({
@@ -38,9 +44,9 @@ export class BsDatepickerNavigationViewComponent {
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();
 
   navTo(down: boolean): void {
-    this.onNavigate.emit(down
-      ? BsNavigationDirection.DOWN
-      : BsNavigationDirection.UP);
+    this.onNavigate.emit(
+      down ? BsNavigationDirection.DOWN : BsNavigationDirection.UP
+    );
   }
 
   view(viewMode: BsDatepickerViewMode): void {

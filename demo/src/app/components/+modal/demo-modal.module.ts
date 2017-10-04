@@ -26,6 +26,4 @@ import { ModalContentComponent } from './demos/service-component/service-compone
   exports: [ModalSectionComponent],
   entryComponents: [ModalContentComponent]
 })
-export class DemoModalModule {
-
-}
+export class DemoModalModule {}

@@ -26,7 +26,6 @@
   ],
   "files": [
     "../scripts/typings.d.ts",
-    "./ng2-bootstrap.ts",
     "./index.ts",
     "./locale.ts"
   ],

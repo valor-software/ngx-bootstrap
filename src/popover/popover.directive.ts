@@ -1,9 +1,9 @@
 import {
-  Directive, Input, Output, EventEmitter, OnInit, OnDestroy, Renderer,
-  ElementRef, TemplateRef, ViewContainerRef
+  Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
+  Renderer2, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { PopoverConfig } from './popover.config';
-import { ComponentLoaderFactory, ComponentLoader } from '../component-loader';
+import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
 
 /**
@@ -14,19 +14,19 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Content to be displayed as popover.
    */
-  @Input() public popover: string | TemplateRef<any>;
+  @Input() popover: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
-  @Input() public popoverContext: any;
+  @Input() popoverContext: any;
   /**
    * Title of a popover.
    */
-  @Input() public popoverTitle: string;
+  @Input() popoverTitle: string;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() public placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
   /**
    * Close popover on outside click
    */
@@ -35,68 +35,77 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() public triggers: string;
+  @Input() triggers: string;
   /**
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".
    */
-  @Input() public container: string;
+  @Input() container: string;
 
   /**
    * Css class for popover container
    */
-  @Input() public containerClass: string = '';
+  @Input() containerClass = '';
 
   /**
    * Returns whether or not the popover is currently being shown
    */
   @Input()
-  public get isOpen(): boolean { return this._popover.isShown; }
+  get isOpen(): boolean {
+    return this._popover.isShown;
+  }
 
-  public set isOpen(value: boolean) {
-    if (value) {this.show();} else {this.hide();}
+  set isOpen(value: boolean) {
+    if (value) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   /**
    * Emits an event when the popover is shown
    */
-  @Output() public onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() public onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<any>;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
 
-  public constructor(_elementRef: ElementRef,
-                     _renderer: Renderer,
-                     _viewContainerRef: ViewContainerRef,
-                     _config: PopoverConfig,
-                     cis: ComponentLoaderFactory) {
+  constructor(_elementRef: ElementRef,
+              _renderer: Renderer2,
+              _viewContainerRef: ViewContainerRef,
+              _config: PopoverConfig,
+              cis: ComponentLoaderFactory) {
     this._popover = cis
-      .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
+      .createLoader<PopoverContainerComponent>(
+        _elementRef,
+        _viewContainerRef,
+        _renderer
+      )
       .provide({provide: PopoverConfig, useValue: _config});
     Object.assign(this, _config);
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
 
     // fix: no focus on button on Mac OS #1795
-    _elementRef.nativeElement.addEventListener('click', function() {
+    _elementRef.nativeElement.addEventListener('click', function () {
       try {
-         _elementRef.nativeElement.focus();
-      } catch(err) {
+        _elementRef.nativeElement.focus();
+      } catch (err) {
         return;
       }
     });
-
   }
 
   /**
    * Opens an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
-  public show(): void {
+  show(): void {
     if (this._popover.isShown) {
       return;
     }
@@ -119,7 +128,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Closes an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
-  public hide(): void {
+  hide(): void {
     if (this.isOpen) {
       this._popover.hide();
       this.isOpen = false;
@@ -130,7 +139,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Toggles an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
-  public toggle(): void {
+  toggle(): void {
     if (this.isOpen) {
       return this.hide();
     }
@@ -138,11 +147,13 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this.show();
   }
 
-  public ngOnInit(): any {
+  ngOnInit(): any {
     // fix: seems there are an issue with `routerLinkActive`
     // which result in duplicated call ngOnInit without call to ngOnDestroy
     // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
-    if (this._isInited) { return; }
+    if (this._isInited) {
+      return;
+    }
     this._isInited = true;
 
     this._popover.listen({
@@ -152,7 +163,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     });
   }
 
-  public ngOnDestroy(): any {
+  ngOnDestroy(): any {
     this._popover.dispose();
   }
 }

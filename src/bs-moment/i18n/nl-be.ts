@@ -6,14 +6,33 @@
 import { LocaleData } from '../locale/locale.class';
 
 // const monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
-const monthsShort = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
+const monthsShort = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split(
+  '_'
+);
 
-const monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
+const monthsParse = [
+  /^jan/i,
+  /^feb/i,
+  /^maart|mrt.?$/i,
+  /^apr/i,
+  /^mei$/i,
+  /^jun[i.]?$/i,
+  /^jul[i.]?$/i,
+  /^aug/i,
+  /^sep/i,
+  /^okt/i,
+  /^nov/i,
+  /^dec/i
+];
+
+// tslint:disable-next-line
 const monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
 
 export const nlBe: LocaleData = {
   abbr: 'nl-be',
-  months: 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
+  months: 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split(
+    '_'
+  ),
   monthsShort,
   // monthsShort(date: Date, format: string): string {
   //   if (!date) {
@@ -34,7 +53,9 @@ export const nlBe: LocaleData = {
   longMonthsParse: monthsParse,
   shortMonthsParse: monthsParse,
 
-  weekdays: 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
+  weekdays: 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split(
+    '_'
+  ),
   weekdaysShort: 'zo._ma._di._wo._do._vr._za.'.split('_'),
   weekdaysMin: 'zo_ma_di_wo_do_vr_za'.split('_'),
   weekdaysParseExact: true,
@@ -71,10 +92,12 @@ export const nlBe: LocaleData = {
   },
   dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
   ordinal(num: number): string {
-    return num + ((num === 1 || num === 8 || num >= 20) ? 'ste' : 'de');
+    const ending = num === 1 || num === 8 || num >= 20 ? 'ste' : 'de';
+
+    return `${num}${ending}`;
   },
   week: {
     dow: 1, // Monday is the first day of the week.
-    doy: 4  // The week that contains Jan 4th is the first week of the year.
+    doy: 4 // The week that contains Jan 4th is the first week of the year.
   }
 };

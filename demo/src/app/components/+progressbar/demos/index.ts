@@ -7,8 +7,12 @@ import { DemoProgressbarStaticBs4Component } from './bs4/static/static';
 import { DemoProgressbarConfigComponent } from './bs3/config/config';
 
 export const DEMO_COMPONENTS = [
-  DemoProgressbarStaticComponent, DemoProgressbarDynamicComponent, DemoProgressbarStackedComponent,
-  DemoProgressbarDynamicBs4Component, DemoProgressbarStackedBs4Component, DemoProgressbarStaticBs4Component,
+  DemoProgressbarStaticComponent,
+  DemoProgressbarDynamicComponent,
+  DemoProgressbarStackedComponent,
+  DemoProgressbarDynamicBs4Component,
+  DemoProgressbarStackedBs4Component,
+  DemoProgressbarStaticBs4Component,
   DemoProgressbarConfigComponent
 ];
 

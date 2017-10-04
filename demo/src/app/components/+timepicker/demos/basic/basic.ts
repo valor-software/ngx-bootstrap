@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './basic.html'
 })
 export class DemoTimepickerBasicComponent {
-  public mytime: Date = new Date();
+  mytime: Date = new Date();
 }

@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-tabs-vertical-pills',
   templateUrl: './vertical-pills.html'
 })
-export class DemoTabsVerticalPillsComponent {
-
-}
+export class DemoTabsVerticalPillsComponent {}

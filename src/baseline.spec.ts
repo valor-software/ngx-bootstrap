@@ -17,30 +17,26 @@ import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        AccordionModule.forRoot(),
-        AlertModule.forRoot(),
-        ButtonsModule.forRoot(),
-        CarouselModule.forRoot(),
-        CollapseModule.forRoot(),
-        DatepickerModule.forRoot(),
-        BsDropdownModule.forRoot(),
-        ModalModule.forRoot(),
-        PaginationModule.forRoot(),
-        ProgressbarModule.forRoot(),
-        PopoverModule.forRoot(),
-        RatingModule.forRoot(),
-        TabsModule.forRoot(),
-        TimepickerModule.forRoot(),
-        TooltipModule.forRoot(),
-        TypeaheadModule.forRoot()
-      ]
-    })
-      .compileComponents();
-  }));
-
-  // beforeEach(() => {
-  // });
+  beforeEach(
+    async(() => TestBed.configureTestingModule({
+        imports: [
+          AccordionModule.forRoot(),
+          AlertModule.forRoot(),
+          ButtonsModule.forRoot(),
+          CarouselModule.forRoot(),
+          CollapseModule.forRoot(),
+          DatepickerModule.forRoot(),
+          BsDropdownModule.forRoot(),
+          ModalModule.forRoot(),
+          PaginationModule.forRoot(),
+          ProgressbarModule.forRoot(),
+          PopoverModule.forRoot(),
+          RatingModule.forRoot(),
+          TabsModule.forRoot(),
+          TimepickerModule.forRoot(),
+          TooltipModule.forRoot(),
+          TypeaheadModule.forRoot()
+        ]
+      }).compileComponents()
+    ));
 });

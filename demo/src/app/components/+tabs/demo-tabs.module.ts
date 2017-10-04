@@ -10,10 +10,7 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-tabs.routes';
 
 @NgModule({
-  declarations: [
-    TabsSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [TabsSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,5 +20,4 @@ import { routes } from './demo-tabs.routes';
   ],
   exports: [TabsSectionComponent]
 })
-export class DemoTabsModule {
-}
+export class DemoTabsModule {}

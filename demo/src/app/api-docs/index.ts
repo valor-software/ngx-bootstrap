@@ -15,16 +15,28 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 export { NgApiDoc } from './api-docs.model';
 export { Analytics } from './analytics/analytics';
 export { NgApiDocComponent } from './api-doc/api-doc.component';
-export { NgApiDocClassComponent } from './api-doc-class/api-doc-class.component';
-export { NgApiDocConfigComponent } from './api-doc-config/api-doc-config.component';
+export {
+  NgApiDocClassComponent
+} from './api-doc-class/api-doc-class.component';
+export {
+  NgApiDocConfigComponent
+} from './api-doc-config/api-doc-config.component';
 export { SampleBoxComponent } from './sample-box/sample-box.component';
 
 @NgModule({
   imports: [CommonModule, TabsModule],
-  declarations: [NgApiDocComponent, NgApiDocClassComponent,
-    NgApiDocConfigComponent, SampleBoxComponent],
-  exports: [NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent, SampleBoxComponent],
+  declarations: [
+    NgApiDocComponent,
+    NgApiDocClassComponent,
+    NgApiDocConfigComponent,
+    SampleBoxComponent
+  ],
+  exports: [
+    NgApiDocComponent,
+    NgApiDocClassComponent,
+    NgApiDocConfigComponent,
+    SampleBoxComponent
+  ],
   providers: [Analytics]
 })
-export class NgApiDocModule {
-}
+export class NgApiDocModule {}

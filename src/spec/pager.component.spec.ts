@@ -1,10 +1,15 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+// tslint:disable:no-floating-promises
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick
+} from '@angular/core/testing';
 import { PagerComponent } from '../pagination/pager.component';
 import { PaginationModule } from '../pagination/pagination.module';
 import { fireEvent } from '../../scripts/helpers';
 
 describe('Component: Pager:', () => {
-
   let fixture: ComponentFixture<PagerComponent>;
   let context: any;
   let element: any;
@@ -68,40 +73,41 @@ describe('Component: Pager:', () => {
     expect(context._totalPages).toEqual(3);
   });
 
-  it('check NgModel through click', fakeAsync(() => {
+  it(
+    'check NgModel through click',
+    fakeAsync(() => {
+      context.totalItems = 10;
+      context.itemsPerPage = 4;
+      fixture.detectChanges();
 
-    context.totalItems = 10;
-    context.itemsPerPage = 4;
-    fixture.detectChanges();
+      const links = element.querySelectorAll('a');
+      const listItems = element.querySelectorAll('li');
 
-    const links = element.querySelectorAll('a');
-    const listItems = element.querySelectorAll('li');
+      expect(listItems[0].classList).toContain('disabled');
+      expect(listItems[1].classList).not.toContain('disabled');
+      expect(context._page).toEqual(1);
 
-    expect(listItems[0].classList).toContain('disabled');
-    expect(listItems[1].classList).not.toContain('disabled');
-    expect(context._page).toEqual(1);
+      links[1].click();
+      tick(200);
+      fixture.detectChanges();
 
-    links[1].click();
-    tick(200);
-    fixture.detectChanges();
+      expect(listItems[0].classList).not.toContain('disabled');
+      expect(listItems[1].classList).not.toContain('disabled');
+      expect(context._page).toEqual(2);
 
-    expect(listItems[0].classList).not.toContain('disabled');
-    expect(listItems[1].classList).not.toContain('disabled');
-    expect(context._page).toEqual(2);
+      links[1].click();
+      tick(200);
+      fixture.detectChanges();
 
-    links[1].click();
-    tick(200);
-    fixture.detectChanges();
+      expect(listItems[0].classList).not.toContain('disabled');
+      expect(listItems[1].classList).toContain('disabled');
+      expect(context._page).toEqual(3);
 
-    expect(listItems[0].classList).not.toContain('disabled');
-    expect(listItems[1].classList).toContain('disabled');
-    expect(context._page).toEqual(3);
-
-    expect(context._totalPages).toEqual(3);
-  }));
+      expect(context._totalPages).toEqual(3);
+    })
+  );
 
   it('check NgModel through event', () => {
-
     context.totalItems = 10;
     context.itemsPerPage = 4;
     fixture.detectChanges();

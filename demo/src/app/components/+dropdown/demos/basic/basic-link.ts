@@ -5,16 +5,19 @@ import { Component } from '@angular/core';
   templateUrl: './basic-link.html'
 })
 export class DemoDropdownBasicLinkComponent {
-  public items: string[] = ['The first choice!',
-    'And another choice for you.', 'but wait! A third!'];
+  items: string[] = [
+    'The first choice!',
+    'And another choice for you.',
+    'but wait! A third!'
+  ];
 
-  public onHidden(): void {
+  onHidden(): void {
     console.log('Dropdown is hidden');
   }
-  public onShown(): void {
+  onShown(): void {
     console.log('Dropdown is shown');
   }
-  public isOpenChange(): void {
+  isOpenChange(): void {
     console.log('Dropdown state is changed');
   }
 }

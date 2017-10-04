@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './dismiss.html'
 })
 export class DemoAlertDismissComponent {
-  public alerts: any = [
+  alerts: any = [
     {
       type: 'success',
       msg: `You successfully read this important alert message.`
@@ -20,7 +20,7 @@ export class DemoAlertDismissComponent {
     }
   ];
 
-  public reset(): void {
+  reset(): void {
     this.alerts = this.alerts.map((alert: any) => Object.assign({}, alert));
   }
 }

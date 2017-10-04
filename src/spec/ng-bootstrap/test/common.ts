@@ -1,20 +1,33 @@
+// tslint:disable
 /**
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-export function createGenericTestComponent<T>(html: string, type: {new (...args: any[]): T}): ComponentFixture<T> {
-  TestBed.overrideComponent(type, {set: {template: html}});
+export function createGenericTestComponent<T>(
+  html: string,
+  type: { new (...args: any[]): T }
+): ComponentFixture<T> {
+  TestBed.overrideComponent(type, { set: { template: html } });
   const fixture = TestBed.createComponent(type);
   fixture.detectChanges();
-  return fixture as ComponentFixture<T>;
+
+  return fixture;
 }
 
-export type Browser = 'ie9' | 'ie10' | 'ie11' | 'ie' | 'edge' | 'chrome' | 'safari' | 'firefox';
+export type Browser =
+  | 'ie9'
+  | 'ie10'
+  | 'ie11'
+  | 'ie'
+  | 'edge'
+  | 'chrome'
+  | 'safari'
+  | 'firefox';
 
-export function getBrowser(ua:string = window.navigator.userAgent): string {
-  let browser = 'unknown';
+export function getBrowser(ua: string = window.navigator.userAgent): string {
+  const browser = 'unknown';
 
   // IE < 11
   const msie = ua.indexOf('MSIE ');
@@ -24,7 +37,7 @@ export function getBrowser(ua:string = window.navigator.userAgent): string {
 
   // IE 11
   if (ua.indexOf('Trident/') > 0) {
-    let rv = ua.indexOf('rv:');
+    const rv = ua.indexOf('rv:');
     return 'ie' + parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
   }
 
@@ -53,11 +66,14 @@ export function getBrowser(ua:string = window.navigator.userAgent): string {
   }
 }
 
-export function isBrowser(browsers: Browser | Browser[], ua:string = window.navigator.userAgent):boolean {
-  let browsersStr = Array.isArray(browsers)
-    ? (browsers as Browser[]).map((x: any) => x.toString())
+export function isBrowser(
+  browsers: Browser | Browser[],
+  ua: string = window.navigator.userAgent
+): boolean {
+  const browsersStr = Array.isArray(browsers)
+    ? (browsers).map((x: any) => x.toString())
     : [browsers.toString()];
-  let browser = getBrowser(ua);
+  const browser = getBrowser(ua);
 
   if (browsersStr.indexOf('ie') > -1 && browser.startsWith('ie')) {
     return true;
