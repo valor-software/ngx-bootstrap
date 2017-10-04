@@ -6,8 +6,8 @@ import 'rxjs/add/observable/of';
   templateUrl: './field.html'
 })
 export class DemoTypeaheadFieldComponent {
-  public customSelected: string;
-  public statesComplex: any[] = [
+  customSelected: string;
+  statesComplex: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },

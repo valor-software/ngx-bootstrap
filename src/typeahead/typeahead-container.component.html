@@ -1,6 +1,6 @@
 <!-- inject options list template -->
 <ng-template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
-             [ngOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></ng-template>
+             [ngTemplateOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></ng-template>
 
 <!-- default options item template -->
 <ng-template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="hightlight(match, query)"></span>
@@ -14,7 +14,7 @@
       <li *ngIf="!match.isHeader()" [class.active]="isActive(match)" (mouseenter)="selectActive(match)">
         <a href="#" (click)="selectMatch(match, $event)" tabindex="-1">
           <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate"
-                       [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
+                       [ngTemplateOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
         </a>
       </li>
     </ng-template>
@@ -32,7 +32,7 @@
         (mouseenter)="selectActive(match)"
         [class.active]="isActive(match)">
         <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate"
-                     [ngOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
+                     [ngTemplateOutletContext]="{item:match.item, index:i, match:match, query:query}"></ng-template>
       </button>
     </ng-template>
   </ng-template>

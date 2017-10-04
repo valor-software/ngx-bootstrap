@@ -10,20 +10,15 @@
   "external": {
     "urls": [
       {
-        "url": "/assets/css/bootstrap.min.css"
+        "url": "assets/css/bootstrap-3.3.7/css/bootstrap.min.css"
       },
       {
-        "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        "url": "assets/css/bootstrap-4.0.0-beta/css/bootstrap.min.css"
       }
     ]
   },
   "routing": {
-    "index": "/index.html",
-    "routes": {
-      "^.*$": {
-        "match": "regex"
-      }
-    }
+    "index": "/index.html"
   },
   "icons": [
     {

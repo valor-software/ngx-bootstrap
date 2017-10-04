@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './basic.html'
 })
 export class DemoRatingBasicComponent {
-  public max: number = 10;
-  public rate: number = 7;
-  public isReadonly: boolean = true;
+  max: number = 10;
+  rate: number = 7;
+  isReadonly: boolean = true;
 }

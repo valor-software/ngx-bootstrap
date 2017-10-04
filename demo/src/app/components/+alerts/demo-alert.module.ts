@@ -20,5 +20,5 @@ import { routes } from './demo-alerts.routes';
   exports: [AlertsSectionComponent]
 })
 export class DemoAlertsModule {
-  public static routes: any = routes;
+  static routes: any = routes;
 }

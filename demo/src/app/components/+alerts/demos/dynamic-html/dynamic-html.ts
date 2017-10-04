@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './dynamic-html.html'
 })
 export class DemoAlertDynamicHtmlComponent {
-  public alerts: any = [
+  alerts: any = [
     {
       type: 'success',
       msg: `<strong>Well done!</strong> You successfully read this important alert message.`
@@ -21,7 +21,7 @@ export class DemoAlertDynamicHtmlComponent {
     }
   ];
 
-  public constructor(sanitizer: DomSanitizer) {
+  constructor(sanitizer: DomSanitizer) {
     this.alerts = this.alerts.map((alert: any) => ({
       type: alert.type,
       msg: sanitizer.sanitize(SecurityContext.HTML, alert.msg)

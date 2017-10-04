@@ -22,8 +22,7 @@
   <accordion-group #group [isOpen]="status.isOpen">
     <div accordion-heading>
       I can have markup, too!
-      <i class="pull-right float-xs-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+      <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
     </div>
     This is just some content to illustrate fancy headings.
   </accordion-group>

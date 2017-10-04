@@ -6,8 +6,8 @@ import 'rxjs/add/observable/of';
   templateUrl: './item-template.html'
 })
 export class DemoTypeaheadItemTemplateComponent {
-  public selected: string;
-  public states: string[] = [
+  selected: string;
+  states: string[] = [
     'Alabama',
     'Alaska',
     'Arizona',

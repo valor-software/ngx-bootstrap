@@ -1,8 +1,14 @@
-import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { LandingComponent } from './common/landing/landing.component';
+import { GettingStartedComponent } from './common/getting-started/getting-started.component';
 
 export const routes = [
   {
     path: '',
+    data: ['Landing page'],
+    component: LandingComponent
+  },
+  {
+    path: 'getting-started',
     data: ['Getting started'],
     component: GettingStartedComponent
   },

@@ -11,24 +11,24 @@ import { NgApiDoc } from './api-docs/api-docs.model';
 import { NgApiDocModule } from './api-docs/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
-import { AppFooterComponent } from './common/app-footer/app-footer.component';
-import { MainMenuComponent } from './common/main-menu/main-menu.component';
-import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
+import { LandingComponent } from './common/landing/landing.component';
+import { DocumentationComponent } from './common/documentation/documentation.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
-import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { GettingStartedComponent } from './common/getting-started/getting-started.component';
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     GettingStartedComponent,
     TopMenuComponent,
-    MainMenuComponent,
-    SearchFilterPipe,
-    AppFooterComponent
+    LandingComponent,
+    DocumentationComponent
   ],
   imports: [
+    SharedModule,
     NgApiDocModule,
     BrowserModule,
     FormsModule,

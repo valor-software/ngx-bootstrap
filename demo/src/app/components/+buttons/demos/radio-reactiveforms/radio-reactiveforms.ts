@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './radio-reactiveforms.html'
 })
 export class DemoButtonsRadioReactiveFormsComponent implements OnInit {
-  public myForm: FormGroup;
+  myForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 

@@ -21,7 +21,7 @@ import {
   BsViewNavigationEvent,
   DatepickerFormatOptions
 } from '../models/index';
-import { isArray } from '../../bs-moment/utils/type-checks';
+import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
 
 export function bsDatepickerReducer(
@@ -102,7 +102,7 @@ export function bsDatepickerReducer(
         if (isArray(newState.value)) {
           newState.view = {
             mode: state.view.mode,
-            date: newState.value[0]
+            date: isDateValid(newState.value[0]) ? newState.value[0] : newState.view.date
           };
           newState.selectedRange = newState.value;
         } else {

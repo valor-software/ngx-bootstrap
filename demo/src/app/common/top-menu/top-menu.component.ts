@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, Inject, Renderer } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { DOCUMENT } from '@angular/platform-browser';
 import { NavigationEnd, Router, UrlSerializer } from '@angular/router';
 import 'rxjs/add/operator/map';
 
@@ -9,23 +8,22 @@ import 'rxjs/add/operator/map';
   templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements AfterViewInit {
-  public isShown = false;
-  public appUrl: string;
-  public appHash: string;
-  public currentVersion: string;
-  public previousDocs: string[] = [];
-  public isLocalhost = false;
+  appUrl: string;
+  appHash: string;
+  currentVersion: string;
+  previousDocs: string[] = [];
+  isLocalhost = false;
+  needPrefix = false;
 
-  public constructor(
-    private renderer: Renderer,
-    @Inject(DOCUMENT) private document: any,
+  constructor(
     private router: Router,
     private http: Http
-  ) {}
+  ) { }
 
-  public ngAfterViewInit(): any {
+  ngAfterViewInit(): any {
     // todo: remove this sh**
     this.isLocalhost = location.hostname === 'localhost';
+    this.needPrefix = location.pathname !== '/';
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');
 
@@ -37,7 +35,6 @@ export class TopMenuComponent implements AfterViewInit {
       this.appHash = location.hash === '#/' ? '' : location.hash;
       if (event instanceof NavigationEnd && _cur !== _prev) {
         _prev = _cur;
-        this.toggle(false);
       }
     });
 
@@ -59,19 +56,5 @@ export class TopMenuComponent implements AfterViewInit {
       '//' +
       location.hostname +
       (this.isLocalhost ? ':' + location.port + '/' : '/');
-  }
-
-  public toggle(isShown?: boolean): void {
-    this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
-    if (this.document && this.document.body) {
-      this.renderer.setElementClass(
-        this.document.body,
-        'isOpenMenu',
-        this.isShown
-      );
-      if (this.isShown === false) {
-        this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
-      }
-    }
   }
 }

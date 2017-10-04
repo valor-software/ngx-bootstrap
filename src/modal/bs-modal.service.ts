@@ -2,7 +2,7 @@ import {
   ComponentRef,
   Injectable,
   TemplateRef,
-  EventEmitter, Renderer2, Injector
+  EventEmitter, Renderer2, RendererFactory2
 } from '@angular/core';
 
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -41,12 +41,13 @@ export class BsModalService {
 
   private _renderer: Renderer2;
 
-  constructor(private _injector: Injector, private clf: ComponentLoaderFactory) {
+  constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
       null
     );
+    this._renderer = rendererFactory.createRenderer(null, null);
   }
 
   /** Shows a modal */
@@ -170,12 +171,11 @@ export class BsModalService {
 
   // thx d.walsh
   private getScrollbarWidth(): number {
-    this._renderer = this._renderer || this._injector.get(Renderer2);
     const scrollDiv = this._renderer.createElement('div');
     this._renderer.addClass(scrollDiv, CLASS_NAME.SCROLLBAR_MEASURER);
-    this._renderer.appendChild('body', scrollDiv);
+    this._renderer.appendChild(document.body, scrollDiv);
     const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-    this._renderer.removeChild('body', scrollDiv);
+    this._renderer.removeChild(document.body, scrollDiv);
 
     return scrollbarWidth;
   }

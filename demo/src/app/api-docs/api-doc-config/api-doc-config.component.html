@@ -8,7 +8,7 @@
   <ng-template [ngIf]="apiDocs.properties && apiDocs.properties.length">
     <section>
       <h3 id="inputs">Properties</h3>
-      <table class="table table-sm table-hover">
+      <table class="table table-bordered">
         <tbody>
         <tr *ngFor="let prop of apiDocs.properties">
           <td class="col-xs-3"><code>{{prop.name}}</code></td>
@@ -36,4 +36,3 @@
     </section>
   </ng-template>-->
 </div>
-<hr/>
