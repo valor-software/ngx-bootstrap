@@ -51,7 +51,7 @@ echo "  $CONNECT_STDOUT"
 tail -f -n 20 $CONNECT_STDOUT &
 echo "  $CONNECT_STDERR"
 tail -f -n 20 $CONNECT_STDERR &
-#sauce-connect/bin/sc -u $process.env.SAUCE_USERNAME -k $process.env.SAUCE_ACCESS_KEY $ARGS \
 echo $ARGS
-sauce-connect/bin/sc  $ARGS \
+sauce-connect/bin/sc -u $process.env.SAUCE_USERNAME -k $process.env.SAUCE_ACCESS_KEY $ARGS \
   --logfile $CONNECT_LOG 2> $CONNECT_STDERR 1> $CONNECT_STDOUT &
+#sauce-connect/bin/sc  $ARGS \
