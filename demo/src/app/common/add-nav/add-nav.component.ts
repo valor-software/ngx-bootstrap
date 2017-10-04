@@ -9,5 +9,5 @@ import { ThemeStorage } from '../../theme/theme-storage';
   templateUrl: './add-nav.component.html'
 })
 export class AddNavComponent {
-  public constructor() {}
+  constructor() {}
 }

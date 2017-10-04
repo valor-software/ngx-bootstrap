@@ -1,3 +1,24 @@
+<a name="2.0.0-beta.6"></a>
+# [2.0.0-beta.6](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2017-10-03)
+
+
+### Bug Fixes
+
+* **demo:** fix links prefixes ([#2762](https://github.com/valor-software/ngx-bootstrap/issues/2762)) ([9a17ea9](https://github.com/valor-software/ngx-bootstrap/commit/9a17ea9))
+* **documentation:** fix issues after redesign ([#2761](https://github.com/valor-software/ngx-bootstrap/issues/2761)) ([d2c3309](https://github.com/valor-software/ngx-bootstrap/commit/d2c3309))
+
+
+### Features
+
+* **ci:** deploy on merge to dev ([#2743](https://github.com/valor-software/ngx-bootstrap/issues/2743)) ([8f07137](https://github.com/valor-software/ngx-bootstrap/commit/8f07137))
+* **ci:** run tests and build with current, latest and beta ng version ([#2734](https://github.com/valor-software/ngx-bootstrap/issues/2734)) ([9e26b73](https://github.com/valor-software/ngx-bootstrap/commit/9e26b73))
+* **datepicker:** added Turkish locale support for datepicker ([9e4df47](https://github.com/valor-software/ngx-bootstrap/commit/9e4df47))
+* **datepicker:** Use !default for SASS variables ([#2777](https://github.com/valor-software/ngx-bootstrap/issues/2777)) ([cf2365a](https://github.com/valor-software/ngx-bootstrap/commit/cf2365a))
+* **package:** Using ngTemplateOutletContext instead of deprectaded ngOutletContext ([#2659](https://github.com/valor-software/ngx-bootstrap/issues/2659)) ([ae2ace3](https://github.com/valor-software/ngx-bootstrap/commit/ae2ace3))
+* **redesign:** new design for documentation page ([#2680](https://github.com/valor-software/ngx-bootstrap/issues/2680)) ([fc0cd35](https://github.com/valor-software/ngx-bootstrap/commit/fc0cd35))
+
+
+
 <a name="2.0.0-beta.5"></a>
 # [2.0.0-beta.5](https://github.com/valor-software/ngx-bootstrap/compare/v1.9.3...v2.0.0-beta.5) (2017-09-18)
 

@@ -21,7 +21,7 @@ export class Analytics {
   private _location: Location;
   private _router: Router;
 
-  public constructor(_location: Location, _router: Router) {
+  constructor(_location: Location, _router: Router) {
     this._location = _location;
     this._router = _router;
     this._enabled = window.location.href.indexOf('bootstrap') >= 0;
@@ -31,7 +31,7 @@ export class Analytics {
    * Intended to be called only once. Subscribes to router events and sends a
    * page view after each ended navigation event.
    */
-  public trackPageViews(): void {
+  trackPageViews(): void {
     if (!this._enabled) {
       return;
     }
@@ -47,7 +47,7 @@ export class Analytics {
   /**
    * Sends an event.
    */
-  public trackEvent(action: string, category: string): void {
+  trackEvent(action: string, category: string): void {
     if (!this._enabled) {
       return;
     }

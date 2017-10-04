@@ -5,14 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoAccordionDynamicComponent {
-  public items: string[] = ['Item 1', 'Item 2', 'Item 3'];
+  items: string[] = ['Item 1', 'Item 2', 'Item 3'];
 
-  public status: any = {
+  status: any = {
     isFirstOpen: true,
     isOpen: true
   };
 
-  public groups: any[] = [
+  groups: any[] = [
     {
       title: 'Dynamic Group Header - 1',
       content: 'Dynamic Group Body - 1'
@@ -23,7 +23,7 @@ export class DemoAccordionDynamicComponent {
     }
   ];
 
-  public addItem(): void {
+  addItem(): void {
     this.items.push(`Items ${this.items.length + 1}`);
   }
 }

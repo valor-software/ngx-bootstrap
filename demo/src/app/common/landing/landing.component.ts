@@ -16,8 +16,8 @@ export class LandingComponent implements AfterViewInit {
   currentTheme: 'bs3' | 'bs4';
 
   constructor(
-    private http: Http,
     public styleManager: StyleManager,
+    private http: Http,
     private _themeStorage: ThemeStorage
   ) {
     const currentTheme = this._themeStorage.getStoredTheme();

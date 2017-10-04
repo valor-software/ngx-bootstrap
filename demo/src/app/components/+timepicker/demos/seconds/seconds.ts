@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './seconds.html'
 })
 export class DemoTimepickerSecondsComponent {
-  public myTime: Date = new Date();
-  public showSec: boolean = true;
+  myTime: Date = new Date();
+  showSec: boolean = true;
 }

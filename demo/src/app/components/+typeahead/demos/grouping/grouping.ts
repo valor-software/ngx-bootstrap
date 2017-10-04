@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './grouping.html'
 })
 export class DemoTypeaheadGroupingComponent {
-  public groupSelected: string;
-  public statesComplex: any[] = [
+  groupSelected: string;
+  statesComplex: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },

@@ -5,13 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './collapse-demo.component.html'
 })
 export class CollapseDemoComponent {
-  public isCollapsed: boolean = false;
+  isCollapsed: boolean = false;
 
-  public collapsed(event: any): void {
+  collapsed(event: any): void {
     console.log(event);
   }
 
-  public expanded(event: any): void {
+  expanded(event: any): void {
     console.log(event);
   }
 }
