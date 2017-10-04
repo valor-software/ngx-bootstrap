@@ -78,12 +78,12 @@ jobs:
     - <<: *build
       env: NGV=next
     - stage: sauce-tests
-      before_script: ./scripts/sauce/sauce_connect_setup.sh
-      script: 
+      before_script:
+        - ./scripts/sauce/sauce_connect_setup.sh
         - ./scripts/sauce/sauce_connect_block.sh
-        - npm run test-cross
+      script: npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
-      script: 
+      script:
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
         sauce_connect: true
