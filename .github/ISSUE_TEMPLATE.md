@@ -11,7 +11,7 @@ You can use one of starter templates:
 
 Plunkr: https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview
 
-StackBlitz: https://stackblitz.com/edit/angular-xsjgdb
+StackBlitz: https://stackblitz.com/edit/ngx-bootstrap-stack?file=app%2Fapp.module.ts
 
 
 ### Versions of ngx-bootstrap, Angular, and Bootstrap:
