@@ -6,9 +6,12 @@ There's no need to open an issue here if you want to ask general question, use [
 
 ### Plunker/StackBlitz that reproduces the issue:
 Using Plunkr, StackBlitz is the best way to show your issue. Issues without link to an example of reproduction might be closed.
+
 You can use one of starter templates:
+
 Plunkr: https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview
-StackBlitz:
+
+StackBlitz: https://stackblitz.com/edit/ngx-bootstrap-stack?file=app%2Fapp.module.ts
 
 
 ### Versions of ngx-bootstrap, Angular, and Bootstrap:
