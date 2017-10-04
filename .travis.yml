@@ -84,6 +84,7 @@ jobs:
       env: NGV=next
     - stage: sauce-tests
       before_script:
+        - mkdir -p $LOGS_DIR
         - ./scripts/sauce/sauce_connect_setup.sh
       script:
         - ./scripts/sauce/sauce_connect_block.sh
