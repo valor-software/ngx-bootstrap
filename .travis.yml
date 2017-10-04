@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "8"
+node_js: "6"
 
 notifications:
   email: false
@@ -51,8 +51,6 @@ jobs:
       install: npm install > /dev/null
       script: true
       addons:
-       # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-        #sauce_connect: true
         chrome: stable
         apt:
           sources:
@@ -90,9 +88,9 @@ jobs:
         - ./scripts/sauce/sauce_connect_block.sh
         - npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
-      addons:
+#      addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-        sauce_connect: true
+#        sauce_connect: true
 #   deploy to ngx-bootstrap.surge.sh
     - stage: deploy-surge
       script: npm run demo.build
