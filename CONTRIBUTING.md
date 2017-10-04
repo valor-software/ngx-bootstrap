@@ -11,10 +11,10 @@ today! As a contributor, here are the guidelines we would like you to follow:
  - [Coding Rules](#rules)
  - [Commit Message Guidelines](#commit)
 
-## Code of Conduct
+## <a name="coc"></a> Code of Conduct
 Please read and follow our [Code of Conduct][coc].
 
-## Got a Question or Problem?
+## <a name="question"></a> Got a Question or Problem?
 
 Do not open issues for general support questions as we want to keep GitHub issues for bug reports and feature requests. You've got much better chances of getting your question answered on [Stack Overflow](https://stackoverflow.com/questions/tagged/ngx-bootstrap) where the questions should be tagged with tag `ngx-bootstrap`, or you can join to our [slack] channel.
 
@@ -28,12 +28,12 @@ To save your and our time, we will systematically close all issues that are requ
 
 If you would like to chat about the question in real-time, you can reach out via [our slack channel][slack].
 
-## Found a Bug?
+## <a name="issue"></a> Found a Bug?
 If you find a bug in the source code, you can help us by
 [submitting an issue][submit-issue] to our [GitHub Repository][github]. Even better, you can
 [submit a Pull Request][submit-pr] with a fix.
 
-## Missing a Feature?
+## <a name="feature"></a> Missing a Feature?
 You can *request* a new feature by [submitting an issue](#submit-issue) to our GitHub
 Repository. If you would like to *implement* a new feature, please submit an issue with
 a proposal for your work first, to be sure that we can use it.
@@ -44,9 +44,9 @@ discussed. This will also allow us to better coordinate our efforts, prevent dup
 and help you to craft the change so that it is successfully accepted into the project.
 * **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
 
-## Submission Guidelines
+## <a name="submit"></a> Submission Guidelines
 
-### Submitting an Issue
+### <a name="submit-issue"></a> Submitting an Issue
 
 Before you submit an issue, please search the issue tracker, maybe an issue for your problem already exists and the discussion might inform you of workarounds readily available.
 
@@ -66,7 +66,7 @@ Unfortunately we are not able to investigate / fix bugs without a minimal reprod
 You can file new issues by filling out our [new issue form](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
 
-### Submitting a Pull Request (PR)
+### <a name="submit-pr"></a> Submitting a Pull Request (PR)
 Before you submit your Pull Request (PR) consider the following guidelines:
 
 * Search [GitHub](https://github.com/valor-software/ngx-bootstrap/pulls) for an open or closed PR
@@ -133,16 +133,14 @@ from the main (upstream) repository:
     git pull --ff upstream development
     ```
 
-## Coding Rules
+## <a name="rules"></a> Coding Rules
 To ensure consistency throughout the source code, keep these rules in mind as you are working:
 
 * All features or bug fixes **must be tested** by one or more specs (unit-tests).
 * All public API methods **must be documented**. (Details TBC).
-* We follow [Google's JavaScript Style Guide][js-style-guide], but wrap all code at
-  **100 characters**. An automated formatter is available, see
-  [DEVELOPER.md](docs/DEVELOPER.md#clang-format).
+* We follow [Google's JavaScript Style Guide][js-style-guide].
 
-## Commit Message Guidelines
+## <a name="commit"></a> Commit Message Guidelines
 
 We have very precise rules over how our git commit messages can be formatted.  This leads to **more
 readable messages** that are easy to follow when looking through the **project history**.  But also,
@@ -239,7 +237,7 @@ A detailed explanation can be found in this [document][commit-message-format].
 
 ## Attribution
 
-This `CONTRIBUTING.md` is adapted from the Angular's `CONTRIBUTING.md`, available at [https://github.com/angular/angular/blob/master/CONTRIBUTING.md]
+This `CONTRIBUTING.md` is adapted from the Angular's `CONTRIBUTING.md`, available at https://github.com/angular/angular/blob/master/CONTRIBUTING.md
 
 
 [coc]: https://github.com/valor-software/ngx-bootstrap/blob/development/CODE_OF_CONDUCT.md
