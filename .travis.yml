@@ -80,10 +80,10 @@ jobs:
     - stage: sauce-tests
       before_script:
         - ./scripts/sauce/sauce_connect_setup.sh
-        - ./scripts/sauce/sauce_connect_block.sh
-      script: npm run test-cross
-      after_script: ./scripts/sauce/sauce_connect_teardown.sh
       script:
+        - ./scripts/sauce/sauce_connect_block.sh
+        - npm run test-cross
+      after_script: ./scripts/sauce/sauce_connect_teardown.sh
       addons:
        # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
         sauce_connect: true
