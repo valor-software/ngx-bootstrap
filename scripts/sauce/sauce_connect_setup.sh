@@ -31,7 +31,7 @@ mkdir sauce-connect
 tar --extract --file=$CONNECT_DOWNLOAD --strip-components=1 --directory=sauce-connect > /dev/null
 rm $CONNECT_DOWNLOAD
 
-SAUCE_ACCESS_KEY=`echo $SAUCE_ACCESS_KEY | rev`
+#SAUCE_ACCESS_KEY=`echo $SAUCE_ACCESS_KEY | rev`
 
 ARGS=""
 
@@ -52,6 +52,7 @@ tail -f -n 20 $CONNECT_STDOUT &
 echo "  $CONNECT_STDERR"
 tail -f -n 20 $CONNECT_STDERR &
 echo $ARGS
-sauce-connect/bin/sc -u $process.env.SAUCE_USERNAME -k $process.env.SAUCE_ACCESS_KEY $ARGS \
+#sauce-connect/bin/sc -u $process.env.SAUCE_USERNAME -k $process.env.SAUCE_ACCESS_KEY $ARGS \
+sauce-connect/bin/sc -u "$SAUCE_USERNAME" -k "$SAUCE_ACCESS_KEY" $ARGS \
   --logfile $CONNECT_LOG 2> $CONNECT_STDERR 1> $CONNECT_STDOUT &
 #sauce-connect/bin/sc  $ARGS \
