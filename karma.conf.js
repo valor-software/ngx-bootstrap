@@ -97,7 +97,7 @@ module.exports = function (config) {
         base: 'SauceLabs',
         browserName: 'chrome',
         version: 'latest'
-      };
+      }};
     // configuration.browsers = Object.keys(configuration.customLaunchers);
     configuration.browsers = ['SL_CHROME'];
     // configuration.concurrency = 3;
