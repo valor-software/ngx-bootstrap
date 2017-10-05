@@ -22,5 +22,5 @@ import { routes } from './demo-accordion.routes';
   exports: [AccordionSectionComponent]
 })
 export class DemoAccordionModule {
-  public static routes: any = routes;
+  static routes: any = routes;
 }

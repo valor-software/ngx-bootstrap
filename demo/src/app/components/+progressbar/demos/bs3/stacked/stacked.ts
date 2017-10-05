@@ -5,14 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './stacked.html'
 })
 export class DemoProgressbarStackedComponent {
-  public type: string;
-  public stacked: any[] = [];
+  type: string;
+  stacked: any[] = [];
 
-  public constructor() {
+  constructor() {
     this.randomStacked();
   }
 
-  public randomStacked(): void {
+  randomStacked(): void {
     let types = ['success', 'info', 'warning', 'danger'];
 
     this.stacked = [];

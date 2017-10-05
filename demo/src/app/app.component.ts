@@ -23,11 +23,11 @@ PageScrollConfig.defaultScrollOffset = 70;
   templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterContentInit {
-  public get isBs3(): boolean {
+  get isBs3(): boolean {
     return isBs3();
   }
 
-  public constructor(
+  constructor(
     private route: ActivatedRoute,
     private router: Router,
     private pageScrollService: PageScrollService,
@@ -37,7 +37,7 @@ export class AppComponent implements AfterContentInit {
   ) {}
 
   // almost same logic exists in top-menu component
-  public ngAfterContentInit(): any {
+  ngAfterContentInit(): any {
     this._analytics.trackPageViews();
     const getUrl = (router: Router) =>
       router.routerState.snapshot.url.slice(

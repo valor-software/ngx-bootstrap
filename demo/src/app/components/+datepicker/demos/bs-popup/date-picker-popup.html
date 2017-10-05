@@ -1,23 +1,24 @@
-<pre>{{bsValue}}</pre>
-<input type="text"
-       [minDate]="minDate"
-       [maxDate]="maxDate"
-       #dp="bsDatepicker"
-       bsDatepicker [(bsValue)]="bsValue">
-<input type="text"
-       [minDate]="minDate"
-       [maxDate]="maxDate"
-       [(ngModel)]="bsValue"
-       bsDatepicker>
-<button class="btn btn-success" (click)="dp.toggle()">Date Picker popup</button>
-
+<div class="row">
+  <div class="col-xs-12 col-12 col-md-4 form-group">
+    <input type="text"
+           class="form-control"
+           [minDate]="minDate"
+           [maxDate]="maxDate"
+           #dp="bsDatepicker"
+           bsDatepicker [(bsValue)]="bsValue">
+  </div>
+  <div class="col-xs-12 col-12 col-md-3 form-group">
+    <button class="btn btn-success" (click)="dp.toggle()">Date Picker</button>
+  </div>
+</div>
 <br>
-<br>
 
-<pre>{{bsRangeValue}}</pre>
-<pre *ngIf="bsRangeValue">{{ bsRangeValue[0] | date:'yMd'}} - {{ bsRangeValue[1] | date:'yMd'}}</pre>
-<input #drp="bsDaterangepicker" bsDaterangepicker [(bsValue)]="bsRangeValue">
-<input bsDaterangepicker [(ngModel)]="bsRangeValue">
-<input [(ngModel)]="bsRangeValue">
-<button class="btn btn-success" (click)="drp.toggle()">Date Range Picker popup</button>
+<div class="row">
+  <div class="col-xs-12 col-12 col-md-4 form-group">
+    <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
+  </div>
+  <div class="col-xs-12 col-12 col-md-3 form-group">
+    <button class="btn btn-success" (click)="drp.toggle()">Date Range Picker</button>
+  </div>
+</div>
 

@@ -1,7 +1,21 @@
-<div class="col-md-6" style="margin: 20px 0;">
-  <pagination [directionLinks]="false" [totalItems]="totalItems" [(ngModel)]="currentPage" (numPages)="smallnumPages = $event"></pagination>
-</div>
+<div class="row">
+  <div class="col-xs-12 col-12 col-md-6">
+    <pagination
+      [directionLinks]="false"
+      [totalItems]="totalItems"
+      [(ngModel)]="currentPage"
+      (numPages)="smallnumPages = $event">
+    </pagination>
+  </div>
 
-<div class="col-md-6">
-  <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" pageBtnClass="btn" itemsPerPage="10"></pager>
+  <div class="col-xs-12 col-12 col-md-6">
+    <pager
+      [totalItems]="totalItems"
+      [(ngModel)]="currentPage"
+      (pageChanged)="pageChanged($event)"
+      pageBtnClass="btn"
+      itemsPerPage="10"
+      class="pull-left">
+    </pager>
+  </div>
 </div>

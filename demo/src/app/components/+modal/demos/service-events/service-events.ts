@@ -8,12 +8,12 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './service-events.html'
 })
 export class DemoModalServiceEventsComponent {
-  public modalRef: BsModalRef;
-  public subscriptions: Subscription[] = [];
-  public messages: string[] = [];
+  modalRef: BsModalRef;
+  subscriptions: Subscription[] = [];
+  messages: string[] = [];
   constructor(private modalService: BsModalService) {}
 
-  public openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>) {
     this.messages = [];
     this.subscriptions.push(
       this.modalService.onShow.subscribe((reason: string) => {
@@ -47,7 +47,7 @@ export class DemoModalServiceEventsComponent {
     this.modalRef = this.modalService.show(template);
   }
 
-  public unsubscribe() {
+  unsubscribe() {
     this.subscriptions.forEach((subscription: Subscription) => {
       subscription.unsubscribe();
     });

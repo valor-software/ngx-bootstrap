@@ -10,8 +10,8 @@ export class DemoModalServiceFromComponent {
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
-  public openModalWithComponent() {
-    let data = {
+  openModalWithComponent() {
+    const data = {
       list: [
         'Open a modal with component',
         'Pass your data',
@@ -46,14 +46,15 @@ export class DemoModalServiceFromComponent {
     </div>
   `
 })
-export class ModalContentComponent implements OnInit{
-  public title: string;
-  public closeBtnName: string;
-  public list: any[] = [];
+
+export class ModalContentComponent implements OnInit {
+  title: string;
+  closeBtnName: string;
+  list: any[] = [];
 
   constructor(public bsModalRef: BsModalRef) {}
 
-  public ngOnInit() {
+  ngOnInit() {
     this.list.push('PROFIT!!!');
   }
 }
