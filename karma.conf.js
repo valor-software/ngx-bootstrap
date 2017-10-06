@@ -85,10 +85,20 @@ module.exports = function (config) {
           browserName: 'chrome',
           version: 'latest'
         },
+        'SL_CHROME_1': {
+          base: 'SauceLabs',
+          browserName: 'chrome',
+          version: 'latest-1'
+        },
         'SL_FIREFOX': {
           base: 'SauceLabs',
           browserName: 'firefox',
           version: 'latest'
+        },
+        'SL_FIREFOX_1': {
+          base: 'SauceLabs',
+          browserName: 'firefox',
+          version: 'latest-1'
         },
         'SL_IE10': {
           base: 'SauceLabs',
@@ -106,13 +116,19 @@ module.exports = function (config) {
           base: 'SauceLabs',
           browserName: 'MicrosoftEdge',
           platform: 'Windows 10',
-          version: '13.10586'
+          version: '13'
         },
         'SL_EDGE14': {
           base: 'SauceLabs',
           browserName: 'MicrosoftEdge',
           platform: 'Windows 10',
-          version: '14.14393'
+          version: '14'
+        },
+        'SL_EDGE15': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '15'
         },
         'SL_SAFARI9': {
           base: 'SauceLabs',
