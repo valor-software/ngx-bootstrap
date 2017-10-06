@@ -14,7 +14,7 @@ export { nl } from './bs-moment/i18n/nl';
 export { nlBe } from './bs-moment/i18n/nl-be';
 export { pl } from './bs-moment/i18n/pl';
 export { ptBr } from './bs-moment/i18n/pt-br';
-export { se } from './bs-moment/i18n/se';
+export { sv } from './bs-moment/i18n/sv';
 export { ru } from './bs-moment/i18n/ru';
 export { zhCn } from './bs-moment/i18n/zh-cn';
 export { tr } from './bs-moment/i18n/tr';
