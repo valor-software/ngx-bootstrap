@@ -29,21 +29,15 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   set customClass(customClass: string) {
-    if (this._customClass && this._customClass !== customClass) {
-      this.renderer.removeClass(
-        this.elementRef.nativeElement,
-        this._customClass
-      );
-    }
-
     this._customClass = customClass;
+    this._customClass.split(' ').forEach((element: string) => this.setElementClass = element);
+  }
 
-    if (this._customClass) {
-      this.renderer.addClass(
-        this.elementRef.nativeElement,
-        this._customClass
-      );
-    }
+  set setElementClass(customClass: string) {
+    this.renderer.addClass(
+      this.elementRef.nativeElement,
+      customClass
+    );
   }
 
   /** tab active state toggle */
