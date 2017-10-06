@@ -19,7 +19,6 @@ env:
 stages:
   - name: precache
     if: ( branch = development AND type = push ) OR type = pull_request
-  - name: sauce-tests
   - name: lint
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: test
@@ -28,6 +27,7 @@ stages:
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: deploy-surge
     if: branch = development AND type = push
+  - name: sauce-tests
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -41,12 +41,13 @@ install:
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
+  - if [[ "$TRAVIS_PULL_REQUEST" != false ]] SAUCE_USERNAME=$SAUCE_USERNAME_PR; SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
 jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
-    - stage: sauce-tests
+    - name: sauce-tests
   include:
 # precache npm and apt dependencies
     - stage: precache
