@@ -32,7 +32,7 @@
   <tr>
     <!-- hours -->
     <td class="form-group" [class.has-error]="invalidHours">
-      <input type="text" style="width:50px;"
+      <input type="text"
              class="form-control text-center"
              placeholder="HH"
              maxlength="2"
@@ -46,7 +46,7 @@
     <td>&nbsp;:&nbsp;</td>
     <!-- minutes -->
     <td class="form-group" [class.has-error]="invalidMinutes">
-      <input style="width:50px;" type="text"
+      <input type="text"
              class="form-control text-center"
              placeholder="MM"
              maxlength="2"
@@ -62,7 +62,7 @@
     <!-- seconds -->
     <td class="form-group" *ngIf="showSeconds"
         [class.has-error]="invalidSeconds">
-      <input style="width:50px;" type="text"
+      <input type="text"
              class="form-control text-center"
              placeholder="SS"
              maxlength="2"
