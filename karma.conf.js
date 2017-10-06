@@ -62,6 +62,7 @@ module.exports = function (config) {
       logLevel: config.LOG_INFO,
       reporters: ['dots', 'saucelabs'],
       singleRun: false,
+      concurrency: 3,
       captureTimeout: 60000,
       browserNoActivityTimeout: 20000,
       browserDisconnectTimeout: 5000,
