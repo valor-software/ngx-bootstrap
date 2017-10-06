@@ -41,7 +41,7 @@ install:
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
-  - if [[ "$TRAVIS_PULL_REQUEST" != false ]] SAUCE_USERNAME=$SAUCE_USERNAME_PR; SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then SAUCE_USERNAME=$SAUCE_USERNAME_PR; SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
 jobs:
   fast_finish: true
