@@ -106,7 +106,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   show(): void {
-
     if (this._popover.isShown || !this.popover) {
       return;
     }
