@@ -371,9 +371,8 @@ export class ModalDirective implements OnDestroy, OnInit {
   // }
 
   protected focusOtherModal() {
-    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll(
-      '.in[bsModal]'
-    );
+    if (this._element.nativeElement.parentElement == null) return;
+    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
     if (!otherOpenedModals.length) {
       return;
     }
