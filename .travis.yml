@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "8"
+node_js: "6"
 
 notifications:
   email: false
@@ -8,6 +8,13 @@ notifications:
 git:
   depth: 3
   submodules: false
+
+env:
+  global:
+    - SAUCE_USERNAME=valorkin
+    - SAUCE_ACCESS_KEY=439247e6-e1b2-4b5a-ace2-aa5308edfcdd
+    - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
+    - LOGS_DIR=/tmp/logs
 
 stages:
   - name: precache
@@ -20,6 +27,8 @@ stages:
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: deploy-surge
     if: branch = development AND type = push
+  - name: sauce-tests
+    if: ( branch = development AND type = push ) OR type = pull_request
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -33,19 +42,19 @@ install:
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
+  - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then SAUCE_USERNAME=$SAUCE_USERNAME_PR; SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
 jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
+    - stage: sauce-tests
   include:
 # precache npm and apt dependencies
     - stage: precache
       install: npm install > /dev/null
       script: true
       addons:
-       # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-#        sauce_connect: true
         chrome: stable
         apt:
           sources:
@@ -75,6 +84,14 @@ jobs:
       env: NGV=latest
     - <<: *build
       env: NGV=next
+    - stage: sauce-tests
+      before_script:
+        - mkdir -p $LOGS_DIR
+        - ./scripts/sauce/sauce_connect_setup.sh
+      script:
+        - ./scripts/sauce/sauce_connect_block.sh
+        - npm run test-cross
+      after_script: ./scripts/sauce/sauce_connect_teardown.sh
 #   deploy to ngx-bootstrap.surge.sh
     - stage: deploy-surge
       script: npm run demo.build
