@@ -1,7 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'demo-modal-service-confirm-window',
@@ -9,20 +8,20 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DemoModalServiceConfirmWindowComponent {
   modalRef: BsModalRef;
-  message: string
+  message: string;
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   confirm(): void {
-    this.message = "Confirmed!";
-    this.modalRef.hide()
+    this.message = 'Confirmed!';
+    this.modalRef.hide();
   }
 
   decline(): void {
-    this.message = "Declined!";
-    this.modalRef.hide()
+    this.message = 'Declined!';
+    this.modalRef.hide();
   }
 }

@@ -12,8 +12,8 @@
             <li><a routerLink="." fragment="service-component">Component</a></li>
             <li><a routerLink="." fragment="service-nested">Nested</a></li>
             <li><a routerLink="." fragment="service-events">Events</a></li>
-            <li><a routerLink="." fragment="service-options">Options</a></li>
             <li><a routerLink="." fragment="service-confirm-window">Confirm Window</a></li>
+            <li><a routerLink="." fragment="service-options">Options</a></li>
           </ul>
         </li>
       </ul>
@@ -78,17 +78,17 @@
     <demo-modal-service-events></demo-modal-service-events>
   </ng-sample-box>
 
-  <h3 routerLink="." fragment="service-options" id="service-options">Options</h3>
-  <p>There are some options that you can configure, like animation, backdrop, closing by Esc button, additional css classes. See the demo below to learn how to configure your modal</p>
-  <ng-sample-box [ts]="demos.serviceOptions.component" [html]="demos.serviceOptions.html">
-    <demo-modal-service-options></demo-modal-service-options>
-  </ng-sample-box>
-
   <h3 routerLink="." fragment="service-confirm-window" id="service-confirm-window">Confirm window</h3>
   <p>Modal with buttons to confirm.</p>
 
   <ng-sample-box [ts]="demos.serviceConfirmWindow.component" [html]="demos.serviceConfirmWindow.html">
     <demo-modal-service-confirm-window></demo-modal-service-confirm-window>
+  </ng-sample-box>
+
+  <h3 routerLink="." fragment="service-options" id="service-options">Options</h3>
+  <p>There are some options that you can configure, like animation, backdrop, closing by Esc button, additional css classes. See the demo below to learn how to configure your modal</p>
+  <ng-sample-box [ts]="demos.serviceOptions.component" [html]="demos.serviceOptions.html">
+    <demo-modal-service-options></demo-modal-service-options>
   </ng-sample-box>
 
   <h2 routerLink="." fragment="directive-section" id="directive-section">Directive</h2>
