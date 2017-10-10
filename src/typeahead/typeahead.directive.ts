@@ -131,11 +131,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
+  private _outsideClickListener: Function;
 
   constructor(private ngControl: NgControl,
               private element: ElementRef,
               viewContainerRef: ViewContainerRef,
-              renderer: Renderer2,
+              private renderer: Renderer2,
               cis: ComponentLoaderFactory) {
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
@@ -233,7 +234,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onBlur(): void {
     if (this._container && !this._container.isFocused) {
       this.typeaheadOnBlur.emit(this._container.active);
-      this.hide();
     }
   }
 
@@ -276,6 +276,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         dropup: this.dropup
       });
 
+    this._outsideClickListener = this.renderer.listen('document', 'click', () => {
+      this.onOutsideClick();
+    });
+
     this._container = this._typeahead.instance;
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
@@ -298,7 +302,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   hide(): void {
     if (this._typeahead.isShown) {
       this._typeahead.hide();
+      this._outsideClickListener();
       this._container = null;
+    }
+  }
+
+  onOutsideClick(): void {
+    if (this._container && !this._container.isFocused) {
+      this.hide();
     }
   }
 
