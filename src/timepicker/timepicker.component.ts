@@ -59,6 +59,9 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
       transform: rotate(-135deg);
       top: -2px;
     }
+    .invalidHours, .invalidMinutes, .invalidSeconds{
+      width: 50px;
+    }
   `],
   encapsulation: ViewEncapsulation.None
 })
