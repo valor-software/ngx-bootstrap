@@ -29,14 +29,14 @@
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
   <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
 
-  <div *ngFor="let item of accordionItems">
+  <div *ngFor="let item of accordionExamples">
     <h3 routerLink="." [attr.id]="item.anchor">{{ item.title }}</h3>
     <ng-sample-box [ts]="demos[item.name].component" [html]="demos[item.name].html">
-      <ng-container [ngComponentOutlet]="test"></ng-container>
+      <ng-container *ngComponentOutlet="item.outlet"></ng-container>
     </ng-sample-box>
   </div>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc routerLink="." fragment="accordion-panel-component" id="accordion-panel-component" directive="AccordionPanelComponent"></ng-api-doc>
-  <ng-api-doc-config routerLink="." fragment="accordion-config" id="accordion-config" type="AccordionConfig"></ng-api-doc-config>
+  <ng-api-doc id="accordion-panel-component" directive="AccordionPanelComponent"></ng-api-doc>
+  <ng-api-doc-config id="accordion-config" type="AccordionConfig"></ng-api-doc-config>
 </demo-section>
