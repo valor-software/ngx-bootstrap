@@ -19,6 +19,7 @@ import { routes } from './demo-accordion.routes';
     SharedModule,
     RouterModule.forChild(routes)
   ],
+  entryComponents: [...DEMO_COMPONENTS],
   exports: [AccordionSectionComponent]
 })
 export class DemoAccordionModule {

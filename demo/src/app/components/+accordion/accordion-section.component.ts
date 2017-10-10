@@ -3,6 +3,10 @@
 
 import { Component } from '@angular/core';
 import { DEMOS } from './demos';
+import { ComponentData } from '../../common/models/components-data.model';
+import { accordionItems } from './accordion-section.list';
+
+import { DemoAccordionBasicComponent } from './demos/basic/basic';
 
 // webpack html imports
 let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
@@ -16,4 +20,7 @@ export class AccordionSectionComponent {
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   titleDoc: string = titleDoc;
   demos: any = DEMOS;
+  accordionItems: ComponentData[] = accordionItems;
+
+  test: any = DemoAccordionBasicComponent;
 }
