@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-npm i @angular/cli@latest \
-    @angular/common@latest \
+npm i @angular/common@latest \
     @angular/compiler@latest \
     @angular/compiler-cli@latest \
     @angular/core@latest \
