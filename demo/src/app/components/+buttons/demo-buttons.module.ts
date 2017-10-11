@@ -10,7 +10,10 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-buttons.routes';
 
 @NgModule({
-  declarations: [ButtonsSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    ButtonsSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -19,6 +22,7 @@ import { routes } from './demo-buttons.routes';
     RouterModule.forChild(routes),
     ButtonsModule.forRoot()
   ],
-  exports: [ButtonsSectionComponent]
+  exports: [ButtonsSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoButtonsModule {}

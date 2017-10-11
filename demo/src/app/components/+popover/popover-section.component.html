@@ -107,8 +107,13 @@
   <!--<demo-popover-styling-global></demo-popover-styling-global>-->
   <!--</ng-sample-box>-->
 
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <!--<examples [examples]="popoverExamples" [demos]="demos"></examples>
 
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <ng-api-doc [id]="popoverApi[0].anchor" [directive]="popoverApi[0].title"></ng-api-doc>
+  <ng-api-doc-config [id]="popoverApi[1].anchor" [directive]="popoverApi[1].title"></ng-api-doc-config>-->
+
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc routerLink="." fragment="popover-directive" id="popover-directive" directive="PopoverDirective"></ng-api-doc>
   <ng-api-doc-config routerLink="." fragment="popover-config" id="popover-config" type="PopoverConfig"></ng-api-doc-config>
 </demo-section>

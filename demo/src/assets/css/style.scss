@@ -323,6 +323,9 @@ a:hover {
   }
 }
 .api-doc-component {
+  > h3 {
+    margin-top: 20px;
+  }
   .table {
     td {
       padding: 1rem;

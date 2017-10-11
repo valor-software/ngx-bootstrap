@@ -10,7 +10,10 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-dropdown.routes';
 
 @NgModule({
-  declarations: [DropdownSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    DropdownSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     BsDropdownModule.forRoot(),
     CommonModule,
@@ -18,6 +21,7 @@ import { routes } from './demo-dropdown.routes';
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports: [DropdownSectionComponent]
+  exports: [DropdownSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoDropdownModule {}

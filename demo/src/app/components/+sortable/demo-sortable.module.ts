@@ -10,7 +10,10 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-sortable.routes';
 
 @NgModule({
-  declarations: [SortableSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    SortableSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,6 +21,7 @@ import { routes } from './demo-sortable.routes';
     SortableModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [SortableSectionComponent]
+  exports: [SortableSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoSortableModule {}

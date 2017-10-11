@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { isBs3 } from 'ngx-bootstrap/utils';
+
 import { DEMOS } from './demos';
+import { ComponentExample } from '../../common/models/components-examples.model';
+import { ComponentApi } from '../../common/models/components-api.model';
+/*import { progressbarExamples, progressbarApi } from './progressbar-section.list';*/
 
 // webpack html imports
 let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
@@ -19,4 +23,6 @@ export class ProgressbarSectionComponent {
 
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
+  /*progressbarExamples: ComponentExample[] = progressbarExamples;
+  progressbarApi: ComponentApi[] = progressbarApi;*/
 }

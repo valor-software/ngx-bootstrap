@@ -1,6 +1,11 @@
 // https://api.jqueryui.com/datepicker/
 import { Component } from '@angular/core';
+
 import { DEMOS } from './demos';
+import { ComponentExample } from '../../common/models/components-examples.model';
+import { ComponentApi } from '../../common/models/components-api.model';
+/*import { datepickerExamples, datepickerApi } from './datepicker-section.list';*/
+
 // webpack html imports
 let oldTitleDoc = require('html-loader!markdown-loader!./docs/titleOld.md');
 let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
@@ -15,4 +20,6 @@ export class DatepickerSectionComponent {
   demos: any = DEMOS;
   oldTitleDoc: string = oldTitleDoc;
   titleDoc: string = titleDoc;
+  /*datepickerExamples: ComponentExample[] = datepickerExamples;
+  datepickerApi: ComponentApi[] = datepickerApi;*/
 }

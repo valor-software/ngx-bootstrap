@@ -24,6 +24,6 @@ import { ModalContentComponent } from './demos/service-component/service-compone
     RouterModule.forChild(routes)
   ],
   exports: [ModalSectionComponent],
-  entryComponents: [ModalContentComponent]
+  entryComponents: [ModalContentComponent, ...DEMO_COMPONENTS]
 })
 export class DemoModalModule {}

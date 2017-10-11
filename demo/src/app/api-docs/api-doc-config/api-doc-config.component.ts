@@ -33,9 +33,9 @@ export class NgApiDocConfigComponent {
   }
 
   @Input()
-  set type(typeName: string) {
-    this.apiDocs = this.docs[typeName];
-    this.directiveName = typeName.slice(0, -CONFIG_SUFFIX_LENGTH);
+  set directive(directiveName: string) {
+    this.apiDocs = this.docs[directiveName];
+    this.directiveName = directiveName.slice(0, -CONFIG_SUFFIX_LENGTH);
   }
 
   trackSourceClick(): void {

@@ -10,7 +10,10 @@ import { PopoverSectionComponent } from './popover-section.component';
 import { routes } from './demo-popover.routes';
 
 @NgModule({
-  declarations: [PopoverSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    PopoverSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,6 +21,7 @@ import { routes } from './demo-popover.routes';
     PopoverModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [PopoverSectionComponent]
+  exports: [PopoverSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoPopoverModule {}

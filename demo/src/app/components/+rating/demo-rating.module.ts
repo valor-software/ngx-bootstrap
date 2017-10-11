@@ -10,7 +10,10 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-rating.routes';
 
 @NgModule({
-  declarations: [RatingSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    RatingSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -18,6 +21,7 @@ import { routes } from './demo-rating.routes';
     RatingModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [RatingSectionComponent]
+  exports: [RatingSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoRatingModule {}

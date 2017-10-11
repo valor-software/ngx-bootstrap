@@ -10,14 +10,18 @@ import { SharedModule } from '../../shared';
 import { routes } from './demo-alerts.routes';
 
 @NgModule({
-  declarations: [AlertsSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    AlertsSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     AlertModule.forRoot(),
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports: [AlertsSectionComponent]
+  exports: [AlertsSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoAlertsModule {
   static routes: any = routes;

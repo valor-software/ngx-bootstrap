@@ -1,0 +1,7 @@
+<div *ngFor="let item of examples">
+  <h3 *ngIf="item.title" routerLink="." [attr.id]="item.anchor">{{ item.title }}</h3>
+  <p *ngIf="item.text" [innerHTML]="item.text"></p>
+  <ng-sample-box [ts]="demos[item.name].component" [html]="demos[item.name].html">
+    <ng-container *ngComponentOutlet="item.outlet"></ng-container>
+  </ng-sample-box>
+</div>

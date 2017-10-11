@@ -10,7 +10,10 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-typeahead.routes';
 
 @NgModule({
-  declarations: [TypeaheadSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    TypeaheadSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,6 +22,7 @@ import { routes } from './demo-typeahead.routes';
     TypeaheadModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [TypeaheadSectionComponent]
+  exports: [TypeaheadSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoTypeaheadModule {}

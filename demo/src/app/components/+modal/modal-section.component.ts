@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+
 import { DEMOS } from './demos';
+import { ComponentExample } from '../../common/models/components-examples.model';
+import { ComponentApi } from '../../common/models/components-api.model';
+/*import { modalExamples, modalApi } from './modal-section.list';*/
 
 // webpack html imports
 let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
@@ -13,4 +17,6 @@ export class ModalSectionComponent {
   src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
+  /*modalExamples: ComponentExample[] = modalExamples;
+  modalApi: ComponentApi[] = modalApi;*/
 }

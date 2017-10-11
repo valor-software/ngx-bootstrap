@@ -73,8 +73,13 @@
     <demo-tabs-config></demo-tabs-config>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <!--<examples [examples]="tabsExamples" [demos]="demos"></examples>
 
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <ng-api-doc [id]="tabsApi[0].anchor" [directive]="tabsApi[0].title"></ng-api-doc>
+  <ng-api-doc-config [id]="tabsApi[1].anchor" [directive]="tabsApi[1].title"></ng-api-doc-config>-->
+
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc routerLink="." fragment="tabset-component" id="tabset-component" directive="TabsetComponent"></ng-api-doc>
   <ng-api-doc routerLink="." fragment="tab-directive"id="tab-directive" directive="TabDirective"></ng-api-doc>
   <ng-api-doc routerLink="." fragment="tab-heading-directive" id="tab-heading-directive" directive="TabHeadingDirective"></ng-api-doc>

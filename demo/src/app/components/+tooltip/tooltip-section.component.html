@@ -95,8 +95,13 @@
     <demo-tooltip-class></demo-tooltip-class>
   </ng-sample-box>
 
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <!--<examples [examples]="tooltipExamples" [demos]="demos"></examples>
 
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
+  <ng-api-doc [id]="tooltipApi[0].anchor" [directive]="tooltipApi[0].title"></ng-api-doc>
+  <ng-api-doc-config [id]="tooltipApi[1].anchor" [directive]="tooltipApi[1].title"></ng-api-doc-config>-->
+
+  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc id="tooltip-directive" directive="TooltipDirective"></ng-api-doc>
   <ng-api-doc-config id="tooltip-config" type="TooltipConfig"></ng-api-doc-config>
 </demo-section>
