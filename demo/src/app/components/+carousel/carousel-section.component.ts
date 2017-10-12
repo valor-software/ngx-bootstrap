@@ -3,7 +3,7 @@ import { DEMOS } from './demos';
 
 import { ComponentExample } from '../../common/models/components-examples.model';
 import { ComponentApi } from '../../common/models/components-api.model';
-/*import { carouselExamples, carouselApi } from './carousel-section.list';*/
+import { carouselExamples, carouselApi } from './carousel-section.list';
 
 // webpack html imports
 let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
@@ -17,6 +17,6 @@ export class CarouselSectionComponent {
   src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/carousel';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
-  /*carouselExamples: ComponentExample[] = carouselExamples;
-  carouselApi: ComponentApi[] = carouselApi;*/
+  carouselExamples: ComponentExample[] = carouselExamples;
+  carouselApi: ComponentApi[] = carouselApi;
 }

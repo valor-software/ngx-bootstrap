@@ -9,28 +9,28 @@ export const buttonsExamples = [
     title: 'Single button',
     anchor: 'single-button',
     name: 'basic',
-    text: `<p>Default static button with two states</p>`,
+    description: `<p>Default static button with two states</p>`,
     outlet: DemoButtonsBasicComponent
   },
-  /*{
+  {
     title: 'Checkbox',
     anchor: 'checkbox',
     name: 'checkbox',
-    text: `<p>Checkbox-like buttons set with variable states</p>`,
+    description: `<p>Checkbox-like buttons set with variable states</p>`,
     outlet: DemoButtonsCheckboxComponent
   },
   {
-    title: 'Radio &amp; Uncheckable Radio',
+    title: 'Radio & Uncheckable Radio',
     anchor: 'radio-button',
     name: 'radio',
-    text: `<p>Radio buttons with checked/unchecked states</p>`,
+    description: `<p>Radio buttons with checked/unchecked states</p>`,
     outlet: DemoButtonsRadioComponent
   },
   {
-    title: 'Radio with ReactiveForms',
+    title: 'Radio with Reactive Forms',
     anchor: 'radio-reactiveforms"',
     name: 'radioReactiveForms',
-    text: `<p>Checkbox buttons with ReactiveForms</p>`,
+    description: `<p>Checkbox buttons with ReactiveForms</p>`,
     outlet: DemoButtonsRadioReactiveFormsComponent
   },
   {
@@ -38,7 +38,7 @@ export const buttonsExamples = [
     anchor: 'disabled-buttons',
     name: 'disabled',
     outlet: DemoButtonsDisabledComponent
-  }*/
+  }
 ];
 
 export const buttonsApi = [

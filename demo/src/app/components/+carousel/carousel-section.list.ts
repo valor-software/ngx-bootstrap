@@ -1,58 +1,49 @@
-/*
-import { DemoAccordionBasicComponent } from './demos/basic/basic';
-import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
-import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
-import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
-import { DemoAccordionStylingComponent } from './demos/styling/styling';
-import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoCarouseBasicComponent } from './demos/basic/basic';
+import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
+import { DemoCarouselConfigComponent } from './demos/config/config';
+import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
 
 export const carouselExamples = [
   {
-    title: 'Simple accordion',
-    anchor: 'simple-accordion',
+    title: 'Basic',
+    anchor: 'basic',
     name: 'basic',
-    outlet: DemoAccordionBasicComponent
+    outlet: DemoCarouseBasicComponent
   },
   {
-    title: 'Disabled',
-    anchor: 'disabled',
-    name: 'disabled',
-    outlet: DemoAccordionDisabledComponent
-  },
-  {
-    title: 'Dynamic accordion',
-    anchor: 'dynamic-accordion',
-    name: 'dynamic',
-    outlet: DemoAccordionDynamicComponent
-  },
-  {
-    title: 'Open only one at a time',
-    anchor: 'one-time',
-    name: 'oneAtATime',
-    outlet: DemoAccordionOneAtATimeComponent
-  },
-  {
-    title: 'Styling',
-    anchor: 'styling',
-    name: 'styling',
-    outlet: DemoAccordionStylingComponent
+    title: 'Optional captions',
+    anchor: 'captions',
+    name: 'captions',
+    description: `<p>Add captions to your slides easily with the <code>.carousel-caption</code> element within
+    any <code>&lt;slide></code>. Place just about any optional HTML within there and it will be
+    automatically aligned and formatted.</p>`,
+    outlet: DemoCarouselDynamicComponent
   },
   {
     title: 'Configuring defaults',
-    anchor: 'config',
+    anchor: 'config-defaults',
     name: 'config',
-    outlet: DemoAccordionConfigComponent
+    outlet: DemoCarouselCaptionsComponent
+  },
+  {
+    title: 'Dynamic Slides',
+    anchor: 'dynamic-slides',
+    name: 'dynamic',
+    outlet: DemoCarouselConfigComponent
   }
 ];
 
 export const carouselApi = [
   {
-    title: 'AccordionPanelComponent',
-    anchor: 'AccordionPanelComponent'
+    title: 'CarouselComponent',
+    anchor: 'carousel-component'
   },
   {
-    title: 'AccordionConfig',
-    anchor: 'AccordionConfig'
+    title: 'SlideComponent',
+    anchor: 'slide-component'
+  },
+  {
+    title: 'CarouselConfig',
+    anchor: 'carousel-config'
   }
 ];
-*/

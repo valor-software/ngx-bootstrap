@@ -1,58 +1,48 @@
-/*
-import { DemoAccordionBasicComponent } from './demos/basic/basic';
-import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
-import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
-import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
-import { DemoAccordionStylingComponent } from './demos/styling/styling';
-import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoPaginationBasicComponent } from './demos/basic/basic';
+import { DemoPaginationPagerComponent } from './demos/pager/pager';
+import { DemoPaginationLimitComponent } from './demos/limit/limit';
+import { DemoPaginationStylingComponent } from './demos/styling-global/styling-global';
 
 export const paginationExamples = [
   {
-    title: 'Simple accordion',
-    anchor: 'simple-accordion',
+    title: 'Default',
+    anchor: 'pagination-default',
     name: 'basic',
-    outlet: DemoAccordionBasicComponent
+    outlet: DemoPaginationBasicComponent
   },
   {
-    title: 'Disabled',
-    anchor: 'disabled',
-    name: 'disabled',
-    outlet: DemoAccordionDisabledComponent
+    title: 'States & Limits',
+    anchor: 'pagination-limit',
+    name: 'limit',
+    description: `<p>Limit the maximum visible buttons</p>`,
+    outlet: DemoPaginationLimitComponent
   },
   {
-    title: 'Dynamic accordion',
-    anchor: 'dynamic-accordion',
-    name: 'dynamic',
-    outlet: DemoAccordionDynamicComponent
-  },
-  {
-    title: 'Open only one at a time',
-    anchor: 'one-time',
-    name: 'oneAtATime',
-    outlet: DemoAccordionOneAtATimeComponent
-  },
+    title: 'Pager',
+    anchor: 'pagination-pager',
+    name: 'pager',
+    outlet: DemoPaginationPagerComponent
+  }
+  /* TODO: temporary disabled pageBtnClass option
   {
     title: 'Styling',
-    anchor: 'styling',
+    anchor: 'pagination-styling',
     name: 'styling',
-    outlet: DemoAccordionStylingComponent
-  },
-  {
-    title: 'Configuring defaults',
-    anchor: 'config',
-    name: 'config',
-    outlet: DemoAccordionConfigComponent
-  }
+    outlet: DemoPaginationStylingComponent
+  }*/
 ];
 
 export const paginationApi = [
   {
-    title: 'AccordionPanelComponent',
-    anchor: 'AccordionPanelComponent'
+    title: 'PaginationComponent',
+    anchor: 'pagination-component'
   },
   {
-    title: 'AccordionConfig',
-    anchor: 'AccordionConfig'
+    title: 'PagerComponent',
+    anchor: 'pager-component'
+  },
+  {
+    title: 'PaginationConfig',
+    anchor: 'pagination-config'
   }
 ];
-*/

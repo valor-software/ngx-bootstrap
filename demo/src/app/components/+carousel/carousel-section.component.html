@@ -26,38 +26,10 @@
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
 
-  <!-- basic -->
-  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
-    <demo-carousel-basic></demo-carousel-basic>
-  </ng-sample-box>
-
-  <!-- captions -->
-  <h2 routerLink="." fragment="captions" id="captions">Optional captions</h2>
-  <p>Add captions to your slides easily with the <code>.carousel-caption</code> element within any <code>&lt;slide></code>.
-    Place just about any optional HTML within there and it will be automatically aligned and formatted.</p>
-  <ng-sample-box [ts]="demos.captions.component" [html]="demos.captions.html">
-    <demo-carousel-captions></demo-carousel-captions>
-  </ng-sample-box>
-
-  <!-- config -->
-  <h2 routerLink="." fragment="config" id="config">Configuring defaults</h2>
-  <ng-sample-box [ts]="demos.config.component" [html]="demos.config.html">
-    <demo-carousel-config></demo-carousel-config>
-  </ng-sample-box>
-
-  <!-- dynamic -->
-  <h2 routerLink="." fragment="dynamic" id="dynamic">Dynamic Slides</h2>
-  <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
-    <demo-carousel-dynamic></demo-carousel-dynamic>
-  </ng-sample-box>
-
-  <!--<examples [examples]="carouselExamples" [demos]="demos"></examples>
+  <examples [examples]="carouselExamples" [demos]="demos"></examples>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc [id]="carouselApi[0].anchor" [directive]="carouselApi[0].title"></ng-api-doc>
-  <ng-api-doc-config [id]="carouselApi[1].anchor" [directive]="carouselApi[1].title"></ng-api-doc-config>-->
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc id="carousel-component" directive="CarouselComponent"></ng-api-doc>
-  <ng-api-doc id="slide-component" directive="SlideComponent"></ng-api-doc>
-  <ng-api-doc-config id="carousel-config" type="CarouselConfig"></ng-api-doc-config>
+  <ng-api-doc [id]="carouselApi[1].anchor" [directive]="carouselApi[1].title"></ng-api-doc>
+  <ng-api-doc-config [id]="carouselApi[2].anchor" [directive]="carouselApi[2].title"></ng-api-doc-config>
 </demo-section>

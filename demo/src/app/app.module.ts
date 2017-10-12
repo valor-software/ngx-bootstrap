@@ -8,7 +8,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ngdoc } from '../ng-api-doc';
 import { NgApiDoc } from './api-docs/api-docs.model';
 
-import { NgApiDocModule } from './api-docs/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
 import { LandingComponent } from './common/landing/landing.component';
@@ -29,7 +28,6 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     SharedModule,
-    NgApiDocModule,
     BrowserModule,
     FormsModule,
     HttpModule,

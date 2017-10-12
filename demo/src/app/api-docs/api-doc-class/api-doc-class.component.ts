@@ -18,8 +18,8 @@ import { Analytics } from '../analytics/analytics';
 })
 export class NgApiDocClassComponent {
   @Input()
-  set type(typeName: string) {
-    this.apiDocs = this.docs[typeName];
+  set directive(directiveName: string) {
+    this.apiDocs = this.docs[directiveName];
   }
 
   apiDocs: ClassDesc;

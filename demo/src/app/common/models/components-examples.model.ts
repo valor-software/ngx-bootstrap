@@ -2,6 +2,6 @@ export interface ComponentExample {
   name: string;
   anchor?: string;
   title?: string;
-  text?: string;
+  description?: string;
   outlet?: Object;
 }

@@ -23,42 +23,15 @@
   </ul>
 
   <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-
   <p [innerHtml]="titleDoc"></p>
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
   <p>On small screens bootstrap4 pagination can be cropped</p>
 
-  <h3 routerLink="." fragment="default" id="default">Default</h3>
-  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
-    <demo-pagination-basic></demo-pagination-basic>
-  </ng-sample-box>
-
-  <h3 routerLink="." fragment="limit" id="limit">States & Limits</h3>
-  <p>Limit the maximum visible buttons</p>
-  <ng-sample-box [ts]="demos.limit.component" [html]="demos.limit.html">
-    <demo-pagination-limit></demo-pagination-limit>
-  </ng-sample-box>
-
-  <h3 routerLink="." fragment="pager" id="pager">Pager</h3>
-  <ng-sample-box [ts]="demos.pager.component" [html]="demos.pager.html">
-    <demo-pagination-pager></demo-pagination-pager>
-  </ng-sample-box>
-
-  <!--TODO: temporary disabled pageBtnClass option-->
-  <!--<h3 routerLink="." fragment="styling" id="styling">Styling</h3>-->
-  <!--<ng-sample-box [ts]="demos.styling.component" [html]="demos.styling.html">-->
-  <!--<demo-pagination-styling></demo-pagination-styling>-->
-  <!--</ng-sample-box>-->
-
-  <!--<examples [examples]="paginationExamples" [demos]="demos"></examples>
+  <examples [examples]="paginationExamples" [demos]="demos"></examples>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
   <ng-api-doc [id]="paginationApi[0].anchor" [directive]="paginationApi[0].title"></ng-api-doc>
-  <ng-api-doc-config [id]="paginationApi[1].anchor" [directive]="paginationApi[1].title"></ng-api-doc-config>-->
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc routerLink="." fragment="pagination-component" id="pagination-component" directive="PaginationComponent"></ng-api-doc>
-  <ng-api-doc routerLink="." fragment="pager-component" id="pager-component" directive="PagerComponent"></ng-api-doc>
-  <ng-api-doc-config routerLink="." fragment="pagination-config" id="pagination-config" type="PaginationConfig"></ng-api-doc-config>
+  <ng-api-doc [id]="paginationApi[1].anchor" [directive]="paginationApi[1].title"></ng-api-doc>
+  <ng-api-doc-config [id]="paginationApi[2].anchor" [directive]="paginationApi[2].title"></ng-api-doc-config>
 </demo-section>
