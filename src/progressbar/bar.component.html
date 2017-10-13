@@ -1,0 +1,11 @@
+<div class="progress-bar"
+     style="min-width: 0;"
+     role="progressbar"
+     [ngClass]="type && 'progress-bar-' + type + ' bg-' + type"
+     [ngStyle]="{width: (isBs3 ? (percent < 100 ? percent : 100) + '%' : '100%'), transition: transition}"
+     aria-valuemin="0"
+     [attr.aria-valuenow]="value"
+     [attr.aria-valuetext]="percent.toFixed(0) + '%'"
+     [attr.aria-valuemax]="max">
+  <ng-content></ng-content>
+</div>

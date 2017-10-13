@@ -10,10 +10,7 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-progressbar.routes';
 
 @NgModule({
-  declarations: [
-    ProgressbarSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [ProgressbarSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,5 +20,4 @@ import { routes } from './demo-progressbar.routes';
   ],
   exports: [ProgressbarSectionComponent]
 })
-export class DemoProgressbarModule {
-}
+export class DemoProgressbarModule {}

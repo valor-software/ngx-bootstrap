@@ -12,7 +12,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
+      require('karma-sauce-launcher')
     ],
     files: [
       {pattern: './scripts/test.ts', watched: false}
@@ -21,7 +22,7 @@ module.exports = function (config) {
       './scripts/test.ts': ['@angular/cli']
     },
     coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
+      reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
     angularCli: {
@@ -38,16 +39,16 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+        base: 'ChromeHeadless',
+        flags: ['--disable-translate', '--disable-extensions']
       }
     },
-    mime: { 'text/x-typescript': ['ts','tsx'] },
-    client: { captureConsole: true, clearContext: false }
+    mime: {'text/x-typescript': ['ts', 'tsx']},
+    client: {captureConsole: true, clearContext: false}
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = ['ChromeHeadless'];
   }
 
   if (process.env.SAUCE) {
@@ -57,26 +58,96 @@ module.exports = function (config) {
     }
 
     configuration.plugins.push(require('karma-sauce-launcher'));
-    configuration.reporters.push('saucelabs');
-    configuration.sauceLabs = {
-      verbose: true,
-      testName: 'ng2-bootstrap unit tests',
-      recordScreenshots: false,
-      username: process.env.SAUCE_USERNAME,
-      accessKey: process.env.SAUCE_ACCESS_KEY,
-      connectOptions: {
-        port: 5757,
-        logfile: 'sauce_connect.log'
+    Object.assign(configuration, {
+      logLevel: config.LOG_INFO,
+      reporters: ['dots', 'saucelabs'],
+      singleRun: false,
+      concurrency: 3,
+      captureTimeout: 60000,
+      browserNoActivityTimeout: 20000,
+      browserDisconnectTimeout: 5000,
+      sauceLabs: {
+        testName: 'ngx-bootstrap',
+        build: process.env.TRAVIS_JOB_NUMBER,
+        tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+        retryLimit: 3,
+        startConnect: false,
+        recordVideo: false,
+        recordScreenshots: false,
+        options: {
+          'command-timeout': 600,
+          'idle-timeout': 600,
+          'max-duration': 5400
+        }
       },
-      public: 'public'
-    };
-    configuration.captureTimeout = 0;
-    configuration.customLaunchers = customLaunchers();
+      customLaunchers: {
+        'SL_CHROME': {
+          base: 'SauceLabs',
+          browserName: 'chrome',
+          version: 'latest'
+        },
+        'SL_CHROME_1': {
+          base: 'SauceLabs',
+          browserName: 'chrome',
+          version: 'latest-1'
+        },
+        'SL_FIREFOX': {
+          base: 'SauceLabs',
+          browserName: 'firefox',
+          version: 'latest'
+        },
+        'SL_FIREFOX_1': {
+          base: 'SauceLabs',
+          browserName: 'firefox',
+          version: 'latest-1'
+        },
+        'SL_IE10': {
+          base: 'SauceLabs',
+          browserName: 'internet explorer',
+          platform: 'Windows 2012',
+          version: '10'
+        },
+        'SL_IE11': {
+          base: 'SauceLabs',
+          browserName: 'internet explorer',
+          platform: 'Windows 8.1',
+          version: '11'
+        },
+        'SL_EDGE13': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '13'
+        },
+        'SL_EDGE14': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '14'
+        },
+        'SL_EDGE15': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '15'
+        },
+        'SL_SAFARI9': {
+          base: 'SauceLabs',
+          browserName: 'safari',
+          platform: 'OS X 10.11',
+          version: '9.0'
+        },
+        'SL_SAFARI10': {
+          base: 'SauceLabs',
+          browserName: 'safari',
+          platform: 'OS X 10.11',
+          version: '10.0'
+        }
+      }
+    });
+
+
     configuration.browsers = Object.keys(configuration.customLaunchers);
-    configuration.concurrency = 3;
-    configuration.browserDisconnectTolerance = 2;
-    configuration.browserNoActivityTimeout = 20000;
-    configuration.browserDisconnectTimeout = 5000;
   }
 
   config.set(configuration);

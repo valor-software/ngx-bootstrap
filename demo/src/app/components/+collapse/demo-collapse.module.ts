@@ -10,10 +10,7 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-collapse.routes';
 
 @NgModule({
-  declarations: [
-    CollapseSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [CollapseSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     CollapseModule.forRoot(),
     CommonModule,
@@ -23,6 +20,4 @@ import { routes } from './demo-collapse.routes';
   ],
   exports: [CollapseSectionComponent]
 })
-export class DemoCollapseModule {
-
-}
+export class DemoCollapseModule {}

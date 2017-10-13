@@ -1,0 +1,129 @@
+<demo-section>
+  <div id="content" class="content-box">
+
+    <div class="image-responsive img-fluid">
+      <img class="mx-auto center-block d-block" src="assets/images/logos/angular.svg"
+           alt="angular logo" width="250" height="250">
+    </div>
+
+    <h1 align="center">
+      <a href="https://github.com/valor-software/ngx-bootstrap">ngx-bootstrap</a>
+    </h1>
+
+    <p align="center">
+      The best way to quickly integrate <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a> or <a
+      href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+    </p>
+
+    <p align="center">
+      <span style="margin-top: 10px;display: inline-block;width: 120px;">
+        <iframe frameborder="0" scrolling="0" style="height: 20px;width: 120px;"
+                title="github stars count"
+                src="https://ghbtns.com/github-btn.html?user=valor-software&repo=ngx-bootstrap&type=star&count=true"></iframe></span>
+      <br/>
+
+      <a href="https://badge.fury.io/js/ngx-bootstrap">
+        <img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version">
+      </a>
+
+      <a href="https://npmjs.org/ngx-bootstrap">
+        <img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads">
+      </a>
+
+      <br/>
+      <a href="https://travis-ci.org/valor-software/ngx-bootstrap">
+        <img alt="build status" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development">
+      </a>
+      <a href="https://ngx-slack.herokuapp.com">
+        <img src="https://ngx-slack.herokuapp.com/badge.svg" alt="slack">
+      </a>
+    </p>
+
+    <div class="section">
+
+      <h2>Links</h2>
+      <ul>
+        <li><a href="http://valor-software.com/ngx-bootstrap/">Documentation</a></li>
+        <li><a href="https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md">Release Notes</a></li>
+        <li><a href="https://ngx-slack.herokuapp.com">Slack Community</a></li>
+      </ul>
+
+      <h2>Table of contents</h2>
+      <ol>
+        <li><a routerLink="." fragment="getting-started">Getting Started</a></li>
+        <li><a routerLink="." fragment="installation-instructions">Installation instructions</a></li>
+        <li><a routerLink="." fragment="usage--demo">Usage & Demo</a></li>
+        <li><a routerLink="." fragment="api">API</a></li>
+        <li><a routerLink="." fragment="troubleshooting">Troubleshooting</a></li>
+        <li><a routerLink="." fragment="contribution">Contributing</a></li>
+        <!--<li><a routerLink="." fragment="license">License</a></li>-->
+      </ol>
+
+      <h2 id="getting-started">Getting Started</h2>
+
+      <p>ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.</p>
+
+      <h2 id="installation-instructions">Installation instructions</h2>
+
+      <p>Install <code>ngx-bootstrap</code> from <code>npm</code></p>
+      <pre class="prettyprint lang-bash prettyprinted"><span class="pln">npm install ngx</span><span class="pun">-</span><span class="pln">bootstrap </span><span class="pun">--</span><span class="pln">save</span></pre>
+
+      <p>You will need bootstrap styles (Bootstrap 3)</p>
+      <pre class="prettyprint prettyprinted"><span class="com">&lt;!-- index.html --&gt;</span><span class="pln">
+</span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span></pre>
+
+      <p>Or Bootstrap 4</p>
+      <pre class="prettyprint prettyprinted"><span class="com">&lt;!--- index.html --&gt;</span><span class="pln">
+</span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span></pre>
+
+      <p>To enable bootstrap 4 theme templates in ngx-bootstrap, please read <a href="https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md">here</a></p>
+      <pre class="prettyprint prettyprinted"><span class="com">&lt;!-- index.html --&gt;</span><span class="pln">
+</span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span></pre>
+
+      <h3>How to use it with:</h3>
+
+      <ul>
+        <li><code>angular-cli</code> please refer to <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/ng-cli.md">getting-started-with-ng-cli</a></li>
+        <li><code>angular-seed</code> please refer to <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md">getting-started-with-angular-seed</a></li>
+        <li><code>system.js</code> (and <a href="https://angular.io/docs/ts/latest/quickstart.html">angular quickstart</a>) please checkout <a href="https://github.com/valor-software/angular2-quickstart">sample repository</a></li>
+        <li><code>plnkr</code> sample available <a href="http://bit.ly/ng2-bootstrap-plnkr">here</a></li>
+        <li><code>AoT using ngc and rollup</code> please refer to <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/aot.md">ngx-bootstrap-with-aot</a></li>
+        <li><code>Bootstrap 4 and angular-cli</code> please refer to <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap4.md">using-with-bootstrap-4-and-angular-cli</a></li>
+      </ul>
+
+      <h2 id="usage--demo">Usage & Demo </h2>
+
+      <p>Main source of API documentation and usage scenarious available here:
+        <a href="http://valor-software.github.io/ngx-bootstrap/">http://valor-software.github.io/ngx-bootstrap/</a></p>
+
+      <h2 id="api">API</h2>
+
+      <p>Check demo page for API <a href="http://valor-software.github.io/ngx-bootstrap/">reference</a></p>
+
+      <h2 id="troubleshooting">Troubleshooting</h2>
+
+      <p>So you are in trouble, where to get help:</p>
+
+      <ul>
+        <li>you can search and ask for help at <a href="https://stackoverflow.com/questions/tagged/ngx-bootstrap">StackOverflow</a></li>
+        <li>you can join <a href="https://ngx-slack.herokuapp.com/">slack</a> and ask a question</li>
+        <li>if none of this helped please <a href="https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue">search</a> and only then open new issue</li>
+      </ul>
+
+      <h2 id="contribution">Contribution</h2>
+
+      <p>Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!</p>
+
+      <h3>If you need more modules check <a href="https://github.com/valor-software/ng2-plans">here</a></h3>
+
+      <p>Please read central <code>ngx</code> modules <a href="https://github.com/valor-software/ng2-plans">readme</a> for details, plans and approach</p>
+
+      <h3>Credits</h3>
+
+      <p>Crossbrowser testing sponsored by
+        <a href="https://www.browserstack.com">Browser Stack</a>
+        <a href="https://www.browserstack.com"><img src="https://camo.githubusercontent.com/a7b268f2785656ab3ca7b1cbb1633ee5affceb8f/68747470733a2f2f64677a6f7139623561736a67312e636c6f756466726f6e742e6e65742f70726f64756374696f6e2f696d616765732f6c61796f75742f6c6f676f2d6865616465722e706e67" alt="Browser Stack" height="31px"></a>
+      </p>
+    </div>
+  </div>
+</demo-section>

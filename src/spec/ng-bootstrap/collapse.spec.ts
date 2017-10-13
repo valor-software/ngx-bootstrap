@@ -1,24 +1,32 @@
 // revision 6c0b585aa4a7c13c44631915d13488e6967162f4
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 
 import { Component } from '@angular/core';
 
 import { CollapseModule } from '../../collapse';
 
+@Component({ selector: 'test-cmp', template: '' })
+class TestComponent {
+  collapsed = false;
+}
+
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent) as ComponentFixture<TestComponent>;
+  createGenericTestComponent(html, TestComponent);
 
 function getCollapsibleContent(element: HTMLElement): Element {
-  return (element).querySelector('.collapse');
+  return element.querySelector('.collapse');
 }
 
 describe('bs-collapse', () => {
   let html = `<div [collapse]="collapsed">Some content</div>`;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestComponent], imports: [CollapseModule]});
-    TestBed.overrideComponent(TestComponent, {set: {template: html}});
+    TestBed.configureTestingModule({
+      declarations: [TestComponent],
+      imports: [CollapseModule]
+    });
+    TestBed.overrideComponent(TestComponent, { set: { template: html } });
   });
 
   it('should have content open and aria-expanded true', () => {
@@ -87,8 +95,3 @@ describe('bs-collapse', () => {
     expect(collapseEl).toHaveCssClass('show');
   });
 });
-
-@Component({selector: 'test-cmp', template: ''})
-class TestComponent {
-  public collapsed:boolean = false;
-}

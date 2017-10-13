@@ -10,10 +10,11 @@ import { map } from 'rxjs/operator/map';
 import { Action, ActionReducer } from './index';
 
 export class MiniStore<T> extends Observable<T> implements Observer<Action> {
-
-  constructor(private _dispatcher: Observer<Action>,
-              private _reducer: ActionReducer<any>,
-              state$: Observable<any>) {
+  constructor(
+    private _dispatcher: Observer<Action>,
+    private _reducer: ActionReducer<any>,
+    state$: Observable<any>
+  ) {
     super();
 
     this.source = state$;
@@ -32,11 +33,19 @@ export class MiniStore<T> extends Observable<T> implements Observer<Action> {
     return store;
   }
 
-  dispatch(action: Action) { this._dispatcher.next(action); }
+  dispatch(action: Action) {
+    this._dispatcher.next(action);
+  }
 
-  next(action: Action) { this._dispatcher.next(action); }
+  next(action: Action) {
+    this._dispatcher.next(action);
+  }
 
-  error(err: any) { this._dispatcher.error(err); }
+  error(err: any) {
+    this._dispatcher.error(err);
+  }
 
-  complete() {/*noop*/}
+  complete() {
+    /*noop*/
+  }
 }

@@ -10,10 +10,7 @@ import { DEMO_COMPONENTS } from './demos/index';
 import { routes } from './demo-tooltip.routes';
 
 @NgModule({
-  declarations: [
-    TooltipSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [TooltipSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     CommonModule,
     FormsModule,

@@ -8,11 +8,17 @@ import { DemoAlertStylingGlobalComponent } from './styling-global/styling-global
 import { DemoAlertStylingLocalComponent } from './styling-local/styling-local';
 import { DemoAlertConfigComponent } from './config/config';
 
-export const DEMO_COMPONENTS = [DemoAlertBasicComponent,
-  DemoAlertLinkComponent, DemoAlertContentComponent, DemoAlertDismissComponent,
-  DemoAlertDynamicHtmlComponent, DemoAlertTimeoutComponent,
-  DemoAlertStylingGlobalComponent, DemoAlertStylingLocalComponent,
-  DemoAlertConfigComponent];
+export const DEMO_COMPONENTS = [
+  DemoAlertBasicComponent,
+  DemoAlertLinkComponent,
+  DemoAlertContentComponent,
+  DemoAlertDismissComponent,
+  DemoAlertDynamicHtmlComponent,
+  DemoAlertTimeoutComponent,
+  DemoAlertStylingGlobalComponent,
+  DemoAlertStylingLocalComponent,
+  DemoAlertConfigComponent
+];
 
 export const DEMOS = {
   basic: {

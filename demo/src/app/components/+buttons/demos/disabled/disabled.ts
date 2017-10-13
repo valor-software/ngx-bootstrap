@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './disabled.html'
 })
 export class DemoButtonsDisabledComponent {
-  public disabled: boolean = false;
-
+  disabled: boolean = false;
 }

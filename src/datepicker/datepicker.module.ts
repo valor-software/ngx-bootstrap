@@ -11,14 +11,24 @@ import { DatepickerConfig } from './datepicker.config';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
-  declarations: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent,
-                 MonthPickerComponent, YearPickerComponent],
-  exports: [DatePickerComponent, DatePickerInnerComponent, DayPickerComponent,
-            MonthPickerComponent, YearPickerComponent],
+  declarations: [
+    DatePickerComponent,
+    DatePickerInnerComponent,
+    DayPickerComponent,
+    MonthPickerComponent,
+    YearPickerComponent
+  ],
+  exports: [
+    DatePickerComponent,
+    DatePickerInnerComponent,
+    DayPickerComponent,
+    MonthPickerComponent,
+    YearPickerComponent
+  ],
   entryComponents: [DatePickerComponent]
 })
 export class DatepickerModule {
-  public static forRoot(): ModuleWithProviders {
-    return {ngModule: DatepickerModule, providers: [DatepickerConfig]};
+  static forRoot(): ModuleWithProviders {
+    return { ngModule: DatepickerModule, providers: [DatepickerConfig] };
   }
 }

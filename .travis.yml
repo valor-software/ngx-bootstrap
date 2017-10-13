@@ -1,37 +1,108 @@
 sudo: false
 language: node_js
-node_js: "7"
-dist: precise
+node_js: "6"
+
+notifications:
+  email: false
+
+git:
+  depth: 3
+  submodules: false
 
 env:
   global:
-    - SAUCE_USERNAME=valorkin
-    - SAUCE_ACCESS_KEY=aeaf806e-ad5c-484b-a8fe-4b4b9f54e99a
+    - $SAUCE_USERNAME_PR=valorkinpr
+    - $SAUCE_ACCESS_KEY_PR=e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+    - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
+    - LOGS_DIR=/tmp/logs
+
+stages:
+  - name: precache
+    if: ( branch = development AND type = push ) OR type = pull_request
+  - name: lint
+    if: ( branch = development AND type = push ) OR type = pull_request
+  - name: test
+    if: ( branch = development AND type = push ) OR type = pull_request
+  - name: build
+    if: ( branch = development AND type = push ) OR type = pull_request
+  - name: deploy-surge
+    if: branch = development AND type = push
+  - name: sauce-tests
+    if: ( branch = development AND type = push ) OR type = pull_request
 
 before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-
-script:
-  - npm run lint
-  - npm run build
   - rm -rf node_modules/ngx-bootstrap
-  - npm i ./dist
-  - npm run demo.build
-  - npm run test-coverage
 
-after_success:
-  - ./node_modules/.bin/codecov
-  - npm run test-cross
+install:
+  - npm install > /dev/null
+  - npm run build > /dev/null
+  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+  - npm i ./dist  > /dev/null
+  - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then SAUCE_USERNAME=$SAUCE_USERNAME_PR; SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
-addons:
-  # sauce labs tunel connector (read more https://docs.travis-ci.com/user/sauce-connect/ )
-  sauce_connect: true
-  firefox: "latest"
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    # required by node-gyp to build some packages
-    packages:
-    - g++-4.8
+jobs:
+  fast_finish: true
+  allow_failures:
+    - env: NGV=next
+    - stage: sauce-tests
+  include:
+# precache npm and apt dependencies
+    - stage: precache
+      install: npm install > /dev/null
+      script: true
+      addons:
+        chrome: stable
+        apt:
+          sources:
+          - ubuntu-toolchain-r-test
+          # required by node-gyp to build some packages
+          packages:
+          - g++-4.8
+#   lint code
+    - stage: lint
+      install: true
+      script: npm run lint
+#   test
+    - &test
+      stage: test
+      script: npm run test-coverage
+      after_success:
+        - ./node_modules/.bin/codecov
+    - <<: *test
+      env: NGV=latest
+    - <<: *test
+      env: NGV=next
+#    check prod build
+    - &build
+      stage: build
+      script: npm run demo.ng-build
+    - <<: *build
+      env: NGV=latest
+    - <<: *build
+      env: NGV=next
+    - stage: sauce-tests
+      before_script:
+        - mkdir -p $LOGS_DIR
+        - ./scripts/sauce/sauce_connect_setup.sh
+      script:
+        - ./scripts/sauce/sauce_connect_block.sh
+        - npm run test-cross
+      after_script: ./scripts/sauce/sauce_connect_teardown.sh
+#   deploy to ngx-bootstrap.surge.sh
+    - stage: deploy-surge
+      script: npm run demo.build
+      deploy:
+        provider: surge
+        project: ./gh-pages/
+        domain: ngx-bootstrap.surge.sh
+        on: development
+
+cache:
+  apt: true
+  npm: true
+  directories:
+    - node_modules

@@ -16,7 +16,7 @@ export class BsDropdownState {
   resolveDropdownMenu: (componentRef: BsComponentRef<any>) => void;
 
   constructor() {
-    this.dropdownMenu = new Promise((resolve) => {
+    this.dropdownMenu = new Promise(resolve => {
       this.resolveDropdownMenu = resolve;
     });
   }

@@ -22,23 +22,23 @@ const CONFIG_SUFFIX_LENGTH = 'Config'.length;
   templateUrl: './api-doc-config.component.html'
 })
 export class NgApiDocConfigComponent {
-  public apiDocs: ClassDesc;
-  public directiveName: string;
+  apiDocs: ClassDesc;
+  directiveName: string;
   private _analytics: Analytics;
   private docs: NgApiDoc;
 
-  public constructor(_analytics: Analytics, docs: NgApiDoc) {
+  constructor(_analytics: Analytics, docs: NgApiDoc) {
     this._analytics = _analytics;
     this.docs = docs;
   }
 
   @Input()
-  public set type(typeName: string) {
+  set type(typeName: string) {
     this.apiDocs = this.docs[typeName];
     this.directiveName = typeName.slice(0, -CONFIG_SUFFIX_LENGTH);
   }
 
-  public trackSourceClick(): void {
+  trackSourceClick(): void {
     this._analytics.trackEvent('Source File View', this.apiDocs.className);
   }
 }

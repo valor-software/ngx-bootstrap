@@ -6,8 +6,12 @@ import { DemoAccordionDynamicComponent } from './dymanic/dynamic';
 import { DemoAccordionConfigComponent } from './config/config';
 
 export const DEMO_COMPONENTS = [
-  DemoAccordionBasicComponent, DemoAccordionDisabledComponent, DemoAccordionStylingComponent,
-  DemoAccordionOneAtATimeComponent, DemoAccordionDynamicComponent, DemoAccordionConfigComponent
+  DemoAccordionBasicComponent,
+  DemoAccordionDisabledComponent,
+  DemoAccordionStylingComponent,
+  DemoAccordionOneAtATimeComponent,
+  DemoAccordionDynamicComponent,
+  DemoAccordionConfigComponent
 ];
 
 export const DEMOS = {

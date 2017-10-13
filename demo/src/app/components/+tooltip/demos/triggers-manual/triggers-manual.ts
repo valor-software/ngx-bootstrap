@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-tooltip-triggers-manual',
   templateUrl: './triggers-manual.html'
 })
-export class DemoTooltipTriggersManualComponent {
-}
+export class DemoTooltipTriggersManualComponent {}
