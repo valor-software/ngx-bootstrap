@@ -21,3 +21,5 @@ ngx-bootstrap:
 Angular:
 
 Bootstrap:
+
+### Build system: Angular CLI, System.js, webpack, starter seed:
