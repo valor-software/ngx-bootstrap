@@ -15,9 +15,10 @@ import { TabsetComponent } from './tabset.component';
 @Directive({ selector: 'tab, [tab]' })
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
-  @Input() heading: string;
-  /** tab id */
-  @Input() id: string;
+  @Input() public heading: string;
+  /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
+  @HostBinding('attr.id')
+  @Input() public id: string;
   /** if true tab can not be activated */
   @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
