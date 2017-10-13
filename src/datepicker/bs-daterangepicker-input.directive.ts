@@ -82,7 +82,11 @@ export class BsDaterangepickerInputDirective
 
   setDisabledState(isDisabled: boolean): void {
     this._picker.isDisabled = isDisabled;
-    this._renderer.setAttribute(this._elRef.nativeElement, 'disabled', 'disabled');
+    if (isDisabled) {
+      this._renderer.setAttribute(this._elRef.nativeElement, 'disabled', 'disabled');
+      return;
+    }
+    this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
   }
 
   registerOnChange(fn: (value: any) => any): void {
