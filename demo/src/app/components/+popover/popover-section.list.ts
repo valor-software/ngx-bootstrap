@@ -1,58 +1,118 @@
-/*
-import { DemoAccordionBasicComponent } from './demos/basic/basic';
-import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
-import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
-import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
-import { DemoAccordionStylingComponent } from './demos/styling/styling';
-import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoPopoverBasicComponent } from './demos/basic/basic';
+import { DemoPopoverFourDirectionsComponent } from './demos/four-directions/four-directions';
+import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
+import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
+import { DemoPopoverContainerComponent } from './demos/container/container';
+import { DemoPopoverConfigComponent } from './demos/config/config';
+import { DemoPopoverOutsideClickComponent } from './demos/outside-click/outside-click';
+import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
+import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
+import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
+import { DemoPopoverClassComponent } from './demos/class/class';
+import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
 
 export const popoverExamples = [
   {
-    title: 'Simple accordion',
-    anchor: 'simple-accordion',
-    name: 'basic',
-    outlet: DemoAccordionBasicComponent
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverBasicComponent'
   },
   {
-    title: 'Disabled',
-    anchor: 'disabled',
-    name: 'disabled',
-    outlet: DemoAccordionDisabledComponent
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverFourDirectionsComponent'
   },
   {
-    title: 'Dynamic accordion',
-    anchor: 'dynamic-accordion',
-    name: 'dynamic',
-    outlet: DemoAccordionDynamicComponent
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverDismissComponent'
   },
   {
-    title: 'Open only one at a time',
-    anchor: 'one-time',
-    name: 'oneAtATime',
-    outlet: DemoAccordionOneAtATimeComponent
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverDynamicComponent'
   },
   {
-    title: 'Styling',
-    anchor: 'styling',
-    name: 'styling',
-    outlet: DemoAccordionStylingComponent
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverDynamicHtmlComponent'
   },
   {
-    title: 'Configuring defaults',
-    anchor: 'config',
-    name: 'config',
-    outlet: DemoAccordionConfigComponent
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverContainerComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverConfigComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverOutsideClickComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverTriggersCustomComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverTriggersManualComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverStylingLocalComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverClassComponent'
+  },
+  {
+    title: '',
+    anchor: '',
+    name: '',
+    description: ``,
+    outlet: 'DemoPopoverStylingGlobalComponent'
   }
 ];
 
 export const popoverApi = [
   {
-    title: 'AccordionPanelComponent',
-    anchor: 'AccordionPanelComponent'
+    title: 'PopoverDirective',
+    anchor: 'popover-directive'
   },
   {
-    title: 'AccordionConfig',
-    anchor: 'AccordionConfig'
+    title: 'PopoverConfig',
+    anchor: 'popover-config'
   }
 ];
-*/
