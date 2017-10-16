@@ -1,0 +1,13 @@
+<ul>
+  <li><a routerLink="." fragment="usage">Usage</a></li>
+  <li><a routerLink="." fragment="examples">Examples</a>
+    <ul *ngFor="let item of componentContent.examples">
+      <li><a routerLink="." fragment="{{ item.anchor }}">{{ item.title }}</a></li>
+    </ul>
+  </li>
+  <li><a routerLink="." fragment="api-reference">API Reference</a>
+    <ul *ngFor="let item of componentContent.apiSections">
+      <li><a routerLink="." fragment="{{ item.anchor }}">{{ item.title }}</a></li>
+    </ul>
+  </li>
+</ul>

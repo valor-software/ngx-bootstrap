@@ -1,29 +1,32 @@
-/*
-import { DemoAccordionBasicComponent } from './demos/basic/basic';
-import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
-import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
-import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
-import { DemoAccordionStylingComponent } from './demos/styling/styling';
-import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoRatingBasicComponent } from './demos/basic/basic';
+import { DemoRatingCustomComponent } from './demos/custom/custom';
+import { DemoRatingDynamicComponent } from './demos/dynamic/dynamic';
 
-export const ratingExamples = [
-  {
-    title: '',
-    anchor: '',
-    name: '',
-    description: ``,
-    outlet: ''
-  }
-];
-
-export const ratingApi = [
-  {
-    title: 'AccordionPanelComponent',
-    anchor: 'AccordionPanelComponent'
-  },
-  {
-    title: 'AccordionConfig',
-    anchor: 'AccordionConfig'
-  }
-];
-*/
+export const demoComponentContent = {
+  examples: [
+    {
+      title: 'Static rating',
+      anchor: 'rating-static',
+      name: 'basic',
+      outlet: DemoRatingBasicComponent
+    },
+    {
+      title: 'Dynamic rating',
+      anchor: 'rating-dynamic',
+      name: 'dynamic',
+      outlet: DemoRatingCustomComponent
+    },
+    {
+      title: 'Custom icons',
+      anchor: 'rating-custom',
+      name: 'custom',
+      outlet: DemoRatingDynamicComponent
+    }
+  ],
+  apiSections: [
+    {
+      title: 'RatingComponent',
+      anchor: 'rating-component'
+    }
+  ]
+};

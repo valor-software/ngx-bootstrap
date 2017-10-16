@@ -5,52 +5,54 @@ import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 import { DemoAccordionConfigComponent } from './demos/config/config';
 
-export const accordionExamples = [
-  {
-    title: 'Simple accordion',
-    anchor: 'simple-accordion',
-    name: 'basic',
-    outlet: DemoAccordionBasicComponent
-  },
-  {
-    title: 'Disabled',
-    anchor: 'disabled',
-    name: 'disabled',
-    outlet: DemoAccordionDisabledComponent
-  },
-  {
-    title: 'Dynamic accordion',
-    anchor: 'dynamic-accordion',
-    name: 'dynamic',
-    outlet: DemoAccordionDynamicComponent
-  },
-  {
-    title: 'Open only one at a time',
-    anchor: 'one-time',
-    name: 'oneAtATime',
-    outlet: DemoAccordionOneAtATimeComponent
-  },
-  {
-    title: 'Styling',
-    anchor: 'styling',
-    name: 'styling',
-    outlet: DemoAccordionStylingComponent
-  },
-  {
-    title: 'Configuring defaults',
-    anchor: 'config',
-    name: 'config',
-    outlet: DemoAccordionConfigComponent
-  }
-];
-
-export const accordionApi = [
-  {
-    title: 'AccordionPanelComponent',
-    anchor: 'AccordionPanelComponent'
-  },
-  {
-    title: 'AccordionConfig',
-    anchor: 'AccordionConfig'
-  }
-];
+export const demoComponentContent = {
+  examples: [
+    {
+      title: 'Simple accordion',
+      anchor: 'simple-accordion',
+      name: 'basic',
+      outlet: DemoAccordionBasicComponent
+    },
+    {
+      title: 'Disabled',
+      anchor: 'disabled',
+      name: 'disabled',
+      outlet: DemoAccordionDisabledComponent
+    },
+    {
+      title: 'Dynamic accordion',
+      anchor: 'dynamic-accordion',
+      name: 'dynamic',
+      outlet: DemoAccordionDynamicComponent
+    },
+    {
+      title: 'Open only one at a time',
+      anchor: 'one-time',
+      name: 'oneAtATime',
+      outlet: DemoAccordionOneAtATimeComponent
+    },
+    {
+      title: 'Styling',
+      anchor: 'styling',
+      name: 'styling',
+      outlet: DemoAccordionStylingComponent
+    },
+    {
+      title: 'Configuring defaults',
+      anchor: 'config',
+      name: 'config',
+      outlet: DemoAccordionConfigComponent
+    }
+  ],
+  apiSections: [
+    {
+      title: 'AccordionPanelComponent',
+      anchor: 'AccordionPanelComponent'
+    },
+    {
+      title: 'AccordionConfig',
+      anchor: 'AccordionConfig',
+      component: 'config'
+    }
+  ]
+};

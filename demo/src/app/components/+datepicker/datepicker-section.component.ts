@@ -2,9 +2,9 @@
 import { Component } from '@angular/core';
 
 import { DEMOS } from './demos';
-import { ComponentExample } from '../../common/models/components-examples.model';
-import { ComponentApi } from '../../common/models/components-api.model';
-import { datepickerExamples, datepickerOldExamples, datepickerApi,  datepickerOldApi } from './datepicker-section.list';
+import { ComponentExample } from '../../models/components-examples.model';
+import { ComponentApi } from '../../models/components-api.model';
+import { demoComponentContent } from './datepicker-section.list';
 
 // webpack html imports
 let oldTitleDoc = require('html-loader!markdown-loader!./docs/titleOld.md');
@@ -20,8 +20,8 @@ export class DatepickerSectionComponent {
   demos: any = DEMOS;
   oldTitleDoc: string = oldTitleDoc;
   titleDoc: string = titleDoc;
-  datepickerExamples: ComponentExample[] = datepickerExamples;
-  datepickerOldExamples: ComponentExample[] = datepickerOldExamples;
-  datepickerApi: ComponentApi[] = datepickerApi;
-  datepickerOldApi: ComponentApi[] = datepickerOldApi;
+  examples: ComponentExample[] = demoComponentContent.examples;
+  examplesOld: ComponentExample[] = demoComponentContent.examplesOld;
+  apiSections: ComponentApi[] = demoComponentContent.apiSections;
+  apiSectionsOld: ComponentApi[] = demoComponentContent.apiSectionsOld;
 }

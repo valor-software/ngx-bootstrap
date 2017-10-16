@@ -1,0 +1,21 @@
+<div *ngFor="let item of apiSections">
+  <ng-container [ngSwitch]="item.component">
+    <ng-api-doc
+      *ngSwitchDefault
+      [id]="item.anchor"
+      [directive]="item.title">
+    </ng-api-doc>
+
+    <ng-api-doc-class
+      *ngSwitchCase="'class'"
+      [id]="item.anchor"
+      [directive]="item.title">
+    </ng-api-doc-class>
+
+    <ng-api-doc-config
+      *ngSwitchCase="'config'"
+      [id]="item.anchor"
+      [directive]="item.title">
+    </ng-api-doc-config>
+  </ng-container>
+</div>

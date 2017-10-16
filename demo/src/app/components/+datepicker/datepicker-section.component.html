@@ -32,13 +32,10 @@
       <p [innerHtml]="titleDoc"></p>
 
       <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-      <examples [examples]="datepickerExamples" [demos]="demos"></examples>
+      <examples [examples]="examples" [demos]="demos"></examples>
 
       <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-      <ng-api-doc [id]="datepickerApi[0].anchor" [directive]="datepickerApi[0].title"></ng-api-doc>
-      <ng-api-doc [id]="datepickerApi[1].anchor" [directive]="datepickerApi[1].title"></ng-api-doc>
-      <ng-api-doc [id]="datepickerApi[2].anchor" [directive]="datepickerApi[2].title"></ng-api-doc>
-      <ng-api-doc-config [id]="datepickerApi[3].anchor" [directive]="datepickerApi[3].title"></ng-api-doc-config>
+      <api-sections [apiSections]="apiSections"></api-sections>
     </tab>
 
     <!-- Old datepicker part-->
@@ -61,10 +58,10 @@
       <p [innerHtml]="oldTitleDoc"></p>
 
       <h2 routerLink="." fragment="examplesOld" id="examplesOld">Example</h2>
-      <examples [examples]="datepickerOldExamples" [demos]="demos"></examples>
+      <examples [examples]="examplesOld" [demos]="demos"></examples>
 
       <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-      <ng-api-doc [id]="datepickerOldApi[0].anchor" [directive]="datepickerOldApi[0].title"></ng-api-doc>
+      <api-sections [apiSections]="apiSectionsOld"></api-sections>
     </tab>
   </tabset>
 </demo-section>

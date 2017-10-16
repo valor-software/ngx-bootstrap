@@ -6,7 +6,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { SharedModule } from '../../shared';
 import { PaginationSectionComponent } from './pagination-section.component';
-
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-pagination.routes';
 

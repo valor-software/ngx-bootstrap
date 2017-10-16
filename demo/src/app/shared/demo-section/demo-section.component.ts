@@ -1,5 +1,6 @@
 import { Component, Input, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ComponentExample } from '../../models/components-examples.model';
 
 @Component({
   selector: 'demo-section',
@@ -10,6 +11,8 @@ export class DemoSectionComponent {
   @Input() src: string;
   @Input() html: string;
   @Input() ts: string;
+
+  @Input() componentContent: Object;
 
   @Input()
   get titleDoc(): string {

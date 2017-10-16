@@ -4,31 +4,23 @@
   <h2>Contents</h2>
   <ul>
     <li><a routerLink="." fragment="usage">Usage</a></li>
-    <li><a routerLink="." fragment="service-section">Service</a>
+    <li><a routerLink="." fragment="service-section">Service examples</a>
       <ul>
-        <li><a routerLink="." fragment="service-examples">Examples</a>
-          <ul>
-            <li><a routerLink="." fragment="service-template">Template</a></li>
-            <li><a routerLink="." fragment="service-component">Component</a></li>
-            <li><a routerLink="." fragment="service-nested">Nested</a></li>
-            <li><a routerLink="." fragment="service-events">Events</a></li>
-            <li><a routerLink="." fragment="service-options">Options</a></li>
-          </ul>
-        </li>
+        <li><a routerLink="." fragment="service-template">Template</a></li>
+        <li><a routerLink="." fragment="service-component">Component</a></li>
+        <li><a routerLink="." fragment="service-nested">Nested</a></li>
+        <li><a routerLink="." fragment="service-events">Events</a></li>
+        <li><a routerLink="." fragment="service-options">Options</a></li>
       </ul>
     </li>
-    <li><a routerLink="." fragment="directive-section">Directive</a>
+    <li><a routerLink="." fragment="directive-section">Directive examples</a>
       <ul>
-        <li><a routerLink="." fragment="examples">Examples</a>
-          <ul>
-            <li><a routerLink="." fragment="static">Static modal</a></li>
-            <li><a routerLink="." fragment="sizes">Optional sizes</a></li>
-            <li><a routerLink="." fragment="child">Child modal</a></li>
-            <li><a routerLink="." fragment="nested">Nested modals</a></li>
-            <li><a routerLink="." fragment="events">Modal events</a></li>
-            <li><a routerLink="." fragment="auto-shown">Auto shown modal</a></li>
-          </ul>
-        </li>
+        <li><a routerLink="." fragment="static">Static modal</a></li>
+        <li><a routerLink="." fragment="sizes">Optional sizes</a></li>
+        <li><a routerLink="." fragment="child">Child modal</a></li>
+        <li><a routerLink="." fragment="nested">Nested modals</a></li>
+        <li><a routerLink="." fragment="events">Modal events</a></li>
+        <li><a routerLink="." fragment="auto-shown">Auto shown modal</a></li>
       </ul>
     </li>
     <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -45,26 +37,18 @@
   <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
   <p [innerHtml]="titleDoc"></p>
 
-  <h2 routerLink="." fragment="service-section" id="service-section">Service</h2>
+  <h2 routerLink="." fragment="service-section" id="service-section">Service examples</h2>
   <p>Open a modal from service</p>
   <p>To be able to open modals from service, inject BsModalService to your constructor. <br>
     Then, call <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). <br>
     <code>.show()</code> method returns an instance of BsModalRef class with <code>.hide()</code> method and <code>content</code> property where you'll find a component which you've passed to service <br>
   </p>
+  <examples [examples]="serviceExamples" [demos]="demos"></examples>
 
-  <h2 id="service-examples">Examples</h2>
-  <examples [examples]="modalServiceExamples" [demos]="demos"></examples>
-
-  <h2 id="directive-section">Directive</h2>
+  <h2 id="directive-section">Directive examples</h2>
   <p>Also you can use directive instead of service. See the demos below </p>
-
-  <h2 id="examples">Examples</h2>
-  <examples [examples]="modalDirectiveExamples" [demos]="demos"></examples>
+  <examples [examples]="directiveExamples" [demos]="demos"></examples>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc [id]="modalApi[0].anchor" [directive]="modalApi[0].title"></ng-api-doc>
-  <ng-api-doc [id]="modalApi[1].anchor" [directive]="modalApi[1].title"></ng-api-doc>
-  <ng-api-doc-class [id]="modalApi[2].anchor" [directive]="modalApi[2].title"></ng-api-doc-class>
-  <ng-api-doc-class [id]="modalApi[3].anchor" [directive]="modalApi[3].title"></ng-api-doc-class>
-  <ng-api-doc-config [id]="modalApi[4].anchor" [directive]="modalApi[4].title"></ng-api-doc-config>
+  <api-sections [apiSections]="apiSections"></api-sections>
 </demo-section>

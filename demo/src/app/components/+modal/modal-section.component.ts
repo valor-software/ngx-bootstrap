@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 import { DEMOS } from './demos';
-import { ComponentExample } from '../../common/models/components-examples.model';
-import { ComponentApi } from '../../common/models/components-api.model';
-import { modalServiceExamples, modalDirectiveExamples, modalApi } from './modal-section.list';
+import { ComponentExample } from '../../models/components-examples.model';
+import { ComponentApi } from '../../models/components-api.model';
+import { demoComponentContent } from './modal-section.list';
 
 // webpack html imports
 let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
@@ -17,7 +17,7 @@ export class ModalSectionComponent {
   src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
-  modalServiceExamples: ComponentExample[] = modalServiceExamples;
-  modalDirectiveExamples: ComponentExample[] = modalDirectiveExamples;
-  modalApi: ComponentApi[] = modalApi;
+  serviceExamples: ComponentExample[] = demoComponentContent.serviceExamples;
+  directiveExamples: ComponentExample[] = demoComponentContent.directiveExamples;
+  apiSections: ComponentApi[] = demoComponentContent.apiSections;
 }

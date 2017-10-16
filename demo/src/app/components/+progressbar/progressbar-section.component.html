@@ -28,57 +28,9 @@
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
 
-  <div *ngIf="isBs3">
-    <h3 routerLink="." fragment="static" id="static">Static</h3>
-    <ng-sample-box [ts]="demos.bs3static.component" [html]="demos.bs3static.html">
-      <demo-progressbar-static></demo-progressbar-static>
-    </ng-sample-box>
-
-    <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h3>
-    <ng-sample-box [ts]="demos.bs3dynamic.component" [html]="demos.bs3dynamic.html">
-      <demo-progressbar-dynamic></demo-progressbar-dynamic>
-    </ng-sample-box>
-
-    <h3 routerLink="." fragment="stacked" id="stacked">Stacked</h3>
-    <ng-sample-box [ts]="demos.bs3stacked.component" [html]="demos.bs3stacked.html">
-      <demo-progressbar-stacked></demo-progressbar-stacked>
-    </ng-sample-box>
-
-    <h3 routerLink="." fragment="config" id="config">Configuring defaults</h3>
-    <ng-sample-box [ts]="demos.bs3config.component" [html]="demos.bs3config.html">
-      <demo-progressbar-config></demo-progressbar-config>
-    </ng-sample-box>
-  </div>
-
-  <div *ngIf="!isBs3">
-    <br>
-    <h3>In bootstrap 4 progress has a different concept, no inner text, no default transition animation</h3>
-    <br>
-    <h3 routerLink="." fragment="static" id="static">Static</h3>
-    <ng-sample-box [ts]="demos.bs4static.component" [html]="demos.bs4static.html">
-      <demo-bs4-progressbar-static></demo-bs4-progressbar-static>
-    </ng-sample-box>
-
-    <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic</h3>
-    <ng-sample-box [ts]="demos.bs4dynamic.component" [html]="demos.bs4dynamic.html">
-      <demo-bs4-progressbar-dynamic></demo-bs4-progressbar-dynamic>
-    </ng-sample-box>
-
-    <h3 routerLink="." fragment="stacked" id="stacked">Stacked</h3>
-    <ng-sample-box [ts]="demos.bs4stacked.component" [html]="demos.bs4stacked.html">
-      <demo-bs4-progressbar-stacked></demo-bs4-progressbar-stacked>
-    </ng-sample-box>
-  </div>
-
-  <!--<examples [examples]="progressbarExamples" [demos]="demos"></examples>
+  <examples *ngIf="isBs3" [examples]="examplesBs3" [demos]="demos"></examples>
+  <examples *ngIf="!isBs3" [examples]="examplesBs4" [demos]="demos"></examples>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc [id]="progressbarApi[0].anchor" [directive]="progressbarApi[0].title"></ng-api-doc>
-  <ng-api-doc-config [id]="progressbarApi[1].anchor" [directive]="progressbarApi[1].title"></ng-api-doc-config>-->
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc routerLink="." fragment="progressbar-component" id="progressbar-component" directive="ProgressbarComponent"></ng-api-doc>
-  <ng-api-doc routerLink="." fragment="progress-directive" id="progress-directive" directive="ProgressDirective"></ng-api-doc>
-  <ng-api-doc routerLink="." fragment="bar-component" id="bar-component" directive="BarComponent"></ng-api-doc>
-  <ng-api-doc-config routerLink="." fragment="progress-config" id="progress-config" type="ProgressbarConfig"></ng-api-doc-config>
+  <api-sections [apiSections]="apiSections"></api-sections>
 </demo-section>

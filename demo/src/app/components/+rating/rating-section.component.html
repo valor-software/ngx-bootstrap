@@ -23,28 +23,8 @@
   <p [innerHtml]="titleDoc"></p>
 
   <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-
-  <h3 routerLink="." fragment="static" id="static">Static rating</h3>
-  <ng-sample-box [ts]="demos.basic.component" [html]="demos.basic.html">
-    <demo-rating-basic></demo-rating-basic>
-  </ng-sample-box>
-
-  <h3 routerLink="." fragment="dynamic" id="dynamic">Dynamic rating</h3>
-  <ng-sample-box [ts]="demos.dynamic.component" [html]="demos.dynamic.html">
-    <demo-rating-dynamic></demo-rating-dynamic>
-  </ng-sample-box>
-
-  <h3 routerLink="." fragment="custom" id="custom">Custom icons</h3>
-  <ng-sample-box [ts]="demos.custom.component" [html]="demos.custom.html">
-    <demo-rating-custom></demo-rating-custom>
-  </ng-sample-box>
-
-  <!--<examples [examples]="ratingExamples" [demos]="demos"></examples>
+  <examples [examples]="examples" [demos]="demos"></examples>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc [id]="ratingApi[0].anchor" [directive]="ratingApi[0].title"></ng-api-doc>
-  <ng-api-doc-config [id]="ratingApi[1].anchor" [directive]="ratingApi[1].title"></ng-api-doc-config>-->
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc routerLink="." fragment="rating-component" id="rating-component" directive="RatingComponent"></ng-api-doc>
+  <api-sections [apiSections]="apiSections"></api-sections>
 </demo-section>

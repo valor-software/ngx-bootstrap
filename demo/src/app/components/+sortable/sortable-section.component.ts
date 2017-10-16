@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 import { DEMOS } from './demos';
-import { ComponentExample } from '../../common/models/components-examples.model';
-import { ComponentApi } from '../../common/models/components-api.model';
-/*import { sortableExamples, sortableApi } from './sortable-section.list';*/
+import { ComponentExample } from '../../models/components-examples.model';
+import { ComponentApi } from '../../models/components-api.model';
+import { demoComponentContent } from './sortable-section.list';
 
 // webpack html imports
 let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
@@ -20,6 +20,6 @@ export class SortableSectionComponent {
   titleDoc: string = titleDoc;
   usageDoc: string = usageDoc;
   demos: any = DEMOS;
-  /*sortableExamples: ComponentExample[] = sortableExamples;
-  sortableApi: ComponentApi[] = sortableApi;*/
+  examples: ComponentExample[] = demoComponentContent.examples;
+  apiSections: ComponentApi[] = demoComponentContent.apiSections;
 }

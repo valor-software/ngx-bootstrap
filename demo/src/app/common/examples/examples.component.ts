@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ComponentExample } from '../../common/models/components-examples.model';
+import { ComponentExample } from '../../models/components-examples.model';
 
 @Component({
   selector: 'examples',

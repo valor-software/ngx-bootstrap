@@ -34,11 +34,8 @@
   <p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within <code>dropdown</code>.
     Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code> elements to better fit your potential needs.</p>
 
-  <examples [examples]="dropdownExamples" [demos]="demos"></examples>
+  <examples [examples]="examples" [demos]="demos"></examples>
 
   <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <ng-api-doc [id]="dropdownApi[0].anchor" [directive]="dropdownApi[0].title"></ng-api-doc>
-  <ng-api-doc [id]="dropdownApi[1].anchor" [directive]="dropdownApi[1].title"></ng-api-doc>
-  <ng-api-doc [id]="dropdownApi[2].anchor" [directive]="dropdownApi[2].title"></ng-api-doc>
-  <ng-api-doc-config [id]="dropdownApi[3].anchor" [directive]="dropdownApi[3].title"></ng-api-doc-config>
+  <api-sections [apiSections]="apiSections"></api-sections>
 </demo-section>

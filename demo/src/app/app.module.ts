@@ -11,7 +11,6 @@ import { NgApiDoc } from './api-docs/api-docs.model';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
 import { LandingComponent } from './common/landing/landing.component';
-import { DocumentationComponent } from './common/documentation/documentation.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './common/getting-started/getting-started.component';
 import { ThemeStorage } from './theme/theme-storage';
@@ -23,8 +22,7 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     GettingStartedComponent,
     TopMenuComponent,
-    LandingComponent,
-    DocumentationComponent
+    LandingComponent
   ],
   imports: [
     SharedModule,
