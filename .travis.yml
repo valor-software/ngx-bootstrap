@@ -90,6 +90,8 @@ jobs:
         - ./scripts/sauce/sauce_connect_setup.sh
       script:
         - ./scripts/sauce/sauce_connect_block.sh
+        - echo $SAUCE_USERNAME
+        - echo $SAUCE_ACCESS_KEY
         - npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
 #   deploy to ngx-bootstrap.surge.sh
