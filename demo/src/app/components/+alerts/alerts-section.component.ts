@@ -17,6 +17,7 @@ export class AlertsSectionComponent {
   src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
   titleDoc: string = titleDoc;
   demos: any = DEMOS;
+  componentContent: any = demoComponentContent;
   examples: ComponentExample[] = demoComponentContent.examples;
   apiSections: ComponentApi[] = demoComponentContent.apiSections;
 }

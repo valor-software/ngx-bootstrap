@@ -1,5 +1,5 @@
 export interface ComponentExample {
-  name: string;
+  name?: string;
   anchor?: string;
   title?: string;
   description?: string;
