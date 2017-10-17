@@ -42,7 +42,7 @@ install:
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
-  - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then SAUCE_USERNAME=$SAUCE_USERNAME_PR; SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
+  - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
 jobs:
   fast_finish: true
@@ -90,10 +90,6 @@ jobs:
         - ./scripts/sauce/sauce_connect_setup.sh
       script:
         - ./scripts/sauce/sauce_connect_block.sh
-        - echo "env 1"
-        - echo $SAUCE_USERNAME
-        - echo $SAUCE_ACCESS_KEY
-        - echo "env 2"
         - npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
 #   deploy to ngx-bootstrap.surge.sh
