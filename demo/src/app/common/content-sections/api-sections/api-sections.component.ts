@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-import { ComponentApi } from '../../models/components-api.model';
+import { ComponentApi } from '../../../models/components-api.model';
 
 @Component({
   selector: 'api-sections',

@@ -2,14 +2,10 @@
   <p>Displays collapsible content panels for presenting information in a limited amount of space</p>
   <p>The <strong>accordion component</strong> builds on top of the collapse directive to provide a list of items, with collapsible bodies that are collapsed or expanded by clicking on the item's header.</p>
 
-  <h2>Contents</h2>
-  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-  <p [innerHtml]="titleDoc"></p>
-
-  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-  <p>Click headers to expand/collapse content that is broken into logical sections, much like tabs.</p>
-  <examples [examples]="examples" [demos]="demos"></examples>
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <api-sections [apiSections]="apiSections"></api-sections>
+  <ng-container *ngFor="let section of componentContent">
+    <ng-container
+      *ngComponentOutlet="section.outlet;
+      injector: sectionInjections(section.content)">
+    </ng-container>
+  </ng-container>
 </demo-section>

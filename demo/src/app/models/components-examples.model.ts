@@ -3,5 +3,5 @@ export interface ComponentExample {
   anchor?: string;
   title?: string;
   description?: string;
-  outlet?: Object;
+  outlet?: any;
 }
