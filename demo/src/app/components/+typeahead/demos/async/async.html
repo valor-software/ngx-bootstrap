@@ -4,7 +4,7 @@
          (typeaheadLoading)="changeTypeaheadLoading($event)"
          (typeaheadNoResults)="changeTypeaheadNoResults($event)"
          (typeaheadOnSelect)="typeaheadOnSelect($event)"
-         typeaheadOptionsLimit="7"
+         [typeaheadOptionsLimit]="7"
          typeaheadOptionField="name"
          placeholder="Locations loaded with timeout"
          class="form-control">

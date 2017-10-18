@@ -4,6 +4,6 @@
 </div>
 
 <div class="col-md-6">
-  <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" itemsPerPage="10"
+  <pager [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="10"
          pageBtnClass="btn-custom"></pager>
 </div>
