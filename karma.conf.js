@@ -62,7 +62,7 @@ module.exports = function (config) {
       logLevel: config.LOG_INFO,
       reporters: ['dots', 'saucelabs'],
       singleRun: false,
-      concurrency: 3,
+      concurrency: 2,
       captureTimeout: 60000,
       browserNoActivityTimeout: 20000,
       browserDisconnectTimeout: 5000,
@@ -70,7 +70,7 @@ module.exports = function (config) {
         testName: 'ngx-bootstrap',
         build: process.env.TRAVIS_JOB_NUMBER,
         tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-        retryLimit: 3,
+        retryLimit: 5,
         startConnect: false,
         recordVideo: false,
         recordScreenshots: false,
@@ -104,13 +104,13 @@ module.exports = function (config) {
         'SL_IE10': {
           base: 'SauceLabs',
           browserName: 'internet explorer',
-          platform: 'Windows 2012',
+          // platform: 'Windows 2012',
           version: '10'
         },
         'SL_IE11': {
           base: 'SauceLabs',
           browserName: 'internet explorer',
-          platform: 'Windows 8.1',
+          // platform: 'Windows 8.1',
           version: '11'
         },
         'SL_EDGE13': {
@@ -134,13 +134,13 @@ module.exports = function (config) {
         'SL_SAFARI9': {
           base: 'SauceLabs',
           browserName: 'safari',
-          platform: 'OS X 10.11',
+          // platform: 'OS X 10.11',
           version: '9.0'
         },
         'SL_SAFARI10': {
           base: 'SauceLabs',
           browserName: 'safari',
-          platform: 'OS X 10.11',
+          // platform: 'OS X 10.11',
           version: '10.0'
         }
       }
