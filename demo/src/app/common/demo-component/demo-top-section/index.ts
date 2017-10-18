@@ -5,20 +5,20 @@
 // todo: add configuration of base url for source code
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsageComponent } from './usage.component';
+import { DemoTopSectionComponent } from './demo-top-section.component';
 
-export { UsageComponent } from './usage.component';
+export { DemoTopSectionComponent } from './demo-top-section.component';
 
 @NgModule({
   declarations: [
-    UsageComponent
+    DemoTopSectionComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    UsageComponent
+    DemoTopSectionComponent
   ],
   providers: []
 })
-export class UsageComponentModule {}
+export class DemoTopSectionComponentModule {}

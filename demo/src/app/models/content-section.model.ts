@@ -5,6 +5,7 @@ import { ComponentApi } from './components-api.model';
 @Injectable()
 export class ContentSection {
   name: string;
+  anchor: string;
   outlet: any;
   content: Object | ComponentExample[] | ComponentApi[];
 }

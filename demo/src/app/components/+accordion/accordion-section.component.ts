@@ -1,7 +1,7 @@
 // todo: add more samples https://jqueryui.com/accordion/#default
 // todo: add more samples http://getbootstrap.com/components/#panels-alternatives
 
-import { Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 import { DEMOS } from './demos';
 import { demoComponentContent } from './accordion-section.list';
 import { ContentSection } from '../../models/content-section.model';
@@ -9,7 +9,8 @@ import { ContentSection } from '../../models/content-section.model';
 // webpack html imports
 @Component({
   selector: 'accordion-section',
-  templateUrl: './accordion-section.components.html'
+  templateUrl: './accordion-section.components.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccordionSectionComponent {
   name = 'Accordion';
@@ -20,7 +21,7 @@ export class AccordionSectionComponent {
   constructor(private injector: Injector) {}
 
   sectionInjections(content: any) {
-    ReflectiveInjector.resolveAndCreate([{
+    return ReflectiveInjector.resolveAndCreate([{
       provide: ContentSection,
       useValue: content
     }], this.injector);

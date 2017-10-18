@@ -5,7 +5,8 @@
   <ng-container *ngFor="let section of componentContent">
     <ng-container
       *ngComponentOutlet="section.outlet;
-      injector: sectionInjections(section.content)">
+      injector: sectionInjections(section)">
     </ng-container>
   </ng-container>
+
 </demo-section>

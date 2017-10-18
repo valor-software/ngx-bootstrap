@@ -1,7 +1,8 @@
 export interface ComponentExample {
-  name?: string;
-  anchor?: string;
-  title?: string;
+  anchor: string;
+  title: string;
   description?: string;
-  outlet?: any;
+  component: any; // ?
+  html: any; // ?
+  outlet: any; // ToDo: Component<T>
 }
