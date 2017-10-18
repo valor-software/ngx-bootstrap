@@ -2449,7 +2449,7 @@ export const ngdoc: any = {
       {
         "name": "customClass",
         "type": "string",
-        "description": "<p>if set, will be added to the tab&#39;s class atribute </p>\n"
+        "description": "<p>if set, will be added to the tab&#39;s class atribute. Multiple classes are supported. </p>\n"
       },
       {
         "name": "disabled",

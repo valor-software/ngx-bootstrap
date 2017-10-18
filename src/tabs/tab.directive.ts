@@ -22,7 +22,7 @@ export class TabDirective implements OnInit, OnDestroy {
   @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
   @Input() removable: boolean;
-  /** if set, will be added to the tab's class atribute */
+  /** if set, will be added to the tab's class atribute. Multiple classes are supported. */
   @Input()
   get customClass(): string {
     return this._customClass;
@@ -30,14 +30,6 @@ export class TabDirective implements OnInit, OnDestroy {
 
   set customClass(customClass: string) {
     this._customClass = customClass;
-    this._customClass.split(' ').forEach((element: string) => this.setElementClass = element);
-  }
-
-  set setElementClass(customClass: string) {
-    this.renderer.addClass(
-      this.elementRef.nativeElement,
-      customClass
-    );
   }
 
   /** tab active state toggle */
