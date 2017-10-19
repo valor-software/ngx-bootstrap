@@ -1,6 +1,5 @@
 import { Component, Input, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ComponentExample } from '../../models/components-examples.model';
 
 @Component({
   selector: 'demo-section',

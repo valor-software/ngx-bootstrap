@@ -2,7 +2,6 @@
 // todo: add more samples http://getbootstrap.com/components/#panels-alternatives
 
 import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
-import { DEMOS } from './demos';
 import { demoComponentContent } from './accordion-section.list';
 import { ContentSection } from '../../models/content-section.model';
 
@@ -15,10 +14,10 @@ import { ContentSection } from '../../models/content-section.model';
 export class AccordionSectionComponent {
   name = 'Accordion';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
-  demos: any = DEMOS;
   componentContent: any[] = demoComponentContent;
+  content: any;
 
-  constructor(private injector: Injector) {}
+  constructor(private injector: Injector) { }
 
   sectionInjections(content: any) {
     return ReflectiveInjector.resolveAndCreate([{

@@ -1,4 +1,4 @@
-<h2 [id]="sections.anchor">{{ sections.name }}</h2>
+<h2 [attr.id]="sections.anchor">{{ sections.name }}</h2>
 <div *ngFor="let item of examples">
   <h3 *ngIf="item.title" routerLink="." [attr.id]="item.anchor">{{ item.title }}</h3>
   <p *ngIf="item.description" [innerHTML]="item.description"></p>
