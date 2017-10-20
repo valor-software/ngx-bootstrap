@@ -82,7 +82,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * Template variables: matches, itemTemplate, query
    */
   @Input() optionsListTemplate: TemplateRef<any>;
-
+  /** specifies if typeahead is scrollable  */
+  @Input() typeaheadScrollable = false;
+  /** specifies number of options to show in scroll view  */
+  @Input() typeaheadOptionsInScrollableView = 5;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -90,11 +93,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired on every key event and returns true
    * in case of matches are not detected
    */
-  @Output()
-  typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
+  @Output() typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
   /** fired when option was selected, return object with data of this option */
-  @Output()
-  typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
+  @Output() typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
   /** fired when blur event occurres. returns the active item */
   @Output() typeaheadOnBlur: EventEmitter<any> = new EventEmitter();
 
@@ -170,6 +171,28 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('input', ['$event'])
+  onInput(e: any): void {
+    // For `<input>`s, use the `value` property. For others that don't have a
+    // `value` (such as `<span contenteditable="true">`), use either
+    // `textContent` or `innerText` (depending on which one is supported, i.e.
+    // Firefox or IE).
+    const value =
+      e.target.value !== undefined
+        ? e.target.value
+        : e.target.textContent !== undefined
+        ? e.target.textContent
+        : e.target.innerText;
+    if (value != null && value.trim().length >= this.typeaheadMinLength) {
+      this.typeaheadLoading.emit(true);
+      this.keyUpEventEmitter.emit(e.target.value);
+    } else {
+      this.typeaheadLoading.emit(false);
+      this.typeaheadNoResults.emit(false);
+      this.hide();
+    }
+  }
+
   @HostListener('keyup', ['$event'])
   onChange(e: any): void {
     if (this._container) {
@@ -200,25 +223,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
         return;
       }
-    }
-
-    // For `<input>`s, use the `value` property. For others that don't have a
-    // `value` (such as `<span contenteditable="true">`), use either
-    // `textContent` or `innerText` (depending on which one is supported, i.e.
-    // Firefox or IE).
-    const value =
-      e.target.value !== undefined
-        ? e.target.value
-        : e.target.textContent !== undefined
-        ? e.target.textContent
-        : e.target.innerText;
-    if (value != null && value.trim().length >= this.typeaheadMinLength) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(e.target.value);
-    } else {
-      this.typeaheadLoading.emit(false);
-      this.typeaheadNoResults.emit(false);
-      this.hide();
     }
   }
 
