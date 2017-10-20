@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ng-sample-box',
-  templateUrl: './sample-box.component.html'
+  templateUrl: './sample-box.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SampleBoxComponent {
   @Input() ts: string;

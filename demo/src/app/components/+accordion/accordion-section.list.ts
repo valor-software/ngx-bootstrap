@@ -12,7 +12,7 @@ import { ApiSectionsComponent } from '../../common/demo-component/demo-api-secti
 
 
 export const demoComponentContent: ContentSection[] = [
-  /*{
+  {
     name: 'Usage',
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
@@ -71,7 +71,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoAccordionConfigComponent
       }
     ]
-  },*/
+  },
   {
     name: 'API Reference',
     anchor: 'api-reference',

@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ContentSection } from '../../../models/content-section.model';
 
 @Component({
   selector: 'examples',
-  templateUrl: './examples.component.html'
+  templateUrl: './examples.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExamplesComponent {
   examples: any;
