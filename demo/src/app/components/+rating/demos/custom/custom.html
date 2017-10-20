@@ -1,11 +1,11 @@
 <div>
-  <rating max="10" [(ngModel)]="x" [customTemplate]="t" style="color: #0275d8;font-size: 20px;"></rating>
+  <rating [max]="10" [(ngModel)]="x" [customTemplate]="t" style="color: #0275d8;font-size: 20px;"></rating>
   <b>(<i>Rate:</i> {{x}})</b>
   <ng-template #t let-index="index" let-value="value">{{index < value ? '&#9745;' : '&#9744;'}}</ng-template>
 </div>
 
 <div>
-  <rating max="10" [(ngModel)]="y" [customTemplate]="tt"></rating>
+  <rating [max]="10" [(ngModel)]="y" [customTemplate]="tt"></rating>
   <b>(<i>Rate:</i> {{y}})</b>
   <ng-template #tt let-i="index" let-v="value">
     <button class="btn btn-{{i < v ? 'warning' : 'default'}}">
