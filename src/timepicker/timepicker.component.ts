@@ -59,6 +59,9 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
       transform: rotate(-135deg);
       top: -2px;
     }
+    .bs-timepicker-field{
+      width: 50px;
+    }
   `],
   encapsulation: ViewEncapsulation.None
 })
