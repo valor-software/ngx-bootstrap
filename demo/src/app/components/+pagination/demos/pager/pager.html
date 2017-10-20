@@ -14,7 +14,7 @@
       [(ngModel)]="currentPage"
       (pageChanged)="pageChanged($event)"
       pageBtnClass="btn"
-      itemsPerPage="10"
+      [itemsPerPage]="10"
       class="pull-left">
     </pager>
   </div>
