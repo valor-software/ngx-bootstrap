@@ -217,8 +217,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         return;
       }
 
-      // enter
-      if (e.keyCode === 13) {
+      // enter, tab
+      if (e.keyCode === 13 || e.keyCode === 9) {
         this._container.selectActiveMatch();
 
         return;
@@ -249,8 +249,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    // if items is visible - prevent form submition
+    // if an item is visible - prevent form submission
     if (e.keyCode === 13) {
+      e.preventDefault();
+
+      return;
+    }
+
+    // if an item is visible - don't change focus
+    if (e.keyCode === 9) {
       e.preventDefault();
 
       return;
