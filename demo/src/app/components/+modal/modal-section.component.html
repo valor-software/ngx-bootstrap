@@ -12,6 +12,7 @@
             <li><a routerLink="." fragment="service-component">Component</a></li>
             <li><a routerLink="." fragment="service-nested">Nested</a></li>
             <li><a routerLink="." fragment="service-events">Events</a></li>
+            <li><a routerLink="." fragment="service-confirm-window">Confirm Window</a></li>
             <li><a routerLink="." fragment="service-options">Options</a></li>
           </ul>
         </li>
@@ -75,6 +76,13 @@
   <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>
   <ng-sample-box [ts]="demos.serviceEvents.component" [html]="demos.serviceEvents.html">
     <demo-modal-service-events></demo-modal-service-events>
+  </ng-sample-box>
+
+  <h3 routerLink="." fragment="service-confirm-window" id="service-confirm-window">Confirm window</h3>
+  <p>Modal with buttons to confirm.</p>
+
+  <ng-sample-box [ts]="demos.serviceConfirmWindow.component" [html]="demos.serviceConfirmWindow.html">
+    <demo-modal-service-confirm-window></demo-modal-service-confirm-window>
   </ng-sample-box>
 
   <h3 routerLink="." fragment="service-options" id="service-options">Options</h3>
