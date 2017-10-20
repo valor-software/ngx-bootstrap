@@ -1,10 +1,11 @@
-import { Component, Inject, Renderer  } from '@angular/core';
+import { Component, Inject, OnDestroy, Renderer } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { isBs3, setTheme } from 'ngx-bootstrap/utils';
 import { routes } from '../../app.routing';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCUMENT } from '@angular/platform-browser';
+import { Subscription } from 'rxjs/Subscription';
 
 const _bs3Css =
   'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
@@ -15,7 +16,7 @@ const _bs4Css =
   selector: 'sidebar',
   templateUrl: './sidebar.component.html'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnDestroy{
   isShown = false;
 
   get isBs3(): boolean {
@@ -26,6 +27,7 @@ export class SidebarComponent {
   search: any = {};
 
   currentTheme: 'bs3' | 'bs4';
+  scrollSubscription: Subscription;
 
   constructor(
     public styleManager: StyleManager,
@@ -42,7 +44,7 @@ export class SidebarComponent {
     this.router = router;
     this.routes = this.routes.filter((v: any) => v.path !== '**');
 
-    this.router.events.subscribe((event: any) => {
+    this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.toggle(false);
       }
@@ -58,6 +60,7 @@ export class SidebarComponent {
         this.isShown
       );
       if (this.isShown === false) {
+        this.renderer.setElementProperty(this.document.documentElement, 'scrollTop', 0);
         this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
       }
     }
@@ -71,5 +74,9 @@ export class SidebarComponent {
     if (this.currentTheme) {
       this._themeStorage.storeTheme(this.currentTheme);
     }
+  }
+
+  ngOnDestroy() {
+    this.scrollSubscription.unsubscribe();
   }
 }
