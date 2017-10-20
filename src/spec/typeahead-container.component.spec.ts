@@ -1,32 +1,30 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TypeaheadContainerComponent } from '../typeahead/typeahead-container.component';
 import { TypeaheadOptions } from '../typeahead/typeahead-options.class';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
+import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
+  let testModule: any;
   let component: TypeaheadContainerComponent;
 
-  beforeEach(() => {
-    fixture = TestBed.configureTestingModule({
+  beforeEach(fakeAsync(() => {
+    testModule = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
-      providers: [
-        {
-          provide: TypeaheadOptions,
-          useValue: new TypeaheadOptions({
-            animation: false,
-            placement: 'bottom-left',
-            typeaheadRef: undefined
-          })
-        }
-      ]
-    }).createComponent(TypeaheadContainerComponent);
+      providers: [{
+        provide: TypeaheadOptions,
+        useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
+      }]
+    });
+    fixture = testModule.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+    tick(1);
+  }));
 
   it('should be defined', () => {
     expect(component).toBeTruthy();
@@ -219,4 +217,139 @@ describe('Component: TypeaheadContainer', () => {
       expect(component.isFocused).toBeFalsy();
     });
   });
+  describe('scrollable matches', () => {
+    let itemMatches: HTMLLIElement[];
+    let headerMatch: HTMLLIElement;
+    let containingElementScrollable: HTMLElement[];
+
+    beforeEach(fakeAsync(() => {
+      fixture = testModule.createComponent(TypeaheadContainerComponent);
+      component = fixture.componentInstance;
+      component.parent = { typeaheadOptionsInScrollableView: 3, typeaheadScrollable: true } as TypeaheadDirective;
+      fixture.detectChanges();
+      tick(1);
+      component.query = 'a';
+      component.matches = [
+        new TypeaheadMatch({ id: 0, name: 'banana', category: 'fruits' }, 'banana'),
+        new TypeaheadMatch({ id: 1, name: 'apple', category: 'fruits' }, 'apple'),
+        new TypeaheadMatch({ id: 2, name: 'orange', category: 'fruits' }, 'orange'),
+        new TypeaheadMatch({ id: 3, name: 'pear', category: 'fruits' }, 'pear'),
+        new TypeaheadMatch({ id: 4, name: 'pineapple', category: 'fruits' }, 'pineapple'),
+        new TypeaheadMatch('berries', 'berries', true),
+        new TypeaheadMatch({ id: 5, name: 'strawberry', category: 'berries' }, 'strawberry'),
+        new TypeaheadMatch({ id: 6, name: 'raspberry', category: 'berries' }, 'raspberry'),
+        new TypeaheadMatch('vegatables', 'vegatables', true),
+        new TypeaheadMatch({ id: 7, name: 'tomato', category: 'vegatables' }, 'tomato'),
+        new TypeaheadMatch({ id: 8, name: 'cucumber', category: 'vegatables' }, 'cucumber')
+      ];
+
+      fixture.detectChanges();
+      tick(1);
+      // component.ngAfterViewInit();
+      let headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
+      if (headers) {
+        headerMatch = asNativeElements(headers);
+      }
+      itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
+      containingElementScrollable = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
+    }));
+
+    describe('rendering', () => {
+      it('should render scrollable element', () => {
+        expect(containingElementScrollable[0]).toBeDefined();
+      });
+
+      it('should not throw exception when scrollPrevious is without li elements', () => {
+        (component as any).liElements = undefined;
+        (component as any).scrollPrevious(1);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+      });
+
+      it('should not throw exception when scrollPrevious is scrolling outside of index ', () => {
+        (component as any).scrollPrevious(100);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+
+      });
+
+      it('should not throw exception when scrollNext is without li elements', () => {
+        (component as any).liElements = undefined;
+
+        (component as any).scrollNext(1);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+
+      });
+
+      it('should not throw exception when scrollNext is scrolling outside of index', () => {
+        (component as any).scrollNext(100);
+        expect(component.element.nativeElement.scrollTop).toBe(0);
+      });
+
+      it('should render 9 item matches', () => {
+        expect(itemMatches.length).toBe(9);
+      });
+
+      it('should show scrollbars', () => {
+        expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('overflow-y')).toBe('scroll');
+      });
+
+      xit('should show correct height on scrollable element', () => {
+        expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('height')).toBe('60px');
+      });
+
+      it('should highlight query for item match', () => {
+        expect(itemMatches[1].children[0].children[0].innerHTML).toBe('<strong>a</strong>pple');
+      });
+
+      it('should set the \"active\" class on the first item match', () => {
+        expect(itemMatches[0].classList.contains('active')).toBeTruthy();
+      });
+    });
+
+    describe('nextActiveMatch', () => {
+      it('should select the next item match', () => {
+        component.nextActiveMatch();
+        expect(component.isActive(component.matches[1])).toBeTruthy();
+      });
+      it('should select the next item match and scroll', fakeAsync(() => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        fixture.detectChanges();
+        tick(1);
+        expect(component.isActive(component.matches[2])).toBeTruthy();
+        expect(containingElementScrollable[0].scrollTop).toBe(0);
+      }));
+      it('should select the last item match and scroll', () => {
+        for (let i = 0; i < 8; i++) {
+          component.nextActiveMatch();
+        }
+        expect(component.isActive(component.matches[10])).toBeTruthy();
+      });
+
+      it('should select the first item match and scroll to top', () => {
+        for (let i = 0; i < 9; i++) {
+          component.nextActiveMatch();
+        }
+        expect(component.isActive(component.matches[0])).toBeTruthy();
+        expect(containingElementScrollable[0].scrollTop).toBe(0);
+      });
+    });
+
+    describe('prevActiveMatch', () => {
+      it('should select the last item and scroll to bottom', () => {
+        component.prevActiveMatch();
+        expect(component.isActive(component.matches[10])).toBeTruthy();
+        expect(containingElementScrollable[0].scrollTop <= containingElementScrollable[0].scrollHeight).toBeTruthy();
+      });
+
+      it('should select the prev item match', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.prevActiveMatch();
+        expect(component.isActive(component.matches[2])).toBeTruthy();
+      });
+    });
+
+  });
+
 });
