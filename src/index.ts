@@ -170,6 +170,7 @@ export {
   pl,
   ptBr,
   ru,
+  sv,
   zhCn,
   tr
 } from './locale';
