@@ -10,4 +10,5 @@ export class SampleBoxComponent {
   @Input() html: string;
   @Input() spec: string;
   @Input() style: string;
+  @Input() modules: any;
 }

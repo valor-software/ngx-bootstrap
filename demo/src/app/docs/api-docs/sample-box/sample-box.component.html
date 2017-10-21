@@ -14,6 +14,23 @@
       <tab heading="style" *ngIf="style">
         <pre class="prettyprint linenums lang-css">{{style}}</pre>
       </tab>
+      <ng-container *ngFor="let module of modules; let i = index">
+        <tab *ngIf="module.html" [heading]="'template'+(i+1)">
+          <pre class="prettyprint linenums lang-html">{{module.html}}</pre>
+        </tab>
+        <tab *ngIf="module.component" [heading]="'component'+(i+1)">
+          <pre class="prettyprint linenums lang-js">{{module.component}}</pre>
+        </tab>
+        <tab *ngIf="module.service" [heading]="'service'+(i+1)">
+          <pre class="prettyprint linenums lang-js">{{module.service}}</pre>
+        </tab>
+        <tab *ngIf="module.spec" [heading]="'tests'+(i+1)">
+          <pre class="prettyprint linenums lang-js">{{module.spec}}</pre>
+        </tab>
+        <tab *ngIf="module.style" [heading]="'style'+(i+1)">
+          <pre class="prettyprint linenums lang-css">{{module.style}}</pre>
+        </tab>
+      </ng-container>
     </tabset>
   </div>
 </div>
