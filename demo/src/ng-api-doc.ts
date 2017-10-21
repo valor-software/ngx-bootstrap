@@ -2449,7 +2449,7 @@ export const ngdoc: any = {
       {
         "name": "customClass",
         "type": "string",
-        "description": "<p>if set, will be added to the tab&#39;s class atribute. Multiple classes are supported. </p>\n"
+        "description": "<p>if set, will be added to the tab&#39;s class attribute. Multiple classes are supported. </p>\n"
       },
       {
         "name": "disabled",
@@ -2970,6 +2970,12 @@ export const ngdoc: any = {
         "description": "<p>when options source is an array of objects, the name of field\nthat contains the options value, we use array item as option in case\nof this field is missing. Supports nested properties and methods.</p>\n"
       },
       {
+        "name": "typeaheadOptionsInScrollableView",
+        "defaultValue": "5",
+        "type": "number",
+        "description": "<p>specifies number of options to show in scroll view  </p>\n"
+      },
+      {
         "name": "typeaheadOptionsLimit",
         "type": "number",
         "description": "<p>maximum length of options items list </p>\n"
@@ -2979,6 +2985,12 @@ export const ngdoc: any = {
         "defaultValue": "'\"",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to match exact phrase.\nDefaults to simple and double quotes.</p>\n"
+      },
+      {
+        "name": "typeaheadScrollable",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>specifies if typeahead is scrollable  </p>\n"
       },
       {
         "name": "typeaheadSingleWords",
