@@ -119,6 +119,7 @@ export class BsDaterangepickerComponent
       triggers: this.triggers,
       show: () => this.show()
     });
+    this.setConfig()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -148,18 +149,7 @@ export class BsDaterangepickerComponent
       return;
     }
 
-    this._config = Object.assign(
-      {},
-      this._config,
-      {displayMonths: 2},
-      this.bsConfig,
-      {
-        value: this._bsValue,
-        isDisabled: this.isDisabled,
-        minDate: this.minDate || this._config.minDate,
-        maxDate: this.maxDate || this._config.maxDate
-      }
-    );
+    this.setConfig()
 
     this._datepickerRef = this._datepicker
       .provide({provide: BsDatepickerConfig, useValue: this._config})
@@ -183,6 +173,24 @@ export class BsDaterangepickerComponent
           this.bsValue = value;
           this.hide();
         })
+    );
+  }
+
+  /**
+   * Set config for daterangepicker
+   */
+  setConfig() {
+    this._config = Object.assign(
+      {},
+      this._config,
+      {displayMonths: 2},
+      this.bsConfig,
+      {
+        value: this._bsValue,
+        isDisabled: this.isDisabled,
+        minDate: this.minDate || this._config.minDate,
+        maxDate: this.maxDate || this._config.maxDate
+      }
     );
   }
 
