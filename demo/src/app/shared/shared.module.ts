@@ -5,25 +5,25 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 
 import { DemoSectionComponent } from './demo-section/demo-section.component';
-import { NgApiDocModule } from '../api-docs';
+import { NgApiDocModule } from './api-docs';
 import { SidebarComponent } from '../common/sidebar/sidebar.component';
 import { AppFooterComponent } from '../common/app-footer/app-footer.component';
 import { AddNavComponent } from '../common/add-nav/add-nav.component';
 import { FormsModule } from '@angular/forms';
 import { SearchFilterPipe } from '../common/sidebar/search-filter.pipe';
-import { ContentSection } from '../models/content-section.model';
+import { ContentSection } from './models/content-section.model';
 import {
   DemoTopSectionComponent,
   DemoTopSectionComponentModule
-} from '../common/demo-component/demo-top-section/index';
+} from './demo-component/demo-top-section/index';
 import {
   ExamplesComponent,
   ExamplesComponentModule
-} from '../common/demo-component/demo-examples-section/index';
+} from './demo-component/demo-examples-section/index';
 import {
   ApiSectionsComponent,
   ApiSectionsComponentModule
-} from '../common/demo-component/demo-api-section/index';
+} from './demo-component/demo-api-section/index';
 
 @NgModule({
   declarations: [

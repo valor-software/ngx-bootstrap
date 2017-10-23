@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { Ng2PageScrollModule } from 'ng2-page-scroll/ng2-page-scroll';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ngdoc } from '../ng-api-doc';
-import { NgApiDoc } from './api-docs/api-docs.model';
+import { NgApiDoc } from './shared/api-docs/api-docs.model';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';

@@ -2,7 +2,7 @@
  * @author ng-team
  * @copyright ng-bootstrap
  */
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, SecurityContext } from '@angular/core';
 import {
   PropertyDesc,
   DirectiveDesc,
@@ -12,6 +12,7 @@ import {
   signature,
   NgApiDoc
 } from '../api-docs.model';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Analytics } from '../analytics/analytics';
 
 /**
@@ -31,6 +32,7 @@ export class NgApiDocComponent {
   @Input()
   set directive(directiveName: string) {
     this.apiDocs = this.docs[directiveName];
+    this.apiDescription = this._sanitizer.sanitize(SecurityContext.HTML, this.apiDocs.description);
     this.configServiceName = `${directiveName}Config`;
     const configApiDocs = this.docs[this.configServiceName];
     this._configProperties = {};
@@ -45,8 +47,11 @@ export class NgApiDocComponent {
     }
   }
 
+  apiDescription: string;
   apiDocs: DirectiveDesc;
   configServiceName: string;
+
+  private _sanitizer: DomSanitizer;
 
   /**
    * Object which contains, for each input name of the directive, the corresponding property of the associated config
@@ -56,8 +61,9 @@ export class NgApiDocComponent {
   private _analytics: Analytics;
   private docs: NgApiDoc;
 
-  constructor(_analytics: Analytics, docs: NgApiDoc) {
+  constructor(_analytics: Analytics, docs: NgApiDoc, _sanitizer: DomSanitizer) {
     this._analytics = _analytics;
+    this._sanitizer = _sanitizer;
     // todo: inject docs
     this.docs = docs;
   }

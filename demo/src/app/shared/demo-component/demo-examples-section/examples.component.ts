@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ContentSection } from '../../../models/content-section.model';
+import { ContentSection } from '../../models/content-section.model';
 
 @Component({
   selector: 'examples',

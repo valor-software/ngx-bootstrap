@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 import { DEMOS } from './demos';
-import { ComponentExample } from '../../models/components-examples.model';
-import { ComponentApi } from '../../models/components-api.model';
+import { ComponentExample } from '../../shared/models/components-examples.model';
+import { ComponentApi } from '../../shared/models/components-api.model';
 import { demoComponentContent } from './tooltip-section.list';
 
 // webpack html imports
