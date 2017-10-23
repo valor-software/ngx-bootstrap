@@ -126,7 +126,7 @@
     "require-dir": "0.3.2",
     "rxjs": "5.4.3",
     "ts-helpers": "^1.1.1",
-    "tslint": "5.7.0",
+    "tslint": "5.8.0",
     "tslint-config-valorsoft": "2.1.1",
     "typedoc": "0.8.0",
     "typescript": "2.4.2",
