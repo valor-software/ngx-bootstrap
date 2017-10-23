@@ -19,7 +19,7 @@ export const ngdoc: any = {
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "<p>Is accordion group open or closed </p>\n"
+        "description": "<p>Is accordion group open or closed. This property supports two-way binding </p>\n"
       },
       {
         "name": "panelClass",
@@ -27,7 +27,12 @@ export const ngdoc: any = {
         "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">http://getbootstrap.com/components/#panels-alternatives</a>)</p>\n"
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isOpenChange",
+        "description": "<p>Emits when the opened state changes </p>\n"
+      }
+    ],
     "properties": [],
     "methods": []
   },
