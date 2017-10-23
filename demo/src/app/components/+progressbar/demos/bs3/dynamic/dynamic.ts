@@ -5,17 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoProgressbarDynamicComponent {
-  public max: number = 200;
-  public showWarning: boolean;
-  public dynamic: number;
-  public type: string;
+  max: number = 200;
+  showWarning: boolean;
+  dynamic: number;
+  type: string;
 
-  public constructor() {
+  constructor() {
     this.random();
   }
 
-  public random(): void {
-    let value = Math.floor((Math.random() * 100) + 1);
+  random(): void {
+    let value = Math.floor(Math.random() * 100 + 1);
     let type: string;
 
     if (value < 25) {
@@ -28,9 +28,8 @@ export class DemoProgressbarDynamicComponent {
       type = 'danger';
     }
 
-    this.showWarning = (type === 'danger' || type === 'warning');
+    this.showWarning = type === 'danger' || type === 'warning';
     this.dynamic = value;
     this.type = type;
   }
-
 }

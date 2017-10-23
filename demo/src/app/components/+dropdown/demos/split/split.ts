@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-dropdown-split',
   templateUrl: './split.html'
 })
-export class DemoDropdownSplitComponent {
-
-}
+export class DemoDropdownSplitComponent {}

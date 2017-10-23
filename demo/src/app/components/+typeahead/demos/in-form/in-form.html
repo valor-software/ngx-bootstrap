@@ -3,8 +3,8 @@
 <form [formGroup]="myForm">
   <input formControlName="state"
          [typeahead]="states"
-         typeaheadOptionsLimit="7"
-         typeaheadMinLength="0"
+         [typeaheadOptionsLimit]="7"
+         [typeaheadMinLength]="0"
          placeholder="Typeahead inside a form"
          class="form-control">
 </form>

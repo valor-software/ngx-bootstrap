@@ -12,6 +12,6 @@
 
 + config:
    /** if true dropdown will be initially opened */
-    public isOpen:boolean = false;
+    isOpen:boolean = false;
 + config dropup
 + fix append to body

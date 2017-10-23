@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { DatepickerFormatOptions, DatepickerRenderOptions } from './models/index';
+import {
+  DatepickerFormatOptions,
+  DatepickerRenderOptions
+} from './models/index';
 
 @Injectable()
-export class BsDatepickerConfig implements DatepickerRenderOptions,
-  DatepickerFormatOptions {
-
+export class BsDatepickerConfig
+  implements DatepickerRenderOptions, DatepickerFormatOptions {
   value?: Date | Date[];
   isDisabled?: boolean;
   /**
@@ -45,5 +47,4 @@ export class BsDatepickerConfig implements DatepickerRenderOptions,
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
-
 }

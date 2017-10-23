@@ -1,8 +1,14 @@
-import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { LandingComponent } from './common/landing/landing.component';
+import { GettingStartedComponent } from './common/getting-started/getting-started.component';
 
 export const routes = [
   {
     path: '',
+    data: ['Landing page'],
+    component: LandingComponent
+  },
+  {
+    path: 'getting-started',
     data: ['Getting started'],
     component: GettingStartedComponent
   },
@@ -10,7 +16,8 @@ export const routes = [
     path: 'accordion',
     data: ['Accordion'],
     // component: AccordionSectionComponent
-    loadChildren: './components/+accordion/demo-accordion.module#DemoAccordionModule'
+    loadChildren:
+      './components/+accordion/demo-accordion.module#DemoAccordionModule'
   },
   {
     path: 'alerts',
@@ -28,24 +35,29 @@ export const routes = [
     path: 'carousel',
     data: ['Carousel'],
     // component: CarouselSectionComponent
-    loadChildren: './components/+carousel/demo-carousel.module#DemoCarouselModule'
-  }, {
+    loadChildren:
+      './components/+carousel/demo-carousel.module#DemoCarouselModule'
+  },
+  {
     path: 'collapse',
     data: ['Collapse'],
     // component: CollapseSectionComponent
-    loadChildren: './components/+collapse/demo-collapse.module#DemoCollapseModule'
+    loadChildren:
+      './components/+collapse/demo-collapse.module#DemoCollapseModule'
   },
   {
     path: 'datepicker',
     data: ['Datepicker'],
     // component: DatepickerSectionComponent
-    loadChildren: './components/+datepicker/demo-datepicker.module#DemoDatepickerModule'
+    loadChildren:
+      './components/+datepicker/demo-datepicker.module#DemoDatepickerModule'
   },
   {
     path: 'dropdowns',
     data: ['Dropdowns'],
     // component: DropdownSectionComponent
-    loadChildren: './components/+dropdown/demo-dropdown.module#DemoDropdownModule'
+    loadChildren:
+      './components/+dropdown/demo-dropdown.module#DemoDropdownModule'
   },
 
   {
@@ -58,7 +70,8 @@ export const routes = [
     path: 'pagination',
     data: ['Pagination'],
     // component: PaginationSectionComponent
-    loadChildren: './components/+pagination/demo-pagination.module#DemoPaginationModule'
+    loadChildren:
+      './components/+pagination/demo-pagination.module#DemoPaginationModule'
   },
   {
     path: 'popover',
@@ -70,7 +83,8 @@ export const routes = [
     path: 'progressbar',
     data: ['Progressbar'],
     // component: ProgressbarSectionComponent
-    loadChildren: './components/+progressbar/demo-progressbar.module#DemoProgressbarModule'
+    loadChildren:
+      './components/+progressbar/demo-progressbar.module#DemoProgressbarModule'
   },
   {
     path: 'rating',
@@ -82,7 +96,8 @@ export const routes = [
     path: 'sortable',
     data: ['Sortable'],
     // component: SortableSectionComponent,
-    loadChildren: './components/+sortable/demo-sortable.module#DemoSortableModule'
+    loadChildren:
+      './components/+sortable/demo-sortable.module#DemoSortableModule'
   },
   {
     path: 'tabs',
@@ -94,7 +109,8 @@ export const routes = [
     path: 'timepicker',
     data: ['Timepicker'],
     // component: TimepickerSectionComponent
-    loadChildren: './components/+timepicker/demo-timepicker.module#DemoTimepickerModule'
+    loadChildren:
+      './components/+timepicker/demo-timepicker.module#DemoTimepickerModule'
   },
   {
     path: 'tooltip',
@@ -106,8 +122,10 @@ export const routes = [
     path: 'typeahead',
     data: ['Typeahead'],
     // component: TypeaheadSectionComponent
-    loadChildren: './components/+typeahead/demo-typeahead.module#DemoTypeaheadModule'
-  }, {
+    loadChildren:
+      './components/+typeahead/demo-typeahead.module#DemoTypeaheadModule'
+  },
+  {
     path: '**',
     redirectTo: '/'
   }

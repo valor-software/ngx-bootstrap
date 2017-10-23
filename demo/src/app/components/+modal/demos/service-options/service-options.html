@@ -7,7 +7,7 @@
 <button type="button" class="btn btn-primary btn-sm" (click)="config.backdrop = !config.backdrop">{{config.backdrop ? 'Disable' : 'Enable'}} backdrop</button>
 <button type="button" class="btn btn-primary btn-sm" (click)="config.ignoreBackdropClick = !config.ignoreBackdropClick">{{!config.ignoreBackdropClick ? 'Disable' : 'Enable'}} backdrop click</button>
 
-<template #template>
+<ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -17,4 +17,4 @@
   <div class="modal-body">
     Just a modal with a bunch of words inside, nothing serious.
   </div>
-</template>
+</ng-template>

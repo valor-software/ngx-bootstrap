@@ -5,16 +5,16 @@
 import { LocaleData } from '../locale/locale.class';
 
 const symbolMap: any = {
-  '1': '१',
-  '2': '२',
-  '3': '३',
-  '4': '४',
-  '5': '५',
-  '6': '६',
-  '7': '७',
-  '8': '८',
-  '9': '९',
-  '0': '०'
+  1: '१',
+  2: '२',
+  3: '३',
+  4: '४',
+  5: '५',
+  6: '६',
+  7: '७',
+  8: '८',
+  9: '९',
+  0: '०'
 };
 const numberMap: any = {
   '१': '1',
@@ -31,8 +31,12 @@ const numberMap: any = {
 
 export const hi: LocaleData = {
   abbr: 'hi',
-  months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split('_'),
-  monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split('_'),
+  months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split(
+    '_'
+  ),
+  monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split(
+    '_'
+  ),
   monthsParseExact: true,
   weekdays: 'रविवार_सोमवार_मंगलवार_बुधवार_गुरूवार_शुक्रवार_शनिवार'.split('_'),
   weekdaysShort: 'रवि_सोम_मंगल_बुध_गुरू_शुक्र_शनि'.split('_'),
@@ -78,13 +82,13 @@ export const hi: LocaleData = {
       return symbolMap[match];
     });
   },
-  // Hindi notation for meridiems are quite fuzzy in practice. While there exists
-  // a rigid notion of a 'Pahar' it is not used as rigidly in modern Hindi.
+  // Hindi notation for meridiems are quite fuzzy in practice. While there
+  // exists a rigid notion of a 'Pahar' it is not used as rigidly in modern
+  // Hindi.
   meridiemParse: /रात|सुबह|दोपहर|शाम/,
-  meridiemHour(hour: number, meridiem: string): number {
-    if (hour === 12) {
-      hour = 0;
-    }
+  meridiemHour(_hour: number, meridiem: string): number {
+    const hour = _hour === 12 ? 0 : _hour;
+    // tslint:disable
     if (meridiem === 'रात') {
       return hour < 4 ? hour : hour + 12;
     } else if (meridiem === 'सुबह') {
@@ -110,6 +114,6 @@ export const hi: LocaleData = {
   },
   week: {
     dow: 0, // Sunday is the first day of the week.
-    doy: 6  // The week that contains Jan 1st is the first week of the year.
+    doy: 6 // The week that contains Jan 1st is the first week of the year.
   }
 };

@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-progressbar-static',
   templateUrl: './static.html'
 })
-export class DemoProgressbarStaticComponent {
-}
+export class DemoProgressbarStaticComponent {}

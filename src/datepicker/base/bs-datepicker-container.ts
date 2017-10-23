@@ -1,11 +1,16 @@
 // datepicker container component
-/* tslint:disable no-empty */
+/* tslint:disable:no-empty */
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
 import { Observable } from 'rxjs/Observable';
 import {
-  BsDatepickerViewMode, BsNavigationEvent, CalendarCellViewModel, CellHoverEvent, DatepickerRenderOptions,
-  DaysCalendarViewModel, DayViewModel,
+  BsDatepickerViewMode,
+  BsNavigationEvent,
+  CalendarCellViewModel,
+  CellHoverEvent,
+  DatepickerRenderOptions,
+  DaysCalendarViewModel,
+  DayViewModel,
   MonthsCalendarViewModel,
   YearsCalendarViewModel
 } from '../models/index';
@@ -44,7 +49,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   yearHoverHandler(event: CellHoverEvent): void {}
 
-  daySelectHandler(day: DayViewModel): void {};
+  daySelectHandler(day: DayViewModel): void {}
 
   monthSelectHandler(event: CalendarCellViewModel): void {}
 

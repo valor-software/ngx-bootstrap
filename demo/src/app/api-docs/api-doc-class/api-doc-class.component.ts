@@ -18,25 +18,25 @@ import { Analytics } from '../analytics/analytics';
 })
 export class NgApiDocClassComponent {
   @Input()
-  public set type(typeName: string) {
+  set type(typeName: string) {
     this.apiDocs = this.docs[typeName];
   }
 
-  public apiDocs: ClassDesc;
+  apiDocs: ClassDesc;
 
   private _analytics: Analytics;
   private docs: NgApiDoc;
 
-  public constructor(_analytics: Analytics, docs: NgApiDoc) {
+  constructor(_analytics: Analytics, docs: NgApiDoc) {
     this.docs = docs;
     this._analytics = _analytics;
   }
 
-  public methodSignature(method: MethodDesc): string {
+  methodSignature(method: MethodDesc): string {
     return signature(method);
   }
 
-  public trackSourceClick(): void {
+  trackSourceClick(): void {
     this._analytics.trackEvent('Source File View', this.apiDocs.className);
   }
 }

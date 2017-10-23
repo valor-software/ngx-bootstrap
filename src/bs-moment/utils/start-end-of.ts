@@ -8,7 +8,7 @@ export function startOf(date: Date, units: UnitOfTime): Date {
 
 export function endOf(date: Date, units: UnitOfTime): Date {
   const start = startOf(date, units);
-  const shift = {[units]: 1};
+  const shift = { [units]: 1 };
   const change = shiftDate(start, shift);
   change.setMilliseconds(-1);
 

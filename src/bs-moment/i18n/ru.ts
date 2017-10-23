@@ -9,10 +9,18 @@ import { LocaleData } from '../locale/locale.class';
 function plural(word: string, num: number): string {
   const forms = word.split('_');
 
-  return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
+  return num % 10 === 1 && num % 100 !== 11
+    ? forms[0]
+    : num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20)
+      ? forms[1]
+      : forms[2];
 }
 
-function relativeTimeWithPlural(num: number, withoutSuffix: boolean, key: string): string {
+function relativeTimeWithPlural(
+  num: number,
+  withoutSuffix: boolean,
+  key: string
+): string {
   const format: any = {
     mm: withoutSuffix ? 'минута_минуты_минут' : 'минуту_минуты_минут',
     hh: 'час_часа_часов',
@@ -27,7 +35,20 @@ function relativeTimeWithPlural(num: number, withoutSuffix: boolean, key: string
   }
 }
 
-const monthsParse = [/^янв/i, /^фев/i, /^мар/i, /^апр/i, /^ма[йя]/i, /^июн/i, /^июл/i, /^авг/i, /^сен/i, /^окт/i, /^ноя/i, /^дек/i];
+const monthsParse = [
+  /^янв/i,
+  /^фев/i,
+  /^мар/i,
+  /^апр/i,
+  /^ма[йя]/i,
+  /^июн/i,
+  /^июл/i,
+  /^авг/i,
+  /^сен/i,
+  /^окт/i,
+  /^ноя/i,
+  /^дек/i
+];
 
 // http://new.gramota.ru/spravka/rules/139-prop : § 103
 // Сокращения месяцев: http://new.gramota.ru/spravka/buro/search-answer?s=242637
@@ -35,17 +56,29 @@ const monthsParse = [/^янв/i, /^фев/i, /^мар/i, /^апр/i, /^ма[йя
 export const ru: LocaleData = {
   abbr: 'ru',
   months: {
-    format: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split('_'),
-    standalone: 'январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь'.split('_')
+    format: 'января_февраля_марта_апреля_мая_июня_июля_августа_сентября_октября_ноября_декабря'.split(
+      '_'
+    ),
+    standalone: 'январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь'.split(
+      '_'
+    )
   },
   monthsShort: {
     // по CLDR именно "июл." и "июн.", но какой смысл менять букву на точку ?
-    format: 'янв._февр._мар._апр._мая_июня_июля_авг._сент._окт._нояб._дек.'.split('_'),
-    standalone: 'янв._февр._март_апр._май_июнь_июль_авг._сент._окт._нояб._дек.'.split('_')
+    format: 'янв._февр._мар._апр._мая_июня_июля_авг._сент._окт._нояб._дек.'.split(
+      '_'
+    ),
+    standalone: 'янв._февр._март_апр._май_июнь_июль_авг._сент._окт._нояб._дек.'.split(
+      '_'
+    )
   },
   weekdays: {
-    standalone: 'воскресенье_понедельник_вторник_среда_четверг_пятница_суббота'.split('_'),
-    format: 'воскресенье_понедельник_вторник_среду_четверг_пятницу_субботу'.split('_'),
+    standalone: 'воскресенье_понедельник_вторник_среда_четверг_пятница_суббота'.split(
+      '_'
+    ),
+    format: 'воскресенье_понедельник_вторник_среду_четверг_пятницу_субботу'.split(
+      '_'
+    ),
     isFormat: /\[ ?[Вв] ?(?:прошлую|следующую|эту)? ?\] ?dddd/
   },
   weekdaysShort: 'вс_пн_вт_ср_чт_пт_сб'.split('_'),
@@ -121,6 +154,6 @@ export const ru: LocaleData = {
   },
   week: {
     dow: 1, // Monday is the first day of the week.
-    doy: 4  // The week that contains Jan 4th is the first week of the year.
+    doy: 4 // The week that contains Jan 4th is the first week of the year.
   }
 };

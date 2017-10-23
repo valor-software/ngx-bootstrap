@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './checkbox.html'
 })
 export class DemoButtonsCheckboxComponent {
-  public checkModel:any = {left: false, middle: true, right: false};
+  checkModel: any = { left: false, middle: true, right: false };
 }

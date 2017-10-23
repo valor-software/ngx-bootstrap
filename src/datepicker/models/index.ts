@@ -1,8 +1,4 @@
 import { TimeUnit } from '../../bs-moment/types';
-import { Observable } from 'rxjs/Observable';
-import { EventEmitter } from '@angular/core';
-import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
-import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 
 export type BsDatepickerViewMode = 'day' | 'month' | 'year';
 
@@ -105,7 +101,10 @@ export interface DatepickerRenderOptions {
 /** *************** */
 // events
 /** *************** */
-export enum BsNavigationDirection {UP, DOWN}
+export enum BsNavigationDirection {
+  UP,
+  DOWN
+}
 
 // used for navigation events, to change view date in state
 export interface BsNavigationEvent {

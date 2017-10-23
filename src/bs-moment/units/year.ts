@@ -7,12 +7,12 @@ function getYear(date: Date): string {
   return getFullYear(date).toString();
 }
 
-addFormatToken('Y', null, null, function (date: Date): string {
+addFormatToken('Y', null, null, function(date: Date): string {
   const y = getFullYear(date);
   return y <= 9999 ? '' + y : '+' + y;
 });
 
-addFormatToken(null, ['YY', 2], null, function (date: Date): string {
+addFormatToken(null, ['YY', 2], null, function(date: Date): string {
   return (getFullYear(date) % 100).toString(10);
 });
 
