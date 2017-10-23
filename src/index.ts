@@ -152,6 +152,28 @@ export {
 
 export { defineLocale, getSetGlobalLocale } from './bs-moment';
 
+export {
+  ar,
+  cs,
+  de,
+  enGb,
+  es,
+  esDo,
+  esUs,
+  fr,
+  hi,
+  it,
+  ja,
+  ko,
+  nl,
+  nlBe,
+  pl,
+  ptBr,
+  ru,
+  zhCn,
+  tr
+} from './locale';
+
 const MODULES = [
   AccordionModule,
   AlertModule,
