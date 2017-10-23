@@ -43,6 +43,14 @@ export class CollapseDirective {
   @HostBinding('class.collapsing')
   public isCollapsing: boolean = false;
 
+  /** This attribute indicates value of CSS display property when shown */
+  @Input()
+  public styleDisplayOnShow: string = 'block';
+
+  /** This attribute indicates value of CSS display property when hidden */
+  @Input()
+  public styleDisplayOnHide: string = 'none';
+
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   public set collapse(value: boolean) {
@@ -62,7 +70,7 @@ export class CollapseDirective {
     this._renderer = _renderer;
   }
 
-  /** allows to manually toggle content visibility */
+  /** Allows to manually toggle content visibility */
   public toggle(): void {
     if (this.isExpanded) {
       this.hide();
@@ -71,7 +79,7 @@ export class CollapseDirective {
     }
   }
 
-  /** allows to manually hide content */
+  /** Allows to manually hide content */
   public hide(): void {
     this.isCollapse = false;
     this.isCollapsing = true;
@@ -82,11 +90,11 @@ export class CollapseDirective {
     this.isCollapse = true;
     this.isCollapsing = false;
 
-    this.display = 'none';
+    this.display = this.styleDisplayOnHide;
     this.collapsed.emit(this);
   }
 
-  /** allows to manually show collapsed content */
+  /** Allows to manually show collapsed content */
   public show(): void {
     this.isCollapse = false;
     this.isCollapsing = true;
@@ -94,7 +102,7 @@ export class CollapseDirective {
     this.isExpanded = true;
     this.isCollapsed = false;
 
-    this.display = 'block';
+    this.display = this.styleDisplayOnShow;
     // this.height = 'auto';
     this.isCollapse = true;
     this.isCollapsing = false;
