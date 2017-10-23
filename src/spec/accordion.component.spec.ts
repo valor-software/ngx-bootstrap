@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AccordionConfig } from '../accordion/accordion.config';
 
 import { AccordionModule } from '../accordion/accordion.module';
@@ -167,11 +167,12 @@ describe('Component: Accordion', () => {
     expectOpenPanels(element, [false, false, false]);
   });
 
-  it('should modify the parent isOpen state when changed internally (2 way binding)', () => {
+  it('should modify the parent isOpen state when changed internally (2 way binding)', fakeAsync(() => {
     const headingLinks = element.querySelectorAll('.accordion-toggle');
 
     // Clicking (internal state modified)
     headingLinks[0].click();
+    tick();
     fixture.detectChanges();
     expect(context.panels[0].isOpen).toBe(true);
     expect(context.panels[1].isOpen).toBe(false);
@@ -179,6 +180,7 @@ describe('Component: Accordion', () => {
 
     // State modified by parent component
     headingLinks[2].click();
+    tick();
     fixture.detectChanges();
     expect(context.panels[0].isOpen).toBe(false);
     expect(context.panels[1].isOpen).toBe(false);
@@ -187,8 +189,9 @@ describe('Component: Accordion', () => {
     // Modified by binding
     context.panels[1].isOpen = true;
     fixture.detectChanges();
+    tick();
     expect(context.panels[0].isOpen).toBe(false);
     expect(context.panels[1].isOpen).toBe(true);
     expect(context.panels[2].isOpen).toBe(false);
-  });
+  }));
 });

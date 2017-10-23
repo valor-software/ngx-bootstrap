@@ -33,7 +33,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   @Output() isOpenChange: EventEmitter<boolean> = new EventEmitter();
 
   // Questionable, maybe .panel-open should be on child div.panel element?
-  /** Is accordion group open or closed */
+  /** Is accordion group open or closed. This property supports two-way binding */
   @HostBinding('class.panel-open')
   @Input()
   get isOpen(): boolean {
@@ -41,9 +41,14 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   }
 
   set isOpen(value: boolean) {
-    this._isOpen = value;
-    if (value) {
-      this.accordion.closeOtherPanels(this);
+    if (value !== this.isOpen) {
+      if (value) {
+        this.accordion.closeOtherPanels(this);
+      }
+      this._isOpen = value;
+      Promise.resolve(null).then(() => {
+        this.isOpenChange.emit(value);
+      });
     }
   }
 
@@ -51,7 +56,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     return isBs3();
   }
 
-  protected _isOpen: boolean;
+  protected _isOpen = false;
   protected accordion: AccordionComponent;
 
   constructor(@Inject(AccordionComponent) accordion: AccordionComponent) {
@@ -69,18 +74,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
 
   toggleOpen(event: Event): any {
     if (!this.isDisabled) {
-      this.setOpenState(!this.isOpen);
-    }
-  }
-
-  /**
-   * Sets the isOpen state internally
-   * @param {boolean} isOpen
-   */
-  setOpenState(isOpen: boolean): void {
-    if (isOpen !== this._isOpen) {
-      this._isOpen = isOpen;
-      this.isOpenChange.emit(this._isOpen);
+      this.isOpen = !this.isOpen;
     }
   }
 }
