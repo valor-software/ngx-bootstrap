@@ -1,13 +1,9 @@
-<ul>
-  <li><a routerLink="." fragment="usage">Usage</a></li>
-  <li><a routerLink="." fragment="examples">Examples</a>
-    <ul *ngFor="let item of componentContent.examples">
-      <li><a routerLink="." fragment="{{ item.anchor }}">{{ item.title }}</a></li>
-    </ul>
-  </li>
-  <li><a routerLink="." fragment="api-reference">API Reference</a>
-    <ul *ngFor="let item of componentContent.apiSections">
-      <li><a routerLink="." fragment="{{ item.anchor }}">{{ item.title }}</a></li>
+<ul *ngIf="componentContent" (click)="goToSection($event)">
+  <li *ngFor="let item of componentContent">
+    <a routerLink="." pageScroll fragment="{{ item.anchor }}">{{ item.name }}</a>
+    <ul *ngIf="item.content && item.content.length">
+      <li *ngFor="let subItem of item.content">
+        <a routerLink="." pageScroll fragment="{{ subItem.anchor }}">{{ subItem.title }}</a>
     </ul>
   </li>
 </ul>

@@ -13,8 +13,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   templateUrl: './pagination-section.component.html'
 })
 export class PaginationSectionComponent {
-  name: string = 'Pagination';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
+  name = 'Pagination';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
   examples: ComponentExample[] = demoComponentContent.examples;

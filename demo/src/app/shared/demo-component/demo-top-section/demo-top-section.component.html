@@ -1,2 +1,4 @@
-<h2 [attr.id]="section.anchor">{{ section.name }}</h2>
-<p [innerHtml]="section.content.doc"></p>
+<ng-container *ngIf="section">
+  <h2 [attr.id]="section.anchor">{{ section.name }}</h2>
+  <p [innerHtml]="sectionContent.doc"></p>
+</ng-container>

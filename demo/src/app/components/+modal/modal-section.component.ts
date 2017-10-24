@@ -13,8 +13,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   templateUrl: './modal-section.component.html'
 })
 export class ModalSectionComponent {
-  name: string = 'Modals';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
+  name = 'Modals';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
   serviceExamples: ComponentExample[] = demoComponentContent.serviceExamples;

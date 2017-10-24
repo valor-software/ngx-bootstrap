@@ -1,22 +1,35 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
+import { Component, Injector, ReflectiveInjector } from '@angular/core';
 
-import { ComponentExample } from '../../shared/models/components-examples.model';
-import { ComponentApi } from '../../shared/models/components-api.model';
 import { demoComponentContent } from './carousel-section.list';
-
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
   selector: 'carousel-section',
   templateUrl: './carousel-section.component.html'
 })
 export class CarouselSectionComponent {
-  name: string = 'Carousel';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/carousel';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
-  examples: ComponentExample[] = demoComponentContent.examples;
-  apiSections: ComponentApi[] = demoComponentContent.apiSections;
+  name = 'Carousel';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/carousel';
+  componentContent: ContentSection[] = demoComponentContent;
+  content: any;
+
+  _injectors = new Map<ContentSection, ReflectiveInjector>();
+
+  constructor(private injector: Injector) { }
+
+  sectionInjections(content: ContentSection) {
+    if (this._injectors.has(content)) {
+      return this._injectors.get(content);
+    }
+
+    const _injector = ReflectiveInjector.resolveAndCreate([
+      {
+        provide: ContentSection,
+        useValue: content
+      }], this.injector);
+
+    this._injectors.set(content, _injector);
+
+    return _injector;
+  }
 }

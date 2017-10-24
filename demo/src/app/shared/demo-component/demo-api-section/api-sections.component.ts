@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContentSection } from '../../models/content-section.model';
+import { ComponentApi } from '../../models/components-api.model';
 
 @Component({
   selector: 'api-sections',
@@ -7,7 +8,7 @@ import { ContentSection } from '../../models/content-section.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ApiSectionsComponent {
-  apiSections: any; // Todo: investigate why ComponentApi[] not working
+  apiSections: ComponentApi[];
 
   constructor(public sections: ContentSection) {
     this.apiSections = sections.content;

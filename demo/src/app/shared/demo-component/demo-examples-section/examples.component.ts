@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ContentSection } from '../../models/content-section.model';
+import { ComponentExample } from '../../models/components-examples.model';
 
 @Component({
   selector: 'examples',
@@ -8,7 +9,7 @@ import { ContentSection } from '../../models/content-section.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ExamplesComponent {
-  examples: any;
+  examples: ComponentExample[];
 
   constructor(public sections: ContentSection) {
     this.examples = sections.content;

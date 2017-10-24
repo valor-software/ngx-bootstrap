@@ -1,22 +1,25 @@
-<h2 [id]="sections.anchor">{{ sections.name }}</h2>
-<div *ngFor="let item of apiSections">
-  <ng-container [ngSwitch]="item.component">
-    <ng-api-doc
-      *ngSwitchDefault
-      [attr.id]="item.anchor"
-      [directive]="item.title">
-    </ng-api-doc>
+<ng-container *ngIf="sections">
+  <h2 [id]="sections.anchor">{{ sections.name }}</h2>
 
-    <ng-api-doc-class
-      *ngSwitchCase="'class'"
-      [attr.id]="item.anchor"
-      [directive]="item.title">
-    </ng-api-doc-class>
+  <div *ngFor="let item of apiSections">
+    <ng-container [ngSwitch]="item.component">
+      <ng-api-doc
+        *ngSwitchDefault
+        [attr.id]="item.anchor"
+        [directive]="item.title">
+      </ng-api-doc>
 
-    <ng-api-doc-config
-      *ngSwitchCase="'config'"
-      [attr.id]="item.anchor"
-      [directive]="item.title">
-    </ng-api-doc-config>
-  </ng-container>
-</div>
+      <ng-api-doc-class
+        *ngSwitchCase="'class'"
+        [attr.id]="item.anchor"
+        [directive]="item.title">
+      </ng-api-doc-class>
+
+      <ng-api-doc-config
+        *ngSwitchCase="'config'"
+        [attr.id]="item.anchor"
+        [directive]="item.title">
+      </ng-api-doc-config>
+    </ng-container>
+  </div>
+</ng-container>

@@ -17,7 +17,7 @@ import { ContentSection } from '../../shared/models/content-section.model';
 export class AccordionSectionComponent {
   name = 'Accordion';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
-  componentContent: any[] = demoComponentContent;
+  componentContent: ContentSection[] = demoComponentContent;
   content: any;
 
   _injectors = new Map<ContentSection, ReflectiveInjector>();

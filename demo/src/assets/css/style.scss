@@ -343,6 +343,32 @@ a:hover {
 .add-nav {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
+  position: fixed;
+  top: 84px;
+  left: 83.33%;
+
+  ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+    font-size: 14px;
+    list-style: none;
+
+    li {
+      a {
+        display: block;
+        padding: 2px 0;
+        color: #666;
+
+        &:hover {
+          color: #1976d2;
+        }
+      }
+    }
+  }
+
+  & > ul {
+    border-left: 1px solid #dadada;
+  }
 }
 /* app-footer */
 .app-footer {

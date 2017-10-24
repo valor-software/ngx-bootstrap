@@ -15,8 +15,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   templateUrl: './datepicker-section.component.html'
 })
 export class DatepickerSectionComponent {
-  name: string = 'Datepicker';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
+  name = 'Datepicker';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
   demos: any = DEMOS;
   oldTitleDoc: string = oldTitleDoc;
   titleDoc: string = titleDoc;

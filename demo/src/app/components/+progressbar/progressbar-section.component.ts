@@ -14,8 +14,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   templateUrl: './progressbar-section.component.html'
 })
 export class ProgressbarSectionComponent {
-  name: string = 'Progressbar';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
+  name = 'Progressbar';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
 
   get isBs3(): boolean {
     return isBs3();

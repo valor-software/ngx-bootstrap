@@ -4,51 +4,79 @@ import { DemoButtonsRadioComponent } from './demos/radio/radio';
 import { DemoButtonsRadioReactiveFormsComponent } from './demos/radio-reactiveforms/radio-reactiveforms';
 import { DemoButtonsDisabledComponent } from './demos/disabled/disabled';
 
-export const demoComponentContent = {
-  examples: [
-    {
-      title: 'Single button',
-      anchor: 'single-button',
-      name: 'basic',
-      description: `<p>Default static button with two states</p>`,
-      outlet: DemoButtonsBasicComponent
-    },
-    {
-      title: 'Checkbox',
-      anchor: 'checkbox',
-      name: 'checkbox',
-      description: `<p>Checkbox-like buttons set with variable states</p>`,
-      outlet: DemoButtonsCheckboxComponent
-    },
-    {
-      title: 'Radio & Uncheckable Radio',
-      anchor: 'radio-button',
-      name: 'radio',
-      description: `<p>Radio buttons with checked/unchecked states</p>`,
-      outlet: DemoButtonsRadioComponent
-    },
-    {
-      title: 'Radio with Reactive Forms',
-      anchor: 'radio-reactiveforms"',
-      name: 'radioReactiveForms',
-      description: `<p>Checkbox buttons with ReactiveForms</p>`,
-      outlet: DemoButtonsRadioReactiveFormsComponent
-    },
-    {
-      title: 'Disabled Buttons',
-      anchor: 'disabled-buttons',
-      name: 'disabled',
-      outlet: DemoButtonsDisabledComponent
+import { ContentSection } from '../../shared/models/content-section.model';
+import { DemoTopSectionComponent } from '../../shared/demo-component/demo-top-section/index';
+import { ExamplesComponent } from '../../shared/demo-component/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../shared/demo-component/demo-api-section/index';
+
+export const demoComponentContent: ContentSection[] = [
+  {
+    name: 'Usage',
+    anchor: 'usage',
+    outlet: DemoTopSectionComponent,
+    content: {
+      doc: require('html-loader!markdown-loader!./docs/usage.md')
     }
-  ],
-  apiSections: [
-    {
-      title: 'ButtonCheckboxDirective',
-      anchor: 'button-checkbox-directive'
-    },
-    {
-      title: 'ButtonRadioDirective',
-      anchor: 'button-radio-directive'
-    }
-  ]
-};
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Single button',
+        anchor: 'single-button',
+        description: `<p>Default static button with two states</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        outlet: DemoButtonsBasicComponent
+      },
+      {
+        title: 'Checkbox',
+        anchor: 'checkbox',
+        description: `<p>Checkbox-like buttons set with variable states</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/checkbox/checkbox.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/checkbox/checkbox.html'),
+        outlet: DemoButtonsCheckboxComponent
+      },
+      {
+        title: 'Radio & Uncheckable Radio',
+        anchor: 'radio-button',
+        description: `<p>Radio buttons with checked/unchecked states</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/radio/radio.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/radio/radio.html'),
+        outlet: DemoButtonsRadioComponent
+      },
+      {
+        title: 'Radio with Reactive Forms',
+        anchor: 'radio-reactiveforms"',
+        description: `<p>Checkbox buttons with ReactiveForms</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/radio-reactiveforms/radio-reactiveforms.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/radio-reactiveforms/radio-reactiveforms.html'),
+        outlet: DemoButtonsRadioReactiveFormsComponent
+      },
+      {
+        title: 'Disabled Buttons',
+        anchor: 'disabled-buttons',
+        component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
+        outlet: DemoButtonsDisabledComponent
+      }
+    ]
+  },
+  {
+    name: 'API Reference',
+    anchor: 'api-reference',
+    outlet: ApiSectionsComponent,
+    content: [
+      {
+        title: 'ButtonCheckboxDirective',
+        anchor: 'button-checkbox-directive'
+      },
+      {
+        title: 'ButtonRadioDirective',
+        anchor: 'button-radio-directive'
+      }
+    ]
+  }
+];

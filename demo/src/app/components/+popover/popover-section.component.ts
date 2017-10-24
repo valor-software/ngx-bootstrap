@@ -13,8 +13,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   templateUrl: './popover-section.component.html'
 })
 export class PopoverSectionComponent {
-  name: string = 'Popover';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
+  name = 'Popover';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
   examples: ComponentExample[] = demoComponentContent.examples;

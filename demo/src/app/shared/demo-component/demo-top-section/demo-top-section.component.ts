@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContentSection } from '../../models/content-section.model';
+import { ComponentsTopSection } from '../../models/components-top-section.model';
 
 @Component({
   selector: 'demo-top-section',
@@ -7,5 +8,9 @@ import { ContentSection } from '../../models/content-section.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoTopSectionComponent {
-  constructor(public section: ContentSection) {}
+  sectionContent: ComponentsTopSection;
+
+  constructor(public section: ContentSection) {
+    this.sectionContent = section.content;
+  }
 }

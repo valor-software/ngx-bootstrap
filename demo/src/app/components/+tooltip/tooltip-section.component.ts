@@ -13,8 +13,8 @@ let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
   templateUrl: './tooltip-section.component.html'
 })
 export class TooltipSectionComponent {
-  name: string = 'Tooltip';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
+  name = 'Tooltip';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
   demos: any = DEMOS;
   titleDoc: string = titleDoc;
   examples: ComponentExample[] = demoComponentContent.examples;
