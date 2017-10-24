@@ -92,6 +92,10 @@ export class BsDaterangepickerComponent
    * Emits when daterangepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
+  /**
+   * Emits when datepicker locale has been changed
+   */
+  @Output() bsLocaleChange: EventEmitter<string> = new EventEmitter();
 
   protected _subs: Subscription[] = [];
 
@@ -136,6 +140,15 @@ export class BsDaterangepickerComponent
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    const isDate = (changes.bsConfig.currentValue instanceof Date);
+    if (changes.bsConfig.currentValue !== changes.bsConfig.previousValue) {
+      if (isDate) {
+        this.bsValue = changes.bsConfig.currentValue;
+      } else {
+        this.bsLocaleChange.emit(this.bsConfig.locale);
+      }
     }
   }
 

@@ -48,6 +48,26 @@ export class BsDaterangepickerInputDirective
       this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
       this._onChange(v);
     });
+
+    this._picker.bsLocaleChange.subscribe((locale: string) => {
+      let range = '';
+      if (this._picker._bsValue) {
+        this._picker.bsConfig.locale = locale;
+        const start = formatDate(
+          this._picker._bsValue[0],
+          this._picker._config.rangeInputFormat,
+          locale
+        ) || '';
+        const end = formatDate(
+          this._picker._bsValue[1],
+          this._picker._config.rangeInputFormat,
+          locale
+        ) || '';
+        range = (start && end) ? start + this._picker._config.rangeSeparator + end : '';
+      }
+      this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
+      this._onChange(this._picker._bsValue);
+    });
   }
 
   onChange(event: any) {
