@@ -96,6 +96,7 @@ export interface DatepickerFormatOptions {
 export interface DatepickerRenderOptions {
   showWeekNumbers?: boolean;
   displayMonths?: number;
+  startingDay?: number;
 }
 
 /** *************** */
