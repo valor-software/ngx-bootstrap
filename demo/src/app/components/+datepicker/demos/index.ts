@@ -6,6 +6,7 @@ import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { DemoDatePickerStartingdayComponent } from './startingday/date-picker-startingday';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -15,7 +16,8 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerMinMaxComponent,
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
-  DemoDatepickerReactiveFormsComponent
+  DemoDatepickerReactiveFormsComponent,
+  DemoDatePickerStartingdayComponent
 ];
 
 export const DEMOS = {
@@ -50,5 +52,9 @@ export const DEMOS = {
   reactive: {
     component: require('!!raw-loader?lang=typescript!./reactive-forms/reactive-forms.component.ts'),
     html: require('!!raw-loader?lang=markup!./reactive-forms/reactive-forms.component.html')
+  },
+  startingday: {
+    component: require('!!raw-loader?lang=typescript!./startingday/date-picker-startingday.ts'),
+    html: require('!!raw-loader?lang=markup!./startingday/date-picker-startingday.html')
   }
 };

@@ -33,8 +33,7 @@ export class BsDatepickerConfig
   /**
    * Allows to set starting day of week 0-6 sunday-saturday
    */
-  startingDay = 0;
-
+  startingDay = 1;
 
   dateInputFormat = 'L';
   // range picker
