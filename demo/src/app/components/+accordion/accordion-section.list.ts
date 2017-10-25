@@ -28,7 +28,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Simple accordion',
         anchor: 'simple-accordion',
         description: `<p>Click headers to expand/collapse content that is broken into logical sections, much
-        like tabs.</p>`,
+          like tabs.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoAccordionBasicComponent

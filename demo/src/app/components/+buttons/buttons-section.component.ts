@@ -1,11 +1,12 @@
-import { Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 
 import { demoComponentContent } from './buttons-section.list';
 import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
   selector: 'buttons-section',
-  templateUrl: './buttons-section.component.html'
+  templateUrl: './buttons-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsSectionComponent {
   name = 'Buttons';

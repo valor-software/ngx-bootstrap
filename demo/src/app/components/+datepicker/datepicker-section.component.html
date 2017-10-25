@@ -1,67 +1,31 @@
-<demo-section [name]="name" [src]="src" [componentContent]="componentContent">
+<demo-section [name]="name" [src]="src" [componentContent]="componentContentData">
   <tabset>
-    <tab heading="Overview">
+    <tab heading="Overview" (select)="changeContent('new')">
       <br>
       <p>Datepicker is a highly configurable component that adds datepicker functionality to your pages. You can
         customize the date format and language, restrict the selectable date ranges.</p>
-      <h2>Contents</h2>
-      <ul>
-        <li><a routerLink="." fragment="usage">Usage</a></li>
-        <li><a routerLink="." fragment="examples">Examples</a>
-          <ul>
-            <li><a routerLink="." fragment="basic">Basic</a></li>
-            <li><a routerLink="." fragment="themes">Themes</a></li>
-            <li><a routerLink="." fragment="locales">Locales</a></li>
-            <li><a routerLink="." fragment="min-max">Min-max</a></li>
-            <li><a routerLink="." fragment="disabled">Disabled</a></li>
-            <li><a routerLink="." fragment="forms">Forms</a></li>
-            <li><a routerLink="." fragment="reactive">Reactive forms</a></li>
-          </ul>
-        </li>
-        <li><a routerLink="." fragment="api-reference">API Reference</a>
-          <ul>
-            <li><a routerLink="." fragment="bs-datepicker-component">BsDatepickerComponent</a></li>
-            <li><a routerLink="." fragment="bs-daterangepicker-component">BsDaterangepickerComponent</a></li>
-            <li><a routerLink="." fragment="bs-daterangepicker-config">BsDatepickerConfig</a></li>
-          </ul>
-        </li>
-      </ul>
 
-      <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-
-      <p [innerHtml]="titleDoc"></p>
-
-      <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-      <examples [examples]="examples" [demos]="demos"></examples>
-
-      <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-      <api-sections [apiSections]="apiSections"></api-sections>
+      <ng-container *ngFor="let section of componentContent">
+        <ng-container
+          *ngComponentOutlet="section.outlet;
+          injector: sectionInjections(section)">
+        </ng-container>
+      </ng-container>
     </tab>
 
     <!-- Old datepicker part-->
-    <tab heading="Old">
+    <tab heading="Old" (select)="changeContent('old')">
       <br>
       <p>This is a legacy version of datepicker without support of daterangepicker, locales, themes, etc.</p>
-      <h2>Contents</h2>
-      <ul>
-        <li><a routerLink="." fragment="usageOld">Usage</a></li>
-        <li><a routerLink="." fragment="examplesOld">Example</a></li>
-        <li><a routerLink="." fragment="api-referenceOld">API Reference</a>
-          <ul>
-            <li><a routerLink="." fragment="datepicker-component">DatePickerComponent</a></li>
-          </ul>
-        </li>
-      </ul>
 
-      <h2 routerLink="." fragment="usageOld" id="usageOld">Usage</h2>
-
-      <p [innerHtml]="oldTitleDoc"></p>
-
-      <h2 routerLink="." fragment="examplesOld" id="examplesOld">Example</h2>
-      <examples [examples]="examplesOld" [demos]="demos"></examples>
-
-      <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-      <api-sections [apiSections]="apiSectionsOld"></api-sections>
+      <ng-container *ngFor="let section of componentContentOld">
+        <ng-container
+          *ngComponentOutlet="section.outlet;
+          injector: sectionInjections(section)">
+        </ng-container>
+      </ng-container>
     </tab>
   </tabset>
+
+
 </demo-section>

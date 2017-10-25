@@ -1,54 +1,10 @@
 <demo-section [name]="name" [src]="src" [componentContent]="componentContent">
   <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p>
 
-  <h2>Contents</h2>
-  <ul>
-    <li><a routerLink="." fragment="usage">Usage</a></li>
-    <li><a routerLink="." fragment="service-section">Service examples</a>
-      <ul>
-        <li><a routerLink="." fragment="service-template">Template</a></li>
-        <li><a routerLink="." fragment="service-component">Component</a></li>
-        <li><a routerLink="." fragment="service-nested">Nested</a></li>
-        <li><a routerLink="." fragment="service-events">Events</a></li>
-        <li><a routerLink="." fragment="service-options">Options</a></li>
-      </ul>
-    </li>
-    <li><a routerLink="." fragment="directive-section">Directive examples</a>
-      <ul>
-        <li><a routerLink="." fragment="static">Static modal</a></li>
-        <li><a routerLink="." fragment="sizes">Optional sizes</a></li>
-        <li><a routerLink="." fragment="child">Child modal</a></li>
-        <li><a routerLink="." fragment="nested">Nested modals</a></li>
-        <li><a routerLink="." fragment="events">Modal events</a></li>
-        <li><a routerLink="." fragment="auto-shown">Auto shown modal</a></li>
-      </ul>
-    </li>
-    <li><a routerLink="." fragment="api-reference">API Reference</a>
-      <ul>
-        <li><a routerLink="." fragment="modal-directive">ModalDirective</a></li>
-        <li><a routerLink="." fragment="modal-backdrop-component">ModalBackdropComponent</a></li>
-        <li><a routerLink="." fragment="bs-modal-service">BsModalService</a></li>
-        <li><a routerLink="." fragment="bs-modal-ref">BsModalRef</a></li>
-        <li><a routerLink="." fragment="modal-options">ModalOptions</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-  <p [innerHtml]="titleDoc"></p>
-
-  <h2 routerLink="." fragment="service-section" id="service-section">Service examples</h2>
-  <p>Open a modal from service</p>
-  <p>To be able to open modals from service, inject BsModalService to your constructor. <br>
-    Then, call <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and config as a second (optionally). <br>
-    <code>.show()</code> method returns an instance of BsModalRef class with <code>.hide()</code> method and <code>content</code> property where you'll find a component which you've passed to service <br>
-  </p>
-  <examples [examples]="serviceExamples" [demos]="demos"></examples>
-
-  <h2 id="directive-section">Directive examples</h2>
-  <p>Also you can use directive instead of service. See the demos below </p>
-  <examples [examples]="directiveExamples" [demos]="demos"></examples>
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <api-sections [apiSections]="apiSections"></api-sections>
+  <ng-container *ngFor="let section of componentContent">
+    <ng-container
+      *ngComponentOutlet="section.outlet;
+          injector: sectionInjections(section)">
+    </ng-container>
+  </ng-container>
 </demo-section>

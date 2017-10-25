@@ -11,7 +11,7 @@ import { ComponentExample } from '../../models/components-examples.model';
 export class ExamplesComponent {
   examples: ComponentExample[];
 
-  constructor(public sections: ContentSection) {
-    this.examples = sections.content;
+  constructor(public section: ContentSection) {
+    this.examples = section.content;
   }
 }

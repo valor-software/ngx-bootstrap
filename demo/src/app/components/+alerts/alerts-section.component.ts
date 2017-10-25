@@ -1,11 +1,12 @@
-import { Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 
 import { demoComponentContent } from './alerts-section.list';
 import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
   selector: 'alert-section',
-  templateUrl: './alerts-section.component.html'
+  templateUrl: './alerts-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertsSectionComponent {
   name = 'Alerts';

@@ -8,5 +8,6 @@ export class ContentSection {
   name: string;
   anchor: string;
   outlet: any;
+  description?: string;
   content: any; // ComponentExample[] | ComponentApi[] | ComponentsTopSection;
 }

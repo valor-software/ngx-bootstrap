@@ -2,31 +2,57 @@ import { SimpleItemsDemoComponent } from './demos/simple-items/simple-items.comp
 import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel.component';
 import { CustomItemTemplateDemoComponent } from './demos/custom-item-template/custom-item-template';
 
-export const demoComponentContent = {
-  examples: [
-    {
-      title: 'String items',
-      anchor: 'stringItems',
-      name: 'simpleItems',
-      outlet: SimpleItemsDemoComponent
-    },
-    {
-      title: 'Complex data model',
-      anchor: 'complexDatamodel',
-      name: 'complexDatamodel',
-      outlet: ComplexDatamodelDemoComponent
-    },
-    {
-      title: 'Custom item template',
-      anchor: 'itemTemplate',
-      name: 'itemTemplate',
-      outlet: CustomItemTemplateDemoComponent
+import { ContentSection } from '../../shared/models/content-section.model';
+import { DemoTopSectionComponent } from '../../shared/demo-component/demo-top-section/index';
+import { ExamplesComponent } from '../../shared/demo-component/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../shared/demo-component/demo-api-section/index';
+
+export const demoComponentContent: ContentSection[] = [
+  {
+    name: 'Usage',
+    anchor: 'usage',
+    outlet: DemoTopSectionComponent,
+    content: {
+      doc: require('html-loader!markdown-loader!./docs/usage.md')
     }
-  ],
-  apiSections: [
-    {
-      title: 'SortableComponent',
-      anchor: 'sortable-component'
-    }
-  ]
-};
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'String items',
+        anchor: 'stringItems',
+        component: require('!!raw-loader?lang=typescript!./demos/simple-items/simple-items.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/simple-items/simple-items.component.html'),
+        outlet: SimpleItemsDemoComponent
+      },
+      {
+        title: 'Complex data model',
+        anchor: 'complexDatamodel',
+        component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.component.html'),
+        outlet: ComplexDatamodelDemoComponent
+      },
+      {
+        title: 'Custom item template',
+        anchor: 'itemTemplate',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-item-template/custom-item-template.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-item-template/custom-item-template.html'),
+        outlet: CustomItemTemplateDemoComponent
+      }
+    ]
+  },
+  {
+    name: 'API Reference',
+    anchor: 'api-reference',
+    outlet: ApiSectionsComponent,
+    content: [
+      {
+        title: 'SortableComponent',
+        anchor: 'sortable-component'
+      }
+    ]
+  }
+];

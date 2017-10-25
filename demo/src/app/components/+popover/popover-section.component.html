@@ -1,41 +1,10 @@
 <demo-section [name]="name" [src]="src" [componentContent]="componentContent">
   <p>Add small overlay content, like those found in iOS, to any element for housing secondary information.</p>
 
-  <h2>Contents</h2>
-  <ul>
-    <li><a routerLink="." fragment="usage">Usage</a></li>
-    <li><a routerLink="." fragment="examples">Examples</a>
-      <ul>
-        <li><a routerLink="." fragment="four-directions">Four Directions</a></li>
-        <li><a routerLink="." fragment="dismiss">Dismissible</a></li>
-        <li><a routerLink="." fragment="dynamic-content">Dynamic Content</a></li>
-        <li><a routerLink="." fragment="dynamic-html">Dynamic Html</a></li>
-        <li><a routerLink="." fragment="container-body">Append to body</a></li>
-        <li><a routerLink="." fragment="config">Configuring defaults</a></li>
-        <li><a routerLink="." fragment="outside-click">Outside click</a></li>
-        <li><a routerLink="." fragment="triggers-custom">Custom triggers</a></li>
-        <li><a routerLink="." fragment="triggers-manual">Manual triggering</a></li>
-        <li><a routerLink="." fragment="styling-local">Component level styling</a></li>
-        <li><a routerLink="." fragment="class">Custom class</a></li>
-        <!--<li><a routerLink="." fragment="styling-global">Global styling</a></li>-->
-      </ul>
-    </li>
-    <li><a routerLink="." fragment="api-reference">API Reference</a>
-      <ul>
-        <li><a routerLink="." fragment="popover-directive">PopoverDirective</a></li>
-        <li><a routerLink="." fragment="popover-config">PopoverConfig</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-
-  <p [innerHtml]="titleDoc"></p>
-
-  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-
-  <examples [examples]="examples" [demos]="demos"></examples>
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <api-sections [apiSections]="apiSections"></api-sections>
+  <ng-container *ngFor="let section of componentContent">
+    <ng-container
+      *ngComponentOutlet="section.outlet;
+          injector: sectionInjections(section)">
+    </ng-container>
+  </ng-container>
 </demo-section>

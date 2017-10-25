@@ -346,12 +346,17 @@ a:hover {
   position: fixed;
   top: 84px;
   left: 83.33%;
+  right: 0;
+  max-height: calc(100vh - 104px);
+  overflow: auto;
+  direction: rtl;
 
   ul {
     margin: 0;
     padding: 0 0 0 20px;
     font-size: 14px;
     list-style: none;
+    direction: ltr;
 
     li {
       a {

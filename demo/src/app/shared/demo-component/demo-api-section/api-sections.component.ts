@@ -8,9 +8,9 @@ import { ComponentApi } from '../../models/components-api.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ApiSectionsComponent {
-  apiSections: ComponentApi[];
+  apiSectionContent: ComponentApi[];
 
-  constructor(public sections: ContentSection) {
-    this.apiSections = sections.content;
+  constructor(public section: ContentSection) {
+    this.apiSectionContent = section.content;
   }
 }

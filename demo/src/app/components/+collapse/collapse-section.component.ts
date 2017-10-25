@@ -1,11 +1,12 @@
-import { Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 
 import { demoComponentContent } from './collapse-section.list';
 import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
   selector: 'collapse-section',
-  templateUrl: './collapse-section.component.html'
+  templateUrl: './collapse-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollapseSectionComponent {
   name = 'Collapse';

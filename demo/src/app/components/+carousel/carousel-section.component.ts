@@ -1,11 +1,12 @@
-import { Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 
 import { demoComponentContent } from './carousel-section.list';
 import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
   selector: 'carousel-section',
-  templateUrl: './carousel-section.component.html'
+  templateUrl: './carousel-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselSectionComponent {
   name = 'Carousel';

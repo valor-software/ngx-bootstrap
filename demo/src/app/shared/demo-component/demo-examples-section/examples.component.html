@@ -1,5 +1,6 @@
-<ng-container *ngIf="sections">
-  <h2 [attr.id]="sections.anchor">{{ sections.name }}</h2>
+<ng-container *ngIf="section">
+  <h2 [attr.id]="section.anchor">{{ section.name }}</h2>
+  <p *ngIf="section.description" [innerHTML]="section.description"></p>
 
   <div *ngFor="let item of examples">
     <h3 *ngIf="item.title" routerLink="." [attr.id]="item.anchor">{{ item.title }}</h3>

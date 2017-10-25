@@ -1,41 +1,10 @@
 <demo-section [name]="name" [src]="src" [componentContent]="componentContent">
   <p>Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re made interactive with the included dropdown directives.</p>
 
-  <h2>Contents</h2>
-  <ul>
-    <li><a routerLink="." fragment="usage">Usage</a></li>
-    <li><a routerLink="." fragment="examples">Examples</a>
-      <ul>
-        <li><a routerLink="." fragment="single-button">Single button dropdowns</a></li>
-        <li><a routerLink="." fragment="split-button">Split button dropdowns</a></li>
-        <li><a routerLink="." fragment="triggers-manual">Manual triggers</a></li>
-        <li><a routerLink="." fragment="disabled-menu">Disabled menu</a></li>
-        <li><a routerLink="." fragment="alignment">Menu alignment</a></li>
-        <li><a routerLink="." fragment="nested">Nested dropdowns (experimental)</a></li>
-        <li><a routerLink="." fragment="container-body">Append to body</a></li>
-        <li><a routerLink="." fragment="keyboard">Single button with keyboard nav</a></li>
-        <li><a routerLink="." fragment="dropup">Dropup variation</a></li>
-        <li><a routerLink="." fragment="config">Configuring defaults</a></li>
-      </ul>
-    </li>
-    <li><a routerLink="." fragment="api-reference">API Reference</a>
-      <ul>
-        <li><a routerLink="." fragment="dropdown-directive">DropdownDirective</a></li>
-        <li><a routerLink="." fragment="dropdown-toggle-directive">DropdownToggleDirective</a></li>
-        <li><a routerLink="." fragment="dropdown-config">DropdownConfig</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-  <p [innerHtml]="titleDoc"></p>
-
-  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-  <p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within <code>dropdown</code>.
-    Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code> elements to better fit your potential needs.</p>
-
-  <examples [examples]="examples" [demos]="demos"></examples>
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <api-sections [apiSections]="apiSections"></api-sections>
+  <ng-container *ngFor="let section of componentContent">
+    <ng-container
+      *ngComponentOutlet="section.outlet;
+          injector: sectionInjections(section)">
+    </ng-container>
+  </ng-container>
 </demo-section>

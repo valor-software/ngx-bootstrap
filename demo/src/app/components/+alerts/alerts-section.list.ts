@@ -31,10 +31,10 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Basic',
         anchor: 'basic',
         description: `<p>Alerts are available for any length of text, as well as an optional dismiss
-        button. For proper styling, use one of the four <strong>required</strong>
-        contextual classes (e.g., <code>.alert-success</code>). For inline
-        dismissal, use the <a routerLink="." fragment="dismissing"><code>dismiss
-        property</code></a>.</p>`,
+          button. For proper styling, use one of the four <strong>required</strong>
+          contextual classes (e.g., <code>.alert-success</code>). For inline
+          dismissal, use the <a routerLink="." fragment="dismissing"><code>dismiss
+          property</code></a>.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoAlertBasicComponent
@@ -43,7 +43,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Link color',
         anchor: 'link-color',
         description: `<p>Use the <code>.alert-link</code> utility class to quickly provide matching
-    colored links within any alert.</p>`,
+          colored links within any alert.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/link/link.ts'),
         html: require('!!raw-loader?lang=markup!./demos/link/link.html'),
         outlet: DemoAlertLinkComponent
@@ -52,7 +52,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Additional content',
         anchor: 'additional-content',
         description: `<p>Alerts can also contain additional HTML elements like headings and
-    paragraphs.</p>`,
+          paragraphs.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/content/content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/content/content.html'),
         outlet: DemoAlertContentComponent
@@ -61,7 +61,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Dismissing',
         anchor: 'dismissing',
         description: `<p>Alerts have <code>dismiss</code> option. Enabling it will show close button
-    to the right of the alert.</p>`,
+          to the right of the alert.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dismiss/dismiss.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dismiss/dismiss.html'),
         outlet: DemoAlertDismissComponent
@@ -70,7 +70,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Dynamic html',
         anchor: 'dynamic-html',
         description: `<p>Sometimes you will need to show dynamically generated html in alerts, here
-    is how you can make it. And don't forget to sanitize your html.</p>`,
+          is how you can make it. And don't forget to sanitize your html.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
         outlet: DemoAlertDynamicHtmlComponent
@@ -79,7 +79,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Dismiss on timeout',
         anchor: 'dismiss-on-timeout',
         description: `<p>You can simply set timeout in milliseconds to <code>dismissOnTimeout</code>
-    property to create self closable alerts.</p>`,
+          property to create self closable alerts.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dismiss-on-timeout/dismiss-on-timeout.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dismiss-on-timeout/dismiss-on-timeout.html'),
         outlet: DemoAlertTimeoutComponent

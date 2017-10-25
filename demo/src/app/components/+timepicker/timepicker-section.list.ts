@@ -9,78 +9,111 @@ import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTimepickerMousewheelArrowkeysComponent } from './demos/mousewheel-arrowkeys/mousewheel-arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
 
-export const demoComponentContent = {
-  examples: [
-    {
-      title: 'Timepicker',
-      anchor: 'basic',
-      name: 'basic',
-      outlet: DemoTimepickerBasicComponent
-    },
-    {
-      title: 'Meridian',
-      anchor: 'meridian',
-      name: 'meridian',
-      outlet: DemoTimepickerMeridianComponent
-    },
-    {
-      title: 'Min - Max',
-      anchor: 'min-max',
-      name: 'minmax',
-      outlet: DemoTimepickerMinMaxComponent
-    },
-    {
-      title: 'Show seconds',
-      anchor: 'seconds',
-      name: 'seconds',
-      outlet: DemoTimepickerSecondsComponent
-    },
-    {
-      title: 'Disabled',
-      anchor: 'disabled',
-      name: 'disabled',
-      outlet: DemoTimepickerDisabledComponent
-    },
-    {
-      title: 'Custom steps',
-      anchor: 'custom',
-      name: 'custom',
-      outlet: DemoTimepickerCustomComponent
-    },
-    {
-      title: 'Custom validation',
-      anchor: 'custom-validation',
-      name: 'customvalidation',
-      outlet: DemoTimepickerCustomValidationComponent
-    },
-    {
-      title: 'Dynamic',
-      anchor: 'dynamic',
-      name: 'dynamic',
-      outlet: DemoTimepickerDynamicComponent
-    },
-    {
-      title: 'Mouse wheel and Arrow keys',
-      anchor: 'mouse-wheel',
-      name: 'mousewheel',
-      outlet: DemoTimepickerMousewheelArrowkeysComponent
-    },
-    {
-      title: 'Configuring defaults',
-      anchor: 'config-defaults',
-      name: 'config',
-      outlet: DemoTimepickerConfigComponent
+import { ContentSection } from '../../shared/models/content-section.model';
+import { DemoTopSectionComponent } from '../../shared/demo-component/demo-top-section/index';
+import { ExamplesComponent } from '../../shared/demo-component/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../shared/demo-component/demo-api-section/index';
+
+export const demoComponentContent: ContentSection[] = [
+  {
+    name: 'Usage',
+    anchor: 'usage',
+    outlet: DemoTopSectionComponent,
+    content: {
+      doc: require('html-loader!markdown-loader!./docs/usage.md')
     }
-  ],
-  apiSections: [
-    {
-      title: 'TimepickerComponent',
-      anchor: 'timepicker-component'
-    },
-    {
-      title: 'TimepickerConfig',
-      anchor: 'timepicker-config',
-      component: 'config'
-    }
-  ]
-};
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Timepicker',
+        anchor: 'basic',
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        outlet: DemoTimepickerBasicComponent
+      },
+      {
+        title: 'Meridian',
+        anchor: 'meridian',
+        component: require('!!raw-loader?lang=typescript!./demos/meridian/meridian'),
+        html: require('!!raw-loader?lang=markup!./demos/meridian/meridian.html'),
+        outlet: DemoTimepickerMeridianComponent
+      },
+      {
+        title: 'Min - Max',
+        anchor: 'min-max',
+        component: require('!!raw-loader?lang=typescript!./demos/min-max/min-max'),
+        html: require('!!raw-loader?lang=markup!./demos/min-max/min-max.html'),
+        outlet: DemoTimepickerMinMaxComponent
+      },
+      {
+        title: 'Show seconds',
+        anchor: 'seconds',
+        component: require('!!raw-loader?lang=typescript!./demos/seconds/seconds'),
+        html: require('!!raw-loader?lang=markup!./demos/seconds/seconds.html'),
+        outlet: DemoTimepickerSecondsComponent
+      },
+      {
+        title: 'Disabled',
+        anchor: 'disabled',
+        component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled'),
+        html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
+        outlet: DemoTimepickerDisabledComponent
+      },
+      {
+        title: 'Custom steps',
+        anchor: 'custom',
+        component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
+        html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
+        outlet: DemoTimepickerCustomComponent
+      },
+      {
+        title: 'Custom validation',
+        anchor: 'custom-validation',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-validation/custom-validation'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-validation/custom-validation.html'),
+        outlet: DemoTimepickerCustomValidationComponent
+      },
+      {
+        title: 'Dynamic',
+        anchor: 'dynamic',
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
+        outlet: DemoTimepickerDynamicComponent
+      },
+      {
+        title: 'Mouse wheel and Arrow keys',
+        anchor: 'mouse-wheel',
+        component: require('!!raw-loader?lang=typescript!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys'),
+        html: require('!!raw-loader?lang=markup!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys.html'),
+        outlet: DemoTimepickerMousewheelArrowkeysComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-defaults',
+        component: require('!!raw-loader?lang=typescript!./demos/config/config'),
+        html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
+        outlet: DemoTimepickerConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'API Reference',
+    anchor: 'api-reference',
+    outlet: ApiSectionsComponent,
+    content: [
+      {
+        title: 'TimepickerComponent',
+        anchor: 'timepicker-component'
+      },
+      {
+        title: 'TimepickerConfig',
+        anchor: 'timepicker-config',
+        component: 'config'
+      }
+    ]
+  }
+];

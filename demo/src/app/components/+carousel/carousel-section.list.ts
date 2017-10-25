@@ -32,9 +32,9 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Optional captions',
         anchor: 'captions',
-        description: `<p>Add captions to your slides easily with the <code>.carousel-caption</code> element within
-    any <code>&lt;slide></code>. Place just about any optional HTML within there and it will be
-    automatically aligned and formatted.</p>`,
+        description: `<p>Add captions to your slides easily with the <code>.carousel-caption</code>
+          element within any <code>&lt;slide></code>. Place just about any optional HTML within there
+          and it will be automatically aligned and formatted.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoCarouselDynamicComponent

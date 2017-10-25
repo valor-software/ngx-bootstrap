@@ -1,4 +1,8 @@
-<demo-section [name]="name" [src]="src" [titleDoc]="titleDoc">
+<demo-section [name]="name" [src]="src" [componentContent]="componentContent">
+  <p>The <strong>sortable component</strong> represents a list of items, with ability to sort them or
+  move to another container via drag&amp;drop. Input collection isn't mutated by the component,
+  so events <code>ngModelChange</code>, <code>onChange</code> are using new collections.</p>
+
   <style>
     .sortable-item {
       padding: 6px 12px;
@@ -21,30 +25,11 @@
       min-height: 150px;
     }
   </style>
-  <h2>Contents</h2>
-  <ul>
-    <li><a routerLink="." fragment="usage">Usage</a></li>
-    <li><a routerLink="." fragment="examples">Examples</a>
-      <ul>
-        <li><a routerLink="." fragment="stringItems">String items</a></li>
-        <li><a routerLink="." fragment="complexDatamodel">Complex datamodel</a></li>
-        <li><a routerLink="." fragment="itemTemplate">Custom item template</a></li>
-      </ul>
-    </li>
-    <li><a routerLink="." fragment="api-reference">API Reference</a>
-      <ul>
-        <li><a routerLink="." fragment="sortable-component">SortableComponent</a></li>
-      </ul>
-    </li>
-  </ul>
 
-  <h2 routerLink="." fragment="usage" id="usage">Usage</h2>
-
-  <p [innerHtml]="usageDoc"></p>
-
-  <h2 routerLink="." fragment="examples" id="examples">Examples</h2>
-  <examples [examples]="examples" [demos]="demos"></examples>
-
-  <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
-  <api-sections [apiSections]="apiSections"></api-sections>
+  <ng-container *ngFor="let section of componentContent">
+    <ng-container
+      *ngComponentOutlet="section.outlet;
+          injector: sectionInjections(section)">
+    </ng-container>
+  </ng-container>
 </demo-section>
