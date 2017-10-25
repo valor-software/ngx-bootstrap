@@ -41,6 +41,12 @@ export function formatDaysCalendar(
   };
 }
 
+/* TODO: Function for Date Header Strings
+ export function calculateWeekdays(localeWeekdays: string[], startingDayOffset: number) : string[] {
+  
+  return [];
+}*/
+
 export function getWeekNumbers(
   daysMatrix: Date[][],
   format: string,

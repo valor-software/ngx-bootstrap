@@ -23,6 +23,7 @@ import {
 } from '../models/index';
 import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
+import { MonthViewOptions } from '../models/index';
 
 export function bsDatepickerReducer(
   state = initialDatepickerState,
@@ -96,9 +97,12 @@ export function bsDatepickerReducer(
 
     case BsDatepickerActions.SET_OPTIONS: {
       const newState = action.payload;
+      if(action.payload.startingDay) {
+        state.monthViewOptions.firstDayOfWeek = action.payload.startingDay;
+      }
       // looks not really good
       if (newState.value) {
-        newState.view = state.view;
+        newState.view = state.view;        
         if (isArray(newState.value)) {
           newState.view = {
             mode: state.view.mode,

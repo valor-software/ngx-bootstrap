@@ -82,6 +82,8 @@ export interface MonthViewOptions {
 // rendering options
 export interface DatepickerFormatOptions {
   locale: string;
+  
+  startingDay?: number;
 
   monthTitle: string;
   yearTitle: string;
@@ -96,7 +98,6 @@ export interface DatepickerFormatOptions {
 export interface DatepickerRenderOptions {
   showWeekNumbers?: boolean;
   displayMonths?: number;
-  startingDay?: number;
 }
 
 /** *************** */

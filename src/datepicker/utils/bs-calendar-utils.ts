@@ -18,7 +18,15 @@ export function getStartingDayOfCalendar(
   }
 
   const weekDay = getDayOfWeek(date);
+/* TODO: richtige Date Logik einbauen
+  const dateOffset = (24*60*60*1000) * weekDay;
+  const newSunday = new Date();
+  newSunday.setTime(date.getTime() - dateOffset);
 
+  if(getDayOfWeek(newSunday) === 0) {
+    return shiftDate(date, { day: -weekDay-(7-options.firstDayOfWeek) });
+  }
+*/
   return shiftDate(date, { day: -weekDay });
 }
 
