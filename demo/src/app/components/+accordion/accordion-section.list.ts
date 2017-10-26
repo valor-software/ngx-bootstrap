@@ -5,10 +5,13 @@ import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 import { DemoAccordionConfigComponent } from './demos/config/config';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -78,12 +81,13 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'AccordionPanelComponent',
-        anchor: 'AccordionPanelComponent'
+        anchor: 'AccordionPanelComponent',
+        outlet: NgApiDocComponent
       },
       {
         title: 'AccordionConfig',
         anchor: 'AccordionConfig',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

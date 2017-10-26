@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { TabsSectionComponent } from './tabs-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-tabs.routes';
@@ -17,7 +17,7 @@ import { routes } from './demo-tabs.routes';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     TabsModule.forRoot(),
     RouterModule.forChild(routes)
   ],

@@ -4,10 +4,14 @@ import { DemoButtonsRadioComponent } from './demos/radio/radio';
 import { DemoButtonsRadioReactiveFormsComponent } from './demos/radio-reactiveforms/radio-reactiveforms';
 import { DemoButtonsDisabledComponent } from './demos/disabled/disabled';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocClassComponent } from '../../docs/api-docs/api-doc-class/api-doc-class.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -71,11 +75,13 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'ButtonCheckboxDirective',
-        anchor: 'button-checkbox-directive'
+        anchor: 'button-checkbox-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'ButtonRadioDirective',
-        anchor: 'button-radio-directive'
+        anchor: 'button-radio-directive',
+        outlet: NgApiDocComponent
       }
     ]
   }

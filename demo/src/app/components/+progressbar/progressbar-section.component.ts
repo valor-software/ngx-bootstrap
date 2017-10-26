@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { demoComponentContentBs3, demoComponentContentBs4 } from './progressbar-section.list';
-import { ContentSection } from '../../shared/models/content-section.model';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'progressbar-section',
@@ -37,6 +37,10 @@ export class ProgressbarSectionComponent {
   }
 
   get isBs3(): boolean {
+    if (typeof PR !== 'undefined') {
+      setTimeout(() => PR.prettyPrint(), 10);
+    }
+
     return isBs3();
   }
 }

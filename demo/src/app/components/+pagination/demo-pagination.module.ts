@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { PaginationSectionComponent } from './pagination-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-pagination.routes';
@@ -18,7 +18,7 @@ import { routes } from './demo-pagination.routes';
     PaginationModule.forRoot(),
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes)
   ],
   exports: [PaginationSectionComponent],

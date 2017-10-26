@@ -1,9 +1,11 @@
 import { CollapseDemoComponent } from './demos/collapse-demo.component';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -35,7 +37,8 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'CollapseDirective',
-        anchor: 'collapse-directive'
+        anchor: 'collapse-directive',
+        outlet: NgApiDocComponent
       }
     ]
   }

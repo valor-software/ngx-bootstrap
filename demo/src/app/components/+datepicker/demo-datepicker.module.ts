@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { DatepickerSectionComponent } from './datepicker-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-datepicker.routes';
@@ -31,7 +31,7 @@ locales.forEach(locale => defineLocale(locale.abbr, locale));
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes)
   ],
   exports: [DatepickerSectionComponent],

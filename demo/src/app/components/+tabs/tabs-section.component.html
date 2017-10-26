@@ -1,10 +1,5 @@
 <demo-section [name]="name" [src]="src" [componentContent]="componentContent">
   <p>Add quick, dynamic tab functionality to transition through panes of local content, even via dropdown menus. <strong>Nested tabs are not supported.</strong></p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-          injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

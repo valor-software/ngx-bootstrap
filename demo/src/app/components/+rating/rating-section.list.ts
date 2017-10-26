@@ -2,10 +2,12 @@ import { DemoRatingBasicComponent } from './demos/basic/basic';
 import { DemoRatingCustomComponent } from './demos/custom/custom';
 import { DemoRatingDynamicComponent } from './demos/dynamic/dynamic';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -51,7 +53,8 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'RatingComponent',
-        anchor: 'rating-component'
+        anchor: 'rating-component',
+        outlet: NgApiDocComponent
       }
     ]
   }

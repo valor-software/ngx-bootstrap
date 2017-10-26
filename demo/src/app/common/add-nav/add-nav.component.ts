@@ -1,7 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { ContentSection } from '../../shared/models/content-section.model';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'add-nav',
@@ -15,8 +15,8 @@ export class AddNavComponent {
   goToSection(event): void {
     const item: HTMLElement = event.target;
 
-    if (item.hasAttribute('ng-reflect-fragment')) {
-      const anchor: string = item.getAttribute('ng-reflect-fragment');
+    if (item.dataset.anchor) {
+      const anchor: string = item.dataset.anchor;
       const target: HTMLElement = this.document.getElementById(anchor);
       const header: HTMLElement = this.document.getElementById('header');
       const headerIndent: number = header.offsetHeight + 6;

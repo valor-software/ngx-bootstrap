@@ -8,10 +8,13 @@ import { DemoAlertStylingGlobalComponent } from './demos/styling-global/styling-
 import { DemoAlertStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoAlertConfigComponent } from './demos/config/config';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -117,12 +120,13 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'AlertComponent',
-        anchor: 'alert-component'
+        anchor: 'alert-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'AlertConfig',
         anchor: 'alert-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

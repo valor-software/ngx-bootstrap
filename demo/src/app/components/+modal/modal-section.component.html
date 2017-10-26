@@ -2,10 +2,5 @@
   <p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality
   and smart defaults.</p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-          injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

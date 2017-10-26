@@ -1,8 +1,8 @@
 // https://api.jqueryui.com/datepicker/
-import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { demoComponentContent, demoComponentContentOld } from './datepicker-section.list';
-import { ContentSection } from '../../shared/models/content-section.model';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'datepicker-section',
@@ -12,10 +12,7 @@ import { ContentSection } from '../../shared/models/content-section.model';
 export class DatepickerSectionComponent {
   name = 'Datepicker';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
-  // componentContentData: ContentSection[] = demoComponentContent;
   componentContent: ContentSection[] = demoComponentContent;
-
-  constructor(private injector: Injector) { }
 
   changeContent(name: string) {
     switch (name) {

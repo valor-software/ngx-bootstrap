@@ -12,10 +12,14 @@ import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocClassComponent } from '../../docs/api-docs/api-doc-class/api-doc-class.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -83,7 +87,7 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/service-confirm-window/service-confirm-window.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-confirm-window/service-confirm-window.html'),
         description: `<p>Modal with buttons to confirm.</p>`,
-        outlet: 'DemoModalServiceConfirmWindowComponent'
+        outlet: DemoModalServiceConfirmWindowComponent
       },
       {
         title: 'Options',
@@ -167,26 +171,28 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'ModalDirective',
-        anchor: 'modal-directive'
+        anchor: 'modal-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'ModalBackdropComponent',
-        anchor: 'modal-backdrop-component'
+        anchor: 'modal-backdrop-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'BsModalService',
         anchor: 'bs-modal-service',
-        component: 'class'
+        outlet: NgApiDocClassComponent
       },
       {
         title: 'BsModalRef',
         anchor: 'bs-modal-ref',
-        component: 'class'
+        outlet: NgApiDocClassComponent
       },
       {
         title: 'ModalOptions',
         anchor: 'modal-options',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

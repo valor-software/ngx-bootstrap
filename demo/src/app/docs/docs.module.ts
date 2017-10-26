@@ -24,7 +24,10 @@ import {
   ApiSectionsComponent,
   ApiSectionsComponentModule
 } from './demo-section-components/demo-api-section/index';
-import {DocsSectionComponent} from "./docs-section/docs-section.component";
+import { DocsSectionComponent } from './docs-section/docs-section.component';
+import { NgApiDocComponent } from './api-docs/api-doc/api-doc.component';
+import { NgApiDocClassComponent } from './api-docs/api-doc-class/api-doc-class.component';
+import { NgApiDocConfigComponent } from './api-docs/api-doc-config/api-doc-config.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,13 @@ import {DocsSectionComponent} from "./docs-section/docs-section.component";
     DocsSectionComponent
   ],
   providers: [ContentSection],
-  entryComponents: [DemoTopSectionComponent, ExamplesComponent, ApiSectionsComponent]
+  entryComponents: [
+    DemoTopSectionComponent,
+    ExamplesComponent,
+    ApiSectionsComponent,
+    NgApiDocComponent,
+    NgApiDocClassComponent,
+    NgApiDocConfigComponent
+  ]
 })
-export class SharedModule {}
+export class DocsModule {}

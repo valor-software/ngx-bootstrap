@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SortableModule } from 'ngx-bootstrap/sortable';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { SortableSectionComponent } from './sortable-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-sortable.routes';
@@ -17,7 +17,7 @@ import { routes } from './demo-sortable.routes';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     SortableModule.forRoot(),
     RouterModule.forChild(routes)
   ],

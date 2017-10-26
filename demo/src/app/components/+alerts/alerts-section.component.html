@@ -2,10 +2,5 @@
   <p>Provides contextual feedback messages for typical user actions with the handful of available and flexible alert messages.</p>
   <h2>Contents</h2>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-      injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

@@ -9,10 +9,13 @@ import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTimepickerMousewheelArrowkeysComponent } from './demos/mousewheel-arrowkeys/mousewheel-arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -107,12 +110,13 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'TimepickerComponent',
-        anchor: 'timepicker-component'
+        anchor: 'timepicker-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'TimepickerConfig',
         anchor: 'timepicker-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

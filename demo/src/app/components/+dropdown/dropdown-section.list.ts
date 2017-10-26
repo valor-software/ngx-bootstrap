@@ -10,10 +10,13 @@ import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownConfigComponent } from './demos/config/config';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -129,20 +132,23 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'BsDropdownDirective',
-        anchor: 'dropdown-directive'
+        anchor: 'dropdown-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'BsDropdownMenuDirective',
-        anchor: 'dropdown-menu-directive'
+        anchor: 'dropdown-menu-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'BsDropdownToggleDirective',
-        anchor: 'dropdown-toggle-directive'
+        anchor: 'dropdown-toggle-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'BsDropdownConfig',
         anchor: 'dropdown-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

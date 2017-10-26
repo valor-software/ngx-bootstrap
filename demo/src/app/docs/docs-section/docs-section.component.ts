@@ -5,13 +5,11 @@ import { ChangeDetectionStrategy, Component, Injector, Input, ReflectiveInjector
   selector: 'docs-section',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-<ng-container *ngFor="let section of content">
-  <ng-container
-    *ngComponentOutlet="section.outlet;
-    injector: sectionInjections(section)">
-  </ng-container>
-</ng-container>
-`
+    <ng-container *ngFor="let section of content">
+      <ng-container *ngComponentOutlet="section.outlet; injector: sectionInjections(section)">
+      </ng-container>
+    </ng-container>
+    `
 })
 export class DocsSectionComponent {
   @Input() content: ContentSection[];

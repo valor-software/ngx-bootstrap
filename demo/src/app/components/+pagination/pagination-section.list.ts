@@ -3,10 +3,13 @@ import { DemoPaginationPagerComponent } from './demos/pager/pager';
 import { DemoPaginationLimitComponent } from './demos/limit/limit';
 import { DemoPaginationStylingComponent } from './demos/styling-global/styling-global';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -62,16 +65,18 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'PaginationComponent',
-        anchor: 'pagination-component'
+        anchor: 'pagination-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'PagerComponent',
-        anchor: 'pager-component'
+        anchor: 'pager-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'PaginationConfig',
         anchor: 'pagination-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

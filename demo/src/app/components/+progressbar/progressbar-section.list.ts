@@ -7,10 +7,14 @@ import { DemoProgressbarStaticBs4Component } from './demos/bs4/static/static';
 import { DemoProgressbarDynamicBs4Component } from './demos/bs4/dynamic/dynamic';
 import { DemoProgressbarStackedBs4Component } from './demos/bs4/stacked/stacked';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocClassComponent } from '../../docs/api-docs/api-doc-class/api-doc-class.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContentBs3: ContentSection[] = [
   {
@@ -63,20 +67,23 @@ export const demoComponentContentBs3: ContentSection[] = [
     content: [
       {
         title: 'ProgressbarComponent',
-        anchor: 'progressbar-component'
+        anchor: 'progressbar-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'ProgressDirective',
-        anchor: 'progress-directive'
+        anchor: 'progress-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'BarComponent',
-        anchor: 'bar-component'
+        anchor: 'bar-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'ProgressbarConfig',
         anchor: 'progress-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }
@@ -126,20 +133,23 @@ export const demoComponentContentBs4: ContentSection[] = [
     content: [
       {
         title: 'ProgressbarComponent',
-        anchor: 'progressbar-component'
+        anchor: 'progressbar-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'ProgressDirective',
-        anchor: 'progress-directive'
+        anchor: 'progress-directive',
+        outlet: NgApiDocComponent
       },
       {
         title: 'BarComponent',
-        anchor: 'bar-component'
+        anchor: 'bar-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'ProgressbarConfig',
         anchor: 'progress-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

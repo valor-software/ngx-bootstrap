@@ -2,10 +2,5 @@
   <p><strong>Pagination</strong> - provide pagination links for your site or app with the multi-page pagination component, or the simpler pager alternative.</p>
   <p><strong>Pager</strong> - quick previous and next links for simple pagination implementations with light markup and styles. It's great for simple sites like blogs or magazines.</p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-          injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

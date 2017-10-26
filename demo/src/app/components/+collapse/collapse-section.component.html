@@ -3,10 +3,5 @@
   classes. Flexible component that utilizes a handful of classes (from the <strong>required transitions
   component</strong>(<em>not yet implemented</em>)) for easy toggle behavior.</p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-      injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

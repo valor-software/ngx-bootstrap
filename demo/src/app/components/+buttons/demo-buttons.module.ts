@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { ButtonsSectionComponent } from './buttons-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-buttons.routes';
@@ -18,7 +18,7 @@ import { routes } from './demo-buttons.routes';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes),
     ButtonsModule.forRoot()
   ],

@@ -1,7 +1,6 @@
-<div class="api-doc-component">
-  <h3>
-    <a (click)="trackSourceClick()"
-       href="https://github.com/valor-software/ngx-bootstrap/tree/development/{{apiDocs.fileName}}"
+<div class="api-doc-component" (click)="trackSourceClick()">
+  <h3 [attr.id]="headerAnchor">
+    <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/{{apiDocs.fileName}}"
        target="_blank" rel="noopener">{{apiDocs.className}}</a>
   </h3>
   <p [innerHtml]="apiDocs.description"></p>

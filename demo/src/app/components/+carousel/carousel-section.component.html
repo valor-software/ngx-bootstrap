@@ -2,10 +2,5 @@
   <p>A slideshow component for cycling through elements—images or slides of text—like a carousel. <em>Nested
   carousels are not supported.</em></p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-      injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

@@ -5,7 +5,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AlertsSectionComponent } from './alerts-section.component';
 import { DEMO_COMPONENTS } from './demos';
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 
 import { routes } from './demo-alerts.routes';
 
@@ -17,7 +17,7 @@ import { routes } from './demo-alerts.routes';
   imports: [
     AlertModule.forRoot(),
     CommonModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes)
   ],
   exports: [AlertsSectionComponent],

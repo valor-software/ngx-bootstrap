@@ -3,18 +3,7 @@
   <demo-section [name]="name" [src]="src" [componentContent]="isBs3 ? componentContentBs3 : componentContentBs4">
     <p>Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.</p>
 
-    <ng-container *ngFor="let section of componentContentBs3" [class.hidden]="isBs3">
-      <ng-container
-        *ngComponentOutlet="section.outlet;
-            injector: sectionInjections(section)">
-      </ng-container>
-    </ng-container>
-
-    <ng-container *ngFor="let section of componentContentBs4" [class.hidden]="!isBs3">
-      <ng-container
-        *ngComponentOutlet="section.outlet;
-            injector: sectionInjections(section)">
-      </ng-container>
-    </ng-container>
+    <docs-section *ngIf="isBs3" [content]="componentContentBs3"></docs-section>
+    <docs-section *ngIf="!isBs3" [content]="componentContentBs4"></docs-section>
   </demo-section>
 </ng-container>

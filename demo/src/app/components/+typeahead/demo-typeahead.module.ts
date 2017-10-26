@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { TypeaheadSectionComponent } from './typeahead-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-typeahead.routes';
@@ -18,7 +18,7 @@ import { routes } from './demo-typeahead.routes';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
+    DocsModule,
     TypeaheadModule.forRoot(),
     RouterModule.forChild(routes)
   ],

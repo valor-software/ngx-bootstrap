@@ -2,10 +2,5 @@
   <p>Dropdowns are toggleable, contextual overlays for displaying lists of links and more.
   They’re made interactive with the included dropdown directives.</p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-          injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

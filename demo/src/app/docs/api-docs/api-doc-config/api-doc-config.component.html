@@ -1,5 +1,5 @@
 <div (click)="trackSourceClick()" class="api-doc-component">
-  <h3>
+  <h3 [attr.id]="headerAnchor">
     <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/{{ apiDocs.fileName }}"
        target="_blank" rel="noopener">{{ apiDocs.className }}</a>
   </h3>
@@ -24,15 +24,4 @@
       </table>
     </section>
   </ng-template>
-  <!--<ng-template [ngIf]="apiDocs.properties && apiDocs.properties.length">
-    <section>
-      <h3 id="inputs">Properties</h3>
-      <p>
-        <ng-template ngFor let-property [ngForOf]="apiDocs.properties">
-          <code>{{ property.name }}</code>
-        </ng-template>
-        <i>&mdash; Documentation available in {{ directiveName }}</i>
-      </p>
-    </section>
-  </ng-template>-->
 </div>

@@ -6,6 +6,7 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 // import docs from '../../../../api-docs';
 import { ClassDesc, NgApiDoc } from '../api-docs.model';
 import { Analytics } from '../analytics/analytics';
+import { ComponentApi } from '../../models/components-api.model';
 
 const CONFIG_SUFFIX_LENGTH = 'Config'.length;
 
@@ -24,18 +25,18 @@ const CONFIG_SUFFIX_LENGTH = 'Config'.length;
 export class NgApiDocConfigComponent {
   apiDocs: ClassDesc;
   directiveName: string;
+  headerAnchor: string;
+
   private _analytics: Analytics;
   private docs: NgApiDoc;
 
-  constructor(_analytics: Analytics, docs: NgApiDoc) {
+  constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
     this._analytics = _analytics;
     this.docs = docs;
-  }
 
-  @Input()
-  set directive(directiveName: string) {
-    this.apiDocs = this.docs[directiveName];
-    this.directiveName = directiveName.slice(0, -CONFIG_SUFFIX_LENGTH);
+    this.headerAnchor = content.anchor;
+    this.apiDocs = this.docs[content.title];
+    this.directiveName = content.title.slice(0, -CONFIG_SUFFIX_LENGTH);
   }
 
   trackSourceClick(): void {

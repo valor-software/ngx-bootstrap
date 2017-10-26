@@ -13,7 +13,7 @@ import {
   PageScrollService
 } from 'ng2-page-scroll';
 import { DOCUMENT } from '@angular/common';
-import { Analytics } from './shared/api-docs/analytics/analytics';
+import { Analytics } from './docs/api-docs/analytics/analytics';
 
 PageScrollConfig.defaultDuration = 11;
 PageScrollConfig.defaultScrollOffset = 70;

@@ -3,10 +3,13 @@ import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
 import { DemoCarouselConfigComponent } from './demos/config/config';
 import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
 
-import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+
+import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
+import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -62,16 +65,18 @@ export const demoComponentContent: ContentSection[] = [
     content: [
       {
         title: 'CarouselComponent',
-        anchor: 'carousel-component'
+        anchor: 'carousel-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'SlideComponent',
-        anchor: 'slide-component'
+        anchor: 'slide-component',
+        outlet: NgApiDocComponent
       },
       {
         title: 'CarouselConfig',
         anchor: 'carousel-config',
-        component: 'config'
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

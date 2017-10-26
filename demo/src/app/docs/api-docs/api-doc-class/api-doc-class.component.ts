@@ -5,6 +5,7 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { ClassDesc, MethodDesc, signature, NgApiDoc } from '../api-docs.model';
 import { Analytics } from '../analytics/analytics';
+import { ComponentApi } from '../../models/components-api.model';
 
 /**
  * Displays the API docs of a class, which is not a directive.
@@ -17,19 +18,18 @@ import { Analytics } from '../analytics/analytics';
   templateUrl: './api-doc-class.component.html'
 })
 export class NgApiDocClassComponent {
-  @Input()
-  set directive(directiveName: string) {
-    this.apiDocs = this.docs[directiveName];
-  }
-
+  headerAnchor: string;
   apiDocs: ClassDesc;
 
   private _analytics: Analytics;
   private docs: NgApiDoc;
 
-  constructor(_analytics: Analytics, docs: NgApiDoc) {
+  constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
     this.docs = docs;
     this._analytics = _analytics;
+
+    this.headerAnchor = content.anchor;
+    this.apiDocs = this.docs[content.title];
   }
 
   methodSignature(method: MethodDesc): string {

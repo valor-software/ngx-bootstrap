@@ -11,6 +11,6 @@ export class DemoTopSectionComponent {
   sectionContent: ComponentsTopSection;
 
   constructor(public section: ContentSection) {
-    this.sectionContent = section.content;
+    this.sectionContent = section.content as ComponentsTopSection;
   }
 }

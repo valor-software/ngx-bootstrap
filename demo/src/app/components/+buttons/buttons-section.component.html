@@ -2,10 +2,5 @@
   <p>There are two directives that can make a group of buttons behave like a set of checkboxes, radio
   buttons, or a hybrid where radio buttons can be unchecked.</p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-      injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>

@@ -9,5 +9,5 @@ export class ContentSection {
   anchor: string;
   outlet: any;
   description?: string;
-  content: any; // ComponentExample[] | ComponentApi[] | ComponentsTopSection;
+  content: ComponentExample[] | ComponentApi[] | ComponentsTopSection;
 }

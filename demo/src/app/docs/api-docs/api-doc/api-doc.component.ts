@@ -2,7 +2,7 @@
  * @author ng-team
  * @copyright ng-bootstrap
  */
-import { Component, ChangeDetectionStrategy, Input, SecurityContext } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import {
   PropertyDesc,
   DirectiveDesc,
@@ -12,8 +12,8 @@ import {
   signature,
   NgApiDoc
 } from '../api-docs.model';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Analytics } from '../analytics/analytics';
+import { ComponentApi } from '../../models/components-api.model';
 
 /**
  * Displays the API docs of a directive.
@@ -29,11 +29,27 @@ import { Analytics } from '../analytics/analytics';
   templateUrl: './api-doc.component.html'
 })
 export class NgApiDocComponent {
-  @Input()
-  set directive(directiveName: string) {
-    this.apiDocs = this.docs[directiveName];
-    this.apiDescription = this._sanitizer.sanitize(SecurityContext.HTML, this.apiDocs.description);
-    this.configServiceName = `${directiveName}Config`;
+  apiDocs: DirectiveDesc;
+  configServiceName: string;
+  headerAnchor: string;
+
+  /**
+   * Object which contains, for each input name of the directive, the corresponding property of the associated config
+   * service (if any)
+   */
+
+  private _configProperties: { [propertyName: string]: PropertyDesc };
+  private _analytics: Analytics;
+  private docs: NgApiDoc;
+
+  constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
+    this._analytics = _analytics;
+    // todo: inject docs
+    this.docs = docs;
+
+    this.headerAnchor = content.anchor;
+    this.apiDocs = this.docs[content.title];
+    this.configServiceName = `${content.title}Config`;
     const configApiDocs = this.docs[this.configServiceName];
     this._configProperties = {};
     if (configApiDocs) {
@@ -47,33 +63,13 @@ export class NgApiDocComponent {
     }
   }
 
-  apiDescription: string;
-  apiDocs: DirectiveDesc;
-  configServiceName: string;
-
-  private _sanitizer: DomSanitizer;
-
-  /**
-   * Object which contains, for each input name of the directive, the corresponding property of the associated config
-   * service (if any)
-   */
-  private _configProperties: { [propertyName: string]: PropertyDesc };
-  private _analytics: Analytics;
-  private docs: NgApiDoc;
-
-  constructor(_analytics: Analytics, docs: NgApiDoc, _sanitizer: DomSanitizer) {
-    this._analytics = _analytics;
-    this._sanitizer = _sanitizer;
-    // todo: inject docs
-    this.docs = docs;
-  }
-
   /**
    * Returns the default value of the given directive input by first looking for it in the matching config service
    * property. If there is no matching config property, it reads it from the input.
    */
   defaultInputValue(input: InputDesc): string {
     const configProperty = this._configProperties[input.name];
+
     return configProperty ? configProperty.defaultValue : input.defaultValue;
   }
 

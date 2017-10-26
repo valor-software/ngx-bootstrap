@@ -3,7 +3,7 @@
 
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { demoComponentContent } from './accordion-section.list';
-import { ContentSection } from '../../shared/models/content-section.model';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 // webpack html imports
 @Component({
