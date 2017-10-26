@@ -12,9 +12,10 @@ import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
-import { NgApiDocComponent } from '../../docs/api-docs/api-doc/api-doc.component';
-import { NgApiDocClassComponent } from '../../docs/api-docs/api-doc-class/api-doc-class.component';
-import { NgApiDocConfigComponent } from '../../docs/api-docs/api-doc-config/api-doc-config.component';
+import {
+  NgApiDocComponent,
+  NgApiDocConfigComponent
+} from '../../docs/api-docs';
 
 export const demoComponentContentBs3: ContentSection[] = [
   {

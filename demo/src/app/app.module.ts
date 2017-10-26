@@ -15,7 +15,7 @@ import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './common/getting-started/getting-started.component';
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
-import { DocsModule } from './docs/docs.module';
+import { DocsModule } from './docs';
 
 @NgModule({
   declarations: [
