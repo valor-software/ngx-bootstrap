@@ -1,16 +1,11 @@
-<demo-section [name]="name" [src]="src" [componentContent]="componentContentData">
+<demo-section [name]="name" [src]="src" [componentContent]="componentContent">
   <tabset>
     <tab heading="Overview" (select)="changeContent('new')">
       <br>
       <p>Datepicker is a highly configurable component that adds datepicker functionality to your pages. You can
         customize the date format and language, restrict the selectable date ranges.</p>
 
-      <ng-container *ngFor="let section of componentContent">
-        <ng-container
-          *ngComponentOutlet="section.outlet;
-          injector: sectionInjections(section)">
-        </ng-container>
-      </ng-container>
+      <docs-section [content]="componentContent"></docs-section>
     </tab>
 
     <!-- Old datepicker part-->
@@ -18,14 +13,7 @@
       <br>
       <p>This is a legacy version of datepicker without support of daterangepicker, locales, themes, etc.</p>
 
-      <ng-container *ngFor="let section of componentContentOld">
-        <ng-container
-          *ngComponentOutlet="section.outlet;
-          injector: sectionInjections(section)">
-        </ng-container>
-      </ng-container>
+      <docs-section [content]="componentContent"></docs-section>
     </tab>
   </tabset>
-
-
 </demo-section>
