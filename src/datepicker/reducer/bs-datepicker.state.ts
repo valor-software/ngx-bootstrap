@@ -39,6 +39,7 @@ export class BsDatepickerState
   monthsModel?: DaysCalendarModel[];
   formattedMonths?: DaysCalendarViewModel[];
   flaggedMonths?: DaysCalendarViewModel[];
+  startingDay?: number;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];

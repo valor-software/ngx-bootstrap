@@ -332,6 +332,8 @@ function getFormatOptions(state: BsDatepickerState): DatepickerFormatOptions {
     monthLabel: state.monthLabel,
     yearLabel: state.yearLabel,
 
-    weekNumbers: state.weekNumbers
+    weekNumbers: state.weekNumbers,
+
+    startingDay: state.startingDay
   };
 }
