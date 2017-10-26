@@ -24,6 +24,7 @@ import {
   ApiSectionsComponent,
   ApiSectionsComponentModule
 } from './demo-section-components/demo-api-section/index';
+import {DocsSectionComponent} from "./docs-section/docs-section.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {
     SidebarComponent,
     AppFooterComponent,
     SearchFilterPipe,
-    AddNavComponent
+    AddNavComponent,
+    DocsSectionComponent
   ],
   imports: [
     TabsModule.forRoot(),
@@ -54,7 +56,8 @@ import {
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     Ng2PageScrollModule,
-    RouterModule
+    RouterModule,
+    DocsSectionComponent
   ],
   providers: [ContentSection],
   entryComponents: [DemoTopSectionComponent, ExamplesComponent, ApiSectionsComponent]

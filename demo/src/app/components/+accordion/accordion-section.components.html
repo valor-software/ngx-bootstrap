@@ -3,10 +3,5 @@
   <p>The <strong>accordion component</strong> builds on top of the collapse directive to provide a list
   of items, with collapsible bodies that are collapsed or expanded by clicking on the item's header.</p>
 
-  <ng-container *ngFor="let section of componentContent">
-    <ng-container
-      *ngComponentOutlet="section.outlet;
-      injector: sectionInjections(section)">
-    </ng-container>
-  </ng-container>
+  <docs-section [content]="componentContent"></docs-section>
 </demo-section>
