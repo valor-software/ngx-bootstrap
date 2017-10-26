@@ -42,7 +42,7 @@ export function formatDaysCalendar(
   };
 }
 
-/* Function for WeekDay Header Strings */
+/* Function for weekday Header Strings */
  export function calculateWeekdays(localeWeekdays: string[], startingDayOffset: number) : string[] {
   let newWeekDayArr: string[] = [];
   for (let i = 0; i<localeWeekdays.length; i++) {
@@ -52,7 +52,7 @@ export function formatDaysCalendar(
     }
     newWeekDayArr[newPos] = localeWeekdays[i];    
   }
-  if(newWeekDayArr && newWeekDayArr.length === 7) {
+  if (newWeekDayArr && newWeekDayArr.length === 7) {
     return newWeekDayArr;
   }
   return [];

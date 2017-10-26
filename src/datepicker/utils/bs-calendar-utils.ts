@@ -18,16 +18,20 @@ export function getStartingDayOfCalendar(
   }
 
   const weekDay = getDayOfWeek(date);
-/* TODO: richtige Date Logik einbauen
-  const dateOffset = (24*60*60*1000) * weekDay;
-  const newSunday = new Date();
-  newSunday.setTime(date.getTime() - dateOffset);
 
-  if(getDayOfWeek(newSunday) === 0) {
-    return shiftDate(date, { day: -weekDay-(7-options.firstDayOfWeek) });
+  const offSet = calculateDateOffset(weekDay, options.firstDayOfWeek);
+
+  return shiftDate(date, { day: -offSet });
+}
+
+/* Calculate dateOffset */
+export function calculateDateOffset(weekday: number, startingDayOffset: number): number {
+  let offset: number = 0;
+  offset = weekday - startingDayOffset;
+  if (offset < 0) {
+    offset = offset + 7;
   }
-*/
-  return shiftDate(date, { day: -weekDay });
+  return offset;
 }
 
 export function isMonthDisabled(date: Date, min: Date, max: Date): boolean {
