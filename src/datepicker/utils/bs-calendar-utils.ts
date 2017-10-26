@@ -19,7 +19,19 @@ export function getStartingDayOfCalendar(
 
   const weekDay = getDayOfWeek(date);
 
-  return shiftDate(date, { day: -weekDay });
+  const offSet = calculateDateOffset(weekDay, options.firstDayOfWeek);
+
+  return shiftDate(date, { day: -offSet });
+}
+
+/* Calculate dateOffset */
+export function calculateDateOffset(weekday: number, startingDayOffset: number): number {
+  let offset: number = 0;
+  offset = weekday - startingDayOffset;
+  if (offset < 0) {
+    offset = offset + 7;
+  }
+  return offset;
 }
 
 export function isMonthDisabled(date: Date, min: Date, max: Date): boolean {

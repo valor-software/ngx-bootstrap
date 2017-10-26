@@ -4,5 +4,6 @@ import {
 
 export const defaultMonthOptions: MonthViewOptions = {
   width: 7,
-  height: 6
+  height: 6,
+  firstDayOfWeek: 0
 };

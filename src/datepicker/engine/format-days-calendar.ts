@@ -11,6 +11,7 @@ export function formatDaysCalendar(
   formatOptions: DatepickerFormatOptions,
   monthIndex: number
 ): DaysCalendarViewModel {
+  let weekDayArray: string[] = getLocale(formatOptions.locale).weekdaysShort() as string[];
   return {
     month: daysCalendar.month,
     monthTitle: formatDate(
@@ -28,7 +29,7 @@ export function formatDaysCalendar(
       formatOptions.weekNumbers,
       formatOptions.locale
     ),
-    weekdays: getLocale(formatOptions.locale).weekdaysShort() as string[],
+    weekdays: calculateWeekdays(weekDayArray, formatOptions.startingDay),
     weeks: daysCalendar.daysMatrix.map((week: Date[], weekIndex: number) => ({
       days: week.map((date: Date, dayIndex: number) => ({
         date,
@@ -39,6 +40,22 @@ export function formatDaysCalendar(
       }))
     }))
   };
+}
+
+/* Function for weekday Header Strings */
+ export function calculateWeekdays(localeWeekdays: string[], startingDayOffset: number) : string[] {
+  let newWeekDayArr: string[] = [];
+  for (let i = 0; i<localeWeekdays.length; i++) {
+    let newPos = i - startingDayOffset;
+    if(newPos < 0 ) {
+      newPos = newPos + 7;
+    }
+    newWeekDayArr[newPos] = localeWeekdays[i];    
+  }
+  if (newWeekDayArr && newWeekDayArr.length === 7) {
+    return newWeekDayArr;
+  }
+  return [];
 }
 
 export function getWeekNumbers(

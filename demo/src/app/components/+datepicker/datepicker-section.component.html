@@ -16,6 +16,7 @@
             <li><a routerLink="." fragment="disabled">Disabled</a></li>
             <li><a routerLink="." fragment="forms">Forms</a></li>
             <li><a routerLink="." fragment="reactive">Reactive forms</a></li>
+            <li><a routerLink="." fragment="startingday">Set a starting Day for the week</a></li>            
           </ul>
         </li>
         <li><a routerLink="." fragment="api-reference">API Reference</a>
@@ -98,6 +99,13 @@
       <h3 routerLink="." fragment="reactive" id="reactive">Reactive forms</h3>
       <ng-sample-box [ts]="demos.reactive.component" [html]="demos.reactive.html">
         <demo-datepicker-reactive-forms></demo-datepicker-reactive-forms>
+      </ng-sample-box>
+
+      <h3 routerLink="." fragment="startingday" id="startingday">Setting a different start day of the week</h3>
+      <ng-sample-box [ts]="demos.startingday.component" [html]="demos.startingday.html">
+          <p>You can change the starting day of the week by changing <code>startingDay</code> property in <code>bsConfig</code> object. <br/>
+          Values 0 - 6 resemble Sunday - Saturday.</p>
+        <demo-date-picker-startingday></demo-date-picker-startingday>
       </ng-sample-box>
 
       <h2 routerLink="." fragment="api-reference" id="api-reference">API Reference</h2>
