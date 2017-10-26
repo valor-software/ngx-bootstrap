@@ -30,9 +30,10 @@ import { DocsModule } from './docs';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes),
     Ng2PageScrollModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    BrowserModule.withServerTransition({appId: 'ngx-bootstrap'})
   ],
   providers: [
     ThemeStorage,

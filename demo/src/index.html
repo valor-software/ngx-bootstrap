@@ -26,6 +26,7 @@
   <meta name="msapplication-navbutton-color" content="#1d1d2b">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="msapplication-starturl" content="/">
+  <base href="/">
 </head>
 <body>
   <bs-demo>
@@ -34,6 +35,7 @@
   <noscript>Please enable JavaScript to view ngx-bootstrap documentation</noscript>
   <!-- Google analytics-->
   <script>
+    if (typeof window != 'undefined') {
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -41,6 +43,7 @@
 
     ga('create', 'UA-73071494-1', 'auto');
     ga('send', 'pageview');
+    }
   </script>
   <script async src="assets/js/prettify.min.js"></script>
   <!-- script files will be inserted by html-webpack-plugin -->
