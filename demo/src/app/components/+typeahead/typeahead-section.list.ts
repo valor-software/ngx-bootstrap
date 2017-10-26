@@ -5,11 +5,12 @@ import { DemoTypeaheadAsyncComponent } from './demos/async/async';
 import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
+import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 
 import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-component/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-component/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-component/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -73,6 +74,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
+      },
+      {
+        title: 'Scrollable',
+        anchor: 'scrollable',
+        component: require('!!raw-loader?lang=typescript!./demos/scrollable/scrollable.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/scrollable/scrollable.html'),
+        outlet: DemoTypeaheadScrollableComponent
       }
     ]
   },

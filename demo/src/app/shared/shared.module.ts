@@ -15,15 +15,15 @@ import { ContentSection } from './models/content-section.model';
 import {
   DemoTopSectionComponent,
   DemoTopSectionComponentModule
-} from './demo-component/demo-top-section/index';
+} from './demo-section-components/demo-top-section/index';
 import {
   ExamplesComponent,
   ExamplesComponentModule
-} from './demo-component/demo-examples-section/index';
+} from './demo-section-components/demo-examples-section/index';
 import {
   ApiSectionsComponent,
   ApiSectionsComponentModule
-} from './demo-component/demo-api-section/index';
+} from './demo-section-components/demo-api-section/index';
 
 @NgModule({
   declarations: [

@@ -8,9 +8,9 @@ import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/rea
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 
 import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-component/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-component/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-component/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
 
 export const demoComponentContent: ContentSection[] = [
   {

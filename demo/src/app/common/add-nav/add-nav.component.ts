@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
 import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
@@ -8,15 +10,17 @@ import { ContentSection } from '../../shared/models/content-section.model';
 export class AddNavComponent {
   @Input() componentContent: ContentSection[];
 
-  document: Document;
+  constructor(@Inject(DOCUMENT) private document: Document) { }
 
   goToSection(event): void {
     const item: HTMLElement = event.target;
 
     if (item.hasAttribute('ng-reflect-fragment')) {
       const anchor: string = item.getAttribute('ng-reflect-fragment');
-      const target: HTMLElement = document.getElementById(anchor);
-      target.scrollIntoView();
+      const target: HTMLElement = this.document.getElementById(anchor);
+      const header: HTMLElement = this.document.getElementById('header');
+      const headerIndent: number = header.offsetHeight + 6;
+      this.document.body.scrollTop = target.offsetTop - headerIndent;
     }
   }
 }

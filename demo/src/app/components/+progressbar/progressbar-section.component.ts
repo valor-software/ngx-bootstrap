@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
-import { ComponentExample } from '../../shared/models/components-examples.model';
-import { ComponentApi } from '../../shared/models/components-api.model';
-import { demoComponentContent } from './progressbar-section.list';
+import { demoComponentContentBs3, demoComponentContentBs4 } from './progressbar-section.list';
 import { ContentSection } from '../../shared/models/content-section.model';
 
 @Component({
@@ -14,7 +12,8 @@ import { ContentSection } from '../../shared/models/content-section.model';
 export class ProgressbarSectionComponent {
   name = 'Progressbar';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
-  componentContent: ContentSection[] = demoComponentContent;
+  componentContentBs3: ContentSection[] = demoComponentContentBs3;
+  componentContentBs4: ContentSection[] = demoComponentContentBs4;
   content: any;
 
   _injectors = new Map<ContentSection, ReflectiveInjector>();
@@ -40,8 +39,4 @@ export class ProgressbarSectionComponent {
   get isBs3(): boolean {
     return isBs3();
   }
-
-  /*examplesBs3: ComponentExample[] = demoComponentContent.examplesBs3;
-  examplesBs4: ComponentExample[] = demoComponentContent.examplesBs4;
-  apiSections: ComponentApi[] = demoComponentContent.apiSections;*/
 }

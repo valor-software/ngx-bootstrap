@@ -3,6 +3,7 @@ import { DemoModalServiceFromComponent } from './demos/service-component/service
 import { DemoModalServiceNestedComponent } from './demos/service-nested/service-nested';
 import { DemoModalServiceEventsComponent } from './demos/service-events/service-events';
 import { DemoModalServiceOptionsComponent } from './demos/service-options/service-options';
+import { DemoModalServiceConfirmWindowComponent } from './demos/service-confirm-window/service-confirm-window';
 
 import { DemoModalStaticComponent } from './demos/static/static';
 import { DemoModalSizesComponent } from './demos/sizes/sizes';
@@ -12,9 +13,9 @@ import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
 
 import { ContentSection } from '../../shared/models/content-section.model';
-import { DemoTopSectionComponent } from '../../shared/demo-component/demo-top-section/index';
-import { ExamplesComponent } from '../../shared/demo-component/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../shared/demo-component/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../shared/demo-section-components/demo-top-section/index';
+import { ExamplesComponent } from '../../shared/demo-section-components/demo-examples-section/index';
+import { ApiSectionsComponent } from '../../shared/demo-section-components/demo-api-section/index';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -75,6 +76,14 @@ export const demoComponentContent: ContentSection[] = [
           <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>,
           <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>`,
         outlet: DemoModalServiceEventsComponent
+      },
+      {
+        title: 'Confirm Window',
+        anchor: 'confirm-window',
+        component: require('!!raw-loader?lang=typescript!./demos/service-confirm-window/service-confirm-window.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-confirm-window/service-confirm-window.html'),
+        description: `<p>Modal with buttons to confirm.</p>`,
+        outlet: 'DemoModalServiceConfirmWindowComponent'
       },
       {
         title: 'Options',
