@@ -19,7 +19,7 @@ export const ngdoc: any = {
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "<p>Is accordion group open or closed </p>\n"
+        "description": "<p>Is accordion group open or closed. This property supports two-way binding </p>\n"
       },
       {
         "name": "panelClass",
@@ -27,7 +27,12 @@ export const ngdoc: any = {
         "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">http://getbootstrap.com/components/#panels-alternatives</a>)</p>\n"
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isOpenChange",
+        "description": "<p>Emits when the opened state changes </p>\n"
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -2449,7 +2454,7 @@ export const ngdoc: any = {
       {
         "name": "customClass",
         "type": "string",
-        "description": "<p>if set, will be added to the tab&#39;s class atribute </p>\n"
+        "description": "<p>if set, will be added to the tab&#39;s class attribute. Multiple classes are supported. </p>\n"
       },
       {
         "name": "disabled",
@@ -2464,7 +2469,7 @@ export const ngdoc: any = {
       {
         "name": "id",
         "type": "string",
-        "description": "<p>tab id </p>\n"
+        "description": "<p>tab id. The same id with suffix &#39;-link&#39; will be added to the corresponding &lt;li&gt; element  </p>\n"
       },
       {
         "name": "removable",
@@ -2970,6 +2975,12 @@ export const ngdoc: any = {
         "description": "<p>when options source is an array of objects, the name of field\nthat contains the options value, we use array item as option in case\nof this field is missing. Supports nested properties and methods.</p>\n"
       },
       {
+        "name": "typeaheadOptionsInScrollableView",
+        "defaultValue": "5",
+        "type": "number",
+        "description": "<p>specifies number of options to show in scroll view  </p>\n"
+      },
+      {
         "name": "typeaheadOptionsLimit",
         "type": "number",
         "description": "<p>maximum length of options items list </p>\n"
@@ -2979,6 +2990,12 @@ export const ngdoc: any = {
         "defaultValue": "'\"",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to match exact phrase.\nDefaults to simple and double quotes.</p>\n"
+      },
+      {
+        "name": "typeaheadScrollable",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>specifies if typeahead is scrollable  </p>\n"
       },
       {
         "name": "typeaheadSingleWords",

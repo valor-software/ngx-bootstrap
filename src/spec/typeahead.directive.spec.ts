@@ -107,7 +107,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'keyup');
+        fireEvent(inputElement, 'input');
 
         fixture.detectChanges();
         tick(100);
@@ -154,7 +154,7 @@ describe('Directive: Typeahead', () => {
       'should result in 0 matches, when input does not match',
       fakeAsync(() => {
         inputElement.value = 'foo';
-        fireEvent(inputElement, 'keyup');
+        fireEvent(inputElement, 'input');
 
         fixture.detectChanges();
         tick(100);
@@ -168,7 +168,7 @@ describe('Directive: Typeahead', () => {
       fakeAsync(() => {
         component.states.push({id: 3, name: null, region: 'West'});
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'keyup');
+        fireEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
 
@@ -181,7 +181,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'keyup');
+        fireEvent(inputElement, 'input');
         directive.typeaheadGroupField = 'region';
 
         fixture.detectChanges();
@@ -244,7 +244,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Alab';
-        fireEvent(inputElement, 'keyup');
+        fireEvent(inputElement, 'input');
 
         fixture.detectChanges();
         tick(100);
