@@ -1,2 +1,5 @@
-export { defineLocale, getSetGlobalLocale, listLocales } from './locale/locales.service';
-
+export {
+  defineLocale,
+  getSetGlobalLocale,
+  listLocales
+} from './locale/locales.service';

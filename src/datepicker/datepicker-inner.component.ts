@@ -1,5 +1,13 @@
 /* tslint:disable:max-file-line-count */
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 
 import { DateFormatter } from './date-formatter';
 
@@ -25,45 +33,50 @@ import { DateFormatter } from './date-formatter';
 @Component({
   selector: 'datepicker-inner',
   template: `
-    <div *ngIf="datepickerMode" class="well well-sm bg-faded p-a card" role="application" ><!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
+    <!--&lt;!&ndash;ng-keydown="keydown($event)"&ndash;&gt;-->
+    <div *ngIf="datepickerMode" class="well well-sm bg-faded p-a card" role="application" >
       <ng-content></ng-content>
     </div>
   `
 })
 export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() locale: string;
-  @Input() public datepickerMode: string;
-  @Input() public startingDay: number;
-  @Input() public yearRange: number;
+  @Input() datepickerMode: string;
+  @Input() startingDay: number;
+  @Input() yearRange: number;
 
-  @Input() public minDate: Date;
-  @Input() public maxDate: Date;
-  @Input() public minMode: string;
-  @Input() public maxMode: string;
-  @Input() public showWeeks: boolean;
-  @Input() public formatDay: string;
-  @Input() public formatMonth: string;
-  @Input() public formatYear: string;
-  @Input() public formatDayHeader: string;
-  @Input() public formatDayTitle: string;
-  @Input() public formatMonthTitle: string;
-  @Input() public onlyCurrentMonth: boolean;
-  @Input() public shortcutPropagation: boolean;
-  @Input() public customClass: { date: Date, mode: string, clazz: string }[];
-  @Input() public monthColLimit: number;
-  @Input() public yearColLimit: number;
-  @Input() public dateDisabled: { date: Date, mode: string }[];
-  @Input() public initDate: Date;
+  @Input() minDate: Date;
+  @Input() maxDate: Date;
+  @Input() minMode: string;
+  @Input() maxMode: string;
+  @Input() showWeeks: boolean;
+  @Input() formatDay: string;
+  @Input() formatMonth: string;
+  @Input() formatYear: string;
+  @Input() formatDayHeader: string;
+  @Input() formatDayTitle: string;
+  @Input() formatMonthTitle: string;
+  @Input() onlyCurrentMonth: boolean;
+  @Input() shortcutPropagation: boolean;
+  @Input() customClass: { date: Date; mode: string; clazz: string }[];
+  @Input() monthColLimit: number;
+  @Input() yearColLimit: number;
+  @Input() dateDisabled: { date: Date; mode: string }[];
+  @Input() initDate: Date;
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output()
+  selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
-  @Output() public update: EventEmitter<Date> = new EventEmitter<Date>(false);
+  @Output() update: EventEmitter<Date> = new EventEmitter<Date>(false);
 
-  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output()
+  activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(
+    undefined
+  );
 
-  public stepDay: any = {};
-  public stepMonth: any = {};
-  public stepYear: any = {};
+  stepDay: any = {};
+  stepMonth: any = {};
+  stepYear: any = {};
 
   protected modes: string[] = ['day', 'month', 'year'];
   protected dateFormatter: DateFormatter = new DateFormatter();
@@ -80,22 +93,22 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   protected compareHandlerYear: Function;
 
   @Input()
-  public get activeDate(): Date {
+  get activeDate(): Date {
     return this._activeDate;
   }
 
-  public set activeDate(value: Date) {
+  set activeDate(value: Date) {
     this._activeDate = value;
   }
 
   // todo: add formatter value to Date object
-  public ngOnInit(): void {
+  ngOnInit(): void {
     // todo: use date for unique value
-    this.uniqueId = 'datepicker-' + '-' + Math.floor(Math.random() * 10000);
+    this.uniqueId =  `datepicker--${Math.floor(Math.random() * 10000)}`;
 
     if (this.initDate) {
       this.activeDate = this.initDate;
-      this.selectedDate = new Date(this.activeDate.valueOf() as number);
+      this.selectedDate = new Date(this.activeDate.valueOf());
       this.update.emit(this.activeDate);
     } else if (this.activeDate === undefined) {
       this.activeDate = new Date();
@@ -104,22 +117,26 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
   // this.refreshView should be called here to reflect the changes on the fly
   // tslint:disable-next-line:no-unused-variable
-  public ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.refreshView();
-    this.checkIfActiveDateGotUpdated(changes['activeDate']);
+    this.checkIfActiveDateGotUpdated(changes.activeDate);
   }
 
   // Check if activeDate has been update and then emit the activeDateChange with the new date
-  private checkIfActiveDateGotUpdated(activeDate: any): void {
-		if (activeDate && !activeDate.firstChange) {
-			let previousValue = activeDate.previousValue;
-			if (previousValue && previousValue instanceof Date && previousValue.getTime() !== activeDate.currentValue.getTime()) {
-				this.activeDateChange.emit(this.activeDate);
-			}
-		}
+  checkIfActiveDateGotUpdated(activeDate: any): void {
+    if (activeDate && !activeDate.firstChange) {
+      const previousValue = activeDate.previousValue;
+      if (
+        previousValue &&
+        previousValue instanceof Date &&
+        previousValue.getTime() !== activeDate.currentValue.getTime()
+      ) {
+        this.activeDateChange.emit(this.activeDate);
+      }
+    }
   }
 
-  public setCompareHandler(handler: Function, type: string): void {
+  setCompareHandler(handler: Function, type: string): void {
     if (type === 'day') {
       this.compareHandlerDay = handler;
     }
@@ -133,7 +150,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  public compare(date1: Date, date2: Date): number | undefined {
+  compare(date1: Date, date2: Date): number | undefined {
     if (date1 === undefined || date2 === undefined) {
       return undefined;
     }
@@ -153,7 +170,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return void 0;
   }
 
-  public setRefreshViewHandler(handler: Function, type: string): void {
+  setRefreshViewHandler(handler: Function, type: string): void {
     if (type === 'day') {
       this.refreshViewHandlerDay = handler;
     }
@@ -167,7 +184,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  public refreshView(): void {
+  refreshView(): void {
     if (this.datepickerMode === 'day' && this.refreshViewHandlerDay) {
       this.refreshViewHandlerDay();
     }
@@ -181,35 +198,42 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  public dateFilter(date: Date, format: string): string {
+  dateFilter(date: Date, format: string): string {
     return this.dateFormatter.format(date, format, this.locale);
   }
 
-  public isActive(dateObject: any): boolean {
+  isActive(dateObject: any): boolean {
     if (this.compare(dateObject.date, this.activeDate) === 0) {
       this.activeDateId = dateObject.uid;
+
       return true;
     }
 
     return false;
   }
 
-  public createDateObject(date: Date, format: string): any {
-    let dateObject: any = {};
-    dateObject.date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  createDateObject(date: Date, format: string): any {
+    const dateObject: any = {};
+    dateObject.date = new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate()
+    );
     dateObject.label = this.dateFilter(date, format);
     dateObject.selected = this.compare(date, this.selectedDate) === 0;
     dateObject.disabled = this.isDisabled(date);
     dateObject.current = this.compare(date, new Date()) === 0;
     dateObject.customClass = this.getCustomClassForDate(dateObject.date);
+
     return dateObject;
   }
 
-  public split(arr: any[], size: number): any[] {
-    let arrays: any[] = [];
+  split(arr: any[], size: number): any[] {
+    const arrays: any[] = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
     }
+
     return arrays;
   }
 
@@ -219,34 +243,50 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   // var date = new Date(2014, 0, 1);
   // console.log(date.getFullYear(), date.getMonth(), date.getDate(),
   // date.getHours()); can result in "2013 11 31 23" because of the bug.
-  public fixTimeZone(date: Date): Date {
-    let hours = date.getHours();
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), hours === 23 ? hours + 2 : 0);
+  fixTimeZone(date: Date): Date {
+    const hours = date.getHours();
+
+    return new Date(
+      date.getFullYear(),
+      date.getMonth(),
+      date.getDate(),
+      hours === 23 ? hours + 2 : 0
+    );
   }
 
-  public select(date: Date, isManual: boolean = true): void {
+  select(date: Date, isManual = true): void {
     if (this.datepickerMode === this.minMode) {
       if (!this.activeDate) {
         this.activeDate = new Date(0, 0, 0, 0, 0, 0, 0);
       }
 
-      this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      this.activeDate = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+      );
       if (isManual) {
         this.selectionDone.emit(this.activeDate);
       }
     } else {
-      this.activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      this.activeDate = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+      );
       if (isManual) {
-        this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) - 1];
+        this.datepickerMode = this.modes[
+          this.modes.indexOf(this.datepickerMode) - 1
+        ];
       }
     }
 
-    this.selectedDate = new Date(this.activeDate.valueOf() as number);
+    this.selectedDate = new Date(this.activeDate.valueOf());
     this.update.emit(this.activeDate);
     this.refreshView();
   }
 
-  public move(direction: number): void {
+  move(direction: number): void {
     let expectedStep: any;
     if (this.datepickerMode === 'day') {
       expectedStep = this.stepDay;
@@ -261,8 +301,10 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
 
     if (expectedStep) {
-      let year = this.activeDate.getFullYear() + direction * (expectedStep.years || 0);
-      let month = this.activeDate.getMonth() + direction * (expectedStep.months || 0);
+      const year =
+        this.activeDate.getFullYear() + direction * (expectedStep.years || 0);
+      const month =
+        this.activeDate.getMonth() + direction * (expectedStep.months || 0);
       this.activeDate = new Date(year, month, 1);
 
       this.refreshView();
@@ -270,15 +312,19 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  public toggleMode(direction: number): void {
-    direction = direction || 1;
+  toggleMode(_direction: number): void {
+    const direction = _direction || 1;
 
-    if ((this.datepickerMode === this.maxMode && direction === 1) ||
-      (this.datepickerMode === this.minMode && direction === -1)) {
+    if (
+      (this.datepickerMode === this.maxMode && direction === 1) ||
+      (this.datepickerMode === this.minMode && direction === -1)
+    ) {
       return;
     }
 
-    this.datepickerMode = this.modes[this.modes.indexOf(this.datepickerMode) + direction];
+    this.datepickerMode = this.modes[
+      this.modes.indexOf(this.datepickerMode) + direction
+    ];
     this.refreshView();
   }
 
@@ -287,15 +333,24 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       return '';
     }
     // todo: build a hash of custom classes, it will work faster
-    const customClassObject: { date: Date, mode: string, clazz: string } = this.customClass
-      .find((customClass: any) => {
-        return customClass.date.valueOf() === date.valueOf() &&
-          customClass.mode === this.datepickerMode;
-      }, this);
+    const customClassObject: {
+      date: Date;
+      mode: string;
+      clazz: string;
+    } = this.customClass.find((customClass: any) => {
+      return (
+        customClass.date.valueOf() === date.valueOf() &&
+        customClass.mode === this.datepickerMode
+      );
+    }, this);
+
     return customClassObject === undefined ? '' : customClassObject.clazz;
   }
 
-  protected compareDateDisabled(date1Disabled: { date: Date, mode: string }, date2: Date): number {
+  protected compareDateDisabled(
+    date1Disabled: { date: Date; mode: string },
+    date2: Date
+  ): number {
     if (date1Disabled === undefined || date2 === undefined) {
       return undefined;
     }
@@ -316,16 +371,21 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   protected isDisabled(date: Date): boolean {
-    let isDateDisabled: boolean = false;
+    let isDateDisabled = false;
     if (this.dateDisabled) {
-      this.dateDisabled.forEach((disabledDate: { date: Date, mode: string }) => {
-        if (this.compareDateDisabled(disabledDate, date) === 0) {
-          isDateDisabled = true;
+      this.dateDisabled.forEach(
+        (disabledDate: { date: Date; mode: string }) => {
+          if (this.compareDateDisabled(disabledDate, date) === 0) {
+            isDateDisabled = true;
+          }
         }
-      });
+      );
     }
 
-    return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
-      (this.maxDate && this.compare(date, this.maxDate) > 0));
+    return (
+      isDateDisabled ||
+      (this.minDate && this.compare(date, this.minDate) < 0) ||
+      (this.maxDate && this.compare(date, this.maxDate) > 0)
+    );
   }
 }

@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AlertConfig {
   /** default alert type */
-  public type: string = 'warning';
+  type = 'warning';
 
   /** is alerts are dismissible by default */
-  public dismissible: boolean = false;
+  dismissible = false;
 
   /** default time before alert will dismiss */
-  public dismissOnTimeout?: number = undefined;
+  dismissOnTimeout?: number = undefined;
 }

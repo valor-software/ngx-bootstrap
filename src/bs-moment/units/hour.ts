@@ -24,34 +24,72 @@ function kFormat(date: Date): number {
   return getHours(date) || 24;
 }
 
-addFormatToken('H', ['HH', 2], null, function (date: Date, format: string, locale?: Locale): string {
+addFormatToken('H', ['HH', 2], null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
   return getHours(date).toString(10);
 });
-addFormatToken('h', ['hh', 2], null, function (date: Date, format: string, locale?: Locale): string {
+addFormatToken('h', ['hh', 2], null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
   return hFormat(date).toString(10);
 });
-addFormatToken('k', ['kk', 2], null, function (date: Date, format: string, locale?: Locale): string {
+addFormatToken('k', ['kk', 2], null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
   return kFormat(date).toString(10);
 });
 
-addFormatToken('hmm', null, null, function (date: Date, format: string, locale?: Locale): string {
+addFormatToken('hmm', null, null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
   return `${hFormat(date)}${zeroFill(getMinutes(date), 2)}`;
 });
 
-addFormatToken('hmmss', null, null, function (date: Date, format: string, locale?: Locale): string {
-  return `${hFormat(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(getSeconds(date), 2)}`;
+addFormatToken('hmmss', null, null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
+  return `${hFormat(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(
+    getSeconds(date),
+    2
+  )}`;
 });
 
-addFormatToken('Hmm', null, null, function (date: Date, format: string, locale?: Locale): string {
+addFormatToken('Hmm', null, null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
   return `${getHours(date)}${zeroFill(getMinutes(date), 2)}`;
 });
 
-addFormatToken('Hmmss', null, null, function (date: Date, format: string, locale?: Locale): string {
-  return `${getHours(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(getSeconds(date), 2)}`;
+addFormatToken('Hmmss', null, null, function(
+  date: Date,
+  format: string,
+  locale?: Locale
+): string {
+  return `${getHours(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(
+    getSeconds(date),
+    2
+  )}`;
 });
 
 function meridiem(token: string, lowercase: boolean): void {
-  addFormatToken(token, null, null, function (date: Date, format: string, locale?: Locale): string {
+  addFormatToken(token, null, null, function(
+    date: Date,
+    format: string,
+    locale?: Locale
+  ): string {
     return locale.meridiem(getHours(date), getMinutes(date), lowercase);
   });
 }

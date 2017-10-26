@@ -20,8 +20,13 @@ function firstWeekOffset(year: number, dow: number, doy: number): number {
 }
 
 // https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
-export function dayOfYearFromWeeks(year: number, week: number, weekday: number,
-                                   dow: number, doy: number): { year: number, dayOfYear: number } {
+export function dayOfYearFromWeeks(
+  year: number,
+  week: number,
+  weekday: number,
+  dow: number,
+  doy: number
+): { year: number; dayOfYear: number } {
   const localWeekday = (7 + weekday - dow) % 7;
   const weekOffset = firstWeekOffset(year, dow, doy);
   const dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset;
@@ -45,7 +50,11 @@ export function dayOfYearFromWeeks(year: number, week: number, weekday: number,
   };
 }
 
-export function weekOfYear(date: Date, dow: number, doy: number): { week: number, year: number } {
+export function weekOfYear(
+  date: Date,
+  dow: number,
+  doy: number
+): { week: number; year: number } {
   const weekOffset = firstWeekOffset(getFullYear(date), dow, doy);
   const week = Math.floor((getDayOfYear(date) - weekOffset - 1) / 7) + 1;
   let resWeek: number;

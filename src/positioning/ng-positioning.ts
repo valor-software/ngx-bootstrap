@@ -9,7 +9,14 @@
 export class Positioning {
   public position(element: HTMLElement, round = true): ClientRect {
     let elPosition: ClientRect;
-    let parentOffset: ClientRect = {width: 0, height: 0, top: 0, bottom: 0, left: 0, right: 0};
+    let parentOffset: ClientRect = {
+      width: 0,
+      height: 0,
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0
+    };
 
     if (this.getStyle(element, 'position') === 'fixed') {
       const bcRect = element.getBoundingClientRect();
@@ -77,18 +84,30 @@ export class Positioning {
     return elOffset;
   }
 
-  public positionElements(hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean):
-  ClientRect {
-    const hostElPosition = appendToBody ? this.offset(hostElement, false) : this.position(hostElement, false);
+  public positionElements(
+    hostElement: HTMLElement,
+    targetElement: HTMLElement,
+    placement: string,
+    appendToBody?: boolean
+  ): ClientRect {
+    const hostElPosition = appendToBody
+      ? this.offset(hostElement, false)
+      : this.position(hostElement, false);
     const targetElStyles = this.getAllStyles(targetElement);
     const shiftWidth: any = {
       left: hostElPosition.left,
-      center: hostElPosition.left + hostElPosition.width / 2 - targetElement.offsetWidth / 2,
+      center:
+        hostElPosition.left +
+        hostElPosition.width / 2 -
+        targetElement.offsetWidth / 2,
       right: hostElPosition.left + hostElPosition.width
     };
     const shiftHeight: any = {
       top: hostElPosition.top,
-      center: hostElPosition.top + hostElPosition.height / 2 - targetElement.offsetHeight / 2,
+      center:
+        hostElPosition.top +
+        hostElPosition.height / 2 -
+        targetElement.offsetHeight / 2,
       bottom: hostElPosition.top + hostElPosition.height
     };
     const targetElBCR = targetElement.getBoundingClientRect();
@@ -104,17 +123,31 @@ export class Positioning {
       right: targetElBCR.width || targetElement.offsetWidth
     };
 
-    if (placementPrimary==="auto") {
-      let newPlacementPrimary = this.autoPosition(targetElPosition, hostElPosition, targetElement, placementSecondary);
-      if (!newPlacementPrimary) newPlacementPrimary = this.autoPosition(targetElPosition, hostElPosition, targetElement);
+    if (placementPrimary === 'auto') {
+      let newPlacementPrimary = this.autoPosition(
+        targetElPosition,
+        hostElPosition,
+        targetElement,
+        placementSecondary
+      );
+      if (!newPlacementPrimary)
+        newPlacementPrimary = this.autoPosition(
+          targetElPosition,
+          hostElPosition,
+          targetElement
+        );
       if (newPlacementPrimary) placementPrimary = newPlacementPrimary;
       targetElement.classList.add(placementPrimary);
     }
 
     switch (placementPrimary) {
       case 'top':
-        targetElPosition.top = hostElPosition.top - (targetElement.offsetHeight + parseFloat(targetElStyles.marginBottom));
-        targetElPosition.bottom += hostElPosition.top - targetElement.offsetHeight;
+        targetElPosition.top =
+          hostElPosition.top -
+          (targetElement.offsetHeight +
+            parseFloat(targetElStyles.marginBottom));
+        targetElPosition.bottom +=
+          hostElPosition.top - targetElement.offsetHeight;
         targetElPosition.left = shiftWidth[placementSecondary];
         targetElPosition.right += shiftWidth[placementSecondary];
         break;
@@ -127,8 +160,11 @@ export class Positioning {
       case 'left':
         targetElPosition.top = shiftHeight[placementSecondary];
         targetElPosition.bottom += shiftHeight[placementSecondary];
-        targetElPosition.left = hostElPosition.left - (targetElement.offsetWidth + parseFloat(targetElStyles.marginRight));
-        targetElPosition.right += hostElPosition.left - targetElement.offsetWidth;
+        targetElPosition.left =
+          hostElPosition.left -
+          (targetElement.offsetWidth + parseFloat(targetElStyles.marginRight));
+        targetElPosition.right +=
+          hostElPosition.left - targetElement.offsetWidth;
         break;
       case 'right':
         targetElPosition.top = shiftHeight[placementSecondary];
@@ -146,32 +182,64 @@ export class Positioning {
     return targetElPosition;
   }
 
-  private autoPosition(targetElPosition: ClientRect, hostElPosition: ClientRect, targetElement: HTMLElement, preferredPosition?: string) {
-    if ((!preferredPosition || preferredPosition==="right") && targetElPosition.left + hostElPosition.left - targetElement.offsetWidth < 0) {
-      return "right";
-    } else if ((!preferredPosition || preferredPosition==="top") && targetElPosition.bottom + hostElPosition.bottom + targetElement.offsetHeight > window.innerHeight) {
-      return "top";
-    } else if ((!preferredPosition || preferredPosition==="bottom") && targetElPosition.top + hostElPosition.top - targetElement.offsetHeight < 0) {
-      return "bottom";
-    } else if ((!preferredPosition || preferredPosition==="left") && targetElPosition.right + hostElPosition.right + targetElement.offsetWidth > window.innerWidth ) {
-      return "left";
+  private autoPosition(
+    targetElPosition: ClientRect,
+    hostElPosition: ClientRect,
+    targetElement: HTMLElement,
+    preferredPosition?: string
+  ) {
+    if (
+      (!preferredPosition || preferredPosition === 'right') &&
+      targetElPosition.left + hostElPosition.left - targetElement.offsetWidth <
+        0
+    ) {
+      return 'right';
+    } else if (
+      (!preferredPosition || preferredPosition === 'top') &&
+      targetElPosition.bottom +
+        hostElPosition.bottom +
+        targetElement.offsetHeight >
+        window.innerHeight
+    ) {
+      return 'top';
+    } else if (
+      (!preferredPosition || preferredPosition === 'bottom') &&
+      targetElPosition.top + hostElPosition.top - targetElement.offsetHeight < 0
+    ) {
+      return 'bottom';
+    } else if (
+      (!preferredPosition || preferredPosition === 'left') &&
+      targetElPosition.right +
+        hostElPosition.right +
+        targetElement.offsetWidth >
+        window.innerWidth
+    ) {
+      return 'left';
     }
     return null;
   }
 
-  private getAllStyles(element: HTMLElement) { return window.getComputedStyle(element); }
+  private getAllStyles(element: HTMLElement) {
+    return window.getComputedStyle(element);
+  }
 
-  private getStyle(element: HTMLElement, prop: string): string { return (this.getAllStyles(element) as any)[prop]; }
-
+  private getStyle(element: HTMLElement, prop: string): string {
+    return (this.getAllStyles(element) as any)[prop];
+  }
 
   private isStaticPositioned(element: HTMLElement): boolean {
     return (this.getStyle(element, 'position') || 'static') === 'static';
   }
 
   private offsetParent(element: HTMLElement): HTMLElement {
-    let offsetParentEl = <HTMLElement>element.offsetParent || document.documentElement;
+    let offsetParentEl =
+      <HTMLElement>element.offsetParent || document.documentElement;
 
-    while (offsetParentEl && offsetParentEl !== document.documentElement && this.isStaticPositioned(offsetParentEl)) {
+    while (
+      offsetParentEl &&
+      offsetParentEl !== document.documentElement &&
+      this.isStaticPositioned(offsetParentEl)
+    ) {
       offsetParentEl = <HTMLElement>offsetParentEl.offsetParent;
     }
 
@@ -182,8 +250,17 @@ export class Positioning {
 const positionService = new Positioning();
 
 export function positionElements(
-  hostElement: HTMLElement, targetElement: HTMLElement, placement: string, appendToBody?: boolean): void {
-  const pos = positionService.positionElements(hostElement, targetElement, placement, appendToBody);
+  hostElement: HTMLElement,
+  targetElement: HTMLElement,
+  placement: string,
+  appendToBody?: boolean
+): void {
+  const pos = positionService.positionElements(
+    hostElement,
+    targetElement,
+    placement,
+    appendToBody
+  );
 
   targetElement.style.top = `${pos.top}px`;
   targetElement.style.left = `${pos.left}px`;

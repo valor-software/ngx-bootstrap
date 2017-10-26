@@ -1,10 +1,18 @@
-import { Component, EventEmitter, Input, Output, ViewChild, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  forwardRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { DatepickerConfig } from './datepicker.config';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
+  // tslint:disable-next-line
   useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
@@ -49,114 +57,119 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: any = {
 /* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
   /** sets datepicker mode, supports: `day`, `month`, `year` */
-  @Input() public datepickerMode: string = 'day';
+  @Input() datepickerMode = 'day';
   /** default date to show if `ng-model` value is not specified */
-  @Input() public initDate: Date;
+  @Input() initDate: Date;
   /**  oldest selectable date */
-  @Input() public minDate: Date;
+  @Input() minDate: Date;
   /** latest selectable date */
-  @Input() public maxDate: Date;
+  @Input() maxDate: Date;
   /** set lower datepicker mode, supports: `day`, `month`, `year` */
-  @Input() public minMode: string;
+  @Input() minMode: string;
   /** sets upper datepicker mode, supports: `day`, `month`, `year` */
-  @Input() public maxMode: string;
+  @Input() maxMode: string;
   /** if false week numbers will be hidden */
-  @Input() public showWeeks: boolean = true;
+  @Input() showWeeks = true;
   /** format of day in month */
-  @Input() public formatDay: string;
+  @Input() formatDay: string;
   /** format of month in year */
-  @Input() public formatMonth: string;
+  @Input() formatMonth: string;
   /** format of year in year range */
-  @Input() public formatYear: string;
+  @Input() formatYear: string;
   /** format of day in week header */
-  @Input() public formatDayHeader: string;
+  @Input() formatDayHeader: string;
   /** format of title when selecting day */
-  @Input() public formatDayTitle: string;
+  @Input() formatDayTitle: string;
   /** format of title when selecting month */
-  @Input() public formatMonthTitle: string;
+  @Input() formatMonthTitle: string;
   /** starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday) */
-  @Input() public startingDay: number;
+  @Input() startingDay: number;
   /** number of years displayed in year selection */
-  @Input() public yearRange: number;
+  @Input() yearRange: number;
   /** if true only dates from the currently displayed month will be shown */
-  @Input() public onlyCurrentMonth: boolean;
+  @Input() onlyCurrentMonth: boolean;
   /** if true shortcut`s event propagation will be disabled */
-  @Input() public shortcutPropagation: boolean;
+  @Input() shortcutPropagation: boolean;
   /** number of months displayed in a single row of month picker */
-  @Input() public monthColLimit: number;
+  @Input() monthColLimit: number;
   /** number of years displayed in a single row of year picker */
-  @Input() public yearColLimit: number;
+  @Input() yearColLimit: number;
   /** array of custom css classes to be applied to targeted dates */
-  @Input() public customClass: { date: Date, mode: string, clazz: string }[];
+  @Input() customClass: { date: Date; mode: string; clazz: string }[];
   /** array of disabled dates */
-  @Input() public dateDisabled: { date: Date, mode: string }[];
+  @Input() dateDisabled: { date: Date; mode: string }[];
 
   /** currently active date */
   @Input()
-  public get activeDate(): Date {
+  get activeDate(): Date {
     return this._activeDate || this._now;
   }
 
-  public set activeDate(value: Date) {
+  set activeDate(value: Date) {
     this._activeDate = value;
   }
 
-  @Output() public selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output()
+  selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   /** callback to invoke when the activeDate is changed. */
-  @Output() public activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
+  @Output()
+  activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(
+    undefined
+  );
 
-  @ViewChild(DatePickerInnerComponent) public _datePicker: DatePickerInnerComponent;
+  @ViewChild(DatePickerInnerComponent)
+  _datePicker: DatePickerInnerComponent;
 
-  public onChange: any = Function.prototype;
-  public onTouched: any = Function.prototype;
+  onChange: any = Function.prototype;
+  onTouched: any = Function.prototype;
 
   config: DatepickerConfig;
 
   protected _now: Date = new Date();
   protected _activeDate: Date;
 
-
-  public constructor(config: DatepickerConfig) {
+  constructor(config: DatepickerConfig) {
     this.config = config;
     this.configureOptions();
   }
 
-  public configureOptions(): void {
+  configureOptions(): void {
     Object.assign(this, this.config);
   }
 
-  public onUpdate(event: any): void {
+  onUpdate(event: any): void {
     this.activeDate = event;
     this.onChange(event);
   }
 
-  public onSelectionDone(event: Date): void {
+  onSelectionDone(event: Date): void {
     this.selectionDone.emit(event);
   }
 
-  public onActiveDateChange(event: Date): void {
+  onActiveDateChange(event: Date): void {
     this.activeDateChange.emit(event);
   }
   // todo: support null value
-  public writeValue(value: any): void {
+  writeValue(value: any): void {
     if (this._datePicker.compare(value, this._activeDate) === 0) {
       return;
     }
     if (value && value instanceof Date) {
       this.activeDate = value;
       this._datePicker.select(value, false);
+
       return;
     }
 
     this.activeDate = value ? new Date(value) : void 0;
   }
 
-  public registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
 
-  public registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 }

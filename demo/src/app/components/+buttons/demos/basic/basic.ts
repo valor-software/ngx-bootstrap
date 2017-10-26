@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './basic.html'
 })
 export class DemoButtonsBasicComponent {
-  public singleModel: string = '1';
+  singleModel: string = '1';
 }

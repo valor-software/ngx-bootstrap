@@ -1,9 +1,13 @@
 const fs = require('fs-extra');
 const exec = require('child_process').exec;
 
+const repoUrl = process.env.TRAVIS
+  ? 'https://github.com/valor-software/ngx-bootstrap.git'
+  : 'git@github.com:valor-software/ngx-bootstrap.git';
+
 if (!fs.existsSync('gh-pages')) {
   console.log('Cloning the latest version of gh-pages');
-  runCmd("git clone -b gh-pages --single-branch --depth 1 git@github.com:valor-software/ngx-bootstrap.git gh-pages");
+  runCmd(`git clone -b gh-pages --single-branch --depth 1 ${repoUrl} gh-pages`);
   return;
 }
 console.log('Pulling the latest version of gh-pages');

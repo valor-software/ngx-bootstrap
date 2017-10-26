@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-modal-sizes',
   templateUrl: './sizes.html'
 })
-export class DemoModalSizesComponent {
-}
+export class DemoModalSizesComponent {}

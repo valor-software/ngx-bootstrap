@@ -11,11 +11,8 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-carousel.routes';
 
 @NgModule({
-  declarations:[
-    CarouselSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports:[
+  declarations: [CarouselSectionComponent, ...DEMO_COMPONENTS],
+  imports: [
     CarouselModule.forRoot(),
     CommonModule,
     FormsModule,
@@ -24,5 +21,4 @@ import { routes } from './demo-carousel.routes';
   ],
   exports: [CarouselSectionComponent]
 })
-export class DemoCarouselModule {
-}
+export class DemoCarouselModule {}

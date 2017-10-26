@@ -4,7 +4,10 @@ import { DemoPaginationLimitComponent } from './limit/limit';
 import { DemoPaginationStylingComponent } from './styling-global/styling-global';
 
 export const DEMO_COMPONENTS = [
-  DemoPaginationBasicComponent, DemoPaginationPagerComponent, DemoPaginationLimitComponent, DemoPaginationStylingComponent
+  DemoPaginationBasicComponent,
+  DemoPaginationPagerComponent,
+  DemoPaginationLimitComponent,
+  DemoPaginationStylingComponent
 ];
 
 export const DEMOS = {

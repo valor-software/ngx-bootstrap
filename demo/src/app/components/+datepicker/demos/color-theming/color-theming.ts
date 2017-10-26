@@ -13,7 +13,7 @@ export class DemoDatepickerColorThemingComponent {
   applyTheme(pop: any) {
     // create new object on each property change
     // so Angular can catch object reference change
-    this.bsConfig = Object.assign({}, {containerClass: this.colorTheme});
+    this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });
     setTimeout(() => {
       pop.show();
     });

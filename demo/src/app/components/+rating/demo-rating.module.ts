@@ -10,10 +10,7 @@ import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-rating.routes';
 
 @NgModule({
-  declarations: [
-    RatingSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
+  declarations: [RatingSectionComponent, ...DEMO_COMPONENTS],
   imports: [
     CommonModule,
     FormsModule,
@@ -23,6 +20,4 @@ import { routes } from './demo-rating.routes';
   ],
   exports: [RatingSectionComponent]
 })
-export class DemoRatingModule {
-
-}
+export class DemoRatingModule {}

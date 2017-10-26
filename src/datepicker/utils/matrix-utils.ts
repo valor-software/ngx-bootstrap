@@ -10,7 +10,10 @@ export interface MatrixOptions {
   shift: TimeUnit;
 }
 
-export function createMatrix<T>(options: MatrixOptions, fn: CreateMatrixCb<T>): T[][] {
+export function createMatrix<T>(
+  options: MatrixOptions,
+  fn: CreateMatrixCb<T>
+): T[][] {
   let prevValue = options.initialDate;
   const matrix: T[][] = new Array(options.height);
   for (let i = 0; i < options.height; i++) {

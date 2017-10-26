@@ -1,9 +1,40 @@
-﻿import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabsetConfig } from '../tabs/tabset.config';
 
 import { TabsModule } from '../tabs/tabs.module';
 import { TabsetComponent } from '../tabs/tabset.component';
+
+@Component({
+  selector: 'tabs-test',
+  template: ''
+})
+class TestTabsetComponent {
+  isVertical: Boolean = false;
+  isJustified: Boolean = false;
+  tabs: any[] = [
+    { title: 'tab1', content: 'tab1 content', customClass: 'testCustomClass' },
+    { title: 'tab2', content: 'tab2 content', disabled: true },
+    { title: 'tab3', content: 'tab3 content', removable: true }
+  ];
+  @ViewChild('tabset') tabset: TabsetComponent;
+
+  constructor(config: TabsetConfig) {
+    Object.assign(this, config);
+  }
+
+  _select(e: TabsModule): TabsModule {
+    return e;
+  }
+
+  _deselect(e: TabsModule): TabsModule {
+    return e;
+  }
+
+  _removed(e: TabsModule): TabsModule {
+    return e;
+  }
+}
 
 const html = `
   <tabset #tabset [justified]="isJustified"
@@ -51,9 +82,9 @@ function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
 }
 
 describe('Component: Tabs', () => {
-  let fixture:ComponentFixture<any>;
-  let context:any;
-  let element:any;
+  let fixture: ComponentFixture<any>;
+  let context: any;
+  let element: any;
 
   // beforeEach(async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
   //   return tcb
@@ -75,7 +106,7 @@ describe('Component: Tabs', () => {
       declarations: [TestTabsetComponent],
       imports: [TabsModule.forRoot()]
     });
-    TestBed.overrideComponent(TestTabsetComponent, {set: {template: html}});
+    TestBed.overrideComponent(TestTabsetComponent, { set: { template: html } });
     fixture = TestBed.createComponent(TestTabsetComponent);
     context = fixture.componentInstance;
     spyOn(context, '_select');
@@ -90,11 +121,14 @@ describe('Component: Tabs', () => {
   });
 
   it('should set tab header', () => {
-    const str:string = 'test title';
+    const str = 'test title';
     context.tabs[1].title = str;
     fixture.detectChanges();
     const tabTitles = getTabTitles(element);
-    expect((tabTitles[2] as HTMLAnchorElement).getElementsByTagName('span')[0].textContent).toBe(str);
+    expect(
+      (tabTitles[2] as HTMLAnchorElement).getElementsByTagName('span')[0]
+        .textContent
+    ).toBe(str);
   });
 
   it('should mark the requested tab as active', () => {
@@ -112,13 +146,19 @@ describe('Component: Tabs', () => {
 
   it('should appear additional button if removable is true', () => {
     const tabTitles = getTabTitles(element);
-    expect((tabTitles[3] as HTMLAnchorElement).querySelectorAll('span span.glyphicon-remove-circle').length).toEqual(1);
+    expect(
+      (tabTitles[3] as HTMLAnchorElement).querySelectorAll(
+        'span.bs-remove-tab'
+      ).length
+    ).toEqual(1);
   });
 
   it('should remove tab on click on remove icon', () => {
     const tabTitlesBefore = getTabTitles(element);
     expect(tabTitlesBefore.length).toEqual(4);
-    const el = (tabTitlesBefore[3] as HTMLAnchorElement).querySelectorAll('span span.glyphicon-remove-circle')[0];
+    const el = (tabTitlesBefore[3] as HTMLAnchorElement).querySelectorAll(
+      'span.bs-remove-tab'
+    )[0];
     (el as HTMLSpanElement).click();
 
     fixture.detectChanges();
@@ -135,18 +175,19 @@ describe('Component: Tabs', () => {
 
   it('should not select another tab if the active tab is removed and reselect is set to false', () => {
     context.tabset.tabs[0].active = true;
-    context.tabset.removeTab(context.tabset.tabs[0], {reselect: false, emit: false});
+    context.tabset.removeTab(context.tabset.tabs[0], {
+      reselect: false,
+      emit: false
+    });
     fixture.detectChanges();
     expectActiveTabs(element, [false, false, false]);
   });
 
   it('should set tab as active on click and disable another active', () => {
     const tabTitles = getTabTitles(element);
-
     (tabTitles[1] as HTMLAnchorElement).click();
     fixture.detectChanges();
     expectActiveTabs(element, [false, true, false, false]);
-
     (tabTitles[0] as HTMLAnchorElement).click();
     fixture.detectChanges();
     expectActiveTabs(element, [true, false, false, false]);
@@ -160,17 +201,25 @@ describe('Component: Tabs', () => {
   });
 
   it('should add class nav-stacked for vertical mode', () => {
-    expect(element.querySelectorAll('ul.nav')[0].classList).not.toContain('nav-stacked');
+    expect(element.querySelectorAll('ul.nav')[0].classList).not.toContain(
+      'nav-stacked'
+    );
     context.isVertical = true;
     fixture.detectChanges();
-    expect(element.querySelectorAll('ul.nav')[0].classList).toContain('nav-stacked');
+    expect(element.querySelectorAll('ul.nav')[0].classList).toContain(
+      'nav-stacked'
+    );
   });
 
   it('should add class nav-justified for justified', () => {
-    expect(element.querySelector('ul.nav').classList).not.toContain('nav-justified');
+    expect(element.querySelector('ul.nav').classList).not.toContain(
+      'nav-justified'
+    );
     context.isJustified = true;
     fixture.detectChanges();
-    expect(element.querySelector('ul.nav').classList).toContain('nav-justified');
+    expect(element.querySelector('ul.nav').classList).toContain(
+      'nav-justified'
+    );
   });
 
   it('should emit select/deselect', () => {
@@ -179,20 +228,26 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
 
     expect(context._deselect).toHaveBeenCalled();
-    expect(context._select).toHaveBeenCalledWith(jasmine.objectContaining({
-      heading: 'tab1'
-    }));
+    expect(context._select).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        heading: 'tab1'
+      })
+    );
   });
 
   it('should emit remove on remove tab', () => {
     const tabTitles = getTabTitles(element);
-    const el = (tabTitles[3] as HTMLAnchorElement).querySelectorAll('span span.glyphicon-remove-circle')[0];
+    const el = (tabTitles[3] as HTMLAnchorElement).querySelectorAll(
+      'span.bs-remove-tab'
+    )[0];
     (el as HTMLSpanElement).click();
     fixture.detectChanges();
 
-    expect(context._removed).toHaveBeenCalledWith(jasmine.objectContaining({
-      heading: 'tab3'
-    }));
+    expect(context._removed).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        heading: 'tab3'
+      })
+    );
   });
 
   it('should set class on a tab item through [customClass]', () => {
@@ -206,7 +261,6 @@ describe('Component: Tabs', () => {
     const tabTitles = getTabTitles(element);
 
     expect(tabItems[1].classList).toContain('testCustomClass');
-
     (tabTitles[1] as HTMLAnchorElement).click();
     fixture.detectChanges();
     expect(tabItems[1].classList).toContain('testCustomClass');
@@ -220,35 +274,3 @@ describe('Component: Tabs', () => {
     expectActiveTabs(element, [false, true, false, false]);
   });
 });
-
-@Component({
-  selector: 'tabs-test',
-  template: ''
-})
-
-class TestTabsetComponent {
-  public isVertical:Boolean = false;
-  public isJustified:Boolean = false;
-  public tabs:any[] = [
-    {title: 'tab1', content: 'tab1 content', customClass:'testCustomClass'},
-    {title: 'tab2', content: 'tab2 content', disabled: true},
-    {title: 'tab3', content: 'tab3 content', removable: true}
-  ];
-  @ViewChild('tabset') tabset: TabsetComponent;
-
-  public constructor(config: TabsetConfig) {
-    Object.assign(this, config);
-  }
-
-  public _select(e: TabsModule): TabsModule {
-    return e;
-  }
-
-  public _deselect(e: TabsModule): TabsModule {
-    return e;
-  }
-
-  public _removed(e: TabsModule): TabsModule {
-    return e;
-  }
-}

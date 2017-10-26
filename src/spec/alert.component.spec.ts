@@ -2,12 +2,19 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertComponent } from '../alert/alert.component';
-import { AlertModule } from '../alert/alert.module';
 import { AlertConfig } from '../alert/alert.config';
+import { AlertModule } from '../alert/alert.module';
+
+@Component({selector: 'alert-test', template: ''})
+class TestAlertComponent extends AlertComponent {
+  constructor(config: AlertConfig) {
+    super(config);
+  }
+}
 
 describe('Component: Alert', () => {
-  let fixture:ComponentFixture<TestAlertComponent>;
-  let context:any;
+  let fixture: ComponentFixture<TestAlertComponent>;
+  let context: any;
   const overTemplate = `
     <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
       <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
@@ -18,8 +25,13 @@ describe('Component: Alert', () => {
   `;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({declarations: [TestAlertComponent], imports: [AlertModule.forRoot()]});
-    TestBed.overrideComponent(TestAlertComponent, {set: {template: overTemplate}});
+    TestBed.configureTestingModule({
+      declarations: [TestAlertComponent],
+      imports: [AlertModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestAlertComponent, {
+      set: {template: overTemplate}
+    });
     fixture = TestBed.createComponent(TestAlertComponent);
     context = fixture.debugElement.componentInstance;
     fixture.detectChanges();
@@ -36,14 +48,12 @@ describe('Component: Alert', () => {
     expect(context.classes).toEqual(`alert-dismissible`);
   });
 
-  it('should be dismissed by timeout', (done:() => void) => {
+  it('should be dismissed by timeout', (done: () => void) => {
     context.dismissOnTimeout = 1000;
-    context
-      .onClosed
-      .subscribe(() => {
-        expect(context.isClosed).toBeTruthy();
-        done();
-      });
+    context.onClosed.subscribe(() => {
+      expect(context.isClosed).toBeTruthy();
+      done();
+    });
     context.ngOnInit();
   });
 
@@ -54,14 +64,3 @@ describe('Component: Alert', () => {
     expect(context.isClosed).toBeTruthy();
   });
 });
-
-@Component({
-  selector: 'alert-test',
-  template: ''
-})
-
-class TestAlertComponent extends AlertComponent {
-  public constructor(config: AlertConfig) {
-    super(config);
-  }
-}

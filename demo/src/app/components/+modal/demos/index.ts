@@ -9,6 +9,7 @@ import { DemoModalServiceFromComponent } from './service-component/service-compo
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
 import { DemoModalServiceOptionsComponent } from './service-options/service-options';
 import { DemoModalServiceEventsComponent } from './service-events/service-events';
+import { DemoModalServiceConfirmWindowComponent } from './service-confirm-window/service-confirm-window';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -21,7 +22,8 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceNestedComponent,
   DemoModalServiceOptionsComponent,
   DemoModalEventsComponent,
-  DemoModalServiceEventsComponent
+  DemoModalServiceEventsComponent,
+  DemoModalServiceConfirmWindowComponent
 ];
 
 export const DEMOS = {
@@ -68,5 +70,9 @@ export const DEMOS = {
   serviceEvents: {
     component: require('!!raw-loader?lang=typescript!./service-events/service-events.ts'),
     html: require('!!raw-loader?lang=markup!./service-events/service-events.html')
+  },
+  serviceConfirmWindow: {
+    component: require('!!raw-loader?lang=typescript!./service-confirm-window/service-confirm-window.ts'),
+    html: require('!!raw-loader?lang=markup!./service-confirm-window/service-confirm-window.html')
   }
 };
