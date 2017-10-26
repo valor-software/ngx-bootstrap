@@ -5,12 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { Ng2PageScrollModule } from 'ng2-page-scroll';
 /* common */
-import {
-  SidebarComponent,
-  AppFooterComponent,
-  AddNavComponent,
-  SearchFilterPipe
-} from '../common';
+import { AppFooterComponent } from '../common/app-footer/app-footer.component';
+import { AddNavComponent } from '../common/add-nav/add-nav.component';
+import { SidebarComponent } from '../common/sidebar/sidebar.component';
+import { SearchFilterPipe } from '../common/sidebar/search-filter.pipe';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
@@ -39,11 +37,6 @@ export { DemoTopSectionComponent } from './demo-section-components/demo-top-sect
 export { ExamplesComponent } from './demo-section-components/demo-examples-section';
 export { ApiSectionsComponent } from './demo-section-components/demo-api-section';
 export { DocsSectionComponent } from './docs-section/docs-section.component';
-export {
-  NgApiDocComponent,
-  NgApiDocClassComponent,
-  NgApiDocConfigComponent
-} from './api-docs';
 
 @NgModule({
   declarations: [

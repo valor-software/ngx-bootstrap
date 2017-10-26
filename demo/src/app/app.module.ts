@@ -13,6 +13,7 @@ import { routes } from './app.routing';
 import { LandingComponent } from './common/landing/landing.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './common/getting-started/getting-started.component';
+
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
 import { DocsModule } from './docs';
