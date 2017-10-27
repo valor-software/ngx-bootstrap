@@ -83,6 +83,8 @@ jobs:
     - <<: *build
       env: NGV=latest
     - <<: *build
+      before_script:
+      - npm install -D angular-cli
       env: NGV=next
     - stage: sauce-tests
       before_script:
