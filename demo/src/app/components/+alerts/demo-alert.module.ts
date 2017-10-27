@@ -5,19 +5,23 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AlertsSectionComponent } from './alerts-section.component';
 import { DEMO_COMPONENTS } from './demos';
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 
 import { routes } from './demo-alerts.routes';
 
 @NgModule({
-  declarations: [AlertsSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    AlertsSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     AlertModule.forRoot(),
     CommonModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [AlertsSectionComponent]
+  exports: [AlertsSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoAlertsModule {
   static routes: any = routes;

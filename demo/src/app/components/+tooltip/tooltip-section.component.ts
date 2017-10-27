@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
+
+import { demoComponentContent } from './tooltip-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'tooltip-section',
-  templateUrl: './tooltip-section.component.html'
+  templateUrl: './tooltip-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipSectionComponent {
-  name: string = 'Tooltip';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
+  name = 'Tooltip';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
+  componentContent: ContentSection[] = demoComponentContent;
 }

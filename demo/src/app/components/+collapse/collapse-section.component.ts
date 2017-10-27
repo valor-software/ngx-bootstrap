@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { demoComponentContent } from './collapse-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'collapse-section',
-  templateUrl: './collapse-section.component.html'
+  templateUrl: './collapse-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CollapseSectionComponent {
-  name: string = 'Collapse';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/collapse';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
+  name = 'Collapse';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/collapse';
+  componentContent: ContentSection[] = demoComponentContent;
 }

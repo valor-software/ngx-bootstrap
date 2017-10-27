@@ -4,20 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { TooltipSectionComponent } from './tooltip-section.component';
 import { DEMO_COMPONENTS } from './demos/index';
 import { routes } from './demo-tooltip.routes';
 
 @NgModule({
-  declarations: [TooltipSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    TooltipSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     TooltipModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [TooltipSectionComponent]
+  exports: [TooltipSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoTooltipModule {}
