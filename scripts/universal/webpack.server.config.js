@@ -2,13 +2,13 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: {  server: './server.ts', prerender: './prerender.ts' },
+  entry: {  server: './scripts/universal/server.ts', prerender: './scripts/universal/prerender.ts' },
   resolve: { extensions: ['.ts', '.js'] },
   target: 'node',
   // this makes sure we include node_modules and other 3rd party libraries
   externals: [/(node_modules|main\..*\.js)/],
   output: {
-    path: path.join(__dirname, 'demo/dist'),
+    path: path.join(__dirname, '../../demo/dist'),
     filename: '[name].js'
   },
   module: {

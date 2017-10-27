@@ -28,7 +28,6 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     DocsModule,
-    BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes, {useHash: environment.useHash}),
