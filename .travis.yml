@@ -85,7 +85,7 @@ jobs:
     - <<: *build
       env: NGV=next
       before_script:
-      - npm install -g @angular/cli@1.5.0-rc.5
+      - npm install @angular/cli@1.5.0-rc.5
     - stage: sauce-tests
       before_script:
         - mkdir -p $LOGS_DIR
