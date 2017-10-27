@@ -13,6 +13,7 @@
     "demo.deploy-gh-pages": "gh-pages -d gh-pages",
     "demo.build": "run-s build link demo.gen-docs demo.ng-build demo.set-version",
     "demo.serve": "run-s demo.build lite-server",
+    "demo.serve-universal": "run-s build link build:dynamic serve:dynamic",
     "demo.deploy": "run-s demo.build demo.deploy-gh-pages",
     "link": "ngm link -p src --here",
     "lint-pretty": "prettier --config .prettierrc --write -l  \"{demo/src,src}/**/*.ts\"",
@@ -40,7 +41,7 @@
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json",
     "build:dynamic": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:dynamic": "node demo/dist/server.js",
-    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
+    "build:client-and-server-bundles": "ng build --prod --env=server && ng build --prod --env=server --app 1 --output-hashing=false",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "main": "bundles/ngx-bootstrap.umd.js",
