@@ -69,6 +69,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this._bsValue = value;
+    // wait for initialization bsValueChange subscribers
     setTimeout(() => {
       this.bsValueChange.emit(value);
     });
