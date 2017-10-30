@@ -6,6 +6,7 @@ import { renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
+import * as compression from 'compression';
 import { join } from 'path';
 import { readFileSync } from 'fs';
 
@@ -14,6 +15,7 @@ enableProdMode();
 
 // Express server
 const app = express();
+app.use(compression());
 
 const PORT = process.env.PORT || 3000;
 const DIST_FOLDER = join(process.cwd(), 'demo/dist');
