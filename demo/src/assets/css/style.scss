@@ -418,6 +418,44 @@ a:hover {
     clear: both;
   }
 }
+
+/* Specify styling for tooltip contents */
+.tooltip.customClass .tooltip-inner {
+  color: #880000;
+  background-color: #ffff66;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+/* Hide arrow */
+.tooltip.customClass.fade{
+  transition: opacity 1s;
+}
+.tooltip.customClass .tooltip-arrow {
+  border-top-color: #ffff75;
+}
+
+/* Specify styling for popover contents */
+.popover {
+  &.customClass,
+  &.customClass .popover-content {
+    background: #94bada;
+  }
+}
+.popover.customClass.top > .arrow:after {
+  border-top-color: #94bada;
+}
+
+.nav-item {
+  &.customClass {
+    &:first-child {
+      margin-left: auto;
+    }
+
+    a {
+      background-color: #50ff50;
+    }
+  }
+}
+
 .card.customClass,
 .card.customClass .card-header,
 .panel.customClass {
