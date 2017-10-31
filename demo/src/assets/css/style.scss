@@ -421,18 +421,23 @@ a:hover {
 }
 
 /* Specify styling for tooltip contents */
-.tooltip.customClass .tooltip-inner {
-  color: #880000;
-  background-color: #ffff66;
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
-}
+
 /* Hide arrow */
 .tooltip.customClass.fade{
   transition: opacity 1s;
 }
-.tooltip.customClass .tooltip-arrow {
-  border-top-color: #ffff75;
+.tooltip.customClass {
+  .tooltip-inner {
+    color: #880000;
+    background-color: #ffff66;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  }
+  .tooltip-arrow,
+  .arrow:before {
+    border-top-color: #ffff75;
+  }
 }
+
 
 /* Specify styling for popover contents */
 .popover {
