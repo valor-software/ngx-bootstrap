@@ -1,4 +1,4 @@
-import { Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { formatDate } from '../bs-moment/format';
 import { getLocale } from '../bs-moment/locale/locales.service';
@@ -27,7 +27,8 @@ export class BsDaterangepickerInputDirective
 
   constructor(@Host() private _picker: BsDaterangepickerComponent,
               private _renderer: Renderer2,
-              private _elRef: ElementRef) {}
+              private _elRef: ElementRef,
+              private changeDetection: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this._picker.bsValueChange.subscribe((v: Date[]) => {
@@ -47,6 +48,7 @@ export class BsDaterangepickerInputDirective
       }
       this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
       this._onChange(v);
+      this.changeDetection.markForCheck();
     });
   }
 
