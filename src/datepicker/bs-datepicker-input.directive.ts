@@ -41,6 +41,17 @@ export class BsDatepickerInputDirective
       this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
       this._onChange(v);
     });
+
+    this._picker.bsLocaleChange.subscribe((locale: string) => {
+      this._picker.bsConfig.locale = locale;
+      const initialDate = formatDate(
+        this._picker._bsValue,
+        this._picker._config.dateInputFormat,
+        locale
+      ) || '';
+      this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
+      this._onChange(this._picker._bsValue);
+    });
   }
 
   onChange(event: any) {
