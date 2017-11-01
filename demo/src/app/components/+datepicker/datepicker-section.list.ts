@@ -176,7 +176,8 @@ export const demoComponentContentOld: ContentSection[] = [
     content: [
       {
         title: 'DatePickerComponent',
-        anchor: 'datepicker-component'
+        anchor: 'datepicker-component',
+        outlet: NgApiDocComponent
       }
     ]
   }

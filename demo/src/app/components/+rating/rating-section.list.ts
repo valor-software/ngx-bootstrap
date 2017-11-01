@@ -35,14 +35,14 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'rating-dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
-        outlet: DemoRatingCustomComponent
+        outlet: DemoRatingDynamicComponent
       },
       {
         title: 'Custom icons',
         anchor: 'rating-custom',
         component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
         html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
-        outlet: DemoRatingDynamicComponent
+        outlet: DemoRatingCustomComponent
       }
     ]
   },
