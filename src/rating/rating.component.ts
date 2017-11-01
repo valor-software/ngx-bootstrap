@@ -5,7 +5,7 @@ import {
   Input,
   OnInit,
   Output,
-  forwardRef, TemplateRef
+  forwardRef, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -19,7 +19,8 @@ export const RATING_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'rating',
   templateUrl: './rating.component.html',
-  providers: [RATING_CONTROL_VALUE_ACCESSOR]
+  providers: [RATING_CONTROL_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */
@@ -41,6 +42,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   range: any[];
   value: number;
   protected preValue: number;
+
+  constructor(private changeDetection: ChangeDetectorRef) {}
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: any): void {
@@ -68,23 +71,27 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     if (value % 1 !== value) {
       this.value = Math.round(value);
       this.preValue = value;
+      this.changeDetection.markForCheck();
 
       return;
     }
 
     this.preValue = value;
     this.value = value;
+    this.changeDetection.markForCheck();
   }
 
   enter(value: number): void {
     if (!this.readonly) {
       this.value = value;
+      this.changeDetection.markForCheck();
       this.onHover.emit(value);
     }
   }
 
   reset(): void {
     this.value = this.preValue;
+    this.changeDetection.markForCheck();
     this.onLeave.emit(this.value);
   }
 
