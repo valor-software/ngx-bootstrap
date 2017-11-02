@@ -61,7 +61,7 @@ Or Bootstrap 4
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 ```
 To enable bootstrap 4 theme templates in ngx-bootstrap, please read
-[here](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md)
+[here](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md) .
 
 ```
 <!-- index.html -->
