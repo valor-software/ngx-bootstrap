@@ -1,18 +1,31 @@
 // https://api.jqueryui.com/datepicker/
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
-// webpack html imports
-let oldTitleDoc = require('html-loader!markdown-loader!./docs/titleOld.md');
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { demoComponentContent, demoComponentContentOld } from './datepicker-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'datepicker-section',
-  templateUrl: './datepicker-section.component.html'
+  templateUrl: './datepicker-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatepickerSectionComponent {
-  name: string = 'Datepicker';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
-  demos: any = DEMOS;
-  oldTitleDoc: string = oldTitleDoc;
-  titleDoc: string = titleDoc;
+  name = 'Datepicker';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
+  componentContent: ContentSection[] = demoComponentContent;
+
+  changeContent(name: string) {
+    switch (name) {
+      case('old'):
+        this.componentContent = demoComponentContentOld;
+        break;
+      case('new'):
+      default:
+        this.componentContent = demoComponentContent;
+    }
+
+    if (typeof PR !== 'undefined') {
+      setTimeout(() => PR.prettyPrint(), 10);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, Renderer2 } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -49,7 +49,7 @@ export class TabsetComponent implements OnDestroy {
   protected _justified: boolean;
   protected _type: string;
 
-  constructor(config: TabsetConfig) {
+  constructor(config: TabsetConfig, private renderer: Renderer2) {
     Object.assign(this, config);
   }
 
@@ -80,7 +80,8 @@ export class TabsetComponent implements OnDestroy {
     }
     this.tabs.splice(index, 1);
     if (tab.elementRef.nativeElement.parentNode) {
-      tab.elementRef.nativeElement.parentNode.removeChild(
+      this.renderer.removeChild(
+        tab.elementRef.nativeElement.parentNode,
         tab.elementRef.nativeElement
       );
     }

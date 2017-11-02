@@ -204,7 +204,8 @@ export class TimepickerComponent
   }
 
   _updateTime() {
-    if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
+    const _seconds = this.showSeconds ? this.seconds : void 0;
+    if (!isInputValid(this.hours, this.minutes, _seconds, this.isPM())) {
       this.onChange(null);
 
       return;

@@ -5,14 +5,13 @@ import { RouterModule } from '@angular/router';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { DatepickerSectionComponent } from './datepicker-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-datepicker.routes';
 
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import {
-
   ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, ru, sv, zhCn, tr
 } from 'ngx-bootstrap/locale';
 
@@ -21,7 +20,10 @@ const locales = [ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe,
 locales.forEach(locale => defineLocale(locale.abbr, locale));
 
 @NgModule({
-  declarations: [DatepickerSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    DatepickerSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     DatepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
@@ -29,9 +31,10 @@ locales.forEach(locale => defineLocale(locale.abbr, locale));
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [DatepickerSectionComponent]
+  exports: [DatepickerSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoDatepickerModule {}

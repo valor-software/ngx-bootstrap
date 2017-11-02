@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { demoComponentContent } from './rating-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'rating-section',
-  templateUrl: './rating-section.component.html'
+  templateUrl: './rating-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RatingSectionComponent {
-  name: string = 'Rating';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
+  name = 'Rating';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
+  componentContent: ContentSection[] = demoComponentContent;
 }

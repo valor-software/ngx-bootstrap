@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { demoComponentContent } from './pagination-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'pagination-section',
-  templateUrl: './pagination-section.component.html'
+  templateUrl: './pagination-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaginationSectionComponent {
-  name: string = 'Pagination';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
+  name = 'Pagination';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
+  componentContent: ContentSection[] = demoComponentContent;
 }
