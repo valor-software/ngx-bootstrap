@@ -3,6 +3,7 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
+  Input,
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -17,6 +18,11 @@ import { BsDropdownState } from './bs-dropdown.state';
   }
 })
 export class BsDropdownToggleDirective implements OnDestroy {
+  /**
+   * Set it to false to let click event propagate.
+   */
+  @Input() suppressClick: boolean = true;
+
   @HostBinding('attr.disabled') isDisabled: boolean = null;
 
   // @HostBinding('class.active')
@@ -41,7 +47,10 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
-    event.stopPropagation();
+    if (this.suppressClick) {
+      event.stopPropagation();
+    }
+
     if (this.isDisabled) {
       return;
     }
