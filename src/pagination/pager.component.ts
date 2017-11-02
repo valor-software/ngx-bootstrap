@@ -143,7 +143,9 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
-    this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
+    if (typeof window !== 'undefined') {
+      this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
+    }
     // watch for maxSize
     this.maxSize =
       typeof this.maxSize !== 'undefined' ? this.maxSize : this.config.maxSize;
