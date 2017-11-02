@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'demo-pagination-basic',
   templateUrl: './basic.html'
 })
 export class DemoPaginationBasicComponent {
-  totalItems: number = 64;
-  currentPage: number = 4;
-  smallnumPages: number = 0;
+  totalItems = 64;
+  currentPage = 4;
+  smallnumPages = 0;
 
   setPage(pageNo: number): void {
     this.currentPage = pageNo;

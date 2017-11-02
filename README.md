@@ -61,7 +61,7 @@ Or Bootstrap 4
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 ```
 To enable bootstrap 4 theme templates in ngx-bootstrap, please read
-[here](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md)
+[here](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md) .
 
 ```
 <!-- index.html -->
@@ -90,6 +90,9 @@ First time
  For local development run
  - `npm run build.watch` in first terminal
  - `ng serve` in second
+
+  If you want to run the demo with Angular Universal:
+  - `npm run demo.serve-universal`
 
 
 # Usage & Demo

@@ -24,7 +24,7 @@ export class Analytics {
   constructor(_location: Location, _router: Router) {
     this._location = _location;
     this._router = _router;
-    this._enabled = window.location.href.indexOf('bootstrap') >= 0;
+    this._enabled = (typeof window != 'undefined') && window.location.href.indexOf('bootstrap') >= 0;
   }
 
   /**

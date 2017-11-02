@@ -1,4 +1,4 @@
-import { Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { formatDate } from '../bs-moment/format';
 import { getLocale } from '../bs-moment/locale/locales.service';
@@ -21,33 +21,35 @@ const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR]
 })
 export class BsDaterangepickerInputDirective
-  implements OnInit, ControlValueAccessor {
+  implements ControlValueAccessor {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
 
   constructor(@Host() private _picker: BsDaterangepickerComponent,
               private _renderer: Renderer2,
-              private _elRef: ElementRef) {}
+              private _elRef: ElementRef,
+              private changeDetection: ChangeDetectorRef)  {
+    this._picker.bsValueChange.subscribe((v: Date[]) => this._setInputValue(v));
+  }
 
-  ngOnInit(): void {
-    this._picker.bsValueChange.subscribe((v: Date[]) => {
-      let range = '';
-      if (v) {
-        const start = formatDate(
-          v[0],
-          this._picker._config.rangeInputFormat,
-          this._picker._config.locale
-        ) || '';
-        const end = formatDate(
-          v[1],
-          this._picker._config.rangeInputFormat,
-          this._picker._config.locale
-        ) || '';
-        range = (start && end) ? start + this._picker._config.rangeSeparator + end : '';
-      }
-      this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
-      this._onChange(v);
-    });
+  _setInputValue(date: Date[]): void {
+    let range = '';
+    if (date) {
+      const start = formatDate(
+        date[0],
+        this._picker._config.rangeInputFormat,
+        this._picker._config.locale
+      ) || '';
+      const end = formatDate(
+        date[1],
+        this._picker._config.rangeInputFormat,
+        this._picker._config.locale
+      ) || '';
+      range = (start && end) ? start + this._picker._config.rangeSeparator + end : '';
+    }
+    this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
+    this._onChange(date);
+    this.changeDetection.markForCheck();
   }
 
   onChange(event: any) {
