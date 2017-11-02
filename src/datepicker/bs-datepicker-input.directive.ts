@@ -24,26 +24,27 @@ const BS_DATEPICKER_VALUE_ACCESSOR = {
   providers: [BS_DATEPICKER_VALUE_ACCESSOR]
 })
 export class BsDatepickerInputDirective
-  implements OnInit, ControlValueAccessor {
+  implements ControlValueAccessor {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
 
   constructor(@Host() private _picker: BsDatepickerComponent,
               private _renderer: Renderer2,
-              private _elRef: ElementRef,
-              private changeDetection: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
-    this._picker.bsValueChange.subscribe((v: Date) => {
-      const initialDate = formatDate(
-        v,
-        this._picker._config.dateInputFormat,
-        this._picker._config.locale
-      ) || '';
-      this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
-      this._onChange(v);
-      this.changeDetection.markForCheck();
-    });
+              private _elRef: ElementRef,
+              private changeDetection: ChangeDetectorRef) {
+    this._picker.bsValueChange.subscribe((v: Date) => this._setInputValue(v));
+  }
+
+  _setInputValue(v: Date): void {
+    const initialDate = formatDate(
+      v,
+      this._picker._config.dateInputFormat,
+      this._picker._config.locale
+    ) || '';
+    this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
+    this._onChange(v);
+    this.changeDetection.markForCheck();
   }
 
   onChange(event: any) {
