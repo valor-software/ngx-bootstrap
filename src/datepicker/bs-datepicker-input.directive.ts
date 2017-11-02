@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Directive, ElementRef, forwardRef, Host, OnInit, Renderer2
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -29,7 +30,9 @@ export class BsDatepickerInputDirective
 
   constructor(@Host() private _picker: BsDatepickerComponent,
               private _renderer: Renderer2,
-              private _elRef: ElementRef) {
+
+              private _elRef: ElementRef,
+              private changeDetection: ChangeDetectorRef) {
     this._picker.bsValueChange.subscribe((v: Date) => this._setInputValue(v));
   }
 
@@ -41,6 +44,7 @@ export class BsDatepickerInputDirective
     ) || '';
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
     this._onChange(v);
+    this.changeDetection.markForCheck();
   }
 
   onChange(event: any) {
