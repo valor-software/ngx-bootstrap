@@ -13,10 +13,10 @@ import { routes } from './demo-datepicker.routes';
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import {
 
-  ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, ru, zhCn, tr
+  ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, ru, sv, zhCn, tr
 } from 'ngx-bootstrap/locale';
 
-const locales = [ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, ru, zhCn, tr];
+const locales = [ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, ru, sv, zhCn, tr];
 
 locales.forEach(locale => defineLocale(locale.abbr, locale));
 
