@@ -162,6 +162,7 @@ export {
   esUs,
   fr,
   hi,
+  hu,
   it,
   ja,
   ko,

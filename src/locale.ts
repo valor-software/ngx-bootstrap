@@ -7,6 +7,7 @@ export { esDo } from './bs-moment/i18n/es-do';
 export { esUs } from './bs-moment/i18n/es-us';
 export { fr } from './bs-moment/i18n/fr';
 export { hi } from './bs-moment/i18n/hi';
+export { hu } from './bs-moment/i18n/hu';
 export { it } from './bs-moment/i18n/it';
 export { ja } from './bs-moment/i18n/ja';
 export { ko } from './bs-moment/i18n/ko';
