@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { demoComponentContent } from './typeahead-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'typeahead-section',
-  templateUrl: './typeahead-section.component.html'
+  templateUrl: './typeahead-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TypeaheadSectionComponent {
-  name: string = 'Typeahead';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
+  name = 'Typeahead';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
+  componentContent: ContentSection[] = demoComponentContent;
 }

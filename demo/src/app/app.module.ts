@@ -6,30 +6,27 @@ import { RouterModule } from '@angular/router';
 import { Ng2PageScrollModule } from 'ng2-page-scroll/ng2-page-scroll';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ngdoc } from '../ng-api-doc';
-import { NgApiDoc } from './api-docs/api-docs.model';
+import { NgApiDoc } from './docs/api-docs/api-docs.model';
 
-import { NgApiDocModule } from './api-docs/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
 import { LandingComponent } from './common/landing/landing.component';
-import { DocumentationComponent } from './common/documentation/documentation.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { GettingStartedComponent } from './common/getting-started/getting-started.component';
+
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
-import { SharedModule } from './shared/shared.module';
+import { DocsModule } from './docs';
 
 @NgModule({
   declarations: [
     AppComponent,
     GettingStartedComponent,
     TopMenuComponent,
-    LandingComponent,
-    DocumentationComponent
+    LandingComponent
   ],
   imports: [
-    SharedModule,
-    NgApiDocModule,
+    DocsModule,
     BrowserModule,
     FormsModule,
     HttpModule,

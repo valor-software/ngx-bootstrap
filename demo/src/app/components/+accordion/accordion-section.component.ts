@@ -1,19 +1,18 @@
 // todo: add more samples https://jqueryui.com/accordion/#default
 // todo: add more samples http://getbootstrap.com/components/#panels-alternatives
 
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { demoComponentContent } from './accordion-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 // webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
-
 @Component({
   selector: 'accordion-section',
-  templateUrl: './accordion-section.components.html'
+  templateUrl: './accordion-section.components.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AccordionSectionComponent {
   name = 'Accordion';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
-  titleDoc: string = titleDoc;
-  demos: any = DEMOS;
+  componentContent: ContentSection[] = demoComponentContent;
 }

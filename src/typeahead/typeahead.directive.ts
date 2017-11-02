@@ -1,5 +1,6 @@
 /* tslint:disable:max-file-line-count */
 import {
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   EventEmitter,
@@ -138,7 +139,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               private element: ElementRef,
               viewContainerRef: ViewContainerRef,
               private renderer: Renderer2,
-              cis: ComponentLoaderFactory) {
+              cis: ComponentLoaderFactory,
+              private changeDetection: ChangeDetectorRef) {
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
@@ -268,6 +270,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     const valueStr: string = match.value;
     this.ngControl.viewToModelUpdate(valueStr);
     (this.ngControl.control).setValue(valueStr);
+    this.changeDetection.markForCheck();
     this.hide();
   }
 
