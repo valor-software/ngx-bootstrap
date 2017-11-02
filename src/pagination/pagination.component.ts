@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
   Renderer2,
-  forwardRef
+  forwardRef, ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -102,6 +102,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   set page(value: number) {
     const _previous = this._page;
     this._page = value > this.totalPages ? this.totalPages : value || 1;
+    this.changeDetection.markForCheck();
 
     if (_previous === this._page || typeof _previous === 'undefined') {
       return;
@@ -119,8 +120,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
-  renderer: Renderer2;
-  elementRef: ElementRef;
+
   classMap: string;
   pages: any[];
 
@@ -131,9 +131,10 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _page = 1;
 
   constructor(
-    renderer: Renderer2,
-    elementRef: ElementRef,
-    paginationConfig: PaginationConfig
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    paginationConfig: PaginationConfig,
+    private changeDetection: ChangeDetectorRef
   ) {
     this.renderer = renderer;
     this.elementRef = elementRef;
