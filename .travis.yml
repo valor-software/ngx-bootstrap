@@ -48,6 +48,7 @@ jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
+    - env: SAUCE=true
     - stage: sauce-tests
   include:
 # precache npm and apt dependencies
@@ -85,6 +86,7 @@ jobs:
     - <<: *build
       env: NGV=next
     - stage: sauce-tests
+      env: SAUCE=true
       before_script:
         - mkdir -p $LOGS_DIR
         - ./scripts/sauce/sauce_connect_setup.sh
