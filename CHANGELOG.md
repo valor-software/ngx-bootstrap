@@ -1,3 +1,30 @@
+<a name="2.0.0-beta.8"></a>
+# [2.0.0-beta.8](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2017-11-03)
+
+
+### Bug Fixes
+
+* **datepicker:** correctly set initial input value ([#2962](https://github.com/valor-software/ngx-bootstrap/issues/2962)) ([5662e20](https://github.com/valor-software/ngx-bootstrap/commit/5662e20)), closes [#2929](https://github.com/valor-software/ngx-bootstrap/issues/2929) [#2930](https://github.com/valor-software/ngx-bootstrap/issues/2930)
+* **datepicker:** reactive forms in onpush components ([#2947](https://github.com/valor-software/ngx-bootstrap/issues/2947)) ([69bd6fa](https://github.com/valor-software/ngx-bootstrap/commit/69bd6fa))
+* **pagination:** and pager to mark for check when page is changed ([#2942](https://github.com/valor-software/ngx-bootstrap/issues/2942)) ([e225da7](https://github.com/valor-software/ngx-bootstrap/commit/e225da7))
+* **rating:** fixed rating in onpush components ([#2943](https://github.com/valor-software/ngx-bootstrap/issues/2943)) ([bb0af30](https://github.com/valor-software/ngx-bootstrap/commit/bb0af30))
+* **timepicker:** correctly set initial time manually ([#2945](https://github.com/valor-software/ngx-bootstrap/issues/2945)) ([0071733](https://github.com/valor-software/ngx-bootstrap/commit/0071733))
+* **typeahead:** inside of onpush components ([#2946](https://github.com/valor-software/ngx-bootstrap/issues/2946)) ([44763a9](https://github.com/valor-software/ngx-bootstrap/commit/44763a9))
+
+
+### Features
+
+* **accordion:** add output for isOpen state changes ([#2619](https://github.com/valor-software/ngx-bootstrap/issues/2619)) ([663f078](https://github.com/valor-software/ngx-bootstrap/commit/663f078))
+* **alert:** added isOpen input and marked as OnPush ([#2940](https://github.com/valor-software/ngx-bootstrap/issues/2940)) ([af7597b](https://github.com/valor-software/ngx-bootstrap/commit/af7597b))
+* **datepicker:** respect first day of week in current locale ([#2970](https://github.com/valor-software/ngx-bootstrap/issues/2970)) ([1b6ed56](https://github.com/valor-software/ngx-bootstrap/commit/1b6ed56))
+* **demo:** add universal support, add dockerfile ([#2925](https://github.com/valor-software/ngx-bootstrap/issues/2925)) ([b28838a](https://github.com/valor-software/ngx-bootstrap/commit/b28838a))
+* **docs:** new aside menu ([#2851](https://github.com/valor-software/ngx-bootstrap/issues/2851)) ([4e3e456](https://github.com/valor-software/ngx-bootstrap/commit/4e3e456))
+* **dropdown:** add option to let event propagate on toggle ([82e7832](https://github.com/valor-software/ngx-bootstrap/commit/82e7832))
+* **dropdown:** drop prevent event propogation from dropdown toggle ([5cbe131](https://github.com/valor-software/ngx-bootstrap/commit/5cbe131))
+* **package:** removed ng2 bs module ([7c086a4](https://github.com/valor-software/ngx-bootstrap/commit/7c086a4))
+
+
+
 <a name="2.0.0-beta.7"></a>
 # [2.0.0-beta.7](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2017-10-21)
 
