@@ -67,10 +67,10 @@
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "dependencies": {},
   "peerDependencies": {
-    "@angular/common": ">=4.3.0",
-    "@angular/compiler": ">=4.3.0",
-    "@angular/core": ">=4.3.0",
-    "@angular/forms": ">=4.3.0",
+    "@angular/common": ">=4.3.0 || >5.0.0",
+    "@angular/compiler": ">=4.3.0 || >5.0.0",
+    "@angular/core": ">=4.3.0 || >5.0.0",
+    "@angular/forms": ">=4.3.0 || >5.0.0",
     "typescript": ">=2.3.0",
     "rxjs": ">=5.4.3"
   },
