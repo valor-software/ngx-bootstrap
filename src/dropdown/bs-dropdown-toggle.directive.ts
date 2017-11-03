@@ -18,11 +18,6 @@ import { BsDropdownState } from './bs-dropdown.state';
   }
 })
 export class BsDropdownToggleDirective implements OnDestroy {
-  /**
-   * Set it to false to let click event propagate.
-   */
-  @Input() suppressClick: boolean = true;
-
   @HostBinding('attr.disabled') isDisabled: boolean = null;
 
   // @HostBinding('class.active')
@@ -45,12 +40,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
     );
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
-    if (this.suppressClick) {
-      event.stopPropagation();
-    }
-
+  @HostListener('click', [])
+  onClick(): void {
     if (this.isDisabled) {
       return;
     }
