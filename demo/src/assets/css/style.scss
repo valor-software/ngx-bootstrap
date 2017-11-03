@@ -111,6 +111,8 @@ a:hover {
 .main {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 /* entry */
 .entry {
@@ -452,6 +454,8 @@ a:hover {
 
 .nav-item {
   &.customClass {
+    float: right;
+
     &:first-child {
       margin-left: auto;
     }
