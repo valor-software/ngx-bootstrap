@@ -7,6 +7,7 @@ import { DemoAlertTimeoutComponent } from './dismiss-on-timeout/dismiss-on-timeo
 import { DemoAlertStylingGlobalComponent } from './styling-global/styling-global';
 import { DemoAlertStylingLocalComponent } from './styling-local/styling-local';
 import { DemoAlertConfigComponent } from './config/config';
+import { DemoAlertDynamicContentComponent } from './dynamic-content/dynamic-content';
 
 export const DEMO_COMPONENTS = [
   DemoAlertBasicComponent,
@@ -14,6 +15,7 @@ export const DEMO_COMPONENTS = [
   DemoAlertContentComponent,
   DemoAlertDismissComponent,
   DemoAlertDynamicHtmlComponent,
+  DemoAlertDynamicContentComponent,
   DemoAlertTimeoutComponent,
   DemoAlertStylingGlobalComponent,
   DemoAlertStylingLocalComponent,

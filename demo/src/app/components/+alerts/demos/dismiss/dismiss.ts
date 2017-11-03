@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './dismiss.html'
 })
 export class DemoAlertDismissComponent {
+  dismissible = true;
   alerts: any = [
     {
       type: 'success',
