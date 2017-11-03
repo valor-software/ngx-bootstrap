@@ -50,7 +50,7 @@ describe('Component: Rating. Init:', () => {
   it('checking of working with changed values', () => {
     context.max = 3;
     context.titles = ['one', 'two', 'new title'];
-
+    context.changeDetection.markForCheck();
     context.ngOnInit();
     fixture.detectChanges();
 

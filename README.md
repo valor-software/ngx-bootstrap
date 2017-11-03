@@ -91,6 +91,9 @@ First time
  - `npm run build.watch` in first terminal
  - `ng serve` in second
 
+  If you want to run the demo with Angular Universal:
+  - `npm run demo.serve-universal`
+
 
 # Usage & Demo
 

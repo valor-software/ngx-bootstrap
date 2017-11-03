@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
-npm i @angular/common@latest \
-    @angular/compiler@latest \
-    @angular/compiler-cli@latest \
-    @angular/core@latest \
-    @angular/forms@latest \
-    @angular/http@latest \
-    @angular/language-service@latest \
-    @angular/platform-browser@latest \
-    @angular/platform-browser-dynamic@latest \
-    @angular/router@latest \
-    @angular/service-worker@latest \
-    @angular/tsc-wrapped@latest \
+npm uninstall @angular/tsc-wrapped
+npm i @angular/animations@5 \
+    @angular/common@5 \
+    @angular/compiler@5 \
+    @angular/compiler-cli@5 \
+    @angular/core@5 \
+    @angular/forms@5 \
+    @angular/http@5 \
+    @angular/language-service@5 \
+    @angular/platform-browser@5 \
+    @angular/platform-server@5 \
+    @angular/platform-browser-dynamic@5 \
+    @angular/router@5 \
+    @angular/service-worker@5 \
+    rxjs@^5.5

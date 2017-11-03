@@ -17,6 +17,7 @@ import { GettingStartedComponent } from './common/getting-started/getting-starte
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
 import { DocsModule } from './docs';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,12 @@ import { DocsModule } from './docs';
   ],
   imports: [
     DocsModule,
-    BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes, {useHash: environment.useHash}),
     Ng2PageScrollModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    BrowserModule.withServerTransition({appId: 'ngx-bootstrap'})
   ],
   providers: [
     ThemeStorage,

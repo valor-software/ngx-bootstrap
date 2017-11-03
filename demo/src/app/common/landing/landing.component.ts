@@ -27,12 +27,14 @@ export class LandingComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): any {
-    this.http
-      .get('assets/json/current-version.json')
-      .map(res => res.json())
-      .subscribe((data: any) => {
-        this.currentVersion = data.version;
-      });
+    if (typeof window !== 'undefined') {
+      this.http
+        .get('assets/json/current-version.json')
+        .map(res => res.json())
+        .subscribe((data: any) => {
+          this.currentVersion = data.version;
+        });
+    }
   }
 
   installTheme(theme: 'bs3' | 'bs4') {
