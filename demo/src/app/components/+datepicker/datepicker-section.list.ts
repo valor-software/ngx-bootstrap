@@ -76,8 +76,8 @@ export const demoComponentContent: ContentSection[] = [
           <p>To use a different locale, you have to import it from <code>ngx-bootstrap/bs-moment</code> and define it
           in your <code>@NgModule</code> using function <code>defineLocale</code></p>
           <p>Example: </p>
-          <code>import {{ '{' }} defineLocale {{ '}' }} from 'ngx-bootstrap/bs-moment';</code><br>
-          <code>import {{ '{' }} de {{ '}' }} from 'ngx-bootstrap/locale';</code><br>
+          <code>import { defineLocale } from 'ngx-bootstrap/bs-moment';</code><br>
+          <code>import { de } from 'ngx-bootstrap/locale';</code><br>
           <code>defineLocale('de', de));</code>
           <br>
           <br>
