@@ -23,6 +23,7 @@ import {
 } from '../models/index';
 import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
+import { getLocale } from '../../bs-moment/locale/locales.service';
 
 export function bsDatepickerReducer(
   state = initialDatepickerState,
@@ -150,6 +151,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   let viewDate = state.view.date;
 
   if (state.view.mode === 'day') {
+    state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
     const monthsModel = new Array(displayMonths);
     for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
       // todo: for unlinked calendars it will be harder
