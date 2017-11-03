@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-npm i @angular/cli@4.3.3 \
+npm i --no-save @angular/cli@4.3.3 \
     @angular/common@4.3.3 \
     @angular/compiler@4.3.3 \
     @angular/compiler-cli@4.3.3 \

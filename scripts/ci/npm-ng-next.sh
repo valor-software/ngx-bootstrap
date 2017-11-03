@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-npm i @angular/common@next \
+npm i --no-save @angular/common@next \
     @angular/compiler@next \
     @angular/compiler-cli@next \
     @angular/core@next \

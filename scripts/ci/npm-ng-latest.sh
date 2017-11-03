@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-npm i @angular/animations@latest \
+npm i --no-save @angular/animations@latest \
     @angular/common@latest \
     @angular/compiler@latest \
     @angular/compiler-cli@latest \
@@ -12,4 +12,6 @@ npm i @angular/animations@latest \
     @angular/platform-server@latest \
     @angular/platform-browser-dynamic@latest \
     @angular/router@latest \
-    @angular/service-worker@latest
+    @angular/service-worker@latest \
+    rxjs@^5.5 \
+    typescript@^2.6
