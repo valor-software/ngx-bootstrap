@@ -3,6 +3,7 @@ import { DemoAlertLinkComponent } from './demos/link/link';
 import { DemoAlertContentComponent } from './demos/content/content';
 import { DemoAlertDismissComponent } from './demos/dismiss/dismiss';
 import { DemoAlertDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
+import { DemoAlertDynamicContentComponent } from './demos/dynamic-content/dynamic-content';
 import { DemoAlertTimeoutComponent } from './demos/dismiss-on-timeout/dismiss-on-timeout';
 import { DemoAlertStylingGlobalComponent } from './demos/styling-global/styling-global';
 import { DemoAlertStylingLocalComponent } from './demos/styling-local/styling-local';
@@ -79,6 +80,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
         outlet: DemoAlertDynamicHtmlComponent
+      },
+      {
+        title: 'Dynamic content',
+        anchor: 'dynamic-content',
+        description: `<p>Alerts fully support bindings.</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic-content/dynamic-content.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic-content/dynamic-content.html'),
+        outlet: DemoAlertDynamicContentComponent
       },
       {
         title: 'Dismiss on timeout',

@@ -1,4 +1,4 @@
-<ng-template [ngIf]="!isClosed">
+<ng-template [ngIf]="isOpen">
   <div [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
     <ng-template [ngIf]="dismissible">
       <button type="button" class="close" aria-label="Close" (click)="close()">

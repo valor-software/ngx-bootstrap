@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'demo-pagination-pager',
-  templateUrl: './pager.html'
+  templateUrl: './pager.html',
+  styles: ['.pager li.btn:active { box-shadow: none; }'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DemoPaginationPagerComponent {
   totalItems: number = 64;

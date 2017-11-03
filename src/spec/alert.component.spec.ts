@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertComponent } from '../alert/alert.component';
@@ -7,8 +7,8 @@ import { AlertModule } from '../alert/alert.module';
 
 @Component({selector: 'alert-test', template: ''})
 class TestAlertComponent extends AlertComponent {
-  constructor(config: AlertConfig) {
-    super(config);
+  constructor(config: AlertConfig, changeDetection: ChangeDetectorRef) {
+    super(config, changeDetection);
   }
 }
 
@@ -51,7 +51,7 @@ describe('Component: Alert', () => {
   it('should be dismissed by timeout', (done: () => void) => {
     context.dismissOnTimeout = 1000;
     context.onClosed.subscribe(() => {
-      expect(context.isClosed).toBeTruthy();
+      expect(context.isOpen).toBeFalsy();
       done();
     });
     context.ngOnInit();
@@ -59,8 +59,8 @@ describe('Component: Alert', () => {
 
   it('should be closed by public method onClose', () => {
     context.ngOnInit();
-    expect(context.isClosed).toBeFalsy();
+    expect(context.isOpen).toBeTruthy();
     context.close();
-    expect(context.isClosed).toBeTruthy();
+    expect(context.isOpen).toBeFalsy();
   });
 });
