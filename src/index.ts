@@ -17,6 +17,9 @@ import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
+export { listLocales } from './bs-moment/locale/locales.service';
+export { setTheme } from './utils/theme-provider';
+
 
 export {
   AccordionComponent,
@@ -50,7 +53,8 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  BsDatepickerModule
+  BsDatepickerModule,
+  BsDatepickerConfig
 } from './datepicker';
 
 export {
