@@ -6,11 +6,9 @@ import {
 import { formatDate } from '../../bs-moment/format';
 import { getLocale } from '../../bs-moment/locale/locales.service';
 
-export function formatDaysCalendar(
-  daysCalendar: DaysCalendarModel,
-  formatOptions: DatepickerFormatOptions,
-  monthIndex: number
-): DaysCalendarViewModel {
+export function formatDaysCalendar(daysCalendar: DaysCalendarModel,
+                                   formatOptions: DatepickerFormatOptions,
+                                   monthIndex: number): DaysCalendarViewModel {
   return {
     month: daysCalendar.month,
     monthTitle: formatDate(
@@ -28,7 +26,7 @@ export function formatDaysCalendar(
       formatOptions.weekNumbers,
       formatOptions.locale
     ),
-    weekdays: getLocale(formatOptions.locale).weekdaysShort() as string[],
+    weekdays: getShiftedWeekdays(formatOptions.locale),
     weeks: daysCalendar.daysMatrix.map((week: Date[], weekIndex: number) => ({
       days: week.map((date: Date, dayIndex: number) => ({
         date,
@@ -41,12 +39,18 @@ export function formatDaysCalendar(
   };
 }
 
-export function getWeekNumbers(
-  daysMatrix: Date[][],
-  format: string,
-  locale: string
-): string[] {
+export function getWeekNumbers(daysMatrix: Date[][],
+                               format: string,
+                               locale: string): string[] {
   return daysMatrix.map(
     (days: Date[]) => (days[0] ? formatDate(days[0], format, locale) : '')
   );
+}
+
+export function getShiftedWeekdays(locale: string): string[] {
+  const _locale = getLocale(locale);
+  const weekdays = _locale.weekdaysShort() as string[];
+  const firstDayOfWeek = _locale.firstDayOfWeek();
+
+  return [...weekdays.slice(firstDayOfWeek), ...weekdays.slice(0, firstDayOfWeek)];
 }
