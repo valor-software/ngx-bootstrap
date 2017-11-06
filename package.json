@@ -89,7 +89,7 @@
     "@angular/platform-server": "4.3.6",
     "@angular/router": "4.3.6",
     "@angular/service-worker": "1.0.0-beta.16",
-    "@nguniversal/express-engine": "1.0.0-beta.3",
+    "@nguniversal/express-engine": "5.0.0-beta.5",
     "@nguniversal/module-map-ngfactory-loader": "1.0.0-beta.3",
     "@types/jasmine": "2.5.54",
     "@types/marked": "0.3.0",
