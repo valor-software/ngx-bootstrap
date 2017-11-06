@@ -78,7 +78,7 @@ export const demoComponentContent: ContentSection[] = [
           <p>Example: </p>
           <code>import { defineLocale } from 'ngx-bootstrap/bs-moment';</code><br>
           <code>import { de } from 'ngx-bootstrap/locale';</code><br>
-          <code>defineLocale('de', de));</code>
+          <code>defineLocale('de', de);</code>
           <br>
           <br>
         `,
