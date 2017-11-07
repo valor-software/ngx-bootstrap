@@ -1,4 +1,4 @@
-<a href="http://valor-software.com/ngx-bootstrap/#/">
+<a href="http://valor-software.com/ngx-bootstrap-test/#/">
     <h1 align="center">ngx-bootstrap</h1>
 </a>
 
