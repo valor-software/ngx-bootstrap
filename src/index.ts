@@ -11,7 +11,7 @@ import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
-import { SortableModule } from './sortable';
+import { SortableModule } from './sortable/index';
 import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
@@ -26,24 +26,24 @@ export {
   AccordionConfig,
   AccordionModule,
   AccordionPanelComponent
-} from './accordion';
+} from './accordion/index';
 
-export { AlertComponent, AlertConfig, AlertModule } from './alert';
+export { AlertComponent, AlertConfig, AlertModule } from './alert/index';
 
 export {
   ButtonCheckboxDirective,
   ButtonRadioDirective,
   ButtonsModule
-} from './buttons';
+} from './buttons/index';
 
 export {
   CarouselComponent,
   CarouselConfig,
   CarouselModule,
   SlideComponent
-} from './carousel';
+} from './carousel/index';
 
-export { CollapseDirective, CollapseModule } from './collapse';
+export { CollapseDirective, CollapseModule } from './collapse/index';
 
 export {
   DateFormatter,
@@ -55,7 +55,7 @@ export {
   YearPickerComponent,
   BsDatepickerModule,
   BsDatepickerConfig
-} from './datepicker';
+} from './datepicker/index';
 
 export {
   ModalDirective,
@@ -65,7 +65,7 @@ export {
   ModalModule,
   BsModalRef,
   BsModalService
-} from './modal';
+} from './modal/index';
 
 export {
   BsDropdownModule,
@@ -75,14 +75,14 @@ export {
   BsDropdownDirective,
   BsDropdownMenuDirective,
   BsDropdownToggleDirective
-} from './dropdown';
+} from './dropdown/index';
 
 export {
   PagerComponent,
   PaginationComponent,
   PaginationConfig,
   PaginationModule
-} from './pagination';
+} from './pagination/index';
 
 export {
   BarComponent,
@@ -90,9 +90,9 @@ export {
   ProgressbarConfig,
   ProgressbarModule,
   ProgressDirective
-} from './progressbar';
+} from './progressbar/index';
 
-export { RatingComponent, RatingModule } from './rating';
+export { RatingComponent, RatingModule } from './rating/index';
 
 export {
   DraggableItem,
@@ -100,7 +100,7 @@ export {
   SortableItem,
   SortableComponent,
   SortableModule
-} from './sortable';
+} from './sortable/index';
 
 export {
   NgTranscludeDirective,
@@ -109,20 +109,20 @@ export {
   TabsetComponent,
   TabsetConfig,
   TabsModule
-} from './tabs';
+} from './tabs/index';
 
 export {
   TimepickerComponent,
   TimepickerConfig,
   TimepickerModule
-} from './timepicker';
+} from './timepicker/index';
 
 export {
   TooltipConfig,
   TooltipContainerComponent,
   TooltipDirective,
   TooltipModule
-} from './tooltip';
+} from './tooltip/index';
 
 export {
   TypeaheadOptions,
@@ -130,31 +130,31 @@ export {
   TypeaheadDirective,
   TypeaheadMatch,
   TypeaheadModule
-} from './typeahead';
+} from './typeahead/index';
 
 export {
   PopoverConfig,
   PopoverContainerComponent,
   PopoverDirective,
   PopoverModule
-} from './popover';
+} from './popover/index';
 
-export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils';
+export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils/index';
 
 export {
   ComponentLoader,
   ComponentLoaderFactory,
   ContentRef
-} from './component-loader';
+} from './component-loader/index';
 
 export {
   Positioning,
   PositioningOptions,
   PositioningService,
   positionElements
-} from './positioning';
+} from './positioning/index';
 
-export { defineLocale, getSetGlobalLocale } from './bs-moment';
+export { defineLocale, getSetGlobalLocale } from './bs-moment/index';
 
 export {
   ar,
