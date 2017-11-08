@@ -7,7 +7,7 @@ language: node_js
 node_js:
   - "8"
 
-## Cache Gcloud SDK between commands
+# Cache Gcloud SDK between commands
 cache:
   directories:
     - "$HOME/google-cloud-sdk/"
