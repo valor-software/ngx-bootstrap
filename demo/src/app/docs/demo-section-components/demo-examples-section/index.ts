@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ExamplesComponent } from './examples.component';
 import { NgApiDocModule } from '../../api-docs/index';
+import { RouterModule } from '@angular/router';
 
 export { ExamplesComponent } from './examples.component';
 
@@ -16,10 +17,12 @@ export { ExamplesComponent } from './examples.component';
   ],
   imports: [
     CommonModule,
-    NgApiDocModule
+    NgApiDocModule,
+    RouterModule
   ],
   exports: [
-    ExamplesComponent
+    ExamplesComponent,
+    RouterModule
   ],
   providers: []
 })

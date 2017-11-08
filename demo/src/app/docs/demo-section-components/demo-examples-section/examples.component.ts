@@ -12,6 +12,6 @@ export class ExamplesComponent {
   examples: ComponentExample[];
 
   constructor(public section: ContentSection) {
-    this.examples = section.content  as ComponentExample[];
+    this.examples = section.content as ComponentExample[];
   }
 }
