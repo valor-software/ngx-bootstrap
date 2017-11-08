@@ -1,5 +1,6 @@
 # Use Dockerized infrastructure
 sudo: false
+filter_secrets: false
 
 # Use node_js environnement
 language: node_js
