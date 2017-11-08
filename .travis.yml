@@ -25,8 +25,8 @@ env:
     - CLUSTER_NAME_STG=ngx-bootstrap2
     - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
     - DOCKER_IMAGE_NAME=ngx-bootstrap
-    - KUBE_DEPLOYMENT_NAME=default
-    - KUBE_DEPLOYMENT_CONTAINER_NAME=default
+    - KUBE_DEPLOYMENT_NAME=ngx-bootstrap2
+    - KUBE_DEPLOYMENT_CONTAINER_NAME=ngx-bootstrap2
     - NODE_ENV=CI
 
 #install:
