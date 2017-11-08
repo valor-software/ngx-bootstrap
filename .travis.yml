@@ -13,6 +13,7 @@ cache:
 
 # Install services
 services:
+  - python
   - docker
 
 # Set env vars
