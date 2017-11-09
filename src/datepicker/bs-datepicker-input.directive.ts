@@ -6,6 +6,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDatepickerComponent } from './bs-datepicker.component';
 import { formatDate } from '../bs-moment/format';
 import { getLocale } from '../bs-moment/locale/locales.service';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -33,17 +34,22 @@ export class BsDatepickerInputDirective
 
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef) {
-    this._picker.bsValueChange.subscribe((v: Date) => this._setInputValue(v));
+    this._picker.bsValueChange.subscribe((value: Date) => {
+      this._setInputValue(value, this._picker._config);
+    });
+    this._picker.bsConfigChange.subscribe((config: BsDatepickerConfig) => {
+      this._setInputValue(this._picker._bsValue, config);
+    });
   }
 
-  _setInputValue(v: Date): void {
+  _setInputValue(value: Date, config: BsDatepickerConfig): void {
     const initialDate = formatDate(
-      v,
-      this._picker._config.dateInputFormat,
-      this._picker._config.locale
+      value,
+      config.dateInputFormat,
+      config.locale
     ) || '';
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
-    this._onChange(v);
+    this._onChange(value);
     this.changeDetection.markForCheck();
   }
 

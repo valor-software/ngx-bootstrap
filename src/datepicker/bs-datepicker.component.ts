@@ -92,6 +92,10 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
+  /**
+   * Emits when datepicker config has been changed
+   */
+  @Output() bsConfigChange: EventEmitter<BsDatepickerConfig> = new EventEmitter();
 
   protected _subs: Subscription[] = [];
 
@@ -123,20 +127,23 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (!this._datepickerRef || !this._datepickerRef.instance) {
-      return;
+    if (this._datepickerRef && this._datepickerRef.instance) {
+      if (changes.minDate) {
+        this._datepickerRef.instance.minDate = this.minDate;
+      }
+
+      if (changes.maxDate) {
+        this._datepickerRef.instance.maxDate = this.maxDate;
+      }
+
+      if (changes.isDisabled) {
+        this._datepickerRef.instance.isDisabled = this.isDisabled;
+      }
     }
 
-    if (changes.minDate) {
-      this._datepickerRef.instance.minDate = this.minDate;
-    }
-
-    if (changes.maxDate) {
-      this._datepickerRef.instance.maxDate = this.maxDate;
-    }
-
-    if (changes.isDisabled) {
-      this._datepickerRef.instance.isDisabled = this.isDisabled;
+    if (changes.bsConfig) {
+      this._config = Object.assign({}, this._config, this.bsConfig);
+      this.bsConfigChange.emit(this._config);
     }
   }
 
