@@ -17,6 +17,9 @@ import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
+export { listLocales } from './bs-moment/locale/locales.service';
+export { setTheme } from './utils/theme-provider';
+
 
 export {
   AccordionComponent,
@@ -50,7 +53,8 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  BsDatepickerModule
+  BsDatepickerModule,
+  BsDatepickerConfig
 } from './datepicker';
 
 export {
@@ -175,53 +179,3 @@ export {
   zhCn,
   tr
 } from './locale';
-
-const MODULES = [
-  AccordionModule,
-  AlertModule,
-  ButtonsModule,
-  CarouselModule,
-  CollapseModule,
-  DatepickerModule,
-  BsDropdownModule,
-  ModalModule,
-  PaginationModule,
-  ProgressbarModule,
-  PopoverModule,
-  RatingModule,
-  TabsModule,
-  TimepickerModule,
-  TooltipModule,
-  TypeaheadModule
-];
-
-@NgModule({
-  imports: [
-    AccordionModule.forRoot(),
-    AlertModule.forRoot(),
-    ButtonsModule.forRoot(),
-    CarouselModule.forRoot(),
-    CollapseModule.forRoot(),
-    DatepickerModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    ModalModule.forRoot(),
-    PaginationModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    PopoverModule.forRoot(),
-    RatingModule.forRoot(),
-    TabsModule.forRoot(),
-    TimepickerModule.forRoot(),
-    TooltipModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    SortableModule.forRoot()
-  ],
-  exports: MODULES
-})
-export class BsRootModule {}
-
-@NgModule({ exports: MODULES })
-export class Ng2BootstrapModule {
-  static forRoot(): ModuleWithProviders {
-    return { ngModule: BsRootModule };
-  }
-}

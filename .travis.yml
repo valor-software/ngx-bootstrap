@@ -95,12 +95,20 @@ jobs:
         - npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
 #   deploy to ngx-bootstrap.surge.sh
-    - stage: deploy-surge
+    - &surge
+      stage: deploy-surge
       script: npm run demo.build
       deploy:
         provider: surge
         project: ./gh-pages/
         domain: ngx-bootstrap.surge.sh
+        on: development
+    - <<: *surge
+      env: NGV=latest
+      deploy:
+        provider: surge
+        project: ./gh-pages/
+        domain: ngx-bootstrap-latest.surge.sh
         on: development
 
 cache:

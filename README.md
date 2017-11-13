@@ -61,13 +61,20 @@ Or Bootstrap 4
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 ```
 To enable bootstrap 4 theme templates in ngx-bootstrap, please read
-[here](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md) .
+[this](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md) .
 
-```
-<!-- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-```
+# Usage & Demo
 
+Main source of API documentation and usage scenarios available here:
+[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/)
+
+Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular v4</a> and <a
+  href="https://ngx-bootstrap-latest.surge.sh/">angular v5</a>
+
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a>
+
+# API
+Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 ## How to use it with:
  - `angular-cli` please refer to [getting-started-with-ng-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/ng-cli.md)
@@ -93,15 +100,6 @@ First time
 
   If you want to run the demo with Angular Universal:
   - `npm run demo.serve-universal`
-
-
-# Usage & Demo
-
-Main source of API documentation and usage scenarios available here:
-[http://valor-software.github.io/ngx-bootstrap/](http://valor-software.github.io/ngx-bootstrap/)
-
-# API
-Check demo page for API [reference](http://valor-software.github.io/ngx-bootstrap/)
 
 # Troubleshooting
 

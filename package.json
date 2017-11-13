@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "2.0.0-beta.7",
+  "version": "2.0.0-beta.8",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -67,10 +67,10 @@
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "dependencies": {},
   "peerDependencies": {
-    "@angular/common": ">=4.3.0",
-    "@angular/compiler": ">=4.3.0",
-    "@angular/core": ">=4.3.0",
-    "@angular/forms": ">=4.3.0",
+    "@angular/common": ">=4.3.0 || >5.0.0",
+    "@angular/compiler": ">=4.3.0 || >5.0.0",
+    "@angular/core": ">=4.3.0 || >5.0.0",
+    "@angular/forms": ">=4.3.0 || >5.0.0",
     "typescript": ">=2.3.0",
     "rxjs": ">=5.4.3"
   },
@@ -89,7 +89,6 @@
     "@angular/platform-server": "4.3.6",
     "@angular/router": "4.3.6",
     "@angular/service-worker": "1.0.0-beta.16",
-    "@angular/tsc-wrapped": "4.3.6",
     "@nguniversal/express-engine": "1.0.0-beta.3",
     "@nguniversal/module-map-ngfactory-loader": "1.0.0-beta.3",
     "@types/jasmine": "2.5.54",

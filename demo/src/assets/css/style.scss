@@ -36,8 +36,6 @@ a:hover {
   background-color: #1976d2;
   display: flex;
   flex-flow: row nowrap;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05),
-              inset 0 -1px 0 rgba(0,0,0,.1);
 
   .logo {
     color: #fff;
@@ -308,6 +306,10 @@ a:hover {
     .section {
       margin-bottom: 60px;
 
+      .tooltip {
+        z-index: 999;
+      }
+
       &.bd-example {
         margin-bottom: 10px;
       }
@@ -452,6 +454,8 @@ a:hover {
 
 .nav-item {
   &.customClass {
+    float: right;
+
     &:first-child {
       margin-left: auto;
     }

@@ -84,6 +84,12 @@ export const ngdoc: any = {
         "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
       },
       {
+        "name": "isOpen",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Is alert visible </p>\n"
+      },
+      {
         "name": "type",
         "defaultValue": "warning",
         "type": "string",
