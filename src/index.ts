@@ -154,7 +154,7 @@ export {
   positionElements
 } from './positioning';
 
-export { defineLocale, getSetGlobalLocale } from './bs-moment';
+export { defineLocale, getSetGlobalLocale, LocaleData } from './bs-moment';
 
 export {
   ar,
