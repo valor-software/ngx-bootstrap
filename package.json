@@ -91,7 +91,7 @@
     "@angular/service-worker": "1.0.0-beta.16",
     "@nguniversal/express-engine": "1.0.0-beta.3",
     "@nguniversal/module-map-ngfactory-loader": "1.0.0-beta.3",
-    "@types/jasmine": "2.5.54",
+    "@types/jasmine": "2.8.0",
     "@types/marked": "0.3.0",
     "@types/node": "8.0.28",
     "@types/webpack": "3.0.10",
