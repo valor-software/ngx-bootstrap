@@ -119,7 +119,7 @@ export class BsDaterangepickerComponent
       triggers: this.triggers,
       show: () => this.show()
     });
-    this.setConfig()
+    this.setConfig();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -149,7 +149,7 @@ export class BsDaterangepickerComponent
       return;
     }
 
-    this.setConfig()
+    this.setConfig();
 
     this._datepickerRef = this._datepicker
       .provide({provide: BsDatepickerConfig, useValue: this._config})
