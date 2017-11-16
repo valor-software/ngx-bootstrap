@@ -46,6 +46,7 @@ export const ptBr: LocaleData = {
   },  
   preparse(str: string): string {
     var split = str.split('/');
+    
     return split[1] + "/" +split[0]+"/"+split[2];
   }
 };
