@@ -318,8 +318,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private checkDropup(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       // a little hack to not break support of bootstrap 4 beta
-      const top = getComputedStyle(this._inlinedMenu.rootNodes[0]).top;
-      const topAuto = top === 'auto' || top === '100%';
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'top',
@@ -328,7 +326,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'transform',
-        this.dropup && !topAuto ? 'translateY(-101%)' : 'translateY(0)'
+        this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
     }
   }
