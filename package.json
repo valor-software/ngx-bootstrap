@@ -77,7 +77,7 @@
   "devDependencies": {
     "@angular/animations": "4.3.6",
     "@angular/cli": "1.5.0",
-    "@angular/common": "4.3.6",
+    "@angular/common": "5.0.2",
     "@angular/compiler": "4.3.6",
     "@angular/compiler-cli": "4.3.6",
     "@angular/core": "4.3.6",
