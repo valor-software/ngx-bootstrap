@@ -112,6 +112,8 @@ So you are in trouble, where to get help:
 
 Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
 
+Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
+
 ## If you need more modules check [here](https://github.com/valor-software/ng2-plans)
 
 Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
