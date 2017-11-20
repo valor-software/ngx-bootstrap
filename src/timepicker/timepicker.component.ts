@@ -67,9 +67,9 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class TimepickerComponent
   implements ControlValueAccessor,
-    TimepickerComponentState,
-    TimepickerControls,
-    OnChanges {
+  TimepickerComponentState,
+  TimepickerControls,
+  OnChanges {
   /** hours change step */
   @Input() hourStep: number;
   /** hours change step */
@@ -85,6 +85,7 @@ export class TimepickerComponent
   /** if true spinner arrows above and below the inputs will be shown */
   @Input() showSpinners: boolean;
   @Input() showMeridian: boolean;
+  @Input() showReset: boolean;
   @Input() showSeconds: boolean;
 
   /** meridian labels based on locale */
@@ -240,6 +241,13 @@ export class TimepickerComponent
     if (isValidDate(obj)) {
       this._store.dispatch(this._timepickerActions.writeValue(parseTime(obj)));
     }
+    else {
+      this.reset();
+    }
+  }
+
+  public reset(): void {
+    this._store.dispatch(this._timepickerActions.writeValue(null));
   }
 
   /**
