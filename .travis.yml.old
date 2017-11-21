@@ -1,6 +1,17 @@
 sudo: false
+filter_secrets: false
 language: node_js
 node_js: "8"
+
+# Cache Gcloud SDK between commands
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
+
+# Install services
+services:
+  - python
+  - docker
 
 notifications:
   email: false
@@ -15,6 +26,14 @@ env:
     - SAUCE_ACCESS_KEY_PR=e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
+    - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
+    - PROJECT_NAME_STG=ngx-bootstrap2
+    - CLUSTER_NAME_STG=ngx-bootstrap2
+    - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
+    - DOCKER_IMAGE_NAME=ngx-bootstrap
+    - KUBE_DEPLOYMENT_NAME=ngx-bootstrap2
+    - KUBE_DEPLOYMENT_CONTAINER_NAME=ngx-bootstrap2
+    - NODE_ENV=CI
 
 stages:
   - name: precache
@@ -116,3 +135,18 @@ cache:
   npm: true
   directories:
     - node_modules
+
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud --quiet version
+  - gcloud --quiet components update
+  - gcloud --quiet components update kubectl
+
+deploy to dev:
+  - provider: script
+    script: ./deploy.sh
+    skip_cleanup: true
+    on:
+      branch: development
+

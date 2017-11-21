@@ -20,8 +20,9 @@ services:
 # Set env vars
 env:
   global:
+    - COMMIT_ID=$TRAVIS_COMMIT
     - GOOGLE_APPLICATION_CREDENTIALS=~/gcloud-service-key.json
-    - PROJECT_NAME_STG=ngx-bootstrap2 
+    - PROJECT_NAME_STG=ngx-bootstrap2
     - CLUSTER_NAME_STG=ngx-bootstrap2
     - CLOUDSDK_COMPUTE_ZONE=europe-west1-b
     - DOCKER_IMAGE_NAME=ngx-bootstrap
@@ -48,4 +49,4 @@ deploy:
     script: ./deploy.sh
     skip_cleanup: true
     on:
-      branch: development
+      branch: $COMMIT_ID
