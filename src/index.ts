@@ -1,5 +1,4 @@
 /* tslint:disable: max-classes-per-file */
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -19,7 +18,6 @@ import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
 export { listLocales } from './bs-moment/locale/locales.service';
 export { setTheme } from './utils/theme-provider';
-
 
 export {
   AccordionComponent,
@@ -154,7 +152,7 @@ export {
   positionElements
 } from './positioning/index';
 
-export { defineLocale, getSetGlobalLocale } from './bs-moment/index';
+export { defineLocale, getSetGlobalLocale, LocaleData } from './bs-moment/index';
 
 export {
   ar,
@@ -165,7 +163,9 @@ export {
   esDo,
   esUs,
   fr,
+  he,
   hi,
+  hu,
   it,
   ja,
   ko,
