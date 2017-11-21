@@ -43,5 +43,10 @@ export const ptBr: LocaleData = {
   dayOfMonthOrdinalParse: /\d{1,2}º/,
   ordinal(num: number): string {
     return `${num}º`;
+  },  
+  preparse(str: string): string {
+    var split = str.split('/');
+    
+    return split[1] + "/" +split[0]+"/"+split[2];
   }
 };
