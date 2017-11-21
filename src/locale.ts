@@ -19,3 +19,4 @@ export { sv } from './bs-moment/i18n/sv';
 export { ru } from './bs-moment/i18n/ru';
 export { zhCn } from './bs-moment/i18n/zh-cn';
 export { tr } from './bs-moment/i18n/tr';
+export { he } from './bs-moment/i18n/he';
