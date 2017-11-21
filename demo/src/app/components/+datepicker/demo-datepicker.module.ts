@@ -10,14 +10,14 @@ import { DatepickerSectionComponent } from './datepicker-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-datepicker.routes';
 
-import { defineLocale } from 'ngx-bootstrap/bs-moment';
+import { defineLocale, LocaleData } from 'ngx-bootstrap/bs-moment';
 import {
-  ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, sv, ru, zhCn, tr, he
+  ar, cs, de, enGb, es, esDo, esUs, fr, hi, hu, it, ja, ko, nl, nlBe, pl, ptBr, sv, ru, zhCn, tr, he
 } from 'ngx-bootstrap/locale';
 
-const locales = [ar, cs, de, enGb, es, esDo, esUs, fr, hi, it, ja, ko, nl, nlBe, pl, ptBr, sv, ru, zhCn, tr, he];
+const locales = [ar, cs, de, enGb, es, esDo, esUs, fr, hi, hu, it, ja, ko, nl, nlBe, pl, ptBr, sv, ru, zhCn, tr, he];
 
-locales.forEach(locale => defineLocale(locale.abbr, locale));
+locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
 
 @NgModule({
   declarations: [
