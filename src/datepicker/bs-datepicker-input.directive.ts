@@ -39,8 +39,8 @@ export class BsDatepickerInputDirective
   _setInputValue(v: Date): void {
     const initialDate = formatDate(
       v,
-      this._picker._config.dateInputFormat,
-      this._picker._config.locale
+      (this._picker.bsConfig || this._picker._config).dateInputFormat,
+      (this._picker.bsConfig || this._picker._config).locale
     ) || '';
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
     this._onChange(v);
@@ -56,10 +56,10 @@ export class BsDatepickerInputDirective
     if (!value) {
       this._picker.bsValue = null;
     }
-    const _locale = getLocale(this._picker._config.locale);
+    const _locale = getLocale((this._picker.bsConfig || this._picker._config).locale);
     if (!_locale) {
       throw new Error(
-        `Locale "${this._picker._config
+        `Locale "${(this._picker.bsConfig || this._picker._config)
           .locale}" is not defined, please add it with "defineLocale(...)"`
       );
     }
