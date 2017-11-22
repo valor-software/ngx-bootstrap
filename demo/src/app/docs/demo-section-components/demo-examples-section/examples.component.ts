@@ -15,7 +15,7 @@ export class ExamplesComponent {
     this.examples = section.content  as ComponentExample[];
   }
 
-  @HostListener('click', ['$event'])
+  @HostListener('document:click', ['$event'])
   preventEmptyHrefNav(event: Event) {
     if (event && event.target && (event.target as Element).getAttribute('href') === '#') {
       event.preventDefault();
