@@ -171,6 +171,10 @@ export const ar: LocaleData = {
       .replace(/،/g, ',');
   },
   postformat(str: string): string {
+    if (!str) {
+      return str;
+    }
+
     return str
       .replace(/\d/g, function(match) {
         return symbolMap[match];
