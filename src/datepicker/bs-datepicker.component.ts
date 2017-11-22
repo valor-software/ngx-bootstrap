@@ -120,6 +120,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       triggers: this.triggers,
       show: () => this.show()
     });
+    this.setConfig();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -149,12 +150,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
-    this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: this._bsValue,
-      isDisabled: this.isDisabled,
-      minDate: this.minDate || this._config.minDate,
-      maxDate: this.maxDate || this._config.maxDate
-    });
+    this.setConfig();
 
     this._datepickerRef = this._datepicker
       .provide({provide: BsDatepickerConfig, useValue: this._config})
@@ -202,6 +198,18 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     this.show();
+  }
+
+  /**
+   * Set config for datepicker
+   */
+  setConfig(): void {
+    this._config = Object.assign({}, this._config, this.bsConfig, {
+      value: this._bsValue,
+      isDisabled: this.isDisabled,
+      minDate: this.minDate || this._config.minDate,
+      maxDate: this.maxDate || this._config.maxDate
+    });
   }
 
   ngOnDestroy(): any {
