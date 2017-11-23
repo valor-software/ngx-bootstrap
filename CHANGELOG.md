@@ -1,3 +1,26 @@
+<a name="2.0.0-beta.9"></a>
+# [2.0.0-beta.9](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2017-11-23)
+
+
+### Bug Fixes
+
+* **bs-moment:** fix postformat for empty values ([d3bb3fd](https://github.com/valor-software/ngx-bootstrap/commit/d3bb3fd))
+* **datepicker:** added export of he locale and fixed demo ([7616362](https://github.com/valor-software/ngx-bootstrap/commit/7616362))
+* **demo:** fix scrollTop ([#2886](https://github.com/valor-software/ngx-bootstrap/issues/2886)) ([2e99010](https://github.com/valor-software/ngx-bootstrap/commit/2e99010))
+* **demo:** fixed header overlapping for demo modals in directive examples ([#2974](https://github.com/valor-software/ngx-bootstrap/issues/2974)) ([9c648f6](https://github.com/valor-software/ngx-bootstrap/commit/9c648f6))
+* **docs:** fix stackblitz link ([#2980](https://github.com/valor-software/ngx-bootstrap/issues/2980)) ([d97211b](https://github.com/valor-software/ngx-bootstrap/commit/d97211b))
+* **dropdown:** bootstrap 4 dropup fix in IE11 ([#3057](https://github.com/valor-software/ngx-bootstrap/issues/3057)) ([632abe1](https://github.com/valor-software/ngx-bootstrap/commit/632abe1)), closes [#3054](https://github.com/valor-software/ngx-bootstrap/issues/3054)
+
+
+### Features
+
+* **datepicker:** add hungarian localization ([5370c6a](https://github.com/valor-software/ngx-bootstrap/commit/5370c6a))
+* **datepicker:** added Hebrew locale support for datepicker ([#2904](https://github.com/valor-software/ngx-bootstrap/issues/2904)) ([f2d5156](https://github.com/valor-software/ngx-bootstrap/commit/f2d5156))
+* **datepicker:** use init value for the first initialization ([#2897](https://github.com/valor-software/ngx-bootstrap/issues/2897)) ([7ec97f8](https://github.com/valor-software/ngx-bootstrap/commit/7ec97f8))
+* **timepicker:** allow null value and change validation state on manual update ([#3084](https://github.com/valor-software/ngx-bootstrap/issues/3084)) ([0d72cd6](https://github.com/valor-software/ngx-bootstrap/commit/0d72cd6))
+
+
+
 <a name="2.0.0-beta.8"></a>
 # [2.0.0-beta.8](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2017-11-03)
 
