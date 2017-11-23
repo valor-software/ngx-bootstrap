@@ -601,6 +601,12 @@ export const ngdoc: any = {
         "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering\nof the datepicker.</p>\n",
         "args": [],
         "returnType": "void"
+      },
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for datepicker</p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ]
   },
@@ -731,6 +737,12 @@ export const ngdoc: any = {
       {
         "name": "show",
         "description": "<p>Opens an element’s datepicker. This is considered a “manual” triggering of\nthe datepicker.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for daterangepicker</p>\n",
         "args": [],
         "returnType": "void"
       },
