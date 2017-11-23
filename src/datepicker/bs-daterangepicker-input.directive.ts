@@ -3,6 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { formatDate } from '../bs-moment/format';
 import { getLocale } from '../bs-moment/locale/locales.service';
 import { BsDaterangepickerComponent } from './bs-daterangepicker.component';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -29,21 +30,26 @@ export class BsDaterangepickerInputDirective
               private _renderer: Renderer2,
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef)  {
-    this._picker.bsValueChange.subscribe((v: Date[]) => this._setInputValue(v));
+    this._picker.bsValueChange.subscribe((value: Date[]) => {
+      this._setInputValue(value, this._picker._config);
+    });
+    this._picker.bsConfigChange.subscribe((config: BsDatepickerConfig) => {
+      this._setInputValue(this._picker._bsValue, config);
+    });
   }
 
-  _setInputValue(date: Date[]): void {
+  _setInputValue(date: Date[], config: BsDatepickerConfig): void {
     let range = '';
     if (date) {
       const start = formatDate(
         date[0],
-        this._picker._config.rangeInputFormat,
-        this._picker._config.locale
+        config.rangeInputFormat,
+        config.locale
       ) || '';
       const end = formatDate(
         date[1],
-        this._picker._config.rangeInputFormat,
-        this._picker._config.locale
+        config.rangeInputFormat,
+        config.locale
       ) || '';
       range = (start && end) ? start + this._picker._config.rangeSeparator + end : '';
     }
