@@ -1,7 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive, ElementRef, forwardRef, Host, OnInit, Renderer2
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDatepickerComponent } from './bs-datepicker.component';
 import { formatDate } from '../bs-moment/format';
@@ -27,34 +24,41 @@ export class BsDatepickerInputDirective
   implements ControlValueAccessor {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
+  private _value: Date;
 
   constructor(@Host() private _picker: BsDatepickerComponent,
               private _renderer: Renderer2,
-
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef) {
-    this._picker.bsValueChange.subscribe((v: Date) => this._setInputValue(v));
+    this._picker.bsValueChange.subscribe((value: Date) => {
+      this._setInputValue(value);
+      if (this._value !== value) {
+        this._value = value;
+        this._onChange(value);
+        this._onTouched();
+      }
+      this.changeDetection.markForCheck();
+    });
   }
 
-  _setInputValue(v: Date): void {
+  _setInputValue(value: Date): void {
     const initialDate = formatDate(
-      v,
+      value,
       this._picker._config.dateInputFormat,
       this._picker._config.locale
     ) || '';
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
-    this._onChange(v);
-    this.changeDetection.markForCheck();
   }
 
   onChange(event: any) {
     this.writeValue(event.target.value);
+    this._onChange(this._value);
     this._onTouched();
   }
 
   writeValue(value: Date | string) {
     if (!value) {
-      this._picker.bsValue = null;
+      this._value = null;
     }
     const _locale = getLocale(this._picker._config.locale);
     if (!_locale) {
@@ -65,18 +69,21 @@ export class BsDatepickerInputDirective
     }
     if (typeof value === 'string') {
       const date = new Date(_locale.preparse(value));
-      this._picker.bsValue = isNaN(date.valueOf()) ? null : date;
+      this._value = isNaN(date.valueOf()) ? null : date;
     }
 
     if (value instanceof Date) {
-      this._picker.bsValue = value;
+      this._value = value;
     }
+
+    this._picker.bsValue = this._value;
   }
 
   setDisabledState(isDisabled: boolean): void {
     this._picker.isDisabled = isDisabled;
     if (isDisabled) {
       this._renderer.setAttribute(this._elRef.nativeElement, 'disabled', 'disabled');
+
       return;
     }
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
