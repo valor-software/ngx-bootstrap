@@ -27,6 +27,8 @@ stages:
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: deploy-surge
     if: branch = development AND type = push
+  - name: deploy-heroku
+    if: branch = development AND type = push
   - name: sauce-tests
     if: ( branch = development AND type = push ) OR type = pull_request
 
@@ -109,6 +111,14 @@ jobs:
         provider: surge
         project: ./gh-pages/
         domain: ngx-bootstrap-latest.surge.sh
+        on: development
+    - stage: deploy-heroku
+      script: npm run build:dynamic
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        skip_cleanup: true
+        app: ngx-universal
         on: development
 
 cache:
