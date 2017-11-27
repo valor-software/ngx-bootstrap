@@ -24,12 +24,21 @@ export class BsDaterangepickerInputDirective
   implements ControlValueAccessor {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
+  private _value: Date[];
 
   constructor(@Host() private _picker: BsDaterangepickerComponent,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef)  {
-    this._picker.bsValueChange.subscribe((v: Date[]) => this._setInputValue(v));
+    this._picker.bsValueChange.subscribe((value: Date[]) => {
+      this._setInputValue(value);
+      if (this._value !== value) {
+        this._value = value;
+        this._onChange(value);
+        this._onTouched();
+      }
+      this.changeDetection.markForCheck();
+    });
   }
 
   _setInputValue(date: Date[]): void {
@@ -48,19 +57,17 @@ export class BsDaterangepickerInputDirective
       range = (start && end) ? start + this._picker._config.rangeSeparator + end : '';
     }
     this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
-    this._onChange(date);
-    this.changeDetection.markForCheck();
   }
 
   onChange(event: any) {
     this.writeValue(event.target.value);
+    this._onChange(this._value);
     this._onTouched();
   }
 
   writeValue(value: Date[] | string) {
     if (!value) {
-      this._picker.bsValue = null;
-      return;
+      this._value = null;
     }
 
     const _locale = getLocale(this._picker._config.locale);
@@ -70,22 +77,26 @@ export class BsDaterangepickerInputDirective
           .locale}" is not defined, please add it with "defineLocale(...)"`
       );
     }
+
     if (typeof value === 'string') {
-      this._picker.bsValue = value
+      this._value = value
         .split(this._picker._config.rangeSeparator)
         .map(date => new Date(_locale.preparse(date)))
         .map(date => (isNaN(date.valueOf()) ? null : date));
     }
 
     if (Array.isArray(value)) {
-      this._picker.bsValue = value;
+      this._value = value;
     }
+
+    this._picker.bsValue = this._value;
   }
 
   setDisabledState(isDisabled: boolean): void {
     this._picker.isDisabled = isDisabled;
     if (isDisabled) {
       this._renderer.setAttribute(this._elRef.nativeElement, 'disabled', 'disabled');
+
       return;
     }
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
