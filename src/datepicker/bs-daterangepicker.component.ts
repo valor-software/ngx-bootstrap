@@ -1,5 +1,5 @@
 import {
-  Component, ComponentRef, ElementRef, EventEmitter, Input, OnChanges,
+  ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
@@ -8,12 +8,11 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 
-@Component({
-  selector: 'bs-daterangepicker,[bsDaterangepicker]',
-  exportAs: 'bsDaterangepicker',
-  template: ' '
+@Directive({
+  selector: '[bsDaterangepicker]',
+  exportAs: 'bsDaterangepicker'
 })
-export class BsDaterangepickerComponent
+export class BsDaterangepickerDirective
   implements OnInit, OnDestroy, OnChanges {
   /**
    * Placement of a daterangepicker. Accepts: "top", "bottom", "left", "right"

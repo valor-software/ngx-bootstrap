@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { BsDatepickerComponent } from './bs-datepicker.component';
+import { BsDatepickerDirective } from './bs-datepicker.component';
 import { formatDate } from '../bs-moment/format';
 import { getLocale } from '../bs-moment/locale/locales.service';
 
@@ -26,7 +26,7 @@ export class BsDatepickerInputDirective
   private _onTouched = Function.prototype;
   private _value: Date;
 
-  constructor(@Host() private _picker: BsDatepickerComponent,
+  constructor(@Host() private _picker: BsDatepickerDirective,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef) {

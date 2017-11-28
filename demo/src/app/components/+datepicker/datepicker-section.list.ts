@@ -128,12 +128,12 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ApiSectionsComponent,
     content: [
       {
-        title: 'BsDatepickerComponent',
+        title: 'BsDatepickerDirective',
         anchor: 'bs-datepicker-component',
         outlet: NgApiDocComponent
       },
       {
-        title: 'BsDaterangepickerComponent',
+        title: 'BsDaterangepickerDirective',
         anchor: 'bs-daterangepicker',
         outlet: NgApiDocComponent
       },
