@@ -207,8 +207,8 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     this._config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
       isDisabled: this.isDisabled,
-      minDate: this.minDate || this._config.minDate,
-      maxDate: this.maxDate || this._config.maxDate
+      minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
     });
   }
 

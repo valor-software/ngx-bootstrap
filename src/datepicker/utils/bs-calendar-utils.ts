@@ -4,8 +4,8 @@ import {
 } from '../../bs-moment/utils/date-getters';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
 import {
-  isSameOrAfter,
-  isSameOrBefore
+  isAfter,
+  isBefore
 } from '../../bs-moment/utils/date-compare';
 import { endOf, startOf } from '../../bs-moment/utils/start-end-of';
 
@@ -32,15 +32,15 @@ export function calculateDateOffset(weekday: number, startingDayOffset: number):
 }
 
 export function isMonthDisabled(date: Date, min: Date, max: Date): boolean {
-  const minBound = min && isSameOrBefore(endOf(date, 'month'), min, 'day');
-  const maxBound = max && isSameOrAfter(startOf(date, 'month'), max, 'day');
+  const minBound = min && isBefore(endOf(date, 'month'), min, 'day');
+  const maxBound = max && isAfter(startOf(date, 'month'), max, 'day');
 
   return minBound || maxBound;
 }
 
 export function isYearDisabled(date: Date, min: Date, max: Date): boolean {
-  const minBound = min && isSameOrBefore(endOf(date, 'year'), min, 'day');
-  const maxBound = max && isSameOrAfter(startOf(date, 'year'), max, 'day');
+  const minBound = min && isBefore(endOf(date, 'year'), min, 'day');
+  const maxBound = max && isAfter(startOf(date, 'year'), max, 'day');
 
   return minBound || maxBound;
 }
