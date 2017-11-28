@@ -5,7 +5,7 @@ import { ja } from '../../i18n/ja';
 const localeAbbr = 'ja';
 defineLocale(localeAbbr, ja);
 
-fdescribe('moment - locale: ja', () => {
+describe('moment - locale: ja', () => {
   it('format', () => {
     const expected: string[][] = [
       [
