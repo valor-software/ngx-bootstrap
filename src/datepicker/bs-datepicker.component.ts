@@ -1,5 +1,5 @@
 import {
-  Component, ComponentRef, ElementRef, EventEmitter, Input, OnChanges,
+  ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -9,12 +9,11 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 
-@Component({
-  selector: 'bs-datepicker,[bsDatepicker]',
-  exportAs: 'bsDatepicker',
-  template: '<ng-content></ng-content>'
+@Directive({
+  selector: '[bsDatepicker]',
+  exportAs: 'bsDatepicker'
 })
-export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
+export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Placement of a datepicker. Accepts: "top", "bottom", "left", "right"
    */

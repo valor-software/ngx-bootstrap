@@ -7,6 +7,6 @@ export { DateFormatter } from './date-formatter';
 export { DatepickerConfig } from './datepicker.config';
 
 export { BsDatepickerModule } from './bs-datepicker.module';
-export { BsDatepickerComponent } from './bs-datepicker.component';
-export { BsDaterangepickerComponent } from './bs-daterangepicker.component';
+export { BsDatepickerDirective } from './bs-datepicker.component';
+export { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 export { BsDatepickerConfig } from './bs-datepicker.config';
