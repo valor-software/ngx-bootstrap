@@ -506,11 +506,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDatepickerComponent": {
+  "BsDatepickerDirective": {
     "fileName": "src/datepicker/bs-datepicker.component.ts",
-    "className": "BsDatepickerComponent",
+    "className": "BsDatepickerDirective",
     "description": "",
-    "selector": "bs-datepicker,[bsDatepicker]",
+    "selector": "[bsDatepicker]",
     "exportAs": "bsDatepicker",
     "inputs": [
       {
@@ -656,11 +656,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDaterangepickerComponent": {
+  "BsDaterangepickerDirective": {
     "fileName": "src/datepicker/bs-daterangepicker.component.ts",
-    "className": "BsDaterangepickerComponent",
+    "className": "BsDaterangepickerDirective",
     "description": "",
-    "selector": "bs-daterangepicker,[bsDaterangepicker]",
+    "selector": "[bsDaterangepicker]",
     "exportAs": "bsDaterangepicker",
     "inputs": [
       {

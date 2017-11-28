@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, OnInit, Ren
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { formatDate } from '../bs-moment/format';
 import { getLocale } from '../bs-moment/locale/locales.service';
-import { BsDaterangepickerComponent } from './bs-daterangepicker.component';
+import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -26,7 +26,7 @@ export class BsDaterangepickerInputDirective
   private _onTouched = Function.prototype;
   private _value: Date[];
 
-  constructor(@Host() private _picker: BsDaterangepickerComponent,
+  constructor(@Host() private _picker: BsDaterangepickerDirective,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef)  {
