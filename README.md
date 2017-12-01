@@ -103,10 +103,12 @@ First time
 
 # Troubleshooting
 
-So you are in trouble, where to get help:
-- you can search and ask for help at [StackOverflow](https://stackoverflow.com/questions/tagged/ngx-bootstrap)
-- you can join [slack](https://ngx-slack.herokuapp.com/) and ask a question
-- if none of this helped please [search](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue) and only then open new issue
+So if you are in trouble, here's where you can look for help.
+
+The best place to ask questions is on [StackOverflow (under the `ngx-bootstrap` tag)](https://stackoverflow.com/questions/tagged/ngx-bootstrap)
+You can also join [our Slack channel](https://ngx-slack.herokuapp.com/) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
+
+If, **and only if**, none of the above helped, please open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
 # Contribution
 
