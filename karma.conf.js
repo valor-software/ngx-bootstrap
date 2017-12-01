@@ -41,6 +41,15 @@ module.exports = function (config) {
       Chrome_travis_ci: {
         base: 'ChromeHeadless',
         flags: ['--disable-translate', '--disable-extensions']
+      },
+      ChromeHeadless: {
+          base: 'Chrome',
+          flags: [
+              '--headless',
+              '--disable-gpu',
+              '--no-sandbox',
+              '--remote-debugging-port=9222',
+          ]
       }
     },
     mime: {'text/x-typescript': ['ts', 'tsx']},
