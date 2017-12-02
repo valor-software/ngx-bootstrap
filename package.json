@@ -80,7 +80,7 @@
     "@angular/common": "4.3.6",
     "@angular/compiler": "4.3.6",
     "@angular/compiler-cli": "4.3.6",
-    "@angular/core": "4.3.6",
+    "@angular/core": "5.0.5",
     "@angular/forms": "4.3.6",
     "@angular/http": "4.3.6",
     "@angular/language-service": "4.3.6",
