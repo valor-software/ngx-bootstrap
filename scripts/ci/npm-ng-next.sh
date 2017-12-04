@@ -14,4 +14,4 @@ npm i @angular/animations@next \
     @angular/platform-browser-dynamic@next \
     @angular/router@next \
     @angular/service-worker@next \
-    rxjs@^5.5
+    rxjs@5.5.2
