@@ -39,16 +39,12 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'ChromeHeadless',
-        flags: ['--disable-translate', '--disable-extensions']
-      },
-      ChromeHeadless: {
-          base: 'Chrome',
+          base: 'ChromeHeadless',
           flags: [
               '--headless',
               '--disable-gpu',
               '--no-sandbox',
-              '--remote-debugging-port=9222',
+              '--remote-debugging-port=9222'
           ]
       }
     },
@@ -57,7 +53,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['ChromeHeadless'];
+    configuration.browsers = ['Chrome_travis_ci'];
   }
 
   if (process.env.SAUCE) {
