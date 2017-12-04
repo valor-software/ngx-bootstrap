@@ -120,6 +120,29 @@ jobs:
         skip_cleanup: true
         app: ngx-universal
         on: development
+    - stage: deploy-gh-pages
+      script: npm run demo.build
+      deploy:
+        provider: pages
+        local_dir: gh-pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        app: ngx-universal
+        on:
+          tags: true
+          branch: development
+    - stage: deploy-npm
+      script: npm run build
+      before_deploy: "cd dist"
+      deploy:
+        provider: npm
+        email: "valorkin@gmail.com"
+        api_key: $NPM_AUTH_TOKEN
+        tag: next
+        skip_cleanup: true
+        on:
+          tags: true
+          branch: development
 
 cache:
   apt: true
