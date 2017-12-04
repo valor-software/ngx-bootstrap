@@ -131,6 +131,18 @@ jobs:
         on:
           tags: true
           branch: development
+    - stage: deploy-npm
+      script: npm run build
+      before_deploy: "cd dist"
+      deploy:
+        provider: npm
+        email: "valorkin@gmail.com"
+        api_key: $NPM_AUTH_TOKEN
+        tag: next
+        skip_cleanup: true
+        on:
+          tags: true
+          branch: development
 
 cache:
   apt: true
