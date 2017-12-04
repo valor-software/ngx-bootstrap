@@ -122,6 +122,7 @@ jobs:
         on: development
     - stage: publish
       script: npm run demo.build
+      after_deploy: npm run flow.github-release
       deploy:
         provider: pages
         local_dir: gh-pages
