@@ -24,7 +24,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** Provides an ability to use Bootstrap's contextual panel classes
    * (`panel-primary`, `panel-success`, `panel-info`, etc...).
    * List of all available classes [available here]
-   * (http://getbootstrap.com/components/#panels-alternatives)
+   * (https://getbootstrap.com/docs/3.3/components/#panels-alternatives)
    */
   @Input() panelClass: string;
   /** if <code>true</code> — disables accordion group */

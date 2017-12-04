@@ -24,7 +24,7 @@ export const ngdoc: any = {
       {
         "name": "panelClass",
         "type": "string",
-        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">http://getbootstrap.com/components/#panels-alternatives</a>)</p>\n"
+        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"https://getbootstrap.com/docs/3.3/components/#panels-alternatives\" target=\"_blank\" title=\"null\">https://getbootstrap.com/docs/3.3/components/#panels-alternatives</a>)</p>\n"
       }
     ],
     "outputs": [
