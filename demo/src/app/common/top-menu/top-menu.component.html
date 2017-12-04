@@ -10,7 +10,7 @@
       <div dropdownToggle class="dropdown-toggle">
         {{currentVersion ? 'v' + currentVersion : ''}} <span class="caret"></span>
       </div>
-      <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <ul *dropdownMenu class="dropdown-menu header-dropdown" role="menu">
         <li role="menuitem" *ngFor="let item of previousDocs">
           <a class="dropdown-item" [href]="appUrl + (needPrefix ? item.url : item.unprefixedUrl) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
         </li>

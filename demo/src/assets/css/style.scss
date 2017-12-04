@@ -509,6 +509,9 @@ a:hover {
     top: 0;
     z-index: 1090; // to overlap most positioned elements in bootstrap
   }
+  .header-dropdown {
+    z-index: 1090;
+  }
   .modal-backdrop {
     z-index: 2000; // to overlap header :)
   }
