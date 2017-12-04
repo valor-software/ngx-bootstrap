@@ -25,10 +25,10 @@ stages:
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: build
     if: ( branch = development AND type = push ) OR type = pull_request
-  - name: deploy-surge
+  - name: deploy
     if: branch = development AND type = push
-  - name: deploy-heroku
-    if: branch = development AND type = push
+  - name: publish
+    if: branch = development AND type = push AND tag =~ ^v2
   - name: sauce-tests
     if: ( branch = development AND type = push ) OR type = pull_request
 
@@ -98,7 +98,7 @@ jobs:
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
-      stage: deploy-surge
+      stage: deploy
       script: npm run demo.build
       deploy:
         provider: surge
@@ -112,7 +112,7 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap-latest.surge.sh
         on: development
-    - stage: deploy-heroku
+    - stage: deploy
       script: npm run build:dynamic
       deploy:
         provider: heroku
@@ -120,7 +120,7 @@ jobs:
         skip_cleanup: true
         app: ngx-universal
         on: development
-    - stage: deploy-gh-pages
+    - stage: publish
       script: npm run demo.build
       deploy:
         provider: pages
@@ -131,7 +131,7 @@ jobs:
         on:
           tags: true
           branch: development
-    - stage: deploy-npm
+    - stage: publish
       script: npm run build
       before_deploy: "cd dist"
       deploy:
