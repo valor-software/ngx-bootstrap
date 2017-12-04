@@ -12,7 +12,7 @@ import { flagMonthsCalendar } from '../engine/flag-months-calendar';
 import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
-import { isArray } from '../../bs-moment/utils/type-checks';
+import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
 import { getLocale } from '../../bs-moment/locale/locales.service';
 import { isAfter, isBefore } from '../../bs-moment/utils/date-compare';
@@ -75,12 +75,10 @@ export function bsDatepickerReducer(state = initialDatepickerState,
         view: state.view
       };
 
-      if (action.payload) {
-        newState.view = {
-          date: action.payload,
-          mode: state.view.mode
-        };
-      }
+      const mode = state.view.mode;
+      const _date = action.payload || state.view.date;
+      const date = getViewDate(_date, state.minDate, state.maxDate);
+      newState.view = { mode, date };
 
       return Object.assign({}, state, newState);
     }
@@ -89,7 +87,9 @@ export function bsDatepickerReducer(state = initialDatepickerState,
       const newState = action.payload;
       // preserve view mode
       const mode = state.view.mode;
-      const _viewDate = newState.value && newState.value || state.view.date;
+      const _viewDate = isDateValid(newState.value) && newState.value
+        || isArray(newState.value) && isDateValid(newState.value[0]) && newState.value[0]
+        || state.view.date;
       const date = getViewDate(_viewDate, newState.minDate, newState.maxDate);
       newState.view = { mode, date };
       // update selected value
@@ -113,7 +113,17 @@ export function bsDatepickerReducer(state = initialDatepickerState,
 
     // date range picker
     case BsDatepickerActions.SELECT_RANGE: {
-      return Object.assign({}, state, { selectedRange: action.payload });
+      const newState = {
+        selectedRange: action.payload,
+        view: state.view
+      };
+
+      const mode = state.view.mode;
+      const _date = action.payload && action.payload[0] || state.view.date;
+      const date = getViewDate(_date, state.minDate, state.maxDate);
+      newState.view = { mode, date };
+
+      return Object.assign({}, state, newState);
     }
 
     case BsDatepickerActions.SET_MIN_DATE: {
