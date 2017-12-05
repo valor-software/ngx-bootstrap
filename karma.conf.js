@@ -39,9 +39,10 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-          base: 'ChromeHeadless',
+          // base: 'ChromeHeadless',
+          base: 'Chrome',
           flags: [
-              '--headless',
+              // '--headless',
               '--disable-gpu',
               '--no-sandbox',
               '--remote-debugging-port=9222'
