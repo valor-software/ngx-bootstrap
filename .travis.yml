@@ -17,20 +17,21 @@ env:
     - LOGS_DIR=/tmp/logs
 
 stages:
-  - name: precache
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: lint
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: test
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: build
-    if: ( branch = development AND type = push ) OR type = pull_request
+  - &stage
+    name: precache
+    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v2
+  - <<: *stage
+    name: lint
+  - <<: *stage
+    name: test
+  - <<: *stage
+    name: build
   - name: deploy
-    if: branch = development AND type = push
+    if: branch = development AND type = push OR tag =~ ^v2
   - name: publish
     if: tag =~ ^v2
-  - name: sauce-tests
-    if: ( branch = development AND type = push ) OR type = pull_request
+  - <<: *stage
+    name: sauce-tests
 
 before_install:
   - export CHROME_BIN=chromium-browser
