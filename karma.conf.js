@@ -10,6 +10,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma'),
@@ -39,14 +40,13 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-          // base: 'ChromeHeadless',
-          base: 'Firefox',
-          // flags: [
-              // '--headless',
-              // '--disable-gpu',
-              // '--no-sandbox',
-              // '--remote-debugging-port=9222'
-          // ]
+          base: 'ChromeHeadless',
+          flags: [
+              '--headless',
+              '--disable-gpu',
+              '--no-sandbox',
+              '--remote-debugging-port=9222'
+          ]
       }
     },
     mime: {'text/x-typescript': ['ts', 'tsx']},
@@ -54,7 +54,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = ['Firefox'];
   }
 
   if (process.env.SAUCE) {
