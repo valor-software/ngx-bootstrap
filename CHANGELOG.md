@@ -1,3 +1,34 @@
+<a name="2.0.0-beta.10"></a>
+# [2.0.0-beta.10](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-12-05)
+
+
+### Bug Fixes
+
+* **accordion demo:** fix bootstrap link in API Reference ([#3193](https://github.com/valor-software/ngx-bootstrap/issues/3193)) ([a1a1c74](https://github.com/valor-software/ngx-bootstrap/commit/a1a1c74))
+* **datepicker:** date manipulation was jumping over a month top ([#3130](https://github.com/valor-software/ngx-bootstrap/issues/3130)) ([a7416e6](https://github.com/valor-software/ngx-bootstrap/commit/a7416e6)), closes [#2902](https://github.com/valor-software/ngx-bootstrap/issues/2902)
+* **datepicker:** fixed viewed date if min max is set ([#3129](https://github.com/valor-software/ngx-bootstrap/issues/3129)) ([13bf18e](https://github.com/valor-software/ngx-bootstrap/commit/13bf18e)), closes [#3123](https://github.com/valor-software/ngx-bootstrap/issues/3123) [#2711](https://github.com/valor-software/ngx-bootstrap/issues/2711)
+* **datepicker:** if min date is last day of a month ([#3113](https://github.com/valor-software/ngx-bootstrap/issues/3113)) ([ec445e2](https://github.com/valor-software/ngx-bootstrap/commit/ec445e2)), closes [#3102](https://github.com/valor-software/ngx-bootstrap/issues/3102)
+* **datepicker:** model should be prestine on init from ngModel ([#3115](https://github.com/valor-software/ngx-bootstrap/issues/3115)) ([6bb077c](https://github.com/valor-software/ngx-bootstrap/commit/6bb077c)), closes [#3014](https://github.com/valor-software/ngx-bootstrap/issues/3014)
+* **datepicker:** reseting min and max boundaries will reset it in datepicker ([#3112](https://github.com/valor-software/ngx-bootstrap/issues/3112)) ([a72fedc](https://github.com/valor-software/ngx-bootstrap/commit/a72fedc)), closes [#3085](https://github.com/valor-software/ngx-bootstrap/issues/3085)
+* **daterangepicker:** After clearing input, daterangepicker couldn't be opened ([dfdc58d](https://github.com/valor-software/ngx-bootstrap/commit/dfdc58d)), closes [#3191](https://github.com/valor-software/ngx-bootstrap/issues/3191)
+* **modal:** fix memory leak for TemplateRef modals ([#3179](https://github.com/valor-software/ngx-bootstrap/issues/3179)) ([d5d1acf](https://github.com/valor-software/ngx-bootstrap/commit/d5d1acf))
+* **tests:** add custom launcher for HeadlessChrome ([#3157](https://github.com/valor-software/ngx-bootstrap/issues/3157)) ([909e7ae](https://github.com/valor-software/ngx-bootstrap/commit/909e7ae))
+* **version dropdown:** z-index fix for version dropdown and header ([#3190](https://github.com/valor-software/ngx-bootstrap/issues/3190)) ([784d881](https://github.com/valor-software/ngx-bootstrap/commit/784d881))
+
+
+### Features
+
+* **datepicker:** datepicker now is a directive not a component ([#3125](https://github.com/valor-software/ngx-bootstrap/issues/3125)) ([d9822f0](https://github.com/valor-software/ngx-bootstrap/commit/d9822f0))
+* **modal:** ModalDirective should use config.animated ([#3156](https://github.com/valor-software/ngx-bootstrap/issues/3156)) ([f5679eb](https://github.com/valor-software/ngx-bootstrap/commit/f5679eb))
+
+
+### BREAKING CHANGES
+
+* **datepicker:**   - datepicker and daterange component selectors was removed
+  - now datepicker available only as directive
+
+
+
 <a name="2.0.0-beta.9"></a>
 # [2.0.0-beta.9](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2017-11-23)
 
