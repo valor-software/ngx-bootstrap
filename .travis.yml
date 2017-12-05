@@ -28,7 +28,7 @@ stages:
   - name: deploy
     if: branch = development AND type = push
   - name: publish
-    if: branch = development AND type = push AND tag =~ ^v2
+    if: tag =~ ^v2
   - name: sauce-tests
     if: ( branch = development AND type = push ) OR type = pull_request
 
@@ -131,7 +131,6 @@ jobs:
         app: ngx-universal
         on:
           tags: true
-          branch: development
     - stage: publish
       script: npm run build
       before_deploy: "cd dist"
@@ -143,7 +142,6 @@ jobs:
         skip_cleanup: true
         on:
           tags: true
-          branch: development
 
 cache:
   apt: true
