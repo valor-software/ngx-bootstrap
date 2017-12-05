@@ -59,7 +59,7 @@ export class SidebarComponent implements OnDestroy{
         'isOpenMenu',
         this.isShown
       );
-      if (this.isShown === false) {
+      if (this.isShown === false && this.document.documentElement) {
         this.renderer.setElementProperty(this.document.documentElement, 'scrollTop', 0);
         this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
       }
