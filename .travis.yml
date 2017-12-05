@@ -66,10 +66,12 @@ jobs:
           # required by node-gyp to build some packages
           packages:
           - g++-4.8
+
 #   lint code
     - stage: lint
       install: true
       script: npm run lint
+
 #   test
     - &test
       stage: test
@@ -80,6 +82,7 @@ jobs:
       env: NGV=latest
     - <<: *test
       env: NGV=next
+
 #    check prod build
     - &build
       stage: build
@@ -97,6 +100,7 @@ jobs:
         - ./scripts/sauce/sauce_connect_block.sh
         - npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
+
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
       stage: deploy
@@ -121,6 +125,8 @@ jobs:
         skip_cleanup: true
         app: ngx-universal
         on: development
+
+# publish to gh pages and npm
     - stage: publish
       script: npm run demo.build
       after_deploy: npm run flow.github-release
