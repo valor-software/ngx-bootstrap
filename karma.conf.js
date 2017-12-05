@@ -40,13 +40,13 @@ module.exports = function (config) {
     customLaunchers: {
       Chrome_travis_ci: {
           // base: 'ChromeHeadless',
-          base: 'Chrome',
-          flags: [
+          base: 'Firefox',
+          // flags: [
               // '--headless',
-              '--disable-gpu',
-              '--no-sandbox',
-              '--remote-debugging-port=9222'
-          ]
+              // '--disable-gpu',
+              // '--no-sandbox',
+              // '--remote-debugging-port=9222'
+          // ]
       }
     },
     mime: {'text/x-typescript': ['ts', 'tsx']},

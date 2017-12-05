@@ -11,6 +11,7 @@ git:
 
 env:
   global:
+    - MOZ_HEADLESS=1
     - SAUCE_USERNAME_PR=valorkinpr
     - SAUCE_ACCESS_KEY_PR=e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
@@ -59,6 +60,7 @@ jobs:
       install: npm install > /dev/null
       script: true
       addons:
+        firefox: latest
         chrome: stable
         apt:
           sources:
