@@ -1,4 +1,4 @@
-// @deprecated
+﻿// @deprecated
 // tslint:disable
 import { Component, OnInit } from '@angular/core';
 import { isBs3 } from '../utils/theme-provider';
@@ -179,9 +179,9 @@ export class DayPickerComponent implements OnInit {
       date = this.datePicker.fixTimeZone(date);
       dates[i++] = date;
       current = new Date(
-        current.getFullYear(),
-        current.getMonth(),
-        current.getDate() + 1
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate() + 1
       );
     }
     return dates;
