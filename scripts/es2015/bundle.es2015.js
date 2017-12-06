@@ -10,6 +10,7 @@ const dist = 'dist-es2015';
 const tsconfigPath = '.tmp/tsconfig.json';
 
 async function createEs2015Bundle() {
+  await del(tmp);
   console.log('Copying src to temp folder');
   await fs.copy(src, tmp);
   const tsconfig = require(path.resolve(tsconfigPath));

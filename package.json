@@ -46,7 +46,6 @@
     "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors"
   },
   "main": "bundles/ngx-bootstrap.umd.js",
-  "es2015": "bundles/ngx-bootstrap.es2015.js",
   "module": "index.js",
   "typings": "index.d.ts",
   "keywords": [
