@@ -24,6 +24,8 @@ export class BsDatepickerActions {
   static readonly SET_MAX_DATE = '[datepicker] set max date';
   static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
 
+  static readonly SET_LOCALE = '[datepicker] set datepicker locale';
+
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
 
   calculate(): Action {
@@ -106,6 +108,13 @@ export class BsDatepickerActions {
     return {
       type: BsDatepickerActions.SET_IS_DISABLED,
       payload: value
+    };
+  }
+
+  setLocale(locale: string): Action {
+    return {
+      type: BsDatepickerActions.SET_LOCALE,
+      payload: locale
     };
   }
 }

@@ -8,6 +8,7 @@ import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-contai
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsLocaleService } from './bs-locale.service';
 
 @Directive({
   selector: '[bsDatepicker]',

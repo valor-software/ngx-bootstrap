@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { listLocales } from 'ngx-bootstrap/bs-moment';
 
 @Component({
@@ -9,12 +9,15 @@ import { listLocales } from 'ngx-bootstrap/bs-moment';
 export class DemoDatepickerChangeLocaleComponent {
   locale = 'en';
   locales = listLocales();
-  bsConfig: Partial<BsDatepickerConfig>;
+
+  constructor(private _localeService: BsLocaleService) {
+  }
 
   applyLocale(pop: any) {
+    this._localeService.use(this.locale);
     // create new object on each property change
     // so Angular can catch object reference change
-    this.bsConfig = Object.assign({}, { locale: this.locale });
+    // this.bsConfig = Object.assign({}, { locale: this.locale });
     setTimeout(() => {
       pop.hide();
       pop.show();
