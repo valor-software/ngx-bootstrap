@@ -36,11 +36,6 @@ export class BsDatepickerConfig
   rangeInputFormat = 'L';
 
   // DatepickerFormatOptions
-  /**
-   * Allows to globally set default locale of datepicker,
-   * see documentation on how to enable custom locales
-   */
-  // locale = 'en';
   monthTitle = 'MMMM';
   yearTitle = 'YYYY';
   dayLabel = 'D';

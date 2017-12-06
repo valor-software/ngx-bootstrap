@@ -81,7 +81,7 @@ export interface MonthViewOptions {
 /** *************** */
 // rendering options
 export interface DatepickerFormatOptions {
-  locale?: string;
+  locale: string;
 
   monthTitle: string;
   yearTitle: string;
