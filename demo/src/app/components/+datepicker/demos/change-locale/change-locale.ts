@@ -15,11 +15,7 @@ export class DemoDatepickerChangeLocaleComponent {
 
   applyLocale(pop: any) {
     this._localeService.use(this.locale);
-    // create new object on each property change
-    // so Angular can catch object reference change
-    setTimeout(() => {
-      pop.hide();
-      pop.show();
-    });
+    pop.hide();
+    pop.show();
   }
 }
