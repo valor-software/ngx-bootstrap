@@ -37,6 +37,9 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    browserNoActivityTimeout: 20000,
+    browserDisconnectTolerance: 2,
+    browserDisconnectTimeout: 5000,
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
@@ -54,7 +57,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Firefox'];
+    configuration.browsers = ['Chrome_travis_ci'];
   }
 
   if (process.env.SAUCE) {
@@ -70,8 +73,6 @@ module.exports = function (config) {
       singleRun: false,
       concurrency: 2,
       captureTimeout: 60000,
-      browserNoActivityTimeout: 20000,
-      browserDisconnectTimeout: 5000,
       sauceLabs: {
         testName: 'ngx-bootstrap',
         build: process.env.TRAVIS_JOB_NUMBER,
