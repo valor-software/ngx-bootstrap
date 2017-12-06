@@ -84,7 +84,7 @@
     "@angular/core": "4.3.6",
     "@angular/forms": "4.3.6",
     "@angular/http": "4.3.6",
-    "@angular/language-service": "4.3.6",
+    "@angular/language-service": "5.1.0",
     "@angular/platform-browser": "4.3.6",
     "@angular/platform-browser-dynamic": "4.3.6",
     "@angular/platform-server": "4.3.6",
