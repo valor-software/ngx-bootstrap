@@ -70,11 +70,11 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/change-locale/change-locale.ts'),
         html: require('!!raw-loader?lang=markup!./demos/change-locale/change-locale.html'),
         description: `
-          <p>Datepicker can use different locales. <br>It's possible to change a locale by changing
-          <code>locale</code>
-          property in <code>bsConfig</code> object, list of available locales is in dropdown below.</p>
-          <p>To use a different locale, you have to import it from <code>ngx-bootstrap/bs-moment</code> and define it
-          in your <code>@NgModule</code> using function <code>defineLocale</code></p>
+          <p>Datepicker can use different locales. <br>It's possible to change a locale by calling
+          <code>use</code>
+          method of <code>BsLocaleService</code>, list of available locales is in dropdown below.</p>
+          <p>To use a different locale, you have to import it from <code>ngx-bootstrap/bs-moment</code> first, then
+          define it in your <code>@NgModule</code> using function <code>defineLocale</code></p>
           <p>Example: </p>
           <code>import { defineLocale } from 'ngx-bootstrap/bs-moment';</code><br>
           <code>import { de } from 'ngx-bootstrap/locale';</code><br>

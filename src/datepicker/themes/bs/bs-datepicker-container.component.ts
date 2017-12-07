@@ -7,6 +7,7 @@ import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { Subscription } from 'rxjs/Subscription';
+import { BsLocaleService } from '../../bs-locale.service';
 
 @Component({
   selector: 'bs-datepicker-container',

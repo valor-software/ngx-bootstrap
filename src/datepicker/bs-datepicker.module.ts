@@ -22,6 +22,8 @@ import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.compon
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
 
+import { BsLocaleService } from './bs-locale.service';
+
 import { warnOnce } from '../utils/warn-once';
 
 const _exports = [
@@ -74,7 +76,8 @@ export class BsDatepickerModule {
         BsDatepickerStore,
         BsDatepickerActions,
         BsDatepickerConfig,
-        BsDatepickerEffects
+        BsDatepickerEffects,
+        BsLocaleService
       ]
     };
   }

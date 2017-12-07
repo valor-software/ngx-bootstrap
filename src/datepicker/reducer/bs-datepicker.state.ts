@@ -73,6 +73,7 @@ const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };
 export const initialDatepickerState: BsDatepickerState = Object.assign(
   new BsDatepickerConfig(),
   {
+    locale: 'en',
     view: _initialView,
     selectedRange: [],
     monthViewOptions: defaultMonthOptions

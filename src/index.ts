@@ -52,7 +52,8 @@ export {
   MonthPickerComponent,
   YearPickerComponent,
   BsDatepickerModule,
-  BsDatepickerConfig
+  BsDatepickerConfig,
+  BsLocaleService
 } from './datepicker';
 
 export {
