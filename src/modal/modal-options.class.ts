@@ -32,7 +32,7 @@ export class ModalOptions {
   /**
    * Modal data
    */
-  data?: any;
+  data?: Object;
 }
 
 
