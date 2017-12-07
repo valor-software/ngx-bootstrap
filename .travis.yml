@@ -26,6 +26,8 @@ stages:
   - <<: *stage
     name: test
   - <<: *stage
+    name: bdd-tests
+  - <<: *stage
     name: build
   - name: deploy
     if: branch = development AND type = push OR tag =~ ^v2
@@ -84,6 +86,17 @@ jobs:
       env: NGV=latest
     - <<: *test
       env: NGV=next
+
+#    test e2e-bdd
+    - stage: bdd-tests
+      before_script:
+      - npm run build:dynamic
+      - node  ./demo/dist/server.js &
+      - sleep 3
+      script:
+      - npm run lint-bdd
+      - webdriver-manager update --standalone
+      - protractor ./protractor.cucumber.js
 
 #    check prod build
     - &build
