@@ -16,7 +16,7 @@ Feature: Page navigation
     When I can click on GitHub button
     Then It links to ngx-bootstrap repository
 
-  Scenario Outline: Navigation to Accordion page using left side menu
+  Scenario Outline: Navigation to <pageName> page using left side menu
   Description: User should navigate thru component pages by clicking on links in left navigation menu
 
     Given I am on the Getting Started page

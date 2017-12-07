@@ -88,17 +88,51 @@ jobs:
     - <<: *test
       env: NGV=next
 
-#    test e2e-bdd
+#    test e2e-bdd lint check
     - stage: bdd-tests
-      env: BDD=true
+      script: npm run lint-bdd
+
+#    test e2e-bdd-angular-universal
+    - stage: bdd-tests
+      env:
+      - BDD=true
+      - baseUrl=http://localhost:3000/
       before_script:
       - npm run build:dynamic
       - node  ./demo/dist/server.js &
       - sleep 3
       script:
-      - npm run lint-bdd
-      - webdriver-manager update --standalone
-      - protractor ./protractor.cucumber.js
+      - npm run pree2e
+      - URL=$baseUrl npm run e2e-bdd
+
+#    test e2e-bdd-angular4
+    - stage: bdd-tests
+      env:
+      - BDD=true
+      - baseUrl=http://localhost:4200/#/
+      before_script:
+      - npm run build
+      - npm run link
+      - ng serve &
+      - sleep 5
+      script:
+      - npm run pree2e
+      - URL=$baseUrl npm run e2e-bdd
+
+#    test e2e-bdd-angular5
+    - stage: bdd-tests
+      env:
+      - NGV=latest
+      - BDD=true
+      - baseUrl=http://localhost:4201/#/
+      before_script:
+      - npm run build
+      - npm run link
+      - ng serve --port=4201 &
+      - sleep 5
+      script:
+      - npm run pree2e
+      - URL=$baseUrl npm run e2e-bdd
 
 #    check prod build
     - &build
