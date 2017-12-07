@@ -6,14 +6,15 @@ import { Component } from '@angular/core';
   /* tslint:disable no-unused-css*/
   styles: [
     `
-:host >>> .tooltip-inner {
-  background-color: #009688;
-  color: #fff;
-}
-:host >>> .tooltip .tooltip-arrow {
-  border-bottom-color: #009688;
-}
-  `
+      :host >>> .tooltip-inner {
+        background-color: #009688;
+        color: #fff;
+      }
+      :host >>> .tooltip.top .tooltip-arrow:before,
+      :host >>> .tooltip.top .tooltip-arrow {
+        border-top-color: #009688;
+      }
+    `
   ]
 })
 export class DemoTooltipStylingLocalComponent {}

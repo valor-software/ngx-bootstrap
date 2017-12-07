@@ -4,20 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { CollapseSectionComponent } from './collapse-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-collapse.routes';
 
 @NgModule({
-  declarations: [CollapseSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    CollapseSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CollapseModule.forRoot(),
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     RouterModule.forChild(routes)
   ],
-  exports: [CollapseSectionComponent]
+  exports: [CollapseSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoCollapseModule {}

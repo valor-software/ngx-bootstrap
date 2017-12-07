@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
+import { demoComponentContent } from './popover-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'tooltip-section',
-  templateUrl: './popover-section.component.html'
+  templateUrl: './popover-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PopoverSectionComponent {
-  name: string = 'Popover';
-  src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
-  demos: any = DEMOS;
-  titleDoc: string = titleDoc;
+  name = 'Popover';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
+  componentContent: ContentSection[] = demoComponentContent;
 }

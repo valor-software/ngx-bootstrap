@@ -1,0 +1,9 @@
+<ul *ngIf="componentContent" (click)="goToSection($event)">
+  <li *ngFor="let item of componentContent">
+    <a routerLink="." [fragment]="item.anchor" [attr.data-anchor]="item.anchor">{{ item.name }}</a>
+    <ul *ngIf="item.content && item.content.length">
+      <li *ngFor="let subItem of item.content">
+        <a routerLink="." [fragment]="subItem.anchor" [attr.data-anchor]="subItem.anchor">{{ subItem.title }}</a>
+    </ul>
+  </li>
+</ul>

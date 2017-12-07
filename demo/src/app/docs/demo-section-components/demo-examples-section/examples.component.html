@@ -1,0 +1,18 @@
+<ng-container *ngIf="section">
+  <h2 [attr.id]="section.anchor">
+    {{ section.name }}
+    <a class="anchor-link" routerLink="." [fragment]="section.anchor">#</a>
+  </h2>
+  <p *ngIf="section.description" [innerHTML]="section.description"></p>
+
+  <div *ngFor="let item of examples">
+    <h3 *ngIf="item.title" [attr.id]="item.anchor">
+      {{ item.title }}
+      <a class="anchor-link" routerLink="." [fragment]="item.anchor">#</a>
+    </h3>
+    <p *ngIf="item.description" [innerHTML]="item.description"></p>
+    <ng-sample-box [ts]="item.component" [html]="item.html">
+      <ng-container *ngComponentOutlet="item.outlet"></ng-container>
+    </ng-sample-box>
+  </div>
+</ng-container>

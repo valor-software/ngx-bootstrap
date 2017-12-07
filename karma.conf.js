@@ -10,6 +10,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma'),
@@ -36,11 +37,19 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    browserNoActivityTimeout: 20000,
+    browserDisconnectTolerance: 2,
+    browserDisconnectTimeout: 5000,
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'ChromeHeadless',
-        flags: ['--disable-translate', '--disable-extensions']
+          base: 'ChromeHeadless',
+          flags: [
+              '--headless',
+              '--disable-gpu',
+              '--no-sandbox',
+              '--remote-debugging-port=9222'
+          ]
       }
     },
     mime: {'text/x-typescript': ['ts', 'tsx']},
@@ -48,7 +57,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['ChromeHeadless'];
+    configuration.browsers = ['Chrome_travis_ci'];
   }
 
   if (process.env.SAUCE) {
@@ -62,15 +71,13 @@ module.exports = function (config) {
       logLevel: config.LOG_INFO,
       reporters: ['dots', 'saucelabs'],
       singleRun: false,
-      concurrency: 3,
+      concurrency: 2,
       captureTimeout: 60000,
-      browserNoActivityTimeout: 20000,
-      browserDisconnectTimeout: 5000,
       sauceLabs: {
         testName: 'ngx-bootstrap',
         build: process.env.TRAVIS_JOB_NUMBER,
         tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-        retryLimit: 3,
+        retryLimit: 5,
         startConnect: false,
         recordVideo: false,
         recordScreenshots: false,
@@ -104,14 +111,14 @@ module.exports = function (config) {
         'SL_IE10': {
           base: 'SauceLabs',
           browserName: 'internet explorer',
-          platform: 'Windows 2012',
+          // platform: 'Windows 2012',
           version: '10'
         },
         'SL_IE11': {
           base: 'SauceLabs',
           browserName: 'internet explorer',
           platform: 'Windows 8.1',
-          version: '11'
+          version: '11.0'
         },
         'SL_EDGE13': {
           base: 'SauceLabs',
@@ -134,13 +141,13 @@ module.exports = function (config) {
         'SL_SAFARI9': {
           base: 'SauceLabs',
           browserName: 'safari',
-          platform: 'OS X 10.11',
+          // platform: 'OS X 10.11',
           version: '9.0'
         },
         'SL_SAFARI10': {
           base: 'SauceLabs',
           browserName: 'safari',
-          platform: 'OS X 10.11',
+          // platform: 'OS X 10.11',
           version: '10.0'
         }
       }

@@ -224,7 +224,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
       return;
     }
 
-    const showTooltip = () =>
+    const showTooltip = () => {
+      if (this._delayTimeoutId) {
+        this._delayTimeoutId = undefined;
+      }
+
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
@@ -234,6 +238,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
           placement: this.placement,
           containerClass: this.containerClass
         });
+    }
 
     if (this._delay) {
       this._delayTimeoutId = setTimeout(() => {

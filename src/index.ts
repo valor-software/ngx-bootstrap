@@ -1,5 +1,4 @@
 /* tslint:disable: max-classes-per-file */
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -17,6 +16,8 @@ import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
+export { listLocales } from './bs-moment/locale/locales.service';
+export { setTheme } from './utils/theme-provider';
 
 export {
   AccordionComponent,
@@ -50,7 +51,9 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  BsDatepickerModule
+  BsDatepickerModule,
+  BsDatepickerConfig,
+  BsLocaleService
 } from './datepicker';
 
 export {
@@ -150,54 +153,29 @@ export {
   positionElements
 } from './positioning';
 
-export { defineLocale, getSetGlobalLocale } from './bs-moment';
+export { defineLocale, getSetGlobalLocale, LocaleData } from './bs-moment';
 
-const MODULES = [
-  AccordionModule,
-  AlertModule,
-  ButtonsModule,
-  CarouselModule,
-  CollapseModule,
-  DatepickerModule,
-  BsDropdownModule,
-  ModalModule,
-  PaginationModule,
-  ProgressbarModule,
-  PopoverModule,
-  RatingModule,
-  TabsModule,
-  TimepickerModule,
-  TooltipModule,
-  TypeaheadModule
-];
-
-@NgModule({
-  imports: [
-    AccordionModule.forRoot(),
-    AlertModule.forRoot(),
-    ButtonsModule.forRoot(),
-    CarouselModule.forRoot(),
-    CollapseModule.forRoot(),
-    DatepickerModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    ModalModule.forRoot(),
-    PaginationModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    PopoverModule.forRoot(),
-    RatingModule.forRoot(),
-    TabsModule.forRoot(),
-    TimepickerModule.forRoot(),
-    TooltipModule.forRoot(),
-    TypeaheadModule.forRoot(),
-    SortableModule.forRoot()
-  ],
-  exports: MODULES
-})
-export class BsRootModule {}
-
-@NgModule({ exports: MODULES })
-export class Ng2BootstrapModule {
-  static forRoot(): ModuleWithProviders {
-    return { ngModule: BsRootModule };
-  }
-}
+export {
+  ar,
+  cs,
+  de,
+  enGb,
+  es,
+  esDo,
+  esUs,
+  fr,
+  he,
+  hi,
+  hu,
+  it,
+  ja,
+  ko,
+  nl,
+  nlBe,
+  pl,
+  ptBr,
+  ru,
+  sv,
+  zhCn,
+  tr
+} from './locale';

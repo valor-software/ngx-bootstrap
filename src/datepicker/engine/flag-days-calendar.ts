@@ -7,6 +7,7 @@ import { isSameDay, isSameMonth } from '../../bs-moment/utils/date-getters';
 import { isAfter, isBefore } from '../../bs-moment/utils/date-compare';
 import { isMonthDisabled } from '../utils/bs-calendar-utils';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
+import { endOf, startOf } from '../../bs-moment/utils/start-end-of';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;

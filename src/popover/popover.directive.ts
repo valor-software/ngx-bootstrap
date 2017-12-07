@@ -92,13 +92,15 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this.onHidden = this._popover.onHidden;
 
     // fix: no focus on button on Mac OS #1795
-    _elementRef.nativeElement.addEventListener('click', function () {
-      try {
-        _elementRef.nativeElement.focus();
-      } catch (err) {
-        return;
-      }
-    });
+    if (typeof window !== 'undefined') {
+      _elementRef.nativeElement.addEventListener('click', function () {
+        try {
+          _elementRef.nativeElement.focus();
+        } catch (err) {
+          return;
+        }
+      });
+    }
   }
 
   /**
@@ -106,7 +108,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   show(): void {
-    if (this._popover.isShown) {
+    if (this._popover.isShown || !this.popover) {
       return;
     }
 

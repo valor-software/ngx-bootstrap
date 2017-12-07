@@ -78,6 +78,10 @@ export const hi: LocaleData = {
     });
   },
   postformat(str: string): string {
+    if (!str) {
+      return str;
+    }
+
     return str.replace(/\d/g, function (match) {
       return symbolMap[match];
     });

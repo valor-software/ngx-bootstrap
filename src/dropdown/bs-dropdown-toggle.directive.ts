@@ -3,6 +3,7 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
+  Input,
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -39,9 +40,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
     );
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
-    event.stopPropagation();
+  @HostListener('click', [])
+  onClick(): void {
     if (this.isDisabled) {
       return;
     }

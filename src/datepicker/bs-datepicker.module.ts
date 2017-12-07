@@ -7,8 +7,8 @@ import { BsDatepickerNavigationViewComponent } from './themes/bs/bs-datepicker-n
 import { BsDaysCalendarViewComponent } from './themes/bs/bs-days-calendar-view.component';
 import { BsDatepickerEffects } from './reducer/bs-datepicker.effects';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { BsDaterangepickerComponent } from './bs-daterangepicker.component';
-import { BsDatepickerComponent } from './bs-datepicker.component';
+import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
+import { BsDatepickerDirective } from './bs-datepicker.component';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { PositioningService } from '../positioning/positioning.service';
 import { BsDatepickerDayDecoratorComponent } from './themes/bs/bs-datepicker-day-decorator.directive';
@@ -22,17 +22,19 @@ import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.compon
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
 
+import { BsLocaleService } from './bs-locale.service';
+
 import { warnOnce } from '../utils/warn-once';
 
 const _exports = [
   BsDatepickerContainerComponent,
   BsDaterangepickerContainerComponent,
 
-  BsDatepickerComponent,
+  BsDatepickerDirective,
   BsDatepickerInputDirective,
 
   BsDaterangepickerInputDirective,
-  BsDaterangepickerComponent
+  BsDaterangepickerDirective
 ];
 
 @NgModule({
@@ -74,7 +76,8 @@ export class BsDatepickerModule {
         BsDatepickerStore,
         BsDatepickerActions,
         BsDatepickerConfig,
-        BsDatepickerEffects
+        BsDatepickerEffects,
+        BsLocaleService
       ]
     };
   }

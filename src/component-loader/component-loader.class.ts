@@ -200,6 +200,9 @@ export class ComponentLoader<T> {
         this._viewContainerRef.indexOf(this._contentRef.viewRef)
       );
     }
+    if (this._contentRef.viewRef) {
+      this._contentRef.viewRef.destroy();
+    }
     // this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
     //
     // if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {

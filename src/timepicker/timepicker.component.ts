@@ -27,6 +27,7 @@ import {
   parseTime,
   isInputValid
 } from './timepicker.utils';
+import { fakeAsync } from '@angular/core/testing';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -58,6 +59,9 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
       -webkit-transform: rotate(-135deg);
       transform: rotate(-135deg);
       top: -2px;
+    }
+    .bs-timepicker-field{
+      width: 50px;
     }
   `],
   encapsulation: ViewEncapsulation.None
@@ -200,7 +204,9 @@ export class TimepickerComponent
   }
 
   _updateTime() {
-    if (!isInputValid(this.hours, this.minutes, this.seconds, this.isPM())) {
+    const _seconds = this.showSeconds ? this.seconds : void 0;
+    if (!isInputValid(this.hours, this.minutes, _seconds, this.isPM())) {
+      this.isValid.emit(false);
       this.onChange(null);
 
       return;
@@ -235,6 +241,8 @@ export class TimepickerComponent
   writeValue(obj: any): void {
     if (isValidDate(obj)) {
       this._store.dispatch(this._timepickerActions.writeValue(parseTime(obj)));
+    } else if (obj == null) {
+      this._store.dispatch(this._timepickerActions.writeValue(null));
     }
   }
 

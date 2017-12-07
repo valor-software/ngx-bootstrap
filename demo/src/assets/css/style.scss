@@ -36,8 +36,6 @@ a:hover {
   background-color: #1976d2;
   display: flex;
   flex-flow: row nowrap;
-  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05),
-              inset 0 -1px 0 rgba(0,0,0,.1);
 
   .logo {
     color: #fff;
@@ -303,6 +301,17 @@ a:hover {
   h2[id] {
     margin-top: 58px;
   }
+  h2[id],
+  h3[id] {
+    .anchor-link {
+      display: none;
+    }
+    &:hover {
+      .anchor-link {
+        display: inline-block;
+      }
+    }
+  }
 
   ng-sample-box {
     .section {
@@ -323,6 +332,9 @@ a:hover {
   }
 }
 .api-doc-component {
+  > h3 {
+    margin-top: 20px;
+  }
   .table {
     td {
       padding: 1rem;
@@ -340,6 +352,42 @@ a:hover {
 .add-nav {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
+  padding-right: 5px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 84px;
+  left: 83.33%;
+  right: 0;
+  max-height: calc(100vh - 104px);
+  overflow: auto;
+  direction: rtl;
+
+  ul {
+    margin: 0;
+    padding: 0 0 0 20px;
+    font-size: 14px;
+    list-style: none;
+    direction: ltr;
+
+    li {
+      a {
+        word-break: break-all;
+        word-break: break-word;
+        display: block;
+        padding: 5px 0;
+        line-height: 1.2;
+        color: #666;
+
+        &:hover {
+          color: #1976d2;
+        }
+      }
+    }
+  }
+
+  & > ul {
+    border-left: 1px solid #dadada;
+  }
 }
 /* app-footer */
 .app-footer {
@@ -384,6 +432,51 @@ a:hover {
     clear: both;
   }
 }
+
+/* Specify styling for tooltip contents */
+
+/* Hide arrow */
+.tooltip.customClass.fade{
+  transition: opacity 1s;
+}
+.tooltip.customClass {
+  .tooltip-inner {
+    color: #880000;
+    background-color: #ffff66;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  }
+  .tooltip-arrow,
+  .arrow:before {
+    border-top-color: #ffff75;
+  }
+}
+
+
+/* Specify styling for popover contents */
+.popover {
+  &.customClass,
+  &.customClass .popover-content {
+    background: #94bada;
+  }
+}
+.popover.customClass.top > .arrow:after {
+  border-top-color: #94bada;
+}
+
+.nav-item {
+  &.customClass {
+    float: right;
+
+    &:first-child {
+      margin-left: auto;
+    }
+
+    a {
+      background-color: #50ff50;
+    }
+  }
+}
+
 .card.customClass,
 .card.customClass .card-header,
 .panel.customClass {
@@ -407,7 +500,6 @@ a:hover {
   border-radius: 4px;
 }
 
-
 /*** Media Query ***/
 /* above 768px */
 @media (min-width: 768px) {
@@ -415,7 +507,16 @@ a:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1090; // to overlap most positioned elements in bootstrap
+  }
+  .header-dropdown {
+    z-index: 1090;
+  }
+  .modal-backdrop {
+    z-index: 2000; // to overlap header :)
+  }
+  .modal {
+    z-index: 2001; // to overlap header :)
   }
   .sidebar {
     position: -webkit-sticky;
@@ -427,8 +528,8 @@ a:hover {
     display: none;
   }
 }
-/* below 1440 */
-@media (max-width: 1439px) {
+/* below 1200 */
+@media (max-width: 1199px) {
   .add-nav {
     display: none;
   }
@@ -436,6 +537,16 @@ a:hover {
     flex: 0 0 75%;
     max-width: 75%;
   }
+
+  .content {
+    h2[id],
+    h3[id] {
+      .anchor-link {
+        display: inline-block;
+      }
+    }
+  }
+
   .advantages {
     .holder {
       padding-left: 5%;
@@ -465,10 +576,6 @@ a:hover {
 
     .logo {
       font-size: 1.25rem;
-    }
-
-    .prev-docs {
-      display: none;
     }
   }
   .advantages {
@@ -581,6 +688,14 @@ a:hover {
           padding-bottom: 0;
         }
       }
+    }
+  }
+}
+/* below 480 */
+@media (max-width: 479px) {
+  .header {
+    .prev-docs {
+      display: none;
     }
   }
 }

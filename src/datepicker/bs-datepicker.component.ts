@@ -1,5 +1,5 @@
 import {
-  Component, ComponentRef, ElementRef, EventEmitter, Input, OnChanges,
+  ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -8,13 +8,13 @@ import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-contai
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsLocaleService } from './bs-locale.service';
 
-@Component({
-  selector: 'bs-datepicker,[bsDatepicker]',
-  exportAs: 'bsDatepicker',
-  template: '<ng-content></ng-content>'
+@Directive({
+  selector: '[bsDatepicker]',
+  exportAs: 'bsDatepicker'
 })
-export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
+export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Placement of a datepicker. Accepts: "top", "bottom", "left", "right"
    */
@@ -120,6 +120,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       triggers: this.triggers,
       show: () => this.show()
     });
+    this.setConfig();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -149,12 +150,7 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
       return;
     }
 
-    this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: this._bsValue,
-      isDisabled: this.isDisabled,
-      minDate: this.minDate || this._config.minDate,
-      maxDate: this.maxDate || this._config.maxDate
-    });
+    this.setConfig();
 
     this._datepickerRef = this._datepicker
       .provide({provide: BsDatepickerConfig, useValue: this._config})
@@ -202,6 +198,18 @@ export class BsDatepickerComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     this.show();
+  }
+
+  /**
+   * Set config for datepicker
+   */
+  setConfig(): void {
+    this._config = Object.assign({}, this._config, this.bsConfig, {
+      value: this._bsValue,
+      isDisabled: this.isDisabled,
+      minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+    });
   }
 
   ngOnDestroy(): any {

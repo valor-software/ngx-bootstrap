@@ -19,6 +19,7 @@ import {
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
 import { Subscription } from 'rxjs/Subscription';
+import { BsLocaleService } from '../bs-locale.service';
 
 @Injectable()
 export class BsDatepickerEffects {
@@ -31,7 +32,8 @@ export class BsDatepickerEffects {
   private _store: BsDatepickerStore;
   private _subs: Subscription[] = [];
 
-  constructor(private _actions: BsDatepickerActions) {}
+  constructor(private _actions: BsDatepickerActions,
+              private _localeService: BsLocaleService) {}
 
   init(_bsDatepickerStore: BsDatepickerStore): BsDatepickerEffects {
     this._store = _bsDatepickerStore;
@@ -69,7 +71,8 @@ export class BsDatepickerEffects {
 
   /* Set rendering options */
   setOptions(_config: BsDatepickerConfig): BsDatepickerEffects {
-    this._store.dispatch(this._actions.setOptions(_config));
+    const _options = Object.assign({locale: this._localeService.currentLocale}, _config);
+    this._store.dispatch(this._actions.setOptions(_options));
 
     return this;
   }
@@ -223,6 +226,12 @@ export class BsDatepickerEffects {
         .filter(hoveredDate => !!hoveredDate)
         .subscribe(hoveredDate => this._store.dispatch(this._actions.flag()))
     );
+
+    // on locale change
+    this._subs.push(
+      this._localeService.localeChange
+        .subscribe(locale => this._store.dispatch(this._actions.setLocale(locale)))
+    )
 
     return this;
   }

@@ -7,7 +7,7 @@ const versionsFilePath = 'assets/json/versions.json';
 const currentVersionFilePath = 'assets/json/current-version.json';
 
 const demoSrcDir = 'demo/src';
-const demoDistDir = 'demo/dist';
+const demoDistDir = 'demo/dist/browser';
 const hostname = 'ngx-bootstrap';
 
 let prevVersion;

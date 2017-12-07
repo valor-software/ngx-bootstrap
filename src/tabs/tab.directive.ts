@@ -16,33 +16,32 @@ import { TabsetComponent } from './tabset.component';
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() heading: string;
-  /** tab id */
+  /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
+  @HostBinding('attr.id')
   @Input() id: string;
   /** if true tab can not be activated */
   @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
   @Input() removable: boolean;
-  /** if set, will be added to the tab's class atribute */
+  /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string {
     return this._customClass;
   }
 
   set customClass(customClass: string) {
-    if (this._customClass && this._customClass !== customClass) {
-      this.renderer.removeClass(
-        this.elementRef.nativeElement,
-        this._customClass
-      );
+    if (this.customClass) {
+      this.customClass.split(' ').forEach((cssClass: string) => {
+        this.renderer.removeClass(this.elementRef.nativeElement, cssClass);
+      });
     }
 
-    this._customClass = customClass;
+    this._customClass = customClass ? customClass.trim() : null;
 
-    if (this._customClass) {
-      this.renderer.addClass(
-        this.elementRef.nativeElement,
-        this._customClass
-      );
+    if (this.customClass) {
+      this.customClass.split(' ').forEach((cssClass: string) => {
+        this.renderer.addClass(this.elementRef.nativeElement, cssClass);
+      });
     }
   }
 
