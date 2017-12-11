@@ -138,6 +138,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: NgApiDocComponent
       },
       {
+        title: 'BsDropdownContainerComponent',
+        anchor: 'dropdown-container',
+        outlet: NgApiDocComponent
+      },
+      {
         title: 'BsDropdownMenuDirective',
         anchor: 'dropdown-menu-directive',
         outlet: NgApiDocComponent
@@ -146,6 +151,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'BsDropdownToggleDirective',
         anchor: 'dropdown-toggle-directive',
         outlet: NgApiDocComponent
+      },
+      {
+        title: 'BsDropdownState',
+        anchor: 'BsDropdownState',
+        outlet: NgApiDocConfigComponent
       },
       {
         title: 'BsDropdownConfig',
