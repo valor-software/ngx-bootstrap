@@ -15,6 +15,11 @@
 * **tests:** covering navigation feature with bdd ([#3026](https://github.com/valor-software/ngx-bootstrap/issues/3026)) ([c5fb8dc](https://github.com/valor-software/ngx-bootstrap/commit/c5fb8dc))
 
 
+### BREAKING CHANGES
+
+* **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
+
+
 
 <a name="2.0.0-beta.10"></a>
 # [2.0.0-beta.10](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-12-05)
@@ -176,7 +181,7 @@
 
 ### BREAKING CHANGES
 
-* **rating:** 
+* **rating:**
   - removed input properties `stateOn`, `stateOff` and `ratingStates`
   - custom icons now working via customTemplate
 * **package:** - dropped support of ng v2
@@ -445,7 +450,7 @@
 
 ### BREAKING CHANGES
 
-* **dropdown:** 
+* **dropdown:**
   - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
   - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
   - `dropdownMenu` menu become a template selector, so `*` should be added
