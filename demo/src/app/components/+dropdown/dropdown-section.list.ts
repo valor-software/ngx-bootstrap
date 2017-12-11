@@ -47,9 +47,10 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDropdownBasicComponent
       },
       {
+        title: 'Trigger by tag <a>',
+        anchor: 'link-button',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic-link.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic-link.html'),
-        description: `<p>And with <code> &lt;a&gt; </code> elements:</p>`,
         outlet: DemoDropdownBasicLinkComponent
       },
       {
