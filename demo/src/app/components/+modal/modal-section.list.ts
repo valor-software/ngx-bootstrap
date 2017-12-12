@@ -182,11 +182,6 @@ export const demoComponentContent: ContentSection[] = [
         outlet: NgApiDocComponent
       },
       {
-        title: 'ModalContainerComponent',
-        anchor: 'modal-container',
-        outlet: NgApiDocComponent
-      },
-      {
         title: 'BsModalService',
         anchor: 'bs-modal-service',
         outlet: NgApiDocClassComponent
