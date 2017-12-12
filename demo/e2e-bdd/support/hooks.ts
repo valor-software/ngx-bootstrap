@@ -3,5 +3,5 @@
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(function ({setDefaultTimeout}) {
-  setDefaultTimeout(10 * 1000);
+  setDefaultTimeout(120 * 1000);
 });
