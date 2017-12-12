@@ -4,7 +4,7 @@
 
 import { LocaleData } from '../locale/locale.class';
 
-export const hu = {
+export const hu: LocaleData = {
   abbr: 'hu',
   months: 'Január_Február_Március_Április_Május_Június_Július_Augusztus_Szeptember_Október_November_December'.split('_'),
   monthsShort: 'Jan_Feb_Márc_Ápr_Máj_Jún_Júl_Aug_Szept_Okt_Nov_Dec'.split('_'),
@@ -43,7 +43,9 @@ export const hu = {
     yy: '%d éve'
   },
   dayOfMonthOrdinalParse: /\d{1,2}\./,
-  ordinal: '%d.',
+  ordinal(num: number, token?: string): string {
+    return `${num}.`;
+  },
   week: {
     dow: 1,
     doy: 4 // The week that contains Jan 4th is the first week of the year.
