@@ -137,7 +137,7 @@
     "ngm-cli": "0.8.3",
     "npm-run-all": "4.1.1",
     "prettier": "1.9.0",
-    "protractor": "5.1.2",
+    "protractor": "5.2.2",
     "protractor-cucumber-framework": "4.1.1",
     "reflect-metadata": "0.1.10",
     "require-dir": "0.3.2",
