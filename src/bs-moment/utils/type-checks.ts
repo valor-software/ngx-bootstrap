@@ -1,16 +1,24 @@
 import { absFloor } from '../utils';
 
+export function isString(str: any): str is String  {
+  return typeof str === 'string';
+}
+
 export function isDateValid(date: Date): boolean {
   return date && date.getTime && !isNaN(date.getTime());
 }
-export function isFunction(fn: Function): fn is Function {
+export function isFunction(fn: any): fn is Function {
   return (
     fn instanceof Function ||
     Object.prototype.toString.call(fn) === '[object Function]'
   );
 }
 
-export function isArray(input: any): boolean {
+export function isNumber(value: any): value is number {
+  return !isNaN(toInt(value));
+}
+
+export function isArray<T>(input: any): input is T[] {
   return (
     input instanceof Array ||
     Object.prototype.toString.call(input) === '[object Array]'
@@ -28,6 +36,22 @@ export function isObject(input: any /*object*/): boolean {
     input != null && Object.prototype.toString.call(input) === '[object Object]'
   );
 }
+
+
+export function isObjectEmpty(obj: any): boolean {
+  if (Object.getOwnPropertyNames) {
+    return (Object.getOwnPropertyNames(obj).length === 0);
+  }
+  let k;
+  for (k in obj) {
+    if (obj.hasOwnProperty(k)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 
 export function isUndefined(input: any): boolean {
   return input === void 0;

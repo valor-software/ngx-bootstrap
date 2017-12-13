@@ -28,6 +28,10 @@ export function getFullYear(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCFullYear() : date.getFullYear();
 }
 
+export function unix(date: Date): number {
+  return Math.floor(date.valueOf() / 1000);
+}
+
 export function getFirstDayOfMonth(date: Date): Date {
   return createDate(
     date.getFullYear(),

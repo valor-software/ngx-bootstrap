@@ -93,35 +93,35 @@ export class Locale {
   // LOCALES
   months(date?: Date, format?: string): string | string[] {
     if (!date) {
-      return isArray(this._months)
-        ? this._months as string[]
-        : (this._months as LocaleOptionsFormat).standalone;
+      return isArray<string>(this._months)
+        ? this._months
+        : this._months.standalone;
     }
 
-    if (isArray(this._months)) {
-      return (this._months as string[])[getMonth(date)];
+    if (isArray<string>(this._months)) {
+      return this._months[getMonth(date)];
     }
 
-    const key = ((this._months as LocaleOptionsFormat).isFormat ||
-      MONTHS_IN_FORMAT)
-      .test(format)
+    const key = (this._months.isFormat || MONTHS_IN_FORMAT).test(format)
       ? 'format'
       : 'standalone';
-    return ((this._months as any)[key] as string[])[getMonth(date)];
+
+    return this._months[key][getMonth(date)];
   }
 
   monthsShort(date?: Date, format?: string): string | string[] {
     if (!date) {
-      return isArray(this._monthsShort)
-        ? this._monthsShort as string[]
-        : (this._monthsShort as LocaleOptionsFormat).standalone;
+      return isArray<string>(this._monthsShort)
+        ? this._monthsShort
+        : this._monthsShort.standalone;
     }
 
-    if (isArray(this._monthsShort)) {
-      return (this._monthsShort as string[])[getMonth(date)];
+    if (isArray<string>(this._monthsShort)) {
+      return this._monthsShort[getMonth(date)];
     }
     const key = MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone';
-    return ((this._monthsShort as any)[key] as string[])[getMonth(date)];
+
+    return this._monthsShort[key][getMonth(date)];
   }
 
   // Days of week

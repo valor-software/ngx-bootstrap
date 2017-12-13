@@ -1,9 +1,29 @@
 import { addFormatToken } from '../format-functions';
 import { startOf } from '../utils/start-end-of';
+import { addRegexToken, match1to3, match3 } from '../parse/regex';
+import { addParseToken } from '../parse/token';
+import { toInt } from '../utils/type-checks';
 
 // FORMATTING
+
 addFormatToken('DDD', ['DDDD', 3], 'DDDo', function(date: Date): string {
   return getDayOfYear(date).toString(10);
+});
+
+
+// ALIASES
+
+// addUnitAlias('dayOfYear', 'DDD');
+
+// PRIORITY
+
+// addUnitPriority('dayOfYear', 4);
+
+addRegexToken('DDD',  match1to3);
+addRegexToken('DDDD', match3);
+addParseToken(['DDD', 'DDDD'], function (input, array) {
+  // config._dayOfYear = toInt(input);
+  return array;
 });
 
 export function getDayOfYear(date: Date): number {
@@ -13,12 +33,4 @@ export function getDayOfYear(date: Date): number {
   const oneDay = 1000 * 60 * 60 * 24;
 
   return Math.round(someDate / oneDay) + 1;
-}
-
-export function _getDayOfYear(date: Date): number {
-  const start = new Date(date.getFullYear(), 0, 0);
-  const diff = date.getTime() - start.getTime();
-  const oneDay = 1000 * 60 * 60 * 24;
-
-  return Math.round(diff / oneDay) + 1;
 }

@@ -39,7 +39,7 @@ export function formatMoment(date: Date, _format: string, locale: Locale) {
   return formatFunctions[format](date, locale);
 }
 
-export function expandFormat(_format: string, locale: Locale) {
+export function expandFormat(_format: string, locale: Locale): string {
   let format = _format;
   let i = 5;
   const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;

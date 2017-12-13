@@ -1,3 +1,6 @@
+export { formatDate } from './format';
+export { parseDate } from './parse';
+
 export {
   defineLocale,
   getSetGlobalLocale,
