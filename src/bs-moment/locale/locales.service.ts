@@ -12,7 +12,7 @@ function chooseLocale(name: string) {
 }
 
 // returns locale data
-export function getLocale(key: string): Locale {
+export function getLocale(key?: string): Locale {
   if (!key) {
     return globalLocale;
   }

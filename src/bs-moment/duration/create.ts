@@ -1,0 +1,135 @@
+// ASP.NET json date format regex
+import { Duration, isDuration } from './constructor';
+import { isNumber, isObject, isString, toInt } from '../utils/type-checks';
+import { DATE, HOUR, MILLISECOND, MINUTE, SECOND } from '../units/constants';
+import { createLocal } from '../create/local';
+import { absRound } from '../utils/abs-round';
+import { DateObject } from '../types';
+import { DateParsingConfig } from '../create/parsing.types';
+import { cloneWithOffset } from '../units/offset';
+
+const aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
+
+// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+// somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
+// and further modified to allow for strings containing both week and day
+// tslint:disable-next-line
+const isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
+
+export type DurationInput = string | number | Duration | { from: Date; to: Date };
+
+export function createDuration(input: DurationInput, key: string, config?: DateParsingConfig) {
+  const duration = convertDuration(input, key);
+  // matching against regexp is expensive, do it on demand
+
+  return new Duration(duration, config);
+}
+
+function convertDuration(input: any, key: string): Partial<DateObject> {
+  // checks for null or undefined
+  if (input == null) {
+    return {};
+  }
+
+  if (isDuration(input)) {
+    return {
+      milliseconds: input._milliseconds,
+      day: input._days,
+      month: input._months
+    };
+  }
+  if (isNumber(input)) {
+    // duration = {};
+    return key ? { [key]: input } : { milliseconds: input };
+  }
+
+  if (isString(input)) {
+    let match = aspNetRegex.exec(input);
+
+    if (match) {
+      const sign = (match[1] === '-') ? -1 : 1;
+
+      return {
+        year: 0,
+        day: toInt(match[DATE]) * sign,
+        hours: toInt(match[HOUR]) * sign,
+        minutes: toInt(match[MINUTE]) * sign,
+        seconds: toInt(match[SECOND]) * sign,
+        // the millisecond decimal point is included in the match
+        milliseconds: toInt(absRound(toInt(match[MILLISECOND]) * 1000)) * sign
+      };
+    }
+
+    match = isoRegex.exec(input);
+    if (match) {
+      const sign = (match[1] === '-') ? -1 : (match[1] === '+') ? 1 : 1;
+
+      return {
+        year: parseIso(match[2], sign),
+        month: parseIso(match[3], sign),
+        week: parseIso(match[4], sign),
+        day: parseIso(match[5], sign),
+        hours: parseIso(match[6], sign),
+        minutes: parseIso(match[7], sign),
+        seconds: parseIso(match[8], sign)
+      };
+    }
+
+  }
+
+  if (isObject(input) && ('from' in input || 'to' in input)) {
+    const diffRes = momentsDifference(createLocal(input.from), createLocal(input.to));
+
+    return {
+      milliseconds: diffRes.milliseconds,
+      month: diffRes.months
+    };
+  }
+
+  return input;
+}
+
+// createDuration.fn = Duration.prototype;
+// createDuration.invalid = invalid;
+
+function parseIso(inp: string, sign: number): number {
+  // We'd normally use ~~inp for this, but unfortunately it also
+  // converts floats to ints.
+  // inp may be undefined, so careful calling replace on it.
+  const res = inp && parseFloat(inp.replace(',', '.'));
+  // apply sign while we're at it
+
+  return (isNaN(res) ? 0 : res) * sign;
+}
+
+function positiveMomentsDifference(base, other) {
+  const res = { milliseconds: 0, months: 0 };
+
+  res.months = other.month() - base.month() +
+    (other.year() - base.year()) * 12;
+  if (base.clone().add(res.months, 'M').isAfter(other)) {
+    --res.months;
+  }
+
+  res.milliseconds = +other - +(base.clone().add(res.months, 'M'));
+
+  return res;
+}
+
+function momentsDifference(base, other) {
+  let res;
+  if (!(base.isValid() && other.isValid())) {
+    return { milliseconds: 0, months: 0 };
+  }
+
+  other = cloneWithOffset(other, base);
+  if (base.isBefore(other)) {
+    res = positiveMomentsDifference(base, other);
+  } else {
+    res = positiveMomentsDifference(other, base);
+    res.milliseconds = -res.milliseconds;
+    res.months = -res.months;
+  }
+
+  return res;
+}

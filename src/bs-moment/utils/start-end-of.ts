@@ -1,9 +1,9 @@
 import { TimeUnit, UnitOfTime } from '../types';
-import { setDate, shiftDate } from './date-setters';
+import { setFullDate, shiftDate } from './date-setters';
 
 export function startOf(date: Date, units: UnitOfTime): Date {
   const unit = getDateShift(units);
-  return setDate(date, unit);
+  return setFullDate(date, unit);
 }
 
 export function endOf(date: Date, units: UnitOfTime): Date {

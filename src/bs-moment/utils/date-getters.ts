@@ -12,6 +12,10 @@ export function getSeconds(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCSeconds() : date.getSeconds();
 }
 
+export function getTime(date: Date): number {
+  return date.getTime();
+}
+
 export function getDayOfWeek(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCDay() : date.getDay();
 }

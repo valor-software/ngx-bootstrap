@@ -1,10 +1,33 @@
 // import { getLocale } from '../locale/locales.service';
 import { formatDate } from '../../format';
+import { getMonth } from '../../utils/date-getters';
+import { createLocal } from '../../parse';
 
 const localeAbbr = 'en';
-// const locale = getLocale(localeAbbr);
 
 describe('moment - locale: en', () => {
+  it('parse', function () {
+    // tslint:disable-next-line
+    const tests = 'January Jan_February Feb_March Mar_April Apr_May May_June Jun_July Jul_August Aug_September Sep_October Oct_November Nov_December Dec'.split('_');
+
+    function equalTest(input, mmm, i) {
+      // assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
+      expect(getMonth(createLocal(input, mmm))).toBe(i, `${input} should be month ${i + 1}`);
+    }
+
+    for (let i = 0; i < 12; i++) {
+      const test = tests[i].split(' ');
+      equalTest(test[0], 'MMM', i);
+      equalTest(test[1], 'MMM', i);
+      equalTest(test[0], 'MMMM', i);
+      equalTest(test[1], 'MMMM', i);
+      equalTest(test[0].toLocaleLowerCase(), 'MMMM', i);
+      equalTest(test[1].toLocaleLowerCase(), 'MMMM', i);
+      equalTest(test[0].toLocaleUpperCase(), 'MMMM', i);
+      equalTest(test[1].toLocaleUpperCase(), 'MMMM', i);
+    }
+  });
+
   it('format', () => {
     const expected: string[][] = [
       [
@@ -23,16 +46,16 @@ describe('moment - locale: en', () => {
       ['m mm', '25 25'],
       ['s ss', '50 50'],
       ['a A', 'pm PM'],
-      ['[the] DDDo [day of the year]', 'the 45th day of the year']
-      // ['LTS', '3:25:50 PM'],
-      // ['L', '02/14/2010'],
-      // ['LL', 'February 14, 2010'],
-      // ['LLL', 'February 14, 2010 3:25 PM'],
-      // ['LLLL', 'Sunday, February 14, 2010 3:25 PM'],
-      // ['l', '2/14/2010'],
-      // ['ll', 'Feb 14, 2010'],
-      // ['lll', 'Feb 14, 2010 3:25 PM'],
-      // ['llll', 'Sun, Feb 14, 2010 3:25 PM']
+      ['[the] DDDo [day of the year]', 'the 45th day of the year'],
+      ['LTS', '3:25:50 PM'],
+      ['L', '02/14/2010'],
+      ['LL', 'February 14, 2010'],
+      ['LLL', 'February 14, 2010 3:25 PM'],
+      ['LLLL', 'Sunday, February 14, 2010 3:25 PM'],
+      ['l', '2/14/2010'],
+      ['ll', 'Feb 14, 2010'],
+      ['lll', 'Feb 14, 2010 3:25 PM'],
+      ['llll', 'Sun, Feb 14, 2010 3:25 PM']
     ];
     const date = new Date(2010, 1, 14, 15, 25, 50, 125);
 

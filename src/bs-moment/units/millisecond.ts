@@ -5,7 +5,8 @@ import { addFormatToken } from '../format-functions';
 import { addRegexToken, match1, match1to3, match2, match3, matchUnsigned } from '../parse/regex';
 import { MILLISECOND } from './constants';
 import { toInt } from '../utils/type-checks';
-import { addParseToken, DateArray } from '../parse/token';
+import { addParseToken} from '../parse/token';
+import { DateArray } from '../types';
 
 addFormatToken('S', null, null, function (date: Date): string {
   return (~~(date.getMilliseconds() / 100)).toString(10);

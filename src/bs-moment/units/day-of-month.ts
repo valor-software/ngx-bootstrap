@@ -1,9 +1,10 @@
 import { addFormatToken } from '../format-functions';
 import { getDate } from '../utils/date-getters';
 import { addRegexToken, match1to2, match2 } from '../parse/regex';
-import { addParseToken, DateArray } from '../parse/token';
+import { addParseToken} from '../parse/token';
 import { DATE } from './constants';
 import { toInt } from '../utils/type-checks';
+import { DateArray } from '../types';
 
 // FORMATTING
 

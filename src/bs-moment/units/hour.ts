@@ -3,9 +3,10 @@ import { addFormatToken } from '../format-functions';
 import { zeroFill } from '../utils';
 import { Locale } from '../locale/locale.class';
 import { addRegexToken, match1to2, match2, match3to4, match5to6 } from '../parse/regex';
-import { addParseToken, DateArray } from '../parse/token';
+import { addParseToken} from '../parse/token';
 import { HOUR, MINUTE, SECOND } from './constants';
 import { toInt } from '../utils/type-checks';
+import { DateArray } from '../types';
 
 // FORMATTING
 

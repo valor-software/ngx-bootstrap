@@ -1,8 +1,7 @@
 import { hasOwnProp, isArray, isFunction, isNumber, isString, toInt } from '../utils/type-checks';
-import { Locale } from '../locale/locale.class';
+import { DateParsingConfig } from '../create/parsing.types';
+import { DateArray, DateParseTokenFn } from '../types';
 
-export type DateArray = number[];
-export type DateParseTokenFn = (input: string, array: DateArray, locale: Locale, token: string) => DateArray;
 const tokens: {[key: string]: DateParseTokenFn} = {};
 
 export function addParseToken(token: string | string[], callback: DateParseTokenFn | number) {
@@ -33,13 +32,13 @@ export function addWeekParseToken(token: string | string[], callback: DateParseT
 }*/
 
 
-export function addTimeToArrayFromToken(token: string, input: string, array: DateArray, locale: Locale): DateArray {
+export function addTimeToArrayFromToken(token: string, input: string, config: DateParsingConfig): DateParsingConfig {
   // (input: string, array: DateArray, locale: Locale, token: string) => DateArray;
   if (input != null && hasOwnProp(tokens, token)) {
-    return tokens[token](input, array, locale, token);
+    tokens[token](input, config._a, config, token);
   }
 
-  return array;
+  return config;
 }
 
 // export function addParseToken (token, callback) {

@@ -1,12 +1,13 @@
 import { absFloor } from '../utils';
 
-export function isString(str: any): str is String  {
+export function isString(str: any): str is string {
   return typeof str === 'string';
 }
 
 export function isDateValid(date: Date): boolean {
   return date && date.getTime && !isNaN(date.getTime());
 }
+
 export function isFunction(fn: any): fn is Function {
   return (
     fn instanceof Function ||
@@ -29,7 +30,7 @@ export function hasOwnProp(a: any /*object*/, b: string | number): boolean {
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 
-export function isObject(input: any /*object*/): boolean {
+export function isObject<K, T>(input: any /*object*/): input is any {
   // IE8 will treat undefined and null as object if it wasn't for
   // input != null
   return (

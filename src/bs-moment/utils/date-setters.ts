@@ -48,7 +48,7 @@ export function shiftDate(date: Date, unit: TimeUnit): Date {
   );
 }
 
-export function setDate(date: Date, unit: TimeUnit): Date {
+export function setFullDate(date: Date, unit: TimeUnit): Date {
   return createDate(
     getNum(date.getFullYear(), unit.year),
     getNum(date.getMonth(), unit.month),
@@ -61,4 +61,22 @@ export function setDate(date: Date, unit: TimeUnit): Date {
 
 function getNum(def: number, num: number): number {
   return typeof num === 'number' ? num : def;
+}
+
+export function setMonth(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCMonth(value) : date.setMonth(value);
+
+  return date;
+}
+
+export function setDate(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCDate(value) : date.setDate(value);
+
+  return date;
+}
+
+export function setTime(date: Date, value: number, isUTC?: boolean): Date {
+  date.setTime(value);
+
+  return date;
 }

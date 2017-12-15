@@ -1,8 +1,9 @@
 import { addFormatToken } from '../format-functions';
 import { unix } from '../utils/date-getters';
 import { addRegexToken, matchSigned, matchTimestamp } from '../parse/regex';
-import { addParseToken, DateArray } from '../parse/token';
+import { addParseToken} from '../parse/token';
 import { toInt } from '../utils/type-checks';
+import { DateArray } from '../types';
 
 // FORMATTING
 

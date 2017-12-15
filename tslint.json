@@ -15,6 +15,7 @@
     "component-selector": false,
     "no-magic-numbers": false,
     "no-any": false,
-    "prefer-object-spread": false
+    "prefer-object-spread": false,
+    "prefer-for-of": false
   }
 }

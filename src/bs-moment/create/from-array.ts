@@ -1,12 +1,15 @@
-import { DateArray } from '../parse/token';
-import { HOUR, MILLISECOND, MINUTE, SECOND } from '../units/constants';
+import { DateParsingConfig } from './parsing.types';
+import { DateArray } from '../types';
+import { DATE, HOUR, MILLISECOND, MINUTE, MONTH, SECOND, YEAR } from '../units/constants';
+import { daysInYear } from '../units/year';
+import { getParsingFlags } from './parsing-flags';
 import { createUTCDate } from '../utils';
 import { createDate } from '../utils/date-setters';
 
-function currentDateArray(isUTC: boolean): DateArray {
-  // hooks is actually the exported moment object
+function currentDateArray(config: DateParsingConfig): DateArray {
   const nowValue = new Date();
-  if (isUTC) {
+
+  if (config._useUTC) {
     return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate()];
   }
 
@@ -17,73 +20,81 @@ function currentDateArray(isUTC: boolean): DateArray {
 // the array should mirror the parameters below
 // note: all values past the year are optional and will default to the lowest possible value.
 // [year, month, day , hour, minute, second, millisecond]
-export function configFromArray(input: DateArray) {
-  const _isUTC = false;
-  const currentDate = currentDateArray(_isUTC);
+export function configFromArray(config: DateParsingConfig): DateParsingConfig {
+  const input = [];
+  let i;
+  let date;
+  let currentDate;
+  let expectedWeekday;
+  let yearToUse;
+
+  if (config._d) {
+    return config;
+  }
+
+  currentDate = currentDateArray(config);
 
   // compute day of the year from weeks and weekdays
-  // if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
-  //   dayOfYearFromWeekInfo(config);
-  // }
+  if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
+    dayOfYearFromWeekInfo(config);
+  }
 
   // if the day of the year is set, figure out what it is
-  // if (config._dayOfYear != null) {
-  //   yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
-  //
-  //   if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
-  //     getParsingFlags(config)._overflowDayOfYear = true;
-  //   }
-  //
-  //   date = createUTCDate(yearToUse, 0, config._dayOfYear);
-  //   config._a[MONTH] = date.getUTCMonth();
-  //   config._a[DATE] = date.getUTCDate();
-  // }
+  if (config._dayOfYear != null) {
+    yearToUse = config._a[YEAR] || currentDate[YEAR];
+
+    if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
+      getParsingFlags(config)._overflowDayOfYear = true;
+    }
+
+    date = createUTCDate(yearToUse, 0, config._dayOfYear);
+    config._a[MONTH] = date.getUTCMonth();
+    config._a[DATE] = date.getUTCDate();
+  }
 
   // Default to current date.
   // * if no year, month, day of month are given, default to today
   // * if day of month is given, default month and year
   // * if month is given, default only year
   // * if year is given, don't default anything
-  let i;
-  for (i = 0; i < 3 && input[i] == null; ++i) {
-    input[i] = currentDate[i];
+  for (i = 0; i < 3 && config._a[i] == null; ++i) {
+    config._a[i] = input[i] = currentDate[i];
   }
 
   // Zero out whatever was not defaulted, including time
   for (; i < 7; i++) {
-    input[i] = (input[i] == null) ? (i === 2 ? 1 : 0) : input[i];
+    config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
   }
 
   // Check for 24:00:00.000
-  if (input[HOUR] === 24 &&
-    input[MINUTE] === 0 &&
-    input[SECOND] === 0 &&
-    input[MILLISECOND] === 0) {
-    // config._nextDay = true;
-    input[HOUR] = 0;
+  if (config._a[HOUR] === 24 &&
+    config._a[MINUTE] === 0 &&
+    config._a[SECOND] === 0 &&
+    config._a[MILLISECOND] === 0) {
+    config._nextDay = true;
+    config._a[HOUR] = 0;
   }
 
-  const _date = (_isUTC ? createUTCDate : createDate).apply(null, input);
-  // expectedWeekday = _isUTC ? _date.getUTCDay() : _date.getDay();
+  config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
+  expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
 
   // Apply timezone offset from input. The actual utcOffset can be changed
   // with parseZone.
-  // if (config._tzm != null) {
-  //   _date.setUTCMinutes(_date.getUTCMinutes() - config._tzm);
-  // }
+  if (config._tzm != null) {
+    config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
+  }
 
-  // if (config._nextDay) {
-  //   input[HOUR] = 24;
-  // }
+  if (config._nextDay) {
+    config._a[HOUR] = 24;
+  }
 
   // check for mismatching day of week
-  // if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
-  //   getParsingFlags(config).weekdayMismatch = true;
-  // }
-  return _date;
+  if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
+    getParsingFlags(config).weekdayMismatch = true;
+  }
 }
 
-/*function dayOfYearFromWeekInfo(config) {
+function dayOfYearFromWeekInfo(config) {
   var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
 
   w = config._w;
@@ -138,4 +149,4 @@ export function configFromArray(input: DateArray) {
     config._a[YEAR] = temp.year;
     config._dayOfYear = temp.dayOfYear;
   }
-}*/
+}

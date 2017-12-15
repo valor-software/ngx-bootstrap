@@ -1,4 +1,5 @@
 import { hasOwnProp, isString } from '../utils/type-checks';
+import { DateObject } from '../types';
 
 const aliases: { [key: string]: string } = {};
 
@@ -11,9 +12,8 @@ export function normalizeUnits(units: string | string[]) {
   return isString(units) ? aliases[units] || aliases[units.toLowerCase()] : undefined;
 }
 
-/*
-export function normalizeObjectUnits(inputObject) {
-  const normalizedInput = {};
+export function normalizeObjectUnits(inputObject: { [key: string]: number }): DateObject {
+  const normalizedInput: { [key: string]: number } = {};
   let normalizedProp;
   let prop;
 
@@ -28,5 +28,3 @@ export function normalizeObjectUnits(inputObject) {
 
   return normalizedInput;
 }
-
-*/
