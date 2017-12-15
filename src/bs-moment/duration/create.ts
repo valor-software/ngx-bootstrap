@@ -8,9 +8,9 @@ import { DateObject } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { cloneWithOffset } from '../units/offset';
 import { isValidDate } from '../../timepicker/timepicker.utils';
-import { isBefore } from '../utils/date-compare';
-import { setMonth } from '../utils/date-setters';
-import { getMonth } from '../utils/date-getters';
+import { isAfter, isBefore } from '../utils/date-compare';
+import { getFullYear, getMonth } from '../utils/date-getters';
+import { add } from '../moment/add-subtract';
 
 const aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
@@ -106,21 +106,22 @@ function parseIso(inp: string, sign: number): number {
   return (isNaN(res) ? 0 : res) * sign;
 }
 
-function positiveMomentsDifference(base, other) {
+function positiveMomentsDifference(base: Date, other: Date): { milliseconds: number; months: number } {
   const res = { milliseconds: 0, months: 0 };
 
-  res.months = other.month() - base.month() +
-    (other.year() - base.year()) * 12;
-  if (base.clone().add(res.months, 'M').isAfter(other)) {
+  res.months = getMonth(other) - getMonth(base) +
+    (getFullYear(other) - getFullYear(base)) * 12;
+  const _basePlus = add(base, res.months, 'month');
+  if (isAfter(_basePlus, other)) {
     --res.months;
   }
 
-  res.milliseconds = +other - +(base.clone().add(res.months, 'M'));
+  res.milliseconds = +other - +(add(base, res.months, 'month'));
 
   return res;
 }
 
-function momentsDifference(base: Date, other: Date) {
+function momentsDifference(base: Date, other: Date): { milliseconds: number; months: number } {
   if (!(isValidDate(base) && isValidDate(other))) {
     return { milliseconds: 0, months: 0 };
   }
@@ -131,7 +132,6 @@ function momentsDifference(base: Date, other: Date) {
     res = positiveMomentsDifference(base, _other);
   } else {
     res = positiveMomentsDifference(_other, base);
-    setMonth(res, -getMonth(res));
     res.milliseconds = -res.milliseconds;
     res.months = -res.months;
   }

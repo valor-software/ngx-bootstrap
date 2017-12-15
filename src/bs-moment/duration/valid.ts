@@ -2,14 +2,14 @@ import { toInt } from '../utils/type-checks';
 import { createDuration } from './create';
 import { Duration } from './constructor';
 
-const ordering = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];
-const orderingHash = ordering.reduce((mem, order) => {
+const ordering: string[] = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];
+const orderingHash = ordering.reduce((mem: { [key: string]: boolean }, order) => {
   mem[order] = true;
 
   return mem;
 }, {});
 
-export function isDurationValid(duration): boolean {
+export function isDurationValid(duration: Duration): boolean {
   const durationKeys = Object.keys(duration);
   if (durationKeys.some(key => (key in orderingHash) && duration[key] === null || isNaN(duration[key])) {
     return false;
