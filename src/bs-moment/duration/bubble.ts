@@ -41,20 +41,20 @@ export function bubble(dur: Duration): Duration {
   const years = absFloor(months / 12);
   months %= 12;
 
-  data.days = days;
-  data.months = months;
-  data.years = years;
+  data.day = days;
+  data.month = months;
+  data.year = years;
 
   return dur;
 }
 
-export function daysToMonths(days) {
+export function daysToMonths(day: number): number {
   // 400 years have 146097 days (taking into account leap year rules)
   // 400 years have 12 months === 4800
-  return days * 4800 / 146097;
+  return day * 4800 / 146097;
 }
 
-export function monthsToDays(months) {
+export function monthsToDays(month: number): number {
   // the reverse of daysToMonths
-  return months * 146097 / 4800;
+  return month * 146097 / 4800;
 }

@@ -1,7 +1,8 @@
-// moved to from-anything
+import { setOffsetToUTC } from '../units/offset';
+import { createLocalOrUTC } from './from-anything';
 
-// import { createLocalOrUTC } from './from-anything';
+export function createUTC(input: string | number, format?: string, localeKey?: string, strict?: boolean): Date {
+  const conf = createLocalOrUTC(input, format, localeKey, strict, true);
 
-// export function createUTC(input: string | number, format?: string, localeKey?: string, strict?: boolean): Date {
-//   return createLocalOrUTC(input, format, localeKey, strict, true).utc();
-// }
+  return setOffsetToUTC(conf._d);
+}

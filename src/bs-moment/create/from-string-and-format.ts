@@ -9,6 +9,7 @@ import { HOUR } from '../units/constants';
 import { configFromArray } from './from-array';
 import { getParsingFlags } from './parsing-flags';
 import { checkOverflow } from './check-overflow';
+import { Locale } from '../locale/locale.class';
 
 // constant that refers to the ISO standard
 // hooks.ISO_8601 = function () {};
@@ -94,27 +95,31 @@ export function configFromStringAndFormat(config: DateParsingConfig): DateParsin
 }
 
 
-function meridiemFixWrap(locale, hour, meridiem) {
-  var isPm;
+function meridiemFixWrap(locale: Locale, _hour: number, meridiem: string): number {
+  let hour = _hour;
 
   if (meridiem == null) {
     // nothing to do
     return hour;
   }
+
   if (locale.meridiemHour != null) {
     return locale.meridiemHour(hour, meridiem);
-  } else if (locale.isPM != null) {
-    // Fallback
-    isPm = locale.isPM(meridiem);
-    if (isPm && hour < 12) {
-      hour += 12;
-    }
-    if (!isPm && hour === 12) {
-      hour = 0;
-    }
-    return hour;
-  } else {
+  }
+
+  if (locale.isPM == null) {
     // this is not supposed to happen
     return hour;
   }
+  // Fallback
+  const isPm = locale.isPM(meridiem);
+  if (isPm && hour < 12) {
+    hour += 12;
+  }
+
+  if (!isPm && hour === 12) {
+    hour = 0;
+  }
+
+  return hour;
 }

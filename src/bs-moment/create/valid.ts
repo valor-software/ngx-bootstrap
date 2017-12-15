@@ -3,13 +3,12 @@ import { DateParsingConfig } from './parsing.types';
 import { getParsingFlags } from './parsing-flags';
 
 export function isValid(config: DateParsingConfig): boolean {
-/*
   if (config._isValid == null) {
     const flags = getParsingFlags(config);
-    const parsedParts = Array.prototype.some.call(flags.parsedDateParts, function (i) {
+    const parsedParts = Array.prototype.some.call(flags.parsedDateParts, function (i: number) {
       return i != null;
     });
-    const isNowValid = !isNaN(config._d.getTime()) &&
+    let isNowValid = !isNaN(config._d.getTime()) &&
       flags.overflow < 0 &&
       !flags.empty &&
       !flags.invalidMonth &&
@@ -29,19 +28,17 @@ export function isValid(config: DateParsingConfig): boolean {
 
     if (Object.isFrozen == null || !Object.isFrozen(config)) {
       config._isValid = isNowValid;
-    }
-    else {
+    } else {
       return isNowValid;
     }
   }
-*/
 
   return config._isValid;
 }
 
 export function createInvalid(config: DateParsingConfig, flags?: { nullInput: boolean }): DateParsingConfig {
-  config._d =  new Date(NaN);
-  Object.assign(getParsingFlags(config), flags || {userInvalidated: true});
+  config._d = new Date(NaN);
+  Object.assign(getParsingFlags(config), flags || { userInvalidated: true });
 
   return config;
 }

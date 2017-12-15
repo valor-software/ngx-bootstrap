@@ -59,13 +59,13 @@ export class Locale {
   _config: LocaleData;
   invalidDate: string;
 
+  _week: { dow: number; doy: number };
   private _months: LocaleOptions;
   private _monthsShort: LocaleOptions;
 
   private _weekdays: LocaleOptions;
   private _weekdaysShort: string[];
   private _weekdaysMin: string[];
-  private _week: { dow: number; doy: number };
   private _longDateFormat: {[key: string]: any};
 
   private _ordinal: string;

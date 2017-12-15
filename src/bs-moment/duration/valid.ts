@@ -1,5 +1,6 @@
 import { toInt } from '../utils/type-checks';
 import { createDuration } from './create';
+import { Duration } from './constructor';
 
 const ordering = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];
 const orderingHash = ordering.reduce((mem, order) => {

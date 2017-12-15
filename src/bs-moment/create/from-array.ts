@@ -5,6 +5,7 @@ import { daysInYear } from '../units/year';
 import { getParsingFlags } from './parsing-flags';
 import { createUTCDate } from '../utils';
 import { createDate } from '../utils/date-setters';
+import { dayOfYearFromWeeks, weekOfYear, weeksInYear } from '../units/week-calendar-utils';
 
 function currentDateArray(config: DateParsingConfig): DateArray {
   const nowValue = new Date();
@@ -92,10 +93,12 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
   if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
     getParsingFlags(config).weekdayMismatch = true;
   }
+
+  return config;
 }
 
-function dayOfYearFromWeekInfo(config) {
-  var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
+  let w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
 
   w = config._w;
   if (w.GG != null || w.W != null || w.E != null) {
@@ -106,9 +109,9 @@ function dayOfYearFromWeekInfo(config) {
     // how we interpret now (local, utc, fixed offset). So create
     // a now version of current config (take local/utc/offset flags, and
     // create now).
-    weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(createLocal(), 1, 4).year);
-    week = defaults(w.W, 1);
-    weekday = defaults(w.E, 1);
+    weekYear = w.GG || config._a[YEAR] || weekOfYear(new Date(), 1, 4).year;
+    week = w.W || 1;
+    weekday = w.E || 1;
     if (weekday < 1 || weekday > 7) {
       weekdayOverflow = true;
     }
@@ -116,12 +119,12 @@ function dayOfYearFromWeekInfo(config) {
     dow = config._locale._week.dow;
     doy = config._locale._week.doy;
 
-    var curWeek = weekOfYear(createLocal(), dow, doy);
+    const curWeek = weekOfYear(new Date(), dow, doy);
 
-    weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
+    weekYear = w.gg || config._a[YEAR] || curWeek.year;
 
     // Default to current week.
-    week = defaults(w.w, curWeek.week);
+    week = w.w || curWeek.week;
 
     if (w.d != null) {
       // weekday -- low day numbers are considered next week
@@ -149,4 +152,6 @@ function dayOfYearFromWeekInfo(config) {
     config._a[YEAR] = temp.year;
     config._dayOfYear = temp.dayOfYear;
   }
+
+  return config;
 }

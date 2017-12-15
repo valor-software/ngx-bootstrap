@@ -1,5 +1,3 @@
-// iso 8601 regex
-// 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
 // tslint:disable-next-line
 import { defaultLocaleMonthsShort, defaultLocaleWeekdaysShort } from '../locale/locale.class';
 import { DateArray } from '../types';
@@ -8,7 +6,10 @@ import { isString } from '../utils/type-checks';
 import { configFromStringAndFormat } from './from-string-and-format';
 import { createUTCDate } from '../utils';
 import { createInvalid, markInvalid } from './valid';
+import { getParsingFlags } from './parsing-flags';
 
+// iso 8601 regex
+// 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
 // tslint:disable-next-line
 const extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
 // tslint:disable-next-line
@@ -174,7 +175,7 @@ function checkWeekday(weekdayStr: string, parsedInput: DateArray, config: DatePa
     const weekdayProvided = defaultLocaleWeekdaysShort.indexOf(weekdayStr);
     const weekdayActual = new Date(parsedInput[0], parsedInput[1], parsedInput[2]).getDay();
     if (weekdayProvided !== weekdayActual) {
-      // getParsingFlags(config).weekdayMismatch = true;
+      getParsingFlags(config).weekdayMismatch = true;
       config._isValid = false;
 
       return false;
@@ -222,7 +223,8 @@ export function configFromRFC2822(config: DateParsingConfig): DateParsingConfig 
   config._d = createUTCDate.apply(null, config._a);
   config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
 
-  // getParsingFlags(config).rfc2822 = true;
+  getParsingFlags(config).rfc2822 = true;
+
   return config;
 }
 
@@ -260,7 +262,7 @@ export function configFromString(config: DateParsingConfig): DateParsingConfig {
 
   // Final attempt, use Input Fallback
   // hooks.createFromInputFallback(config);
-  return {_isValid: false, _d: createInvalid()};
+  return createInvalid(config);
 }
 
 // hooks.createFromInputFallback = deprecate(

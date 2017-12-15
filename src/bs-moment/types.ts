@@ -1,3 +1,4 @@
+// tslint:disable:max-line-length
 import { Locale } from './locale/locale.class';
 import { DateParsingConfig } from './create/parsing.types';
 
@@ -20,11 +21,9 @@ export interface TimeUnit {
   seconds?: number;
 }
 
-export type DateFormatterFn = (
-  date: Date,
-  format: string,
-  locale?: Locale
-) => string;
+export type DateFormatterFn = (date: Date,
+                               format: string,
+                               locale?: Locale) => string;
 
 // todo: should replace TimeUnit
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
@@ -44,4 +43,9 @@ export interface DateObject {
 }
 
 export type DateArray = number[];
-export type DateParseTokenFn = (input: string, array: DateArray, config: DateParsingConfig, token: string) => DateArray;
+export interface WeekParsing {
+  [key: string]: number;
+  [key: number]: number;
+}
+
+export type DateParseTokenFn = (input: string, array: DateArray | WeekParsing, config: DateParsingConfig, token: string) => DateParsingConfig;

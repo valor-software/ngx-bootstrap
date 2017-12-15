@@ -1,5 +1,5 @@
 import { Locale } from '../locale/locale.class';
-import { DateArray } from '../types';
+import { DateArray, WeekParsing } from '../types';
 
 export interface DateParsingConfig {
   /** date value */
@@ -35,20 +35,24 @@ export interface DateParsingConfig {
   /** date specific info */
 
   /** week */
-  _w?: number;
+  _w?: WeekParsing;
   _dayOfYear?: number;
 }
 
 export interface DateParsingFlags {
-  _overflowDayOfYear: boolean;
-  bigHour: boolean;
+  _overflowDayOfYear?: boolean;
+  _overflowWeeks?: boolean;
+  _overflowWeekday?: boolean;
+  score?: number;
+  bigHour?: boolean;
   empty: boolean;
   unusedTokens: string[];
   unusedInput: string[];
   overflow: number;
   charsLeftOver: number;
   nullInput: boolean;
-  // invalidMonth: null,
+  invalidMonth: boolean;
+  invalidWeekday?: boolean;
   invalidFormat: boolean;
   userInvalidated: boolean;
   iso: boolean;

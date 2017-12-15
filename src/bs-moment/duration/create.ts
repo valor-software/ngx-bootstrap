@@ -7,6 +7,10 @@ import { absRound } from '../utils/abs-round';
 import { DateObject } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { cloneWithOffset } from '../units/offset';
+import { isValidDate } from '../../timepicker/timepicker.utils';
+import { isBefore } from '../utils/date-compare';
+import { setMonth } from '../utils/date-setters';
+import { getMonth } from '../utils/date-getters';
 
 const aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
@@ -116,17 +120,18 @@ function positiveMomentsDifference(base, other) {
   return res;
 }
 
-function momentsDifference(base, other) {
-  let res;
-  if (!(base.isValid() && other.isValid())) {
+function momentsDifference(base: Date, other: Date) {
+  if (!(isValidDate(base) && isValidDate(other))) {
     return { milliseconds: 0, months: 0 };
   }
 
-  other = cloneWithOffset(other, base);
-  if (base.isBefore(other)) {
-    res = positiveMomentsDifference(base, other);
+  let res;
+  const _other = cloneWithOffset(other, base);
+  if (isBefore(base, _other)) {
+    res = positiveMomentsDifference(base, _other);
   } else {
-    res = positiveMomentsDifference(other, base);
+    res = positiveMomentsDifference(_other, base);
+    setMonth(res, -getMonth(res));
     res.milliseconds = -res.milliseconds;
     res.months = -res.months;
   }

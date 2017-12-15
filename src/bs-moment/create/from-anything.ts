@@ -45,6 +45,7 @@ export function prepareConfig(config: DateParsingConfig): DateParsingConfig {
     return config;
   }
 
+  // todo: add check for recursion
 
   if (isArray(format)) {
     configFromStringAndArray(config);
@@ -79,16 +80,13 @@ function configFromInput(config: DateParsingConfig): DateParsingConfig {
     config._d = new Date(input);
   } else {
     //   hooks.createFromInputFallback(config);
-    return { _d: createInvalid(), _isValid: false };
+    return createInvalid(config);
   }
 
   return config;
 }
 
-/**
- * @internal
- */
-export function createLocalOrUtc(input: string | number, format?: string, localeKey?: string, strict?: boolean, isUTC?: boolean): DateParsingConfig {
+export function createLocalOrUTC(input: string | number, format?: string, localeKey?: string, strict?: boolean, isUTC?: boolean): DateParsingConfig {
   const config: DateParsingConfig = {};
   let _input = input;
 
@@ -112,10 +110,4 @@ export function createLocalOrUtc(input: string | number, format?: string, locale
   config._strict = strict;
 
   return createFromConfig(config);
-}
-
-export function createUTC(input: string | number, format?: string, localeKey?: string, strict?: boolean): Date {
-  const conf = createLocalOrUtc(input, format, localeKey, strict, true);
-
-  return setOffsetToUTC(conf._d);
 }
