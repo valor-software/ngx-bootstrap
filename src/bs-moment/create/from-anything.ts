@@ -13,6 +13,7 @@ import { configFromString } from './from-string';
 import { configFromArray } from './from-array';
 import { configFromObject } from './from-object';
 import { checkOverflow } from './check-overflow';
+import { DateArray } from '../types';
 
 function createFromConfig(config: DateParsingConfig): DateParsingConfig {
   const res = checkOverflow(prepareConfig(config));
@@ -70,8 +71,9 @@ function configFromInput(config: DateParsingConfig): DateParsingConfig {
     config._d = cloneDate(input);
   } else if (isString(input)) {
     configFromString(config);
-  } else if (isArray<string>(input) && input.length) {
-    config._a = input.slice(0).map(obj => parseInt(obj, 10));
+  } else if (isArray<string | number>(input) && input.length) {
+    config._a = input.slice(0)
+      .map(obj => isString(obj) ? parseInt(obj, 10) : obj);
     configFromArray(config);
   } else if (isObject(input)) {
     configFromObject(config);
@@ -86,7 +88,7 @@ function configFromInput(config: DateParsingConfig): DateParsingConfig {
   return config;
 }
 
-export function createLocalOrUTC(input: string | number, format?: string, localeKey?: string, strict?: boolean, isUTC?: boolean): DateParsingConfig {
+export function createLocalOrUTC(input: string | number | DateArray, format?: string, localeKey?: string, strict?: boolean, isUTC?: boolean): DateParsingConfig {
   const config: DateParsingConfig = {};
   let _input = input;
 

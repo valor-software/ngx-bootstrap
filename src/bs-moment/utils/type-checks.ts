@@ -38,7 +38,6 @@ export function isObject<K, T>(input: any /*object*/): input is any {
   );
 }
 
-
 export function isObjectEmpty(obj: any): boolean {
   if (Object.getOwnPropertyNames) {
     return (Object.getOwnPropertyNames(obj).length === 0);

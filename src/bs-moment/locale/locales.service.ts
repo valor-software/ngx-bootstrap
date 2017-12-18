@@ -79,6 +79,7 @@ export function defineLocale(name: string, config?: LocaleData): Locale {
   if (config === null) {
     // useful for testing
     delete locales[name];
+
     return null;
   }
 
@@ -86,11 +87,11 @@ export function defineLocale(name: string, config?: LocaleData): Locale {
 
   locales[name] = new Locale(mergeConfigs(baseConfig, config));
 
-  if (localeFamilies[name]) {
-    localeFamilies[name].forEach(function(x: Locale) {
-      defineLocale(x.name, x.config);
-    });
-  }
+  // if (localeFamilies[name]) {
+  //   localeFamilies[name].forEach(function(x: Locale) {
+  //     defineLocale(x.name, x.config);
+  //   });
+  // }
 
   // backwards compat for now: also set the locale
   // make sure we set the locale AFTER all child locales have been

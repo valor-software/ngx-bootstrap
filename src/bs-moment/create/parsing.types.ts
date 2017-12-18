@@ -14,7 +14,7 @@ export interface DateParsingConfig {
   _isUTC?: boolean;
   _useUTC?: boolean;
   /** input to parse: could be string, number[], number, Date, object */
-  _i?: string | number | { [key: string]: number };
+  _i?: string | number | { [key: string]: number } | DateArray;
   /** locale key, 'en' by default */
   _l?: string;
   /** date locale obj */

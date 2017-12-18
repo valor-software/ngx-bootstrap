@@ -19,19 +19,19 @@ addFormatToken('d', null, 'do', function (date: Date): string {
 addFormatToken('dd', null, null, function (date: Date,
                                            format: string,
                                            locale?: Locale): string {
-  return locale.weekdaysShort(date) as string;
+  return locale.weekdaysShort(date);
 });
 
 addFormatToken('ddd', null, null, function (date: Date,
                                             format: string,
                                             locale?: Locale): string {
-  return locale.weekdaysMin(date) as string;
+  return locale.weekdaysMin(date);
 });
 
 addFormatToken('dddd', null, null, function (date: Date,
                                              format: string,
                                              locale?: Locale): string {
-  return locale.weekdays(date, format) as string;
+  return locale.weekdays(date, format);
 });
 
 addFormatToken('e', null, null, function (date: Date): string {
@@ -57,28 +57,28 @@ addUnitPriority('isoWeekday', 11);
 addRegexToken('d', match1to2);
 addRegexToken('e', match1to2);
 addRegexToken('E', match1to2);
-addRegexToken('dd', function (isStrict: boolean, locale: Locale): RegExp {
-  return locale.weekdaysMinRegex(isStrict);
-});
-addRegexToken('ddd', function (isStrict, locale) {
-  return locale.weekdaysShortRegex(isStrict);
-});
-addRegexToken('dddd', function (isStrict, locale) {
-  return locale.weekdaysRegex(isStrict);
-});
+// addRegexToken('dd', function (isStrict: boolean, locale: Locale): RegExp {
+//   return locale.weekdaysMinRegex(isStrict);
+// });
+// addRegexToken('ddd', function (isStrict, locale) {
+//   return locale.weekdaysShortRegex(isStrict);
+// });
+// addRegexToken('dddd', function (isStrict, locale) {
+//   return locale.weekdaysRegex(isStrict);
+// });
 
-addWeekParseToken(['dd', 'ddd', 'dddd'],
-  function (input: string, week: WeekParsing, config: DateParsingConfig, token: string): DateParsingConfig {
-    const weekday = config._locale.weekdaysParse(input, token, config._strict);
-    // if we didn't get a weekday name, mark the date as invalid
-    if (weekday != null) {
-      week.d = weekday;
-    } else {
-      getParsingFlags(config).invalidWeekday = !!input;
-    }
-
-    return config;
-  });
+// addWeekParseToken(['dd', 'ddd', 'dddd'],
+//   function (input: string, week: WeekParsing, config: DateParsingConfig, token: string): DateParsingConfig {
+//     const weekday = config._locale.weekdaysParse(input, token, config._strict);
+//     // if we didn't get a weekday name, mark the date as invalid
+//     if (weekday != null) {
+//       week.d = weekday;
+//     } else {
+//       getParsingFlags(config).invalidWeekday = !!input;
+//     }
+//
+//     return config;
+//   });
 
 addWeekParseToken(['d', 'e', 'E'],
   function (input: string, week: WeekParsing, config: DateParsingConfig, token: string): DateParsingConfig {
