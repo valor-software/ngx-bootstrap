@@ -1,13 +1,12 @@
 // ASP.NET json date format regex
 import { Duration, isDuration } from './constructor';
-import { isNumber, isObject, isString, toInt } from '../utils/type-checks';
+import { isDateValid, isNumber, isObject, isString, toInt } from '../utils/type-checks';
 import { DATE, HOUR, MILLISECOND, MINUTE, SECOND } from '../units/constants';
 import { parseDate } from '../create/local';
 import { absRound } from '../utils/abs-round';
 import { DateObject } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { cloneWithOffset } from '../units/offset';
-import { isValidDate } from '../../timepicker/timepicker.utils';
 import { isAfter, isBefore } from '../utils/date-compare';
 import { getFullYear, getMonth } from '../utils/date-getters';
 import { add } from '../moment/add-subtract';
@@ -122,7 +121,7 @@ function positiveMomentsDifference(base: Date, other: Date): { milliseconds: num
 }
 
 function momentsDifference(base: Date, other: Date): { milliseconds: number; months: number } {
-  if (!(isValidDate(base) && isValidDate(other))) {
+  if (!(isDateValid(base) && isDateValid(other))) {
     return { milliseconds: 0, months: 0 };
   }
 
