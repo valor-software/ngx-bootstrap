@@ -2,7 +2,7 @@
 import { Duration, isDuration } from './constructor';
 import { isNumber, isObject, isString, toInt } from '../utils/type-checks';
 import { DATE, HOUR, MILLISECOND, MINUTE, SECOND } from '../units/constants';
-import { createLocal } from '../create/local';
+import { parseDate } from '../create/local';
 import { absRound } from '../utils/abs-round';
 import { DateObject } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
@@ -82,7 +82,7 @@ function convertDuration(input: any, key: string): Partial<DateObject> {
   }
 
   if (isObject(input) && ('from' in input || 'to' in input)) {
-    const diffRes = momentsDifference(createLocal(input.from), createLocal(input.to));
+    const diffRes = momentsDifference(parseDate(input.from), parseDate(input.to));
 
     return {
       milliseconds: diffRes.milliseconds,

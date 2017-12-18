@@ -1,7 +1,6 @@
-// import { getLocale } from '../locale/locales.service';
 import { formatDate } from '../../format';
 import { getMonth } from '../../utils/date-getters';
-import { createLocal } from '../../parse';
+import { parseDate } from '../../index';
 
 const localeAbbr = 'en';
 
@@ -12,7 +11,7 @@ describe('moment - locale: en', () => {
 
     function equalTest(input, mmm, i) {
       // assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
-      expect(getMonth(createLocal(input, mmm))).toBe(i, `${input} should be month ${i + 1}`);
+      expect(getMonth(parseDate(input, mmm))).toBe(i, `${input} should be month ${i + 1}`);
     }
 
     for (let i = 0; i < 12; i++) {

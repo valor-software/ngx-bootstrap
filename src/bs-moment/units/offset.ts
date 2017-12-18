@@ -7,7 +7,7 @@ import { DateParsingConfig } from '../create/parsing.types';
 import { isNumber, isString, toInt } from '../utils/type-checks';
 import { addRegexToken, matchShortOffset } from '../parse/regex';
 import { add } from '../moment/add-subtract';
-import { createLocal } from '../create/local';
+import { parseDate } from '../create/local';
 import { addParseToken } from '../parse/token';
 import { DateArray } from '../types';
 import { cloneDate } from '../create/clone';
