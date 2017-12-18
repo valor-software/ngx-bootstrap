@@ -16,7 +16,7 @@ export function isFunction(fn: any): fn is Function {
 }
 
 export function isNumber(value: any): value is number {
-  return !isNaN(toInt(value));
+  return typeof value === 'number' || Object.prototype.toString.call(value) === '[object Number]';
 }
 
 export function isArray<T>(input: any): input is T[] {

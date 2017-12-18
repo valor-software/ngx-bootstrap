@@ -11,4 +11,4 @@ export {
 
 export { LocaleData } from './locale/locale.class';
 
-console.log(parseDate('Jan', 'MMM'));
+// console.log(parseDate('Jan', 'MMM'));

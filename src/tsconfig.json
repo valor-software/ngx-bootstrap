@@ -13,6 +13,7 @@
     "declaration": true,
     "skipLibCheck": false,
     "stripInternal": true,
+    "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,

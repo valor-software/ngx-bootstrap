@@ -11,7 +11,9 @@ describe('moment - locale: en', () => {
 
     function equalTest(input, mmm, i) {
       // assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
-      expect(getMonth(parseDate(input, mmm))).toBe(i, `${input} should be month ${i + 1}`);
+      const _date = parseDate(input, mmm)
+      const _months = getMonth(_date);
+      expect(_months).toBe(i, `${input} should be month ${i + 1}`);
     }
 
     for (let i = 0; i < 12; i++) {
