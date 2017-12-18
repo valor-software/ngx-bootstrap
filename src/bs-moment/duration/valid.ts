@@ -1,17 +1,19 @@
 import { toInt } from '../utils/type-checks';
 import { createDuration } from './create';
 import { Duration } from './constructor';
+import { DateObject } from '../types';
 
-const ordering: string[] = ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', 'millisecond'];
+const ordering: (keyof DateObject)[] = ['year', 'quarter', 'month', 'week', 'day', 'hours', 'minutes', 'seconds', 'milliseconds'];
 const orderingHash = ordering.reduce((mem: { [key: string]: boolean }, order) => {
   mem[order] = true;
 
   return mem;
 }, {});
 
-export function isDurationValid(duration: Duration): boolean {
+export function isDurationValid(duration: Partial<DateObject>): boolean {
   const durationKeys = Object.keys(duration);
-  if (durationKeys.some(key => (key in orderingHash) && duration[key] === null || isNaN(duration[key])) {
+  if (durationKeys
+      .some((key: keyof DateObject) => (key in orderingHash) && duration[key] === null || isNaN(duration[key]))) {
     return false;
   }
   // for (let key in duration) {
@@ -27,7 +29,7 @@ export function isDurationValid(duration: Duration): boolean {
       if (unitHasDecimal) {
         return false;
       }
-      if (parseFloat(duration[ordering[i]]) !== toInt(duration[ordering[i]])) {
+      if (duration[ordering[i]] !== toInt(duration[ordering[i]])) {
         unitHasDecimal = true;
       }
     }
@@ -39,7 +41,7 @@ export function isDurationValid(duration: Duration): boolean {
 // export function isValid() {
 //   return this._isValid;
 // }
-
-export function createInvalid(): Duration {
-  return createDuration(NaN);
-}
+//
+// export function createInvalid(): Duration {
+//   return createDuration(NaN);
+// }

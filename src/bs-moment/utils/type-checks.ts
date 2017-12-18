@@ -26,7 +26,7 @@ export function isArray<T>(input: any): input is T[] {
   );
 }
 
-export function hasOwnProp(a: any /*object*/, b: string | number): boolean {
+export function hasOwnProp<T>(a: T /*object*/, b: string): b is keyof T {
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 

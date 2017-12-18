@@ -44,16 +44,18 @@ export function mergeConfigs(
       delete res[childProp];
     }
   }
-  for (const parentProp in parentConfig) {
+  let parentProp;
+  for (parentProp in parentConfig) {
     if (
       hasOwnProp(parentConfig, parentProp) &&
       !hasOwnProp(childConfig, parentProp) &&
-      isObject(parentConfig[parentProp])
+      isObject(parentConfig[parentProp as string])
     ) {
       // make sure changes to properties don't modify parent config
-      res[parentProp] = Object.assign({}, res[parentProp]);
+      res[parentProp as string] = Object.assign({}, res[parentProp as string]);
     }
   }
+
   return res;
 }
 

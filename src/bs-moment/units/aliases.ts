@@ -26,5 +26,5 @@ export function normalizeObjectUnits(inputObject: { [key: string]: number }): Da
     }
   }
 
-  return normalizedInput;
+  return normalizedInput as any;
 }

@@ -1,16 +1,19 @@
-// todo: add support of offsets
-// tslint:disable:no-bitwise
+// tslint:disable:no-bitwise max-line-length
 // FORMATTING
+
 import { addFormatToken } from '../format-functions';
 import { zeroFill } from '../utils';
-import { addRegexToken, matchShortOffset } from '../parse/regex';
-import { addParseToken} from '../parse/token';
 import { DateParsingConfig } from '../create/parsing.types';
 import { isNumber, isString, toInt } from '../utils/type-checks';
+import { addRegexToken, matchShortOffset } from '../parse/regex';
+import { add } from '../moment/add-subtract';
+import { createLocal } from '../create/local';
+import { addParseToken } from '../parse/token';
 import { DateArray } from '../types';
+import { cloneDate } from '../create/clone';
 
-function addOffsetFormatToken(token, separator) {
-  addFormatToken(token, 0, 0, function (date: Date): string {
+function addOffsetFormatToken(token: string, separator: string): void {
+  addFormatToken(token, null, null, function (date: Date): string {
     let offset = getUTCOffset(date);
     let sign = '+';
     if (offset < 0) {
@@ -29,11 +32,11 @@ addOffsetFormatToken('ZZ', '');
 
 addRegexToken('Z', matchShortOffset);
 addRegexToken('ZZ', matchShortOffset);
-addParseToken(['Z', 'ZZ'], function (input: string, array: DateArray, config: DateParsingConfig): DateArray {
+addParseToken(['Z', 'ZZ'], function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   config._useUTC = true;
   config._tzm = offsetFromString(matchShortOffset, input);
 
-  return array;
+  return config;
 });
 
 // HELPERS
@@ -59,18 +62,20 @@ function offsetFromString(matcher: RegExp, str: string): number {
 }
 
 // Return a moment from input, that is local/utc/zone equivalent to model.
-export function cloneWithOffset(input, model) {
-  var res, diff;
-  if (model._isUTC) {
-    res = model.clone();
-    diff = (isMoment(input) || isDate(input) ? input.valueOf() : createLocal(input).valueOf()) - res.valueOf();
-    // Use low-level api, because this fn is low-level api.
-    res._d.setTime(res._d.valueOf() + diff);
-    hooks.updateOffset(res, false);
-    return res;
-  } else {
-    return createLocal(input).local();
+export function cloneWithOffset(date: Date, config: DateParsingConfig): Date {
+  if (!config._isUTC) {
+    // return createLocal(date).local();
+    return date;
   }
+
+  const res = cloneDate(date);
+  const diff = date.valueOf() - res.valueOf();
+  // Use low-level api, because this fn is low-level api.
+  res.setTime(res.valueOf() + diff);
+  // todo: add timezone handling
+  // hooks.updateOffset(res, false);
+
+  return res;
 }
 
 function getDateOffset(date: Date): number {
@@ -83,7 +88,9 @@ function getDateOffset(date: Date): number {
 
 // This function will be called whenever a moment is mutated.
 // It is intended to keep the offset in sync with the timezone.
-// hooks.updateOffset = function () {};
+// todo: it's from moment timezones
+// hooks.updateOffset = function () {
+// };
 
 // MOMENTS
 
@@ -113,12 +120,13 @@ export function getSetOffset(date: Date, input: number | string, keepLocalTime?:
 }
 
 export function getUTCOffset(date: Date, config?: DateParsingConfig): number {
-  const offset = config._offset || 0;
+  const _offset = config._offset || 0;
 
-  return config._isUTC ? offset : getDateOffset(date);
+  return config._isUTC ? _offset : getDateOffset(date);
 }
 
 export function setUTCOffset(date: Date, input: number | string, keepLocalTime?: boolean, keepMinutes?: boolean, config?: DateParsingConfig): Date {
+  const offset = config._offset || 0;
   let localAdjust;
   let _input = input;
   if (isString(_input)) {
@@ -142,16 +150,21 @@ export function setUTCOffset(date: Date, input: number | string, keepLocalTime?:
     // this.add(localAdjust, 'm');
   }
   if (offset !== _input) {
-    if (!keepLocalTime || this._changeInProgress) {
-      addSubtract(this, createDuration(_input - offset, 'm'), 1, false);
-    } else if (!this._changeInProgress) {
-      this._changeInProgress = true;
-      hooks.updateOffset(this, true);
-      this._changeInProgress = null;
+    if (!keepLocalTime || config._changeInProgress) {
+      add(date, _input - offset, 'month');
+      // addSubtract(this, createDuration(_input - offset, 'm'), 1, false);
+    } else if (!config._changeInProgress) {
+      config._changeInProgress = true;
+      // todo: add timezone handling
+      // hooks.updateOffset(this, true);
+      config._changeInProgress = null;
     }
   }
+
+  return date;
 }
 
+/*
 export function getSetZone(input, keepLocalTime) {
   if (input != null) {
     if (typeof input !== 'string') {
@@ -165,13 +178,15 @@ export function getSetZone(input, keepLocalTime) {
     return -this.utcOffset();
   }
 }
+*/
 
 export function setOffsetToUTC(date: Date, keepLocalTime?: boolean): Date {
   // return utcOffset(date, 0, keepLocalTime);
-  return getSetOffset(date, 0, keepLocalTime);
+  return setUTCOffset(date, 0, keepLocalTime);
+  // return getSetOffset(date, 0, keepLocalTime);
 }
 
-export function setOffsetToLocal(keepLocalTime) {
+/*export function setOffsetToLocal(keepLocalTime) {
   if (this._isUTC) {
     this.utcOffset(0, keepLocalTime);
     this._isUTC = false;
@@ -181,13 +196,14 @@ export function setOffsetToLocal(keepLocalTime) {
     }
   }
   return this;
-}
+}*/
+/*
 
 export function setOffsetToParsedOffset() {
   if (this._tzm != null) {
     this.utcOffset(this._tzm, false, true);
   } else if (typeof this._i === 'string') {
-    var tZone = offsetFromString(matchOffset, this._i);
+    const tZone = offsetFromString(matchOffset, this._i);
     if (tZone != null) {
       this.utcOffset(tZone);
     }
@@ -219,13 +235,13 @@ export function isDaylightSavingTimeShifted() {
     return this._isDSTShifted;
   }
 
-  var c = {};
+  const c = {};
 
   copyConfig(c, this);
   c = prepareConfig(c);
 
   if (c._a) {
-    var other = c._isUTC ? createUTC(c._a) : createLocal(c._a);
+    const other = c._isUTC ? createUTC(c._a) : createLocal(c._a);
     this._isDSTShifted = this.isValid() &&
       compareArrays(c._a, other.toArray()) > 0;
   } else {
@@ -246,3 +262,4 @@ export function isUtcOffset() {
 export function isUtc() {
   return this.isValid() ? this._isUTC && this._offset === 0 : false;
 }
+*/

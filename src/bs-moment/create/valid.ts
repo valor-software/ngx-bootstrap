@@ -1,4 +1,3 @@
-import { createUTC } from './from-anything';
 import { DateParsingConfig } from './parsing.types';
 import { getParsingFlags } from './parsing-flags';
 

@@ -1,7 +1,7 @@
-import { createLocal } from './parse';
+import { parse } from './parse';
 
 export { formatDate } from './format';
-export { createLocal } from './parse';
+export { parse } from './parse';
 
 export {
   defineLocale,
@@ -10,4 +10,4 @@ export {
 } from './locale/locales.service';
 export { LocaleData } from './locale/locale.class';
 
-console.log(createLocal('Jan', 'MMM'));
+console.log(parse('Jan', 'MMM'));

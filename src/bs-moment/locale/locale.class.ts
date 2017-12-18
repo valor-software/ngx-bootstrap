@@ -165,6 +165,12 @@ export class Locale {
     return this._week.doy;
   }
 
+  isPM(input: string): boolean {
+    // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+    // Using charAt should be more compatible.
+    return input.toLowerCase().charAt(0) === 'p';
+  }
+
   meridiem(hours: number, minutes: number, isLower: boolean): string {
     if (hours > 11) {
       return isLower ? 'pm' : 'PM';
@@ -202,4 +208,6 @@ export class Locale {
 
     return this._longDateFormat[key];
   }
+
+
 }

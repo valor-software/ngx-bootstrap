@@ -127,7 +127,7 @@ function momentsDifference(base: Date, other: Date): { milliseconds: number; mon
   }
 
   let res;
-  const _other = cloneWithOffset(other, base);
+  const _other = cloneWithOffset(other, {_offset: base.getTimezoneOffset()});
   if (isBefore(base, _other)) {
     res = positiveMomentsDifference(base, _other);
   } else {

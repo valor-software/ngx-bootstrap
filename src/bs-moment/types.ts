@@ -19,10 +19,11 @@ export interface TimeUnit {
   hour?: number;
   minute?: number;
   seconds?: number;
+  milliseconds?: number;
 }
 
 export type DateFormatterFn = (date: Date,
-                               format: string,
+                               format?: string,
                                locale?: Locale) => string;
 
 // todo: should replace TimeUnit
@@ -48,4 +49,4 @@ export interface WeekParsing {
   [key: number]: number;
 }
 
-export type DateParseTokenFn = (input: string, array: DateArray | WeekParsing, config: DateParsingConfig, token: string) => DateParsingConfig;
+export type DateParseTokenFn = (input: string, array: DateArray | WeekParsing, config: DateParsingConfig, token?: string) => DateParsingConfig;

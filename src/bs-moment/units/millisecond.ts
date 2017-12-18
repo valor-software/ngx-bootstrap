@@ -6,7 +6,10 @@ import { addRegexToken, match1, match1to3, match2, match3, matchUnsigned } from 
 import { MILLISECOND } from './constants';
 import { toInt } from '../utils/type-checks';
 import { addParseToken} from '../parse/token';
-import { DateArray } from '../types';
+import { DateArray, WeekParsing } from '../types';
+import { addUnitAlias } from './aliases';
+import { addUnitPriority } from './priorities';
+import { DateParsingConfig } from '../create/parsing.types';
 
 addFormatToken('S', null, null, function (date: Date): string {
   return (~~(date.getMilliseconds() / 100)).toString(10);
@@ -41,11 +44,11 @@ addFormatToken(null, ['SSSSSSSSS', 9], null, function (date: Date): string {
 
 // ALIASES
 
-// addUnitAlias('millisecond', 'ms');
+addUnitAlias('millisecond', 'ms');
 
 // PRIORITY
 
-// addUnitPriority('millisecond', 16);
+addUnitPriority('millisecond', 16);
 
 // PARSING
 
@@ -58,10 +61,10 @@ for (token = 'SSSS'; token.length <= 9; token += 'S') {
   addRegexToken(token, matchUnsigned);
 }
 
-function parseMs(input: string, array: DateArray): DateArray {
+function parseMs(input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   array[MILLISECOND] = toInt(parseFloat(`0.${input}`) * 1000);
 
-  return array;
+  return config;
 }
 
 for (token = 'S'; token.length <= 9; token += 'S') {

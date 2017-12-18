@@ -3,6 +3,8 @@ import { getSeconds } from '../utils/date-getters';
 import { addRegexToken, match1to2, match2 } from '../parse/regex';
 import { addParseToken } from '../parse/token';
 import { SECOND } from './constants';
+import { addUnitAlias } from './aliases';
+import { addUnitPriority } from './priorities';
 
 // FORMATTING
 
@@ -12,11 +14,11 @@ addFormatToken('s', ['ss', 2], null, function (date: Date): string {
 
 // ALIASES
 
-// addUnitAlias('second', 's');
+addUnitAlias('second', 's');
 
 // PRIORITY
 
-// addUnitPriority('second', 15);
+addUnitPriority('second', 15);
 
 // PARSING
 

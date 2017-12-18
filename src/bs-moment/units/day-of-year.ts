@@ -2,28 +2,34 @@ import { addFormatToken } from '../format-functions';
 import { startOf } from '../utils/start-end-of';
 import { addRegexToken, match1to3, match3 } from '../parse/regex';
 import { addParseToken } from '../parse/token';
+import { addUnitPriority } from './priorities';
+import { addUnitAlias } from './aliases';
+import { DateArray } from '../types';
+import { DateParsingConfig } from '../create/parsing.types';
 import { toInt } from '../utils/type-checks';
 
 // FORMATTING
 
-addFormatToken('DDD', ['DDDD', 3], 'DDDo', function(date: Date): string {
+addFormatToken('DDD', ['DDDD', 3], 'DDDo', function (date: Date): string {
   return getDayOfYear(date).toString(10);
 });
 
 
 // ALIASES
 
-// addUnitAlias('dayOfYear', 'DDD');
+addUnitAlias('dayOfYear', 'DDD');
 
 // PRIORITY
 
-// addUnitPriority('dayOfYear', 4);
+addUnitPriority('dayOfYear', 4);
 
-addRegexToken('DDD',  match1to3);
+addRegexToken('DDD', match1to3);
 addRegexToken('DDDD', match3);
-addParseToken(['DDD', 'DDDD'], function (input, array) {
-  // config._dayOfYear = toInt(input);
-  return array;
+addParseToken(['DDD', 'DDDD'],
+  function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+  config._dayOfYear = toInt(input);
+
+  return config;
 });
 
 export function getDayOfYear(date: Date): number {

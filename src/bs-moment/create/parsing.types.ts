@@ -8,6 +8,8 @@ export interface DateParsingConfig {
   _a?: DateArray;
   /** date meridiem */
   _meridiem?: string;
+  /** is PM */
+  _isPm?: boolean;
   // duplicate param?
   _isUTC?: boolean;
   _useUTC?: boolean;
@@ -37,6 +39,8 @@ export interface DateParsingConfig {
   /** week */
   _w?: WeekParsing;
   _dayOfYear?: number;
+  /** used in set offset */
+  _changeInProgress?: boolean;
 }
 
 export interface DateParsingFlags {

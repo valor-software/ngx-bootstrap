@@ -6,6 +6,8 @@ import { DateObject } from '../types';
 import { Locale } from '../locale/locale.class';
 
 export class Duration {
+  // todo: remove index signature
+  [key: string]: any;
   _milliseconds: number;
   _days: number;
   _months: number;

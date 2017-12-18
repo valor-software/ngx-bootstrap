@@ -3,6 +3,8 @@ import { getMinutes } from '../utils/date-getters';
 import { addRegexToken, match1to2, match2 } from '../parse/regex';
 import { addParseToken } from '../parse/token';
 import { MINUTE } from './constants';
+import { addUnitPriority } from './priorities';
+import { addUnitAlias } from './aliases';
 
 // FORMATTING
 
@@ -12,11 +14,11 @@ addFormatToken('m', ['mm', 2], null, function (date: Date): string {
 
 // ALIASES
 
-// addUnitAlias('minute', 'm');
+addUnitAlias('minute', 'm');
 
 // PRIORITY
 
-// addUnitPriority('minute', 14);
+addUnitPriority('minute', 14);
 
 // PARSING
 

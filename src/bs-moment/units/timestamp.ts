@@ -4,6 +4,7 @@ import { addRegexToken, matchSigned, matchTimestamp } from '../parse/regex';
 import { addParseToken} from '../parse/token';
 import { toInt } from '../utils/type-checks';
 import { DateArray } from '../types';
+import { DateParsingConfig } from '../create/parsing.types';
 
 // FORMATTING
 
@@ -19,20 +20,13 @@ addFormatToken('x', null, null, function (date: Date): string {
 addRegexToken('x', matchSigned);
 addRegexToken('X', matchTimestamp);
 
-addParseToken('X', function (input: string): DateArray {
-  return getDateArray(new Date(parseFloat(input) * 1000));
-});
+addParseToken('X', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+  config._d = new Date(parseFloat(input) * 1000);
 
-addParseToken('x', function (input: string): DateArray {
-  return getDateArray(new Date(toInt(input)));
+  return config;
 });
+addParseToken('x', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+  config._d = new Date(toInt(input));
 
-export function getDateArray(date: Date): DateArray {
-  return [date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-    date.getSeconds(),
-    date.getMilliseconds()];
-}
+  return config;
+});

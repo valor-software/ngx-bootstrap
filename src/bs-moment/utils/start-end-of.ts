@@ -1,3 +1,4 @@
+// tslint:disable: switch-default
 import { TimeUnit, UnitOfTime } from '../types';
 import { setFullDate, shiftDate } from './date-setters';
 
@@ -28,13 +29,14 @@ function getDateShift(units: UnitOfTime): TimeUnit {
     case 'day':
       unit.hour = 0;
     /* falls through */
-    case 'hour':
+    case 'hours':
       unit.minute = 0;
     /* falls through */
-    case 'minute':
+    case 'minutes':
       unit.seconds = 0;
     /* falls through */
-    // case 'second':
+    case 'seconds':
+      unit.milliseconds = 0;
     //   this.milliseconds(0);
   }
 

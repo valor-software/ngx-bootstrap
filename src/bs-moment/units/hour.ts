@@ -7,6 +7,8 @@ import { addParseToken} from '../parse/token';
 import { HOUR, MINUTE, SECOND } from './constants';
 import { toInt } from '../utils/type-checks';
 import { DateArray } from '../types';
+import { DateParsingConfig } from '../create/parsing.types';
+import { getParsingFlags } from '../create/parsing-flags';
 
 // FORMATTING
 
@@ -18,46 +20,32 @@ function kFormat(date: Date): number {
   return getHours(date) || 24;
 }
 
-addFormatToken('H', ['HH', 2], null, function (date: Date,
-                                               format: string,
-                                               locale?: Locale): string {
+addFormatToken('H', ['HH', 2], null, function (date: Date): string {
   return getHours(date).toString(10);
 });
-addFormatToken('h', ['hh', 2], null, function (date: Date,
-                                               format: string,
-                                               locale?: Locale): string {
+addFormatToken('h', ['hh', 2], null, function (date: Date): string {
   return hFormat(date).toString(10);
 });
-addFormatToken('k', ['kk', 2], null, function (date: Date,
-                                               format: string,
-                                               locale?: Locale): string {
+addFormatToken('k', ['kk', 2], null, function (date: Date): string {
   return kFormat(date).toString(10);
 });
 
-addFormatToken('hmm', null, null, function (date: Date,
-                                            format: string,
-                                            locale?: Locale): string {
+addFormatToken('hmm', null, null, function (date: Date): string {
   return `${hFormat(date)}${zeroFill(getMinutes(date), 2)}`;
 });
 
-addFormatToken('hmmss', null, null, function (date: Date,
-                                              format: string,
-                                              locale?: Locale): string {
+addFormatToken('hmmss', null, null, function (date: Date): string {
   return `${hFormat(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(
     getSeconds(date),
     2
   )}`;
 });
 
-addFormatToken('Hmm', null, null, function (date: Date,
-                                            format: string,
-                                            locale?: Locale): string {
+addFormatToken('Hmm', null, null, function (date: Date): string {
   return `${getHours(date)}${zeroFill(getMinutes(date), 2)}`;
 });
 
-addFormatToken('Hmmss', null, null, function (date: Date,
-                                              format: string,
-                                              locale?: Locale): string {
+addFormatToken('Hmmss', null, null, function (date: Date): string {
   return `${getHours(date)}${zeroFill(getMinutes(date), 2)}${zeroFill(
     getSeconds(date),
     2
@@ -96,57 +84,58 @@ addRegexToken('Hmm', match3to4);
 addRegexToken('Hmmss', match5to6);
 
 addParseToken(['H', 'HH'], HOUR);
-addParseToken(['k', 'kk'], function (input: string, array: DateArray, locale: Locale): DateArray {
+addParseToken(['k', 'kk'],
+  function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   const kInput = toInt(input);
   array[HOUR] = kInput === 24 ? 0 : kInput;
 
-  return array;
+  return config;
 });
-addParseToken(['a', 'A'], function (input, array, config) {
+addParseToken(['a', 'A'], function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   config._isPm = config._locale.isPM(input);
   config._meridiem = input;
 
-  return array;
+  return config;
 });
-addParseToken(['h', 'hh'], function (input, array, config) {
+addParseToken(['h', 'hh'], function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   array[HOUR] = toInt(input);
-  // getParsingFlags(config).bigHour = true;
+  getParsingFlags(config).bigHour = true;
 
-  return array;
+  return config;
 });
-addParseToken('hmm', function (input, array, config) {
+addParseToken('hmm', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   const pos = input.length - 2;
   array[HOUR] = toInt(input.substr(0, pos));
   array[MINUTE] = toInt(input.substr(pos));
-  // getParsingFlags(config).bigHour = true;
+  getParsingFlags(config).bigHour = true;
 
-  return array;
+  return config;
 });
-addParseToken('hmmss', function (input, array, config) {
+addParseToken('hmmss', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   const pos1 = input.length - 4;
   const pos2 = input.length - 2;
   array[HOUR] = toInt(input.substr(0, pos1));
   array[MINUTE] = toInt(input.substr(pos1, 2));
   array[SECOND] = toInt(input.substr(pos2));
-  // getParsingFlags(config).bigHour = true;
+  getParsingFlags(config).bigHour = true;
 
-  return array;
+  return config;
 });
-addParseToken('Hmm', function (input, array, config) {
+addParseToken('Hmm', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   const pos = input.length - 2;
   array[HOUR] = toInt(input.substr(0, pos));
   array[MINUTE] = toInt(input.substr(pos));
 
-  return array;
+  return config;
 });
-addParseToken('Hmmss', function (input, array, config) {
+addParseToken('Hmmss', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
   const pos1 = input.length - 4;
   const pos2 = input.length - 2;
   array[HOUR] = toInt(input.substr(0, pos1));
   array[MINUTE] = toInt(input.substr(pos1, 2));
   array[SECOND] = toInt(input.substr(pos2));
 
-  return array;
+  return config;
 });
 
 // todo: locales helpers
