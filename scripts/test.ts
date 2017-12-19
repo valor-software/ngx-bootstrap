@@ -13,6 +13,7 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 
 import './matchers';
+import { environment } from '../demo/src/environments/environment.qa';
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
@@ -26,12 +27,19 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
-// Then we find all the tests.
-let context = require.context('../demo/src', true, /\.spec\.ts/);
-// And load the modules.
-context.keys().map(context);
 
-let context2 = require.context('../src', true, /\.spec\.ts/);
-context2.keys().map(context2);
+if (environment.demo) {
+// Then we find all the tests for demo.
+  let context = require.context('../demo/src', true, /\.spec\.ts/);
+// And load the demo modules.
+  context.keys().map(context);
+}
+if (environment.src) {
+  // Then we find all the tests for src.
+  let context2 = require.context('../src', true, /\.spec\.ts/);
+  // And load the src modules.
+  context2.keys().map(context2);
+}
+
 // Finally, start Karma to run the tests.
 __karma__.start();
