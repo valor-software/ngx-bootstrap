@@ -3,9 +3,9 @@ import { formatDate } from '../../format';
 import { ja } from '../../i18n/ja';
 
 const localeAbbr = 'ja';
-defineLocale(localeAbbr, ja);
 
 describe('moment - locale: ja', () => {
+  defineLocale(localeAbbr, ja);
   it('format', () => {
     const expected: string[][] = [
       [

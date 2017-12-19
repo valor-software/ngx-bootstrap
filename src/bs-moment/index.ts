@@ -1,4 +1,6 @@
-import { parseDate } from './create/local';
+import './locale/en';
+
+export { getMonth } from './utils/date-getters';
 
 export { parseDate } from './create/local';
 export { formatDate } from './format';
@@ -10,5 +12,3 @@ export {
 } from './locale/locales.service';
 
 export { LocaleData } from './locale/locale.class';
-
-// console.log(parseDate('Jan', 'MMM'));

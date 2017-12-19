@@ -30,7 +30,7 @@ const numberMap: { [key: string]: string } = {
   '٩': '9',
   '٠': '0'
 };
-const pluralForm = function(n: number): number {
+const pluralForm = function (n: number): number {
   return n === 0
     ? 0
     : n === 1
@@ -87,8 +87,8 @@ const plurals: any = {
     '%d عام'
   ]
 };
-const pluralize = function(u: string) {
-  return function(num: number, withoutSuffix: boolean /*, string, isFuture*/) {
+const pluralize = function (u: string) {
+  return function (num: number, withoutSuffix: boolean /*, string, isFuture*/) {
     const f = pluralForm(num);
     let str = plurals[u][pluralForm(num)];
     if (f === 2) {
@@ -165,7 +165,7 @@ export const ar: LocaleData = {
   },
   preparse(str: string): string {
     return str
-      .replace(/[١٢٣٤٥٦٧٨٩٠]/g, function(match) {
+      .replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
         return numberMap[match];
       })
       .replace(/،/g, ',');
@@ -176,7 +176,7 @@ export const ar: LocaleData = {
     }
 
     return str
-      .replace(/\d/g, function(match) {
+      .replace(/\d/g, function (match) {
         return symbolMap[match];
       })
       .replace(/,/g, '،');

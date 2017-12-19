@@ -4,9 +4,8 @@
 // license : MIT
 // momentjs.com
 
-import { formatFunctions, makeFormatFunction } from './format-functions';
-import './locale';
 import './units';
+import { formatFunctions, makeFormatFunction } from './format-functions';
 import { Locale } from './locale/locale.class';
 import { getLocale } from './locale/locales.service';
 import { isDateValid } from './utils/type-checks';

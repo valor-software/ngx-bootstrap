@@ -66,7 +66,7 @@ export const cs: LocaleData = {
     LL: 'D. MMMM YYYY',
     LLL: 'D. MMMM YYYY HH:mm',
     LLLL: 'dddd, D. MMMM YYYY HH:mm',
-    l : 'D. M. YYYY'
+    l: 'D. M. YYYY'
   },
   calendar: {
     sameDay: '[dnes v] LT',
@@ -91,8 +91,10 @@ export const cs: LocaleData = {
     y: translate,
     yy: translate
   },
-  dayOfMonthOrdinalParse : /\d{1,2}\./,
-  ordinal(num: number): string { return `${num}.`; },
+  dayOfMonthOrdinalParse: /\d{1,2}\./,
+  ordinal(num: number): string {
+    return `${num}.`;
+  },
   week: {
     dow: 1, // Monday is the first day of the week.
     doy: 4  // The week that contains Jan 4th is the first week of the year.

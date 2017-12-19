@@ -1,9 +1,10 @@
 import {
+  defaultDayOfMonthOrdinalParse,
   defaultLocaleMonths,
   defaultLocaleMonthsShort,
   defaultLocaleWeekdays,
   defaultLocaleWeekdaysMin,
-  defaultLocaleWeekdaysShort,
+  defaultLocaleWeekdaysShort, defaultLongDateFormat, defaultOrdinal,
   LocaleData
 } from './locale.class';
 
@@ -18,10 +19,10 @@ export const defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
 
 export const baseConfig: LocaleData = {
   // calendar: defaultCalendar,
-  // longDateFormat: defaultLongDateFormat,
+  longDateFormat: defaultLongDateFormat,
   invalidDate: defaultInvalidDate,
-  // ordinal: defaultOrdinal,
-  // dayOfMonthOrdinalParse: defaultDayOfMonthOrdinalParse,
+  ordinal: defaultOrdinal,
+  dayOfMonthOrdinalParse: defaultDayOfMonthOrdinalParse,
   // relativeTime: defaultRelativeTime,
 
   months: defaultLocaleMonths,

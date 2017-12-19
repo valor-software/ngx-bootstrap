@@ -3,7 +3,6 @@
 import { weekOfYear } from '../units/week-calendar-utils';
 import { hasOwnProp, isArray, isFunction } from '../utils/type-checks';
 import { getDayOfWeek, getMonth } from '../utils/date-getters';
-import { createUTC } from '../create/utc';
 import { matchWord, regexEscape } from '../parse/regex';
 
 export interface LocaleOptionsFormat {
@@ -37,28 +36,57 @@ export const defaultLongDateFormat: { [index: string]: string } = {
   LLLL: 'dddd, MMMM D, YYYY h:mm A'
 };
 
+export const defaultOrdinal = '%d';
+export const defaultDayOfMonthOrdinalParse = /\d{1,2}/;
+
 const defaultMonthsShortRegex = matchWord;
 const defaultMonthsRegex = matchWord;
 
-export interface LocaleData {
-  [key: string]: any;
+export type OrdinalDateFn = (num: number, token?: string) => string;
+export type PluralizeDateFn = (num: number, withoutSuffix: boolean,
+                               key?: string, isFuture?: boolean) => string;
 
-  invalidDate?: string;
+export interface LocaleData {
   abbr?: string;
 
   months?: LocaleOptions;
   monthsShort?: LocaleOptions;
+  monthsParseExact?: boolean;
+
   weekdays?: LocaleOptions;
-  weekdaysMin?: string[];
   weekdaysShort?: string[];
+  weekdaysMin?: string[];
+  weekdaysParseExact?: boolean;
+
+  longDateFormat?: { [index: string]: string };
+  calendar?: { [key: string]: string };
+  relativeTime?: { [key: string]: string | PluralizeDateFn };
+  dayOfMonthOrdinalParse?: RegExp;
+  ordinal?: string | OrdinalDateFn;
+
   week?: { dow: number; doy: number };
 
-  dayOfMonthOrdinalParse?: RegExp;
+  invalidDate?: string;
+
+  monthsRegex?: RegExp;
+  monthsParse?: RegExp[];
+  monthsShortRegex?: RegExp;
+  monthsStrictRegex?: RegExp;
+  monthsShortStrictRegex?: RegExp;
+  longMonthsParse?: RegExp[];
+  shortMonthsParse?: RegExp[];
+
   meridiemParse?: RegExp;
 
-  ordinal?(num: number, token?: string): string;
+  meridiemHour?(hour: number, meridiem: string): number;
 
-  postformat?(num: string): string;
+  preparse?(str: string): string;
+
+  postformat?(str: string | number): string;
+
+  meridiem?(hour: number, minute?: number, isLower?: boolean): string;
+
+  isPM?(input: string): boolean;
 }
 
 export class Locale {
@@ -81,8 +109,8 @@ export class Locale {
   private _monthsStrictRegex: RegExp;
   private _monthsShortStrictRegex: RegExp;
   private _monthsParse: RegExp[];
-  private _longMonthsParse: string[]|RegExp[];
-  private _shortMonthsParse: string[]|RegExp[];
+  private _longMonthsParse: string[] | RegExp[];
+  private _shortMonthsParse: string[] | RegExp[];
   private _monthsParseExact: RegExp;
   private _weekdaysParseExact: boolean;
 
@@ -93,7 +121,7 @@ export class Locale {
   private _minWeekdaysParse: RegExp[];
   private _shortWeekdaysParse: RegExp[];
   private _fullWeekdaysParse: RegExp[];
-  private _longDateFormat: { [key: string]: any };
+  private _longDateFormat: { [key: string]: string };
 
   private _ordinal: string;
 
@@ -224,7 +252,7 @@ export class Locale {
     let i;
     for (i = 0; i < 12; i++) {
       // make the regex if we don't have it already
-      date = createUTC([2000, i]);
+      date = new Date(2000, i);
       if (strict && !this._longMonthsParse[i]) {
         const _months = this.months(date, '').replace('.', '');
         const _shortMonths = this.monthsShort(date, '').replace('.', '');
@@ -491,7 +519,7 @@ export class Locale {
       this._longMonthsParse = [];
       this._shortMonthsParse = [];
       for (i = 0; i < 12; ++i) {
-        mom = createUTC([2000, i]);
+        mom = new Date(2000, i);
         this._shortMonthsParse[i] = this.monthsShort(mom, '').toLocaleLowerCase();
         this._longMonthsParse[i] = this.months(mom, '').toLocaleLowerCase();
       }
@@ -537,7 +565,7 @@ export class Locale {
     let i;
     for (i = 0; i < 12; i++) {
       // make the regex if we don't have it already
-      date = createUTC([2000, i]);
+      date = new Date(2000, i);
       shortPieces.push(this.monthsShort(date, ''));
       longPieces.push(this.months(date, ''));
       mixedPieces.push(this.months(date, ''));

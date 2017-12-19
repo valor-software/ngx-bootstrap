@@ -3,9 +3,9 @@ import { sv } from '../../i18n/sv';
 import { formatDate } from '../../format';
 
 const localeAbbr = 'sv';
-defineLocale(localeAbbr, sv);
 
 describe('moment - locale: sv', () => {
+  defineLocale(localeAbbr, sv);
   it('format', () => {
     const expected: string[][] = [
       [

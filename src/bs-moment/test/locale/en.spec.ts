@@ -1,11 +1,12 @@
-import { formatDate } from '../../format';
-import { getMonth } from '../../utils/date-getters';
-import { parseDate } from '../../index';
+import { parseDate, formatDate, getMonth } from '../../index';
+import { getSetGlobalLocale } from '../../locale/locales.service';
 
 const localeAbbr = 'en';
 
 describe('moment - locale: en', () => {
+
   it('parse', function () {
+    getSetGlobalLocale(localeAbbr);
     // tslint:disable-next-line
     const tests = 'January Jan_February Feb_March Mar_April Apr_May May_June Jun_July Jul_August Aug_September Sep_October Oct_November Nov_December Dec'.split('_');
 

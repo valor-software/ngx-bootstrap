@@ -28,7 +28,7 @@ export function mergeConfigs(
   parentConfig: LocaleData,
   childConfig: LocaleData
 ) {
-  const res: { [key: string]: any } = Object.assign({}, parentConfig);
+  const res: LocaleData = Object.assign({}, parentConfig);
 
   for (const childProp in childConfig) {
     if (!hasOwnProp(childConfig, childProp)) {
