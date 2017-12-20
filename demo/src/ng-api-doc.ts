@@ -234,6 +234,11 @@ export const ngdoc: any = {
         "description": "<p>If <code>true</code> — will disable pausing on carousel mouse hover </p>\n"
       },
       {
+        "name": "showIndicators",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> — carousel-indicators are visible</p>\n"
+      },
+      {
         "name": "noWrap",
         "type": "boolean",
         "description": "<p>If <code>true</code> — carousel will not cycle continuously and will have hard stops (prevent looping) </p>\n"
@@ -394,6 +399,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Is loop of auto changing of slides can be paused </p>\n"
+      },
+      {
+        "name": "showIndicators",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Show carousel-indicators </p>\n"
       },
       {
         "name": "noWrap",

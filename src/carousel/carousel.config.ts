@@ -10,4 +10,7 @@ export class CarouselConfig {
 
   /** Is slides can wrap from the last to the first slide */
   noWrap = false;
+
+  /** Show carousel-indicators */
+  showIndicators = true;
 }
