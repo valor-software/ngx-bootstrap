@@ -56,6 +56,7 @@ describe('ngb-carousel', () => {
 
     expect(carousel.interval).toBe(defaultConfig.interval);
     expect(carousel.noWrap).toBe(defaultConfig.noWrap);
+    expect(carousel.showIndicators).toBe(defaultConfig.showIndicators);
     // expect(carousel.keyboard).toBe(defaultConfig.keyboard);
   });
 
@@ -463,6 +464,7 @@ describe('ngb-carousel', () => {
         config = c;
         config.interval = 1000;
         config.noWrap = true;
+        config.showIndicators = true;
         // config.keyboard = false;
       })
     );
@@ -474,6 +476,7 @@ describe('ngb-carousel', () => {
       const carousel = fixture.componentInstance;
       expect(carousel.interval).toBe(config.interval);
       expect(carousel.noWrap).toBe(config.noWrap);
+      expect(carousel.showIndicators).toBe(config.showIndicators);
       // expect(carousel.keyboard).toBe(config.keyboard);
     });
   });
@@ -482,6 +485,7 @@ describe('ngb-carousel', () => {
     const config = new CarouselConfig();
     config.interval = 1000;
     config.noWrap = true;
+    config.showIndicators = true;
     // config.keyboard = false;
 
     beforeEach(() => {
@@ -498,6 +502,7 @@ describe('ngb-carousel', () => {
       const carousel = fixture.componentInstance;
       expect(carousel.interval).toBe(config.interval);
       expect(carousel.noWrap).toBe(config.noWrap);
+      expect(carousel.showIndicators).toBe(config.showIndicators);
       // expect(carousel.keyboard).toBe(config.keyboard);
     });
   });
