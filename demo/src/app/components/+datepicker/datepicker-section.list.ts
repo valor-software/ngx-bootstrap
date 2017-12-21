@@ -2,6 +2,7 @@ import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
+import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.component';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
@@ -95,6 +96,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>minDate</code> is set to yesterday and <code>maxDate</code>
           to the current day in the next week</p>`,
         outlet: DemoDatepickerMinMaxComponent
+      },
+      {
+        title: 'Min-mode',
+        anchor: 'min-mode',
+        component: require('!!raw-loader?lang=typescript!./demos/min-mode/min-mode.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/min-mode/min-mode.component.html'),
+        description: `
+          <p>You can set min view mode of datepicker using <code>minMode</code> property</p>
+          <p>In the following example <code>minMode</code> is set to 'month'</p>`,
+        outlet: DemoDatepickerMinModeComponent
       },
       {
         title: 'Disabled (scratch, WIP)',
