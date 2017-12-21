@@ -287,6 +287,20 @@ describe('Component: timepicker', () => {
     });
   });
 
+  describe('hide minutes fields with property of showMinutes', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.detectChanges();
+      component = fixture.componentInstance;
+      inputMinutes = getInputElements(fixture)[1];
+    });
+    it('should hide minutes field when property showMinutes is == false', () => {
+      component.showMinutes = false;
+      fixture.detectChanges();
+      expect(inputSeconds).toBeFalsy();
+    });
+  });
+
   describe('display seconds fields with property of showSeconds', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
@@ -939,6 +953,17 @@ describe('Component: timepicker', () => {
       expect(inputHours.value).toBe('');
       expect(inputMinutes.value).toBe('');
     });
+
+    it('should ignore minutes for validation if showMinutes flag == false', () => {
+      component.showMinutes = false;
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      component.hours = '12';
+      component.minutes = '99';
+      component._updateTime();
+      fixture.detectChanges();
+      expect(methodSpy).not.toHaveBeenCalled();
+    });
+
     // не верное значение поля должно сбрасывать время
     it('should clear model if values are invalid', () => {
       component.showSeconds = true;

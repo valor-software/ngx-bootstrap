@@ -159,7 +159,7 @@ export function padNumber(value: number): string {
 
 export function isInputValid(
   hours: string,
-  minutes: string,
+  minutes = '0',
   seconds = '0',
   isPM: boolean
 ): boolean {

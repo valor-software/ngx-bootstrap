@@ -1,7 +1,7 @@
 import { DemoTimepickerBasicComponent } from './demos/basic/basic';
 import { DemoTimepickerMeridianComponent } from './demos/meridian/meridian';
 import { DemoTimepickerMinMaxComponent } from './demos/min-max/min-max';
-import { DemoTimepickerSecondsComponent } from './demos/seconds/seconds';
+import { DemoTimepickerToggleMinutesSecondsComponent } from './demos/toggle-minutes-seconds/toggle-minutes-seconds';
 import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
 import { DemoTimepickerCustomComponent } from './demos/custom/custom';
 import { DemoTimepickerCustomValidationComponent } from './demos/custom-validation/custom-validation';
@@ -55,11 +55,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTimepickerMinMaxComponent
       },
       {
-        title: 'Show seconds',
-        anchor: 'seconds',
-        component: require('!!raw-loader?lang=typescript!./demos/seconds/seconds'),
-        html: require('!!raw-loader?lang=markup!./demos/seconds/seconds.html'),
-        outlet: DemoTimepickerSecondsComponent
+        title: 'Toggle minutes/seconds',
+        anchor: 'toggleMinutesSeconds',
+        component: require('!!raw-loader?lang=typescript!./demos/toggle-minutes-seconds/toggle-minutes-seconds'),
+        html: require('!!raw-loader?lang=markup!./demos/toggle-minutes-seconds/toggle-minutes-seconds.html'),
+        outlet: DemoTimepickerToggleMinutesSecondsComponent
       },
       {
         title: 'Disabled',
