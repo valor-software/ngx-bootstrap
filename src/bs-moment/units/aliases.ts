@@ -1,14 +1,29 @@
 import { hasOwnProp, isString } from '../utils/type-checks';
-import { DateObject } from '../types';
+import { DateObject, UnitOfTime } from '../types';
 
 const aliases: { [key: string]: string } = {};
 
-export function addUnitAlias(unit: string, shorthand: string): void {
+export type ExtendedUnitOfTime = UnitOfTime | 'date' | 'week' | 'isoWeek' | 'dayOfYear' |
+  'weekday' | 'isoWeekday' | 'second' | 'millisecond' | 'minute' | 'hour' | 'quarter';
+
+const _mapUnits: { [key: string]: UnitOfTime } = {
+  date: 'day',
+  hour: 'hours',
+  minute: 'minutes',
+  second: 'seconds',
+  millisecond: 'milliseconds'
+};
+
+export function addUnitAlias(unit: ExtendedUnitOfTime, shorthand: string): void {
   const lowerCase = unit.toLowerCase();
-  aliases[lowerCase] = aliases[`${lowerCase}s`] = aliases[shorthand] = unit;
+  let _unit = unit;
+  if (lowerCase in _mapUnits) {
+    _unit = _mapUnits[lowerCase];
+  }
+  aliases[lowerCase] = aliases[`${lowerCase}s`] = aliases[shorthand] = _unit;
 }
 
-export function normalizeUnits(units: string | string[]) {
+export function normalizeUnits(units: string | string[]): string {
   return isString(units) ? aliases[units] || aliases[units.toLowerCase()] : undefined;
 }
 

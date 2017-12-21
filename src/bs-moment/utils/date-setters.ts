@@ -1,5 +1,6 @@
 import { TimeUnit } from '../types';
 import { daysInMonth } from '../units/month';
+import { isNumber } from './type-checks';
 
 const defaultTimeUnit: TimeUnit = {
   year: 0,
@@ -16,24 +17,27 @@ export function createDate(
   day = 1,
   hour = 0,
   minute = 0,
-  seconds = 0
+  seconds = 0,
+  milliseconds = 0
 ): Date {
   const _date = new Date();
+
   return new Date(
     year || _date.getFullYear(),
     month,
     day,
     hour,
     minute,
-    seconds
+    seconds,
+    milliseconds
   );
 }
 
 export function shiftDate(date: Date, unit: TimeUnit): Date {
   const _unit = Object.assign({}, defaultTimeUnit, unit);
-  const year = date.getFullYear() + _unit.year;
-  const month = date.getMonth() + _unit.month;
-  let day = date.getDate() + _unit.day;
+  const year = date.getFullYear() + (_unit.year || 0);
+  const month = date.getMonth() + (_unit.month || 0);
+  let day = date.getDate() + (_unit.day || 0);
   if (_unit.month && !_unit.day) {
     day = Math.min(day, daysInMonth(year, month));
   }
@@ -42,9 +46,9 @@ export function shiftDate(date: Date, unit: TimeUnit): Date {
     year,
     month,
     day,
-    date.getHours() + _unit.hour,
-    date.getMinutes() + _unit.minute,
-    date.getSeconds() + _unit.seconds
+    date.getHours() + (_unit.hour || 0),
+    date.getMinutes() + (_unit.minute || 0),
+    date.getSeconds() + (_unit.seconds || 0)
   );
 }
 
@@ -59,12 +63,42 @@ export function setFullDate(date: Date, unit: TimeUnit): Date {
   );
 }
 
-function getNum(def: number, num: number): number {
-  return typeof num === 'number' ? num : def;
+function getNum(def: number, num?: number): number {
+  return isNumber(num) ? num : def;
+}
+
+export function setFullYear(date: Date, value: number): Date {
+  date.setFullYear(value);
+
+  return date;
 }
 
 export function setMonth(date: Date, value: number, isUTC?: boolean): Date {
   isUTC ? date.setUTCMonth(value) : date.setMonth(value);
+
+  return date;
+}
+
+export function setHours(date: Date, value: number): Date {
+  date.setHours(value);
+
+  return date;
+}
+
+export function setMinutes(date: Date, value: number): Date {
+  date.setMinutes(value);
+
+  return date;
+}
+
+export function setSeconds(date: Date, value: number): Date {
+  date.setSeconds(value);
+
+  return date;
+}
+
+export function setMilliseconds(date: Date, value: number): Date {
+  date.setMilliseconds(value);
 
   return date;
 }

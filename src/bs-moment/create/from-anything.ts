@@ -13,15 +13,19 @@ import { configFromString } from './from-string';
 import { configFromArray } from './from-array';
 import { configFromObject } from './from-object';
 import { checkOverflow } from './check-overflow';
-import { DateArray } from '../types';
+import { DateArray, DateObject } from '../types';
+import { DateInput } from '../test/chain';
 
 function createFromConfig(config: DateParsingConfig): DateParsingConfig {
   const res = checkOverflow(prepareConfig(config));
-  if (res._nextDay) {
+  // todo: remove, in moment.js it's never called cuz of moment constructor
+  res._d = new Date(res._d != null ? res._d.getTime() : NaN);
+  // todo: update offset
+  /*if (res._nextDay) {
     // Adding is smart enough around DST
     res._d = add(res._d, 1, 'day');
     res._nextDay = undefined;
-  }
+  }*/
 
   return res;
 }
@@ -88,7 +92,7 @@ function configFromInput(config: DateParsingConfig): DateParsingConfig {
   return config;
 }
 
-export function createLocalOrUTC(input: string | number | DateArray, format?: string, localeKey?: string, strict?: boolean, isUTC?: boolean): DateParsingConfig {
+export function createLocalOrUTC(input: DateInput, format?: string | string[], localeKey?: string, strict?: boolean, isUTC?: boolean): DateParsingConfig {
   const config: DateParsingConfig = {};
   let _input = input;
 

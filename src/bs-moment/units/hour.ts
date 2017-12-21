@@ -9,6 +9,8 @@ import { toInt } from '../utils/type-checks';
 import { DateArray } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { getParsingFlags } from '../create/parsing-flags';
+import { addUnitPriority } from './priorities';
+import { addUnitAlias } from './aliases';
 
 // FORMATTING
 
@@ -62,6 +64,14 @@ function meridiem(token: string, lowercase: boolean): void {
 
 meridiem('a', true);
 meridiem('A', false);
+
+// ALIASES
+
+addUnitAlias('hour', 'h');
+
+// PRIORITY
+addUnitPriority('hour', 13);
+
 
 // PARSING
 

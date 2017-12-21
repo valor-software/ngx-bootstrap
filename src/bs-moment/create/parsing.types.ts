@@ -1,5 +1,6 @@
 import { Locale } from '../locale/locale.class';
-import { DateArray, WeekParsing } from '../types';
+import { DateArray, DateObject, WeekParsing } from '../types';
+import { DateInput } from '../test/chain';
 
 export interface DateParsingConfig {
   /** date value */
@@ -14,13 +15,13 @@ export interface DateParsingConfig {
   _isUTC?: boolean;
   _useUTC?: boolean;
   /** input to parse: could be string, number[], number, Date, object */
-  _i?: string | number | { [key: string]: number } | DateArray;
+  _i?: DateInput;
   /** locale key, 'en' by default */
   _l?: string;
   /** date locale obj */
   _locale?: Locale;
   /** date format */
-  _f?: string;
+  _f?: string | string[];
   /** use strict parse format */
   _strict?: boolean;
   /** add one day to result at the end of parsing */

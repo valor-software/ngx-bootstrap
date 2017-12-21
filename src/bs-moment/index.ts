@@ -1,4 +1,7 @@
 import './locale/en';
+import './units/index';
+
+export {add, subtract} from './moment/add-subtract';
 
 export { getMonth } from './utils/date-getters';
 

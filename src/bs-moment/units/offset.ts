@@ -120,9 +120,10 @@ export function getSetOffset(date: Date, input: number | string, keepLocalTime?:
 }
 
 export function getUTCOffset(date: Date, config?: DateParsingConfig): number {
-  const _offset = config._offset || 0;
+  const _config = config || {};
+  const _offset = _config._offset || 0;
 
-  return config._isUTC ? _offset : getDateOffset(date);
+  return _config._isUTC ? _offset : getDateOffset(date);
 }
 
 export function setUTCOffset(date: Date, input: number | string, keepLocalTime?: boolean, keepMinutes?: boolean, config?: DateParsingConfig): Date {

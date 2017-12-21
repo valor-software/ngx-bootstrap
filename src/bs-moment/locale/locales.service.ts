@@ -49,10 +49,10 @@ export function mergeConfigs(
     if (
       hasOwnProp(parentConfig, parentProp) &&
       !hasOwnProp(childConfig, parentProp) &&
-      isObject(parentConfig[parentProp as string])
+      isObject(parentConfig[parentProp as keyof LocaleData])
     ) {
       // make sure changes to properties don't modify parent config
-      res[parentProp as string] = Object.assign({}, res[parentProp as string]);
+      res[parentProp as keyof LocaleData] = Object.assign({}, res[parentProp as keyof LocaleData]);
     }
   }
 

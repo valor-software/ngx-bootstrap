@@ -80,7 +80,7 @@ function convertDuration(input: any, key: string): Partial<DateObject> {
 
   }
 
-  if (isObject(input) && ('from' in input || 'to' in input)) {
+  if (isObject<{from: any, to: any}>(input) && ('from' in input || 'to' in input)) {
     const diffRes = momentsDifference(parseDate(input.from), parseDate(input.to));
 
     return {

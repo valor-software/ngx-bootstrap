@@ -4,6 +4,14 @@ export function isString(str: any): str is string {
   return typeof str === 'string';
 }
 
+export function isDate(value: any): value is Date {
+  return value instanceof Date && !isNaN(+value);
+}
+
+export function isBoolean(value: any): value is boolean {
+  return value === true || value === false;
+}
+
 export function isDateValid(date: Date): boolean {
   return date && date.getTime && !isNaN(date.getTime());
 }
@@ -30,7 +38,7 @@ export function hasOwnProp<T>(a: T /*object*/, b: string): b is keyof T {
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 
-export function isObject<K, T>(input: any /*object*/): input is any {
+export function isObject<T>(input: any /*object*/): input is T {
   // IE8 will treat undefined and null as object if it wasn't for
   // input != null
   return (

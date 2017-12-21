@@ -17,7 +17,11 @@ export function formatDate(date: Date, format: string, locale = 'en'): string {
       `Locale "${locale}" is not defined, please add it with "defineLocale(...)"`
     );
   }
-  const output = formatMoment(date, format, _locale);
+
+  // todo add UTC support
+  const _format = format ? format : 'YYYY-MM-DDTHH:mm:ssZ';
+
+  const output = formatMoment(date, _format, _locale);
 
   if (!output) {
     return output;

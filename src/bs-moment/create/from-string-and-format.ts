@@ -2,7 +2,7 @@ import { DateParsingConfig } from './parsing.types';
 import { configFromISO, configFromRFC2822 } from './from-string';
 import { expandFormat } from '../format';
 import { formattingTokens, formatTokenFunctions } from '../format-functions';
-import { isString } from '../utils/type-checks';
+import { isArray, isString } from '../utils/type-checks';
 import { getParseRegexForToken } from '../parse/regex';
 import { addTimeToArrayFromToken } from '../parse/token';
 import { HOUR } from '../units/constants';
@@ -31,7 +31,7 @@ export function configFromStringAndFormat(config: DateParsingConfig): DateParsin
   config._a = [];
   getParsingFlags(config).empty = true;
 
-  if (!isString(config._i)) {
+  if (!isString(config._i) || isArray(config._f)) {
     return config;
   }
 

@@ -4,6 +4,8 @@ import { addRegexToken, match1to2, match1to4, match1to6, match2, match4, match6,
 import { addParseToken } from '../parse/token';
 import { YEAR } from './constants';
 import { toInt } from '../utils/type-checks';
+import { addUnitPriority } from './priorities';
+import { addUnitAlias } from './aliases';
 
 // FORMATTING
 
@@ -24,6 +26,14 @@ addFormatToken(null, ['YY', 2], null, function (date: Date): string {
 addFormatToken(null, ['YYYY', 4], null, getYear);
 addFormatToken(null, ['YYYYY', 5], null, getYear);
 addFormatToken(null, ['YYYYYY', 6, true], null, getYear);
+
+// ALIASES
+
+addUnitAlias('year', 'y');
+
+// PRIORITIES
+
+addUnitPriority('year', 1);
 
 // PARSING
 

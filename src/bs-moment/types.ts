@@ -2,6 +2,8 @@
 import { Locale } from './locale/locale.class';
 import { DateParsingConfig } from './create/parsing.types';
 
+type DateInput = string | number | DateArray | DateObject | Date;
+
 export type UnitOfTime =
   | 'year'
   | 'month'
@@ -29,18 +31,18 @@ export type DateFormatterFn = (date: Date,
 // todo: should replace TimeUnit
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
 export interface DateObject {
-  year: number;
+  year?: number;
   /* One digit */
-  month: number;
+  month?: number;
   /* Day of the month */
-  day: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  milliseconds: number;
+  day?: number;
+  hours?: number;
+  minutes?: number;
+  seconds?: number;
+  milliseconds?: number;
   // may be?
-  week: number;
-  quarter: number;
+  week?: number;
+  quarter?: number;
 }
 
 export type DateArray = number[];

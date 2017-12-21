@@ -7,7 +7,7 @@ export function isValid(config: DateParsingConfig): boolean {
     const parsedParts = Array.prototype.some.call(flags.parsedDateParts, function (i: number) {
       return i != null;
     });
-    let isNowValid = !isNaN(config._d.getTime()) &&
+    let isNowValid = !isNaN(config._d && config._d.getTime()) &&
       flags.overflow < 0 &&
       !flags.empty &&
       !flags.invalidMonth &&

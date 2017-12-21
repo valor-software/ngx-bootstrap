@@ -9,7 +9,7 @@ export function configFromObject(config: DateParsingConfig): DateParsingConfig {
   }
 
   const input = config._i;
-  if (isObject<string, number>(input)) {
+  if (isObject(input)) {
     const i = normalizeObjectUnits(input as any);
     config._a = [i.year, i.month, i.day, i.hours, i.minutes, i.seconds, i.milliseconds]
     // todo: obsolete -> remove it

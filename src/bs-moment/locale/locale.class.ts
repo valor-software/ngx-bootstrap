@@ -132,13 +132,15 @@ export class Locale {
   }
 
   set(config: LocaleData): void {
-    for (const i in config) {
-      if (!config.hasOwnProperty(i)) {
+    let confKey;
+    for (confKey in config) {
+      if (!config.hasOwnProperty(confKey)) {
         continue;
       }
-      const prop = config[i];
-      const key = isFunction(prop) ? i : `_${i}`;
-      this[key as keyof Locale] = prop;
+      const prop = config[confKey as keyof LocaleData];
+      const key = (isFunction(prop) ? confKey : `_${confKey}`) as keyof Locale;
+
+      this[key] = prop as any;
     }
 
     this._config = config;
