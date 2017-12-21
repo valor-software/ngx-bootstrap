@@ -1,5 +1,5 @@
 import { BsDatepickerViewMode } from '../models/index';
 
-export function canSwitchMode(mode: BsDatepickerViewMode): boolean {
-  return true;
+export function canSwitchMode(mode: BsDatepickerViewMode, minMode?:BsDatepickerViewMode): boolean {
+  return minMode ? mode >= minMode : true;
 }

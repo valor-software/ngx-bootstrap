@@ -11,7 +11,7 @@ import { formatMonthsCalendar } from '../engine/format-months-calendar';
 import { flagMonthsCalendar } from '../engine/flag-months-calendar';
 import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
-import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
+import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } from '../models/index';
 import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
 import { getLocale } from '../../bs-moment/locale/locales.service';
@@ -48,14 +48,21 @@ export function bsDatepickerReducer(state = initialDatepickerState,
       const payload: BsViewNavigationEvent = action.payload;
 
       const date = setDate(state.view.date, payload.unit);
-      const mode = payload.viewMode;
-      const newState = { view: { date, mode } };
-
+      let newState;
+      let mode:BsDatepickerViewMode;
+      if (canSwitchMode(payload.viewMode, state.minMode)) {
+        mode = payload.viewMode;
+        newState = { view: { date, mode } };
+      }
+      else {
+        mode = state.view.mode
+        newState = { selectedDate: date, view: { date, mode } };
+      }
       return Object.assign({}, state, newState);
     }
 
     case BsDatepickerActions.CHANGE_VIEWMODE: {
-      if (!canSwitchMode(action.payload)) {
+      if (!canSwitchMode(action.payload, state.minMode)) {
         return state;
       }
       const date = state.view.date;
@@ -86,7 +93,7 @@ export function bsDatepickerReducer(state = initialDatepickerState,
     case BsDatepickerActions.SET_OPTIONS: {
       const newState = action.payload;
       // preserve view mode
-      const mode = state.view.mode;
+      const mode = newState.minMode ? newState.minMode : state.view.mode;
       const _viewDate = isDateValid(newState.value) && newState.value
         || isArray(newState.value) && isDateValid(newState.value[0]) && newState.value[0]
         || state.view.date;
