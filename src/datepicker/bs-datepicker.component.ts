@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsLocaleService } from './bs-locale.service';
+import { BsDatepickerViewMode } from './models/index';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -90,9 +91,9 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   @Input() maxDate: Date;
 
   /**
-   * Minimmum display mode : day, month, or year
+   * Minimum view mode : day, month, or year
    */
-  @Input() minMode: string;
+  @Input() minMode: BsDatepickerViewMode;
 
   /**
    * Emits when datepicker value has been changed
