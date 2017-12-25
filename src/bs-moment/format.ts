@@ -5,23 +5,22 @@
 // momentjs.com
 
 import './units';
-import { formatFunctions, makeFormatFunction } from './format-functions';
+import { formatFunctions, makeFormatFunction } from './format/format';
 import { Locale } from './locale/locale.class';
 import { getLocale } from './locale/locales.service';
 import { isDateValid } from './utils/type-checks';
 
-export function formatDate(date: Date, format: string, locale = 'en'): string {
-  const _locale = getLocale(locale);
+export function formatDate(date: Date, format: string, locale?: string, isUTC?: boolean): string {
+  const _locale = getLocale(locale || 'en');
   if (!_locale) {
     throw new Error(
       `Locale "${locale}" is not defined, please add it with "defineLocale(...)"`
     );
   }
 
-  // todo add UTC support
-  const _format = format ? format : 'YYYY-MM-DDTHH:mm:ssZ';
+  const _format = format || (isUTC ?  'YYYY-MM-DDTHH:mm:ss[Z]' : 'YYYY-MM-DDTHH:mm:ssZ');
 
-  const output = formatMoment(date, _format, _locale);
+  const output = formatMoment(date, _format, _locale, isUTC);
 
   if (!output) {
     return output;
@@ -31,15 +30,15 @@ export function formatDate(date: Date, format: string, locale = 'en'): string {
 }
 
 // format date using native date object
-export function formatMoment(date: Date, _format: string, locale: Locale) {
+export function formatMoment(date: Date, _format: string, locale: Locale, isUTC?: boolean): string {
   if (!isDateValid(date)) {
     return locale.invalidDate;
   }
-  const format = expandFormat(_format, locale);
-  formatFunctions[format] =
-    formatFunctions[format] || makeFormatFunction(format);
 
-  return formatFunctions[format](date, locale);
+  const format = expandFormat(_format, locale);
+  formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
+
+  return formatFunctions[format](date, locale, isUTC);
 }
 
 export function expandFormat(_format: string, locale: Locale): string {

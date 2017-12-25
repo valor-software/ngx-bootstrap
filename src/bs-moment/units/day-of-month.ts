@@ -1,19 +1,20 @@
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { getDate } from '../utils/date-getters';
 import { addRegexToken, match1to2, match2 } from '../parse/regex';
 import { addParseToken } from '../parse/token';
 import { DATE } from './constants';
 import { toInt } from '../utils/type-checks';
-import { DateArray } from '../types';
+import { DateArray, DateFormatterOptions } from '../types';
 import { addUnitAlias } from './aliases';
 import { addUnitPriority } from './priorities';
 import { DateParsingConfig } from '../create/parsing.types';
 
 // FORMATTING
 
-addFormatToken('D', ['DD', 2], 'Do', function (date: Date): string {
-  return getDate(date).toString(10);
-});
+addFormatToken('D', ['DD', 2, false], 'Do',
+  function (date: Date, opts: DateFormatterOptions): string {
+    return getDate(date, opts.isUTC).toString(10);
+  });
 
 // ALIASES
 
@@ -33,7 +34,7 @@ addRegexToken('Do', function (isStrict, locale) {
 addParseToken(['D', 'DD'], DATE);
 addParseToken('Do',
   function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
-  array[DATE] = toInt(input.match(match1to2)[0]);
+    array[DATE] = toInt(input.match(match1to2)[0]);
 
-  return config;
-});
+    return config;
+  });

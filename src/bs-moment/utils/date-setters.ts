@@ -59,7 +59,8 @@ export function setFullDate(date: Date, unit: TimeUnit): Date {
     getNum(date.getDate(), unit.day),
     getNum(date.getHours(), unit.hour),
     getNum(date.getMinutes(), unit.minute),
-    getNum(date.getSeconds(), unit.seconds)
+    getNum(date.getSeconds(), unit.seconds),
+    getNum(date.getMilliseconds(), unit.milliseconds)
   );
 }
 

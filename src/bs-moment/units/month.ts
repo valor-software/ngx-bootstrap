@@ -1,6 +1,5 @@
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { isLeapYear } from './year';
-import { Locale } from '../locale/locale.class';
 import { mod } from '../utils';
 import { getMonth } from '../utils/date-getters';
 import { addRegexToken, match1to2, match2 } from '../parse/regex';
@@ -11,7 +10,7 @@ import { addUnitPriority } from './priorities';
 import { addUnitAlias } from './aliases';
 import { getParsingFlags } from '../create/parsing-flags';
 import { DateParsingConfig } from '../create/parsing.types';
-import { DateArray } from '../types';
+import { DateArray, DateFormatterOptions } from '../types';
 
 // todo: this is duplicate, source in date-getters.ts
 export function daysInMonth(year: number, month: number): number {
@@ -28,22 +27,20 @@ export function daysInMonth(year: number, month: number): number {
 
 // FORMATTING
 
-addFormatToken('M', ['MM', 2], 'Mo', function (date: Date,
-                                               format: string): string {
-  return (getMonth(date) + 1).toString();
-});
+addFormatToken('M', ['MM', 2, false], 'Mo',
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMonth(date, opts.isUTC) + 1).toString();
+  });
 
-addFormatToken('MMM', null, null, function (date: Date,
-                                            format: string,
-                                            locale?: Locale): string {
-  return locale.monthsShort(date, format) as string;
-});
+addFormatToken('MMM', null, null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return opts.locale.monthsShort(date, opts.format, opts.isUTC);
+  });
 
-addFormatToken('MMMM', null, null, function (date: Date,
-                                             format: string,
-                                             locale?: Locale): string {
-  return locale.months(date, format) as string;
-});
+addFormatToken('MMMM', null, null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return opts.locale.months(date, opts.format, opts.isUTC);
+  });
 
 
 // ALIASES
@@ -84,4 +81,3 @@ addParseToken(['MMM', 'MMMM'],
     return config;
   });
 
-// todo: locales

@@ -12,14 +12,14 @@ export function getSeconds(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCSeconds() : date.getSeconds();
 }
 
-export function getMilliseconds(date: Date): number {
-  return date.getMilliseconds();
+export function getMilliseconds(date: Date, isUTC = false): number {
+  return isUTC ? date.getUTCMilliseconds() : date.getMilliseconds();
 }
 export function getTime(date: Date): number {
   return date.getTime();
 }
 
-export function getDayOfWeek(date: Date, isUTC = false): number {
+export function getDay(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCDay() : date.getDay();
 }
 

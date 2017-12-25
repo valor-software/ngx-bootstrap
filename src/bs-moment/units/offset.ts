@@ -1,8 +1,8 @@
 // tslint:disable:no-bitwise max-line-length
 // FORMATTING
 
-import { addFormatToken } from '../format-functions';
-import { zeroFill } from '../utils';
+import { addFormatToken } from '../format/format';
+import { zeroFill } from '../utils/zero-fill';
 import { DateParsingConfig } from '../create/parsing.types';
 import { isNumber, isString, toInt } from '../utils/type-checks';
 import { addRegexToken, matchShortOffset } from '../parse/regex';

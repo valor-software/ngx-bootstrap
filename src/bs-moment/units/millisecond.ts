@@ -1,45 +1,55 @@
 // tslint:disable:no-bitwise
 // FORMATTING
 
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { addRegexToken, match1, match1to3, match2, match3, matchUnsigned } from '../parse/regex';
 import { MILLISECOND } from './constants';
 import { toInt } from '../utils/type-checks';
-import { addParseToken} from '../parse/token';
-import { DateArray, WeekParsing } from '../types';
+import { addParseToken } from '../parse/token';
+import { DateArray, DateFormatterOptions, WeekParsing } from '../types';
 import { addUnitAlias } from './aliases';
 import { addUnitPriority } from './priorities';
 import { DateParsingConfig } from '../create/parsing.types';
+import { getMilliseconds } from '../utils/date-getters';
 
-addFormatToken('S', null, null, function (date: Date): string {
-  return (~~(date.getMilliseconds() / 100)).toString(10);
-});
+addFormatToken('S', null, null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (~~(getMilliseconds(date, opts.isUTC) / 100)).toString(10);
+  });
 
-addFormatToken(null, ['SS', 2], null, function (date: Date): string {
-  return (~~(date.getMilliseconds() / 10)).toString(10);
-});
+addFormatToken(null, ['SS', 2, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (~~(getMilliseconds(date, opts.isUTC) / 10)).toString(10);
+  });
 
-addFormatToken(null, ['SSS', 3], null, function (date: Date): string {
-  return (date.getMilliseconds()).toString(10);
-});
-addFormatToken(null, ['SSSS', 4], null, function (date: Date): string {
-  return (date.getMilliseconds() * 10).toString(10);
-});
-addFormatToken(null, ['SSSSS', 5], null, function (date: Date): string {
-  return (date.getMilliseconds() * 100).toString(10);
-});
-addFormatToken(null, ['SSSSSS', 6], null, function (date: Date): string {
-  return (date.getMilliseconds() * 1000).toString(10);
-});
-addFormatToken(null, ['SSSSSSS', 7], null, function (date: Date): string {
-  return (date.getMilliseconds() * 10000).toString(10);
-});
-addFormatToken(null, ['SSSSSSSS', 8], null, function (date: Date): string {
-  return (date.getMilliseconds() * 100000).toString(10);
-});
-addFormatToken(null, ['SSSSSSSSS', 9], null, function (date: Date): string {
-  return (date.getMilliseconds() * 1000000).toString(10);
-});
+addFormatToken(null, ['SSS', 3, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC)).toString(10);
+  });
+addFormatToken(null, ['SSSS', 4, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC) * 10).toString(10);
+  });
+addFormatToken(null, ['SSSSS', 5, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC) * 100).toString(10);
+  });
+addFormatToken(null, ['SSSSSS', 6, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC) * 1000).toString(10);
+  });
+addFormatToken(null, ['SSSSSSS', 7, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC) * 10000).toString(10);
+  });
+addFormatToken(null, ['SSSSSSSS', 8, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC) * 100000).toString(10);
+  });
+addFormatToken(null, ['SSSSSSSSS', 9, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+    return (getMilliseconds(date, opts.isUTC) * 1000000).toString(10);
+  });
 
 
 // ALIASES

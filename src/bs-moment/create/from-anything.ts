@@ -76,8 +76,8 @@ function configFromInput(config: DateParsingConfig): DateParsingConfig {
   } else if (isString(input)) {
     configFromString(config);
   } else if (isArray<string | number>(input) && input.length) {
-    config._a = input.slice(0)
-      .map(obj => isString(obj) ? parseInt(obj, 10) : obj);
+    const _arr: (string | number)[] = input.slice(0);
+    config._a = _arr.map(obj => isString(obj) ? parseInt(obj, 10) : obj);
     configFromArray(config);
   } else if (isObject(input)) {
     configFromObject(config);

@@ -1,3 +1,5 @@
+// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
+// tslint:disable:binary-expression-operand-order comment-format one-line
 import { getDayOfYear } from '../units/day-of-year';
 
 describe('moment - units', () => {

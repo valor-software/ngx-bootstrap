@@ -1,4 +1,4 @@
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { getFullYear } from '../utils/date-getters';
 import { addRegexToken, match1to2, match1to4, match1to6, match2, match4, match6, matchSigned } from '../parse/regex';
 import { addParseToken } from '../parse/token';
@@ -6,25 +6,28 @@ import { YEAR } from './constants';
 import { toInt } from '../utils/type-checks';
 import { addUnitPriority } from './priorities';
 import { addUnitAlias } from './aliases';
+import { DateFormatterOptions } from '../types';
 
 // FORMATTING
 
-function getYear(date: Date): string {
-  return getFullYear(date).toString();
+function getYear(date: Date, opts: DateFormatterOptions): string {
+  return getFullYear(date, opts.isUTC).toString();
 }
 
-addFormatToken('Y', null, null, function (date: Date): string {
-  const y = getFullYear(date);
+addFormatToken('Y', null, null,
+  function (date: Date, opts: DateFormatterOptions): string {
+  const y = getFullYear(date, opts.isUTC);
 
   return y <= 9999 ? y.toString(10) : `+${y}`;
 });
 
-addFormatToken(null, ['YY', 2], null, function (date: Date): string {
-  return (getFullYear(date) % 100).toString(10);
+addFormatToken(null, ['YY', 2, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
+  return (getFullYear(date, opts.isUTC) % 100).toString(10);
 });
 
-addFormatToken(null, ['YYYY', 4], null, getYear);
-addFormatToken(null, ['YYYYY', 5], null, getYear);
+addFormatToken(null, ['YYYY', 4, false], null, getYear);
+addFormatToken(null, ['YYYYY', 5, false], null, getYear);
 addFormatToken(null, ['YYYYYY', 6, true], null, getYear);
 
 // ALIASES

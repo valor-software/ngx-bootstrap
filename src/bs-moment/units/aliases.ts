@@ -4,7 +4,7 @@ import { DateObject, UnitOfTime } from '../types';
 const aliases: { [key: string]: string } = {};
 
 export type ExtendedUnitOfTime = UnitOfTime | 'date' | 'week' | 'isoWeek' | 'dayOfYear' |
-  'weekday' | 'isoWeekday' | 'second' | 'millisecond' | 'minute' | 'hour' | 'quarter';
+  'weekday' | 'isoWeekday' | 'second' | 'millisecond' | 'minute' | 'hour' | 'quarter' | 'weekYear' | 'isoWeekYear';
 
 const _mapUnits: { [key: string]: UnitOfTime } = {
   date: 'day',

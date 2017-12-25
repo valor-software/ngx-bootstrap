@@ -4,6 +4,7 @@ import { setFullDate, shiftDate } from './date-setters';
 
 export function startOf(date: Date, units: UnitOfTime): Date {
   const unit = getDateShift(units);
+
   return setFullDate(date, unit);
 }
 

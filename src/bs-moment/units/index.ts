@@ -14,4 +14,5 @@ import './second';
 import './timestamp';
 import './week';
 import './week-calendar-utils';
+import './week-year';
 import './year';

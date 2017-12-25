@@ -1,6 +1,7 @@
 // tslint:disable:max-line-length
 import { Locale } from './locale/locale.class';
 import { DateParsingConfig } from './create/parsing.types';
+import { stringDistance } from 'codelyzer/util/utils';
 
 type DateInput = string | number | DateArray | DateObject | Date;
 
@@ -24,9 +25,14 @@ export interface TimeUnit {
   milliseconds?: number;
 }
 
-export type DateFormatterFn = (date: Date,
-                               format?: string,
-                               locale?: Locale) => string;
+export interface DateFormatterOptions {
+  format: string;
+  locale: Locale;
+  isUTC: boolean;
+}
+
+// export type DateFormatterFn = (date: Date, format?: string, locale?: Locale) => string;
+export type DateFormatterFn = (date: Date, opts: DateFormatterOptions) => string;
 
 // todo: should replace TimeUnit
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
@@ -46,8 +52,10 @@ export interface DateObject {
 }
 
 export type DateArray = number[];
+
 export interface WeekParsing {
   [key: string]: number;
+
   [key: number]: number;
 }
 

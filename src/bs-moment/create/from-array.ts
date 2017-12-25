@@ -48,7 +48,7 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
       getParsingFlags(config)._overflowDayOfYear = true;
     }
 
-    date = createUTCDate(yearToUse, 0, config._dayOfYear);
+    date = new Date(yearToUse, 0, config._dayOfYear);
     config._a[MONTH] = date.getUTCMonth();
     config._a[DATE] = date.getUTCDate();
   }

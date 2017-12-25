@@ -1,18 +1,19 @@
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { startOf } from '../utils/start-end-of';
 import { addRegexToken, match1to3, match3 } from '../parse/regex';
 import { addParseToken } from '../parse/token';
 import { addUnitPriority } from './priorities';
 import { addUnitAlias } from './aliases';
-import { DateArray } from '../types';
+import { DateArray, DateFormatterOptions } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { toInt } from '../utils/type-checks';
 
 // FORMATTING
 
-addFormatToken('DDD', ['DDDD', 3], 'DDDo', function (date: Date): string {
-  return getDayOfYear(date).toString(10);
-});
+addFormatToken('DDD', ['DDDD', 3, false], 'DDDo',
+  function (date: Date): string {
+    return getDayOfYear(date).toString(10);
+  });
 
 
 // ALIASES
@@ -27,10 +28,10 @@ addRegexToken('DDD', match1to3);
 addRegexToken('DDDD', match3);
 addParseToken(['DDD', 'DDDD'],
   function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
-  config._dayOfYear = toInt(input);
+    config._dayOfYear = toInt(input);
 
-  return config;
-});
+    return config;
+  });
 
 export function getDayOfYear(date: Date): number {
   const date1 = +startOf(date, 'day');

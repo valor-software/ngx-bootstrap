@@ -10,7 +10,7 @@ import {
   setSeconds
 } from '../utils/date-setters';
 import { cloneDate } from '../create/clone';
-import { isBoolean, isDate, isDateValid, isNumber, isObject, isString } from '../utils/type-checks';
+import { isBoolean, isDate, isDateValid, isFunction, isNumber, isObject, isString } from '../utils/type-checks';
 import { formatDate } from '../format';
 import { ISO_8601, RFC_2822 } from '../create/from-string-and-format';
 import { defineLocale, getSetGlobalLocale } from '../locale/locales.service';
@@ -19,8 +19,13 @@ import { getUTCOffset, setUTCOffset } from '../units/offset';
 import { parseTwoDigitYear } from '../units/year';
 import { isSame } from '../utils/date-compare';
 import { createInvalid } from '../create/valid';
+import { daysInMonth } from '../units/month';
+import { getDayOfWeek, getSetDayOfWeek, setDayOfWeek } from '../units/day-of-week';
+import { getISOWeek, getWeek, setWeek } from '../units/week';
+import { getISOWeekYear, getWeekYear } from '../units/week-year';
+import { endOf, startOf } from '../utils/start-end-of';
 
-export type DateInput = string | number | DateArray | MomentInputObject | Date;
+export type DateInput = string | number | Date | string[] | DateArray | MomentInputObject;
 
 export const moment: MomentFn = (_moment as MomentFn);
 
@@ -104,7 +109,10 @@ export type MomentUnitOfTime = (
   'hour' | 'hours' | 'h' |
   'minute' | 'minutes' | 'm' |
   'second' | 'seconds' | 's' |
-  'millisecond' | 'milliseconds' | 'ms'
+  'millisecond' | 'milliseconds' | 'ms' |
+  'q' | 'quarter' | 'quarters' | 'Q' |
+  'isoWeek' | 'isoWeeks' | 'W' |
+  'date' | 'dates'
   );
 
 const _timeHashMap: { [key: string]: UnitOfTime } = {
@@ -132,8 +140,11 @@ function mapUnitOfTime(period: MomentUnitOfTime): UnitOfTime {
 
 export class Khronos {
   _date: Date = new Date();
+  _isUTC: boolean;
 
   constructor(input?: DateInput, format?: string | string[], localeKey?: string, strict?: boolean, isUTC?: boolean) {
+    this._isUTC = isUTC;
+
     if (!input && !format) {
       this._date = new Date();
     } else if (isDate(input)) {
@@ -240,15 +251,32 @@ export class Khronos {
   }
 
   format(format?: string): string {
-    return formatDate(this._date, format);
+    return formatDate(this._date, format, void 0, this._isUTC);
   }
 
   toString(): string {
     return this.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
   }
 
-  toISOString(keepOffset?: boolean): string {
-    return this.format('YYYYYY-MM-DD[T]HH:mm:ss.SSSZ');
+  toISOString(): string {
+    if (!this.isValid()) {
+      return null;
+    }
+
+    if (getFullYear(this._date, true) < 0 || getFullYear(this._date, true) > 9999) {
+      return this.format('YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+    }
+
+    if (isFunction(Date.prototype.toISOString)) {
+      // native implementation is ~50x faster, use it when we can
+      return this.toDate().toISOString();
+    }
+
+    return this.format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+  }
+
+  toJSON(): string {
+    return this.toISOString();
   }
 
   toDate(): Date {
@@ -374,4 +402,59 @@ export class Khronos {
 
     return this;
   }
+
+  day(): number ;
+  day(input: number): Khronos ;
+  day(input?: number): Khronos | number {
+    if (!input && input !== 0) {
+      return getDayOfWeek(this._date);
+    }
+
+    this._date = setDayOfWeek(this._date, input, void 0, this._isUTC);
+
+    return this;
+  }
+
+  week(): number ;
+  week(input: number): Khronos ;
+  week(input?: number): Khronos | number {
+    if (!input && input !== 0) {
+      return getWeek(this._date);
+    }
+
+    this._date = setWeek(this._date, input);
+
+    return this;
+  }
+
+  weekYear(): number {
+    return getWeekYear(this._date);
+  }
+
+  isoWeek(): number {
+    return getISOWeek(this._date);
+  }
+
+  isoWeekYear(): number {
+    return getISOWeekYear(this._date);
+  }
+
+  daysInMonth(): number {
+    return daysInMonth(getFullYear(this._date, this._isUTC), getMonth(this._date, this._isUTC));
+  }
+
+  startOf(period: MomentUnitOfTime): Khronos {
+    const _per = mapUnitOfTime(period);
+    this._date = startOf(this._date, _per);
+
+    return this;
+  }
+
+  endOf(period: MomentUnitOfTime): Khronos {
+    const _per = mapUnitOfTime(period);
+    this._date = endOf(this._date, _per);
+
+    return this;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { unix } from '../utils/date-getters';
 import { addRegexToken, matchSigned, matchTimestamp } from '../parse/regex';
 import { addParseToken} from '../parse/token';

@@ -1,6 +1,4 @@
-// todo: fix day of week first
-/*
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { addUnitAlias } from './aliases';
 import { addUnitPriority } from './priorities';
 import { addRegexToken, match1to2, match1to4, match1to6, match2, match4, match6, matchSigned } from '../parse/regex';
@@ -8,32 +6,46 @@ import { addWeekParseToken } from '../parse/token';
 import { toInt } from '../utils/type-checks';
 import { parseTwoDigitYear } from './year';
 import { dayOfYearFromWeeks, weekOfYear, weeksInYear } from './week-calendar-utils';
-import { Locale } from '../locale/locale.class';
-import { getISOWeek, getWeek } from './week';
-import { getDayOfWeek } from '../utils/date-getters';
 import { createUTCDate } from '../utils';
+import { getISOWeek, getWeek } from './week';
+import { getISODayOfWeek, getLocaleDayOfWeek } from './day-of-week';
+import { getLocale } from '../locale/locales.service';
+import { setDate, setFullYear, setMonth } from '../utils/date-setters';
+import { getDate, getFullYear, getMonth } from '../utils/date-getters';
+import { Locale } from '../locale/locale.class';
+import { DateFormatterFn, DateFormatterOptions, WeekParsing } from '../types';
+import { flagDaysCalendar } from '../../datepicker/engine/flag-days-calendar';
 
 // FORMATTING
 
-addFormatToken(null, ['gg', 2], null,
-  function (date: Date, format: string, locale: Locale): string {
+addFormatToken(null, ['gg', 2, false], null,
+  function (date: Date, opts: DateFormatterOptions): string {
     // return this.weekYear() % 100;
-    return (getSetWeekYear(date, locale) % 100).toString(10);
+    return (getWeekYear(date, opts.locale) % 100).toString();
   });
 
-addFormatToken(null, ['GG', 2], null, function (date: Date, format: string, locale: Locale): string {
-  // return this.isoWeekYear() % 100;
-  return (getSetISOWeekYear(date, locale) % 100).toString(10);
-});
+addFormatToken(null, ['GG', 2, false], null,
+  function (date: Date): string {
+    // return this.isoWeekYear() % 100;
+    return (getISOWeekYear(date) % 100).toString();
+  });
 
-function addWeekYearFormatToken(token, getter) {
-  addFormatToken(null, [token, token.length], null, getter);
+function addWeekYearFormatToken(token: string, getter: DateFormatterFn): void {
+  addFormatToken(null, [token, token.length, false], null, getter);
 }
 
-addWeekYearFormatToken('gggg', getSetWeekYear);
-addWeekYearFormatToken('ggggg', getSetWeekYear);
-addWeekYearFormatToken('GGGG', getSetISOWeekYear);
-addWeekYearFormatToken('GGGGG', getSetISOWeekYear);
+function _getWeekYearFormatCb(date: Date, opts: DateFormatterOptions): string {
+  return getWeekYear(date, opts.locale).toString();
+}
+
+function _getISOWeekYearFormatCb(date: Date): string {
+  return getISOWeekYear(date).toString();
+}
+
+addWeekYearFormatToken('gggg', _getWeekYearFormatCb);
+addWeekYearFormatToken('ggggg', _getWeekYearFormatCb);
+addWeekYearFormatToken('GGGG', _getISOWeekYearFormatCb);
+addWeekYearFormatToken('GGGGG', _getISOWeekYearFormatCb);
 
 // ALIASES
 
@@ -57,13 +69,14 @@ addRegexToken('gggg', match1to4, match4);
 addRegexToken('GGGGG', match1to6, match6);
 addRegexToken('ggggg', match1to6, match6);
 
-addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'], function (input, week, config, token) {
-  week[token.substr(null, 2)] = toInt(input);
+addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'],
+  function (input, week: WeekParsing, config, token) {
+    week[token.substr(0, 2)] = toInt(input);
 
-  return config;
-});
+    return config;
+  });
 
-addWeekParseToken(['gg', 'GG'], function (input, week, config, token) {
+addWeekParseToken(['gg', 'GG'], function (input, week: WeekParsing, config, token) {
   week[token] = parseTwoDigitYear(input);
 
   return config;
@@ -71,52 +84,62 @@ addWeekParseToken(['gg', 'GG'], function (input, week, config, token) {
 
 // MOMENTS
 
-/!*export function getSetWeekYear(date: Date, locale: Locale) {
-  return getSetWeekYearHelper(
-    date,
-    getWeek(date, locale),
-    // todo: seems this one implemented incorrectly
-    //   //   this.weekday(),
-    getDayOfWeek(date),
-    locale._week.dow,
-    locale._week.doy);
-}*!/
+export function getSetWeekYear(date: Date, input: number): number | Date {
+  const _locale = getLocale();
 
-/!*
-export function getSetISOWeekYear(date: Date) {
-  return getSetWeekYearHelper(date, this.isoWeek(), this.isoWeekday(), 1, 4);
+  return getSetWeekYearHelper(date,
+    input,
+    // this.week(),
+    getWeek(date, _locale),
+    // this.weekday(),
+    getLocaleDayOfWeek(date, _locale),
+    _locale.firstDayOfWeek(),
+    _locale.firstDayOfYear());
 }
 
-export function getISOWeeksInYear() {
-  return weeksInYear(this.year(), 1, 4);
+export function getWeekYear(date: Date, locale?: Locale): number {
+  const _locale = locale || getLocale();
+
+  return weekOfYear(date, _locale.firstDayOfWeek(), _locale.firstDayOfYear()).year;
 }
 
-export function getWeeksInYear() {
-  var weekInfo = this.localeData()._week;
-  return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
+export function getSetISOWeekYear(date: Date, input: number): number | Date {
+  return getSetWeekYearHelper(date, input, getISOWeek(date), getISODayOfWeek(date), 1, 4);
 }
 
-function getSetWeekYearHelper(input, week, weekday, dow, doy) {
-  var weeksTarget;
-  if (input == null) {
-    return weekOfYear(this, dow, doy).year;
-  } else {
-    weeksTarget = weeksInYear(input, dow, doy);
-    if (week > weeksTarget) {
-      week = weeksTarget;
-    }
-    return setWeekAll.call(this, input, week, weekday, dow, doy);
+export function getISOWeekYear(date: Date): number {
+  return weekOfYear(date, 1, 4).year;
+}
+
+export function getISOWeeksInYear(date: Date) {
+  return weeksInYear(getFullYear(date), 1, 4);
+}
+
+export function getWeeksInYear(date: Date, locale?: Locale): number {
+  const _locale = locale || getLocale();
+
+  return weeksInYear(getFullYear(date), _locale.firstDayOfWeek(), _locale.firstDayOfYear());
+}
+
+function getSetWeekYearHelper(date: Date, input: number, week: number,
+                              weekday: number, dow: number, doy: number): number | Date {
+  if (!input) {
+    return getWeekYear(date);
   }
+
+  const weeksTarget = weeksInYear(input, dow, doy);
+  const _week = week > weeksTarget ? weeksTarget : week;
+
+  return setWeekAll(date, input, _week, weekday, dow, doy);
 }
 
-function setWeekAll(weekYear, week, weekday, dow, doy) {
-  var dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy),
-    date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
+function setWeekAll(date: Date, weekYear: number, week: number,
+                    weekday: number, dow: number, doy: number): Date {
+  const dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy);
+  const _date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
+  setFullYear(_date, getFullYear(_date, true));
+  setMonth(_date, getMonth(_date, true));
+  setDate(_date, getDate(_date, true));
 
-  this.year(date.getUTCFullYear());
-  this.month(date.getUTCMonth());
-  this.date(date.getUTCDate());
-  return this;
+  return _date;
 }
-*!/
-*/

@@ -1,7 +1,7 @@
 import { DateParsingConfig } from './parsing.types';
 import { configFromISO, configFromRFC2822 } from './from-string';
 import { expandFormat } from '../format';
-import { formattingTokens, formatTokenFunctions } from '../format-functions';
+import { formattingTokens, formatTokenFunctions } from '../format/format';
 import { isArray, isString } from '../utils/type-checks';
 import { getParseRegexForToken } from '../parse/regex';
 import { addTimeToArrayFromToken } from '../parse/token';
