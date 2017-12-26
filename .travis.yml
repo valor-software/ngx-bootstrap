@@ -26,6 +26,8 @@ stages:
   - <<: *stage
     name: test
   - <<: *stage
+    name: bdd-tests-lint
+  - <<: *stage
     name: bdd-tests
   - <<: *stage
     name: build
@@ -89,7 +91,8 @@ jobs:
       env: NGV=next
 
 #    test e2e-bdd lint check
-    - stage: bdd-tests
+    - stage: bdd-tests-lint
+      env: BDD=true
       script:
       - npm run lint-bdd
 
@@ -99,6 +102,8 @@ jobs:
       - BDD=true
       - baseUrl=http://localhost:3000/
       before_script:
+      - chmod +x ./scripts/update-chrome-for-travis.sh
+      - sudo ./scripts/update-chrome-for-travis.sh
       - npm run build:dynamic
       - node  ./demo/dist/server.js &
       - sleep 3
@@ -112,6 +117,8 @@ jobs:
       - BDD=true
       - baseUrl=http://localhost:4200/#/
       before_script:
+      - chmod +x ./scripts/update-chrome-for-travis.sh
+      - sudo ./scripts/update-chrome-for-travis.sh
       - npm run build
       - npm run link
       - ng serve &
@@ -127,6 +134,8 @@ jobs:
       - NGV=latest
       - baseUrl=http://localhost:4201/#/
       before_script:
+      - chmod +x ./scripts/update-chrome-for-travis.sh
+      - sudo ./scripts/update-chrome-for-travis.sh
       - npm run build
       - npm run link
       - ng serve --port=4201 &
