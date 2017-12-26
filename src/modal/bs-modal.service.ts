@@ -21,24 +21,20 @@ import { BsModalRef } from './bs-modal-ref.service';
 export class BsModalService {
   // constructor props
   config: ModalOptions = modalConfigDefaults;
-
   onShow: EventEmitter<any> = new EventEmitter();
   onShown: EventEmitter<any> = new EventEmitter();
   onHide: EventEmitter<any> = new EventEmitter();
   onHidden: EventEmitter<any> = new EventEmitter();
+  modalsCount = 0;
+  lastDismissReason = '';
+  loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
   protected isBodyOverflowing = false;
   protected originalBodyPadding = 0;
-
   protected scrollbarWidth = 0;
-
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
+
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
-  private modalsCount = 0;
-  private lastDismissReason = '';
-
-  private loaders: ComponentLoader<ModalContainerComponent>[] = [];
-
   private _renderer: Renderer2;
 
   constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
@@ -52,13 +48,20 @@ export class BsModalService {
 
   /** Shows a modal */
   show(content: string | TemplateRef<any> | any, config?: any): BsModalRef {
-    this.modalsCount++;
-    this._createLoaders();
-    this.config = Object.assign({}, modalConfigDefaults, config);
-    this._showBackdrop();
-    this.lastDismissReason = null;
+    return this.build(Object.assign({}, modalConfigDefaults, config)).show(content);
+  }
 
-    return this._showModal(content);
+  build(config?: any): any {
+    const loader = this._createLoaders();
+    const localConfig = Object.assign({}, modalConfigDefaults, config);
+    const bsModalRef = new BsModalRef(loader, localConfig);
+    bsModalRef._modalService = this;
+    this.copyEvent(loader.onBeforeShow, bsModalRef.onShow);
+    this.copyEvent(loader.onShown, bsModalRef.onShown);
+    this.copyEvent(loader.onBeforeHide, bsModalRef.onHide);
+    this.copyEvent(loader.onHidden, bsModalRef.onHidden);
+
+    return bsModalRef;
   }
 
   hide(level: number) {
@@ -101,24 +104,6 @@ export class BsModalService {
     setTimeout(() => this.removeBackdrop(), duration);
   }
 
-  _showModal(content: any): BsModalRef {
-    const modalLoader = this.loaders[this.loaders.length - 1];
-    const bsModalRef = new BsModalRef();
-    const modalContainerRef = modalLoader
-      .provide({ provide: ModalOptions, useValue: this.config })
-      .provide({ provide: BsModalRef, useValue: bsModalRef })
-      .attach(ModalContainerComponent)
-      .to('body')
-      .show({ content, isAnimated: this.config.animated });
-    modalContainerRef.instance.level = this.getModalsCount();
-    bsModalRef.hide = () => {
-      modalContainerRef.instance.hide();
-    };
-    bsModalRef.content = modalLoader.getInnerComponent() || null;
-
-    return bsModalRef;
-  }
-
   _hideModal(level: number): void {
     const modalLoader = this.loaders[level - 1];
     if (modalLoader) {
@@ -130,7 +115,7 @@ export class BsModalService {
     return this.modalsCount;
   }
 
-  setDismissReason(reason: string) {
+  setDismissReason(reason: string): void {
     this.lastDismissReason = reason;
   }
 
@@ -180,7 +165,7 @@ export class BsModalService {
     return scrollbarWidth;
   }
 
-  private _createLoaders(): void {
+  private _createLoaders(): ComponentLoader<ModalContainerComponent> {
     const loader = this.clf.createLoader<ModalContainerComponent>(
       null,
       null,
@@ -190,7 +175,8 @@ export class BsModalService {
     this.copyEvent(loader.onShown, this.onShown);
     this.copyEvent(loader.onBeforeHide, this.onHide);
     this.copyEvent(loader.onHidden, this.onHidden);
-    this.loaders.push(loader);
+
+    return loader;
   }
 
   private removeLoaders(level: number): void {

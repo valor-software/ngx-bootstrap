@@ -41,8 +41,8 @@ export const demoComponentContent: ContentSection[] = [
       <p>To be able to open modals from service, inject BsModalService to your constructor.<br>Then, call
       <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and
       config as a second (optionally). <br> <code>.show()</code> method returns an instance of BsModalRef
-      class with <code>.hide()</code> method and <code>content</code> property where you'll find a component
-      which you've passed to service.</p>`,
+      class with <code>.hide()</code>, <code>.show()</code> methods, event objects (onShow, onShown, onHide, onHidden)
+      and <code>content</code> property where you'll find a component which you've passed to service.</p>`,
     content: [
       {
         title: 'Template',
@@ -77,10 +77,19 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/service-events/service-events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-events/service-events.html'),
         description: `
-          <p>Modal service events. Modal service exposes 4 events: onShow, onShown, onHide, onHidden.
-          See usage example below.</p>
+          <p>Modal service exposes 4 events: onShow, onShown, onHide, onHidden. See usage example below.</p>
           <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>,
-          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>`,
+          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>
+          
+          <p>
+          If you want to subscribe to events of specific modal, you need to subscribe to event objects (onShow, onShown,
+          onHide, onHidden) of <code>BsModalRef</code>. Please be aware that if you use <code>.show()</code> method of 
+          BsModalService, then <code>onShow</code> and <code>onShown</code> in <code>BsModalRef</code> won't be 
+          triggered. To avoid that, use <code>.build()</code> method of modal service modal. It returns pre-built modal
+          that isn't shown yet. This allows you to subscribe to <code>onShow</code> and <code>onShown</code> before 
+          showing a modal. 
+          </p>
+`,
         outlet: DemoModalServiceEventsComponent
       },
       {

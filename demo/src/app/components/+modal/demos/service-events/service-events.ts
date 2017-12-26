@@ -29,12 +29,12 @@ export class DemoModalServiceEventsComponent {
     ).subscribe(() => this.changeDetection.markForCheck());
 
     this.subscriptions.push(
-      this.modalService.onShow.subscribe((reason: string) => {
+      this.modalService.onShow.subscribe(() => {
         this.messages.push(`onShow event has been fired`);
       })
     );
     this.subscriptions.push(
-      this.modalService.onShown.subscribe((reason: string) => {
+      this.modalService.onShown.subscribe(() => {
         this.messages.push(`onShown event has been fired`);
       })
     );
@@ -54,7 +54,14 @@ export class DemoModalServiceEventsComponent {
 
     this.subscriptions.push(_combine);
 
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.build();
+    this.modalRef.onShow.subscribe(() => {
+      console.log('onShow specific');
+    });
+    this.modalRef.onHidden.subscribe((e) => {
+      console.log('onHidden specific', e);
+    });
+    this.modalRef.show(template);
   }
 
   unsubscribe() {
