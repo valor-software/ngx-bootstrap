@@ -7,6 +7,7 @@ import {
   defaultLocaleWeekdaysShort, defaultLongDateFormat, defaultOrdinal,
   LocaleData
 } from './locale.class';
+import { defaultCalendar } from './calendar';
 
 export const defaultInvalidDate = 'Invalid date';
 
@@ -18,7 +19,7 @@ export const defaultLocaleWeek = {
 export const defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
 
 export const baseConfig: LocaleData = {
-  // calendar: defaultCalendar,
+  calendar: defaultCalendar,
   longDateFormat: defaultLongDateFormat,
   invalidDate: defaultInvalidDate,
   ordinal: defaultOrdinal,

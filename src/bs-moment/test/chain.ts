@@ -19,8 +19,8 @@ import {
   getUTCOffset, hasAlignedHourOffset, isDaylightSavingTime, setOffsetToParsedOffset,
   setUTCOffset
 } from '../units/offset';
-import { parseTwoDigitYear } from '../units/year';
-import { isAfter, isBefore, isSame } from '../utils/date-compare';
+import { isLeapYear, parseTwoDigitYear } from '../units/year';
+import { isAfter, isBefore, isBetween, isSame, isSameOrAfter, isSameOrBefore } from '../utils/date-compare';
 import { daysInMonth } from '../units/month';
 import {
   getDayOfWeek, getISODayOfWeek, getLocaleDayOfWeek, parseWeekday, setDayOfWeek, setISODayOfWeek,
@@ -56,6 +56,44 @@ export interface MomentFn {
   defineLocale(name: string, config?: LocaleData): Locale;
 
   parseTwoDigitYear(input: string): number;
+
+  isDate(input?: any): input is Date;
+
+  months(): string[];
+  months(index: number): string;
+  months(format: string): string[];
+  months(format: string, index: number): string;
+  monthsShort(): string[];
+  monthsShort(index: number): string;
+  monthsShort(format: string): string[];
+  monthsShort(format: string, index: number): string;
+
+  weekdays(): string[];
+  weekdays(index: number): string;
+  weekdays(format: string): string[];
+  weekdays(format: string, index: number): string;
+  weekdays(localeSorted: boolean): string[];
+  weekdays(localeSorted: boolean, index: number): string;
+  weekdays(localeSorted: boolean, format: string): string[];
+  weekdays(localeSorted: boolean, format: string, index: number): string;
+  weekdaysShort(): string[];
+  weekdaysShort(index: number): string;
+  weekdaysShort(format: string): string[];
+  weekdaysShort(format: string, index: number): string;
+  weekdaysShort(localeSorted: boolean): string[];
+  weekdaysShort(localeSorted: boolean, index: number): string;
+  weekdaysShort(localeSorted: boolean, format: string): string[];
+  weekdaysShort(localeSorted: boolean, format: string, index: number): string;
+  weekdaysMin(): string[];
+  weekdaysMin(index: number): string;
+  weekdaysMin(format: string): string[];
+  weekdaysMin(format: string, index: number): string;
+  weekdaysMin(localeSorted: boolean): string[];
+  weekdaysMin(localeSorted: boolean, index: number): string;
+  weekdaysMin(localeSorted: boolean, format: string): string[];
+  weekdaysMin(localeSorted: boolean, format: string, index: number): string;
+
+  localeData(): Locale;
 }
 
 function _moment(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean, isUTC?: boolean): Khronos {
@@ -82,6 +120,7 @@ moment.RFC_2822 = RFC_2822;
 moment.locale = getSetGlobalLocale;
 moment.defineLocale = defineLocale;
 moment.parseTwoDigitYear = parseTwoDigitYear;
+moment.isDate = isDate;
 
 export interface MomentInputObject {
   years?: number;
@@ -282,10 +321,11 @@ export class Khronos {
     return new Khronos(cloneDate(this._date), this._format, localeKey, this._isStrict, this._isUTC);
   }
 
-  diff(b: Khronos, unitOfTime?: MomentUnitOfTime, precise?: boolean): number {
+  diff(b: DateInput | Khronos, unitOfTime?: MomentUnitOfTime, precise?: boolean): number {
     const unit = mapUnitOfTime(unitOfTime);
+    const _b = b instanceof Khronos ? b : new Khronos(b);
 
-    return diff(this.toDate(), b.toDate(), unit, precise, this._toConfig());
+    return diff(this.toDate(), _b.toDate(), unit, precise, this._toConfig());
   }
 
   endOf(period: MomentUnitOfTime): Khronos {
@@ -444,11 +484,7 @@ export class Khronos {
     return this._date;
   }
 
-  isSame(date: Khronos, unit?: MomentUnitOfTime): boolean {
-    const _unit = unit ? mapUnitOfTime(unit) : void 0;
-
-    return isSame(this._date, date.toDate(), _unit);
-  }
+  // Dates boolean algebra
 
   isAfter(date: Khronos, unit?: MomentUnitOfTime): boolean {
     const _unit = unit ? mapUnitOfTime(unit) : void 0;
@@ -459,7 +495,31 @@ export class Khronos {
   isBefore(date: Khronos, unit?: MomentUnitOfTime): boolean {
     const _unit = unit ? mapUnitOfTime(unit) : void 0;
 
-    return isBefore(this._date, date.toDate(), _unit);
+    return isBefore(this.toDate(), date.toDate(), _unit);
+  }
+
+  isBetween(from: Khronos, to: Khronos, unit?: MomentUnitOfTime, inclusivity?: string): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isBetween(this.toDate(), from.toDate(), to.toDate(), _unit, inclusivity);
+  }
+
+  isSame(date: Khronos, unit?: MomentUnitOfTime): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isSame(this._date, date.toDate(), _unit);
+  }
+
+  isSameOrAfter(date: Khronos, unit?: MomentUnitOfTime): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isSameOrAfter(this._date, date.toDate(), _unit);
+  }
+
+  isSameOrBefore(date: Khronos, unit?: MomentUnitOfTime): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isSameOrBefore(this._date, date.toDate(), _unit);
   }
 
   isValid(): boolean {
@@ -543,6 +603,7 @@ export class Khronos {
     return getZoneName(this._isUTC);
   }
 
+  // Year
 
   year(): number;
   year(year: number): Khronos;
@@ -555,6 +616,12 @@ export class Khronos {
 
     return this;
   }
+
+  isLeapYear(): boolean {
+    return isLeapYear(getFullYear(this.toDate(), this.isUTC()));
+  }
+
+  // Month
 
   month(): number;
   month(month: number | string): Khronos;

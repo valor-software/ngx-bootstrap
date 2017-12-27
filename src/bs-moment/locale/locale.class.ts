@@ -102,6 +102,7 @@ export class Locale {
   _ordinalParse: RegExp;
   _meridiemParse: RegExp;
 
+  private _calendar: {[key: string]: string};
   private _relativeTime: { future: string; past: string };
   private _months: LocaleOptions;
   private _monthsShort: LocaleOptions;
@@ -152,6 +153,12 @@ export class Locale {
     }
 
     this._config = config;
+  }
+
+  calendar(key: string, date: Date, now: Date): string {
+    const output = this._calendar[key] || this._calendar.sameElse;
+
+    return isFunction(output) ? output.call(null, date, now) : output;
   }
 
   longDateFormat(key: string) {

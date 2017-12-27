@@ -5,7 +5,7 @@ export function isString(str: any): str is string {
 }
 
 export function isDate(value: any): value is Date {
-  return value instanceof Date && !isNaN(+value);
+  return value instanceof Date || Object.prototype.toString.call(value) === '[object Date]';
 }
 
 export function isBoolean(value: any): value is boolean {
@@ -23,11 +23,11 @@ export function isFunction(fn: any): fn is Function {
   );
 }
 
-export function isNumber(value: any): value is number {
+export function isNumber(value?: any): value is number {
   return typeof value === 'number' || Object.prototype.toString.call(value) === '[object Number]';
 }
 
-export function isArray<T>(input: any): input is T[] {
+export function isArray<T>(input?: any): input is T[] {
   return (
     input instanceof Array ||
     Object.prototype.toString.call(input) === '[object Array]'
