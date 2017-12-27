@@ -115,7 +115,7 @@ export class BsModalService {
     return this.modalsCount;
   }
 
-  setDismissReason(reason: string): void {
+  setDismissReason(reason: any): void {
     this.lastDismissReason = reason;
   }
 

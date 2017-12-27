@@ -79,7 +79,8 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>Modal service exposes 4 events: onShow, onShown, onHide, onHidden. See usage example below.</p>
           <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>,
-          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>
+          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code>. You can pass
+          custom dismiss reason to <code>hide()</code>.</p>
           
           <p>
           If you want to subscribe to events of specific modal, you need to subscribe to event objects (onShow, onShown,

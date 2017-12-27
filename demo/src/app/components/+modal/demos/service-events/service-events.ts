@@ -56,10 +56,10 @@ export class DemoModalServiceEventsComponent {
 
     this.modalRef = this.modalService.build();
     this.modalRef.onShow.subscribe(() => {
-      console.log('onShow specific');
+      console.log('onShow for specific modal');
     });
-    this.modalRef.onHidden.subscribe((e) => {
-      console.log('onHidden specific', e);
+    this.modalRef.onHidden.subscribe(e => {
+      console.log('onHidden for specific modal', e);
     });
     this.modalRef.show(template);
   }

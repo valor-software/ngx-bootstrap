@@ -102,9 +102,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  hide(): void {
+  hide(dismissReason?: any): void {
     if (this.isModalHiding || !this.isShown) {
       return;
+    }
+    if (dismissReason) {
+      this.bsModalService.setDismissReason(dismissReason);
     }
     this.isModalHiding = true;
     this._renderer.removeClass(

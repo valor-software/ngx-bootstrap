@@ -40,8 +40,8 @@ export class BsModalRef {
   /**
    * Hides the modal
    */
-  hide(): void {
-    this._modalContainerRef.instance.hide();
+  hide(dismissReason?: any): void {
+    this._modalContainerRef.instance.hide(dismissReason);
   }
 }
 
