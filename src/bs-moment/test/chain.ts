@@ -1,9 +1,9 @@
 // tslint:disable:max-line-length max-file-line-count
-import { parseDate, add, subtract } from '../index';
-import { DateArray, DateObject, UnitOfTime } from '../types';
+import { add, parseDate, subtract } from '../index';
+import { DateArray, UnitOfTime } from '../types';
 import {
-  getDate, getFullYear, getHours, getMilliseconds, getMinutes, getMonth,
-  getSeconds, getUnixTime
+  getDate, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds,
+  getUnixTime
 } from '../utils/date-getters';
 import {
   setDate, setFullYear, setHours, setMilliseconds, setMinutes, setMonth,
@@ -13,17 +13,27 @@ import { cloneDate } from '../create/clone';
 import { isBoolean, isDate, isDateValid, isFunction, isNumber, isObject, isString } from '../utils/type-checks';
 import { formatDate } from '../format';
 import { ISO_8601, RFC_2822 } from '../create/from-string-and-format';
-import { defineLocale, getSetGlobalLocale } from '../locale/locales.service';
+import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales.service';
 import { Locale, LocaleData } from '../locale/locale.class';
-import { getUTCOffset, setUTCOffset } from '../units/offset';
+import {
+  getUTCOffset, hasAlignedHourOffset, isDaylightSavingTime, setOffsetToParsedOffset,
+  setUTCOffset
+} from '../units/offset';
 import { parseTwoDigitYear } from '../units/year';
-import { isSame } from '../utils/date-compare';
-import { createInvalid } from '../create/valid';
+import { isAfter, isBefore, isSame } from '../utils/date-compare';
 import { daysInMonth } from '../units/month';
-import { getDayOfWeek, getSetDayOfWeek, setDayOfWeek } from '../units/day-of-week';
-import { getISOWeek, getWeek, setWeek } from '../units/week';
-import { getISOWeekYear, getWeekYear } from '../units/week-year';
+import {
+  getDayOfWeek, getISODayOfWeek, getLocaleDayOfWeek, parseWeekday, setDayOfWeek, setISODayOfWeek,
+  setLocaleDayOfWeek
+} from '../units/day-of-week';
+import { getISOWeek, getWeek, setISOWeek, setWeek } from '../units/week';
+import { getISOWeekYear, getSetISOWeekYear, getSetWeekYear, getWeekYear } from '../units/week-year';
 import { endOf, startOf } from '../utils/start-end-of';
+import { getQuarter, setQuarter } from '../units/quarter';
+import { getDayOfYear } from '../units/day-of-year';
+import { getZoneAbbr, getZoneName } from '../units/timezone';
+import { diff } from '../moment/diff';
+import { DateParsingConfig } from '../create/parsing.types';
 
 export type DateInput = string | number | Date | string[] | DateArray | MomentInputObject;
 
@@ -35,7 +45,9 @@ export interface MomentFn {
   ISO_8601: string;
   RFC_2822: string;
 
-  utc(input?: DateInput, format?: string | string[], localeKey?: string | boolean, strict?: boolean): Khronos;
+  utc(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean): Khronos;
+
+  parseZone(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean): Khronos;
 
   unix(num: number): Khronos;
 
@@ -55,8 +67,12 @@ function _moment(input?: DateInput | Khronos, format?: string | string[], locale
   return new Khronos(_input, format, localeKey, strict, isUTC);
 }
 
-moment.utc = (input?: DateInput, format?: string, localeKey?: string | boolean, strict?: boolean): Khronos => {
+moment.utc = (input?: DateInput | Khronos, format?: string, localeKey?: string | boolean, strict?: boolean): Khronos => {
   return _moment(input, format, localeKey, strict, true);
+};
+
+moment.parseZone = (input?: DateInput | Khronos, format?: string, localeKey?: string | boolean, strict?: boolean): Khronos => {
+  return _moment(input, format, localeKey, strict, true).parseZone();
 };
 
 // moment.utc = createUTC;
@@ -99,6 +115,16 @@ export interface MomentInputObject {
   milliseconds?: number;
   millisecond?: number;
   ms?: number;
+
+  w?: number;
+  week?: number;
+  weeks?: number;
+
+  Q?: number;
+  quarter?: number;
+  quarters?: number;
+
+  weekYear?: number;
 }
 
 export type MomentUnitOfTime = (
@@ -112,38 +138,102 @@ export type MomentUnitOfTime = (
   'millisecond' | 'milliseconds' | 'ms' |
   'q' | 'quarter' | 'quarters' | 'Q' |
   'isoWeek' | 'isoWeeks' | 'W' |
-  'date' | 'dates'
+  'date' | 'dates' | 'D'
   );
 
-const _timeHashMap: { [key: string]: UnitOfTime } = {
+export type MomentAll = MomentUnitOfTime |
+  'weekYear' | 'weekYears' | 'gg' |
+  'isoWeekYear' | 'isoWeekYears' | 'GG' |
+  'dayOfYear' | 'dayOfYears' | 'DDD' |
+  'weekday' | 'weekdays' | 'e' |
+  'isoWeekday' | 'isoWeekdays' | 'E';
+
+// todo: do I need 2 mappers?
+const _timeHashMap: { [key in MomentAll]: UnitOfTime | string } = {
   y: 'year',
   years: 'year',
+  year: 'year',
   M: 'month',
   months: 'month',
+  month: 'month',
   w: 'week',
   weeks: 'week',
+  week: 'week',
+
   d: 'day',
   days: 'day',
+  day: 'day',
+
+  date: 'date',
+  dates: 'date',
+  D: 'date',
+
   h: 'hours',
   hour: 'hours',
+  hours: 'hours',
   m: 'minutes',
   minute: 'minutes',
+  minutes: 'minutes',
   s: 'seconds',
   second: 'seconds',
+  seconds: 'seconds',
   ms: 'milliseconds',
-  millisecond: 'milliseconds'
+  millisecond: 'milliseconds',
+  milliseconds: 'milliseconds',
+  quarter: 'quarter',
+  quarters: 'quarter',
+  q: 'quarter',
+  Q: 'quarter',
+  isoWeek: 'isoWeek',
+  isoWeeks: 'isoWeek',
+  W: 'isoWeek',
+  weekYear: 'weekYear',
+  weekYears: 'weekYear',
+  gg: 'weekYears',
+  isoWeekYear: 'isoWeekYear',
+  isoWeekYears: 'isoWeekYear',
+  GG: 'isoWeekYear',
+  dayOfYear: 'dayOfYear',
+  dayOfYears: 'dayOfYear',
+  DDD: 'dayOfYear',
+  weekday: 'weekday',
+  weekdays: 'weekday',
+  e: 'weekday',
+  isoWeekday: 'isoWeekday',
+  isoWeekdays: 'isoWeekday',
+  E: 'isoWeekday'
 };
 
-function mapUnitOfTime(period: MomentUnitOfTime): UnitOfTime {
-  return _timeHashMap[period];
+function mapUnitOfTime(period: MomentAll): UnitOfTime {
+  return _timeHashMap[period] as UnitOfTime;
+}
+
+function mapMomentInputObject(obj: MomentInputObject): {[key in UnitOfTime]?: number} {
+  const _res: {[key in UnitOfTime]?: number} = {};
+
+  return Object.keys(obj)
+    .reduce((res, key: keyof MomentInputObject) => {
+      res[mapUnitOfTime(key)] = obj[key];
+
+      return res;
+    }, _res);
 }
 
 export class Khronos {
   _date: Date = new Date();
   _isUTC: boolean;
+  _isStrict: boolean;
+  _locale: Locale;
+  _format: string | string[];
+  _offset: number;
 
   constructor(input?: DateInput, format?: string | string[], localeKey?: string, strict?: boolean, isUTC?: boolean) {
     this._isUTC = isUTC;
+    this._isStrict = strict;
+    this._format = format;
+    if (localeKey) {
+      this._locale = getLocale(localeKey);
+    }
 
     if (!input && !format) {
       this._date = new Date();
@@ -153,6 +243,18 @@ export class Khronos {
       this._date = parseDate(input, format, localeKey, strict, isUTC);
     }
   }
+
+  _toConfig(): DateParsingConfig {
+    return {_isUTC: this._isUTC, _locale: this._locale, _offset: this._offset};
+  }
+
+  locale(localeKey: string): Khronos {
+    this._locale = getLocale(localeKey);
+
+    return this;
+  }
+
+  // Basic
 
   add(val: number | string | MomentInputObject, period?: UnitOfTime | MomentUnitOfTime): Khronos {
     if (isString(val)) {
@@ -164,35 +266,46 @@ export class Khronos {
     }
 
     if (isObject<MomentInputObject>(val)) {
-      if (val.ms) {
-        this._date = add(this._date, val.ms, 'milliseconds');
-      }
-      if (val.s) {
-        this._date = add(this._date, val.s, 'seconds');
-      }
-      if (val.m) {
-        this._date = add(this._date, val.m, 'minutes');
-      }
-      if (val.h) {
-        this._date = add(this._date, val.h, 'hours');
-      }
-      if (val.d) {
-        this._date = add(this._date, val.d, 'day');
-      }
-      if (val.M) {
-        this._date = add(this._date, val.M, 'month');
-      }
-      if (val.s) {
-        this._date = add(this._date, val.y, 'year');
-      }
+      const _mapped = mapMomentInputObject(val);
+      Object.keys(_mapped)
+        .forEach((key: UnitOfTime) => add(this._date, _mapped[key], key));
     }
 
     return this;
   }
 
+  // todo: calendar
+
+  clone(): Khronos {
+    const localeKey = this._locale && this._locale._abbr || 'en';
+
+    return new Khronos(cloneDate(this._date), this._format, localeKey, this._isStrict, this._isUTC);
+  }
+
+  diff(b: Khronos, unitOfTime?: MomentUnitOfTime, precise?: boolean): number {
+    const unit = mapUnitOfTime(unitOfTime);
+
+    return diff(this.toDate(), b.toDate(), unit, precise, this._toConfig());
+  }
+
+  endOf(period: MomentUnitOfTime): Khronos {
+    const _per = mapUnitOfTime(period);
+    this._date = endOf(this._date, _per);
+
+    return this;
+  }
+
+  format(format?: string): string {
+    return formatDate(this._date, format, void 0, this._isUTC);
+  }
+
+  // todo: from
+
   subtract(val: number | string | MomentInputObject, period?: UnitOfTime | MomentUnitOfTime): Khronos {
     if (isString(val)) {
-      this._date = add(this._date, parseInt(val, 10), mapUnitOfTime(period));
+      this._date = subtract(this._date, parseInt(val, 10), mapUnitOfTime(period));
+
+      return this;
     }
 
     if (isNumber(val)) {
@@ -200,34 +313,19 @@ export class Khronos {
     }
 
     if (isObject<MomentInputObject>(val)) {
-      if (val.ms) {
-        this._date = subtract(this._date, val.ms, 'milliseconds');
-      }
-      if (val.s) {
-        this._date = subtract(this._date, val.s, 'seconds');
-      }
-      if (val.m) {
-        this._date = subtract(this._date, val.m, 'minutes');
-      }
-      if (val.h) {
-        this._date = subtract(this._date, val.h, 'hours');
-      }
-      if (val.d) {
-        this._date = subtract(this._date, val.d, 'day');
-      }
-      if (val.M) {
-        this._date = subtract(this._date, val.M, 'month');
-      }
-      if (val.s) {
-        this._date = subtract(this._date, val.y, 'year');
-      }
+      const _mapped = mapMomentInputObject(val);
+      Object.keys(_mapped)
+        .forEach((key: UnitOfTime) => subtract(this._date, _mapped[key], key));
     }
-
 
     return this;
   }
 
-  get(period: MomentUnitOfTime): number {
+  get(period: MomentAll): number {
+    if (period === 'dayOfYear') {
+      return this.dayOfYear();
+    }
+
     const unit = mapUnitOfTime(period);
     switch (unit) {
       case 'year':
@@ -235,8 +333,10 @@ export class Khronos {
       case 'month':
         return this.month();
       // | 'week'
-      case 'day':
+      case 'date':
         return this.date();
+      case 'day':
+        return this.day();
       case 'hours':
         return this.hours();
       case 'minutes':
@@ -245,13 +345,74 @@ export class Khronos {
         return this.seconds();
       case 'milliseconds':
         return this.milliseconds();
+      case 'week':
+        return this.week();
+      case 'isoWeek':
+        return this.isoWeek();
+      case 'weekYear':
+        return this.weekYear();
+      case 'isoWeekYear':
+        return this.isoWeekYear();
+      case 'weekday':
+        return this.weekday();
+      case 'isoWeekday':
+        return this.isoWeekday();
+      case 'quarter':
+        return this.quarter();
       default:
         throw new Error(`Unknown moment.get('${period}')`);
     }
   }
 
-  format(format?: string): string {
-    return formatDate(this._date, format, void 0, this._isUTC);
+  set(period: MomentAll | MomentInputObject, input?: number): Khronos {
+
+    if (isString(period)) {
+      const unit = mapUnitOfTime(period);
+      switch (unit) {
+        case 'year':
+          return this.year(input);
+        case 'month':
+          return this.month(input);
+        // | 'week'
+        case 'day':
+          return this.day(input);
+        case 'date':
+          return this.date(input);
+        case 'hours':
+          return this.hours(input);
+        case 'minutes':
+          return this.minutes(input);
+        case 'seconds':
+          return this.seconds(input);
+        case 'milliseconds':
+          return this.milliseconds(input);
+        case 'week':
+          return this.week(input);
+        case 'isoWeek':
+          return this.isoWeek(input);
+        case 'weekYear':
+          return this.weekYear(input);
+        case 'isoWeekYear':
+          return this.isoWeekYear(input);
+        case 'weekday':
+          return this.weekday(input);
+        case 'isoWeekday':
+          return this.isoWeekday(input);
+        case 'quarter':
+          return this.quarter(input);
+        default:
+          throw new Error(`Unknown moment.get('${period}')`);
+      }
+    }
+
+    if (isObject<MomentInputObject>(period)) {
+      const _mapped = mapMomentInputObject(period);
+      Object.keys(_mapped)
+        .forEach((key: UnitOfTime) => this.set(key, _mapped[key]));
+    }
+
+
+    return this;
   }
 
   toString(): string {
@@ -283,8 +444,22 @@ export class Khronos {
     return this._date;
   }
 
-  isSame(date: Khronos): boolean {
-    return isSame(this._date, date.toDate());
+  isSame(date: Khronos, unit?: MomentUnitOfTime): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isSame(this._date, date.toDate(), _unit);
+  }
+
+  isAfter(date: Khronos, unit?: MomentUnitOfTime): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isAfter(this._date, date.toDate(), _unit);
+  }
+
+  isBefore(date: Khronos, unit?: MomentUnitOfTime): boolean {
+    const _unit = unit ? mapUnitOfTime(unit) : void 0;
+
+    return isBefore(this._date, date.toDate(), _unit);
   }
 
   isValid(): boolean {
@@ -295,23 +470,18 @@ export class Khronos {
     return this._date.valueOf();
   }
 
-  clone(): Khronos {
-    return new Khronos(cloneDate(this._date));
-  }
-
   unix(): number {
     return getUnixTime(this._date);
   }
 
-  /** implement */
-  utc(): Khronos {
-    return this;
-  }
+
+  // Offset
 
   utcOffset(): number;
-  utcOffset(b?: number, keepLocalTime?: boolean): number | Khronos {
-    if (!b) {
-      return getUTCOffset(this._date);
+  utcOffset(b: number | string, keepLocalTime?: boolean): Khronos;
+  utcOffset(b?: number | string, keepLocalTime?: boolean): number | Khronos {
+    if (!b && b !== 0) {
+      return getUTCOffset(this._date, {_isUTC: this._isUTC});
     }
 
     this._date = setUTCOffset(this._date, b, keepLocalTime);
@@ -319,11 +489,66 @@ export class Khronos {
     return this;
   }
 
+  utc(): Khronos {
+    this._isUTC = true;
+
+    return this;
+  }
+
+  local(): Khronos {
+    this._isUTC = false;
+
+    return this;
+  }
+
+  parseZone(input?: string): Khronos {
+    this._date = setOffsetToParsedOffset(this._date, input, {});
+
+    return this;
+  }
+
+  hasAlignedHourOffset(input?: Khronos): boolean {
+    return hasAlignedHourOffset(this._date, input ? input._date : void 0);
+  }
+
+  isDST(): boolean {
+    return isDaylightSavingTime(this._date);
+  }
+
+  isLocal(): boolean {
+    return !this._isUTC;
+  }
+
+  isUtcOffset(): boolean {
+    return this._isUTC;
+  }
+
+  isUTC(): boolean {
+    return this.isUtc();
+  }
+
+  isUtc(): boolean {
+    // todo: implement?
+    //  this._isUTC && this._offset === 0
+    return this._isUTC;
+  }
+
+  // Timezone
+
+  zoneAbbr(): string {
+    return getZoneAbbr(this._isUTC);
+  }
+
+  zoneName(): string {
+    return getZoneName(this._isUTC);
+  }
+
+
   year(): number;
   year(year: number): Khronos;
   year(year?: number): Khronos | number {
     if (!year && year !== 0) {
-      return getFullYear(this._date);
+      return getFullYear(this._date, this._isUTC);
     }
 
     this._date = cloneDate(setFullYear(this._date, year));
@@ -332,13 +557,22 @@ export class Khronos {
   }
 
   month(): number;
-  month(month: number): Khronos;
-  month(month?: number): Khronos | number {
+  month(month: number | string): Khronos;
+  month(month?: number | string): Khronos | number {
     if (!month && month !== 0) {
-      return getMonth(this._date);
+      return getMonth(this._date, this._isUTC);
     }
 
-    this._date = cloneDate(setMonth(this._date, month));
+    let _month = month;
+
+    if (isString(month)) {
+      const locale = this._locale || getLocale();
+      _month = locale.monthsParse(month);
+    }
+
+    if (isNumber(_month)) {
+      this._date = cloneDate(setMonth(this._date, _month, this._isUTC));
+    }
 
     return this;
   }
@@ -347,34 +581,48 @@ export class Khronos {
   date(date: number): Khronos;
   date(date?: number): Khronos | number {
     if (!date && date !== 0) {
-      return getDate(this._date);
+      return getDate(this._date, this._isUTC);
     }
 
-    this._date = cloneDate(setDate(this._date, date));
+    this._date = cloneDate(setDate(this._date, date, this._isUTC));
 
     return this;
+  }
+
+  /** @deprecated */
+  hour(): number;
+  hour(hours: number): Khronos;
+  hour(hours?: number): Khronos | number {
+    return this.hours(hours);
   }
 
   hours(): number;
   hours(hours: number): Khronos;
   hours(hours?: number): Khronos | number {
     if (!hours && hours !== 0) {
-      return getHours(this._date);
+      return getHours(this._date, this._isUTC);
     }
 
-    this._date = cloneDate(setHours(this._date, hours));
+    this._date = cloneDate(setHours(this._date, hours, this._isUTC));
 
     return this;
+  }
+
+  /** @deprecated */
+  minute(): number;
+  minute(minutes: number): Khronos;
+  minute(minutes?: number): Khronos | number {
+    return this.minutes(minutes);
   }
 
   minutes(): number;
   minutes(minutes: number): Khronos;
   minutes(minutes?: number): Khronos | number {
     if (!minutes && minutes !== 0) {
-      return getMinutes(this._date);
+      return getMinutes(this._date, this._isUTC);
     }
 
-    this._date = cloneDate(setMinutes(this._date, minutes));
+    this._date = cloneDate(setMinutes(this._date, minutes, this._isUTC));
 
     return this;
   }
@@ -383,10 +631,10 @@ export class Khronos {
   seconds(seconds: number): Khronos;
   seconds(seconds?: number): Khronos | number {
     if (!seconds && seconds !== 0) {
-      return getSeconds(this._date);
+      return getSeconds(this._date, this._isUTC);
     }
 
-    this._date = cloneDate(setSeconds(this._date, seconds));
+    this._date = cloneDate(setSeconds(this._date, seconds, this._isUTC));
 
     return this;
   }
@@ -395,64 +643,137 @@ export class Khronos {
   milliseconds(seconds: number): Khronos;
   milliseconds(seconds?: number): Khronos | number {
     if (!seconds && seconds !== 0) {
-      return getMilliseconds(this._date);
+      return getMilliseconds(this._date, this._isUTC);
     }
 
-    this._date = cloneDate(setMilliseconds(this._date, seconds));
+    this._date = cloneDate(setMilliseconds(this._date, seconds, this._isUTC));
 
     return this;
   }
 
   day(): number ;
-  day(input: number): Khronos ;
-  day(input?: number): Khronos | number {
+  day(input: number | string): Khronos ;
+  day(input?: number | string): Khronos | number {
     if (!input && input !== 0) {
-      return getDayOfWeek(this._date);
+      return getDayOfWeek(this._date, this._isUTC);
     }
 
-    this._date = setDayOfWeek(this._date, input, void 0, this._isUTC);
+    let _input = input;
+
+    if (isString(input)) {
+      _input = parseWeekday(input, this._locale);
+    }
+
+    if (isNumber(_input)) {
+      this._date = setDayOfWeek(this._date, _input, this._locale, this._isUTC);
+    }
 
     return this;
   }
 
-  week(): number ;
-  week(input: number): Khronos ;
+  week(): number;
+  week(input: number): Khronos;
   week(input?: number): Khronos | number {
     if (!input && input !== 0) {
-      return getWeek(this._date);
+      return getWeek(this._date, this._locale);
     }
 
-    this._date = setWeek(this._date, input);
+    this._date = setWeek(this._date, input, this._locale);
 
     return this;
   }
 
-  weekYear(): number {
-    return getWeekYear(this._date);
+  weekday(): number ;
+  weekday(val: number): Khronos ;
+  weekday(val?: number): Khronos | number {
+    if (!val && val !== 0) {
+      return getLocaleDayOfWeek(this._date, this._locale, this._isUTC);
+    }
+
+    this._date = setLocaleDayOfWeek(this._date, val, {locale: this._locale, isUTC: this._isUTC});
+
+    return this;
   }
 
-  isoWeek(): number {
-    return getISOWeek(this._date);
+  dayOfYear(): number {
+    return getDayOfYear(this._date);
   }
 
-  isoWeekYear(): number {
-    return getISOWeekYear(this._date);
+  weekYear(): number;
+  weekYear(val: number): Khronos;
+  weekYear(val?: number): Khronos | number {
+    if (!val && val !== 0) {
+      return getWeekYear(this._date, this._locale);
+    }
+
+    const date = getSetWeekYear(this._date, val, this._locale);
+    if (isDate(date)) {
+      this._date = date;
+    }
+
+    return this;
+  }
+
+  isoWeek(): number ;
+  isoWeek(val: number): Khronos ;
+  isoWeek(val?: number): Khronos | number {
+    if (!val && val !== 0) {
+      return getISOWeek(this._date);
+    }
+
+    this._date = setISOWeek(this._date, val);
+
+    return this;
+  }
+
+  isoWeekYear(): number ;
+  isoWeekYear(val: number): Khronos ;
+  isoWeekYear(val?: number): Khronos | number {
+    if (!val && val !== 0) {
+      return getISOWeekYear(this._date);
+    }
+
+    const date = getSetISOWeekYear(this._date, val);
+
+    if (isDate(date)) {
+      this._date = date;
+    }
+
+    return this;
+  }
+
+  isoWeekday(): number ;
+  isoWeekday(val: number): Khronos ;
+  isoWeekday(val?: number): Khronos | number {
+    if (!val && val !== 0) {
+      return getISODayOfWeek(this._date);
+    }
+
+    this._date = setISODayOfWeek(this._date, val);
+
+    return this;
   }
 
   daysInMonth(): number {
     return daysInMonth(getFullYear(this._date, this._isUTC), getMonth(this._date, this._isUTC));
   }
 
-  startOf(period: MomentUnitOfTime): Khronos {
-    const _per = mapUnitOfTime(period);
-    this._date = startOf(this._date, _per);
+
+  quarter(): number;
+  quarter(val: number): Khronos;
+  quarter(val?: number): Khronos | number {
+    if (!val && val !== 0) {
+      return getQuarter(this._date, this._isUTC);
+    }
+
+    this._date = setQuarter(this._date, val, this._isUTC);
 
     return this;
   }
 
-  endOf(period: MomentUnitOfTime): Khronos {
+  startOf(period: MomentUnitOfTime): Khronos {
     const _per = mapUnitOfTime(period);
-    this._date = endOf(this._date, _per);
+    this._date = startOf(this._date, _per, this._isUTC);
 
     return this;
   }

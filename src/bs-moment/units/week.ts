@@ -52,16 +52,14 @@ addWeekParseToken(['w', 'ww', 'W', 'WW'],
 //   return input == null ? week : this.add((input - week) * 7, 'd');
 // }
 
-export function setWeek(date: Date, input: number, locale?: Locale): Date {
+export function setWeek(date: Date, input: number, locale = getLocale()): Date {
   const week = getWeek(date, locale);
 
   return add(date, (input - week) * 7, 'day');
 }
 
-export function getWeek(date: Date, locale?: Locale): number {
-  const _locale = locale ? locale : getLocale();
-
-  return _locale.week(date);
+export function getWeek(date: Date, locale = getLocale()): number {
+  return locale.week(date);
 }
 
 // export function getSetISOWeek (input) {

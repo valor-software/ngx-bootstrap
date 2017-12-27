@@ -37,14 +37,14 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 999, 'set the seconds');
   });
 
-  xit('start of quarter', function () {
+  it('start of quarter', function () {
     var m = moment(new Date(2011, 4, 2, 3, 4, 5, 6)).startOf('quarter'),
       ms = moment(new Date(2011, 4, 2, 3, 4, 5, 6)).startOf('quarters'),
       ma = moment(new Date(2011, 4, 2, 3, 4, 5, 6)).startOf('Q');
     assert.equal(+m, +ms, 'Plural or singular should work');
     assert.equal(+m, +ma, 'Full or abbreviated should work');
     assert.equal(m.year(), 2011, 'keep the year');
-/*    assert.equal(m.quarter(), 2, 'keep the quarter');*/
+    assert.equal(m.quarter(), 2, 'keep the quarter');
     assert.equal(m.month(), 3, 'strip out the month');
     assert.equal(m.date(), 1, 'strip out the day');
     assert.equal(m.hours(), 0, 'strip out the hours');
@@ -53,14 +53,14 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 0, 'strip out the milliseconds');
   });
 
-  xit('end of quarter', function () {
+  it('end of quarter', function () {
     var m = moment(new Date(2011, 4, 2, 3, 4, 5, 6)).endOf('quarter'),
       ms = moment(new Date(2011, 4, 2, 3, 4, 5, 6)).endOf('quarters'),
       ma = moment(new Date(2011, 4, 2, 3, 4, 5, 6)).endOf('Q');
     assert.equal(+m, +ms, 'Plural or singular should work');
     assert.equal(+m, +ma, 'Full or abbreviated should work');
     assert.equal(m.year(), 2011, 'keep the year');
-    /*assert.equal(m.quarter(), 2, 'keep the quarter');*/
+    assert.equal(m.quarter(), 2, 'keep the quarter');
     assert.equal(m.month(), 5, 'set the month');
     assert.equal(m.date(), 30, 'set the day');
     assert.equal(m.hours(), 23, 'set the hours');
@@ -131,7 +131,7 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 999, 'set the seconds');
   });
 
-  xit('start of iso-week', function () {
+  it('start of iso-week', function () {
     var m = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).startOf('isoWeek'),
       ms = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).startOf('isoWeeks'),
       ma = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).startOf('W');
@@ -139,7 +139,7 @@ describe('start and end of units', () => {
     assert.equal(+m, +ma, 'Full or abbreviated should work');
     assert.equal(m.year(), 2011, 'keep the year');
     assert.equal(m.month(), 0, 'rollback to January');
-    /*assert.equal(m.isoWeekday(), 1, 'set day of iso-week');*/
+    assert.equal(m.isoWeekday(), 1, 'set day of iso-week');
     assert.equal(m.date(), 31, 'set correct date');
     assert.equal(m.hours(), 0, 'strip out the hours');
     assert.equal(m.minutes(), 0, 'strip out the minutes');
@@ -147,7 +147,7 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 0, 'strip out the milliseconds');
   });
 
-  xit('end of iso-week', function () {
+  it('end of iso-week', function () {
     var m = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).endOf('isoWeek'),
       ms = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).endOf('isoWeeks'),
       ma = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).endOf('W');
@@ -155,7 +155,7 @@ describe('start and end of units', () => {
     assert.equal(+m, +ma, 'Full or abbreviated should work');
     assert.equal(m.year(), 2011, 'keep the year');
     assert.equal(m.month(), 1, 'keep the month');
-    /*assert.equal(m.isoWeekday(), 7, 'set the day of the week');*/
+    assert.equal(m.isoWeekday(), 7, 'set the day of the week');
     assert.equal(m.date(), 6, 'set the day');
     assert.equal(m.hours(), 23, 'set the hours');
     assert.equal(m.minutes(), 59, 'set the minutes');
@@ -193,7 +193,7 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 999, 'set the seconds');
   });
 
-  xit('start of date', function () {
+  it('start of date', function () {
     var m = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).startOf('date'),
       ms = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).startOf('dates');
 
@@ -207,7 +207,7 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 0, 'strip out the milliseconds');
   });
 
-  xit('end of date', function () {
+  it('end of date', function () {
     var m = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).endOf('date'),
       ms = moment(new Date(2011, 1, 2, 3, 4, 5, 6)).endOf('dates');
 

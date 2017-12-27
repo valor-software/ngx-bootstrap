@@ -1,13 +1,14 @@
-// tslint:disable:max-line-length max-file-line-count
+// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
+// tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
+// tslint:disable:variable-name
 import { assert } from 'chai';
 import { moment } from '../chain';
 
+
 describe('add and subtract', () => {
+
   it('add short reverse args', function () {
-    const a = moment();
-    let b;
-    let c;
-    let d;
+    var a = moment(), b, c, d;
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -21,14 +22,14 @@ describe('add and subtract', () => {
     assert.equal(a.add({ m: 1 }).minutes(), 8, 'Add minutes');
     assert.equal(a.add({ h: 1 }).hours(), 7, 'Add hours');
     assert.equal(a.add({ d: 1 }).date(), 13, 'Add date');
-    // assert.equal(a.add({ w: 1 }).date(), 20, 'Add week');
+    assert.equal(a.add({ w: 1 }).date(), 20, 'Add week');
     assert.equal(a.add({ M: 1 }).month(), 10, 'Add month');
     assert.equal(a.add({ y: 1 }).year(), 2012, 'Add year');
-    // assert.equal(a.add({ Q: 1 }).month(), 1, 'Add quarter');
+    assert.equal(a.add({ Q: 1 }).month(), 1, 'Add quarter');
 
     b = moment([2010, 0, 31]).add({ M: 1 });
     c = moment([2010, 1, 28]).subtract({ M: 1 });
-    // d = moment([2010, 1, 28]).subtract({ Q: 1 });
+    d = moment([2010, 1, 28]).subtract({ Q: 1 });
 
     assert.equal(b.month(), 1, 'add month, jan 31st to feb 28th');
     assert.equal(b.date(), 28, 'add month, jan 31st to feb 28th');
@@ -40,7 +41,7 @@ describe('add and subtract', () => {
   });
 
   it('add long reverse args', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -54,14 +55,14 @@ describe('add and subtract', () => {
     assert.equal(a.add({ minutes: 1 }).minutes(), 8, 'Add minutes');
     assert.equal(a.add({ hours: 1 }).hours(), 7, 'Add hours');
     assert.equal(a.add({ days: 1 }).date(), 13, 'Add date');
-    // assert.equal(a.add({ weeks: 1 }).date(), 20, 'Add week');
+    assert.equal(a.add({ weeks: 1 }).date(), 20, 'Add week');
     assert.equal(a.add({ months: 1 }).month(), 10, 'Add month');
     assert.equal(a.add({ years: 1 }).year(), 2012, 'Add year');
-    // assert.equal(a.add({ quarters: 1 }).month(), 1, 'Add quarter');
+    assert.equal(a.add({ quarters: 1 }).month(), 1, 'Add quarter');
   });
 
   it('add long singular reverse args', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -75,17 +76,17 @@ describe('add and subtract', () => {
     assert.equal(a.add({ minute: 1 }).minutes(), 8, 'Add minutes');
     assert.equal(a.add({ hour: 1 }).hours(), 7, 'Add hours');
     assert.equal(a.add({ day: 1 }).date(), 13, 'Add date');
-    // assert.equal(a.add({ week: 1 }).date(), 20, 'Add week');
+    assert.equal(a.add({ week: 1 }).date(), 20, 'Add week');
     assert.equal(a.add({ month: 1 }).month(), 10, 'Add month');
     assert.equal(a.add({ year: 1 }).year(), 2012, 'Add year');
-    // assert.equal(a.add({ quarter: 1 }).month(), 1, 'Add quarter');
+    assert.equal(a.add({ quarter: 1 }).month(), 1, 'Add quarter');
   });
 
-  /** @deprecated */
-/*  it('add string long reverse args', function () {
-    let a = moment(), b;
+  /* DEPRECATED
+  it('add string long reverse args', function () {
+    var a = moment(), b;
 
-    // test.expectedDeprecations('moment().add(period, number)');
+    test.expectedDeprecations('moment().add(period, number)');
 
     a.year(2011);
     a.month(9);
@@ -107,13 +108,12 @@ describe('add and subtract', () => {
     assert.equal(a.add('year', 1).year(), 2012, 'Add year');
     assert.equal(b.add('day', '01').date(), 13, 'Add date');
     assert.equal(a.add('quarter', 1).month(), 1, 'Add quarter');
-  });*/
+  });
 
-/** deprecated */
-/*  it('add string long singular reverse args', function () {
-    const a = moment(), b;
+  it('add string long singular reverse args', function () {
+    var a = moment(), b;
 
-    // test.expectedDeprecations('moment().add(period, number)');
+    test.expectedDeprecations('moment().add(period, number)');
 
     a.year(2011);
     a.month(9);
@@ -135,12 +135,11 @@ describe('add and subtract', () => {
     assert.equal(a.add('years', 1).year(), 2012, 'Add year');
     assert.equal(b.add('days', '01').date(), 13, 'Add date');
     assert.equal(a.add('quarters', 1).month(), 1, 'Add quarter');
-  });*/
+  });
 
-/** @deprecated */
-/*  it('add string short reverse args', function () {
-    const a = moment();
-    // test.expectedDeprecations('moment().add(period, number)');
+  it('add string short reverse args', function () {
+    var a = moment();
+    test.expectedDeprecations('moment().add(period, number)');
 
     a.year(2011);
     a.month(9);
@@ -162,7 +161,7 @@ describe('add and subtract', () => {
   });*/
 
   it('add string long', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -179,11 +178,11 @@ describe('add and subtract', () => {
     assert.equal(a.add(1, 'week').date(), 20, 'Add week');
     assert.equal(a.add(1, 'month').month(), 10, 'Add month');
     assert.equal(a.add(1, 'year').year(), 2012, 'Add year');
-    // assert.equal(a.add(1, 'quarter').month(), 1, 'Add quarter');
+    assert.equal(a.add(1, 'quarter').month(), 1, 'Add quarter');
   });
 
   it('add string long singular', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -200,11 +199,11 @@ describe('add and subtract', () => {
     assert.equal(a.add(1, 'weeks').date(), 20, 'Add week');
     assert.equal(a.add(1, 'months').month(), 10, 'Add month');
     assert.equal(a.add(1, 'years').year(), 2012, 'Add year');
-    // assert.equal(a.add(1, 'quarters').month(), 1, 'Add quarter');
+    assert.equal(a.add(1, 'quarters').month(), 1, 'Add quarter');
   });
 
   it('add string short', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -221,11 +220,12 @@ describe('add and subtract', () => {
     assert.equal(a.add(1, 'w').date(), 20, 'Add week');
     assert.equal(a.add(1, 'M').month(), 10, 'Add month');
     assert.equal(a.add(1, 'y').year(), 2012, 'Add year');
-    // assert.equal(a.add(1, 'Q').month(), 1, 'Add quarter');
+    assert.equal(a.add(1, 'Q').month(), 1, 'Add quarter');
   });
 
-/*  it('add strings string short reversed', function () {
-    const a = moment();
+  // DEPRECATED
+  /*it('add strings string short reversed', function () {
+    var a = moment();
     test.expectedDeprecations('moment().add(period, number)');
 
     a.year(2011);
@@ -245,10 +245,10 @@ describe('add and subtract', () => {
     assert.equal(a.add('M', '1').month(), 10, 'Add month');
     assert.equal(a.add('y', '1').year(), 2012, 'Add year');
     assert.equal(a.add('Q', '1').month(), 1, 'Add quarter');
-  });*/
+  });
 
-/*  it('subtract strings string short reversed', function () {
-    const a = moment();
+  it('subtract strings string short reversed', function () {
+    var a = moment();
     test.expectedDeprecations('moment().subtract(period, number)');
 
     a.year(2011);
@@ -271,7 +271,7 @@ describe('add and subtract', () => {
   });*/
 
   it('add strings string short', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -288,11 +288,11 @@ describe('add and subtract', () => {
     assert.equal(a.add('1', 'w').date(), 20, 'Add week');
     assert.equal(a.add('1', 'M').month(), 10, 'Add month');
     assert.equal(a.add('1', 'y').year(), 2012, 'Add year');
-    // assert.equal(a.add('1', 'Q').month(), 1, 'Add quarter');
+    assert.equal(a.add('1', 'Q').month(), 1, 'Add quarter');
   });
 
   it('add no string with milliseconds default', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -305,7 +305,7 @@ describe('add and subtract', () => {
   });
 
   it('subtract strings string short', function () {
-    const a = moment();
+    var a = moment();
     a.year(2011);
     a.month(9);
     a.date(12);
@@ -322,28 +322,26 @@ describe('add and subtract', () => {
     assert.equal(a.subtract('1', 'w').date(), 4, 'Subtract week');
     assert.equal(a.subtract('1', 'M').month(), 8, 'Subtract month');
     assert.equal(a.subtract('1', 'y').year(), 2010, 'Subtract year');
-    // assert.equal(a.subtract('1', 'Q').month(), 5, 'Subtract quarter');
+    assert.equal(a.subtract('1', 'Q').month(), 5, 'Subtract quarter');
   });
 
-  /** todo */
-/*  it('add across DST', function () {
+  it('add across DST', function () {
     // Detect Safari bug and bail. Hours on 13th March 2011 are shifted
     // with 1 ahead.
     if (new Date(2011, 2, 13, 5, 0, 0).getHours() !== 5) {
       expect(0);
-
       return;
     }
 
-    const a = moment(new Date(2011, 2, 12, 5, 0, 0));
-    const b = moment(new Date(2011, 2, 12, 5, 0, 0));
-    const c = moment(new Date(2011, 2, 12, 5, 0, 0));
-    const d = moment(new Date(2011, 2, 12, 5, 0, 0));
-    const e = moment(new Date(2011, 2, 12, 5, 0, 0));
+    var a = moment(new Date(2011, 2, 12, 5, 0, 0)),
+      b = moment(new Date(2011, 2, 12, 5, 0, 0)),
+      c = moment(new Date(2011, 2, 12, 5, 0, 0)),
+      d = moment(new Date(2011, 2, 12, 5, 0, 0)),
+      e = moment(new Date(2011, 2, 12, 5, 0, 0));
     a.add(1, 'days');
     b.add(24, 'hours');
     c.add(1, 'months');
-    // e.add(1, 'quarter');
+    e.add(1, 'quarter');
 
     assert.equal(a.hours(), 5, 'adding days over DST difference should result in the same hour');
     if (b.isDST() && !d.isDST()) {
@@ -355,7 +353,7 @@ describe('add and subtract', () => {
     }
     assert.equal(c.hours(), 5, 'adding months over DST difference should result in the same hour');
     assert.equal(e.hours(), 5, 'adding quarters over DST difference should result in the same hour');
-  });*/
+  });
 
   it('add decimal values of days and months', function () {
     assert.equal(moment([2016, 3, 3]).add(1.5, 'days').date(), 5, 'adding 1.5 days is rounded to adding 2 day');
@@ -374,6 +372,6 @@ describe('add and subtract', () => {
     assert.equal(moment([2016, 11, 31]).subtract(-1.5, 'months').month(), 1, 'subtract -1.5 months at end of year wraps back');
     assert.equal(moment([2016, 0, 1]).add(1.5, 'years').format('YYYY-MM-DD'), '2017-07-01', 'add 1.5 years adds 1 year six months');
     assert.equal(moment([2016, 0, 1]).add(1.6, 'years').format('YYYY-MM-DD'), '2017-08-01', 'add 1.6 years becomes 1.6*12 = 19.2, round, 19 months');
-    // assert.equal(moment([2016, 0, 1]).add(1.1, 'quarters').format('YYYY-MM-DD'), '2016-04-01', 'add 1.1 quarters 1.1*3=3.3, round, 3 months');
+    assert.equal(moment([2016, 0, 1]).add(1.1, 'quarters').format('YYYY-MM-DD'), '2016-04-01', 'add 1.1 quarters 1.1*3=3.3, round, 3 months');
   });
 });

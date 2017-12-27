@@ -1,19 +1,25 @@
 // tslint:disable:max-line-length
 import { Locale } from './locale/locale.class';
 import { DateParsingConfig } from './create/parsing.types';
-import { stringDistance } from 'codelyzer/util/utils';
-
-type DateInput = string | number | DateArray | DateObject | Date;
 
 export type UnitOfTime =
   | 'year'
   | 'month'
-  | 'week'
+  // day of week
   | 'day'
+  // day of month
+  | 'date'
   | 'hours'
   | 'minutes'
   | 'seconds'
-  | 'milliseconds';
+  | 'milliseconds'
+  | 'quarter'
+  | 'week'
+  | 'isoWeek'
+  | 'weekYear'
+  | 'isoWeekYear'
+  | 'weekday'
+  | 'isoWeekday';
 
 export interface TimeUnit {
   year?: number;

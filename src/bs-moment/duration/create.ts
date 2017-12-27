@@ -21,7 +21,7 @@ const isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0
 
 export type DurationInput = string | number | Duration | { from: Date; to: Date };
 
-export function createDuration(input: DurationInput, key: string, config?: DateParsingConfig) {
+export function createDuration(input: DurationInput, key?: string, config?: DateParsingConfig) {
   const duration = convertDuration(input, key);
   // matching against regexp is expensive, do it on demand
 
@@ -80,7 +80,7 @@ function convertDuration(input: any, key: string): Partial<DateObject> {
 
   }
 
-  if (isObject<{from: any, to: any}>(input) && ('from' in input || 'to' in input)) {
+  if (isObject<{from: any; to: any}>(input) && ('from' in input || 'to' in input)) {
     const diffRes = momentsDifference(parseDate(input.from), parseDate(input.to));
 
     return {

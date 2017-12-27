@@ -5,12 +5,12 @@ import { addFormatToken } from '../format/format';
 import { zeroFill } from '../utils/zero-fill';
 import { DateParsingConfig } from '../create/parsing.types';
 import { isNumber, isString, toInt } from '../utils/type-checks';
-import { addRegexToken, matchShortOffset } from '../parse/regex';
+import { addRegexToken, matchOffset, matchShortOffset } from '../parse/regex';
 import { add } from '../moment/add-subtract';
-import { parseDate } from '../create/local';
 import { addParseToken } from '../parse/token';
 import { DateArray } from '../types';
 import { cloneDate } from '../create/clone';
+import { setMonth } from '../utils/date-setters';
 
 function addOffsetFormatToken(token: string, separator: string): void {
   addFormatToken(token, null, null, function (date: Date): string {
@@ -62,7 +62,7 @@ function offsetFromString(matcher: RegExp, str: string): number {
 }
 
 // Return a moment from input, that is local/utc/zone equivalent to model.
-export function cloneWithOffset(date: Date, config: DateParsingConfig): Date {
+export function cloneWithOffset(date: Date, config: DateParsingConfig = {}): Date {
   if (!config._isUTC) {
     // return createLocal(date).local();
     return date;
@@ -119,17 +119,17 @@ export function getSetOffset(date: Date, input: number | string, keepLocalTime?:
   // return this._isUTC ? offset : getDateOffset(date);
 }
 
-export function getUTCOffset(date: Date, config?: DateParsingConfig): number {
-  const _config = config || {};
-  const _offset = _config._offset || 0;
+export function getUTCOffset(date: Date, config: DateParsingConfig = {}): number {
+  const _offset = config._offset || 0;
 
-  return _config._isUTC ? _offset : getDateOffset(date);
+  return config._isUTC ? _offset : getDateOffset(date);
 }
 
-export function setUTCOffset(date: Date, input: number | string, keepLocalTime?: boolean, keepMinutes?: boolean, config?: DateParsingConfig): Date {
+export function setUTCOffset(date: Date, input: number | string, keepLocalTime?: boolean, keepMinutes?: boolean, config: DateParsingConfig = {}): Date {
   const offset = config._offset || 0;
   let localAdjust;
   let _input = input;
+
   if (isString(_input)) {
     _input = offsetFromString(matchShortOffset, _input);
     if (_input === null) {
@@ -182,12 +182,16 @@ export function getSetZone(input, keepLocalTime) {
 */
 
 export function setOffsetToUTC(date: Date, keepLocalTime?: boolean): Date {
-  // return utcOffset(date, 0, keepLocalTime);
   return setUTCOffset(date, 0, keepLocalTime);
-  // return getSetOffset(date, 0, keepLocalTime);
 }
 
-/*export function setOffsetToLocal(keepLocalTime) {
+export function isDaylightSavingTime(date: Date): boolean {
+
+  return (getUTCOffset(date) > getUTCOffset(setMonth(cloneDate(date), 0))
+    || getUTCOffset(date) > getUTCOffset(setMonth(cloneDate(date), 5)));
+}
+
+/*export function setOffsetToLocal(date: Date, isUTC?: boolean, keepLocalTime?: boolean) {
   if (this._isUTC) {
     this.utcOffset(0, keepLocalTime);
     this._isUTC = false;
@@ -198,40 +202,33 @@ export function setOffsetToUTC(date: Date, keepLocalTime?: boolean): Date {
   }
   return this;
 }*/
-/*
 
-export function setOffsetToParsedOffset() {
-  if (this._tzm != null) {
-    this.utcOffset(this._tzm, false, true);
-  } else if (typeof this._i === 'string') {
-    const tZone = offsetFromString(matchOffset, this._i);
+export function setOffsetToParsedOffset(date: Date, input: string, config: DateParsingConfig = {}): Date {
+  if (config._tzm != null) {
+    return setUTCOffset(date, config._tzm, false, true);
+  }
+
+  if (isString(input)) {
+    const tZone = offsetFromString(matchOffset, input);
     if (tZone != null) {
-      this.utcOffset(tZone);
+      return setUTCOffset(date, tZone);
     }
-    else {
-      this.utcOffset(0, true);
-    }
+
+    return setUTCOffset(date, 0, true);
   }
-  return this;
+
+  return date;
 }
 
-export function hasAlignedHourOffset(input) {
-  if (!this.isValid()) {
-    return false;
-  }
-  input = input ? createLocal(input).utcOffset() : 0;
+export function hasAlignedHourOffset(date: Date, input?: Date) {
+  const _input = input ? getUTCOffset(input, { _isUTC: false }) : 0;
 
-  return (this.utcOffset() - input) % 60 === 0;
+  return (getUTCOffset(date) - _input) % 60 === 0;
 }
 
-export function isDaylightSavingTime() {
-  return (
-    this.utcOffset() > this.clone().month(0).utcOffset() ||
-    this.utcOffset() > this.clone().month(5).utcOffset()
-  );
-}
 
-export function isDaylightSavingTimeShifted() {
+// DEPRECATED
+/*export function isDaylightSavingTimeShifted() {
   if (!isUndefined(this._isDSTShifted)) {
     return this._isDSTShifted;
   }
@@ -250,9 +247,10 @@ export function isDaylightSavingTimeShifted() {
   }
 
   return this._isDSTShifted;
-}
+}*/
 
-export function isLocal() {
+// in Khronos
+/*export function isLocal() {
   return this.isValid() ? !this._isUTC : false;
 }
 
@@ -262,5 +260,4 @@ export function isUtcOffset() {
 
 export function isUtc() {
   return this.isValid() ? this._isUTC && this._offset === 0 : false;
-}
-*/
+}*/

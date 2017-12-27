@@ -12,7 +12,7 @@ export function add(date: Date, val: number, period: UnitOfTime): Date {
   return addSubtract(date, dur, 1);
 }
 
-export function subtract(date: Date, val: number, period: string): Date {
+export function subtract(date: Date, val: number, period: UnitOfTime): Date {
   const dur = createDuration(val, period);
 
   return addSubtract(date, dur, -1);

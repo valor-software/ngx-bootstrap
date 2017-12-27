@@ -11,6 +11,7 @@ import { DateFormatterOptions, WeekParsing } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { add } from '../moment/add-subtract';
 import { getLocale } from '../locale/locales.service';
+import { setDay } from '../utils/date-setters';
 
 // FORMATTING
 
@@ -36,12 +37,12 @@ addFormatToken('dddd', null, null,
 
 addFormatToken('e', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-  return getDay(date, opts.isUTC).toString(10);
-});
+    return getDay(date, opts.isUTC).toString(10);
+  });
 addFormatToken('E', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-  return getISODayOfWeek(date, opts.isUTC).toString(10);
-});
+    return getISODayOfWeek(date, opts.isUTC).toString(10);
+  });
 
 // ALIASES
 
@@ -89,7 +90,7 @@ addWeekParseToken(['d', 'e', 'E'],
 
 // HELPERS
 
-function parseWeekday(input: string | number, locale: Locale): number {
+export function parseWeekday(input: string | number, locale: Locale): number {
   if (!isString(input)) {
     return input;
   }
@@ -107,7 +108,7 @@ function parseWeekday(input: string | number, locale: Locale): number {
   return null;
 }
 
-function parseIsoWeekday(input: string | number, locale: Locale): number {
+export function parseIsoWeekday(input: string | number, locale: Locale = getLocale()): number {
   if (isString(input)) {
     return locale.weekdaysParse(input) % 7 || 7;
   }
@@ -125,10 +126,9 @@ export function getSetDayOfWeek(date: Date, input: number, opts: { isUTC?: boole
   return setDayOfWeek(date, input, opts.locale, opts.isUTC);
 }
 
-export function setDayOfWeek(date: Date, input: number, locale?: Locale, isUTC?: boolean): Date {
-  const _locale = locale ? locale : getLocale();
+export function setDayOfWeek(date: Date, input: number, locale = getLocale(), isUTC?: boolean): Date {
   const day = getDay(date, isUTC);
-  const _input = parseWeekday(input, _locale);
+  const _input = parseWeekday(input, locale);
 
   return add(date, _input - day, 'day');
 }
@@ -139,14 +139,30 @@ export function getDayOfWeek(date: Date, isUTC?: boolean): number {
 
 /********************************************/
 
+// todo: utc
 // getSetLocaleDayOfWeek
-export function getLocaleDayOfWeek(date: Date, locale?: Locale): number {
-  const _locale = locale ? locale : getLocale();
-
-  return (getDay(date) + 7 - _locale.firstDayOfWeek()) % 7;
+export function getLocaleDayOfWeek(date: Date, locale = getLocale(), isUTC?: boolean): number {
+  return (getDay(date, isUTC) + 7 - locale.firstDayOfWeek()) % 7;
 }
 
+export function setLocaleDayOfWeek(date: Date, input: number, opts: { locale?: Locale; isUTC?: boolean } = {}): Date {
+  const weekday = getLocaleDayOfWeek(date, opts.locale, opts.isUTC);
+
+  return add(date, input - weekday, 'day');
+}
+
+
+// getSetISODayOfWeek
 export function getISODayOfWeek(date: Date, isUTC?: boolean): number {
   return getDay(date, isUTC) || 7;
 }
 
+export function setISODayOfWeek(date: Date, input: number, opts: { locale?: Locale } = {}): Date {
+  // behaves the same as moment#day except
+  // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
+  // as a setter, sunday should belong to the previous week.
+
+  const weekday = parseIsoWeekday(input, opts.locale);
+
+  return setDayOfWeek(date, getDayOfWeek(date) % 7 ? weekday : weekday - 7);
+}

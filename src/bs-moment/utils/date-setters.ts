@@ -1,6 +1,7 @@
 import { TimeUnit } from '../types';
 import { daysInMonth } from '../units/month';
 import { isNumber } from './type-checks';
+import { getDate, getFullYear } from './date-getters';
 
 const defaultTimeUnit: TimeUnit = {
   year: 0,
@@ -11,15 +12,13 @@ const defaultTimeUnit: TimeUnit = {
   seconds: 0
 };
 
-export function createDate(
-  year?: number,
-  month = 0,
-  day = 1,
-  hour = 0,
-  minute = 0,
-  seconds = 0,
-  milliseconds = 0
-): Date {
+export function createDate(year?: number,
+                           month = 0,
+                           day = 1,
+                           hour = 0,
+                           minute = 0,
+                           seconds = 0,
+                           milliseconds = 0): Date {
   const _date = new Date();
 
   return new Date(
@@ -75,31 +74,38 @@ export function setFullYear(date: Date, value: number): Date {
 }
 
 export function setMonth(date: Date, value: number, isUTC?: boolean): Date {
-  isUTC ? date.setUTCMonth(value) : date.setMonth(value);
+  const dayOfMonth = Math.min(getDate(date), daysInMonth(getFullYear(date), value));
+  isUTC ? date.setUTCMonth(value, dayOfMonth) : date.setMonth(value, dayOfMonth);
 
   return date;
 }
 
-export function setHours(date: Date, value: number): Date {
-  date.setHours(value);
+export function setDay(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCDate(value) : date.setDate(value);
 
   return date;
 }
 
-export function setMinutes(date: Date, value: number): Date {
-  date.setMinutes(value);
+export function setHours(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCHours(value) : date.setHours(value);
 
   return date;
 }
 
-export function setSeconds(date: Date, value: number): Date {
-  date.setSeconds(value);
+export function setMinutes(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCMinutes(value) : date.setMinutes(value);
 
   return date;
 }
 
-export function setMilliseconds(date: Date, value: number): Date {
-  date.setMilliseconds(value);
+export function setSeconds(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCSeconds(value) : date.setSeconds(value);
+
+  return date;
+}
+
+export function setMilliseconds(date: Date, value: number, isUTC?: boolean): Date {
+  isUTC ? date.setUTCMilliseconds(value) : date.setMilliseconds(value);
 
   return date;
 }
@@ -110,7 +116,7 @@ export function setDate(date: Date, value: number, isUTC?: boolean): Date {
   return date;
 }
 
-export function setTime(date: Date, value: number, isUTC?: boolean): Date {
+export function setTime(date: Date, value: number): Date {
   date.setTime(value);
 
   return date;

@@ -15,10 +15,10 @@ addFormatToken('zz', null, null,
 
 // MOMENTS
 
-// export function getZoneAbbr() {
-//   return this._isUTC ? 'UTC' : '';
-// }
-//
-// export function getZoneName() {
-//   return this._isUTC ? 'Coordinated Universal Time' : '';
-// }
+export function getZoneAbbr(isUTC: boolean) {
+  return isUTC ? 'UTC' : '';
+}
+
+export function getZoneName(isUTC: boolean) {
+  return isUTC ? 'Coordinated Universal Time' : '';
+}

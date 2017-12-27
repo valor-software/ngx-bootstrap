@@ -14,7 +14,7 @@ import { setMonth } from '../utils/date-setters';
 
 addFormatToken('Q', null, 'Qo',
   function (date: Date, opts: DateFormatterOptions): string {
-    return getQuarter(date, opts.isUTC);
+    return getQuarter(date, opts.isUTC).toString(10);
   });
 
 // ALIASES
@@ -36,12 +36,12 @@ addParseToken('Q', function (input: string, array: DateArray, config: DateParsin
 
 // MOMENTS
 
-export function getQuarter(date: Date, isUTC = false): string {
-  return (Math.ceil((getMonth(date, isUTC) + 1) / 3)).toString(10);
+export function getQuarter(date: Date, isUTC = false): number {
+  return Math.ceil((getMonth(date, isUTC) + 1) / 3);
 }
 
-export function setQuarter(date: Date, quarter: number): Date {
-  return setMonth(date, (quarter - 1) * 3 + getMonth(date) % 3);
+export function setQuarter(date: Date, quarter: number, isUTC?: boolean): Date {
+  return setMonth(date, (quarter - 1) * 3 + getMonth(date, isUTC) % 3, isUTC);
 }
 
 // export function getSetQuarter(input) {

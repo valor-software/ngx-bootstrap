@@ -84,23 +84,19 @@ addWeekParseToken(['gg', 'GG'], function (input, week: WeekParsing, config, toke
 
 // MOMENTS
 
-export function getSetWeekYear(date: Date, input: number): number | Date {
-  const _locale = getLocale();
-
+export function getSetWeekYear(date: Date, input: number, locale = getLocale()): number | Date {
   return getSetWeekYearHelper(date,
     input,
     // this.week(),
-    getWeek(date, _locale),
+    getWeek(date, locale),
     // this.weekday(),
-    getLocaleDayOfWeek(date, _locale),
-    _locale.firstDayOfWeek(),
-    _locale.firstDayOfYear());
+    getLocaleDayOfWeek(date, locale),
+    locale.firstDayOfWeek(),
+    locale.firstDayOfYear());
 }
 
-export function getWeekYear(date: Date, locale?: Locale): number {
-  const _locale = locale || getLocale();
-
-  return weekOfYear(date, _locale.firstDayOfWeek(), _locale.firstDayOfYear()).year;
+export function getWeekYear(date: Date, locale = getLocale()): number {
+  return weekOfYear(date, locale.firstDayOfWeek(), locale.firstDayOfYear()).year;
 }
 
 export function getSetISOWeekYear(date: Date, input: number): number | Date {

@@ -7,7 +7,7 @@ const locales: { [key: string]: Locale } = {};
 const localeFamilies: { [key: string]: Locale } = {};
 let globalLocale: Locale;
 
-function chooseLocale(name: string) {
+function chooseLocale(name: string): Locale {
   return locales[name];
 }
 
@@ -76,7 +76,7 @@ export function getSetGlobalLocale(key: string, values?: LocaleData): string {
 }
 
 export function defineLocale(name: string, config?: LocaleData): Locale {
-  if (config === null) {
+  if (config == null) {
     // useful for testing
     delete locales[name];
 

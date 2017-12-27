@@ -22,7 +22,7 @@ export function daysInMonth(year: number, month: number): number {
 
   return modMonth === 1
     ? isLeapYear(_year) ? 29 : 28
-    : 31 - (modMonth % 7) % 2;
+    : (31 - modMonth % 7 % 2);
 }
 
 // FORMATTING

@@ -241,7 +241,7 @@ export class Locale {
     return this._monthsShort[key][getMonth(date, isUTC)];
   }
 
-  monthsParse(monthName: string, format: string, strict?: boolean): number {
+  monthsParse(monthName: string, format?: string, strict?: boolean): number {
     let date;
     let regex;
 
@@ -261,7 +261,7 @@ export class Locale {
     let i;
     for (i = 0; i < 12; i++) {
       // make the regex if we don't have it already
-      date = new Date(2000, i);
+      date = new Date(Date.UTC(2000, i));
       if (strict && !this._longMonthsParse[i]) {
         const _months = this.months(date, '').replace('.', '');
         const _shortMonths = this.monthsShort(date, '').replace('.', '');
@@ -391,7 +391,8 @@ export class Locale {
 
     for (i = 0; i < 7; i++) {
       // make the regex if we don't have it already
-      const date = setDayOfWeek(new Date(2000, 1), i, null, true);
+      // fix: here is the issue
+      const date = setDayOfWeek(new Date(Date.UTC(2000, 1)), i, null, true);
       if (strict && !this._fullWeekdaysParse[i]) {
         this._fullWeekdaysParse[i] = new RegExp(`^${this.weekdays(date, '').replace('.', '\.?')}$`, 'i');
         this._shortWeekdaysParse[i] = new RegExp(`^${this.weekdaysShort(date).replace('.', '\.?')}$`, 'i');
@@ -578,7 +579,7 @@ export class Locale {
 
       let i;
       for (i = 0; i < 7; ++i) {
-        const date = setDayOfWeek(new Date(2000, 1), i, null, true);
+        const date = setDayOfWeek(new Date(Date.UTC(2000, 1)), i, null, true);
         this._minWeekdaysParse[i] = this.weekdaysMin(date).toLocaleLowerCase();
         this._shortWeekdaysParse[i] = this.weekdaysShort(date).toLocaleLowerCase();
         this._weekdaysParse[i] = this.weekdays(date, '').toLocaleLowerCase();
@@ -690,7 +691,7 @@ export class Locale {
     for (i = 0; i < 7; i++) {
       // make the regex if we don't have it already
       // let mom = createUTC([2000, 1]).day(i);
-      const date = setDayOfWeek(new Date(2000, 1), i, null, true);
+      const date = setDayOfWeek(new Date(Date.UTC(2000, 1)), i, null, true);
       const minp = this.weekdaysMin(date);
       const shortp = this.weekdaysShort(date);
       const longp = this.weekdays(date);
