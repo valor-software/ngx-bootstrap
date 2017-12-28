@@ -16,6 +16,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
+import { BsModalStore } from './bs-modal.store';
 
 @Injectable()
 export class BsModalService {
@@ -25,9 +26,24 @@ export class BsModalService {
   onShown: EventEmitter<any> = new EventEmitter();
   onHide: EventEmitter<any> = new EventEmitter();
   onHidden: EventEmitter<any> = new EventEmitter();
-  modalsCount = 0;
-  lastDismissReason = '';
-  loaders: ComponentLoader<ModalContainerComponent>[] = [];
+
+  get modalsCount(): number {
+    return this.store.modalsCount;
+  }
+  set modalsCount(count) {
+    this.store.modalsCount = count;
+  }
+
+  get lastDismissReason(): any {
+    return this.store.lastDismissReason;
+  }
+  set lastDismissReason(reason: any) {
+    this.store.lastDismissReason = reason;
+  }
+
+  get loaders(): any {
+    return this.store.loaders;
+  }
 
   protected isBodyOverflowing = false;
   protected originalBodyPadding = 0;
@@ -37,7 +53,7 @@ export class BsModalService {
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private _renderer: Renderer2;
 
-  constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
+  constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory, private store: BsModalStore) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
@@ -72,7 +88,7 @@ export class BsModalService {
     this.modalsCount = this.modalsCount >= 1 ? this.modalsCount - 1 : 0;
     setTimeout(() => {
       this._hideModal(level);
-      this.removeLoaders(level);
+      this.store.removeLoaders(level);
     }, this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0);
   }
 
@@ -177,15 +193,6 @@ export class BsModalService {
     this.copyEvent(loader.onHidden, this.onHidden);
 
     return loader;
-  }
-
-  private removeLoaders(level: number): void {
-    this.loaders.splice(level - 1, 1);
-    this.loaders.forEach(
-      (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
-        loader.instance.level = i + 1;
-      }
-    );
   }
 
   private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {

@@ -6,6 +6,7 @@ import { PositioningService } from '../positioning';
 import { ComponentLoaderFactory } from '../component-loader';
 import { ModalContainerComponent } from './modal-container.component';
 import { BsModalService } from './bs-modal.service';
+import { BsModalStore } from './bs-modal.store';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,14 @@ import { BsModalService } from './bs-modal.service';
     ModalContainerComponent
   ],
   exports: [ModalBackdropComponent, ModalDirective],
-  entryComponents: [ModalBackdropComponent, ModalContainerComponent]
+  entryComponents: [ModalBackdropComponent, ModalContainerComponent],
+  providers: [BsModalService, ComponentLoaderFactory]
 })
 export class ModalModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: ModalModule,
-      providers: [BsModalService, ComponentLoaderFactory, PositioningService]
+      providers: [BsModalStore, PositioningService]
     };
   }
 }
