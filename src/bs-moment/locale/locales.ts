@@ -91,10 +91,12 @@ function loadLocale(name: string): Locale {
      } catch (e) {}
    }*/
   if (!locales[name]) {
-    throw new Error(`Khronos locale error: please load locale "${name}" before using it`);
+    // tslint:disable-next-line
+    console.error(`Khronos locale error: please load locale "${name}" before using it`);
+    // throw new Error(`Khronos locale error: please load locale "${name}" before using it`);
   }
 
-  return locales[name];
+  return locales[name] || globalLocale;
 }
 
 // This function will load locale and then set the global locale.  If

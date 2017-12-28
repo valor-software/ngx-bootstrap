@@ -200,7 +200,7 @@ describe('utc offset', () => {
     assert.equal(zoneA.from(other), zoneD.from(other), 'moment#from should be the same in all zones');
   });*/
 
-  it('diff', function () {
+  xit('diff', function () {
     var zoneA = moment(),
       zoneB = moment(zoneA).utcOffset(-720),
       zoneC = moment(zoneA).utcOffset(-360),

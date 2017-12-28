@@ -114,11 +114,15 @@ export interface MomentFn {
 
 function _moment(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean, isUTC?: boolean): Khronos {
   const _input = input instanceof Khronos ? input.toDate() : input;
+  let _offset;
+  if (input instanceof Khronos) {
+    _offset = input._offset;
+  }
   if (isBoolean(localeKey)) {
-    return new Khronos(_input, format, null, localeKey, isUTC);
+    return new Khronos(_input, format, null, localeKey, isUTC, _offset);
   }
 
-  return new Khronos(_input, format, localeKey, strict, isUTC);
+  return new Khronos(_input, format, localeKey, strict, isUTC, _offset);
 }
 
 moment.utc = (input?: DateInput | Khronos, format?: string, localeKey?: string | boolean, strict?: boolean): Khronos => {
@@ -228,6 +232,25 @@ export type MomentAll = MomentUnitOfTime |
   'weekday' | 'weekdays' | 'e' |
   'isoWeekday' | 'isoWeekdays' | 'E';
 
+const _unitsPriority: {[key in UnitOfTime]: number} = {
+  year: 1,
+  month: 8,
+  week: 5,
+  isoWeek: 5,
+  day: 11,
+  weekday: 11,
+  isoWeekday: 11,
+  hours: 13,
+  weekYear: 1,
+  isoWeekYear: 1,
+  quarter: 7,
+  date: 9,
+  dayOfYear: 4,
+  minutes: 14,
+  seconds: 15,
+  milliseconds: 16
+};
+
 // todo: do I need 2 mappers?
 const _timeHashMap: { [key in MomentAll]: UnitOfTime | string } = {
   y: 'year',
@@ -307,8 +330,19 @@ export class Khronos {
   _format: string | string[];
   _offset: number;
 
-  constructor(input?: DateInput, format?: string | string[], localeKey?: string, strict?: boolean, isUTC?: boolean) {
+  constructor(input?: DateInput,
+              format?: string | string[],
+              localeKey?: string,
+              strict?: boolean,
+              isUTC?: boolean,
+              offset?: number) {
     this._isUTC = isUTC;
+    if (this._isUTC) {
+      this._offset = 0;
+    }
+    if (offset || offset === 0) {
+      this._offset = offset;
+    }
     this._isStrict = strict;
     this._format = format;
     if (localeKey) {
@@ -375,7 +409,13 @@ export class Khronos {
   clone(): Khronos {
     const localeKey = this._locale && this._locale._abbr || 'en';
 
-    return new Khronos(cloneDate(this._date), this._format, localeKey, this._isStrict, this._isUTC);
+    // return new Khronos(cloneDate(this._date), this._format, localeKey, this._isStrict, this._isUTC);
+    return new Khronos(new Date(this.valueOf()),
+      this._format,
+      localeKey,
+      this._isStrict,
+      this._isUTC,
+      this._offset);
   }
 
   diff(b: DateInput | Khronos, unitOfTime?: MomentUnitOfTime, precise?: boolean): number {
@@ -505,6 +545,9 @@ export class Khronos {
     if (isObject<MomentInputObject>(period)) {
       const _mapped = mapMomentInputObject(period);
       Object.keys(_mapped)
+        .sort(function (a: UnitOfTime, b: UnitOfTime): number {
+          return _unitsPriority[a] - _unitsPriority[b];
+        })
         .forEach((key: UnitOfTime) => this.set(key, _mapped[key]));
     }
 
@@ -604,11 +647,12 @@ export class Khronos {
   }
 
   valueOf(): number {
-    return this._date.valueOf();
+    return this._date.valueOf() - ((this._offset || 0) * 60000);
   }
 
   unix(): number {
-    return getUnixTime(this._date);
+    // return getUnixTime(this._date);
+    return Math.floor(this.valueOf() / 1000);
   }
 
 
@@ -617,11 +661,16 @@ export class Khronos {
   utcOffset(): number;
   utcOffset(b: number | string, keepLocalTime?: boolean): Khronos;
   utcOffset(b?: number | string, keepLocalTime?: boolean): number | Khronos {
+    const _config = this._toConfig();
+
     if (!b && b !== 0) {
-      return getUTCOffset(this._date, { _isUTC: this._isUTC });
+      return getUTCOffset(this._date, _config);
     }
 
-    this._date = setUTCOffset(this._date, b, keepLocalTime);
+    this._date = setUTCOffset(this._date, b, keepLocalTime, false, _config);
+
+    this._offset = _config._offset;
+    this._isUTC = _config._isUTC;
 
     return this;
   }
@@ -665,9 +714,7 @@ export class Khronos {
   }
 
   isUtc(): boolean {
-    // todo: implement?
-    //  this._isUTC && this._offset === 0
-    return this._isUTC;
+    return this._isUTC && this._offset === 0;
   }
 
   // Timezone

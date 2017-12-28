@@ -9,6 +9,7 @@ export type UnitOfTime =
   | 'day'
   // day of month
   | 'date'
+  | 'dayOfYear'
   | 'hours'
   | 'minutes'
   | 'seconds'

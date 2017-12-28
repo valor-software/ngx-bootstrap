@@ -1,7 +1,8 @@
 import { TimeUnit } from '../types';
 import { daysInMonth } from '../units/month';
 import { isNumber } from './type-checks';
-import { getDate, getFullYear } from './date-getters';
+import { getDate, getFullYear, getMonth } from './date-getters';
+import { isLeapYear } from '../units/year';
 
 const defaultTimeUnit: TimeUnit = {
   year: 0,
@@ -67,8 +68,16 @@ function getNum(def: number, num?: number): number {
   return isNumber(num) ? num : def;
 }
 
-export function setFullYear(date: Date, value: number): Date {
-  date.setFullYear(value);
+export function setFullYear(date: Date, value: number, isUTC?: boolean): Date {
+  const _month = getMonth(date, isUTC);
+  const _date = getDate(date, isUTC);
+  const _year = getFullYear(date, isUTC);
+  if (isLeapYear(_year) && _month === 1 && _date === 29) {
+    const _daysInMonth = daysInMonth(value, _month);
+    isUTC ? date.setUTCFullYear(value, _month, _daysInMonth) : date.setFullYear(value, _month, _daysInMonth);
+  }
+
+  isUTC ? date.setUTCFullYear(value) : date.setFullYear(value);
 
   return date;
 }

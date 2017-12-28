@@ -104,21 +104,6 @@ function getDateOffset(date: Date): number {
 // a second time. In case it wants us to change the offset again
 // _changeInProgress == true case, then we have to adjust, because
 // there is no such time in the given timezone.
-/**
- * @deprecated
- */
-export function getSetOffset(date: Date, input: number | string, keepLocalTime?: boolean, keepMinutes?: boolean, config?: DateParsingConfig): Date | number {
-  // if (!this.isValid()) {
-  //   return input != null ? this : NaN;
-  // }
-  if (input != null) {
-    return setUTCOffset(date, input, keepLocalTime, keepMinutes, config);
-  }
-
-  return getUTCOffset(date, { _isUTC: config._isUTC });
-  // return this._isUTC ? offset : getDateOffset(date);
-}
-
 export function getUTCOffset(date: Date, config: DateParsingConfig = {}): number {
   const _offset = config._offset || 0;
 
@@ -129,30 +114,28 @@ export function setUTCOffset(date: Date, input: number | string, keepLocalTime?:
   const offset = config._offset || 0;
   let localAdjust;
   let _input = input;
+  let _date = date;
 
   if (isString(_input)) {
     _input = offsetFromString(matchShortOffset, _input);
     if (_input === null) {
-      return date;
+      return _date;
     }
-  }
-  // else if
-  if (isNumber(_input) && Math.abs(_input) < 16 && !keepMinutes) {
+  } else if (isNumber(_input) && Math.abs(_input) < 16 && !keepMinutes) {
     _input = _input * 60;
   }
 
   if (!config._isUTC && keepLocalTime) {
-    localAdjust = getDateOffset(date);
+    localAdjust = getDateOffset(_date);
   }
   config._offset = _input;
   config._isUTC = true;
   if (localAdjust != null) {
-    // todo: make it work
-    // this.add(localAdjust, 'm');
+    _date = add(_date, localAdjust, 'minutes');
   }
   if (offset !== _input) {
     if (!keepLocalTime || config._changeInProgress) {
-      add(date, _input - offset, 'month');
+      _date = add(_date, _input - offset, 'minutes');
       // addSubtract(this, createDuration(_input - offset, 'm'), 1, false);
     } else if (!config._changeInProgress) {
       config._changeInProgress = true;
@@ -162,7 +145,7 @@ export function setUTCOffset(date: Date, input: number | string, keepLocalTime?:
     }
   }
 
-  return date;
+  return _date;
 }
 
 /*

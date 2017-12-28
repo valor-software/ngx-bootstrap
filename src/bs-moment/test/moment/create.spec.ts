@@ -3,6 +3,7 @@
 // tslint:disable:variable-name
 import { assert } from 'chai';
 import { moment } from '../chain';
+import { ru } from '../../i18n/ru';
 
 describe('create', () => {
 
@@ -557,7 +558,7 @@ describe('create', () => {
     let testCase;
 
     try {
-      moment.locale('ru');
+      moment.locale('ru', ru);
       for (testCase in testCases) {
         const testResult = moment(testCases[testCase], moment.RFC_2822, true);
         assert.ok(testResult.isValid(), testResult.toString());
