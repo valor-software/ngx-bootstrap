@@ -10,7 +10,7 @@ import { isNumber, isString, toInt } from '../utils/type-checks';
 import { DateFormatterOptions, WeekParsing } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { add } from '../moment/add-subtract';
-import { getLocale } from '../locale/locales.service';
+import { getLocale } from '../locale/locales';
 import { setDay } from '../utils/date-setters';
 
 // FORMATTING
@@ -157,7 +157,7 @@ export function getISODayOfWeek(date: Date, isUTC?: boolean): number {
   return getDay(date, isUTC) || 7;
 }
 
-export function setISODayOfWeek(date: Date, input: number, opts: { locale?: Locale } = {}): Date {
+export function setISODayOfWeek(date: Date, input: number|string, opts: { locale?: Locale } = {}): Date {
   // behaves the same as moment#day except
   // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
   // as a setter, sunday should belong to the previous week.

@@ -14,7 +14,7 @@ import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
 import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
-import { getLocale } from '../../bs-moment/locale/locales.service';
+import { getLocale } from '../../bs-moment/locale/locales';
 import { isAfter, isBefore } from '../../bs-moment/utils/date-compare';
 
 export function bsDatepickerReducer(state = initialDatepickerState,

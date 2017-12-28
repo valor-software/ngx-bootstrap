@@ -1,3 +1,4 @@
+/*
 // tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
 // tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
 // tslint:disable:variable-name
@@ -82,7 +83,7 @@ describe('listers', () => {
   });
 
   // todo: implement
-/*
+/!*
   it('with functions', function () {
     var monthsShort = 'one_two_three_four_five_six_seven_eight_nine_ten_eleven_twelve'.split('_'),
       monthsShortWeird = 'onesy_twosy_threesy_foursy_fivesy_sixsy_sevensy_eightsy_ninesy_tensy_elevensy_twelvesy'.split('_');
@@ -125,5 +126,6 @@ describe('listers', () => {
     assert.deepEqual(customLocale.weekdays(), weekdays);
     assert.deepEqual(customLocale.weekdaysShort(), weekdaysShort);
     assert.deepEqual(customLocale.weekdaysMin(), weekdaysMin);
-  });*/
+  });*!/
 });
+*/

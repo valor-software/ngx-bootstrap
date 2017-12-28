@@ -49,6 +49,7 @@ export type PluralizeDateFn = (num: number, withoutSuffix: boolean,
 
 export interface LocaleData {
   abbr?: string;
+  parentLocale?: string;
 
   months?: LocaleOptions;
   monthsShort?: LocaleOptions;
@@ -65,7 +66,7 @@ export interface LocaleData {
   dayOfMonthOrdinalParse?: RegExp;
   ordinal?: string | OrdinalDateFn;
 
-  week?: { dow: number; doy: number };
+  week?: { dow?: number; doy?: number };
 
   invalidDate?: string;
 
@@ -91,7 +92,7 @@ export interface LocaleData {
 }
 
 export class Locale {
-  // [key: string]: any;
+  parentLocale?: Locale;
   _abbr: string;
   _config: LocaleData;
   meridiemHour: (hour: number, meridiem: string) => number;
@@ -212,7 +213,7 @@ export class Locale {
 
   /** Months */
   months(): string[];
-  months(date: Date, format: string, isUTC?: boolean): string;
+  months(date: Date, format?: string, isUTC?: boolean): string;
   months(date?: Date, format?: string, isUTC = false): string | string[] {
     if (!date) {
       return isArray<string>(this._months)

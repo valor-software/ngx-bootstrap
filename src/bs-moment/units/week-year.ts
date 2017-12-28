@@ -9,7 +9,7 @@ import { dayOfYearFromWeeks, weekOfYear, weeksInYear } from './week-calendar-uti
 import { createUTCDate } from '../utils';
 import { getISOWeek, getWeek } from './week';
 import { getISODayOfWeek, getLocaleDayOfWeek } from './day-of-week';
-import { getLocale } from '../locale/locales.service';
+import { getLocale } from '../locale/locales';
 import { setDate, setFullYear, setMonth } from '../utils/date-setters';
 import { getDate, getFullYear, getMonth } from '../utils/date-getters';
 import { Locale } from '../locale/locale.class';
@@ -107,14 +107,12 @@ export function getISOWeekYear(date: Date): number {
   return weekOfYear(date, 1, 4).year;
 }
 
-export function getISOWeeksInYear(date: Date) {
-  return weeksInYear(getFullYear(date), 1, 4);
+export function getISOWeeksInYear(date: Date, isUTC?: boolean) {
+  return weeksInYear(getFullYear(date, isUTC), 1, 4);
 }
 
-export function getWeeksInYear(date: Date, locale?: Locale): number {
-  const _locale = locale || getLocale();
-
-  return weeksInYear(getFullYear(date), _locale.firstDayOfWeek(), _locale.firstDayOfYear());
+export function getWeeksInYear(date: Date, isUTC?: boolean, locale: Locale = getLocale()): number {
+  return weeksInYear(getFullYear(date, isUTC), locale.firstDayOfWeek(), locale.firstDayOfYear());
 }
 
 function getSetWeekYearHelper(date: Date, input: number, week: number,

@@ -1,5 +1,5 @@
 import { parseDate, formatDate, getMonth } from '../../index';
-import { getSetGlobalLocale } from '../../locale/locales.service';
+import { getSetGlobalLocale } from '../../locale/locales';
 
 const localeAbbr = 'en';
 

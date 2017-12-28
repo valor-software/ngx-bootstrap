@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 }
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { formatDate } from '../bs-moment/format';
-import { getLocale } from '../bs-moment/locale/locales.service';
+import { getLocale } from '../bs-moment/locale/locales';
 import { BsLocaleService } from './bs-locale.service';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {

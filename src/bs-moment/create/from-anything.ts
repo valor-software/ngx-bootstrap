@@ -1,7 +1,7 @@
 // tslint:disable:max-line-length
 import { isArray, isNumber, isObject, isObjectEmpty, isString, isUndefined } from '../utils/type-checks';
 import { DateParsingConfig } from './parsing.types';
-import { getLocale } from '../locale/locales.service';
+import { getLocale } from '../locale/locales';
 import { setOffsetToUTC } from '../units/offset';
 import { add } from '../moment/add-subtract';
 import { createInvalid, isValid } from './valid';

@@ -4,7 +4,7 @@ import {
   DaysCalendarViewModel
 } from '../models/index';
 import { formatDate } from '../../bs-moment/format';
-import { getLocale } from '../../bs-moment/locale/locales.service';
+import { getLocale } from '../../bs-moment/locale/locales';
 
 export function formatDaysCalendar(daysCalendar: DaysCalendarModel,
                                    formatOptions: DatepickerFormatOptions,

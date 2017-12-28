@@ -7,7 +7,7 @@
 import './units';
 import { formatFunctions, makeFormatFunction } from './format/format';
 import { Locale } from './locale/locale.class';
-import { getLocale } from './locale/locales.service';
+import { getLocale } from './locale/locales';
 import { isDateValid } from './utils/type-checks';
 
 export function formatDate(date: Date, format: string, locale?: string, isUTC?: boolean): string {

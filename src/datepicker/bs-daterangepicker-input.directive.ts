@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { formatDate } from '../bs-moment/format';
-import { getLocale } from '../bs-moment/locale/locales.service';
+import { getLocale } from '../bs-moment/locale/locales';
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 

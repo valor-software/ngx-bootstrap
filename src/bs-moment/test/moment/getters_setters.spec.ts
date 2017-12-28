@@ -302,7 +302,7 @@ describe('getters and setters', () => {
     assert.equal(c.format('YYYY-MM-DDTHH:mm'), '2016-03-14T02:30', 'setting hours, minutes date puts date first allowing time set to work');
   });
 
-  //  non no no
+  //  no no no
 /*  it('string setters', function () {
     var a = moment();
     a.year('2011');

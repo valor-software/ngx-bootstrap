@@ -12,6 +12,6 @@ export {
   defineLocale,
   getSetGlobalLocale,
   listLocales
-} from './locale/locales.service';
+} from './locale/locales';
 
 export { LocaleData } from './locale/locale.class';

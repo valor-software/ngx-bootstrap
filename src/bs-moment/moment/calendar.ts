@@ -4,7 +4,22 @@ import { isFunction, isString } from '../utils/type-checks';
 import { cloneDate } from '../create/clone';
 import { startOf } from '../utils/start-end-of';
 import { formatDate } from '../format';
-import { getLocale } from '../locale/locales.service';
+import { getLocale } from '../locale/locales';
+import { Locale } from '../locale/locale.class';
+import { DateInput } from '../test/chain';
+
+export type CalendarSpecVal = string | ((m?: DateInput, now?: Date) => string);
+export interface CalendarSpec {
+  sameDay?: CalendarSpecVal;
+  nextDay?: CalendarSpecVal;
+  lastDay?: CalendarSpecVal;
+  nextWeek?: CalendarSpecVal;
+  lastWeek?: CalendarSpecVal;
+  sameElse?: CalendarSpecVal;
+
+  // any additional properties might be used with moment.calendarFormat
+  [x: string]: CalendarSpecVal | void; // undefined
+}
 
 export function getCalendarFormat(date: Date, now: Date) {
   const _diff = diff(date, now, 'day', true);
@@ -29,8 +44,8 @@ export function getCalendarFormat(date: Date, now: Date) {
 
 export function calendar(date: Date,
                          time: Date,
-                         formats: { [key: string]: () => string | string },
-                         locale = getLocale()): string {
+                         formats: CalendarSpec,
+                         locale: Locale = getLocale()): string {
   // We want to compare the start of today, vs this.
   // Getting start-of-today depends on whether we're local/utc/offset or not.
   const now = time || new Date();
@@ -39,11 +54,12 @@ export function calendar(date: Date,
 
   let output;
   if (formats) {
-    if (isString(formats[format])) {
-      output = formats[format];
+    const _format = formats[format];
+    if (isString(_format)) {
+      output = _format;
     }
-    if (isFunction(formats[format])) {
-      formats[format].call(null, date, now);
+    if (isFunction(_format)) {
+      output = _format.call(null, date, now);
     }
   }
 

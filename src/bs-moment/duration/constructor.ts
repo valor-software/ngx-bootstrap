@@ -1,4 +1,4 @@
-import { getLocale } from '../locale/locales.service';
+import { getLocale } from '../locale/locales';
 import { DateParsingConfig } from '../create/parsing.types';
 import { isDurationValid } from './valid';
 import { bubble } from './bubble';

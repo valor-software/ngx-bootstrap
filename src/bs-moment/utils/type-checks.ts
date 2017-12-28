@@ -65,7 +65,7 @@ export function isUndefined(input: any): boolean {
   return input === void 0;
 }
 
-export function toInt(argumentForCoercion: string | number): number {
+export function toInt<T>(argumentForCoercion: string | number | T): number {
   const coercedNumber = +argumentForCoercion;
   let value = 0;
 

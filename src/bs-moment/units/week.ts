@@ -8,7 +8,7 @@ import { addWeekParseToken } from '../parse/token';
 import { toInt } from '../utils/type-checks';
 import { DateFormatterOptions, WeekParsing } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
-import { getLocale } from '../locale/locales.service';
+import { getLocale } from '../locale/locales';
 import { add } from '../moment/add-subtract';
 
 // FORMATTING

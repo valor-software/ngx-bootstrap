@@ -1,4 +1,4 @@
-import { defineLocale } from '../../locale/locales.service';
+import { defineLocale } from '../../locale/locales';
 import { sv } from '../../i18n/sv';
 import { formatDate } from '../../format';
 

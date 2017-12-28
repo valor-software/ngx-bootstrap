@@ -7,6 +7,7 @@ import { addUnitAlias } from './aliases';
 import { DateArray, DateFormatterOptions } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { toInt } from '../utils/type-checks';
+import { add } from '../moment/add-subtract';
 
 // FORMATTING
 
@@ -40,4 +41,10 @@ export function getDayOfYear(date: Date): number {
   const oneDay = 1000 * 60 * 60 * 24;
 
   return Math.round(someDate / oneDay) + 1;
+}
+
+export function setDayOfYear(date: Date, input: number): Date {
+  const dayOfYear = getDayOfYear(date);
+
+  return add(date, (input - dayOfYear), 'day');
 }
