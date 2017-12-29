@@ -4,11 +4,21 @@
 import { assert } from 'chai';
 import { moment } from '../chain';
 import { defineLocale } from '../../locale/locales';
-import { fr } from '../../i18n/fr';
 import { enGb } from '../../i18n/en-gb';
+import { fr } from '../../i18n/fr';
+import { es } from '../../i18n/es';
+import { zhCn } from '../../i18n/zh-cn';
+import { it as italy} from '../../i18n/it';
+// import { LocaleData } from '../../locale/locale.class';
 
-defineLocale('fr', fr);
 defineLocale('en-gb', enGb);
+defineLocale('en-ca', enGb);
+defineLocale('es', es);
+defineLocale('fr', fr);
+defineLocale('fr-ca', fr);
+defineLocale('it', italy);
+defineLocale('it', zhCn);
+
 moment.locale('en');
 
 // module('locale', {
@@ -139,47 +149,47 @@ describe('locale', function () {
     assert.equal(moment().add(4, 'days').locale(locale).calendar(), 'nextWeek -LL-', 'Should use instance locale in LLL formatting');
     assert.equal(moment().add(-4, 'days').locale(locale).calendar(), 'lastWeek -LLLL-', 'Should use instance locale in LLLL formatting');
   });
-/*
-  it('library localeData', function () {
-    moment.locale('en');
+  /*
+    it('library localeData', function () {
+      moment.locale('en');
 
-    var jan = moment([2000, 0]);
+      var jan = moment([2000, 0]);
 
-    assert.equal(moment.localeData().months(jan), 'January', 'no arguments returns global');
-    assert.equal(moment.localeData('zh-cn').months(jan), '一月', 'a string returns the locale based on key');
-    assert.equal(moment.localeData(moment().locale('es')).months(jan), 'enero', 'if you pass in a moment it uses the moment\'s locale');
-  });
+      assert.equal(moment.localeData().months(jan), 'January', 'no arguments returns global');
+      assert.equal(moment.localeData('zh-cn').months(jan), '一月', 'a string returns the locale based on key');
+      assert.equal(moment.localeData(moment().locale('es')).months(jan), 'enero', 'if you pass in a moment it uses the moment\'s locale');
+    });
 
-  it('library deprecations', function () {
-    test.expectedDeprecations('moment.lang');
-    moment.lang('dude', { months: ['Movember'] });
-    assert.equal(moment.locale(), 'dude', 'setting the lang sets the locale');
-    assert.equal(moment.lang(), moment.locale());
-    assert.equal(moment.langData(), moment.localeData(), 'langData is localeData');
-    moment.defineLocale('dude', null);
-  });
+    it('library deprecations', function () {
+      test.expectedDeprecations('moment.lang');
+      moment.lang('dude', { months: ['Movember'] });
+      assert.equal(moment.locale(), 'dude', 'setting the lang sets the locale');
+      assert.equal(moment.lang(), moment.locale());
+      assert.equal(moment.langData(), moment.localeData(), 'langData is localeData');
+      moment.defineLocale('dude', null);
+    });
 
-  it('defineLocale', function () {
-    moment.locale('en');
-    moment.defineLocale('dude', { months: ['Movember'] });
-    assert.equal(moment().locale(), 'dude', 'defineLocale also sets it');
-    assert.equal(moment().locale('dude').locale(), 'dude', 'defineLocale defines a locale');
-    moment.defineLocale('dude', null);
-  });
+    it('defineLocale', function () {
+      moment.locale('en');
+      moment.defineLocale('dude', { months: ['Movember'] });
+      assert.equal(moment().locale(), 'dude', 'defineLocale also sets it');
+      assert.equal(moment().locale('dude').locale(), 'dude', 'defineLocale defines a locale');
+      moment.defineLocale('dude', null);
+    });
 
-  it('locales', function () {
-    moment.defineLocale('dude', { months: ['Movember'] });
-    assert.equal(true, !!~indexOf.call(moment.locales(), 'dude'), 'locales returns an array of defined locales');
-    assert.equal(true, !!~indexOf.call(moment.locales(), 'en'), 'locales should always include english');
-    moment.defineLocale('dude', null);
-  });
+    it('locales', function () {
+      moment.defineLocale('dude', { months: ['Movember'] });
+      assert.equal(true, !!~indexOf.call(moment.locales(), 'dude'), 'locales returns an array of defined locales');
+      assert.equal(true, !!~indexOf.call(moment.locales(), 'en'), 'locales should always include english');
+      moment.defineLocale('dude', null);
+    });
 
-  it('library convenience', function () {
-    moment.locale('something', { week: { dow: 3 } });
-    moment.locale('something');
-    assert.equal(moment.locale(), 'something', 'locale can be used to create the locale too');
-    moment.defineLocale('something', null);
-  });*/
+    it('library convenience', function () {
+      moment.locale('something', { week: { dow: 3 } });
+      moment.locale('something');
+      assert.equal(moment.locale(), 'something', 'locale can be used to create the locale too');
+      moment.defineLocale('something', null);
+    });*/
 
   it('firstDayOfWeek firstDayOfYear locale getters', function () {
     moment.locale('something', { week: { dow: 3, doy: 4 } });
@@ -233,118 +243,118 @@ describe('locale', function () {
     assert.equal(b.format('MMMM'), 'junio', 'using moment()');
   });
 
-/*  it('duration locale method', function () {
-    moment.locale('en');
+  /*  it('duration locale method', function () {
+      moment.locale('en');
 
-    assert.equal(moment.duration({ seconds: 44 }).humanize(), 'a few seconds', 'Normally default to global');
-    assert.equal(moment.duration({ seconds: 44 }).locale('es').humanize(), 'unos segundos', 'Use the instance specific locale');
-    assert.equal(moment.duration({ seconds: 44 }).humanize(), 'a few seconds', 'Using an instance specific locale does not affect other durations');
-  });
+      assert.equal(moment.duration({ seconds: 44 }).humanize(), 'a few seconds', 'Normally default to global');
+      assert.equal(moment.duration({ seconds: 44 }).locale('es').humanize(), 'unos segundos', 'Use the instance specific locale');
+      assert.equal(moment.duration({ seconds: 44 }).humanize(), 'a few seconds', 'Using an instance specific locale does not affect other durations');
+    });
 
-  it('duration locale persists with cloning', function () {
-    moment.locale('en');
+    it('duration locale persists with cloning', function () {
+      moment.locale('en');
 
-    var a = moment.duration({ seconds: 44 }).locale('es'),
-      b = moment.duration(a);
+      var a = moment.duration({ seconds: 44 }).locale('es'),
+        b = moment.duration(a);
 
-    assert.equal(b.humanize(), 'unos segundos', 'using moment.duration()');
-  });
+      assert.equal(b.humanize(), 'unos segundos', 'using moment.duration()');
+    });
 
-  it('changing the global locale doesn\'t affect existing duration instances', function () {
-    var mom = moment.duration();
-    moment.locale('fr');
-    assert.equal('en', mom.locale());
-  });*/
+    it('changing the global locale doesn\'t affect existing duration instances', function () {
+      var mom = moment.duration();
+      moment.locale('fr');
+      assert.equal('en', mom.locale());
+    });*/
 
-/*  it('duration deprecations', function () {
-    test.expectedDeprecations('moment().lang()');
-    assert.equal(moment.duration().lang(), moment.duration().localeData(), 'duration.lang is the same as duration.localeData');
-  });*/
+  /*  it('duration deprecations', function () {
+      test.expectedDeprecations('moment().lang()');
+      assert.equal(moment.duration().lang(), moment.duration().localeData(), 'duration.lang is the same as duration.localeData');
+    });*/
 
-/*  it('from and fromNow with invalid date', function () {
-    assert.equal(moment(NaN).from(), 'Invalid date', 'moment.from with invalid moment');
-    assert.equal(moment(NaN).fromNow(), 'Invalid date', 'moment.fromNow with invalid moment');
-  });
+  /*  it('from and fromNow with invalid date', function () {
+      assert.equal(moment(NaN).from(), 'Invalid date', 'moment.from with invalid moment');
+      assert.equal(moment(NaN).fromNow(), 'Invalid date', 'moment.fromNow with invalid moment');
+    });
 
-  it('from relative time future', function () {
-    var start = moment([2007, 1, 28]);
+    it('from relative time future', function () {
+      var start = moment([2007, 1, 28]);
 
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 44 })), 'in a few seconds', '44 seconds = a few seconds');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 45 })), 'in a minute', '45 seconds = a minute');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 89 })), 'in a minute', '89 seconds = a minute');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 90 })), 'in 2 minutes', '90 seconds = 2 minutes');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 44 })), 'in 44 minutes', '44 minutes = 44 minutes');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 45 })), 'in an hour', '45 minutes = an hour');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 89 })), 'in an hour', '89 minutes = an hour');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 90 })), 'in 2 hours', '90 minutes = 2 hours');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 5 })), 'in 5 hours', '5 hours = 5 hours');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 21 })), 'in 21 hours', '21 hours = 21 hours');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 22 })), 'in a day', '22 hours = a day');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 35 })), 'in a day', '35 hours = a day');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 36 })), 'in 2 days', '36 hours = 2 days');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 1 })), 'in a day', '1 day = a day');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 5 })), 'in 5 days', '5 days = 5 days');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 25 })), 'in 25 days', '25 days = 25 days');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 26 })), 'in a month', '26 days = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 30 })), 'in a month', '30 days = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 45 })), 'in a month', '45 days = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 47 })), 'in 2 months', '47 days = 2 months');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 74 })), 'in 2 months', '74 days = 2 months');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 78 })), 'in 3 months', '78 days = 3 months');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ M: 1 })), 'in a month', '1 month = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ M: 5 })), 'in 5 months', '5 months = 5 months');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 315 })), 'in 10 months', '315 days = 10 months');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 344 })), 'in a year', '344 days = a year');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 345 })), 'in a year', '345 days = a year');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 548 })), 'in 2 years', '548 days = in 2 years');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ y: 1 })), 'in a year', '1 year = a year');
-    assert.equal(start.from(moment([2007, 1, 28]).subtract({ y: 5 })), 'in 5 years', '5 years = 5 years');
-  });
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 44 })), 'in a few seconds', '44 seconds = a few seconds');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 45 })), 'in a minute', '45 seconds = a minute');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 89 })), 'in a minute', '89 seconds = a minute');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 90 })), 'in 2 minutes', '90 seconds = 2 minutes');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 44 })), 'in 44 minutes', '44 minutes = 44 minutes');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 45 })), 'in an hour', '45 minutes = an hour');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 89 })), 'in an hour', '89 minutes = an hour');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ m: 90 })), 'in 2 hours', '90 minutes = 2 hours');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 5 })), 'in 5 hours', '5 hours = 5 hours');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 21 })), 'in 21 hours', '21 hours = 21 hours');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 22 })), 'in a day', '22 hours = a day');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 35 })), 'in a day', '35 hours = a day');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ h: 36 })), 'in 2 days', '36 hours = 2 days');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 1 })), 'in a day', '1 day = a day');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 5 })), 'in 5 days', '5 days = 5 days');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 25 })), 'in 25 days', '25 days = 25 days');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 26 })), 'in a month', '26 days = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 30 })), 'in a month', '30 days = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 45 })), 'in a month', '45 days = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 47 })), 'in 2 months', '47 days = 2 months');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 74 })), 'in 2 months', '74 days = 2 months');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 78 })), 'in 3 months', '78 days = 3 months');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ M: 1 })), 'in a month', '1 month = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ M: 5 })), 'in 5 months', '5 months = 5 months');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 315 })), 'in 10 months', '315 days = 10 months');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 344 })), 'in a year', '344 days = a year');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 345 })), 'in a year', '345 days = a year');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ d: 548 })), 'in 2 years', '548 days = in 2 years');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ y: 1 })), 'in a year', '1 year = a year');
+      assert.equal(start.from(moment([2007, 1, 28]).subtract({ y: 5 })), 'in 5 years', '5 years = 5 years');
+    });
 
-  it('from relative time past', function () {
-    var start = moment([2007, 1, 28]);
+    it('from relative time past', function () {
+      var start = moment([2007, 1, 28]);
 
-    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 })), 'a few seconds ago', '44 seconds = a few seconds');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 })), 'a minute ago', '45 seconds = a minute');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 89 })), 'a minute ago', '89 seconds = a minute');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 90 })), '2 minutes ago', '90 seconds = 2 minutes');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 44 })), '44 minutes ago', '44 minutes = 44 minutes');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 45 })), 'an hour ago', '45 minutes = an hour');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 89 })), 'an hour ago', '89 minutes = an hour');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 90 })), '2 hours ago', '90 minutes = 2 hours');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 5 })), '5 hours ago', '5 hours = 5 hours');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 21 })), '21 hours ago', '21 hours = 21 hours');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 22 })), 'a day ago', '22 hours = a day');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 35 })), 'a day ago', '35 hours = a day');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 36 })), '2 days ago', '36 hours = 2 days');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 1 })), 'a day ago', '1 day = a day');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 5 })), '5 days ago', '5 days = 5 days');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 25 })), '25 days ago', '25 days = 25 days');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 26 })), 'a month ago', '26 days = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 30 })), 'a month ago', '30 days = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 43 })), 'a month ago', '43 days = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 46 })), '2 months ago', '46 days = 2 months');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 74 })), '2 months ago', '75 days = 2 months');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 76 })), '3 months ago', '76 days = 3 months');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ M: 1 })), 'a month ago', '1 month = a month');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ M: 5 })), '5 months ago', '5 months = 5 months');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 315 })), '10 months ago', '315 days = 10 months');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 344 })), 'a year ago', '344 days = a year');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 345 })), 'a year ago', '345 days = a year');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 548 })), '2 years ago', '548 days = 2 years');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ y: 1 })), 'a year ago', '1 year = a year');
-    assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 })), '5 years ago', '5 years = 5 years');
-  });
+      assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 })), 'a few seconds ago', '44 seconds = a few seconds');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 })), 'a minute ago', '45 seconds = a minute');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ s: 89 })), 'a minute ago', '89 seconds = a minute');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ s: 90 })), '2 minutes ago', '90 seconds = 2 minutes');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ m: 44 })), '44 minutes ago', '44 minutes = 44 minutes');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ m: 45 })), 'an hour ago', '45 minutes = an hour');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ m: 89 })), 'an hour ago', '89 minutes = an hour');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ m: 90 })), '2 hours ago', '90 minutes = 2 hours');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ h: 5 })), '5 hours ago', '5 hours = 5 hours');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ h: 21 })), '21 hours ago', '21 hours = 21 hours');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ h: 22 })), 'a day ago', '22 hours = a day');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ h: 35 })), 'a day ago', '35 hours = a day');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ h: 36 })), '2 days ago', '36 hours = 2 days');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 1 })), 'a day ago', '1 day = a day');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 5 })), '5 days ago', '5 days = 5 days');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 25 })), '25 days ago', '25 days = 25 days');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 26 })), 'a month ago', '26 days = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 30 })), 'a month ago', '30 days = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 43 })), 'a month ago', '43 days = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 46 })), '2 months ago', '46 days = 2 months');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 74 })), '2 months ago', '75 days = 2 months');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 76 })), '3 months ago', '76 days = 3 months');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ M: 1 })), 'a month ago', '1 month = a month');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ M: 5 })), '5 months ago', '5 months = 5 months');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 315 })), '10 months ago', '315 days = 10 months');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 344 })), 'a year ago', '344 days = a year');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 345 })), 'a year ago', '345 days = a year');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ d: 548 })), '2 years ago', '548 days = 2 years');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ y: 1 })), 'a year ago', '1 year = a year');
+      assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 })), '5 years ago', '5 years = 5 years');
+    });
 
-  it('instance locale used with from', function () {
-    moment.locale('en');
+    it('instance locale used with from', function () {
+      moment.locale('en');
 
-    var a = moment([2012, 5, 6]).locale('es'),
-      b = moment([2012, 5, 7]);
+      var a = moment([2012, 5, 6]).locale('es'),
+        b = moment([2012, 5, 7]);
 
-    assert.equal(a.from(b), 'hace un día', 'preserve locale of first moment');
-    assert.equal(b.from(a), 'in a day', 'do not preserve locale of second moment');
-  });*/
+      assert.equal(a.from(b), 'hace un día', 'preserve locale of first moment');
+      assert.equal(b.from(a), 'in a day', 'do not preserve locale of second moment');
+    });*/
 
   it('instance localeData', function () {
     moment.defineLocale('dude', { week: { dow: 3 } });
@@ -352,29 +362,29 @@ describe('locale', function () {
     moment.defineLocale('dude', null);
   });
 
-/*  it('month name callback function', function () {
-    function fakeReplace(m, format: string) {
-      if (/test/.test(format)) {
-        return 'test';
+  /*  it('month name callback function', function () {
+      function fakeReplace(m, format: string) {
+        if (/test/.test(format)) {
+          return 'test';
+        }
+        if (m.date() === 1) {
+          return 'date';
+        }
+        return 'default';
       }
-      if (m.date() === 1) {
-        return 'date';
-      }
-      return 'default';
-    }
 
-    moment.locale('made-up-2', {
-      months: fakeReplace,
-      monthsShort: fakeReplace,
-      weekdays: fakeReplace,
-      weekdaysShort: fakeReplace,
-      weekdaysMin: fakeReplace
-    });
+      moment.locale('made-up-2', {
+        months: fakeReplace,
+        monthsShort: fakeReplace,
+        weekdays: fakeReplace,
+        weekdaysShort: fakeReplace,
+        weekdaysMin: fakeReplace
+      });
 
-    assert.equal(moment().format('[test] dd ddd dddd MMM MMMM'), 'test test test test test test', 'format month name function should be able to access the format string');
-    assert.equal(moment([2011, 0, 1]).format('dd ddd dddd MMM MMMM'), 'date date date date date', 'format month name function should be able to access the moment object');
-    assert.equal(moment([2011, 0, 2]).format('dd ddd dddd MMM MMMM'), 'default default default default default', 'format month name function should be able to access the moment object');
-  });*/
+      assert.equal(moment().format('[test] dd ddd dddd MMM MMMM'), 'test test test test test test', 'format month name function should be able to access the format string');
+      assert.equal(moment([2011, 0, 1]).format('dd ddd dddd MMM MMMM'), 'date date date date date', 'format month name function should be able to access the moment object');
+      assert.equal(moment([2011, 0, 2]).format('dd ddd dddd MMM MMMM'), 'default default default default default', 'format month name function should be able to access the moment object');
+    });*/
 
   // DEPRECATED
   /*it('changing parts of a locale config', function () {
@@ -422,17 +432,17 @@ describe('locale', function () {
     moment.defineLocale('meridiem-parsing', null);
   });
 
-/*
-  it('invalid date formatting', function () {
-    moment.locale('has-invalid', {
-      invalidDate: 'KHAAAAAAAAAAAN!'
-    });
+  /*
+    it('invalid date formatting', function () {
+      moment.locale('has-invalid', {
+        invalidDate: 'KHAAAAAAAAAAAN!'
+      });
 
-    assert.equal(moment.invalid().format(), 'KHAAAAAAAAAAAN!');
-    assert.equal(moment.invalid().format('YYYY-MM-DD'), 'KHAAAAAAAAAAAN!');
-    moment.defineLocale('has-invalid', null);
-  });
-*/
+      assert.equal(moment.invalid().format(), 'KHAAAAAAAAAAAN!');
+      assert.equal(moment.invalid().format('YYYY-MM-DD'), 'KHAAAAAAAAAAAN!');
+      moment.defineLocale('has-invalid', null);
+    });
+  */
 
   it('return locale name', function () {
     var registered = moment.locale('return-this', {});
@@ -448,20 +458,20 @@ describe('locale', function () {
   });
 
   // DEPRECATED
-/*  it('setting a language on instance returns the original moment for chaining', function () {
-    test.expectedDeprecations('moment().lang()');
-    var mom = moment();
+  /*  it('setting a language on instance returns the original moment for chaining', function () {
+      test.expectedDeprecations('moment().lang()');
+      var mom = moment();
 
-    assert.equal(mom.lang('fr'), mom, 'setting the language (lang) returns the original moment for chaining');
-    assert.equal(mom.locale('it'), mom, 'setting the language (locale) returns the original moment for chaining');
-  });
+      assert.equal(mom.lang('fr'), mom, 'setting the language (lang) returns the original moment for chaining');
+      assert.equal(mom.locale('it'), mom, 'setting the language (locale) returns the original moment for chaining');
+    });
 
-  it('lang(key) changes the language of the instance', function () {
-    test.expectedDeprecations('moment().lang()');
-    var m = moment().month(0);
-    m.lang('fr');
-    assert.equal(m.locale(), 'fr', 'm.lang(key) changes instance locale');
-  });*/
+    it('lang(key) changes the language of the instance', function () {
+      test.expectedDeprecations('moment().lang()');
+      var m = moment().month(0);
+      m.lang('fr');
+      assert.equal(m.locale(), 'fr', 'm.lang(key) changes instance locale');
+    });*/
 
   it('moment#locale(false) resets to global locale', function () {
     var m = moment();

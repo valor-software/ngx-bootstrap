@@ -96,7 +96,7 @@ function loadLocale(name: string): Locale {
     // throw new Error(`Khronos locale error: please load locale "${name}" before using it`);
   }
 
-  return locales[name] || globalLocale;
+  return locales[name];
 }
 
 // This function will load locale and then set the global locale.  If
@@ -108,9 +108,7 @@ export function getSetGlobalLocale(key?: string | string[], values?: LocaleData)
   if (key) {
     if (isUndefined(values)) {
       data = getLocale(key);
-    }
-
-    if (isString(key)) {
+    } else if (isString(key)) {
       data = defineLocale(key, values);
     }
 
