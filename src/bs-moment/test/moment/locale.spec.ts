@@ -3,6 +3,13 @@
 // tslint:disable:variable-name
 import { assert } from 'chai';
 import { moment } from '../chain';
+import { defineLocale } from '../../locale/locales';
+import { fr } from '../../i18n/fr';
+import { enGb } from '../../i18n/en-gb';
+
+defineLocale('fr', fr);
+defineLocale('en-gb', enGb);
+moment.locale('en');
 
 // module('locale', {
 //     setup : function () {

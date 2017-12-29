@@ -39,7 +39,7 @@ export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
 
   // weeks are a special case
   if (unit === 'week') {
-    setLocaleDayOfWeek(_date, 0);
+    setLocaleDayOfWeek(_date, 0, {isUTC});
   }
   if (unit === 'isoWeek') {
     setISODayOfWeek(_date, 1);
@@ -53,46 +53,10 @@ export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
   return _date;
 }
 
-/*export function startOf_old(date: Date, unit: UnitOfTime): Date {
-  const unit = getDateShift(unit);
-
-  return setFullDate(date, unit);
-}*/
-
-export function endOf(date: Date, unit: UnitOfTime): Date {
-  const start = startOf(date, unit);
-  const _step = add(start, 1, unit);
-  const res = subtract(_step, 1, 'milliseconds');
-  // const shift = { [unit]: 1 };
-  // const change = shiftDate(start, shift);
-  // change.setMilliseconds(-1);
+export function endOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
+  const start = startOf(date, unit, isUTC);
+  const _step = add(start, 1, unit, isUTC);
+  const res = subtract(_step, 1, 'milliseconds', isUTC);
 
   return res;
-}
-
-function getDateShift(units: UnitOfTime): TimeUnit {
-  const unit: TimeUnit = {};
-  switch (units) {
-    case 'year':
-      unit.month = 0;
-    /* falls through */
-    case 'month':
-      unit.day = 1;
-    /* falls through */
-    case 'week':
-    case 'day':
-      unit.hour = 0;
-    /* falls through */
-    case 'hours':
-      unit.minute = 0;
-    /* falls through */
-    case 'minutes':
-      unit.seconds = 0;
-    /* falls through */
-    case 'seconds':
-      unit.milliseconds = 0;
-    //   this.milliseconds(0);
-  }
-
-  return unit;
 }

@@ -5,7 +5,7 @@ import { assert } from 'chai';
 import { moment } from '../chain';
 
 
-describe('locale inheritance', () => {
+xdescribe('locale inheritance', () => {
 
 it('calendar', function () {
     moment.defineLocale('base-cal', {

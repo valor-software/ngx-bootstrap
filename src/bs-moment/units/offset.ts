@@ -78,7 +78,7 @@ export function cloneWithOffset(date: Date, config: DateParsingConfig = {}): Dat
   return res;
 }
 
-function getDateOffset(date: Date): number {
+export function getDateOffset(date: Date): number {
   // On Firefox.24 Date#getTimezoneOffset returns a floating point.
   // https://github.com/moment/moment/pull/1871
   return -Math.round(date.getTimezoneOffset() / 15) * 15;
@@ -135,7 +135,7 @@ export function setUTCOffset(date: Date, input: number | string, keepLocalTime?:
   }
   if (offset !== _input) {
     if (!keepLocalTime || config._changeInProgress) {
-      _date = add(_date, _input - offset, 'minutes');
+      _date = add(_date, _input - offset, 'minutes', config._isUTC);
       // addSubtract(this, createDuration(_input - offset, 'm'), 1, false);
     } else if (!config._changeInProgress) {
       config._changeInProgress = true;

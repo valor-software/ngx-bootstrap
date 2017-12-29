@@ -6,19 +6,19 @@ import { setDate, setMonth, setTime } from '../utils/date-setters';
 import { cloneDate } from '../create/clone';
 import { UnitOfTime } from '../types';
 
-export function add(date: Date, val: number, period: UnitOfTime): Date {
+export function add(date: Date, val: number, period: UnitOfTime, isUTC?: boolean): Date {
   const dur = createDuration(val, period);
 
-  return addSubtract(date, dur, 1);
+  return addSubtract(date, dur, 1, isUTC);
 }
 
-export function subtract(date: Date, val: number, period: UnitOfTime): Date {
+export function subtract(date: Date, val: number, period: UnitOfTime, isUTC?: boolean): Date {
   const dur = createDuration(val, period);
 
-  return addSubtract(date, dur, -1);
+  return addSubtract(date, dur, -1, isUTC);
 }
 
-export function addSubtract(date: Date, duration: Duration, isAdding: number, updateOffset?: boolean): Date {
+export function addSubtract(date: Date, duration: Duration, isAdding: number, isUTC?: boolean): Date {
   const milliseconds = duration._milliseconds;
   const days = absRound(duration._days);
   const months = absRound(duration._months);
@@ -27,10 +27,10 @@ export function addSubtract(date: Date, duration: Duration, isAdding: number, up
   // const _updateOffset = updateOffset == null ? true : updateOffset;
 
   if (months) {
-    setMonth(date, getMonth(date) + months * isAdding);
+    setMonth(date, getMonth(date, isUTC) + months * isAdding, isUTC);
   }
   if (days) {
-    setDate(date, getDate(date) + days * isAdding);
+    setDate(date, getDate(date, isUTC) + days * isAdding, isUTC);
   }
   if (milliseconds) {
     setTime(date, getTime(date) + milliseconds * isAdding);

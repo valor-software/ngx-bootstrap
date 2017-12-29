@@ -126,6 +126,7 @@ export function defineLocale(name: string, config?: LocaleData): Locale {
   if (config === null) {
     // useful for testing
     delete locales[name];
+    globalLocale = getLocale('en');
 
     return null;
   }

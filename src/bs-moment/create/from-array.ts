@@ -6,6 +6,7 @@ import { getParsingFlags } from './parsing-flags';
 import { createUTCDate } from '../utils';
 import { createDate } from '../utils/date-setters';
 import { dayOfYearFromWeeks, weekOfYear, weeksInYear } from '../units/week-calendar-utils';
+import { defaults } from '../utils/defaults';
 
 function currentDateArray(config: DateParsingConfig): DateArray {
   const nowValue = new Date();
@@ -42,13 +43,13 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
 
   // if the day of the year is set, figure out what it is
   if (config._dayOfYear != null) {
-    yearToUse = config._a[YEAR] || currentDate[YEAR];
+    yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
 
     if (config._dayOfYear > daysInYear(yearToUse) || config._dayOfYear === 0) {
       getParsingFlags(config)._overflowDayOfYear = true;
     }
 
-    date = new Date(yearToUse, 0, config._dayOfYear);
+    date = new Date(Date.UTC(yearToUse, 0, config._dayOfYear));
     config._a[MONTH] = date.getUTCMonth();
     config._a[DATE] = date.getUTCDate();
   }
@@ -109,9 +110,9 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
     // how we interpret now (local, utc, fixed offset). So create
     // a now version of current config (take local/utc/offset flags, and
     // create now).
-    weekYear = w.GG || config._a[YEAR] || weekOfYear(new Date(), 1, 4).year;
-    week = w.W || 1;
-    weekday = w.E || 1;
+    weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(new Date(), 1, 4).year);
+    week = defaults(w.W, 1);
+    weekday = defaults(w.E, 1);
     if (weekday < 1 || weekday > 7) {
       weekdayOverflow = true;
     }
@@ -121,10 +122,10 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
 
     const curWeek = weekOfYear(new Date(), dow, doy);
 
-    weekYear = w.gg || config._a[YEAR] || curWeek.year;
+    weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
 
     // Default to current week.
-    week = w.w || curWeek.week;
+    week = defaults(w.w, curWeek.week);
 
     if (w.d != null) {
       // weekday -- low day numbers are considered next week

@@ -30,7 +30,7 @@ var symbolMap = {
   };
 
 describe('preparse and postformat', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     moment.locale('symbol', {
       preparse: function (str: string) {
         return str.replace(/[!@#$%\^&*()]/g, function (match) {
@@ -46,7 +46,7 @@ describe('preparse and postformat', () => {
     });
   });
 
-  afterAll(() => {
+  afterEach(() => {
     moment.defineLocale('symbol', null);
   });
 

@@ -9,8 +9,8 @@ describe('to type', () => {
 
   it('toObject', function () {
     var expected = {
-      years: 2010,
-      months: 3,
+      year: 2010,
+      month: 3,
       date: 5,
       hours: 15,
       minutes: 10,

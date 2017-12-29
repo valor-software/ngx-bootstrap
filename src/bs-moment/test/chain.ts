@@ -19,6 +19,7 @@ import { formatDate } from '../format';
 import { ISO_8601, RFC_2822 } from '../create/from-string-and-format';
 import { Locale, LocaleData } from '../locale/locale.class';
 import {
+  getDateOffset,
   getUTCOffset, hasAlignedHourOffset, isDaylightSavingTime, setOffsetToParsedOffset,
   setUTCOffset
 } from '../units/offset';
@@ -113,16 +114,15 @@ export interface MomentFn {
 }
 
 function _moment(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean, isUTC?: boolean): Khronos {
-  const _input = input instanceof Khronos ? input.toDate() : input;
-  let _offset;
   if (input instanceof Khronos) {
-    _offset = input._offset;
-  }
-  if (isBoolean(localeKey)) {
-    return new Khronos(_input, format, null, localeKey, isUTC, _offset);
+    return input.clone();
   }
 
-  return new Khronos(_input, format, localeKey, strict, isUTC, _offset);
+  if (isBoolean(localeKey)) {
+    return new Khronos(input, format, null, localeKey, isUTC);
+  }
+
+  return new Khronos(input, format, localeKey, strict, isUTC);
 }
 
 moment.utc = (input?: DateInput | Khronos, format?: string, localeKey?: string | boolean, strict?: boolean): Khronos => {
@@ -410,7 +410,9 @@ export class Khronos {
     const localeKey = this._locale && this._locale._abbr || 'en';
 
     // return new Khronos(cloneDate(this._date), this._format, localeKey, this._isStrict, this._isUTC);
-    return new Khronos(new Date(this.valueOf()),
+    // fails if isUTC and offset
+    // return new Khronos(new Date(this.valueOf()),
+    return new Khronos(this._date,
       this._format,
       localeKey,
       this._isStrict,
@@ -427,13 +429,13 @@ export class Khronos {
 
   endOf(period: MomentUnitOfTime): Khronos {
     const _per = mapUnitOfTime(period);
-    this._date = endOf(this._date, _per);
+    this._date = endOf(this._date, _per, this._isUTC);
 
     return this;
   }
 
   format(format?: string): string {
-    return formatDate(this._date, format, void 0, this._isUTC);
+    return formatDate(this._date, format, this._locale && this._locale._abbr, this._isUTC);
   }
 
   // todo: from
@@ -581,13 +583,13 @@ export class Khronos {
   }
 
   toDate(): Date {
-    return this._date;
+    return new Date(this.valueOf());
   }
 
   toObject(): {[key in MomentUnitOfTime]?: number} {
     return {
-      years: getFullYear(this._date, this._isUTC),
-      months: getMonth(this._date, this._isUTC),
+      // years: getFullYear(this._date, this._isUTC),
+      // months: getMonth(this._date, this._isUTC),
 
       year: getFullYear(this._date, this._isUTC),
       month: getMonth(this._date, this._isUTC),
@@ -675,20 +677,25 @@ export class Khronos {
     return this;
   }
 
-  utc(val?: boolean): Khronos {
-    this._isUTC = isBoolean(val) ? val : true;
-
-    return this;
+  utc(keepLocalTime?: boolean): Khronos {
+    return this.utcOffset(0, keepLocalTime);
   }
 
-  local(val?: boolean): Khronos {
-    this._isUTC = isBoolean(val) ? val : false;
+  local(keepLocalTime?: boolean): Khronos {
+    if (this._isUTC) {
+      this.utcOffset(0, keepLocalTime);
+      this._isUTC = false;
+
+      if (keepLocalTime) {
+        this.subtract(getDateOffset(this._date), 'm');
+      }
+    }
 
     return this;
   }
 
   parseZone(input?: string): Khronos {
-    this._date = setOffsetToParsedOffset(this._date, input, {});
+    this._date = setOffsetToParsedOffset(this._date, input, this._toConfig());
 
     return this;
   }
