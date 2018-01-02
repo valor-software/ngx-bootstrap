@@ -44,7 +44,6 @@ import { DateParsingConfig } from '../create/parsing.types';
 import { calendar, CalendarSpec } from '../moment/calendar';
 import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales';
 import { max, min } from '../moment/min-max';
-import { weeksInYear } from '../units/week-calendar-utils';
 
 export type DateInput = string | number | Date | string[] | DateArray | MomentInputObject;
 
@@ -115,7 +114,9 @@ export interface MomentFn {
 
 function _moment(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean, isUTC?: boolean): Khronos {
   if (input instanceof Khronos) {
-    return input.clone();
+    const _date = input.clone();
+
+    return isUTC ? _date.utc() : _date;
   }
 
   if (isBoolean(localeKey)) {
@@ -134,6 +135,7 @@ moment.parseZone = (input?: DateInput | Khronos, format?: string, localeKey?: st
 };
 
 moment.locale = getSetGlobalLocale;
+moment.localeData = getLocale;
 
 // moment.utc = createUTC;
 moment.unix = (inp: number) => new Khronos(inp * 1000);
@@ -336,6 +338,13 @@ export class Khronos {
               strict?: boolean,
               isUTC?: boolean,
               offset?: number) {
+    // parse invalid input
+    if (input === '' || input === null) {
+      this._date = new Date(NaN);
+
+      return this;
+    }
+
     this._isUTC = isUTC;
     if (this._isUTC) {
       this._offset = 0;
@@ -349,7 +358,7 @@ export class Khronos {
       this._locale = getLocale(localeKey);
     }
 
-    if (!input && !format) {
+    if (!input && input !== 0 && !format) {
       this._date = new Date();
     } else if (isDate(input)) {
       this._date = cloneDate(input);
@@ -435,7 +444,7 @@ export class Khronos {
   }
 
   format(format?: string): string {
-    return formatDate(this._date, format, this._locale && this._locale._abbr, this._isUTC);
+    return formatDate(this._date, format, this._locale && this._locale._abbr, this._isUTC, this._offset);
   }
 
   // todo: from

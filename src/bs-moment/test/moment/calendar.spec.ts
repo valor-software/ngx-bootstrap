@@ -4,7 +4,7 @@
 import { assert } from 'chai';
 import { moment } from '../chain';
 
-describe('calendar', () => {
+xdescribe('calendar', () => {
 
 it('passing a function', function () {
     var a  = moment().hours(13).minutes(0).seconds(0);

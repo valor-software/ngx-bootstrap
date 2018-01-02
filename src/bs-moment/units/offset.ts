@@ -13,8 +13,8 @@ import { cloneDate } from '../create/clone';
 import { setMonth } from '../utils/date-setters';
 
 function addOffsetFormatToken(token: string, separator: string): void {
-  addFormatToken(token, null, null, function (date: Date): string {
-    let offset = getUTCOffset(date);
+  addFormatToken(token, null, null, function (date: Date, config): string {
+    let offset = getUTCOffset(date, {_isUTC: config.isUTC, _offset: config.offset});
     let sign = '+';
     if (offset < 0) {
       offset = -offset;

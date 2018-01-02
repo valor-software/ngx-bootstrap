@@ -24,7 +24,7 @@ export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
     case 'week':
     case 'isoWeek':
     case 'day':
-    // case 'date':
+    case 'date':
       setHours(_date, 0, isUTC);
     /* falls through */
     case 'hours':
@@ -54,8 +54,14 @@ export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
 }
 
 export function endOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
-  const start = startOf(date, unit, isUTC);
-  const _step = add(start, 1, unit, isUTC);
+  let _unit = unit;
+  // 'date' is an alias for 'day', so it should be considered as such.
+  if (_unit === 'date') {
+    _unit = 'day';
+  }
+
+  const start = startOf(date, _unit, isUTC);
+  const _step = add(start, 1, _unit === 'isoWeek' ? 'week' : _unit, isUTC);
   const res = subtract(_step, 1, 'milliseconds', isUTC);
 
   return res;

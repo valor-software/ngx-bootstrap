@@ -6,7 +6,7 @@ import { addWeekParseToken } from '../parse/token';
 import { toInt } from '../utils/type-checks';
 import { parseTwoDigitYear } from './year';
 import { dayOfYearFromWeeks, weekOfYear, weeksInYear } from './week-calendar-utils';
-import { createUTCDate } from '../utils';
+import { createUTCDate } from '../create/date-from-array';
 import { getISOWeek, getWeek } from './week';
 import { getISODayOfWeek, getLocaleDayOfWeek } from './day-of-week';
 import { getLocale } from '../locale/locales';
@@ -14,7 +14,6 @@ import { setDate, setFullYear, setMonth } from '../utils/date-setters';
 import { getDate, getFullYear, getMonth } from '../utils/date-getters';
 import { Locale } from '../locale/locale.class';
 import { DateFormatterFn, DateFormatterOptions, WeekParsing } from '../types';
-import { flagDaysCalendar } from '../../datepicker/engine/flag-days-calendar';
 
 // FORMATTING
 

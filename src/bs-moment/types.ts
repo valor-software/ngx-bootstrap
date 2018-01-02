@@ -36,6 +36,7 @@ export interface DateFormatterOptions {
   format: string;
   locale: Locale;
   isUTC: boolean;
+  offset: number;
 }
 
 // export type DateFormatterFn = (date: Date, format?: string, locale?: Locale) => string;

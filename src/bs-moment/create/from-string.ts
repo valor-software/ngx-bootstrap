@@ -4,7 +4,7 @@ import { DateArray } from '../types';
 import { DateParsingConfig } from './parsing.types';
 import { isString } from '../utils/type-checks';
 import { configFromStringAndFormat } from './from-string-and-format';
-import { createUTCDate } from '../utils';
+import { createUTCDate } from './date-from-array';
 import { createInvalid, markInvalid } from './valid';
 import { getParsingFlags } from './parsing-flags';
 

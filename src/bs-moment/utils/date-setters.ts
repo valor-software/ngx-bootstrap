@@ -3,6 +3,7 @@ import { daysInMonth } from '../units/month';
 import { isNumber } from './type-checks';
 import { getDate, getFullYear, getMonth } from './date-getters';
 import { isLeapYear } from '../units/year';
+import { createDate } from '../create/date-from-array';
 
 const defaultTimeUnit: TimeUnit = {
   year: 0,
@@ -12,26 +13,6 @@ const defaultTimeUnit: TimeUnit = {
   minute: 0,
   seconds: 0
 };
-
-export function createDate(year?: number,
-                           month = 0,
-                           day = 1,
-                           hour = 0,
-                           minute = 0,
-                           seconds = 0,
-                           milliseconds = 0): Date {
-  const _date = new Date();
-
-  return new Date(
-    year || _date.getFullYear(),
-    month,
-    day,
-    hour,
-    minute,
-    seconds,
-    milliseconds
-  );
-}
 
 export function shiftDate(date: Date, unit: TimeUnit): Date {
   const _unit = Object.assign({}, defaultTimeUnit, unit);

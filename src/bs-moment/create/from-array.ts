@@ -3,8 +3,8 @@ import { DateArray } from '../types';
 import { DATE, HOUR, MILLISECOND, MINUTE, MONTH, SECOND, YEAR } from '../units/constants';
 import { daysInYear } from '../units/year';
 import { getParsingFlags } from './parsing-flags';
-import { createUTCDate } from '../utils';
-import { createDate } from '../utils/date-setters';
+import { createUTCDate } from './date-from-array';
+import { createDate } from './date-from-array';
 import { dayOfYearFromWeeks, weekOfYear, weeksInYear } from '../units/week-calendar-utils';
 import { defaults } from '../utils/defaults';
 

@@ -371,13 +371,13 @@ export class Locale {
   weekdaysMin(): string[];
   weekdaysMin(date: Date, isUTC?: boolean): string;
   weekdaysMin(date?: Date, isUTC?: boolean): string | string[] {
-    return date ? this._weekdaysShort[getDay(date, isUTC)] : this._weekdaysShort;
+    return date ? this._weekdaysMin[getDay(date, isUTC)] : this._weekdaysMin;
   }
 
   weekdaysShort(): string[];
   weekdaysShort(date: Date, isUTC?: boolean): string;
   weekdaysShort(date?: Date, isUTC?: boolean): string | string[] {
-    return date ? this._weekdaysMin[getDay(date, isUTC)] : this._weekdaysMin;
+    return date ? this._weekdaysShort[getDay(date, isUTC)] : this._weekdaysShort;
   }
 
 

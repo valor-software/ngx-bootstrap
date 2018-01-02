@@ -4,7 +4,7 @@
 import { assert } from 'chai';
 import { moment } from '../chain';
 
-describe('is valid', () => {
+xdescribe('is valid', () => {
 
   it('array bad month', function () {
     assert.equal(moment([2010, -1]).isValid(), false, 'month -1 invalid');

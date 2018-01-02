@@ -31,13 +31,13 @@ export function configFromStringAndFormat(config: DateParsingConfig): DateParsin
   config._a = [];
   getParsingFlags(config).empty = true;
 
-  if (!isString(config._i) || isArray(config._f)) {
+  if (isArray(config._f) || (!config._i && config._i !== 0)) {
     return config;
   }
 
   // This array is used to make a Date, either with `new Date` or `Date.UTC`
 
-  let input = config._i;
+  let input = config._i.toString();
   let totalParsedInputLength = 0;
   const inputLength = input.length;
   const tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];

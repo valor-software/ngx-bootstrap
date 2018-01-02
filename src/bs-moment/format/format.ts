@@ -4,7 +4,7 @@ import { isFunction } from '../utils/type-checks';
 import { DateFormatterOptions, DateFormatterFn } from '../types';
 
 export let formatFunctions: {
-  [key: string]: (date: Date, locale: Locale, isUTC?: boolean) => string;
+  [key: string]: (date: Date, locale: Locale, isUTC?: boolean, offset?: number) => string;
 } = {};
 export let formatTokenFunctions: { [key: string]: DateFormatterFn } = {};
 
@@ -36,7 +36,7 @@ export function addFormatToken(token: string,
   }
 }
 
-export function makeFormatFunction(format: string): (date: Date, locale: Locale, isUTC?: boolean) => string {
+export function makeFormatFunction(format: string): (date: Date, locale: Locale, isUTC?: boolean, offset?: number) => string {
   const array: string[] = format.match(formattingTokens);
   const length = array.length;
 
@@ -48,11 +48,11 @@ export function makeFormatFunction(format: string): (date: Date, locale: Locale,
       : removeFormattingTokens(array[i]);
   }
 
-  return function (date: Date, locale: Locale, isUTC: boolean): string {
+  return function (date: Date, locale: Locale, isUTC: boolean, offset = 0): string {
     let output = '';
     for (let j = 0; j < length; j++) {
       output += isFunction(formatArr[j])
-        ? (formatArr[j] as DateFormatterFn).call(null, date, {format, locale, isUTC})
+        ? (formatArr[j] as DateFormatterFn).call(null, date, {format, locale, isUTC, offset})
         : formatArr[j];
     }
 

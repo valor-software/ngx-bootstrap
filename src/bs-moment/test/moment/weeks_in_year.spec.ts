@@ -3,6 +3,7 @@
 // tslint:disable:variable-name
 import { assert } from 'chai';
 import { moment } from '../chain';
+import { defineLocale } from '../../locale/locales';
 
 describe('weeks in year', () => {
 
@@ -36,6 +37,8 @@ describe('weeks in year', () => {
     assert.equal(moment([2013]).weeksInYear(), 52, '2013 has 52 weeks');
     assert.equal(moment([2014]).weeksInYear(), 52, '2014 has 52 weeks');
     assert.equal(moment([2015]).weeksInYear(), 53, '2015 has 53 weeks');
+
+    defineLocale('1/4', null);
   });
 
   it('weeksInYear doy/dow = 6/12', function () {
@@ -53,6 +56,8 @@ describe('weeks in year', () => {
     assert.equal(moment([2013]).weeksInYear(), 52, '2013 has 52 weeks');
     assert.equal(moment([2014]).weeksInYear(), 52, '2014 has 52 weeks');
     assert.equal(moment([2015]).weeksInYear(), 52, '2015 has 53 weeks');
+
+    defineLocale('6/12', null);
   });
 
   it('weeksInYear doy/dow = 1/7', function () {
@@ -70,6 +75,8 @@ describe('weeks in year', () => {
     assert.equal(moment([2013]).weeksInYear(), 52, '2013 has 52 weeks');
     assert.equal(moment([2014]).weeksInYear(), 52, '2014 has 52 weeks');
     assert.equal(moment([2015]).weeksInYear(), 52, '2015 has 53 weeks');
+
+    defineLocale('1/7', null);
   });
 
   it('weeksInYear doy/dow = 0/6', function () {
@@ -87,5 +94,7 @@ describe('weeks in year', () => {
     assert.equal(moment([2013]).weeksInYear(), 52, '2013 has 52 weeks');
     assert.equal(moment([2014]).weeksInYear(), 52, '2014 has 52 weeks');
     assert.equal(moment([2015]).weeksInYear(), 52, '2015 has 53 weeks');
+
+    defineLocale('0/6', null);
   });
 });

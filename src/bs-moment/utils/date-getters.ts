@@ -1,4 +1,4 @@
-import { createDate } from './date-setters';
+import { createDate } from '../create/date-from-array';
 
 export function getHours(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCHours() : date.getHours();

@@ -5,7 +5,7 @@
  * @param {number} doy - start-of-year
  * @returns {number}
  */
-import { createUTCDate } from '../utils';
+import { createUTCDate } from '../create/date-from-array';
 import { daysInYear } from './year';
 import { getDayOfYear } from './day-of-year';
 import { getFullYear } from '../utils/date-getters';

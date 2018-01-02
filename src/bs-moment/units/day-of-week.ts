@@ -11,7 +11,6 @@ import { DateFormatterOptions, WeekParsing } from '../types';
 import { DateParsingConfig } from '../create/parsing.types';
 import { add } from '../moment/add-subtract';
 import { getLocale } from '../locale/locales';
-import { setDay } from '../utils/date-setters';
 
 // FORMATTING
 
@@ -22,12 +21,12 @@ addFormatToken('d', null, 'do',
 
 addFormatToken('dd', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-    return opts.locale.weekdaysShort(date, opts.isUTC);
+    return opts.locale.weekdaysMin(date, opts.isUTC);
   });
 
 addFormatToken('ddd', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-    return opts.locale.weekdaysMin(date, opts.isUTC);
+    return opts.locale.weekdaysShort(date, opts.isUTC);
   });
 
 addFormatToken('dddd', null, null,
@@ -37,7 +36,8 @@ addFormatToken('dddd', null, null,
 
 addFormatToken('e', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-    return getDay(date, opts.isUTC).toString(10);
+    return getLocaleDayOfWeek(date, opts.locale, opts.isUTC).toString(10);
+    // return getDay(date, opts.isUTC).toString(10);
   });
 addFormatToken('E', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
@@ -60,6 +60,10 @@ addUnitPriority('isoWeekday', 11);
 addRegexToken('d', match1to2);
 addRegexToken('e', match1to2);
 addRegexToken('E', match1to2);
+
+addRegexToken('dd', function (isStrict: boolean, locale: Locale): RegExp {
+  return locale.weekdaysMinRegex(isStrict);
+});
 
 addRegexToken('ddd', function (isStrict: boolean, locale: Locale): RegExp {
   return locale.weekdaysShortRegex(isStrict);
@@ -157,7 +161,7 @@ export function getISODayOfWeek(date: Date, isUTC?: boolean): number {
   return getDay(date, isUTC) || 7;
 }
 
-export function setISODayOfWeek(date: Date, input: number|string, opts: { locale?: Locale } = {}): Date {
+export function setISODayOfWeek(date: Date, input: number | string, opts: { locale?: Locale } = {}): Date {
   // behaves the same as moment#day except
   // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
   // as a setter, sunday should belong to the previous week.

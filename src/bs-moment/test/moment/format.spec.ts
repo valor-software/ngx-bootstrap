@@ -157,7 +157,7 @@ describe('format', () => {
   });
 
 // See https://nodejs.org/dist/latest/docs/api/util.html#util_custom_inspect_function_on_objects
-  it('inspect', function () {
+  xit('inspect', function () {
     function roundtrip(m) {
       /*jshint evil:true */
       return (new Function('moment', 'return ' + m.inspect()))(moment);

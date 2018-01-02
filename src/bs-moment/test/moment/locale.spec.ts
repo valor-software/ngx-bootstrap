@@ -120,7 +120,7 @@ describe('locale', function () {
     assert.equal(moment([2012, 5, 6]).format('MMM'), 'Jun', 'But not all of them');
   });
 
-  it('library ensure inheritance LT L LL LLL LLLL', function () {
+  xit('library ensure inheritance LT L LL LLL LLLL', function () {
     var locale = 'test-inherit-lt';
 
     moment.defineLocale(locale, {

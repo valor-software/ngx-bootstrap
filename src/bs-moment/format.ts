@@ -10,7 +10,7 @@ import { Locale } from './locale/locale.class';
 import { getLocale } from './locale/locales';
 import { isDateValid } from './utils/type-checks';
 
-export function formatDate(date: Date, format: string, locale?: string, isUTC?: boolean): string {
+export function formatDate(date: Date, format: string, locale?: string, isUTC?: boolean, offset = 0): string {
   const _locale = getLocale(locale || 'en');
   if (!_locale) {
     throw new Error(
@@ -20,7 +20,7 @@ export function formatDate(date: Date, format: string, locale?: string, isUTC?: 
 
   const _format = format || (isUTC ?  'YYYY-MM-DDTHH:mm:ss[Z]' : 'YYYY-MM-DDTHH:mm:ssZ');
 
-  const output = formatMoment(date, _format, _locale, isUTC);
+  const output = formatMoment(date, _format, _locale, isUTC, offset);
 
   if (!output) {
     return output;
@@ -30,7 +30,7 @@ export function formatDate(date: Date, format: string, locale?: string, isUTC?: 
 }
 
 // format date using native date object
-export function formatMoment(date: Date, _format: string, locale: Locale, isUTC?: boolean): string {
+export function formatMoment(date: Date, _format: string, locale: Locale, isUTC?: boolean, offset = 0): string {
   if (!isDateValid(date)) {
     return locale.invalidDate;
   }
@@ -38,7 +38,7 @@ export function formatMoment(date: Date, _format: string, locale: Locale, isUTC?
   const format = expandFormat(_format, locale);
   formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
 
-  return formatFunctions[format](date, locale, isUTC);
+  return formatFunctions[format](date, locale, isUTC, offset);
 }
 
 export function expandFormat(_format: string, locale: Locale): string {

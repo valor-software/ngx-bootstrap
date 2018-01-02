@@ -11,8 +11,11 @@ function pickBy(fn: Function, dates: Date[] | Date[][]): Date {
   const _firstArg = dates[0];
   if (isArray<Date>(_firstArg) && dates.length === 1) {
     _dates = _firstArg;
+  } else if (isArray<Date>(dates)) {
+    _dates = dates;
   }
-  if (!_dates.length) {
+
+  if (!_dates || !_dates.length) {
     return new Date();
   }
   let res = _dates[0];
