@@ -44,6 +44,7 @@ import { DateParsingConfig } from '../create/parsing.types';
 import { calendar, CalendarSpec } from '../moment/calendar';
 import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales';
 import { max, min } from '../moment/min-max';
+import { Duration } from '../duration/constructor';
 
 export type DateInput = string | number | Date | string[] | DateArray | MomentInputObject;
 
@@ -62,6 +63,8 @@ export interface MomentFn {
   unix(num: number): Khronos;
 
   locale(key?: string | string[], values?: LocaleData): string;
+
+  duration(inp?: Duration | DateInput | Khronos, unit?: MomentUnitOfTime): Duration;
 
   defineLocale(name: string, config?: LocaleData): Locale;
 
@@ -107,7 +110,7 @@ export interface MomentFn {
 
   max(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;
 
-  localeData(): Locale;
+  localeData(key?: string | string[]): Locale;
 
   updateLocale(language: string, localeSpec?: LocaleData): Locale;
 }
@@ -144,6 +147,12 @@ moment.RFC_2822 = RFC_2822;
 moment.defineLocale = defineLocale;
 moment.parseTwoDigitYear = parseTwoDigitYear;
 moment.isDate = isDate;
+
+const _todoImplement = function () {
+  throw new Error(`TODO: Implement`);
+};
+
+moment.duration = _todoImplement;
 
 moment.min = function _min(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos {
   const _firstArg = dates[0];
@@ -328,7 +337,7 @@ export class Khronos {
   _date: Date = new Date();
   _isUTC: boolean;
   _isStrict: boolean;
-  _locale: Locale = getLocale();
+  _locale: Locale;
   _format: string | string[];
   _offset: number;
 
@@ -354,9 +363,7 @@ export class Khronos {
     }
     this._isStrict = strict;
     this._format = format;
-    if (localeKey) {
-      this._locale = getLocale(localeKey);
-    }
+    this._locale = getLocale(localeKey);
 
     if (!input && input !== 0 && !format) {
       this._date = new Date();
@@ -447,7 +454,22 @@ export class Khronos {
     return formatDate(this._date, format, this._locale && this._locale._abbr, this._isUTC, this._offset);
   }
 
-  // todo: from
+  // todo: implement
+  from(inp: DateInput | Khronos, suffix?: boolean): string {
+    throw new Error(`TODO: Implement`);
+  }
+
+  to(inp: DateInput | Khronos, suffix?: boolean): string{
+    throw new Error(`TODO: Implement`);
+  }
+
+  fromNow(withoutSuffix?: boolean): string{
+    throw new Error(`TODO: Implement`);
+  }
+
+  toNow(withoutPrefix?: boolean): string{
+    throw new Error(`TODO: Implement`);
+  }
 
   subtract(val: number | string | MomentInputObject, period?: UnitOfTime | MomentUnitOfTime): Khronos {
     if (isString(val)) {

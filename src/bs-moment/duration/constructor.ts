@@ -54,6 +54,10 @@ export class Duration {
     // this._bubble();
     return bubble(this);
   }
+
+  humanize(withSuffix?: boolean): string {
+    throw new Error(`TODO: implement`);
+  }
 }
 
 export function isDuration(obj: any): obj is Duration {

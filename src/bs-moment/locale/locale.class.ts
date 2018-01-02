@@ -61,7 +61,7 @@ export interface LocaleData {
   weekdaysParseExact?: boolean;
 
   longDateFormat?: { [index: string]: string };
-  calendar?: { [key: string]: string };
+  calendar?: { [key: string]: string | ((dayOfWeek: number, isNextWeek: boolean) => string) };
   relativeTime?: { [key: string]: string | PluralizeDateFn };
   dayOfMonthOrdinalParse?: RegExp;
   ordinal?: string | OrdinalDateFn;
@@ -103,7 +103,7 @@ export class Locale {
   _ordinalParse: RegExp;
   _meridiemParse: RegExp;
 
-  private _calendar: {[key: string]: string};
+  private _calendar: { [key: string]: string };
   private _relativeTime: { future: string; past: string };
   private _months: LocaleOptions;
   private _monthsShort: LocaleOptions;
