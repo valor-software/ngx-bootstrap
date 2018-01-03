@@ -56,15 +56,13 @@ describe('preparse and postformat', () => {
     assert.equal(moment.unix(1346025600).utc().format('YYYY-MM-DD'), '@)!@-)*-@&', 'postformat');
   });
 
-  /*
-  it('transform from', function () {
+  xit('transform from', function () {
     var start = moment([2007, 1, 28]);
 
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '@ minutes', 'postformat should work on moment.fn.from');
     assert.equal(moment().add(6, 'd').fromNow(true), '^ days', 'postformat should work on moment.fn.fromNow');
     assert.equal(moment.duration(10, 'h').humanize(), '!) hours', 'postformat should work on moment.duration.fn.humanize');
   });
-  */
 
   xit('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);

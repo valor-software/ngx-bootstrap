@@ -479,19 +479,16 @@ describe('create', () => {
     assert.notEqual(momentA.month(), momentB.month(), 'Calling clone() on a moment will create a clone');
   });
 
-  /*
-    it('cloning carrying over utc mode', function () {
-      assert.equal(moment().local().clone()._isUTC, false, 'An explicit cloned local moment should have _isUTC == false');
-      assert.equal(moment().utc().clone()._isUTC, true, 'An cloned utc moment should have _isUTC == true');
-      assert.equal(moment().clone()._isUTC, false, 'An explicit cloned local moment should have _isUTC == false');
-      assert.equal(moment.utc().clone()._isUTC, true, 'An explicit cloned utc moment should have _isUTC == true');
-      assert.equal(moment(moment().local())._isUTC, false, 'An implicit cloned local moment should have _isUTC == false');
-      assert.equal(moment(moment().utc())._isUTC, true, 'An implicit cloned utc moment should have _isUTC == true');
-      assert.equal(moment(moment())._isUTC, false, 'An implicit cloned local moment should have _isUTC == false');
-      assert.equal(moment(moment.utc())._isUTC, true, 'An implicit cloned utc moment should have _isUTC == true');
-    });
-  */
-/*
+  it('cloning carrying over utc mode', function () {
+    assert.equal(moment().local().clone()._isUTC, false, 'An explicit cloned local moment should have _isUTC == false');
+    assert.equal(moment().utc().clone()._isUTC, true, 'An cloned utc moment should have _isUTC == true');
+    assert.equal(moment().clone()._isUTC, false, 'An explicit cloned local moment should have _isUTC == false');
+    assert.equal(moment.utc().clone()._isUTC, true, 'An explicit cloned utc moment should have _isUTC == true');
+    assert.equal(moment(moment().local())._isUTC, false, 'An implicit cloned local moment should have _isUTC == false');
+    assert.equal(moment(moment().utc())._isUTC, true, 'An implicit cloned utc moment should have _isUTC == true');
+    assert.equal(moment(moment())._isUTC, false, 'An implicit cloned local moment should have _isUTC == false');
+    assert.equal(moment(moment.utc())._isUTC, true, 'An implicit cloned utc moment should have _isUTC == true');
+  });
 
   it('parsing RFC 2822', function () {
     const testCases = {
@@ -522,12 +519,11 @@ describe('create', () => {
       parseResult = moment(inp, moment.RFC_2822, true).parseZone();
       expResult = moment.utc(tokens.slice(0, 6)).utcOffset(tokens[6], true);
       assert.ok(parseResult.isValid(), inp);
-      assert.ok(parseResult.parsingFlags().rfc2822, inp + ' - rfc2822 parsingFlag');
+      // assert.ok(parseResult.parsingFlags().rfc2822, inp + ' - rfc2822 parsingFlag');
       assert.equal(parseResult.utcOffset(), expResult.utcOffset(), inp + ' - zone');
       assert.equal(parseResult.valueOf(), expResult.valueOf(), inp + ' - correctness');
     }
   });
-*/
 
 
   it('non RFC 2822 strings', function () {
@@ -569,7 +565,7 @@ describe('create', () => {
     }
   });
 
-  /*it('non RFC 2822 strings in a different locale', function () {
+  it('non RFC 2822 strings in a different locale', function () {
     const testCases = {
       'RFC2822 datetime with all options but invalid day delimiter': 'Tue. 01 Nov 2016 01:23:45 GMT',
       'RFC2822 datetime with mismatching Day (week v date)': 'Mon, 01 Nov 2016 01:23:45 GMT'
@@ -577,17 +573,17 @@ describe('create', () => {
     let testCase;
 
     try {
-      moment.locale('ru');
+      moment.locale('ru', ru);
       for (testCase in testCases) {
         const testResult = moment(testCases[testCase], moment.RFC_2822, true);
         assert.ok(!testResult.isValid(), testResult.toString());
-        assert.ok(!testResult.parsingFlags().rfc2822, testResult + ' - rfc2822 parsingFlag');
+        // assert.ok(!testResult.parsingFlags().rfc2822, testResult + ' - rfc2822 parsingFlag');
       }
     }
     finally {
       moment.locale('en');
     }
-  });*/
+  });
 
   it('parsing iso', function () {
     let offset = moment([2011, 9, 8]).utcOffset(),

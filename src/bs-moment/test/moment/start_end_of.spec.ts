@@ -312,89 +312,91 @@ describe('start and end of units', () => {
     assert.equal(m.milliseconds(), 999, 'set the seconds');
   });
 
-  /*it('startOf across DST +1', function () {
-      var oldUpdateOffset = moment.updateOffset,
-          // Based on a real story somewhere in America/Los_Angeles
-          dstAt = moment('2014-03-09T02:00:00-08:00').parseZone(),
-          m;
+  // todo: use sinon
+  xit('startOf across DST +1', function () {
+    var oldUpdateOffset = moment.updateOffset,
+      // Based on a real story somewhere in America/Los_Angeles
+      dstAt = moment('2014-03-09T02:00:00-08:00').parseZone(),
+      m;
 
-      moment.updateOffset = function (mom, keepTime) {
-          if (mom.isBefore(dstAt)) {
-              mom.utcOffset(-8, keepTime);
-          } else {
-              mom.utcOffset(-7, keepTime);
-          }
-      };
+    moment.updateOffset = function (mom, keepTime) {
+      if (mom.isBefore(dstAt)) {
+        mom.utcOffset(-8, keepTime);
+      } else {
+        mom.utcOffset(-7, keepTime);
+      }
+    };
 
-      m = moment('2014-03-15T00:00:00-07:00').parseZone();
-      m.startOf('y');
-      assert.equal(m.format(), '2014-01-01T00:00:00-08:00', 'startOf(\'year\') across +1');
+    m = moment('2014-03-15T00:00:00-07:00').parseZone();
+    m.startOf('y');
+    assert.equal(m.format(), '2014-01-01T00:00:00-08:00', 'startOf(\'year\') across +1');
 
-      m = moment('2014-03-15T00:00:00-07:00').parseZone();
-      m.startOf('M');
-      assert.equal(m.format(), '2014-03-01T00:00:00-08:00', 'startOf(\'month\') across +1');
+    m = moment('2014-03-15T00:00:00-07:00').parseZone();
+    m.startOf('M');
+    assert.equal(m.format(), '2014-03-01T00:00:00-08:00', 'startOf(\'month\') across +1');
 
-      m = moment('2014-03-09T09:00:00-07:00').parseZone();
-      m.startOf('d');
-      assert.equal(m.format(), '2014-03-09T00:00:00-08:00', 'startOf(\'day\') across +1');
+    m = moment('2014-03-09T09:00:00-07:00').parseZone();
+    m.startOf('d');
+    assert.equal(m.format(), '2014-03-09T00:00:00-08:00', 'startOf(\'day\') across +1');
 
-      m = moment('2014-03-09T03:05:00-07:00').parseZone();
-      m.startOf('h');
-      assert.equal(m.format(), '2014-03-09T03:00:00-07:00', 'startOf(\'hour\') after +1');
+    m = moment('2014-03-09T03:05:00-07:00').parseZone();
+    m.startOf('h');
+    assert.equal(m.format(), '2014-03-09T03:00:00-07:00', 'startOf(\'hour\') after +1');
 
-      m = moment('2014-03-09T01:35:00-08:00').parseZone();
-      m.startOf('h');
-      assert.equal(m.format(), '2014-03-09T01:00:00-08:00', 'startOf(\'hour\') before +1');
+    m = moment('2014-03-09T01:35:00-08:00').parseZone();
+    m.startOf('h');
+    assert.equal(m.format(), '2014-03-09T01:00:00-08:00', 'startOf(\'hour\') before +1');
 
-      // There is no such time as 2:30-7 to try startOf('hour') across that
+    // There is no such time as 2:30-7 to try startOf('hour') across that
 
-      moment.updateOffset = oldUpdateOffset;
+    moment.updateOffset = oldUpdateOffset;
   });
 
-  it('startOf across DST -1', function () {
-      var oldUpdateOffset = moment.updateOffset,
-          // Based on a real story somewhere in America/Los_Angeles
-          dstAt = moment('2014-11-02T02:00:00-07:00').parseZone(),
-          m;
+  // todo: sinon
+  xit('startOf across DST -1', function () {
+    var oldUpdateOffset = moment.updateOffset,
+      // Based on a real story somewhere in America/Los_Angeles
+      dstAt = moment('2014-11-02T02:00:00-07:00').parseZone(),
+      m;
 
-      moment.updateOffset = function (mom, keepTime) {
-          if (mom.isBefore(dstAt)) {
-              mom.utcOffset(-7, keepTime);
-          } else {
-              mom.utcOffset(-8, keepTime);
-          }
-      };
+    moment.updateOffset = function (mom, keepTime) {
+      if (mom.isBefore(dstAt)) {
+        mom.utcOffset(-7, keepTime);
+      } else {
+        mom.utcOffset(-8, keepTime);
+      }
+    };
 
-      m = moment('2014-11-15T00:00:00-08:00').parseZone();
-      m.startOf('y');
-      assert.equal(m.format(), '2014-01-01T00:00:00-07:00', 'startOf(\'year\') across -1');
+    m = moment('2014-11-15T00:00:00-08:00').parseZone();
+    m.startOf('y');
+    assert.equal(m.format(), '2014-01-01T00:00:00-07:00', 'startOf(\'year\') across -1');
 
-      m = moment('2014-11-15T00:00:00-08:00').parseZone();
-      m.startOf('M');
-      assert.equal(m.format(), '2014-11-01T00:00:00-07:00', 'startOf(\'month\') across -1');
+    m = moment('2014-11-15T00:00:00-08:00').parseZone();
+    m.startOf('M');
+    assert.equal(m.format(), '2014-11-01T00:00:00-07:00', 'startOf(\'month\') across -1');
 
-      m = moment('2014-11-02T09:00:00-08:00').parseZone();
-      m.startOf('d');
-      assert.equal(m.format(), '2014-11-02T00:00:00-07:00', 'startOf(\'day\') across -1');
+    m = moment('2014-11-02T09:00:00-08:00').parseZone();
+    m.startOf('d');
+    assert.equal(m.format(), '2014-11-02T00:00:00-07:00', 'startOf(\'day\') across -1');
 
-      // note that utc offset is -8
-      m = moment('2014-11-02T01:30:00-08:00').parseZone();
-      m.startOf('h');
-      assert.equal(m.format(), '2014-11-02T01:00:00-08:00', 'startOf(\'hour\') after +1');
+    // note that utc offset is -8
+    m = moment('2014-11-02T01:30:00-08:00').parseZone();
+    m.startOf('h');
+    assert.equal(m.format(), '2014-11-02T01:00:00-08:00', 'startOf(\'hour\') after +1');
 
-      // note that utc offset is -7
-      m = moment('2014-11-02T01:30:00-07:00').parseZone();
-      m.startOf('h');
-      assert.equal(m.format(), '2014-11-02T01:00:00-07:00', 'startOf(\'hour\') before +1');
+    // note that utc offset is -7
+    m = moment('2014-11-02T01:30:00-07:00').parseZone();
+    m.startOf('h');
+    assert.equal(m.format(), '2014-11-02T01:00:00-07:00', 'startOf(\'hour\') before +1');
 
-      moment.updateOffset = oldUpdateOffset;
+    moment.updateOffset = oldUpdateOffset;
   });
 
   it('endOf millisecond and no-arg', function () {
-      var m = moment();
-      assert.equal(+m, +m.clone().endOf(), 'endOf without argument should change time');
-      assert.equal(+m, +m.clone().endOf('ms'), 'endOf with ms argument should change time');
-      assert.equal(+m, +m.clone().endOf('millisecond'), 'endOf with millisecond argument should change time');
-      assert.equal(+m, +m.clone().endOf('milliseconds'), 'endOf with milliseconds argument should change time');
-  });*/
+    var m = moment();
+    assert.equal(+m, +m.clone().endOf(), 'endOf without argument should change time');
+    assert.equal(+m, +m.clone().endOf('ms'), 'endOf with ms argument should change time');
+    assert.equal(+m, +m.clone().endOf('millisecond'), 'endOf with millisecond argument should change time');
+    assert.equal(+m, +m.clone().endOf('milliseconds'), 'endOf with milliseconds argument should change time');
+  });
 });

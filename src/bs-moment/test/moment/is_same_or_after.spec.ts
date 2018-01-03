@@ -170,7 +170,6 @@ describe('is same or after', () => {
       'zoned vs (differently) zoned moment');
   });
 
-/*
   it('is same or after with invalid moments', function () {
     var m = moment(), invalid = moment.invalid();
     assert.equal(invalid.isSameOrAfter(invalid), false, 'invalid moments are not considered equal');
@@ -184,5 +183,4 @@ describe('is same or after', () => {
     assert.equal(m.isSameOrAfter(invalid, 'second'), false, 'invalid moment second');
     assert.equal(m.isSameOrAfter(invalid, 'milliseconds'), false, 'invalid moment milliseconds');
   });
-*/
 });

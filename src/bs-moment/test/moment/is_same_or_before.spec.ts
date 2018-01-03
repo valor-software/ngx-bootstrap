@@ -172,7 +172,6 @@ describe('is same or before', () => {
     );
   });
 
-  /*
   it('is same with invalid moments', function () {
       var m = moment(), invalid = moment.invalid();
       assert.equal(invalid.isSameOrBefore(invalid), false, 'invalid moments are not considered equal');
@@ -186,5 +185,4 @@ describe('is same or before', () => {
       assert.equal(m.isSameOrBefore(invalid, 'second'), false, 'invalid moment second');
       assert.equal(m.isSameOrBefore(invalid, 'milliseconds'), false, 'invalid moment milliseconds');
   });
-  */
 });

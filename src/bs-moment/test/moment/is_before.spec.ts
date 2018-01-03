@@ -166,8 +166,7 @@ describe('is before', () => {
     assert.equal(+m, +mCopy, 'isBefore millisecond should not change moment');
   });
 
-  // todo: implement?
-  /*it('is before invalid', function () {
+  it('is before invalid', function () {
     var m = moment(), invalid = moment.invalid();
     assert.equal(m.isBefore(invalid), false, 'valid moment is not before invalid moment');
     assert.equal(invalid.isBefore(m), false, 'invalid moment is not before valid moment');
@@ -178,5 +177,5 @@ describe('is before', () => {
     assert.equal(m.isBefore(invalid, 'minute'), false, 'invalid moment minute');
     assert.equal(m.isBefore(invalid, 'second'), false, 'invalid moment second');
     assert.equal(m.isBefore(invalid, 'milliseconds'), false, 'invalid moment milliseconds');
-  });*/
+  });
 });

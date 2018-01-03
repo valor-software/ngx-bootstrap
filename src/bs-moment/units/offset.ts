@@ -188,16 +188,16 @@ export function isDaylightSavingTime(date: Date): boolean {
 
 export function setOffsetToParsedOffset(date: Date, input: string, config: DateParsingConfig = {}): Date {
   if (config._tzm != null) {
-    return setUTCOffset(date, config._tzm, false, true);
+    return setUTCOffset(date, config._tzm, false, true, config);
   }
 
   if (isString(input)) {
     const tZone = offsetFromString(matchOffset, input);
     if (tZone != null) {
-      return setUTCOffset(date, tZone);
+      return setUTCOffset(date, tZone, false, false, config);
     }
 
-    return setUTCOffset(date, 0, true);
+    return setUTCOffset(date, 0, true, false, config);
   }
 
   return date;

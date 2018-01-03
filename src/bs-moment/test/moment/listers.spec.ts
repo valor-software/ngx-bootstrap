@@ -1,11 +1,10 @@
-/*
 // tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
 // tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
 // tslint:disable:variable-name
 import { assert } from 'chai';
 import { moment } from '../chain';
 
-describe('listers', () => {
+xdescribe('listers', () => {
 
   it('default', function () {
     assert.deepEqual(moment.months(), ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
@@ -28,7 +27,7 @@ describe('listers', () => {
     assert.equal(moment.weekdaysMin(2), 'Tu');
   });
 
-  it('localized', function () {
+  xit('localized', function () {
     var months = 'one_two_three_four_five_six_seven_eight_nine_ten_eleven_twelve'.split('_'),
       monthsShort = 'on_tw_th_fo_fi_si_se_ei_ni_te_el_tw'.split('_'),
       weekdays = 'one_two_three_four_five_six_seven'.split('_'),
@@ -82,19 +81,17 @@ describe('listers', () => {
     assert.equal(moment.weekdaysMin(false, 2), '3');
   });
 
-  // todo: implement
-/!*
-  it('with functions', function () {
+  // todo: not sure we need this
+  xit('with functions', function () {
     var monthsShort = 'one_two_three_four_five_six_seven_eight_nine_ten_eleven_twelve'.split('_'),
       monthsShortWeird = 'onesy_twosy_threesy_foursy_fivesy_sixsy_sevensy_eightsy_ninesy_tensy_elevensy_twelvesy'.split('_');
 
-    moment.locale('difficult', {
-
-      monthsShort: function (m, format) {
-        var arr = format.match(/-MMM-/) ? monthsShortWeird : monthsShort;
-        return arr[m.month()];
-      }
-    });
+    // moment.locale('difficult', {
+    //   monthsShort: function (m: Date, format: string): string {
+    //     var arr = format.match(/-MMM-/) ? monthsShortWeird : monthsShort;
+    //     return arr[m.month()];
+    //   }
+    // });
 
     assert.deepEqual(moment.monthsShort(), monthsShort);
     assert.deepEqual(moment.monthsShort('MMM'), monthsShort);
@@ -103,6 +100,8 @@ describe('listers', () => {
     assert.deepEqual(moment.monthsShort('MMM', 2), 'three');
     assert.deepEqual(moment.monthsShort('-MMM-', 2), 'threesy');
     assert.deepEqual(moment.monthsShort(2), 'three');
+
+    // moment.defineLocale('difficult', null);
   });
 
   it('with locale data', function () {
@@ -126,6 +125,5 @@ describe('listers', () => {
     assert.deepEqual(customLocale.weekdays(), weekdays);
     assert.deepEqual(customLocale.weekdaysShort(), weekdaysShort);
     assert.deepEqual(customLocale.weekdaysMin(), weekdaysMin);
-  });*!/
+  });
 });
-*/

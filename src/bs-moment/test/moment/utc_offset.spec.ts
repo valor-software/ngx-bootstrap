@@ -122,24 +122,26 @@ describe('utc offset', () => {
       'moment should equal moment.utcOffset(-1000)');
   });
 
- /* it('update offset after changing any values', function () {
+  // TODO: use sinon
+  xit('update offset after changing any values', function () {
     var oldOffset = moment.updateOffset,
       m = moment.utc([2000, 6, 1]);
 
-    moment.updateOffset = function (mom, keepTime) {
-      if (mom.__doChange) {
-        if (+mom > 962409600000) {
-          mom.utcOffset(-120, keepTime);
-        } else {
-          mom.utcOffset(-60, keepTime);
-        }
-      }
-    };
+
+    // moment.updateOffset = function (mom, keepTime) {
+    //   if (mom.__doChange) {
+    //     if (+mom > 962409600000) {
+    //       mom.utcOffset(-120, keepTime);
+    //     } else {
+    //       mom.utcOffset(-60, keepTime);
+    //     }
+    //   }
+    // };
 
     assert.equal(m.format('ZZ'), '+0000', 'should be at +0000');
     assert.equal(m.format('HH:mm'), '00:00', 'should start 12AM at +0000 timezone');
 
-    m.__doChange = true;
+    // m.__doChange = true;
     m.add(1, 'h');
 
     assert.equal(m.format('ZZ'), '-0200', 'should be at -0200');
@@ -151,7 +153,7 @@ describe('utc offset', () => {
     assert.equal(m.format('HH:mm'), '23:00', '12AM at +0000 should be 11PM at -0100 timezone');
 
     moment.updateOffset = oldOffset;
-  });*/
+  });
 
 //////////////////
   it('getters and setters', function () {
@@ -187,8 +189,8 @@ describe('utc offset', () => {
     assert.equal(a.clone().utcOffset(90).minute(), 30, 'should get minute correctly');
   });
 
-  // todo: implement
-  /*it('from', function () {
+
+  xit('from', function () {
     var zoneA = moment(),
       zoneB = moment(zoneA).utcOffset(-720),
       zoneC = moment(zoneA).utcOffset(-360),
@@ -198,7 +200,7 @@ describe('utc offset', () => {
     assert.equal(zoneA.from(other), zoneB.from(other), 'moment#from should be the same in all zones');
     assert.equal(zoneA.from(other), zoneC.from(other), 'moment#from should be the same in all zones');
     assert.equal(zoneA.from(other), zoneD.from(other), 'moment#from should be the same in all zones');
-  });*/
+  });
 
   xit('diff', function () {
     var zoneA = moment(),
@@ -316,7 +318,8 @@ describe('utc offset', () => {
     assert.ok(zoneA.isBefore(zoneC, 'hour'), 'isBefore:hour should work with two moments with different offsets');
   });
 
-/*  it('add / subtract over dst', function () {
+  // todo: use sinon
+  xit('add / subtract over dst', function () {
     var oldOffset = moment.updateOffset,
       m = moment.utc([2000, 2, 31, 3]);
 
@@ -357,16 +360,17 @@ describe('utc offset', () => {
     moment.updateOffset = oldOffset;
   });
 
-  it('isDST', function () {
+  // todo: use sinon
+  xit('isDST', function () {
     var oldOffset = moment.updateOffset;
 
-    moment.updateOffset = function (mom, keepTime) {
-      if (mom.month() > 2 && mom.month() < 9) {
-        mom.utcOffset(60, keepTime);
-      } else {
-        mom.utcOffset(0, keepTime);
-      }
-    };
+    // moment.updateOffset = function (mom, keepTime) {
+    //   if (mom.month() > 2 && mom.month() < 9) {
+    //     mom.utcOffset(60, keepTime);
+    //   } else {
+    //     mom.utcOffset(0, keepTime);
+    //   }
+    // };
 
     assert.ok(!moment().month(0).isDST(), 'Jan should not be summer dst');
     assert.ok(moment().month(6).isDST(), 'Jul should be summer dst');
@@ -385,7 +389,7 @@ describe('utc offset', () => {
     assert.ok(moment().month(11).isDST(), 'Dec should be winter dst');
 
     moment.updateOffset = oldOffset;
-  });*/
+  });
 
   it('zone names', function () {
     assert.equal(moment().zoneAbbr(), '', 'Local zone abbr should be empty');

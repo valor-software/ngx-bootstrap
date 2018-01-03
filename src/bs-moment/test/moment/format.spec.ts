@@ -63,7 +63,7 @@ describe('format', () => {
     assert.equal(b.format('YYYY-MM'), '2012-10', 'Parsing multiple formats should not crash with different sized formats');
   });
 
-/*  it('isDST', function () {
+  it('isDST', function () {
     var janOffset = new Date(2011, 0, 1).getTimezoneOffset(),
       julOffset = new Date(2011, 6, 1).getTimezoneOffset(),
       janIsDst = janOffset < julOffset,
@@ -84,7 +84,7 @@ describe('format', () => {
       assert.ok(!jan1.isDST(), 'January 1 is not DST');
       assert.ok(!jul1.isDST(), 'July 1 is not DST');
     }
-  });*/
+  });
 
   it('unix timestamp', function () {
     var m = moment('1234567890.123', 'X');
@@ -189,7 +189,7 @@ describe('format', () => {
       moment.utc('+020123-10-09T20:30:40.678+01:00'),
       'moment.utc("+020123-10-09T19:30:40.678+00:00")'
     );
-/*    testInspect(
+    testInspect(
       moment.parseZone('2016-06-11T17:30:40.678+0430'),
       'moment.parseZone("2016-06-11T17:30:40.678+04:30")'
     );
@@ -200,12 +200,12 @@ describe('format', () => {
 
     assert.equal(
       moment(new Date('nope')).inspect(),
-      'moment.invalid(/!* Invalid Date *!/)'
+      'moment.invalid(/* Invalid Date */)'
     );
     assert.equal(
       moment('blah', 'YYYY').inspect(),
-      'moment.invalid(/!* blah *!/)'
-    );*/
+      'moment.invalid(/* blah */)'
+    );
   });
 
   it('long years', function () {
@@ -353,17 +353,17 @@ describe('format', () => {
     assert.equal(b.toString(), b.format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ'));
   });
 
-/*  it('toJSON skips postformat', function () {
+  it('toJSON skips postformat', function () {
     moment.defineLocale('postformat', {
-      postformat: function (s) {
-        s.replace(/./g, 'X');
+      postformat: function (str: string): string {
+        return str.replace(/./g, 'X');
       }
     });
     assert.equal(moment.utc([2000, 0, 1]).toJSON(), '2000-01-01T00:00:00.000Z', 'toJSON doesn\'t postformat');
     moment.defineLocale('postformat', null);
-  });*/
+  });
 
-/*  it('calendar day timezone', function () {
+  xit('calendar day timezone', function () {
     moment.locale('en');
     var zones = [60, -60, 90, -90, 360, -360, 720, -720],
       b = moment().utc().startOf('day').subtract({ m: 1 }),
@@ -383,16 +383,16 @@ describe('format', () => {
     assert.equal(moment(c).local().calendar(d), 'Tomorrow at 11:59 PM', 'Tomorrow at 11:59 PM, not Yesterday, or the wrong time');
   });
 
-  it('calendar with custom formats', function () {
+  xit('calendar with custom formats', function () {
     assert.equal(moment().calendar(null, { sameDay: '[Today]' }), 'Today', 'Today');
     assert.equal(moment().add(1, 'days').calendar(null, { nextDay: '[Tomorrow]' }), 'Tomorrow', 'Tomorrow');
     assert.equal(moment([1985, 1, 4]).calendar(null, { sameElse: 'YYYY-MM-DD' }), '1985-02-04', 'Else');
-  });*/
+  });
 
-/*  it('invalid', function () {
+  it('invalid', function () {
     assert.equal(moment.invalid().format(), 'Invalid date');
     assert.equal(moment.invalid().format('YYYY-MM-DD'), 'Invalid date');
-  });*/
+  });
 
   it('quarter formats', function () {
     assert.equal(moment([1985, 1, 4]).format('Q'), '1', 'Feb  4 1985 is Q1');
@@ -414,44 +414,47 @@ describe('format', () => {
     assert.equal(moment([2000, 0, 2]).format('Qo [quarter] YYYY'), '1st quarter 2000', 'Jan  2 2000 is 1st quarter');
   });
 
-// it('full expanded format is returned from abbreviated formats', function () {
-//     function objectKeys(obj) {
-//         if (Object.keys) {
-//             return Object.keys(obj);
-//         } else {
-//             // IE8
-//             var res = [], i;
-//             for (i in obj) {
-//                 if (obj.hasOwnProperty(i)) {
-//                     res.push(i);
-//                 }
-//             }
-//             return res;
-//         }
-//     }
+  // uses internals
+/*
+it('full expanded format is returned from abbreviated formats', function () {
+    function objectKeys(obj) {
+        if (Object.keys) {
+            return Object.keys(obj);
+        } else {
+            // IE8
+            var res = [], i;
+            for (i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    res.push(i);
+                }
+            }
+            return res;
+        }
+    }
 
-//     var locales =
-//         'ar-sa ar-tn ar az be bg bn bo br bs ca cs cv cy da de-at de dv el ' +
-//         'en-au en-ca en-gb en-ie en-nz eo es et eu fa fi fo fr-ca fr-ch fr fy ' +
-//         'gd gl he hi hr hu hy-am id is it ja jv ka kk km ko lb lo lt lv me mk ml ' +
-//         'mr ms-my ms my nb ne nl nn pl pt-br pt ro ru se si sk sl sq sr-cyrl ' +
-//         'sr sv sw ta te th tl-ph tlh tr tzl tzm-latn tzm uk uz vi zh-cn zh-tw';
+    var locales =
+        'ar-sa ar-tn ar az be bg bn bo br bs ca cs cv cy da de-at de dv el ' +
+        'en-au en-ca en-gb en-ie en-nz eo es et eu fa fi fo fr-ca fr-ch fr fy ' +
+        'gd gl he hi hr hu hy-am id is it ja jv ka kk km ko lb lo lt lv me mk ml ' +
+        'mr ms-my ms my nb ne nl nn pl pt-br pt ro ru se si sk sl sq sr-cyrl ' +
+        'sr sv sw ta te th tl-ph tlh tr tzl tzm-latn tzm uk uz vi zh-cn zh-tw';
 
-//     each(locales.split(' '), function (locale) {
-//         var data, tokens;
-//         data = moment().locale(locale).localeData()._longDateFormat;
-//         tokens = objectKeys(data);
-//         each(tokens, function (token) {
-//             // Check each format string to make sure it does not contain any
-//             // tokens that need to be expanded.
-//             each(tokens, function (i) {
-//                 // strip escaped sequences
-//                 var format = data[i].replace(/(\[[^\]]*\])/g, '');
-//                 assert.equal(false, !!~format.indexOf(token), 'locale ' + locale + ' contains ' + token + ' in ' + i);
-//             });
-//         });
-//     });
-// });
+    each(locales.split(' '), function (locale) {
+        var data, tokens;
+        data = moment().locale(locale).localeData()._longDateFormat;
+        tokens = objectKeys(data);
+        each(tokens, function (token) {
+            // Check each format string to make sure it does not contain any
+            // tokens that need to be expanded.
+            each(tokens, function (i) {
+                // strip escaped sequences
+                var format = data[i].replace(/(\[[^\]]*\])/g, '');
+                assert.equal(false, !!~format.indexOf(token), 'locale ' + locale + ' contains ' + token + ' in ' + i);
+            });
+        });
+    });
+});
+*/
 
   it('milliseconds', function () {
     var m = moment('123', 'SSS');

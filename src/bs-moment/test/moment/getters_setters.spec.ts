@@ -322,21 +322,20 @@ describe('getters and setters', () => {
     assert.equal(a.milliseconds(), 9, 'milliseconds');
   });*/
 
-
-  // todo: timezones
-/*  it('setters across DST +1', function () {
+  // todo: use sinon
+  xit('setters across DST +1', function () {
     var oldUpdateOffset = moment.updateOffset,
       // Based on a real story somewhere in America/Los_Angeles
       dstAt = moment('2014-03-09T02:00:00-08:00').parseZone(),
       m;
 
-    moment.updateOffset = function (mom, keepTime) {
-      if (mom.isBefore(dstAt)) {
-        mom.utcOffset(-8, keepTime);
-      } else {
-        mom.utcOffset(-7, keepTime);
-      }
-    };
+    // moment.updateOffset = function (mom, keepTime) {
+    //   if (mom.isBefore(dstAt)) {
+    //     mom.utcOffset(-8, keepTime);
+    //   } else {
+    //     mom.utcOffset(-7, keepTime);
+    //   }
+    // };
 
     m = moment('2014-03-15T00:00:00-07:00').parseZone();
     m.year(2013);
@@ -357,19 +356,20 @@ describe('getters and setters', () => {
     moment.updateOffset = oldUpdateOffset;
   });
 
-  it('setters across DST -1', function () {
+  // todo: use sinon
+  xit('setters across DST -1', function () {
     var oldUpdateOffset = moment.updateOffset,
       // Based on a real story somewhere in America/Los_Angeles
       dstAt = moment('2014-11-02T02:00:00-07:00').parseZone(),
       m;
 
-    moment.updateOffset = function (mom, keepTime) {
-      if (mom.isBefore(dstAt)) {
-        mom.utcOffset(-7, keepTime);
-      } else {
-        mom.utcOffset(-8, keepTime);
-      }
-    };
+    // moment.updateOffset = function (mom, keepTime) {
+    //   if (mom.isBefore(dstAt)) {
+    //     mom.utcOffset(-7, keepTime);
+    //   } else {
+    //     mom.utcOffset(-8, keepTime);
+    //   }
+    // };
 
     m = moment('2014-11-15T00:00:00-08:00').parseZone();
     m.year(2013);
@@ -388,5 +388,5 @@ describe('getters and setters', () => {
     assert.equal(m.format(), '2014-11-02T00:30:00-07:00', 'hour across -1');
 
     moment.updateOffset = oldUpdateOffset;
-  });*/
+  });
 });

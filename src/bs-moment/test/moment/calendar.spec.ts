@@ -15,7 +15,8 @@ it('passing a function', function () {
     }), '1:00PM', 'should equate');
 });
 
-/*it('extending calendar options', function () {
+// https://stackoverflow.com/questions/34575750/how-to-stub-exported-function-in-es6
+it('extending calendar options', function () {
     var calendarFormat = moment.calendarFormat;
 
     moment.calendarFormat = function (myMoment, now) {
@@ -55,5 +56,5 @@ it('passing a function', function () {
         moment.calendarFormat = calendarFormat;
         moment.updateLocale('en', null);
     }
-});*/
+});
 });

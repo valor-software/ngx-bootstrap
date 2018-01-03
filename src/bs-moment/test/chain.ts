@@ -45,6 +45,7 @@ import { calendar, CalendarSpec } from '../moment/calendar';
 import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales';
 import { max, min } from '../moment/min-max';
 import { Duration } from '../duration/constructor';
+import { createLocalOrUTC } from '../create/from-anything';
 
 export type DateInput = string | number | Date | string[] | DateArray | MomentInputObject;
 
@@ -72,47 +73,92 @@ export interface MomentFn {
 
   isDate(input?: any): input is Date;
 
-  // months(): string[];
-  // months(index: number): string;
-  // months(format: string): string[];
-  // months(format: string, index: number): string;
-  // monthsShort(): string[];
-  // monthsShort(index: number): string;
-  // monthsShort(format: string): string[];
-  // monthsShort(format: string, index: number): string;
-  //
-  // weekdays(): string[];
-  // weekdays(index: number): string;
-  // weekdays(format: string): string[];
-  // weekdays(format: string, index: number): string;
-  // weekdays(localeSorted: boolean): string[];
-  // weekdays(localeSorted: boolean, index: number): string;
-  // weekdays(localeSorted: boolean, format: string): string[];
-  // weekdays(localeSorted: boolean, format: string, index: number): string;
-  // weekdaysShort(): string[];
-  // weekdaysShort(index: number): string;
-  // weekdaysShort(format: string): string[];
-  // weekdaysShort(format: string, index: number): string;
-  // weekdaysShort(localeSorted: boolean): string[];
-  // weekdaysShort(localeSorted: boolean, index: number): string;
-  // weekdaysShort(localeSorted: boolean, format: string): string[];
-  // weekdaysShort(localeSorted: boolean, format: string, index: number): string;
-  // weekdaysMin(): string[];
-  // weekdaysMin(index: number): string;
-  // weekdaysMin(format: string): string[];
-  // weekdaysMin(format: string, index: number): string;
-  // weekdaysMin(localeSorted: boolean): string[];
-  // weekdaysMin(localeSorted: boolean, index: number): string;
-  // weekdaysMin(localeSorted: boolean, format: string): string[];
-  // weekdaysMin(localeSorted: boolean, format: string, index: number): string;
+  months(): string[];
+
+  months(index: number): string;
+
+  months(format: string): string[];
+
+  months(format: string, index: number): string;
+
+  monthsShort(): string[];
+
+  monthsShort(index: number): string;
+
+  monthsShort(format: string): string[];
+
+  monthsShort(format: string, index: number): string;
+
+  weekdays(): string[];
+
+  weekdays(index: number): string;
+
+  weekdays(format: string): string[];
+
+  weekdays(format: string, index: number): string;
+
+  weekdays(localeSorted: boolean): string[];
+
+  weekdays(localeSorted: boolean, index: number): string;
+
+  weekdays(localeSorted: boolean, format: string): string[];
+
+  weekdays(localeSorted: boolean, format: string, index: number): string;
+
+  weekdaysShort(): string[];
+
+  weekdaysShort(index: number): string;
+
+  weekdaysShort(format: string): string[];
+
+  weekdaysShort(format: string, index: number): string;
+
+  weekdaysShort(localeSorted: boolean): string[];
+
+  weekdaysShort(localeSorted: boolean, index: number): string;
+
+  weekdaysShort(localeSorted: boolean, format: string): string[];
+
+  weekdaysShort(localeSorted: boolean, format: string, index: number): string;
+
+  weekdaysMin(): string[];
+
+  weekdaysMin(index: number): string;
+
+  weekdaysMin(format: string): string[];
+
+  weekdaysMin(format: string, index: number): string;
+
+  weekdaysMin(localeSorted: boolean): string[];
+
+  weekdaysMin(localeSorted: boolean, index: number): string;
+
+  weekdaysMin(localeSorted: boolean, format: string): string[];
+
+  weekdaysMin(localeSorted: boolean, format: string, index: number): string;
 
   min(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;
 
   max(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;
 
-  localeData(key?: string | string[]): Locale;
+  // todo: support Khronos Date option
+  localeData(key?: string | string[] | Khronos): Locale;
 
   updateLocale(language: string, localeSpec?: LocaleData): Locale;
+
+  calendarFormat(m: Date, now: Date): string;
+
+  // todo: remove this
+  calendarFormat(m: Khronos, now: Khronos): string;
+
+  // todo: implement
+  invalid(): Khronos;
+
+  // todo: implement
+  locales(): string[];
+
+  // todo: implement
+  updateOffset(m: Khronos, keepTime?: boolean): void;
 }
 
 function _moment(input?: DateInput | Khronos, format?: string | string[], localeKey?: string | boolean, strict?: boolean, isUTC?: boolean): Khronos {
@@ -147,6 +193,9 @@ moment.RFC_2822 = RFC_2822;
 moment.defineLocale = defineLocale;
 moment.parseTwoDigitYear = parseTwoDigitYear;
 moment.isDate = isDate;
+moment.invalid = function _invalid(): Khronos {
+  return new Khronos(new Date(NaN));
+};
 
 const _todoImplement = function () {
   throw new Error(`TODO: Implement`);
@@ -335,17 +384,18 @@ function mapMomentInputObject(obj: MomentInputObject): {[key in UnitOfTime]?: nu
 
 export class Khronos {
   _date: Date = new Date();
-  _isUTC: boolean;
+  _isUTC = false;
   _isStrict: boolean;
   _locale: Locale;
   _format: string | string[];
   _offset: number;
+  _tzm: number;
 
   constructor(input?: DateInput,
               format?: string | string[],
               localeKey?: string,
-              strict?: boolean,
-              isUTC?: boolean,
+              strict = false,
+              isUTC = false,
               offset?: number) {
     // parse invalid input
     if (input === '' || input === null) {
@@ -367,23 +417,42 @@ export class Khronos {
 
     if (!input && input !== 0 && !format) {
       this._date = new Date();
-    } else if (isDate(input)) {
-      this._date = cloneDate(input);
-    } else {
-      this._date = parseDate(input, format, localeKey, strict, isUTC);
+
+      return this;
     }
+
+    if (isDate(input)) {
+      this._date = cloneDate(input);
+
+      return this;
+    }
+
+    // this._date = parseDate(input, format, localeKey, strict, isUTC);
+    const config = createLocalOrUTC(input, format, localeKey, strict, isUTC);
+    this._date = config._d;
+    this._offset = config._offset;
+    this._isUTC = config._isUTC;
+    this._isStrict = config._strict;
+    this._format = config._f;
+    this._tzm = config._tzm;
   }
 
   _toConfig(): DateParsingConfig {
-    return { _isUTC: this._isUTC, _locale: this._locale, _offset: this._offset };
+    return { _isUTC: this._isUTC, _locale: this._locale, _offset: this._offset, _tzm: this._tzm };
   }
 
   // Locale
   locale(): string;
-  locale(localeKey: string | string[]): Khronos;
-  locale(localeKey?: string | string[]): Khronos | string {
+  locale(localeKey: string | string[] | Khronos): Khronos;
+  locale(localeKey?: string | string[] | Khronos): Khronos | string {
     if (isUndefined(localeKey)) {
       return this._locale._abbr;
+    }
+
+    if (localeKey instanceof Khronos) {
+      this._locale = localeKey._locale;
+
+      return this;
     }
 
     const newLocaleData = getLocale(localeKey);
@@ -443,7 +512,7 @@ export class Khronos {
     return diff(this.toDate(), _b.toDate(), unit, precise, this._toConfig());
   }
 
-  endOf(period: MomentUnitOfTime): Khronos {
+  endOf(period?: MomentUnitOfTime): Khronos {
     const _per = mapUnitOfTime(period);
     this._date = endOf(this._date, _per, this._isUTC);
 
@@ -455,19 +524,19 @@ export class Khronos {
   }
 
   // todo: implement
-  from(inp: DateInput | Khronos, suffix?: boolean): string {
+  from(inp?: DateInput | Khronos, suffix?: boolean): string {
     throw new Error(`TODO: Implement`);
   }
 
-  to(inp: DateInput | Khronos, suffix?: boolean): string{
+  to(inp: DateInput | Khronos, suffix?: boolean): string {
     throw new Error(`TODO: Implement`);
   }
 
-  fromNow(withoutSuffix?: boolean): string{
+  fromNow(withoutSuffix?: boolean): string {
     throw new Error(`TODO: Implement`);
   }
 
-  toNow(withoutPrefix?: boolean): string{
+  toNow(withoutPrefix?: boolean): string {
     throw new Error(`TODO: Implement`);
   }
 
@@ -609,6 +678,10 @@ export class Khronos {
     return this.format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
   }
 
+  inspect(): string {
+    throw new Error('TODO: implement');
+  };
+
   toJSON(): string {
     return this.toISOString();
   }
@@ -726,7 +799,11 @@ export class Khronos {
   }
 
   parseZone(input?: string): Khronos {
-    this._date = setOffsetToParsedOffset(this._date, input, this._toConfig());
+    const _config = this._toConfig();
+    this._date = setOffsetToParsedOffset(this._date, input, _config);
+
+    this._offset = _config._offset;
+    this._isUTC = _config._isUTC;
 
     return this;
   }
@@ -1056,7 +1133,7 @@ export class Khronos {
     return this.quarter(val);
   }
 
-  startOf(period: MomentUnitOfTime): Khronos {
+  startOf(period?: MomentUnitOfTime): Khronos {
     const _per = mapUnitOfTime(period);
     this._date = startOf(this._date, _per, this._isUTC);
 

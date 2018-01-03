@@ -18,6 +18,7 @@ it('local to utc, keepLocalTime = false', function () {
     assert.equal(m.clone().utc(false).valueOf(), m.valueOf(), 'local to utc failed to keep utc time (explicit)');
 });
 
+// DEPRECATED
 /*it('local to zone, keepLocalTime = true', function () {
     test.expectedDeprecations('moment().zone');
     var m = moment(),
@@ -33,6 +34,7 @@ it('local to utc, keepLocalTime = false', function () {
     }
 });
 
+// DEPRECATED
 it('local to zone, keepLocalTime = false', function () {
     test.expectedDeprecations('moment().zone');
     var m = moment(),

@@ -58,6 +58,12 @@ export class Duration {
   humanize(withSuffix?: boolean): string {
     throw new Error(`TODO: implement`);
   }
+
+  locale(): string;
+  locale(localeKey: string): Duration;
+  locale(localeKey?: string): Duration | string {
+    throw new Error(`TODO: implement`);
+  }
 }
 
 export function isDuration(obj: any): obj is Duration {

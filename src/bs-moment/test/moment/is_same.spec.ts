@@ -149,7 +149,7 @@ describe('is same', () => {
       'zoned vs (differently) zoned moment');
   });
 
-/*  it('is same with invalid moments', function () {
+  it('is same with invalid moments', function () {
     assert.equal(moment.invalid().isSame(moment.invalid()), false, 'invalid moments are not considered equal');
-  });*/
+  });
 });
