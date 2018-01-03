@@ -3,12 +3,11 @@
 // tslint:disable:no-shadowed-variable switch-default prefer-const
 // tslint:disable:one-variable-per-declaration newline-before-return
 
+import { LocaleData } from '../locale/locale.class';
+
 //! moment.js locale configuration
 //! locale : Czech [cs]
 //! author : petrbela : https://github.com/petrbela
-
-
-import { LocaleData } from '../locale/locale.class';
 
 const months: string[] = 'leden_únor_březen_duben_květen_červen_červenec_srpen_září_říjen_listopad_prosinec'.split('_');
 const monthsShort: string[] = 'led_úno_bře_dub_kvě_čvn_čvc_srp_zář_říj_lis_pro'.split('_');

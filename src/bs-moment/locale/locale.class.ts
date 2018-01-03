@@ -51,17 +51,22 @@ export interface LocaleData {
   abbr?: string;
   parentLocale?: string;
 
-  months?: LocaleOptions;
-  monthsShort?: LocaleOptions;
+  months?: LocaleOptions | ((date: Date, format: string, isUTC?: boolean) => string | string[]);
+  monthsShort?: LocaleOptions | ((date: Date, format: string, isUTC?: boolean) => string | string[]);
   monthsParseExact?: boolean;
 
-  weekdays?: LocaleOptions;
+  weekdays?: LocaleOptions | ((date: Date, format: string, isUTC?: boolean) => string | string[]);
   weekdaysShort?: string[];
   weekdaysMin?: string[];
   weekdaysParseExact?: boolean;
 
   longDateFormat?: { [index: string]: string };
-  calendar?: { [key: string]: string | ((dayOfWeek: number, isNextWeek: boolean) => string) };
+  calendar?: {
+    [key: string]: (string
+      | ((date: Date, now?: Date) => string)
+      // tslint:disable-next-line
+      | ((dayOfWeek: number, isNextWeek: boolean) => string))
+  };
   relativeTime?: { [key: string]: string | PluralizeDateFn };
   dayOfMonthOrdinalParse?: RegExp;
   ordinal?: string | OrdinalDateFn;

@@ -1,12 +1,17 @@
-// moment.js locale configuration
-// locale : Chinese (China) [zh-cn]
-// author : suupic : https://github.com/suupic
-// author : Zeno Zeng : https://github.com/zenozeng
+// tslint:disable:comment-format binary-expression-operand-order max-line-length
+// tslint:disable:no-bitwise prefer-template cyclomatic-complexity
+// tslint:disable:no-shadowed-variable switch-default prefer-const
+// tslint:disable:one-variable-per-declaration newline-before-return
+// tslint:disable:no-parameter-reassignment prefer-switch
 
 import { LocaleData } from '../locale/locale.class';
 
+//! moment.js locale configuration
+//! locale : Chinese (China) [zh-cn]
+//! author : suupic : https://github.com/suupic
+//! author : Zeno Zeng : https://github.com/zenozeng
+
 export const zhCn: LocaleData = {
-  abbr: 'zh-cn',
   months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
   monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
   weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
@@ -15,21 +20,22 @@ export const zhCn: LocaleData = {
   longDateFormat: {
     LT: 'HH:mm',
     LTS: 'HH:mm:ss',
-    L: 'YYYY年MMMD日',
-    LL: 'YYYY年MMMD日',
-    LLL: 'YYYY年MMMD日Ah点mm分',
-    LLLL: 'YYYY年MMMD日ddddAh点mm分',
-    l: 'YYYY年MMMD日',
-    ll: 'YYYY年MMMD日',
-    lll: 'YYYY年MMMD日 HH:mm',
-    llll: 'YYYY年MMMD日dddd HH:mm'
+    L: 'YYYY/MM/DD',
+    LL: 'YYYY年M月D日',
+    LLL: 'YYYY年M月D日Ah点mm分',
+    LLLL: 'YYYY年M月D日ddddAh点mm分',
+    l: 'YYYY/M/D',
+    ll: 'YYYY年M月D日',
+    lll: 'YYYY年M月D日 HH:mm',
+    llll: 'YYYY年M月D日dddd HH:mm'
   },
   meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-  meridiemHour(hour: number, meridiem: string): number {
+  meridiemHour(hour, meridiem) {
     if (hour === 12) {
       hour = 0;
     }
-    if (meridiem === '凌晨' || meridiem === '早上' || meridiem === '上午') {
+    if (meridiem === '凌晨' || meridiem === '早上' ||
+      meridiem === '上午') {
       return hour;
     } else if (meridiem === '下午' || meridiem === '晚上') {
       return hour + 12;
@@ -38,8 +44,8 @@ export const zhCn: LocaleData = {
       return hour >= 11 ? hour : hour + 12;
     }
   },
-  meridiem(hour: number, minute: number): string {
-    const hm = hour * 100 + minute;
+  meridiem(hour, minute, isLower) {
+    let hm = hour * 100 + minute;
     if (hm < 600) {
       return '凌晨';
     } else if (hm < 900) {
@@ -63,25 +69,26 @@ export const zhCn: LocaleData = {
     sameElse: 'L'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
-  ordinal(num: number, period: string): string {
+  ordinal(num: number, period) {
     switch (period) {
       case 'd':
       case 'D':
       case 'DDD':
-        return `${num}日`;
+        return num + '日';
       case 'M':
-        return `${num}月`;
+        return num + '月';
       case 'w':
       case 'W':
-        return `${num}周`;
+        return num + '周';
       default:
-        return num.toString(10);
+        return num.toString();
     }
   },
   relativeTime: {
     future: '%s内',
     past: '%s前',
     s: '几秒',
+    ss: '%d 秒',
     m: '1 分钟',
     mm: '%d 分钟',
     h: '1 小时',
@@ -96,6 +103,6 @@ export const zhCn: LocaleData = {
   week: {
     // GB/T 7408-1994《数据元和交换格式·信息交换·日期和时间表示法》与ISO 8601:1988等效
     dow: 1, // Monday is the first day of the week.
-    doy: 4 // The week that contains Jan 4th is the first week of the year.
+    doy: 4  // The week that contains Jan 4th is the first week of the year.
   }
 };
