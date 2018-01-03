@@ -75,7 +75,8 @@ export const nlBe: LocaleData = {
     yy: '%d jaar'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
-  ordinal(num: number): string {
+  ordinal(_num: number): string {
+    const num = Number(_num);
     return num + ((num === 1 || num === 8 || num >= 20) ? 'ste' : 'de');
   },
   week: {

@@ -160,7 +160,8 @@ export const ru: LocaleData = {
     }
   },
   dayOfMonthOrdinalParse: /\d{1,2}-(й|го|я)/,
-  ordinal(num: number, period: string): string {
+  ordinal(_num: number, period: string): string {
+    const num = Number(_num);
     switch (period) {
       case 'M':
       case 'd':

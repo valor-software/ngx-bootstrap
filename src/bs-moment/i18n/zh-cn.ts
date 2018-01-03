@@ -69,7 +69,8 @@ export const zhCn: LocaleData = {
     sameElse: 'L'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
-  ordinal(num: number, period) {
+  ordinal(_num: number, period) {
+    const num = Number(_num);
     switch (period) {
       case 'd':
       case 'D':

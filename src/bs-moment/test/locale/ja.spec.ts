@@ -1,245 +1,195 @@
-import { defineLocale } from '../../locale/locales';
-import { formatDate } from '../../format';
+// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
+// tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
+// tslint:disable:variable-name no-shadowed-variable
+
+import { assert } from 'chai';
+import { moment } from '../chain';
 import { ja } from '../../i18n/ja';
 
-const localeAbbr = 'ja';
+// localeModule('en');
+describe('locale: ja', () => {
+  beforeAll(() => {
+    moment.locale('ja', ja);
+  });
 
-describe('moment - locale: ja', () => {
-  defineLocale(localeAbbr, ja);
-  it('format', () => {
-    const expected: string[][] = [
-      [
-        'dddd, MMMM Do YYYY, h:mm:ss a',
-        '日曜日, 2月 14日 2010, 3:25:50 午後'
+  afterAll(() => {
+    moment.locale('en');
+  });
+
+// localeModule('ja');
+
+  it('parse', function () {
+    var _tests = '1月 1月_2月 2月_3月 3月_4月 4月_5月 5月_6月 6月_7月 7月_8月 8月_9月 9月_10月 10月_11月 11月_12月 12月'.split('_'), i;
+
+    function equalTest(input, mmm, i) {
+      assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
+    }
+
+    let tests: string[][] = [];
+    for (i = 0; i < 12; i++) {
+      tests[i] = _tests[i].split(' ');
+      equalTest(tests[i][0], 'MMM', i);
+      equalTest(tests[i][1], 'MMM', i);
+      equalTest(tests[i][0], 'MMMM', i);
+      equalTest(tests[i][1], 'MMMM', i);
+      equalTest(tests[i][0].toLocaleLowerCase(), 'MMMM', i);
+      equalTest(tests[i][1].toLocaleLowerCase(), 'MMMM', i);
+      equalTest(tests[i][0].toLocaleUpperCase(), 'MMMM', i);
+      equalTest(tests[i][1].toLocaleUpperCase(), 'MMMM', i);
+    }
+  });
+
+  it('format', function () {
+    var a = [
+        ['dddd, MMMM Do YYYY, a h:mm:ss', '日曜日, 2月 14日 2010, 午後 3:25:50'],
+        ['ddd, Ah', '日, 午後3'],
+        ['M Mo MM MMMM MMM', '2 2 02 2月 2月'],
+        ['YYYY YY', '2010 10'],
+        ['D Do DD', '14 14日 14'],
+        ['d do dddd ddd dd', '0 0日 日曜日 日 日'],
+        ['DDD DDDo DDDD', '45 45日 045'],
+        ['w wo ww', '8 8 08'],
+        ['h hh', '3 03'],
+        ['H HH', '15 15'],
+        ['m mm', '25 25'],
+        ['s ss', '50 50'],
+        ['a A', '午後 午後'],
+        ['[the] DDDo [day of the year]', 'the 45日 day of the year'],
+        ['LTS', '15:25:50'],
+        ['L', '2010/02/14'],
+        ['LL', '2010年2月14日'],
+        ['LLL', '2010年2月14日 15:25'],
+        ['LLLL', '2010年2月14日 15:25 日曜日'],
+        ['l', '2010/02/14'],
+        ['ll', '2010年2月14日'],
+        ['lll', '2010年2月14日 15:25'],
+        ['llll', '2010年2月14日 15:25 日曜日']
       ],
-      ['ddd, hA', '日, 3午後'],
-      ['M Mo MM MMMM MMM', '2 2 02 2月 2月'],
-      ['YYYY YY', '2010 10'],
-      ['D Do DD', '14 14日 14'],
-      ['d do dddd ddd dd', '0 0日 日曜日 日 日'],
-      ['DDD DDDo DDDD', '45 45日 045'],
-      ['w wo ww', '8 8 08'],
-      ['h hh', '3 03'],
-      ['H HH', '15 15'],
-      ['m mm', '25 25'],
-      ['s ss', '50 50'],
-      ['a A', '午後 午後'],
-      ['[the] DDDo [day of the year]', 'the 45日 day of the year']
-    ];
-    const date = new Date(2010, 1, 14, 15, 25, 50, 125);
-
-    for (let i = 0; i < expected.length; i++) {
-      expect(formatDate(date, expected[i][0], localeAbbr)).toBe(
-        expected[i][1],
-        `${expected[i][0]} ---> ${expected[i][1]}`
-      );
-    }
-
-    const amExpected: string[][] = [
-      [
-        'dddd, MMMM Do YYYY, h:mm:ss a',
-        '日曜日, 2月 14日 2010, 3:25:50 午前'
-      ],
-      ['ddd, hA', '日, 3午前'],
-      ['a A', '午前 午前']
-    ];
-    const amDate = new Date(2010, 1, 14, 3, 25, 50, 125);
-
-    for (let i = 0; i < amExpected.length; i++) {
-      expect(formatDate(amDate, amExpected[i][0], localeAbbr)).toBe(
-        amExpected[i][1],
-        `${amExpected[i][0]} ---> ${amExpected[i][1]}`
-      );
+      b = moment(new Date(2010, 1, 14, 15, 25, 50, 125)),
+      i;
+    for (i = 0; i < a.length; i++) {
+      assert.equal(b.format(a[i][0]), a[i][1], a[i][0] + ' ---> ' + a[i][1]);
     }
   });
 
-  it('format ordinal', () => {
-    expect(formatDate(new Date(2011, 0, 1), 'DDDo', localeAbbr)).toBe(
-      '1日',
-      '1st'
-    );
-    expect(formatDate(new Date(2011, 0, 2), 'DDDo', localeAbbr)).toBe(
-      '2日',
-      '2nd'
-    );
-    expect(formatDate(new Date(2011, 0, 3), 'DDDo', localeAbbr)).toBe(
-      '3日',
-      '3rd'
-    );
-    expect(formatDate(new Date(2011, 0, 4), 'DDDo', localeAbbr)).toBe(
-      '4日',
-      '4th'
-    );
-    expect(formatDate(new Date(2011, 0, 5), 'DDDo', localeAbbr)).toBe(
-      '5日',
-      '5th'
-    );
-    expect(formatDate(new Date(2011, 0, 6), 'DDDo', localeAbbr)).toBe(
-      '6日',
-      '6th'
-    );
-    expect(formatDate(new Date(2011, 0, 7), 'DDDo', localeAbbr)).toBe(
-      '7日',
-      '7th'
-    );
-    expect(formatDate(new Date(2011, 0, 8), 'DDDo', localeAbbr)).toBe(
-      '8日',
-      '8th'
-    );
-    expect(formatDate(new Date(2011, 0, 9), 'DDDo', localeAbbr)).toBe(
-      '9日',
-      '9th'
-    );
-    expect(formatDate(new Date(2011, 0, 10), 'DDDo', localeAbbr)).toBe(
-      '10日',
-      '10th'
-    );
-
-    expect(formatDate(new Date(2011, 0, 11), 'DDDo', localeAbbr)).toBe(
-      '11日',
-      '11th'
-    );
-    expect(formatDate(new Date(2011, 0, 12), 'DDDo', localeAbbr)).toBe(
-      '12日',
-      '12th'
-    );
-    expect(formatDate(new Date(2011, 0, 13), 'DDDo', localeAbbr)).toBe(
-      '13日',
-      '13th'
-    );
-    expect(formatDate(new Date(2011, 0, 14), 'DDDo', localeAbbr)).toBe(
-      '14日',
-      '14th'
-    );
-    expect(formatDate(new Date(2011, 0, 15), 'DDDo', localeAbbr)).toBe(
-      '15日',
-      '15th'
-    );
-    expect(formatDate(new Date(2011, 0, 16), 'DDDo', localeAbbr)).toBe(
-      '16日',
-      '16th'
-    );
-    expect(formatDate(new Date(2011, 0, 17), 'DDDo', localeAbbr)).toBe(
-      '17日',
-      '17th'
-    );
-    expect(formatDate(new Date(2011, 0, 18), 'DDDo', localeAbbr)).toBe(
-      '18日',
-      '18th'
-    );
-    expect(formatDate(new Date(2011, 0, 19), 'DDDo', localeAbbr)).toBe(
-      '19日',
-      '19th'
-    );
-    expect(formatDate(new Date(2011, 0, 20), 'DDDo', localeAbbr)).toBe(
-      '20日',
-      '20th'
-    );
-
-    expect(formatDate(new Date(2011, 0, 21), 'DDDo', localeAbbr)).toBe(
-      '21日',
-      '21st'
-    );
-    expect(formatDate(new Date(2011, 0, 22), 'DDDo', localeAbbr)).toBe(
-      '22日',
-      '22nd'
-    );
-    expect(formatDate(new Date(2011, 0, 23), 'DDDo', localeAbbr)).toBe(
-      '23日',
-      '23rd'
-    );
-    expect(formatDate(new Date(2011, 0, 24), 'DDDo', localeAbbr)).toBe(
-      '24日',
-      '24th'
-    );
-    expect(formatDate(new Date(2011, 0, 25), 'DDDo', localeAbbr)).toBe(
-      '25日',
-      '25th'
-    );
-    expect(formatDate(new Date(2011, 0, 26), 'DDDo', localeAbbr)).toBe(
-      '26日',
-      '26th'
-    );
-    expect(formatDate(new Date(2011, 0, 27), 'DDDo', localeAbbr)).toBe(
-      '27日',
-      '27th'
-    );
-    expect(formatDate(new Date(2011, 0, 28), 'DDDo', localeAbbr)).toBe(
-      '28日',
-      '28th'
-    );
-    expect(formatDate(new Date(2011, 0, 29), 'DDDo', localeAbbr)).toBe(
-      '29日',
-      '29th'
-    );
-    expect(formatDate(new Date(2011, 0, 30), 'DDDo', localeAbbr)).toBe(
-      '30日',
-      '30th'
-    );
-
-    expect(formatDate(new Date(2011, 0, 31), 'DDDo', localeAbbr)).toBe(
-      '31日',
-      '31st'
-    );
-  });
-
-  it('format month', () => {
-    const expected = '1月 1月_2月 2月_3月 3月_4月 4月_5月 5月_6月 6月_7月 7月_8月 8月_9月 9月_10月 10月_11月 11月_12月 12月'.split(
-      '_'
-    );
-
-    for (let i = 0; i < expected.length; i++) {
-      expect(formatDate(new Date(2011, i, 1), 'MMMM MMM', localeAbbr)).toBe(
-        expected[i],
-        expected[i]
-      );
+  it('format month', function () {
+    var expected = '1月 1月_2月 2月_3月 3月_4月 4月_5月 5月_6月 6月_7月 7月_8月 8月_9月 9月_10月 10月_11月 11月_12月 12月'.split('_'), i;
+    for (i = 0; i < expected.length; i++) {
+      assert.equal(moment([2011, i, 1]).format('MMMM MMM'), expected[i], expected[i]);
     }
   });
 
-  it('format week', () => {
-    const expected = '日曜日 日 日_月曜日 月 月_火曜日 火 火_水曜日 水 水_木曜日 木 木_金曜日 金 金_土曜日 土 土'.split(
-      '_'
-    );
-
-    for (let i = 0; i < expected.length; i++) {
-      expect(
-        formatDate(new Date(2011, 0, i + 2), 'dddd ddd dd', localeAbbr)
-      ).toBe(expected[i], expected[i]);
+  it('format week', function () {
+    var expected = '日曜日 日 日_月曜日 月 月_火曜日 火 火_水曜日 水 水_木曜日 木 木_金曜日 金 金_土曜日 土 土'.split('_'), i;
+    for (i = 0; i < expected.length; i++) {
+      assert.equal(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
     }
   });
 
-  it('weeks year starting sunday format', () => {
-    expect(formatDate(new Date(2012, 0, 1), 'w ww wo', localeAbbr)).toBe(
-      '1 01 1',
-      'Jan  1 2012 should be week 1'
-    );
-    expect(formatDate(new Date(2012, 0, 7), 'w ww wo', localeAbbr)).toBe(
-      '1 01 1',
-      'Jan  7 2012 should be week 1'
-    );
-    expect(formatDate(new Date(2012, 0, 8), 'w ww wo', localeAbbr)).toBe(
-      '2 02 2',
-      'Jan  8 2012 should be week 2'
-    );
-    expect(formatDate(new Date(2012, 0, 14), 'w ww wo', localeAbbr)).toBe(
-      '2 02 2',
-      'Jan 14 2012 should be week 2'
-    );
-    expect(formatDate(new Date(2012, 0, 15), 'w ww wo', localeAbbr)).toBe(
-      '3 03 3',
-      'Jan 15 2012 should be week 3'
-    );
+  xit('from', function () {
+    var start = moment([2007, 1, 28]);
+    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), '数秒', '44 seconds = a few seconds');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), '1分', '45 seconds = a minute');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 89 }), true), '1分', '89 seconds = a minute');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '2分', '90 seconds = 2 minutes');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 44 }), true), '44分', '44 minutes = 44 minutes');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 45 }), true), '1時間', '45 minutes = an hour');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 89 }), true), '1時間', '89 minutes = an hour');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ m: 90 }), true), '2時間', '90 minutes = 2 hours');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 5 }), true), '5時間', '5 hours = 5 hours');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 21 }), true), '21時間', '21 hours = 21 hours');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 22 }), true), '1日', '22 hours = a day');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 35 }), true), '1日', '35 hours = a day');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ h: 36 }), true), '2日', '36 hours = 2 days');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 1 }), true), '1日', '1 day = a day');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 5 }), true), '5日', '5 days = 5 days');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 25 }), true), '25日', '25 days = 25 days');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 26 }), true), '1ヶ月', '26 days = a month');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 30 }), true), '1ヶ月', '30 days = a month');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 43 }), true), '1ヶ月', '43 days = a month');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 46 }), true), '2ヶ月', '46 days = 2 months');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 74 }), true), '2ヶ月', '75 days = 2 months');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 76 }), true), '3ヶ月', '76 days = 3 months');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ M: 1 }), true), '1ヶ月', '1 month = a month');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ M: 5 }), true), '5ヶ月', '5 months = 5 months');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 345 }), true), '1年', '345 days = a year');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ d: 548 }), true), '2年', '548 days = 2 years');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ y: 1 }), true), '1年', '1 year = a year');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5年', '5 years = 5 years');
   });
 
-  it('isPM', () => {
-    expect(ja.isPM('午後')).toBe(true);
-    expect(ja.isPM('午前')).toBe(false);
+  xit('suffix', function () {
+    assert.equal(moment(30000).from(0), '数秒後', 'prefix');
+    assert.equal(moment(0).from(30000), '数秒前', 'suffix');
   });
 
+  xit('now from now', function () {
+    assert.equal(moment().fromNow(), '数秒前', 'now from now should display as in the past');
+  });
 
-  it('preparse', () => {
-    expect(ja.preparse('2017年01月02日')).toBe('2017/01/02');
-    expect(ja.preparse('2017年01月02日03時04分')).toBe('2017/01/02 03:04');
-    expect(ja.preparse('2017年01月02日03時04分05秒')).toBe('2017/01/02 03:04:05');
+  xit('fromNow', function () {
+    assert.equal(moment().add({ s: 30 }).fromNow(), '数秒後', 'in a few seconds');
+    assert.equal(moment().add({ d: 5 }).fromNow(), '5日後', 'in 5 days');
+  });
+
+  xit('calendar day', function () {
+    var a = moment().hours(12).minutes(0).seconds(0);
+
+    assert.equal(moment(a).calendar(), '今日 12:00', 'today at the same time');
+    assert.equal(moment(a).add({ m: 25 }).calendar(), '今日 12:25', 'Now plus 25 min');
+    assert.equal(moment(a).add({ h: 1 }).calendar(), '今日 13:00', 'Now plus 1 hour');
+    assert.equal(moment(a).add({ d: 1 }).calendar(), '明日 12:00', 'tomorrow at the same time');
+    assert.equal(moment(a).subtract({ h: 1 }).calendar(), '今日 11:00', 'Now minus 1 hour');
+    assert.equal(moment(a).subtract({ d: 1 }).calendar(), '昨日 12:00', 'yesterday at the same time');
+  });
+
+  xit('calendar next week', function () {
+    var i, m;
+    for (i = 2; i < 7; i++) {
+      m = moment().add({ d: i });
+      assert.equal(m.calendar(), m.format('[来週]dddd LT'), 'Today + ' + i + ' days current time');
+      m.hours(0).minutes(0).seconds(0).milliseconds(0);
+      assert.equal(m.calendar(), m.format('[来週]dddd LT'), 'Today + ' + i + ' days beginning of day');
+      m.hours(23).minutes(59).seconds(59).milliseconds(999);
+      assert.equal(m.calendar(), m.format('[来週]dddd LT'), 'Today + ' + i + ' days end of day');
+    }
+  });
+
+  xit('calendar last week', function () {
+    var i, m;
+    for (i = 2; i < 7; i++) {
+      m = moment().subtract({ d: i });
+      assert.equal(m.calendar(), m.format('[前週]dddd LT'), 'Today - ' + i + ' days current time');
+      m.hours(0).minutes(0).seconds(0).milliseconds(0);
+      assert.equal(m.calendar(), m.format('[前週]dddd LT'), 'Today - ' + i + ' days beginning of day');
+      m.hours(23).minutes(59).seconds(59).milliseconds(999);
+      assert.equal(m.calendar(), m.format('[前週]dddd LT'), 'Today - ' + i + ' days end of day');
+    }
+  });
+
+  xit('calendar all else', function () {
+    var weeksAgo = moment().subtract({ w: 1 }),
+      weeksFromNow = moment().add({ w: 1 });
+
+    assert.equal(weeksAgo.calendar(), weeksAgo.format('L'), '1 week ago');
+    assert.equal(weeksFromNow.calendar(), weeksFromNow.format('L'), 'in 1 week');
+
+    weeksAgo = moment().subtract({ w: 2 });
+    weeksFromNow = moment().add({ w: 2 });
+
+    assert.equal(weeksAgo.calendar(), weeksAgo.format('L'), '2 weeks ago');
+    assert.equal(weeksFromNow.calendar(), weeksFromNow.format('L'), 'in 2 weeks');
+  });
+
+  it('weeks year starting sunday format', function () {
+    assert.equal(moment([2012, 0, 1]).format('w ww wo'), '1 01 1', 'Jan  1 2012 should be week 1');
+    assert.equal(moment([2012, 0, 7]).format('w ww wo'), '1 01 1', 'Jan  7 2012 should be week 1');
+    assert.equal(moment([2012, 0, 8]).format('w ww wo'), '2 02 2', 'Jan  8 2012 should be week 2');
+    assert.equal(moment([2012, 0, 14]).format('w ww wo'), '2 02 2', 'Jan 14 2012 should be week 2');
+    assert.equal(moment([2012, 0, 15]).format('w ww wo'), '3 03 3', 'Jan 15 2012 should be week 3');
+  });
+
+  xit('parse with japanese parentheses', function () {
+    assert.ok(moment('2016年5月18日（水）', 'YYYY年M月D日（dd）', true).isValid(), 'parse with japanese parentheses');
   });
 });

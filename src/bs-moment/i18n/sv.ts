@@ -50,7 +50,8 @@ export const sv: LocaleData = {
     yy: '%d år'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(e|a)/,
-  ordinal(num: number): string {
+  ordinal(_num: number): string {
+    const num = Number(_num);
     let b = num % 10,
       output = (~~(num % 100 / 10) === 1) ? 'e' :
         (b === 1) ? 'a' :

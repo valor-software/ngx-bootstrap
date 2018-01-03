@@ -137,6 +137,9 @@ export interface MomentFn {
 
   weekdaysMin(localeSorted: boolean, format: string, index: number): string;
 
+  relativeTimeThreshold(threshold: string): number | boolean;
+  relativeTimeThreshold(threshold: string, limit: number): boolean;
+
   min(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;
 
   max(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;

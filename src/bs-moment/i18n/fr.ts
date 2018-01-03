@@ -50,7 +50,8 @@ export const fr: LocaleData = {
     yy: '%d ans'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(er|)/,
-  ordinal(num: number, period: string): string {
+  ordinal(_num: number, period: string): string {
+    const num = Number(_num);
     switch (period) {
       // TODO: Return 'e' when day of month > 1. Move this case inside
       // block for masculine words below.

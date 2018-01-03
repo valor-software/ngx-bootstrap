@@ -29,7 +29,7 @@ export function daysInMonth(year: number, month: number): number {
 
 addFormatToken('M', ['MM', 2, false], 'Mo',
   function (date: Date, opts: DateFormatterOptions): string {
-    return (getMonth(date, opts.isUTC) + 1).toString();
+    return (getMonth(date, opts.isUTC) + 1).toString(10);
   });
 
 addFormatToken('MMM', null, null,

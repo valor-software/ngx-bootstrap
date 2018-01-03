@@ -7,7 +7,7 @@ import { moment } from '../chain';
 import { uk } from '../../i18n/uk';
 // localeModule('uk');
 
-describe('locale - uk', () => {
+describe('locale: uk', () => {
   beforeAll(() => {
     moment.locale('uk', uk);
   });
@@ -17,15 +17,16 @@ describe('locale - uk', () => {
   });
 
   it('parse', function () {
-    var tests = 'січень січ_лютий лют_березень бер_квітень квіт_травень трав_червень черв_липень лип_серпень серп_вересень вер_жовтень жовт_листопад лист_грудень груд'.split('_'),
+    var _tests = 'січень січ_лютий лют_березень бер_квітень квіт_травень трав_червень черв_липень лип_серпень серп_вересень вер_жовтень жовт_листопад лист_грудень груд'.split('_'),
       i;
 
     function equalit(input, mmm, i) {
       assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
     }
 
+    let tests: string[][] = [];
     for (i = 0; i < 12; i++) {
-      tests[i] = tests[i].split(' ');
+      tests[i] = _tests[i].split(' ');
       equalit(tests[i][0], 'MMM', i);
       equalit(tests[i][1], 'MMM', i);
       equalit(tests[i][0], 'MMMM', i);
@@ -141,7 +142,7 @@ describe('locale - uk', () => {
     }
   });
 
-  it('from', function () {
+  xit('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'декілька секунд', '44 seconds = seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'хвилина', '45 seconds = a minute');
@@ -175,17 +176,17 @@ describe('locale - uk', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 років', '5 years = 5 years');
   });
 
-  it('suffix', function () {
+  xit('suffix', function () {
     assert.equal(moment(30000).from(0), 'за декілька секунд', 'prefix');
     assert.equal(moment(0).from(30000), 'декілька секунд тому', 'suffix');
   });
 
-  it('fromNow', function () {
+  xit('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'за декілька секунд', 'in seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'за 5 днів', 'in 5 days');
   });
 
-  it('calendar day', function () {
+  xit('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'Сьогодні о 12:00', 'today at the same time');
@@ -198,7 +199,7 @@ describe('locale - uk', () => {
     assert.equal(moment(a).subtract({ h: 1 }).calendar(), 'Сьогодні об 11:00', 'same day at 11 o\'clock');
   });
 
-  it('calendar next week', function () {
+  xit('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -210,7 +211,7 @@ describe('locale - uk', () => {
     }
   });
 
-  it('calendar last week', function () {
+  xit('calendar last week', function () {
     var i, m;
 
     function makeFormat(d) {
@@ -237,7 +238,7 @@ describe('locale - uk', () => {
     }
   });
 
-  it('calendar all else', function () {
+  xit('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 

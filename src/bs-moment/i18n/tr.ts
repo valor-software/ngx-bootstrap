@@ -70,7 +70,8 @@ export const tr: LocaleData = {
     yy: '%d yıl'
   },
   dayOfMonthOrdinalParse: /\d{1,2}'(inci|nci|üncü|ncı|uncu|ıncı)/,
-  ordinal(num: number): string {
+  ordinal(_num: number): string {
+    const num = Number(_num);
     if (num === 0) {  // special case for zero
       return num + '\'ıncı';
     }

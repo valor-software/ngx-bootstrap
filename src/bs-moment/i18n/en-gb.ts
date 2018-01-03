@@ -48,7 +48,8 @@ export const enGb: LocaleData = {
     yy : '%d years'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
-  ordinal(num: number): string {
+  ordinal(_num: number): string {
+    const num = Number(_num);
     const b = num % 10,
       output = (~~(num % 100 / 10) === 1) ? 'th' :
         (b === 1) ? 'st' :

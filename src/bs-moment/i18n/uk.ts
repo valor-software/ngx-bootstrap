@@ -17,7 +17,7 @@ function plural(word, num) {
   return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
 }
 
-function relativeTimeWithPlural(num: number, withoutSuffix, key) {
+function relativeTimeWithPlural(num: number, withoutSuffix, key): string {
   let format: { [key: string]: string } = {
     ss: withoutSuffix ? 'секунда_секунди_секунд' : 'секунду_секунди_секунд',
     mm: withoutSuffix ? 'хвилина_хвилини_хвилин' : 'хвилину_хвилини_хвилин',
@@ -26,6 +26,7 @@ function relativeTimeWithPlural(num: number, withoutSuffix, key) {
     MM: 'місяць_місяці_місяців',
     yy: 'рік_роки_років'
   };
+
   if (key === 'm') {
     return withoutSuffix ? 'хвилина' : 'хвилину';
   }
@@ -131,7 +132,8 @@ export const uk: LocaleData = {
     }
   },
   dayOfMonthOrdinalParse: /\d{1,2}-(й|го)/,
-  ordinal(num: number, period: string): string {
+  ordinal(_num: number, period: string): string {
+    const num = Number(_num);
     switch (period) {
       case 'M':
       case 'd':
