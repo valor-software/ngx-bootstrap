@@ -26,7 +26,7 @@ stages:
   - <<: *stage
     name: test
   - <<: *stage
-    name: bdd-tests
+    name: cypress-e2e
   - <<: *stage
     name: build
   - name: deploy
@@ -37,9 +37,9 @@ stages:
     name: sauce-tests
 
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  #- export CHROME_BIN=chromium-browser
+  #- export DISPLAY=:99.0
+  #- sh -e /etc/init.d/xvfb start
   - rm -rf node_modules/ngx-bootstrap
 
 install:
@@ -99,6 +99,12 @@ jobs:
       - npm run lint-bdd
       - webdriver-manager update --standalone
       - protractor ./protractor.cucumber.js
+
+#   test cypress-e2e
+    - stage: cypress-e2e
+      env: URL=https://valor-software.com/ngx-bootstrap/#/
+      script:
+      - npm run cy:run -- --config baseUrl=$URL,videoRecording=false
 
 #    check prod build
     - &build
