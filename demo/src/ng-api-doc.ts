@@ -186,6 +186,16 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
+  "ButtonRadioGroupDirective": {
+    "fileName": "src/buttons/button-radio-group.directive.ts",
+    "className": "ButtonRadioGroupDirective",
+    "description": "<p>A group of radio buttons.\nA value of a selected button is bound to a variable specified via ngModel.</p>\n",
+    "selector": "[btnRadioGroup]",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
   "ButtonRadioDirective": {
     "fileName": "src/buttons/button-radio.directive.ts",
     "className": "ButtonRadioDirective",
@@ -623,12 +633,6 @@ export const ngdoc: any = {
         "description": "<p>CSS class which will be applied to datepicker container,\nusually used to set color theme</p>\n"
       },
       {
-        "name": "locale",
-        "defaultValue": "en",
-        "type": "string",
-        "description": "<p>Allows to globally set default locale of datepicker,\nsee documentation on how to enable custom locales</p>\n"
-      },
-      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -759,6 +763,13 @@ export const ngdoc: any = {
         "returnType": "void"
       }
     ]
+  },
+  "BsLocaleService": {
+    "fileName": "src/datepicker/bs-locale.service.ts",
+    "className": "BsLocaleService",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "DatePickerInnerComponent": {
     "fileName": "src/datepicker/datepicker-inner.component.ts",

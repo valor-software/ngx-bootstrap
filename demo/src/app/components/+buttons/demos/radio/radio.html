@@ -4,8 +4,13 @@
   <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Middle">Middle</label>
   <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Right">Right</label>
 </div>
-<div class="btn-group">
-  <label class="btn btn-success" [(ngModel)]="radioModel" btnRadio="Left" uncheckable>Left</label>
-  <label class="btn btn-success" [(ngModel)]="radioModel" btnRadio="Middle" uncheckable>Middle</label>
-  <label class="btn btn-success" [(ngModel)]="radioModel" btnRadio="Right" uncheckable>Right</label>
+<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel">
+  <label class="btn btn-success" btnRadio="Left">Left</label>
+  <label class="btn btn-success" btnRadio="Middle">Middle</label>
+  <label class="btn btn-success" btnRadio="Right">Right</label>
+</div>
+<div class="btn-group" btnRadioGroup [(ngModel)]="radioModel">
+  <label class="btn btn-info" btnRadio="Left" uncheckable>Left</label>
+  <label class="btn btn-info" btnRadio="Middle" uncheckable>Middle</label>
+  <label class="btn btn-info" btnRadio="Right" uncheckable>Right</label>
 </div>

@@ -1,6 +1,7 @@
 import { DemoButtonsBasicComponent } from './demos/basic/basic';
 import { DemoButtonsCheckboxComponent } from './demos/checkbox/checkbox';
 import { DemoButtonsRadioComponent } from './demos/radio/radio';
+import { DemoButtonsCheckboxReactiveFormsComponent } from './demos/checkbox-reactiveforms/checkbox-reactiveforms';
 import { DemoButtonsRadioReactiveFormsComponent } from './demos/radio-reactiveforms/radio-reactiveforms';
 import { DemoButtonsDisabledComponent } from './demos/disabled/disabled';
 
@@ -42,17 +43,29 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoButtonsCheckboxComponent
       },
       {
+        title: 'Checkbox with Reactive Forms',
+        anchor: 'checkbox-reactiveforms"',
+        description: `<p>Checkbox buttons with ReactiveForms</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/checkbox-reactiveforms/checkbox-reactiveforms.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/checkbox-reactiveforms/checkbox-reactiveforms.html'),
+        outlet: DemoButtonsCheckboxReactiveFormsComponent
+      },
+      {
         title: 'Radio & Uncheckable Radio',
         anchor: 'radio-button',
-        description: `<p>Radio buttons with checked/unchecked states</p>`,
+        description: `<p>Radio buttons with checked/unchecked states. Group can be created in two ways: using
+<code>btnRadioGroup</code> directive or using the same <code>ngModel</code> binding with several buttons (works only for
+template driven forms). Check the demo below for more info.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/radio/radio.ts'),
         html: require('!!raw-loader?lang=markup!./demos/radio/radio.html'),
         outlet: DemoButtonsRadioComponent
       },
       {
         title: 'Radio with Reactive Forms',
-        anchor: 'radio-reactiveforms"',
-        description: `<p>Checkbox buttons with ReactiveForms</p>`,
+        anchor: 'radio-reactiveforms',
+        description: `<p>Radio buttons with ReactiveForms. Example below shows how to use radio buttons with reactive
+ forms. Please be aware that for reactive forms it's required to use <code>btnRadioGroup</code> directive along with
+ <code>btnRadio</code>'s</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/radio-reactiveforms/radio-reactiveforms.ts'),
         html: require('!!raw-loader?lang=markup!./demos/radio-reactiveforms/radio-reactiveforms.html'),
         outlet: DemoButtonsRadioReactiveFormsComponent
@@ -79,6 +92,11 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'ButtonRadioDirective',
         anchor: 'button-radio-directive',
+        outlet: NgApiDocComponent
+      },
+      {
+        title: 'ButtonRadioGroupDirective',
+        anchor: 'button-radio-group-directive',
         outlet: NgApiDocComponent
       }
     ]

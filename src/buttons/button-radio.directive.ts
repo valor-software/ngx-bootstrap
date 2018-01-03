@@ -1,9 +1,10 @@
 // tslint:disable:no-use-before-declare
 import {
-  ChangeDetectorRef, Directive, ElementRef, forwardRef, HostBinding,
-  HostListener, Input, OnInit
+  ChangeDetectorRef, Directive, ElementRef, forwardRef, HostBinding, HostListener, Input, OnInit,
+  Optional
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ButtonRadioGroupDirective } from './button-radio-group.directive';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,41 +23,53 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
+  private _value: any;
 
   /** Radio button value, will be set to `ngModel` */
   @Input() btnRadio: any;
   /** If `true` — radio button can be unchecked */
   @Input() uncheckable: boolean;
   /** Current value of radio component or group */
-  @Input() value: any;
+  @Input() get value(): any {
+    return this.group ? this.group.value : this._value;
+  }
+
+  set value(value: any) {
+    if (this.group) {
+      this.group.value = value;
+
+      return;
+    }
+    this._value = value;
+  }
 
   @HostBinding('class.active')
   get isActive(): boolean {
     return this.btnRadio === this.value;
   }
 
-  constructor(private el: ElementRef, private cdr: ChangeDetectorRef) {
-  }
+  constructor(
+    private el: ElementRef,
+    private cdr: ChangeDetectorRef,
+    @Optional() private group: ButtonRadioGroupDirective
+  ) {}
 
   @HostListener('click')
   onClick(): void {
-    if (this.el.nativeElement.attributes.disabled) {
+    if (this.el.nativeElement.attributes.disabled || !this.uncheckable && this.btnRadio === this.value) {
       return;
     }
 
-    if (this.uncheckable && this.btnRadio === this.value) {
-      this.value = undefined;
-      this.onTouched();
-      this.onChange(this.value);
+    this.value = this.uncheckable && this.btnRadio === this.value ? undefined : this.btnRadio;
+
+    if (this.group) {
+      this.group.onTouched();
+      this.group.onChange(this.value);
 
       return;
     }
-
-    if (this.btnRadio !== this.value) {
-      this.value = this.btnRadio;
-      this.onTouched();
-      this.onChange(this.value);
-    }
+    this.onTouched();
+    this.onChange(this.value);
   }
 
   ngOnInit(): void {
