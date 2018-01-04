@@ -1,13 +1,6 @@
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  Input,
-  Output,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, Input, Output, Renderer2 } from '@angular/core';
+import { isBs3 } from '../utils';
 
 @Directive({
   selector: '[collapse]',
@@ -17,15 +10,14 @@ import {
   }
 })
 export class CollapseDirective {
+  private initialDisplayValue: string;
   /** This event fires as soon as content collapses */
   @Output() collapsed: EventEmitter<any> = new EventEmitter();
   /** This event fires as soon as content becomes visible */
   @Output() expanded: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('style.display') display: string;
-  // shown
-  @HostBinding('class.in')
-  @HostBinding('class.show')
+
   @HostBinding('attr.aria-expanded')
   isExpanded = true;
   // hidden
@@ -51,6 +43,10 @@ export class CollapseDirective {
 
   /** allows to manually toggle content visibility */
   toggle(): void {
+    if (!this.initialDisplayValue) {
+      this.initialDisplayValue = typeof window !== 'undefined' ? getComputedStyle(this._el.nativeElement).display : 'block';
+    }
+
     if (this.isExpanded) {
       this.hide();
     } else {
@@ -70,6 +66,7 @@ export class CollapseDirective {
     this.isCollapsing = false;
 
     this.display = 'none';
+    this._renderer.removeClass(this._el.nativeElement, isBs3() ? 'in' : 'show');
     this.collapsed.emit(this);
   }
 
@@ -81,16 +78,11 @@ export class CollapseDirective {
     this.isExpanded = true;
     this.isCollapsed = false;
 
-    this.display = 'block';
+    this.display = this.initialDisplayValue;
     // this.height = 'auto';
     this.isCollapse = true;
     this.isCollapsing = false;
-    this._renderer.setStyle(
-      this._el.nativeElement,
-      'overflow',
-      'visible'
-    );
-    this._renderer.setStyle(this._el.nativeElement, 'height', 'auto');
+    this._renderer.addClass(this._el.nativeElement, isBs3() ? 'in' : 'show');
     this.expanded.emit(this);
   }
 }
