@@ -245,7 +245,7 @@ describe('locale', function () {
     assert.equal(b.format('MMMM'), 'junio', 'using moment()');
   });
 
-  xit('duration locale method', function () {
+  it('duration locale method', function () {
     moment.locale('en');
 
     assert.equal(moment.duration({ seconds: 44 }).humanize(), 'a few seconds', 'Normally default to global');
@@ -253,7 +253,7 @@ describe('locale', function () {
     assert.equal(moment.duration({ seconds: 44 }).humanize(), 'a few seconds', 'Using an instance specific locale does not affect other durations');
   });
 
-  xit('duration locale persists with cloning', function () {
+  it('duration locale persists with cloning', function () {
     moment.locale('en');
 
     var a = moment.duration({ seconds: 44 }).locale('es'),
@@ -262,7 +262,7 @@ describe('locale', function () {
     assert.equal(b.humanize(), 'unos segundos', 'using moment.duration()');
   });
 
-  xit('changing the global locale doesn\'t affect existing duration instances', function () {
+  it('changing the global locale doesn\'t affect existing duration instances', function () {
     var mom = moment.duration();
     moment.locale('fr');
     assert.equal('en', mom.locale());
@@ -274,12 +274,12 @@ describe('locale', function () {
       assert.equal(moment.duration().lang(), moment.duration().localeData(), 'duration.lang is the same as duration.localeData');
     });*/
 
-  xit('from and fromNow with invalid date', function () {
+  it('from and fromNow with invalid date', function () {
     assert.equal(moment(NaN).from(), 'Invalid date', 'moment.from with invalid moment');
     assert.equal(moment(NaN).fromNow(), 'Invalid date', 'moment.fromNow with invalid moment');
   });
 
-  xit('from relative time future', function () {
+  it('from relative time future', function () {
     var start = moment([2007, 1, 28]);
 
     assert.equal(start.from(moment([2007, 1, 28]).subtract({ s: 44 })), 'in a few seconds', '44 seconds = a few seconds');
@@ -314,7 +314,7 @@ describe('locale', function () {
     assert.equal(start.from(moment([2007, 1, 28]).subtract({ y: 5 })), 'in 5 years', '5 years = 5 years');
   });
 
-  xit('from relative time past', function () {
+  it('from relative time past', function () {
     var start = moment([2007, 1, 28]);
 
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 })), 'a few seconds ago', '44 seconds = a few seconds');
@@ -349,7 +349,7 @@ describe('locale', function () {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 })), '5 years ago', '5 years = 5 years');
   });
 
-  xit('instance locale used with from', function () {
+  it('instance locale used with from', function () {
     moment.locale('en');
 
     var a = moment([2012, 5, 6]).locale('es'),

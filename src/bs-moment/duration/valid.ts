@@ -13,7 +13,11 @@ const orderingHash = ordering.reduce((mem: { [key: string]: boolean }, order) =>
 export function isDurationValid(duration: Partial<DateObject>): boolean {
   const durationKeys = Object.keys(duration);
   if (durationKeys
-      .some((key: keyof DateObject) => (key in orderingHash) && duration[key] === null || isNaN(duration[key]))) {
+      .some((key: keyof DateObject) => {
+        return (key in orderingHash)
+          && duration[key] === null
+          || isNaN(duration[key]);
+      })) {
     return false;
   }
   // for (let key in duration) {

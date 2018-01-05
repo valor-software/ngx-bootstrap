@@ -1,8 +1,0 @@
-0. implement
-  - parsing flags
-  - overflow
-
-1. createLocalOrUtc
-- validate input
-  - if not valid -> exit
-

@@ -202,7 +202,7 @@ export class Locale {
     return str;
   }
 
-  relativeTime(num: number, withoutSuffix: string, str: 'future' | 'past', isFuture: boolean): string {
+  relativeTime(num: number, withoutSuffix: boolean, str: 'future' | 'past', isFuture: boolean): string {
     const output = this._relativeTime[str];
 
     return (isFunction(output)) ?

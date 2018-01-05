@@ -46,6 +46,7 @@ import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales';
 import { max, min } from '../moment/min-max';
 import { Duration } from '../duration/constructor';
 import { createLocalOrUTC } from '../create/from-anything';
+import { createDuration } from '../duration/create';
 
 export type DateInput = string | number | Date | string[] | DateArray | MomentInputObject;
 
@@ -138,6 +139,7 @@ export interface MomentFn {
   weekdaysMin(localeSorted: boolean, format: string, index: number): string;
 
   relativeTimeThreshold(threshold: string): number | boolean;
+
   relativeTimeThreshold(threshold: string, limit: number): boolean;
 
   min(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;
@@ -527,15 +529,22 @@ export class Khronos {
   }
 
   // todo: implement
-  from(inp?: DateInput | Khronos, suffix?: boolean): string {
-    throw new Error(`TODO: Implement`);
-  }
+  from(time?: DateInput | Khronos, withoutSuffix?: boolean): string {
+    const _time = _moment(time);
+    if (this.isValid() && _time.isValid()) {
+      return createDuration({ to: this.toDate(), from: _time.toDate() })
+        .locale(this.locale())
+        .humanize(!withoutSuffix);
+    }
 
-  to(inp: DateInput | Khronos, suffix?: boolean): string {
-    throw new Error(`TODO: Implement`);
+    return this.localeData().invalidDate;
   }
 
   fromNow(withoutSuffix?: boolean): string {
+    return this.from(new Date(), withoutSuffix);
+  }
+
+  to(inp: DateInput | Khronos, suffix?: boolean): string {
     throw new Error(`TODO: Implement`);
   }
 

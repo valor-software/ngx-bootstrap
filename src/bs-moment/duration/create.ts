@@ -10,6 +10,7 @@ import { cloneWithOffset } from '../units/offset';
 import { isAfter, isBefore } from '../utils/date-compare';
 import { getFullYear, getMonth } from '../utils/date-getters';
 import { add } from '../moment/add-subtract';
+import { cloneDate } from '../create/clone';
 
 const aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
@@ -110,12 +111,12 @@ function positiveMomentsDifference(base: Date, other: Date): { milliseconds: num
 
   res.months = getMonth(other) - getMonth(base) +
     (getFullYear(other) - getFullYear(base)) * 12;
-  const _basePlus = add(base, res.months, 'month');
+  const _basePlus = add(cloneDate(base), res.months, 'month');
   if (isAfter(_basePlus, other)) {
     --res.months;
   }
 
-  res.milliseconds = +other - +(add(base, res.months, 'month'));
+  res.milliseconds = +other - +(add(cloneDate(base), res.months, 'month'));
 
   return res;
 }
