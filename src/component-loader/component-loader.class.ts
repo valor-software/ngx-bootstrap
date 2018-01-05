@@ -121,7 +121,7 @@ export class ComponentLoader<T> {
   show(opts: {
     content?: string | TemplateRef<any>;
     context?: any;
-    data?: any; [key: string]: any;
+    initialState?: any; [key: string]: any;
   } = {}
   ): ComponentRef<T> {
 
@@ -130,7 +130,7 @@ export class ComponentLoader<T> {
 
     if (!this._componentRef) {
       this.onBeforeShow.emit();
-      this._contentRef = this._getContentRef(opts.content, opts.context, opts.data);
+      this._contentRef = this._getContentRef(opts.content, opts.context, opts.initialState);
       const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
@@ -333,7 +333,7 @@ export class ComponentLoader<T> {
   private _getContentRef(
     content: string | TemplateRef<any> | any,
     context?: any,
-    data?: any
+    initialState?: any
   ): ContentRef {
     if (!content) {
       return new ContentRef([]);
@@ -362,7 +362,7 @@ export class ComponentLoader<T> {
         this._injector
       );
       const componentRef = contentCmptFactory.create(modalContentInjector);
-      Object.assign(componentRef.instance, data);
+      Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);
 
       return new ContentRef(

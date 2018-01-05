@@ -11,7 +11,7 @@ export class DemoModalServiceFromComponent {
   constructor(private modalService: BsModalService) {}
 
   openModalWithComponent() {
-    const data = {
+    const initialState = {
       list: [
         'Open a modal with component',
         'Pass your data',
@@ -20,7 +20,7 @@ export class DemoModalServiceFromComponent {
       ],
       title: 'Modal with component'
     };
-    this.bsModalRef = this.modalService.show(ModalContentComponent, {data});
+    this.bsModalRef = this.modalService.show(ModalContentComponent, {initialState});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 }
