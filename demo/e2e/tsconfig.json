@@ -1,16 +1,25 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "declaration": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "outDir": "../dist",
+
+    "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "../dist/out-tsc-e2e",
+    "lib": ["dom", "es7"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
     "sourceMap": true,
-    "target": "es5",
+    "inlineSources": true,
+
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "../../node_modules/@types"
     ]
-  }
+  },
+  "exclude": [
+    "../../node_modules"
+  ]
 }
