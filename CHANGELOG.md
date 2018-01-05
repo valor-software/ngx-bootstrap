@@ -1,3 +1,41 @@
+<a name="2.0.0-rc.0"></a>
+# [2.0.0-rc.0](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.11...v2.0.0-rc.0) (2017-12-14)
+
+
+### Bug Fixes
+
+* **typeahead:** define latimap properly ([#3270](https://github.com/valor-software/ngx-bootstrap/issues/3270)) ([d363e5d](https://github.com/valor-software/ngx-bootstrap/commit/d363e5d)), closes [#3126](https://github.com/valor-software/ngx-bootstrap/issues/3126)
+
+
+### Features
+
+* **demo:** add missing section title ([#3249](https://github.com/valor-software/ngx-bootstrap/issues/3249)) ([71a2f33](https://github.com/valor-software/ngx-bootstrap/commit/71a2f33))
+
+
+
+<a name="2.0.0-beta.11"></a>
+# [2.0.0-beta.11](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2017-12-08)
+
+
+### Bug Fixes
+
+* **datepicker:** if value is null dont reset date to 1970 ([#3207](https://github.com/valor-software/ngx-bootstrap/issues/3207)) ([8761038](https://github.com/valor-software/ngx-bootstrap/commit/8761038))
+* **old-datepicker:** summer time ([#3122](https://github.com/valor-software/ngx-bootstrap/issues/3122)) ([422d3bc](https://github.com/valor-software/ngx-bootstrap/commit/422d3bc))
+
+
+### Features
+
+* **build:** add es2015 build target support ([#3202](https://github.com/valor-software/ngx-bootstrap/issues/3202)) ([735101c](https://github.com/valor-software/ngx-bootstrap/commit/735101c))
+* **datepicker:** added BsLocaleService to change datepicker locale ([#3209](https://github.com/valor-software/ngx-bootstrap/issues/3209)) ([4a7f2f0](https://github.com/valor-software/ngx-bootstrap/commit/4a7f2f0))
+* **tests:** covering navigation feature with bdd ([#3026](https://github.com/valor-software/ngx-bootstrap/issues/3026)) ([c5fb8dc](https://github.com/valor-software/ngx-bootstrap/commit/c5fb8dc))
+
+
+### BREAKING CHANGES
+
+* **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
+
+
+
 <a name="2.0.0-beta.10"></a>
 # [2.0.0-beta.10](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-12-05)
 
@@ -158,7 +196,7 @@
 
 ### BREAKING CHANGES
 
-* **rating:** 
+* **rating:**
   - removed input properties `stateOn`, `stateOff` and `ratingStates`
   - custom icons now working via customTemplate
 * **package:** - dropped support of ng v2
@@ -427,7 +465,7 @@
 
 ### BREAKING CHANGES
 
-* **dropdown:** 
+* **dropdown:**
   - `DropdownModule` renamed to `BsDropdownModule`, same to all dropdown components added `bs` prefix
   - `addToggleClass` option is deprecated, now you need to add `dropdown-toggle` class manually if needed
   - `dropdownMenu` menu become a template selector, so `*` should be added

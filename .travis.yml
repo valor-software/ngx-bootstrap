@@ -55,6 +55,7 @@ jobs:
   allow_failures:
     - env: NGV=next
     - env: SAUCE=true
+    - env: BDD=true
     - stage: sauce-tests
   include:
 # precache npm and apt dependencies
@@ -89,6 +90,7 @@ jobs:
 
 #    test e2e-bdd
     - stage: bdd-tests
+      env: BDD=true
       before_script:
       - npm run build:dynamic
       - node  ./demo/dist/server.js &

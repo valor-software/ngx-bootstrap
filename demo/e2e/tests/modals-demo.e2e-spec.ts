@@ -2,6 +2,8 @@ import { $, browser } from 'protractor';
 import { leftPanelTests } from './leftPanelTests.po';
 import { DataProvider } from '../data-provider/data-provider.po';
 
+const using = require('jasmine-data-provider');
+
 const buttonLargeModal = $('.btn:nth-child(1)');
 const buttonSmallModal = $('.btn:nth-child(3)');
 const buttonChildModal = $('.btn:nth-child(5)');
@@ -10,7 +12,18 @@ const modalWindow = $('.modal.fade.in');
 const modalTitle = $('.modal.fade.in .modal-title');
 const modalBody = $('.modal.fade.in .modal-body');
 const modalCloseButton = $('.modal.fade.in .close');
-let using = require('jasmine-data-provider');
+
+async function modalTitleText(): Promise<string> {
+  return await modalTitle.getText();
+}
+
+async function modalBodyText(): Promise<string> {
+  return await modalBody.getText();
+}
+
+async function modalIsPresent(): Promise<boolean> {
+  return await modalWindow.isPresent();
+}
 
 describe('Modals page test on bootstrap 3', () => {
   beforeAll(() => {
@@ -18,49 +31,64 @@ describe('Modals page test on bootstrap 3', () => {
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
   });
-  using (DataProvider.modalsTableContains, (data:any, description:string) => {
-    it ('Check table texts: ' + description, () => {
+
+  using(DataProvider.modalsTableContains, (data: any, description: string) => {
+    it(`Check table texts: ${description}`, () => {
       expect(data.element().getText()).toBe(data.actualResult);
     });
   });
+
   it('Large modal open and close by missclick', () => {
     buttonLargeModal.click();
-    expect(modalTitle.getText()).toBe('Large modal');
-    expect(modalBody.getText()).toBe('...');
+    expect(modalTitleText).toBe('Large modal');
+    expect(modalBodyText).toBe('...');
+
     browser.actions()
-      .mouseMove({ x: 1000, y: 0 })
+      .mouseMove({x: 1000, y: 0})
       .click()
       .perform();
-    expect(modalWindow.isPresent()).toBe(false);
+    expect(modalIsPresent).toBeFalsy();
   });
+
   it('Small modal open and close by x-cross', () => {
     buttonSmallModal.click();
-    expect(modalTitle.getText()).toBe('Small modal');
-    expect(modalBody.getText()).toBe('...');
+    expect(modalTitleText).toBe('Small modal');
+    expect(modalBodyText).toBe('...');
+
     modalCloseButton.click();
-    expect(modalWindow.isPresent()).toBe(false);
+    expect(modalIsPresent).toBeFalsy();
   });
+
   it('Open child modal click', () => {
     buttonChildModal.click();
-    expect(modalTitle.getText()).toBe('Child modal');
-    expect(modalBody.getText()).toBe('I am a child modal, opened from parent component!');
+    expect(modalTitleText).toBe('Child modal');
+    expect(modalBodyText).toBe('I am a child modal, opened from parent component!');
+
     modalCloseButton.click();
-    expect(modalWindow.isPresent()).toBe(false);
+    expect(modalIsPresent).toBeFalsy();
   });
+
   it('Static modal click', () => {
     buttonStaticModal.click();
-    expect(modalTitle.getText()).toBe('Static modal');
-    expect(modalBody.getText()).toBe('This is static modal, backdrop click will not close it. Click × to close modal.');
+
+    expect(modalTitleText).toBe('Static modal');
+    expect(modalBodyText).toBe('This is static modal, backdrop click will not close it. Click × to close modal.');
   });
-  it('Static modal does not close by misclick', () => {
+
+  it('Static modal does not close by misclick', async () => {
+    const modalIsDisplayed = await modalWindow.isDisplayed();
+
     browser.actions()
-      .mouseMove({ x: 0, y: 0 })
+      .mouseMove({x: 0, y: 0})
       .click()
       .perform();
-    expect(modalWindow.isDisplayed()).toBe(true);
+
+    expect(modalIsDisplayed).toBeTruthy();
   });
+
   it('Static modal close by cross', () => {
     modalCloseButton.click();
-    expect(modalWindow.isPresent()).toBe(false);
+
+    expect(modalIsPresent).toBeFalsy();
   });
 });

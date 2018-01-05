@@ -47,9 +47,10 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDropdownBasicComponent
       },
       {
+        title: 'Trigger by tag <a>',
+        anchor: 'link-button',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic-link.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic-link.html'),
-        description: `<p>And with <code> &lt;a&gt; </code> elements:</p>`,
         outlet: DemoDropdownBasicLinkComponent
       },
       {
@@ -138,6 +139,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: NgApiDocComponent
       },
       {
+        title: 'BsDropdownContainerComponent',
+        anchor: 'dropdown-container',
+        outlet: NgApiDocComponent
+      },
+      {
         title: 'BsDropdownMenuDirective',
         anchor: 'dropdown-menu-directive',
         outlet: NgApiDocComponent
@@ -146,6 +152,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'BsDropdownToggleDirective',
         anchor: 'dropdown-toggle-directive',
         outlet: NgApiDocComponent
+      },
+      {
+        title: 'BsDropdownState',
+        anchor: 'BsDropdownState',
+        outlet: NgApiDocConfigComponent
       },
       {
         title: 'BsDropdownConfig',
