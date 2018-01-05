@@ -1,6 +1,6 @@
 export interface ComponentExample {
-  anchor?: string;
-  title?: string;
+  anchor: string;
+  title: string;
   description?: string;
   component?: string;
   html?: string;

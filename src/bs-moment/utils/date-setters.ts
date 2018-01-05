@@ -1,4 +1,5 @@
 import { TimeUnit } from '../types';
+import { daysInMonth } from '../units/month';
 
 const defaultTimeUnit: TimeUnit = {
   year: 0,
@@ -30,11 +31,17 @@ export function createDate(
 
 export function shiftDate(date: Date, unit: TimeUnit): Date {
   const _unit = Object.assign({}, defaultTimeUnit, unit);
+  const year = date.getFullYear() + _unit.year;
+  const month = date.getMonth() + _unit.month;
+  let day = date.getDate() + _unit.day;
+  if (_unit.month && !_unit.day) {
+    day = Math.min(day, daysInMonth(year, month));
+  }
 
   return createDate(
-    date.getFullYear() + _unit.year,
-    date.getMonth() + _unit.month,
-    date.getDate() + _unit.day,
+    year,
+    month,
+    day,
     date.getHours() + _unit.hour,
     date.getMinutes() + _unit.minute,
     date.getSeconds() + _unit.seconds

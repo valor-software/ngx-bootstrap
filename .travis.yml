@@ -11,24 +11,30 @@ git:
 
 env:
   global:
+    - MOZ_HEADLESS=1
     - SAUCE_USERNAME_PR=valorkinpr
     - SAUCE_ACCESS_KEY_PR=e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
 
 stages:
-  - name: precache
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: lint
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: test
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: build
-    if: ( branch = development AND type = push ) OR type = pull_request
-  - name: deploy-surge
-    if: branch = development AND type = push
-  - name: sauce-tests
-    if: ( branch = development AND type = push ) OR type = pull_request
+  - &stage
+    name: precache
+    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v2
+  - <<: *stage
+    name: lint
+  - <<: *stage
+    name: test
+  - <<: *stage
+    name: bdd-tests
+  - <<: *stage
+    name: build
+  - name: deploy
+    if: branch = development AND type = push OR tag =~ ^v2
+  - name: publish
+    if: tag =~ ^v2
+  - <<: *stage
+    name: sauce-tests
 
 before_install:
   - export CHROME_BIN=chromium-browser
@@ -49,6 +55,7 @@ jobs:
   allow_failures:
     - env: NGV=next
     - env: SAUCE=true
+    - env: BDD=true
     - stage: sauce-tests
   include:
 # precache npm and apt dependencies
@@ -56,6 +63,7 @@ jobs:
       install: npm install > /dev/null
       script: true
       addons:
+        firefox: latest
         chrome: stable
         apt:
           sources:
@@ -63,10 +71,12 @@ jobs:
           # required by node-gyp to build some packages
           packages:
           - g++-4.8
+
 #   lint code
     - stage: lint
       install: true
       script: npm run lint
+
 #   test
     - &test
       stage: test
@@ -77,6 +87,19 @@ jobs:
       env: NGV=latest
     - <<: *test
       env: NGV=next
+
+#    test e2e-bdd
+    - stage: bdd-tests
+      env: BDD=true
+      before_script:
+      - npm run build:dynamic
+      - node  ./demo/dist/server.js &
+      - sleep 3
+      script:
+      - npm run lint-bdd
+      - webdriver-manager update --standalone
+      - protractor ./protractor.cucumber.js
+
 #    check prod build
     - &build
       stage: build
@@ -94,9 +117,10 @@ jobs:
         - ./scripts/sauce/sauce_connect_block.sh
         - npm run test-cross
       after_script: ./scripts/sauce/sauce_connect_teardown.sh
+
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
-      stage: deploy-surge
+      stage: deploy
       script: npm run demo.build
       deploy:
         provider: surge
@@ -110,6 +134,38 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap-latest.surge.sh
         on: development
+    - stage: deploy
+      script: npm run build:dynamic
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        skip_cleanup: true
+        app: ngx-universal
+        on: development
+
+# publish to gh pages and npm
+    - stage: publish
+      script: npm run demo.build
+      after_deploy: npm run flow.github-release
+      deploy:
+        provider: pages
+        local_dir: gh-pages
+        skip_cleanup: true
+        github_token: $GITHUB_TOKEN
+        app: ngx-universal
+        on:
+          tags: true
+    - stage: publish
+      script: npm run build
+      before_deploy: "cd dist"
+      deploy:
+        provider: npm
+        email: "valorkin@gmail.com"
+        api_key: $NPM_AUTH_TOKEN
+        tag: next
+        skip_cleanup: true
+        on:
+          tags: true
 
 cache:
   apt: true

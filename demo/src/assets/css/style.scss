@@ -301,14 +301,21 @@ a:hover {
   h2[id] {
     margin-top: 58px;
   }
+  h2[id],
+  h3[id] {
+    .anchor-link {
+      display: none;
+    }
+    &:hover {
+      .anchor-link {
+        display: inline-block;
+      }
+    }
+  }
 
   ng-sample-box {
     .section {
       margin-bottom: 60px;
-
-      .tooltip {
-        z-index: 999;
-      }
 
       &.bd-example {
         margin-bottom: 10px;
@@ -345,6 +352,7 @@ a:hover {
 .add-nav {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
+  padding-right: 5px;
   position: -webkit-sticky;
   position: sticky;
   top: 84px;
@@ -363,8 +371,11 @@ a:hover {
 
     li {
       a {
+        word-break: break-all;
+        word-break: break-word;
         display: block;
-        padding: 2px 0;
+        padding: 5px 0;
+        line-height: 1.2;
         color: #666;
 
         &:hover {
@@ -489,7 +500,6 @@ a:hover {
   border-radius: 4px;
 }
 
-
 /*** Media Query ***/
 /* above 768px */
 @media (min-width: 768px) {
@@ -497,7 +507,16 @@ a:hover {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1090; // to overlap most positioned elements in bootstrap
+  }
+  .header-dropdown {
+    z-index: 1090;
+  }
+  .modal-backdrop {
+    z-index: 2000; // to overlap header :)
+  }
+  .modal {
+    z-index: 2001; // to overlap header :)
   }
   .sidebar {
     position: -webkit-sticky;
@@ -509,8 +528,8 @@ a:hover {
     display: none;
   }
 }
-/* below 1440 */
-@media (max-width: 1439px) {
+/* below 1200 */
+@media (max-width: 1199px) {
   .add-nav {
     display: none;
   }
@@ -518,6 +537,16 @@ a:hover {
     flex: 0 0 75%;
     max-width: 75%;
   }
+
+  .content {
+    h2[id],
+    h3[id] {
+      .anchor-link {
+        display: inline-block;
+      }
+    }
+  }
+
   .advantages {
     .holder {
       padding-left: 5%;
@@ -547,10 +576,6 @@ a:hover {
 
     .logo {
       font-size: 1.25rem;
-    }
-
-    .prev-docs {
-      display: none;
     }
   }
   .advantages {
@@ -663,6 +688,14 @@ a:hover {
           padding-bottom: 0;
         }
       }
+    }
+  }
+}
+/* below 480 */
+@media (max-width: 479px) {
+  .header {
+    .prev-docs {
+      display: none;
     }
   }
 }

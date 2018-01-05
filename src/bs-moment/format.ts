@@ -20,6 +20,10 @@ export function formatDate(date: Date, format: string, locale = 'en'): string {
   }
   const output = formatMoment(date, format, _locale);
 
+  if (!output) {
+    return output;
+  }
+
   return _locale.postformat(output);
 }
 

@@ -1,7 +1,7 @@
 import { absFloor } from '../utils';
 
 export function isDateValid(date: Date): boolean {
-  return date && !isNaN(date.getTime());
+  return date && date.getTime && !isNaN(date.getTime());
 }
 export function isFunction(fn: Function): fn is Function {
   return (

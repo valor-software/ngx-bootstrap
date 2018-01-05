@@ -1,12 +1,12 @@
-import {browser, $} from 'protractor';
-import {typeheadEl} from '../selectors.json';
-import {leftPanelTests} from './leftPanelTests.po';
-import {DataProvider} from '../data-provider/data-provider.po';
+import { browser, $, ElementFinder } from 'protractor';
+import { typeheadEl } from '../selectors.json';
+import { leftPanelTests } from './leftPanelTests.po';
+import { DataProvider } from '../data-provider/data-provider.po';
 
-let using = require('jasmine-data-provider');
+const using = require('jasmine-data-provider');
 
-function getItemNumberInDropdown(itemNumber: any): any {
-  return $('typeahead-container li:nth-child(' + itemNumber + ')>a');
+function getItemNumberInDropdown(itemNumber: number): ElementFinder {
+  return $(`typeahead-container li:nth-child('${itemNumber}')>a`);
 }
 
 function clearInputFields(): any {
@@ -23,64 +23,83 @@ describe('Typeahead page tests on bootstrap 3', () => {
     browser.get('#/typeahead');
     leftPanelTests.checkLeftPanelMini();
     leftPanelTests.checkLeftPanelMaxi();
-    browser.ignoreSynchronization = false;
+    // Not sure, that we actually need browser.ignoreSynchronization = false; so comment it for now
+    // browser.ignoreSynchronization = false;
   });
 
   using(DataProvider.typeaheadDefaultTexts, (data: any, description: string) => {
-    it('Check default texts: ' + description, () => {
+    it(`Check default texts: ${description}`, () => {
       expect(data.element().getText()).toContain(data.actualResult);
     });
   });
 
   using(DataProvider.inputDifferentData, (data: any, description: string) => {
-    it('Check input fields with different data: ' + description, () => {
+    it(`Check input fields with different data: ${description}`, async () => {
+      let modelText: string;
+      const expectedText = `Model: "${data.inputText}"`;
+
       clearInputFields();
       typeheadEl.inputStatic.sendKeys(data.inputText);
-      expect(typeheadEl.modelStatic.getText()).toBe('Model: ' + '"' + data.inputText + '"');
+      modelText = await typeheadEl.modelStatic.getText();
+      expect(modelText).toBe(expectedText);
 
       typeheadEl.inputTemplate.sendKeys(data.inputText);
-      expect(typeheadEl.modelTemplate.getText()).toBe('Model: ' + '"' + data.inputText + '"');
+      modelText = await typeheadEl.modelTemplate.getText();
+      expect(modelText).toBe(expectedText);
 
       typeheadEl.inputOption.sendKeys(data.inputText);
-      expect(typeheadEl.modelOption.getText()).toBe('Model: ' + '"' + data.inputText + '"');
+      modelText = await typeheadEl.modelOption.getText();
+      expect(modelText).toBe(expectedText);
 
       typeheadEl.inputAsynchronous.sendKeys(data.inputText);
-      expect(typeheadEl.modelAsynchronous.getText()).toBe('Model: ' + '"' + data.inputText + '"');
+      modelText = await typeheadEl.modelAsynchronous.getText();
+      expect(modelText).toBe(expectedText);
 
       typeheadEl.inputReactiveForms.sendKeys(data.inputText);
-      expect(typeheadEl.modelReactiveForms.getText()).toBe('Model: ' + '"' + data.inputText + '"');
+      modelText = await typeheadEl.modelReactiveForms.getText();
+      expect(modelText).toBe(expectedText);
 
       typeheadEl.inputGroupingResults.sendKeys(data.inputText);
-      expect(typeheadEl.modelGroupingResults.getText()).toBe('Model: ' + '"' + data.inputText + '"');
+      modelText = await typeheadEl.modelGroupingResults.getText();
+      expect(modelText).toBe(expectedText);
     });
   });
 
   using(DataProvider.typeaheadInputCityTexts, (data: any, description: string) => {
-    it('Check items from dropdown: ' + description, () => {
+    it(`Check items from dropdown: ${description}`, async () => {
+      let actualModelText: string;
+      const expectedModelText = `Model: "${data.expectedResult}"`;
+
       clearInputFields();
       typeheadEl.inputStatic.sendKeys(data.inputText);
       getItemNumberInDropdown(1).click();
-      expect(typeheadEl.modelStatic.getText()).toBe('Model: ' + '"' + data.expectedResult + '"');
+      actualModelText = await typeheadEl.modelStatic.getText();
+      expect(actualModelText).toBe(expectedModelText);
 
       typeheadEl.inputTemplate.sendKeys(data.inputText);
       getItemNumberInDropdown(1).click();
-      expect(typeheadEl.modelTemplate.getText()).toBe('Model: ' + '"' + data.expectedResult + '"');
+      actualModelText = await typeheadEl.modelTemplate.getText();
+      expect(actualModelText).toBe(expectedModelText);
 
       typeheadEl.inputOption.sendKeys(data.inputText);
       getItemNumberInDropdown(1).click();
-      expect(typeheadEl.modelOption.getText()).toBe('Model: ' + '"' + data.expectedResult + '"');
+      actualModelText = await typeheadEl.modelOption.getText();
+      expect(actualModelText).toBe(expectedModelText);
 
       typeheadEl.inputAsynchronous.sendKeys(data.inputText);
       getItemNumberInDropdown(1).click();
-      expect(typeheadEl.modelAsynchronous.getText()).toBe('Model: ' + '"' + data.expectedResult + '"');
+      actualModelText = await typeheadEl.modelAsynchronous.getText();
+      expect(actualModelText).toBe(expectedModelText);
 
       typeheadEl.inputReactiveForms.sendKeys(data.inputText);
       getItemNumberInDropdown(1).click();
-      expect(typeheadEl.modelReactiveForms.getText()).toBe('Model: ' + '"' + data.expectedResult + '"');
+      actualModelText = await typeheadEl.modelReactiveForms.getText();
+      expect(actualModelText).toBe(expectedModelText);
 
       typeheadEl.inputGroupingResults.sendKeys(data.inputText);
       getItemNumberInDropdown(2).click();
-      expect(typeheadEl.modelGroupingResults.getText()).toBe('Model: ' + '"' + data.expectedResult + '"');
+      actualModelText = await typeheadEl.modelGroupingResults.getText();
+      expect(actualModelText).toBe(expectedModelText);
     });
   });
 
@@ -88,6 +107,7 @@ describe('Typeahead page tests on bootstrap 3', () => {
     typeheadEl.inputStatic.clear();
     typeheadEl.inputStatic.sendKeys('a');
     typeheadEl.staticArrayAlabama.click();
+
     expect(typeheadEl.modelStatic.getText()).toContain('Alabama');
   });
 
@@ -95,6 +115,7 @@ describe('Typeahead page tests on bootstrap 3', () => {
     typeheadEl.inputTemplate.clear();
     typeheadEl.inputTemplate.sendKeys('a');
     typeheadEl.staticArrayAlabama.click();
+
     expect(typeheadEl.modelStatic.getText()).toContain('Alabama');
   });
 
@@ -102,23 +123,31 @@ describe('Typeahead page tests on bootstrap 3', () => {
     typeheadEl.inputOption.clear();
     typeheadEl.inputOption.sendKeys('a');
     typeheadEl.staticArrayAlabama.click();
+
     expect(typeheadEl.modelOption.getText()).toContain('Alabama');
   });
 
   it('Check unfounded item in Async data results', () => {
     typeheadEl.inputAsynchronous.clear();
     typeheadEl.inputAsynchronous.sendKeys('1');
+
     expect(typeheadEl.errorMessageNoResultsFound.getText()).toContain('No Results Found');
   });
 
-  it('Check dropdown list "Reactive forms" for empty value Model: (null)', () => {
+  it('Check dropdown list "Reactive forms" for empty value Model: (null)', async () => {
+    const reactiveModelText = await typeheadEl.modelReactiveForms.getText();
+    const expectedText = 'Model: null';
+
     browser.refresh();
-    expect(typeheadEl.modelReactiveForms.getText()).toEqual('Model: null');
+
+    expect(reactiveModelText).toEqual(expectedText);
   });
 
-  it('Check grouping option at list "Grouping results"', () => {
+  it('Check grouping option at list "Grouping results"', async () => {
+    const dropdownHeaderIsDisplayed = await typeheadEl.dropdownHeader.isDisplayed();
+
     typeheadEl.inputGroupingResults.sendKeys('a');
-    expect(typeheadEl.dropdownHeader.isDisplayed()).toBe(true);
-  });
 
+    expect(dropdownHeaderIsDisplayed).toBeTruthy();
+  });
 });

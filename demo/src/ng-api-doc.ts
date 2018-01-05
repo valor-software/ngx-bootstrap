@@ -24,7 +24,7 @@ export const ngdoc: any = {
       {
         "name": "panelClass",
         "type": "string",
-        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">http://getbootstrap.com/components/#panels-alternatives</a>)</p>\n"
+        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"https://getbootstrap.com/docs/3.3/components/#panels-alternatives\" target=\"_blank\" title=\"null\">https://getbootstrap.com/docs/3.3/components/#panels-alternatives</a>)</p>\n"
       }
     ],
     "outputs": [
@@ -506,11 +506,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDatepickerComponent": {
+  "BsDatepickerDirective": {
     "fileName": "src/datepicker/bs-datepicker.component.ts",
-    "className": "BsDatepickerComponent",
+    "className": "BsDatepickerDirective",
     "description": "",
-    "selector": "bs-datepicker,[bsDatepicker]",
+    "selector": "[bsDatepicker]",
     "exportAs": "bsDatepicker",
     "inputs": [
       {
@@ -601,6 +601,12 @@ export const ngdoc: any = {
         "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering\nof the datepicker.</p>\n",
         "args": [],
         "returnType": "void"
+      },
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for datepicker</p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ]
   },
@@ -650,11 +656,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDaterangepickerComponent": {
+  "BsDaterangepickerDirective": {
     "fileName": "src/datepicker/bs-daterangepicker.component.ts",
-    "className": "BsDaterangepickerComponent",
+    "className": "BsDaterangepickerDirective",
     "description": "",
-    "selector": "bs-daterangepicker,[bsDaterangepicker]",
+    "selector": "[bsDaterangepicker]",
     "exportAs": "bsDaterangepicker",
     "inputs": [
       {
@@ -731,6 +737,12 @@ export const ngdoc: any = {
       {
         "name": "show",
         "description": "<p>Opens an element’s datepicker. This is considered a “manual” triggering of\nthe datepicker.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for daterangepicker</p>\n",
         "args": [],
         "returnType": "void"
       },

@@ -10,6 +10,7 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma'),
@@ -36,11 +37,19 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    browserNoActivityTimeout: 20000,
+    browserDisconnectTolerance: 2,
+    browserDisconnectTimeout: 5000,
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'ChromeHeadless',
-        flags: ['--disable-translate', '--disable-extensions']
+          base: 'ChromeHeadless',
+          flags: [
+              '--headless',
+              '--disable-gpu',
+              '--no-sandbox',
+              '--remote-debugging-port=9222'
+          ]
       }
     },
     mime: {'text/x-typescript': ['ts', 'tsx']},
@@ -48,7 +57,7 @@ module.exports = function (config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['ChromeHeadless'];
+    configuration.browsers = ['Chrome_travis_ci'];
   }
 
   if (process.env.SAUCE) {
@@ -64,8 +73,6 @@ module.exports = function (config) {
       singleRun: false,
       concurrency: 2,
       captureTimeout: 60000,
-      browserNoActivityTimeout: 20000,
-      browserDisconnectTimeout: 5000,
       sauceLabs: {
         testName: 'ngx-bootstrap',
         build: process.env.TRAVIS_JOB_NUMBER,
