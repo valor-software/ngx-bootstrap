@@ -70,6 +70,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       }
       this._renderer.addClass(document.body, CLASS_NAME.OPEN);
     }
+    if (this._element.nativeElement) {
+      this._element.nativeElement.focus();
+    }
   }
 
   @HostListener('click', ['$event'])
