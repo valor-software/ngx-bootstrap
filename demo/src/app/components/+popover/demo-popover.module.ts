@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { DEMO_COMPONENTS } from './demos';
 import { PopoverSectionComponent } from './popover-section.component';
 import { routes } from './demo-popover.routes';
@@ -17,10 +17,11 @@ import { routes } from './demo-popover.routes';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     PopoverModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [PopoverSectionComponent]
+  exports: [PopoverSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoPopoverModule {}

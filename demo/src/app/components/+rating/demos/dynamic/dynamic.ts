@@ -5,19 +5,19 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoRatingDynamicComponent {
-  public max:number = 10;
-  public rate:number = 7;
-  public isReadonly:boolean = false;
+  max = 10;
+  rate = 7;
+  isReadonly = false;
 
-  public overStar:number;
-  public percent:number;
+  overStar: number;
+  percent: number;
 
-  public hoveringOver(value:number):void {
+  hoveringOver(value: number): void {
     this.overStar = value;
-    this.percent = 100 * (value / this.max);
-  };
+    this.percent = (value / this.max) * 100;
+  }
 
-  public resetStar():void {
+  resetStar(): void {
     this.overStar = void 0;
   }
 }

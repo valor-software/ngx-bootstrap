@@ -20,10 +20,9 @@
     <div *ngFor="let item of items">{{item}}</div>
   </accordion-group>
   <accordion-group #group [isOpen]="status.isOpen">
-    <div accordion-heading>
+    <div accordion-heading class="clearfix">
       I can have markup, too!
-      <i class="pull-right float-xs-right glyphicon"
-         [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+      <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
     </div>
     This is just some content to illustrate fancy headings.
   </accordion-group>

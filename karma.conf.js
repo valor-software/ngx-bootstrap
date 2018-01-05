@@ -10,8 +10,11 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-remap-istanbul'),
-      require('@angular/cli/plugins/karma')
+      require('karma-firefox-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('karma-coverage-istanbul-reporter'),
+      require('@angular/cli/plugins/karma'),
+      require('karma-sauce-launcher')
     ],
     files: [
       {pattern: './scripts/test.ts', watched: false}
@@ -19,33 +22,38 @@ module.exports = function (config) {
     preprocessors: {
       './scripts/test.ts': ['@angular/cli']
     },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov'
-      }
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly'],
+      fixWebpackSourcePaths: true
     },
     angularCli: {
-      config: './.angular-cli.json',
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-      ? ['dots', 'karma-remap-istanbul']
-      : ['dots'],
+      ? ['dots', 'coverage-istanbul']
+      : ['dots', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    browserNoActivityTimeout: 20000,
+    browserDisconnectTolerance: 2,
+    browserDisconnectTimeout: 5000,
     singleRun: false,
     customLaunchers: {
       Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+          base: 'ChromeHeadless',
+          flags: [
+              '--headless',
+              '--disable-gpu',
+              '--no-sandbox',
+              '--remote-debugging-port=9222'
+          ]
       }
     },
-    mime: { 'text/x-typescript': ['ts','tsx'] },
-    client: { captureConsole: true }
+    mime: {'text/x-typescript': ['ts', 'tsx']},
+    client: {captureConsole: true, clearContext: false}
   };
 
   if (process.env.TRAVIS) {
@@ -59,26 +67,94 @@ module.exports = function (config) {
     }
 
     configuration.plugins.push(require('karma-sauce-launcher'));
-    configuration.reporters.push('saucelabs');
-    configuration.sauceLabs = {
-      verbose: true,
-      testName: 'ng2-bootstrap unit tests',
-      recordScreenshots: false,
-      username: process.env.SAUCE_USERNAME,
-      accessKey: process.env.SAUCE_ACCESS_KEY,
-      connectOptions: {
-        port: 5757,
-        logfile: 'sauce_connect.log'
+    Object.assign(configuration, {
+      logLevel: config.LOG_INFO,
+      reporters: ['dots', 'saucelabs'],
+      singleRun: false,
+      concurrency: 2,
+      captureTimeout: 60000,
+      sauceLabs: {
+        testName: 'ngx-bootstrap',
+        build: process.env.TRAVIS_JOB_NUMBER,
+        tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
+        retryLimit: 5,
+        startConnect: false,
+        recordVideo: false,
+        recordScreenshots: false,
+        options: {
+          'command-timeout': 600,
+          'idle-timeout': 600,
+          'max-duration': 5400
+        }
       },
-      public: 'public'
-    };
-    configuration.captureTimeout = 0;
-    configuration.customLaunchers = customLaunchers();
+      customLaunchers: {
+        'SL_CHROME': {
+          base: 'SauceLabs',
+          browserName: 'chrome',
+          version: 'latest'
+        },
+        'SL_CHROME_1': {
+          base: 'SauceLabs',
+          browserName: 'chrome',
+          version: 'latest-1'
+        },
+        'SL_FIREFOX': {
+          base: 'SauceLabs',
+          browserName: 'firefox',
+          version: 'latest'
+        },
+        'SL_FIREFOX_1': {
+          base: 'SauceLabs',
+          browserName: 'firefox',
+          version: 'latest-1'
+        },
+        'SL_IE10': {
+          base: 'SauceLabs',
+          browserName: 'internet explorer',
+          // platform: 'Windows 2012',
+          version: '10'
+        },
+        'SL_IE11': {
+          base: 'SauceLabs',
+          browserName: 'internet explorer',
+          platform: 'Windows 8.1',
+          version: '11.0'
+        },
+        'SL_EDGE13': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '13'
+        },
+        'SL_EDGE14': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '14'
+        },
+        'SL_EDGE15': {
+          base: 'SauceLabs',
+          browserName: 'MicrosoftEdge',
+          platform: 'Windows 10',
+          version: '15'
+        },
+        'SL_SAFARI9': {
+          base: 'SauceLabs',
+          browserName: 'safari',
+          // platform: 'OS X 10.11',
+          version: '9.0'
+        },
+        'SL_SAFARI10': {
+          base: 'SauceLabs',
+          browserName: 'safari',
+          // platform: 'OS X 10.11',
+          version: '10.0'
+        }
+      }
+    });
+
+
     configuration.browsers = Object.keys(configuration.customLaunchers);
-    configuration.concurrency = 3;
-    configuration.browserDisconnectTolerance = 2;
-    configuration.browserNoActivityTimeout = 20000;
-    configuration.browserDisconnectTimeout = 5000;
   }
 
   config.set(configuration);

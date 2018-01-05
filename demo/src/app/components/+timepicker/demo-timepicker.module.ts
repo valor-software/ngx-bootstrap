@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { TimepickerSectionComponent } from './timepicker-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-timepicker.routes';
@@ -17,11 +17,12 @@ import { routes } from './demo-timepicker.routes';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    ReactiveFormsModule,
+    DocsModule,
     TimepickerModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [TimepickerSectionComponent]
+  exports: [TimepickerSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
-export class DemoTimepickerModule {
-}
+export class DemoTimepickerModule {}

@@ -1,0 +1,2 @@
+import './en';
+import './sv';

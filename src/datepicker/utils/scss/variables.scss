@@ -1,0 +1,36 @@
+$main-bg:         #fff !default;
+$custom-range-bg: #eee !default;
+
+$main-box-shadow: #aaa !default;
+
+$font-color-01:   #fff !default;
+$font-color-02:   #9aaec1 !default;
+$font-color-03:   #54708b !default;
+
+$border-color:    #e9edf0 !default;
+$highlighted:     #e9edf0 !default;
+
+$btn-bg:          #e9edf0 !default;
+$btn-bg-hover:    #d5dadd !default;
+
+$btn-bg2:         #9aaec1 !default;
+$btn-bg2-hover:   #54708b !default;
+
+$theme-gray:      #777 !default;
+$theme-green:     #5cb85c !default;
+$theme-blue:      #5bc0de !default;
+$theme-dark-blue: #337ab7 !default;
+$theme-red:       #d9534f !default;
+$theme-orange:    #f0ad4e !default;
+
+$disabled-background:  rgba(221, 221, 221, 0.3) !default;
+$disabled-color:       #f5f5f5 !default;
+
+$theme-list: (
+  'default': $theme-gray,
+  'green': $theme-green,
+  'blue': $theme-blue,
+  'dark-blue': $theme-dark-blue,
+  'red': $theme-red,
+  'orange': $theme-orange,
+) !default;

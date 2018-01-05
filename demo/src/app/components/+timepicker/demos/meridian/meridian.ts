@@ -5,12 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './meridian.html'
 })
 export class DemoTimepickerMeridianComponent {
-  public ismeridian:boolean = true;
+  ismeridian: boolean = true;
 
-  public mytime:Date = new Date();
+  mytime: Date = new Date();
 
-  public toggleMode():void {
+  toggleMode(): void {
     this.ismeridian = !this.ismeridian;
   }
-
 }

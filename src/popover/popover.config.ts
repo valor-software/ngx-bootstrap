@@ -9,17 +9,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PopoverConfig {
   /**
-   * Placement of a popover. Accepts: "top", "bottom", "left", "right"
+   * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
    */
-  public placement: string = 'top';
+  placement = 'top';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  public triggers: string = 'click';
+  triggers = 'click';
+
+  outsideClick = false;
   /**
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".
    */
-  public container: string;
+  container: string;
 }

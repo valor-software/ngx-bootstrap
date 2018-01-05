@@ -3,6 +3,7 @@
 /node_modules
 /bower_components
 yarn.lock
+package-lock.json
 
 # IDEs and editors
 /.idea
@@ -20,11 +21,13 @@ yarn.lock
 npm-debug.log
 
 # ignore build and dist for now
+.tmp
 /dist
 /temp
 /demo/dist
 /demo/temp
 /logs
+/gh-pages
 
 #System Files
 .DS_Store
@@ -33,6 +36,7 @@ Thumbs.db
 
 /demo/e2e/*.js
 /demo/e2e/*.map
+/demo/src/ng-api-doc.ts
 src/**/*.js
 src/**/*.map
 scripts/**/*.js

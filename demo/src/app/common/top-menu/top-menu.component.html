@@ -1,15 +1,38 @@
-<div id="top-menu">
-  <div class="title">
-    <h2 [routerLink]="['']">ngx-bootstrap</h2>
-  </div>
-
-  <div id="mobile-main-menu" (click)="toggle()">
-    <img src="assets/images/menu-left.svg" alt="">
-  </div>
-
-  <div class="logo">
-    <a target="_blank" href="https://github.com/valor-software/ngx-bootstrap">
-      <img src="assets/images/GitHub-Mark-Light-64px.png" alt="">
+<header id="header" class="header">
+  <h1 class="logo" >
+    <a [routerLink]="['']">
+      <img src="assets/images/logos/header-logo.svg">
     </a>
+  </h1>
+
+  <div class="header-info">
+    <div class="prev-docs" dropdown *ngIf="previousDocs.length" container="body">
+      <div dropdownToggle class="dropdown-toggle">
+        {{currentVersion ? 'v' + currentVersion : ''}} <span class="caret"></span>
+      </div>
+      <ul *dropdownMenu class="dropdown-menu header-dropdown" role="menu">
+        <li role="menuitem" *ngFor="let item of previousDocs">
+          <a class="dropdown-item" [href]="appUrl + (needPrefix ? item.url : item.unprefixedUrl) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="header-list">
+      <li>
+        <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/ngx-bootstrap">
+          <img src="assets/images/icons/stackoverflow.svg" alt="slack">
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap">
+          <img src="assets/images/icons/icon-git.svg" alt="github stars">
+        </a>
+      </li>
+      <li>
+        <a target="_blank" rel="noopener" href="https://ngx-slack.herokuapp.com">
+          <img src="assets/images/icons/icon-slack.svg" alt="slack">
+        </a>
+      </li>
+    </ul>
   </div>
-</div>
+</header>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { ButtonsSectionComponent } from './buttons-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-buttons.routes';
@@ -15,13 +15,14 @@ import { routes } from './demo-buttons.routes';
     ...DEMO_COMPONENTS
   ],
   imports: [
-    ButtonsModule.forRoot(),
-    CommonModule,
     FormsModule,
-    SharedModule,
-    RouterModule.forChild(routes)
+    ReactiveFormsModule,
+    CommonModule,
+    DocsModule,
+    RouterModule.forChild(routes),
+    ButtonsModule.forRoot()
   ],
-  exports: [ButtonsSectionComponent]
+  exports: [ButtonsSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
-export class DemoButtonsModule {
-}
+export class DemoButtonsModule {}

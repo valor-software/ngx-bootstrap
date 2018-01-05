@@ -1,6 +1,6 @@
 import { $, browser } from 'protractor';
 
-const menuLeftMaxi = $('.main-menu-container');
+const menuLeftMaxi = $('.sidenav-content');
 const menuLeftMini = $('#mobile-main-menu');
 
 const leftPanelTests = {

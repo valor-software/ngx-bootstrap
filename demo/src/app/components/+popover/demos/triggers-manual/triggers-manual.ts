@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-popover-triggers-manual',
   templateUrl: './triggers-manual.html'
 })
-export class DemoPopoverTriggersManualComponent {
-}
+export class DemoPopoverTriggersManualComponent {}

@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-dropdown-alignment',
   templateUrl: './menu-alignment.html'
 })
-export class DemoDropdownAlignmentComponent {
-}
+export class DemoDropdownAlignmentComponent {}

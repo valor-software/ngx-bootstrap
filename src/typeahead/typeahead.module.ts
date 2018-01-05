@@ -13,10 +13,10 @@ import { PositioningService } from '../positioning';
   entryComponents: [TypeaheadContainerComponent]
 })
 export class TypeaheadModule {
-  public static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: TypeaheadModule,
       providers: [ComponentLoaderFactory, PositioningService]
     };
-  };
+  }
 }

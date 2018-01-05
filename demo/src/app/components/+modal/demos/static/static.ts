@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-modal-static',
   templateUrl: './static.html'
 })
-export class DemoModalStaticComponent {
-
-}
+export class DemoModalStaticComponent {}

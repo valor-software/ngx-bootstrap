@@ -5,8 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './styling.html',
   styleUrls: ['./styling.css']
 })
-
 export class DemoAccordionStylingComponent {
-  public customClass: string = 'customClass';
-  public isFirstOpen: boolean = true;
+  customClass: string = 'customClass';
+  isFirstOpen: boolean = true;
 }

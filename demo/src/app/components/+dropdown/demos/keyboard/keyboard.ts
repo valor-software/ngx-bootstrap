@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-dropdown-keyboard',
   templateUrl: './keyboard.html'
 })
-export class DemoDropdownKeyboardComponent {
-
-}
+export class DemoDropdownKeyboardComponent {}
