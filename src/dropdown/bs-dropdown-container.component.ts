@@ -7,6 +7,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { BsDropdownState } from './bs-dropdown.state';
+import { isBs3 } from '../utils/theme-provider';
 
 @Component({
   selector: 'bs-dropdown-container',
@@ -39,7 +40,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
       const dropdown = _element.nativeElement.querySelector('.dropdown-menu');
-      if (dropdown) {
+      if (dropdown && !isBs3()) {
         this._renderer.addClass(dropdown, 'show');
         if (dropdown.classList.contains('dropdown-menu-right')) {
           this._renderer.setStyle(dropdown, 'left', 'auto');
