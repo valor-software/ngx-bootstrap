@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "demo/src",
-      "outDir": "demo/dist",
+      "outDir": "demo/dist/browser",
       "assets": [
         "assets",
         "favicon.ico"
@@ -22,14 +22,44 @@
       "serviceWorker": false,
       "styles": [
         "../../src/datepicker/bs-datepicker.scss",
-        "assets/css/style.css",
+        "assets/css/style.scss",
         "assets/css/prettify-angulario.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "prod": "environments/environment.prod.ts",
+        "server": "environments/environment.server.ts"
+      }
+    },
+    {
+      "platform" : "server",
+      "root": "demo/src",
+      "outDir": "demo/dist/server",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.server.ts",
+      "test": "../../scripts/test.ts",
+      "tsconfig": "tsconfig.server.json",
+      "testTsconfig": "../../src/tsconfig.spec.json",
+      "prefix": "",
+      "mobile": false,
+      "serviceWorker": false,
+      "styles": [
+        "../../src/datepicker/bs-datepicker.scss",
+        "assets/css/style.scss",
+        "assets/css/prettify-angulario.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts",
+        "server": "environments/environment.server.ts"
       }
     }
   ],

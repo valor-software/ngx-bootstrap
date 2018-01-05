@@ -1,33 +1,24 @@
 // tslint:disable:max-file-line-count
-import {
-  BsDatepickerState,
-  initialDatepickerState
-} from './bs-datepicker.state';
+import { BsDatepickerState, initialDatepickerState } from './bs-datepicker.state';
 import { Action } from '../../mini-ngrx/index';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { calcDaysCalendar } from '../engine/calc-days-calendar';
 import { formatDaysCalendar } from '../engine/format-days-calendar';
 import { flagDaysCalendar } from '../engine/flag-days-calendar';
-import { shiftDate, setDate } from '../../bs-moment/utils/date-setters';
+import { setDate, shiftDate } from '../../bs-moment/utils/date-setters';
 import { canSwitchMode } from '../engine/view-mode';
 import { formatMonthsCalendar } from '../engine/format-months-calendar';
 import { flagMonthsCalendar } from '../engine/flag-months-calendar';
-import {
-  formatYearsCalendar,
-  yearsPerCalendar
-} from '../engine/format-years-calendar';
+import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
-import {
-  BsViewNavigationEvent,
-  DatepickerFormatOptions
-} from '../models/index';
-import { isArray } from '../../bs-moment/utils/type-checks';
+import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
+import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
 import { startOf } from '../../bs-moment/utils/start-end-of';
+import { getLocale } from '../../bs-moment/locale/locales.service';
+import { isAfter, isBefore } from '../../bs-moment/utils/date-compare';
 
-export function bsDatepickerReducer(
-  state = initialDatepickerState,
-  action: Action
-): BsDatepickerState {
+export function bsDatepickerReducer(state = initialDatepickerState,
+                                    action: Action): BsDatepickerState {
   switch (action.type) {
     case BsDatepickerActions.CALCULATE: {
       return calculateReducer(state);
@@ -84,34 +75,37 @@ export function bsDatepickerReducer(
         view: state.view
       };
 
-      if (action.payload) {
-        newState.view = {
-          date: action.payload,
-          mode: state.view.mode
-        };
-      }
+      const mode = state.view.mode;
+      const _date = action.payload || state.view.date;
+      const date = getViewDate(_date, state.minDate, state.maxDate);
+      newState.view = { mode, date };
 
       return Object.assign({}, state, newState);
     }
 
     case BsDatepickerActions.SET_OPTIONS: {
       const newState = action.payload;
-      // looks not really good
+      // preserve view mode
+      const mode = state.view.mode;
+      const _viewDate = isDateValid(newState.value) && newState.value
+        || isArray(newState.value) && isDateValid(newState.value[0]) && newState.value[0]
+        || state.view.date;
+      const date = getViewDate(_viewDate, newState.minDate, newState.maxDate);
+      newState.view = { mode, date };
+      // update selected value
       if (newState.value) {
-        newState.view = state.view;
+        // if new value is array we work with date range
         if (isArray(newState.value)) {
-          newState.view = {
-            mode: state.view.mode,
-            date: newState.value[0]
-          };
           newState.selectedRange = newState.value;
-        } else {
-          newState.view = {
-            mode: state.view.mode,
-            date: newState.value
-          };
+        }
+
+        // if new value is a date -> datepicker
+        if (newState.value instanceof Date) {
           newState.selectedDate = newState.value;
         }
+
+        // provided value is not supported :)
+        // need to report it somehow
       }
 
       return Object.assign({}, state, newState);
@@ -119,7 +113,17 @@ export function bsDatepickerReducer(
 
     // date range picker
     case BsDatepickerActions.SELECT_RANGE: {
-      return Object.assign({}, state, { selectedRange: action.payload });
+      const newState = {
+        selectedRange: action.payload,
+        view: state.view
+      };
+
+      const mode = state.view.mode;
+      const _date = action.payload && action.payload[0] || state.view.date;
+      const date = getViewDate(_date, state.minDate, state.maxDate);
+      newState.view = { mode, date };
+
+      return Object.assign({}, state, newState);
     }
 
     case BsDatepickerActions.SET_MIN_DATE: {
@@ -150,6 +154,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   let viewDate = state.view.date;
 
   if (state.view.mode === 'day') {
+    state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
     const monthsModel = new Array(displayMonths);
     for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
       // todo: for unlinked calendars it will be harder
@@ -203,10 +208,8 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   return state;
 }
 
-function formatReducer(
-  state: BsDatepickerState,
-  action: Action
-): BsDatepickerState {
+function formatReducer(state: BsDatepickerState,
+                       action: Action): BsDatepickerState {
   if (state.view.mode === 'day') {
     const formattedMonths = state.monthsModel.map((month, monthIndex) =>
       formatDaysCalendar(month, getFormatOptions(state), monthIndex)
@@ -260,10 +263,8 @@ function formatReducer(
   return state;
 }
 
-function flagReducer(
-  state: BsDatepickerState,
-  action: Action
-): BsDatepickerState {
+function flagReducer(state: BsDatepickerState,
+                     action: Action): BsDatepickerState {
   if (state.view.mode === 'day') {
     const flaggedMonths = state.formattedMonths.map(
       (formattedMonth, monthIndex) =>
@@ -330,4 +331,24 @@ function getFormatOptions(state: BsDatepickerState): DatepickerFormatOptions {
 
     weekNumbers: state.weekNumbers
   };
+}
+
+/**
+ * if view date is provided (bsValue|ngModel) it should be shown
+ * if view date is not provider:
+ * if minDate>currentDate (default view value), show minDate
+ * if maxDate<currentDate(default view value) show maxDate
+ */
+function getViewDate(viewDate: Date | Date[], minDate: Date, maxDate: Date) {
+  const _date = Array.isArray(viewDate) ? viewDate[0] : viewDate;
+
+  if (minDate && isAfter(minDate, _date, 'day')) {
+    return minDate;
+  }
+
+  if (maxDate && isBefore(maxDate, _date, 'day')) {
+    return maxDate;
+  }
+
+  return _date;
 }

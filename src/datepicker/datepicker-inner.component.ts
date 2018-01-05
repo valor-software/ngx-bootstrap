@@ -1,4 +1,4 @@
-/* tslint:disable:max-file-line-count */
+﻿/* tslint:disable:max-file-line-count */
 import {
   Component,
   EventEmitter,
@@ -220,6 +220,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       date.getMonth(),
       date.getDate()
     );
+    dateObject.date = this.fixTimeZone(dateObject.date);
     dateObject.label = this.dateFilter(date, format);
     dateObject.selected = this.compare(date, this.selectedDate) === 0;
     dateObject.disabled = this.isDisabled(date);
@@ -266,6 +267,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
         date.getMonth(),
         date.getDate()
       );
+      this.activeDate = this.fixTimeZone(this.activeDate);
       if (isManual) {
         this.selectionDone.emit(this.activeDate);
       }
@@ -275,6 +277,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
         date.getMonth(),
         date.getDate()
       );
+      this.activeDate = this.fixTimeZone(this.activeDate);
       if (isManual) {
         this.datepickerMode = this.modes[
           this.modes.indexOf(this.datepickerMode) - 1

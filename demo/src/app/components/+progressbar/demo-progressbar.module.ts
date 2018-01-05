@@ -4,20 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { ProgressbarSectionComponent } from './progressbar-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-progressbar.routes';
 
 @NgModule({
-  declarations: [ProgressbarSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    ProgressbarSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     ProgressbarModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [ProgressbarSectionComponent]
+  exports: [ProgressbarSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoProgressbarModule {}

@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './mousewheel-arrowkeys.html'
 })
 export class DemoTimepickerMousewheelArrowkeysComponent {
-  public myTime1: Date = new Date();
-  public myTime2: Date = new Date();
+  myTime1: Date = new Date();
+  myTime2: Date = new Date();
 }

@@ -49,6 +49,15 @@ export const ja: LocaleData = {
         return num.toString();
     }
   },
+  preparse(str: string): string {
+    return str.replace(/[年月]/g, '/')
+              .replace(/日+$/g, '')
+              .replace(/日/g, ' ')
+              .replace(/時/g, ':')
+              .replace(/分+$/g, '')
+              .replace(/分/g, ':')
+              .replace(/秒/g, '');
+  },
   relativeTime: {
     future: '%s後',
     past: '%s前',

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './styling.html'
 })
 export class DemoTabsStylingComponent {
-  public tabs: any[] = [
+  tabs: any[] = [
     {
       title: 'Dynamic Title 1',
       content: 'Dynamic content 1',

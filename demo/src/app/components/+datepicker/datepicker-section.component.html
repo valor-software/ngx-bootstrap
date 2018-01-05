@@ -1,0 +1,19 @@
+<demo-section [name]="name" [src]="src" [componentContent]="componentContent">
+  <tabset>
+    <tab heading="Overview" (select)="changeContent('new')">
+      <br>
+      <p>Datepicker is a highly configurable component that adds datepicker functionality to your pages. You can
+        customize the date format and language, restrict the selectable date ranges.</p>
+
+    </tab>
+
+    <!-- Old datepicker part-->
+    <tab heading="Old" (select)="changeContent('old')">
+      <br>
+      <p>This is a legacy version of datepicker without support of daterangepicker, locales, themes, etc.</p>
+
+    </tab>
+
+    <docs-section [content]="componentContent"></docs-section>
+  </tabset>
+</demo-section>

@@ -7,8 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './service-options.html'
 })
 export class DemoModalServiceOptionsComponent {
-  public modalRef: BsModalRef;
-  public config = {
+  modalRef: BsModalRef;
+  config = {
     animated: true,
     keyboard: true,
     backdrop: true,
@@ -16,11 +16,11 @@ export class DemoModalServiceOptionsComponent {
   };
   constructor(private modalService: BsModalService) {}
 
-  public openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
   }
 
-  public openModalWithClass(template: TemplateRef<any>) {
+  openModalWithClass(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(
       template,
       Object.assign({}, this.config, { class: 'gray modal-lg' })

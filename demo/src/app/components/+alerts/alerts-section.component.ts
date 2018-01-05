@@ -1,16 +1,15 @@
-import { Component } from '@angular/core';
-import { DEMOS } from './demos';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/usage.md');
+import { demoComponentContent } from './alerts-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'alert-section',
-  templateUrl: './alerts-section.component.html'
+  templateUrl: './alerts-section.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertsSectionComponent {
-  public name: string = 'Alerts';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
-  public titleDoc: string = titleDoc;
-  public demos: any = DEMOS;
+  name = 'Alerts';
+  src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
+  componentContent: ContentSection[] = demoComponentContent;
 }

@@ -57,8 +57,6 @@ export class ModalDirective implements OnDestroy, OnInit {
   @Output()
   onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
-  // seems like an Options
-  isAnimated = true;
   /** This field contains last dismiss reason.
    * Possible values: `backdrop-click`, `esc` and `null`
    * (if modal was closed by direct call of `.hide()`).
@@ -194,7 +192,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     }
     // this._addClassIn = false;
 
-    if (this.isAnimated) {
+    if (this._config.animated) {
       this.timerHideModal = setTimeout(
         () => this.hideModal(),
         TRANSITION_DURATION
@@ -241,7 +239,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       0
     );
 
-    if (this.isAnimated) {
+    if (this._config.animated) {
       Utils.reflow(this._element.nativeElement);
     }
 
@@ -258,7 +256,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       this.onShown.emit(this);
     };
 
-    if (this.isAnimated) {
+    if (this._config.animated) {
       setTimeout(transitionComplete, TRANSITION_DURATION);
     } else {
       transitionComplete();
@@ -303,14 +301,14 @@ export class ModalDirective implements OnDestroy, OnInit {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({isAnimated: this.isAnimated});
+        .show({isAnimated: this._config.animated});
       this.backdrop = this._backdrop._componentRef;
 
       if (!callback) {
         return;
       }
 
-      if (!this.isAnimated) {
+      if (!this._config.animated) {
         callback();
 
         return;
@@ -371,9 +369,8 @@ export class ModalDirective implements OnDestroy, OnInit {
   // }
 
   protected focusOtherModal() {
-    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll(
-      '.in[bsModal]'
-    );
+    if (this._element.nativeElement.parentElement == null) return;
+    const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
     if (!otherOpenedModals.length) {
       return;
     }

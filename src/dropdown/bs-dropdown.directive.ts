@@ -51,9 +51,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    */
   @Input()
   set autoClose(value: boolean) {
-    if (typeof value === 'boolean') {
-      this._state.autoClose = value;
-    }
+    this._state.autoClose = value;
   }
 
   get autoClose(): boolean {
@@ -135,6 +133,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
               private _cis: ComponentLoaderFactory,
               private _config: BsDropdownConfig,
               private _state: BsDropdownState) {
+    // set initial dropdown state from config
+    this._state.autoClose = this._config.autoClose;
+
     // create dropdown component loader
     this._dropdown = this._cis
       .createLoader<BsDropdownContainerComponent>(
@@ -148,8 +149,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this.onHidden = this._dropdown.onHidden;
     this.isOpenChange = this._state.isOpenChange;
 
-    // set initial dropdown state from config
-    this._state.autoClose = this._config.autoClose;
   }
 
   ngOnInit(): void {
@@ -163,6 +162,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     // attach DOM listeners
     this._dropdown.listen({
+      // because of dropdown inline mode
+      outsideClick: false,
       triggers: this.triggers,
       show: () => this.show()
     });
@@ -317,8 +318,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private checkDropup(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       // a little hack to not break support of bootstrap 4 beta
-      const top = getComputedStyle(this._inlinedMenu.rootNodes[0]).top;
-      const topAuto = top === 'auto' || top === '100%';
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'top',
@@ -327,7 +326,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'transform',
-        this.dropup && !topAuto ? 'translateY(-101%)' : 'translateY(0)'
+        this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
     }
   }

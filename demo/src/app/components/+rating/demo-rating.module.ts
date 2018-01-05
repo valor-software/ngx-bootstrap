@@ -4,20 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RatingModule } from 'ngx-bootstrap/rating';
 
-import { SharedModule } from '../../shared';
+import { DocsModule } from '../../docs';
 import { RatingSectionComponent } from './rating-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-rating.routes';
 
 @NgModule({
-  declarations: [RatingSectionComponent, ...DEMO_COMPONENTS],
+  declarations: [
+    RatingSectionComponent,
+    ...DEMO_COMPONENTS
+  ],
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
+    DocsModule,
     RatingModule.forRoot(),
     RouterModule.forChild(routes)
   ],
-  exports: [RatingSectionComponent]
+  exports: [RatingSectionComponent],
+  entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoRatingModule {}

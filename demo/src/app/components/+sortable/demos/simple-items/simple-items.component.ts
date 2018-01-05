@@ -5,12 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './simple-items.component.html'
 })
 export class SimpleItemsDemoComponent {
-  public itemStringsLeft: any[] = [
+  itemStringsLeft: any[] = [
     'Windstorm',
     'Bombasto',
     'Magneta',
     'Tornado'
   ];
 
-  public itemStringsRight: any[] = ['Mr. O', 'Tomato'];
+  itemStringsRight: any[] = ['Mr. O', 'Tomato'];
 }

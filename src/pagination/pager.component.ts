@@ -6,7 +6,7 @@ import {
   Input,
   Output,
   EventEmitter,
-  forwardRef
+  forwardRef, ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PageChangedEvent } from './pagination.component';
@@ -97,6 +97,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   set page(value: number) {
     const _previous = this._page;
     this._page = value > this.totalPages ? this.totalPages : value || 1;
+    this.changeDetection.markForCheck();
 
     if (_previous === this._page || typeof _previous === 'undefined') {
       return;
@@ -115,9 +116,6 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  renderer: Renderer2;
-  elementRef: ElementRef;
-
   classMap: string;
   pages: any[];
 
@@ -127,9 +125,10 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   protected inited = false;
   protected _page = 1;
 
-  constructor(renderer: Renderer2,
-              elementRef: ElementRef,
-              paginationConfig: PaginationConfig) {
+  constructor(private renderer: Renderer2,
+              private elementRef: ElementRef,
+              paginationConfig: PaginationConfig,
+              private changeDetection: ChangeDetectorRef) {
     this.renderer = renderer;
     this.elementRef = elementRef;
     if (!this.config) {
@@ -144,7 +143,9 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
-    this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
+    if (typeof window !== 'undefined') {
+      this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
+    }
     // watch for maxSize
     this.maxSize =
       typeof this.maxSize !== 'undefined' ? this.maxSize : this.config.maxSize;

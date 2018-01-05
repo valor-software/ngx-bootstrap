@@ -1,20 +1,17 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+/* tslint:disable:use-view-encapsulation */
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { DEMOS } from './demos';
-
-// webpack html imports
-let titleDoc = require('html-loader!markdown-loader!./docs/title.md');
-let usageDoc = require('html-loader!markdown-loader!./docs/usage.md');
+import { demoComponentContent } from './sortable-section.list';
+import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'sortable-section',
+  templateUrl: './sortable-section.component.html',
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './sortable-section.component.html'
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SortableSectionComponent {
-  public name: string = 'Sortable';
-  public src: string = 'https://github.com/valor-software/ngx-bootstrap/blob/development/src/sortable';
-  public titleDoc: string = titleDoc;
-  public usageDoc: string = usageDoc;
-  public demos: any = DEMOS;
+  name = 'Sortable';
+  src = 'https://github.com/valor-software/ngx-bootstrap/blob/development/src/sortable';
+  componentContent: ContentSection[] = demoComponentContent;
 }

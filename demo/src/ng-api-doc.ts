@@ -19,15 +19,20 @@ export const ngdoc: any = {
       {
         "name": "isOpen",
         "type": "boolean",
-        "description": "<p>Is accordion group open or closed </p>\n"
+        "description": "<p>Is accordion group open or closed. This property supports two-way binding </p>\n"
       },
       {
         "name": "panelClass",
         "type": "string",
-        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"http://getbootstrap.com/components/#panels-alternatives\" target=\"_blank\" title=\"null\">http://getbootstrap.com/components/#panels-alternatives</a>)</p>\n"
+        "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"https://getbootstrap.com/docs/3.3/components/#panels-alternatives\" target=\"_blank\" title=\"null\">https://getbootstrap.com/docs/3.3/components/#panels-alternatives</a>)</p>\n"
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isOpenChange",
+        "description": "<p>Emits when the opened state changes </p>\n"
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -77,6 +82,12 @@ export const ngdoc: any = {
         "name": "dismissOnTimeout",
         "type": "string | number",
         "description": "<p>Number in milliseconds, after which alert will be closed </p>\n"
+      },
+      {
+        "name": "isOpen",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Is alert visible </p>\n"
       },
       {
         "name": "type",
@@ -495,11 +506,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDatepickerComponent": {
+  "BsDatepickerDirective": {
     "fileName": "src/datepicker/bs-datepicker.component.ts",
-    "className": "BsDatepickerComponent",
+    "className": "BsDatepickerDirective",
     "description": "",
-    "selector": "bs-datepicker,[bsDatepicker]",
+    "selector": "[bsDatepicker]",
     "exportAs": "bsDatepicker",
     "inputs": [
       {
@@ -590,6 +601,12 @@ export const ngdoc: any = {
         "description": "<p>Toggles an element’s datepicker. This is considered a “manual” triggering\nof the datepicker.</p>\n",
         "args": [],
         "returnType": "void"
+      },
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for datepicker</p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ]
   },
@@ -639,11 +656,11 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "BsDaterangepickerComponent": {
+  "BsDaterangepickerDirective": {
     "fileName": "src/datepicker/bs-daterangepicker.component.ts",
-    "className": "BsDaterangepickerComponent",
+    "className": "BsDaterangepickerDirective",
     "description": "",
-    "selector": "bs-daterangepicker,[bsDaterangepicker]",
+    "selector": "[bsDaterangepicker]",
     "exportAs": "bsDaterangepicker",
     "inputs": [
       {
@@ -720,6 +737,12 @@ export const ngdoc: any = {
       {
         "name": "show",
         "description": "<p>Opens an element’s datepicker. This is considered a “manual” triggering of\nthe datepicker.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for daterangepicker</p>\n",
         "args": [],
         "returnType": "void"
       },
@@ -2449,7 +2472,7 @@ export const ngdoc: any = {
       {
         "name": "customClass",
         "type": "string",
-        "description": "<p>if set, will be added to the tab&#39;s class atribute </p>\n"
+        "description": "<p>if set, will be added to the tab&#39;s class attribute. Multiple classes are supported. </p>\n"
       },
       {
         "name": "disabled",
@@ -2464,7 +2487,7 @@ export const ngdoc: any = {
       {
         "name": "id",
         "type": "string",
-        "description": "<p>tab id </p>\n"
+        "description": "<p>tab id. The same id with suffix &#39;-link&#39; will be added to the corresponding &lt;li&gt; element  </p>\n"
       },
       {
         "name": "removable",
@@ -2970,6 +2993,12 @@ export const ngdoc: any = {
         "description": "<p>when options source is an array of objects, the name of field\nthat contains the options value, we use array item as option in case\nof this field is missing. Supports nested properties and methods.</p>\n"
       },
       {
+        "name": "typeaheadOptionsInScrollableView",
+        "defaultValue": "5",
+        "type": "number",
+        "description": "<p>specifies number of options to show in scroll view  </p>\n"
+      },
+      {
         "name": "typeaheadOptionsLimit",
         "type": "number",
         "description": "<p>maximum length of options items list </p>\n"
@@ -2979,6 +3008,12 @@ export const ngdoc: any = {
         "defaultValue": "'\"",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to match exact phrase.\nDefaults to simple and double quotes.</p>\n"
+      },
+      {
+        "name": "typeaheadScrollable",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>specifies if typeahead is scrollable  </p>\n"
       },
       {
         "name": "typeaheadSingleWords",

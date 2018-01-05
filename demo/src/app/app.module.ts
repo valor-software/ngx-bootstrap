@@ -6,36 +6,34 @@ import { RouterModule } from '@angular/router';
 import { Ng2PageScrollModule } from 'ng2-page-scroll/ng2-page-scroll';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ngdoc } from '../ng-api-doc';
-import { NgApiDoc } from './api-docs/api-docs.model';
+import { NgApiDoc } from './docs/api-docs/api-docs.model';
 
-import { NgApiDocModule } from './api-docs/index';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
-import { AppFooterComponent } from './common/app-footer/app-footer.component';
-import { MainMenuComponent } from './common/main-menu/main-menu.component';
-import { SearchFilterPipe } from './common/main-menu/search-filter.pipe';
+import { LandingComponent } from './common/landing/landing.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
-import { GettingStartedComponent } from './getting-started/getting-started.component';
+import { GettingStartedComponent } from './common/getting-started/getting-started.component';
+
 import { ThemeStorage } from './theme/theme-storage';
 import { StyleManager } from './theme/style-manager';
+import { DocsModule } from './docs';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     GettingStartedComponent,
     TopMenuComponent,
-    MainMenuComponent,
-    SearchFilterPipe,
-    AppFooterComponent
+    LandingComponent
   ],
   imports: [
-    NgApiDocModule,
-    BrowserModule,
+    DocsModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes, {useHash: environment.useHash}),
     Ng2PageScrollModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    BrowserModule.withServerTransition({appId: 'ngx-bootstrap'})
   ],
   providers: [
     ThemeStorage,

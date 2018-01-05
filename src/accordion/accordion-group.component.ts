@@ -1,5 +1,5 @@
 import {
-  Component, HostBinding, Inject, Input, OnDestroy, OnInit
+  Component, HostBinding, Inject, Input, OnDestroy, OnInit, Output, EventEmitter
 } from '@angular/core';
 import { isBs3 } from '../utils/theme-provider';
 import { AccordionComponent } from './accordion.component';
@@ -24,14 +24,16 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** Provides an ability to use Bootstrap's contextual panel classes
    * (`panel-primary`, `panel-success`, `panel-info`, etc...).
    * List of all available classes [available here]
-   * (http://getbootstrap.com/components/#panels-alternatives)
+   * (https://getbootstrap.com/docs/3.3/components/#panels-alternatives)
    */
   @Input() panelClass: string;
   /** if <code>true</code> — disables accordion group */
   @Input() isDisabled: boolean;
+  /** Emits when the opened state changes */
+  @Output() isOpenChange: EventEmitter<boolean> = new EventEmitter();
 
   // Questionable, maybe .panel-open should be on child div.panel element?
-  /** Is accordion group open or closed */
+  /** Is accordion group open or closed. This property supports two-way binding */
   @HostBinding('class.panel-open')
   @Input()
   get isOpen(): boolean {
@@ -39,9 +41,14 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   }
 
   set isOpen(value: boolean) {
-    this._isOpen = value;
-    if (value) {
-      this.accordion.closeOtherPanels(this);
+    if (value !== this.isOpen) {
+      if (value) {
+        this.accordion.closeOtherPanels(this);
+      }
+      this._isOpen = value;
+      Promise.resolve(null).then(() => {
+        this.isOpenChange.emit(value);
+      });
     }
   }
 
@@ -49,7 +56,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     return isBs3();
   }
 
-  protected _isOpen: boolean;
+  protected _isOpen = false;
   protected accordion: AccordionComponent;
 
   constructor(@Inject(AccordionComponent) accordion: AccordionComponent) {

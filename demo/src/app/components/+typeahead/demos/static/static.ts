@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './static.html'
 })
 export class DemoTypeaheadStaticComponent {
-  public selected: string;
-  public states: string[] = [
+  selected: string;
+  states: string[] = [
     'Alabama',
     'Alaska',
     'Arizona',
