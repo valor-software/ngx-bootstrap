@@ -74,7 +74,7 @@ export function getSetGlobalLocale(key: string, values?: LocaleData): string {
 }
 
 export function defineLocale(name: string, config?: LocaleData): Locale {
-  if (config === null) {
+  if (!config) {
     // useful for testing
     delete locales[name];
     return null;
