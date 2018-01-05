@@ -233,7 +233,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onFocus(): void {
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit('');
+      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
     }
   }
 
