@@ -83,6 +83,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * Template variables: matches, itemTemplate, query
    */
   @Input() optionsListTemplate: TemplateRef<any>;
+  /** used to set whether or not the first typeahead option is automatically made active */
+  @Input() public typeaheadFocusFirst: boolean = true;
+  /** use to set keys to be ignored by typeahead */
+  @Input() public typeaheadIgnoreKeys: number[] = [];
+  /** use to set keys to hide typeahead */
+  @Input() public typeaheadEscapeKeys: number[] = [];
+  /** use to set keys to select match in typeahead */
+  @Input() public typeaheadSelectKeys: number[] = [];
   /** specifies if typeahead is scrollable  */
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
@@ -237,18 +245,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      if (e.keyCode === 13){
-        if(!this._container.active){
-          return;
-        }
-
+      if (e.keyCode === 13 && this._container.active) {
         this._container.selectActiveMatch();
 
         return;
       }
 
       // tab
-      if (e.keyCode === 9 && this._container.active){
+      if (e.keyCode === 9 && this._container.active) {
         e.preventDefault();
         this._container.selectActiveMatch();
         return;
@@ -278,7 +282,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onFocus(): void {
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit('');
+      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
     }
   }
 
@@ -325,6 +329,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // if an item is visible - don't change focus
     if (e.keyCode === 9) {
       e.preventDefault();
+      this._container.selectActiveMatch();
 
       return;
     }
