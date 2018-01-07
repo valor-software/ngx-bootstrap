@@ -220,7 +220,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter, tab
-      if (e.keyCode === 13 || e.keyCode === 9) {
+      if (e.keyCode === 13) {
         this._container.selectActiveMatch();
 
         return;
@@ -233,7 +233,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onFocus(): void {
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit('');
+      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
     }
   }
 
@@ -261,6 +261,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // if an item is visible - don't change focus
     if (e.keyCode === 9) {
       e.preventDefault();
+      this._container.selectActiveMatch();
 
       return;
     }

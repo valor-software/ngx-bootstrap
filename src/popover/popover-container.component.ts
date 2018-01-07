@@ -16,10 +16,10 @@ import { isBs3 } from '../utils/theme-provider';
   styles: [
     `
     :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {
-      left: calc(50% - 5px);
+      left: 50%;
     }
     :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {
-      top: calc(50% - 2.5px);
+      top: 50%;
     }
   `
   ],
