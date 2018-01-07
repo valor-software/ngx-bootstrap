@@ -177,5 +177,6 @@ export {
   ru,
   sv,
   zhCn,
-  tr
+  tr,
+  th
 } from './locale';
