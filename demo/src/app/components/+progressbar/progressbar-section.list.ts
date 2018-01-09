@@ -23,7 +23,7 @@ export const demoComponentContentBs3: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('html-loader!markdown-loader!./docs/usage.md')
+      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
     }
   },
   {
@@ -96,7 +96,7 @@ export const demoComponentContentBs4: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('html-loader!markdown-loader!./docs/usage.md')
+      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
     }
   },
   {
