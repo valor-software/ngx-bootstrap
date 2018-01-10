@@ -36,7 +36,7 @@
              class="form-control text-center bs-timepicker-field"
              placeholder="HH"
              maxlength="2"
-             [readonly]="readonlyInput"
+             [disabled]="disabledInput"
              [value]="hours"
              (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeHours(hourStep, 'key')"
@@ -50,7 +50,7 @@
              class="form-control text-center bs-timepicker-field"
              placeholder="MM"
              maxlength="2"
-             [readonly]="readonlyInput"
+             [disabled]="disabledInput"
              [value]="minutes"
              (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
@@ -66,7 +66,7 @@
              class="form-control text-center bs-timepicker-field"
              placeholder="SS"
              maxlength="2"
-             [readonly]="readonlyInput"
+             [disabled]="disabledInput"
              [value]="seconds"
              (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
@@ -78,8 +78,8 @@
     <!-- meridian -->
     <td *ngIf="showMeridian">
       <button type="button" class="btn btn-default text-center"
-              [disabled]="readonlyInput"
-              [class.disabled]="readonlyInput"
+              [disabled]="disabledInput"
+              [class.disabled]="disabledInput"
               (click)="toggleMeridian()"
       >{{ meridian }}
       </button>

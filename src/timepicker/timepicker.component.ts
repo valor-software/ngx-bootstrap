@@ -77,8 +77,8 @@ export class TimepickerComponent
   @Input() minuteStep: number;
   /** seconds change step */
   @Input() secondsStep: number;
-  /** if true hours and minutes fields will be readonly */
-  @Input() readonlyInput: boolean;
+  /** if true hours and minutes fields will be disabled */
+  @Input() disabledInput: boolean;
   /** if true scroll inside hours and minutes inputs will change time */
   @Input() mousewheel: boolean;
   /** if true up/down arrowkeys inside hours and minutes inputs will change time */
@@ -106,7 +106,7 @@ export class TimepickerComponent
   meridian: string;
 
   get isSpinnersVisible(): boolean {
-    return this.showSpinners && !this.readonlyInput;
+    return this.showSpinners && !this.disabledInput;
   }
 
   // min\max validation for input fields
@@ -222,7 +222,7 @@ export class TimepickerComponent
   }
 
   toggleMeridian(): void {
-    if (!this.showMeridian || this.readonlyInput) {
+    if (!this.showMeridian || this.disabledInput) {
       return;
     }
 
@@ -267,7 +267,7 @@ export class TimepickerComponent
    * @param isDisabled
    */
   setDisabledState(isDisabled: boolean): void {
-    this.readonlyInput = isDisabled;
+    this.disabledInput = isDisabled;
   }
 
   private _renderTime(value: string | Date): void {

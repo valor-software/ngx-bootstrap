@@ -23,7 +23,7 @@ export interface TimepickerComponentState {
   minuteStep: number;
   secondsStep: number;
 
-  readonlyInput: boolean;
+  disabledInput: boolean;
 
   mousewheel: boolean;
   arrowkeys: boolean;

@@ -13,6 +13,7 @@ function testTime(hours?: number, minutes?: number, seconds?: number) {
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
   time.setSeconds(seconds || 0);
+
   return time;
 }
 
@@ -28,7 +29,7 @@ describe('Runtime coverage. Util: Timepicker-controls', () => {
       hourStep: 1,
       minuteStep: 5,
       secondsStep: 10,
-      readonlyInput: false,
+      disabledInput: false,
       mousewheel: true,
       arrowkeys: true,
       showSpinners: true,
@@ -55,7 +56,7 @@ describe('Runtime coverage. Util: Timepicker-controls', () => {
   it('should can change value read only', () => {
     canChangeValue(state, event);
 
-    state.readonlyInput = true;
+    state.disabledInput = true;
     canChangeValue(state, event);
   });
 
