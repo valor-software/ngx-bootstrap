@@ -56,8 +56,8 @@ export interface LocaleData {
   monthsParseExact?: boolean;
 
   weekdays?: LocaleOptions | ((date: Date, format: string, isUTC?: boolean) => string | string[]);
-  weekdaysShort?: string[];
-  weekdaysMin?: string[];
+  weekdaysShort?: string[] | ((date: Date, format: string, isUTC?: boolean) => string | string[]);
+  weekdaysMin?: string[] | ((date: Date, format: string, isUTC?: boolean) => string | string[]);
   weekdaysParseExact?: boolean;
 
   longDateFormat?: { [index: string]: string };
@@ -374,14 +374,14 @@ export class Locale {
   }
 
   weekdaysMin(): string[];
-  weekdaysMin(date: Date, isUTC?: boolean): string;
-  weekdaysMin(date?: Date, isUTC?: boolean): string | string[] {
+  weekdaysMin(date: Date, format?: string, isUTC?: boolean): string;
+  weekdaysMin(date?: Date, format?: string, isUTC?: boolean): string | string[] {
     return date ? this._weekdaysMin[getDay(date, isUTC)] : this._weekdaysMin;
   }
 
   weekdaysShort(): string[];
-  weekdaysShort(date: Date, isUTC?: boolean): string;
-  weekdaysShort(date?: Date, isUTC?: boolean): string | string[] {
+  weekdaysShort(date: Date, format?: string, isUTC?: boolean): string;
+  weekdaysShort(date?: Date, format?: string, isUTC?: boolean): string | string[] {
     return date ? this._weekdaysShort[getDay(date, isUTC)] : this._weekdaysShort;
   }
 

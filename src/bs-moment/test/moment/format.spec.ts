@@ -363,7 +363,7 @@ describe('format', () => {
     moment.defineLocale('postformat', null);
   });
 
-  xit('calendar day timezone', function () {
+  it('calendar day timezone', function () {
     moment.locale('en');
     var zones = [60, -60, 90, -90, 360, -360, 720, -720],
       b = moment().utc().startOf('day').subtract({ m: 1 }),
@@ -383,7 +383,7 @@ describe('format', () => {
     assert.equal(moment(c).local().calendar(d), 'Tomorrow at 11:59 PM', 'Tomorrow at 11:59 PM, not Yesterday, or the wrong time');
   });
 
-  xit('calendar with custom formats', function () {
+  it('calendar with custom formats', function () {
     assert.equal(moment().calendar(null, { sameDay: '[Today]' }), 'Today', 'Today');
     assert.equal(moment().add(1, 'days').calendar(null, { nextDay: '[Tomorrow]' }), 'Tomorrow', 'Tomorrow');
     assert.equal(moment([1985, 1, 4]).calendar(null, { sameElse: 'YYYY-MM-DD' }), '1985-02-04', 'Else');
@@ -500,7 +500,7 @@ it('full expanded format is returned from abbreviated formats', function () {
     assert.equal(moment('00:00:00', 'HH:mm:ss').format('kk'), '24');
   });
 
-  xit('Y token', function () {
+  it('Y token', function () {
     assert.equal(moment('2010-01-01', 'YYYY-MM-DD', true).format('Y'), '2010', 'format 2010 with Y');
     assert.equal(moment('-123-01-01', 'Y-MM-DD', true).format('Y'), '-123', 'format -123 with Y');
     assert.equal(moment('12345-01-01', 'Y-MM-DD', true).format('Y'), '+12345', 'format 12345 with Y');

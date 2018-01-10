@@ -7,6 +7,7 @@ import { formatDate } from '../format';
 import { getLocale } from '../locale/locales';
 import { Locale } from '../locale/locale.class';
 import { DateInput } from '../test/chain';
+import { DateParsingConfig } from '../create/parsing.types';
 
 export type CalendarSpecVal = string | ((m?: DateInput, now?: Date) => string);
 export interface CalendarSpec {
@@ -21,8 +22,8 @@ export interface CalendarSpec {
   [x: string]: CalendarSpecVal | void; // undefined
 }
 
-export function getCalendarFormat(date: Date, now: Date) {
-  const _diff = diff(date, now, 'day', true);
+export function getCalendarFormat(date: Date, now: Date, config: DateParsingConfig) {
+  const _diff = diff(date, now, 'day', true, config);
 
   switch (true) {
     case _diff < -6: return 'sameElse';
@@ -33,24 +34,18 @@ export function getCalendarFormat(date: Date, now: Date) {
     case _diff < 7: return 'nextWeek';
     default: return 'sameElse';
   }
-  //
-  // return _diff < -6 ? 'sameElse' :
-  //   _diff < -1 ? 'lastWeek' :
-  //     _diff < 0 ? 'lastDay' :
-  //       _diff < 1 ? 'sameDay' :
-  //         _diff < 2 ? 'nextDay' :
-  //           _diff < 7 ? 'nextWeek' : 'sameElse';
 }
 
 export function calendar(date: Date,
                          time: Date,
                          formats: CalendarSpec,
-                         locale: Locale = getLocale()): string {
+                         locale: Locale = getLocale(),
+                         config: DateParsingConfig = {}): string {
   // We want to compare the start of today, vs this.
   // Getting start-of-today depends on whether we're local/utc/offset or not.
   const now = time || new Date();
-  const sod = startOf(cloneWithOffset(now, void 0), 'day');
-  const format = getCalendarFormat(date, sod) || 'sameElse';
+  const sod = startOf(cloneWithOffset(now, date, void 0, config), 'day', config._isUTC);
+  const format = getCalendarFormat(date, sod, config) || 'sameElse';
 
   let output;
   if (formats) {
@@ -67,10 +62,5 @@ export function calendar(date: Date,
     output = locale.calendar(format, date, cloneDate(now));
   }
 
-  // const output = formats && (isFunction(formats[format])
-  //   ? formats[format].call(date, now)
-  //   : formats[format]);
-
-  // return this.format(output || this.localeData().calendar(format, date, cloneDate(now)));
-  return formatDate(date, output);
+  return formatDate(date, output, config._locale._abbr, config._isUTC, config._offset);
 }

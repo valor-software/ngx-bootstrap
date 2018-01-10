@@ -9,6 +9,7 @@ import { fr } from '../../i18n/fr';
 import { es } from '../../i18n/es';
 import { zhCn } from '../../i18n/zh-cn';
 import { it as italy } from '../../i18n/it';
+import { getDate } from '../../utils/date-getters';
 
 defineLocale('en-gb', enGb);
 defineLocale('en-ca', enGb);
@@ -17,7 +18,7 @@ defineLocale('fr', fr);
 defineLocale('fr-ca', fr);
 defineLocale('it', italy);
 defineLocale('it', zhCn);
-defineLocale('zh-ch', zhCn);
+defineLocale('zh-cn', zhCn);
 
 moment.locale('en');
 
@@ -155,7 +156,7 @@ describe('locale', function () {
     moment.defineLocale(locale, null);
   });
 
-  xit('library localeData', function () {
+  it('library localeData', function () {
     moment.locale('en');
 
     var jan = moment([2000, 0]);
@@ -185,7 +186,7 @@ describe('locale', function () {
     moment.defineLocale('dude', null);
   });
 
-  xit('locales', function () {
+  it('locales', function () {
     moment.defineLocale('dude', { months: ['Movember'] });
     assert.equal(true, !!~moment.locales().indexOf('dude'), 'locales returns an array of defined locales');
     assert.equal(true, !!~moment.locales().indexOf('en'), 'locales should always include english');
@@ -372,25 +373,24 @@ describe('locale', function () {
     moment.defineLocale('dude', null);
   });
 
-  // TODO: uses sinon
-  xit('month name callback function', function () {
-    function fakeReplace(m, format: string) {
+  it('month name callback function', function () {
+    function fakeReplace(m: Date, format: string): string {
       if (/test/.test(format)) {
         return 'test';
       }
-      if (m.date() === 1) {
+      if (getDate(m) === 1) {
         return 'date';
       }
       return 'default';
     }
 
-    // moment.locale('made-up-2', {
-    //   months: fakeReplace,
-    //   monthsShort: fakeReplace,
-    //   weekdays: fakeReplace,
-    //   weekdaysShort: fakeReplace,
-    //   weekdaysMin: fakeReplace
-    // });
+    moment.locale('made-up-2', {
+      months: fakeReplace,
+      monthsShort: fakeReplace,
+      weekdays: fakeReplace,
+      weekdaysShort: fakeReplace,
+      weekdaysMin: fakeReplace
+    });
 
     assert.equal(moment().format('[test] dd ddd dddd MMM MMMM'), 'test test test test test test', 'format month name function should be able to access the format string');
     assert.equal(moment([2011, 0, 1]).format('dd ddd dddd MMM MMMM'), 'date date date date date', 'format month name function should be able to access the moment object');

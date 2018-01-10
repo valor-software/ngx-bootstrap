@@ -42,7 +42,7 @@ import { getZoneAbbr, getZoneName } from '../units/timezone';
 import { diff } from '../moment/diff';
 import { DateParsingConfig } from '../create/parsing.types';
 import { calendar, CalendarSpec } from '../moment/calendar';
-import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales';
+import { defineLocale, getLocale, getSetGlobalLocale, listLocales } from '../locale/locales';
 import { max, min } from '../moment/min-max';
 import { Duration, isDuration } from '../duration/constructor';
 import { createLocalOrUTC } from '../create/from-anything';
@@ -146,7 +146,6 @@ export interface MomentFn {
 
   max(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos;
 
-  // todo: support Khronos Date option
   localeData(key?: string | string[] | Khronos): Locale;
 
   updateLocale(language: string, localeSpec?: LocaleData): Locale;
@@ -159,7 +158,6 @@ export interface MomentFn {
   // todo: implement
   invalid(): Khronos;
 
-  // todo: implement
   locales(): string[];
 
   // todo: implement
@@ -189,7 +187,13 @@ moment.parseZone = (input?: DateInput | Khronos, format?: string, localeKey?: st
 };
 
 moment.locale = getSetGlobalLocale;
-moment.localeData = getLocale;
+moment.localeData = (key?: string | string[] | Khronos): Locale => {
+  if (key instanceof Khronos) {
+    return key.localeData();
+  }
+
+  return getLocale(key);
+};
 
 // moment.utc = createUTC;
 moment.unix = (inp: number) => new Khronos(inp * 1000);
@@ -246,6 +250,10 @@ moment.max = function _max(...dates: ((DateInput | Khronos)[] | (DateInput | Khr
   const _date = max(..._dates);
 
   return new Khronos(_date);
+};
+
+moment.locales = (): string[] => {
+  return listLocales();
 };
 
 export interface MomentInputObject {
@@ -509,8 +517,12 @@ export class Khronos {
     return this;
   }
 
+  // fixme: for some reason here 'null' for time is fine
   calendar(time?: DateInput | Khronos, formats?: CalendarSpec): string {
-    return calendar(this.toDate(), _moment(time).toDate(), formats, this._locale);
+    const _time = time || new Date();
+
+    // return calendar(this.toDate(), _moment(_time).toDate(), formats, this._locale, this._toConfig());
+    return calendar(this._date, _moment(_time).toDate(), formats, this._locale, this._toConfig());
   }
 
   clone(): Khronos {

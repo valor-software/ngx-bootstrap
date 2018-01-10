@@ -20,6 +20,9 @@ function createFromConfig(config: DateParsingConfig): DateParsingConfig {
   const res = checkOverflow(prepareConfig(config));
   // todo: remove, in moment.js it's never called cuz of moment constructor
   res._d = new Date(res._d != null ? res._d.getTime() : NaN);
+  if (!isValid(Object.assign({}, res, {_isValid: null}))) {
+    res._d = new Date(NaN);
+  }
   // todo: update offset
   /*if (res._nextDay) {
     // Adding is smart enough around DST

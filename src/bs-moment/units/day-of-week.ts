@@ -21,12 +21,12 @@ addFormatToken('d', null, 'do',
 
 addFormatToken('dd', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-    return opts.locale.weekdaysMin(date, opts.isUTC);
+    return opts.locale.weekdaysMin(date, opts.format, opts.isUTC);
   });
 
 addFormatToken('ddd', null, null,
   function (date: Date, opts: DateFormatterOptions): string {
-    return opts.locale.weekdaysShort(date, opts.isUTC);
+    return opts.locale.weekdaysShort(date, opts.format, opts.isUTC);
   });
 
 addFormatToken('dddd', null, null,

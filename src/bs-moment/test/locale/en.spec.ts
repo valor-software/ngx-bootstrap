@@ -238,12 +238,12 @@ describe('locale: en', () => {
 
     for (var i = 0; i < 7; ++i) {
       assert.equal(moment(enLocale.weekdays(m.day(i).toDate(), ''), 'dddd', true).isValid(), true, 'parse weekday ' + i);
-      assert.equal(moment(enLocale.weekdaysShort(m.day(i).toDate(), false), 'ddd', true).isValid(), true, 'parse short weekday ' + i);
-      assert.equal(moment(enLocale.weekdaysMin(m.day(i).toDate(), false), 'dd', true).isValid(), true, 'parse min weekday ' + i);
+      assert.equal(moment(enLocale.weekdaysShort(m.day(i).toDate(), ''), 'ddd', true).isValid(), true, 'parse short weekday ' + i);
+      assert.equal(moment(enLocale.weekdaysMin(m.day(i).toDate(), ''), 'dd', true).isValid(), true, 'parse min weekday ' + i);
 
       // negative tests
-      assert.equal(moment(enLocale.weekdaysMin(m.day(i).toDate(), false), 'ddd', true).isValid(), false, 'parse short weekday ' + i);
-      assert.equal(moment(enLocale.weekdaysShort(m.day(i).toDate(), false), 'dd', true).isValid(), false, 'parse min weekday ' + i);
+      assert.equal(moment(enLocale.weekdaysMin(m.day(i).toDate(), ''), 'ddd', true).isValid(), false, 'parse short weekday ' + i);
+      assert.equal(moment(enLocale.weekdaysShort(m.day(i).toDate(), ''), 'dd', true).isValid(), false, 'parse min weekday ' + i);
     }
   });
 

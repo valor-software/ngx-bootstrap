@@ -7,18 +7,22 @@ import { getFullYear, getMonth } from '../utils/date-getters';
 import { add } from './add-subtract';
 import { cloneDate } from '../create/clone';
 
-export function diff(date: Date, input: Date, units: UnitOfTime, asFloat: boolean, config: DateParsingConfig = {}): number {
+export function diff(date: Date, input: Date,
+                     units: UnitOfTime, asFloat: boolean,
+                     dateConfig: DateParsingConfig = {},
+                     inputConfig: DateParsingConfig = {}
+                     ): number {
   if (!isDateValid(date)) {
     return NaN;
   }
 
-  const that = cloneWithOffset(input, config);
+  const that = cloneWithOffset(input, date, dateConfig, inputConfig);
 
   if (!isDateValid(that)) {
     return NaN;
   }
 
-  const zoneDelta = (getUTCOffset(input) - getUTCOffset(date)) * 6e4;
+  const zoneDelta = (getUTCOffset(input, inputConfig) - getUTCOffset(date, dateConfig)) * 6e4;
 
   let output;
   switch (units) {
