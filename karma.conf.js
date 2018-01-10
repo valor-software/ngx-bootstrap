@@ -6,7 +6,7 @@ const customLaunchers = require('./scripts/sauce-browsers').customLaunchers;
 module.exports = function (config) {
   const configuration = {
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: getFrameworksConfig(),
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
@@ -14,14 +14,12 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma'),
-      require('karma-sauce-launcher')
+      require('karma-sauce-launcher'),
+      require('karma-benchmark'),
+      require('karma-benchmark-reporter')
     ],
-    files: [
-      {pattern: './scripts/test.ts', watched: false}
-    ],
-    preprocessors: {
-      './scripts/test.ts': ['@angular/cli']
-    },
+    files: getFilesConfig(),
+    preprocessors: getPreprocessorsConfig(),
     coverageIstanbulReporter: {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
@@ -157,5 +155,39 @@ module.exports = function (config) {
     configuration.browsers = Object.keys(configuration.customLaunchers);
   }
 
+  if (process.env.TEST_BENCHMARK) {
+    configuration.reporters = ['benchmark']
+  }
+
   config.set(configuration);
 };
+
+function getFrameworksConfig () {
+  if (process.env.TEST_BENCHMARK) {
+    return ['benchmark']
+  } else {
+    return ['jasmine', '@angular/cli']
+  }
+}
+
+function getFilesConfig () {
+ if (process.env.TEST_BENCHMARK) {
+    return [
+      './**/benchmark.js'
+    ]
+  } else {
+    return [
+      {pattern: './scripts/test.ts', watched: false}
+    ]
+  }
+}
+
+function getPreprocessorsConfig () {
+ if (process.env.TEST_BENCHMARK) {
+    return {'./**/benchmark.js': ['@angular/cli']}
+  } else {
+    return {
+      './scripts/test.ts': ['@angular/cli']
+    }
+  }
+}

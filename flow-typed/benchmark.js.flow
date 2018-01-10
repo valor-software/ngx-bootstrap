@@ -1,0 +1,3 @@
+// @flow
+declare var suite: (description: string, spec: () => void, options?: Object) => void
+declare var benchmark: (description: string, spec: () => any) => void
