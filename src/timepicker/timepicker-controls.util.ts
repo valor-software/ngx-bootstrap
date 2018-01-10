@@ -9,7 +9,7 @@ export function canChangeValue(
   state: TimepickerComponentState,
   event?: TimeChangeEvent
 ): boolean {
-  if (state.readonlyInput) {
+  if (state.disabledInput) {
     return false;
   }
 
@@ -86,7 +86,7 @@ export function getControlsValue(
     hourStep,
     minuteStep,
     secondsStep,
-    readonlyInput,
+    disabledInput,
     mousewheel,
     arrowkeys,
     showSpinners,
@@ -101,7 +101,7 @@ export function getControlsValue(
     hourStep,
     minuteStep,
     secondsStep,
-    readonlyInput,
+    disabledInput,
     mousewheel,
     arrowkeys,
     showSpinners,

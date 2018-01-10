@@ -13,8 +13,8 @@ export class TimepickerConfig {
   showMeridian = true;
   /** meridian labels based on locale */
   meridians = ['AM', 'PM'];
-  /** if true hours and minutes fields will be readonly */
-  readonlyInput = false;
+  /** if true hours and minutes fields will be disabled */
+  disabledInput = false;
   /** if true scroll inside hours and minutes inputs will change time */
   mousewheel = true;
   /** if true up/down arrowkeys inside hours and minutes inputs will change time */

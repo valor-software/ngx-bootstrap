@@ -165,9 +165,9 @@ describe('Component: timepicker', () => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
       });
     });
-    // изменить временной период после клика на кнопку AM/PM без readonlyInput
-    it('should change time period after click on AM/PM button without readonlyInput', () => {
-      component.readonlyInput = false;
+    // изменить временной период после клика на кнопку AM/PM без disabledInput
+    it('should change time period after click on AM/PM button without disabledInput', () => {
+      component.disabledInput = false;
       component.showMeridian = false;
 
       fixture.detectChanges();
@@ -179,9 +179,9 @@ describe('Component: timepicker', () => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
       });
     });
-    // изменить временной период после клика на кнопку AM/PM с readonlyInput
-    it('should change time period after click on AM/PM button with readonlyInput', () => {
-      component.readonlyInput = false;
+    // изменить временной период после клика на кнопку AM/PM с disabledInput
+    it('should change time period after click on AM/PM button with disabledInput', () => {
+      component.disabledInput = false;
       component.showMeridian = true;
 
       fixture.detectChanges();
@@ -328,7 +328,7 @@ describe('Component: timepicker', () => {
     });
   });
 
-  describe('input fields with property of readonlyInput', () => {
+  describe('input fields with property of disabledInput', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
       fixture.detectChanges();
@@ -341,8 +341,8 @@ describe('Component: timepicker', () => {
     });
     // должна быть возможность ввода значений
     it('should be possible to enter values', () => {
-      expect(inputHours.getAttribute('readonly')).toBeFalsy();
-      expect(inputMinutes.getAttribute('readonly')).toBeFalsy();
+      expect(inputHours.getAttribute('disabled')).toBeFalsy();
+      expect(inputMinutes.getAttribute('disabled')).toBeFalsy();
 
       component.showSeconds = true;
       component.writeValue(testTime());
@@ -352,7 +352,7 @@ describe('Component: timepicker', () => {
         fixture.detectChanges();
         inputSeconds = getInputElements(fixture)[2];
 
-        expect(inputSeconds.getAttribute('readonly')).toBeFalsy();
+        expect(inputSeconds.getAttribute('disabled')).toBeFalsy();
       });
     });
     // должна отображать кнопки изменения времени
@@ -361,7 +361,7 @@ describe('Component: timepicker', () => {
     });
     // не должно быть возможности ввода значений
     it('should be impossible to enter values', () => {
-      component.readonlyInput = true;
+      component.disabledInput = true;
       component.showSeconds = true;
 
       component.writeValue(testTime());
@@ -371,16 +371,16 @@ describe('Component: timepicker', () => {
         fixture.detectChanges();
         inputSeconds = getInputElements(fixture)[2];
 
-        expect(inputHours.getAttribute('readonly')).toBe('');
-        expect(inputMinutes.getAttribute('readonly')).toBe('');
-        expect(inputSeconds.getAttribute('readonly')).toBe('');
+        expect(inputHours.getAttribute('disabled')).toBe('');
+        expect(inputMinutes.getAttribute('disabled')).toBe('');
+        expect(inputSeconds.getAttribute('disabled')).toBe('');
       });
     });
     // не должны отображаться кнопки изменения времени
     it('should not display is time change buttons', () => {
       expect(buttonChanges).toBeTruthy();
 
-      component.readonlyInput = true;
+      component.disabledInput = true;
 
       component.writeValue(testTime());
 
