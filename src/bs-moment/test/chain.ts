@@ -1,6 +1,6 @@
 // tslint:disable:max-line-length max-file-line-count
 import { add, parseDate, subtract } from '../index';
-import { DateArray, UnitOfTime } from '../types';
+import { DateArray, DateObject, UnitOfTime } from '../types';
 import {
   getDate, getFullYear, getHours, getMilliseconds, getMinutes, getMonth, getSeconds,
   getUnixTime
@@ -44,7 +44,7 @@ import { DateParsingConfig } from '../create/parsing.types';
 import { calendar, CalendarSpec } from '../moment/calendar';
 import { defineLocale, getLocale, getSetGlobalLocale } from '../locale/locales';
 import { max, min } from '../moment/min-max';
-import { Duration } from '../duration/constructor';
+import { Duration, isDuration } from '../duration/constructor';
 import { createLocalOrUTC } from '../create/from-anything';
 import { createDuration } from '../duration/create';
 
@@ -202,11 +202,27 @@ moment.invalid = function _invalid(): Khronos {
   return new Khronos(new Date(NaN));
 };
 
-const _todoImplement = function () {
-  throw new Error(`TODO: Implement`);
-};
+// duration(inp?: Duration | DateInput | Khronos, unit?: MomentUnitOfTime): Duration;
+moment.duration = (input?: Duration | DateInput | Khronos, unit?: MomentUnitOfTime): Duration => {
+  const _unit = mapUnitOfTime(unit);
+  if (isDate(input)) {
+    throw new Error('todo implement');
+  }
 
-moment.duration = _todoImplement;
+  if (input == null) {
+    return createDuration();
+  }
+
+  if (isDuration(input)) {
+    return createDuration(input, _unit, { _locale: input._locale });
+  }
+
+  if (isString(input) || isNumber(input) || isDuration(input) || isObject<DateObject>(input)) {
+    return createDuration(input, _unit);
+  }
+
+  throw new Error('todo implement');
+};
 
 moment.min = function _min(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos {
   const _firstArg = dates[0];
@@ -402,8 +418,10 @@ export class Khronos {
               strict = false,
               isUTC = false,
               offset?: number) {
+    // locale will be needed to format invalid date message
+    this._locale = getLocale(localeKey);
     // parse invalid input
-    if (input === '' || input === null) {
+    if (input === '' || input === null || (isNumber(input) && isNaN(input))) {
       this._date = new Date(NaN);
 
       return this;
@@ -418,7 +436,6 @@ export class Khronos {
     }
     this._isStrict = strict;
     this._format = format;
-    this._locale = getLocale(localeKey);
 
     if (!input && input !== 0 && !format) {
       this._date = new Date();

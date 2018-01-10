@@ -169,16 +169,16 @@ describe('locale: ar', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '٥ أعوام', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'بعد ٣٠ ثانية', 'prefix');
     assert.equal(moment(0).from(30000), 'منذ ٣٠ ثانية', 'suffix');
   });
 
-  xit('now from now', function () {
+  it('now from now', function () {
     assert.equal(moment().fromNow(), 'منذ ثانية واحدة', 'now from now should display as in the past');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'بعد ٣٠ ثانية', 'in a few seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'بعد ٥ أيام', 'in 5 days');
   });

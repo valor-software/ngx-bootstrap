@@ -20,9 +20,9 @@ const aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 // tslint:disable-next-line
 const isoRegex = /^(-|\+)?P(?:([-+]?[0-9,.]*)Y)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)W)?(?:([-+]?[0-9,.]*)D)?(?:T(?:([-+]?[0-9,.]*)H)?(?:([-+]?[0-9,.]*)M)?(?:([-+]?[0-9,.]*)S)?)?$/;
 
-export type DurationInput = string | number | Duration | { from: Date; to: Date };
+export type DurationInput = string | number | Duration | Partial<DateObject> | { from: Date; to: Date };
 
-export function createDuration(input: DurationInput, key?: string, config?: DateParsingConfig) {
+export function createDuration(input?: DurationInput, key?: string, config: DateParsingConfig = {}) {
   const duration = convertDuration(input, key);
   // matching against regexp is expensive, do it on demand
 

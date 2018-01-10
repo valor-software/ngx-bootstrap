@@ -60,7 +60,9 @@ moment.locale('en');
 // });
 
 describe('locale', function () {
-
+  afterEach(() => {
+    moment.locale('en');
+  });
 
   it('library getters and setters', function () {
     var r = moment.locale('en');
@@ -118,9 +120,10 @@ describe('locale', function () {
 
     assert.equal(moment([2012, 5, 6]).format('MMMM'), 'July', 'Override some of the configs');
     assert.equal(moment([2012, 5, 6]).format('MMM'), 'Jun', 'But not all of them');
+    moment.defineLocale('made-up', null);
   });
 
-  xit('library ensure inheritance LT L LL LLL LLLL', function () {
+  it('library ensure inheritance LT L LL LLL LLLL', function () {
     var locale = 'test-inherit-lt';
 
     moment.defineLocale(locale, {
@@ -266,6 +269,7 @@ describe('locale', function () {
     var mom = moment.duration();
     moment.locale('fr');
     assert.equal('en', mom.locale());
+    moment.locale('en');
   });
 
   // DEPRECATED
