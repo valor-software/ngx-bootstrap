@@ -151,7 +151,10 @@ describe('locale', function () {
     assert.equal(moment().add(-1, 'days').locale(locale).calendar(), 'lastDay -LLL-', 'Should use instance locale in LL formatting');
     assert.equal(moment().add(4, 'days').locale(locale).calendar(), 'nextWeek -LL-', 'Should use instance locale in LLL formatting');
     assert.equal(moment().add(-4, 'days').locale(locale).calendar(), 'lastWeek -LLLL-', 'Should use instance locale in LLLL formatting');
+
+    moment.defineLocale(locale, null);
   });
+
   xit('library localeData', function () {
     moment.locale('en');
 

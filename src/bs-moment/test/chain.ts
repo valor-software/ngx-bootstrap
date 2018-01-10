@@ -510,7 +510,7 @@ export class Khronos {
   }
 
   calendar(time?: DateInput | Khronos, formats?: CalendarSpec): string {
-    return calendar(this.toDate(), moment(time).toDate(), formats, this._locale);
+    return calendar(this.toDate(), _moment(time).toDate(), formats, this._locale);
   }
 
   clone(): Khronos {
