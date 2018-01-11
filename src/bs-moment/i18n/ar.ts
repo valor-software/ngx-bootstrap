@@ -1,12 +1,14 @@
-// moment.js locale configuration
-// locale : Arabic [ar]
-// author : Abdel Said: https://github.com/abdelsaid
-// author : Ahmed Elkhatib
-// author : forabi https://github.com/forabi
+// tslint:disable:comment-format binary-expression-operand-order max-line-length
+
+//! moment.js locale configuration
+//! locale : Arabic [ar]
+//! author : Abdel Said: https://github.com/abdelsaid
+//! author : Ahmed Elkhatib
+//! author : forabi https://github.com/forabi
 
 import { LocaleData } from '../locale/locale.class';
 
-const symbolMap: { [key: string]: string } = {
+const symbolMap: {[key: string]: string} = {
   1: '١',
   2: '٢',
   3: '٣',
@@ -18,7 +20,7 @@ const symbolMap: { [key: string]: string } = {
   9: '٩',
   0: '٠'
 };
-const numberMap: { [key: string]: string } = {
+const numberMap: {[key: string]: string} = {
   '١': '1',
   '٢': '2',
   '٣': '3',
@@ -30,87 +32,41 @@ const numberMap: { [key: string]: string } = {
   '٩': '9',
   '٠': '0'
 };
-const pluralForm = function(n: number): number {
-  return n === 0
-    ? 0
-    : n === 1
-      ? 1
-      : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
+const pluralForm = function (num: number): number {
+  return num === 0 ? 0 : num === 1 ? 1 : num === 2 ? 2 : num % 100 >= 3 && num % 100 <= 10 ? 3 : num % 100 >= 11 ? 4 : 5;
 };
-const plurals: any = {
-  s: [
-    'أقل من ثانية',
-    'ثانية واحدة',
-    ['ثانيتان', 'ثانيتين'],
-    '%d ثوان',
-    '%d ثانية',
-    '%d ثانية'
-  ],
-  m: [
-    'أقل من دقيقة',
-    'دقيقة واحدة',
-    ['دقيقتان', 'دقيقتين'],
-    '%d دقائق',
-    '%d دقيقة',
-    '%d دقيقة'
-  ],
-  h: [
-    'أقل من ساعة',
-    'ساعة واحدة',
-    ['ساعتان', 'ساعتين'],
-    '%d ساعات',
-    '%d ساعة',
-    '%d ساعة'
-  ],
-  d: [
-    'أقل من يوم',
-    'يوم واحد',
-    ['يومان', 'يومين'],
-    '%d أيام',
-    '%d يومًا',
-    '%d يوم'
-  ],
-  M: [
-    'أقل من شهر',
-    'شهر واحد',
-    ['شهران', 'شهرين'],
-    '%d أشهر',
-    '%d شهرا',
-    '%d شهر'
-  ],
-  y: [
-    'أقل من عام',
-    'عام واحد',
-    ['عامان', 'عامين'],
-    '%d أعوام',
-    '%d عامًا',
-    '%d عام'
-  ]
+const plurals: {[key: string]: [string, string, [string, string], string, string, string]} = {
+  s: ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
+  m: ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
+  h: ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
+  d: ['أقل من يوم', 'يوم واحد', ['يومان', 'يومين'], '%d أيام', '%d يومًا', '%d يوم'],
+  M: ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
+  y: ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
 };
-const pluralize = function(u: string) {
-  return function(num: number, withoutSuffix: boolean /*, string, isFuture*/) {
+const pluralize = function (u: string) {
+  return function (num: number, withoutSuffix: boolean): string {
     const f = pluralForm(num);
     let str = plurals[u][pluralForm(num)];
     if (f === 2) {
       str = str[withoutSuffix ? 0 : 1];
     }
 
-    return str.replace(/%d/i, num);
+    return (str as string).replace(/%d/i, num.toString());
   };
 };
-const months = [
-  'كانون الثاني يناير',
-  'شباط فبراير',
-  'آذار مارس',
-  'نيسان أبريل',
-  'أيار مايو',
-  'حزيران يونيو',
-  'تموز يوليو',
-  'آب أغسطس',
-  'أيلول سبتمبر',
-  'تشرين الأول أكتوبر',
-  'تشرين الثاني نوفمبر',
-  'كانون الأول ديسمبر'
+const months: string[] = [
+  'يناير',
+  'فبراير',
+  'مارس',
+  'أبريل',
+  'مايو',
+  'يونيو',
+  'يوليو',
+  'أغسطس',
+  'سبتمبر',
+  'أكتوبر',
+  'نوفمبر',
+  'ديسمبر'
 ];
 
 export const ar: LocaleData = {
@@ -130,10 +86,10 @@ export const ar: LocaleData = {
     LLLL: 'dddd D MMMM YYYY HH:mm'
   },
   meridiemParse: /ص|م/,
-  isPM(input: string): boolean {
-    return input === 'م';
+  isPM(input) {
+    return 'م' === input;
   },
-  meridiem(hour: number, minute: number, isLower: boolean): string {
+  meridiem(hour, minute, isLower) {
     if (hour < 12) {
       return 'ص';
     } else {
@@ -152,6 +108,7 @@ export const ar: LocaleData = {
     future: 'بعد %s',
     past: 'منذ %s',
     s: pluralize('s'),
+    ss: pluralize('s'),
     m: pluralize('m'),
     mm: pluralize('m'),
     h: pluralize('h'),
@@ -164,25 +121,17 @@ export const ar: LocaleData = {
     yy: pluralize('y')
   },
   preparse(str: string): string {
-    return str
-      .replace(/[١٢٣٤٥٦٧٨٩٠]/g, function(match) {
-        return numberMap[match];
-      })
-      .replace(/،/g, ',');
+    return str.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
+      return numberMap[match];
+    }).replace(/،/g, ',');
   },
-  postformat(str: string): string {
-    if (!str) {
-      return str;
-    }
-
-    return str
-      .replace(/\d/g, function(match) {
-        return symbolMap[match];
-      })
-      .replace(/,/g, '،');
+  postformat(str: string) {
+    return str.replace(/\d/g, function (match) {
+      return symbolMap[match];
+    }).replace(/,/g, '،');
   },
   week: {
     dow: 6, // Saturday is the first day of the week.
-    doy: 12 // The week that contains Jan 1st is the first week of the year.
+    doy: 12  // The week that contains Jan 1st is the first week of the year.
   }
 };

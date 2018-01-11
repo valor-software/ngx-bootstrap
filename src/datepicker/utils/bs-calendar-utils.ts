@@ -1,5 +1,5 @@
 import {
-  getDayOfWeek,
+  getDay,
   isFirstDayOfWeek
 } from '../../bs-moment/utils/date-getters';
 import { shiftDate } from '../../bs-moment/utils/date-setters';
@@ -15,7 +15,7 @@ export function getStartingDayOfCalendar(date: Date,
     return date;
   }
 
-  const weekDay = getDayOfWeek(date);
+  const weekDay = getDay(date);
   const offset = calculateDateOffset(weekDay, options.firstDayOfWeek);
 
   return shiftDate(date, {day: -offset});

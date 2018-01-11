@@ -1,10 +1,38 @@
-import { addFormatToken } from '../format-functions';
+import { addFormatToken } from '../format/format';
 import { startOf } from '../utils/start-end-of';
+import { addRegexToken, match1to3, match3 } from '../parse/regex';
+import { addParseToken } from '../parse/token';
+import { addUnitPriority } from './priorities';
+import { addUnitAlias } from './aliases';
+import { DateArray, DateFormatterOptions } from '../types';
+import { DateParsingConfig } from '../create/parsing.types';
+import { toInt } from '../utils/type-checks';
+import { add } from '../moment/add-subtract';
 
 // FORMATTING
-addFormatToken('DDD', ['DDDD', 3], 'DDDo', function(date: Date): string {
-  return getDayOfYear(date).toString(10);
-});
+
+addFormatToken('DDD', ['DDDD', 3, false], 'DDDo',
+  function (date: Date): string {
+    return getDayOfYear(date).toString(10);
+  });
+
+
+// ALIASES
+
+addUnitAlias('dayOfYear', 'DDD');
+
+// PRIORITY
+
+addUnitPriority('dayOfYear', 4);
+
+addRegexToken('DDD', match1to3);
+addRegexToken('DDDD', match3);
+addParseToken(['DDD', 'DDDD'],
+  function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+    config._dayOfYear = toInt(input);
+
+    return config;
+  });
 
 export function getDayOfYear(date: Date): number {
   const date1 = +startOf(date, 'day');
@@ -15,10 +43,8 @@ export function getDayOfYear(date: Date): number {
   return Math.round(someDate / oneDay) + 1;
 }
 
-export function _getDayOfYear(date: Date): number {
-  const start = new Date(date.getFullYear(), 0, 0);
-  const diff = date.getTime() - start.getTime();
-  const oneDay = 1000 * 60 * 60 * 24;
+export function setDayOfYear(date: Date, input: number): Date {
+  const dayOfYear = getDayOfYear(date);
 
-  return Math.round(diff / oneDay) + 1;
+  return add(date, (input - dayOfYear), 'day');
 }

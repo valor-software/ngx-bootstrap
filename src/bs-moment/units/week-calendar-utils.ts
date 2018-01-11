@@ -5,16 +5,16 @@
  * @param {number} doy - start-of-year
  * @returns {number}
  */
-import { createUTCDate } from '../utils';
+import { createUTCDate } from '../create/date-from-array';
 import { daysInYear } from './year';
 import { getDayOfYear } from './day-of-year';
 import { getFullYear } from '../utils/date-getters';
 
 function firstWeekOffset(year: number, dow: number, doy: number): number {
   // first-week day -- which january is always in the first week (4 for iso, 1 for other)
-  const fwd = 7 + dow - doy;
+  const fwd = dow - doy + 7;
   // first-week day local weekday -- which local weekday is fwd
-  const fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
+  const fwdlw = (createUTCDate(year, 0, fwd).getUTCDay() - dow + 7) % 7;
 
   return -fwdlw + fwd - 1;
 }
@@ -80,5 +80,6 @@ export function weekOfYear(
 export function weeksInYear(year: number, dow: number, doy: number): number {
   const weekOffset = firstWeekOffset(year, dow, doy);
   const weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
+
   return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
 }

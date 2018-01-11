@@ -1,6 +1,17 @@
+import './locale/en';
+import './units/index';
+
+export {add, subtract} from './moment/add-subtract';
+
+export { getMonth } from './utils/date-getters';
+
+export { parseDate } from './create/local';
+export { formatDate } from './format';
+
 export {
   defineLocale,
   getSetGlobalLocale,
   listLocales
-} from './locale/locales.service';
+} from './locale/locales';
+
 export { LocaleData } from './locale/locale.class';
