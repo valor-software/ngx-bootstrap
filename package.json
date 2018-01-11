@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "2.0.0-beta.11",
+  "version": "2.0.0-rc.0",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -133,8 +133,6 @@
     "karma-typescript": "3.0.9",
     "lite-server": "2.3.0",
     "lodash": "4.17.4",
-    "markdown-loader": "github:valorkin/markdown-loader",
-    "marked": "0.3.6",
     "mocha": "4.0.1",
     "ng2-page-scroll": "4.0.0-beta.7",
     "ngm-cli": "0.8.3",

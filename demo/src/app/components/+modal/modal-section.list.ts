@@ -29,7 +29,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('html-loader!markdown-loader!./docs/usage.md')
+      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
     }
   },
   {
@@ -179,11 +179,6 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'ModalBackdropComponent',
         anchor: 'modal-backdrop-component',
-        outlet: NgApiDocComponent
-      },
-      {
-        title: 'ModalContainerComponent',
-        anchor: 'modal-container',
         outlet: NgApiDocComponent
       },
       {

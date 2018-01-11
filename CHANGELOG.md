@@ -1,3 +1,18 @@
+<a name="2.0.0-rc.0"></a>
+# [2.0.0-rc.0](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.11...v2.0.0-rc.0) (2017-12-14)
+
+
+### Bug Fixes
+
+* **typeahead:** define latimap properly ([#3270](https://github.com/valor-software/ngx-bootstrap/issues/3270)) ([d363e5d](https://github.com/valor-software/ngx-bootstrap/commit/d363e5d)), closes [#3126](https://github.com/valor-software/ngx-bootstrap/issues/3126)
+
+
+### Features
+
+* **demo:** add missing section title ([#3249](https://github.com/valor-software/ngx-bootstrap/issues/3249)) ([71a2f33](https://github.com/valor-software/ngx-bootstrap/commit/71a2f33))
+
+
+
 <a name="2.0.0-beta.11"></a>
 # [2.0.0-beta.11](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2017-12-08)
 

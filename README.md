@@ -83,6 +83,7 @@ Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
  - `plnkr` sample available [here](http://bit.ly/ngx-bootstrap-plnkr)
  - `AoT using ngc and rollup` please refer to [ngx-bootstrap-with-aot](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/aot.md)
  - `Bootstrap 4 and angular-cli` please refer to [using-with-bootstrap-4-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap4.md)
+ - `ASP.NET Core 2.0` please refer to [using-with-asp.net-core-2](https://github.com/csegyud/ASPNETCore_ngx-bootstrap_Sample/blob/master/README.md)
 
 # How to build lib for development
 
