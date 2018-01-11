@@ -519,10 +519,12 @@ export class Khronos {
 
   // fixme: for some reason here 'null' for time is fine
   calendar(time?: DateInput | Khronos, formats?: CalendarSpec): string {
-    const _time = time || new Date();
+    const _time = time instanceof Khronos ? time : new Khronos(time || new Date());
+    const _offset = (this._offset || 0) - (_time._offset || 0);
+    const _config = Object.assign(this._toConfig(), {_offset});
 
-    // return calendar(this.toDate(), _moment(_time).toDate(), formats, this._locale, this._toConfig());
-    return calendar(this._date, _moment(_time).toDate(), formats, this._locale, this._toConfig());
+    return calendar(this._date, _time._date,
+      formats, this._locale, _config);
   }
 
   clone(): Khronos {
@@ -542,8 +544,15 @@ export class Khronos {
   diff(b: DateInput | Khronos, unitOfTime?: MomentUnitOfTime, precise?: boolean): number {
     const unit = mapUnitOfTime(unitOfTime);
     const _b = b instanceof Khronos ? b : new Khronos(b);
+    // const zoneDelta = (_b.utcOffset() - this.utcOffset());
+    // const config = Object.assign(this._toConfig(), {
+    //   _offset: 0,
+    //   _isUTC: true,
+    //   _zoneDelta: zoneDelta
+    // });
+    // return diff(new Date(this.valueOf()), new Date(_b.valueOf()), unit, precise, config);
 
-    return diff(this.toDate(), _b.toDate(), unit, precise, this._toConfig());
+    return diff(this._date, _b.toDate(), unit, precise, this._toConfig());
   }
 
   endOf(period?: MomentUnitOfTime): Khronos {
@@ -721,7 +730,7 @@ export class Khronos {
 
   inspect(): string {
     throw new Error('TODO: implement');
-  };
+  }
 
   toJSON(): string {
     return this.toISOString();

@@ -43,9 +43,9 @@ export function calendar(date: Date,
                          config: DateParsingConfig = {}): string {
   // We want to compare the start of today, vs this.
   // Getting start-of-today depends on whether we're local/utc/offset or not.
-  const now = time || new Date();
-  const sod = startOf(cloneWithOffset(now, date, void 0, config), 'day', config._isUTC);
-  const format = getCalendarFormat(date, sod, config) || 'sameElse';
+  const now = time;
+  const sod = startOf(cloneWithOffset(now, date,  config), 'day', config._isUTC);
+  const format = getCalendarFormat(date, sod, {_isUTC: true, _offset: 0}) || 'sameElse';
 
   let output;
   if (formats) {

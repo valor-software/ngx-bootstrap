@@ -13,11 +13,11 @@
     "mapRoot": "./",
     "module": "es6",
     "moduleResolution": "node",
-    "outDir": "../temp/out-tsc",
+    "outDir": "./temp/out-tsc",
     "sourceMap": true,
     "target": "es5",
     "typeRoots": [
-      "../node_modules/@types"
+      "node_modules/@types"
     ]
   }
 }

@@ -42,6 +42,8 @@ export interface DateParsingConfig {
   _dayOfYear?: number;
   /** used in set offset */
   _changeInProgress?: boolean;
+  /* used only in diff method */
+  _zoneDelta?: number;
 }
 
 export interface DateParsingFlags {

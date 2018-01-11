@@ -123,7 +123,7 @@ describe('diff', () => {
       'minute diff across DST');
     assert.equal(b.diff(a, 'hours', true), 12,
       'hour diff across DST');
-    assert.equal(b.diff(a, 'days', true), (12 - dst.diff) / 24,
+    equal(assert, b.diff(a, 'days', true), (12 - dst.diff) / 24,
       'day diff across DST');
     equal(assert, b.diff(a, 'weeks', true), (12 - dst.diff) / 24 / 7,
       'week diff across DST');

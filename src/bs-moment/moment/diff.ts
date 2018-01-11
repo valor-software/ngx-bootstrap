@@ -2,27 +2,29 @@ import { cloneWithOffset, getUTCOffset } from '../units/offset';
 import { DateParsingConfig } from '../create/parsing.types';
 import { UnitOfTime } from '../types';
 import { absFloor } from '../utils';
-import { isDateValid } from '../utils/type-checks';
+import { isDateValid, isNumber } from '../utils/type-checks';
 import { getFullYear, getMonth } from '../utils/date-getters';
 import { add } from './add-subtract';
 import { cloneDate } from '../create/clone';
 
 export function diff(date: Date, input: Date,
                      units: UnitOfTime, asFloat: boolean,
-                     dateConfig: DateParsingConfig = {},
-                     inputConfig: DateParsingConfig = {}
+                     config: DateParsingConfig = {}
                      ): number {
   if (!isDateValid(date)) {
     return NaN;
   }
 
-  const that = cloneWithOffset(input, date, dateConfig, inputConfig);
+  const that = cloneWithOffset(input, date, config);
 
   if (!isDateValid(that)) {
     return NaN;
   }
 
-  const zoneDelta = (getUTCOffset(input, inputConfig) - getUTCOffset(date, dateConfig)) * 6e4;
+  // const zoneDelta = (getUTCOffset(input, dateConfig) - getUTCOffset(date, dateConfig)) * 6e4;
+  const zoneDelta = isNumber(config._zoneDelta)
+    ? config._zoneDelta * 6e4
+    : (getUTCOffset(input, config) - getUTCOffset(date, config)) * 6e4;
 
   let output;
   switch (units) {

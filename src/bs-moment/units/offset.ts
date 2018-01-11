@@ -63,15 +63,14 @@ function offsetFromString(matcher: RegExp, str: string): number {
 
 // Return a moment from input, that is local/utc/zone equivalent to model.
 export function cloneWithOffset(input: Date, date: Date,
-                                inputConfig: DateParsingConfig = {},
-                                dateConfig: DateParsingConfig = {}): Date {
-  if (!dateConfig._isUTC) {
-    // return createLocal(date).local();
+                                config: DateParsingConfig = {}): Date {
+  if (!config._isUTC) {
     return input;
   }
 
   const res = cloneDate(date);
-  const offsetDiff = ((inputConfig._offset || 0) - (dateConfig._offset || 0)) * 60000;
+  // todo: input._d - res._d + ((res._offset || 0) - (input._offset || 0))*60000
+  const offsetDiff = (config._offset || 0) * 60000;
   const diff = input.valueOf() - res.valueOf() + offsetDiff;
   // Use low-level api, because this fn is low-level api.
   res.setTime(res.valueOf() + diff);
