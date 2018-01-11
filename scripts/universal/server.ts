@@ -18,7 +18,7 @@ const app = express();
 app.use(compression());
 
 const PORT = process.env.PORT || 3000;
-const DIST_FOLDER = join(process.cwd(), 'demo/dist');
+const DIST_FOLDER = join(process.cwd(), process.env.DYNO ? './' : 'demo/dist');
 
 // Our index.html we'll use as our template
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
