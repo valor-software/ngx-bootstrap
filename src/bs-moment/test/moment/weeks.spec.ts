@@ -90,6 +90,7 @@ describe('weeks', () => {
   });
 
   it('iso weeks year starting sunday formatted', function () {
+    moment.locale('en');
     assert.equal(moment([2012, 0, 1]).format('W WW Wo'), '52 52 52nd', 'Jan  1 2012 should be iso week 52');
     assert.equal(moment([2012, 0, 2]).format('W WW Wo'), '1 01 1st', 'Jan  2 2012 should be iso week 1');
     assert.equal(moment([2012, 0, 8]).format('W WW Wo'), '1 01 1st', 'Jan  8 2012 should be iso week 1');
@@ -98,6 +99,7 @@ describe('weeks', () => {
   });
 
   it('weeks plural year starting sunday', function () {
+    moment.locale('en');
     assert.equal(moment([2012, 0, 1]).weeks(), 1, 'Jan  1 2012 should be week 1');
     assert.equal(moment([2012, 0, 7]).weeks(), 1, 'Jan  7 2012 should be week 1');
     assert.equal(moment([2012, 0, 8]).weeks(), 2, 'Jan  8 2012 should be week 2');
