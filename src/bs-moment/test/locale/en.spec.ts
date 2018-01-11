@@ -126,7 +126,7 @@ describe('locale: en', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
 
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'a few seconds', '44 seconds = a few seconds');
@@ -159,16 +159,16 @@ describe('locale: en', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 years', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'in a few seconds', 'prefix');
     assert.equal(moment(0).from(30000), 'a few seconds ago', 'suffix');
   });
 
-  xit('now from now', function () {
+  it('now from now', function () {
     assert.equal(moment().fromNow(), 'a few seconds ago', 'now from now should display as in the past');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'in a few seconds', 'in a few seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'in 5 days', 'in 5 days');
   });

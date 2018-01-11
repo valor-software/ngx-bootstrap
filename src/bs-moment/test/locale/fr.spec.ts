@@ -143,7 +143,7 @@ describe('locale: fr', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
 
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'quelques secondes', '44 seconds = a few seconds');
@@ -176,17 +176,17 @@ describe('locale: fr', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 ans', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'dans quelques secondes', 'prefix');
     assert.equal(moment(0).from(30000), 'il y a quelques secondes', 'suffix');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'dans quelques secondes', 'in a few seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'dans 5 jours', 'in 5 days');
   });
 
-  xit('same day', function () {
+  it('same day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'Aujourd’hui à 12:00', 'Today at the same time');
@@ -197,7 +197,7 @@ describe('locale: fr', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'Hier à 12:00', 'Yesterday at the same time');
   });
 
-  xit('same next week', function () {
+  it('same next week', function () {
     var i, m;
 
     for (i = 2; i < 7; i++) {
@@ -210,7 +210,7 @@ describe('locale: fr', () => {
     }
   });
 
-  xit('same last week', function () {
+  it('same last week', function () {
     var i, m;
 
     for (i = 2; i < 7; i++) {
@@ -223,7 +223,7 @@ describe('locale: fr', () => {
     }
   });
 
-  xit('same all else', function () {
+  it('same all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 

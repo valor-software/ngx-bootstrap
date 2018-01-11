@@ -125,7 +125,7 @@ describe('locale: pt-br', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'poucos segundos', '44 seconds = seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'um minuto', '45 seconds = a minute');
@@ -157,17 +157,17 @@ describe('locale: pt-br', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 anos', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'em poucos segundos', 'prefix');
     assert.equal(moment(0).from(30000), 'poucos segundos atrás', 'suffix');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'em poucos segundos', 'in seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'em 5 dias', 'in 5 days');
   });
 
-  xit('calendar day', function () {
+  it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'Hoje às 12:00', 'today at the same time');
@@ -178,7 +178,7 @@ describe('locale: pt-br', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'Ontem às 12:00', 'yesterday at the same time');
   });
 
-  xit('calendar next week', function () {
+  it('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -190,7 +190,7 @@ describe('locale: pt-br', () => {
     }
   });
 
-  xit('calendar last week', function () {
+  it('calendar last week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });
@@ -202,7 +202,7 @@ describe('locale: pt-br', () => {
     }
   });
 
-  xit('calendar all else', function () {
+  it('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 
@@ -224,6 +224,7 @@ describe('locale: pt-br', () => {
     assert.equal(moment([2012, 0, 15]).format('w ww wo'), '3 03 3º', 'Jan 15 2012 should be week 3');
   });
 
+  // todo: relativeTimeThreshold
   xit('relative time threshold', function () {
     var rts = moment(),
       rtsDefault = moment.relativeTimeThreshold('ss');

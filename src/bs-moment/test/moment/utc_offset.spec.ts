@@ -190,7 +190,7 @@ describe('utc offset', () => {
   });
 
 
-  xit('from', function () {
+  it('from', function () {
     var zoneA = moment(),
       zoneB = moment(zoneA).utcOffset(-720),
       zoneC = moment(zoneA).utcOffset(-360),
@@ -202,7 +202,7 @@ describe('utc offset', () => {
     assert.equal(zoneA.from(other), zoneD.from(other), 'moment#from should be the same in all zones');
   });
 
-  xit('diff', function () {
+  it('diff', function () {
     var zoneA = moment(),
       zoneB = moment(zoneA).utcOffset(-720),
       zoneC = moment(zoneA).utcOffset(-360),
@@ -441,19 +441,19 @@ describe('utc offset', () => {
     assert.equal(m.hasAlignedHourOffset(moment().utcOffset(85)), false);
   });
 
-  xit('parse zone', function () {
+  it('parse zone', function () {
     var m = moment('2013-01-01T00:00:00-13:00').parseZone();
     assert.equal(m.utcOffset(), -13 * 60);
     assert.equal(m.hours(), 0);
   });
 
-  xit('parse UTC zone', function () {
+  it('parse UTC zone', function () {
     var m = moment('2013-01-01T05:00:00+00:00').parseZone();
     assert.equal(m.utcOffset(), 0);
     assert.equal(m.hours(), 5);
   });
 
-  xit('parse zone static', function () {
+  it('parse zone static', function () {
     var m = moment.parseZone('2013-01-01T00:00:00-13:00');
     assert.equal(m.utcOffset(), -13 * 60);
     assert.equal(m.hours(), 0);
@@ -469,7 +469,7 @@ describe('utc offset', () => {
     assert.equal(m.format(), '2013-01-01T00:00:00-13:00', 'accept input and array of formats');
   });
 
-  xit('parse zone with a timezone from the format string', function () {
+  it('parse zone with a timezone from the format string', function () {
     var m = moment('11-12-2013 -0400 +1100', 'DD-MM-YYYY ZZ #####').parseZone();
 
     assert.equal(m.utcOffset(), -4 * 60);
@@ -481,7 +481,7 @@ describe('utc offset', () => {
     assert.equal(m.utcOffset(), 11 * 60);
   });
 
-  xit('timezone format', function () {
+  it('timezone format', function () {
     assert.equal(moment().utcOffset(60).format('ZZ'), '+0100', '-60 -> +0100');
     assert.equal(moment().utcOffset(90).format('ZZ'), '+0130', '-90 -> +0130');
     assert.equal(moment().utcOffset(120).format('ZZ'), '+0200', '-120 -> +0200');

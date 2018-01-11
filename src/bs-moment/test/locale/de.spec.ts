@@ -124,7 +124,7 @@ describe('locale: de', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'ein paar Sekunden', '44 seconds = a few seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'eine Minute', '45 seconds = a minute');
@@ -156,17 +156,17 @@ describe('locale: de', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 Jahre', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'in ein paar Sekunden', 'prefix');
     assert.equal(moment(0).from(30000), 'vor ein paar Sekunden', 'suffix');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'in ein paar Sekunden', 'in a few seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'in 5 Tagen', 'in 5 days');
   });
 
-  xit('calendar day', function () {
+  it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'heute um 12:00 Uhr', 'today at the same time');
@@ -177,7 +177,7 @@ describe('locale: de', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'gestern um 12:00 Uhr', 'yesterday at the same time');
   });
 
-  xit('calendar next week', function () {
+  it('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -189,7 +189,7 @@ describe('locale: de', () => {
     }
   });
 
-  xit('calendar last week', function () {
+  it('calendar last week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });
@@ -201,7 +201,7 @@ describe('locale: de', () => {
     }
   });
 
-  xit('calendar all else', function () {
+  it('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 

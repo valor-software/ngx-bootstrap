@@ -137,7 +137,7 @@ describe('locale: ar', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), '٤٤ ثانية', '44 seconds = a few seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'دقيقة واحدة', '45 seconds = a minute');
@@ -183,7 +183,7 @@ describe('locale: ar', () => {
     assert.equal(moment().add({ d: 5 }).fromNow(), 'بعد ٥ أيام', 'in 5 days');
   });
 
-  xit('calendar day', function () {
+  it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'اليوم عند الساعة ١٢:٠٠', 'today at the same time');
@@ -194,7 +194,7 @@ describe('locale: ar', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'أمس عند الساعة ١٢:٠٠', 'yesterday at the same time');
   });
 
-  xit('calendar next week', function () {
+  it('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -206,7 +206,7 @@ describe('locale: ar', () => {
     }
   });
 
-  xit('calendar last week', function () {
+  it('calendar last week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });
@@ -218,7 +218,7 @@ describe('locale: ar', () => {
     }
   });
 
-  xit('calendar all else', function () {
+  it('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 

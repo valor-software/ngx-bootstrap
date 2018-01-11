@@ -7,7 +7,7 @@ import { moment } from '../chain';
 import { cs } from '../../i18n/cs';
 // localeModule('cs');
 
-describe('locale: en', () => {
+describe('locale: cs', () => {
   beforeAll(() => {
     moment.locale('cs', cs);
   });
@@ -135,7 +135,7 @@ describe('locale: en', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'pár sekund', '44 seconds = a few seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'minuta', '45 seconds = a minute');
@@ -167,16 +167,16 @@ describe('locale: en', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 let', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'za pár sekund', 'prefix');
     assert.equal(moment(0).from(30000), 'před pár sekundami', 'suffix');
   });
 
-  xit('now from now', function () {
+  it('now from now', function () {
     assert.equal(moment().fromNow(), 'před pár sekundami', 'now from now should display as in the past');
   });
 
-  xit('fromNow (future)', function () {
+  it('fromNow (future)', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'za pár sekund', 'in a few seconds');
     assert.equal(moment().add({ m: 1 }).fromNow(), 'za minutu', 'in a minute');
     assert.equal(moment().add({ m: 3 }).fromNow(), 'za 3 minuty', 'in 3 minutes');
@@ -195,7 +195,7 @@ describe('locale: en', () => {
     assert.equal(moment().add({ y: 10 }).fromNow(), 'za 10 let', 'in 10 years');
   });
 
-  xit('fromNow (past)', function () {
+  it('fromNow (past)', function () {
     assert.equal(moment().subtract({ s: 30 }).fromNow(), 'před pár sekundami', 'a few seconds ago');
     assert.equal(moment().subtract({ m: 1 }).fromNow(), 'před minutou', 'a minute ago');
     assert.equal(moment().subtract({ m: 3 }).fromNow(), 'před 3 minutami', '3 minutes ago');
@@ -214,7 +214,7 @@ describe('locale: en', () => {
     assert.equal(moment().subtract({ y: 10 }).fromNow(), 'před 10 lety', '10 years ago');
   });
 
-  xit('calendar day', function () {
+  it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'dnes v 12:00', 'today at the same time');
@@ -297,7 +297,7 @@ describe('locale: en', () => {
     }
   });
 
-  xit('calendar all else', function () {
+  it('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 
@@ -311,7 +311,7 @@ describe('locale: en', () => {
     assert.equal(weeksFromNow.calendar(), weeksFromNow.format('L'), 'in 2 weeks');
   });
 
-  xit('humanize duration', function () {
+  it('humanize duration', function () {
     assert.equal(moment.duration(1, 'minutes').humanize(), 'minuta', 'a minute (future)');
     assert.equal(moment.duration(1, 'minutes').humanize(true), 'za minutu', 'in a minute');
     assert.equal(moment.duration(-1, 'minutes').humanize(), 'minuta', 'a minute (past)');

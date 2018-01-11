@@ -142,7 +142,7 @@ describe('locale: uk', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'декілька секунд', '44 seconds = seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'хвилина', '45 seconds = a minute');
@@ -176,17 +176,17 @@ describe('locale: uk', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 років', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'за декілька секунд', 'prefix');
     assert.equal(moment(0).from(30000), 'декілька секунд тому', 'suffix');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'за декілька секунд', 'in seconds');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'за 5 днів', 'in 5 days');
   });
 
-  xit('calendar day', function () {
+  it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'Сьогодні о 12:00', 'today at the same time');
@@ -199,7 +199,7 @@ describe('locale: uk', () => {
     assert.equal(moment(a).subtract({ h: 1 }).calendar(), 'Сьогодні об 11:00', 'same day at 11 o\'clock');
   });
 
-  xit('calendar next week', function () {
+  it('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -211,7 +211,7 @@ describe('locale: uk', () => {
     }
   });
 
-  xit('calendar last week', function () {
+  it('calendar last week', function () {
     var i, m;
 
     function makeFormat(d) {
@@ -238,7 +238,7 @@ describe('locale: uk', () => {
     }
   });
 
-  xit('calendar all else', function () {
+  it('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 

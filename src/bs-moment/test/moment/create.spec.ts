@@ -1187,9 +1187,9 @@ describe('create', () => {
   });
 
   // should not be supported
-  xit('object with strings', function () {
+  // xit('object with strings', function () {
     // assert.equal(moment({ year: '2014', month: '7', day: '31' }).isValid(), true, 'string object + isValid');
-  });
+  // });
 
   it('utc with array of formats', function () {
     assert.equal(moment.utc('2014-01-01', ['YYYY-MM-DD', 'YYYY-MM']).format(), '2014-01-01T00:00:00Z', 'moment.utc works with array of formats');

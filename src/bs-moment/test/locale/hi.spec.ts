@@ -125,7 +125,7 @@ describe('locale: hi', () => {
     }
   });
 
-  xit('from', function () {
+  it('from', function () {
     var start = moment([2007, 1, 28]);
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'कुछ ही क्षण', '44 seconds = a few seconds');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'एक मिनट', '45 seconds = a minute');
@@ -157,21 +157,21 @@ describe('locale: hi', () => {
     assert.equal(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '५ वर्ष', '5 years = 5 years');
   });
 
-  xit('suffix', function () {
+  it('suffix', function () {
     assert.equal(moment(30000).from(0), 'कुछ ही क्षण में', 'prefix');
     assert.equal(moment(0).from(30000), 'कुछ ही क्षण पहले', 'suffix');
   });
 
-  xit('now from now', function () {
+  it('now from now', function () {
     assert.equal(moment().fromNow(), 'कुछ ही क्षण पहले', 'now from now should display as in the past');
   });
 
-  xit('fromNow', function () {
+  it('fromNow', function () {
     assert.equal(moment().add({ s: 30 }).fromNow(), 'कुछ ही क्षण में', 'कुछ ही क्षण में');
     assert.equal(moment().add({ d: 5 }).fromNow(), '५ दिन में', '५ दिन में');
   });
 
-  xit('calendar day', function () {
+  it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
     assert.equal(moment(a).calendar(), 'आज दोपहर १२:०० बजे', 'today at the same time');
@@ -182,7 +182,7 @@ describe('locale: hi', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'कल दोपहर १२:०० बजे', 'yesterday at the same time');
   });
 
-  xit('calendar next week', function () {
+  it('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -194,7 +194,7 @@ describe('locale: hi', () => {
     }
   });
 
-  xit('calendar last week', function () {
+  it('calendar last week', function () {
     var i, m;
 
     for (i = 2; i < 7; i++) {
@@ -207,7 +207,7 @@ describe('locale: hi', () => {
     }
   });
 
-  xit('calendar all else', function () {
+  it('calendar all else', function () {
     var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 
