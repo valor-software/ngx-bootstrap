@@ -256,7 +256,7 @@ a:hover {
   }
 
   &-content {
-    padding: 15px 19px 0 20px;
+    padding: 15px 19px 15px 20px;
     overflow: auto;
     max-height: calc(100vh - 194px); // header + search field + bootstrap buttons field
   }
