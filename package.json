@@ -42,10 +42,11 @@
     "e2e-cross": "SAUCE=true npm run e2e",
     "e2e-bdd": "protractor ./protractor.cucumber.js",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json",
-    "build:dynamic": "run-s build link build:client-and-server-bundles webpack:server",
+    "build:dynamic": "run-s build link build:client-and-server-bundles webpack:server configure-heroku",
     "serve:dynamic": "node demo/dist/server.js",
     "build:client-and-server-bundles": "ng build -bh / --prod --env=server && ng build -bh / --prod --env=server --app 1 --output-hashing=false",
-    "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors"
+    "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors",
+    "configure-heroku": "node scripts/universal/configure-heroku.js"
   },
   "main": "bundles/ngx-bootstrap.umd.js",
   "module": "index.js",
