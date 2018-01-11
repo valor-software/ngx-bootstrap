@@ -70,6 +70,7 @@ const months: string[] = [
 ];
 
 export const ar: LocaleData = {
+  abbr: 'ar',
   months,
   monthsShort: months,
   weekdays: 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),

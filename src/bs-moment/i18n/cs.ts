@@ -78,6 +78,7 @@ function translate(num: number, withoutSuffix: boolean, key: string, isFuture: b
 }
 
 export const cs: LocaleData = {
+  abbr: 'cs',
   months,
   monthsShort,
   monthsParse: (function (months, monthsShort) {

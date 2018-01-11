@@ -39,6 +39,7 @@ function translate(num: number, withoutSuffix: boolean, key: string): string {
 }
 
 export const pl: LocaleData = {
+  abbr: 'pl',
   months(date: Date, format: string, isUTC?: boolean): string | string[] {
     if (!date) {
       return monthsNominative;

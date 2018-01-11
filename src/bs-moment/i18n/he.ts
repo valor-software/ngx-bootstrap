@@ -12,6 +12,7 @@ import { LocaleData } from '../locale/locale.class';
 //! author : Tal Ater : https://github.com/TalAter
 
 export const he: LocaleData = {
+  abbr: 'he',
   months: 'ינואר_פברואר_מרץ_אפריל_מאי_יוני_יולי_אוגוסט_ספטמבר_אוקטובר_נובמבר_דצמבר'.split('_'),
   monthsShort: 'ינו׳_פבר׳_מרץ_אפר׳_מאי_יוני_יולי_אוג׳_ספט׳_אוק׳_נוב׳_דצמ׳'.split('_'),
   weekdays: 'ראשון_שני_שלישי_רביעי_חמישי_שישי_שבת'.split('_'),
