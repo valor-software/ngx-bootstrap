@@ -18,7 +18,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('html-loader!markdown-loader!./docs/usage.md')
+      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
     }
   },
   {

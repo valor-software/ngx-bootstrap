@@ -1,51 +1,107 @@
-// moment.js locale configuration
-// locale : Hungarian [hu]
-// author : Gergely Padányi-Gulyás : https://github.com/fegyi001
+// tslint:disable:comment-format binary-expression-operand-order max-line-length
+// tslint:disable:no-bitwise prefer-template cyclomatic-complexity
+// tslint:disable:no-shadowed-variable switch-default prefer-const
+// tslint:disable:one-variable-per-declaration newline-before-return
 
 import { LocaleData } from '../locale/locale.class';
+import { getDayOfWeek } from '../units/day-of-week';
 
-export const hu = {
+//! moment.js locale configuration
+//! locale : Hungarian [hu]
+//! author : Adam Brunner : https://github.com/adambrunner
+
+let weekEndings = 'vasárnap hétfőn kedden szerdán csütörtökön pénteken szombaton'.split(' ');
+function translate(num: number, withoutSuffix: boolean, key: string, isFuture: boolean): string {
+  switch (key) {
+    case 's':
+      return (isFuture || withoutSuffix) ? 'néhány másodperc' : 'néhány másodperce';
+    case 'ss':
+      return num + ((isFuture || withoutSuffix) ? ' másodperc' : ' másodperce');
+    case 'm':
+      return 'egy' + (isFuture || withoutSuffix ? ' perc' : ' perce');
+    case 'mm':
+      return num + (isFuture || withoutSuffix ? ' perc' : ' perce');
+    case 'h':
+      return 'egy' + (isFuture || withoutSuffix ? ' óra' : ' órája');
+    case 'hh':
+      return num + (isFuture || withoutSuffix ? ' óra' : ' órája');
+    case 'd':
+      return 'egy' + (isFuture || withoutSuffix ? ' nap' : ' napja');
+    case 'dd':
+      return num + (isFuture || withoutSuffix ? ' nap' : ' napja');
+    case 'M':
+      return 'egy' + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
+    case 'MM':
+      return num + (isFuture || withoutSuffix ? ' hónap' : ' hónapja');
+    case 'y':
+      return 'egy' + (isFuture || withoutSuffix ? ' év' : ' éve');
+    case 'yy':
+      return num + (isFuture || withoutSuffix ? ' év' : ' éve');
+  }
+  return '';
+}
+function week(date: Date, isFuture: boolean) {
+  return (isFuture ? '' : '[múlt] ') + '[' + weekEndings[getDayOfWeek(date)] + '] LT[-kor]';
+}
+
+export const hu: LocaleData = {
   abbr: 'hu',
-  months: 'Január_Február_Március_Április_Május_Június_Július_Augusztus_Szeptember_Október_November_December'.split('_'),
-  monthsShort: 'Jan_Feb_Márc_Ápr_Máj_Jún_Júl_Aug_Szept_Okt_Nov_Dec'.split('_'),
-  weekdays: 'Vasárnap_Hétfő_Kedd_Szerda_Csütörtök_Péntek_Szombat'.split('_'),
-  weekdaysShort: 'Vas_Hét_Kedd_Sze_Csüt_Pén_Szo'.split('_'),
-  weekdaysMin: 'V_H_K_Sze_Cs_P_Szo'.split('_'),
-  longDateFormat: {
-    LT: 'H:mm',
-    LTS: 'H:mm:ss',
-    L: 'YYYY.MM.DD.',
-    LL: 'YYYY. MMMM D.',
-    LLL: 'YYYY. MMMM D. H:mm',
-    LLLL: 'YYYY. MMMM D., dddd H:mm'
+  months : 'január_február_március_április_május_június_július_augusztus_szeptember_október_november_december'.split('_'),
+  monthsShort : 'jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split('_'),
+  weekdays : 'vasárnap_hétfő_kedd_szerda_csütörtök_péntek_szombat'.split('_'),
+  weekdaysShort : 'vas_hét_kedd_sze_csüt_pén_szo'.split('_'),
+  weekdaysMin : 'v_h_k_sze_cs_p_szo'.split('_'),
+  longDateFormat : {
+    LT : 'H:mm',
+    LTS : 'H:mm:ss',
+    L : 'YYYY.MM.DD.',
+    LL : 'YYYY. MMMM D.',
+    LLL : 'YYYY. MMMM D. H:mm',
+    LLLL : 'YYYY. MMMM D., dddd H:mm'
   },
-  calendar: {
-    sameDay: '[Ma] LT[-kor]',
-    nextDay: '[Holnap] LT[-kor]',
-    nextWeek: 'dddd [] LT',
-    lastDay: '[Tegnap] LT',
-    lastWeek: '[Múlt] dddd [] LT',
-    sameElse: 'L'
+  meridiemParse: /de|du/i,
+  isPM (input) {
+    return input.charAt(1).toLowerCase() === 'u';
   },
-  relativeTime: {
-    future: '%s múlva',
-    past: '%s',
-    s: 'néhány másodperce',
-    m: 'egy perce',
-    mm: '%d perce',
-    h: 'egy órája',
-    hh: '%d órája',
-    d: 'egy napja',
-    dd: '%d napja',
-    M: 'egy hónapja',
-    MM: '%d hónapja',
-    y: 'egy éve',
-    yy: '%d éve'
+  meridiem (hours, minutes, isLower) {
+    if (hours < 12) {
+      return isLower === true ? 'de' : 'DE';
+    } else {
+      return isLower === true ? 'du' : 'DU';
+    }
+  },
+  calendar : {
+    sameDay : '[ma] LT[-kor]',
+    nextDay : '[holnap] LT[-kor]',
+    nextWeek (date: Date) {
+      return week(date, true);
+    },
+    lastDay : '[tegnap] LT[-kor]',
+    lastWeek (date: Date) {
+      return week(date, false);
+    },
+    sameElse : 'L'
+  },
+  relativeTime : {
+    future : '%s múlva',
+    past : '%s',
+    s : translate,
+    ss : translate,
+    m : translate,
+    mm : translate,
+    h : translate,
+    hh : translate,
+    d : translate,
+    dd : translate,
+    M : translate,
+    MM : translate,
+    y : translate,
+    yy : translate
   },
   dayOfMonthOrdinalParse: /\d{1,2}\./,
-  ordinal: '%d.',
-  week: {
-    dow: 1,
-    doy: 4 // The week that contains Jan 4th is the first week of the year.
+  ordinal : '%d.',
+  week : {
+    dow : 1, // Monday is the first day of the week.
+    doy : 4  // The week that contains Jan 4th is the first week of the year.
   }
 };

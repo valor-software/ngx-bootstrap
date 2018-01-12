@@ -1,0 +1,10 @@
+// place in new Date([array])
+export const YEAR = 0;
+export const MONTH = 1;
+export const DATE = 2;
+export const HOUR = 3;
+export const MINUTE = 4;
+export const SECOND = 5;
+export const MILLISECOND = 6;
+export const WEEK = 7;
+export const WEEKDAY = 8;

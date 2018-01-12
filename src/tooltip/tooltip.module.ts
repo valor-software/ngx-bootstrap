@@ -3,8 +3,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipDirective } from './tooltip.directive';
 import { TooltipConfig } from './tooltip.config';
-import { ComponentLoaderFactory } from '../component-loader';
-import { PositioningService } from '../positioning';
+import { ComponentLoaderFactory } from '../component-loader/index';
+import { PositioningService } from '../positioning/index';
 
 @NgModule({
   imports: [CommonModule],

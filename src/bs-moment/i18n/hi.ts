@@ -1,42 +1,44 @@
-// moment.js locale configuration
-// locale : Hindi [hi]
-// author : Mayank Singhal : https://github.com/mayanksinghal
+// tslint:disable:comment-format binary-expression-operand-order max-line-length
+// tslint:disable:no-bitwise prefer-template cyclomatic-complexity
+// tslint:disable:no-shadowed-variable switch-default prefer-const
+// tslint:disable:one-variable-per-declaration newline-before-return
+// tslint:disable:no-parameter-reassignment prefer-switch
 
 import { LocaleData } from '../locale/locale.class';
 
-const symbolMap: any = {
-  1: '१',
-  2: '२',
-  3: '३',
-  4: '४',
-  5: '५',
-  6: '६',
-  7: '७',
-  8: '८',
-  9: '९',
-  0: '०'
-};
-const numberMap: any = {
-  '१': '1',
-  '२': '2',
-  '३': '3',
-  '४': '4',
-  '५': '5',
-  '६': '6',
-  '७': '7',
-  '८': '8',
-  '९': '9',
-  '०': '0'
-};
+//! moment.js locale configuration
+//! locale : Hindi [hi]
+//! author : Mayank Singhal : https://github.com/mayanksinghal
+
+let symbolMap: {[key: string]: string} = {
+    1: '१',
+    2: '२',
+    3: '३',
+    4: '४',
+    5: '५',
+    6: '६',
+    7: '७',
+    8: '८',
+    9: '९',
+    0: '०'
+  },
+  numberMap: {[key: string]: string} = {
+    '१': '1',
+    '२': '2',
+    '३': '3',
+    '४': '4',
+    '५': '5',
+    '६': '6',
+    '७': '7',
+    '८': '8',
+    '९': '9',
+    '०': '0'
+  };
 
 export const hi: LocaleData = {
   abbr: 'hi',
-  months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split(
-    '_'
-  ),
-  monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split(
-    '_'
-  ),
+  months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split('_'),
+  monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split('_'),
   monthsParseExact: true,
   weekdays: 'रविवार_सोमवार_मंगलवार_बुधवार_गुरूवार_शुक्रवार_शनिवार'.split('_'),
   weekdaysShort: 'रवि_सोम_मंगल_बुध_गुरू_शुक्र_शनि'.split('_'),
@@ -61,6 +63,7 @@ export const hi: LocaleData = {
     future: '%s में',
     past: '%s पहले',
     s: 'कुछ ही क्षण',
+    ss: '%d सेकंड',
     m: 'एक मिनट',
     mm: '%d मिनट',
     h: 'एक घंटा',
@@ -78,21 +81,17 @@ export const hi: LocaleData = {
     });
   },
   postformat(str: string): string {
-    if (!str) {
-      return str;
-    }
-
     return str.replace(/\d/g, function (match) {
       return symbolMap[match];
     });
   },
-  // Hindi notation for meridiems are quite fuzzy in practice. While there
-  // exists a rigid notion of a 'Pahar' it is not used as rigidly in modern
-  // Hindi.
+  // Hindi notation for meridiems are quite fuzzy in practice. While there exists
+  // a rigid notion of a 'Pahar' it is not used as rigidly in modern Hindi.
   meridiemParse: /रात|सुबह|दोपहर|शाम/,
-  meridiemHour(_hour: number, meridiem: string): number {
-    const hour = _hour === 12 ? 0 : _hour;
-    // tslint:disable
+  meridiemHour(hour, meridiem) {
+    if (hour === 12) {
+      hour = 0;
+    }
     if (meridiem === 'रात') {
       return hour < 4 ? hour : hour + 12;
     } else if (meridiem === 'सुबह') {
@@ -103,7 +102,7 @@ export const hi: LocaleData = {
       return hour + 12;
     }
   },
-  meridiem(hour: number): string {
+  meridiem(hour, minute, isLower) {
     if (hour < 4) {
       return 'रात';
     } else if (hour < 10) {
@@ -118,6 +117,6 @@ export const hi: LocaleData = {
   },
   week: {
     dow: 0, // Sunday is the first day of the week.
-    doy: 6 // The week that contains Jan 1st is the first week of the year.
+    doy: 6  // The week that contains Jan 1st is the first week of the year.
   }
 };

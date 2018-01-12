@@ -35,11 +35,11 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   isShown = false;
   level: number;
   isAnimated: boolean;
+  bsModalService: BsModalService;
   private isModalHiding = false;
 
   constructor(options: ModalOptions,
               protected _element: ElementRef,
-              private bsModalService: BsModalService,
               private _renderer: Renderer2) {
     this.config = Object.assign({}, options);
   }
@@ -69,6 +69,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         this.bsModalService.setScrollbar();
       }
       this._renderer.addClass(document.body, CLASS_NAME.OPEN);
+    }
+    if (this._element.nativeElement) {
+      this._element.nativeElement.focus();
     }
   }
 

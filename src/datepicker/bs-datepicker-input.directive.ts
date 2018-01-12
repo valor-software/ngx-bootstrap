@@ -2,8 +2,10 @@ import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 }
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { formatDate } from '../bs-moment/format';
-import { getLocale } from '../bs-moment/locale/locales.service';
+import { getLocale } from '../bs-moment/locale/locales';
 import { BsLocaleService } from './bs-locale.service';
+import { BsDatepickerConfig } from './bs-datepicker.config';
+import { parseDate } from '../bs-moment/create/local';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -28,6 +30,7 @@ export class BsDatepickerInputDirective
   private _value: Date;
 
   constructor(@Host() private _picker: BsDatepickerDirective,
+              private _config: BsDatepickerConfig,
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
@@ -50,11 +53,9 @@ export class BsDatepickerInputDirective
   }
 
   _setInputValue(value: Date): void {
-    const initialDate = formatDate(
-      value,
-      this._picker._config.dateInputFormat,
-      this._localeService.currentLocale
-    ) || '';
+    const initialDate = !value ? ''
+      : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
   }
 
@@ -67,21 +68,15 @@ export class BsDatepickerInputDirective
   writeValue(value: Date | string) {
     if (!value) {
       this._value = null;
-    }
-    const _localeKey = this._localeService.currentLocale;
-    const _locale = getLocale(_localeKey);
-    if (!_locale) {
-      throw new Error(
-        `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
-      );
-    }
-    if (typeof value === 'string') {
-      const date = new Date(_locale.preparse(value));
-      this._value = isNaN(date.valueOf()) ? null : date;
-    }
-
-    if (value instanceof Date) {
-      this._value = value;
+    } else {
+      const _localeKey = this._localeService.currentLocale;
+      const _locale = getLocale(_localeKey);
+      if (!_locale) {
+        throw new Error(
+          `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
+        );
+      }
+      this._value = parseDate(value, this._config.dateInputFormat, this._localeService.currentLocale);
     }
 
     this._picker.bsValue = this._value;

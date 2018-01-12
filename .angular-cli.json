@@ -77,7 +77,7 @@
   ],
   "test": {
     "karma": {
-      "config": "karma.conf.js"
+      "config": "karma-demo.conf.js"
     }
   },
   "defaults": {
