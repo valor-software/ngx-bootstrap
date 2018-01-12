@@ -1,21 +1,22 @@
-// moment.js locale configuration
-// locale : French [fr]
-// author : John Fischer : https://github.com/jfroffice
+// tslint:disable:comment-format binary-expression-operand-order max-line-length
+// tslint:disable:no-bitwise prefer-template cyclomatic-complexity
+// tslint:disable:no-shadowed-variable switch-default prefer-const
+// tslint:disable:one-variable-per-declaration newline-before-return
 
 import { LocaleData } from '../locale/locale.class';
 
+//! moment.js locale configuration
+//! locale : French [fr]
+//! author : John Fischer : https://github.com/jfroffice
+
 export const fr: LocaleData = {
   abbr: 'fr',
-  months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split(
-    '_'
-  ),
-  monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split(
-    '_'
-  ),
+  months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
+  monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
   monthsParseExact: true,
   weekdays: 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
   weekdaysShort: 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-  weekdaysMin: 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+  weekdaysMin: 'di_lu_ma_me_je_ve_sa'.split('_'),
   weekdaysParseExact: true,
   longDateFormat: {
     LT: 'HH:mm',
@@ -37,6 +38,7 @@ export const fr: LocaleData = {
     future: 'dans %s',
     past: 'il y a %s',
     s: 'quelques secondes',
+    ss: '%d secondes',
     m: 'une minute',
     mm: '%d minutes',
     h: 'une heure',
@@ -49,15 +51,14 @@ export const fr: LocaleData = {
     yy: '%d ans'
   },
   dayOfMonthOrdinalParse: /\d{1,2}(er|)/,
-  ordinal(num: number, period: string) {
+  ordinal(_num: number, period: string): string {
+    const num = Number(_num);
     switch (period) {
       // TODO: Return 'e' when day of month > 1. Move this case inside
       // block for masculine words below.
       // See https://github.com/moment/moment/issues/3375
       case 'D':
-        const endingD = num === 1 ? 'er' : '';
-
-        return `${num}${endingD}`;
+        return num + (num === 1 ? 'er' : '');
 
       // Words with masculine grammatical gender: mois, trimestre, jour
       default:
@@ -65,19 +66,17 @@ export const fr: LocaleData = {
       case 'Q':
       case 'DDD':
       case 'd':
-        const endingd = num === 1 ? 'er' : 'e';
+        return num + (num === 1 ? 'er' : 'e');
 
-        return `${num}${endingd}`;
       // Words with feminine grammatical gender: semaine
       case 'w':
       case 'W':
-        const endingW = num === 1 ? 're' : 'e';
-
-        return `${num}${endingW}`;
+        return num + (num === 1 ? 're' : 'e');
     }
   },
   week: {
     dow: 1, // Monday is the first day of the week.
-    doy: 4 // The week that contains Jan 4th is the first week of the year.
+    doy: 4  // The week that contains Jan 4th is the first week of the year.
   }
 };
+
