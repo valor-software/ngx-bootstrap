@@ -208,6 +208,11 @@ export const ngdoc: any = {
         "description": "<p>Radio button value, will be set to <code>ngModel</code> </p>\n"
       },
       {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> — radio button is disabled </p>\n"
+      },
+      {
         "name": "uncheckable",
         "type": "boolean",
         "description": "<p>If <code>true</code> — radio button can be unchecked </p>\n"
