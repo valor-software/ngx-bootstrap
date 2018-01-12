@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { formatDate } from '../bs-moment/format';
-import { getLocale } from '../bs-moment/locale/locales';
+import { formatDate } from '../chronos/format';
+import { getLocale } from '../chronos/locale/locales';
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { parseDate } from '../bs-moment/create/local';
+import { parseDate } from '../chronos/create/local';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

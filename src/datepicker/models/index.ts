@@ -1,4 +1,4 @@
-import { TimeUnit } from '../../bs-moment/types';
+import { TimeUnit } from '../../chronos/types';
 
 export type BsDatepickerViewMode = 'day' | 'month' | 'year';
 

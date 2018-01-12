@@ -1,4 +1,4 @@
-import { formatDate } from '../bs-moment/format';
+import { formatDate } from '../chronos/format';
 
 export class DateFormatter {
   format(date: Date, format: string, locale: string): string {
