@@ -143,7 +143,7 @@
     "protractor-cucumber-framework": "4.1.1",
     "reflect-metadata": "0.1.10",
     "require-dir": "0.3.2",
-    "rollup": "0.52.1",
+    "rollup": "0.54.0",
     "rollup-plugin-commonjs": "8.2.6",
     "rollup-plugin-node-resolve": "3.0.0",
     "rxjs": "5.4.3",
