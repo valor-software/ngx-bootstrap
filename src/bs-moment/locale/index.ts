@@ -1,2 +1,0 @@
-import './en';
-import './sv';

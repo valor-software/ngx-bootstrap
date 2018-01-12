@@ -16,7 +16,7 @@ import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
-export { listLocales } from './bs-moment/locale/locales.service';
+export { listLocales } from './bs-moment/locale/locales';
 export { setTheme } from './utils/theme-provider';
 
 export {

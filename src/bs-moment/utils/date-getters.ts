@@ -1,4 +1,4 @@
-import { createDate } from './date-setters';
+import { createDate } from '../create/date-from-array';
 
 export function getHours(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCHours() : date.getHours();
@@ -12,7 +12,14 @@ export function getSeconds(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCSeconds() : date.getSeconds();
 }
 
-export function getDayOfWeek(date: Date, isUTC = false): number {
+export function getMilliseconds(date: Date, isUTC = false): number {
+  return isUTC ? date.getUTCMilliseconds() : date.getMilliseconds();
+}
+export function getTime(date: Date): number {
+  return date.getTime();
+}
+
+export function getDay(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCDay() : date.getDay();
 }
 
@@ -26,6 +33,14 @@ export function getMonth(date: Date, isUTC = false): number {
 
 export function getFullYear(date: Date, isUTC = false): number {
   return isUTC ? date.getUTCFullYear() : date.getFullYear();
+}
+
+export function getUnixTime(date: Date): number {
+  return Math.floor(date.valueOf() / 1000);
+}
+
+export function unix(date: Date): number {
+  return Math.floor(date.valueOf() / 1000);
 }
 
 export function getFirstDayOfMonth(date: Date): Date {
