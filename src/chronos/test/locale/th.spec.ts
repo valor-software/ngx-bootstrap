@@ -4,13 +4,12 @@
 
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { th } from '../../i18n/th';
-import { tr } from '../../i18n/tr';
+import { thLocale } from '../../i18n/th';
 
 describe('locale: th', () => {
 // localeModule('th');
   beforeAll(() => {
-    moment.locale('th', th);
+    moment.locale('th', thLocale);
   });
 
   afterAll(() => {
