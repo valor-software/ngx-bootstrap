@@ -3,8 +3,8 @@ import {
   YearsCalendarViewModel,
   CalendarCellViewModel
 } from '../models/index';
-import { shiftDate } from '../../bs-moment/utils/date-setters';
-import { formatDate } from '../../bs-moment/format';
+import { shiftDate } from '../../chronos/utils/date-setters';
+import { formatDate } from '../../chronos/format';
 import { createMatrix } from '../utils/matrix-utils';
 
 const height = 4;

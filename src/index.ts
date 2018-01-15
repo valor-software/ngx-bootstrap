@@ -16,7 +16,7 @@ import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 import { PopoverModule } from './popover/popover.module';
-export { listLocales } from './bs-moment/locale/locales';
+export { listLocales } from './chronos/locale/locales';
 export { setTheme } from './utils/theme-provider';
 
 export {
@@ -153,30 +153,6 @@ export {
   positionElements
 } from './positioning/index';
 
-export { defineLocale, getSetGlobalLocale, LocaleData } from './bs-moment/index';
+export { defineLocale, getSetGlobalLocale, LocaleData } from './chronos/index';
 
-export {
-  ar,
-  cs,
-  de,
-  enGb,
-  es,
-  esDo,
-  esUs,
-  fr,
-  he,
-  hi,
-  hu,
-  it,
-  ja,
-  ko,
-  nl,
-  nlBe,
-  pl,
-  ptBr,
-  ru,
-  sv,
-  zhCn,
-  tr,
-  th
-} from './locale';
+export * from './locale';
