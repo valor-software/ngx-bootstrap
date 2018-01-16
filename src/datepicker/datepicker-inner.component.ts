@@ -64,23 +64,18 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() dateDisabled: { date: Date; mode: string }[];
   @Input() initDate: Date;
 
-  @Output()
-  selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
-
+  @Output() selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
   @Output() update: EventEmitter<Date> = new EventEmitter<Date>(false);
-
-  @Output()
-  activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(
-    undefined
-  );
+  @Output() activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   stepDay: any = {};
   stepMonth: any = {};
   stepYear: any = {};
 
+  uniqueId: string;
+
   protected modes: string[] = ['day', 'month', 'year'];
   protected dateFormatter: DateFormatter = new DateFormatter();
-  protected uniqueId: string;
   protected _activeDate: Date;
   protected selectedDate: Date;
   protected activeDateId: string;
