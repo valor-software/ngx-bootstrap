@@ -141,7 +141,7 @@
     "prettier": "1.9.0",
     "protractor": "5.1.2",
     "protractor-cucumber-framework": "4.1.1",
-    "reflect-metadata": "0.1.10",
+    "reflect-metadata": "0.1.12",
     "require-dir": "0.3.2",
     "rollup": "0.52.1",
     "rollup-plugin-commonjs": "8.2.6",
