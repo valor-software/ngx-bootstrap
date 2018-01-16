@@ -20,6 +20,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoTooltipDelayComponent } from './demos/delay/delay';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -131,6 +132,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoTooltipClassComponent
+      },
+      {
+        title: 'Tooltip with delay',
+        anchor: 'tooltip-delay',
+        component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
+        outlet: DemoTooltipDelayComponent
       }
     ]
   },

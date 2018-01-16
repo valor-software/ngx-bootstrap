@@ -8,7 +8,6 @@
     </button>
   <hr/>
   <tabset>
-    <tab heading="Static title">Static content</tab>
     <tab *ngFor="let tabz of tabs"
          [heading]="tabz.title"
          [active]="tabz.active"

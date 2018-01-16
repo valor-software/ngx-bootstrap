@@ -8,6 +8,7 @@ import { TooltipConfig } from './tooltip.config';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 import { OnChange } from '../utils/decorators';
 import { warnOnce } from '../utils/warn-once';
+import { parseTriggers } from '../utils/triggers';
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -64,6 +65,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Css class for tooltip container
    */
   @Input() containerClass = '';
+  /**
+   * Delay before showing the tooltip
+   */
+  @Input() delay: number;
 
   /**
    * Emits an event when the tooltip is shown
@@ -144,7 +149,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /** @deprecated */
-  @Input('tooltipPopupDelay') _delay = 0;
+  @Input('tooltipPopupDelay')
+  set _tooltipPopupDelay(value: number) {
+    warnOnce('tooltipPopupDelay is deprecated, use `delay` instead');
+    this.delay = value;
+  }
 
   /** @deprecated */
   @Input('tooltipFadeDuration') _fadeDuration = 150;
@@ -165,19 +174,20 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   protected _delayTimeoutId: number | any;
+  protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
   constructor(_viewContainerRef: ViewContainerRef,
-                     _renderer: Renderer2,
-                     _elementRef: ElementRef,
+                     private _renderer: Renderer2,
+                     private _elementRef: ElementRef,
                      cis: ComponentLoaderFactory,
                      config: TooltipConfig) {
     this._tooltip = cis
       .createLoader<TooltipContainerComponent>(
-        _elementRef,
+        this._elementRef,
         _viewContainerRef,
-        _renderer
+        this._renderer
       )
       .provide({provide: TooltipConfig, useValue: config});
 
@@ -238,12 +248,27 @@ export class TooltipDirective implements OnInit, OnDestroy {
           placement: this.placement,
           containerClass: this.containerClass
         });
-    }
+    };
 
-    if (this._delay) {
+    const cancelDelayedTooltipShowing = () => {
+      if (this._tooltipCancelShowFn) {
+        this._tooltipCancelShowFn();
+      }
+    };
+
+    if (this.delay) {
       this._delayTimeoutId = setTimeout(() => {
         showTooltip();
-      }, this._delay);
+        cancelDelayedTooltipShowing();
+      }, this.delay);
+      if (this.triggers) {
+        const triggers = parseTriggers(this.triggers);
+        this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
+          clearTimeout(this._delayTimeoutId);
+          this._delayTimeoutId = undefined;
+          cancelDelayedTooltipShowing();
+        });
+      }
     } else {
       showTooltip();
     }

@@ -10,6 +10,7 @@ import { DemoTooltipTriggersCustomComponent } from './triggers-custom/triggers-c
 import { DemoTooltipTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoTooltipDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoTooltipClassComponent } from './class/class';
+import { DemoTooltipDelayComponent } from './delay/delay';
 
 export const DEMO_COMPONENTS = [
   DemoTooltipBasicComponent,
@@ -23,5 +24,6 @@ export const DEMO_COMPONENTS = [
   DemoTooltipStylingLocalComponent,
   DemoTooltipTriggersCustomComponent,
   DemoTooltipTriggersManualComponent,
-  DemoTooltipClassComponent
+  DemoTooltipClassComponent,
+  DemoTooltipDelayComponent
 ];

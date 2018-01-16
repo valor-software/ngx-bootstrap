@@ -142,6 +142,101 @@ export const ngdoc: any = {
       }
     ]
   },
+  "DateParsingConfig": {
+    "fileName": "src/bs-moment/create/parsing.types.ts",
+    "className": "DateParsingConfig",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "_a",
+        "type": "number[]",
+        "description": "<p>DateArray [year, month, date, .....] </p>\n"
+      },
+      {
+        "name": "_changeInProgress",
+        "type": "boolean",
+        "description": "<p>used in set offset </p>\n"
+      },
+      {
+        "name": "_d",
+        "type": "Date",
+        "description": "<p>date value </p>\n"
+      },
+      {
+        "name": "_f",
+        "type": "string | string[]",
+        "description": "<p>date format </p>\n"
+      },
+      {
+        "name": "_i",
+        "type": "DateInput",
+        "description": "<p>input to parse: could be string, number[], number, Date, object </p>\n"
+      },
+      {
+        "name": "_isPm",
+        "type": "boolean",
+        "description": "<p>is PM </p>\n"
+      },
+      {
+        "name": "_isValid",
+        "type": "boolean",
+        "description": "<p>is valid </p>\n"
+      },
+      {
+        "name": "_l",
+        "type": "string",
+        "description": "<p>locale key, &#39;en&#39; by default </p>\n"
+      },
+      {
+        "name": "_locale",
+        "type": "Locale",
+        "description": "<p>date locale obj </p>\n"
+      },
+      {
+        "name": "_meridiem",
+        "type": "string",
+        "description": "<p>date meridiem </p>\n"
+      },
+      {
+        "name": "_nextDay",
+        "type": "boolean",
+        "description": "<p>add one day to result at the end of parsing </p>\n"
+      },
+      {
+        "name": "_offset",
+        "type": "number",
+        "description": "<p>utc time offset </p>\n"
+      },
+      {
+        "name": "_pf",
+        "type": "DateParsingFlags",
+        "description": "<p>date parsing flags </p>\n"
+      },
+      {
+        "name": "_strict",
+        "type": "boolean",
+        "description": "<p>use strict parse format </p>\n"
+      },
+      {
+        "name": "_tzm",
+        "type": "number",
+        "description": "<p>time zone </p>\n"
+      },
+      {
+        "name": "_w",
+        "type": "WeekParsing",
+        "description": "<p>date specific info \nweek </p>\n"
+      }
+    ]
+  },
+  "DateParsingFlags": {
+    "fileName": "src/bs-moment/create/parsing.types.ts",
+    "className": "DateParsingFlags",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "LocaleOptionsFormat": {
     "fileName": "src/bs-moment/locale/locale.class.ts",
     "className": "LocaleOptionsFormat",
@@ -156,9 +251,51 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "CalendarSpec": {
+    "fileName": "src/bs-moment/moment/calendar.ts",
+    "className": "CalendarSpec",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "MomentFn": {
+    "fileName": "src/bs-moment/test/chain.ts",
+    "className": "MomentFn",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "MomentInputObject": {
+    "fileName": "src/bs-moment/test/chain.ts",
+    "className": "MomentInputObject",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "TimeUnit": {
     "fileName": "src/bs-moment/types.ts",
     "className": "TimeUnit",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DateFormatterOptions": {
+    "fileName": "src/bs-moment/types.ts",
+    "className": "DateFormatterOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DateObject": {
+    "fileName": "src/bs-moment/types.ts",
+    "className": "DateObject",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "WeekParsing": {
+    "fileName": "src/bs-moment/types.ts",
+    "className": "WeekParsing",
     "description": "",
     "methods": [],
     "properties": []
@@ -623,12 +760,6 @@ export const ngdoc: any = {
         "description": "<p>CSS class which will be applied to datepicker container,\nusually used to set color theme</p>\n"
       },
       {
-        "name": "locale",
-        "defaultValue": "en",
-        "type": "string",
-        "description": "<p>Allows to globally set default locale of datepicker,\nsee documentation on how to enable custom locales</p>\n"
-      },
-      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -759,6 +890,13 @@ export const ngdoc: any = {
         "returnType": "void"
       }
     ]
+  },
+  "BsLocaleService": {
+    "fileName": "src/datepicker/bs-locale.service.ts",
+    "className": "BsLocaleService",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "DatePickerInnerComponent": {
     "fileName": "src/datepicker/datepicker-inner.component.ts",
@@ -2800,6 +2938,11 @@ export const ngdoc: any = {
         "description": "<p>Css class for tooltip container</p>\n"
       },
       {
+        "name": "delay",
+        "type": "number",
+        "description": "<p>Delay before showing the tooltip</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Allows to disable tooltip</p>\n"
@@ -2868,7 +3011,6 @@ export const ngdoc: any = {
       },
       {
         "name": "tooltipPopupDelay",
-        "defaultValue": "0",
         "type": "number",
         "description": ""
       },
