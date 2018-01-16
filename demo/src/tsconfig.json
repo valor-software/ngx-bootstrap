@@ -18,5 +18,8 @@
     "typeRoots": [
       "../node_modules/@types"
     ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true
   }
 }
