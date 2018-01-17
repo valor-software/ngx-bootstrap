@@ -79,7 +79,7 @@
     "rxjs": ">=5.4.3"
   },
   "devDependencies": {
-    "@angular/animations": "4.3.6",
+    "@angular/animations": "5.2.1",
     "@angular/cli": "1.6.1",
     "@angular/common": "4.3.6",
     "@angular/compiler": "4.3.6",
