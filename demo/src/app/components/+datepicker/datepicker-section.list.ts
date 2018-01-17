@@ -1,10 +1,10 @@
-import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup';
+import { DemoDatePickerPopupComponent } from './demos/bs-popup/bs-popup';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
-import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
-import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
-import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
-import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max';
+import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled';
+import { DemoDatepickerFormsComponent } from './demos/forms/forms';
+import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 
@@ -36,8 +36,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/bs-popup/date-picker-popup.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/bs-popup/bs-popup.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/bs-popup/bs-popup.html'),
         description: `
           <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
@@ -100,8 +100,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Min-max',
         anchor: 'min-max',
-        component: require('!!raw-loader?lang=typescript!./demos/min-max/min-max.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/min-max/min-max.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/min-max/min-max.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/min-max/min-max.html'),
         description: `
           <p>You can set min and max date of datepicker/daterangepicker using <code>minDate</code> and
           <code>maxDate</code> properties</p>
@@ -112,16 +112,16 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disabled (scratch, WIP)',
         anchor: 'disabled-datepicker',
-        component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         description: `<p>If you want to disable datepicker set <code>isDisabled</code> property to true</p>`,
         outlet: DemoDatepickerDisabledComponent
       },
       {
         title: 'Forms',
         anchor: 'forms',
-        component: require('!!raw-loader?lang=typescript!./demos/forms/forms.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/forms/forms.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/forms/forms.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/forms/forms.html'),
         description: `<p>Datepicker and daterangepicker can be used in forms. Keep in mind that
           value of <code>ngModel</code> is <code>Date</code> object (array of 2 object for daterangepicker)</p>`,
         outlet: DemoDatepickerFormsComponent
@@ -129,8 +129,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Reactive forms',
         anchor: 'reactive-forms',
-        component: require('!!raw-loader?lang=typescript!./demos/reactive-forms/reactive-forms.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/reactive-forms/reactive-forms.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/reactive-forms/reactive-forms.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/reactive-forms/reactive-forms.html'),
         outlet: DemoDatepickerReactiveFormsComponent
       },
       {

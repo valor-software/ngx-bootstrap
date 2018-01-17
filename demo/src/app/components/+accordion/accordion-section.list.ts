@@ -1,6 +1,6 @@
 import { DemoAccordionBasicComponent } from './demos/basic/basic';
 import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
-import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
+import { DemoAccordionDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 import { DemoAccordionConfigComponent } from './demos/config/config';
@@ -48,8 +48,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic accordion',
         anchor: 'dynamic-accordion',
-        component: require('!!raw-loader?lang=typescript!./demos/dymanic/dynamic'),
-        html: require('!!raw-loader?lang=markup!./demos/dymanic/dynamic.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoAccordionDynamicComponent
       },
       {
@@ -64,7 +64,6 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'styling',
         component: require('!!raw-loader?lang=typescript!./demos/styling/styling'),
         html: require('!!raw-loader?lang=markup!./demos/styling/styling.html'),
-        css: require('!!raw-loader?lang=markup!./demos/styling/styling.css'),
         outlet: DemoAccordionStylingComponent
       },
       {

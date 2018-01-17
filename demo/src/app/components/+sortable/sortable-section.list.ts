@@ -1,5 +1,5 @@
-import { SimpleItemsDemoComponent } from './demos/simple-items/simple-items.component';
-import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel.component';
+import { SimpleItemsDemoComponent } from './demos/simple-items/simple-items';
+import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel';
 import { CustomItemTemplateDemoComponent } from './demos/custom-item-template/custom-item-template';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -26,15 +26,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'String items',
         anchor: 'stringItems',
-        component: require('!!raw-loader?lang=typescript!./demos/simple-items/simple-items.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/simple-items/simple-items.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/simple-items/simple-items.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/simple-items/simple-items.html'),
         outlet: SimpleItemsDemoComponent
       },
       {
         title: 'Complex data model',
         anchor: 'complexDatamodel',
-        component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.html'),
         outlet: ComplexDatamodelDemoComponent
       },
       {
