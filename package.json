@@ -100,7 +100,7 @@
     "@types/marked": "0.3.0",
     "@types/node": "8.5.1",
     "@types/webpack": "3.8.1",
-    "bootstrap": "3.3.7",
+    "bootstrap": "4.0.0",
     "chai": "4.1.2",
     "chai-as-promised": "7.1.1",
     "classlist-polyfill": "1.2.0",
