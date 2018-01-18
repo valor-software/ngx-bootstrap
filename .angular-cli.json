@@ -30,7 +30,8 @@
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
-        "server": "environments/environment.server.ts"
+        "server": "environments/environment.server.ts",
+        "qa": "environments/environment.qa.ts"
       }
     },
     {
