@@ -29,6 +29,10 @@ export class ModalOptions {
    * Toggle animation
    */
   animated?: boolean;
+  /**
+   * Modal data
+   */
+  initialState?: Object;
 }
 
 
@@ -39,7 +43,8 @@ export const modalConfigDefaults: ModalOptions = {
   show: false,
   ignoreBackdropClick: false,
   class: '',
-  animated: true
+  animated: true,
+  initialState: {}
 };
 
 export const CLASS_NAME: any = {

@@ -51,7 +51,7 @@ export class BsModalService {
   }
 
   /** Shows a modal */
-  show(content: string | TemplateRef<any> | any, config?: any): BsModalRef {
+  show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
     this.config = Object.assign({}, modalConfigDefaults, config);
@@ -109,7 +109,7 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({ content, isAnimated: this.config.animated, bsModalService: this });
+      .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       modalContainerRef.instance.hide();

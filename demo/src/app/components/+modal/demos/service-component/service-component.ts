@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
@@ -11,18 +11,17 @@ export class DemoModalServiceFromComponent {
   constructor(private modalService: BsModalService) {}
 
   openModalWithComponent() {
-    const list = [
-      'Open a modal with component',
-      'Pass your data',
-      'Do something else',
-      '...'
-    ];
-    this.bsModalRef = this.modalService.show(ModalContentComponent);
-    this.bsModalRef.content.title = 'Modal with component';
-    this.bsModalRef.content.list = list;
-    setTimeout(() => {
-      list.push('PROFIT!!!');
-    }, 2000);
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.bsModalRef = this.modalService.show(ModalContentComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 }
 
@@ -43,12 +42,19 @@ export class DemoModalServiceFromComponent {
       </ul>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
     </div>
   `
 })
-export class ModalContentComponent {
+
+export class ModalContentComponent implements OnInit {
   title: string;
+  closeBtnName: string;
   list: any[] = [];
+
   constructor(public bsModalRef: BsModalRef) {}
+
+  ngOnInit() {
+    this.list.push('PROFIT!!!');
+  }
 }

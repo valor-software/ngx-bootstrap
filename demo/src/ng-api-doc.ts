@@ -623,12 +623,6 @@ export const ngdoc: any = {
         "description": "<p>CSS class which will be applied to datepicker container,\nusually used to set color theme</p>\n"
       },
       {
-        "name": "locale",
-        "defaultValue": "en",
-        "type": "string",
-        "description": "<p>Allows to globally set default locale of datepicker,\nsee documentation on how to enable custom locales</p>\n"
-      },
-      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -759,6 +753,13 @@ export const ngdoc: any = {
         "returnType": "void"
       }
     ]
+  },
+  "BsLocaleService": {
+    "fileName": "src/datepicker/bs-locale.service.ts",
+    "className": "BsLocaleService",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "DatePickerInnerComponent": {
     "fileName": "src/datepicker/datepicker-inner.component.ts",
@@ -1680,7 +1681,7 @@ export const ngdoc: any = {
           },
           {
             "name": "config",
-            "type": "any"
+            "type": "ModalOptions"
           }
         ],
         "returnType": "BsModalRef"
@@ -1734,6 +1735,11 @@ export const ngdoc: any = {
         "name": "class",
         "type": "string",
         "description": "<p>Css class for opened modal</p>\n"
+      },
+      {
+        "name": "data",
+        "type": "Object",
+        "description": "<p>Modal data</p>\n"
       },
       {
         "name": "ignoreBackdropClick",
