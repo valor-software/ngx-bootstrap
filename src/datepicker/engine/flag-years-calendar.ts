@@ -1,7 +1,7 @@
-import { isSameYear } from '../../bs-moment/utils/date-getters';
+import { isSameYear } from '../../chronos/utils/date-getters';
 import { YearsCalendarViewModel, CalendarCellViewModel } from '../models/index';
 import { isYearDisabled } from '../utils/bs-calendar-utils';
-import { shiftDate } from '../../bs-moment/utils/date-setters';
+import { shiftDate } from '../../chronos/utils/date-setters';
 
 export interface FlagYearsCalendarOptions {
   isDisabled: boolean;

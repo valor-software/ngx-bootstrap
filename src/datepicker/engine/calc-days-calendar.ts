@@ -2,7 +2,7 @@
 // should accept some options
 // todo: split out formatting
 import { DaysCalendarModel, MonthViewOptions } from '../models/index';
-import { getFirstDayOfMonth } from '../../bs-moment/utils/date-getters';
+import { getFirstDayOfMonth } from '../../chronos/utils/date-getters';
 import { getStartingDayOfCalendar } from '../utils/bs-calendar-utils';
 import { createMatrix } from '../utils/matrix-utils';
 

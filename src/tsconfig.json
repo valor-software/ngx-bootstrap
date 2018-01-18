@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "../dist",
+    "rootDir": "./",
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
@@ -33,6 +34,7 @@
   "angularCompilerOptions": {
     "genDir": "../temp/factories",
     "strictMetadataEmit": true,
-    "skipTemplateCodegen": true
+    "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": true
   }
 }

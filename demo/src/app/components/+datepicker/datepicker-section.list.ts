@@ -73,10 +73,10 @@ export const demoComponentContent: ContentSection[] = [
           <p>Datepicker can use different locales. <br>It's possible to change a locale by calling
           <code>use</code>
           method of <code>BsLocaleService</code>, list of available locales is in dropdown below.</p>
-          <p>To use a different locale, you have to import it from <code>ngx-bootstrap/bs-moment</code> first, then
+          <p>To use a different locale, you have to import it from <code>ngx-bootstrap/chronos</code> first, then
           define it in your <code>@NgModule</code> using function <code>defineLocale</code></p>
           <p>Example: </p>
-          <code>import { defineLocale } from 'ngx-bootstrap/bs-moment';</code><br>
+          <code>import { defineLocale } from 'ngx-bootstrap/chronos';</code><br>
           <code>import { de } from 'ngx-bootstrap/locale';</code><br>
           <code>defineLocale('de', de);</code>
           <br>

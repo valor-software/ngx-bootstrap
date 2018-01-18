@@ -143,21 +143,21 @@ export const ngdoc: any = {
     ]
   },
   "LocaleOptionsFormat": {
-    "fileName": "src/bs-moment/locale/locale.class.ts",
+    "fileName": "src/chronos/locale/locale.class.ts",
     "className": "LocaleOptionsFormat",
     "description": "",
     "methods": [],
     "properties": []
   },
   "LocaleData": {
-    "fileName": "src/bs-moment/locale/locale.class.ts",
+    "fileName": "src/chronos/locale/locale.class.ts",
     "className": "LocaleData",
     "description": "",
     "methods": [],
     "properties": []
   },
   "TimeUnit": {
-    "fileName": "src/bs-moment/types.ts",
+    "fileName": "src/chronos/types.ts",
     "className": "TimeUnit",
     "description": "",
     "methods": [],
