@@ -62,6 +62,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() monthColLimit: number;
   @Input() yearColLimit: number;
   @Input() dateDisabled: { date: Date; mode: string }[];
+  @Input() dayDisabled: number[];
   @Input() initDate: Date;
 
   @Output() selectionDone: EventEmitter<Date> = new EventEmitter<Date>(undefined);
@@ -378,6 +379,12 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
           }
         }
       );
+    }
+
+    if (this.dayDisabled) {
+      isDateDisabled =
+        isDateDisabled ||
+        this.dayDisabled.indexOf(date.getDay()) > -1;
     }
 
     return (
