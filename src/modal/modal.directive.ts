@@ -417,7 +417,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   protected resetScrollbar(): void {
-    document.body.style.paddingRight = this.originalBodyPadding;
+    document.body.style.paddingRight = this.originalBodyPadding + 'px';
   }
 
   // thx d.walsh
