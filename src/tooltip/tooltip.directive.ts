@@ -9,6 +9,8 @@ import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/ind
 import { OnChange } from '../utils/decorators';
 import { warnOnce } from '../utils/warn-once';
 import { parseTriggers } from '../utils/triggers';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/timer';
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -249,7 +251,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
           containerClass: this.containerClass
         });
     };
-
     const cancelDelayedTooltipShowing = () => {
       if (this._tooltipCancelShowFn) {
         this._tooltipCancelShowFn();
@@ -257,15 +258,15 @@ export class TooltipDirective implements OnInit, OnDestroy {
     };
 
     if (this.delay) {
-      this._delayTimeoutId = setTimeout(() => {
+      const timer = Observable.timer(this.delay).subscribe(() => {
         showTooltip();
         cancelDelayedTooltipShowing();
-      }, this.delay);
+      });
+
       if (this.triggers) {
         const triggers = parseTriggers(this.triggers);
         this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
-          clearTimeout(this._delayTimeoutId);
-          this._delayTimeoutId = undefined;
+          timer.unsubscribe();
           cancelDelayedTooltipShowing();
         });
       }
