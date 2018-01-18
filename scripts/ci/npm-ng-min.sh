@@ -12,4 +12,4 @@ npm i --no-save @angular/cli@4.3.3 \
     @angular/platform-browser-dynamic@4.3.3 \
     @angular/router@4.3.3 \
     @angular/service-worker@4.3.3 \
-    @angular/tsc-wrapped@4.3.3 \
+    @angular/tsc-wrapped@4.3.3

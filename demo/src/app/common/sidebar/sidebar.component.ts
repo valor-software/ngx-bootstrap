@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 const _bs3Css =
   'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css =
-  'assets/css/bootstrap-4.0.0-beta/css/bootstrap.min.css';
+  'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
 @Component({
   selector: 'sidebar',
