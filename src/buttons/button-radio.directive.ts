@@ -1,9 +1,10 @@
 // tslint:disable:no-use-before-declare
 import {
-  ChangeDetectorRef, Directive, ElementRef, forwardRef, HostBinding,
-  HostListener, Input, OnInit
+  ChangeDetectorRef, Directive, ElementRef, forwardRef, HostBinding, HostListener, Input, OnInit,
+  Optional, Renderer2
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ButtonRadioGroupDirective } from './button-radio-group.directive';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,41 +23,56 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
+  private _value: any;
+  private _disabled: boolean;
 
   /** Radio button value, will be set to `ngModel` */
   @Input() btnRadio: any;
   /** If `true` — radio button can be unchecked */
   @Input() uncheckable: boolean;
   /** Current value of radio component or group */
-  @Input() value: any;
+  @Input() get value(): any {
+    return this.group ? this.group.value : this._value;
+  }
+
+  set value(value: any) {
+    if (this.group) {
+      this.group.value = value;
+
+      return;
+    }
+    this._value = value;
+  }
+  /** If `true` — radio button is disabled */
+  @Input() get disabled(): boolean {
+    return this._disabled;
+  }
+
+  set disabled(disabled: boolean) {
+    this._disabled = disabled;
+    this.setDisabledState(disabled);
+  }
 
   @HostBinding('class.active')
   get isActive(): boolean {
     return this.btnRadio === this.value;
   }
 
-  constructor(private el: ElementRef, private cdr: ChangeDetectorRef) {
-  }
+  constructor(
+    private el: ElementRef,
+    private cdr: ChangeDetectorRef,
+    @Optional() private group: ButtonRadioGroupDirective,
+    private renderer: Renderer2
+  ) {}
 
   @HostListener('click')
   onClick(): void {
-    if (this.el.nativeElement.attributes.disabled) {
+    if (this.el.nativeElement.attributes.disabled || !this.uncheckable && this.btnRadio === this.value) {
       return;
     }
 
-    if (this.uncheckable && this.btnRadio === this.value) {
-      this.value = undefined;
-      this.onTouched();
-      this.onChange(this.value);
-
-      return;
-    }
-
-    if (this.btnRadio !== this.value) {
-      this.value = this.btnRadio;
-      this.onTouched();
-      this.onChange(this.value);
-    }
+    this.value = this.uncheckable && this.btnRadio === this.value ? undefined : this.btnRadio;
+    this._onChange(this.value);
   }
 
   ngOnInit(): void {
@@ -65,6 +81,17 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 
   onBlur(): void {
     this.onTouched();
+  }
+
+  _onChange(value: any): void {
+    if (this.group) {
+      this.group.onTouched();
+      this.group.onChange(value);
+
+      return;
+    }
+    this.onTouched();
+    this.onChange(value);
   }
 
   // ControlValueAccessor
@@ -80,5 +107,14 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean): void {
+    if (disabled) {
+      this.renderer.setAttribute(this.el.nativeElement, 'disabled', 'disabled');
+
+      return;
+    }
+    this.renderer.removeAttribute(this.el.nativeElement, 'disabled');
   }
 }

@@ -323,6 +323,16 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
+  "ButtonRadioGroupDirective": {
+    "fileName": "src/buttons/button-radio-group.directive.ts",
+    "className": "ButtonRadioGroupDirective",
+    "description": "<p>A group of radio buttons.\nA value of a selected button is bound to a variable specified via ngModel.</p>\n",
+    "selector": "[btnRadioGroup]",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
   "ButtonRadioDirective": {
     "fileName": "src/buttons/button-radio.directive.ts",
     "className": "ButtonRadioDirective",
@@ -333,6 +343,11 @@ export const ngdoc: any = {
         "name": "btnRadio",
         "type": "any",
         "description": "<p>Radio button value, will be set to <code>ngModel</code> </p>\n"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> — radio button is disabled </p>\n"
       },
       {
         "name": "uncheckable",
