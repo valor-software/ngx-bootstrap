@@ -9,7 +9,9 @@ export function getTimepickerConfig(): TimepickerConfig {
     minuteStep: 10,
     showMeridian: false,
     readonlyInput: false,
-    mousewheel: true
+    mousewheel: true,
+    showMinutes: true,
+    showSeconds: false
   });
 }
 

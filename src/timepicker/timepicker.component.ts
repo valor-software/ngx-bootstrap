@@ -25,7 +25,7 @@ import {
   isValidDate,
   padNumber,
   parseTime,
-  isInputValid
+  isInputValid, parseSeconds
 } from './timepicker.utils';
 import { fakeAsync } from '@angular/core/testing';
 
@@ -85,12 +85,14 @@ export class TimepickerComponent
   @Input() arrowkeys: boolean;
   /** if true spinner arrows above and below the inputs will be shown */
   @Input() showSpinners: boolean;
+  /** if true meridian button will be shown */
   @Input() showMeridian: boolean;
+  /** show minutes in timepicker */
+  @Input() showMinutes: boolean;
+  /** show seconds in timepicker */
   @Input() showSeconds: boolean;
-
   /** meridian labels based on locale */
   @Input() meridians: string[];
-
   /** minimum time user can select */
   @Input() min: Date;
   /** maximum time user can select */
@@ -205,7 +207,8 @@ export class TimepickerComponent
 
   _updateTime() {
     const _seconds = this.showSeconds ? this.seconds : void 0;
-    if (!isInputValid(this.hours, this.minutes, _seconds, this.isPM())) {
+    const _minutes = this.showMinutes ? this.minutes : void 0;
+    if (!isInputValid(this.hours, _minutes, _seconds, this.isPM())) {
       this.isValid.emit(false);
       this.onChange(null);
 

@@ -2792,9 +2792,14 @@ export const ngdoc: any = {
         "description": ""
       },
       {
+        "name": "showMinutes",
+        "type": "boolean",
+        "description": "<p>if true minutes in timepicker will be shown</p>\n"
+      },
+      {
         "name": "showSeconds",
         "type": "boolean",
-        "description": ""
+        "description": "<p>if true seconds in timepicker will be shown</p>\n"
       },
       {
         "name": "showSpinners",
@@ -2873,6 +2878,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM </p>\n"
+      },
+      {
+        "name": "showMinutes",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>show minutes in timepicker </p>\n"
       },
       {
         "name": "showSeconds",

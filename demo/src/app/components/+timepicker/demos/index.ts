@@ -5,7 +5,7 @@ import { DemoTimepickerDisabledComponent } from './disabled/disabled';
 import { DemoTimepickerCustomComponent } from './custom/custom';
 import { DemoTimepickerDynamicComponent } from './dynamic/dynamic';
 import { DemoTimepickerMinMaxComponent } from './min-max/min-max';
-import { DemoTimepickerSecondsComponent } from './seconds/seconds';
+import { DemoTimepickerToggleMinutesSecondsComponent } from './toggle-minutes-seconds/toggle-minutes-seconds';
 import { DemoTimepickerMousewheelArrowkeysComponent } from './mousewheel-arrowkeys/mousewheel-arrowkeys';
 import { DemoTimepickerCustomValidationComponent } from './custom-validation/custom-validation';
 
@@ -17,7 +17,7 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerDisabledComponent,
   DemoTimepickerCustomComponent,
   DemoTimepickerDynamicComponent,
-  DemoTimepickerSecondsComponent,
+  DemoTimepickerToggleMinutesSecondsComponent,
   DemoTimepickerMousewheelArrowkeysComponent,
   DemoTimepickerCustomValidationComponent
 ];

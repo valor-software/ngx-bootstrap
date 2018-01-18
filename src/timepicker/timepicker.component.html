@@ -8,9 +8,9 @@
       ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
-    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td *ngIf="showMinutes">&nbsp;&nbsp;&nbsp;</td>
     <!-- increment minutes button -->
-    <td>
+    <td *ngIf="showMinutes">
       <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
          (click)="changeMinutes(minuteStep)"
       ><span class="bs-chevron bs-chevron-up"></span></a>
@@ -43,9 +43,9 @@
              (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
              (change)="updateHours($event.target.value)"></td>
     <!-- divider -->
-    <td>&nbsp;:&nbsp;</td>
+    <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
-    <td class="form-group" [class.has-error]="invalidMinutes">
+    <td class="form-group" *ngIf="showMinutes"[class.has-error]="invalidMinutes">
       <input type="text"
              class="form-control text-center bs-timepicker-field"
              placeholder="MM"
@@ -94,9 +94,9 @@
       </a>
     </td>
     <!-- divider -->
-    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td *ngIf="showMinutes">&nbsp;&nbsp;&nbsp;</td>
     <!-- decrement minutes button-->
-    <td>
+    <td *ngIf="showMinutes">
       <a class="btn btn-link" [class.disabled]="!canDecrementMinutes"
          (click)="changeMinutes(-minuteStep)">
         <span class="bs-chevron bs-chevron-down"></span>
