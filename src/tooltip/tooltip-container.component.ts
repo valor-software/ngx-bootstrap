@@ -22,10 +22,10 @@ import { isBs3 } from '../utils/theme-provider';
       display: block;
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
-      left: calc(50% - 2.5px);
+      left: 50%;
     }
     :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
-      top: calc(50% - 2.5px);
+      top: 50%;
     }
   `
   ],

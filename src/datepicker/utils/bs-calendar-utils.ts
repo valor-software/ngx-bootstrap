@@ -1,13 +1,13 @@
 import {
-  getDayOfWeek,
+  getDay,
   isFirstDayOfWeek
-} from '../../bs-moment/utils/date-getters';
-import { shiftDate } from '../../bs-moment/utils/date-setters';
+} from '../../chronos/utils/date-getters';
+import { shiftDate } from '../../chronos/utils/date-setters';
 import {
   isAfter,
   isBefore
-} from '../../bs-moment/utils/date-compare';
-import { endOf, startOf } from '../../bs-moment/utils/start-end-of';
+} from '../../chronos/utils/date-compare';
+import { endOf, startOf } from '../../chronos/utils/start-end-of';
 
 export function getStartingDayOfCalendar(date: Date,
                                          options: { firstDayOfWeek?: number }): Date {
@@ -15,7 +15,7 @@ export function getStartingDayOfCalendar(date: Date,
     return date;
   }
 
-  const weekDay = getDayOfWeek(date);
+  const weekDay = getDay(date);
   const offset = calculateDateOffset(weekDay, options.firstDayOfWeek);
 
   return shiftDate(date, {day: -offset});

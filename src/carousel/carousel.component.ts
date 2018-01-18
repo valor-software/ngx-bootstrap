@@ -20,7 +20,7 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output
 } from '@angular/core';
 
-import { isBs3, LinkedList } from '../utils';
+import { isBs3, LinkedList } from '../utils/index';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 

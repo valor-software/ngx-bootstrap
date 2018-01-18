@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
+import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 import { OnChange } from '../utils/decorators';
 import { warnOnce } from '../utils/warn-once';
 

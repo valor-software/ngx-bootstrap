@@ -5,17 +5,17 @@ import { BsDatepickerActions } from './bs-datepicker.actions';
 import { calcDaysCalendar } from '../engine/calc-days-calendar';
 import { formatDaysCalendar } from '../engine/format-days-calendar';
 import { flagDaysCalendar } from '../engine/flag-days-calendar';
-import { setDate, shiftDate } from '../../bs-moment/utils/date-setters';
+import { setFullDate, shiftDate } from '../../chronos/utils/date-setters';
 import { canSwitchMode } from '../engine/view-mode';
 import { formatMonthsCalendar } from '../engine/format-months-calendar';
 import { flagMonthsCalendar } from '../engine/flag-months-calendar';
 import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
-import { isArray, isDateValid } from '../../bs-moment/utils/type-checks';
-import { startOf } from '../../bs-moment/utils/start-end-of';
-import { getLocale } from '../../bs-moment/locale/locales.service';
-import { isAfter, isBefore } from '../../bs-moment/utils/date-compare';
+import { isArray, isDateValid } from '../../chronos/utils/type-checks';
+import { startOf } from '../../chronos/utils/start-end-of';
+import { getLocale } from '../../chronos/locale/locales';
+import { isAfter, isBefore } from '../../chronos/utils/date-compare';
 
 export function bsDatepickerReducer(state = initialDatepickerState,
                                     action: Action): BsDatepickerState {
@@ -47,7 +47,7 @@ export function bsDatepickerReducer(state = initialDatepickerState,
     case BsDatepickerActions.NAVIGATE_TO: {
       const payload: BsViewNavigationEvent = action.payload;
 
-      const date = setDate(state.view.date, payload.unit);
+      const date = setFullDate(state.view.date, payload.unit);
       const mode = payload.viewMode;
       const newState = { view: { date, mode } };
 

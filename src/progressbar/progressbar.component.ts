@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProgressbarConfig } from './progressbar.config';
-import { isBs3 } from '../utils';
+import { isBs3 } from '../utils/index';
 
 @Component({
   selector: 'progressbar',

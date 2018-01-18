@@ -3,7 +3,7 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { DraggableItem, DraggableItemService, SortableComponent, SortableItem, SortableModule } from '../sortable';
+import { DraggableItem, DraggableItemService, SortableComponent, SortableItem, SortableModule } from '../sortable/index';
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
 const HEROES_OBJ: any[] = [

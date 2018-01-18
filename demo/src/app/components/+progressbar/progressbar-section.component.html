@@ -1,9 +1,6 @@
-<ng-container *ngIf="componentContentBs3 || componentContentBs4">
+<demo-section [name]="name" [src]="src" [componentContent]="isBs3 ? componentContentBs3 : componentContentBs4">
+  <p>Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.</p>
 
-  <demo-section [name]="name" [src]="src" [componentContent]="isBs3 ? componentContentBs3 : componentContentBs4">
-    <p>Provide up-to-date feedback on the progress of a workflow or action with simple yet flexible progress bars.</p>
-
-    <docs-section *ngIf="isBs3" [content]="componentContentBs3"></docs-section>
-    <docs-section *ngIf="!isBs3" [content]="componentContentBs4"></docs-section>
-  </demo-section>
-</ng-container>
+  <docs-section *ngIf="isBs3" [content]="componentContentBs3"></docs-section>
+  <docs-section *ngIf="!isBs3" [content]="componentContentBs4"></docs-section>
+</demo-section>

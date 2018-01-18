@@ -1,5 +1,5 @@
-# Documenting full steps to install and test with [angular-seed](https://github.com/mgechev/angular-seed)  
-  
+# Documenting full steps to install and test with [angular-seed](https://github.com/mgechev/angular-seed)
+
   ```bash
   npm install --save ngx-bootstrap bootstrap
   ```
@@ -9,7 +9,7 @@
   ```
   //uncomment this
   import { ExtendPackages } from './seed.config.interfaces';
-  
+
   // Add `NPM` third-party libraries to be injected/bundled.
   this.NPM_DEPENDENCIES = [
     ...this.NPM_DEPENDENCIES,
@@ -20,33 +20,41 @@
     { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
     { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
   ];
-  
+
   // *towards the bottom, replace extended packages with this:
-  
+
   let additionalPackages: ExtendPackages[] = [
-  // required for dev build 
+  // required for dev build
   {
-    name:'ngx-bootstrap',
-    path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
-  },    
-  
+    name: 'ngx-bootstrap',
+    path: 'node_modules/ngx-bootstrap',
+    packageMeta: {
+      main: 'bundles/ngx-bootstrap.umd.min.js',
+      defaultExtension: 'js'
+    }
+  },
+
   // required for prod build
   {
-    name:'ngx-bootstrap/*',
-    path:'node_modules/ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js'
+    name: 'ngx-bootstrap/*',
+    path: 'node_modules/ngx-bootstrap/*',
+    packageMeta: {
+      main: 'bundles/ngx-bootstrap.umd.min.js',
+      defaultExtension: 'js'
+    }
   }
-  ];    
+  ];
   this.addPackagesBundles(additionalPackages);
   ```
- 
+
 
 ## Verify by adding an alert to the home module and html:
 
 ### In **home.module.ts:**
 
   ```
-  import { AlertModule } from 'ngx-bootstrap/alert';
-  
+  import { AlertModule } from 'ngx-bootstrap';
+
   @NgModule({
     imports: [CommonModule, HomeRoutingModule, SharedModule, AlertModule.forRoot()],
     declarations: [HomeComponent],
@@ -56,7 +64,7 @@
   ```
 
 ### In **home.component.html:**
-  
+
   ```
   <alert type="success">
     <strong>Well done!</strong> You successfully read this important alert message.

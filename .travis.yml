@@ -136,6 +136,8 @@ jobs:
         on: development
     - stage: deploy
       script: npm run build:dynamic
+      before_deploy:
+        - cd ./demo/dist
       deploy:
         provider: heroku
         api_key: $HEROKU_API_KEY
