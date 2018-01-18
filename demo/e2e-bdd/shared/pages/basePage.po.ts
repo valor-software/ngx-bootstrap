@@ -1,3 +1,5 @@
+/*tslint:disable*/
+//needs to disable tslint due to unstable chaiPromise
 import { $, $$, browser, ElementArrayFinder, ElementFinder } from 'protractor';
 import { expect } from 'chai';
 
