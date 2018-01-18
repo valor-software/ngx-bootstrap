@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { getFullYear, getMonth } from '../../bs-moment/utils/date-getters';
+import { getFullYear, getMonth } from '../../chronos/utils/date-getters';
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 import {

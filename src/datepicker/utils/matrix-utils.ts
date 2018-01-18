@@ -1,5 +1,5 @@
-import { TimeUnit } from '../../bs-moment/types';
-import { shiftDate } from '../../bs-moment/utils/date-setters';
+import { TimeUnit } from '../../chronos/types';
+import { shiftDate } from '../../chronos/utils/date-setters';
 
 export type CreateMatrixCb<T> = (date: Date) => T;
 

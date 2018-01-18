@@ -18,7 +18,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
       <th [attr.colspan]="((datePicker.yearColLimit - 2) <= 0) ? 1 : datePicker.yearColLimit - 2">
         <button [id]="datePicker.uniqueId + '-title'" role="heading"
                 type="button" class="btn btn-default btn-sm"
-                (click)="datePicker.toggleMode()"
+                (click)="datePicker.toggleMode(0)"
                 [disabled]="datePicker.datepickerMode === datePicker.maxMode"
                 [ngClass]="{disabled: datePicker.datepickerMode === datePicker.maxMode}" tabindex="-1" style="width:100%;">
           <strong>{{ title }}</strong>
