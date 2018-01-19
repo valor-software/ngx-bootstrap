@@ -18,6 +18,8 @@ export class ProgressbarComponent {
   @Input() animate: boolean;
   /** maximum total value of progress element */
   @Input() max: number;
+  /** If `true`, striped classes are applied */
+  @Input() striped: boolean;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type: string;
   /** current value of progress bar. Could be a number or array of objects

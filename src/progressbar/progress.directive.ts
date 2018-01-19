@@ -9,6 +9,9 @@ export class ProgressDirective {
   /** if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) */
   @Input() animate: boolean;
 
+  /** If `true`, striped classes are applied */
+  @Input() striped: boolean;
+
   /** maximum total value of progress element */
   @HostBinding('attr.max')
   @Input()
@@ -33,6 +36,8 @@ export class ProgressDirective {
     if (!this.animate) {
       bar.transition = 'none';
     }
+    bar.striped = this.striped;
+
     this.bars.push(bar);
   }
 

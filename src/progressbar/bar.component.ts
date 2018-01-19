@@ -14,7 +14,15 @@ import { isBs3 } from '../utils/theme-provider';
 // todo: use query from progress?
 @Component({
   selector: 'bar',
-  templateUrl: './bar.component.html'
+  templateUrl: './bar.component.html',
+  host: {
+    '[class]': '"progress-bar " + (type ? "progress-bar-" + type + " bg-" + type : "")',
+    'aria-valuemin': '0',
+    '[attr.aria-valuenow]': 'value',
+    '[attr.aria-valuetext]': 'percent ? percent.toFixed(0) + "%" : ""',
+    '[attr.aria-valuemax]': 'max',
+    '[attr.role]': '"progressbar"'
+  }
 })
 export class BarComponent implements OnInit, OnDestroy {
   max: number;
@@ -40,15 +48,16 @@ export class BarComponent implements OnInit, OnDestroy {
   get setBarWidth() {
     this.recalculatePercentage();
 
-    return this.isBs3 ? '' : this.percent;
+    return this.percent;
   }
 
   get isBs3(): boolean {
     return isBs3();
   }
 
+  @HostBinding('style.transition') transition: string;
+  @HostBinding('class.progress-bar-striped') striped: boolean;
   percent = 0;
-  transition: string;
   progress: ProgressDirective;
 
   protected _value: number;
