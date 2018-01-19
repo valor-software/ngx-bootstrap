@@ -2,6 +2,7 @@ import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
+import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
@@ -74,7 +75,7 @@ export class BsDaterangepickerDirective
   /**
    * Config object for daterangepicker
    */
-  @Input() bsConfig: Partial<BsDatepickerConfig>;
+  @Input() bsConfig: Partial<BsDaterangepickerConfig>;
   /**
    * Indicates whether daterangepicker is enabled or not
    */
@@ -97,7 +98,7 @@ export class BsDaterangepickerDirective
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
 
-  constructor(public _config: BsDatepickerConfig,
+  constructor(public _config: BsDaterangepickerConfig,
               _elementRef: ElementRef,
               _renderer: Renderer2,
               _viewContainerRef: ViewContainerRef,
@@ -182,7 +183,6 @@ export class BsDaterangepickerDirective
     this._config = Object.assign(
       {},
       this._config,
-      {displayMonths: 2},
       this.bsConfig,
       {
         value: this._bsValue,
