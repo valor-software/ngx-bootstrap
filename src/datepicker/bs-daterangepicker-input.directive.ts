@@ -1,11 +1,16 @@
-import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, OnInit, Renderer2 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 } from '@angular/core';
+import {
+  AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors,
+  Validator
+} from '@angular/forms';
+import { parseDate } from '../chronos/create/local';
 import { formatDate } from '../chronos/format';
 import { getLocale } from '../chronos/locale/locales';
+import { isAfter, isBefore } from '../chronos/utils/date-compare';
+import { isArray, isDateValid } from '../chronos/utils/type-checks';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
-import { BsDatepickerConfig } from './bs-datepicker.config';
-import { parseDate } from '../chronos/create/local';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -14,6 +19,14 @@ const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   multi: true
 };
 
+
+const BS_DATERANGEPICKER_VALIDATOR = {
+  provide: NG_VALIDATORS,
+  useExisting: forwardRef(() => BsDaterangepickerInputDirective),
+  multi: true
+};
+
+
 @Directive({
   selector: `input[bsDaterangepicker]`,
   host: {
@@ -21,12 +34,13 @@ const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
     '(keyup.esc)': 'hide()',
     '(blur)': 'onBlur()'
   },
-  providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR]
+  providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
 })
 export class BsDaterangepickerInputDirective
-  implements ControlValueAccessor {
+  implements ControlValueAccessor, Validator {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
+  private _validatorChange = Function.prototype;
   private _value: Date[];
 
   constructor(@Host() private _picker: BsDaterangepickerDirective,
@@ -75,6 +89,33 @@ export class BsDaterangepickerInputDirective
     this.writeValue(event.target.value);
     this._onChange(this._value);
     this._onTouched();
+  }
+
+  validate(c: AbstractControl): ValidationErrors | null {
+    const _value: [Date, Date] = c.value;
+
+    if (_value === null || _value === undefined || !isArray(_value)) {
+      return null;
+    }
+
+
+    const _isDateValid = isDateValid(_value[0]) && isDateValid(_value[0]);
+
+    if (!_isDateValid) {
+      return { bsDate: { invalid: _value } };
+    }
+
+    if (this._picker && this._picker.minDate && isBefore(_value[0], this._picker.minDate, 'date')) {
+      return { bsDate: { minDate: this._picker.minDate } };
+    }
+
+    if (this._picker && this._picker.maxDate && isAfter(_value[1], this._picker.maxDate, 'date')) {
+      return { bsDate: { maxDate: this._picker.maxDate } };
+    }
+  }
+
+  registerOnValidatorChange(fn: () => void): void {
+    this._validatorChange = fn;
   }
 
   writeValue(value: Date[] | string) {
