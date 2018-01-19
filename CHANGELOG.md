@@ -1,3 +1,31 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-rc.1...v2.0.0) (2018-01-19)
+
+
+### Bug Fixes
+
+* **progressbar:** fix bs4, animation, add striped option, remove bs4 demos ([#3500](https://github.com/valor-software/ngx-bootstrap/issues/3500)) ([27cb1a2](https://github.com/valor-software/ngx-bootstrap/commit/27cb1a2))
+
+
+### Features
+
+* **datepicker:** added date and range min, max and invalid validation ([#3499](https://github.com/valor-software/ngx-bootstrap/issues/3499)) ([7b43295](https://github.com/valor-software/ngx-bootstrap/commit/7b43295)), closes [#2727](https://github.com/valor-software/ngx-bootstrap/issues/2727) [#3498](https://github.com/valor-software/ngx-bootstrap/issues/3498)
+* **datepicker:** added date range picker config ([#3501](https://github.com/valor-software/ngx-bootstrap/issues/3501)) ([7c53bf9](https://github.com/valor-software/ngx-bootstrap/commit/7c53bf9))
+
+### BREAKING CHANGES
+
+* **progressbar:** `progress` directive was removed, use `progressbar` instead 
+* **chronos:** `bs-moment` renamed to `chronos`
+* **chronos:** all locales was suffixed with Locale (`en` -> `enLocale`)
+* **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
+* **datepicker:**  `datepicker` and `daterange` component selectors was removed, now `datepicker` available only as directive
+* **rating:**  removed input properties `stateOn`, `stateOff` and `ratingStates`
+* **rating:**  custom icons now working via `customTemplate`
+* **package** upgraded to support ng v4 and v5 (and v6)
+* **package:** dropped support of ng v2
+
+
+
 <a name="2.0.0-rc.1"></a>
 # [2.0.0-rc.1](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.0-rc.0...v2.0.0-rc.1) (2018-01-19)
 
