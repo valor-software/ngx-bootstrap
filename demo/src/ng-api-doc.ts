@@ -2405,27 +2405,6 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
-  "ProgressDirective": {
-    "fileName": "src/progressbar/progress.directive.ts",
-    "className": "ProgressDirective",
-    "description": "",
-    "selector": "bs-progress, [progress]",
-    "inputs": [
-      {
-        "name": "animate",
-        "type": "boolean",
-        "description": "<p>if <code>true</code> changing value of progress bar will be animated (note: not supported by Bootstrap 4) </p>\n"
-      },
-      {
-        "name": "max",
-        "type": "number",
-        "description": "<p>maximum total value of progress element </p>\n"
-      }
-    ],
-    "outputs": [],
-    "properties": [],
-    "methods": []
-  },
   "ProgressbarComponent": {
     "fileName": "src/progressbar/progressbar.component.ts",
     "className": "ProgressbarComponent",
@@ -2435,12 +2414,17 @@ export const ngdoc: any = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": "<p>if <code>true</code> changing value of progress bar will be animated (note: not supported by Bootstrap 4) </p>\n"
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
       },
       {
         "name": "max",
         "type": "number",
         "description": "<p>maximum total value of progress element </p>\n"
+      },
+      {
+        "name": "striped",
+        "type": "boolean",
+        "description": "<p>If <code>true</code>, striped classes are applied </p>\n"
       },
       {
         "name": "type",
@@ -2465,9 +2449,9 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "animate",
-        "defaultValue": "true",
+        "defaultValue": "false",
         "type": "Boolean",
-        "description": "<p>if <code>true</code> changing value of progress bar will be animated (note: not supported by Bootstrap 4) </p>\n"
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated </p>\n"
       },
       {
         "name": "max",

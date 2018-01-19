@@ -87,8 +87,7 @@ export {
   BarComponent,
   ProgressbarComponent,
   ProgressbarConfig,
-  ProgressbarModule,
-  ProgressDirective
+  ProgressbarModule
 } from './progressbar/index';
 
 export { RatingComponent, RatingModule } from './rating/index';

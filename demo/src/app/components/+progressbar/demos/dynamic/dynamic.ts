@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-bs4-progressbar-dynamic',
+  selector: 'demo-progressbar-dynamic',
   templateUrl: './dynamic.html'
 })
-export class DemoProgressbarDynamicBs4Component {
+export class DemoProgressbarDynamicComponent {
   max: number = 200;
   showWarning: boolean;
   dynamic: number;
@@ -28,7 +28,6 @@ export class DemoProgressbarDynamicBs4Component {
       type = 'danger';
     }
 
-    this.showWarning = type === 'danger' || type === 'warning';
     this.dynamic = value;
     this.type = type;
   }
