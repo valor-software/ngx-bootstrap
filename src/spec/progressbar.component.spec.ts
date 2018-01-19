@@ -26,9 +26,8 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const div = element.querySelector('div');
-    expect(div.classList).toContain('progress');
-    expect(div.getAttribute('max')).toEqual('100');
+    expect(element.classList).toContain('progress');
+    expect(element.getAttribute('max')).toEqual('100');
   });
 
   it('checking appropriate styles after setting up of type', () => {
@@ -43,8 +42,8 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barInnerDiv = element.querySelector('bar').querySelector('div');
-    expect(barInnerDiv.classList).toContain('progress-bar-warning');
+    const barElement = element.querySelector('bar');
+    expect(barElement.classList).toContain('progress-bar-warning');
   });
 
   it('checking of correct calculation of percent value(bar length)', () => {
@@ -59,8 +58,8 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barInnerDiv = element.querySelector('bar').querySelector('div');
-    expect(barInnerDiv.style.width).toEqual('60%');
+    const barElement = element.querySelector('bar');
+    expect(barElement.style.width).toEqual('60%');
   });
 
   it('checking of correct working with dynamically changed values', () => {
@@ -76,13 +75,7 @@ describe('Component: Progress Bar', () => {
         value: 100
       }
     };
-    const tpl = `
-      <div progress [animate]="true" [max]="maxValue">
-        <bar [type]="typeValue" [value]="valueValue">
-            <ng-content></ng-content>
-        </bar>
-      </div>
-    `;
+    const tpl = `<progressbar [type]="typeValue" [value]="valueValue" [animate]="true" [max]="maxValue"></progressbar>`;
     TestBed.configureTestingModule({
       declarations: [TestProgressbarComponent],
       imports: [ProgressbarModule.forRoot()]
@@ -93,20 +86,21 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     const context = fixture.debugElement.componentInstance;
     element = fixture.nativeElement;
-    const barInnerDiv = element.querySelector('bar').querySelector('div');
+    fixture.detectChanges();
+    const barElement = element.querySelector('bar');
 
     context.maxValue = componentData.initial.max;
     context.typeValue = componentData.initial.type;
     context.valueValue = componentData.initial.value;
     fixture.detectChanges();
-    expect(barInnerDiv.style.width).toEqual('75%');
-    expect(barInnerDiv.classList).toContain('progress-bar-warning');
+    expect(barElement.style.width).toEqual('75%');
+    expect(barElement.classList).toContain('progress-bar-warning');
 
     context.maxValue = componentData.changed.max;
     context.typeValue = componentData.changed.type;
     context.valueValue = componentData.changed.value;
     fixture.detectChanges();
-    expect(barInnerDiv.classList).toContain('progress-bar-danger');
-    expect(barInnerDiv.style.width).toEqual('50%');
+    expect(barElement.classList).toContain('progress-bar-danger');
+    expect(barElement.style.width).toEqual('50%');
   });
 });

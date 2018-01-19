@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { ProgressbarConfig } from './progressbar.config';
 import { isBs3 } from '../utils/index';
+import { BarComponent } from './bar.component';
 
 @Component({
   selector: 'progressbar',
@@ -9,15 +10,16 @@ import { isBs3 } from '../utils/index';
     `
     :host {
       width: 100%;
+      display: block;
     }
   `
   ]
 })
 export class ProgressbarComponent {
-  /** if `true` changing value of progress bar will be animated (note: not supported by Bootstrap 4) */
+  /** if `true` changing value of progress bar will be animated*/
   @Input() animate: boolean;
-  /** maximum total value of progress element */
-  @Input() max: number;
+  /** If `true`, striped classes are applied */
+  @Input() striped: boolean;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type: string;
   /** current value of progress bar. Could be a number or array of objects
@@ -34,7 +36,37 @@ export class ProgressbarComponent {
     return isBs3();
   }
 
+  /** maximum total value of progress element */
+  @HostBinding('attr.max')
+  @Input()
+  get max(): number {
+    return this._max;
+  }
+
+  set max(v: number) {
+    this._max = v;
+    this.bars.forEach((bar: BarComponent) => {
+      bar.recalculatePercentage();
+    });
+  }
+
+  @HostBinding('class.progress') addClass = true;
+
+  bars: any[] = [];
+
+  protected _max = 100;
+
   constructor(config: ProgressbarConfig) {
     Object.assign(this, config);
+  }
+  addBar(bar: BarComponent): void {
+    bar.animate = this.animate;
+    bar.striped = this.striped;
+
+    this.bars.push(bar);
+  }
+
+  removeBar(bar: BarComponent): void {
+    this.bars.splice(this.bars.indexOf(bar), 1);
   }
 }
