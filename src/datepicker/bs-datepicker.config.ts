@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import {
-  DatepickerFormatOptions,
   DatepickerRenderOptions
 } from './models/index';
 
+
+/**
+ * For date range picker there are `BsDaterangepickerConfig` which inherits all properties,
+ * except `displayMonths`, for range picker it default to `2`
+ */
 @Injectable()
 export class BsDatepickerConfig
   implements DatepickerRenderOptions {

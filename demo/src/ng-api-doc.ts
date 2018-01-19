@@ -776,7 +776,7 @@ export const ngdoc: any = {
   "BsDatepickerConfig": {
     "fileName": "src/datepicker/bs-datepicker.config.ts",
     "className": "BsDatepickerConfig",
-    "description": "",
+    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept displayMonths, for range picker it default to <code>2</code></p>\n",
     "methods": [],
     "properties": [
       {
@@ -822,7 +822,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "bsConfig",
-        "type": "Partial<BsDatepickerConfig>",
+        "type": "Partial<BsDaterangepickerConfig>",
         "description": "<p>Config object for daterangepicker</p>\n"
       },
       {
@@ -916,6 +916,13 @@ export const ngdoc: any = {
         "returnType": "void"
       }
     ]
+  },
+  "BsDaterangepickerConfig": {
+    "fileName": "src/datepicker/bs-daterangepicker.config.ts",
+    "className": "BsDaterangepickerConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "BsLocaleService": {
     "fileName": "src/datepicker/bs-locale.service.ts",
