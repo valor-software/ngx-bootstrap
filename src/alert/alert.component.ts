@@ -20,7 +20,7 @@ export class AlertComponent implements OnInit {
   @Input()
   set dismissible(value: boolean) {
     this._dismissible = value;
-    this.classes = this.dismissible ? 'alert-dismissible' : ';
+    this.classes = this.dismissible ? 'alert-dismissible' : '';
   }
 
   /** Number in milliseconds, after which alert will be closed */
