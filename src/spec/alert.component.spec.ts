@@ -7,8 +7,8 @@ import { AlertModule } from '../alert/alert.module';
 
 @Component({selector: 'alert-test', template: ''})
 class TestAlertComponent extends AlertComponent {
-  constructor(config: AlertConfig, changeDetection: ChangeDetectorRef) {
-    super(config, changeDetection);
+  constructor(config: AlertConfig) {
+    super(config);
   }
 }
 
