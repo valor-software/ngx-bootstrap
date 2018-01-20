@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './disable-backdrop.html'
 })
 export class DemoModalServiceDisableBackdropComponent {
-  modalRef: BsModalRef;
+  modalRef: BsModalRef<null>;
   config = {
     backdrop: true,
     ignoreBackdropClick: false

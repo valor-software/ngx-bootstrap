@@ -13,7 +13,7 @@ import { combineLatest, Subscription } from 'rxjs';
   `]
 })
 export class DemoModalServiceEventsComponent {
-  modalRef: BsModalRef;
+  modalRef: BsModalRef<null>;
   subscriptions: Subscription[] = [];
   messages: string[] = [];
 

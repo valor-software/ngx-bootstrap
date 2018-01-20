@@ -51,6 +51,9 @@ export class BsModalService {
   }
 
   /** Shows a modal */
+  show(content: string, config?: ModalOptions): BsModalRef;
+  show(content: TemplateRef<any>, config?: ModalOptions): BsModalRef<null>;
+  show<T>(content: {new (...args: any[]): T}, config?: ModalOptions): BsModalRef<T>;
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class BsModalRef {
+export class BsModalRef<T = any> {
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
-  content?: any | null;
+  content?: T;
 
   /**
    * Hides the modal

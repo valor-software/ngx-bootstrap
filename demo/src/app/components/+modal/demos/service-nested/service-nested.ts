@@ -7,8 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './service-nested.html'
 })
 export class DemoModalServiceNestedComponent {
-  modalRef: BsModalRef;
-  modalRef2: BsModalRef;
+  modalRef: BsModalRef<null>;
+  modalRef2: BsModalRef<null>;
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<any>) {

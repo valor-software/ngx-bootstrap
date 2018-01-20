@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   templateUrl: './service-confirm-window.html'
 })
 export class DemoModalServiceConfirmWindowComponent {
-  modalRef: BsModalRef;
+  modalRef: BsModalRef<null>;
   message: string;
   constructor(private modalService: BsModalService) {}
 
