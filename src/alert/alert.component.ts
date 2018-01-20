@@ -37,7 +37,7 @@ export class AlertComponent implements OnInit {
   /** This event fires when alert closed, $event is an instance of Alert component */
   @Output() onClosed = new EventEmitter<AlertComponent>();
 
-  classes = ';
+  classes = '';
 
   private _dismissible = false;
 
