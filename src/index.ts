@@ -4,10 +4,12 @@ import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CarouselModule } from './carousel/carousel.module';
 import { CollapseModule } from './collapse/collapse.module';
+import { BsDaterangepickerConfig } from './datepicker/bs-daterangepicker.config';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { BsDropdownModule } from './dropdown/bs-dropdown.module';
 import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
+import { PopoverModule } from './popover/popover.module';
 import { ProgressbarModule } from './progressbar/progressbar.module';
 import { RatingModule } from './rating/rating.module';
 import { SortableModule } from './sortable/index';
@@ -15,7 +17,7 @@ import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
-import { PopoverModule } from './popover/popover.module';
+
 export { listLocales } from './chronos/locale/locales';
 export { setTheme } from './utils/theme-provider';
 
@@ -53,6 +55,7 @@ export {
   YearPickerComponent,
   BsDatepickerModule,
   BsDatepickerConfig,
+  BsDaterangepickerConfig,
   BsLocaleService
 } from './datepicker/index';
 

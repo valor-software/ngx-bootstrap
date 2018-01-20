@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { DatePickerComponent } from './datepicker.component';
+import { DatepickerConfig } from './datepicker.config';
 import { DayPickerComponent } from './daypicker.component';
 import { MonthPickerComponent } from './monthpicker.component';
 import { YearPickerComponent } from './yearpicker.component';
-import { DatepickerConfig } from './datepicker.config';
 
 @NgModule({
   imports: [CommonModule, FormsModule],
@@ -30,6 +29,6 @@ import { DatepickerConfig } from './datepicker.config';
 })
 export class DatepickerModule {
   static forRoot(): ModuleWithProviders {
-    return { ngModule: DatepickerModule, providers: [DatepickerConfig, BsDaterangepickerConfig] };
+    return { ngModule: DatepickerModule, providers: [DatepickerConfig] };
   }
 }
