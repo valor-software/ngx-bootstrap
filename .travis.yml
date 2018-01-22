@@ -26,7 +26,7 @@ stages:
   - <<: *stage
     name: test
   - <<: *stage
-    name: bdd-tests
+    name: cypress-tests
   - <<: *stage
     name: build
   - name: deploy
@@ -37,9 +37,6 @@ stages:
     name: sauce-tests
 
 before_install:
-  - export CHROME_BIN=chromium-browser
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
   - rm -rf node_modules/ngx-bootstrap
 
 install:
@@ -55,7 +52,6 @@ jobs:
   allow_failures:
     - env: NGV=next
     - env: SAUCE=true
-    - env: BDD=true
     - stage: sauce-tests
   include:
 # precache npm and apt dependencies
@@ -88,17 +84,15 @@ jobs:
     - <<: *test
       env: NGV=next
 
-#    test e2e-bdd
-    - stage: bdd-tests
-      env: BDD=true
+#     test cypress
+    - stage: cypress-tests
+      env: URL=http://localhost:3000/
       before_script:
       - npm run build:dynamic
       - node  ./demo/dist/server.js &
       - sleep 3
       script:
-      - npm run lint-bdd
-      - webdriver-manager update --standalone
-      - protractor ./protractor.cucumber.js
+      - CYPRESS_baseUrl=$URL npm run cy:run -- --config videoRecording=false
 
 #    check prod build
     - &build
