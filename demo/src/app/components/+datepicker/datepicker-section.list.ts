@@ -38,7 +38,7 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
         description: `
           <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
-          <p>Notebale change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
+          <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
             <li>Load it from CDN. Add <code>&lt;link rel="stylesheet"
@@ -77,8 +77,8 @@ export const demoComponentContent: ContentSection[] = [
           define it in your <code>@NgModule</code> using function <code>defineLocale</code></p>
           <p>Example: </p>
           <code>import { defineLocale } from 'ngx-bootstrap/chronos';</code><br>
-          <code>import { de } from 'ngx-bootstrap/locale';</code><br>
-          <code>defineLocale('de', de);</code>
+          <code>import { deLocale } from 'ngx-bootstrap/locale';</code><br>
+          <code>defineLocale('de', deLocale);</code>
           <br>
           <br>
         `,
