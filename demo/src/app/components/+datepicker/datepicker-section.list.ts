@@ -38,7 +38,7 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
         description: `
           <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
-          <p>Noteable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
+          <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
             <li>Load it from CDN. Add <code>&lt;link rel="stylesheet"
