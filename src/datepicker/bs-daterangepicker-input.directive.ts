@@ -44,7 +44,6 @@ export class BsDaterangepickerInputDirective
   private _value: Date[];
 
   constructor(@Host() private _picker: BsDaterangepickerDirective,
-              private _config: BsDatepickerConfig,
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
@@ -142,7 +141,7 @@ export class BsDaterangepickerInputDirective
 
       this._value = (_input as string[])
         .map((_val: string): Date =>
-          parseDate(_val, this._config.dateInputFormat, this._localeService.currentLocale))
+          parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale))
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
     }
 

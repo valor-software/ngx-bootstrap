@@ -42,7 +42,6 @@ export class BsDatepickerInputDirective
   private _value: Date;
 
   constructor(@Host() private _picker: BsDatepickerDirective,
-              private _config: BsDatepickerConfig,
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
@@ -115,7 +114,7 @@ export class BsDatepickerInputDirective
           `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
         );
       }
-      this._value = parseDate(value, this._config.dateInputFormat, this._localeService.currentLocale);
+      this._value = parseDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
     }
 
     this._picker.bsValue = this._value;
