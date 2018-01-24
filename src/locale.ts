@@ -22,3 +22,4 @@ export { zhCnLocale } from './chronos/i18n/zh-cn';
 export { trLocale } from './chronos/i18n/tr';
 export { heLocale } from './chronos/i18n/he';
 export { thLocale } from './chronos/i18n/th';
+export { ukLocale } from './chronos/i18n/uk';
