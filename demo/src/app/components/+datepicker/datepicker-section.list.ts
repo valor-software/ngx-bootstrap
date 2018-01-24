@@ -16,6 +16,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -50,6 +51,17 @@ export const demoComponentContent: ContentSection[] = [
           </ul>
         `,
         outlet: DemoDatePickerPopupComponent
+      },
+      {
+        title: 'Custom date format',
+        anchor: 'format',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-format/date-picker-custom-format.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-format/date-picker-custom-format.html'),
+        description: `
+          <p>You can easily change the date format by specifying the <code>dateInputFormat</code> in <code>[bsConfig]</code></p>
+          <p>The following example shows how to use a datepicker having <code>YYYY-MM-DD</code> date format inside a form:</p>
+        `,
+        outlet: DemoDatePickerCustomFormatComponent
       },
       {
         title: 'Themes',
