@@ -26,8 +26,6 @@ stages:
   - <<: *stage
     name: test
   - <<: *stage
-    name: bdd-tests
-  - <<: *stage
     name: build
   - name: deploy
     if: branch = development AND type = push OR tag =~ ^v2
@@ -77,6 +75,13 @@ jobs:
       install: true
       script: npm run lint
 
+#    test e2e-bdd lint check and preparing environment for bdd run
+    - stage: lint
+      env: BDD=true
+      script:
+      - npm run lint-bdd
+      - chmod +x ./scripts/update-chrome-for-travis.sh && sudo ./scripts/update-chrome-for-travis.sh &
+
 #   test
     - &test
       stage: test
@@ -88,17 +93,43 @@ jobs:
     - <<: *test
       env: NGV=next
 
-#    test e2e-bdd
-    - stage: bdd-tests
-      env: BDD=true
+#    test e2e-bdd for angular universal
+    - stage: test
+      env:
+      - BDD=true
+      - baseUrl=http://localhost:3000/
       before_script:
       - npm run build:dynamic
       - node  ./demo/dist/server.js &
       - sleep 3
       script:
-      - npm run lint-bdd
-      - webdriver-manager update --standalone
-      - protractor ./protractor.cucumber.js
+      - webdriver-manager clean && webdriver-manager update --standalone
+      - URL=$baseUrl npm run e2e-bdd
+
+#    test e2e-bdd for angular 4
+    - stage: test
+      env:
+      - BDD=true
+      - baseUrl=http://localhost:4200/#/
+      before_script:
+      - ng serve &
+      - sleep 7
+      script:
+      - webdriver-manager clean && webdriver-manager update --standalone
+      - URL=$baseUrl npm run e2e-bdd
+
+#    test e2e-bdd for angular 5
+    - stage: test
+      env:
+      - BDD=true
+      - NGV=latest
+      - baseUrl=http://localhost:4201/#/
+      before_script:
+      - ng serve --port=4201 &
+      - sleep 7
+      script:
+      - webdriver-manager clean && webdriver-manager update --standalone
+      - URL=$baseUrl npm run e2e-bdd
 
 #    check prod build
     - &build
