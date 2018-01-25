@@ -49,7 +49,7 @@ System.config({
 
 const cmptDir = 'demo/src/app/components/';
 fs.readdir(cmptDir, function (err, dirs) {
-  const compIndex = 6;
+  const compIndex = 5;
   if (err) throw err;
   dirs = dirs.filter((item) => {
     return fs.statSync(cmptDir + item).isDirectory();

@@ -7,7 +7,7 @@ import { DemoDropdownConfigComponent } from './config/config';
 import { DemoDropupComponent } from './dropup/dropup';
 import { DemoDropdownTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDropdownDisabledComponent } from './disabled-menu/disabled-menu';
-import { DemoDropdownAlignmentComponent } from './alignment/menu-alignment';
+import { DemoDropdownAlignmentComponent } from './alignment/alignment';
 import { DemoNestedDropdownsComponent } from './nested-dropdowns/nested-dropdowns';
 
 export const DEMO_COMPONENTS = [

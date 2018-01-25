@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'demo-date-picker-custom-format',
-  templateUrl: './date-picker-custom-format.html'
+  templateUrl: './custom-format.html'
 })
 export class DemoDatePickerCustomFormatComponent {
   minDate = new Date(2017, 5, 10);

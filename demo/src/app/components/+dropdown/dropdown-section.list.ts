@@ -3,7 +3,7 @@ import { DemoDropdownBasicLinkComponent } from './demos/basic/basic-link';
 import { DemoDropdownSplitComponent } from './demos/split/split';
 import { DemoDropdownTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDropdownDisabledComponent } from './demos/disabled-menu/disabled-menu';
-import { DemoDropdownAlignmentComponent } from './demos/alignment/menu-alignment';
+import { DemoDropdownAlignmentComponent } from './demos/alignment/alignment';
 import { DemoNestedDropdownsComponent } from './demos/nested-dropdowns/nested-dropdowns';
 import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
@@ -85,8 +85,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Menu alignment',
         anchor: 'menu-alignment',
-        component: require('!!raw-loader?lang=typescript!./demos/alignment/menu-alignment.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/alignment/menu-alignment.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/alignment/alignment.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/alignment/alignment.html'),
         description: `<p>By default, a dropdown menu is automatically positioned 100% from the top and along
           the left side of its parent. Add class <code>.dropdown-menu-right</code> to a <code>dropdownMenu</code>
           to right align the dropdown menu.</p>`,
