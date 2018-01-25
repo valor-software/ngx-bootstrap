@@ -6,10 +6,12 @@ import { DemoTabsVerticalPillsComponent } from './vertical-pills/vertical-pills'
 import { DemoTabsJustifiedComponent } from './justified/justified';
 import { DemoTabsConfigComponent } from './config/config';
 import { DemoTabsManualComponent } from './manual/manual';
+import { DemoTabsDisableComponent } from './disable/disable';
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
   DemoTabsManualComponent,
+  DemoTabsDisableComponent,
   DemoTabsDynamicComponent,
   DemoTabsStylingComponent,
   DemoTabsPillsComponent,
