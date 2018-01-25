@@ -182,6 +182,18 @@ describe('locale: id', () => {
     assert.equal(weeksFromNow.calendar(), weeksFromNow.format('L'), 'in 2 weeks');
   });
 
+  it('meridiem', function () {
+    assert.equal(moment([2011, 2, 23, 0, 0]).format('A'), 'pagi', 'before dawn');
+    assert.equal(moment([2011, 2, 23, 6, 0]).format('A'), 'pagi', 'morning');
+    assert.equal(moment([2011, 2, 23, 9, 0]).format('A'), 'pagi', 'before noon');
+    assert.equal(moment([2011, 2, 23, 12, 0]).format('A'), 'siang', 'noon');
+    assert.equal(moment([2011, 2, 23, 14, 0]).format('A'), 'siang', 'afternoon');
+    assert.equal(moment([2011, 2, 23, 16, 0]).format('A'), 'sore', 'afternoon');
+    assert.equal(moment([2011, 2, 23, 18, 0]).format('A'), 'sore', 'afternoon');
+    assert.equal(moment([2011, 2, 23, 20, 0]).format('A'), 'malam', 'night');
+    assert.equal(moment([2011, 2, 23, 23, 0]).format('A'), 'malam', 'night');
+  });
+
   it('weeks year starting sunday formatted', function () {
     assert.equal(moment([2011, 11, 26]).format('w ww wo'), '1 01 1', 'Dec 26 2011 should be week 1');
     assert.equal(moment([2012,  0,  1]).format('w ww wo'), '1 01 1', 'Jan  1 2012 should be week 1');
