@@ -19,7 +19,7 @@ export class DemoCarouselDynamicComponent {
 
   addSlide(): void {
     this.slides.push({
-      image: `assets/images/nature/${this.slides.length % 8 + 1}.jpg`
+      image: `https://valor-software.com/ngx-bootstrap/old/1.8.1/assets/images/nature/${this.slides.length % 8 + 1}.jpg`
     });
   }
 
