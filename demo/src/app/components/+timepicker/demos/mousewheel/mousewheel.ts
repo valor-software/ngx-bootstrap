@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './mousewheel.html'
 })
 export class DemoTimepickerMousewheelComponent {
-  isEnabled = true;
+  allowMouseWheel = true;
   myTime1: Date = new Date();
 }
