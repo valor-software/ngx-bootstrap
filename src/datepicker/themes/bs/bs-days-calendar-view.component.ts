@@ -32,7 +32,9 @@ import {
           <!--if show weeks-->
           <th *ngIf="options.showWeekNumbers"></th>
           <th *ngFor="let weekday of calendar.weekdays; let i = index"
-              aria-label="weekday">{{ calendar.weekdays[i] }}
+              aria-label="weekday"
+              [class.saturday]="i === 6"
+              [class.holiday]="i === 0">{{ calendar.weekdays[i] }}
           </th>
         </tr>
         </thead>
@@ -44,6 +46,9 @@ import {
           <td *ngFor="let day of week.days" role="gridcell">
           <span bsDatepickerDayDecorator
                 [day]="day"
+                [class.today]="(day.date | date:'yMd') === (today | date:'yMd')"
+                [class.saturday]="day.dayIndex === 6"
+                [class.holiday]="day.dayIndex === 0"
                 (click)="selectDay(day)"
                 (mouseenter)="hoverDay(day, true)"
                 (mouseleave)="hoverDay(day, false)">{{ day.label }}</span>
@@ -64,6 +69,8 @@ export class BsDaysCalendarViewComponent {
 
   @Output() onSelect = new EventEmitter<DayViewModel>();
   @Output() onHover = new EventEmitter<CellHoverEvent>();
+
+  today = new Date();
 
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
