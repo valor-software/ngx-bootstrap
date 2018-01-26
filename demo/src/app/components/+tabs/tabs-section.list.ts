@@ -6,6 +6,7 @@ import { DemoTabsVerticalPillsComponent } from './demos/vertical-pills/vertical-
 import { DemoTabsJustifiedComponent } from './demos/justified/justified';
 import { DemoTabsStylingComponent } from './demos/styling/styling';
 import { DemoTabsConfigComponent } from './demos/config/config';
+import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -87,6 +88,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTabsConfigComponent
+      },
+      {
+        title: 'Custom template',
+        anchor: 'tabs-custom-template',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-template/custom-template'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-template/custom-template.html'),
+        outlet: DemoTabsCustomComponent
       }
     ]
   },
