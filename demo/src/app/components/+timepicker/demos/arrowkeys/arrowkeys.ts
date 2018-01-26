@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './arrowkeys.html'
 })
 export class DemoTimepickerArrowkeysComponent {
+  isEnabled = true;
   myTime2: Date = new Date();
 }

@@ -1,5 +1,6 @@
-<p>Arrow keys disabled</p>
+<timepicker [(ngModel)]="myTime2" [arrowkeys]="false" [readonlyInput]="!isEnabled"></timepicker>
+<hr>
 
-<timepicker [(ngModel)]="myTime2" [arrowkeys]="false"></timepicker>
+<button type="button" class="btn btn-info section bd-example" (click)="isEnabled=!isEnabled">Enable / Disable input</button>
 
 <pre class="alert alert-info">Time is: {{myTime2}}</pre>
