@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 export class DemoTimepickerArrowkeysComponent {
   allowArrowKeys = true;
-  myTime2: Date = new Date();
+  myTime: Date = new Date();
 }
