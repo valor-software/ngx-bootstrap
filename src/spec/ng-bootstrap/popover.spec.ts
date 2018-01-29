@@ -16,7 +16,7 @@ import {
   PopoverContainerComponent,
   PopoverDirective,
   PopoverConfig
-} from '../../popover';
+} from '../../popover/index';
 import { createGenericTestComponent } from './test/common';
 
 @Component({selector: 'test-cmpt', template: ``})

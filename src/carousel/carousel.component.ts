@@ -20,7 +20,7 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output
 } from '@angular/core';
 
-import { isBs3, LinkedList } from '../utils';
+import { isBs3, LinkedList } from '../utils/index';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 
@@ -42,6 +42,8 @@ export class CarouselComponent implements OnDestroy {
   @Input() noWrap: boolean;
   /**  If `true` — will disable pausing on carousel mouse hover */
   @Input() noPause: boolean;
+  /**  If `true` — carousel-indicators are visible  */
+  @Input() showIndicators: boolean;
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
   @Output()

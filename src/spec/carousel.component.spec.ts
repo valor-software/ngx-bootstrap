@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CarouselModule } from '../carousel/carousel.module';
 
 @Component({selector: 'carousel-test', template: ''})
 class TestCarouselComponent {
   myInterval = 5000;
   noWrapSlides = false;
+  showIndicators = true;
   slides: any[] = [
     {image: '//placekitten.com/600/300', text: 'slide0'},
     {image: '//placekitten.com/600/300', text: 'slide1'},
@@ -16,7 +16,7 @@ class TestCarouselComponent {
 
 const html = `
   <div id="c1">
-    <carousel [interval]="myInterval" [noWrap]="noWrapSlides">
+    <carousel [interval]="myInterval" [noWrap]="noWrapSlides" [showIndicators]="showIndicators">
       <slide *ngFor="let slide of slides; let index=index"
              [active]="slide.active">
         <img [src]="slide.image" style="margin:auto;">
@@ -151,6 +151,12 @@ describe('Component: Carousel', () => {
     indicators[1].click();
     fixture.detectChanges();
     expectActiveSlides(element, [false, true, false]);
+  });
+
+  it('should hide carousel-indicators if property showIndicators is == false', () => {
+    context.showIndicators = false;
+    fixture.detectChanges();
+    expect(element.querySelector('ol')).toBeNull();
   });
 
   it('should change slide on carousel control click', () => {

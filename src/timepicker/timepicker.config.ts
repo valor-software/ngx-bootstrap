@@ -23,6 +23,8 @@ export class TimepickerConfig {
   showSpinners = true;
   /** show seconds in timepicker */
   showSeconds = false;
+  /** show minutes in timepicker */
+  showMinutes = true;
   /** minimum time user can select */
   min: Date;
   /** maximum time user can select */

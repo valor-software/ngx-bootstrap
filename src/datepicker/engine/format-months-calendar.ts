@@ -3,8 +3,8 @@ import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../models/index';
-import { startOf } from '../../bs-moment/utils/start-end-of';
-import { formatDate } from '../../bs-moment/format';
+import { startOf } from '../../chronos/utils/start-end-of';
+import { formatDate } from '../../chronos/format';
 import { createMatrix } from '../utils/matrix-utils';
 
 const height = 4;

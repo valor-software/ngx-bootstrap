@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'demo-buttons-radio-reactiveforms',
@@ -12,9 +12,7 @@ export class DemoButtonsRadioReactiveFormsComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      left: false,
-      middle: true,
-      right: false
+      radio: 'C'
     });
   }
 }

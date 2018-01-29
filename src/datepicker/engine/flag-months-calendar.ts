@@ -1,10 +1,10 @@
-import { isSameMonth } from '../../bs-moment/utils/date-getters';
+import { isSameMonth } from '../../chronos/utils/date-getters';
 import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../models/index';
 import { isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
-import { shiftDate } from '../../bs-moment/utils/date-setters';
+import { shiftDate } from '../../chronos/utils/date-setters';
 
 export interface FlagMonthCalendarOptions {
   isDisabled: boolean;

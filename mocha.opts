@@ -1,0 +1,2 @@
+--compilers ts:ts-node/register
+src/chronos/**/*.spec.ts

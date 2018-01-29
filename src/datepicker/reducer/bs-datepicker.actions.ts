@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TimeUnit } from '../../bs-moment/types';
+import { TimeUnit } from '../../chronos/types';
 import { Action } from '../../mini-ngrx/index';
 import {
   BsDatepickerViewMode,

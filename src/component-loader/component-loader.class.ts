@@ -19,7 +19,7 @@ import {
   Type,
   ViewContainerRef
 } from '@angular/core';
-import { PositioningOptions, PositioningService } from '../positioning';
+import { PositioningOptions, PositioningService } from '../positioning/index';
 import { listenToTriggersV2, registerOutsideClick } from '../utils/triggers';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
@@ -117,28 +117,23 @@ export class ComponentLoader<T> {
   }
 
   // todo: appendChild to element or document.querySelector(this.container)
-  show(
-    opts: {
-      content?: string | TemplateRef<any>;
-      context?: any;
-      [key: string]: any;
-    } = {}
+
+  show(opts: {
+    content?: string | TemplateRef<any>;
+    context?: any;
+    initialState?: any; [key: string]: any;
+  } = {}
   ): ComponentRef<T> {
+
     this._subscribePositioning();
     this._innerComponent = null;
 
     if (!this._componentRef) {
       this.onBeforeShow.emit();
-      this._contentRef = this._getContentRef(opts.content, opts.context);
-      const injector = ReflectiveInjector.resolveAndCreate(
-        this._providers,
-        this._injector
-      );
+      this._contentRef = this._getContentRef(opts.content, opts.context, opts.initialState);
+      const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
 
-      this._componentRef = this._componentFactory.create(
-        injector,
-        this._contentRef.nodes
-      );
+      this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
       this._applicationRef.attachView(this._componentRef.hostView);
       // this._componentRef = this._viewContainerRef
       //   .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
@@ -337,7 +332,8 @@ export class ComponentLoader<T> {
 
   private _getContentRef(
     content: string | TemplateRef<any> | any,
-    context?: any
+    context?: any,
+    initialState?: any
   ): ContentRef {
     if (!content) {
       return new ContentRef([]);
@@ -366,6 +362,7 @@ export class ComponentLoader<T> {
         this._injector
       );
       const componentRef = contentCmptFactory.create(modalContentInjector);
+      Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);
 
       return new ContentRef(

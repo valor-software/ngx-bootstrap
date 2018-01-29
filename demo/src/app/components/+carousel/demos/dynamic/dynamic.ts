@@ -9,6 +9,7 @@ export class DemoCarouselDynamicComponent {
   slides: any[] = [];
   activeSlideIndex: number = 0;
   noWrapSlides: boolean = false;
+  showIndicator: boolean = true;
 
   constructor() {
     for (let i = 0; i < 4; i++) {
@@ -25,5 +26,9 @@ export class DemoCarouselDynamicComponent {
   removeSlide(index?: number): void {
     const toRemove = index ? index : this.activeSlideIndex;
     this.slides.splice(toRemove, 1);
+  }
+
+  switchIndicator(): void {
+    this.showIndicator = !this.showIndicator;
   }
 }

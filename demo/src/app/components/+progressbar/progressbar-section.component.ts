@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
-import { demoComponentContentBs3, demoComponentContentBs4 } from './progressbar-section.list';
+import { demoComponentContent } from './progressbar-section.list';
 import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
@@ -12,8 +12,7 @@ import { ContentSection } from '../../docs/models/content-section.model';
 export class ProgressbarSectionComponent {
   name = 'Progressbar';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
-  componentContentBs3: ContentSection[] = demoComponentContentBs3;
-  componentContentBs4: ContentSection[] = demoComponentContentBs4;
+  componentContent: ContentSection[] = demoComponentContent;
   content: any;
 
   _injectors = new Map<ContentSection, ReflectiveInjector>();

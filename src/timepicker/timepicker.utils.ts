@@ -30,7 +30,7 @@ export function toNumber(value: string | number): number {
   return parseInt(value, dex);
 }
 
-export function isNumber(value: string): boolean {
+export function isNumber(value: any): value is number {
   return !isNaN(toNumber(value));
 }
 
@@ -159,7 +159,7 @@ export function padNumber(value: number): string {
 
 export function isInputValid(
   hours: string,
-  minutes: string,
+  minutes = '0',
   seconds = '0',
   isPM: boolean
 ): boolean {

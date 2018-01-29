@@ -5,7 +5,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 
-const _bs4Css = 'assets/css/bootstrap-4.0.0-beta/css/bootstrap.min.css';
+const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
 @Component({
   selector: 'landing',

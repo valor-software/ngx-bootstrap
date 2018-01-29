@@ -7,14 +7,26 @@ import {
   OnInit
 } from '@angular/core';
 
-import { ProgressDirective } from './progress.directive';
+import { ProgressbarComponent } from './progressbar.component';
 import { isBs3 } from '../utils/theme-provider';
 
 // todo: number pipe
 // todo: use query from progress?
 @Component({
   selector: 'bar',
-  templateUrl: './bar.component.html'
+  templateUrl: './bar.component.html',
+  host: {
+    role: 'progressbar',
+    'aria-valuemin': '0',
+    '[class]': '"progress-bar " + (type ? "progress-bar-" + type + " bg-" + type : "")',
+    '[class.progress-bar-animated]': '!isBs3 && animate',
+    '[class.progress-bar-striped]': 'striped',
+    '[class.active]': 'isBs3 && animate',
+    '[attr.aria-valuenow]': 'value',
+    '[attr.aria-valuetext]': 'percent ? percent.toFixed(0) + "%" : ""',
+    '[attr.aria-valuemax]': 'max',
+    '[style.height.%]': '"100"'
+  }
 })
 export class BarComponent implements OnInit, OnDestroy {
   max: number;
@@ -40,20 +52,21 @@ export class BarComponent implements OnInit, OnDestroy {
   get setBarWidth() {
     this.recalculatePercentage();
 
-    return this.isBs3 ? '' : this.percent;
+    return this.percent;
   }
 
   get isBs3(): boolean {
     return isBs3();
   }
 
+  striped: boolean;
+  animate: boolean;
   percent = 0;
-  transition: string;
-  progress: ProgressDirective;
+  progress: ProgressbarComponent;
 
   protected _value: number;
 
-  constructor(@Host() progress: ProgressDirective) {
+  constructor(@Host() progress: ProgressbarComponent) {
     this.progress = progress;
   }
 

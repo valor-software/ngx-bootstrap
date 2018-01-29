@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
+import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
