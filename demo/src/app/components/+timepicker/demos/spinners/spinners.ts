@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './spinners.html'
 })
 export class DemoTimepickerSpinnersComponent {
-  ismeridian = false;
-  allowSpinners = true;
-  mytime: Date = new Date();
+  isMeridian = false;
+  showSpinners = true;
+  myTime: Date = new Date();
 }
