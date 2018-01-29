@@ -115,7 +115,7 @@ fs.readdir(cmptDir, function (err, dirs) {
   dirs.forEach((dir) => {
     const demos = getDirs(`${cmptDir + dir}/demos`);
     const component = dir.slice(1);
-    console.log(`Generating plunks for ${component}:`, demos.toString());
+    console.log(`Generating stackblitz demos for ${component}:`, demos.toString());
     demos.forEach((demo) => {
       const html = fs.readFileSync(`${cmptDir + dir}/demos/${demo}/${demo}.html`).toString();
       let code = fs.readFileSync(`${cmptDir + dir}/demos/${demo}/${demo}.ts`).toString();
@@ -123,7 +123,7 @@ fs.readdir(cmptDir, function (err, dirs) {
       let tag = code.match(/selector: '.+'/);
       tag = tag.length ? tag[0].substring(tag[0].indexOf("'") + 1, tag[0].lastIndexOf("'")) : null;
       const className = getComponentClassName(code);
-      writeFile(`demo/src/assets/plunkrs/${component}-${demo}-stackblitz.html`, generatePlnkrHtml({component, tag, className, demo, code, html}));
+      writeFile(`demo/src/assets/stackblitz/${component}-${demo}.html`, generatePlnkrHtml({component, tag, className, demo, code, html}));
     });
   });
 });
