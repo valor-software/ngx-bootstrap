@@ -133,7 +133,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-remap-istanbul": "0.6.0",
     "karma-sauce-launcher": "1.2.0",
-    "karma-typescript": "3.0.9",
+    "karma-typescript": "3.0.10",
     "lite-server": "2.3.0",
     "lodash": "4.17.4",
     "mocha": "4.0.1",
