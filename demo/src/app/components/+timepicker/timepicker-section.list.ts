@@ -8,6 +8,7 @@ import { DemoTimepickerCustomValidationComponent } from './demos/custom-validati
 import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTimepickerMousewheelArrowkeysComponent } from './demos/mousewheel-arrowkeys/mousewheel-arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
+import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -95,6 +96,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys'),
         html: require('!!raw-loader?lang=markup!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys.html'),
         outlet: DemoTimepickerMousewheelArrowkeysComponent
+      },
+      {
+        title: 'Spinners',
+        anchor: 'spinners',
+        component: require('!!raw-loader?lang=typescript!./demos/spinners/spinners'),
+        html: require('!!raw-loader?lang=markup!./demos/spinners/spinners.html'),
+        outlet: DemoTimepickerSpinnersComponent
       },
       {
         title: 'Configuring defaults',
