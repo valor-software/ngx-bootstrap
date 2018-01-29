@@ -2,6 +2,7 @@ import { DemoProgressbarStaticComponent } from './demos/static/static';
 import { DemoProgressbarDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoProgressbarStackedComponent } from './demos/stacked/stacked';
 import { DemoProgressbarConfigComponent } from './demos/config/config';
+import { DemoProgressbarBasicComponent } from './demos/basic/basic';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -27,6 +28,13 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'examples',
     outlet: ExamplesComponent,
     content: [
+      {
+        title: 'Basic',
+        anchor: 'bs3-basic',
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        outlet: DemoProgressbarBasicComponent
+      },
       {
         title: 'Static',
         anchor: 'bs3-static',
