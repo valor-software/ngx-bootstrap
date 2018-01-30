@@ -11,6 +11,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
+import {DemoButtonsUncheckableRadioComponent} from "./demos/uncheckable-radio/uncheckable-radio";
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -51,14 +52,24 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoButtonsCheckboxReactiveFormsComponent
       },
       {
-        title: 'Radio & Uncheckable Radio',
+        title: 'Radio',
         anchor: 'radio-button',
-        description: `<p>Radio buttons with checked/unchecked states. Group can be created in two ways: using
+        description: `<p>Radio buttons with checked state. Group can be created in two ways: using
 <code>btnRadioGroup</code> directive or using the same <code>ngModel</code> binding with several buttons (works only for
 template driven forms). Check the demo below for more info.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/radio/radio.ts'),
         html: require('!!raw-loader?lang=markup!./demos/radio/radio.html'),
         outlet: DemoButtonsRadioComponent
+      },
+      {
+        title: 'Uncheckable Radio',
+        anchor: 'uncheckable-radio-button',
+        description: `<p>Radio buttons with unchecked state. Group can be created in two ways: using
+<code>btnRadioGroup</code> directive or using the same <code>ngModel</code> binding with several buttons (works only for
+template driven forms). Check the demo below for more info.</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/uncheckable-radio/uncheckable-radio.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/uncheckable-radio/uncheckable-radio.html'),
+        outlet: DemoButtonsUncheckableRadioComponent
       },
       {
         title: 'Radio with Reactive Forms',
