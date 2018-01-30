@@ -32,7 +32,7 @@
   <tr>
     <!-- hours -->
     <td class="form-group" [class.has-error]="invalidHours">
-      <input type="text"
+      <input type="text" [class.is-invalid]="invalidHours"
              class="form-control text-center bs-timepicker-field"
              placeholder="HH"
              maxlength="2"
@@ -45,8 +45,8 @@
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
-    <td class="form-group" *ngIf="showMinutes"[class.has-error]="invalidMinutes">
-      <input type="text"
+    <td class="form-group" *ngIf="showMinutes" [class.has-error]="invalidMinutes">
+      <input type="text" [class.is-invalid]="invalidMinutes"
              class="form-control text-center bs-timepicker-field"
              placeholder="MM"
              maxlength="2"
@@ -60,9 +60,8 @@
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
     <!-- seconds -->
-    <td class="form-group" *ngIf="showSeconds"
-        [class.has-error]="invalidSeconds">
-      <input type="text"
+    <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
+      <input type="text" [class.is-invalid]="invalidSeconds"
              class="form-control text-center bs-timepicker-field"
              placeholder="SS"
              maxlength="2"
@@ -78,8 +77,8 @@
     <!-- meridian -->
     <td *ngIf="showMeridian">
       <button type="button" class="btn btn-default text-center"
-              [disabled]="readonlyInput"
-              [class.disabled]="readonlyInput"
+              [disabled]="readonlyInput || !canToggleMeridian"
+              [class.disabled]="readonlyInput || !canToggleMeridian"
               (click)="toggleMeridian()"
       >{{ meridian }}
       </button>

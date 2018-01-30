@@ -6,9 +6,7 @@ import {
 } from './timepicker.reducer';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { Action } from '../../mini-ngrx/index';
-import { MiniStore } from '../../mini-ngrx/store.class';
-import { MiniState } from '../../mini-ngrx/state.class';
+import { Action, MiniStore, MiniState } from '../../mini-ngrx';
 
 @Injectable()
 export class TimepickerStore extends MiniStore<TimepickerState> {

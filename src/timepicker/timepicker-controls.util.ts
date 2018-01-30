@@ -117,6 +117,7 @@ export function timepickerControls(
   value: Date,
   state: TimepickerComponentState
 ): TimepickerControls {
+  const hoursPerDayHalf = 12;
   const { min, max, hourStep, minuteStep, secondsStep, showSeconds } = state;
   const res: TimepickerControls = {
     canIncrementHours: true,
@@ -125,7 +126,9 @@ export function timepickerControls(
 
     canDecrementHours: true,
     canDecrementMinutes: true,
-    canDecrementSeconds: true
+    canDecrementSeconds: true,
+
+    canToggleMeridian: true
   };
 
   if (!value) {
@@ -148,6 +151,10 @@ export function timepickerControls(
       const _newSeconds = changeTime(value, { seconds: secondsStep });
       res.canIncrementSeconds = max >= _newSeconds;
     }
+
+    if (value.getHours() < hoursPerDayHalf) {
+      res.canToggleMeridian = changeTime(value, { hour: hoursPerDayHalf }) < max;
+    }
   }
 
   if (min) {
@@ -164,6 +171,10 @@ export function timepickerControls(
     if (!res.canDecrementMinutes) {
       const _newSeconds = changeTime(value, { seconds: -secondsStep });
       res.canDecrementSeconds = min <= _newSeconds;
+    }
+
+    if (value.getHours() >= hoursPerDayHalf) {
+      res.canToggleMeridian = changeTime(value, { hour: -hoursPerDayHalf }) > min;
     }
   }
 
