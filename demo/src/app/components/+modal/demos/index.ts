@@ -11,6 +11,7 @@ import { DemoModalServiceNestedComponent } from './service-nested/service-nested
 import { DemoModalServiceOptionsComponent } from './service-options/service-options';
 import { DemoModalServiceEventsComponent } from './service-events/service-events';
 import { DemoModalServiceConfirmWindowComponent } from './service-confirm-window/service-confirm-window';
+import { DemoModalScrollingLongContentComponent } from './scrolling-long-content/scrolling-long-content';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -24,5 +25,6 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceOptionsComponent,
   DemoModalEventsComponent,
   DemoModalServiceEventsComponent,
-  DemoModalServiceConfirmWindowComponent
+  DemoModalServiceConfirmWindowComponent,
+  DemoModalScrollingLongContentComponent
 ];
