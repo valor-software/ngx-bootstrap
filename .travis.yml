@@ -37,6 +37,7 @@ stages:
     name: sauce-tests
 
 before_install:
+  - sh -e /etc/init.d/xvfb start
   - rm -rf node_modules/ngx-bootstrap
 
 install:

@@ -7,7 +7,7 @@ export class AccordionPo extends BaseComponent {
   buttonEnableDisable = 'Enable / Disable first panel';
   buttonPanelToggler = 'Toggle last panel';
   buttonAddItem = 'Add';
-  exampleTitles = [
+  exampleTitlesArr = [
     'Simple accordion',
     'Disabled',
     'Dynamic accordion',
