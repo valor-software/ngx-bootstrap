@@ -1,6 +1,7 @@
 import { DemoButtonsBasicComponent } from './demos/basic/basic';
 import { DemoButtonsCheckboxComponent } from './demos/checkbox/checkbox';
 import { DemoButtonsRadioComponent } from './demos/radio/radio';
+import { DemoButtonsUncheckableRadioComponent } from './demos/uncheckable-radio/uncheckable-radio';
 import { DemoButtonsCheckboxReactiveFormsComponent } from './demos/checkbox-reactiveforms/checkbox-reactiveforms';
 import { DemoButtonsRadioReactiveFormsComponent } from './demos/radio-reactiveforms/radio-reactiveforms';
 import { DemoButtonsDisabledComponent } from './demos/disabled/disabled';
@@ -11,7 +12,6 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
-import { DemoButtonsUncheckableRadioComponent } from './demos/uncheckable-radio/uncheckable-radio';
 
 export const demoComponentContent: ContentSection[] = [
   {
