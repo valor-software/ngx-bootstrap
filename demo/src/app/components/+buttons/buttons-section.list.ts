@@ -11,7 +11,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
-import {DemoButtonsUncheckableRadioComponent} from "./demos/uncheckable-radio/uncheckable-radio";
+import { DemoButtonsUncheckableRadioComponent } from './demos/uncheckable-radio/uncheckable-radio';
 
 export const demoComponentContent: ContentSection[] = [
   {
