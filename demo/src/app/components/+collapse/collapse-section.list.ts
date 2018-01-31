@@ -1,5 +1,5 @@
-import { CollapseDemoComponent } from './demos/basic/collapse-demo.component';
-import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual.component';
+import { CollapseDemoComponent } from './demos/basic/basic';
+import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -25,15 +25,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/collapse-demo.component'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/collapse-demo.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: CollapseDemoComponent
       },
       {
         title: 'Manual toggle',
         anchor: 'manual-toggle',
-        component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual.component'),
-        html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
+        html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
         outlet: ToggleManualDemoComponent
       }
     ]
