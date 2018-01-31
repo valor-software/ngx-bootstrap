@@ -6,6 +6,7 @@ import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.compo
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
+import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -17,7 +18,6 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
-import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -56,11 +56,21 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom date format',
         anchor: 'format',
-        component: require('!!raw-loader?lang=typescript!./demos/custom-format/date-picker-custom-format.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/custom-format/date-picker-custom-format.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/custom-format/custom-format.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-format/custom-format.html'),
         description: `
-          <p>You can easily change the date format by specifying the <code>dateInputFormat</code> in <code>[bsConfig]</code></p>
-          <p>The following example shows how to use a datepicker having <code>YYYY-MM-DD</code> date format inside a form:</p>
+          <p>You can easily change the date format by specifying the <code>dateInputFormat</code>
+            in <code>[bsConfig]</code>
+          </p>
+          <p>To set your own date format you can use variety of formats provided by
+          <a href="https://momentjs.com/docs/#/displaying/format/" target="_blank">moment.js</a></p>
+          <p>The following examples show how to use several date formats inside a form:
+            <ul>
+              <li><code>YYYY-MM-DD</code></li>
+              <li><code>MM/DD/YYYY</code></li>
+              <li><code>MMMM Do YYYY,h:mm:ss a</code></li>
+            </ul>
+          </p>
         `,
         outlet: DemoDatePickerCustomFormatComponent
       },
