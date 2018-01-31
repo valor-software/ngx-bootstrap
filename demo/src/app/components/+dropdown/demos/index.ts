@@ -1,7 +1,7 @@
 import { DemoDropdownBasicComponent } from './basic/basic';
 import { DemoDropdownSplitComponent } from './split/split';
 import { DemoDropdownContainerComponent } from './container/container';
-import { DemoDropdownBasicLinkComponent } from './basic/basic-link';
+import { DemoDropdownBasicLinkComponent } from './basic-link/basic-link';
 import { DemoDropdownKeyboardComponent } from './keyboard/keyboard';
 import { DemoDropdownConfigComponent } from './config/config';
 import { DemoDropupComponent } from './dropup/dropup';

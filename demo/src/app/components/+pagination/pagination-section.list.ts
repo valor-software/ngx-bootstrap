@@ -26,11 +26,13 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'pagination',
     description: `<p>On small screens bootstrap4 pagination can be cropped</p>`,
     content: [
       {
         title: 'Default',
         anchor: 'pagination-default',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoPaginationBasicComponent
@@ -38,6 +40,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'States & Limits',
         anchor: 'pagination-limit',
+        demoName: 'limit',
         component: require('!!raw-loader?lang=typescript!./demos/limit/limit.ts'),
         html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
         description: `<p>Limit the maximum visible buttons</p>`,
@@ -46,6 +49,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pager',
         anchor: 'pagination-pager',
+        demoName: 'pager',
         component: require('!!raw-loader?lang=typescript!./demos/pager/pager.ts'),
         html: require('!!raw-loader?lang=markup!./demos/pager/pager.html'),
         outlet: DemoPaginationPagerComponent

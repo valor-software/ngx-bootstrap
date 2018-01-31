@@ -27,6 +27,7 @@ npm-debug.log
 /demo/dist
 /demo/temp
 /demo/src/assets/plunkrs
+/demo/src/assets/stackblitz
 /logs
 /gh-pages
 /cypress/videos/*

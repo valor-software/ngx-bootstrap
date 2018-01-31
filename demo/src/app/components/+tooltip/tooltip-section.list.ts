@@ -35,10 +35,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'tooltip',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTooltipBasicComponent
@@ -46,6 +48,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Four directions',
         anchor: 'four-directions',
+        demoName: 'four-directions',
         component: require('!!raw-loader?lang=typescript!./demos/four-directions/four-directions.ts'),
         html: require('!!raw-loader?lang=markup!./demos/four-directions/four-directions.html'),
         description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
@@ -55,6 +58,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dismiss on next click',
         anchor: 'dismiss',
+        demoName: 'dismiss',
         component: require('!!raw-loader?lang=typescript!./demos/dismiss/dismiss.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dismiss/dismiss.html'),
         description: `<p>Use the <code>focus</code> trigger to dismiss tooltips on the next click
@@ -64,6 +68,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic Content',
         anchor: 'dynamic-content',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         description: `<p>tooltip content can contain any html template. Just create
@@ -74,6 +79,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic Html',
         anchor: 'dynamic-html',
+        demoName: 'dynamic-html',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
         description: `<p>By using small trick you can display any dynamic html, which you got from ajax
@@ -83,6 +89,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Append to body',
         anchor: 'append-to-body',
+        demoName: 'container',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
         outlet: DemoTooltipContainerComponent
@@ -90,6 +97,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         description: `<p>When you have some styles on a parent element that interfere with a tooltip,
@@ -101,6 +109,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom triggers',
         anchor: 'triggers-custom',
+        demoName: 'triggers-custom',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-custom/triggers-custom.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-custom/triggers-custom.html'),
         outlet: DemoTooltipTriggersCustomComponent
@@ -108,6 +117,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual triggering',
         anchor: 'triggers-manual',
+        demoName: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
         outlet: DemoTooltipTriggersManualComponent
@@ -115,6 +125,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Component level styling',
         anchor: 'styling-local',
+        demoName: 'styling-local',
         component: require('!!raw-loader?lang=typescript!./demos/styling-local/styling-local.ts'),
         html: require('!!raw-loader?lang=markup!./demos/styling-local/styling-local.html'),
         outlet: DemoTooltipStylingLocalComponent
@@ -129,6 +140,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom class',
         anchor: 'custom-class',
+        demoName: 'class',
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoTooltipClassComponent
@@ -136,6 +148,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Tooltip with delay',
         anchor: 'tooltip-delay',
+        demoName: 'delay',
         component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
         html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
         outlet: DemoTooltipDelayComponent

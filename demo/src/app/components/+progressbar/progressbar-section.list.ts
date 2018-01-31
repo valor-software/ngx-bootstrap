@@ -26,31 +26,36 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'progressbar',
     content: [
       {
         title: 'Static',
-        anchor: 'bs3-static',
+        anchor: 'static',
+        demoName: 'static',
         component: require('!!raw-loader?lang=typescript!./demos/static/static'),
         html: require('!!raw-loader?lang=markup!./demos/static/static.html'),
         outlet: DemoProgressbarStaticComponent
       },
       {
         title: 'Dynamic',
-        anchor: 'bs3-dynamic',
+        anchor: 'dynamic',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoProgressbarDynamicComponent
       },
       {
         title: 'Stacked',
-        anchor: 'bs3-stacked',
+        anchor: 'stacked',
+        demoName: 'stacked',
         component: require('!!raw-loader?lang=typescript!./demos/stacked/stacked'),
         html: require('!!raw-loader?lang=markup!./demos/stacked/stacked.html'),
         outlet: DemoProgressbarStackedComponent
       },
       {
         title: 'Configuring defaults',
-        anchor: 'bs3-config',
+        anchor: 'config',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoProgressbarConfigComponent

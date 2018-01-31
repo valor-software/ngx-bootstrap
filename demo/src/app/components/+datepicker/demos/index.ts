@@ -1,4 +1,4 @@
-import { DatepickerDemoComponent } from './datepicker-demo.component';
+import { DatepickerDemoComponent } from './old/old';
 import { DemoDatePickerPopupComponent } from './bs-popup/bs-popup';
 import { DemoDatepickerColorThemingComponent } from './color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';

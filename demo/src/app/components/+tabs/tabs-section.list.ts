@@ -30,10 +30,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'tabs',
     content: [
       {
         title: 'Static tabs',
         anchor: 'tabs-static',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTabsBasicComponent
@@ -41,6 +43,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual selection',
         anchor: 'tabs-manual',
+        demoName: 'manual',
         component: require('!!raw-loader?lang=typescript!./demos/manual/manual'),
         html: require('!!raw-loader?lang=markup!./demos/manual/manual.html'),
         outlet: DemoTabsManualComponent
@@ -48,6 +51,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic tabs',
         anchor: 'tabs-dynamic',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoTabsDynamicComponent
@@ -55,6 +59,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pills',
         anchor: 'tabs-Pills',
+        demoName: 'pills',
         component: require('!!raw-loader?lang=typescript!./demos/pills/pills'),
         html: require('!!raw-loader?lang=markup!./demos/pills/pills.html'),
         outlet: DemoTabsPillsComponent
@@ -62,6 +67,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Vertical Pills',
         anchor: 'tabs-vertical-pills',
+        demoName: 'vertical-pills',
         component: require('!!raw-loader?lang=typescript!./demos/vertical-pills/vertical-pills'),
         html: require('!!raw-loader?lang=markup!./demos/vertical-pills/vertical-pills.html'),
         outlet: DemoTabsVerticalPillsComponent
@@ -69,6 +75,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Justified',
         anchor: 'tabs-justified',
+        demoName: 'justified',
         component: require('!!raw-loader?lang=typescript!./demos/justified/justified'),
         html: require('!!raw-loader?lang=markup!./demos/justified/justified.html'),
         description: '<p><i>Bootstrap 4 doesn\'t have justified classes</i></p>',
@@ -77,6 +84,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Styling',
         anchor: 'tabs-styling',
+        demoName: 'styling',
         component: require('!!raw-loader?lang=typescript!./demos/styling/styling'),
         html: require('!!raw-loader?lang=markup!./demos/styling/styling.html'),
         outlet: DemoTabsStylingComponent
@@ -84,6 +92,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'tabs-config-defaults',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTabsConfigComponent

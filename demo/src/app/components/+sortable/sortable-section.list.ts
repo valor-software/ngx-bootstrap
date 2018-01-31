@@ -22,10 +22,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'sortable',
     content: [
       {
         title: 'String items',
         anchor: 'stringItems',
+        demoName: 'simple-items',
         component: require('!!raw-loader?lang=typescript!./demos/simple-items/simple-items.ts'),
         html: require('!!raw-loader?lang=markup!./demos/simple-items/simple-items.html'),
         outlet: SimpleItemsDemoComponent
@@ -33,6 +35,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Complex data model',
         anchor: 'complexDatamodel',
+        demoName: 'complex-datamodel',
         component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.ts'),
         html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.html'),
         outlet: ComplexDatamodelDemoComponent
@@ -40,6 +43,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom item template',
         anchor: 'itemTemplate',
+        demoName: 'custom-item-template',
         component: require('!!raw-loader?lang=typescript!./demos/custom-item-template/custom-item-template.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-item-template/custom-item-template.html'),
         outlet: CustomItemTemplateDemoComponent

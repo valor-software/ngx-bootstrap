@@ -37,6 +37,7 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Service examples',
     anchor: 'service-section',
     outlet: ExamplesComponent,
+    componentName: 'modal',
     description: `
       <p>Open a modal from service.</p>
       <p>To be able to open modals from service, inject BsModalService to your constructor.<br>Then, call
@@ -48,6 +49,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Template',
         anchor: 'service-template',
+        demoName: 'service-template',
         component: require('!!raw-loader?lang=typescript!./demos/service-template/service-template.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-template/service-template.html'),
         outlet: DemoModalServiceStaticComponent
@@ -55,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Component',
         anchor: 'service-component',
+        demoName: 'service-component',
         component: require('!!raw-loader?lang=typescript!./demos/service-component/service-component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-component/service-component.html'),
         description: `<p>Creating a modal with component just as easy as it is with template. Just pass your component
@@ -67,6 +70,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Nested',
         anchor: 'service-nested',
+        demoName: 'service-nested',
         component: require('!!raw-loader?lang=typescript!./demos/service-nested/service-nested.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-nested/service-nested.html'),
         description: `<p>Nested modals are supported</p>`,
@@ -75,6 +79,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Scrolling long content',
         anchor: 'scrolling-long-content',
+        demoName: 'scrolling-long-content',
         component: require('!!raw-loader?lang=typescript!./demos/scrolling-long-content/scrolling-long-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/scrolling-long-content/scrolling-long-content.html'),
         outlet: DemoModalScrollingLongContentComponent
@@ -82,6 +87,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Events',
         anchor: 'service-events',
+        demoName: 'service-events',
         component: require('!!raw-loader?lang=typescript!./demos/service-events/service-events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-events/service-events.html'),
         description: `
@@ -94,6 +100,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Confirm Window',
         anchor: 'confirm-window',
+        demoName: 'service-confirm-window',
         component: require('!!raw-loader?lang=typescript!./demos/service-confirm-window/service-confirm-window.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-confirm-window/service-confirm-window.html'),
         description: `<p>Modal with buttons to confirm.</p>`,
@@ -102,6 +109,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Options',
         anchor: 'service-options',
+        demoName: 'service-options',
         component: require('!!raw-loader?lang=typescript!./demos/service-options/service-options.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-options/service-options.html'),
         description: `<p>There are some options that you can configure, like animation, backdrop, closing
@@ -114,11 +122,13 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Directive examples',
     anchor: 'directive-section',
     outlet: ExamplesComponent,
+    componentName: 'modal',
     description: `<p>Also you can use directive instead of service. See the demos below </p>`,
     content: [
       {
         title: 'Static modal',
         anchor: 'directive-static',
+        demoName: 'static',
         component: require('!!raw-loader?lang=typescript!./demos/static/static.ts'),
         html: require('!!raw-loader?lang=markup!./demos/static/static.html'),
         outlet: DemoModalStaticComponent
@@ -126,6 +136,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Optional sizes',
         anchor: 'directive-sizes',
+        demoName: 'sizes',
         component: require('!!raw-loader?lang=typescript!./demos/sizes/sizes.ts'),
         html: require('!!raw-loader?lang=markup!./demos/sizes/sizes.html'),
         outlet: DemoModalSizesComponent
@@ -133,6 +144,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Child modal',
         anchor: 'directive-child',
+        demoName: 'child',
         component: require('!!raw-loader?lang=typescript!./demos/child/child.ts'),
         html: require('!!raw-loader?lang=markup!./demos/child/child.html'),
         description: `<p>Control modal from parent component</p>`,
@@ -141,6 +153,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Nested modals',
         anchor: 'directive-nested',
+        demoName: 'nested',
         component: require('!!raw-loader?lang=typescript!./demos/nested/nested.ts'),
         html: require('!!raw-loader?lang=markup!./demos/nested/nested.html'),
         description: `<p>Open a modal from another modal</p>`,
@@ -149,6 +162,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Modal events',
         anchor: 'directive-events',
+        demoName: 'events',
         component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
         description: `<p>ModalDirective exposes 4 events: OnShow, OnShown, OnHide, OnHidden. See
@@ -162,6 +176,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Auto shown modal',
         anchor: 'directive-auto-shown',
+        demoName: 'auto-shown',
         component: require('!!raw-loader?lang=typescript!./demos/auto-shown/auto-shown.ts'),
         html: require('!!raw-loader?lang=markup!./demos/auto-shown/auto-shown.html'),
         description: `

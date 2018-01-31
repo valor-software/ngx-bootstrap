@@ -5,8 +5,8 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms';
-import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DatepickerDemoComponent } from './demos/old/old';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -32,10 +32,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'datepicker',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'bs-popup',
         component: require('!!raw-loader?lang=typescript!./demos/bs-popup/bs-popup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/bs-popup/bs-popup.html'),
         description: `
@@ -56,6 +58,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom date format',
         anchor: 'format',
+        demoName: 'custom-format',
         component: require('!!raw-loader?lang=typescript!./demos/custom-format/custom-format.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-format/custom-format.html'),
         description: `
@@ -67,6 +70,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Themes',
         anchor: 'themes',
+        demoName: 'color-theming',
         component: require('!!raw-loader?lang=typescript!./demos/color-theming/color-theming.ts'),
         html: require('!!raw-loader?lang=markup!./demos/color-theming/color-theming.html'),
         description: `
@@ -80,6 +84,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Locales',
         anchor: 'locales',
+        demoName: 'change-locale',
         component: require('!!raw-loader?lang=typescript!./demos/change-locale/change-locale.ts'),
         html: require('!!raw-loader?lang=markup!./demos/change-locale/change-locale.html'),
         description: `
@@ -100,6 +105,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Min-max',
         anchor: 'min-max',
+        demoName: 'min-max',
         component: require('!!raw-loader?lang=typescript!./demos/min-max/min-max.ts'),
         html: require('!!raw-loader?lang=markup!./demos/min-max/min-max.html'),
         description: `
@@ -112,6 +118,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disabled (scratch, WIP)',
         anchor: 'disabled-datepicker',
+        demoName: 'disabled',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         description: `<p>If you want to disable datepicker set <code>isDisabled</code> property to true</p>`,
@@ -120,6 +127,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Forms',
         anchor: 'forms',
+        demoName: 'forms',
         component: require('!!raw-loader?lang=typescript!./demos/forms/forms.ts'),
         html: require('!!raw-loader?lang=markup!./demos/forms/forms.html'),
         description: `<p>Datepicker and daterangepicker can be used in forms. Keep in mind that
@@ -129,6 +137,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Reactive forms',
         anchor: 'reactive-forms',
+        demoName: 'reactive-forms',
         component: require('!!raw-loader?lang=typescript!./demos/reactive-forms/reactive-forms.ts'),
         html: require('!!raw-loader?lang=markup!./demos/reactive-forms/reactive-forms.html'),
         outlet: DemoDatepickerReactiveFormsComponent
@@ -136,6 +145,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Placement',
         anchor: 'placement',
+        demoName: 'placement',
         component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
@@ -180,12 +190,14 @@ export const demoComponentContentOld: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples-old',
     outlet: ExamplesComponent,
+    componentName: 'datepicker',
     content: [
       {
         title: 'Basic',
         anchor: 'basic-old',
-        component: require('!!raw-loader?lang=typescript!./demos/datepicker-demo.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/datepicker-demo.component.html'),
+        demoName: 'old',
+        component: require('!!raw-loader?lang=typescript!./demos/old/old.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/old/old.html'),
         outlet: DatepickerDemoComponent
       }
     ]

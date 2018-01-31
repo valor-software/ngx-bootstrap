@@ -1,5 +1,5 @@
 import { DemoDropdownBasicComponent } from './demos/basic/basic';
-import { DemoDropdownBasicLinkComponent } from './demos/basic/basic-link';
+import { DemoDropdownBasicLinkComponent } from './demos/basic-link/basic-link';
 import { DemoDropdownSplitComponent } from './demos/split/split';
 import { DemoDropdownTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDropdownDisabledComponent } from './demos/disabled-menu/disabled-menu';
@@ -33,6 +33,7 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'dropdown',
     description: `<p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within
       <code>dropdown</code>. Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code>
       elements to better fit your potential needs.</p>`,
@@ -40,6 +41,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Single button dropdowns',
         anchor: 'single-button',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `<p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes.
@@ -49,13 +51,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Trigger by tag <a>',
         anchor: 'link-button',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic-link.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic-link.html'),
+        demoName: 'basic-link',
+        component: require('!!raw-loader?lang=typescript!./demos/basic-link/basic-link.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic-link/basic-link.html'),
         outlet: DemoDropdownBasicLinkComponent
       },
       {
         title: 'Split button dropdowns',
         anchor: 'split-button',
+        demoName: 'split',
         component: require('!!raw-loader?lang=typescript!./demos/split/split.ts'),
         html: require('!!raw-loader?lang=markup!./demos/split/split.html'),
         description: `<p>Similarly, create split button dropdowns with virtually the same markup as single
@@ -66,6 +70,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual triggers',
         anchor: 'triggers-manual',
+        demoName: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
         description: `<p>Dropdown can be triggered in two ways:
@@ -78,6 +83,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disabled menu',
         anchor: 'disabled-menu',
+        demoName: 'disabled-menu',
         component: require('!!raw-loader?lang=typescript!./demos/disabled-menu/disabled-menu.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled-menu/disabled-menu.html'),
         outlet: DemoDropdownDisabledComponent
@@ -85,6 +91,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Menu alignment',
         anchor: 'menu-alignment',
+        demoName: 'alignment',
         component: require('!!raw-loader?lang=typescript!./demos/alignment/alignment.ts'),
         html: require('!!raw-loader?lang=markup!./demos/alignment/alignment.html'),
         description: `<p>By default, a dropdown menu is automatically positioned 100% from the top and along
@@ -95,6 +102,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Nested dropdowns (experimental)',
         anchor: 'nested-dropdowns',
+        demoName: 'nested-dropdowns',
         component: require('!!raw-loader?lang=typescript!./demos/nested-dropdowns/nested-dropdowns.ts'),
         html: require('!!raw-loader?lang=markup!./demos/nested-dropdowns/nested-dropdowns.html'),
         outlet: DemoNestedDropdownsComponent
@@ -102,6 +110,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Append to body',
         anchor: 'container-body',
+        demoName: 'container',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
         outlet: DemoDropdownContainerComponent
@@ -117,6 +126,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dropup variation',
         anchor: 'dropup',
+        demoName: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         description: `<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the
@@ -126,6 +136,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         description: `<p>It is possible to override default dropdown config partially or completely.</p>`,

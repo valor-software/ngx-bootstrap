@@ -27,10 +27,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'typeahead',
     content: [
       {
         title: 'Static array',
         anchor: 'static-array',
+        demoName: 'static',
         component: require('!!raw-loader?lang=typescript!./demos/static/static.ts'),
         html: require('!!raw-loader?lang=markup!./demos/static/static.html'),
         outlet: DemoTypeaheadStaticComponent
@@ -38,6 +40,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Item template',
         anchor: 'item-template',
+        demoName: 'item-template',
         component: require('!!raw-loader?lang=typescript!./demos/item-template/item-template.ts'),
         html: require('!!raw-loader?lang=markup!./demos/item-template/item-template.html'),
         outlet: DemoTypeaheadItemTemplateComponent
@@ -45,6 +48,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Option field',
         anchor: 'option-field',
+        demoName: 'field',
         component: require('!!raw-loader?lang=typescript!./demos/field/field.ts'),
         html: require('!!raw-loader?lang=markup!./demos/field/field.html'),
         outlet: DemoTypeaheadFieldComponent
@@ -52,6 +56,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Async data',
         anchor: 'async-data',
+        demoName: 'async',
         component: require('!!raw-loader?lang=typescript!./demos/async/async.ts'),
         html: require('!!raw-loader?lang=markup!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
@@ -59,6 +64,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Reactive forms',
         anchor: 'reactive-forms',
+        demoName: 'in-form',
         component: require('!!raw-loader?lang=typescript!./demos/in-form/in-form.ts'),
         html: require('!!raw-loader?lang=markup!./demos/in-form/in-form.html'),
         outlet: DemoTypeaheadFormsComponent
@@ -66,6 +72,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Grouping results',
         anchor: 'grouping-results',
+        demoName: 'grouping',
         component: require('!!raw-loader?lang=typescript!./demos/grouping/grouping.ts'),
         html: require('!!raw-loader?lang=markup!./demos/grouping/grouping.html'),
         outlet: DemoTypeaheadGroupingComponent
@@ -73,6 +80,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dropup',
         anchor: 'dropup',
+        demoName: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
@@ -80,6 +88,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Scrollable',
         anchor: 'scrollable',
+        demoName: 'scrollable',
         component: require('!!raw-loader?lang=typescript!./demos/scrollable/scrollable.ts'),
         html: require('!!raw-loader?lang=markup!./demos/scrollable/scrollable.html'),
         outlet: DemoTypeaheadScrollableComponent

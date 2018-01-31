@@ -32,10 +32,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'alert',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         description: `<p>Alerts are available for any length of text, as well as an optional dismiss
           button. For proper styling, use one of the four <strong>required</strong>
           contextual classes (e.g., <code>.alert-success</code>). For inline
@@ -48,6 +50,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Link color',
         anchor: 'link-color',
+        demoName: 'link',
         description: `<p>Use the <code>.alert-link</code> utility class to quickly provide matching
           colored links within any alert.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/link/link.ts'),
@@ -57,6 +60,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Additional content',
         anchor: 'additional-content',
+        demoName: 'content',
         description: `<p>Alerts can also contain additional HTML elements like headings and
           paragraphs.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/content/content.ts'),
@@ -66,6 +70,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dismissing',
         anchor: 'dismissing',
+        demoName: 'dismiss',
         description: `<p>Alerts have <code>dismiss</code> option. Enabling it will show close button
           to the right of the alert.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dismiss/dismiss.ts'),
@@ -75,6 +80,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic html',
         anchor: 'dynamic-html',
+        demoName: 'dynamic-html',
         description: `<p>Sometimes you will need to show dynamically generated html in alerts, here
           is how you can make it. And don't forget to sanitize your html.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
@@ -84,6 +90,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic content',
         anchor: 'dynamic-content',
+        demoName: 'dynamic-content',
         description: `<p>Alerts fully support bindings.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-content/dynamic-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-content/dynamic-content.html'),
@@ -92,6 +99,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dismiss on timeout',
         anchor: 'dismiss-on-timeout',
+        demoName: 'dismiss-on-timeout',
         description: `<p>You can simply set timeout in milliseconds to <code>dismissOnTimeout</code>
           property to create self closable alerts.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/dismiss-on-timeout/dismiss-on-timeout.ts'),
@@ -101,6 +109,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Global styling',
         anchor: 'global-styling',
+        demoName: 'styling-global',
         description: `<p>You can add additional types of alerts globally.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/styling-global/styling-global.ts'),
         html: require('!!raw-loader?lang=markup!./demos/styling-global/styling-global.html'),
@@ -109,6 +118,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Component level styling',
         anchor: 'local-styling',
+        demoName: 'styling-local',
         description: `<p>You can add additional types of alerts directly to containing component</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/styling-local/styling-local.ts'),
         html: require('!!raw-loader?lang=markup!./demos/styling-local/styling-local.html'),
@@ -117,6 +127,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'configuration',
+        demoName: 'config',
         description: `<p>It is possible to override default alert config partially or completely.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
