@@ -1,0 +1,11 @@
+<button type="button" class="btn btn-primary"
+        (click)="hideContent()">Show content
+</button>
+<button type="button" class="btn btn-primary"
+        (click)="showContent()">Hide content
+</button>
+<hr>
+<div *ngIf="showSelected"
+     class="card card-block card-header">
+  <div class="well well-lg">Some content</div>
+</div>
