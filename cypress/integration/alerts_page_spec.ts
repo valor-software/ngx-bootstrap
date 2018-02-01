@@ -72,9 +72,10 @@ describe('Alerts page test suite', () => {
   });
 
   it('alerts in dismissible example can all be closed and then resetting to default state', () => {
-    cy.get(alertsDemos[3]).find('alert').as('dismissAlert').each(($alert, i) => {
-      cy.get('@dismissAlert').eq(i).find('.close').click();
+    cy.get(alertsDemos[3]).find('alert').as('dismissAlert').each(($alert) => {
+      $alert.find('.close').click();
     });
+
     cy.get('@dismissAlert')
       .should('not.to.have.descendants', 'div');
 
