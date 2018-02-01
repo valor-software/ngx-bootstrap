@@ -4,6 +4,7 @@ import { DemoAccordionStylingComponent } from './styling/styling';
 import { DemoAccordionOneAtATimeComponent } from './one-at-a-time/one-at-a-time';
 import { DemoAccordionDynamicComponent } from './dymanic/dynamic';
 import { DemoAccordionConfigComponent } from './config/config';
+import { DemoAccordionOpenedComponent } from './opened/opened';
 
 export const DEMO_COMPONENTS = [
   DemoAccordionBasicComponent,
@@ -11,5 +12,6 @@ export const DEMO_COMPONENTS = [
   DemoAccordionStylingComponent,
   DemoAccordionOneAtATimeComponent,
   DemoAccordionDynamicComponent,
-  DemoAccordionConfigComponent
+  DemoAccordionConfigComponent,
+  DemoAccordionOpenedComponent
 ];

@@ -14,6 +14,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoAccordionOpenedComponent } from './demos/opened/opened';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -44,6 +45,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         outlet: DemoAccordionDisabledComponent
+      },
+      {
+        title: 'Initially opened',
+        anchor: 'opened',
+        component: require('!!raw-loader?lang=typescript!./demos/opened/opened'),
+        html: require('!!raw-loader?lang=markup!./demos/opened/opened.html'),
+        outlet: DemoAccordionOpenedComponent
       },
       {
         title: 'Dynamic accordion',
