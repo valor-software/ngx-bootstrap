@@ -1,5 +1,23 @@
 import { Time, TimepickerComponentState } from '../../timepicker/timepicker.models';
-import * as timepickerUtils from '../../timepicker/timepicker.utils';
+import {
+  isValidDate,
+  isValidLimit,
+  toNumber,
+  isNumber,
+  parseHours,
+  parseMinutes,
+  parseSeconds,
+  parseTime,
+  changeTime,
+  setTime,
+  createDate,
+  padNumber,
+  isHourInputValid,
+  isMinuteInputValid,
+  isSecondInputValid,
+  isInputLimitValid,
+  isInputValid
+} from '../../timepicker/timepicker.utils';
 
 const controls: TimepickerComponentState = {
   min: testTime(3, 0, 0),
@@ -8,6 +26,7 @@ const controls: TimepickerComponentState = {
   minuteStep: 1,
   secondsStep: 1,
   readonlyInput: false,
+  disabled: false,
   mousewheel: true,
   arrowkeys: true,
   showSpinners: false,
@@ -39,111 +58,111 @@ function modelTime(hours: string | number,
 
 describe('Runtime coverage. Utils: Timepicker', () => {
   it('should is not empty', () => {
-    timepickerUtils.isValidDate();
+    isValidDate();
   });
 
   it('should is empty', () => {
-    timepickerUtils.isValidDate(testTime());
+    isValidDate(testTime());
   });
 
   it('should date is interface Data', () => {
     const time = new Date();
     time.setHours(NaN);
-    timepickerUtils.isValidDate(time);
+    isValidDate(time);
   });
 
   it('should date is string', () => {
-    timepickerUtils.isValidDate('123');
+    isValidDate('123');
   });
 
   it('should to number', () => {
-    timepickerUtils.toNumber(12);
+    toNumber(12);
   });
 
   it('should to string', () => {
-    timepickerUtils.toNumber('12');
+    toNumber('12');
   });
 
   it('should date is string', () => {
-    timepickerUtils.isNumber('12');
+    isNumber('12');
   });
 
   it('should parse hours valid value', () => {
-    timepickerUtils.parseHours(12);
+    parseHours(12);
   });
 
   it('should parse hours invalid value', () => {
-    timepickerUtils.parseHours('q');
+    parseHours('q');
   });
 
   it('should parse minutes valid value', () => {
-    timepickerUtils.parseMinutes(12);
+    parseMinutes(12);
   });
 
   it('should parse minutes invalid value', () => {
-    timepickerUtils.parseMinutes('q');
+    parseMinutes('q');
   });
 
   it('should parse seconds valid value', () => {
-    timepickerUtils.parseSeconds(12);
+    parseSeconds(12);
   });
 
   it('should parse seconds invalid value', () => {
-    timepickerUtils.parseSeconds('q');
+    parseSeconds('q');
   });
 
   it('should parse time string value', () => {
-    timepickerUtils.parseTime('12');
+    parseTime('12');
   });
 
   it('should parse time date value', () => {
-    timepickerUtils.parseTime(testTime());
+    parseTime(testTime());
   });
 
   it('should change time valid value', () => {
-    timepickerUtils.changeTime(testTime(), modelTime(1, 2, 3, true));
+    changeTime(testTime(), modelTime(1, 2, 3, true));
   });
 
   it('should change time invalid diff', () => {
-    timepickerUtils.changeTime(testTime(), modelTime(-1, 0, 0, false));
+    changeTime(testTime(), modelTime(-1, 0, 0, false));
   });
 
   it('should change time invalid diff hour NaN', () => {
-    timepickerUtils.changeTime(testTime(), modelTime(NaN, 0, 0, false));
+    changeTime(testTime(), modelTime(NaN, 0, 0, false));
   });
 
   it('should set time opts true', () => {
-    timepickerUtils.setTime(testTime(), modelTime(0, 0, 0, true));
+    setTime(testTime(), modelTime(0, 0, 0, true));
   });
 
   it('should set time opts false', () => {
-    timepickerUtils.setTime(testTime(), modelTime(0, 0, 0, false));
+    setTime(testTime(), modelTime(0, 0, 0, false));
   });
 
   it('should set time opts hours NaN', () => {
-    timepickerUtils.setTime(testTime(), modelTime(1, 1, 0, false));
+    setTime(testTime(), modelTime(1, 1, 0, false));
   });
 
   it('should create date', () => {
-    timepickerUtils.createDate(testTime(), 10, 20, 30);
+    createDate(testTime(), 10, 20, 30);
   });
 
   it('should create date false', () => {
-    timepickerUtils.createDate(testTime(), 10, 20, 30);
+    createDate(testTime(), 10, 20, 30);
   });
 
   it('should pad number', () => {
-    timepickerUtils.padNumber(10);
+    padNumber(10);
   });
 
   it('should pad number length', () => {
-    timepickerUtils.padNumber(1);
+    padNumber(1);
   });
 
   it('isValidLimit method should validate the date according to the max limit and return false', () => {
     const date = testTime(18, 0, 0);
 
-    const result = timepickerUtils.isValidLimit(controls, date);
+    const result = isValidLimit(controls, date);
 
     expect(result).toEqual(false);
   });
@@ -151,7 +170,7 @@ describe('Runtime coverage. Utils: Timepicker', () => {
   it('isValidLimit method should validate the date according to the min limit and return false', () => {
     const date = testTime(2, 0, 0);
 
-    const result = timepickerUtils.isValidLimit(controls, date);
+    const result = isValidLimit(controls, date);
 
     expect(result).toEqual(false);
   });
@@ -159,79 +178,79 @@ describe('Runtime coverage. Utils: Timepicker', () => {
   it('isValidLimit method should validate the date according to the limits and return true', () => {
     const date = testTime(4, 0, 0);
 
-    const result = timepickerUtils.isValidLimit(controls, date);
+    const result = isValidLimit(controls, date);
 
     expect(result).toEqual(true);
   });
 
   it('isHourInputValid method should validate hour and return true', () => {
-    const result = timepickerUtils.isHourInputValid('3', true);
+    const result = isHourInputValid('3', true);
 
     expect(result).toEqual(true);
   });
 
   it('isHourInputValid method should validate hour and return false', () => {
-    const result = timepickerUtils.isHourInputValid('78', false);
+    const result = isHourInputValid('78', false);
 
     expect(result).toEqual(false);
   });
 
   it('isMinuteInputValid method should validate minutes and return true', () => {
-    const result = timepickerUtils.isMinuteInputValid('56');
+    const result = isMinuteInputValid('56');
 
     expect(result).toEqual(true);
   });
 
   it('isMinuteInputValid method should validate minutes and return false', () => {
-    const result = timepickerUtils.isMinuteInputValid('78');
+    const result = isMinuteInputValid('78');
 
     expect(result).toEqual(false);
   });
 
   it('isSecondInputValid method should validate seconds and return true', () => {
-    const result = timepickerUtils.isSecondInputValid('56');
+    const result = isSecondInputValid('56');
 
     expect(result).toEqual(true);
   });
 
   it('isSecondInputValid method should validate seconds and return false', () => {
-    const result = timepickerUtils.isSecondInputValid('78');
+    const result = isSecondInputValid('78');
 
     expect(result).toEqual(false);
   });
 
   it('isInputValid method should validate time and return false', () => {
-    const result = timepickerUtils.isInputValid('78', undefined, undefined, false);
+    const result = isInputValid('78', undefined, undefined, false);
 
     expect(result).toEqual(false);
   });
 
   it('isInputValid method should validate time and return true', () => {
-    const result = timepickerUtils.isInputValid('5', '12', '30', true);
+    const result = isInputValid('5', '12', '30', true);
 
     expect(result).toEqual(true);
   });
 
   it('isInputLimitValid method should validate input according to the max limit and return false', () => {
     const date = modelTime(2, 0, 0, true);
-    const max = timepickerUtils.changeTime(new Date(), modelTime(1, 0, 0, true));
+    const max = changeTime(new Date(), modelTime(1, 0, 0, true));
 
-    const result = timepickerUtils.isInputLimitValid(date, max, null);
+    const result = isInputLimitValid(date, max, null);
 
     expect(result).toEqual(false);
   });
 
   it('isInputLimitValid method should validate input according to the min limit and return false', () => {
     const date = modelTime(1, 0, 0, true);
-    const min = timepickerUtils.changeTime(new Date(), modelTime(3, 0, 0, true));
+    const min = changeTime(new Date(), modelTime(3, 0, 0, true));
 
-    const result = timepickerUtils.isInputLimitValid(date, null, min);
+    const result = isInputLimitValid(date, null, min);
 
     expect(result).toEqual(false);
   });
 
   it('isInputLimitValid method should validate input according to the limits and return true', () => {
-    const result = timepickerUtils.isInputLimitValid(modelTime(1, 0, 0, true), null, null);
+    const result = isInputLimitValid(modelTime(1, 0, 0, true), null, null);
 
     expect(result).toEqual(true);
   });

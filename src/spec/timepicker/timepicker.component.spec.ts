@@ -385,7 +385,7 @@ describe('Component: TimepickerComponent', () => {
       });
     });
 
-    it('should not display is time change buttons', () => {
+    it('should disable buttons if readonlyInput is true', () => {
       expect(buttonChanges).toBeTruthy();
 
       component.readonlyInput = true;
@@ -394,10 +394,24 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const buttonsHidden = fixture.nativeElement.querySelector('a.btn');
-        expect(buttonsHidden.parentElement.parentElement.className).toContain(
-          'hidden'
-        );
+        const buttonsDisabled = fixture.nativeElement.querySelector('a.btn');
+
+        expect(buttonsDisabled.className).toContain('disabled');
+      });
+    });
+
+    it('should disable buttons if disabled is true', () => {
+      expect(buttonChanges).toBeTruthy();
+
+      component.disabled = true;
+
+      component.writeValue(testTime());
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const buttonsDisabled = fixture.nativeElement.querySelector('a.btn');
+
+        expect(buttonsDisabled.className).toContain('disabled');
       });
     });
   });
@@ -990,10 +1004,7 @@ describe('Component: TimepickerComponent', () => {
     it('should clear model if hour limits are invalid', () => {
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
       spyOn(component.isValid, 'emit').and.stub();
-      component.hours = '11';
-      component.showMeridian = false;
-      component.max = testTime(15);
-      component.min = testTime(10);
+      spyOn(component, 'isValidLimit').and.returnValue(false);
 
       component.updateHours('19');
 
@@ -1027,11 +1038,7 @@ describe('Component: TimepickerComponent', () => {
     it('should clear model if minute limits are invalid', () => {
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
       spyOn(component.isValid, 'emit').and.stub();
-      component.hours = '17';
-      component.minutes = '10';
-      component.showMeridian = false;
-      component.max = testTime(15);
-      component.min = testTime(10);
+      spyOn(component, 'isValidLimit').and.returnValue(false);
 
       component.updateMinutes('30');
 
@@ -1064,13 +1071,7 @@ describe('Component: TimepickerComponent', () => {
     it('should clear model if second limits are invalid', () => {
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
       spyOn(component.isValid, 'emit').and.stub();
-      component.hours = '17';
-      component.minutes = '10';
-      component.seconds = '10';
-      component.showMeridian = false;
-      component.showSeconds = true;
-      component.max = testTime(17, 10, 30);
-      component.min = testTime(10);
+      spyOn(component, 'isValidLimit').and.returnValue(false);
 
       component.updateSeconds('50');
 

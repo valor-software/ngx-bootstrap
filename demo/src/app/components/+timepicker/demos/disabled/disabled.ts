@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './disabled.html'
 })
 export class DemoTimepickerDisabledComponent {
-  ismeridian: boolean = false;
-  isEnabled: boolean = true;
-  mytime: Date = new Date();
+  isMeridian = true;
+  isDisabled = true;
+  myTime = new Date();
 }

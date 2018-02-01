@@ -85,6 +85,8 @@ export class TimepickerComponent
   @Input() secondsStep: number;
   /** if true hours and minutes fields will be readonly */
   @Input() readonlyInput: boolean;
+  /** if true hours and minutes fields will be disabled */
+  @Input() disabled: boolean;
   /** if true scroll inside hours and minutes inputs will change time */
   @Input() mousewheel: boolean;
   /** if true up/down arrowkeys inside hours and minutes inputs will change time */
@@ -113,8 +115,13 @@ export class TimepickerComponent
   seconds: string;
   meridian: string;
 
+  /** @deprecated - please use `isEditable` instead */
   get isSpinnersVisible(): boolean {
     return this.showSpinners && !this.readonlyInput;
+  }
+
+  get isEditable(): boolean {
+    return !(this.readonlyInput || this.disabled);
   }
 
   // min\max validation for input fields
@@ -288,7 +295,7 @@ export class TimepickerComponent
   }
 
   toggleMeridian(): void {
-    if (!this.showMeridian || this.readonlyInput) {
+    if (!this.showMeridian || !this.isEditable) {
       return;
     }
 
@@ -327,13 +334,13 @@ export class TimepickerComponent
   }
 
   /**
-   * This function is called when the control status changes to or from "DISABLED".
+   * This function is called when the control status changes to or from "disabled".
    * Depending on the value, it will enable or disable the appropriate DOM element.
    *
    * @param isDisabled
    */
   setDisabledState(isDisabled: boolean): void {
-    this.readonlyInput = isDisabled;
+    this.disabled = isDisabled;
   }
 
   ngOnDestroy(): void {

@@ -1,9 +1,9 @@
 <table>
   <tbody>
-  <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+  <tr class="text-center" [class.hidden]="!showSpinners">
     <!-- increment hours button-->
     <td>
-      <a class="btn btn-link" [class.disabled]="!canIncrementHours"
+      <a class="btn btn-link" [class.disabled]="!canIncrementHours || !isEditable"
          (click)="changeHours(hourStep)"
       ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
@@ -11,7 +11,7 @@
     <td *ngIf="showMinutes">&nbsp;&nbsp;&nbsp;</td>
     <!-- increment minutes button -->
     <td *ngIf="showMinutes">
-      <a class="btn btn-link" [class.disabled]="!canIncrementMinutes"
+      <a class="btn btn-link" [class.disabled]="!canIncrementMinutes || !isEditable"
          (click)="changeMinutes(minuteStep)"
       ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
@@ -19,7 +19,7 @@
     <td *ngIf="showSeconds">&nbsp;</td>
     <!-- increment seconds button -->
     <td *ngIf="showSeconds">
-      <a class="btn btn-link" [class.disabled]="!canIncrementSeconds"
+      <a class="btn btn-link" [class.disabled]="!canIncrementSeconds || !isEditable"
          (click)="changeSeconds(secondsStep)">
         <span class="bs-chevron bs-chevron-up"></span>
       </a>
@@ -37,6 +37,7 @@
              placeholder="HH"
              maxlength="2"
              [readonly]="readonlyInput"
+             [disabled]="disabled"
              [value]="hours"
              (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeHours(hourStep, 'key')"
@@ -51,6 +52,7 @@
              placeholder="MM"
              maxlength="2"
              [readonly]="readonlyInput"
+             [disabled]="disabled"
              [value]="minutes"
              (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
@@ -66,6 +68,7 @@
              placeholder="SS"
              maxlength="2"
              [readonly]="readonlyInput"
+             [disabled]="disabled"
              [value]="seconds"
              (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
@@ -77,17 +80,17 @@
     <!-- meridian -->
     <td *ngIf="showMeridian">
       <button type="button" class="btn btn-default text-center"
-              [disabled]="readonlyInput || !canToggleMeridian"
-              [class.disabled]="readonlyInput || !canToggleMeridian"
+              [disabled]="!isEditable || !canToggleMeridian"
+              [class.disabled]="!isEditable || !canToggleMeridian"
               (click)="toggleMeridian()"
       >{{ meridian }}
       </button>
     </td>
   </tr>
-  <tr class="text-center" [class.hidden]="!isSpinnersVisible">
+  <tr class="text-center" [class.hidden]="!showSpinners">
     <!-- decrement hours button-->
     <td>
-      <a class="btn btn-link" [class.disabled]="!canDecrementHours"
+      <a class="btn btn-link" [class.disabled]="!canDecrementHours || !isEditable"
          (click)="changeHours(-hourStep)">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
@@ -96,7 +99,7 @@
     <td *ngIf="showMinutes">&nbsp;&nbsp;&nbsp;</td>
     <!-- decrement minutes button-->
     <td *ngIf="showMinutes">
-      <a class="btn btn-link" [class.disabled]="!canDecrementMinutes"
+      <a class="btn btn-link" [class.disabled]="!canDecrementMinutes || !isEditable"
          (click)="changeMinutes(-minuteStep)">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
@@ -105,7 +108,7 @@
     <td *ngIf="showSeconds">&nbsp;</td>
     <!-- decrement seconds button-->
     <td *ngIf="showSeconds">
-      <a class="btn btn-link" [class.disabled]="!canDecrementSeconds"
+      <a class="btn btn-link" [class.disabled]="!canDecrementSeconds || !isEditable"
          (click)="changeSeconds(-secondsStep)">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>

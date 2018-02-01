@@ -1,4 +1,4 @@
-import { Action } from '../../mini-ngrx';
+import { Action } from '../../mini-ngrx/index';
 import {
   canChangeHours,
   canChangeMinutes,
