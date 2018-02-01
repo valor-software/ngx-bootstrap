@@ -17,6 +17,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
+import { DemoDatepickerManualComponent } from './demos/datepicker-manual/datepicker-manual';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -62,6 +63,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>The following example shows how to use a datepicker having <code>YYYY-MM-DD</code> date format inside a form:</p>
         `,
         outlet: DemoDatePickerCustomFormatComponent
+      },
+      {
+        title: 'Manual datepicker',
+        anchor: 'manual-datepicker',
+        component: require('!!raw-loader?lang=typescript!./demos/datepicker-manual/datepicker-manual.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/datepicker-manual/datepicker-manual.html'),
+        description: `
+          <p>Hide datepicker when scroll.</p>
+        `,
+        outlet: DemoDatepickerManualComponent
       },
       {
         title: 'Themes',

@@ -1,5 +1,5 @@
 import {
-  ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input, OnChanges,
+  ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from '../component-loader/component-loader.class';
@@ -94,13 +94,13 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
   protected _subs: Subscription[] = [];
-  private _outsideScrollListener: Function;
+
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
 
   constructor(public _config: BsDatepickerConfig,
-              private _elementRef: ElementRef,
-              private _renderer: Renderer2,
+              _elementRef: ElementRef,
+              _renderer: Renderer2,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
     // todo: assign only subset of fields
@@ -173,10 +173,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
         this.hide();
       })
     );
-
-    this._outsideScrollListener = this._renderer.listen('document', 'scroll', () => {
-      this.hide();
-    });
   }
 
   /**
@@ -186,7 +182,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   hide(): void {
     if (this.isOpen) {
       this._datepicker.hide();
-      this._outsideScrollListener();
     }
     for (const sub of this._subs) {
       sub.unsubscribe();
