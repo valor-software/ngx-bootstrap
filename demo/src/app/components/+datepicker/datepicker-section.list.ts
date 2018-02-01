@@ -7,6 +7,7 @@ import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -140,6 +141,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Value change event',
+        anchor: 'value-change-event',
+        component: require('!!raw-loader?lang=typescript!./demos/value-change-event/value-change-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/value-change-event/value-change-event.html'),
+        description: `<p>You can subscribe to datepicker's value change event (<code>bsValueChange</code>).</p>`,
+        outlet: DemoDatepickerValueChangeEventComponent
       }
     ]
   },
