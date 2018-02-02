@@ -5,6 +5,7 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerConfigMethodComponent } from './demos/config-method/config-method';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 
@@ -140,6 +141,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Config method',
+        anchor: 'config-method',
+        component: require('!!raw-loader?lang=typescript!./demos/config-method/config-method.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/config-method/config-method.html'),
+        description: `<p>You can manage datepicker's options by using its <code>setConfig()</code> method</p>`,
+        outlet: DemoDatepickerConfigMethodComponent
       }
     ]
   },
