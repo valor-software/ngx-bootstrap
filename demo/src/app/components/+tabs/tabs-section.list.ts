@@ -6,6 +6,7 @@ import { DemoTabsVerticalPillsComponent } from './demos/vertical-pills/vertical-
 import { DemoTabsJustifiedComponent } from './demos/justified/justified';
 import { DemoTabsStylingComponent } from './demos/styling/styling';
 import { DemoTabsConfigComponent } from './demos/config/config';
+import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -80,6 +81,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/styling/styling'),
         html: require('!!raw-loader?lang=markup!./demos/styling/styling.html'),
         outlet: DemoTabsStylingComponent
+      },
+      {
+        title: 'Select event',
+        anchor: 'select-event',
+        component: require('!!raw-loader?lang=typescript!./demos/select-event/select-event'),
+        html: require('!!raw-loader?lang=markup!./demos/select-event/select-event.html'),
+        outlet: DemoTabsSelectEventComponent
       },
       {
         title: 'Configuring defaults',
