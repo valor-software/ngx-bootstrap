@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadLatinizeComponent } from './demos/latinize/latinize';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -83,6 +84,15 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/scrollable/scrollable.ts'),
         html: require('!!raw-loader?lang=markup!./demos/scrollable/scrollable.html'),
         outlet: DemoTypeaheadScrollableComponent
+      },
+      {
+        title: 'Latinize',
+        anchor: 'latinize',
+        description: `<p>Allow to match latin symbols. If true the word <strong>súper</strong> would match
+          <strong>super</strong> and vice versa.</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/latinize/latinize.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/latinize/latinize.html'),
+        outlet: DemoTypeaheadLatinizeComponent
       }
     ]
   },

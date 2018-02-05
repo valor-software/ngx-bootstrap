@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadLatinizeComponent } from './latinize/latinize';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadStaticComponent,
@@ -15,7 +16,8 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadFormsComponent,
   DemoTypeaheadGroupingComponent,
   DemoTypeaheadDropupComponent,
-  DemoTypeaheadScrollableComponent
+  DemoTypeaheadScrollableComponent,
+  DemoTypeaheadLatinizeComponent
 ];
 
 export const DEMOS = {
@@ -34,6 +36,10 @@ export const DEMOS = {
   async: {
     component: require('!!raw-loader?lang=typescript!./async/async.ts'),
     html: require('!!raw-loader?lang=markup!./async/async.html')
+  },
+  latinize: {
+    component: require('!!raw-loader?lang=typescript!./latinize/latinize.ts'),
+    html: require('!!raw-loader?lang=markup!./latinize/latinize.html')
   },
   inForm: {
     component: require('!!raw-loader?lang=typescript!./in-form/in-form.ts'),
