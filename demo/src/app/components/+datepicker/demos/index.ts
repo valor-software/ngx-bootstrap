@@ -1,5 +1,5 @@
 import { DatepickerDemoComponent } from './datepicker-demo.component';
-import { DemoDatePickerPopupComponent } from './bs-popup/date-picker-popup';
+import { DemoDatepickerBasicComponent } from './basic/basic';
 import { DemoDatepickerColorThemingComponent } from './color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
@@ -11,7 +11,7 @@ import { DemoDatepickerPlacementComponent } from './placement/placement';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
-  DemoDatePickerPopupComponent,
+  DemoDatepickerBasicComponent,
   DemoDatePickerCustomFormatComponent,
   DemoDatepickerColorThemingComponent,
   DemoDatepickerChangeLocaleComponent,

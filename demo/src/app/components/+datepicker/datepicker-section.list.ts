@@ -1,4 +1,4 @@
-import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup';
+import { DemoDatepickerBasicComponent } from './demos/basic/basic';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
@@ -36,22 +36,10 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/bs-popup/date-picker-popup.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
-        description: `
-          <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
-          <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
-          <p>There are two ways of adding css:</p>
-          <ul>
-            <li>Load it from CDN. Add <code>&lt;link rel="stylesheet"
-              href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"&gt;</code> to your
-              <code>index.html</code></li>
-            <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler
-              like Angular CLI, if you're using one.
-            </li>
-          </ul>
-        `,
-        outlet: DemoDatePickerPopupComponent
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        description: `If you need to see a datepicker just add <code>bsDatepicker</code> property to the input`,
+        outlet: DemoDatepickerBasicComponent
       },
       {
         title: 'Custom date format',
