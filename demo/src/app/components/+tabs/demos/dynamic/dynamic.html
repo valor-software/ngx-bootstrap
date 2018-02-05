@@ -8,7 +8,14 @@
     </button>
   <hr/>
   <tabset>
-    <tab heading="Static title">Static content</tab>
+    <tab heading="Static title">
+      <div>
+        <h4>Static content</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labodolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex eaodo.
+        </p>
+      </div>
+    </tab>
     <tab *ngFor="let tabz of tabs"
          [heading]="tabz.title"
          [active]="tabz.active"
@@ -18,7 +25,10 @@
          [removable]="tabz.removable"
          (removed)="removeTabHandler(tabz)"
          [customClass]="tabz.customClass">
-      {{tabz?.content}}
+      <div>
+        <h4>{{tabz.title}}</h4>
+        <p>{{tabz?.content}}</p>
+      </div>
     </tab>
   </tabset>
 </div>
