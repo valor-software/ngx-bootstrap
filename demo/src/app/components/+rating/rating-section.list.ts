@@ -24,8 +24,8 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     content: [
       {
-        title: 'Static rating',
-        anchor: 'rating-static',
+        title: 'Basic rating',
+        anchor: 'rating-basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoRatingBasicComponent
