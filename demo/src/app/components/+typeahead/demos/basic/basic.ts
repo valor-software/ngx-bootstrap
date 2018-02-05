@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-typeahead-static',
-  templateUrl: './static.html'
+  selector: 'demo-typeahead-basic',
+  templateUrl: './basic.html'
 })
-export class DemoTypeaheadStaticComponent {
+export class DemoTypeaheadBasicComponent {
   selected: string;
   states: string[] = [
     'Alabama',
