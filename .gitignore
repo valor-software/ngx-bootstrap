@@ -28,6 +28,8 @@ npm-debug.log
 /demo/temp
 /logs
 /gh-pages
+/cypress/videos/*
+/cypress/screenshots/*
 
 #System Files
 .DS_Store
