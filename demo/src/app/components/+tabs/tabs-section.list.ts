@@ -87,6 +87,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'select-event',
         component: require('!!raw-loader?lang=typescript!./demos/select-event/select-event'),
         html: require('!!raw-loader?lang=markup!./demos/select-event/select-event.html'),
+        description: '<p>You can subscribe to tab\'s <code>select</code> event</p>',
         outlet: DemoTabsSelectEventComponent
       },
       {
