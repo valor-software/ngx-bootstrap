@@ -13,6 +13,7 @@ import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadFormComponent } from './form/form';
+import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadBasicComponent,
@@ -29,7 +30,8 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadOnBlurComponent,
   DemoTypeaheadLatinizeComponent
   DemoTypeaheadContainerComponent,
-  DemoTypeaheadFormComponent
+  DemoTypeaheadFormComponent,
+  DemoTypeaheadOnSelectComponent
 ];
 
 export const DEMOS = {
@@ -88,5 +90,9 @@ export const DEMOS = {
   scrollable: {
     component: require('!!raw-loader?lang=typescript!./scrollable/scrollable.ts'),
     html: require('!!raw-loader?lang=markup!./scrollable/scrollable.html')
+  },
+  onSelect: {
+    component: require('!!raw-loader?lang=typescript!./on-select/on-select.ts'),
+    html: require('!!raw-loader?lang=markup!./on-select/on-select.html')
   }
 };
