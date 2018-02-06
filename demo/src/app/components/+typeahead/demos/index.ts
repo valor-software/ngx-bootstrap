@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadStaticComponent,
@@ -15,6 +16,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadFormsComponent,
   DemoTypeaheadGroupingComponent,
   DemoTypeaheadDropupComponent,
+  DemoTypeaheadOnBlurComponent,
   DemoTypeaheadScrollableComponent
 ];
 
@@ -46,6 +48,10 @@ export const DEMOS = {
   dropup: {
     component: require('!!raw-loader?lang=typescript!./dropup/dropup.ts'),
     html: require('!!raw-loader?lang=markup!./dropup/dropup.html')
+  },
+  onBlur: {
+    component: require('!!raw-loader?lang=typescript!./on-blur/on-blur.ts'),
+    html: require('!!raw-loader?lang=markup!./on-blur/on-blur.html')
   },
   scrollable: {
     component: require('!!raw-loader?lang=typescript!./scrollable/scrollable.ts'),
