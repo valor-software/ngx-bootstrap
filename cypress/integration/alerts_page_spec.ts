@@ -146,18 +146,4 @@ describe('Alerts page test suite', () => {
     cy.get('@configuredAlerts').eq(1)
       .should('to.have.class', alertTypes[1]);
   });
-
-  it('each demo examples are not mixed up with each other and contains code examples', () => {
-    cy.get('examples').find('h3').as('exampleTitles').each(($title, i) => {
-      expect($title).to.contain(alertsTitles[i]);
-
-      cy.get('@exampleTitles').contains(alertsTitles[i]).parent().as('currentBlock');
-
-      cy.get('@currentBlock').find(alertsDemos[i])
-        .should('to.exist');
-      cy.get('@currentBlock').find('.section').eq(1)
-        .should('be.visible')
-        .and('not.to.be.empty');
-    });
-  });
 });
