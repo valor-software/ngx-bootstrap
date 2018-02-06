@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2, Input } from '@angular/core';
 import {
   AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors,
   Validator
@@ -39,8 +39,9 @@ export class BsDatepickerInputDirective
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
   private _validatorChange = Function.prototype;
-  private _value: Date;
-
+	private _value: Date;
+	@Input()
+  public keepInvalidInputValue:boolean = false;
   constructor(@Host() private _picker: BsDatepickerDirective,
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
@@ -67,7 +68,14 @@ export class BsDatepickerInputDirective
     const initialDate = !value ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
-    this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
+			if(this.keepInvalidInputValue && !isDateValid(value))
+			{
+				this._renderer.setProperty(this._elRef.nativeElement, 'value', this._elRef.nativeElement.value);
+			}
+			else
+			{
+				this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
+			}
   }
 
   onChange(event: any) {
