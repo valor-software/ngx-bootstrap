@@ -65,8 +65,8 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoCarouselDynamicComponent
       },
       {
-        title: 'No Pause Slides',
-        anchor: 'no-pause-slides',
+        title: 'Pause on hover',
+        anchor: 'pause-on-hover',
         component: require('!!raw-loader?lang=typescript!./demos/no-pause/no-pause.ts'),
         html: require('!!raw-loader?lang=markup!./demos/no-pause/no-pause.html'),
         outlet: DemoCarouselNoPauseComponent

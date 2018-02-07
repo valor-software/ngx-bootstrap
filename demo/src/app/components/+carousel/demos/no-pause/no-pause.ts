@@ -5,12 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './no-pause.html'
 })
 export class DemoCarouselNoPauseComponent {
-  myInterval = 2500;
-  noWrapSlides = false;
-  showIndicator = true;
-  noPauseSlides = true;
-
-  noPauseSlide() {
-    this.noPauseSlides = !this.noPauseSlides;
-  }
+  noPause = true;
 }
