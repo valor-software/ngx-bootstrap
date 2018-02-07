@@ -82,6 +82,11 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ApiSectionsComponent,
     content: [
       {
+        title: 'AccordionComponent',
+        anchor: 'AccordionComponent',
+        outlet: NgApiDocComponent
+      },
+      {
         title: 'AccordionPanelComponent',
         anchor: 'AccordionPanelComponent',
         outlet: NgApiDocComponent
