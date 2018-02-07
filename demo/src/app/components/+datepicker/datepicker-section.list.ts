@@ -1,4 +1,5 @@
 import { DemoDatepickerBasicComponent } from './demos/basic/basic';
+import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
@@ -40,6 +41,13 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `If you need to see a datepicker just add <code>bsDatepicker</code> property to the input`,
         outlet: DemoDatepickerBasicComponent
+      },
+      {
+        title: 'Initial state of a date',
+        anchor: 'date-initial-state',
+        component: require('!!raw-loader?lang=typescript!./demos/date-initial-state/date-initial-state.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/date-initial-state/date-initial-state.html'),
+        outlet: DemoDatepickerDateInitialStateComponent
       },
       {
         title: 'Custom date format',
