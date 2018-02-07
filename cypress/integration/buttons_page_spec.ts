@@ -1,10 +1,11 @@
 import { ButtonsPo } from '../support/buttons.po';
 
-// need to refactor tests for making them faster
 describe('Buttons page test suite', () => {
   const buttons = new ButtonsPo();
-  const buttonTitles = buttons.exampleTitlesArr;
   const buttonDemos = buttons.exampleDemosArr;
+
+  const buttonNames = ['Left', 'Middle', 'Right'];
+  const buttonOutput = ['left', 'middle', 'right'];
 
   beforeEach(() => buttons.navigateTo());
 
@@ -47,46 +48,27 @@ describe('Buttons page test suite', () => {
 
 
   it('checkbox example contains checkboxes, that can be checked or unchecked', () => {
-    // let btnTextTempl: string;
-    // setting all checkboxes to unchecked
-    // cy.get(buttonDemos[1]).as('checkboxes').find('.btn').as('btnBlock').eq(1).click();
+    buttons.clickByText(buttonDemos[1], buttonNames[0]);
+    buttons.clickByText(buttonDemos[1], buttonNames[1]);
 
-    buttons.clickByText(buttonDemos[1], 'Middle');
-    cy.get(buttonDemos[1]).children('.card-header').should('to.contain', `"middle": false`);
-
-    // cy.get(buttonDemos[1]).find('.btn').as('checkbox').each(($btn, i) => {
-    //   cy.get('@checkbox').eq(i).invoke('text').then(btnText => {
-    //     btnTextTempl = btnText.toString().toLowerCase();
-    //
-    //     cy.get('@checkbox').eq(i).click();
-    //     cy.get('@checkboxes').children('.card-header')
-    //       .should('to.contain', `"${ btnTextTempl }": true`);
-    //
-    //     cy.get('@checkbox').eq(i).click();
-    //     cy.get('@checkboxes').children('.card-header')
-    //       .should('to.contain', `"${ btnTextTempl }": false`);
-    //   });
-    // });
+    cy.get(buttonDemos[1]).children('.card-header').as('output')
+      .should('to.contain', `"${buttonOutput[0]}": true`);
+    cy.get('@output')
+      .should('to.contain', `"${buttonOutput[1]}": false`);
   });
 
   it('checkbox example contains checkboxes, that can be checked or unchecked and reactive form', () => {
-    let btnTextTempl: string;
-    // setting all checkboxes to unchecked
-    cy.get(buttonDemos[2]).as('checkboxesForm').find('.btn').eq(1).click();
+    buttons.clickByText(buttonDemos[2], buttonNames[1]);
+    buttons.clickByText(buttonDemos[2], buttonNames[2]);
 
-    cy.get(buttonDemos[2]).find('.btn').as('checkbox').each(($btn, i) => {
-      cy.get('@checkbox').eq(i).invoke('text').then(btnText => {
-        btnTextTempl = btnText.toString().toLowerCase();
+    cy.get(buttonDemos[2]).children('.card-header').as('output')
+      .should('to.contain', `"${buttonOutput[1]}": false`);
+    cy.get('@output')
+      .should('to.contain', `"${buttonOutput[2]}": true`);
 
-        cy.get('@checkbox').eq(i).click();
-        cy.get('@checkboxesForm').children('.card-header')
-          .should('to.contain', `"${ btnTextTempl }": true`);
-
-        cy.get('@checkbox').eq(i).click();
-        cy.get('@checkboxesForm').children('.card-header')
-          .should('to.contain', `"${ btnTextTempl }": false`);
-      });
-    });
+    buttons.clickByText(buttonDemos[2], buttonNames[1]);
+    cy.get('@output')
+      .should('to.contain', `"${buttonOutput[1]}": true`);
   });
 
   it('Radio and Uncheckable Radio example contains checkboxes and radioButtons', () => {
@@ -118,7 +100,6 @@ describe('Buttons page test suite', () => {
     });
   });
 
-
   it('disabled buttons examples contains button, that can be disabled', () => {
     cy.get(buttonDemos[5]).as('disabledButton')
       .should('to.have.descendants', '.btn-primary')
@@ -128,19 +109,5 @@ describe('Buttons page test suite', () => {
 
     cy.get('@disabledButton').contains('Button')
       .should('not.to.be.enabled');
-  });
-
-  it('each demo examples are not mixed up with each other and contains code examples', () => {
-    cy.get('examples').find('h3').as('exampleTitles').each(($title, i) => {
-      expect($title).to.contain(buttonTitles[i]);
-
-      cy.get('@exampleTitles').contains(buttonTitles[i]).parent().as('currentBlock');
-
-      cy.get('@currentBlock').find(buttonDemos[i])
-        .should('to.exist');
-      cy.get('@currentBlock').find('.section').eq(1)
-        .should('be.visible')
-        .and('not.to.be.empty');
-    });
   });
 });
