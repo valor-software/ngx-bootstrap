@@ -140,7 +140,7 @@
     "prettier": "1.9.0",
     "protractor": "5.1.2",
     "reflect-metadata": "0.1.12",
-    "require-dir": "0.3.2",
+    "require-dir": "1.0.0",
     "rollup": "0.54.1",
     "rollup-plugin-commonjs": "8.2.6",
     "rollup-plugin-node-resolve": "3.0.2",
