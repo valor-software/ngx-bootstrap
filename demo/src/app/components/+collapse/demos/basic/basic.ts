@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'collapse-demo',
-  templateUrl: './collapse-demo.component.html'
+  templateUrl: './basic.html'
 })
 export class CollapseDemoComponent {
   isCollapsed: boolean = false;
