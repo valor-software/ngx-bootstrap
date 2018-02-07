@@ -2,6 +2,7 @@ import { DemoCarouseBasicComponent } from './demos/basic/basic';
 import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
 import { DemoCarouselConfigComponent } from './demos/config/config';
 import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoCarouselNoPauseComponent } from './demos/no-pause/no-pause';
 import { DemoCarouselCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoCarouselIntervalComponent } from './demos/interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './demos/disable-indicator/disable-indicator';
@@ -62,6 +63,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoCarouselDynamicComponent
+      },
+      {
+        title: 'No Pause Slides',
+        anchor: 'no-pause-slides',
+        component: require('!!raw-loader?lang=typescript!./demos/no-pause/no-pause.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/no-pause/no-pause.html'),
+        outlet: DemoCarouselNoPauseComponent
       },
       {
         title: 'Custom content',
