@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input, OnDestroy, Renderer2, ViewChild } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -40,6 +40,8 @@ export class TabsetComponent implements OnDestroy {
   }
 
   @HostBinding('class.tab-container') clazz = true;
+  @ViewChild('nav') nav: ElementRef;
+
 
   tabs: TabDirective[] = [];
   classMap: any = {};
@@ -60,6 +62,30 @@ export class TabsetComponent implements OnDestroy {
   addTab(tab: TabDirective): void {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
+  }
+
+
+  setActiveTab(tabToSelect: TabDirective, e: any): void {
+    let _hasLockedTab = false;
+    this.tabs.forEach((tab: TabDirective) => {
+      if (tab !== tabToSelect) {
+        tab.active = false;
+      }
+      if (tab.deselectable) {
+        _hasLockedTab = true;
+        tab.deselectable = false;
+      }
+    });
+    if (_hasLockedTab) {
+      e.preventDefault();
+      e.stopPropagation();
+      const activeLink = this.nav.nativeElement.querySelector('ul.nav li.active a');
+      activeLink.focus();
+      activeLink.blur();
+
+      return;
+    }
+    tabToSelect.active = true;
   }
 
   removeTab(

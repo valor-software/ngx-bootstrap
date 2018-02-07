@@ -776,7 +776,7 @@ export const ngdoc: any = {
   "BsDatepickerConfig": {
     "fileName": "src/datepicker/bs-datepicker.config.ts",
     "className": "BsDatepickerConfig",
-    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept displayMonths, for range picker it default to <code>2</code></p>\n",
+    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept <code>displayMonths</code>, for range picker it default to <code>2</code></p>\n",
     "methods": [],
     "properties": [
       {
@@ -2668,7 +2668,7 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "deselect",
-        "description": "<p>fired when tab became inactive, $event:Tab equals to deselected instance of Tab component </p>\n"
+        "description": "<p>fired right before deselecting a current tab, $event:Tab equals to deselected instance of Tab component. You can\ncall the method preventDeselecting() of emitted instance of TabDirective to prevent selecting the other tab </p>\n"
       },
       {
         "name": "removed",
@@ -2680,7 +2680,14 @@ export const ngdoc: any = {
       }
     ],
     "properties": [],
-    "methods": []
+    "methods": [
+      {
+        "name": "preventDeselect",
+        "description": "<p>Call this function in deselect event handler to prevent selecting the other tab </p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
   },
   "TabsetComponent": {
     "fileName": "src/tabs/tabset.component.ts",

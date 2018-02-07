@@ -59,7 +59,9 @@ export class TabDirective implements OnInit, OnDestroy {
     if ((this.disabled && active) || !active) {
       if (this._active && !active) {
         this.deselect.emit(this);
-        this._active = active;
+        if (!this.deselectable) {
+          this._active = active;
+        }
       }
 
       return;
@@ -67,16 +69,12 @@ export class TabDirective implements OnInit, OnDestroy {
 
     this._active = active;
     this.select.emit(this);
-    this.tabset.tabs.forEach((tab: TabDirective) => {
-      if (tab !== this) {
-        tab.active = false;
-      }
-    });
   }
 
   /** fired when tab became active, $event:Tab equals to selected instance of Tab component */
   @Output() select: EventEmitter<TabDirective> = new EventEmitter();
-  /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
+  /** fired right before deselecting a current tab, $event:Tab equals to deselected instance of Tab component. You can
+    * call the method preventDeselecting() of emitted instance of TabDirective to prevent selecting the other tab */
   @Output() deselect: EventEmitter<TabDirective> = new EventEmitter();
   /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
   @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
@@ -85,6 +83,7 @@ export class TabDirective implements OnInit, OnDestroy {
 
   headingRef: TemplateRef<any>;
   tabset: TabsetComponent;
+  deselectable: boolean;
   protected _active: boolean;
   protected _customClass: string;
 
@@ -95,6 +94,10 @@ export class TabDirective implements OnInit, OnDestroy {
   ) {
     this.tabset = tabset;
     this.tabset.addTab(this);
+  }
+  /** Call this function in deselect event handler to prevent selecting the other tab */
+  preventDeselect(): void {
+    this.deselectable = true;
   }
 
   ngOnInit(): void {

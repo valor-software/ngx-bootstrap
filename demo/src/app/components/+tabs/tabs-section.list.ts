@@ -16,6 +16,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoTabsPreventSelectComponent } from './demos/prevent-select/prevent-select';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -51,6 +52,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoTabsDynamicComponent
+      },
+      {
+        title: 'Prevent select',
+        anchor: 'prevent-select',
+        description: `In the following example you'll be asked for a confirmation before leaving second tab. Use 
+        <code>deselect</code> event and call <code>preventDeselecting()</code> method of emitted instance of 
+        TabDirective`,
+        component: require('!!raw-loader?lang=typescript!./demos/prevent-select/prevent-select'),
+        html: require('!!raw-loader?lang=markup!./demos/prevent-select/prevent-select.html'),
+        outlet: DemoTabsPreventSelectComponent
       },
       {
         title: 'Pills',
