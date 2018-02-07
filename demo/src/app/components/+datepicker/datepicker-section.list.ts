@@ -39,11 +39,22 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
-        description: `If you need to see a datepicker just add <code>bsDatepicker</code> property to the input`,
+        description: `
+          <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
+          <p>There are two ways of adding css:</p>
+          <ul>
+            <li>Load it from CDN. Add <code>&lt;link rel="stylesheet"
+              href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"&gt;</code> to your
+              <code>index.html</code></li>
+            <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler
+              like Angular CLI, if you're using one.
+            </li>
+          </ul>
+        `,
         outlet: DemoDatepickerBasicComponent
       },
       {
-        title: 'Initial state of a date',
+        title: 'Initial state',
         anchor: 'date-initial-state',
         component: require('!!raw-loader?lang=typescript!./demos/date-initial-state/date-initial-state.ts'),
         html: require('!!raw-loader?lang=markup!./demos/date-initial-state/date-initial-state.html'),

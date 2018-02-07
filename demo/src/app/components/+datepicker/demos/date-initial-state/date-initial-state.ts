@@ -5,6 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './date-initial-state.html'
 })
 export class DemoDatepickerDateInitialStateComponent {
-  bsValue: Date = new Date();
-  bsRangeValue: any = [new Date(2017, 7, 4), new Date(2017, 7, 20)];
+  bsValue = new Date();
+  bsRangeValue: Date[];
+  maxDate = new Date();
+  constructor() {
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsRangeValue = [this.bsValue, this.maxDate];
+  }
 }
