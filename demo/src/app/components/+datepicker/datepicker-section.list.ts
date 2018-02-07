@@ -6,6 +6,7 @@ import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.compo
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
+import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -131,6 +132,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/reactive-forms/reactive-forms.component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/reactive-forms/reactive-forms.component.html'),
         outlet: DemoDatepickerReactiveFormsComponent
+      },
+      {
+        title: 'Placement',
+        anchor: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
+        description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
+        outlet: DemoDatepickerPlacementComponent
       }
     ]
   },

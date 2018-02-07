@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './radio.html'
 })
 export class DemoButtonsRadioComponent {
-  radioModel: string = 'Middle';
+  radioModel = 'Middle';
 }
