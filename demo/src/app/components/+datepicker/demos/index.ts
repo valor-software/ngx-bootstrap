@@ -22,4 +22,3 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerPlacementComponent
 ];
 
-
