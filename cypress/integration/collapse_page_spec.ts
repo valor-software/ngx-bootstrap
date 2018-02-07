@@ -2,7 +2,6 @@ import { CollapsePo } from '../support/collapse.po';
 
 describe('Collapse demo page test suite', () => {
   const collapse = new CollapsePo();
-  const collapseTitles = collapse.exampleTitlesArr;
   const collapseDemos = collapse.exampleDemosArr;
 
   beforeEach(() => collapse.navigateTo());

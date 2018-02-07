@@ -5,21 +5,6 @@ export class ModalsPo extends BaseComponent {
   pageTitle = 'Modals';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
 
-  exampleTitlesArr = [
-    'Template',
-    'Component',
-    'Nested',
-    'Events',
-    'Confirm Window',
-    'Option',
-    'Static modal',
-    'Optional sizes',
-    'Child modal',
-    'Nested modals',
-    'Modal events',
-    'Auto shown modal'
-  ];
-
   exampleDemosArr = [
     'demo-modal-service-static',
     'demo-modal-service-component',

@@ -2,7 +2,6 @@ import { PopoverPo } from '../support/popover.po';
 
 describe('Popover demo page test suite', () => {
   const popover = new PopoverPo();
-  const popoverTitles = popover.exampleTitlesArr;
   const popoverDemos = popover.exampleDemosArr;
 
   beforeEach(() => popover.navigateTo());

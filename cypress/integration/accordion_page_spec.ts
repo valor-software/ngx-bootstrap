@@ -3,7 +3,6 @@ import { AccordionPo } from '../support/accordion.po';
 describe('Accordion page test suite', () => {
   const accordion = new AccordionPo();
   const accordionExamples = accordion.accordionDemosArr;
-  const accordionTitles = accordion.exampleTitlesArr;
 
   beforeEach(() => accordion.navigateTo());
 

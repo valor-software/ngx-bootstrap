@@ -5,21 +5,6 @@ export class PopoverPo extends BaseComponent {
   pageTitle = 'Popover';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
 
-  exampleTitlesArr = [
-    'Basic',
-    'Four directions',
-    'Dismiss on next click',
-    'Dynamic Content',
-    'Dynamic Html',
-    'Append to body',
-    'Configuring defaults',
-    'Outside click',
-    'Custom triggers',
-    'Manual triggering',
-    'Component level styling',
-    'Custom class'
-  ];
-
   exampleDemosArr = [
     'demo-popover-basic',
     'demo-popover-four-directions',

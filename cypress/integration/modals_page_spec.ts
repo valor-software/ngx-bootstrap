@@ -3,7 +3,6 @@ import { ModalsPo } from '../support/modals.po';
 describe('Modals demo page test suite', () => {
   const modals = new ModalsPo();
   const modalDemos = modals.exampleDemosArr;
-  const modalTitles = modals.exampleTitlesArr;
 
   beforeEach(() => modals.navigateTo());
 

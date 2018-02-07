@@ -3,7 +3,6 @@ import { DatepickerPo } from '../support/datepicker.po';
 describe('Datepicker demo page test suite', () => {
   const datepicker = new DatepickerPo();
   const datepickerDemos = datepicker.exampleDemosArr;
-  const datepickerTitles = datepicker.exampleTitlesArr;
 
   beforeEach(() => datepicker.navigateTo());
 

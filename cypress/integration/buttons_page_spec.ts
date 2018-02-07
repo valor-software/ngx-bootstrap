@@ -1,8 +1,7 @@
 import { ButtonsPo } from '../support/buttons.po';
 
-describe('Buttons page test suite', () => {
+describe.skip('Buttons page test suite', () => {
   const buttons = new ButtonsPo();
-  const buttonTitles = buttons.exampleTitlesArr;
   const buttonDemos = buttons.exampleDemosArr;
 
   const buttonNames = ['Left', 'Middle', 'Right'];

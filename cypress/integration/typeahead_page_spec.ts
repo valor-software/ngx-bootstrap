@@ -2,7 +2,6 @@ import { TypeaheadPo } from '../support/typeahead.po';
 
 describe('Typeahead demo page test suite', () => {
   const typeahead = new TypeaheadPo();
-  const typeaheadTitles = typeahead.exampleTitlesArr;
   const typeaheadDemos = typeahead.exampleDemosArr;
 
   beforeEach(() => typeahead.navigateTo());

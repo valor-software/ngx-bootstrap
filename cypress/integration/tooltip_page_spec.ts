@@ -2,7 +2,6 @@ import { TooltipPo } from '../support/tooltip.po';
 
 describe('Tooltip demo page test suite', () => {
   const tooltip = new TooltipPo();
-  const tooltipTitles = tooltip.exampleTitlesArr;
   const tooltipDemos = tooltip.exampleDemosArr;
 
   beforeEach(() => tooltip.navigateTo());

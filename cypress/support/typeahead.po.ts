@@ -5,17 +5,6 @@ export class TypeaheadPo extends BaseComponent {
   pageTitle = 'Typeahead';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
 
-  exampleTitlesArr = [
-    'Static array',
-    'Item template',
-    'Option field',
-    'Async data',
-    'Reactive forms',
-    'Grouping results',
-    'Dropup',
-    'Scrollable'
-  ];
-
   exampleDemosArr = [
     'demo-typeahead-static',
     'demo-typeahead-item-template',

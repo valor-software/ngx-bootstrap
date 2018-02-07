@@ -5,13 +5,6 @@ export class CarouselPo extends BaseComponent {
   pageTitle = 'Carousel';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/carousel';
 
-  exampleTitlesArr = [
-    'Basic',
-    'Optional captions',
-    'Configuring defaults',
-    'Dynamic Slides'
-  ];
-
   exampleDemosArr = [
     'demo-carousel-basic',
     'demo-carousel-captions',

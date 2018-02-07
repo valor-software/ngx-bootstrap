@@ -3,7 +3,6 @@ import { DropdownsPo } from '../support/dropdowns.po';
 describe('Dropdowns demo page test suite', () => {
   const dropdowns = new DropdownsPo();
   const dropdownDemos = dropdowns.exampleDemosArr;
-  const dropdownTitles = dropdowns.exampleTitlesArr;
 
   beforeEach(() => dropdowns.navigateTo());
 
