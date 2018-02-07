@@ -7,6 +7,7 @@ import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DemoDatepickerVisibilityMethodsComponent } from './demos/visibility-methods/visibility-methods';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
+import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -140,6 +141,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/visibility-methods/visibility-methods.html'),
         description: `<p>You can manage datepicker's state by using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
         outlet: DemoDatepickerVisibilityMethodsComponent
+      },
+      {
+        title: 'Placement',
+        anchor: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
+        description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
+        outlet: DemoDatepickerPlacementComponent
       }
     ]
   },

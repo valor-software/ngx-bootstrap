@@ -22,6 +22,7 @@ import {
   NgApiDocClassComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoModalScrollingLongContentComponent } from './demos/scrolling-long-content/scrolling-long-content';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -70,6 +71,13 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/service-nested/service-nested.html'),
         description: `<p>Nested modals are supported</p>`,
         outlet: DemoModalServiceNestedComponent
+      },
+      {
+        title: 'Scrolling long content',
+        anchor: 'scrolling-long-content',
+        component: require('!!raw-loader?lang=typescript!./demos/scrolling-long-content/scrolling-long-content.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/scrolling-long-content/scrolling-long-content.html'),
+        outlet: DemoModalScrollingLongContentComponent
       },
       {
         title: 'Events',
