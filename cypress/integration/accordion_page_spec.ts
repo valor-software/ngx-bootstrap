@@ -3,7 +3,6 @@ import { AccordionPo } from '../support/accordion.po';
 describe('Accordion page test suite', () => {
   const accordion = new AccordionPo();
   const accordionExamples = accordion.accordionDemosArr;
-  const accordionTitles = accordion.exampleTitlesArr;
 
   beforeEach(() => accordion.navigateTo());
 
@@ -153,19 +152,5 @@ describe('Accordion page test suite', () => {
       .should('not.have.class', 'panel-open');
     cy.get('@thirdPanel')
       .should('not.have.class', 'panel-open');
-  });
-
-  it('each demo examples are not mixed up with each other and contains code examples', () => {
-    cy.get('examples').find('h3').as('exampleTitles').each(($title, i) => {
-      expect($title).to.contain(accordionTitles[i]);
-
-      cy.get('@exampleTitles').contains(accordionTitles[i]).parent().as('currentBlock');
-
-      cy.get('@currentBlock').find(accordionExamples[i])
-        .should('to.exist');
-      cy.get('@currentBlock').find('.section').eq(1)
-        .should('be.visible')
-        .and('not.to.be.empty');
-    });
   });
 });
