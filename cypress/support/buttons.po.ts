@@ -5,15 +5,6 @@ export class ButtonsPo extends BaseComponent {
   pageTitle = 'Buttons';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
 
-  exampleTitlesArr = [
-    'Single button',
-    'Checkbox',
-    'Checkbox with Reactive Forms',
-    'Radio & Uncheckable Radio',
-    'Radio with Reactive Forms',
-    'Disabled Buttons'
-  ];
-
   exampleDemosArr = [
     'demo-buttons-basic',
     'demo-buttons-checkbox',
