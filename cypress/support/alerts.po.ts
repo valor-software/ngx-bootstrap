@@ -14,19 +14,6 @@ export class AlertsPo extends BaseComponent {
     'Now this text is different from what it was before. Go ahead and click the button one more time',
     'Well done! Click reset button'
   ];
-
-  exampleTitlesArr = [
-    'Basic',
-    'Link color',
-    'Additional content',
-    'Dismissing',
-    'Dynamic html',
-    'Dynamic content',
-    'Dismiss on timeout',
-    'Global styling',
-    'Component level styling',
-    'Configuring defaults'
-  ];
   exampleDemosArr = [
     'demo-alert-basic',
     'demo-alert-link',
