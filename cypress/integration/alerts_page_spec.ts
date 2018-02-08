@@ -3,6 +3,7 @@ import { AlertsPo } from '../support/alerts.po';
 describe('Alerts page test suite', () => {
   const alerts = new AlertsPo();
   const alertsDemos = alerts.exampleDemosArr;
+
   let alertTypes: string[];
   let stylesColors: string[];
 

@@ -66,6 +66,20 @@ describe('Buttons page test suite', () => {
     buttons.clickByText(buttonDemos[2], buttonNames[1]);
     buttons.clickByText(buttonDemos[2], buttonNames[2]);
 
+  it('checkbox example contains checkboxes, that can be checked or unchecked', () => {
+    buttons.clickByText(buttonDemos[1], buttonNames[0]);
+    buttons.clickByText(buttonDemos[1], buttonNames[1]);
+
+    cy.get(buttonDemos[1]).children('.card-header').as('output')
+      .should('to.contain', `"${buttonOutput[0]}": true`);
+    cy.get('@output')
+      .should('to.contain', `"${buttonOutput[1]}": false`);
+  });
+
+  it('checkbox example contains checkboxes, that can be checked or unchecked and reactive form', () => {
+    buttons.clickByText(buttonDemos[2], buttonNames[1]);
+    buttons.clickByText(buttonDemos[2], buttonNames[2]);
+
     cy.get(buttonDemos[2]).children('.card-header').as('output')
       .should('to.contain', `"${buttonOutput[1]}": false`);
     cy.get('@output')
