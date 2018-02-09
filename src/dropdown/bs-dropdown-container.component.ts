@@ -35,11 +35,11 @@ export class BsDropdownContainerComponent implements OnDestroy {
     private _state: BsDropdownState,
     private cd: ChangeDetectorRef,
     private _renderer: Renderer2,
-    _element: ElementRef
+    public _element: ElementRef
   ) {
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
-      const dropdown = _element.nativeElement.querySelector('.dropdown-menu');
+      const dropdown = this._element.nativeElement.querySelector('.dropdown-menu');
       if (dropdown && !isBs3()) {
         this._renderer.addClass(dropdown, 'show');
         if (dropdown.classList.contains('dropdown-menu-right')) {

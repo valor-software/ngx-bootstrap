@@ -776,7 +776,7 @@ export const ngdoc: any = {
   "BsDatepickerConfig": {
     "fileName": "src/datepicker/bs-datepicker.config.ts",
     "className": "BsDatepickerConfig",
-    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept displayMonths, for range picker it default to <code>2</code></p>\n",
+    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept <code>displayMonths</code>, for range picker it default to <code>2</code></p>\n",
     "methods": [],
     "properties": [
       {
@@ -1733,6 +1733,11 @@ export const ngdoc: any = {
         "name": "dropup",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
+      },
+      {
+        "name": "insideClick",
+        "type": "boolean",
+        "description": "<p>This attribute indicates that the dropdown shouldn&#39;t close on inside click when autoClose is set to true</p>\n"
       },
       {
         "name": "isDisabled",

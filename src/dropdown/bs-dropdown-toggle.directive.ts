@@ -9,6 +9,7 @@ import {
 import { Subscription } from 'rxjs/Subscription';
 
 import { BsDropdownState } from './bs-dropdown.state';
+import { BsDropdownDirective } from './bs-dropdown.directive';
 
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',
@@ -25,7 +26,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
   private _subscriptions: Subscription[] = [];
 
-  constructor(private _state: BsDropdownState, private _element: ElementRef) {
+  constructor(private _state: BsDropdownState, private _element: ElementRef, private dropdown: BsDropdownDirective) {
     // sync is open value with state
     this._subscriptions.push(
       this._state.isOpenChange.subscribe(
@@ -50,12 +51,17 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: any): void {
-    if (
-      this._state.autoClose &&
-      event.button !== 2 &&
-      !this._element.nativeElement.contains(event.target)
-    ) {
-      this._state.toggleClick.emit(false);
+    if (this._state.autoClose && event.button !== 2 && !this._element.nativeElement.contains(event.target)) {
+      if (!this.dropdown.insideClick) {
+        this._state.toggleClick.emit(false);
+        return;
+      }
+      if (
+        !this.dropdown._elementRef.nativeElement.contains(event.target) &&
+        !(this.dropdown._dropdown.instance && this.dropdown._dropdown.instance._element.nativeElement.contains(event.target))
+      ) {
+        this._state.toggleClick.emit(false);
+      }
     }
   }
 

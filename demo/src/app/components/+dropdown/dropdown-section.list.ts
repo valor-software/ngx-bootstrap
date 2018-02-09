@@ -9,6 +9,8 @@ import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownConfigComponent } from './demos/config/config';
+import { DemoDropdownInsideClickComponent } from './demos/inside-click/inside-click';
+
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -93,6 +95,15 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDropdownAlignmentComponent
       },
       {
+        title: 'Inside click',
+        anchor: 'inside-click',
+        component: require('!!raw-loader?lang=typescript!./demos/inside-click/inside-click.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/inside-click/inside-click.html'),
+        description: `<p>By default, a dropdown menu closes on document click, even if you clicked on an element inside the dropdown.
+        Use <code>[insideClick]="true"</code> to allow click inside the dropdown</p>`,
+        outlet: DemoDropdownInsideClickComponent
+      },
+      {
         title: 'Nested dropdowns (experimental)',
         anchor: 'nested-dropdowns',
         component: require('!!raw-loader?lang=typescript!./demos/nested-dropdowns/nested-dropdowns.ts'),
@@ -134,7 +145,7 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'API Reference', 
     anchor: 'api-reference',
     outlet: ApiSectionsComponent,
     content: [
