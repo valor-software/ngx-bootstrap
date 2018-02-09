@@ -9,6 +9,7 @@ export { esUsLocale } from './chronos/i18n/es-us';
 export { frLocale } from './chronos/i18n/fr';
 export { hiLocale } from './chronos/i18n/hi';
 export { huLocale } from './chronos/i18n/hu';
+export { idLocale } from './chronos/i18n/id';
 export { itLocale } from './chronos/i18n/it';
 export { jaLocale } from './chronos/i18n/ja';
 export { koLocale } from './chronos/i18n/ko';
