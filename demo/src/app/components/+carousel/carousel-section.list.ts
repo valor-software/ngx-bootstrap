@@ -14,10 +14,7 @@ import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
-import {
-  NgApiDocComponent,
-  NgApiDocConfigComponent
-} from '../../docs/api-docs';
+import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -67,6 +64,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pause on hover',
         anchor: 'pause-on-hover',
+        description: `<p>Click button to pause on hover.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/no-pause/no-pause.ts'),
         html: require('!!raw-loader?lang=markup!./demos/no-pause/no-pause.html'),
         outlet: DemoCarouselNoPauseComponent
