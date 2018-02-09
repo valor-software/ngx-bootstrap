@@ -95,7 +95,7 @@ jobs:
       - node  ./demo/dist/server.js &
       - sleep 3
       script:
-      - CYPRESS_baseUrl=$URL npm run cy:run -- --config videoRecording=false
+      - CYPRESS_baseUrl=$URL npm run cy:run
 
 #    check prod build
     - &build

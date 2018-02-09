@@ -37,7 +37,7 @@
     "git-commit-changelog": "git commit -am \"chore(changelog): update [skip ci] \"",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -r 2",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --config videoRecording=false",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json",
     "build:dynamic": "run-s build link build:client-and-server-bundles webpack:server configure-heroku",
     "serve:dynamic": "node demo/dist/server.js",

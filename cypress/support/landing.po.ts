@@ -6,7 +6,7 @@ export class LandingPo extends BaseComponent {
   stackoverflowUrl =  'https://stackoverflow.com/questions/tagged/ngx-bootstrap';
   githubUrl = 'https://github.com/valor-software/ngx-bootstrap';
   slackUrl = 'https://ngx-slack.herokuapp.com';
-  ngTeamUrl = 'https://github.com/valor-software';
+  teamUrl = 'https://github.com/valor-software';
   contributorsUrl = 'https://github.com/valor-software/ngx-bootstrap/graphs/contributors';
   mitLicenseUrl = 'https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE';
   crCommonsUrl = 'https://creativecommons.org/licenses/by/3.0/';
