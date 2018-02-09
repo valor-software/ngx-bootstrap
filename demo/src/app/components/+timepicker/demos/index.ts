@@ -22,6 +22,6 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerToggleMinutesSecondsComponent,
   DemoTimepickerArrowkeysComponent,
   DemoTimepickerMousewheelComponent,
-  DemoTimepickerCustomValidationComponent
+  DemoTimepickerCustomValidationComponent,
   DemoTimepickerSpinnersComponent
 ];
