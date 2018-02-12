@@ -2,7 +2,7 @@ import { DemoTypeaheadStaticComponent } from './static/static';
 import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
 import { DemoTypeaheadFieldComponent } from './field/field';
 import { DemoTypeaheadAsyncComponent } from './async/async';
-import { DemoTypeaheadFormsComponent } from './in-form/in-form';
+import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
@@ -10,20 +10,22 @@ import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
+import { DemoTypeaheadFormComponent } from './form/form';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadStaticComponent,
   DemoTypeaheadItemTemplateComponent,
   DemoTypeaheadFieldComponent,
   DemoTypeaheadAsyncComponent,
-  DemoTypeaheadFormsComponent,
+  DemoTypeaheadReactiveFormComponent,
   DemoTypeaheadGroupingComponent,
   DemoTypeaheadSingleWorldComponent,
   DemoTypeaheadPhraseDelimitersComponent,
   DemoTypeaheadDropupComponent,
   DemoTypeaheadOnBlurComponent,
   DemoTypeaheadScrollableComponent,
-  DemoTypeaheadContainerComponent
+  DemoTypeaheadContainerComponent,
+  DemoTypeaheadFormComponent
 ];
 
 export const DEMOS = {
@@ -43,9 +45,13 @@ export const DEMOS = {
     component: require('!!raw-loader?lang=typescript!./async/async.ts'),
     html: require('!!raw-loader?lang=markup!./async/async.html')
   },
-  inForm: {
-    component: require('!!raw-loader?lang=typescript!./in-form/in-form.ts'),
-    html: require('!!raw-loader?lang=markup!./in-form/in-form.html')
+  form: {
+    component: require('!!raw-loader?lang=typescript!./form/form.ts'),
+    html: require('!!raw-loader?lang=markup!./form/form.html')
+  },
+  reactiveForm: {
+    component: require('!!raw-loader?lang=typescript!./reactive-form/reactive-form.ts'),
+    html: require('!!raw-loader?lang=markup!./reactive-form/reactive-form.html')
   },
   grouping: {
     component: require('!!raw-loader?lang=typescript!./grouping/grouping.ts'),

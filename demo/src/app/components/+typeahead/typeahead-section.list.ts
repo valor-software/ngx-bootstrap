@@ -2,11 +2,12 @@ import { DemoTypeaheadStaticComponent } from './demos/static/static';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
 import { DemoTypeaheadFieldComponent } from './demos/field/field';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
-import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
+import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
+import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
@@ -61,11 +62,26 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadAsyncComponent
       },
       {
+        title: 'Template-driven forms',
+        anchor: 'forms',
+        description: `
+          <p>
+            Typeahead can be used in template-driven forms. Keep in mind that value of <code>ngModel</code> is string
+          </p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/form/form.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/form/form.html'),
+        outlet: DemoTypeaheadFormComponent
+      },
+      {
         title: 'Reactive forms',
         anchor: 'reactive-forms',
-        component: require('!!raw-loader?lang=typescript!./demos/in-form/in-form.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/in-form/in-form.html'),
-        outlet: DemoTypeaheadFormsComponent
+        description: `
+          <p>Typeahead can be used in reactive forms</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/reactive-form/reactive-form.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/reactive-form/reactive-form.html'),
+        outlet: DemoTypeaheadReactiveFormComponent
       },
       {
         title: 'Grouping results',

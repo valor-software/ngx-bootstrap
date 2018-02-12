@@ -4,17 +4,17 @@ import { FormControl, FormGroup } from '@angular/forms';
 import 'rxjs/add/observable/of';
 
 @Component({
-  selector: 'demo-typeahead-forms',
-  templateUrl: './in-form.html'
+  selector: 'demo-typeahead-reactive-form',
+  templateUrl: './reactive-form.html'
 })
-export class DemoTypeaheadFormsComponent {
-  stateCtrl: FormControl = new FormControl();
+export class DemoTypeaheadReactiveFormComponent {
+  stateCtrl = new FormControl();
 
-  myForm: FormGroup = new FormGroup({
+  myForm = new FormGroup({
     state: this.stateCtrl
   });
 
-  states: string[] = [
+  states = [
     'Alabama',
     'Alaska',
     'Arizona',
