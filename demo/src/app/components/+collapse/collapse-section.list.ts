@@ -1,4 +1,5 @@
-import { CollapseDemoComponent } from './demos/collapse-demo.component';
+import { CollapseDemoComponent } from './demos/basic/basic';
+import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -24,9 +25,16 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/collapse-demo.component'),
-        html: require('!!raw-loader?lang=markup!./demos/collapse-demo.component.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: CollapseDemoComponent
+      },
+      {
+        title: 'Manual toggle',
+        anchor: 'manual-toggle',
+        component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
+        html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
+        outlet: ToggleManualDemoComponent
       }
     ]
   },
