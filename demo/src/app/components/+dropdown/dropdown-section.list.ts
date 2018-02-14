@@ -9,6 +9,7 @@ import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownConfigComponent } from './demos/config/config';
+import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -130,6 +131,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         description: `<p>It is possible to override default dropdown config partially or completely.</p>`,
         outlet: DemoDropdownConfigComponent
+      },
+      {
+        title: 'Auto close',
+        anchor: 'autoclose',
+        component: require('!!raw-loader?lang=typescript!./demos/autoclose/autoclose.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/autoclose/autoclose.html'),
+        description: `<p>Use <code>autoClose</code> property to change dropdown's default behavior</p>`,
+        outlet: DemoDropdownAutoCloseComponent
       }
     ]
   },
