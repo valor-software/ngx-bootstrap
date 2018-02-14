@@ -9,6 +9,7 @@ import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownConfigComponent } from './demos/config/config';
+import { DemoDropdownStateChangeEventComponent } from './demos/state-change-event/state-change-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -130,6 +131,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         description: `<p>It is possible to override default dropdown config partially or completely.</p>`,
         outlet: DemoDropdownConfigComponent
+      },
+      {
+        title: 'State change event',
+        anchor: 'state-change-event',
+        component: require('!!raw-loader?lang=typescript!./demos/state-change-event/state-change-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/state-change-event/state-change-event.html'),
+        description: `<p>You can subscribe to dropdown's state change event (<code>isOpenChange</code>).</p>`,
+        outlet: DemoDropdownStateChangeEventComponent
       }
     ]
   },
