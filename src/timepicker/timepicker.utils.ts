@@ -89,6 +89,10 @@ export function changeTime(value: Date, diff: Time): Date {
     hour = (hour + toNumber(diff.hour)) % hoursPerDay;
     if (hour < 0) {
       hour += hoursPerDay;
+    } else if (hour === 0) {
+      hour = 23;
+      minutes = 59;
+      seconds = 59;
     }
   }
 
