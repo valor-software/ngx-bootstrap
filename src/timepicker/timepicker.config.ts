@@ -25,6 +25,8 @@ export class TimepickerConfig {
   showSeconds = false;
   /** show minutes in timepicker */
   showMinutes = true;
+  /** show placeholders in timepicker */
+  showPlaceholders = true;
   /** minimum time user can select */
   min: Date;
   /** maximum time user can select */

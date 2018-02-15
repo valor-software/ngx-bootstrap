@@ -1,0 +1,7 @@
+<timepicker [(ngModel)]="myTime" [showPlaceholders]="showPlaceholders"></timepicker>
+
+<pre class="alert alert-info">Time is: {{myTime}}<br>showPlaceholders: {{showPlaceholders}}</pre>
+
+<button class="btn btn-default text-center" (click)="togglePlaceholders()">
+  {{showPlaceholders? 'Hide placeholders' : 'Show placeholders'}}
+</button>

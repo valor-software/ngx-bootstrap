@@ -292,12 +292,16 @@ describe('Component: timepicker', () => {
       fixture = TestBed.createComponent(TimepickerComponent);
       fixture.detectChanges();
       component = fixture.componentInstance;
-      inputMinutes = getInputElements(fixture)[1];
     });
     it('should hide minutes field when property showMinutes is == false', () => {
       component.showMinutes = false;
+  
+      component.writeValue(testTime());
+
       fixture.detectChanges();
-      expect(inputSeconds).toBeFalsy();
+      inputMinutes = getInputElements(fixture)[1];
+      
+      expect(inputMinutes).toBeFalsy();
     });
   });
 
@@ -312,19 +316,19 @@ describe('Component: timepicker', () => {
 
     // отображать поле секунды если showSeconds включен
     it('should display seconds field if showMeridian switch on', () => {
-      component.showSeconds = true;
-
-      component.writeValue(testTime());
-
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        inputSeconds = getInputElements(fixture)[2];
-
-        fireEvent(inputSeconds, 'change');
-
-        expect(inputSeconds).toBeTruthy();
+        component.showSeconds = true;
+  
+        component.writeValue(testTime());
+  
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          inputSeconds = getInputElements(fixture)[2];
+  
+          fireEvent(inputSeconds, 'change');
+  
+          expect(inputSeconds).toBeTruthy();
+        });
       });
-    });
     // проверить данные в поле секунды
     it('should validate the data in the seconds input', () => {
       component.showSeconds = true;
@@ -339,6 +343,45 @@ describe('Component: timepicker', () => {
 
         expect(inputSeconds.value).toBe('07');
       });
+    });
+  });
+
+  describe('hide placeholders on inputs with property of showPlaceholders', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+    });
+    it('should show placeholders on inputs when property showPlaceholders is == true', () => {
+      component.showSeconds = true;
+      component.showPlaceholders = true;
+  
+      component.writeValue(testTime());
+
+      fixture.detectChanges();
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
+
+      expect(inputHours.placeholder).not.toBeFalsy();
+      expect(inputMinutes.placeholder).not.toBeFalsy();
+      expect(inputSeconds.placeholder).not.toBeFalsy();
+    });
+    it('should hide placeholders on inputs when property showPlaceholders is == false', () => {
+      component.showSeconds = true;
+      component.showPlaceholders = false;
+  
+      component.writeValue(testTime());
+
+      fixture.detectChanges();
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
+
+      expect(inputHours.placeholder).toBeFalsy();
+      expect(inputMinutes.placeholder).toBeFalsy();
+      expect(inputSeconds.placeholder).toBeFalsy();
     });
   });
 

@@ -11,7 +11,8 @@ export function getTimepickerConfig(): TimepickerConfig {
     readonlyInput: false,
     mousewheel: true,
     showMinutes: true,
-    showSeconds: false
+    showSeconds: false,
+    showPlaceholders: true
   });
 }
 

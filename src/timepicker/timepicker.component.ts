@@ -91,6 +91,8 @@ export class TimepickerComponent
   @Input() showMinutes: boolean;
   /** show seconds in timepicker */
   @Input() showSeconds: boolean;
+  /** show placeholders in timepicker */
+  @Input() showPlaceholders: boolean;
   /** meridian labels based on locale */
   @Input() meridians: string[];
   /** minimum time user can select */
