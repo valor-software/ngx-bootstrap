@@ -9,6 +9,7 @@ import { DemoDropdownTriggersManualComponent } from './triggers-manual/triggers-
 import { DemoDropdownDisabledComponent } from './disabled-menu/disabled-menu';
 import { DemoDropdownAlignmentComponent } from './alignment/menu-alignment';
 import { DemoNestedDropdownsComponent } from './nested-dropdowns/nested-dropdowns';
+import { DemoDropdownDisabledItemComponent } from './disabled-item/disabled-item';
 
 export const DEMO_COMPONENTS = [
   DemoDropdownBasicComponent,
@@ -20,6 +21,7 @@ export const DEMO_COMPONENTS = [
   DemoDropupComponent,
   DemoDropdownTriggersManualComponent,
   DemoDropdownDisabledComponent,
+  DemoDropdownDisabledItemComponent,
   DemoDropdownAlignmentComponent,
   DemoNestedDropdownsComponent
 ];
