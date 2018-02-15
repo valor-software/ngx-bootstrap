@@ -7,7 +7,7 @@ import { DemoDropdownAlignmentComponent } from './demos/alignment/menu-alignment
 import { DemoNestedDropdownsComponent } from './demos/nested-dropdowns/nested-dropdowns';
 import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
-import { DemoDropupComponent } from './demos/dropup/dropup';
+import { DemoDropdownDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -119,9 +119,9 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
-        description: `<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the
+        description: `<p>Trigger dropdown menus above elements by adding <code>dropup</code> property to the
           parent element.</p>`,
-        outlet: DemoDropupComponent
+        outlet: DemoDropdownDropupComponent
       },
       {
         title: 'Configuring defaults',
