@@ -9,6 +9,7 @@ import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-glob
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
+import { DemoPopoverTriggerByInput } from './trigger-by-input/trigger-by-input';
 import { DemoPopoverClassComponent } from './class/class';
 import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
 
@@ -24,6 +25,7 @@ export const DEMO_COMPONENTS = [
   DemoPopoverStylingLocalComponent,
   DemoPopoverTriggersCustomComponent,
   DemoPopoverTriggersManualComponent,
+  DemoPopoverTriggerByInput,
   DemoPopoverClassComponent,
   DemoPopoverOutsideClickComponent
 ];
