@@ -6,12 +6,4 @@ import { Component } from '@angular/core';
 })
 export class CollapseDemoComponent {
   isCollapsed: boolean = false;
-
-  collapsed(event: any): void {
-    console.log(event);
-  }
-
-  expanded(event: any): void {
-    console.log(event);
-  }
 }
