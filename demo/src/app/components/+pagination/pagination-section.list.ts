@@ -2,6 +2,7 @@ import { DemoPaginationBasicComponent } from './demos/basic/basic';
 import { DemoPaginationPagerComponent } from './demos/pager/pager';
 import { DemoPaginationLimitComponent } from './demos/limit/limit';
 import { DemoPaginationStylingComponent } from './demos/styling-global/styling-global';
+import { DemoPaginationContentSwitchingComponent } from './demos/content-switching/content-switching';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -42,6 +43,13 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
         description: `<p>Limit the maximum visible buttons</p>`,
         outlet: DemoPaginationLimitComponent
+      },
+      {
+        title: 'Content switching',
+        anchor: 'content-switching',
+        component: require('!!raw-loader?lang=typescript!./demos/content-switching/content-switching.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/content-switching/content-switching.html'),
+        outlet: DemoPaginationContentSwitchingComponent
       },
       {
         title: 'Pager',
