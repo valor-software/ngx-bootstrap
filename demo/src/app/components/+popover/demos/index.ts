@@ -1,5 +1,5 @@
 import { DemoPopoverBasicComponent } from './basic/basic';
-import { DemoPopoverFourDirectionsComponent } from './four-directions/four-directions';
+import { DemoPopoverPlacementComponent } from './placement/placement';
 import { DemoPopoverDismissComponent } from './dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './dynamic-html/dynamic-html';
@@ -14,7 +14,7 @@ import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click'
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
-  DemoPopoverFourDirectionsComponent,
+  DemoPopoverPlacementComponent,
   DemoPopoverDismissComponent,
   DemoPopoverDynamicComponent,
   DemoPopoverDynamicHtmlComponent,
