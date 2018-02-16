@@ -10,6 +10,7 @@ import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/trig
 import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverClassComponent } from './demos/class/class';
+import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -132,6 +133,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoPopoverClassComponent
+      },
+      {
+        title: 'Popover context',
+        anchor: 'popover-context',
+        component: require('!!raw-loader?lang=typescript!./demos/popover-context/popover-context.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/popover-context/popover-context.html'),
+        outlet: DemoPopoverContextComponent
       }/*,
       {
         title: 'Global styling',

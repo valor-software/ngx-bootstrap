@@ -11,6 +11,7 @@ import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-c
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoPopoverClassComponent } from './class/class';
 import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
+import { DemoPopoverContextComponent } from './popover-context/popover-context';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
@@ -25,5 +26,6 @@ export const DEMO_COMPONENTS = [
   DemoPopoverTriggersCustomComponent,
   DemoPopoverTriggersManualComponent,
   DemoPopoverClassComponent,
-  DemoPopoverOutsideClickComponent
+  DemoPopoverOutsideClickComponent,
+  DemoPopoverContextComponent
 ];
