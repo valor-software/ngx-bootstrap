@@ -11,6 +11,7 @@ import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/trig
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverClassComponent } from './demos/class/class';
 import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
+import { DemoPopoverEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -90,6 +91,13 @@ export const demoComponentContent: ContentSection[] = [
         appended to body. This will help to avoid rendering problems in more complex components
         (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
         outlet: DemoPopoverContainerComponent
+      },
+      {
+        title: 'Visibility events',
+        anchor: 'events',
+        component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
+        outlet: DemoPopoverEventsComponent
       },
       {
         title: 'Configuring defaults',
