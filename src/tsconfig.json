@@ -27,7 +27,6 @@
     "node_modules"
   ],
   "files": [
-    "../scripts/typings.d.ts",
     "./index.ts",
     "./locale.ts"
   ],

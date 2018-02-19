@@ -1,0 +1,9 @@
+{
+  "src": "src",
+  "main": "index.ts",
+  "clean": true,
+  "skipBundles": false,
+  "watch": false,
+  "verbose": true,
+  "buildEs2015": true
+}

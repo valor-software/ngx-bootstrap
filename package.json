@@ -25,6 +25,7 @@
     "build": "run-s build.ngm build.sass build.es2015",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
     "build.ngm": "ngm build -p src --clean",
+    "build.ngm.config": "ngm build -c ngm.config.json",
     "build.watch": "ngm build -p src --watch --skip-bundles",
     "build.es2015": "node ./scripts/es2015/bundle.es2015.js",
     "start": "ng serve --aot --host 0.0.0.0",
@@ -66,7 +67,9 @@
     "url": "https://github.com/valor-software/ngx-bootstrap/issues"
   },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@angular/material": "5.2.1"
+  },
   "peerDependencies": {
     "@angular/common": ">=4.3.0 || >5.0.0",
     "@angular/compiler": ">=4.3.0 || >5.0.0",
@@ -135,7 +138,7 @@
     "lodash": "4.17.4",
     "mocha": "4.0.1",
     "ng2-page-scroll": "4.0.0-beta.7",
-    "ngm-cli": "0.8.5",
+    "ngm-cli": "0.9.1",
     "npm-run-all": "4.1.2",
     "prettier": "1.9.0",
     "protractor": "5.1.2",
