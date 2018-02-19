@@ -2,6 +2,7 @@ import { DemoPopoverBasicComponent } from './demos/basic/basic';
 import { DemoPopoverPlacementComponent } from './demos/placement/placement';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
 import { DemoPopoverContainerComponent } from './demos/container/container';
 import { DemoPopoverConfigComponent } from './demos/config/config';
@@ -65,14 +66,21 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverDismissComponent
       },
       {
-        title: 'Dynamic Content',
+        title: 'Dynamic content',
         anchor: 'dynamic-content',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
-        description: `<p>Popover content can contain any html template. Just create <code>&lt;template
-        #myId></code> with any html allowed by Angular, and provide template ref (<code>#myId</code>)
-        as popover content.</p>`,
+        description: `<p>Pass a string as popover content.</p>`,
         outlet: DemoPopoverDynamicComponent
+      },
+      {
+        title: 'Custom content template',
+        anchor: 'custom-content-template',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
+        description: `<p>Create <code>&lt;template #myId></code> with any html allowed by Angular,
+        and provide template ref (<code>#myId</code>) as popover content.</p>`,
+        outlet: DemoPopoverCustomContentComponent
       },
       {
         title: 'Dynamic Html',

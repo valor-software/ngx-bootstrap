@@ -2,6 +2,7 @@ import { DemoPopoverBasicComponent } from './basic/basic';
 import { DemoPopoverPlacementComponent } from './placement/placement';
 import { DemoPopoverDismissComponent } from './dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './dynamic/dynamic';
+import { DemoPopoverCustomContentComponent } from './custom-content/custom-content';
 import { DemoPopoverDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoPopoverContainerComponent } from './container/container';
 import { DemoPopoverConfigComponent } from './config/config';
@@ -20,6 +21,7 @@ export const DEMO_COMPONENTS = [
   DemoPopoverPlacementComponent,
   DemoPopoverDismissComponent,
   DemoPopoverDynamicComponent,
+  DemoPopoverCustomContentComponent,
   DemoPopoverDynamicHtmlComponent,
   DemoPopoverContainerComponent,
   DemoPopoverConfigComponent,
