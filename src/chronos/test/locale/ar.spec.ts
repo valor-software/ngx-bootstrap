@@ -4,7 +4,7 @@
 
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { arLocale } from '../../i18n/ar';
+import { arLocale } from 'ngx-bootstrap/locale';
 
 // localeModule('ar');
 

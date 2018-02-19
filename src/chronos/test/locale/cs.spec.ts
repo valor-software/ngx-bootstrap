@@ -4,7 +4,7 @@
 
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { csLocale } from '../../i18n/cs';
+import { csLocale } from 'ngx-bootstrap/locale';
 // localeModule('cs');
 
 describe('locale: cs', () => {

@@ -4,11 +4,11 @@
 import { assert } from 'chai';
 import { moment } from '../chain';
 import { defineLocale } from '../../locale/locales';
-import { enGbLocale } from '../../i18n/en-gb';
-import { frLocale } from '../../i18n/fr';
-import { esLocale } from '../../i18n/es';
-import { zhCnLocale } from '../../i18n/zh-cn';
-import { itLocale as italy } from '../../i18n/it';
+import { enGbLocale } from 'ngx-bootstrap/locale';
+import { frLocale } from 'ngx-bootstrap/locale';
+import { esLocale } from 'ngx-bootstrap/locale';
+import { zhCnLocale } from 'ngx-bootstrap/locale';
+import { itLocale as italy } from 'ngx-bootstrap/locale';
 import { getDate } from '../../utils/date-getters';
 
 defineLocale('en-gb', enGbLocale);

@@ -23,3 +23,4 @@ export { zhCnLocale } from './zh-cn';
 export { trLocale } from './tr';
 export { heLocale } from './he';
 export { thLocale } from './th';
+export { ukLocale } from './uk';

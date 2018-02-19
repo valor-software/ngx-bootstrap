@@ -3,7 +3,7 @@
 // tslint:disable:variable-name
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { ruLocale } from '../../i18n/ru';
+import { ruLocale } from 'ngx-bootstrap/locale';
 
 describe('create', () => {
 

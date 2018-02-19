@@ -12,12 +12,12 @@ import { getDayOfWeek } from '../chronos/units/day-of-week';
 //! author : zemlanin : https://github.com/zemlanin
 //! Author : Menelion Elensúle : https://github.com/Oire
 
-function plural(word, num) {
+function plural(word: string, num: number) {
   let forms = word.split('_');
   return num % 10 === 1 && num % 100 !== 11 ? forms[0] : (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20) ? forms[1] : forms[2]);
 }
 
-function relativeTimeWithPlural(num: number, withoutSuffix, key): string {
+function relativeTimeWithPlural(num: number, withoutSuffix: boolean, key: string): string {
   let format: { [key: string]: string } = {
     ss: withoutSuffix ? 'секунда_секунди_секунд' : 'секунду_секунди_секунд',
     mm: withoutSuffix ? 'хвилина_хвилини_хвилин' : 'хвилину_хвилини_хвилин',
@@ -38,7 +38,7 @@ function relativeTimeWithPlural(num: number, withoutSuffix, key): string {
 }
 
 function weekdaysCaseReplace(date: Date, format: string, isUTC?: boolean): string | string[] {
-  let weekdays = {
+  let weekdays: any = {
     nominative: 'неділя_понеділок_вівторок_середа_четвер_п’ятниця_субота'.split('_'),
     accusative: 'неділю_понеділок_вівторок_середу_четвер_п’ятницю_суботу'.split('_'),
     genitive: 'неділі_понеділка_вівторка_середи_четверга_п’ятниці_суботи'.split('_')

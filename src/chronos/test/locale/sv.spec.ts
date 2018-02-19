@@ -4,7 +4,7 @@
 
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { svLocale } from '../../i18n/sv';
+import { svLocale } from 'ngx-bootstrap/locale';
 
 // localeModule('en');
 describe('locale: sv', () => {

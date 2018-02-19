@@ -4,7 +4,7 @@
 
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { zhCnLocale } from '../../i18n/zh-cn';
+import { zhCnLocale } from 'ngx-bootstrap/locale';
 
 // localeModule('en');
 describe('locale: zh-cn', () => {

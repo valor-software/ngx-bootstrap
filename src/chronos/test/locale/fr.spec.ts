@@ -4,7 +4,7 @@
 
 import { assert } from 'chai';
 import { moment } from '../chain';
-import { frLocale } from '../../i18n/fr';
+import { frLocale } from 'ngx-bootstrap/locale';
 
 describe('locale: fr', () => {
   beforeAll(() => {
