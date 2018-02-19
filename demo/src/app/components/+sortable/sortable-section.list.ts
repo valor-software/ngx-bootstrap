@@ -1,6 +1,6 @@
 import { SimpleItemsDemoComponent } from './demos/simple-items/simple-items.component';
 import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel.component';
-import { CustomItemTemplateDemoComponent } from './demos/custom-item-template/custom-item-template';
+import { DemoCustomItemContentComponent } from './demos/custom-item-content/custom-item-content';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -38,11 +38,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: ComplexDatamodelDemoComponent
       },
       {
-        title: 'Custom item template',
-        anchor: 'itemTemplate',
-        component: require('!!raw-loader?lang=typescript!./demos/custom-item-template/custom-item-template.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/custom-item-template/custom-item-template.html'),
-        outlet: CustomItemTemplateDemoComponent
+        title: 'Custom item content',
+        anchor: 'custom-item-content',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-item-content/custom-item-content.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-item-content/custom-item-content.html'),
+        outlet: DemoCustomItemContentComponent
       }
     ]
   },
