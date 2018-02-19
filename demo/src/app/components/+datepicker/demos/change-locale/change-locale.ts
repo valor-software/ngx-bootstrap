@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { listLocales } from 'ngx-bootstrap/chronos';
+import { listLocales } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'demo-datepicker-change-locale',

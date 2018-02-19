@@ -66,7 +66,7 @@ async function buildAll() {
     console.log('Compiling', module);
     await execa('ngc', ['-p', path.join(tmp, module)], { preferLocal: true });
     console.log('Building umd bundle of', module);
-    bundleUmd.bundleUmd({src: path.join(tmp, module), dist: 'dist', name: module, main: 'index.ts', tsconfig: path.join(tmp, module, 'tsconfig.json'), minify: false})
+    bundleUmd.bundleUmd({src: path.join(tmp, module), dist: 'dist', name: module, main: 'index.ts', tsconfig: path.join(tmp, module, 'tsconfig.json'), minify: false});
     console.log('');
     console.log('Bundle ESM5 bundle of', module);
     createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');

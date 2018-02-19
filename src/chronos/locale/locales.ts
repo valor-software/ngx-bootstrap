@@ -78,6 +78,7 @@ export function mergeConfigs(parentConfig: LocaleData,
 
 
 function loadLocale(name: string): Locale {
+  console.log('loadLocale', locales);
   // no way!
   /* var oldLocale = null;
    // TODO: Find a better way to register and load all the locales in Node
@@ -121,6 +122,7 @@ export function getSetGlobalLocale(key?: string | string[], values?: LocaleData)
 }
 
 export function defineLocale(name: string, config?: LocaleData): Locale {
+  console.log('defineLocale', name, locales);
   if (config === null) {
     // useful for testing
     delete locales[name];
