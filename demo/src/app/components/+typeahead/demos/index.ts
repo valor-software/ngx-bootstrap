@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadStaticComponent,
@@ -14,6 +15,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadAsyncComponent,
   DemoTypeaheadFormsComponent,
   DemoTypeaheadGroupingComponent,
+  DemoTypeaheadPhraseDelimitersComponent,
   DemoTypeaheadDropupComponent,
   DemoTypeaheadScrollableComponent
 ];
