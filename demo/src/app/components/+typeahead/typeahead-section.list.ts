@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -69,6 +70,15 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/grouping/grouping.ts'),
         html: require('!!raw-loader?lang=markup!./demos/grouping/grouping.html'),
         outlet: DemoTypeaheadGroupingComponent
+      },
+      {
+        title: 'Ignore spaces and order',
+        anchor: 'single-world',
+        component: require('!!raw-loader?lang=typescript!./demos/single-world/single-world.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/single-world/single-world.html'),
+        description: `If <code>typeaheadSingleWords=true</code> ignores spaces and seeking for matches with occurrences of entered words.
+          For example: <pre>ari zona -> Arizona</pre>`,
+        outlet: DemoTypeaheadSingleWorldComponent
       },
       {
         title: 'Dropup',
