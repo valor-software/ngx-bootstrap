@@ -4,7 +4,7 @@
 // tslint:disable:one-variable-per-declaration newline-before-return
 // tslint:disable:no-parameter-reassignment prefer-switch
 
-import { LocaleData } from '../chronos/locale/locale.class';
+import { LocaleData } from 'ngx-bootstrap/chronos';
 
 //! moment.js locale configuration
 //! locale : Hindi [hi]

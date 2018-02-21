@@ -3,8 +3,7 @@
 // tslint:disable:no-shadowed-variable switch-default prefer-const
 // tslint:disable:one-variable-per-declaration newline-before-return
 
-import { LocaleData } from '../chronos/locale/locale.class';
-import { getHours, getMonth } from '../chronos/utils/date-getters';
+import { LocaleData, getHours, getMonth } from 'ngx-bootstrap/chronos';
 
 //! moment.js locale configuration
 //! locale : Spanish (Dominican Republic) [es-do]

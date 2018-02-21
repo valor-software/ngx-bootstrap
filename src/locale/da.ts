@@ -1,6 +1,6 @@
 // tslint:disable:comment-format
 
-import { LocaleData } from '../chronos/locale/locale.class';
+import { LocaleData } from 'ngx-bootstrap/chronos';
 
 //! moment.js locale configuration
 //! locale : Danish (Denmark) [da]

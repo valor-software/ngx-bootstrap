@@ -1,6 +1,7 @@
 {
   "name": "ngx-bootstrap",
-  "es2015": "bundles/ngx-bootstrap.es2015.js",
+  "es2015": "es2015/ngx-bootstrap.es2015.js",
+  "module": "esm5/ngx-bootstrap.es5.js",
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/compiler": "*",

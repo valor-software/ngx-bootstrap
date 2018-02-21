@@ -1,7 +1,6 @@
-import { isSameYear } from '../../chronos/utils/date-getters';
+import { isSameYear, shiftDate } from 'ngx-bootstrap/chronos';
 import { YearsCalendarViewModel, CalendarCellViewModel } from '../models/index';
 import { isYearDisabled } from '../utils/bs-calendar-utils';
-import { shiftDate } from '../../chronos/utils/date-setters';
 
 export interface FlagYearsCalendarOptions {
   isDisabled: boolean;

@@ -155,6 +155,6 @@ export {
   positionElements
 } from './positioning/index';
 
-export { defineLocale, getSetGlobalLocale, LocaleData } from './chronos/index';
+export * from './chronos/index';
 
 export * from './locale';

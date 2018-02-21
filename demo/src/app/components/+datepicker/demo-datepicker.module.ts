@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { defineLocale, LocaleData } from 'ngx-bootstrap/datepicker';
+import { defineLocale, LocaleData } from 'ngx-bootstrap/chronos';
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import {
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, frLocale, heLocale, hiLocale,
@@ -22,7 +22,6 @@ const locales = [
   frLocale, hiLocale, heLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, nlLocale,
   nlBeLocale, plLocale, ptBrLocale, svLocale, ruLocale, zhCnLocale, trLocale, thLocale
 ];
-console.log(locales);
 locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
 
 @NgModule({

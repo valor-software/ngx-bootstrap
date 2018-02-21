@@ -61,6 +61,10 @@ async function buildAll() {
   await inlineResources.inlineResources(tmp);
   // console.log('Compiling root');
   // await execa('ngm build', ['-p', tmp], { preferLocal: true });
+  // console.log('Bundle ESM5 bundle of ngx-bootstrap');
+  // createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
+  // console.log('Bundle ES2015 bundle of ngx-bootstrap');
+  // createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
   console.log('Compiling libraries from temp folder');
   for (let module of modules) {
     console.log('Compiling', module);
@@ -89,15 +93,16 @@ function filterModules(module) {
 }
 
 async function createEsBundle(tsconfigPath, module, tsconfigOptions, suffix) {
+  const isRootModule = tsconfigPath === tmp;
   const tsconfig = require(path.resolve(tsconfigPath, 'tsconfig.json'));
   const newTsConfig = path.join(tsconfigPath, `tsconfig.${suffix}.json`);
   Object.keys(tsconfigOptions).forEach((key) => {
     tsconfig.compilerOptions[key] = tsconfigOptions[key];
   });
-  tsconfig.compilerOptions.outDir = `../dist-${suffix}`;
+  tsconfig.compilerOptions.outDir = isRootModule ? `./dist-${suffix}` : `../dist-${suffix}`;
   await fs.writeFile(newTsConfig, JSON.stringify(tsconfig), 'utf8');
   await execa('ngc', ['-p', newTsConfig], { preferLocal: true });
-  await execa('rollup --config ./scripts/es2015/es.config.js -i ' + `.tmp/dist-${suffix}/` + module + '/index.js' + ` -o dist/${suffix}/` + module + `.${suffix}.js`, { shell: true });
+  await execa('rollup --config ./scripts/es2015/es.config.js -i ' + `.tmp/dist-${suffix}/` +  (isRootModule ? '' : module + '/') + 'index.js' + ` -o dist/${suffix}/` + module + `.${suffix}.js`, { shell: true });
 }
 
 async function generateTypings(module, outDir) {

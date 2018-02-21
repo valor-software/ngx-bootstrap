@@ -13,4 +13,4 @@ export { BsDatepickerConfig } from './bs-datepicker.config';
 export { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 export { BsLocaleService } from './bs-locale.service';
 
-export { defineLocale, LocaleData, listLocales } from '../chronos';
+export { defineLocale, LocaleData, listLocales } from 'ngx-bootstrap/chronos';

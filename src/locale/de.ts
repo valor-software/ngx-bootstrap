@@ -4,7 +4,7 @@
 // tslint:disable:one-variable-per-declaration newline-before-return
 // tslint:disable:object-literal-key-quotes
 
-import { LocaleData } from '../chronos/locale/locale.class';
+import { LocaleData } from 'ngx-bootstrap/chronos';
 
 //! moment.js locale configuration
 //! locale : German [de]

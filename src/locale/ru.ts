@@ -3,9 +3,7 @@
 // tslint:disable:no-shadowed-variable switch-default prefer-const
 // tslint:disable:one-variable-per-declaration newline-before-return
 
-import { LocaleData } from '../chronos/locale/locale.class';
-import { getWeek } from '../chronos/units/week';
-import { getDayOfWeek } from '../chronos/units/day-of-week';
+import { LocaleData, getWeek, getDayOfWeek } from 'ngx-bootstrap/chronos';
 
 //! moment.js locale configuration
 //! locale : Russian [ru]

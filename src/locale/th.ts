@@ -7,7 +7,7 @@
 // locale : Thai [th]
 // author : Watcharapol Sanitwong : https://github.com/tumit
 
-import { LocaleData } from '../chronos/locale/locale.class';
+import { LocaleData } from 'ngx-bootstrap/chronos';
 
 export const thLocale: LocaleData = {
   abbr: 'th',

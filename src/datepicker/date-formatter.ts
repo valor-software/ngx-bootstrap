@@ -1,4 +1,4 @@
-import { formatDate } from '../chronos/format';
+import { formatDate } from 'ngx-bootstrap/chronos';
 
 export class DateFormatter {
   format(date: Date, format: string, locale: string): string {

@@ -393,5 +393,6 @@ module.exports = {
   'rxjs/scheduler/QueueAction':          'Rx.Scheduler',
   'rxjs/scheduler/QueueScheduler':       'Rx.Scheduler',
   'rxjs/scheduler/VirtualTimeScheduler': 'Rx.Scheduler',
-  'rxjs/scheduler':                      'Rx.Scheduler'
+  'rxjs/scheduler':                      'Rx.Scheduler',
+  'ngx-bootstrap/chronos': 'ngx-bootstrap/chronos'
 };

@@ -200,6 +200,7 @@ export function updateLocale(name: string, config?: LocaleData): Locale {
 
 // returns locale data
 export function getLocale(key?: string | string[]): Locale {
+  // console.log('getLocale', key, locales);
   if (!key) {
     return globalLocale;
   }

@@ -6,7 +6,7 @@
 //! author : Ahmed Elkhatib
 //! author : forabi https://github.com/forabi
 
-import { LocaleData } from '../chronos/locale/locale.class';
+import { LocaleData } from 'ngx-bootstrap/chronos';
 
 const symbolMap: {[key: string]: string} = {
   1: '١',
