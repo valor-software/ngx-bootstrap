@@ -5,7 +5,7 @@ import { DemoAutoShownModalComponent } from './auto-shown/auto-shown';
 import { DemoModalNestedComponent } from './nested/nested';
 import { DemoModalEventsComponent } from './events/events';
 
-import { DemoModalServiceStaticComponent } from './service-template/service-template';
+import { DemoModalBasicComponent } from './basic/basic';
 import { DemoModalServiceFromComponent } from './service-component/service-component';
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
 import { DemoModalServiceOptionsComponent } from './service-options/service-options';
@@ -19,7 +19,7 @@ export const DEMO_COMPONENTS = [
   DemoModalStaticComponent,
   DemoAutoShownModalComponent,
   DemoModalNestedComponent,
-  DemoModalServiceStaticComponent,
+  DemoModalBasicComponent,
   DemoModalServiceFromComponent,
   DemoModalServiceNestedComponent,
   DemoModalServiceOptionsComponent,

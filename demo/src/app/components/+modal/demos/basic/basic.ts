@@ -3,10 +3,10 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
-  selector: 'demo-modal-service-static',
-  templateUrl: './service-template.html'
+  selector: 'demo-modal-basic',
+  templateUrl: './basic.html'
 })
-export class DemoModalServiceStaticComponent {
+export class DemoModalBasicComponent {
   modalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
 

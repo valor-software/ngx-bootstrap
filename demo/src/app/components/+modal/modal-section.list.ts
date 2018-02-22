@@ -1,4 +1,4 @@
-import { DemoModalServiceStaticComponent } from './demos/service-template/service-template';
+import { DemoModalBasicComponent } from './demos/basic/basic';
 import { DemoModalServiceFromComponent } from './demos/service-component/service-component';
 import { DemoModalServiceNestedComponent } from './demos/service-nested/service-nested';
 import { DemoModalServiceEventsComponent } from './demos/service-events/service-events';
@@ -46,11 +46,11 @@ export const demoComponentContent: ContentSection[] = [
       which you've passed to service.</p>`,
     content: [
       {
-        title: 'Template',
-        anchor: 'service-template',
-        component: require('!!raw-loader?lang=typescript!./demos/service-template/service-template.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/service-template/service-template.html'),
-        outlet: DemoModalServiceStaticComponent
+        title: 'Basic',
+        anchor: 'basic',
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        outlet: DemoModalBasicComponent
       },
       {
         title: 'Component',
