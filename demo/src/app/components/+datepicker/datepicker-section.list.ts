@@ -6,6 +6,7 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
@@ -149,6 +150,15 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Outside click',
+        anchor: 'outside-click',
+        component: require('!!raw-loader?lang=typescript!./demos/outside-click/outside-click.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/outside-click/outside-click.html'),
+        description: `<p>Datepicker closes after outside click by default. To change 
+          this behavior, use <code>outsideClick</code> property.</p>`,
+        outlet: DemoDatepickerOutsideClickComponent
       },
       {
         title: 'IsOpen property',
