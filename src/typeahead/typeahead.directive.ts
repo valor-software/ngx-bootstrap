@@ -90,15 +90,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
-  @Output() typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
+  @Output() typeaheadLoading = new EventEmitter<boolean>();
   /** fired on every key event and returns true
    * in case of matches are not detected
    */
-  @Output() typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
+  @Output() typeaheadNoResults = new EventEmitter<boolean>();
   /** fired when option was selected, return object with data of this option */
-  @Output() typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
-  /** fired when blur event occurred. returns the active item */
-  @Output() typeaheadOnBlur: EventEmitter<any> = new EventEmitter();
+  @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
+  /** fired when blur event occurres. returns the active item */
+  @Output() typeaheadOnBlur = new EventEmitter<any>();
 
   /**
    * A selector specifying the element the typeahead should be appended to.
