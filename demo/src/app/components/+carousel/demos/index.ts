@@ -5,6 +5,7 @@ import { DemoCarouselConfigComponent } from './config/config';
 import { DemoCarouselIntervalComponent } from './interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './disable-indicator/disable-indicator';
 import { DemoCarouselDisableLoopingComponent } from './disable-looping/disable-looping';
+import { DemoCarouselSlideChangedEventComponent } from './slide-changed-event/slide-changed-event';
 
 export const DEMO_COMPONENTS = [
   DemoCarouselDynamicComponent,
@@ -13,5 +14,6 @@ export const DEMO_COMPONENTS = [
   DemoCarouselConfigComponent,
   DemoCarouselIntervalComponent,
   DemoCarouselDisableIndicatorComponent,
-  DemoCarouselDisableLoopingComponent
+  DemoCarouselDisableLoopingComponent,
+  DemoCarouselSlideChangedEventComponent
 ];

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-dropup',
+  selector: 'demo-dropdown-dropup',
   templateUrl: './dropup.html'
 })
-export class DemoDropupComponent {
+export class DemoDropdownDropupComponent {
   isDropup = true;
 }

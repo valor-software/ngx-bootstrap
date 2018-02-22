@@ -5,6 +5,7 @@ import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoCarouselIntervalComponent } from './demos/interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './demos/disable-indicator/disable-indicator';
 import { DemoCarouselDisableLoopingComponent } from './demos/disable-looping/disable-looping';
+import { DemoCarouselSlideChangedEventComponent } from './demos/slide-changed-event/slide-changed-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -81,6 +82,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/interval/interval.ts'),
         html: require('!!raw-loader?lang=markup!./demos/interval/interval.html'),
         outlet: DemoCarouselIntervalComponent
+      },
+      {
+        title: 'Slide changed event',
+        anchor: 'slide-changed-event',
+        component: require('!!raw-loader?lang=typescript!./demos/slide-changed-event/slide-changed-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/slide-changed-event/slide-changed-event.html'),
+        outlet: DemoCarouselSlideChangedEventComponent
       }
     ]
   },
