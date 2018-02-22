@@ -8,6 +8,9 @@ import { DemoPaginationPagesCountChangedComponent } from './pages-count-changed/
 import { DemoPaginationBoundaryLinksComponent } from './boundary-links/boundary-links';
 import { DemoPaginationDirectionLinksComponent } from './direction-links/direction-links';
 import { DemoPaginationCustomLinksContentComponent } from './custom-links-content/custom-links-content';
+import { DemoPaginationDisabledComponent } from './disabled/disabled';
+import { DemoPaginationRotateComponent } from './rotate/rotate';
+import { DemoPaginationContentSwitchingComponent } from './content-switching/content-switching';
 
 export const DEMO_COMPONENTS = [
   DemoPaginationBasicComponent,
@@ -19,5 +22,8 @@ export const DEMO_COMPONENTS = [
   DemoPaginationPagesCountChangedComponent,
   DemoPaginationBoundaryLinksComponent,
   DemoPaginationDirectionLinksComponent,
-  DemoPaginationCustomLinksContentComponent
+  DemoPaginationCustomLinksContentComponent,
+  DemoPaginationDisabledComponent,
+  DemoPaginationRotateComponent,
+  DemoPaginationContentSwitchingComponent
 ];

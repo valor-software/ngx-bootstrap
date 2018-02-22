@@ -1,13 +1,1 @@
-<div class="row">
-  <div class="col-xs-12 col-12">
-    <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
-                [boundaryLinks]="true"></pagination>
-  </div>
-
-  <div class="col-xs-12 col-12">
-    <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
-                [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"></pagination>
-  </div>
-</div>
-
-<pre class="card card-block card-header">Page: {{bigCurrentPage}} / {{numPages}}</pre>
+<pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize"></pagination>
