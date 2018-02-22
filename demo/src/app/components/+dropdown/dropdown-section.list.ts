@@ -124,8 +124,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
-        description: `<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the
-          parent element.</p>`,
+        description: `<p>Trigger dropdown menus above elements by setting <code>dropup</code> property to <code>true</code></p>`,
         outlet: DemoDropdownDropupComponent
       },
       {
