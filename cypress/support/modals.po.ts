@@ -5,6 +5,12 @@ export class ModalsPo extends BaseComponent {
   pageTitle = 'Modals';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
 
+  modalContent = '.modal-content';
+  backServiceMod = 'modal-container';
+  backDirectiveMod = '[bsmodal]';
+  modalHeader = '.modal-header';
+  btnCloseInHeader = '.close';
+
   exampleDemosArr = {
     serviceTemplate: 'demo-modal-service-static',
     serviceComponent: 'demo-modal-service-component',

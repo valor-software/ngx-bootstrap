@@ -66,7 +66,6 @@
     "url": "https://github.com/valor-software/ngx-bootstrap/issues"
   },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
-  "dependencies": {},
   "peerDependencies": {
     "@angular/common": ">=4.3.0 || >5.0.0",
     "@angular/compiler": ">=4.3.0 || >5.0.0",
@@ -113,7 +112,7 @@
     "core-js": "2.5.3",
     "cpy": "6.0.0",
     "cpy-cli": "1.0.1",
-    "cypress": "2.0.3",
+    "cypress": "2.1.0",
     "gh-pages": "1.1.0",
     "gitignore-to-glob": "0.3.0",
     "google-code-prettify": "1.0.5",
@@ -154,6 +153,7 @@
     "tslint-config-valorsoft": "2.1.1",
     "typedoc": "0.9.0",
     "typescript": "2.4.2",
+    "wait-on": "2.1.0",
     "wallaby-webpack": "3.9.4",
     "webpack-bundle-analyzer": "2.9.2",
     "zone.js": "0.8.17"

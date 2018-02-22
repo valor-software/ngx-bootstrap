@@ -5,9 +5,10 @@ export class SortablePo extends BaseComponent {
   pageTitle = 'Sortable';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/blob/development/src/sortable';
 
+  classWrapper = '.sortable-wrapper';
+  classItem = '.sortable-item';
+
   exampleDemosArr = {
-    stringItems: 'simple-items-demo',
-    complexModel: 'complex-datamodel-demo',
-    customTemplate: 'custom-item-template-demo'
+    basic: 'basic-demo'
   };
 }

@@ -5,15 +5,22 @@ export class DatepickerPo extends BaseComponent {
   pageTitle = 'Datepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
 
+  datepickerInput = 'input[bsdatepicker]';
+  daterangepickerInput = 'input[bsdaterangepicker]';
+  datepickerLastOpened = 'bs-datepicker-container:last';
+  daterangepickerLastOpened = 'bs-daterangepicker-container:last';
+  datepickerDays = '[bsdatepickerdaydecorator]';
+  formOutput = '.code-preview';
+
   exampleDemosArr = {
-    basic: 'demo-date-picker-popup',
+    basic: 'demo-datepicker-basic',
     customFormat: 'demo-date-picker-custom-format',
-    themes: 'demo-datepicker-color-theming',
-    locales: 'demo-datepicker-change-locale',
-    minMax: 'demo-datepicker-min-max',
-    disabled: 'demo-datepicker-disabled',
-    forms: 'demo-datepicker-forms',
-    reactiveForms: 'demo-datepicker-reactive-forms',
-    placement: 'demo-datepicker-placement'
+    reactiveForms: 'demo-datepicker-reactive-forms'
   };
+
+  clickOnDayInCurrMonth(datepicker: string, day: string) {
+    cy.get(`${ datepicker } ${ this.datepickerDays}`)
+      .not('.is-other-month')
+      .contains(day).click();
+  }
 }

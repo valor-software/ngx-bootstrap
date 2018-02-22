@@ -5,9 +5,11 @@ export class PaginationPo extends BaseComponent {
   pageTitle = 'Pagination';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
 
+  classActive = '.active';
+  btnPrev = 'Previous';
+  btnNext = 'Next';
+
   exampleDemosArr = {
-    basic: 'demo-pagination-basic',
-    statesLimits: 'demo-pagination-limit',
     pager: 'demo-pagination-pager'
   };
 }

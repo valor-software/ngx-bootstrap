@@ -5,16 +5,11 @@ export class AlertsPo extends BaseComponent {
   pageTitle = 'Alerts';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
 
+  alertClass = '.alert';
   linkClass = '.alert-link';
-  buttonToggler = 'Toggle dismissible';
-  buttonReset = 'Reset';
-  buttonChangeText = 'Change text';
-
-  dynamicAlertText = [
-    'You successfully read this important alert message.',
-    'Now this text is different from what it was before. Go ahead and click the button one more time',
-    'Well done! Click reset button'
-  ];
+  heading = '.alert-heading';
+  dismissOption = '.close';
+  textWrapper = 'span';
 
   exampleDemosArr = {
     basic: 'demo-alert-basic',
