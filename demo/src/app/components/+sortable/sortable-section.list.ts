@@ -1,4 +1,4 @@
-import { SimpleItemsDemoComponent } from './demos/simple-items/simple-items.component';
+import { DemoBasicComponent } from './demos/basic/basic.component';
 import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel.component';
 import { CustomItemTemplateDemoComponent } from './demos/custom-item-template/custom-item-template';
 
@@ -24,11 +24,11 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     content: [
       {
-        title: 'String items',
-        anchor: 'stringItems',
-        component: require('!!raw-loader?lang=typescript!./demos/simple-items/simple-items.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/simple-items/simple-items.component.html'),
-        outlet: SimpleItemsDemoComponent
+        title: 'Basic',
+        anchor: 'basic',
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.component.html'),
+        outlet: DemoBasicComponent
       },
       {
         title: 'Complex data model',
