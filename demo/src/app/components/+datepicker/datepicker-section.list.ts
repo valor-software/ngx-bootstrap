@@ -6,6 +6,7 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
@@ -148,6 +149,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'IsOpen property',
+        anchor: 'is-open',
+        component: require('!!raw-loader?lang=typescript!./demos/is-open/is-open.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/is-open/is-open.html'),
+        description: `<p>The datepicker's closed by default. To change this behavior, use <code>isOpen</code> property.</p>`,
+        outlet: DemoDatepickerIsOpenComponent
       },
       {
         title: 'Triggers',
