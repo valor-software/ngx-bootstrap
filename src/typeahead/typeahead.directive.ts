@@ -343,7 +343,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._subscriptions.push(
       this.keyUpEventEmitter
         .debounceTime(this.typeaheadWaitMs)
-        .mergeMap(() => this.typeahead)
+        .switchMap(() => this.typeahead)
         .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })
