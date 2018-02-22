@@ -66,9 +66,6 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dynamic-content',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
-        description: `<p>tooltip content can contain any html template. Just create
-          <code>&lt;template #myId></code> with any html allowed by Angular, and provide template ref
-          (<code>#myId</code>) as tooltip content.</p>`,
         outlet: DemoTooltipDynamicComponent
       },
       {
