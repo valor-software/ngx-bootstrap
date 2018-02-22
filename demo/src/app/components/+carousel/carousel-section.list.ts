@@ -2,6 +2,7 @@ import { DemoCarouseBasicComponent } from './demos/basic/basic';
 import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
 import { DemoCarouselConfigComponent } from './demos/config/config';
 import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoCarouselCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoCarouselIntervalComponent } from './demos/interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './demos/disable-indicator/disable-indicator';
 import { DemoCarouselDisableLoopingComponent } from './demos/disable-looping/disable-looping';
@@ -61,6 +62,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoCarouselDynamicComponent
+      },
+      {
+        title: 'Custom content',
+        anchor: 'custom-content',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
+        outlet: DemoCarouselCustomContentComponent
       },
       {
         title: 'Disable slide looping',
