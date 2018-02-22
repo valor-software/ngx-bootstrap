@@ -1,4 +1,5 @@
-import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup';
+import { DemoDatepickerBasicComponent } from './demos/basic/basic';
+import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
@@ -37,10 +38,9 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/bs-popup/date-picker-popup.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `
-          <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
@@ -52,7 +52,14 @@ export const demoComponentContent: ContentSection[] = [
             </li>
           </ul>
         `,
-        outlet: DemoDatePickerPopupComponent
+        outlet: DemoDatepickerBasicComponent
+      },
+      {
+        title: 'Initial state',
+        anchor: 'date-initial-state',
+        component: require('!!raw-loader?lang=typescript!./demos/date-initial-state/date-initial-state.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/date-initial-state/date-initial-state.html'),
+        outlet: DemoDatepickerDateInitialStateComponent
       },
       {
         title: 'Custom date format',
