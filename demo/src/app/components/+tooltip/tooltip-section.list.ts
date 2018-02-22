@@ -107,6 +107,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
         outlet: DemoTooltipTriggersManualComponent
       },
       {
