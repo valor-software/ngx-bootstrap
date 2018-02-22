@@ -91,10 +91,6 @@ export class DemoTypeaheadAsyncComponent {
     this.typeaheadLoading = e;
   }
 
-  changeTypeaheadNoResults(e: boolean): void {
-    this.typeaheadNoResults = e;
-  }
-
   typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e.value);
   }

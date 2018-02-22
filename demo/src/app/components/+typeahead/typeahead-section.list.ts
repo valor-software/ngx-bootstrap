@@ -6,6 +6,7 @@ import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reacti
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
 import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
@@ -134,6 +135,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
         outlet: DemoTypeaheadContainerComponent
+      },
+      {
+        title: 'No result',
+        anchor: 'no-result',
+        description: `
+         <p>Used to display the state when no matches were found. To see message
+         "No Results Found" enter the value that doesn't match anything from the list</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/no-result/no-result.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/no-result/no-result.html'),
+        outlet: DemoTypeaheadNoResultComponent
       },
       {
         title: 'Scrollable',
