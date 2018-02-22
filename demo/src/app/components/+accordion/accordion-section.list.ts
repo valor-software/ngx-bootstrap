@@ -4,6 +4,7 @@ import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
 import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoAccordionManualToggleComponent } from './demos/manual-toggle/manual-toggle';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -14,6 +15,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoAccordionDynamicBodyComponent } from './demos/dynamic-body/dynamic-body';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -51,6 +53,20 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dymanic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dymanic/dynamic.html'),
         outlet: DemoAccordionDynamicComponent
+      },
+      {
+        title: 'Dynamic body content',
+        anchor: 'dynamic-body',
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic-body/dynamic-body'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic-body/dynamic-body.html'),
+        outlet: DemoAccordionDynamicBodyComponent
+      },
+      {
+        title: 'Manual toggle',
+        anchor: 'manual-toggle',
+        component: require('!!raw-loader?lang=typescript!./demos/manual-toggle/manual-toggle'),
+        html: require('!!raw-loader?lang=markup!./demos/manual-toggle/manual-toggle.html'),
+        outlet: DemoAccordionManualToggleComponent
       },
       {
         title: 'Open only one at a time',
