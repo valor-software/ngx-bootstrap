@@ -1,5 +1,5 @@
 import { DemoPopoverBasicComponent } from './demos/basic/basic';
-import { DemoPopoverFourDirectionsComponent } from './demos/four-directions/four-directions';
+import { DemoPopoverPlacementComponent } from './demos/placement/placement';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -10,6 +10,7 @@ import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/trig
 import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverClassComponent } from './demos/class/class';
+import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
 import { DemoPopoverEventsComponent } from './demos/events/events';
 
@@ -45,13 +46,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverBasicComponent
       },
       {
-        title: 'Four directions',
-        anchor: 'four-directions',
-        component: require('!!raw-loader?lang=typescript!./demos/four-directions/four-directions.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/four-directions/four-directions.html'),
+        title: 'Placement',
+        anchor: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
         Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
-        outlet: DemoPopoverFourDirectionsComponent
+        outlet: DemoPopoverPlacementComponent
       },
       {
         title: 'Dismiss on next click',
@@ -140,6 +141,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoPopoverClassComponent
+      },
+      {
+        title: 'Popover context',
+        anchor: 'popover-context',
+        component: require('!!raw-loader?lang=typescript!./demos/popover-context/popover-context.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/popover-context/popover-context.html'),
+        outlet: DemoPopoverContextComponent
       }/*,
       {
         title: 'Global styling',

@@ -1,5 +1,5 @@
 import { DemoPopoverBasicComponent } from './basic/basic';
-import { DemoPopoverFourDirectionsComponent } from './four-directions/four-directions';
+import { DemoPopoverPlacementComponent } from './placement/placement';
 import { DemoPopoverDismissComponent } from './dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './dynamic-html/dynamic-html';
@@ -12,10 +12,11 @@ import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-m
 import { DemoPopoverClassComponent } from './class/class';
 import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
 import { DemoPopoverEventsComponent } from './events/events';
+import { DemoPopoverContextComponent } from './popover-context/popover-context';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
-  DemoPopoverFourDirectionsComponent,
+  DemoPopoverPlacementComponent,
   DemoPopoverDismissComponent,
   DemoPopoverDynamicComponent,
   DemoPopoverDynamicHtmlComponent,
@@ -27,5 +28,6 @@ export const DEMO_COMPONENTS = [
   DemoPopoverTriggersManualComponent,
   DemoPopoverClassComponent,
   DemoPopoverOutsideClickComponent,
-  DemoPopoverEventsComponent
+  DemoPopoverEventsComponent,
+  DemoPopoverContextComponent
 ];

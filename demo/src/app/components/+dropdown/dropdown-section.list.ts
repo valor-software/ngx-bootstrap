@@ -9,6 +9,7 @@ import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownConfigComponent } from './demos/config/config';
+import { DemoDropdownCustomHtmlComponent } from './demos/custom-html/custom-html';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -122,6 +123,14 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the
           parent element.</p>`,
         outlet: DemoDropupComponent
+      },
+      {
+        title: 'Custom html',
+        anchor: 'custom-html',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-html/custom-html.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-html/custom-html.html'),
+        description: `<p>Dropdown allows you to use any html</p>`,
+        outlet: DemoDropdownCustomHtmlComponent
       },
       {
         title: 'Configuring defaults',
