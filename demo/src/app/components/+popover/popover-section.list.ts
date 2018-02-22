@@ -1,5 +1,5 @@
 import { DemoPopoverBasicComponent } from './demos/basic/basic';
-import { DemoPopoverFourDirectionsComponent } from './demos/four-directions/four-directions';
+import { DemoPopoverPlacementComponent } from './demos/placement/placement';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -45,13 +45,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverBasicComponent
       },
       {
-        title: 'Four directions',
-        anchor: 'four-directions',
-        component: require('!!raw-loader?lang=typescript!./demos/four-directions/four-directions.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/four-directions/four-directions.html'),
+        title: 'Placement',
+        anchor: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
         Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
-        outlet: DemoPopoverFourDirectionsComponent
+        outlet: DemoPopoverPlacementComponent
       },
       {
         title: 'Dismiss on next click',
