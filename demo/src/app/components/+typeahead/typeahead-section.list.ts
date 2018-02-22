@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 
@@ -95,6 +96,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'container',
+        description: `
+        <p>A selector specifying the element the typeahead should be appended to. Currently only supports "body".</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        outlet: DemoTypeaheadContainerComponent
       },
       {
         title: 'Scrollable',
