@@ -1,5 +1,6 @@
 import { DemoTimepickerBasicComponent } from './demos/basic/basic';
 import { DemoTimepickerMeridianComponent } from './demos/meridian/meridian';
+import { DemoTimepickerCustomMeridianComponent } from './demos/custom-meridian/custom-meridian';
 import { DemoTimepickerMinMaxComponent } from './demos/min-max/min-max';
 import { DemoTimepickerToggleMinutesSecondsComponent } from './demos/toggle-minutes-seconds/toggle-minutes-seconds';
 import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
@@ -47,6 +48,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/meridian/meridian'),
         html: require('!!raw-loader?lang=markup!./demos/meridian/meridian.html'),
         outlet: DemoTimepickerMeridianComponent
+      },
+      {
+        title: 'Custom meridian',
+        anchor: 'custom-meridian',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-meridian/custom-meridian'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-meridian/custom-meridian.html'),
+        outlet: DemoTimepickerCustomMeridianComponent
       },
       {
         title: 'Min - Max',
