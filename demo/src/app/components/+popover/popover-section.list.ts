@@ -1,5 +1,5 @@
 import { DemoPopoverBasicComponent } from './demos/basic/basic';
-import { DemoPopoverFourDirectionsComponent } from './demos/four-directions/four-directions';
+import { DemoPopoverPlacementComponent } from './demos/placement/placement';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -8,9 +8,12 @@ import { DemoPopoverConfigComponent } from './demos/config/config';
 import { DemoPopoverOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
+import { DemoPopoverTriggerByInput } from './demos/trigger-by-input/trigger-by-input';
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverClassComponent } from './demos/class/class';
+import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
+import { DemoPopoverEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -18,8 +21,8 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import {
-  NgApiDocComponent,
-  NgApiDocConfigComponent
+NgApiDocComponent,
+NgApiDocConfigComponent
 } from '../../docs/api-docs';
 
 export const demoComponentContent: ContentSection[] = [
@@ -44,13 +47,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverBasicComponent
       },
       {
-        title: 'Four directions',
-        anchor: 'four-directions',
-        component: require('!!raw-loader?lang=typescript!./demos/four-directions/four-directions.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/four-directions/four-directions.html'),
+        title: 'Placement',
+        anchor: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
         Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
-        outlet: DemoPopoverFourDirectionsComponent
+        outlet: DemoPopoverPlacementComponent
       },
       {
         title: 'Dismiss on next click',
@@ -92,6 +95,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverContainerComponent
       },
       {
+        title: 'Visibility events',
+        anchor: 'events',
+        component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
+        outlet: DemoPopoverEventsComponent
+      },
+      {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
@@ -120,6 +130,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverTriggersManualComponent
       },
       {
+        title: 'Trigger by input',
+        anchor: 'trigger-by-input',
+        component: require('!!raw-loader?lang=typescript!./demos/trigger-by-input/trigger-by-input.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/trigger-by-input/trigger-by-input.html'),
+        outlet: DemoPopoverTriggerByInput
+      },
+      {
         title: 'Component level styling',
         anchor: 'styling-local',
         component: require('!!raw-loader?lang=typescript!./demos/styling-local/styling-local.ts'),
@@ -132,6 +149,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoPopoverClassComponent
+      },
+      {
+        title: 'Popover context',
+        anchor: 'popover-context',
+        component: require('!!raw-loader?lang=typescript!./demos/popover-context/popover-context.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/popover-context/popover-context.html'),
+        outlet: DemoPopoverContextComponent
       }/*,
       {
         title: 'Global styling',
