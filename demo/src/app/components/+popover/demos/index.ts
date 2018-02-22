@@ -12,6 +12,7 @@ import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-m
 import { DemoPopoverTriggerByInput } from './trigger-by-input/trigger-by-input';
 import { DemoPopoverClassComponent } from './class/class';
 import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
+import { DemoPopoverEventsComponent } from './events/events';
 import { DemoPopoverContextComponent } from './popover-context/popover-context';
 
 export const DEMO_COMPONENTS = [
@@ -29,5 +30,6 @@ export const DEMO_COMPONENTS = [
   DemoPopoverTriggerByInput,
   DemoPopoverClassComponent,
   DemoPopoverOutsideClickComponent,
+  DemoPopoverEventsComponent,
   DemoPopoverContextComponent
 ];
