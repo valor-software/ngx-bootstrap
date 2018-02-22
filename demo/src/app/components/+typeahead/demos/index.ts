@@ -6,6 +6,7 @@ import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-for
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadLatinizeComponent } from './latinize/latinize';
 import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 import { DemoTypeaheadContainerComponent } from './container/container';
@@ -26,7 +27,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadScrollableComponent,
   DemoTypeaheadNoResultComponent,
   DemoTypeaheadOnBlurComponent,
-  DemoTypeaheadScrollableComponent,
+  DemoTypeaheadLatinizeComponent
   DemoTypeaheadContainerComponent,
   DemoTypeaheadFormComponent
 ];
@@ -47,6 +48,14 @@ export const DEMOS = {
   async: {
     component: require('!!raw-loader?lang=typescript!./async/async.ts'),
     html: require('!!raw-loader?lang=markup!./async/async.html')
+  },
+  latinize: {
+    component: require('!!raw-loader?lang=typescript!./latinize/latinize.ts'),
+    html: require('!!raw-loader?lang=markup!./latinize/latinize.html')
+  },
+  inForm: {
+    component: require('!!raw-loader?lang=typescript!./in-form/in-form.ts'),
+    html: require('!!raw-loader?lang=markup!./in-form/in-form.html')
   },
   form: {
     component: require('!!raw-loader?lang=typescript!./form/form.ts'),
