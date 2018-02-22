@@ -2,6 +2,7 @@ import { DemoCarouseBasicComponent } from './demos/basic/basic';
 import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
 import { DemoCarouselConfigComponent } from './demos/config/config';
 import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoCarouselSlideChangedEventComponent } from './demos/slide-changed-event/slide-changed-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -57,6 +58,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoCarouselDynamicComponent
+      },
+      {
+        title: 'Slide changed event',
+        anchor: 'slide-changed-event',
+        component: require('!!raw-loader?lang=typescript!./demos/slide-changed-event/slide-changed-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/slide-changed-event/slide-changed-event.html'),
+        outlet: DemoCarouselSlideChangedEventComponent
       }
     ]
   },

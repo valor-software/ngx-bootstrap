@@ -9,6 +9,7 @@ import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-
 import { DemoDatePickerCustomFormatComponent } from './custom-format/date-picker-custom-format';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
+import { DemoDatepickerTriggersComponent } from './triggers/triggers';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -21,5 +22,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerFormsComponent,
   DemoDatepickerReactiveFormsComponent,
   DemoDatepickerPlacementComponent,
-  DemoDatepickerDateInitialStateComponent
+  DemoDatepickerDateInitialStateComponent,
+  DemoDatepickerTriggersComponent
 ];

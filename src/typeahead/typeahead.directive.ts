@@ -97,7 +97,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Output() typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
-  /** fired when blur event occurres. returns the active item */
+  /** fired when blur event occurred. returns the active item */
   @Output() typeaheadOnBlur: EventEmitter<any> = new EventEmitter();
 
   /**

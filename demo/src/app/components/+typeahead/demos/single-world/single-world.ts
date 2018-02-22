@@ -1,20 +1,13 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-
-import 'rxjs/add/observable/of';
 
 @Component({
-  selector: 'demo-typeahead-forms',
-  templateUrl: './in-form.html'
+  selector: 'demo-typeahead-single-world',
+  templateUrl: './single-world.html'
 })
-export class DemoTypeaheadFormsComponent {
-  stateCtrl: FormControl = new FormControl();
-
-  myForm: FormGroup = new FormGroup({
-    state: this.stateCtrl
-  });
-
-  states: string[] = [
+export class DemoTypeaheadSingleWorldComponent {
+  typeaheadSingleWords = true;
+  selected: string;
+  states = [
     'Alabama',
     'Alaska',
     'Arizona',
