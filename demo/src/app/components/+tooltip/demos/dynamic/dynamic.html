@@ -1,8 +1,16 @@
-<button type="button" class="btn btn-info" [tooltip]="content">
-  Simple binding
-</button>
-
-<ng-template #tolTemplate>Just another: {{content}}</ng-template>
-<button type="button" class="btn btn-warning" [tooltip]="tolTemplate">
-  TemplateRef binding
-</button>
+<div class="row">
+  <div class="mb-3 col-xs-12 col-12 col-lg-3">
+    <p>Pass a string as tooltip content</p>
+    <button type="button" class="btn btn-info" [tooltip]="content">
+      Simple binding
+    </button>
+  </div>
+  <div class="mb-3 col-xs-12 col-12 col-lg-9">
+    <p>or create <code>&lt;template #myId&gt;</code> with any html allowed by Angular, and provide template ref
+      <code>#myId</code> as tooltip content.</p>
+    <ng-template #tolTemplate>Just another: {{content}}</ng-template>
+    <button type="button" class="btn btn-warning" [tooltip]="tolTemplate">
+      TemplateRef binding
+    </button>
+  </div>
+</div>

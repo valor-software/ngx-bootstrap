@@ -1,12 +1,15 @@
-import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup';
+import { DemoDatepickerBasicComponent } from './demos/basic/basic';
+import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -36,10 +39,9 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/bs-popup/date-picker-popup.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `
-          <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
@@ -51,7 +53,14 @@ export const demoComponentContent: ContentSection[] = [
             </li>
           </ul>
         `,
-        outlet: DemoDatePickerPopupComponent
+        outlet: DemoDatepickerBasicComponent
+      },
+      {
+        title: 'Initial state',
+        anchor: 'date-initial-state',
+        component: require('!!raw-loader?lang=typescript!./demos/date-initial-state/date-initial-state.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/date-initial-state/date-initial-state.html'),
+        outlet: DemoDatepickerDateInitialStateComponent
       },
       {
         title: 'Custom date format',
@@ -140,6 +149,22 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'IsOpen property',
+        anchor: 'is-open',
+        component: require('!!raw-loader?lang=typescript!./demos/is-open/is-open.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/is-open/is-open.html'),
+        description: `<p>The datepicker's closed by default. To change this behavior, use <code>isOpen</code> property.</p>`,
+        outlet: DemoDatepickerIsOpenComponent
+      },
+      {
+        title: 'Triggers',
+        anchor: 'triggers',
+        component: require('!!raw-loader?lang=typescript!./demos/triggers/triggers.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/triggers/triggers.html'),
+        description: `<p>Use different triggers ( for example <code>keydown</code>, <code>mouseenter</code>, <code>dblclick</code> ) to interact with datepicker</p>`,
+        outlet: DemoDatepickerTriggersComponent
       }
     ]
   },
