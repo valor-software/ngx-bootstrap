@@ -262,7 +262,7 @@ a:hover {
   &-content {
     padding: 15px 19px 15px 20px;
     overflow: auto;
-    max-height: calc(100vh - 194px); // header + search field + bootstrap buttons field
+    max-height: calc(100vh - 207px); // header + search field + bootstrap buttons field
   }
 
   &-list {
@@ -539,6 +539,12 @@ a:hover {
   }
   #mobile-main-menu {
     display: none;
+  }
+}
+/* below 1504 */
+@media (max-width: 1504px) {
+  .sidebar-content {
+    max-height: calc(100vh - 246px); // header + search field + bootstrap buttons field
   }
 }
 /* below 1200 */
