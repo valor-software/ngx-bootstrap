@@ -7,7 +7,8 @@ import { DemoDropdownAlignmentComponent } from './demos/alignment/menu-alignment
 import { DemoNestedDropdownsComponent } from './demos/nested-dropdowns/nested-dropdowns';
 import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
-import { DemoDropupComponent } from './demos/dropup/dropup';
+import { DemoDropdownDropupComponent } from './demos/dropup/dropup';
+import { DemoDropdownMenuDividersComponent } from './demos/menu-dividers/menu-dividers';
 import { DemoDropdownConfigComponent } from './demos/config/config';
 import { DemoDropdownStateChangeEventComponent } from './demos/state-change-event/state-change-event';
 import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
@@ -125,7 +126,15 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         description: `<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the
           parent element.</p>`,
-        outlet: DemoDropupComponent
+        outlet: DemoDropdownDropupComponent
+      },
+      {
+        title: 'Menu dividers',
+        anchor: 'menu-dividers',
+        component: require('!!raw-loader?lang=typescript!./demos/menu-dividers/menu-dividers.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/menu-dividers/menu-dividers.html'),
+        description: `<p>Separate groups of related menu items with a <code>.divider</code> for bootstrap 3 and <code>.dropdown-divider</code> for bootstrap 4.</p>`,
+        outlet: DemoDropdownMenuDividersComponent
       },
       {
         title: 'Custom html',
