@@ -13,6 +13,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoPaginationDisabledComponent } from './demos/disabled/disabled';
 import { DemoPaginationRotateComponent } from './demos/rotate/rotate';
 
 export const demoComponentContent: ContentSection[] = [
@@ -36,6 +37,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoPaginationBasicComponent
+      },
+      {
+        title: 'Disabled',
+        anchor: 'pagination-disabled',
+        component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
+        outlet: DemoPaginationDisabledComponent
       },
       {
         title: 'Limits',
