@@ -6,6 +6,9 @@ import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadContainerComponent } from './demos/container/container';
+import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
+import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -71,11 +74,38 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadGroupingComponent
       },
       {
+        title: 'Ignore spaces and order',
+        anchor: 'single-world',
+        component: require('!!raw-loader?lang=typescript!./demos/single-world/single-world.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/single-world/single-world.html'),
+        description: `If <code>typeaheadSingleWords=true</code> ignores spaces and seeking for matches with occurrences of entered words.
+          For example: <pre>ari zona -> Arizona</pre>`,
+        outlet: DemoTypeaheadSingleWorldComponent
+      },
+      {
+        title: 'Phrase delimiters',
+        anchor: 'phrase-delimiters',
+        component: require('!!raw-loader?lang=typescript!./demos/phrase-delimiters/phrase-delimiters.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/phrase-delimiters/phrase-delimiters.html'),
+        description: `Sets the word delimiter to match exact phrase. For example that are <code>&</code> and <code>,</code>`,
+        outlet: DemoTypeaheadPhraseDelimitersComponent
+      },
+      {
         title: 'Dropup',
         anchor: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'container',
+        description: `
+        <p>A selector specifying the element the typeahead should be appended to. Currently only supports "body".</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        outlet: DemoTypeaheadContainerComponent
       },
       {
         title: 'Scrollable',

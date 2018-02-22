@@ -2,6 +2,7 @@ import { DemoPaginationBasicComponent } from './demos/basic/basic';
 import { DemoPaginationPagerComponent } from './demos/pager/pager';
 import { DemoPaginationLimitComponent } from './demos/limit/limit';
 import { DemoPaginationStylingComponent } from './demos/styling-global/styling-global';
+import { DemoPaginationContentSwitchingComponent } from './demos/content-switching/content-switching';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -13,6 +14,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoPaginationDisabledComponent } from './demos/disabled/disabled';
+import { DemoPaginationRotateComponent } from './demos/rotate/rotate';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -44,12 +46,28 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPaginationDisabledComponent
       },
       {
-        title: 'States & Limits',
+        title: 'Limits',
         anchor: 'pagination-limit',
         component: require('!!raw-loader?lang=typescript!./demos/limit/limit.ts'),
         html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
         description: `<p>Limit the maximum visible buttons</p>`,
         outlet: DemoPaginationLimitComponent
+      },
+      {
+
+        title: 'Centering the active page link',
+        anchor: 'pagination-rotate',
+        component: require('!!raw-loader?lang=typescript!./demos/rotate/rotate.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/rotate/rotate.html'),
+        description: `<p>Set current page link to center</p>`,
+        outlet: DemoPaginationRotateComponent
+      },
+      {
+        title: 'Content switching',
+        anchor: 'content-switching',
+        component: require('!!raw-loader?lang=typescript!./demos/content-switching/content-switching.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/content-switching/content-switching.html'),
+        outlet: DemoPaginationContentSwitchingComponent
       },
       {
         title: 'Pager',
