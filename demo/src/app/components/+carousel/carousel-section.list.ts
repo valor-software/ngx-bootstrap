@@ -2,6 +2,9 @@ import { DemoCarouseBasicComponent } from './demos/basic/basic';
 import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
 import { DemoCarouselConfigComponent } from './demos/config/config';
 import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoCarouselIntervalComponent } from './demos/interval/interval';
+import { DemoCarouselDisableIndicatorComponent } from './demos/disable-indicator/disable-indicator';
+import { DemoCarouselDisableLoopingComponent } from './demos/disable-looping/disable-looping';
 import { DemoCarouselSlideChangedEventComponent } from './demos/slide-changed-event/slide-changed-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -58,6 +61,27 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoCarouselDynamicComponent
+      },
+      {
+        title: 'Disable slide looping',
+        anchor: 'disable-looping',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-looping/disable-looping.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-looping/disable-looping.html'),
+        outlet: DemoCarouselDisableLoopingComponent
+      },
+      {
+        title: 'Disable indicator',
+        anchor: 'disable-indicator',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-indicator/disable-indicator.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-indicator/disable-indicator.html'),
+        outlet: DemoCarouselDisableIndicatorComponent
+      },
+      {
+        title: 'Interval',
+        anchor: 'slides-interval',
+        component: require('!!raw-loader?lang=typescript!./demos/interval/interval.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/interval/interval.html'),
+        outlet: DemoCarouselIntervalComponent
       },
       {
         title: 'Slide changed event',
