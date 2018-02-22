@@ -13,6 +13,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoPaginationRotateComponent } from './demos/rotate/rotate';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -37,12 +38,21 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPaginationBasicComponent
       },
       {
-        title: 'States & Limits',
+        title: 'Limits',
         anchor: 'pagination-limit',
         component: require('!!raw-loader?lang=typescript!./demos/limit/limit.ts'),
         html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
         description: `<p>Limit the maximum visible buttons</p>`,
         outlet: DemoPaginationLimitComponent
+      },
+      {
+
+        title: 'Centering the active page link',
+        anchor: 'pagination-rotate',
+        component: require('!!raw-loader?lang=typescript!./demos/rotate/rotate.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/rotate/rotate.html'),
+        description: `<p>Set current page link to center</p>`,
+        outlet: DemoPaginationRotateComponent
       },
       {
         title: 'Content switching',
