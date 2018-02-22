@@ -61,9 +61,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * If true the word súper would match super and vice versa.
    */
   @Input() typeaheadLatinize = true;
-  /** break words with spaces. If true the text "exact phrase"
-   * here match would match with match exact phrase here
-   * but not with phrase here exact match (kind of "google style").
+  /** Can be use to search words by inserting a single white space between each characters
+   *  for example 'C a l i f o r n i a' will match 'California'.
    */
   @Input() typeaheadSingleWords = true;
   /** should be used only in case typeaheadSingleWords attribute is true.
