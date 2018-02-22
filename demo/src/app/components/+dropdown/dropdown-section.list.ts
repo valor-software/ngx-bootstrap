@@ -81,6 +81,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'disabled-menu',
         component: require('!!raw-loader?lang=typescript!./demos/disabled-menu/disabled-menu.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled-menu/disabled-menu.html'),
+        description: `<p>Use <code>isDisabled</code> property to make dropdown disabled.</p>`,
         outlet: DemoDropdownDisabledComponent
       },
       {
