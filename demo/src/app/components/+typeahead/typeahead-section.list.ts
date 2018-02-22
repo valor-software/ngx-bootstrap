@@ -13,6 +13,7 @@ import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
+import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -163,6 +164,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/latinize/latinize.ts'),
         html: require('!!raw-loader?lang=markup!./demos/latinize/latinize.html'),
         outlet: DemoTypeaheadLatinizeComponent
+      },
+      {
+        title: 'On select',
+        anchor: 'on-select',
+        description: `
+          <p>Fired when an option was selected, returns an object with this option</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),
+        outlet: DemoTypeaheadOnSelectComponent
       }
     ]
   },
