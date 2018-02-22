@@ -1,4 +1,4 @@
-import { DemoTypeaheadStaticComponent } from './demos/static/static';
+import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
 import { DemoTypeaheadFieldComponent } from './demos/field/field';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
@@ -36,11 +36,11 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     content: [
       {
-        title: 'Static array',
-        anchor: 'static-array',
-        component: require('!!raw-loader?lang=typescript!./demos/static/static.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/static/static.html'),
-        outlet: DemoTypeaheadStaticComponent
+        title: 'Basic array',
+        anchor: 'Basic-array',
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        outlet: DemoTypeaheadBasicComponent
       },
       {
         title: 'Item template',

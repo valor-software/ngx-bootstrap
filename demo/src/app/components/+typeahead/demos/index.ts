@@ -1,4 +1,4 @@
-import { DemoTypeaheadStaticComponent } from './static/static';
+import { DemoTypeaheadBasicComponent } from './basic/basic';
 import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
 import { DemoTypeaheadFieldComponent } from './field/field';
 import { DemoTypeaheadAsyncComponent } from './async/async';
@@ -15,7 +15,7 @@ import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phra
 import { DemoTypeaheadFormComponent } from './form/form';
 
 export const DEMO_COMPONENTS = [
-  DemoTypeaheadStaticComponent,
+  DemoTypeaheadBasicComponent,
   DemoTypeaheadItemTemplateComponent,
   DemoTypeaheadFieldComponent,
   DemoTypeaheadAsyncComponent,
@@ -34,8 +34,8 @@ export const DEMO_COMPONENTS = [
 
 export const DEMOS = {
   static: {
-    component: require('!!raw-loader?lang=typescript!./static/static.ts'),
-    html: require('!!raw-loader?lang=markup!./static/static.html')
+    component: require('!!raw-loader?lang=typescript!./basic/basic.ts'),
+    html: require('!!raw-loader?lang=markup!./basic/basic.html')
   },
   itemTemplate: {
     component: require('!!raw-loader?lang=typescript!./item-template/item-template.ts'),
