@@ -7,6 +7,8 @@ import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
+import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
+import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -70,6 +72,23 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/grouping/grouping.ts'),
         html: require('!!raw-loader?lang=markup!./demos/grouping/grouping.html'),
         outlet: DemoTypeaheadGroupingComponent
+      },
+      {
+        title: 'Ignore spaces and order',
+        anchor: 'single-world',
+        component: require('!!raw-loader?lang=typescript!./demos/single-world/single-world.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/single-world/single-world.html'),
+        description: `If <code>typeaheadSingleWords=true</code> ignores spaces and seeking for matches with occurrences of entered words.
+          For example: <pre>ari zona -> Arizona</pre>`,
+        outlet: DemoTypeaheadSingleWorldComponent
+      },
+      {
+        title: 'Phrase delimiters',
+        anchor: 'phrase-delimiters',
+        component: require('!!raw-loader?lang=typescript!./demos/phrase-delimiters/phrase-delimiters.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/phrase-delimiters/phrase-delimiters.html'),
+        description: `Sets the word delimiter to match exact phrase. For example that are <code>&</code> and <code>,</code>`,
+        outlet: DemoTypeaheadPhraseDelimitersComponent
       },
       {
         title: 'Dropup',
