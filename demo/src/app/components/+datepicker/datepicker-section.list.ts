@@ -6,6 +6,7 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
@@ -150,6 +151,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Config properties',
+        anchor: 'config-object',
+        component: require('!!raw-loader?lang=typescript!./demos/config-object/config-object.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/config-object/config-object.html'),
+        description: `<p>You can configure the datepicker via its <code>bsConfig</code> option</p>`,
+        outlet: DemoDatePickerConfigObjectComponent
       },
       {
         title: 'Outside click',
