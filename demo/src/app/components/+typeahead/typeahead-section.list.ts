@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './demos/in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
@@ -96,6 +97,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
+      },
+      {
+        title: 'On blur',
+        anchor: 'on-blur',
+        description: `
+         <p>Returns an option on which user lost a focus. To reproduce start typing the name of the state, then focus
+         on one of the options with mouse or arrow keys and click outside of the typeahead</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/on-blur/on-blur.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/on-blur/on-blur.html'),
+        outlet: DemoTypeaheadOnBlurComponent
       },
       {
         title: 'Append to body',

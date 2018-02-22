@@ -6,6 +6,7 @@ import { DemoTypeaheadFormsComponent } from './in-form/in-form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
@@ -20,6 +21,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadSingleWorldComponent,
   DemoTypeaheadPhraseDelimitersComponent,
   DemoTypeaheadDropupComponent,
+  DemoTypeaheadOnBlurComponent,
   DemoTypeaheadScrollableComponent,
   DemoTypeaheadContainerComponent
 ];
@@ -52,6 +54,10 @@ export const DEMOS = {
   dropup: {
     component: require('!!raw-loader?lang=typescript!./dropup/dropup.ts'),
     html: require('!!raw-loader?lang=markup!./dropup/dropup.html')
+  },
+  onBlur: {
+    component: require('!!raw-loader?lang=typescript!./on-blur/on-blur.ts'),
+    html: require('!!raw-loader?lang=markup!./on-blur/on-blur.html')
   },
   container: {
     component: require('!!raw-loader?lang=typescript!./container/container.ts'),
