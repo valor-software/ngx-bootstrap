@@ -61,9 +61,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * If true the word súper would match super and vice versa.
    */
   @Input() typeaheadLatinize = true;
-  /** break words with spaces. If true the text "exact phrase"
-   * here match would match with match exact phrase here
-   * but not with phrase here exact match (kind of "google style").
+  /** Can be use to search words by inserting a single white space between each characters
+   *  for example 'C a l i f o r n i a' will match 'California'.
    */
   @Input() typeaheadSingleWords = true;
   /** should be used only in case typeaheadSingleWords attribute is true.
@@ -90,15 +89,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
-  @Output() typeaheadLoading: EventEmitter<boolean> = new EventEmitter();
+  @Output() typeaheadLoading = new EventEmitter<boolean>();
   /** fired on every key event and returns true
    * in case of matches are not detected
    */
-  @Output() typeaheadNoResults: EventEmitter<boolean> = new EventEmitter();
+  @Output() typeaheadNoResults = new EventEmitter<boolean>();
   /** fired when option was selected, return object with data of this option */
-  @Output() typeaheadOnSelect: EventEmitter<TypeaheadMatch> = new EventEmitter();
+  @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurres. returns the active item */
-  @Output() typeaheadOnBlur: EventEmitter<any> = new EventEmitter();
+  @Output() typeaheadOnBlur = new EventEmitter<any>();
 
   /**
    * A selector specifying the element the typeahead should be appended to.

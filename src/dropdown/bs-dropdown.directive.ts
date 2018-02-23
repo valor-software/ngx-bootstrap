@@ -248,6 +248,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     if (this._showInline) {
       this.removeShowClass();
+      this.removeDropupStyles();
       this._isInlineOpen = false;
       this.onHidden.emit(true);
     } else {
@@ -281,7 +282,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (!isBs3()) {
       this.addShowClass();
       this.checkRightAlignment();
-      this.checkDropup();
+      this.addDropupStyles();
     }
   }
 
@@ -315,7 +316,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
   }
 
-  private checkDropup(): void {
+  private addDropupStyles(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       // a little hack to not break support of bootstrap 4 beta
       this._renderer.setStyle(
@@ -328,6 +329,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         'transform',
         this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
+    }
+  }
+
+  private removeDropupStyles(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'top');
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'transform');
     }
   }
 }
