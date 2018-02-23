@@ -24,6 +24,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
+import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -75,6 +76,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>The following example shows how to use a datepicker having <code>YYYY-MM-DD</code> date format inside a form:</p>
         `,
         outlet: DemoDatePickerCustomFormatComponent
+      },
+      {
+        title: 'Hide on scroll',
+        anchor: 'hide-on-scroll',
+        component: require('!!raw-loader?lang=typescript!./demos/hide-on-scroll/hide-on-scroll.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/hide-on-scroll/hide-on-scroll.html'),
+        description: `
+          <p>Hide the datepicker on page scroll.</p>
+        `,
+        outlet: DemoDatepickerHideOnScrollComponent
       },
       {
         title: 'Themes',
