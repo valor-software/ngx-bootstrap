@@ -11,6 +11,7 @@ import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outsi
 import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -151,6 +152,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Value change event',
+        anchor: 'value-change-event',
+        component: require('!!raw-loader?lang=typescript!./demos/value-change-event/value-change-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/value-change-event/value-change-event.html'),
+        description: `<p>You can subscribe to datepicker's value change event (<code>bsValueChange</code>).</p>`,
+        outlet: DemoDatepickerValueChangeEventComponent
       },
       {
         title: 'Config properties',
