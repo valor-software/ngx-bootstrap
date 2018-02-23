@@ -11,6 +11,8 @@ export class AccordionPo extends BaseComponent {
     'demo-accordion-basic',
     'demo-accordion-disabled',
     'demo-accordion-dynamic',
+    'demo-accordion-dynamic-body',
+    'demo-accordion-manual-toggle',
     'demo-accordion-one-time',
     'demo-accordion-styling',
     'demo-accordion-config'
