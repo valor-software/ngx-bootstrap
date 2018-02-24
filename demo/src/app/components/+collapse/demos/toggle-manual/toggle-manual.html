@@ -1,0 +1,11 @@
+<button type="button" class="btn btn-primary"
+        (click)="collapse.show()">Show content
+</button>
+<button type="button" class="btn btn-primary"
+        (click)="collapse.hide()">Hide content
+</button>
+<hr>
+<div #collapse="bs-collapse" [collapse]="isOpen"
+     class="card card-block card-header">
+  <div class="well well-lg">Some content</div>
+</div>

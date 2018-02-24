@@ -781,7 +781,7 @@ export const ngdoc: any = {
   "BsDatepickerConfig": {
     "fileName": "src/datepicker/bs-datepicker.config.ts",
     "className": "BsDatepickerConfig",
-    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept displayMonths, for range picker it default to <code>2</code></p>\n",
+    "description": "<p>For date range picker there are <code>BsDaterangepickerConfig</code> which inherits all properties,\nexcept <code>displayMonths</code>, for range picker it default to <code>2</code></p>\n",
     "methods": [],
     "properties": [
       {
@@ -3214,7 +3214,7 @@ export const ngdoc: any = {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>break words with spaces. If true the text &quot;exact phrase&quot;\nhere match would match with match exact phrase here\nbut not with phrase here exact match (kind of &quot;google style&quot;).</p>\n"
+        "description": "<p>Can be use to search words by inserting a single white space between each characters\nfor example &#39;C a l i f o r n i a&#39; will match &#39;California&#39;.</p>\n"
       },
       {
         "name": "typeaheadWaitMs",
