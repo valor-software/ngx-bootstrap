@@ -79,7 +79,7 @@
     "@angular-devkit/core": "0.0.28",
     "@angular-devkit/schematics": "0.0.51",
     "@angular/animations": "4.3.6",
-    "@angular/cli": "1.6.4",
+    "@angular/cli": "1.7.1",
     "@angular/common": "4.3.6",
     "@angular/compiler": "4.3.6",
     "@angular/compiler-cli": "4.3.6",
@@ -151,7 +151,7 @@
     "tslint": "5.7.0",
     "tslint-config-valorsoft": "2.1.1",
     "typedoc": "0.9.0",
-    "typescript": "2.4.2",
+    "typescript": "2.3.4",
     "wallaby-webpack": "3.9.4",
     "webpack-bundle-analyzer": "2.9.2",
     "zone.js": "0.8.17"
