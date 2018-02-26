@@ -5,12 +5,11 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
+import { BsComponentRef, ComponentLoader, ComponentLoaderFactory } from '../component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
-import { BsComponentRef } from '../component-loader/bs-component-ref.class';
 import { BsDropdownMenuDirective } from './';
 import { isBs3 } from '../utils/theme-provider';
 

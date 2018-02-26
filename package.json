@@ -68,7 +68,8 @@
   },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "dependencies": {
-    "@angular/material": "5.2.1"
+    "@angular/material": "5.2.1",
+    "tslint-rules-valorsoft": "1.0.0"
   },
   "peerDependencies": {
     "@angular/common": ">=4.3.0 || >5.0.0",
