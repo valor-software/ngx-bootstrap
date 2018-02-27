@@ -84,7 +84,8 @@ export {
   PagerComponent,
   PaginationComponent,
   PaginationConfig,
-  PaginationModule
+  PaginationModule,
+  PageChangedEvent
 } from './pagination/index';
 
 export {
