@@ -28,7 +28,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadScrollableComponent,
   DemoTypeaheadNoResultComponent,
   DemoTypeaheadOnBlurComponent,
-  DemoTypeaheadLatinizeComponent
+  DemoTypeaheadLatinizeComponent,
   DemoTypeaheadContainerComponent,
   DemoTypeaheadFormComponent,
   DemoTypeaheadOnSelectComponent
@@ -54,10 +54,6 @@ export const DEMOS = {
   latinize: {
     component: require('!!raw-loader?lang=typescript!./latinize/latinize.ts'),
     html: require('!!raw-loader?lang=markup!./latinize/latinize.html')
-  },
-  inForm: {
-    component: require('!!raw-loader?lang=typescript!./in-form/in-form.ts'),
-    html: require('!!raw-loader?lang=markup!./in-form/in-form.html')
   },
   form: {
     component: require('!!raw-loader?lang=typescript!./form/form.ts'),
