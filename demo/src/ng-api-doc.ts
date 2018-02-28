@@ -2667,7 +2667,7 @@ export const ngdoc: any = {
     ],
     "outputs": [
       {
-        "name": "deselect",
+        "name": "deselectTab",
         "description": "<p>fired when tab became inactive, $event:Tab equals to deselected instance of Tab component </p>\n"
       },
       {
@@ -2675,7 +2675,7 @@ export const ngdoc: any = {
         "description": "<p>fired before tab will be removed, $event:Tab equals to instance of removed tab </p>\n"
       },
       {
-        "name": "select",
+        "name": "selectTab",
         "description": "<p>fired when tab became active, $event:Tab equals to selected instance of Tab component </p>\n"
       }
     ],
