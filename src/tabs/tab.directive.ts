@@ -58,7 +58,7 @@ export class TabDirective implements OnInit, OnDestroy {
     }
     if ((this.disabled && active) || !active) {
       if (this._active && !active) {
-        this.deselect.emit(this);
+        this.deselectTab.emit(this);
         this._active = active;
       }
 
@@ -66,7 +66,7 @@ export class TabDirective implements OnInit, OnDestroy {
     }
 
     this._active = active;
-    this.select.emit(this);
+    this.selectTab.emit(this);
     this.tabset.tabs.forEach((tab: TabDirective) => {
       if (tab !== this) {
         tab.active = false;
@@ -75,9 +75,9 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   /** fired when tab became active, $event:Tab equals to selected instance of Tab component */
-  @Output() select: EventEmitter<TabDirective> = new EventEmitter();
+  @Output() selectTab: EventEmitter<TabDirective> = new EventEmitter();
   /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
-  @Output() deselect: EventEmitter<TabDirective> = new EventEmitter();
+  @Output() deselectTab: EventEmitter<TabDirective> = new EventEmitter();
   /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
   @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 

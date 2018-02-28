@@ -39,14 +39,14 @@ class TestTabsetComponent {
 const html = `
   <tabset #tabset [justified]="isJustified"
           [vertical]="isVertical">
-    <tab heading="tab0" (deselect)="_deselect($event)">tab0 content</tab>
+    <tab heading="tab0" (deselectTab)="_deselect($event)">tab0 content</tab>
     <tab *ngFor="let tab of tabs"
          [disabled]="tab.disabled"
          [customClass]="tab.customClass"
          [active]="tab.active"
          [removable]="tab.removable"
-         (select)="_select($event)"
-         (deselect)="_deselect($event)"
+         (selectTab)="_select($event)"
+         (deselectTab)="_deselect($event)"
          (removed)="_removed($event)"
          [heading]="tab.title">{{ tab.content }}</tab>
   </tabset>
