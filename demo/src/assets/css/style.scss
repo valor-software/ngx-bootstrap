@@ -357,6 +357,10 @@ a:hover {
     overflow-x: auto;
   }
 }
+
+.panel-body {
+  padding: 15px;
+}
 /* add-nav */
 .add-nav {
   flex: 0 0 16.666667%;
@@ -513,13 +517,16 @@ a:hover {
 /* above 768px */
 @media (min-width: 768px) {
   .header {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1090; // to overlap most positioned elements in bootstrap
   }
   .header-dropdown {
     z-index: 1090;
+  }
+  .main {
+    padding-top: $header-height;
   }
   .modal-backdrop {
     z-index: 2000; // to overlap header :)
