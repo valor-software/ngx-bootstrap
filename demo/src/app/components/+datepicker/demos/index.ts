@@ -10,6 +10,7 @@ import { DemoDatePickerCustomFormatComponent } from './custom-format/custom-form
 import { DemoDatepickerVisibilityMethodsComponent } from './visibility-methods/visibility-methods';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
+import { DemoDatepickerConfigMethodComponent } from './config-method/config-method';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerConfigObjectComponent } from './config-object/config-object';
@@ -28,8 +29,8 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
   DemoDatepickerReactiveFormsComponent,
+  DemoDatepickerConfigMethodComponent
   DemoDatepickerVisibilityMethodsComponent,
-  DemoDatepickerPlacementComponent,
   DemoDatepickerPlacementComponent,
   DemoDatePickerVisibilityEventsComponent,
   DemoDatepickerHideOnScrollComponent,
