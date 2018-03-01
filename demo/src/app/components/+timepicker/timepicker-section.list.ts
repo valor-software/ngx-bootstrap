@@ -7,7 +7,8 @@ import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
 import { DemoTimepickerCustomComponent } from './demos/custom/custom';
 import { DemoTimepickerCustomValidationComponent } from './demos/custom-validation/custom-validation';
 import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
-import { DemoTimepickerMousewheelArrowkeysComponent } from './demos/mousewheel-arrowkeys/mousewheel-arrowkeys';
+import { DemoTimepickerMousewheelComponent } from './demos/mousewheel/mousewheel';
+import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
 import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
 
@@ -110,11 +111,18 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTimepickerDynamicComponent
       },
       {
-        title: 'Mouse wheel and Arrow keys',
+        title: 'Mouse wheel',
         anchor: 'mouse-wheel',
-        component: require('!!raw-loader?lang=typescript!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys'),
-        html: require('!!raw-loader?lang=markup!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys.html'),
-        outlet: DemoTimepickerMousewheelArrowkeysComponent
+        component: require('!!raw-loader?lang=typescript!./demos/mousewheel/mousewheel'),
+        html: require('!!raw-loader?lang=markup!./demos/mousewheel/mousewheel.html'),
+        outlet: DemoTimepickerMousewheelComponent
+      },
+      {
+        title: 'Arrow keys',
+        anchor: 'arrow keys',
+        component: require('!!raw-loader?lang=typescript!./demos/arrowkeys/arrowkeys'),
+        html: require('!!raw-loader?lang=markup!./demos/arrowkeys/arrowkeys.html'),
+        outlet: DemoTimepickerArrowkeysComponent
       },
       {
         title: 'Spinners',
