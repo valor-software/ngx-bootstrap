@@ -29,7 +29,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
   DemoDatepickerReactiveFormsComponent,
-  DemoDatepickerConfigMethodComponent
+  DemoDatepickerConfigMethodComponent,
   DemoDatepickerVisibilityMethodsComponent,
   DemoDatepickerPlacementComponent,
   DemoDatePickerVisibilityEventsComponent,
