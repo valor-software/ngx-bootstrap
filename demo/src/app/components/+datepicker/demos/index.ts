@@ -9,6 +9,7 @@ import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-
 import { DemoDatePickerCustomFormatComponent } from './custom-format/date-picker-custom-format';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
+import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerConfigObjectComponent } from './config-object/config-object';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
@@ -26,6 +27,8 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
   DemoDatepickerReactiveFormsComponent,
+  DemoDatepickerPlacementComponent,
+  DemoDatePickerVisibilityEventsComponent,
   DemoDatepickerHideOnScrollComponent,
   DemoDatepickerReactiveFormsComponent,
   DemoDatepickerPlacementComponent,
