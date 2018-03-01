@@ -97,9 +97,16 @@ export class Positioning {
     const shiftWidth: any = {
       left: hostElPosition.left,
       center:
-        hostElPosition.left +
-        hostElPosition.width / 2 -
-        targetElement.offsetWidth / 2,
+        (function(){
+          var _left = hostElPosition.left +
+              hostElPosition.width / 2 -
+              targetElement.offsetWidth / 2
+          if(_left + targetElement.offsetWidth > document.body.scrollWidth){
+              return _left - (_left + targetElement.offsetWidth - document.body.scrollWidth)
+          }else{
+              return _left;
+          }
+      })(),
       right: hostElPosition.left + hostElPosition.width
     };
     const shiftHeight: any = {
