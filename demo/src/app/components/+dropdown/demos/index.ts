@@ -10,6 +10,7 @@ import { DemoDropdownTriggersManualComponent } from './triggers-manual/triggers-
 import { DemoDropdownDisabledComponent } from './disabled-menu/disabled-menu';
 import { DemoDropdownAlignmentComponent } from './alignment/menu-alignment';
 import { DemoNestedDropdownsComponent } from './nested-dropdowns/nested-dropdowns';
+import { DemoDropdownDisabledItemComponent } from './disabled-item/disabled-item';
 import { DemoDropdownStateChangeEventComponent } from './state-change-event/state-change-event';
 import { DemoDropdownAutoCloseComponent } from './autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './custom-html/custom-html';
@@ -25,6 +26,7 @@ export const DEMO_COMPONENTS = [
   DemoDropdownMenuDividersComponent,
   DemoDropdownTriggersManualComponent,
   DemoDropdownDisabledComponent,
+  DemoDropdownDisabledItemComponent,
   DemoDropdownAlignmentComponent,
   DemoNestedDropdownsComponent,
   DemoDropdownStateChangeEventComponent,

@@ -3,6 +3,7 @@ import { DemoDropdownBasicLinkComponent } from './demos/basic/basic-link';
 import { DemoDropdownSplitComponent } from './demos/split/split';
 import { DemoDropdownTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDropdownDisabledComponent } from './demos/disabled-menu/disabled-menu';
+import { DemoDropdownDisabledItemComponent } from './demos/disabled-item/disabled-item';
 import { DemoDropdownAlignmentComponent } from './demos/alignment/menu-alignment';
 import { DemoNestedDropdownsComponent } from './demos/nested-dropdowns/nested-dropdowns';
 import { DemoDropdownContainerComponent } from './demos/container/container';
@@ -86,6 +87,15 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/disabled-menu/disabled-menu.html'),
         description: `<p>Use <code>isDisabled</code> property to make dropdown disabled.</p>`,
         outlet: DemoDropdownDisabledComponent
+      },
+      {
+        title: 'Mark item as disabled',
+        anchor: 'disabled-item',
+        component: require('!!raw-loader?lang=typescript!./demos/disabled-item/disabled-item.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disabled-item/disabled-item.html'),
+        description: `<p>Add a <code>disabled</code> class to <code>&lt;a&gt;</code> for bootstrap 4 to make it as disabled.</p>
+                      <p>Add a <code>disabled</code> class to <code>&lt;li&gt;</code>  for bootstrap 3 to make as it disabled.</p>`,
+        outlet: DemoDropdownDisabledItemComponent
       },
       {
         title: 'Menu alignment',
