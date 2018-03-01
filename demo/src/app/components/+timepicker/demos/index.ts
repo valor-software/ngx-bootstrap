@@ -12,6 +12,7 @@ import { DemoTimepickerMousewheelComponent } from './mousewheel/mousewheel';
 import { DemoTimepickerCustomValidationComponent } from './custom-validation/custom-validation';
 import { DemoTimepickerIsValidComponent } from './isvalid/isvalid';
 import { DemoTimepickerSpinnersComponent } from './spinners/spinners';
+import { DemoTimepickerReadonlyComponent } from './readonly/readonly';
 
 export const DEMO_COMPONENTS = [
   DemoTimepickerBasicComponent,
@@ -20,6 +21,7 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerCustomMeridianComponent,
   DemoTimepickerMinMaxComponent,
   DemoTimepickerDisabledComponent,
+  DemoTimepickerReadonlyComponent,
   DemoTimepickerCustomComponent,
   DemoTimepickerDynamicComponent,
   DemoTimepickerToggleMinutesSecondsComponent,

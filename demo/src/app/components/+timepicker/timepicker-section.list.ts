@@ -10,6 +10,7 @@ import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTimepickerMousewheelComponent } from './demos/mousewheel/mousewheel';
 import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
+import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
 import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -78,6 +79,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         outlet: DemoTimepickerDisabledComponent
+      },
+      {
+        title: 'Readonly',
+        anchor: 'readonly',
+        component: require('!!raw-loader?lang=typescript!./demos/readonly/readonly'),
+        html: require('!!raw-loader?lang=markup!./demos/readonly/readonly.html'),
+        outlet: DemoTimepickerReadonlyComponent
       },
       {
         title: 'Custom steps',
