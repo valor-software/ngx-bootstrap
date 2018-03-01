@@ -6,7 +6,7 @@ import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
-import { DemoDatePickerCustomFormatComponent } from './custom-format/date-picker-custom-format';
+import { DemoDatePickerCustomFormatComponent } from './custom-format/custom-format';
 import { DemoDatepickerVisibilityMethodsComponent } from './visibility-methods/visibility-methods';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
 import { DemoDatepickerPlacementComponent } from './placement/placement';

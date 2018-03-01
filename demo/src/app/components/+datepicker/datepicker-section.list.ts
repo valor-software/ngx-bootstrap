@@ -16,7 +16,6 @@ import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
-import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 
 import { ContentSection } from '../../docs/models/content-section.model';
