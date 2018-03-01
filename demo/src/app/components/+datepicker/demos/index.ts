@@ -42,3 +42,4 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDateInitialStateComponent,
   DemoDatepickerTriggersComponent
 ];
+
