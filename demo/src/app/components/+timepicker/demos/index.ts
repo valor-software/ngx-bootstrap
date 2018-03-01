@@ -9,6 +9,7 @@ import { DemoTimepickerMinMaxComponent } from './min-max/min-max';
 import { DemoTimepickerToggleMinutesSecondsComponent } from './toggle-minutes-seconds/toggle-minutes-seconds';
 import { DemoTimepickerMousewheelArrowkeysComponent } from './mousewheel-arrowkeys/mousewheel-arrowkeys';
 import { DemoTimepickerCustomValidationComponent } from './custom-validation/custom-validation';
+import { DemoTimepickerIsValidComponent } from './isvalid/isvalid';
 import { DemoTimepickerSpinnersComponent } from './spinners/spinners';
 
 export const DEMO_COMPONENTS = [
@@ -22,6 +23,8 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerDynamicComponent,
   DemoTimepickerToggleMinutesSecondsComponent,
   DemoTimepickerMousewheelArrowkeysComponent,
+  DemoTimepickerCustomValidationComponent,
+  DemoTimepickerIsValidComponent,
   DemoTimepickerCustomValidationComponent,
   DemoTimepickerSpinnersComponent
 ];
