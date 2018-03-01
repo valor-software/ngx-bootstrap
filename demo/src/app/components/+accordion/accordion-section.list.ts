@@ -4,6 +4,9 @@ import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
 import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoAccordionOpenEventComponent } from './demos/open-event/open-event';
+import { DemoAccordionCustomHTMLComponent } from './demos/custom-html/custom-html';
+import { DemoAccordionManualToggleComponent } from './demos/manual-toggle/manual-toggle';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -14,6 +17,8 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoAccordionOpenedComponent } from './demos/opened/opened';
+import { DemoAccordionDynamicBodyComponent } from './demos/dynamic-body/dynamic-body';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -30,13 +35,28 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     content: [
       {
-        title: 'Simple accordion',
-        anchor: 'simple-accordion',
+        title: 'Basic',
+        anchor: 'basic-accordion',
         description: `<p>Click headers to expand/collapse content that is broken into logical sections, much
           like tabs.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoAccordionBasicComponent
+      },
+      {
+        title: 'Group opening event',
+        anchor: 'open-event',
+        description: `<p>Accordion with <code>isOpenChange</code> event listener.</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/open-event/open-event'),
+        html: require('!!raw-loader?lang=markup!./demos/open-event/open-event.html'),
+        outlet: DemoAccordionOpenEventComponent
+      },
+      {
+        title: 'Custom HTML',
+        anchor: 'custom-html',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-html/custom-html'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-html/custom-html.html'),
+        outlet: DemoAccordionCustomHTMLComponent
       },
       {
         title: 'Disabled',
@@ -46,11 +66,32 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoAccordionDisabledComponent
       },
       {
+        title: 'Initially opened',
+        anchor: 'opened',
+        component: require('!!raw-loader?lang=typescript!./demos/opened/opened'),
+        html: require('!!raw-loader?lang=markup!./demos/opened/opened.html'),
+        outlet: DemoAccordionOpenedComponent
+      },
+      {
         title: 'Dynamic accordion',
         anchor: 'dynamic-accordion',
         component: require('!!raw-loader?lang=typescript!./demos/dymanic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dymanic/dynamic.html'),
         outlet: DemoAccordionDynamicComponent
+      },
+      {
+        title: 'Dynamic body content',
+        anchor: 'dynamic-body',
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic-body/dynamic-body'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic-body/dynamic-body.html'),
+        outlet: DemoAccordionDynamicBodyComponent
+      },
+      {
+        title: 'Manual toggle',
+        anchor: 'manual-toggle',
+        component: require('!!raw-loader?lang=typescript!./demos/manual-toggle/manual-toggle'),
+        html: require('!!raw-loader?lang=markup!./demos/manual-toggle/manual-toggle.html'),
+        outlet: DemoAccordionManualToggleComponent
       },
       {
         title: 'Open only one at a time',
