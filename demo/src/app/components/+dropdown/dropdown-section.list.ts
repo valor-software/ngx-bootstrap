@@ -11,6 +11,7 @@ import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropdownDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownMenuDividersComponent } from './demos/menu-dividers/menu-dividers';
 import { DemoDropdownConfigComponent } from './demos/config/config';
+import { DemoDropdownVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
 import { DemoDropdownStateChangeEventComponent } from './demos/state-change-event/state-change-event';
 import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './demos/custom-html/custom-html';
@@ -163,7 +164,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDropdownConfigComponent
       },
       {
-
+        title: 'Visibility Events',
+        anchor: 'visibility-events',
+        component: require('!!raw-loader?lang=typescript!./demos/visibility-events/visibility-events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/visibility-events/visibility-events.html'),
+        description: `<p>You can subscribe to dropdown's visibility events</p>`,
+        outlet: DemoDropdownVisibilityEventsComponent
+      },
+      {
         title: 'State change event',
         anchor: 'state-change-event',
         component: require('!!raw-loader?lang=typescript!./demos/state-change-event/state-change-event.ts'),
