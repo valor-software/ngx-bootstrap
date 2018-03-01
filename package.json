@@ -77,7 +77,7 @@
   },
   "devDependencies": {
     "@angular-devkit/core": "0.0.28",
-    "@angular-devkit/schematics": "0.0.51",
+    "@angular-devkit/schematics": "0.4.3",
     "@angular/animations": "4.3.6",
     "@angular/cli": "1.6.4",
     "@angular/common": "4.3.6",
