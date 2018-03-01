@@ -15,13 +15,14 @@ async function buildAll() {
   await del(tmp);
   console.log('Copying src to temp folder');
   fs.copySync(src, tmp);
-  const modules = fs.readdirSync(tmp).filter(filterModules);
+  let modules = fs.readdirSync(tmp).filter(filterModules);
   console.log('Inlining templates and styles');
   await inlineResources.inlineResources(tmp);
   console.log('Compiling libraries from temp folder');
+  // modules = ['collapse', 'accordion', 'alert'];
   for (let module of modules) {
     console.log('Compiling', module);
-    await execa('ngc', ['-p', path.join(tmp, module)], { preferLocal: true });
+    await execa.shell(`ngc -p ${path.join(tmp, module)}`, { preferLocal: true });
     console.log('Building umd bundle of', module);
     bundleUmd.bundleUmd({src: path.join(tmp, module), dist: 'dist', name: module, main: 'index.ts', tsconfig: path.join(tmp, module, 'tsconfig.json'), minify: false});
     console.log('');
@@ -33,12 +34,12 @@ async function buildAll() {
     generateMetadata(module, 'dist');
     generatePackageJson(module, path.join('dist', module));
   }
-  console.log('Compiling root');
-  await execa.shell('npm run build.ngm', { preferLocal: true }).stdout.pipe(process.stdout);
-  console.log('Bundle ESM5 bundle of ngx-bootstrap');
-  await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
-  console.log('Bundle ES2015 bundle of ngx-bootstrap');
-  await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
+  // console.log('Compiling root');
+  // await execa.shell('npm run build.ngm', { preferLocal: true }).stdout.pipe(process.stdout);
+  // console.log('Bundle ESM5 bundle of ngx-bootstrap');
+  // await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
+  // console.log('Bundle ES2015 bundle of ngx-bootstrap');
+  // await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
   await removeJsFiles();
 
 }
@@ -78,7 +79,7 @@ async function generateMetadata(module, outDir) {
   "metadata": {},
   "exports": [
     {
-      "from": "./${module}/flat"
+      "from": "./${module}/index"
     }
   ],
   "flatModuleIndexRedirect": true,
@@ -129,20 +130,24 @@ function getTsConfigForModule(module) {
     "lib": ["dom", "es6"],
     "types": [
       "jasmine"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "ngx-bootstrap/*": ["../../dist/*"]
+    }
   },
   "exclude": [
     "node_modules"
   ],
   "files": [
-    "index.ts"
+    "public_api.ts"
   ],
   "angularCompilerOptions": {
     "genDir": "../temp/factories",
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true,
-    "flatModuleOutFile": "flat.js",
+    "flatModuleOutFile": "index.js",
     "flatModuleId": "ngx-bootstrap/${module}"
   }
 }
