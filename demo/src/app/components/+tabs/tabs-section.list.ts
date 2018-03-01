@@ -6,6 +6,7 @@ import { DemoTabsVerticalPillsComponent } from './demos/vertical-pills/vertical-
 import { DemoTabsJustifiedComponent } from './demos/justified/justified';
 import { DemoTabsStylingComponent } from './demos/styling/styling';
 import { DemoTabsConfigComponent } from './demos/config/config';
+import { DemoTabsDisableComponent } from './demos/disable/disable';
 import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
 
@@ -46,6 +47,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/manual/manual'),
         html: require('!!raw-loader?lang=markup!./demos/manual/manual.html'),
         outlet: DemoTabsManualComponent
+      },
+      {
+        title: 'Disable selection',
+        anchor: 'tabs-disable-selection',
+        component: require('!!raw-loader?lang=typescript!./demos/disable/disable'),
+        html: require('!!raw-loader?lang=markup!./demos/disable/disable.html'),
+        outlet: DemoTabsDisableComponent
       },
       {
         title: 'Dynamic tabs',
