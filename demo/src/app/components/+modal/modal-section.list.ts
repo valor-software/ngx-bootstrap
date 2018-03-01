@@ -2,7 +2,10 @@ import { DemoModalServiceStaticComponent } from './demos/service-template/servic
 import { DemoModalServiceFromComponent } from './demos/service-component/service-component';
 import { DemoModalServiceNestedComponent } from './demos/service-nested/service-nested';
 import { DemoModalServiceEventsComponent } from './demos/service-events/service-events';
-import { DemoModalServiceOptionsComponent } from './demos/service-options/service-options';
+import { DemoModalServiceDisableAnimationComponent } from './demos/service-options/disable-animation/disable-animation';
+import { DemoModalServiceCustomCSSClassComponent } from './demos/service-options/custom-css-class/custom-css-class';
+import { DemoModalServiceDisableEscClosingComponent } from './demos/service-options/disable-esc-closing/disable-esc-closing';
+import { DemoModalServiceDisableBackdropComponent } from './demos/service-options/disable-backdrop/disable-backdrop';
 import { DemoModalServiceConfirmWindowComponent } from './demos/service-confirm-window/service-confirm-window';
 
 import { DemoModalStaticComponent } from './demos/static/static';
@@ -100,13 +103,37 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoModalServiceConfirmWindowComponent
       },
       {
-        title: 'Options',
-        anchor: 'service-options',
-        component: require('!!raw-loader?lang=typescript!./demos/service-options/service-options.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/service-options/service-options.html'),
-        description: `<p>There are some options that you can configure, like animation, backdrop, closing
-          by Esc button, additional css classes. See the demo below to learn how to configure your modal</p>`,
-        outlet: DemoModalServiceOptionsComponent
+        title: 'Сustom css class',
+        anchor: 'service-custom-css-class',
+        component: require('!!raw-loader?lang=typescript!./demos/service-options/custom-css-class/custom-css-class.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-options/custom-css-class/custom-css-class.html'),
+        description: `<p>There is additional css classes that you can configure.
+          See the demo below to learn how to configure your modal</p>`,
+        outlet: DemoModalServiceCustomCSSClassComponent
+      },
+      {
+        title: 'Animation option',
+        anchor: 'service-disable-animation',
+        component: require('!!raw-loader?lang=typescript!./demos/service-options/disable-animation/disable-animation.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-options/disable-animation/disable-animation.html'),
+        description: `<p>There is animation option that you can configure.</p>`,
+        outlet: DemoModalServiceDisableAnimationComponent
+      },
+      {
+        title: 'Esc closing option',
+        anchor: 'service-disable-animation',
+        component: require('!!raw-loader?lang=typescript!./demos/service-options/disable-esc-closing/disable-esc-closing.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-options/disable-esc-closing/disable-esc-closing.html'),
+        description: `<p>There is closing by Esc button option that you can configure.</p>`,
+        outlet: DemoModalServiceDisableEscClosingComponent
+      },
+      {
+        title: 'Backdrop options',
+        anchor: 'service-disable-backdrop',
+        component: require('!!raw-loader?lang=typescript!./demos/service-options/disable-backdrop/disable-backdrop.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-options/disable-backdrop/disable-backdrop.html'),
+        description: `<p>There is backdrop options that you can configure.</p>`,
+        outlet: DemoModalServiceDisableBackdropComponent
       }
     ]
   },

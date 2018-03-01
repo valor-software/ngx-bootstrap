@@ -11,8 +11,4 @@ export class DemoTabsManualComponent {
   selectTab(tab_id: number) {
     this.staticTabs.tabs[tab_id].active = true;
   }
-
-  disableEnable() {
-    this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled;
-  }
 }
