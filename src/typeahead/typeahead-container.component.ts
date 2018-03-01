@@ -1,9 +1,18 @@
-import { Component, ElementRef, HostListener, QueryList, TemplateRef, ViewChild, ViewChildren, Renderer2 } from '@angular/core';
-import { isBs3 } from '../utils/theme-provider';
-import { TypeaheadMatch } from './typeahead-match.class';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  QueryList,
+  TemplateRef,
+  ViewChild,
+  ViewChildren,
+  Renderer2
+} from '@angular/core';
+
+import { isBs3, Utils } from '../utils';
 import { latinize } from './typeahead-utils';
+import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
-import { Utils } from '../utils/utils.class';
 
 @Component({
   selector: 'typeahead-container',
@@ -195,7 +204,7 @@ export class TypeaheadContainerComponent {
       const ulPaddingTop = parseFloat((ulStyles['padding-top'] ? ulStyles['padding-top'] : '0').replace('px', ''));
       const optionHeight = parseFloat((liStyles['height'] ? liStyles['height'] : '0').replace('px', ''));
       const height = this.typeaheadOptionsInScrollableView * optionHeight;
-      this.guiHeight = (height + ulPaddingTop + ulPaddingBottom) + 'px';
+      this.guiHeight = `${height + ulPaddingTop + ulPaddingBottom}px`;
     }
     this.renderer.setStyle(this.element.nativeElement, 'visibility', 'visible');
   }
@@ -203,6 +212,7 @@ export class TypeaheadContainerComponent {
   scrollPrevious(index: number): void {
     if (index === 0) {
       this.scrollToBottom();
+
       return;
     }
     if (this.liElements) {
@@ -216,6 +226,7 @@ export class TypeaheadContainerComponent {
   scrollNext(index: number): void {
     if (index + 1 > this.matches.length - 1) {
       this.scrollToTop();
+
       return;
     }
     if (this.liElements) {
@@ -237,7 +248,7 @@ export class TypeaheadContainerComponent {
     const elemBottom = elemTop + elem.offsetHeight;
 
     return ((elemBottom <= containerViewBottom) && (elemTop >= containerViewTop));
-  }
+  };
 
   private scrollToBottom(): void {
     this.ulElement.nativeElement.scrollTop = this.ulElement.nativeElement.scrollHeight;

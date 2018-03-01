@@ -1,4 +1,5 @@
-import { DemoDatePickerPopupComponent } from './demos/bs-popup/date-picker-popup';
+import { DemoDatepickerBasicComponent } from './demos/basic/basic';
+import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
@@ -6,8 +7,14 @@ import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.compo
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DemoDatepickerVisibilityMethodsComponent } from './demos/visibility-methods/visibility-methods';
+import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
+import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
+import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
+import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
+import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -19,6 +26,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
+import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -37,10 +45,9 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/bs-popup/date-picker-popup.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/bs-popup/date-picker-popup.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `
-          <p><code>BsDatepickerModule</code> is activily developed but you can use it already</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
@@ -52,7 +59,14 @@ export const demoComponentContent: ContentSection[] = [
             </li>
           </ul>
         `,
-        outlet: DemoDatePickerPopupComponent
+        outlet: DemoDatepickerBasicComponent
+      },
+      {
+        title: 'Initial state',
+        anchor: 'date-initial-state',
+        component: require('!!raw-loader?lang=typescript!./demos/date-initial-state/date-initial-state.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/date-initial-state/date-initial-state.html'),
+        outlet: DemoDatepickerDateInitialStateComponent
       },
       {
         title: 'Custom date format',
@@ -64,6 +78,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>The following example shows how to use a datepicker having <code>YYYY-MM-DD</code> date format inside a form:</p>
         `,
         outlet: DemoDatePickerCustomFormatComponent
+      },
+      {
+        title: 'Hide on scroll',
+        anchor: 'hide-on-scroll',
+        component: require('!!raw-loader?lang=typescript!./demos/hide-on-scroll/hide-on-scroll.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/hide-on-scroll/hide-on-scroll.html'),
+        description: `
+          <p>Hide the datepicker on page scroll.</p>
+        `,
+        outlet: DemoDatepickerHideOnScrollComponent
       },
       {
         title: 'Themes',
@@ -149,6 +173,55 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Visibility Events',
+        anchor: 'visibility-events',
+        component: require('!!raw-loader?lang=typescript!./demos/visibility-events/visibility-events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/visibility-events/visibility-events.html'),
+        description: `<p>You can subscribe to datepicker's visibility events</p>`,
+        outlet: DemoDatePickerVisibilityEventsComponent
+      },
+      {
+        title: 'Value change event',
+        anchor: 'value-change-event',
+        component: require('!!raw-loader?lang=typescript!./demos/value-change-event/value-change-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/value-change-event/value-change-event.html'),
+        description: `<p>You can subscribe to datepicker's value change event (<code>bsValueChange</code>).</p>`,
+        outlet: DemoDatepickerValueChangeEventComponent
+      },
+      {
+        title: 'Config properties',
+        anchor: 'config-object',
+        component: require('!!raw-loader?lang=typescript!./demos/config-object/config-object.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/config-object/config-object.html'),
+        description: `<p>You can configure the datepicker via its <code>bsConfig</code> option</p>`,
+        outlet: DemoDatePickerConfigObjectComponent
+      },
+      {
+        title: 'Outside click',
+        anchor: 'outside-click',
+        component: require('!!raw-loader?lang=typescript!./demos/outside-click/outside-click.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/outside-click/outside-click.html'),
+        description: `<p>Datepicker closes after outside click by default. To change 
+          this behavior, use <code>outsideClick</code> property.</p>`,
+        outlet: DemoDatepickerOutsideClickComponent
+      },
+      {
+        title: 'IsOpen property',
+        anchor: 'is-open',
+        component: require('!!raw-loader?lang=typescript!./demos/is-open/is-open.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/is-open/is-open.html'),
+        description: `<p>The datepicker's closed by default. To change this behavior, use <code>isOpen</code> property.</p>`,
+        outlet: DemoDatepickerIsOpenComponent
+      },
+      {
+        title: 'Triggers',
+        anchor: 'triggers',
+        component: require('!!raw-loader?lang=typescript!./demos/triggers/triggers.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/triggers/triggers.html'),
+        description: `<p>Use different triggers ( for example <code>keydown</code>, <code>mouseenter</code>, <code>dblclick</code> ) to interact with datepicker</p>`,
+        outlet: DemoDatepickerTriggersComponent
       }
     ]
   },
