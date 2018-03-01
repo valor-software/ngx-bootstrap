@@ -11,6 +11,7 @@ export class ButtonsPo extends BaseComponent {
     'demo-buttons-checkbox-reactiveforms',
     'demo-buttons-radio',
     'demo-buttons-radio-reactiveforms',
-    'demo-buttons-disabled'
+    'demo-buttons-disabled',
+    'demo-custom-checkbox-value'
   ];
 }

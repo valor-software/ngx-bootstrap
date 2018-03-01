@@ -34,18 +34,37 @@ describe('Buttons page test suite', () => {
       .and('not.to.be.empty');
   });
 
-  it('single button example contains header, that can be changed by click on button', () => {
+  it('basic button example contains  only enabled single button', () => {
+    cy.get(buttonDemos[0]).children('button')
+      .should('to.be.enabled');
+  });
+
+
+  it('checkbox example contains checkboxes, that can be checked or unchecked', () => {
+    buttons.clickByText(buttonDemos[1], buttonNames[0]);
+    buttons.clickByText(buttonDemos[1], buttonNames[1]);
+
+    cy.get(buttonDemos[1]).children('.card-header').as('output')
+      .should('to.contain', `"${buttonOutput[0]}": true`);
+    cy.get('@output')
+      .should('to.contain', `"${buttonOutput[1]}": false`);
+  });
+
+  it('custom checkbox value can be displayed in output', () => {
     const defaultVal = '1';
     const afterClickVal = '0';
 
-    cy.get(buttonDemos[0]).as('singleButton').children('.card-header').as('header')
+    cy.get(buttonDemos[6]).as('customCheckbox').children('.card-header').as('header')
       .should('to.contain', defaultVal);
 
-    cy.get('@singleButton').children('button').click();
+    cy.get('@customCheckbox').children('button').click();
     cy.get('@header')
       .should('to.contain', afterClickVal);
   });
 
+  it('checkbox example contains checkboxes, that can be checked or unchecked and reactive form', () => {
+    buttons.clickByText(buttonDemos[2], buttonNames[1]);
+    buttons.clickByText(buttonDemos[2], buttonNames[2]);
 
   it('checkbox example contains checkboxes, that can be checked or unchecked', () => {
     buttons.clickByText(buttonDemos[1], buttonNames[0]);
