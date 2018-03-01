@@ -5,11 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoCarouselDynamicComponent {
-  myInterval: number = 1500;
-  slides: any[] = [];
-  activeSlideIndex: number = 0;
-  noWrapSlides: boolean = false;
-  showIndicator: boolean = true;
+  slides = [];
+  activeSlideIndex = 0;
 
   constructor() {
     for (let i = 0; i < 4; i++) {
@@ -26,9 +23,5 @@ export class DemoCarouselDynamicComponent {
   removeSlide(index?: number): void {
     const toRemove = index ? index : this.activeSlideIndex;
     this.slides.splice(toRemove, 1);
-  }
-
-  switchIndicator(): void {
-    this.showIndicator = !this.showIndicator;
   }
 }
