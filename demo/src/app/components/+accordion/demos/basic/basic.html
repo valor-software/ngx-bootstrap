@@ -2,14 +2,10 @@
   <accordion-group heading="Static Header, initially expanded">
     This content is straight in the template.
   </accordion-group>
-  <accordion-group #group>
-    <div accordion-heading class="clearfix">
-      I can have markup, too!
-      <span class="badge badge-secondary float-right pull-right">Some HTML here</span>
-    </div>
-    This is just some content to illustrate fancy headings.
+  <accordion-group heading="Another group">
+    <p>Some content</p>
   </accordion-group>
-  <accordion-group heading="Group with isOpenChange event listener" (isOpenChange)="log($event)">
+  <accordion-group heading="Another group">
     <p>Some content</p>
   </accordion-group>
   <accordion-group heading="Another group">
