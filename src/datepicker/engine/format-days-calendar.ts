@@ -2,7 +2,7 @@ import {
   DatepickerFormatOptions,
   DaysCalendarModel,
   DaysCalendarViewModel
-} from '../models/index';
+} from '../models/public_api';
 import { formatDate, getLocale } from 'ngx-bootstrap/chronos';
 
 export function formatDaysCalendar(daysCalendar: DaysCalendarModel,

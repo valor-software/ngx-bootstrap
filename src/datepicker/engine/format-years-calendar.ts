@@ -2,7 +2,7 @@ import {
   DatepickerFormatOptions,
   YearsCalendarViewModel,
   CalendarCellViewModel
-} from '../models/index';
+} from '../models/public_api';
 import { shiftDate, formatDate } from 'ngx-bootstrap/chronos';
 import { createMatrix } from '../utils/matrix-utils';
 

@@ -20,26 +20,28 @@ async function buildAll() {
   await inlineResources.inlineResources(tmp);
   console.log('Compiling libraries from temp folder');
   // modules = ['collapse', 'accordion', 'alert'];
-  for (let module of modules) {
+  // modules.splice(modules.indexOf('datepicker'), 1);
+  // modules = ['mini-ngrx', 'chronos', 'timepicker', 'datepicker'];
+  for (let module of ['mini-ngrx', 'collapse', ...modules]) {
     console.log('Compiling', module);
     await execa.shell(`ngc -p ${path.join(tmp, module)}`, { preferLocal: true });
     console.log('Building umd bundle of', module);
     bundleUmd.bundleUmd({src: path.join(tmp, module), dist: 'dist', name: module, main: 'index.ts', tsconfig: path.join(tmp, module, 'tsconfig.json'), minify: false});
     console.log('');
-    console.log('Bundle ESM5 bundle of', module);
-    createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
-    console.log('Bundle ES2015 bundle of', module);
-    createEsBundle(path.join(tmp, module), module, {target: 'es2015'}, 'es2015');
+    // console.log('Bundle ESM5 bundle of', module);
+    // createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
+    // console.log('Bundle ES2015 bundle of', module);
+    // createEsBundle(path.join(tmp, module), module, {target: 'es2015'}, 'es2015');
     generateTypings(module, 'dist');
     generateMetadata(module, 'dist');
     generatePackageJson(module, path.join('dist', module));
   }
-  // console.log('Compiling root');
-  // await execa.shell('npm run build.ngm', { preferLocal: true }).stdout.pipe(process.stdout);
-  // console.log('Bundle ESM5 bundle of ngx-bootstrap');
-  // await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
-  // console.log('Bundle ES2015 bundle of ngx-bootstrap');
-  // await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
+  console.log('Compiling root');
+  await execa.shell('npm run build.ngm', { preferLocal: true }).stdout.pipe(process.stdout);
+  console.log('Bundle ESM5 bundle of ngx-bootstrap');
+  await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
+  console.log('Bundle ES2015 bundle of ngx-bootstrap');
+  await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
   await removeJsFiles();
 
 }

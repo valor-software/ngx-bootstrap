@@ -1,6 +1,6 @@
 import {
   MonthViewOptions
-} from '../models/index';
+} from '../models/public_api';
 
 export const defaultMonthOptions: MonthViewOptions = {
   width: 7,

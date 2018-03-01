@@ -15,7 +15,7 @@ import {
   DayViewModel,
   MonthsCalendarViewModel,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models/public_api';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
 import { Subscription } from 'rxjs/Subscription';

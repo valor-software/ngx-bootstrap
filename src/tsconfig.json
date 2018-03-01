@@ -31,6 +31,7 @@
   ],
   "angularCompilerOptions": {
     "genDir": "../temp/factories",
+    "skipMetadataEmit": true,
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true

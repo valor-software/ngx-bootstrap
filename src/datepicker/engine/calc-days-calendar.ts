@@ -1,7 +1,7 @@
 // user and model input should handle parsing and validating input values
 // should accept some options
 // todo: split out formatting
-import { DaysCalendarModel, MonthViewOptions } from '../models/index';
+import { DaysCalendarModel, MonthViewOptions } from '../models/public_api';
 import { getFirstDayOfMonth } from 'ngx-bootstrap/chronos';
 import { getStartingDayOfCalendar } from '../utils/bs-calendar-utils';
 import { createMatrix } from '../utils/matrix-utils';
