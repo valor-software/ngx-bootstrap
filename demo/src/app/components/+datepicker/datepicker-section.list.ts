@@ -6,6 +6,7 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerVisibilityMethodsComponent } from './demos/visibility-methods/visibility-methods';
 import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
@@ -156,6 +157,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/reactive-forms/reactive-forms.component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/reactive-forms/reactive-forms.component.html'),
         outlet: DemoDatepickerReactiveFormsComponent
+      },
+      {
+        title: 'Visibility methods',
+        anchor: 'visibility-methods',
+        component: require('!!raw-loader?lang=typescript!./demos/visibility-methods/visibility-methods.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/visibility-methods/visibility-methods.html'),
+        description: `<p>You can manage datepicker's state by using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
+        outlet: DemoDatepickerVisibilityMethodsComponent
       },
       {
         title: 'Placement',
