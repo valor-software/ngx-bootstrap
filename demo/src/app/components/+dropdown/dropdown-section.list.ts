@@ -106,9 +106,10 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Append to body',
-        anchor: 'container-body',
+        anchor: 'container',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        description: `<p>Append dropdown to body by adding <code>container="body"</code> to the parent element.</p>`,
         outlet: DemoDropdownContainerComponent
       },
       /* not availavle in bs-dropdown version
