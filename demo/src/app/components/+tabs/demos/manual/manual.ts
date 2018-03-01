@@ -8,11 +8,11 @@ import { TabsetComponent } from 'ngx-bootstrap';
 export class DemoTabsManualComponent {
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
-  selectTab(tab_id: number) {
-    this.staticTabs.tabs[tab_id].active = true;
+  selectTab(tabId: number): void {
+    this.staticTabs.tabs[tabId].active = true;
   }
 
-  disableEnable() {
+  disableEnable(): void {
     this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled;
   }
 }
