@@ -7,6 +7,8 @@ import { DemoTabsJustifiedComponent } from './justified/justified';
 import { DemoTabsConfigComponent } from './config/config';
 import { DemoTabsManualComponent } from './manual/manual';
 import { DemoTabsDisableComponent } from './disable/disable';
+import { DemoTabsCustomComponent } from './custom-template/custom-template';
+import { DemoTabsSelectEventComponent } from './select-event/select-event';
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
@@ -17,5 +19,7 @@ export const DEMO_COMPONENTS = [
   DemoTabsPillsComponent,
   DemoTabsVerticalPillsComponent,
   DemoTabsJustifiedComponent,
-  DemoTabsConfigComponent
+  DemoTabsConfigComponent,
+  DemoTabsCustomComponent,
+  DemoTabsSelectEventComponent
 ];

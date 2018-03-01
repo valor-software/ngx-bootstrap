@@ -7,6 +7,8 @@ import { DemoTabsJustifiedComponent } from './demos/justified/justified';
 import { DemoTabsStylingComponent } from './demos/styling/styling';
 import { DemoTabsConfigComponent } from './demos/config/config';
 import { DemoTabsDisableComponent } from './demos/disable/disable';
+import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
+import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -33,8 +35,8 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     content: [
       {
-        title: 'Static tabs',
-        anchor: 'tabs-static',
+        title: 'Basic',
+        anchor: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTabsBasicComponent
@@ -90,11 +92,26 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTabsStylingComponent
       },
       {
+        title: 'Select event',
+        anchor: 'select-event',
+        component: require('!!raw-loader?lang=typescript!./demos/select-event/select-event'),
+        html: require('!!raw-loader?lang=markup!./demos/select-event/select-event.html'),
+        description: '<p>You can subscribe to tab\'s <code>select</code> event</p>',
+        outlet: DemoTabsSelectEventComponent
+      },
+      {
         title: 'Configuring defaults',
         anchor: 'tabs-config-defaults',
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTabsConfigComponent
+      },
+      {
+        title: 'Custom template',
+        anchor: 'tabs-custom-template',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-template/custom-template'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-template/custom-template.html'),
+        outlet: DemoTabsCustomComponent
       }
     ]
   },

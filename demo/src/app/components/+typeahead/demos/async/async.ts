@@ -16,11 +16,7 @@ export class DemoTypeaheadAsyncComponent {
   statesComplex: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
-    {
-      id: 3,
-      name: 'Arizona',
-      region: 'West'
-    },
+    { id: 3, name: 'Arizona', region: 'West' },
     { id: 4, name: 'Arkansas', region: 'South' },
     { id: 5, name: 'California', region: 'West' },
     { id: 6, name: 'Colorado', region: 'West' },
@@ -89,10 +85,6 @@ export class DemoTypeaheadAsyncComponent {
 
   changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
-  }
-
-  changeTypeaheadNoResults(e: boolean): void {
-    this.typeaheadNoResults = e;
   }
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
