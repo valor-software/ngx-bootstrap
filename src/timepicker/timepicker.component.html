@@ -25,7 +25,7 @@
       </a>
     </td>
     <!-- space between -->
-    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>
     <!-- meridian placeholder-->
     <td *ngIf="showMeridian"></td>
   </tr>
@@ -74,7 +74,7 @@
              (change)="updateSeconds($event.target.value)">
     </td>
     <!-- space between -->
-    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>
     <!-- meridian -->
     <td *ngIf="showMeridian">
       <button type="button" class="btn btn-default text-center"
@@ -112,7 +112,7 @@
       </a>
     </td>
     <!-- space between -->
-    <td>&nbsp;&nbsp;&nbsp;</td>
+    <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>
     <!-- meridian placeholder-->
     <td *ngIf="showMeridian"></td>
   </tr>
