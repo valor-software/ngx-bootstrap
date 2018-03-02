@@ -5,6 +5,7 @@ import { DemoButtonsUncheckableRadioComponent } from './demos/uncheckable-radio/
 import { DemoButtonsCheckboxReactiveFormsComponent } from './demos/checkbox-reactiveforms/checkbox-reactiveforms';
 import { DemoButtonsRadioReactiveFormsComponent } from './demos/radio-reactiveforms/radio-reactiveforms';
 import { DemoButtonsDisabledComponent } from './demos/disabled/disabled';
+import { DemoButtonsCustomCheckboxValueComponent } from './demos/custom-checkbox-value/custom-checkbox-value';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -28,9 +29,8 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     content: [
       {
-        title: 'Single button',
-        anchor: 'single-button',
-        description: `<p>Default static button with two states</p>`,
+        title: 'Basic',
+        anchor: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoButtonsBasicComponent
@@ -42,6 +42,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/checkbox/checkbox.ts'),
         html: require('!!raw-loader?lang=markup!./demos/checkbox/checkbox.html'),
         outlet: DemoButtonsCheckboxComponent
+      },
+      {
+        title: 'Custom checkbox value',
+        anchor: 'custom-checkbox-value',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-checkbox-value/custom-checkbox-value.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-checkbox-value/custom-checkbox-value.html'),
+        outlet: DemoButtonsCustomCheckboxValueComponent
       },
       {
         title: 'Checkbox with Reactive Forms',

@@ -6,6 +6,7 @@ import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-for
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadLatinizeComponent } from './latinize/latinize';
 import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
@@ -26,6 +27,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadPhraseDelimitersComponent,
   DemoTypeaheadDropupComponent,
   DemoTypeaheadScrollableComponent,
+  DemoTypeaheadDelayComponent,
   DemoTypeaheadNoResultComponent,
   DemoTypeaheadOnBlurComponent,
   DemoTypeaheadLatinizeComponent,
@@ -50,6 +52,10 @@ export const DEMOS = {
   async: {
     component: require('!!raw-loader?lang=typescript!./async/async.ts'),
     html: require('!!raw-loader?lang=markup!./async/async.html')
+  },
+  delay: {
+    component: require('!!raw-loader?lang=typescript!./delay/delay.ts'),
+    html: require('!!raw-loader?lang=markup!./delay/delay.html')
   },
   latinize: {
     component: require('!!raw-loader?lang=typescript!./latinize/latinize.ts'),

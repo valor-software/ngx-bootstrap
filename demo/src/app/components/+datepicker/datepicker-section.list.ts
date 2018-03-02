@@ -6,13 +6,18 @@ import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerConfigMethodComponent } from './demos/config-method/config-method';
+import { DemoDatepickerVisibilityMethodsComponent } from './demos/visibility-methods/visibility-methods';
 import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
+import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
+import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -23,8 +28,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
-import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/date-picker-custom-format';
-import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -69,11 +73,21 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom date format',
         anchor: 'format',
-        component: require('!!raw-loader?lang=typescript!./demos/custom-format/date-picker-custom-format.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/custom-format/date-picker-custom-format.html'),
+        component: require('!!raw-loader?lang=typescript!./demos/custom-format/custom-format.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-format/custom-format.html'),
         description: `
-          <p>You can easily change the date format by specifying the <code>dateInputFormat</code> in <code>[bsConfig]</code></p>
-          <p>The following example shows how to use a datepicker having <code>YYYY-MM-DD</code> date format inside a form:</p>
+          <p>You can easily change the date format by specifying the <code>dateInputFormat</code>
+            in <code>[bsConfig]</code>
+          </p>
+          <p>To set your own date format you can use variety of formats provided by
+          <a href="https://momentjs.com/docs/#/displaying/format/" target="_blank">moment.js</a></p>
+          <p>The following examples show how to use several date formats inside a form:
+            <ul>
+              <li><code>YYYY-MM-DD</code></li>
+              <li><code>MM/DD/YYYY</code></li>
+              <li><code>MMMM Do YYYY,h:mm:ss a</code></li>
+            </ul>
+          </p>
         `,
         outlet: DemoDatePickerCustomFormatComponent
       },
@@ -157,12 +171,36 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerReactiveFormsComponent
       },
       {
+        title: 'Visibility methods',
+        anchor: 'visibility-methods',
+        component: require('!!raw-loader?lang=typescript!./demos/visibility-methods/visibility-methods.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/visibility-methods/visibility-methods.html'),
+        description: `<p>You can manage datepicker's state by using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
+        outlet: DemoDatepickerVisibilityMethodsComponent
+      },
+      {
         title: 'Placement',
         anchor: 'placement',
         component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Add <code>placement</code> property if you want to change placement</p>`,
         outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Config method',
+        anchor: 'config-method',
+        component: require('!!raw-loader?lang=typescript!./demos/config-method/config-method.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/config-method/config-method.html'),
+        description: `<p>You can manage datepicker's options by using its <code>setConfig()</code> method</p>`,
+        outlet: DemoDatepickerConfigMethodComponent
+      },
+      {
+        title: 'Visibility Events',
+        anchor: 'visibility-events',
+        component: require('!!raw-loader?lang=typescript!./demos/visibility-events/visibility-events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/visibility-events/visibility-events.html'),
+        description: `<p>You can subscribe to datepicker's visibility events</p>`,
+        outlet: DemoDatePickerVisibilityEventsComponent
       },
       {
         title: 'Value change event',
@@ -267,3 +305,4 @@ export const demoComponentContentOld: ContentSection[] = [
     ]
   }
 ];
+

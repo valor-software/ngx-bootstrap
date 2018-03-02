@@ -5,12 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './custom.html'
 })
 export class DemoTimepickerCustomComponent {
-  hstep: number = 1;
-  mstep: number = 15;
+  hstep = 1;
+  mstep = 15;
+  sstep = 10;
 
   mytime: Date = new Date();
   options: any = {
     hstep: [1, 2, 3],
-    mstep: [1, 5, 10, 15, 25, 30]
+    mstep: [1, 5, 10, 15, 25, 30],
+    sstep: [5, 10, 20, 30]
   };
 }
