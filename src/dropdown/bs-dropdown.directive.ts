@@ -5,13 +5,13 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
-import { BsComponentRef, ComponentLoader, ComponentLoaderFactory } from '../component-loader';
+import { BsComponentRef, ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
 import { BsDropdownMenuDirective } from './';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',

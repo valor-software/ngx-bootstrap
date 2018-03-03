@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
-import { PositioningService } from '../positioning/positioning.service';
+import { ComponentLoaderModule } from 'ngx-bootstrap/component-loader';
 
-import { warnOnce } from '../utils/warn-once';
+import { warnOnce } from 'ngx-bootstrap/utils';
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';
@@ -39,7 +38,7 @@ const _exports = [
 ];
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, ComponentLoaderModule],
   declarations: [
     BsDatepickerDayDecoratorComponent,
     BsCurrentDateViewComponent,
@@ -72,8 +71,6 @@ export class BsDatepickerModule {
     return {
       ngModule: BsDatepickerModule,
       providers: [
-        ComponentLoaderFactory,
-        PositioningService,
         BsDatepickerStore,
         BsDatepickerActions,
         BsDatepickerConfig,

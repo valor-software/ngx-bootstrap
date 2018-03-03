@@ -1,4 +1,4 @@
-import { LinkedList } from '../../utils/linked-list.class';
+import { LinkedList } from 'ngx-bootstrap/utils';
 
 let list: LinkedList<any>;
 

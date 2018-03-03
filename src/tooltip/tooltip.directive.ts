@@ -5,10 +5,8 @@ import {
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader';
-import { OnChange } from '../utils/decorators';
-import { warnOnce } from '../utils/warn-once';
-import { parseTriggers } from '../utils/triggers';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { OnChange, parseTriggers, warnOnce } from 'ngx-bootstrap/utils';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 

@@ -60,6 +60,13 @@ export {
 } from './datepicker/index';
 
 export {
+  Action,
+  ActionReducer,
+  MiniState,
+  MiniStore
+} from './mini-ngrx/index';
+
+export {
   ModalDirective,
   ModalOptions,
   ModalBackdropOptions,
@@ -140,12 +147,28 @@ export {
   PopoverModule
 } from './popover/index';
 
-export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils/index';
+export {
+  OnChange,
+  LinkedList,
+  isBs3,
+  Trigger,
+  Utils,
+  window,
+  document,
+  listenToTriggersV2,
+  registerOutsideClick,
+  ListenOptions,
+  BsEventCallback,
+  parseTriggers,
+  warnOnce
+} from './utils/index';
 
 export {
   ComponentLoader,
   ComponentLoaderFactory,
-  ContentRef
+  ContentRef,
+  ComponentLoaderModule,
+  BsComponentRef
 } from './component-loader/index';
 
 export {

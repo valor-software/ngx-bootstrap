@@ -4,14 +4,24 @@
  */
 import { Renderer2 } from '@angular/core';
 import { Trigger } from './trigger.class';
-import {
-  BsEventCallback, ListenOptions
-} from '../component-loader/listen-options.model';
 
 const DEFAULT_ALIASES = {
   hover: ['mouseover', 'mouseout'],
   focus: ['focusin', 'focusout']
 };
+
+export type BsEventCallback = (event?: any) => boolean | void;
+
+export interface ListenOptions {
+  target?: HTMLElement;
+  targets?: HTMLElement[];
+  triggers?: string;
+  outsideClick?: boolean;
+  show?: BsEventCallback;
+  hide?: BsEventCallback;
+  toggle?: BsEventCallback;
+}
+
 
 export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();

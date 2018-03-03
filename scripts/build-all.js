@@ -2,8 +2,10 @@
 const path = require('path');
 const execa = require('execa');
 const fs = require('fs-extra');
+const cpy = require('cpy');
 const del = require('del');
 const inlineResources = require('ngm-cli/helpers/inline-resources');
+const buildPkgJson = require('ngm-cli/tasks/npm/build-pkg-json.task');
 const bundleUmd = require('ngm-cli/tasks/bundle-umd.task');
 const src = 'src';
 const tmp = '.tmp';
@@ -19,10 +21,37 @@ async function buildAll() {
   console.log('Inlining templates and styles');
   await inlineResources.inlineResources(tmp);
   console.log('Compiling libraries from temp folder');
-  // modules = ['collapse', 'accordion', 'alert'];
-  // modules.splice(modules.indexOf('datepicker'), 1);
-  // modules = ['mini-ngrx', 'chronos', 'timepicker', 'datepicker'];
-  for (let module of ['mini-ngrx', 'collapse', ...modules]) {
+  if (!fs.existsSync(dist)) {
+    fs.mkdirSync(dist);
+    buildPkgJson.buildPkgJson({src: tmp, dist: dist});
+    cpy(['*.md', 'LICENSE'], dist);
+  }
+  // build these first
+  await buildModules(['utils', 'positioning', 'component-loader', 'mini-ngrx', 'chronos', 'collapse']);
+  await buildModules(modules);
+  console.log('Compiling root');
+  bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: false});
+  // bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: true});
+  // console.log('Bundle ESM5 bundle of ngx-bootstrap');
+  // await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
+  // console.log('Bundle ES2015 bundle of ngx-bootstrap');
+  // await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
+  await removeJsFiles();
+
+}
+buildAll();
+
+function filterModules(module) {
+  if (fs.lstatSync(path.join(tmp, module)).isDirectory() && module !== 'spec') {
+    fs.writeFileSync(path.join(tmp, module, 'tsconfig.json'), getTsConfigForModule(module), 'utf8');
+    return true;
+  }
+  return false;
+
+}
+
+async function buildModules(modules) {
+  for (let module of modules) {
     console.log('Compiling', module);
     await execa.shell(`ngc -p ${path.join(tmp, module)}`, { preferLocal: true });
     console.log('Building umd bundle of', module);
@@ -36,24 +65,6 @@ async function buildAll() {
     generateMetadata(module, 'dist');
     generatePackageJson(module, path.join('dist', module));
   }
-  console.log('Compiling root');
-  await execa.shell('npm run build.ngm', { preferLocal: true }).stdout.pipe(process.stdout);
-  console.log('Bundle ESM5 bundle of ngx-bootstrap');
-  await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
-  console.log('Bundle ES2015 bundle of ngx-bootstrap');
-  await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
-  await removeJsFiles();
-
-}
-buildAll();
-
-function filterModules(module) {
-  if (fs.lstatSync(path.join(tmp, module)).isDirectory() && module !== 'spec') {
-    fs.writeFileSync(path.join(tmp, module, 'tsconfig.json'), getTsConfigForModule(module), 'utf8');
-    return true;
-  }
-  return false;
-
 }
 
 async function createEsBundle(tsconfigPath, module, tsconfigOptions, suffix) {
@@ -71,7 +82,7 @@ async function createEsBundle(tsconfigPath, module, tsconfigOptions, suffix) {
 
 async function generateTypings(module, outDir) {
   const typings = `export * from './${module}/index';`;
-  await fs.writeFile(`${path.join(outDir, module + '.d.ts')}`, typings, 'utf8');
+  await fs.writeFileSync(`${path.join(outDir, module + '.d.ts')}`, typings, 'utf8');
 }
 
 async function generateMetadata(module, outDir) {
@@ -87,7 +98,7 @@ async function generateMetadata(module, outDir) {
   "flatModuleIndexRedirect": true,
   "importAs": "ngx-bootstrap/${module}"
 }`;
-  await fs.writeFile(`${path.join(outDir, module + '.metadata.json')}`, metadata, 'utf8');
+  await fs.writeFileSync(`${path.join(outDir, module + '.metadata.json')}`, metadata, 'utf8');
 }
 
 async function generatePackageJson(module, dir) {
@@ -98,7 +109,7 @@ async function generatePackageJson(module, dir) {
   "module": "../esm5/${module}.es5.js",
   "es2015": "../es2015/${module}.es2015.js"
 }`;
-  await fs.writeFile(`${path.join(dir, 'package.json')}`, packageJson, 'utf8');
+  await fs.writeFileSync(`${path.join(dir, 'package.json')}`, packageJson, 'utf8');
 }
 
 async function removeJsFiles() {

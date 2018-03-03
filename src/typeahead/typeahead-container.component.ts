@@ -1,9 +1,8 @@
 import { Component, ElementRef, HostListener, QueryList, TemplateRef, ViewChild, ViewChildren, Renderer2 } from '@angular/core';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3, Utils } from 'ngx-bootstrap/utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { latinize } from './typeahead-utils';
 import { TypeaheadDirective } from './typeahead.directive';
-import { Utils } from '../utils/utils.class';
 
 @Component({
   selector: 'typeahead-container',

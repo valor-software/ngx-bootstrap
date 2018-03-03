@@ -1,7 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ComponentLoaderFactory } from '../component-loader';
 
-import { PositioningService } from '../positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
 import { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
@@ -9,8 +7,10 @@ import { BsDropdownConfig } from './bs-dropdown.config';
 
 import { BsDropdownDirective } from './bs-dropdown.directive';
 import { BsDropdownState } from './bs-dropdown.state';
+import { ComponentLoaderModule } from 'ngx-bootstrap/component-loader';
 
 @NgModule({
+  imports: [ComponentLoaderModule],
   declarations: [
     BsDropdownMenuDirective,
     BsDropdownToggleDirective,
@@ -29,8 +29,6 @@ export class BsDropdownModule {
     return {
       ngModule: BsDropdownModule,
       providers: [
-        ComponentLoaderFactory,
-        PositioningService,
         BsDropdownState,
         {
           provide: BsDropdownConfig,

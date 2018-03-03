@@ -5,8 +5,7 @@ import {
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs/Subscription';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
-import { ComponentLoader } from '../component-loader/component-loader.class';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 
 @Directive({
