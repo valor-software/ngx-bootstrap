@@ -32,6 +32,7 @@ const BS_DATERANGEPICKER_VALIDATOR = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown.Tab)': 'hide()',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
