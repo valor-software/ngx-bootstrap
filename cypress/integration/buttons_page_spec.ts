@@ -129,4 +129,4 @@ describe('Buttons page test suite', () => {
     cy.get('@disabledButton').contains('Button')
       .should('not.to.be.enabled');
   });
-});
+}); }
