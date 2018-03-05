@@ -1,0 +1,51 @@
+<form [formGroup]="myForm">
+  <div class="row">
+    <div class="col-xs-12 col-md-5 col-lg-4 form-group">
+      <input
+        class="form-control"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        #dpYMD="bsDatepicker"
+        bsDatepicker
+        formControlName="myDateYMD"
+        [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
+    </div>
+    <div class="col-xs-12 col-12 col-md-3 form-group">
+      <button class="btn btn-success" (click)="dpYMD.toggle()">Date Picker</button>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-5 col-lg-4 form-group">
+      <input
+        class="form-control"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        #dpMDY="bsDatepicker"
+        bsDatepicker
+        formControlName="myDateMDY"
+        [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }">
+    </div>
+    <div class="col-xs-12 col-12 col-md-3 form-group">
+      <button class="btn btn-success" (click)="dpMDY.toggle()">Date Picker</button>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-5 col-lg-4 form-group">
+      <input
+        class="form-control"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        #dpFull="bsDatepicker"
+        bsDatepicker
+        formControlName="myDateFull"
+        [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY, h:mm:ss a' }">
+    </div>
+    <div class="col-xs-12 col-12 col-md-3 form-group">
+      <button class="btn btn-success" (click)="dpFull.toggle()">Date Picker</button>
+    </div>
+  </div>
+</form>

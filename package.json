@@ -79,7 +79,7 @@
     "@angular-devkit/core": "0.0.28",
     "@angular-devkit/schematics": "0.0.51",
     "@angular/animations": "4.3.6",
-    "@angular/cli": "1.6.4",
+    "@angular/cli": "1.7.2",
     "@angular/common": "4.3.6",
     "@angular/compiler": "4.3.6",
     "@angular/compiler-cli": "4.3.6",
