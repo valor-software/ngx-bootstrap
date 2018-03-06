@@ -25,17 +25,18 @@ async function buildAll() {
     fs.mkdirSync(dist);
     buildPkgJson.buildPkgJson({src: tmp, dist: dist});
     cpy(['*.md', 'LICENSE'], dist);
+    await execa.shell(`npm run link`, { preferLocal: true });
   }
   // build these first
   await buildModules(['utils', 'positioning', 'component-loader', 'mini-ngrx', 'chronos', 'collapse']);
   await buildModules(modules);
   console.log('Compiling root');
   bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: false});
-  // bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: true});
-  // console.log('Bundle ESM5 bundle of ngx-bootstrap');
-  // await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
-  // console.log('Bundle ES2015 bundle of ngx-bootstrap');
-  // await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
+  bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: true});
+  console.log('Bundle ESM5 bundle of ngx-bootstrap');
+  await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
+  console.log('Bundle ES2015 bundle of ngx-bootstrap');
+  await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
   await removeJsFiles();
 
 }
@@ -57,10 +58,10 @@ async function buildModules(modules) {
     console.log('Building umd bundle of', module);
     bundleUmd.bundleUmd({src: path.join(tmp, module), dist: 'dist', name: module, main: 'index.ts', tsconfig: path.join(tmp, module, 'tsconfig.json'), minify: false});
     console.log('');
-    // console.log('Bundle ESM5 bundle of', module);
-    // createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
-    // console.log('Bundle ES2015 bundle of', module);
-    // createEsBundle(path.join(tmp, module), module, {target: 'es2015'}, 'es2015');
+    console.log('Bundle ESM5 bundle of', module);
+    createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
+    console.log('Bundle ES2015 bundle of', module);
+    createEsBundle(path.join(tmp, module), module, {target: 'es2015'}, 'es2015');
     generateTypings(module, 'dist');
     generateMetadata(module, 'dist');
     generatePackageJson(module, path.join('dist', module));
@@ -77,7 +78,7 @@ async function createEsBundle(tsconfigPath, module, tsconfigOptions, suffix) {
   tsconfig.compilerOptions.outDir = isRootModule ? `./dist-${suffix}` : `../dist-${suffix}`;
   await fs.writeFile(newTsConfig, JSON.stringify(tsconfig), 'utf8');
   await execa('ngc', ['-p', newTsConfig], { preferLocal: true });
-  // await execa('rollup --config ./scripts/es2015/es.config.js -i ' + `.tmp/dist-${suffix}/` +  (isRootModule ? '' : module + '/') + 'index.js' + ` -o dist/${suffix}/` + module + `.${suffix}.js`, { shell: true });
+  await execa('rollup --config ./scripts/es2015/es.config.js -i ' + `.tmp/dist-${suffix}/` +  (isRootModule ? '' : module + '/') + 'index.js' + ` -o dist/${suffix}/` + module + `.${suffix}.js`, { shell: true });
 }
 
 async function generateTypings(module, outDir) {

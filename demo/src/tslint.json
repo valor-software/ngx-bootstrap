@@ -1,6 +1,6 @@
 {
   "extends": "tslint-config-valorsoft",
-  "rulesDirectory": ["codelyzer", "tslint-rules-valorsoft"],
+  "rulesDirectory": ["codelyzer"],
   "rules": {
     "member-access": [true, "no-public"],
     "no-void-expression": ["ignore-arrow-function-shorthand"],
