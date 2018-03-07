@@ -412,7 +412,7 @@ a:hover {
     margin: 0;
     padding: 9px 0;
     font-size: 1rem;
-    color: #878787;
+    color: #767676;
 
     a {
       color: #262626;
@@ -495,6 +495,9 @@ a:hover {
 .panel.customClass {
   background-color: #5bc0de;
   color: #fff;
+}
+.card.customClass .card-header {
+  background-color: #20809D;
 }
 .panel.customClass .panel-body {
   background-color: #337aa7;

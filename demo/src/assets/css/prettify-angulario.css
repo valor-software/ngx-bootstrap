@@ -74,15 +74,15 @@
 }
 
 .prettyprint .kwd {
-  color: #D43669
+  color: #D22E63
 }
 
 .prettyprint .typ,.prettyprint .tag {
-  color: #D43669
+  color: #D22E63
 }
 
 .prettyprint .str,.prettyprint .atv {
-  color: #647f11
+  color: #607A10
 }
 
 .prettyprint .atn {
@@ -91,15 +91,15 @@
 }
 
 .prettyprint .com {
-  color: #647f11
+  color: #607A10
 }
 
 .prettyprint .lit {
-  color: #647f11
+  color: #607A10
 }
 
 .prettyprint .pun {
-  color: #7a8b94
+  color: #64737C
 }
 
 .prettyprint .pln {
