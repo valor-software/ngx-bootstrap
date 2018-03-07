@@ -62,10 +62,6 @@ describe('Buttons page test suite', () => {
       .should('to.contain', afterClickVal);
   });
 
-  it('checkbox example contains checkboxes, that can be checked or unchecked and reactive form', () => {
-    buttons.clickByText(buttonDemos[2], buttonNames[1]);
-    buttons.clickByText(buttonDemos[2], buttonNames[2]);
-
   it('checkbox example contains checkboxes, that can be checked or unchecked', () => {
     buttons.clickByText(buttonDemos[1], buttonNames[0]);
     buttons.clickByText(buttonDemos[1], buttonNames[1]);
