@@ -5,6 +5,7 @@ import { ButtonsModule } from './buttons/buttons.module';
 import { CarouselModule } from './carousel/carousel.module';
 import { CollapseModule } from './collapse/collapse.module';
 import { BsDaterangepickerConfig } from './datepicker/bs-daterangepicker.config';
+import { BsDatepickerInlineConfig } from './datepicker/bs-datepicker-inline.config';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { BsDropdownModule } from './dropdown/bs-dropdown.module';
 import { ModalModule } from './modal/modal.module';
@@ -56,6 +57,7 @@ export {
   BsDatepickerModule,
   BsDatepickerConfig,
   BsDaterangepickerConfig,
+  BsDatepickerInlineConfig,
   BsLocaleService,
   BsDaterangepickerDirective,
   BsDatepickerDirective

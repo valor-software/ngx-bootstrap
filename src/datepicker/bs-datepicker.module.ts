@@ -10,6 +10,8 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
+import { BsDatepickerInlineDirective } from './bs-datepicker-inline.component';
+import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 
 import { BsLocaleService } from './bs-locale.service';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
@@ -26,16 +28,20 @@ import { BsDaysCalendarViewComponent } from './themes/bs/bs-days-calendar-view.c
 import { BsMonthCalendarViewComponent } from './themes/bs/bs-months-calendar-view.component';
 import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.component';
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
+import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 
 const _exports = [
   BsDatepickerContainerComponent,
   BsDaterangepickerContainerComponent,
+  BsDatepickerInlineContainerComponent,
 
   BsDatepickerDirective,
   BsDatepickerInputDirective,
 
   BsDaterangepickerInputDirective,
-  BsDaterangepickerDirective
+  BsDaterangepickerDirective,
+
+  BsDatepickerInlineDirective
 ];
 
 @NgModule({
@@ -57,7 +63,8 @@ const _exports = [
   ],
   entryComponents: [
     BsDatepickerContainerComponent,
-    BsDaterangepickerContainerComponent
+    BsDaterangepickerContainerComponent,
+    BsDatepickerInlineContainerComponent
   ],
   exports: _exports
 })
@@ -78,6 +85,7 @@ export class BsDatepickerModule {
         BsDatepickerActions,
         BsDatepickerConfig,
         BsDaterangepickerConfig,
+        BsDatepickerInlineConfig,
         BsDatepickerEffects,
         BsLocaleService
       ]

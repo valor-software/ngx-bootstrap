@@ -261,6 +261,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: NgApiDocComponent
       },
       {
+        title: 'BsDatepickerInlineDirective',
+        anchor: 'bs-datepicker-inline',
+        outlet: NgApiDocComponent
+      },
+      {
         title: 'BsDatepickerConfig',
         anchor: 'bs-datepicker-config',
         outlet: NgApiDocConfigComponent
