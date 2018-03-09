@@ -98,7 +98,7 @@
     "@types/chai": "4.1.1",
     "@types/jasmine": "2.8.4",
     "@types/marked": "0.3.0",
-    "@types/node": "8.5.1",
+    "@types/node": "9.4.7",
     "@types/webpack": "3.8.3",
     "awesome-typescript-loader": "3.4.1",
     "bootstrap": "4.0.0",
