@@ -34,6 +34,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() container = 'body';
 
+  @Input() tabCanClose = 'keydown.Tab';
+
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the datepicker is currently being shown
    */
@@ -117,6 +121,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): any {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
+      tabCanClose: this.tabCanClose,
       triggers: this.triggers,
       show: () => this.show()
     });

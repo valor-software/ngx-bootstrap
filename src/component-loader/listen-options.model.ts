@@ -5,6 +5,8 @@ export interface ListenOptions {
   targets?: HTMLElement[];
   triggers?: string;
   outsideClick?: boolean;
+  outsideEsc?: boolean;
+  tabCanClose?: string;
   show?: BsEventCallback;
   hide?: BsEventCallback;
   toggle?: BsEventCallback;

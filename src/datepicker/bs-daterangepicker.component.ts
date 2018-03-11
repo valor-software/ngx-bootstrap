@@ -34,6 +34,10 @@ export class BsDaterangepickerDirective
    */
   @Input() container = 'body';
 
+  @Input() tabCanClose = 'keydown.Tab';
+
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the daterangepicker is currently being shown
    */
@@ -116,7 +120,9 @@ export class BsDaterangepickerDirective
   ngOnInit(): any {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
+      tabCanClose: this.tabCanClose,
       show: () => this.show()
     });
     this.setConfig();

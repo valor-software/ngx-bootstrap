@@ -20,7 +20,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { PositioningOptions, PositioningService } from '../positioning/index';
-import { listenToTriggersV2, registerOutsideClick } from '../utils/triggers';
+import {listenToTriggersV2, registerEscClick, registerOutsideClick} from '../utils/triggers';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
@@ -242,7 +242,9 @@ export class ComponentLoader<T> {
 
   listen(listenOpts: ListenOptions): ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
+    this._listenOpts.tabCanClose = listenOpts.tabCanClose;
     this._listenOpts.outsideClick = listenOpts.outsideClick;
+    this._listenOpts.outsideEsc = listenOpts.outsideEsc;
     listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
 
     const hide = (this._listenOpts.hide = () =>
@@ -259,6 +261,7 @@ export class ComponentLoader<T> {
     this._unregisterListenersFn = listenToTriggersV2(this._renderer, {
       target: listenOpts.target,
       triggers: listenOpts.triggers,
+      tabCanClose: this._listenOpts.tabCanClose,
       show,
       hide,
       toggle
@@ -294,6 +297,16 @@ export class ComponentLoader<T> {
         this._globalListener = registerOutsideClick(this._renderer, {
           targets: [target, this._elementRef.nativeElement],
           outsideClick: this._listenOpts.outsideClick,
+          hide: () => this._listenOpts.hide()
+        });
+      });
+    }
+    if (this._listenOpts.outsideEsc) {
+      const target = this._componentRef.location.nativeElement;
+      setTimeout(() => {
+        this._globalListener = registerEscClick(this._renderer, {
+          targets: [target, this._elementRef.nativeElement],
+          outsideEsc: this._listenOpts.outsideEsc,
           hide: () => this._listenOpts.hide()
         });
       });

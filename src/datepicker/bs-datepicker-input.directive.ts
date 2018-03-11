@@ -145,4 +145,8 @@ export class BsDatepickerInputDirective
   hide() {
     this._picker.hide();
   }
+
+  toggle() {
+    this._picker.outsideClick = true;
+  }
 }
