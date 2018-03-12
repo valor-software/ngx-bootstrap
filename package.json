@@ -99,7 +99,7 @@
     "@types/jasmine": "2.8.4",
     "@types/marked": "0.3.0",
     "@types/node": "8.5.1",
-    "@types/webpack": "3.8.3",
+    "@types/webpack": "4.1.0",
     "awesome-typescript-loader": "3.4.1",
     "bootstrap": "4.0.0",
     "chai": "4.1.2",
