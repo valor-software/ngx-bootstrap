@@ -130,15 +130,34 @@
       </p>
 
       <h2 id="accessibility">Accessibility</h2>
-      <h3>To make components accessible: </h3>
+
+      <h3>Overview and Limitations</h3>
+
+      <p>The overall accessibility of any project built with ngx-bootstrap depends in large part on the author’s markup, additional styling, and scripting they’ve included.
+        However, provided that these have been implemented correctly, it should be perfectly possible to create websites and applications
+        that fulfill <a href="https://www.w3.org/TR/WCAG20/"><abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 2.0</a> (A/AA/AAA),
+        <a href="https://www.section508.gov/">Section 508</a> and similar accessibility standards and requirements.</p>
+
+      <h3>Interactive components</h3>
+
+      <p>Interactive components—such as modal dialogs, dropdown menus and custom tooltips—are designed to work for touch, mouse and keyboard users.
+        Through the use of relevant <a href="https://www.w3.org/WAI/intro/aria"><abbr title="Web Accessibility Initiative">WAI</abbr>-<abbr title="Accessible Rich Internet Applications">ARIA</abbr></a>
+        roles and attributes, these components should also be understandable and operable using assistive technologies (such as screen readers).</p>
+      <p>Authors need to include ARIA roles and attributes to more accurately convey the precise nature of their component. </p>
+
+      <h3>Color contrast</h3>
+
+      <p>Most colors that currently make up Bootstrap’s default palette—used throughout the framework for things such as button variations, alert variations, form validation indicators—lead to <em>insufficient</em> color contrast (below the recommended <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">WCAG 2.0 color contrast ratio of 4.5:1</a>) when used against a light background. Authors will need to manually modify/extend these default colors to ensure adequate color contrast ratios.</p>
+
+      <h3>Additional resources</h3>
+
       <ul>
-        <li><code>alt</code> attribute was added for image to help users not miss any content.</li>
-        <li>semantically correct HTML was used to tell the users what type of content it’s dealing with.</li>
-        <li>was added good contrast and readability. For users with a low vision impairment,
-          high-contrast can make it much easier to navigate the content on the page. </li>
-        <li>add aria-attributes to provide extra information to screen readers via HTML attributes. But you should be ready
-          that not all of aria-attributes are supported by different screen-reader. You can see it <a href="https://www.powermapper.com/tests/screen-readers/aria/">here</a></li>
-        <li>was added built-in support for most standard keyboard menu interactions, e.g. you can open a datepicker pressing any key</li>
+        <li><a href="https://www.w3.org/TR/WCAG20/">Web Content Accessibility Guidelines (WCAG) 2.0</a></li>
+        <li><a href="http://a11yproject.com/">The A11Y Project</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility">MDN accessibility documentation</a></li>
+        <li><a href="https://tenon.io/">Tenon.io Accessibility Checker</a></li>
+        <li><a href="https://developer.paciellogroup.com/resources/contrastanalyser/">Colour Contrast Analyser (CCA)</a></li>
+        <li><a href="https://github.com/squizlabs/HTML_CodeSniffer">“HTML Codesniffer” bookmarklet for identifying accessibility issues</a></li>
       </ul>
     </div>
   </div>

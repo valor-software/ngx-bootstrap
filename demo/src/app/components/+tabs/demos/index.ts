@@ -9,10 +9,12 @@ import { DemoTabsManualComponent } from './manual/manual';
 import { DemoTabsDisableComponent } from './disable/disable';
 import { DemoTabsCustomComponent } from './custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './select-event/select-event';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
   DemoTabsManualComponent,
+  DemoTabsDisableComponent,
   DemoTabsDisableComponent,
   DemoTabsDynamicComponent,
   DemoTabsStylingComponent,
@@ -21,5 +23,6 @@ export const DEMO_COMPONENTS = [
   DemoTabsJustifiedComponent,
   DemoTabsConfigComponent,
   DemoTabsCustomComponent,
-  DemoTabsSelectEventComponent
+  DemoTabsSelectEventComponent,
+  DemoAccessibilityComponent
 ];
