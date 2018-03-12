@@ -6,6 +6,7 @@ import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reacti
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadDelayComponent } from './demos/delay/delay';
 import { DemoTypeaheadLatinizeComponent } from './demos/latinize/latinize';
 import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
@@ -16,9 +17,9 @@ import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiter
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
 
 import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
 
@@ -63,6 +64,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/async/async.ts'),
         html: require('!!raw-loader?lang=markup!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
+      },
+      {
+        title: 'With delay',
+        anchor: 'delay',
+        description: `
+          <p>Use to set minimal waiting time after last character typed before typeahead kicks-in.
+          In example a search begins with delay in 1 second</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
+        outlet: DemoTypeaheadDelayComponent
       },
       {
         title: 'Template-driven forms',
