@@ -11,6 +11,7 @@ const src = 'src';
 const tmp = '.tmp';
 const dist = 'dist';
 const tsconfigPath = '.tmp/tsconfig.json';
+const ignoreFolders = ['spec', 'dist-es2015', 'dist-esm5'];
 
 async function buildAll() {
   console.log('Building all modules as separate bundles');
@@ -28,11 +29,15 @@ async function buildAll() {
     await execa.shell(`npm run link`, { preferLocal: true });
   }
   // build these first
-  await buildModules(['utils', 'positioning', 'component-loader', 'mini-ngrx', 'chronos', 'collapse']);
-  await buildModules(modules);
+  const requiredModules = ['utils', 'positioning', 'component-loader', 'mini-ngrx', 'chronos', 'collapse'];
+  await buildModules(requiredModules);
+  await buildModules(modules.filter(module => !requiredModules.includes(module)));
   console.log('Compiling root');
-  bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: false});
-  bundleUmd.bundleUmd({src: tmp, dist: 'dist', name: 'ngx-bootstrap', main: 'index.ts', tsconfig: path.join(tmp, 'tsconfig.json'), minify: true});
+  await execa('ngc', ['-p', path.join(tmp)], { preferLocal: true });
+  execa(`rollup --config ./scripts/es2015/es.config.js -f umd -n ngx-bootstrap -i dist/index.js -o dist/bundles/ngx-bootstrap.umd.js`, { shell: true });
+  execa(`rollup --config ./scripts/es2015/es.min.config.js -f umd -n ngx-bootstrap -i dist/index.js -o dist/bundles/ngx-bootstrap.umd.min.js`, { shell: true });
+  generateMainTypings(modules, dist);
+  generateMainMetadata(modules, dist);
   console.log('Bundle ESM5 bundle of ngx-bootstrap');
   await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
   console.log('Bundle ES2015 bundle of ngx-bootstrap');
@@ -43,7 +48,7 @@ async function buildAll() {
 buildAll();
 
 function filterModules(module) {
-  if (fs.lstatSync(path.join(tmp, module)).isDirectory() && module !== 'spec') {
+  if (fs.lstatSync(path.join(tmp, module)).isDirectory() && !ignoreFolders.includes(module)) {
     fs.writeFileSync(path.join(tmp, module, 'tsconfig.json'), getTsConfigForModule(module), 'utf8');
     return true;
   }
@@ -56,8 +61,9 @@ async function buildModules(modules) {
     console.log('Compiling', module);
     await execa.shell(`ngc -p ${path.join(tmp, module)}`, { preferLocal: true });
     console.log('Building umd bundle of', module);
-    bundleUmd.bundleUmd({src: path.join(tmp, module), dist: 'dist', name: module, main: 'index.ts', tsconfig: path.join(tmp, module, 'tsconfig.json'), minify: false});
-    console.log('');
+    await execa('ngc', ['-p', path.join(tmp, module)], { preferLocal: true });
+    execa(`rollup --config ./scripts/es2015/es.config.js -f umd -n ngx-bootstrap/${module} -i dist/${module}/index.js -o dist/bundles/${module}.umd.js`, { shell: true });
+    execa(`rollup --config ./scripts/es2015/es.min.config.js -f umd -n ngx-bootstrap/${module} -i dist/${module}/index.js -o dist/bundles/${module}.umd.min.js`, { shell: true });
     console.log('Bundle ESM5 bundle of', module);
     createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
     console.log('Bundle ES2015 bundle of', module);
@@ -65,6 +71,7 @@ async function buildModules(modules) {
     generateTypings(module, 'dist');
     generateMetadata(module, 'dist');
     generatePackageJson(module, path.join('dist', module));
+    console.log('');
   }
 }
 
@@ -86,6 +93,12 @@ async function generateTypings(module, outDir) {
   await fs.writeFileSync(`${path.join(outDir, module + '.d.ts')}`, typings, 'utf8');
 }
 
+async function generateMainTypings(modules, outDir) {
+  let typings = '';
+  modules.forEach(module => typings += `export * from './${module}';\n`);
+  await fs.writeFileSync(`${path.join(outDir, 'ngx-bootstrap.d.ts')}`, typings, 'utf8');
+}
+
 async function generateMetadata(module, outDir) {
   const metadata = `{
   "__symbolic": "module",
@@ -100,6 +113,19 @@ async function generateMetadata(module, outDir) {
   "importAs": "ngx-bootstrap/${module}"
 }`;
   await fs.writeFileSync(`${path.join(outDir, module + '.metadata.json')}`, metadata, 'utf8');
+}
+
+async function generateMainMetadata(modules, outDir) {
+  const exports = modules.map((module) => `{"from": "./${module}"}`);
+  const metadata = `{
+  "__symbolic": "module",
+  "version": 3,
+  "metadata": {},
+  "exports": [${exports}],
+  "flatModuleIndexRedirect": true,
+  "importAs": "ngx-bootstrap"
+}`;
+  await fs.writeFileSync(`${path.join(outDir, 'ngx-bootstrap.metadata.json')}`, metadata, 'utf8');
 }
 
 async function generatePackageJson(module, dir) {

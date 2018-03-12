@@ -1,6 +1,7 @@
 'use strict';
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
+const uglify = require('rollup-plugin-uglify');
 const ROLLUP_GLOBALS = require('./rollup.globals');
 
 export default {
@@ -16,7 +17,8 @@ export default {
     }),
     commonjs({
       include: 'node_modules/**',
-    })
+    }),
+    uglify()
   ],
   onwarn: warning => {
     const skip_codes = [
