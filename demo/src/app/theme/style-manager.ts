@@ -37,6 +37,7 @@ function createLinkElementWithKey(key: string) {
   linkEl.setAttribute('rel', 'stylesheet');
   linkEl.classList.add(getClassNameForKey(key));
   document.head.appendChild(linkEl);
+
   return linkEl;
 }
 

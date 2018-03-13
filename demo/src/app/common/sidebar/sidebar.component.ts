@@ -34,7 +34,7 @@ export class SidebarComponent implements OnDestroy {
     private renderer: Renderer,
     @Inject(DOCUMENT) private document: any
   ) {
-    const currentTheme = this._themeStorage.getStoredTheme();
+    const currentTheme = this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
@@ -66,7 +66,7 @@ export class SidebarComponent implements OnDestroy {
     this.styleManager.setStyle('theme', this.isBs3 ? _bs3Css : _bs4Css);
 
     if (this.currentTheme) {
-      this._themeStorage.storeTheme(this.currentTheme);
+      this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 

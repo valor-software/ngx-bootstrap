@@ -16,7 +16,7 @@ export class LandingComponent implements AfterViewInit {
   currentTheme: 'bs3' | 'bs4';
 
   constructor(public styleManager: StyleManager, private http: HttpClient, private themeStorage: ThemeStorage) {
-    const currentTheme = this._themeStorage.getStoredTheme();
+    const currentTheme = this.themeStorage.getStoredTheme();
     if (currentTheme && currentTheme === 'bs3') {
       this.installTheme('bs4');
     }
@@ -24,7 +24,7 @@ export class LandingComponent implements AfterViewInit {
 
   ngAfterViewInit(): any {
     if (typeof window !== 'undefined') {
-      this.http.get('assets/json/current-version.json').subscribe((data: any) => {
+      this.http.get<any>('assets/json/current-version.json').subscribe(data => {
         this.currentVersion = data.version;
       });
     }
@@ -35,7 +35,7 @@ export class LandingComponent implements AfterViewInit {
     this.styleManager.setStyle('theme', _bs4Css);
 
     if (this.currentTheme) {
-      this._themeStorage.storeTheme(this.currentTheme);
+      this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 }

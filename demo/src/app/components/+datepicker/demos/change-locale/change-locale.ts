@@ -13,7 +13,7 @@ export class DemoDatepickerChangeLocaleComponent {
   constructor(private localeService: BsLocaleService) {}
 
   applyLocale(pop: any) {
-    this._localeService.use(this.locale);
+    this.localeService.use(this.locale);
     pop.hide();
     pop.show();
   }

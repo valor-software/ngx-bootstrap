@@ -21,10 +21,10 @@ export class Analytics {
   private location: Location;
   private router: Router;
 
-  constructor(_location: Location, _router: Router) {
-    this._location = _location;
-    this._router = _router;
-    this._enabled = typeof window != 'undefined' && window.location.href.indexOf('bootstrap') >= 0;
+  constructor(location: Location, router: Router) {
+    this.location = location;
+    this.router = router;
+    this.enabled = typeof window != 'undefined' && window.location.href.indexOf('bootstrap') >= 0;
   }
 
   /**
@@ -32,12 +32,12 @@ export class Analytics {
    * page view after each ended navigation event.
    */
   trackPageViews(): void {
-    if (!this._enabled) {
+    if (!this.enabled) {
       return;
     }
-    this._router.events.filter((event: any) => event instanceof NavigationEnd).subscribe(() => {
+    this.router.events.filter((event: any) => event instanceof NavigationEnd).subscribe(() => {
       if (typeof ga !== 'undefined') {
-        ga('send', { hitType: 'pageview', page: this._location.path() });
+        ga('send', { hitType: 'pageview', page: this.location.path() });
       }
     });
   }
@@ -46,7 +46,7 @@ export class Analytics {
    * Sends an event.
    */
   trackEvent(action: string, category: string): void {
-    if (!this._enabled) {
+    if (!this.enabled) {
       return;
     }
     if (typeof ga !== 'undefined') {

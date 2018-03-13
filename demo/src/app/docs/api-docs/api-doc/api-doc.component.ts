@@ -2,10 +2,11 @@
  * @author ng-team
  * @copyright ng-bootstrap
  */
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { PropertyDesc, DirectiveDesc, InputDesc, MethodDesc, ClassDesc, signature, NgApiDoc } from '../api-docs.model';
-import { Analytics } from '../analytics/analytics';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { ComponentApi } from '../../models/components-api.model';
+import { Analytics } from '../analytics/analytics';
+import { ClassDesc, DirectiveDesc, InputDesc, MethodDesc, NgApiDoc, PropertyDesc, signature } from '../api-docs.model';
 
 /**
  * Displays the API docs of a directive.
@@ -34,8 +35,8 @@ export class NgApiDocComponent {
   private analytics: Analytics;
   private docs: NgApiDoc;
 
-  constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
-    this._analytics = _analytics;
+  constructor(analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
+    this.analytics = analytics;
     // todo: inject docs
     this.docs = docs;
 
@@ -43,10 +44,10 @@ export class NgApiDocComponent {
     this.apiDocs = this.docs[content.title];
     this.configServiceName = `${content.title}Config`;
     const configApiDocs = this.docs[this.configServiceName];
-    this._configProperties = {};
+    this.configProperties = {};
     if (configApiDocs) {
       this.apiDocs.inputs.forEach(
-        (input: InputDesc) => (this._configProperties[input.name] = this._findInputConfigProperty(configApiDocs, input))
+        (input: InputDesc) => (this.configProperties[input.name] = this.findInputConfigProperty(configApiDocs, input))
       );
     }
   }
@@ -56,7 +57,7 @@ export class NgApiDocComponent {
    * property. If there is no matching config property, it reads it from the input.
    */
   defaultInputValue(input: InputDesc): string {
-    const configProperty = this._configProperties[input.name];
+    const configProperty = this.configProperties[input.name];
 
     return configProperty ? configProperty.defaultValue : input.defaultValue;
   }
@@ -65,7 +66,7 @@ export class NgApiDocComponent {
    * Returns true if there is a config service property matching with the given directive input
    */
   hasConfigProperty(input: InputDesc): boolean {
-    return !!this._configProperties[input.name];
+    return !!this.configProperties[input.name];
   }
 
   methodSignature(method: MethodDesc): string {
@@ -73,7 +74,7 @@ export class NgApiDocComponent {
   }
 
   trackSourceClick(): void {
-    this._analytics.trackEvent('Source File View', this.apiDocs.className);
+    this.analytics.trackEvent('Source File View', this.apiDocs.className);
   }
 
   private findInputConfigProperty(configApiDocs: ClassDesc, input: InputDesc): PropertyDesc {
