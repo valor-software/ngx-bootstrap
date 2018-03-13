@@ -26,21 +26,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 })
 ```
 
-or use Ng2BootstrapModule to import all modules at once:
-
-> **NOT RECOMMENDED**
-
-```typescript
-import { Ng2BootstrapModule } from 'ngx-bootstrap';
-...
-
-@NgModule({
-   ...
-   imports: [Ng2BootstrapModule.forRoot(), ... ],
-   ...
-})
-```
-
 ## 3. Edit rollup configuration (rollup-config.js)
 
 When using RxJS, remember to use CommonJS rollup plugin. If not installed, install it by:
