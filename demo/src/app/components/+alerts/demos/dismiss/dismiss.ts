@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DemoAlertDismissComponent {
   dismissible = true;
-  alerts: any = [
+  defaultAlerts: any[] = [
     {
       type: 'success',
       msg: `You successfully read this important alert message.`
@@ -20,8 +20,13 @@ export class DemoAlertDismissComponent {
       msg: `Better check yourself, you're not looking too good.`
     }
   ];
+  alerts = this.defaultAlerts;
 
   reset(): void {
-    this.alerts = this.alerts.map((alert: any) => Object.assign({}, alert));
+    this.alerts = this.defaultAlerts;
+  }
+
+  onClosed(dismissedAlert: any): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 }

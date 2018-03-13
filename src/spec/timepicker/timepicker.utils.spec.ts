@@ -1,18 +1,41 @@
+import { Time, TimepickerComponentState } from '../../timepicker/timepicker.models';
 import {
-  changeTime,
-  createDate,
-  isNumber,
   isValidDate,
-  padNumber,
+  isValidLimit,
+  toNumber,
+  isNumber,
   parseHours,
   parseMinutes,
   parseSeconds,
   parseTime,
+  changeTime,
   setTime,
-  toNumber
+  createDate,
+  padNumber,
+  isHourInputValid,
+  isMinuteInputValid,
+  isSecondInputValid,
+  isInputLimitValid,
+  isInputValid
 } from '../../timepicker/timepicker.utils';
 
-function testTime(hours?: number, minutes?: number, seconds?: number) {
+const controls: TimepickerComponentState = {
+  min: testTime(3, 0, 0),
+  max: testTime(17, 0, 0),
+  hourStep: 1,
+  minuteStep: 1,
+  secondsStep: 1,
+  readonlyInput: false,
+  disabled: false,
+  mousewheel: true,
+  arrowkeys: true,
+  showSpinners: false,
+  showMeridian: true,
+  showSeconds: true,
+  meridians: ['AM', 'PM']
+};
+
+function testTime(hours?: number, minutes?: number, seconds?: number): Date {
   const time = new Date();
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
@@ -24,15 +47,13 @@ function testTime(hours?: number, minutes?: number, seconds?: number) {
 function modelTime(hours: string | number,
                    minutes: string | number,
                    second: string | number,
-                   PM: boolean) {
-  const time = {
+                   PM: boolean): Time {
+  return {
     hour: hours || null,
     minute: minutes || null,
     seconds: second || null,
     isPM: PM || null
   };
-
-  return time;
 }
 
 describe('Runtime coverage. Utils: Timepicker', () => {
@@ -136,5 +157,101 @@ describe('Runtime coverage. Utils: Timepicker', () => {
 
   it('should pad number length', () => {
     padNumber(1);
+  });
+
+  it('isValidLimit method should validate the date according to the max limit and return false', () => {
+    const date = testTime(18, 0, 0);
+
+    const result = isValidLimit(controls, date);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isValidLimit method should validate the date according to the min limit and return false', () => {
+    const date = testTime(2, 0, 0);
+
+    const result = isValidLimit(controls, date);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isValidLimit method should validate the date according to the limits and return true', () => {
+    const date = testTime(4, 0, 0);
+
+    const result = isValidLimit(controls, date);
+
+    expect(result).toEqual(true);
+  });
+
+  it('isHourInputValid method should validate hour and return true', () => {
+    const result = isHourInputValid('3', true);
+
+    expect(result).toEqual(true);
+  });
+
+  it('isHourInputValid method should validate hour and return false', () => {
+    const result = isHourInputValid('78', false);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isMinuteInputValid method should validate minutes and return true', () => {
+    const result = isMinuteInputValid('56');
+
+    expect(result).toEqual(true);
+  });
+
+  it('isMinuteInputValid method should validate minutes and return false', () => {
+    const result = isMinuteInputValid('78');
+
+    expect(result).toEqual(false);
+  });
+
+  it('isSecondInputValid method should validate seconds and return true', () => {
+    const result = isSecondInputValid('56');
+
+    expect(result).toEqual(true);
+  });
+
+  it('isSecondInputValid method should validate seconds and return false', () => {
+    const result = isSecondInputValid('78');
+
+    expect(result).toEqual(false);
+  });
+
+  it('isInputValid method should validate time and return false', () => {
+    const result = isInputValid('78', undefined, undefined, false);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isInputValid method should validate time and return true', () => {
+    const result = isInputValid('5', '12', '30', true);
+
+    expect(result).toEqual(true);
+  });
+
+  it('isInputLimitValid method should validate input according to the max limit and return false', () => {
+    const date = modelTime(2, 0, 0, true);
+    const max = changeTime(new Date(), modelTime(1, 0, 0, true));
+
+    const result = isInputLimitValid(date, max, null);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isInputLimitValid method should validate input according to the min limit and return false', () => {
+    const date = modelTime(1, 0, 0, true);
+    const min = changeTime(new Date(), modelTime(3, 0, 0, true));
+
+    const result = isInputLimitValid(date, null, min);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isInputLimitValid method should validate input according to the limits and return true', () => {
+    const result = isInputLimitValid(modelTime(1, 0, 0, true), null, null);
+
+    expect(result).toEqual(true);
   });
 });

@@ -1,5 +1,3 @@
-<timepicker [(ngModel)]="mytime" [showMeridian]="ismeridian" [readonlyInput]="!isEnabled"></timepicker>
+<timepicker [(ngModel)]="myTime" [showMeridian]="isMeridian" [disabled]="!isDisabled"></timepicker>
 <hr>
-
-<button type="button" class="btn btn-info" (click)="isEnabled=!isEnabled">Enable / Disable input</button>
-
+<button type="button" class="btn btn-info" (click)="isDisabled=!isDisabled">Enable / Disable input</button>

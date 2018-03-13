@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12 col-12">
+    <pre class="card card-block card-header mb-3" *ngFor="let message of messages">{{message}}</pre>
+  </div>
+  <div class="col-xs-12 col-12 mb-3">
+    <div class="btn-group"
+         dropdown
+         (onShown)="handler('onShown')"
+         (onHidden)="handler('onHidden')">
+      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+        Button dropdown <span class="caret"></span>
+      </button>
+      <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
