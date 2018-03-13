@@ -21,7 +21,7 @@ export class NgApiDocClassComponent {
   headerAnchor: string;
   apiDocs: ClassDesc;
 
-  private _analytics: Analytics;
+  private analytics: Analytics;
   private docs: NgApiDoc;
 
   constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {

@@ -17,14 +17,14 @@ declare const ga: any;
  */
 @Injectable()
 export class Analytics {
-  private _enabled: boolean;
-  private _location: Location;
-  private _router: Router;
+  private enabled: boolean;
+  private location: Location;
+  private router: Router;
 
   constructor(_location: Location, _router: Router) {
     this._location = _location;
     this._router = _router;
-    this._enabled = (typeof window != 'undefined') && window.location.href.indexOf('bootstrap') >= 0;
+    this._enabled = typeof window != 'undefined' && window.location.href.indexOf('bootstrap') >= 0;
   }
 
   /**
@@ -35,13 +35,11 @@ export class Analytics {
     if (!this._enabled) {
       return;
     }
-    this._router.events
-      .filter((event: any) => event instanceof NavigationEnd)
-      .subscribe(() => {
-        if (typeof ga !== 'undefined') {
-          ga('send', { hitType: 'pageview', page: this._location.path() });
-        }
-      });
+    this._router.events.filter((event: any) => event instanceof NavigationEnd).subscribe(() => {
+      if (typeof ga !== 'undefined') {
+        ga('send', { hitType: 'pageview', page: this._location.path() });
+      }
+    });
   }
 
   /**

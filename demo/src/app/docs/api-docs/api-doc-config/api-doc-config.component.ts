@@ -27,7 +27,7 @@ export class NgApiDocConfigComponent {
   directiveName: string;
   headerAnchor: string;
 
-  private _analytics: Analytics;
+  private analytics: Analytics;
   private docs: NgApiDoc;
 
   constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {

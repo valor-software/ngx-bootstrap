@@ -3,15 +3,7 @@
  * @copyright ng-bootstrap
  */
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import {
-  PropertyDesc,
-  DirectiveDesc,
-  InputDesc,
-  MethodDesc,
-  ClassDesc,
-  signature,
-  NgApiDoc
-} from '../api-docs.model';
+import { PropertyDesc, DirectiveDesc, InputDesc, MethodDesc, ClassDesc, signature, NgApiDoc } from '../api-docs.model';
 import { Analytics } from '../analytics/analytics';
 import { ComponentApi } from '../../models/components-api.model';
 
@@ -38,8 +30,8 @@ export class NgApiDocComponent {
    * service (if any)
    */
 
-  private _configProperties: { [propertyName: string]: PropertyDesc };
-  private _analytics: Analytics;
+  private configProperties: { [propertyName: string]: PropertyDesc };
+  private analytics: Analytics;
   private docs: NgApiDoc;
 
   constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
@@ -54,11 +46,7 @@ export class NgApiDocComponent {
     this._configProperties = {};
     if (configApiDocs) {
       this.apiDocs.inputs.forEach(
-        (input: InputDesc) =>
-          (this._configProperties[input.name] = this._findInputConfigProperty(
-            configApiDocs,
-            input
-          ))
+        (input: InputDesc) => (this._configProperties[input.name] = this._findInputConfigProperty(configApiDocs, input))
       );
     }
   }
@@ -88,12 +76,7 @@ export class NgApiDocComponent {
     this._analytics.trackEvent('Source File View', this.apiDocs.className);
   }
 
-  private _findInputConfigProperty(
-    configApiDocs: ClassDesc,
-    input: InputDesc
-  ): PropertyDesc {
-    return configApiDocs.properties.filter(
-      (prop: PropertyDesc) => prop.name === input.name
-    )[0];
+  private findInputConfigProperty(configApiDocs: ClassDesc, input: InputDesc): PropertyDesc {
+    return configApiDocs.properties.filter((prop: PropertyDesc) => prop.name === input.name)[0];
   }
 }
