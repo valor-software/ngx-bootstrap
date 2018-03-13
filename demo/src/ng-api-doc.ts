@@ -796,6 +796,12 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
+        "name": "rangeInputFormat",
+        "defaultValue": "L",
+        "type": "string",
+        "description": "<p>Date format for date range input field</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
