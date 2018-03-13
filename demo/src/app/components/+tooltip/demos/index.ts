@@ -1,5 +1,5 @@
 import { DemoTooltipBasicComponent } from './basic/basic';
-import { DemoTooltipFourDirectionsComponent } from './four-directions/four-directions';
+import { DemoTooltipPlacementComponent } from './placement/placement';
 import { DemoTooltipDismissComponent } from './dismiss/dismiss';
 import { DemoTooltipDynamicComponent } from './dynamic/dynamic';
 import { DemoTooltipConfigComponent } from './config/config';
@@ -14,7 +14,7 @@ import { DemoTooltipDelayComponent } from './delay/delay';
 
 export const DEMO_COMPONENTS = [
   DemoTooltipBasicComponent,
-  DemoTooltipFourDirectionsComponent,
+  DemoTooltipPlacementComponent,
   DemoTooltipDismissComponent,
   DemoTooltipDynamicComponent,
   DemoTooltipDynamicHtmlComponent,
