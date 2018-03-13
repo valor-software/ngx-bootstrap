@@ -22,10 +22,10 @@ export class TopMenuComponent implements AfterViewInit {
       this.isLocalhost = location.hostname === 'localhost';
       this.needPrefix = location.pathname !== '/';
       this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
-      this.http.get('assets/json/versions.json').subscribe((data: any) => {
+      this.http.get<any>('assets/json/versions.json').subscribe(data => {
         this.previousDocs = data;
       });
-      this.http.get('assets/json/current-version.json').subscribe((data: any) => {
+      this.http.get<{ version: string }>('assets/json/current-version.json').subscribe(data => {
         this.currentVersion = data.version;
       });
     }
