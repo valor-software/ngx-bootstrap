@@ -251,19 +251,22 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    // if an item is visible - prevent form submission
-    if (e.keyCode === 13) {
+    // if an item is active - prevent form submission
+    if (this._container.active && e.keyCode === 13) {
       e.preventDefault();
 
       return;
     }
 
-    // if an item is visible - don't change focus
+    // if an item is active - don't change focus
     if (e.keyCode === 9) {
-      e.preventDefault();
-      this._container.selectActiveMatch();
+      if (this._container.active) {
+        e.preventDefault();
+        this._container.selectActiveMatch();
 
-      return;
+        return;
+      }
+      this.hide();
     }
   }
 
