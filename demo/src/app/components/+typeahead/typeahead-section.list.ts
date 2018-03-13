@@ -15,6 +15,7 @@ import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
+import { DemoTypeaheadMinLengthComponent } from './demos/min-length/min-length';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
@@ -186,6 +187,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),
         outlet: DemoTypeaheadOnSelectComponent
+      },
+      {
+        title: 'Min length',
+        anchor: 'min-length',
+        description: `
+          <p>Minimal number of characters that needs to be entered before typeahead kicks in. When set to 0, typeahead shows on focus with full list of options.</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/min-length/min-length.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/min-length/min-length.html'),
+        outlet: DemoTypeaheadMinLengthComponent
       }
     ]
   },
