@@ -3,7 +3,6 @@ import { AccordionPo } from '../support/accordion.po';
 describe('Accordion page test suite', () => {
   const accordion = new AccordionPo();
   const accordionExamples = accordion.accordionDemosArr;
-  const accordionTitles = accordion.exampleTitlesArr;
 
   beforeEach(() => accordion.navigateTo());
 
@@ -63,19 +62,19 @@ describe('Accordion page test suite', () => {
   });
 
   it('last panel can be controlled by toggler button at dynamic example', () => {
-    accordion.clickByText(accordionExamples[2], accordion.buttonPanelToggler);
+    accordion.clickByText(accordionExamples[4], accordion.buttonPanelToggler);
 
-    accordion.getAccordionPanel(accordionExamples[2], 4).as('dynamicPanel')
+    accordion.getAccordionPanel(accordionExamples[4], 2).as('dynamicPanel')
       .should('not.have.class', 'panel-open');
 
-    accordion.clickByText(accordionExamples[2], accordion.buttonPanelToggler);
+    accordion.clickByText(accordionExamples[4], accordion.buttonPanelToggler);
 
     cy.get('@dynamicPanel')
       .should('have.class', 'panel-open');
   });
 
   it('items in collapse-panel can be added dynamic at dynamic example', () => {
-    accordion.getAccordionPanel(accordionExamples[2], 3).as('dynamicItemsPanel').click();
+    accordion.getAccordionPanel(accordionExamples[3], 0).as('dynamicItemsPanel').click();
 
     cy.get('@dynamicItemsPanel').find('.panel-body').children('div')
       .should('have.length', 3);
@@ -87,13 +86,13 @@ describe('Accordion page test suite', () => {
   });
 
   it('open only one panel at a time if closeOthers property sets as true', () => {
-    cy.get(accordionExamples[3]).find('input').check();
+    cy.get(accordionExamples[5]).find('input').check();
 
-    accordion.getAccordionPanel(accordionExamples[3], 0).as('firstPanel').click()
+    accordion.getAccordionPanel(accordionExamples[5], 0).as('firstPanel').click()
       .should('have.class', 'panel-open');
-    accordion.getAccordionPanel(accordionExamples[3], 1).as('secondPanel')
+    accordion.getAccordionPanel(accordionExamples[5], 1).as('secondPanel')
       .should('not.have.class', 'panel-open');
-    accordion.getAccordionPanel(accordionExamples[3], 2).as('thirdPanel')
+    accordion.getAccordionPanel(accordionExamples[5], 2).as('thirdPanel')
       .should('not.have.class', 'panel-open');
 
     cy.get('@thirdPanel').click()
@@ -105,13 +104,13 @@ describe('Accordion page test suite', () => {
   });
 
   it('other panels are not closed if closeOthers property sets as false', () => {
-    cy.get(accordionExamples[3]).find('input').uncheck();
+    cy.get(accordionExamples[5]).find('input').uncheck();
 
-    accordion.getAccordionPanel(accordionExamples[3], 0).as('firstPanel').click()
+    accordion.getAccordionPanel(accordionExamples[5], 0).as('firstPanel').click()
       .should('have.class', 'panel-open');
-    accordion.getAccordionPanel(accordionExamples[3], 1).as('secondPanel')
+    accordion.getAccordionPanel(accordionExamples[5], 1).as('secondPanel')
       .should('not.have.class', 'panel-open');
-    accordion.getAccordionPanel(accordionExamples[3], 2).as('thirdPanel')
+    accordion.getAccordionPanel(accordionExamples[5], 2).as('thirdPanel')
       .should('not.have.class', 'panel-open');
 
     cy.get('@thirdPanel').click()
@@ -126,13 +125,13 @@ describe('Accordion page test suite', () => {
     const stylesPanel = ['rgb(91, 192, 222)', 'rgb(255, 255, 255)'];
     const stylePanelBody = 'rgb(51, 122, 167)';
 
-    accordion.getAccordionPanel(accordionExamples[4], 0).children('.card').as('firstPanel')
+    accordion.getAccordionPanel(accordionExamples[6], 0).children('.card').as('firstPanel')
       .should('to.have.css', 'background-color', stylesPanel[0])
       .and('to.have.css', 'color', stylesPanel[1]);
     cy.get('@firstPanel').find('.panel-body')
       .should('to.have.css', 'background-color', stylePanelBody);
 
-    accordion.getAccordionPanel(accordionExamples[4], 2).children('.card').as('thirdPanel')
+    accordion.getAccordionPanel(accordionExamples[6], 2).children('.card').as('thirdPanel')
       .should('to.have.css', 'background-color', stylesPanel[0])
       .and('to.have.css', 'color', stylesPanel[1]);
     cy.get('@thirdPanel').find('.panel-body')
@@ -153,19 +152,5 @@ describe('Accordion page test suite', () => {
       .should('not.have.class', 'panel-open');
     cy.get('@thirdPanel')
       .should('not.have.class', 'panel-open');
-  });
-
-  it('each demo examples are not mixed up with each other and contains code examples', () => {
-    cy.get('examples').find('h3').as('exampleTitles').each(($title, i) => {
-      expect($title).to.contain(accordionTitles[i]);
-
-      cy.get('@exampleTitles').contains(accordionTitles[i]).parent().as('currentBlock');
-
-      cy.get('@currentBlock').find(accordionExamples[i])
-        .should('to.exist');
-      cy.get('@currentBlock').find('.section').eq(1)
-        .should('be.visible')
-        .and('not.to.be.empty');
-    });
   });
 });

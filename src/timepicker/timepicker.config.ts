@@ -15,6 +15,8 @@ export class TimepickerConfig {
   meridians = ['AM', 'PM'];
   /** if true hours and minutes fields will be readonly */
   readonlyInput = false;
+  /** if true hours and minutes fields will be disabled */
+  disabled = false;
   /** if true scroll inside hours and minutes inputs will change time */
   mousewheel = true;
   /** if true up/down arrowkeys inside hours and minutes inputs will change time */
