@@ -19,8 +19,8 @@ export class AddNavComponent {
       const anchor: string = item.dataset.anchor;
       const target: HTMLElement = this.document.getElementById(anchor);
       const header: HTMLElement = this.document.getElementById('header');
-      const headerIndent: number = header.offsetHeight + 6;
-      this.document.body.scrollTop = target.offsetTop - headerIndent;
+      const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+      window.scrollTo(0, targetPosY);
     }
   }
 }

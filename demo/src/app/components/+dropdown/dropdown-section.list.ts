@@ -3,12 +3,18 @@ import { DemoDropdownBasicLinkComponent } from './demos/basic/basic-link';
 import { DemoDropdownSplitComponent } from './demos/split/split';
 import { DemoDropdownTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDropdownDisabledComponent } from './demos/disabled-menu/disabled-menu';
+import { DemoDropdownDisabledItemComponent } from './demos/disabled-item/disabled-item';
 import { DemoDropdownAlignmentComponent } from './demos/alignment/menu-alignment';
 import { DemoNestedDropdownsComponent } from './demos/nested-dropdowns/nested-dropdowns';
 import { DemoDropdownContainerComponent } from './demos/container/container';
 import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
-import { DemoDropupComponent } from './demos/dropup/dropup';
+import { DemoDropdownDropupComponent } from './demos/dropup/dropup';
+import { DemoDropdownMenuDividersComponent } from './demos/menu-dividers/menu-dividers';
 import { DemoDropdownConfigComponent } from './demos/config/config';
+import { DemoDropdownVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
+import { DemoDropdownStateChangeEventComponent } from './demos/state-change-event/state-change-event';
+import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
+import { DemoDropdownCustomHtmlComponent } from './demos/custom-html/custom-html';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -38,8 +44,8 @@ export const demoComponentContent: ContentSection[] = [
       elements to better fit your potential needs.</p>`,
     content: [
       {
-        title: 'Single button dropdowns',
-        anchor: 'single-button',
+        title: 'Basic',
+        anchor: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `<p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes.
@@ -80,7 +86,17 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'disabled-menu',
         component: require('!!raw-loader?lang=typescript!./demos/disabled-menu/disabled-menu.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled-menu/disabled-menu.html'),
+        description: `<p>Use <code>isDisabled</code> property to make dropdown disabled.</p>`,
         outlet: DemoDropdownDisabledComponent
+      },
+      {
+        title: 'Mark item as disabled',
+        anchor: 'disabled-item',
+        component: require('!!raw-loader?lang=typescript!./demos/disabled-item/disabled-item.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disabled-item/disabled-item.html'),
+        description: `<p>Add a <code>disabled</code> class to <code>&lt;a&gt;</code> for bootstrap 4 to make it as disabled.</p>
+                      <p>Add a <code>disabled</code> class to <code>&lt;li&gt;</code>  for bootstrap 3 to make as it disabled.</p>`,
+        outlet: DemoDropdownDisabledItemComponent
       },
       {
         title: 'Menu alignment',
@@ -101,9 +117,10 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Append to body',
-        anchor: 'container-body',
+        anchor: 'container',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        description: `<p>Append dropdown to body by adding <code>container="body"</code> to the parent element.</p>`,
         outlet: DemoDropdownContainerComponent
       },
       /* not availavle in bs-dropdown version
@@ -119,9 +136,24 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
-        description: `<p>Trigger dropdown menus above elements by adding <code>.dropup</code> to the
-          parent element.</p>`,
-        outlet: DemoDropupComponent
+        description: `<p>Trigger dropdown menus above elements by setting <code>dropup</code> property to <code>true</code></p>`,
+        outlet: DemoDropdownDropupComponent
+      },
+      {
+        title: 'Menu dividers',
+        anchor: 'menu-dividers',
+        component: require('!!raw-loader?lang=typescript!./demos/menu-dividers/menu-dividers.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/menu-dividers/menu-dividers.html'),
+        description: `<p>Separate groups of related menu items with a <code>.divider</code> for bootstrap 3 and <code>.dropdown-divider</code> for bootstrap 4.</p>`,
+        outlet: DemoDropdownMenuDividersComponent
+      },
+      {
+        title: 'Custom html',
+        anchor: 'custom-html',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-html/custom-html.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-html/custom-html.html'),
+        description: `<p>Dropdown allows you to use any html</p>`,
+        outlet: DemoDropdownCustomHtmlComponent
       },
       {
         title: 'Configuring defaults',
@@ -130,6 +162,30 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         description: `<p>It is possible to override default dropdown config partially or completely.</p>`,
         outlet: DemoDropdownConfigComponent
+      },
+      {
+        title: 'Visibility Events',
+        anchor: 'visibility-events',
+        component: require('!!raw-loader?lang=typescript!./demos/visibility-events/visibility-events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/visibility-events/visibility-events.html'),
+        description: `<p>You can subscribe to dropdown's visibility events</p>`,
+        outlet: DemoDropdownVisibilityEventsComponent
+      },
+      {
+        title: 'State change event',
+        anchor: 'state-change-event',
+        component: require('!!raw-loader?lang=typescript!./demos/state-change-event/state-change-event.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/state-change-event/state-change-event.html'),
+        description: `<p>You can subscribe to dropdown's state change event (<code>isOpenChange</code>).</p>`,
+        outlet: DemoDropdownStateChangeEventComponent
+      },
+      {
+        title: 'Auto close',
+        anchor: 'autoclose',
+        component: require('!!raw-loader?lang=typescript!./demos/autoclose/autoclose.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/autoclose/autoclose.html'),
+        description: `<p>Use <code>autoClose</code> property to change dropdown's default behavior</p>`,
+        outlet: DemoDropdownAutoCloseComponent
       }
     ]
   },
