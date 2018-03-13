@@ -1,19 +1,30 @@
 'use strict';
+const meow = require('meow');
 const path = require('path');
 const execa = require('execa');
 const fs = require('fs-extra');
 const cpy = require('cpy');
+const chokidar = require('chokidar');
 const del = require('del');
 const inlineResources = require('ngm-cli/helpers/inline-resources');
 const buildPkgJson = require('ngm-cli/tasks/npm/build-pkg-json.task');
-const bundleUmd = require('ngm-cli/tasks/bundle-umd.task');
 const src = 'src';
 const tmp = '.tmp';
 const dist = 'dist';
-const tsconfigPath = '.tmp/tsconfig.json';
 const ignoreFolders = ['spec', 'dist-es2015', 'dist-esm5'];
+const {
+  performance
+} = require('perf_hooks');
+let flags = {};
 
 async function buildAll() {
+  if (flags.dev) {
+    console.log(`DEVELOPMENT MODE. Only specified bundles (UMD) will be created \n`);
+  }
+  if (flags.watch) {
+    console.log(`WATCH MODE ENABLED \n`);
+  }
+  const t0 = performance.now();
   console.log('Building all modules as separate bundles');
   await del(tmp);
   console.log('Copying src to temp folder');
@@ -34,18 +45,45 @@ async function buildAll() {
   await buildModules(modules.filter(module => !requiredModules.includes(module)));
   console.log('Compiling root');
   await execa('ngc', ['-p', path.join(tmp)], { preferLocal: true });
-  execa(`rollup --config ./scripts/es2015/es.config.js -f umd -n ngx-bootstrap -i dist/index.js -o dist/bundles/ngx-bootstrap.umd.js`, { shell: true });
-  execa(`rollup --config ./scripts/es2015/es.min.config.js -f umd -n ngx-bootstrap -i dist/index.js -o dist/bundles/ngx-bootstrap.umd.min.js`, { shell: true });
+  await execa(`rollup --config ./scripts/es2015/es.config.js -f umd -n ngx-bootstrap -i dist/index.js -o dist/bundles/ngx-bootstrap.umd.js`, { shell: true });
+  await execa(`rollup --config ./scripts/es2015/es.min.config.js -f umd -n ngx-bootstrap -i dist/index.js -o dist/bundles/ngx-bootstrap.umd.min.js`, { shell: true });
   generateMainTypings(modules, dist);
   generateMainMetadata(modules, dist);
-  console.log('Bundle ESM5 bundle of ngx-bootstrap');
-  await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
-  console.log('Bundle ES2015 bundle of ngx-bootstrap');
-  await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
+  if (!flags.dev) {
+    console.log('Bundle ESM5 bundle of ngx-bootstrap');
+    await createEsBundle(tmp, 'ngx-bootstrap', {module: 'es6'}, 'esm5');
+    console.log('Bundle ES2015 bundle of ngx-bootstrap');
+    await createEsBundle(tmp, 'ngx-bootstrap', {target: 'es2015'}, 'es2015');
+  }
   await removeJsFiles();
-
+  await del([tmp]);
+  const t1 = performance.now();
+  console.log(`Build took ${((t1 - t0) / 1000).toFixed()} seconds.`);
 }
+
+const cli = meow(`
+	Options
+	  --dev Bundle only UMD version
+	  --watch Rebuild on source change
+`, {
+  flags: {
+    dev: {
+      type: 'boolean'
+    },
+    watch: {
+      type: 'boolean'
+    }
+  }
+});
+flags = cli.flags;
 buildAll();
+
+if (flags.watch) {
+  chokidar.watch(src, {ignored: /(^|[\/\\])\../}).on('change', (event) => {
+    console.log(event);
+    buildAll();
+  });
+}
 
 function filterModules(module) {
   if (fs.lstatSync(path.join(tmp, module)).isDirectory() && !ignoreFolders.includes(module)) {
@@ -61,13 +99,14 @@ async function buildModules(modules) {
     console.log('Compiling', module);
     await execa.shell(`ngc -p ${path.join(tmp, module)}`, { preferLocal: true });
     console.log('Building umd bundle of', module);
-    await execa('ngc', ['-p', path.join(tmp, module)], { preferLocal: true });
-    execa(`rollup --config ./scripts/es2015/es.config.js -f umd -n ngx-bootstrap/${module} -i dist/${module}/index.js -o dist/bundles/${module}.umd.js`, { shell: true });
-    execa(`rollup --config ./scripts/es2015/es.min.config.js -f umd -n ngx-bootstrap/${module} -i dist/${module}/index.js -o dist/bundles/${module}.umd.min.js`, { shell: true });
-    console.log('Bundle ESM5 bundle of', module);
-    createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
-    console.log('Bundle ES2015 bundle of', module);
-    createEsBundle(path.join(tmp, module), module, {target: 'es2015'}, 'es2015');
+    await execa(`rollup --config ./scripts/es2015/es.config.js -f umd -n ngx-bootstrap/${module} -i dist/${module}/index.js -o dist/bundles/${module}.umd.js`, { shell: true });
+    if (!flags.dev) {
+      execa(`rollup --config ./scripts/es2015/es.min.config.js -f umd -n ngx-bootstrap/${module} -i dist/${module}/index.js -o dist/bundles/${module}.umd.min.js`, { shell: true });
+      console.log('Bundle ESM5 bundle of', module);
+      createEsBundle(path.join(tmp, module), module, {module: 'es6'}, 'esm5');
+      console.log('Bundle ES2015 bundle of', module);
+      createEsBundle(path.join(tmp, module), module, {target: 'es2015'}, 'es2015');
+    }
     generateTypings(module, 'dist');
     generateMetadata(module, 'dist');
     generatePackageJson(module, path.join('dist', module));
