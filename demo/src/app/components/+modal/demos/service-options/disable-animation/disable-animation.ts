@@ -3,27 +3,17 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
-  selector: 'demo-modal-service-options',
-  templateUrl: './service-options.html'
+  selector: 'demo-modal-service-disable-animation',
+  templateUrl: './disable-animation.html'
 })
-export class DemoModalServiceOptionsComponent {
+export class DemoModalServiceDisableAnimationComponent {
   modalRef: BsModalRef;
   config = {
-    animated: true,
-    keyboard: true,
-    backdrop: true,
-    ignoreBackdropClick: false
+    animated: true
   };
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
-  }
-
-  openModalWithClass(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, this.config, { class: 'gray modal-lg' })
-    );
   }
 }

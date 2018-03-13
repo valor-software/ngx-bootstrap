@@ -1,11 +1,7 @@
 <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button>
-<button type="button" class="btn btn-primary" (click)="openModalWithClass(template)">Open modal with custom css class</button>
 <br>
 <br>
 <button type="button" class="btn btn-primary btn-sm" (click)="config.animated = !config.animated">{{config.animated ? 'Disable' : 'Enable'}} animation</button>
-<button type="button" class="btn btn-primary btn-sm" (click)="config.keyboard = !config.keyboard">{{config.keyboard ? 'Disable' : 'Enable'}} Esc</button>
-<button type="button" class="btn btn-primary btn-sm" (click)="config.backdrop = !config.backdrop">{{config.backdrop ? 'Disable' : 'Enable'}} backdrop</button>
-<button type="button" class="btn btn-primary btn-sm" (click)="config.ignoreBackdropClick = !config.ignoreBackdropClick">{{!config.ignoreBackdropClick ? 'Disable' : 'Enable'}} backdrop click</button>
 
 <ng-template #template>
   <div class="modal-header">
