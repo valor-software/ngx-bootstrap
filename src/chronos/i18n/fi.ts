@@ -14,7 +14,7 @@ var numbersPast = 'nolla yksi kaksi kolme neljä viisi kuusi seitsemän kahdeksa
     numbersPast[7], numbersPast[8], numbersPast[9]
   ];
 
-function translate(nr, withoutSuffix, key, isFuture) {
+function translate(num: number, withoutSuffix: boolean, key: string, isFuture: boolean): string {
   var result = '';
   switch (key) {
     case 's':
@@ -47,12 +47,12 @@ function translate(nr, withoutSuffix, key, isFuture) {
       result = isFuture ? 'vuoden' : 'vuotta';
       break;
   }
-  result = verbalNumber(nr, isFuture) + ' ' + result;
+  result = verbalNumber(num, isFuture) + ' ' + result;
   return result;
 }
 
-function verbalNumber(nr, isFuture) {
-  return nr < 10 ? (isFuture ? numbersFuture[nr] : numbersPast[nr]) : nr;
+function verbalNumber(num: number, isFuture: boolean) {
+  return num < 10 ? (isFuture ? numbersFuture[num] : numbersPast[num]) : num;
 }
 
 export const fiLocale: LocaleData = {
