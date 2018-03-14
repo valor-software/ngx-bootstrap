@@ -15,6 +15,7 @@ import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DemoModalWithPopupsComponent } from './demos/modal-with-components/modal-with-components';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -127,6 +128,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/service-options/disable-esc-closing/disable-esc-closing.html'),
         description: `<p>There is closing by Esc button option that you can configure.</p>`,
         outlet: DemoModalServiceDisableEscClosingComponent
+      },
+      {
+        title: 'Modal window with other components',
+        anchor: 'modal-with-components',
+        component: require('!!raw-loader?lang=typescript!./demos/modal-with-components/modal-with-components.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/modal-with-components/modal-with-components.html'),
+        description: `<p>Modals work fine with other components. In this example, there are <code>popover</code> and <code>tooltip</code> in the modal.</p>`,
+        outlet: DemoModalWithPopupsComponent
       },
       {
         title: 'Backdrop options',
