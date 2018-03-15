@@ -695,7 +695,7 @@ export const ngdoc: any = {
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
+        "description": "<p>Indicates whether datepicker&#39;s content is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
@@ -845,7 +845,7 @@ export const ngdoc: any = {
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "<p>Indicates whether daterangepicker is enabled or not</p>\n"
+        "description": "<p>Indicates whether daterangepicker&#39;s content is enabled or not</p>\n"
       },
       {
         "name": "isOpen",

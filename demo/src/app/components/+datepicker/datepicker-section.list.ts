@@ -147,11 +147,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerMinMaxComponent
       },
       {
-        title: 'Disabled (scratch, WIP)',
+        title: 'Disabled',
         anchor: 'disabled-datepicker',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.component.html'),
-        description: `<p>If you want to disable datepicker set <code>isDisabled</code> property to true</p>`,
+        description: `<p>If you want to disable datepicker's or daterangepicker's content set <code>isDisabled</code> property to true</p>`,
         outlet: DemoDatepickerDisabledComponent
       },
       {
