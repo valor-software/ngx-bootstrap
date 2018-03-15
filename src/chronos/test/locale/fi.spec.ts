@@ -194,16 +194,12 @@ describe('locale: fi', () => {
       switch (d.day()) {
         case 0:
           return '[sunnuntai klo] LT';
-
         case 2:
           return '[tiistai klo] LT';
-
         case 3:
           return '[keskiviikko klo] LT';
-
         case 6:
           return '[lauantai klo] LT';
-
         default:
           return 'dddd [klo] LT';
       }
@@ -230,6 +226,8 @@ describe('locale: fi', () => {
           return '[viime sunnuntaina klo] LT';
         case 1:
           return '[viime maanantaina klo] LT';
+        case 2:
+          return '[viime tiistaina klo] LT';
         case 4:
           return '[viime torstaina klo] LT';
         case 5:
@@ -273,5 +271,35 @@ describe('locale: fi', () => {
     assert.equal(moment([2012, 0, 8]).format('w ww wo'), '1 01 1.', 'Jan  8 2012 should be week 1');
     assert.equal(moment([2012, 0, 9]).format('w ww wo'), '2 02 2.', 'Jan  9 2012 should be week 2');
     assert.equal(moment([2012, 0, 15]).format('w ww wo'), '2 02 2.', 'Jan 15 2012 should be week 2');
+  });
+  it('relative time threshold in the past', function() {
+    assert.equal(moment().subtract(1, 's').fromNow(), 'muutama sekunti sitten', 'A few seconds ago');
+    assert.equal(moment().subtract(15, 's').fromNow(), 'muutama sekunti sitten', 'A few seconds ago');
+    assert.equal(moment().subtract(55, 's').fromNow(), 'minuutti sitten', 'A minute ago');
+    assert.equal(moment().subtract(1, 'm').fromNow(), 'minuutti sitten', 'A minute ago');
+    assert.equal(moment().subtract(15, 'm').fromNow(), '15 minuuttia sitten', '15 minutes ago');
+    assert.equal(moment().subtract(1, 'h').fromNow(), 'tunti sitten', 'An hour ago');
+    assert.equal(moment().subtract(3, 'h').fromNow(), 'kolme tuntia sitten', '3 hours ago');
+    assert.equal(moment().subtract(25, 'h').fromNow(), 'päivä sitten', 'A day ago');
+    assert.equal(moment().subtract(3, 'd').fromNow(), 'kolme päivää sitten', '3 days ago');
+    assert.equal(moment().subtract(1, 'M').fromNow(), 'kuukausi sitten', 'A month ago');
+    assert.equal(moment().subtract(2, 'M').fromNow(), 'kaksi kuukautta sitten', '2 months ago');
+    assert.equal(moment().subtract(15, 'M').fromNow(), 'vuosi sitten', 'A year ago');
+    assert.equal(moment().subtract(15, 'y').fromNow(), '15 vuotta sitten', '15 years ago');
+  });
+  it('relative time threshold in the future', function() {
+    assert.equal(moment().add(8, 's').fromNow(), 'muutaman sekunnin päästä', 'In a few seconds');
+    assert.equal(moment().add(15, 's').fromNow(), 'muutaman sekunnin päästä', 'In a few seconds');
+    assert.equal(moment().add(55, 's').fromNow(), 'minuutin päästä', 'In a minute');
+    assert.equal(moment().add(1, 'm').fromNow(), 'minuutin päästä', 'I a minute');
+    assert.equal(moment().add(15, 'm').fromNow(), '15 minuutin päästä', '15 minutes away');
+    assert.equal(moment().add(1, 'h').fromNow(), 'tunnin päästä', 'In an hour');
+    assert.equal(moment().add(3, 'h').fromNow(), 'kolmen tunnin päästä', '3 hours later');
+    assert.equal(moment().add(25, 'h').fromNow(), 'päivän päästä', 'After a day');
+    assert.equal(moment().add(15, 'd').fromNow(), '15 päivän päästä', 'After 15 days');
+    assert.equal(moment().add(1, 'M').fromNow(), 'kuukauden päästä', 'In a month');
+    assert.equal(moment().add(2, 'M').fromNow(), 'kahden kuukauden päästä', 'In 2 months');
+    assert.equal(moment().add(15, 'M').fromNow(), 'vuoden päästä', 'In a year');
+    assert.equal(moment().add(15, 'y').fromNow(), '15 vuoden päästä', 'After 15 years');
   });
 });
