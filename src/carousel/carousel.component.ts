@@ -44,7 +44,8 @@ export class CarouselComponent implements OnDestroy {
   @Input() noPause: boolean;
   /**  If `true` — carousel-indicators are visible  */
   @Input() showIndicators: boolean;
-
+  /**  If `true` - autoplay will be stopped on focus */
+  @Input() pauseOnFocus: boolean;
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
   @Output()
   activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
@@ -162,6 +163,70 @@ export class CarouselComponent implements OnDestroy {
    */
   previousSlide(force = false): void {
     this.activeSlide = this.findNextSlideIndex(Direction.PREV, force);
+  }
+
+  /**
+   * Swith slides by enter, space and arrows keys
+   * @internal
+   */
+  keydownPress(event: KeyboardEvent) {
+    switch (event.keyCode) {
+      case 13:
+      case 32:
+        this.nextSlide();
+        event.preventDefault();
+        break;
+      case 37:
+        this.previousSlide();
+        break;
+      case 39:
+        this.nextSlide();
+        break;
+      default:
+        return;
+    }
+  }
+
+  /**
+   * Swith to prev slide by enter key
+   * @internal
+   */
+  prevKey(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+      this.previousSlide();
+    }
+  }
+
+  /**
+   * Swith to next slide by enter key
+   * @internal
+   */
+  nextKey(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+      this.nextSlide();
+    }
+  }
+
+  /**
+   * When slides on focus autoplay is stopped(optional)
+   * @internal
+   */
+  pauseFocusIn() {
+    if (this.pauseOnFocus) {
+      this.isPlaying = false;
+      this.resetTimer();
+    }
+  }
+
+  /**
+   * When slides out of focus autoplay is started
+   * @internal
+   */
+  pauseFocusOut() {
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.restartTimer();
+    }
   }
 
   /**

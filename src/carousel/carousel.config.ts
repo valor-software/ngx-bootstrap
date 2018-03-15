@@ -13,4 +13,9 @@ export class CarouselConfig {
 
   /** Show carousel-indicators */
   showIndicators = true;
+
+  /** Slides can be paused on focus
+   * @internal
+   */
+  pauseOnFocus = true;
 }

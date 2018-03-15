@@ -233,6 +233,11 @@ export const ngdoc: any = {
         "description": "<p>If <code>true</code> — carousel will not cycle continuously and will have hard stops (prevent looping) </p>\n"
       },
       {
+        "name": "pauseOnFocus",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> - autoplay will be stopped on focus </p>\n"
+      },
+      {
         "name": "showIndicators",
         "type": "boolean",
         "description": "<p>If <code>true</code> — carousel-indicators are visible  </p>\n"
@@ -294,6 +299,51 @@ export const ngdoc: any = {
             "type": "boolean"
           }
         ],
+        "returnType": "void"
+      },
+      {
+        "name": "keydownPress",
+        "description": "<p>Swith slides by enter, space and arrows keys</p>\n",
+        "args": [
+          {
+            "name": "event",
+            "type": "KeyboardEvent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "prevKey",
+        "description": "<p>Swith to prev slide by enter key</p>\n",
+        "args": [
+          {
+            "name": "event",
+            "type": "KeyboardEvent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "nextKey",
+        "description": "<p>Swith to next slide by enter key</p>\n",
+        "args": [
+          {
+            "name": "event",
+            "type": "KeyboardEvent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "pauseFocusIn",
+        "description": "<p>When slides on focus autoplay is stopped(optional)</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pauseFocusOut",
+        "description": "<p>When slides out of focus autoplay is started</p>\n",
+        "args": [],
         "returnType": "void"
       },
       {
@@ -399,6 +449,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Is slides can wrap from the last to the first slide </p>\n"
+      },
+      {
+        "name": "pauseOnFocus",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Slides can be paused on focus</p>\n"
       },
       {
         "name": "showIndicators",
