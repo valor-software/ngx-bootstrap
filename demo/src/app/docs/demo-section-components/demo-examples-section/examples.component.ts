@@ -26,7 +26,7 @@ export class ExamplesComponent {
     }
 
     if (element.tagName !== 'A') {
-      while (element !== document.body)  {
+      while (element.parentElement && element !== document.body)  {
         if (preventNav) {
           event.preventDefault();
           return;

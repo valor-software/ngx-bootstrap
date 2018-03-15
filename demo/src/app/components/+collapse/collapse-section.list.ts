@@ -1,10 +1,12 @@
 import { CollapseDemoComponent } from './demos/basic/basic';
 import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';
+import { CollapseDemoEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
 
@@ -30,11 +32,25 @@ export const demoComponentContent: ContentSection[] = [
         outlet: CollapseDemoComponent
       },
       {
+        title: 'Events',
+        anchor: 'events',
+        component: require('!!raw-loader?lang=typescript!./demos/events/events'),
+        html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
+        description: `Collapse directive exposes 2 events: <code>collapsed</code>, that fires when a content was hidden, 
+                      and <code>expanded</code>, that fires when a content was shown`,
+        outlet: CollapseDemoEventsComponent
+      },
+      {
         title: 'Manual toggle',
         anchor: 'manual-toggle',
         component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
         html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
         outlet: ToggleManualDemoComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },

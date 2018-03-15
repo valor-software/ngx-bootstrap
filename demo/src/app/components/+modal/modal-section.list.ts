@@ -14,6 +14,7 @@ import { DemoModalChildComponent } from './demos/child/child';
 import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -198,6 +199,11 @@ export const demoComponentContent: ContentSection[] = [
           want to defer that until user actually sees modal content. I.e. for a "Select e-mail recipient" modal
           you might want to defer recipient list loading until the modal is shown.</p>`,
         outlet: DemoAutoShownModalComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },

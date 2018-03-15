@@ -77,7 +77,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
   /**
-   * Indicates whether datepicker is enabled or not
+   * Indicates whether datepicker's content is enabled or not
    */
   @Input() isDisabled: boolean;
   /**

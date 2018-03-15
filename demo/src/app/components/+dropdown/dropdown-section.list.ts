@@ -15,6 +15,7 @@ import { DemoDropdownVisibilityEventsComponent } from './demos/visibility-events
 import { DemoDropdownStateChangeEventComponent } from './demos/state-change-event/state-change-event';
 import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './demos/custom-html/custom-html';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -25,6 +26,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -186,6 +188,11 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/autoclose/autoclose.html'),
         description: `<p>Use <code>autoClose</code> property to change dropdown's default behavior</p>`,
         outlet: DemoDropdownAutoCloseComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },
