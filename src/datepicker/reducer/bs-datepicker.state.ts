@@ -2,6 +2,7 @@ import {
   BsDatepickerViewMode,
   DatepickerFormatOptions,
   DatepickerRenderOptions,
+  DatepickerDateCustomClasses,
   DaysCalendarModel,
   DaysCalendarViewModel,
   MonthsCalendarViewModel,
@@ -30,6 +31,7 @@ export class BsDatepickerState
   // bounds
   minDate?: Date;
   maxDate?: Date;
+  dateCustomClasses?: DatepickerDateCustomClasses[];
 
   hoveredDate?: Date;
   hoveredMonth?: Date;

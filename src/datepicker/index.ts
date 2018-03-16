@@ -10,7 +10,7 @@ export { BsDatepickerModule } from './bs-datepicker.module';
 export { BsDatepickerDirective } from './bs-datepicker.component';
 export { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 export { BsDatepickerInlineDirective } from './bs-datepicker-inline.component';
-export { BsDatepickerConfig } from './bs-datepicker.config';
+export { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
 export { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 export { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 export { BsLocaleService } from './bs-locale.service';

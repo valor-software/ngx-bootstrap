@@ -677,6 +677,11 @@ export const ngdoc: any = {
         "description": "<p>Initial value of datepicker</p>\n"
       },
       {
+        "name": "dateCustomClasses",
+        "type": "BsDatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
@@ -747,6 +752,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the datepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "dateCustomClasses",
+        "type": "BsDatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
       },
       {
         "name": "isDisabled",
@@ -842,6 +852,11 @@ export const ngdoc: any = {
         "description": "<p>CSS class which will be applied to datepicker container,\nusually used to set color theme</p>\n"
       },
       {
+        "name": "dateCustomClasses",
+        "type": "BsDatepickerDateCustomClasses[]",
+        "description": "<p>Default date custom classes for all date/range pickers</p>\n"
+      },
+      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -891,6 +906,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the daterangepicker should be appended\nto. Currently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "dateCustomClasses",
+        "type": "BsDatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1379,6 +1399,13 @@ export const ngdoc: any = {
   "DatepickerRenderOptions": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DatepickerRenderOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DatepickerDateCustomClasses": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "DatepickerDateCustomClasses",
     "description": "",
     "methods": [],
     "properties": []

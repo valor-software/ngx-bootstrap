@@ -7,7 +7,7 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
-import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
 import { BsLocaleService } from './bs-locale.service';
 
 @Directive({
@@ -89,6 +89,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() maxDate: Date;
   /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -138,6 +142,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
 
@@ -208,7 +216,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+      dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses
     });
   }
 

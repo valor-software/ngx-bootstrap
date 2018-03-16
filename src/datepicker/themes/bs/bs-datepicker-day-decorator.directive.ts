@@ -5,6 +5,7 @@ import { DayViewModel } from '../../models/index';
   selector: '[bsDatepickerDayDecorator]',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    '[class]': 'day.customClasses',
     '[class.disabled]': 'day.isDisabled',
     '[class.is-highlighted]': 'day.isHovered',
     '[class.is-other-month]': 'day.isOtherMonth',

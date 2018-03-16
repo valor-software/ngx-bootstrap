@@ -11,6 +11,7 @@ import {
   CalendarCellViewModel,
   CellHoverEvent,
   DatepickerRenderOptions,
+  DatepickerDateCustomClasses,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -65,6 +66,12 @@ export class BsDatepickerEffects {
 
   setDisabled(value: boolean): BsDatepickerEffects {
     this._store.dispatch(this._actions.isDisabled(value));
+
+    return this;
+  }
+
+  setDateCustomClasses(value: DatepickerDateCustomClasses[]): BsDatepickerEffects {
+    this._store.dispatch(this._actions.setDateCustomClasses(value));
 
     return this;
   }
@@ -225,6 +232,14 @@ export class BsDatepickerEffects {
         .select(state => state.hoveredDate)
         .filter(hoveredDate => !!hoveredDate)
         .subscribe(hoveredDate => this._store.dispatch(this._actions.flag()))
+    );
+
+    // date custom classes
+    this._subs.push(
+      this._store
+        .select(state => state.dateCustomClasses)
+        .filter(dateCustomClasses => !!dateCustomClasses)
+        .subscribe(dateCustomClasses => this._store.dispatch(this._actions.flag()))
     );
 
     // on locale change

@@ -7,7 +7,7 @@ import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepic
 import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ComponentLoader } from '../component-loader/component-loader.class';
-import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -89,6 +89,10 @@ export class BsDaterangepickerDirective
    */
   @Input() maxDate: Date;
   /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
+  /**
    * Emits when daterangepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
@@ -137,6 +141,10 @@ export class BsDaterangepickerDirective
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
 
@@ -188,7 +196,8 @@ export class BsDaterangepickerDirective
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses
       }
     );
   }

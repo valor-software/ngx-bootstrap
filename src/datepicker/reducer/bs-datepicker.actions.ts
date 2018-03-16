@@ -5,7 +5,8 @@ import {
   BsDatepickerViewMode,
   BsViewNavigationEvent,
   CellHoverEvent,
-  DatepickerRenderOptions
+  DatepickerRenderOptions,
+  DatepickerDateCustomClasses
 } from '../models/index';
 
 @Injectable()
@@ -23,6 +24,7 @@ export class BsDatepickerActions {
   static readonly SET_MIN_DATE = '[datepicker] set min date';
   static readonly SET_MAX_DATE = '[datepicker] set max date';
   static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
+  static readonly SET_DATE_CUSTOM_CLASSES = '[datepicker] set date custom classes';
 
   static readonly SET_LOCALE = '[datepicker] set datepicker locale';
 
@@ -107,6 +109,13 @@ export class BsDatepickerActions {
   isDisabled(value: boolean): Action {
     return {
       type: BsDatepickerActions.SET_IS_DISABLED,
+      payload: value
+    };
+  }
+
+  setDateCustomClasses(value: DatepickerDateCustomClasses[]): Action {
+    return {
+      type: BsDatepickerActions.SET_DATE_CUSTOM_CLASSES,
       payload: value
     };
   }
