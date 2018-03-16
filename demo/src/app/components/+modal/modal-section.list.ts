@@ -15,7 +15,7 @@ import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
-import { DemoModalWithPopupsComponent } from './demos/modal-with-components/modal-with-components';
+import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -130,11 +130,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoModalServiceDisableEscClosingComponent
       },
       {
-        title: 'Modal window with other components',
-        anchor: 'modal-with-components',
-        component: require('!!raw-loader?lang=typescript!./demos/modal-with-components/modal-with-components.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/modal-with-components/modal-with-components.html'),
-        description: `<p>Modals work fine with other components. In this example, there are <code>popover</code> and <code>tooltip</code> in the modal.</p>`,
+        title: 'Modal window with tooltip and popover',
+        anchor: 'modal-with-popups',
+        component: require('!!raw-loader?lang=typescript!./demos/modal-with-popups/modal-with-popups.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/modal-with-popups/modal-with-popups.html'),
+        description: `<p><code>Tooltips</code> and <code>popovers</code> can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed.</p>`,
         outlet: DemoModalWithPopupsComponent
       },
       {
