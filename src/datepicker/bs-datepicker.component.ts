@@ -5,7 +5,7 @@ import {
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
-import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
 import { BsDatepickerViewMode } from './models';
 
 @Directive({
@@ -101,6 +101,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() daysDisabled: number[];
   /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -155,6 +159,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
 
@@ -227,7 +235,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
-      minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
+      minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
+      dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses
     });
   }
 

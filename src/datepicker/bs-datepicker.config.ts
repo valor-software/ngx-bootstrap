@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
   DatepickerRenderOptions,
-  BsDatepickerViewMode
+  BsDatepickerViewMode,
+  DatepickerDateCustomClasses
 } from './models';
 
+
+export class BsDatepickerDateCustomClasses
+  implements DatepickerDateCustomClasses {
+  date: Date;
+  classes: string[];
+}
 
 /**
  * For date range picker there are `BsDaterangepickerConfig` which inherits all properties,
@@ -21,6 +28,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default max date for all date/range pickers
    */
   maxDate?: Date;
+  /**
+   * Default date custom classes for all date/range pickers
+   */
+  dateCustomClasses: BsDatepickerDateCustomClasses[];
 
   daysDisabled?: number[];
   /**

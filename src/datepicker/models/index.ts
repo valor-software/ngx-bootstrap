@@ -30,6 +30,7 @@ export interface DayViewModel extends CalendarCellViewModel {
   isSelectionEnd?: boolean;
   isSelected?: boolean;
   isToday?: boolean;
+  customClasses?: string;
   // day index
   monthIndex?: number;
   weekIndex?: number;
@@ -99,6 +100,11 @@ export interface DatepickerFormatOptions {
 export interface DatepickerRenderOptions {
   showWeekNumbers?: boolean;
   displayMonths?: number;
+}
+
+export interface DatepickerDateCustomClasses {
+  date: Date;
+  classes: string[];
 }
 
 /** *************** */

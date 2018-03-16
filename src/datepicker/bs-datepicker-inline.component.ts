@@ -6,7 +6,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
-import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -42,6 +42,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    * Maximum date which is available for selection
    */
   @Input() maxDate: Date;
+  /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -106,6 +110,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
+    }
   }
 
   /**
@@ -116,7 +124,8 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+      dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses
     });
   }
 
