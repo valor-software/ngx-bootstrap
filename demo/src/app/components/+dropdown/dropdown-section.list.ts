@@ -154,7 +154,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'custom-html',
         component: require('!!raw-loader?lang=typescript!./demos/custom-html/custom-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-html/custom-html.html'),
-        description: `<p>Dropdown allows you to use any html</p>`,
+        description: `<p>Dropdown allows you to use any html markup inside of it</p>`,
         outlet: DemoDropdownCustomHtmlComponent
       },
       {
