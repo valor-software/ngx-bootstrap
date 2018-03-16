@@ -50,8 +50,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
-        description: `<p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes.
-          Here’s how you can put them to work with either  <code> &lt;button&gt; </code> elements:</p>`,
+        description: `<p>Any <code>&lt;button&gt;</code> can became a dropdown toggle with few markup changes.
+          Here’s how dropdown works with single button</p>`,
         outlet: DemoDropdownBasicComponent
       },
       {
