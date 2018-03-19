@@ -260,7 +260,7 @@ describe('locale: ru', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'Вчера в 12:00', 'yesterday at the same time');
   });
 
-  it('calendar next week', function () {
+  fit('calendar next week', function () {
     var i, m, now;
 
     function makeFormatNext(d) {
@@ -297,9 +297,9 @@ describe('locale: ru', () => {
       assert.equal(m.calendar(now), m.format(makeFormatThis(m)), 'Today + ' + i + ' days end of day');
     }
 
-    now = moment().endOf('week');
+    now = moment().endOf('week').utc();
     for (i = 2; i < 7; i++) {
-      m = moment(now).add({ d: i });
+      m = moment(now).add({ d: i }).utc();
       assert.equal(m.calendar(now), m.format(makeFormatNext(m)), 'Today + ' + i + ' days current time');
       m.hours(0).minutes(0).seconds(0).milliseconds(0);
       assert.equal(m.calendar(now), m.format(makeFormatNext(m)), 'Today + ' + i + ' days beginning of day');
