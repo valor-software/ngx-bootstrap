@@ -19,7 +19,7 @@ interface State {
   // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
     <input [(ngModel)]="selectedState"
-           [typeahead]="states"
+           [bsTypeahead]="states"
            [typeaheadOptionField]="'name'"
            (typeaheadOnBlur)="onBlurEvent($event)">
   `

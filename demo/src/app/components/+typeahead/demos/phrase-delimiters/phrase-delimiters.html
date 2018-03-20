@@ -1,6 +1,6 @@
 <pre class="card card-block card-header">Model: {{selected | json}}</pre>
 <input [(ngModel)]="selected"
-       [typeahead]="states"
+       [bsTypeahead]="states"
        [typeaheadSingleWords]="true"
        typeaheadPhraseDelimiters="&,"
        class="form-control">
