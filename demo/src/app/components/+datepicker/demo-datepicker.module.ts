@@ -20,7 +20,7 @@ import { DEMO_COMPONENTS } from './demos';
 const locales = [
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esLocale, esDoLocale, esUsLocale,
   frLocale, hiLocale, heLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, nlLocale,
-  nlBeLocale, plLocale, ptBrLocale, svLocale, ruLocale, zhCnLocale, trLocale, thLocale
+  nlBeLocale, plLocale, ptBrLocale, svLocale, ruLocale, zhCnLocale, trLocale, thLocale, slLocale
 ];
 locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
 
