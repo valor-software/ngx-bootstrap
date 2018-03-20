@@ -28,6 +28,7 @@ import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/ind
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+import { warnOnce } from '../utils/warn-once';
 
 @Directive({ selector: '[bsTypeahead], [typeahead]', exportAs: 'bs-typeahead' })
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -36,7 +37,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    */
   @Input() bsTypeahead: any;
   /** @deprecated - please use `bsTypeahead` instead */
-  @Input() typeahead: any;
+  @Input('typeahead')
+  set htmlContent(value: any) {
+    warnOnce('typeahead was deprecated, please use `bsTypeahead` instead');
+    this.bsTypeahead = value;
+  }
   /** minimal no of characters that needs to be entered before
    * typeahead kicks-in. When set to 0, typeahead shows on focus with full
    * list of options (limited as normal by typeaheadOptionsLimit)
@@ -159,12 +164,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
-      !(this.typeahead instanceof Observable)
+      !(this.bsTypeahead instanceof Observable)
     ) {
       this.typeaheadAsync = false;
     }
 
-    if (this.typeahead instanceof Observable) {
+    if (this.bsTypeahead instanceof Observable) {
       this.typeaheadAsync = true;
     }
 
@@ -346,7 +351,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._subscriptions.push(
       this.keyUpEventEmitter
         .debounceTime(this.typeaheadWaitMs)
-        .switchMap(() => this.typeahead)
+        .switchMap(() => this.bsTypeahead)
         .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })
@@ -360,7 +365,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         .mergeMap((value: string) => {
           const normalizedQuery = this.normalizeQuery(value);
 
-          return Observable.from(this.typeahead)
+          return Observable.from(this.bsTypeahead)
             .filter((option: any) => {
               return (
                 option &&
