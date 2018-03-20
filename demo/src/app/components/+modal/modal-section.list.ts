@@ -100,7 +100,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'confirm-window',
         component: require('!!raw-loader?lang=typescript!./demos/service-confirm-window/service-confirm-window.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-confirm-window/service-confirm-window.html'),
-        description: `<p>Modal with buttons to confirm.</p>`,
+        description: `<p>Modal with opportunity to <code>confirm</code> or <code>decline</code>.</p>`,
         outlet: DemoModalServiceConfirmWindowComponent
       },
       {
