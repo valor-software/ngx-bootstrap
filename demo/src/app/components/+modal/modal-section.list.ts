@@ -43,9 +43,9 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     description: `
       <p>Open a modal from service.</p>
-      <p>To be able to open modals from service, inject BsModalService to your constructor.<br>Then, call
-      <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and
-      config as a second (optionally). <br> <code>.show()</code> method returns an instance of BsModalRef
+      <p>To be able to open modals from service, inject <code>BsModalService</code> to your constructor.<br>Then, call
+      <code>.show()</code> method of modal service. Pass a <code>TemplateRef</code> or a component as a first argument and
+      config as a second (optionally). <br> <code>.show()</code> method returns an instance of <code>BsModalRef</code>
       class with <code>.hide()</code> method and <code>content</code> property where you'll find a component
       which you've passed to service.</p>`,
     content: [
