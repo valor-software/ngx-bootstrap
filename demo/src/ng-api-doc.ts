@@ -3139,7 +3139,7 @@ export const ngdoc: any = {
     "fileName": "src/typeahead/typeahead.directive.ts",
     "className": "TypeaheadDirective",
     "description": "",
-    "selector": "[typeahead]",
+    "selector": "[bsTypeahead], [typeahead]",
     "exportAs": "bs-typeahead",
     "inputs": [
       {
@@ -3159,7 +3159,7 @@ export const ngdoc: any = {
         "description": "<p>used to specify a custom options list template.\nTemplate variables: matches, itemTemplate, query</p>\n"
       },
       {
-        "name": "typeahead",
+        "name": "bsTypeahead",
         "type": "any",
         "description": "<p>options source, can be Array of strings, objects or\nan Observable for external matching process</p>\n"
       },
@@ -3233,6 +3233,11 @@ export const ngdoc: any = {
         "defaultValue": " ",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to break words. Defaults to space.</p>\n"
+      },
+      {
+        "name": "typeahead",
+        "type": "any",
+        "description": ""
       }
     ],
     "outputs": [
