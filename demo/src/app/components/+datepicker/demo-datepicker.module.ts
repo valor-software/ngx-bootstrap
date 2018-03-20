@@ -8,7 +8,7 @@ import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import {
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, frLocale, heLocale, hiLocale,
   huLocale, idLocale, itLocale, jaLocale, koLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, svLocale,
-  thLocale, trLocale, zhCnLocale
+  thLocale, trLocale, zhCnLocale, slLocale
 } from 'ngx-bootstrap/locale';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
