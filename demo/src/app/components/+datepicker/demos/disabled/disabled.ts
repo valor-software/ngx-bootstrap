@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
 })
 export class DemoDatepickerDisabledComponent {
   isDisabled = false;
+
+  toggleDisabling(): void {
+    this.isDisabled = !this.isDisabled;
+  }
 }

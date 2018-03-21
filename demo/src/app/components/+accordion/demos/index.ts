@@ -4,6 +4,11 @@ import { DemoAccordionStylingComponent } from './styling/styling';
 import { DemoAccordionOneAtATimeComponent } from './one-at-a-time/one-at-a-time';
 import { DemoAccordionDynamicComponent } from './dynamic/dynamic';
 import { DemoAccordionConfigComponent } from './config/config';
+import { DemoAccordionOpenEventComponent } from './open-event/open-event';
+import { DemoAccordionCustomHTMLComponent } from './custom-html/custom-html';
+import { DemoAccordionOpenedComponent } from './opened/opened';
+import { DemoAccordionManualToggleComponent } from './manual-toggle/manual-toggle';
+import { DemoAccordionDynamicBodyComponent } from './dynamic-body/dynamic-body';
 
 export const DEMO_COMPONENTS = [
   DemoAccordionBasicComponent,
@@ -11,5 +16,10 @@ export const DEMO_COMPONENTS = [
   DemoAccordionStylingComponent,
   DemoAccordionOneAtATimeComponent,
   DemoAccordionDynamicComponent,
-  DemoAccordionConfigComponent
+  DemoAccordionConfigComponent,
+  DemoAccordionOpenEventComponent,
+  DemoAccordionCustomHTMLComponent,
+  DemoAccordionOpenedComponent,
+  DemoAccordionManualToggleComponent,
+  DemoAccordionDynamicBodyComponent
 ];

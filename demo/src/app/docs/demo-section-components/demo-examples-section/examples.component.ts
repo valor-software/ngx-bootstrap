@@ -21,9 +21,25 @@ export class ExamplesComponent {
   }
 
   @HostListener('document:click', ['$event'])
-  preventEmptyHrefNav(event: Event) {
-    if (event && event.target && (event.target as Element).getAttribute('href') === '#') {
+  preventEmptyHrefNav(event: MouseEvent & {target: Element}): void {
+    let element: Element = event.target;
+    let preventNav = element.getAttribute('href') === '#';
+
+    if (preventNav) {
       event.preventDefault();
+      return;
+    }
+
+    if (element.tagName !== 'A') {
+      while (element.parentElement && element !== document.body)  {
+        if (preventNav) {
+          event.preventDefault();
+          return;
+        }
+        element = element.parentElement;
+        preventNav = element.getAttribute('href') === '#';
+      }
     }
   }
 }
+

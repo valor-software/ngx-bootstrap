@@ -2,7 +2,10 @@ import { DemoModalServiceStaticComponent } from './demos/service-template/servic
 import { DemoModalServiceFromComponent } from './demos/service-component/service-component';
 import { DemoModalServiceNestedComponent } from './demos/service-nested/service-nested';
 import { DemoModalServiceEventsComponent } from './demos/service-events/service-events';
-import { DemoModalServiceOptionsComponent } from './demos/service-options/service-options';
+import { DemoModalServiceDisableAnimationComponent } from './demos/disable-animation/disable-animation';
+import { DemoModalServiceCustomCSSClassComponent } from './demos/custom-css-class/custom-css-class';
+import { DemoModalServiceDisableEscClosingComponent } from './demos/disable-esc-closing/disable-esc-closing';
+import { DemoModalServiceDisableBackdropComponent } from './demos/disable-backdrop/disable-backdrop';
 import { DemoModalServiceConfirmWindowComponent } from './demos/service-confirm-window/service-confirm-window';
 
 import { DemoModalStaticComponent } from './demos/static/static';
@@ -11,6 +14,7 @@ import { DemoModalChildComponent } from './demos/child/child';
 import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -107,14 +111,41 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoModalServiceConfirmWindowComponent
       },
       {
-        title: 'Options',
-        anchor: 'service-options',
-        demoName: 'service-options',
-        component: require('!!raw-loader?lang=typescript!./demos/service-options/service-options.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/service-options/service-options.html'),
-        description: `<p>There are some options that you can configure, like animation, backdrop, closing
-          by Esc button, additional css classes. See the demo below to learn how to configure your modal</p>`,
-        outlet: DemoModalServiceOptionsComponent
+        title: 'Сustom css class',
+        anchor: 'service-custom-css-class',
+        demoName: 'custom-css-class',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-css-class/custom-css-class.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-css-class/custom-css-class.html'),
+        description: `<p>There is additional css classes that you can configure.
+          See the demo below to learn how to configure your modal</p>`,
+        outlet: DemoModalServiceCustomCSSClassComponent
+      },
+      {
+        title: 'Animation option',
+        anchor: 'service-disable-animation',
+        demoName: 'disable-animation',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-animation/disable-animation.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-animation/disable-animation.html'),
+        description: `<p>There is animation option that you can configure.</p>`,
+        outlet: DemoModalServiceDisableAnimationComponent
+      },
+      {
+        title: 'Esc closing option',
+        anchor: 'service-esc-closing',
+        demoName: 'disable-esc-closing',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-esc-closing/disable-esc-closing.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-esc-closing/disable-esc-closing.html'),
+        description: `<p>There is closing by Esc button option that you can configure.</p>`,
+        outlet: DemoModalServiceDisableEscClosingComponent
+      },
+      {
+        title: 'Backdrop options',
+        anchor: 'service-disable-backdrop',
+        demoName: 'disable-backdrop',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-backdrop/disable-backdrop.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-backdrop/disable-backdrop.html'),
+        description: `<p>There is backdrop options that you can configure.</p>`,
+        outlet: DemoModalServiceDisableBackdropComponent
       }
     ]
   },
@@ -186,6 +217,11 @@ export const demoComponentContent: ContentSection[] = [
           want to defer that until user actually sees modal content. I.e. for a "Select e-mail recipient" modal
           you might want to defer recipient list loading until the modal is shown.</p>`,
         outlet: DemoAutoShownModalComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },

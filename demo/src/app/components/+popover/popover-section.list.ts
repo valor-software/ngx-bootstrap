@@ -1,16 +1,20 @@
 import { DemoPopoverBasicComponent } from './demos/basic/basic';
-import { DemoPopoverFourDirectionsComponent } from './demos/four-directions/four-directions';
+import { DemoPopoverPlacementComponent } from './demos/placement/placement';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
 import { DemoPopoverContainerComponent } from './demos/container/container';
 import { DemoPopoverConfigComponent } from './demos/config/config';
 import { DemoPopoverOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
+import { DemoPopoverTriggerByInput } from './demos/trigger-by-input/trigger-by-input';
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverClassComponent } from './demos/class/class';
+import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
+import { DemoPopoverEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -18,8 +22,8 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import {
-  NgApiDocComponent,
-  NgApiDocConfigComponent
+NgApiDocComponent,
+NgApiDocConfigComponent
 } from '../../docs/api-docs';
 
 export const demoComponentContent: ContentSection[] = [
@@ -46,14 +50,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverBasicComponent
       },
       {
-        title: 'Four directions',
-        anchor: 'four-directions',
-        demoName: 'four-directions',
-        component: require('!!raw-loader?lang=typescript!./demos/four-directions/four-directions.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/four-directions/four-directions.html'),
+        title: 'Placement',
+        anchor: 'placement',
+        demoName: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
         Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
-        outlet: DemoPopoverFourDirectionsComponent
+        outlet: DemoPopoverPlacementComponent
       },
       {
         title: 'Dismiss on next click',
@@ -66,15 +70,23 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverDismissComponent
       },
       {
-        title: 'Dynamic Content',
+        title: 'Dynamic content',
         anchor: 'dynamic-content',
         demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
-        description: `<p>Popover content can contain any html template. Just create <code>&lt;template
-        #myId></code> with any html allowed by Angular, and provide template ref (<code>#myId</code>)
-        as popover content.</p>`,
+        description: `<p>Pass a string as popover content.</p>`,
         outlet: DemoPopoverDynamicComponent
+      },
+      {
+        title: 'Custom content template',
+        anchor: 'custom-content-template',
+        demoName: 'custom-content',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
+        description: `<p>Create <code>&lt;template #myId></code> with any html allowed by Angular,
+        and provide template ref (<code>#myId</code>) as popover content.</p>`,
+        outlet: DemoPopoverCustomContentComponent
       },
       {
         title: 'Dynamic Html',
@@ -97,6 +109,14 @@ export const demoComponentContent: ContentSection[] = [
         appended to body. This will help to avoid rendering problems in more complex components
         (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
         outlet: DemoPopoverContainerComponent
+      },
+      {
+        title: 'Visibility events',
+        anchor: 'events',
+        demoName: 'events',
+        component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
+        outlet: DemoPopoverEventsComponent
       },
       {
         title: 'Configuring defaults',
@@ -131,6 +151,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoPopoverTriggersManualComponent
       },
       {
+        title: 'Trigger by input',
+        anchor: 'trigger-by-input',
+        demoName: 'trigger-by-input',
+        component: require('!!raw-loader?lang=typescript!./demos/trigger-by-input/trigger-by-input.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/trigger-by-input/trigger-by-input.html'),
+        outlet: DemoPopoverTriggerByInput
+      },
+      {
         title: 'Component level styling',
         anchor: 'styling-local',
         demoName: 'styling-local',
@@ -145,6 +173,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoPopoverClassComponent
+      },
+      {
+        title: 'Popover context',
+        anchor: 'popover-context',
+        demoName: 'popover-context',
+        component: require('!!raw-loader?lang=typescript!./demos/popover-context/popover-context.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/popover-context/popover-context.html'),
+        outlet: DemoPopoverContextComponent
       }/*,
       {
         title: 'Global styling',

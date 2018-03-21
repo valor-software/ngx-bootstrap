@@ -10,6 +10,8 @@ export class DemoDatePickerCustomFormatComponent {
   maxDate = new Date(2018, 9, 15);
 
   myForm = new FormGroup({
-    myDate: new FormControl(new Date())
+    myDateYMD: new FormControl(new Date()),
+    myDateFull: new FormControl(new Date()),
+    myDateMDY: new FormControl(new Date())
   });
 }

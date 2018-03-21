@@ -1,5 +1,5 @@
 import { DemoTooltipBasicComponent } from './demos/basic/basic';
-import { DemoTooltipFourDirectionsComponent } from './demos/four-directions/four-directions';
+import { DemoTooltipPlacementComponent } from './demos/placement/placement';
 import { DemoTooltipDismissComponent } from './demos/dismiss/dismiss';
 import { DemoTooltipDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTooltipDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -46,14 +46,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTooltipBasicComponent
       },
       {
-        title: 'Four directions',
-        anchor: 'four-directions',
-        demoName: 'four-directions',
-        component: require('!!raw-loader?lang=typescript!./demos/four-directions/four-directions.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/four-directions/four-directions.html'),
+        title: 'Placement',
+        anchor: 'placement',
+        demoName: 'placement',
+        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
-          Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
-        outlet: DemoTooltipFourDirectionsComponent
+          Besides that, auto option may be used to detect a position that fits the component on the screen.</p>`,
+        outlet: DemoTooltipPlacementComponent
       },
       {
         title: 'Dismiss on next click',
@@ -120,6 +120,7 @@ export const demoComponentContent: ContentSection[] = [
         demoName: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
         outlet: DemoTooltipTriggersManualComponent
       },
       {
