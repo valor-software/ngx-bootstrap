@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-3">
+    <button type="button" class="btn btn-primary"
+            (click)="isCollapsed = !isCollapsed">Toggle collapse
+    </button>
+  </div>
+  <div class="col-md-9">
+    <pre class="card card-block card-header">Event: {{message}}</pre>
+  </div>
+</div>
+<hr>
+<div (collapsed)="collapsed()"
+     (expanded)="expanded()"
+     [collapse]="isCollapsed"
+     class="card card-block card-header">
+  <div class="well well-lg">Some content</div>
+</div>

@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary" (click)="openModal(template)">Open modal</button>
 <br><br>
-<pre *ngFor="let message of messages">{{message}}</pre>
+<pre class="card card-block card-header" *ngFor="let message of messages">{{message}}</pre>
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
