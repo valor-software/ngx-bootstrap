@@ -134,7 +134,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'modal-with-popups',
         component: require('!!raw-loader?lang=typescript!./demos/modal-with-popups/modal-with-popups.ts'),
         html: require('!!raw-loader?lang=markup!./demos/modal-with-popups/modal-with-popups.html'),
-        description: `<p><code>Tooltips</code> and <code>popovers</code> can be placed within modals as needed. When modals are closed, any tooltips and popovers within are also automatically dismissed.</p>`,
+        description: `<p><code>Tooltips</code> and <code>popovers</code> can be placed within modals as needed. When modals are closed, any <code>tooltips</code> and <code>popovers</code> within are also automatically dismissed.</p>`,
         outlet: DemoModalWithPopupsComponent
       },
       {

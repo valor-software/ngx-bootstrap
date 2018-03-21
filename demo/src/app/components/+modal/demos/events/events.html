@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary" (click)="showModal()">Open a modal</button>
 <br><br>
-<pre *ngFor="let message of messages">{{message}}</pre>
+<pre class="card card-block card-header" *ngFor="let message of messages">{{message}}</pre>
 
 <div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel" aria-hidden="true"
