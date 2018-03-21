@@ -2700,6 +2700,11 @@ export const ngdoc: any = {
         "description": "<p>if true tabs fill the container and have a consistent width </p>\n"
       },
       {
+        "name": "removable",
+        "type": "boolean",
+        "description": "<p>if true tab can be removable, additional button will appear </p>\n"
+      },
+      {
         "name": "type",
         "type": "string",
         "description": "<p>navigation context class: &#39;tabs&#39; or &#39;pills&#39; </p>\n"

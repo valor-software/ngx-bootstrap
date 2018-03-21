@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, HostBinding, Input, OnDestroy, Renderer2, ElementRef } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -49,7 +49,7 @@ export class TabsetComponent implements OnDestroy {
   protected _justified: boolean;
   protected _type: string;
 
-  constructor(config: TabsetConfig, private renderer: Renderer2) {
+  constructor(config: TabsetConfig, private renderer: Renderer2, private elementRef: ElementRef) {
     Object.assign(this, config);
   }
 
@@ -84,6 +84,39 @@ export class TabsetComponent implements OnDestroy {
         tab.elementRef.nativeElement.parentNode,
         tab.elementRef.nativeElement
       );
+    }
+  }
+
+  keyNavActions(e: KeyboardEvent, index: number) {
+    const list: any[] = Array.from(this.elementRef.nativeElement.querySelectorAll('.nav-link'));
+    switch (e.keyCode) {
+      case 39:
+        list[(index + 1) % list.length].focus();
+        break;
+      case 37:
+        const nextFocusedIndex = index < 1 ? list.length - 1 : index - 1;
+        list[nextFocusedIndex].focus();
+        break;
+      case 36:
+        e.preventDefault();
+        list[0].focus();
+        break;
+      case 35:
+        e.preventDefault();
+        list[list.length - 1].focus();
+        break;
+      case 46:
+        if (this.tabs[index].removable) {
+          this.removeTab(this.tabs[index]);
+          if (list[index + 1]) {
+            list[(index + 1) % list.length].focus();
+          } else if (list[list.length - 1]) {
+            list[0].focus();
+          }
+        }
+        break;
+      default:
+        return;
     }
   }
 
@@ -130,4 +163,5 @@ export class TabsetComponent implements OnDestroy {
       [`nav-${this.type}`]: true
     };
   }
+
 }
