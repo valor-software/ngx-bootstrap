@@ -44,7 +44,7 @@ ngx-bootstrap contains all core (and not only) Bootstrap components powered by A
 
 Install `ngx-bootstrap` from `npm`:
 ```bash
-npm install ngx-bootstrap --save
+npm install ngx-bootstrap --save-dev
 ```
 
 Add needed package to NgModule imports:
@@ -93,7 +93,7 @@ Server side rendered version of this documentation available <a href="https://ng
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 ### How to use it with:
- - `Bootstrap 3 or 4 and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
+ - `Bootstrap 3 or 4 and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap.md)
  - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
  - `plnkr` sample available [here](https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview)
@@ -105,10 +105,12 @@ Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 First time:
  - clone repository
  - `npm install`
- - `npm run test` it will build the lib and create a link in `node_modules`
+ - `npm run test`
 
-Keeping a fork up to date:
- - git pull upstream development
+To update your fork and prepare it for local usage:
+ - `git pull upstream development`
+ - `rm -rf node_modules`
+ - `npm install`
  - `npm run test`
 
  To run bootstrap 3 and 4 demo:

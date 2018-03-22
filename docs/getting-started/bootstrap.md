@@ -20,7 +20,7 @@ ng serve
  - install `ngx-bootstrap` and `Bootstrap`
 
  ```bash
- npm install ngx-bootstrap bootstrap --save
+ npm install ngx-bootstrap bootstrap --save-dev
  ```
 
 ## Using with css
