@@ -108,8 +108,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'service-custom-css-class',
         component: require('!!raw-loader?lang=typescript!./demos/service-options/custom-css-class/custom-css-class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-options/custom-css-class/custom-css-class.html'),
-        description: `<p>There is additional css classes that you can configure.
-          See the demo below to learn how to configure your modal</p>`,
+        description: `<p>There is possibility to add custom css class to a modal.
+          See the demo below to learn how to use it</p>`,
         outlet: DemoModalServiceCustomCSSClassComponent
       },
       {
