@@ -511,14 +511,6 @@ bs-daterangepicker-container {
 
 /* screen size < 1024px */
 @media (max-width: 768px) {
-  bs-datepicker-container,
-  bs-daterangepicker-container {
-    position: fixed !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%);
-  }
-
   .bs-datepicker {
     &-multiple {
       display: flex;

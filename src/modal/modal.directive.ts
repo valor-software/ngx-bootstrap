@@ -108,8 +108,12 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   // todo: consider preventing default and stopping propagation
-  @HostListener('keydown.esc')
-  onEsc(): void {
+  @HostListener('window:keydown.esc', ['$event'])
+  onEsc(event: any): void {
+    if (event.keyCode === 27) {
+      event.preventDefault();
+    }
+
     if (this.config.keyboard) {
       this.dismissReason = DISMISS_REASONS.ESC;
       this.hide();

@@ -695,7 +695,7 @@ export const ngdoc: any = {
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
+        "description": "<p>Indicates whether datepicker&#39;s content is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
@@ -796,6 +796,12 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
+        "name": "rangeInputFormat",
+        "defaultValue": "L",
+        "type": "string",
+        "description": "<p>Date format for date range input field</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
@@ -839,7 +845,7 @@ export const ngdoc: any = {
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "<p>Indicates whether daterangepicker is enabled or not</p>\n"
+        "description": "<p>Indicates whether daterangepicker&#39;s content is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
@@ -2753,6 +2759,11 @@ export const ngdoc: any = {
         "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
       },
       {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
+      },
+      {
         "name": "hourStep",
         "type": "number",
         "description": "<p>hours change step </p>\n"
@@ -2833,6 +2844,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+      },
+      {
+        "name": "disabled",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
         "name": "hourStep",
@@ -3209,7 +3226,7 @@ export const ngdoc: any = {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>break words with spaces. If true the text &quot;exact phrase&quot;\nhere match would match with match exact phrase here\nbut not with phrase here exact match (kind of &quot;google style&quot;).</p>\n"
+        "description": "<p>Can be use to search words by inserting a single white space between each characters\nfor example &#39;C a l i f o r n i a&#39; will match &#39;California&#39;.</p>\n"
       },
       {
         "name": "typeaheadWaitMs",
