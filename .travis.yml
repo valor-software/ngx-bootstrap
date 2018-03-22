@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "8"
+node_js: "9"
 
 notifications:
   email: false
@@ -41,7 +41,8 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm install > /dev/null
+  - npm i -g npm@5.7.1
+  - npm ci > /dev/null
   - npm run build > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
@@ -57,10 +58,11 @@ jobs:
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install: npm install > /dev/null
+      install:
+        - npm i -g npm@5.7.1
+        - npm ci > /dev/null
       script: true
       addons:
-        firefox: latest
         chrome: stable
         apt:
           sources:
