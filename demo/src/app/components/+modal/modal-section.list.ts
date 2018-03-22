@@ -89,10 +89,12 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/service-events/service-events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-events/service-events.html'),
         description: `
-          <p>Modal service events. Modal service exposes 4 events: onShow, onShown, onHide, onHidden.
+          <p>Modal service events. Modal service exposes 4 events: <code>onShow</code>, <code>onShown</code>,
+          <code>onHide</code>, <code>onHidden</code>.
           See usage example below.</p>
-          <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>,
-          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>`,
+          <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
+          <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of
+          <code>hide()</code> method</p>`,
         outlet: DemoModalServiceEventsComponent
       },
       {
