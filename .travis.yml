@@ -41,7 +41,7 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm install > /dev/null
+  - npm ci > /dev/null
   - npm run build > /dev/null
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
@@ -57,7 +57,7 @@ jobs:
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install: npm install > /dev/null
+      install: npm ci > /dev/null
       script: true
       addons:
         firefox: latest
