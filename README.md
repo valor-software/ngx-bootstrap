@@ -93,7 +93,7 @@ Server side rendered version of this documentation available <a href="https://ng
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 ### How to use it with:
- - `Bootstrap 3 or 4 and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap.md)
+ - `Bootstrap 3 or 4 and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
  - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
  - `plnkr` sample available [here](https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview)
@@ -111,14 +111,14 @@ To update your fork and prepare it for local usage:
  - `git pull upstream development`
  - `rm -rf node_modules`
  - `npm install`
- - `npm run test`
+ - `npm run test` _*// it will build the lib, create a link in node_modules and run package's "test" script*_
 
  To run bootstrap 3 and 4 demo:
- - `npm run demo.serve` to serve local demo. This is for testing only, without watchers.
+ - `npm run demo.serve` _*// to serve local demo. This is for testing only, without watchers.*_
 
  For local development run:
- - `npm run build.watch` in first terminal
- - `ng serve` in second
+ - `npm run build.watch` _*// in first terminal*_
+ - `ng serve` _*// in second*_
 
   If you want to run the demo with Angular Universal:
   - `npm run demo.serve-universal`
