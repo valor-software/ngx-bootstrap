@@ -179,12 +179,13 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'directive-events',
         component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
-        description: `<p>ModalDirective exposes 4 events: OnShow, OnShown, OnHide, OnHidden. See
-          usage example below.<br> <code>$event</code> is an instance of ModalDirective. There you may
+        description: `<p><code>ModalDirective</code> exposes 4 events: <code>onShow</code>, <code>onShown</code>,
+          <code>onHide</code>, <code>onHidden</code>. See usage example below.<br>
+          <code>$event</code> is an instance of <code>ModalDirective</code>. There you may
           find some useful properties like <code>isShown</code>, <code>dismissReason</code>, etc.
           <br>For example, you may want to know which one of user's actions caused closing of a modal.
-          Just get the value of <code>dismissReason</code>, possible values are <code>backdrop-click</code>,
-          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>`,
+          Just get the value of <code>dismissReason</code>,<br> possible values are <code>backdrop-click</code>,
+          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code> method</p>`,
         outlet: DemoModalEventsComponent
       },
       {
