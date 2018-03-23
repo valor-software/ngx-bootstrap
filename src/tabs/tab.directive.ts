@@ -12,13 +12,27 @@ import {
 } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
-@Directive({ selector: 'tab, [tab]' })
+let id = 1;
+let tabpanelId = 1;
+
+@Directive({
+  selector: 'tab, [tab]',
+  host: {
+    role: 'tabpanel'
+  }
+})
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() heading: string;
   /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
+  @HostBinding('attr.aria-labelledby')
   @HostBinding('attr.id')
-  @Input() id: string;
+  @Input() id = `tab-${id++}-link`;
+
+  /** tabpanel id  */
+  @HostBinding('attr.id')
+  @Input() tabpanelId = `tabpanel-${tabpanelId++}`;
+
   /** if true tab can not be activated */
   @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
@@ -104,4 +118,5 @@ export class TabDirective implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.tabset.removeTab(this, { reselect: false, emit: false });
   }
+
 }
