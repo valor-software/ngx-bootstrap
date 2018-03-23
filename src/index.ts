@@ -56,7 +56,9 @@ export {
   BsDatepickerModule,
   BsDatepickerConfig,
   BsDaterangepickerConfig,
-  BsLocaleService
+  BsLocaleService,
+  BsDaterangepickerDirective,
+  BsDatepickerDirective
 } from './datepicker/index';
 
 export {
@@ -90,7 +92,8 @@ export {
   PagerComponent,
   PaginationComponent,
   PaginationConfig,
-  PaginationModule
+  PaginationModule,
+  PageChangedEvent
 } from './pagination/index';
 
 export {

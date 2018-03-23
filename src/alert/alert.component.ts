@@ -1,5 +1,10 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
   Output
 } from '@angular/core';
 import { AlertConfig } from './alert.config';
@@ -33,7 +38,7 @@ export class AlertComponent implements OnInit {
 
 
   classes = '';
-  dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  dismissibleChange = new EventEmitter<boolean>();
 
   constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
     Object.assign(this, _config);

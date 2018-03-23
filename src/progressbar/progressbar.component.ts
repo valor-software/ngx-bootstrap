@@ -10,7 +10,7 @@ import { BarComponent } from './bar.component';
     `
     :host {
       width: 100%;
-      display: block;
+      display: flex;
     }
   `
   ]

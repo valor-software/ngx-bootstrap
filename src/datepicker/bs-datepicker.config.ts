@@ -37,6 +37,9 @@ export class BsDatepickerConfig
   dateInputFormat = 'L';
   // range picker
   rangeSeparator = ' - ';
+  /**
+   * Date format for date range input field
+   */
   rangeInputFormat = 'L';
 
   // DatepickerFormatOptions

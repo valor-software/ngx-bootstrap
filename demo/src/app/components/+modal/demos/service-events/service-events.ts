@@ -8,7 +8,13 @@ import 'rxjs/add/observable/combineLatest';
 
 @Component({
   selector: 'demo-modal-service-events',
-  templateUrl: './service-events.html'
+  templateUrl: './service-events.html',
+  styles: [`
+    .card {
+      margin-bottom: 0.75rem;
+      padding: 8px;
+    }
+  `]
 })
 export class DemoModalServiceEventsComponent {
   modalRef: BsModalRef;

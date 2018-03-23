@@ -88,8 +88,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.hide();
   }
 
-  @HostListener('window:keydown.esc')
-  onEsc(): void {
+  @HostListener('window:keydown.esc', ['$event'])
+  onEsc(event: any): void {
+    if (event.keyCode === 27) {
+      event.preventDefault();
+    }
+
     if (
       this.config.keyboard &&
       this.level === this.bsModalService.getModalsCount()
