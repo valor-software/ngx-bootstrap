@@ -18,7 +18,7 @@ import { isBs3 } from '../utils/theme-provider';
 @Component({
   selector: 'modal-container',
   template: `
-    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
+    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')">
       <div class="modal-content">
         <ng-content></ng-content>
       </div>
@@ -27,7 +27,8 @@ import { isBs3 } from '../utils/theme-provider';
   host: {
     class: 'modal',
     role: 'dialog',
-    tabindex: '-1'
+    tabindex: '-1',
+    '[attr.aria-modal]': 'true'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
