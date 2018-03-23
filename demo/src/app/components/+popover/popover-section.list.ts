@@ -52,8 +52,9 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'placement',
         component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
-        description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
-        Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
+        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>, 
+        <code>bottom</code>, and <code>left</code>.
+        Besides that, <code>auto</code> option may be used to detect a position that fits the component on screen.</p>`,
         outlet: DemoPopoverPlacementComponent
       },
       {
