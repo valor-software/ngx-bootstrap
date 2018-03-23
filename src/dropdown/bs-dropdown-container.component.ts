@@ -35,7 +35,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
     private _state: BsDropdownState,
     private cd: ChangeDetectorRef,
     private _renderer: Renderer2,
-    public _element: ElementRef
+    private _element: ElementRef
   ) {
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
@@ -58,6 +58,11 @@ export class BsDropdownContainerComponent implements OnDestroy {
       this.cd.markForCheck();
       this.cd.detectChanges();
     });
+  }
+
+  /** @internal */
+  _contains(el: Element): boolean {
+    return this._element.nativeElement.contains(el);
   }
 
   ngOnDestroy(): void {

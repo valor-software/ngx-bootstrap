@@ -118,9 +118,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     return !isBs3();
   }
 
-  _dropdown: ComponentLoader<BsDropdownContainerComponent>;
+  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
-  get _showInline(): boolean {
+  private get _showInline(): boolean {
     return !this.container;
   }
 
@@ -132,7 +132,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
 
-  constructor(public _elementRef: ElementRef,
+  constructor(private _elementRef: ElementRef,
               private _renderer: Renderer2,
               private _viewContainerRef: ViewContainerRef,
               private _cis: ComponentLoaderFactory,
@@ -273,6 +273,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     return this.show();
+  }
+
+  /** @internal */
+  _contains(el: Element): boolean {
+    return this._elementRef.nativeElement.contains(event.target) ||
+      (this._dropdown.instance && this._dropdown.instance._contains(el));
   }
 
   ngOnDestroy(): void {
