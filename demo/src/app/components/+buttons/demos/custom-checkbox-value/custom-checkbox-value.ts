@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './custom-checkbox-value.html'
 })
 export class DemoButtonsCustomCheckboxValueComponent {
-  singleModel: string = '1';
+  singleModel = '1';
 }
