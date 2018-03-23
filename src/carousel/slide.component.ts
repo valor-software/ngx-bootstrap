@@ -19,6 +19,7 @@ import { CarouselComponent } from './carousel.component';
 export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */
   @HostBinding('class.active')
+  @HostBinding('attr.aria-hidden')
   @Input()
   active: boolean;
 
