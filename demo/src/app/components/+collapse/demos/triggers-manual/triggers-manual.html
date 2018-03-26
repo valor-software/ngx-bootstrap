@@ -4,6 +4,9 @@
 <button type="button" class="btn btn-primary"
         (click)="collapse.hide()">Hide content
 </button>
+<button type="button" class="btn btn-primary"
+        (click)="collapse.toggle()">Toggle content visibility
+</button>
 <hr>
 <div #collapse="bs-collapse" [collapse]="isOpen"
      class="card card-block card-header">

@@ -1,5 +1,5 @@
 import { CollapseDemoComponent } from './demos/basic/basic';
-import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';
+import { DemoCollapseTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { CollapseDemoEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -41,11 +41,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: CollapseDemoEventsComponent
       },
       {
-        title: 'Manual toggle',
-        anchor: 'manual-toggle',
-        component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
-        html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
-        outlet: ToggleManualDemoComponent
+        title: 'Manual triggering',
+        anchor: 'manual-triggering',
+        component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual'),
+        html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        outlet: DemoCollapseTriggersManualComponent
       },
       {
         title: 'Accessibility',
