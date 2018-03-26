@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 export class DemoTooltipDynamicHtmlComponent {
   html: string = `
-<span class="btn btn-danger">Never trust not sanitized HTML!!!</span>`;
+<span class="btn-block btn-danger well-sm">Never trust not sanitized HTML!!!</span>`;
 }
