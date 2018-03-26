@@ -8,6 +8,12 @@
   <div *ngFor="let item of examples">
     <h3 *ngIf="item.title" [attr.id]="item.anchor">
       {{ item.title }}
+      <a title="Open this demo in StackBlitz"
+         href="#"
+         class="stackblitz-link"
+         (click)="openStackBlitzDemo(item.component, item.html)">
+        <img src="assets/images/stackblitz.png" alt="" width="20">
+      </a >
       <a class="anchor-link" routerLink="." [fragment]="item.anchor">#</a>
     </h3>
     <p *ngIf="item.description" [innerHTML]="item.description"></p>

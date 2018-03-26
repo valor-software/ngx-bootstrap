@@ -14,14 +14,14 @@ export const routes = [
   },
   {
     path: 'accordion',
-    data: ['Accordion'],
+    data: ['Accordion', {moduleName: 'AccordionModule', moduleFolder: 'accordion'}],
     // component: AccordionSectionComponent
     loadChildren:
       './components/+accordion/demo-accordion.module#DemoAccordionModule'
   },
   {
     path: 'alerts',
-    data: ['Alerts'],
+    data: ['Alerts', {moduleName: 'AlertModule', moduleFolder: 'alert'}],
     // component: AlertsSectionComponent,
     loadChildren: './components/+alerts/demo-alert.module#DemoAlertsModule'
   },
