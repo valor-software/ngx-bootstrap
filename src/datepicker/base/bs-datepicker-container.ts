@@ -33,6 +33,7 @@ export abstract class BsDatepickerAbstractComponent {
     this._effects.setDisabled(value);
   }
 
+  datePickerMode: BsDatepickerViewMode;
   viewMode: Observable<BsDatepickerViewMode>;
   daysCalendar: Observable<DaysCalendarViewModel[]>;
   monthsCalendar: Observable<MonthsCalendarViewModel[]>;

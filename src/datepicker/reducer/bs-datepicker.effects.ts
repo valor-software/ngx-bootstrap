@@ -70,10 +70,10 @@ export class BsDatepickerEffects {
   }
 
   /* Set rendering options */
-  setOptions(_config: BsDatepickerConfig): BsDatepickerEffects {
+  setOptions(_config: BsDatepickerConfig, datePickerMode: BsDatepickerViewMode = 'day'): BsDatepickerEffects {
     const _options = Object.assign({locale: this._localeService.currentLocale}, _config);
     this._store.dispatch(this._actions.setOptions(_options));
-
+    this._store.dispatch(this._actions.changeViewMode(datePickerMode));
     return this;
   }
 
@@ -138,29 +138,33 @@ export class BsDatepickerEffects {
     //   this._store.dispatch(this._actions.select(day.date));
     // };
 
-    container.monthSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {month: getMonth(event.date)},
-          viewMode: 'day'
-        })
-      );
-    };
+    if (container.datePickerMode != 'month') {
+      container.monthSelectHandler = (event: CalendarCellViewModel): void => {
+        if (event.isDisabled) {
+          return;
+        }
+        this._store.dispatch(
+          this._actions.navigateTo({
+            unit: {month: getMonth(event.date)},
+            viewMode: 'day'
+          })
+        );
+      };
+    }
 
-    container.yearSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {year: getFullYear(event.date)},
-          viewMode: 'month'
-        })
-      );
-    };
+    if (container.datePickerMode != 'year') {
+      container.yearSelectHandler = (event: CalendarCellViewModel): void => {
+        if (event.isDisabled) {
+          return;
+        }
+        this._store.dispatch(
+          this._actions.navigateTo({
+            unit: {year: getFullYear(event.date)},
+            viewMode: 'month'
+          })
+        );
+      };
+    }
 
     return this;
   }

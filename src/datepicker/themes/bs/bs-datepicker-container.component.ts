@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel, CalendarCellViewModel } from '../../models/index';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
@@ -20,6 +20,12 @@ import { Subscription } from 'rxjs/Subscription';
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
   set value(value: Date) {
+    if(this.datePickerMode=='month') {
+      value = new Date(value.getFullYear(), value.getMonth());
+    }
+    if(this.datePickerMode=='year') {
+      value = new Date(value.getFullYear(), 0);
+    }
     this._effects.setValue(value);
   }
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
@@ -40,7 +46,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._effects
       .init(this._store)
       // intial state options
-      .setOptions(this._config)
+      .setOptions(this._config, this.datePickerMode)
       // data binding view --> model
       .setBindings(this)
       // set event handlers
@@ -63,6 +69,14 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._store.dispatch(this._actions.select(day.date));
   }
 
+  monthSelectHandler(event: CalendarCellViewModel): void {
+    this.value = event.date;
+  }
+
+  yearSelectHandler(event: CalendarCellViewModel): void {
+    this.value = event.date;
+  }
+  
   ngOnDestroy(): void {
     for (const sub of this._subs) {
       sub.unsubscribe();

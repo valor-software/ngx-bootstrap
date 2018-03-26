@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsLocaleService } from './bs-locale.service';
+import { BsDatepickerViewMode } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -19,6 +20,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Placement of a datepicker. Accepts: "top", "bottom", "left", "right"
    */
   @Input() placement: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
+  /**
+   * Picker mode
+   */
+  @Input() datePickerMode: BsDatepickerViewMode = 'day';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
@@ -157,7 +162,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       .attach(BsDatepickerContainerComponent)
       .to(this.container)
       .position({attachment: this.placement})
-      .show({placement: this.placement});
+      .show({placement: this.placement, datePickerMode: this.datePickerMode});
 
     // if date changes from external source (model -> view)
     this._subs.push(
