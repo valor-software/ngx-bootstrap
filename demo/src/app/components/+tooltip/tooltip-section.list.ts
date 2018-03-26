@@ -82,6 +82,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'append-to-body',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        description: `<p>Be careful! If you add <code>overflow: hidden</code> property to any parent block of the tooltip, it can look cropped.
+          Hover over the first button in this section to see the example.</p>`,
         outlet: DemoTooltipContainerComponent
       },
       {
@@ -107,7 +109,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
-        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
+        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods. 
+          If you want to manage tooltip's state manually, use <code>triggers=""</code></p>`,
         outlet: DemoTooltipTriggersManualComponent
       },
       {
