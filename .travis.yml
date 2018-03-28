@@ -89,9 +89,9 @@ jobs:
 
 #     test cypress
     - stage: cypress-tests
-      env: URL=http://localhost:4400/#
-      before_script: npm run demo.serve &
-      script: $(npm bin)/wait-on $URL && CYPRESS_baseUrl=$URL npm run cy:run
+      env: URL=localhost:4200/#
+      before_script: ng serve --prod &
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
