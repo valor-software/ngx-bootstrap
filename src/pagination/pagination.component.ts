@@ -30,6 +30,8 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {
+  textAriaLabel = 'Go to page';
+  currentTextAriaLabel = 'Current page';
   config: any;
   /** if `true` aligns each link to the sides of pager */
   @Input() align: boolean;
@@ -37,6 +39,10 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() maxSize: number;
   /** if false first and last buttons will be hidden */
   @Input() boundaryLinks: boolean;
+  /** if false previous and next buttons, supporting accessibility, will be hidden */
+  @Input() accessibleLinks: boolean;
+  /** if false first and last buttons, supporting accessibility, will be hidden */
+  @Input() boundaryAccessibleLinks: boolean;
   /** if false previous and next buttons will be hidden */
   @Input() directionLinks: boolean;
   // labels
@@ -48,6 +54,32 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() nextText: string;
   /** last button text */
   @Input() lastText: string;
+  /** previous button text supporting accessibility */
+  @Input() previousAccessibleText: string;
+  /** next button text supporting accessibility */
+  @Input() nextAccessibleText: string;
+  /** first button text supporting accessibility */
+  @Input() firstAccessibleText: string;
+  /** last button text supporting accessibility */
+  @Input() lastAccessibleText: string;
+  /** aria-label attribute text for previous button */
+  @Input() previousLabelText: string;
+  /** aria-label attribute text for next button */
+  @Input() nextLabelText: string;
+  /** aria-label attribute text for first button */
+  @Input() firstLabelText: string;
+  /** aria-label attribute text for last button */
+  @Input() lastLabelText: string;
+  /** aria-label attribute text for nav tag */
+  @Input() navText: string;
+
+
+  /** aria-label attribute text for current page */
+  @Input() currentPageLabelText: string;
+  /** aria-label attribute text for page */
+  @Input() pageLabelText: string;
+
+
   /** if true current page will in the middle of pages list */
   @Input() rotate: boolean;
   // css
@@ -160,6 +192,14 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       typeof this.boundaryLinks !== 'undefined'
         ? this.boundaryLinks
         : this.config.boundaryLinks;
+    this.accessibleLinks =
+      typeof this.accessibleLinks !== 'undefined'
+        ? this.accessibleLinks
+        : this.config.accessibleLinks;
+    this.boundaryAccessibleLinks =
+      typeof this.boundaryAccessibleLinks !== 'undefined'
+        ? this.boundaryAccessibleLinks
+        : this.config.boundaryAccessibleLinks;
     this.directionLinks =
       typeof this.directionLinks !== 'undefined'
         ? this.directionLinks
@@ -185,7 +225,22 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.pages = this.getPages(this.page, this.totalPages);
   }
 
-  getText(key: string): string {
+  getText(key: string, flag?: string & number): string {
+    if (typeof flag === 'number') {
+      const value = (this as any)[`${key}Text`] || this.config[`${key}Text`];
+      return `${value} ${flag}`;
+    }
+    if (this.accessibleLinks || this.boundaryAccessibleLinks) {
+      const helperText = (this as any)[`${flag}Text`] || this.config[`${flag}Text`];
+      const value = (this as any)[`${key}AccessibleText`] || this.config[`${key}AccessibleText`];
+      const text = `
+        <span aria-hidden="true">${value}</span>
+        <span class="sr-only">${helperText}</span>
+      `;
+      if (flag) {
+        return text;
+      }
+    }
     return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }
 

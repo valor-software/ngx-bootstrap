@@ -1,35 +1,37 @@
-<ul class="pagination" [ngClass]="classMap">
-  <li class="pagination-first page-item"
-      *ngIf="boundaryLinks"
-      [class.disabled]="noPrevious()||disabled">
-    <a class="page-link" href (click)="selectPage(1, $event)"
-       [innerHTML]="getText('first')"></a>
-  </li>
+<nav [attr.aria-label]="getText('nav')">
+  <ul class="pagination" [ngClass]="classMap">
+    <li class="pagination-first page-item"
+        *ngIf="boundaryLinks || boundaryAccessibleLinks"
+        [class.disabled]="noPrevious()||disabled">
+      <a class="page-link" [attr.aria-label]="getText('firstLabel')" href (click)="selectPage(1, $event)"
+         [innerHTML]="getText('first', 'firstLabel')"></a>
+    </li>
 
-  <li class="pagination-prev page-item"
-      *ngIf="directionLinks"
-      [class.disabled]="noPrevious()||disabled">
-    <a class="page-link" href (click)="selectPage(page - 1, $event)"
-       [innerHTML]="getText('previous')"></a>
-  </li>
+    <li class="pagination-prev page-item"
+        *ngIf="directionLinks"
+        [class.disabled]="noPrevious()||disabled">
+      <a class="page-link" [attr.aria-label]="getText('previousLabel')" href (click)="selectPage(page - 1, $event)"
+         [innerHTML]="getText('previous', 'previousLabel')"></a>
+    </li>
 
-  <li *ngFor="let pg of pages"
-      [class.active]="pg.active"
-      [class.disabled]="disabled&&!pg.active"
-      class="pagination-page page-item">
-    <a class="page-link" href (click)="selectPage(pg.number, $event)"
-       [innerHTML]="pg.text"></a>
-  </li>
+    <li *ngFor="let pg of pages"
+        [class.active]="pg.active"
+        [class.disabled]="disabled&&!pg.active"
+        class="pagination-page page-item">
+      <a class="page-link" href [attr.aria-current]="false ? !pg.active : pg.active" [attr.aria-label]="pg.active ? getText('currentPageLabel', pg.number) : getText('pageLabel', pg.number)" (click)="selectPage(pg.number, $event)"
+         [innerHTML]="pg.text"></a>
+    </li>
 
-  <li class="pagination-next page-item"
-      *ngIf="directionLinks"
-      [class.disabled]="noNext()||disabled">
-    <a class="page-link" href (click)="selectPage(page + 1, $event)"
-       [innerHTML]="getText('next')"></a></li>
+    <li class="pagination-next page-item"
+        *ngIf="directionLinks"
+        [class.disabled]="noNext()||disabled">
+      <a class="page-link" [attr.aria-label]="getText('nextLabel')" href (click)="selectPage(page + 1, $event)"
+         [innerHTML]="getText('next', 'nextLabel')"></a></li>
 
-  <li class="pagination-last page-item"
-      *ngIf="boundaryLinks"
-      [class.disabled]="noNext()||disabled">
-    <a class="page-link" href (click)="selectPage(totalPages, $event)"
-       [innerHTML]="getText('last')"></a></li>
-</ul>
+    <li class="pagination-last page-item"
+        *ngIf="boundaryLinks || boundaryAccessibleLinks"
+        [class.disabled]="noNext()||disabled">
+      <a class="page-link" href  [attr.aria-label]="getText('lastLabel')" (click)="selectPage(totalPages, $event)"
+         [innerHTML]="getText('last', 'lastLabel')"></a></li>
+  </ul>
+</nav>
