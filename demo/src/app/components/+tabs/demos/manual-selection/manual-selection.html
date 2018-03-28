@@ -1,9 +1,8 @@
 <div>
-  <p>Switching Enable/Disable tab</p>
+  <p>You can select tabs directly from component</p>
   <p>
-    <button type="button" class="btn btn-primary btn-sm" (click)="disableEnable()">
-      Enable / Disable third tab
-    </button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="selectTab(1)">Select second tab</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="selectTab(2)">Select third tab</button>
   </p>
   <hr/>
   <tabset #staticTabs>
@@ -13,3 +12,4 @@
     <tab heading="Static Title 3">Static content 3</tab>
   </tabset>
 </div>
+
