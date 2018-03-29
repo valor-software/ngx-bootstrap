@@ -28,13 +28,20 @@ import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/ind
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+import { warnOnce } from '../utils/warn-once';
 
-@Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
+@Directive({ selector: '[bsTypeahead], [typeahead]', exportAs: 'bs-typeahead' })
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
    */
-  @Input() typeahead: any;
+  @Input() bsTypeahead: any;
+  /** @deprecated - please use `bsTypeahead` instead */
+  @Input('typeahead')
+  set htmlContent(value: any) {
+    warnOnce('typeahead was deprecated, please use `bsTypeahead` instead');
+    this.bsTypeahead = value;
+  }
   /** minimal no of characters that needs to be entered before
    * typeahead kicks-in. When set to 0, typeahead shows on focus with full
    * list of options (limited as normal by typeaheadOptionsLimit)
@@ -121,7 +128,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /**  if true select the currently highlighted match on blur */
   // @Input() protected typeaheadSelectOnBlur:boolean;
   /**  if false don't focus the input element the typeahead directive is associated with on selection */
-    // @Input() protected typeaheadFocusOnSelect:boolean;
+  // @Input() protected typeaheadFocusOnSelect:boolean;
 
   _container: TypeaheadContainerComponent;
   isTypeaheadOptionsListActive = false;
@@ -136,11 +143,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   private _outsideClickListener: Function;
 
   constructor(private ngControl: NgControl,
-              private element: ElementRef,
-              viewContainerRef: ViewContainerRef,
-              private renderer: Renderer2,
-              cis: ComponentLoaderFactory,
-              private changeDetection: ChangeDetectorRef) {
+    private element: ElementRef,
+    viewContainerRef: ViewContainerRef,
+    private renderer: Renderer2,
+    cis: ComponentLoaderFactory,
+    private changeDetection: ChangeDetectorRef) {
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
@@ -157,12 +164,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
-      !(this.typeahead instanceof Observable)
+      !(this.bsTypeahead instanceof Observable)
     ) {
       this.typeaheadAsync = false;
     }
 
-    if (this.typeahead instanceof Observable) {
+    if (this.bsTypeahead instanceof Observable) {
       this.typeaheadAsync = true;
     }
 
@@ -183,8 +190,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       e.target.value !== undefined
         ? e.target.value
         : e.target.textContent !== undefined
-        ? e.target.textContent
-        : e.target.innerText;
+          ? e.target.textContent
+          : e.target.innerText;
     if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
@@ -284,7 +291,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
+      .position({ attachment: `${this.dropup ? 'top' : 'bottom'} left` })
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -344,7 +351,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._subscriptions.push(
       this.keyUpEventEmitter
         .debounceTime(this.typeaheadWaitMs)
-        .switchMap(() => this.typeahead)
+        .switchMap(() => this.bsTypeahead)
         .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })
@@ -358,7 +365,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         .mergeMap((value: string) => {
           const normalizedQuery = this.normalizeQuery(value);
 
-          return Observable.from(this.typeahead)
+          return Observable.from(this.bsTypeahead)
             .filter((option: any) => {
               return (
                 option &&

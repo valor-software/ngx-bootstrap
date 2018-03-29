@@ -2,7 +2,7 @@
 <pre class="card card-block card-header mb-3">Selected option: {{selectedOption | json}}</pre>
 
 <input [(ngModel)]="selectedValue"
-       [typeahead]="states"
+       [bsTypeahead]="states"
        typeaheadOptionField="name"
        (typeaheadOnSelect)="onSelect($event)"
        class="form-control">

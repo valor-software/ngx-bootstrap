@@ -2,6 +2,6 @@
 <div class="alert alert-danger" *ngIf="noResult">No Results Found</div>
 
 <input [(ngModel)]="selected"
-       [typeahead]="states"
+       [bsTypeahead]="states"
        (typeaheadNoResults)="typeaheadNoResults($event)"
        class="form-control">

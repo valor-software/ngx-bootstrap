@@ -19,7 +19,7 @@ interface State {
   // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
     <input [(ngModel)]="selectedState"
-           [typeahead]="states"
+           [bsTypeahead]="states"
            [typeaheadOptionField]="'name'"
            (typeaheadOnBlur)="onBlurEvent($event)">
   `
@@ -84,7 +84,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should typeaheadAsync to false, if typeahead is an observable', () => {
-      directive.typeahead = Observable.of(component.states);
+      directive.bsTypeahead = Observable.of(component.states);
       directive.ngOnInit();
 
       expect(directive.typeaheadAsync).toBeTruthy();

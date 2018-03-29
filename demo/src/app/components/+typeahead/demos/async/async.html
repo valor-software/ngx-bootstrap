@@ -1,7 +1,7 @@
 <pre class="card card-block card-header">Model: {{asyncSelected | json}}</pre>
 
 <input [(ngModel)]="asyncSelected"
-       [typeahead]="dataSource"
+       [bsTypeahead]="dataSource"
        (typeaheadLoading)="changeTypeaheadLoading($event)"
        (typeaheadOnSelect)="typeaheadOnSelect($event)"
        [typeaheadOptionsLimit]="7"
