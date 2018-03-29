@@ -5,6 +5,7 @@
 // tslint:disable:object-literal-key-quotes
 
 import { LocaleData } from '../locale/locale.class';
+import { getDayOfWeek } from '../units/day-of-week';
 
 //! moment.js locale configuration
 //! locale : Slovenian [sl]
@@ -113,8 +114,8 @@ export const slLocale: LocaleData = {
     sameDay: '[danes ob] LT',
     nextDay: '[jutri ob] LT',
 
-    nextWeek: function () {
-      switch (this.day()) {
+    nextWeek(date: Date) {
+      switch (getDayOfWeek(date)) {
         case 0:
           return '[v] [nedeljo] [ob] LT';
         case 3:
@@ -129,8 +130,8 @@ export const slLocale: LocaleData = {
       }
     },
     lastDay: '[včeraj ob] LT',
-    lastWeek: function () {
-      switch (this.day()) {
+    lastWeek(date: Date) {
+      switch (getDayOfWeek(date)) {
         case 0:
           return '[prejšnjo] [nedeljo] [ob] LT';
         case 3:
