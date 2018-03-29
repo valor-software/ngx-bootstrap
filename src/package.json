@@ -2,11 +2,8 @@
   "name": "ngx-bootstrap",
   "es2015": "bundles/ngx-bootstrap.es2015.js",
   "peerDependencies": {
-    "@angular/common": "*",
-    "@angular/compiler": "*",
     "@angular/core": "*",
-    "@angular/forms": "*",
-    "typescript": "*",
-    "rxjs": "*"
+    "@angular/common": "*",
+    "@angular/forms": "*"
   }
 }

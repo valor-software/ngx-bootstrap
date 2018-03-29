@@ -15,6 +15,7 @@ import { DemoDropdownVisibilityEventsComponent } from './demos/visibility-events
 import { DemoDropdownStateChangeEventComponent } from './demos/state-change-event/state-change-event';
 import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './demos/custom-html/custom-html';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -25,6 +26,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -48,8 +50,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
-        description: `<p>Any single <code>.btn</code> can be turned into a dropdown toggle with some markup changes.
-          Here’s how you can put them to work with either  <code> &lt;button&gt; </code> elements:</p>`,
+        description: `<p>Any <code>&lt;button&gt;</code> can became a dropdown toggle with few markup changes.
+          Here’s how dropdown works with single button</p>`,
         outlet: DemoDropdownBasicComponent
       },
       {
@@ -136,7 +138,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
-        description: `<p>Trigger dropdown menus above elements by setting <code>dropup</code> property to <code>true</code></p>`,
+        description: `<p>To make dropdown's menu appear above toggle element set <code>dropup</code> property as <code>true</code></p>`,
         outlet: DemoDropdownDropupComponent
       },
       {
@@ -152,7 +154,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'custom-html',
         component: require('!!raw-loader?lang=typescript!./demos/custom-html/custom-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-html/custom-html.html'),
-        description: `<p>Dropdown allows you to use any html</p>`,
+        description: `<p>Dropdown allows you to use any html markup inside of it</p>`,
         outlet: DemoDropdownCustomHtmlComponent
       },
       {
@@ -186,6 +188,11 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/autoclose/autoclose.html'),
         description: `<p>Use <code>autoClose</code> property to change dropdown's default behavior</p>`,
         outlet: DemoDropdownAutoCloseComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },

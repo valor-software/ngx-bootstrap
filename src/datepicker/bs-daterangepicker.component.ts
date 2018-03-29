@@ -77,7 +77,7 @@ export class BsDaterangepickerDirective
    */
   @Input() bsConfig: Partial<BsDaterangepickerConfig>;
   /**
-   * Indicates whether daterangepicker is enabled or not
+   * Indicates whether daterangepicker's content is enabled or not
    */
   @Input() isDisabled: boolean;
   /**

@@ -15,6 +15,7 @@ import { DemoDropdownDisabledItemComponent } from './disabled-item/disabled-item
 import { DemoDropdownStateChangeEventComponent } from './state-change-event/state-change-event';
 import { DemoDropdownAutoCloseComponent } from './autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './custom-html/custom-html';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
   DemoDropdownBasicComponent,
@@ -33,5 +34,6 @@ export const DEMO_COMPONENTS = [
   DemoDropdownVisibilityEventsComponent,
   DemoDropdownStateChangeEventComponent,
   DemoDropdownAutoCloseComponent,
-  DemoDropdownCustomHtmlComponent
+  DemoDropdownCustomHtmlComponent,
+  DemoAccessibilityComponent
 ];
