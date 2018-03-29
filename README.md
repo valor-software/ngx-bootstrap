@@ -44,7 +44,7 @@ ngx-bootstrap contains all core (and not only) Bootstrap components powered by A
 
 Install `ngx-bootstrap` from `npm`:
 ```bash
-npm install ngx-bootstrap --save-dev
+npm install ngx-bootstrap --save
 ```
 
 Add needed package to NgModule imports:
@@ -93,7 +93,7 @@ Server side rendered version of this documentation available <a href="https://ng
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 ### How to use it with:
- - `Bootstrap 3 or 4 and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
+ - `Bootstrap and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
  - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
  - `plnkr` sample available [here](https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview)
@@ -113,7 +113,7 @@ To update your fork and prepare it for local usage:
  - `npm install`
  - `npm run test` _*// it will build the lib, create a link in node_modules and run package's "test" script*_
 
- To run bootstrap 3 and 4 demo:
+ To run the demo:
  - `npm run demo.serve` _*// to serve local demo. This is for testing only, without watchers.*_
 
  For local development run:
