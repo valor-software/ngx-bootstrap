@@ -88,8 +88,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dynamic-html',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
-        description: `<p>By using small trick you can display any dynamic html, which you got from ajax
-        request for example.</p>`,
+        description: `<p>By using <code>[innerHtml]</code> inside <code>ng-template</code> you can display any dynamic html</p>`,
         outlet: DemoPopoverDynamicHtmlComponent
       },
       {
