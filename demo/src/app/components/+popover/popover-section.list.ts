@@ -97,10 +97,10 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'container-body',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
-        description: `<p>When you have some styles on a parent element that interfere with a popover,
+        description: `<p>When you have any styles on a parent element that interfere with a popover,
         you’ll want to specify a <code>container="body"</code> so that the popover’s HTML will be
         appended to body. This will help to avoid rendering problems in more complex components
-        (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
+        (like input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
         outlet: DemoPopoverContainerComponent
       },
       {
