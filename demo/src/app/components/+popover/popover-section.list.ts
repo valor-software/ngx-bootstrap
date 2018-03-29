@@ -79,8 +79,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'custom-content-template',
         component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
-        description: `<p>Create <code>&lt;template #myId></code> with any html allowed by Angular,
-        and provide template ref (<code>#myId</code>) as popover content.</p>`,
+        description: `<p>Create <code>&lt;ng-template #myId></code> with any html allowed by Angular,
+        and provide template ref <code>[popover]="myId"</code> as popover content.</p>`,
         outlet: DemoPopoverCustomContentComponent
       },
       {
