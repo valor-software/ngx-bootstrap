@@ -36,10 +36,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'typeahead',
     content: [
       {
         title: 'Basic array',
-        anchor: 'Basic-array',
+        anchor: 'basic-array',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTypeaheadBasicComponent
@@ -47,6 +49,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Item template',
         anchor: 'item-template',
+        demoName: 'item-template',
         component: require('!!raw-loader?lang=typescript!./demos/item-template/item-template.ts'),
         html: require('!!raw-loader?lang=markup!./demos/item-template/item-template.html'),
         outlet: DemoTypeaheadItemTemplateComponent
@@ -54,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Option field',
         anchor: 'option-field',
+        demoName: 'field',
         component: require('!!raw-loader?lang=typescript!./demos/field/field.ts'),
         html: require('!!raw-loader?lang=markup!./demos/field/field.html'),
         outlet: DemoTypeaheadFieldComponent
@@ -61,6 +65,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Async data',
         anchor: 'async-data',
+        demoName: 'async',
         component: require('!!raw-loader?lang=typescript!./demos/async/async.ts'),
         html: require('!!raw-loader?lang=markup!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
@@ -68,6 +73,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'With delay',
         anchor: 'delay',
+        demoName: 'delay',
         description: `
           <p>Use to set minimal waiting time after last character typed before typeahead kicks-in.
           In example a search begins with delay in 1 second</p>
@@ -79,6 +85,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Template-driven forms',
         anchor: 'forms',
+        demoName: 'form',
         description: `
           <p>
             Typeahead can be used in template-driven forms. Keep in mind that value of <code>ngModel</code> is string
@@ -91,6 +98,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Reactive forms',
         anchor: 'reactive-forms',
+        demoName: 'reactive-forms',
         description: `
           <p>Typeahead can be used in reactive forms</p>
         `,
@@ -101,6 +109,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Grouping results',
         anchor: 'grouping-results',
+        demoName: 'grouping',
         component: require('!!raw-loader?lang=typescript!./demos/grouping/grouping.ts'),
         html: require('!!raw-loader?lang=markup!./demos/grouping/grouping.html'),
         outlet: DemoTypeaheadGroupingComponent
@@ -108,6 +117,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Ignore spaces and order',
         anchor: 'single-world',
+        demoName: 'single-world',
         component: require('!!raw-loader?lang=typescript!./demos/single-world/single-world.ts'),
         html: require('!!raw-loader?lang=markup!./demos/single-world/single-world.html'),
         description: `If <code>typeaheadSingleWords=true</code> ignores spaces and seeking for matches with occurrences of entered words.
@@ -117,6 +127,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Phrase delimiters',
         anchor: 'phrase-delimiters',
+        demoName: 'phrase-delimiters',
         component: require('!!raw-loader?lang=typescript!./demos/phrase-delimiters/phrase-delimiters.ts'),
         html: require('!!raw-loader?lang=markup!./demos/phrase-delimiters/phrase-delimiters.html'),
         description: `Sets the word delimiter to match exact phrase. For example that are <code>&</code> and <code>,</code>`,
@@ -125,6 +136,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dropup',
         anchor: 'dropup',
+        demoName: 'dropup',
         component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
@@ -132,6 +144,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'On blur',
         anchor: 'on-blur',
+        demoName: 'on-blur',
         description: `
          <p>Returns an option on which user lost a focus. To reproduce start typing the name of the state, then focus
          on one of the options with mouse or arrow keys and click outside of the typeahead</p>
@@ -143,6 +156,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Append to body',
         anchor: 'container',
+        demoName: 'container',
         description: `
         <p>A selector specifying the element the typeahead should be appended to. Currently only supports "body".</p>
         `,
@@ -153,6 +167,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'No result',
         anchor: 'no-result',
+        demoName: 'no-result',
         description: `
          <p>Used to display the state when no matches were found. To see message
          "No Results Found" enter the value that doesn't match anything from the list</p>
@@ -164,6 +179,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Scrollable',
         anchor: 'scrollable',
+        demoName: 'scrollable',
         component: require('!!raw-loader?lang=typescript!./demos/scrollable/scrollable.ts'),
         html: require('!!raw-loader?lang=markup!./demos/scrollable/scrollable.html'),
         outlet: DemoTypeaheadScrollableComponent
@@ -171,6 +187,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Latinize',
         anchor: 'latinize',
+        demoName: 'latinize',
         description: `<p>Allow to match latin symbols. If true the word <strong>súper</strong> would match
           <strong>super</strong> and vice versa.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/latinize/latinize.ts'),
@@ -180,6 +197,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'On select',
         anchor: 'on-select',
+        demoName: 'on-select',
         description: `
           <p>Fired when an option was selected, returns an object with this option</p>
         `,

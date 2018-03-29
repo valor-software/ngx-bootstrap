@@ -23,7 +23,7 @@ export const routes = [
     path: 'alerts',
     data: ['Alerts'],
     // component: AlertsSectionComponent,
-    loadChildren: './components/+alerts/demo-alert.module#DemoAlertsModule'
+    loadChildren: './components/+alert/demo-alert.module#DemoAlertsModule'
   },
   {
     path: 'buttons',

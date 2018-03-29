@@ -27,10 +27,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'buttons',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoButtonsBasicComponent
@@ -38,6 +40,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Checkbox',
         anchor: 'checkbox',
+        demoName: 'checkbox',
         description: `<p>Checkbox-like buttons set with variable states</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/checkbox/checkbox.ts'),
         html: require('!!raw-loader?lang=markup!./demos/checkbox/checkbox.html'),
@@ -46,6 +49,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom checkbox value',
         anchor: 'custom-checkbox-value',
+        demoName: 'custom-checkbox-value',
         component: require('!!raw-loader?lang=typescript!./demos/custom-checkbox-value/custom-checkbox-value.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-checkbox-value/custom-checkbox-value.html'),
         outlet: DemoButtonsCustomCheckboxValueComponent
@@ -53,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Checkbox with Reactive Forms',
         anchor: 'checkbox-reactiveforms"',
+        demoName: 'checkbox-reactiveforms',
         description: `<p>Checkbox buttons with ReactiveForms</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/checkbox-reactiveforms/checkbox-reactiveforms.ts'),
         html: require('!!raw-loader?lang=markup!./demos/checkbox-reactiveforms/checkbox-reactiveforms.html'),
@@ -61,6 +66,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Radio',
         anchor: 'radio-button',
+        demoName: 'radio',
         description: `<p>Radio buttons with checked/unchecked states. Group can be created in two ways: using
 <code>btnRadioGroup</code> directive or using the same <code>ngModel</code> binding with several buttons (works only for
 template driven forms). Check the demo below for more info.</p>`,
@@ -71,6 +77,7 @@ template driven forms). Check the demo below for more info.</p>`,
       {
         title: 'Uncheckable Radio',
         anchor: 'uncheckable-radio-button',
+        demoName: 'uncheckable-radio',
         component: require('!!raw-loader?lang=typescript!./demos/uncheckable-radio/uncheckable-radio.ts'),
         html: require('!!raw-loader?lang=markup!./demos/uncheckable-radio/uncheckable-radio.html'),
         outlet: DemoButtonsUncheckableRadioComponent
@@ -78,6 +85,7 @@ template driven forms). Check the demo below for more info.</p>`,
       {
         title: 'Radio with Reactive Forms',
         anchor: 'radio-reactiveforms',
+        demoName: 'radio-reactiveforms',
         description: `<p>Radio buttons with ReactiveForms. Example below shows how to use radio buttons with reactive
  forms. Please be aware that for reactive forms it's required to use <code>btnRadioGroup</code> directive along with
  <code>btnRadio</code>'s</p>`,
@@ -88,6 +96,7 @@ template driven forms). Check the demo below for more info.</p>`,
       {
         title: 'Disabled Buttons',
         anchor: 'disabled-buttons',
+        demoName: 'disabled',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         outlet: DemoButtonsDisabledComponent

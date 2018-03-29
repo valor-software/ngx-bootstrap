@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-datepicker-min-max',
-  templateUrl: './min-max.component.html'
+  templateUrl: './min-max.html'
 })
 export class DemoDatepickerMinMaxComponent {
   minDate: Date;

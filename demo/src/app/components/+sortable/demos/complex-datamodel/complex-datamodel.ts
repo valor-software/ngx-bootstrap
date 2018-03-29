@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'complex-datamodel-demo',
-  templateUrl: './complex-datamodel.component.html'
+  templateUrl: './complex-datamodel.html'
 })
 export class ComplexDatamodelDemoComponent {
   itemObjectsLeft: any[] = [

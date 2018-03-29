@@ -1,11 +1,11 @@
-import { DatepickerDemoComponent } from './datepicker-demo.component';
+import { DatepickerDemoComponent } from './old/old';
 import { DemoDatepickerBasicComponent } from './basic/basic';
 import { DemoDatepickerColorThemingComponent } from './color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';
-import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
-import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
-import { DemoDatepickerFormsComponent } from './forms/forms.component';
-import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+import { DemoDatepickerMinMaxComponent } from './min-max/min-max';
+import { DemoDatepickerDisabledComponent } from './disabled/disabled';
+import { DemoDatepickerFormsComponent } from './forms/forms';
+import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms';
 import { DemoDatePickerCustomFormatComponent } from './custom-format/custom-format';
 import { DemoDatepickerVisibilityMethodsComponent } from './visibility-methods/visibility-methods';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';

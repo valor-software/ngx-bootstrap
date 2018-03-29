@@ -35,11 +35,13 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'pagination',
     description: `<p>On small screens bootstrap4 pagination can be cropped</p>`,
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoPaginationBasicComponent
@@ -47,6 +49,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual switching page',
         anchor: 'manual-switching',
+        demoName: 'manual-switching',
         component: require('!!raw-loader?lang=typescript!./demos/manual-switching/manual-switching.ts'),
         html: require('!!raw-loader?lang=markup!./demos/manual-switching/manual-switching.html'),
         outlet: DemoPaginationManualSwitchingComponent
@@ -54,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Page changed event',
         anchor: 'page-changed-event',
+        demoName: 'page-changed-event',
         component: require('!!raw-loader?lang=typescript!./demos/page-changed-event/page-changed-event.ts'),
         html: require('!!raw-loader?lang=markup!./demos/page-changed-event/page-changed-event.html'),
         outlet: DemoPaginationPageChangedComponent
@@ -61,6 +65,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pages count changed event',
         anchor: 'pages-count-changed',
+        demoName: 'pages-count-changed',
         component: require('!!raw-loader?lang=typescript!./demos/pages-count-changed/pages-count-changed.ts'),
         html: require('!!raw-loader?lang=markup!./demos/pages-count-changed/pages-count-changed.html'),
         outlet: DemoPaginationPagesCountChangedComponent
@@ -68,6 +73,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Boundary links',
         anchor: 'boundary-links',
+        demoName: 'boundary-links',
         component: require('!!raw-loader?lang=typescript!./demos/boundary-links/boundary-links.ts'),
         html: require('!!raw-loader?lang=markup!./demos/boundary-links/boundary-links.html'),
         outlet: DemoPaginationBoundaryLinksComponent
@@ -75,6 +81,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Direction links',
         anchor: 'direction-links',
+        demoName: 'direction-links',
         component: require('!!raw-loader?lang=typescript!./demos/direction-links/direction-links.ts'),
         html: require('!!raw-loader?lang=markup!./demos/direction-links/direction-links.html'),
         outlet: DemoPaginationDirectionLinksComponent
@@ -82,6 +89,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom links content',
         anchor: 'custom-links-content',
+        demoName: 'custom-links-content',
         component: require('!!raw-loader?lang=typescript!./demos/custom-links-content/custom-links-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-links-content/custom-links-content.html'),
         outlet: DemoPaginationCustomLinksContentComponent
@@ -89,6 +97,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disabled',
         anchor: 'pagination-disabled',
+        demoName: 'disabled',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         outlet: DemoPaginationDisabledComponent
@@ -96,6 +105,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Limits',
         anchor: 'pagination-limit',
+        demoName: 'limit',
         component: require('!!raw-loader?lang=typescript!./demos/limit/limit.ts'),
         html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
         description: `<p>Limit the maximum visible page numbers</p>`,
@@ -105,6 +115,7 @@ export const demoComponentContent: ContentSection[] = [
 
         title: 'Centering the active page link',
         anchor: 'pagination-rotate',
+        demoName: 'rotate',
         component: require('!!raw-loader?lang=typescript!./demos/rotate/rotate.ts'),
         html: require('!!raw-loader?lang=markup!./demos/rotate/rotate.html'),
         description: `<p>Set current page link to center</p>`,
@@ -113,6 +124,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Content switching',
         anchor: 'content-switching',
+        demoName: 'content-switching',
         component: require('!!raw-loader?lang=typescript!./demos/content-switching/content-switching.ts'),
         html: require('!!raw-loader?lang=markup!./demos/content-switching/content-switching.html'),
         outlet: DemoPaginationContentSwitchingComponent
@@ -120,6 +132,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pager',
         anchor: 'pagination-pager',
+        demoName: 'pager',
         component: require('!!raw-loader?lang=typescript!./demos/pager/pager.ts'),
         html: require('!!raw-loader?lang=markup!./demos/pager/pager.html'),
         outlet: DemoPaginationPagerComponent

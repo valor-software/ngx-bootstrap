@@ -39,10 +39,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'popover',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoPopoverBasicComponent
@@ -50,6 +52,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Placement',
         anchor: 'placement',
+        demoName: 'placement',
         component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>, 
@@ -60,6 +63,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dismiss on next click',
         anchor: 'popover-dismiss',
+        demoName: 'dismiss',
         component: require('!!raw-loader?lang=typescript!./demos/dismiss/dismiss.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dismiss/dismiss.html'),
         description: `<p>Use the <code>focus</code> trigger to dismiss popovers on the next click that the
@@ -69,6 +73,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic content',
         anchor: 'dynamic-content',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         description: `<p>Pass a string as popover content.</p>`,
@@ -77,6 +82,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom content template',
         anchor: 'custom-content-template',
+        demoName: 'custom-content',
         component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
         description: `<p>Create <code>&lt;ng-template #myId></code> with any html allowed by Angular,
@@ -86,6 +92,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic Html',
         anchor: 'dynamic-html',
+        demoName: 'dynamic-html',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
         description: `<p>By using <code>[innerHtml]</code> inside <code>ng-template</code> you can display any dynamic html</p>`,
@@ -94,6 +101,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Append to body',
         anchor: 'container-body',
+        demoName: 'container',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
         description: `<p>When you have any styles on a parent element that interfere with a popover,
@@ -105,6 +113,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Visibility events',
         anchor: 'events',
+        demoName: 'events',
         component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
         outlet: DemoPopoverEventsComponent
@@ -112,6 +121,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoPopoverConfigComponent
@@ -119,6 +129,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Outside click',
         anchor: 'outside-click',
+        demoName: 'outside-click',
         component: require('!!raw-loader?lang=typescript!./demos/outside-click/outside-click.ts'),
         html: require('!!raw-loader?lang=markup!./demos/outside-click/outside-click.html'),
         outlet: DemoPopoverOutsideClickComponent
@@ -126,6 +137,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom triggers',
         anchor: 'triggers-custom',
+        demoName: 'triggers-custom',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-custom/triggers-custom.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-custom/triggers-custom.html'),
         outlet: DemoPopoverTriggersCustomComponent
@@ -133,6 +145,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual triggering',
         anchor: 'triggers-manual',
+        demoName: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
         description: `<p>This demo shows manipulating popover by <code>show</code>,
@@ -142,6 +155,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Trigger by input',
         anchor: 'trigger-by-input',
+        demoName: 'trigger-by-input',
         component: require('!!raw-loader?lang=typescript!./demos/trigger-by-input/trigger-by-input.ts'),
         html: require('!!raw-loader?lang=markup!./demos/trigger-by-input/trigger-by-input.html'),
         description: `<p>You can show/hide popover by switching <code>isOpen</code> property</p>`,
@@ -150,6 +164,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Component level styling',
         anchor: 'styling-local',
+        demoName: 'styling-local',
         component: require('!!raw-loader?lang=typescript!./demos/styling-local/styling-local.ts'),
         html: require('!!raw-loader?lang=markup!./demos/styling-local/styling-local.html'),
         outlet: DemoPopoverStylingLocalComponent
@@ -157,6 +172,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom class',
         anchor: 'popover-custom-class',
+        demoName: 'class',
         component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
         outlet: DemoPopoverClassComponent
@@ -164,6 +180,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Popover context',
         anchor: 'popover-context',
+        demoName: 'popover-context',
         component: require('!!raw-loader?lang=typescript!./demos/popover-context/popover-context.ts'),
         html: require('!!raw-loader?lang=markup!./demos/popover-context/popover-context.html'),
         outlet: DemoPopoverContextComponent

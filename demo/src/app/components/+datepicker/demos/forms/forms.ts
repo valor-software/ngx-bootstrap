@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-datepicker-forms',
-  templateUrl: './forms.component.html'
+  templateUrl: './forms.html'
 })
 export class DemoDatepickerFormsComponent {
   datepickerModel: Date;

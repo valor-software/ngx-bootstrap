@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'datepicker-demo',
-  templateUrl: './datepicker-demo.component.html'
+  templateUrl: './old.html'
 })
 export class DatepickerDemoComponent {
   dt: Date = new Date();

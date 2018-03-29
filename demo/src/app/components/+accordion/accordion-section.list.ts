@@ -1,6 +1,6 @@
 import { DemoAccordionBasicComponent } from './demos/basic/basic';
 import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
-import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
+import { DemoAccordionDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 import { DemoAccordionConfigComponent } from './demos/config/config';
@@ -33,10 +33,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'accordion',
     content: [
       {
         title: 'Basic',
         anchor: 'basic-accordion',
+        demoName: 'basic',
         description: `<p>Click headers to expand/collapse content that is broken into logical sections, much
           like tabs.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
@@ -46,6 +48,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Group opening event',
         anchor: 'open-event',
+        demoName: 'open-event',
         description: `<p>Accordion with <code>isOpenChange</code> event listener.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/open-event/open-event'),
         html: require('!!raw-loader?lang=markup!./demos/open-event/open-event.html'),
@@ -54,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom HTML',
         anchor: 'custom-html',
+        demoName: 'custom-html',
         component: require('!!raw-loader?lang=typescript!./demos/custom-html/custom-html'),
         html: require('!!raw-loader?lang=markup!./demos/custom-html/custom-html.html'),
         outlet: DemoAccordionCustomHTMLComponent
@@ -61,6 +65,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disabled',
         anchor: 'disabled',
+        demoName: 'disabled',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         outlet: DemoAccordionDisabledComponent
@@ -68,6 +73,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Initially opened',
         anchor: 'opened',
+        demoName: 'opened',
         component: require('!!raw-loader?lang=typescript!./demos/opened/opened'),
         html: require('!!raw-loader?lang=markup!./demos/opened/opened.html'),
         outlet: DemoAccordionOpenedComponent
@@ -75,13 +81,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic accordion',
         anchor: 'dynamic-accordion',
-        component: require('!!raw-loader?lang=typescript!./demos/dymanic/dynamic'),
-        html: require('!!raw-loader?lang=markup!./demos/dymanic/dynamic.html'),
+        demoName: 'dynamic',
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoAccordionDynamicComponent
       },
       {
         title: 'Dynamic body content',
         anchor: 'dynamic-body',
+        demoName: 'dynamic-body',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-body/dynamic-body'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-body/dynamic-body.html'),
         outlet: DemoAccordionDynamicBodyComponent
@@ -89,6 +97,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual toggle',
         anchor: 'manual-toggle',
+        demoName: 'manual-toggle',
         component: require('!!raw-loader?lang=typescript!./demos/manual-toggle/manual-toggle'),
         html: require('!!raw-loader?lang=markup!./demos/manual-toggle/manual-toggle.html'),
         outlet: DemoAccordionManualToggleComponent
@@ -96,6 +105,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Open only one at a time',
         anchor: 'one-time',
+        demoName: 'one-at-a-time',
         component: require('!!raw-loader?lang=typescript!./demos/one-at-a-time/one-at-a-time'),
         html: require('!!raw-loader?lang=markup!./demos/one-at-a-time/one-at-a-time.html'),
         outlet: DemoAccordionOneAtATimeComponent
@@ -103,14 +113,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Styling',
         anchor: 'styling',
+        demoName: 'styling',
         component: require('!!raw-loader?lang=typescript!./demos/styling/styling'),
         html: require('!!raw-loader?lang=markup!./demos/styling/styling.html'),
-        css: require('!!raw-loader?lang=markup!./demos/styling/styling.css'),
         outlet: DemoAccordionStylingComponent
       },
       {
         title: 'Configuring defaults',
         anchor: 'config',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoAccordionConfigComponent

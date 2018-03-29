@@ -22,10 +22,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'rating',
     content: [
       {
         title: 'Basic rating',
         anchor: 'rating-basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoRatingBasicComponent
@@ -33,6 +35,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic rating',
         anchor: 'rating-dynamic',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoRatingDynamicComponent
@@ -40,6 +43,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom icons',
         anchor: 'rating-custom',
+        demoName: 'custom',
         component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
         html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
         outlet: DemoRatingCustomComponent

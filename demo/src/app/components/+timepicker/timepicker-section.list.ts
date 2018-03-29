@@ -37,10 +37,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'timepicker',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTimepickerBasicComponent
@@ -48,6 +50,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Meridian',
         anchor: 'meridian',
+        demoName: 'meridian',
         component: require('!!raw-loader?lang=typescript!./demos/meridian/meridian'),
         html: require('!!raw-loader?lang=markup!./demos/meridian/meridian.html'),
         outlet: DemoTimepickerMeridianComponent
@@ -55,6 +58,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom meridian',
         anchor: 'custom-meridian',
+        demoName: 'custom-meridian',
         component: require('!!raw-loader?lang=typescript!./demos/custom-meridian/custom-meridian'),
         html: require('!!raw-loader?lang=markup!./demos/custom-meridian/custom-meridian.html'),
         outlet: DemoTimepickerCustomMeridianComponent
@@ -62,6 +66,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Min - Max',
         anchor: 'min-max',
+        demoName: 'min-max',
         component: require('!!raw-loader?lang=typescript!./demos/min-max/min-max'),
         html: require('!!raw-loader?lang=markup!./demos/min-max/min-max.html'),
         outlet: DemoTimepickerMinMaxComponent
@@ -69,6 +74,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Toggle minutes/seconds',
         anchor: 'toggleMinutesSeconds',
+        demoName: 'toggle-minutes-seconds',
         component: require('!!raw-loader?lang=typescript!./demos/toggle-minutes-seconds/toggle-minutes-seconds'),
         html: require('!!raw-loader?lang=markup!./demos/toggle-minutes-seconds/toggle-minutes-seconds.html'),
         outlet: DemoTimepickerToggleMinutesSecondsComponent
@@ -76,6 +82,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disabled',
         anchor: 'disabled',
+        demoName: 'disabled',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
         outlet: DemoTimepickerDisabledComponent
@@ -83,6 +90,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Readonly',
         anchor: 'readonly',
+        demoName: 'readonly',
         component: require('!!raw-loader?lang=typescript!./demos/readonly/readonly'),
         html: require('!!raw-loader?lang=markup!./demos/readonly/readonly.html'),
         outlet: DemoTimepickerReadonlyComponent
@@ -90,6 +98,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom steps',
         anchor: 'custom',
+        demoName: 'custom',
         component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
         html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
         outlet: DemoTimepickerCustomComponent
@@ -97,6 +106,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom validation',
         anchor: 'custom-validation',
+        demoName: 'custom-validation',
         component: require('!!raw-loader?lang=typescript!./demos/custom-validation/custom-validation'),
         html: require('!!raw-loader?lang=markup!./demos/custom-validation/custom-validation.html'),
         outlet: DemoTimepickerCustomValidationComponent
@@ -104,6 +114,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'IsValid',
         anchor: 'isvalid',
+        demoName: 'isvalid',
         component: require('!!raw-loader?lang=typescript!./demos/isvalid/isvalid'),
         html: require('!!raw-loader?lang=markup!./demos/isvalid/isvalid.html'),
         description: `
@@ -114,6 +125,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic',
         anchor: 'dynamic',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoTimepickerDynamicComponent
@@ -121,6 +133,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Mouse wheel',
         anchor: 'mouse-wheel',
+        demoName: 'mouse-wheel',
         component: require('!!raw-loader?lang=typescript!./demos/mousewheel/mousewheel'),
         html: require('!!raw-loader?lang=markup!./demos/mousewheel/mousewheel.html'),
         outlet: DemoTimepickerMousewheelComponent
@@ -128,6 +141,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Arrow keys',
         anchor: 'arrow keys',
+        demoName: 'arrow keys',
         component: require('!!raw-loader?lang=typescript!./demos/arrowkeys/arrowkeys'),
         html: require('!!raw-loader?lang=markup!./demos/arrowkeys/arrowkeys.html'),
         outlet: DemoTimepickerArrowkeysComponent
@@ -135,6 +149,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Spinners',
         anchor: 'spinners',
+        demoName: 'spinners',
         component: require('!!raw-loader?lang=typescript!./demos/spinners/spinners'),
         html: require('!!raw-loader?lang=markup!./demos/spinners/spinners.html'),
         outlet: DemoTimepickerSpinnersComponent
@@ -142,6 +157,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTimepickerConfigComponent

@@ -30,10 +30,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'carousel',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoCarouseBasicComponent
@@ -41,6 +43,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Optional captions',
         anchor: 'captions',
+        demoName: 'captions',
         description: `<p>Add captions to your slides easily with the <code>.carousel-caption</code>
           element within any <code>&lt;slide></code>. Place just about any optional HTML within there
           and it will be automatically aligned and formatted.</p>`,
@@ -51,6 +54,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
+        demoName: 'config',
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoCarouselConfigComponent
@@ -58,6 +62,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic Slides',
         anchor: 'dynamic-slides',
+        demoName: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoCarouselDynamicComponent
@@ -65,6 +70,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pause on hover',
         anchor: 'pause-on-hover',
+        demoName: 'no-pause',
         description: `<p>Click button to pause on hover.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/no-pause/no-pause.ts'),
         html: require('!!raw-loader?lang=markup!./demos/no-pause/no-pause.html'),
@@ -73,6 +79,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Custom content',
         anchor: 'custom-content',
+        demoName: 'custom-content',
         component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
         outlet: DemoCarouselCustomContentComponent
@@ -80,6 +87,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disable slide looping',
         anchor: 'disable-looping',
+        demoName: 'disable-looping',
         component: require('!!raw-loader?lang=typescript!./demos/disable-looping/disable-looping.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disable-looping/disable-looping.html'),
         outlet: DemoCarouselDisableLoopingComponent
@@ -87,6 +95,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Disable indicator',
         anchor: 'disable-indicator',
+        demoName: 'disable-indicator',
         component: require('!!raw-loader?lang=typescript!./demos/disable-indicator/disable-indicator.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disable-indicator/disable-indicator.html'),
         outlet: DemoCarouselDisableIndicatorComponent
@@ -94,6 +103,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Interval',
         anchor: 'slides-interval',
+        demoName: 'interval',
         component: require('!!raw-loader?lang=typescript!./demos/interval/interval.ts'),
         html: require('!!raw-loader?lang=markup!./demos/interval/interval.html'),
         outlet: DemoCarouselIntervalComponent
@@ -101,6 +111,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Slide changed event',
         anchor: 'slide-changed-event',
+        demoName: 'slide-changed-event',
         component: require('!!raw-loader?lang=typescript!./demos/slide-changed-event/slide-changed-event.ts'),
         html: require('!!raw-loader?lang=markup!./demos/slide-changed-event/slide-changed-event.html'),
         outlet: DemoCarouselSlideChangedEventComponent

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'demo-datepicker-reactive-forms',
-  templateUrl: './reactive-forms.component.html'
+  templateUrl: './reactive-forms.html'
 })
 export class DemoDatepickerReactiveFormsComponent implements OnInit {
   myForm: FormGroup;

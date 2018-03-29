@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core'
 
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentExample } from '../../models/components-examples.model';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'examples',
@@ -10,6 +11,10 @@ import { ComponentExample } from '../../models/components-examples.model';
 })
 export class ExamplesComponent {
   examples: ComponentExample[];
+
+  get isBs3(): boolean {
+    return isBs3();
+  }
 
   constructor(public section: ContentSection) {
     this.examples = section.content as ComponentExample[];

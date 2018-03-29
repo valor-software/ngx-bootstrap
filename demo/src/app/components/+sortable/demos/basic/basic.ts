@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'basic-demo',
-  templateUrl: './basic.component.html'
+  templateUrl: './basic.html'
 })
 export class DemoBasicComponent {
   itemStringsLeft = [

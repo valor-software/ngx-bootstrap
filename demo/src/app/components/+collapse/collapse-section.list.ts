@@ -23,10 +23,12 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'collapse',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
+        demoName: 'basic',
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: CollapseDemoComponent
@@ -34,6 +36,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Events',
         anchor: 'events',
+        demoName: 'events',
         component: require('!!raw-loader?lang=typescript!./demos/events/events'),
         html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
         description: `Collapse directive exposes 2 events: <code>collapsed</code>, that fires when a content was hidden, 
@@ -43,6 +46,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual toggle',
         anchor: 'manual-toggle',
+        demoName: 'toggle-manual',
         component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
         html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
         outlet: ToggleManualDemoComponent

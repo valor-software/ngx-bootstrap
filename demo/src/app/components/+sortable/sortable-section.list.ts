@@ -1,5 +1,5 @@
-import { DemoBasicComponent } from './demos/basic/basic.component';
-import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel.component';
+import { DemoBasicComponent } from './demos/basic/basic';
+import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex-datamodel';
 import { CustomItemTemplateDemoComponent } from './demos/custom-item-template/custom-item-template';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -22,24 +22,28 @@ export const demoComponentContent: ContentSection[] = [
     name: 'Examples',
     anchor: 'examples',
     outlet: ExamplesComponent,
+    componentName: 'sortable',
     content: [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.component.html'),
+        demoName: 'basic',
+        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoBasicComponent
       },
       {
         title: 'Complex data model',
         anchor: 'complexDatamodel',
-        component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.component.html'),
+        demoName: 'complex-datamodel',
+        component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.html'),
         outlet: ComplexDatamodelDemoComponent
       },
       {
         title: 'Custom item template',
         anchor: 'itemTemplate',
+        demoName: 'custom-item-template',
         component: require('!!raw-loader?lang=typescript!./demos/custom-item-template/custom-item-template.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-item-template/custom-item-template.html'),
         outlet: CustomItemTemplateDemoComponent
