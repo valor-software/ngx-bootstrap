@@ -136,6 +136,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        description: `<p>This demo shows manipulating popover by <code>show</code>,
+        <code>hide</code> and <code>toggle</code> methods</p>`,
         outlet: DemoPopoverTriggersManualComponent
       },
       {
@@ -143,6 +145,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'trigger-by-input',
         component: require('!!raw-loader?lang=typescript!./demos/trigger-by-input/trigger-by-input.ts'),
         html: require('!!raw-loader?lang=markup!./demos/trigger-by-input/trigger-by-input.html'),
+        description: `<p>You can show/hide popover by switching <code>isOpen</code> property</p>`,
         outlet: DemoPopoverTriggerByInput
       },
       {
