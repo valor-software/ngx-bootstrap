@@ -31,4 +31,11 @@ export class TimepickerConfig {
   min: Date;
   /** maximum time user can select */
   max: Date;
+  /** hours aria label */
+  labelHours = 'hours';
+  /** minutes aria label */
+  labelMinutes = 'minutes';
+  /** seconds aria label */
+  labelSeconds = 'seconds';
+
 }

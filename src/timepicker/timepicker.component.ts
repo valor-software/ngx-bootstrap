@@ -115,6 +115,11 @@ export class TimepickerComponent
   seconds: string;
   meridian: string;
 
+  // aria-label variables
+  labelHours: string;
+  labelMinutes: string;
+  labelSeconds: string;
+
   /** @deprecated - please use `isEditable` instead */
   get isSpinnersVisible(): boolean {
     return this.showSpinners && !this.readonlyInput;
