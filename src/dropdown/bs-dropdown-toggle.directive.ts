@@ -42,6 +42,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
   @HostListener('click', [])
   onClick(): void {
+    this._state.counts = 0;
     if (this.isDisabled) {
       return;
     }

@@ -1,6 +1,6 @@
 // tslint:disable:max-file-line-count
 import {
-  Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
+  Directive, ElementRef, EmbeddedViewRef, EventEmitter, HostListener, Input, OnDestroy,
   OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -337,5 +337,31 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'top');
       this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'transform');
     }
+  }
+  
+  @HostListener('keydown.arrowDown', ['$event'])
+  @HostListener('keydown.arrowUp', ['$event'])
+  navigationClick(event: any): void {
+    const ref = this._elementRef.nativeElement.querySelector('.dropdown-menu');
+    const allRef = ref.querySelectorAll('.dropdown-item');
+    const firtsActive = this._elementRef.nativeElement.ownerDocument.activeElement;
+    switch (event.keyCode) {
+      case 38:
+        if(this._state.counts > 0) {
+          allRef[--this._state.counts].focus();
+        }
+        break;
+      case 40:
+        if(this._state.counts + 1  < allRef.length){
+          if(firtsActive.classList != allRef[this._state.counts].classList) {
+            allRef[this._state.counts].focus();
+          } else {
+            allRef[++this._state.counts].focus();
+          }
+        }
+        break;
+      default:
+    }
+    event.preventDefault();
   }
 }
