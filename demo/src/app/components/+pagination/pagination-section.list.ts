@@ -98,7 +98,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'pagination-limit',
         component: require('!!raw-loader?lang=typescript!./demos/limit/limit.ts'),
         html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
-        description: `<p>Limit the maximum visible buttons</p>`,
+        description: `<p>Limit the maximum visible page numbers</p>`,
         outlet: DemoPaginationLimitComponent
       },
       {

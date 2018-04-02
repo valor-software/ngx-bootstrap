@@ -242,6 +242,5 @@ describe('Util: Timepicker-controls', () => {
 
     expect(result.canDecrementHours).toEqual(false);
     expect(result.canDecrementMinutes).toEqual(false);
-
   });
 });

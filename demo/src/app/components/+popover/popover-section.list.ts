@@ -52,8 +52,9 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'placement',
         component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
         html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
-        description: `<p>Four positioning options are available: top, right, bottom, and left aligned.
-        Besides that, auto option may be used to detect a position that fits the component on screen.</p>`,
+        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>, 
+        <code>bottom</code>, and <code>left</code>.
+        Besides that, <code>auto</code> option may be used to detect a position that fits the component on screen.</p>`,
         outlet: DemoPopoverPlacementComponent
       },
       {
@@ -78,8 +79,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'custom-content-template',
         component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
-        description: `<p>Create <code>&lt;template #myId></code> with any html allowed by Angular,
-        and provide template ref (<code>#myId</code>) as popover content.</p>`,
+        description: `<p>Create <code>&lt;ng-template #myId></code> with any html allowed by Angular,
+        and provide template ref <code>[popover]="myId"</code> as popover content.</p>`,
         outlet: DemoPopoverCustomContentComponent
       },
       {
@@ -87,8 +88,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dynamic-html',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
-        description: `<p>By using small trick you can display any dynamic html, which you got from ajax
-        request for example.</p>`,
+        description: `<p>By using <code>[innerHtml]</code> inside <code>ng-template</code> you can display any dynamic html</p>`,
         outlet: DemoPopoverDynamicHtmlComponent
       },
       {
@@ -96,10 +96,10 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'container-body',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
-        description: `<p>When you have some styles on a parent element that interfere with a popover,
+        description: `<p>When you have any styles on a parent element that interfere with a popover,
         you’ll want to specify a <code>container="body"</code> so that the popover’s HTML will be
         appended to body. This will help to avoid rendering problems in more complex components
-        (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
+        (like input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
         outlet: DemoPopoverContainerComponent
       },
       {
@@ -135,6 +135,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        description: `<p>This demo shows manipulating popover by <code>show</code>,
+        <code>hide</code> and <code>toggle</code> methods</p>`,
         outlet: DemoPopoverTriggersManualComponent
       },
       {
@@ -142,6 +144,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'trigger-by-input',
         component: require('!!raw-loader?lang=typescript!./demos/trigger-by-input/trigger-by-input.ts'),
         html: require('!!raw-loader?lang=markup!./demos/trigger-by-input/trigger-by-input.html'),
+        description: `<p>You can show/hide popover by switching <code>isOpen</code> property</p>`,
         outlet: DemoPopoverTriggerByInput
       },
       {
