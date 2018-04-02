@@ -232,6 +232,11 @@ export class ModalDirective implements OnDestroy, OnInit {
       'aria-hidden',
       'false'
     );
+    this._renderer.setAttribute(
+      this._element.nativeElement,
+      'aria-modal',
+      'true'
+    );
     this._renderer.setStyle(
       this._element.nativeElement,
       'display',

@@ -18,7 +18,7 @@ import { isBs3 } from '../utils/theme-provider';
 @Component({
   selector: 'modal-container',
   template: `
-    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')">
+    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
       <div class="modal-content">
         <ng-content></ng-content>
       </div>

@@ -1,6 +1,5 @@
 <button type="button" class="btn btn-primary" (click)="parentModal.show()">Open parent modal</button>
-<div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog"
-     aria-labelledby="dialog-nested-name1" aria-hidden="true" aria-modal="true">
+<div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -16,8 +15,7 @@
   </div>
 </div>
 
-<div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog"
-     aria-labelledby="dialog-nested-name2" aria-hidden="true" aria-modal="true">
+<div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -34,8 +32,7 @@
   </div>
 </div>
 
-<div class="modal fade" bsModal #thirdModal="bs-modal" tabindex="-1" role="dialog"
-     aria-labelledby="dialog-nested-name3" aria-hidden="true" aria-modal="true">
+<div class="modal fade" bsModal #thirdModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name3">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">

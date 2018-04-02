@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary" (click)="showModal()">Render auto-shown modal</button>
-<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal" class="modal fade"
-     tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="dialog-auto-name" aria-modal="true">
+<div *ngIf="isModalShown" [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
+     class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
