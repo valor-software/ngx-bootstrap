@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { NavigationEnd, Router } from '@angular/router';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'top-menu',
@@ -32,13 +32,17 @@ export class TopMenuComponent implements AfterViewInit {
         (this.isLocalhost ? ':' + location.port + '/' : '/');
       this.http
         .get('assets/json/versions.json')
-        .map(res => res.json())
+        .pipe(
+          map(res => res.json())
+        )
         .subscribe((data: any) => {
           this.previousDocs = data;
         });
       this.http
         .get('assets/json/current-version.json')
-        .map(res => res.json())
+        .pipe(
+          map(res => res.json())
+        )
         .subscribe((data: any) => {
           this.currentVersion = data.version;
         });

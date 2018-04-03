@@ -5,8 +5,8 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
-import 'rxjs/add/operator/filter';
 
 declare const ga: any;
 
@@ -36,7 +36,9 @@ export class Analytics {
       return;
     }
     this._router.events
-      .filter((event: any) => event instanceof NavigationEnd)
+      .pipe(
+        filter((event: any) => event instanceof NavigationEnd)
+      )
       .subscribe(() => {
         if (typeof ga !== 'undefined') {
           ga('send', { hitType: 'pageview', page: this._location.path() });
