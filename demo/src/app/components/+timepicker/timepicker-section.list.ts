@@ -12,6 +12,7 @@ import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
 import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
 import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -145,6 +146,11 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTimepickerConfigComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },

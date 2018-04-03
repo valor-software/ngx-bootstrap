@@ -13,6 +13,7 @@ import { DemoTimepickerCustomValidationComponent } from './custom-validation/cus
 import { DemoTimepickerIsValidComponent } from './isvalid/isvalid';
 import { DemoTimepickerSpinnersComponent } from './spinners/spinners';
 import { DemoTimepickerReadonlyComponent } from './readonly/readonly';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
   DemoTimepickerBasicComponent,
@@ -30,5 +31,6 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerCustomValidationComponent,
   DemoTimepickerIsValidComponent,
   DemoTimepickerCustomValidationComponent,
-  DemoTimepickerSpinnersComponent
+  DemoTimepickerSpinnersComponent,
+  DemoAccessibilityComponent
 ];
