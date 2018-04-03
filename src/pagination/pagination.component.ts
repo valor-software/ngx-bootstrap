@@ -39,10 +39,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() maxSize: number;
   /** if false first and last buttons will be hidden */
   @Input() boundaryLinks: boolean;
-  /** if false previous and next buttons, supporting accessibility, will be hidden */
-  @Input() accessibleLinks: boolean;
-  /** if false first and last buttons, supporting accessibility, will be hidden */
-  @Input() boundaryAccessibleLinks: boolean;
   /** if false previous and next buttons will be hidden */
   @Input() directionLinks: boolean;
   // labels
@@ -54,6 +50,16 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() nextText: string;
   /** last button text */
   @Input() lastText: string;
+  /** customize the object supporting accessibility */
+  @Input() accessibleParameters: object;
+  /** if false previous and next buttons, supporting accessibility, will be hidden */
+  @Input() accessibleLinks: boolean;
+  /** if false first and last buttons, supporting accessibility, will be hidden */
+  @Input() boundaryAccessibleLinks: boolean;
+  /** aria-label attribute text for current page */
+  @Input() currentPageLabelText: string;
+  /** aria-label attribute text for page */
+  @Input() pageLabelText: string;
   /** previous button text supporting accessibility */
   @Input() previousAccessibleText: string;
   /** next button text supporting accessibility */
@@ -72,13 +78,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() lastLabelText: string;
   /** aria-label attribute text for nav tag */
   @Input() navText: string;
-
-
-  /** aria-label attribute text for current page */
-  @Input() currentPageLabelText: string;
-  /** aria-label attribute text for page */
-  @Input() pageLabelText: string;
-
 
   /** if true current page will in the middle of pages list */
   @Input() rotate: boolean;
@@ -192,13 +191,13 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       typeof this.boundaryLinks !== 'undefined'
         ? this.boundaryLinks
         : this.config.boundaryLinks;
-    this.accessibleLinks =
-      typeof this.accessibleLinks !== 'undefined'
-        ? this.accessibleLinks
-        : this.config.accessibleLinks;
+    this.accessibleParameters =
+      typeof this.accessibleParameters !== 'undefined'
+        ? this.accessibleParameters
+        : this.config.accessibleParameters;
     this.boundaryAccessibleLinks =
-      typeof this.boundaryAccessibleLinks !== 'undefined'
-        ? this.boundaryAccessibleLinks
+      typeof  this.accessibleParameters !== 'undefined'
+        ? (this as any).accessibleParameters.boundaryAccessibleLinks
         : this.config.boundaryAccessibleLinks;
     this.directionLinks =
       typeof this.directionLinks !== 'undefined'
@@ -208,7 +207,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       typeof this.pageBtnClass !== 'undefined'
         ? this.pageBtnClass
         : this.config.pageBtnClass;
-
     // base class
     this.itemsPerPage =
       typeof this.itemsPerPage !== 'undefined'
@@ -226,20 +224,24 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string, flag?: string & number): string {
-    if (typeof flag === 'number') {
-      const value = (this as any)[`${key}Text`] || this.config[`${key}Text`];
-      return `${value} ${flag}`;
-    }
-    if (this.accessibleLinks || this.boundaryAccessibleLinks) {
-      const helperText = (this as any)[`${flag}Text`] || this.config[`${flag}Text`];
-      const value = (this as any)[`${key}AccessibleText`] || this.config[`${key}AccessibleText`];
-      const text = `
-        <span aria-hidden="true">${value}</span>
-        <span class="sr-only">${helperText}</span>
-      `;
-      if (flag) {
-        return text;
+    if (this.accessibleParameters) {
+      const helperValue = (this as any).accessibleParameters;
+      if (typeof flag === 'number') {
+        const value = helperValue[`${key}Text`] || this.config[`${key}Text`];
+        return `${value} ${flag}`;
       }
+      if ((this as any).accessibleParameters.accessibleLinks === true) {
+        const helperText = helperValue[`${flag}Text`] || this.config[`${flag}Text`];
+        const value = helperValue[`${key}AccessibleText`] || this.config[`${key}AccessibleText`];
+        const text = `
+          <span aria-hidden="true">${value}</span>
+          <span class="sr-only">${helperText}</span>
+        `;
+        if (flag) {
+          return text;
+        }
+      }
+      return helperValue[`${key}Text`] || this.config[`${key}Text`];
     }
     return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }

@@ -30,10 +30,6 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   @Input() align: boolean;
   /** limit number for page links in pager */
   @Input() maxSize: number;
-  /** if false first and last buttons will be hidden */
-  @Input() boundaryLinks: boolean;
-  /** if false previous and next buttons will be hidden */
-  @Input() accessibleLinks: boolean;
   /** if false previous and next buttons will be hidden */
   @Input() directionLinks: boolean;
   // labels
@@ -45,6 +41,16 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   @Input() nextText: string;
   /** last button text */
   @Input() lastText: string;
+  /** customize the object supporting accessibility */
+  @Input() accessibleParameters: object;
+  /** if false previous and next buttons, supporting accessibility, will be hidden */
+  @Input() accessibleLinks: boolean;
+  /** if false first and last buttons, supporting accessibility, will be hidden */
+  @Input() boundaryAccessibleLinks: boolean;
+  /** aria-label attribute text for current page */
+  @Input() currentPageLabelText: string;
+  /** aria-label attribute text for page */
+  @Input() pageLabelText: string;
   /** previous button text supporting accessibility */
   @Input() previousAccessibleText: string;
   /** next button text supporting accessibility */
@@ -53,12 +59,17 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   @Input() firstAccessibleText: string;
   /** last button text supporting accessibility */
   @Input() lastAccessibleText: string;
-  /** aria-label attribute text for nav tag */
-  @Input() navText: string;
   /** aria-label attribute text for previous button */
   @Input() previousLabelText: string;
   /** aria-label attribute text for next button */
   @Input() nextLabelText: string;
+  /** aria-label attribute text for first button */
+  @Input() firstLabelText: string;
+  /** aria-label attribute text for last button */
+  @Input() lastLabelText: string;
+  /** aria-label attribute text for nav tag */
+  @Input() navText: string;
+
   /** if true current page will in the middle of pages list */
   @Input() rotate: boolean;
   // css
@@ -167,10 +178,10 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
       typeof this.maxSize !== 'undefined' ? this.maxSize : this.config.maxSize;
     this.rotate =
       typeof this.rotate !== 'undefined' ? this.rotate : this.config.rotate;
-    this.boundaryLinks =
-      typeof this.boundaryLinks !== 'undefined'
-        ? this.boundaryLinks
-        : this.config.boundaryLinks;
+    // this.boundaryLinks =
+    //   typeof this.boundaryLinks !== 'undefined'
+    //     ? this.boundaryLinks
+    //     : this.config.boundaryLinks;
     this.accessibleLinks =
       typeof this.accessibleLinks !== 'undefined'
         ? this.accessibleLinks
@@ -201,20 +212,24 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string, flag?: string & number): string {
-    if (typeof flag === 'number') {
-      const value = (this as any)[`${key}Text`] || this.config[`${key}Text`];
-      return `${value} ${flag}`;
-    }
-    if (this.accessibleLinks) {
-      const helperText = (this as any)[`${flag}Text`] || this.config[`${flag}Text`];
-      const value = (this as any)[`${key}AccessibleText`] || this.config[`${key}AccessibleText`];
-      const text = `
-        <span aria-hidden="true">${value}</span>
-        <span class="sr-only">${helperText}</span>
-      `;
-      if (flag) {
-        return text;
+    if (this.accessibleParameters) {
+      const helperValue = (this as any).accessibleParameters;
+      if (typeof flag === 'number') {
+        const value = helperValue[`${key}Text`] || this.config[`${key}Text`];
+        return `${value} ${flag}`;
       }
+      if ((this as any).accessibleParameters.accessibleLinks === true) {
+        const helperText = helperValue[`${flag}Text`] || this.config[`${flag}Text`];
+        const value = helperValue[`${key}AccessibleText`] || this.config[`${key}AccessibleText`];
+        const text = `
+          <span aria-hidden="true">${value}</span>
+          <span class="sr-only">${helperText}</span>
+        `;
+        if (flag) {
+          return text;
+        }
+      }
+      return helperValue[`${key}Text`] || this.config[`${key}Text`];
     }
     return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }
