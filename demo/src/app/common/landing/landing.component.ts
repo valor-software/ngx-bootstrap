@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { setTheme } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
+import { map } from 'rxjs/operators';
 
 const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
@@ -30,7 +31,9 @@ export class LandingComponent implements AfterViewInit {
     if (typeof window !== 'undefined') {
       this.http
         .get('assets/json/current-version.json')
-        .map(res => res.json())
+        .pipe(
+          map(res => res.json())
+        )
         .subscribe((data: any) => {
           this.currentVersion = data.version;
         });
