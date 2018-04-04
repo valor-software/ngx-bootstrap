@@ -10,6 +10,7 @@ import { DemoTooltipTriggersManualComponent } from './demos/triggers-manual/trig
 import { DemoTooltipStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoTooltipClassComponent } from './demos/class/class';
 import { DemoTooltipStylingGlobalComponent } from './demos/styling-global/styling-global';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -137,6 +138,11 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
         html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
         outlet: DemoTooltipDelayComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility-demo',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },

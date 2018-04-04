@@ -11,6 +11,7 @@ import { DemoTooltipTriggersManualComponent } from './triggers-manual/triggers-m
 import { DemoTooltipDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoTooltipClassComponent } from './class/class';
 import { DemoTooltipDelayComponent } from './delay/delay';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
   DemoTooltipBasicComponent,
@@ -25,5 +26,6 @@ export const DEMO_COMPONENTS = [
   DemoTooltipTriggersCustomComponent,
   DemoTooltipTriggersManualComponent,
   DemoTooltipClassComponent,
-  DemoTooltipDelayComponent
+  DemoTooltipDelayComponent,
+  DemoAccessibilityComponent
 ];
