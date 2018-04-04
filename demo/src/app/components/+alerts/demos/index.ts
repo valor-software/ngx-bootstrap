@@ -8,6 +8,7 @@ import { DemoAlertStylingGlobalComponent } from './styling-global/styling-global
 import { DemoAlertStylingLocalComponent } from './styling-local/styling-local';
 import { DemoAlertConfigComponent } from './config/config';
 import { DemoAlertDynamicContentComponent } from './dynamic-content/dynamic-content';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
   DemoAlertBasicComponent,
@@ -19,5 +20,6 @@ export const DEMO_COMPONENTS = [
   DemoAlertTimeoutComponent,
   DemoAlertStylingGlobalComponent,
   DemoAlertStylingLocalComponent,
-  DemoAlertConfigComponent
+  DemoAlertConfigComponent,
+  DemoAccessibilityComponent
 ];
