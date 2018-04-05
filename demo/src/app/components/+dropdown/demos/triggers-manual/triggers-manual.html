@@ -1,8 +1,10 @@
 <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="false" [isOpen]="status.isopen" (isOpenChange)="change($event)" placement="top">
-  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+  <button id="button-triggers-manual" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+          aria-controls="dropdown-triggers-manual">
     Button dropdown <span class="caret"></span>
   </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu">
+  <ul id="dropdown-triggers-manual" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-triggers-manual">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
     </li>
