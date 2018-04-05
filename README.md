@@ -62,7 +62,19 @@ Or Bootstrap 4
 ```
 To enable bootstrap 4 theme templates in ngx-bootstrap, please read
 [this](https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap4.md) .
+### Setting up the bootstrap version manually
+Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+```
+import { setTheme } from 'ngx-bootstrap/utils';
 
+@Component({...})
+export class AppComponent {
+  constructor() {
+    setTheme('bs3'); // or 'bs4'
+    ...
+  }
+}
+```
 # Usage & Demo
 
 Main source of API documentation and usage scenarios available here:
@@ -87,7 +99,7 @@ Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 # How to build lib for development
 
-First time
+`First time
  - clone repository
  - `npm install`
  - `npm run test` it will build the lib and create a link in `node_modules`
