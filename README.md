@@ -99,7 +99,7 @@ Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 # How to build lib for development
 
-`First time
+First time
  - clone repository
  - `npm install`
  - `npm run test` it will build the lib and create a link in `node_modules`
