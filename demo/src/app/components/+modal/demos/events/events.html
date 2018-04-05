@@ -2,8 +2,8 @@
 <br><br>
 <pre class="card card-block card-header" *ngFor="let message of messages">{{message}}</pre>
 
-<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog"
-     aria-labelledby="mySmallModalLabel" aria-hidden="true"
+<div class="modal fade" bsModal #modal="bs-modal"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-events-name"
      (onShow)="handler('onShow', $event)"
      (onShown)="handler('onShown', $event)"
      (onHide)="handler('onHide', $event)"
@@ -11,7 +11,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Modal</h4>
+        <h4 id="dialog-events-name" class="modal-title pull-left">Modal</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>

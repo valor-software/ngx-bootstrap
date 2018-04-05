@@ -6,6 +6,7 @@ export { enGbLocale } from './chronos/i18n/en-gb';
 export { esLocale } from './chronos/i18n/es';
 export { esDoLocale } from './chronos/i18n/es-do';
 export { esUsLocale } from './chronos/i18n/es-us';
+export { fiLocale } from './chronos/i18n/fi';
 export { frLocale } from './chronos/i18n/fr';
 export { hiLocale } from './chronos/i18n/hi';
 export { huLocale } from './chronos/i18n/hu';
