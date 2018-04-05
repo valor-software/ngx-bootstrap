@@ -95,6 +95,41 @@ describe('Accordion page test suite', () => {
     });
   });
 
+  describe('Group opening event', () => {
+    const groupOpenEvent = accordion.exampleDemosArr.openEvent;
+    const openLog = 'Accordion has been opened';
+    const closeLog = 'Accordion has been closed';
+
+    it('click on panel with event listener throws event log in console', () => {
+      cy.window().then(win => {
+        const consoleSpy = cy.spy(win.console, 'log');
+        accordion.getAccordionPanel(groupOpenEvent, 1).as('secondPanel').click();
+        cy.wrap(consoleSpy)
+          .should('have.been.called.with', openLog);
+
+        cy.get('@secondPanel').click();
+        cy.wrap(consoleSpy)
+          .should('have.been.called.with', closeLog);
+      });
+    });
+  });
+
+  describe('Custom HTML', () => {
+    const customHTML = accordion.exampleDemosArr.customHtml;
+    const htmlElemSel = '.badge';
+
+    it('first accordion panel-heading contains custom html', () => {
+      accordion.getAccordionPanel(customHTML, 0).find(accordion.accordionHeading)
+        .children(htmlElemSel).should('to.be.visible');
+    });
+
+    it('second accordion panel-body contains custom html', () => {
+      accordion.getAccordionPanel(customHTML, 1).as('secondPanel').click();
+      cy.get('@secondPanel').find('.panel-body')
+        .children(htmlElemSel).should('to.be.visible');
+    });
+  });
+
   describe('Disabled accordion', () => {
     const disabledDemo = accordion.exampleDemosArr.disabled;
     const buttonEnableDisable = 'Enable / Disable first panel';
@@ -109,6 +144,14 @@ describe('Accordion page test suite', () => {
 
       cy.get('@firstPanel').find(accordion.disabledPanelText)
         .should('not.to.be.exist');
+    });
+  });
+
+  describe('Initially opened', () => {
+    const openedByDefault = accordion.exampleDemosArr.initiallyOpened;
+
+    it('second accordion panel is opened by default', () => {
+      accordion.getAccordionPanel(openedByDefault, 1).should('to.have.class', accordion.openClass);
     });
   });
 
