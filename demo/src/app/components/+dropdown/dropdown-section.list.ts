@@ -90,7 +90,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'trigger-by-isopen-property',
         component: require('!!raw-loader?lang=typescript!./demos/trigger-by-isopen-property/trigger-by-isopen-property.ts'),
         html: require('!!raw-loader?lang=markup!./demos/trigger-by-isopen-property/trigger-by-isopen-property.html'),
-        description: `<p>Dropdown can be shown or hidden by changing of <code>isOpen</code> input property</p>`,
+        description: `<p>Dropdown can be shown or hidden by changing <code>isOpen</code> input property</p>`,
         outlet: DemoDropdownByIsOpenPropComponent
       },
       {
