@@ -61,6 +61,11 @@ moment.locale('en');
 // });
 
 describe('locale', function () {
+  beforeEach(() => {
+    // Avoid console spam ERROR: 'Khronos locale error: please load locale "non-existing-locale" before using it'
+    spyOn(console, 'error');
+  });
+
   afterEach(() => {
     moment.locale('en');
   });

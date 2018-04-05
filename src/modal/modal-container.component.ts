@@ -27,7 +27,8 @@ import { isBs3 } from '../utils/theme-provider';
   host: {
     class: 'modal',
     role: 'dialog',
-    tabindex: '-1'
+    tabindex: '-1',
+    '[attr.aria-modal]': 'true'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
