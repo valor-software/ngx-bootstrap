@@ -3,7 +3,7 @@
   <div class="bs-datepicker-container">
 
     <!--calendars-->
-    <div class="bs-calendar-container" [ngSwitch]="viewMode | async">
+    <div class="bs-calendar-container" [ngSwitch]="viewMode | async" role="application">
       <!--days calendar-->
       <div *ngSwitchCase="'day'">
         <bs-days-calendar-view
