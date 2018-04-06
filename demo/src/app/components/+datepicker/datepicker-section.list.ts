@@ -147,11 +147,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerMinMaxComponent
       },
       {
-        title: 'Disabled (scratch, WIP)',
+        title: 'Disabled',
         anchor: 'disabled-datepicker',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.component.html'),
-        description: `<p>If you want to disable datepicker set <code>isDisabled</code> property to true</p>`,
+        description: `<p>If you want to disable datepicker's or daterangepicker's content set <code>isDisabled</code> property to true</p>`,
         outlet: DemoDatepickerDisabledComponent
       },
       {
@@ -160,7 +160,8 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/forms/forms.component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/forms/forms.component.html'),
         description: `<p>Datepicker and daterangepicker can be used in forms. Keep in mind that
-          value of <code>ngModel</code> is <code>Date</code> object (array of 2 object for daterangepicker)</p>`,
+          value of <code>ngModel</code> is <code>Date</code> object for datepicker and array of 2 
+          <code>Date</code> objects for daterangepicker</p>`,
         outlet: DemoDatepickerFormsComponent
       },
       {

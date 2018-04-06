@@ -9,6 +9,7 @@ import { DemoTabsConfigComponent } from './demos/config/config';
 import { DemoTabsDisableComponent } from './demos/disable/disable';
 import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -112,6 +113,11 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/custom-template/custom-template'),
         html: require('!!raw-loader?lang=markup!./demos/custom-template/custom-template.html'),
         outlet: DemoTabsCustomComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },
