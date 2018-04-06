@@ -1,6 +1,7 @@
 import { DemoRatingBasicComponent } from './demos/basic/basic';
 import { DemoRatingCustomComponent } from './demos/custom/custom';
 import { DemoRatingDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoRatingSelectOnEnterComponent } from './demos/select-on-enter/select-on-enter';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -43,6 +44,15 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
         html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
         outlet: DemoRatingCustomComponent
+      },
+      {
+        title: 'Select on enter',
+        description: `Key navigation example. Focus on rating and use arrow keys to set its value,
+          then press <code>Enter</code> to select the value, after this, the rating state will be changed to readonly.`,
+        anchor: 'select-on-enter',
+        component: require('!!raw-loader?lang=typescript!./demos/select-on-enter/select-on-enter'),
+        html: require('!!raw-loader?lang=markup!./demos/select-on-enter/select-on-enter.html'),
+        outlet: DemoRatingSelectOnEnterComponent
       }
     ]
   },

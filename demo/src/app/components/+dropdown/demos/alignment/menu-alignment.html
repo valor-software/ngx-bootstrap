@@ -1,8 +1,10 @@
 <div class="btn-group" dropdown placement="bottom right">
-  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+  <button id="button-alignment" dropdownToggle type="button"
+          class="btn btn-primary dropdown-toggle" aria-controls="dropdown-alignment">
     This dropdown's menu is right-aligned <span class="caret"></span>
   </button>
-  <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+  <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+      role="menu" aria-labelledby="button-alignment">
     <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
