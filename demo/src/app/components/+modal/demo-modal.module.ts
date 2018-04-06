@@ -9,6 +9,8 @@ import { ModalSectionComponent } from './modal-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-modal.routes';
 import { ModalContentComponent } from './demos/service-component/service-component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { ModalContentComponent } from './demos/service-component/service-compone
   ],
   imports: [
     ModalModule.forRoot(),
+    PopoverModule.forRoot(),
+    TooltipModule.forRoot(),
     CommonModule,
     FormsModule,
     DocsModule,

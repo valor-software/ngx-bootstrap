@@ -1,8 +1,10 @@
 <div class="btn-group" dropdown [autoClose]="false" container="body">
-  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+  <button id="button-nested" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+          aria-controls="dropdown-nested">
     This dropdown has nested submenu <span class="caret"></span>
   </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu">
+  <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-nested">
     <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested">Action</a></li>
 
     <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
