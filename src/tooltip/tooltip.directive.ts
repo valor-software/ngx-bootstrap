@@ -10,14 +10,12 @@ import { OnChange } from '../utils/decorators';
 import { warnOnce } from '../utils/warn-once';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/merge';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/observable/of';
 
-const _obsHide = Observable.of<number>(-1);
-const _obsShow = Observable.of<number>(0);
+const _obsHide = Observable.of<null>(null);
+const _obsShow = Observable.of<null>(null);
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -77,7 +75,14 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Delay before showing the tooltip
    */
-  @Input() delay: number;
+  @Input() get delay(): number {
+    return this._delay;
+  }
+
+  set delay(delay: number) {
+    this._delay = delay;
+    this._obsWithDelay = Observable.timer(delay);
+  }
 
   /**
    * Emits an event when the tooltip is shown
@@ -182,10 +187,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated */
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-  protected _obsShowWithDelay: Observable<number>;
-  protected mainStream = new BehaviorSubject(false);
+  protected _obsWithDelay: Observable<number>;
+  protected visibilityStream = new BehaviorSubject(false);
 
+  private _delay: number;
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
+  private _newState: boolean;
 
   constructor(_viewContainerRef: ViewContainerRef,
                      _renderer: Renderer2,
@@ -206,27 +213,23 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._obsShowWithDelay = Observable.timer(this.delay);
     this._tooltip.listen({
       triggers: this.triggers,
-      show: () => this.mainStream.next(true),
-      hide: () => this.mainStream.next(false)
+      show: () => this.visibilityStream.next(true),
+      hide: () => this.visibilityStream.next(false)
     });
     this.tooltipChange.subscribe((value: any) => {
       if (!value) {
         this._tooltip.hide();
       }
     });
-    this.mainStream
-      .switchMap((data: any) => {
-        if (data) {
-          return this.delay ? this._obsShowWithDelay : _obsShow;
-        }
+    this.visibilityStream
+      .switchMap((data: boolean) => {
+        this._newState = data;
 
-        return _obsHide;
+        return this.delay ? this._obsWithDelay : (data ? _obsShow : _obsHide);
       })
-      .map(data => data !== -1)
-      .subscribe(val => this.isOpen = val);
+      .subscribe(() => this.isOpen = this._newState);
   }
 
   /**
