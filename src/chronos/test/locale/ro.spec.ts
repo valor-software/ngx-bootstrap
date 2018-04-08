@@ -74,8 +74,8 @@ describe('locale: ro', () => {
   });
 
   it('format week', function () {
-    var i,
-      expected = 'duminica dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.slice('_');
+    let i,
+      expected = 'duminica dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.split('_')
     for (i = 0; i < expected.length; i++) {
       assert.equal(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
     }
@@ -139,7 +139,7 @@ describe('locale: ro', () => {
   });
 
   it('calendar next week', function () {
-    var i, m;
+    let i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
       assert.equal(m.calendar(), m.format('[la] dddd [pranz] LT'), ' Today + ' + i + ' days current time');
@@ -151,7 +151,7 @@ describe('locale: ro', () => {
   });
 
   it('calendar last week', function () {
-    var i, m;
+    let i, m;
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });
       assert.equal(m.calendar(), m.format(' dddd[seara] LT'), 'Today - ' + i + ' days current time');
@@ -163,7 +163,7 @@ describe('locale: ro', () => {
   });
 
   it('calendar all else', function () {
-    var weeksAgo = moment().subtract({ w: 1 }),
+    let weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 
     assert.equal(weeksAgo.calendar(), weeksAgo.format('L'), '1 week ago');
