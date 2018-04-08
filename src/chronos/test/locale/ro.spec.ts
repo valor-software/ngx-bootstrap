@@ -12,7 +12,7 @@ describe('locale: ro', () => {
   });
 
   it('parse', function () {
-    let i, test_ = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Ma_Iulie Iul_August Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.slice('_');
+    let i, tests = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Ma_Iulie Iul_August Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.split('_');
 
     function equalTest(input, mmm, i) {
       assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
@@ -73,6 +73,9 @@ describe('locale: ro', () => {
 
   it('format week', function () {
     let i, expected = 'duminica dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.slice('_');
+    for (i = 0; i < expected.length; i++) {
+      assert.equal(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
+    }
   });
 
   it('from', function () {
