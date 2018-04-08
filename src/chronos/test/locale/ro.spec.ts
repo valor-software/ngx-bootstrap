@@ -19,7 +19,7 @@ describe('locale: ro', () => {
       assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
     }
 
-    const tests: string[][] = [];
+    let tests: string[][] = [];
     for (i = 0; i < 12; i++) {
       tests[i] = _tests[i].split(' ');
       equalTest(tests[i][0], 'MMM', i);
@@ -75,7 +75,7 @@ describe('locale: ro', () => {
 
   it('format week', function () {
     let i,
-      expected = 'duminica dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.split('_')
+      expected = 'duminica dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.split('_');
     for (i = 0; i < expected.length; i++) {
       assert.equal(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
     }
@@ -139,7 +139,7 @@ describe('locale: ro', () => {
   });
 
   it('calendar next week', function () {
-    let i, m;
+    var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
       assert.equal(m.calendar(), m.format('[la] dddd [pranz] LT'), ' Today + ' + i + ' days current time');
@@ -151,7 +151,7 @@ describe('locale: ro', () => {
   });
 
   it('calendar last week', function () {
-    let i, m;
+    var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });
       assert.equal(m.calendar(), m.format(' dddd[seara] LT'), 'Today - ' + i + ' days current time');
@@ -163,7 +163,7 @@ describe('locale: ro', () => {
   });
 
   it('calendar all else', function () {
-    let weeksAgo = moment().subtract({ w: 1 }),
+    var weeksAgo = moment().subtract({ w: 1 }),
       weeksFromNow = moment().add({ w: 1 });
 
     assert.equal(weeksAgo.calendar(), weeksAgo.format('L'), '1 week ago');
