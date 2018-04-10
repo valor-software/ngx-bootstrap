@@ -101,7 +101,7 @@
     "@types/tapable": "1.0.0",
     "@types/webpack": "4.1.0",
     "awesome-typescript-loader": "3.4.1",
-    "bootstrap": "4.0.0",
+    "bootstrap": "4.1.0",
     "chai": "4.1.2",
     "classlist-polyfill": "1.2.0",
     "codecov": "3.0.0",
