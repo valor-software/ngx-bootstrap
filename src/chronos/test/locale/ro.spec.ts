@@ -13,7 +13,7 @@ describe('locale: ro', () => {
 
   it('parse', function () {
     var i,
-      _tests = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Ma_Iulie Iul_August Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.split('_');
+      _tests = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Mai_Iunie Iun_Iulie Iul_August Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.split('_');
 
     function equalTest(input, mmm, i) {
       assert.equal(moment(input, mmm).month(), i, input + ' should be month ' + (i + 1));
@@ -35,7 +35,7 @@ describe('locale: ro', () => {
 
   it('format', function () {
     var a = [
-        ['dddd, MMMM Do YYYY, h:mm:ss a', 'duminică, februarie 14 2010, 3:25:50 pm'],
+        ['dddd, MMMM Do YYYY, h:mm:ss a', 'Duminică, februarie 14 2010, 3:25:50 pm'],
         ['ddd, h', 'soare, 3PM'],
         ['M Mo MM MMMM MMM', '2 2 02 februarie Feb.'],
         ['YYYY YY', '2010 10'],
@@ -67,7 +67,7 @@ describe('locale: ro', () => {
 
   it('format month', function () {
     var i,
-      expected = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Ma_Iunie Iun_Iulie Iul_Augustr Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.split('_');
+      expected = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Mai_Iunie Iun_Iulie Iul_August Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.split('_');
     for (i = 0; i < expected.length; i++) {
       assert.equal(moment([2011, i, 1]).format('MMMM MMM'), expected[i], expected[i]);
     }
@@ -75,7 +75,7 @@ describe('locale: ro', () => {
 
   it('format week', function () {
     let i,
-      expected = 'duminica dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.split('_');
+      expected = 'Duminică dum_luni lun_marti mar_miercuri mie_joi jo_vineri vin_sambata sam sa'.split('_');
     for (i = 0; i < expected.length; i++) {
       assert.equal(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
     }
@@ -83,7 +83,7 @@ describe('locale: ro', () => {
 
   it('from', function () {
     const start = moment([2007, 1, 28]);
-    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'cateva secunde', '44 seconds = cateva secunde');
+    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'câteva secunde', '44 seconds = câteva secunde');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'un minut', '45 seconds = un minut');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 89 }), true), 'un minut', '89 seconds = un minut');
     assert.equal(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '2 minute', '90 seconds = 2 minute');
@@ -114,16 +114,16 @@ describe('locale: ro', () => {
   });
 
   it('suffix', function () {
-    assert.equal(moment(30000).from(0), 'în câteva secunde', 'prefix');
+    assert.equal(moment(30000).from(0), 'câteva secunde', 'prefix');
     assert.equal(moment(0).from(30000), 'cu câteva secunde în urmă', 'suffix');
   });
 
   it('now from now', function () {
-    assert.equal(moment().fromNow(), 'cu câteva secunde în urmă', 'now from now should display as in the past');
+    assert.equal(moment().fromNow(), 'există câteva secunde', 'now from now should display as in the past');
   });
 
   it('fromNow', function () {
-    assert.equal(moment().add({ s: 30 }).fromNow(), 'în câteva secunde', 'în câteva secunde');
+    assert.equal(moment().add({ s: 30 }).fromNow(), 'despre câteva secunde', 'despre câteva secunde');
     assert.equal(moment().add({ d: 5 }).fromNow(), 'în 5 zile', 'în 5 zile');
   });
 
