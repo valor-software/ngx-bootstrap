@@ -12,7 +12,7 @@ describe('locale: ro', () => {
   });
 
   it('parse', function () {
-    var  i,
+    var i,
     _tests = 'Ianuarie Ian_Februarie Feb_Martie Mar_Aprilie Apr_Mai Ma_Iunie Iun_Iulie Iul_August Aug_Septembrie Sep_Octombrie Oct_Noiembrie Noi_Decembrie Dec'.split('_');
 
     function equalTest(input, mmm, i) {
@@ -113,7 +113,7 @@ describe('locale: ro', () => {
   });
 
   it('format week', function () {
-    let i,
+    var i,
       expected = 'Duminică Dum Du_Luni Lun Lu_Marti Mar Ma_Miercuri Mie Mi_Joi Jo Jo_Vineri Vin Vi_Sâmbata Sâm sâ'.split('_');
     for (i = 0; i < expected.length; i++) {
       assert.equal(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
