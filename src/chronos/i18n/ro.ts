@@ -1,3 +1,7 @@
+// tslint:disable:comment-format binary-expression-operand-order max-line-length
+// tslint:disable:no-bitwise prefer-template cyclomatic-complexity
+// tslint:disable:no-shadowed-variable switch-default prefer-const
+// tslint:disable:one-variable-per-declaration newline-before-return
 import { LocaleData } from '../locale/locale.class';
 
 // ! moment.js locale configuration
@@ -7,10 +11,10 @@ import { LocaleData } from '../locale/locale.class';
 export const roLocale: LocaleData = {
   abbr: 'ro',
   months: 'Ianuarie_Februarie_Martie_Aprilie_Mai_Iunie_Iulie_August_Septembrie_Octombrie_Noiembrie_Decembrie'.split('_'),
-  monthsShort: 'Ian_Feb_Mar_Apr_Ma_Iun,Iul,Aug,Sep,Oct,Noi,Dec'.split('_'),
-  weekdays: 'Duminică_Luni_Marţi_Miercuri_Joi_Vineri_Sâmbătă'.split('_'),
-  weekdaysShort: 'Dum_Lun_Mar_Mie_Jo_Vin_Sâm'.split('_'),
-  weekdaysMin: 'Du_Lu_Ma_Mi_Jo_Vi_Sâ'.split('_'),
+  monthsShort: 'Ian_Feb_Mar_Apr_Mai_Iun_Iul_Aug_Sep_Oct_Noi_Dec'.split('_'),
+  weekdays: 'Duminica_Luni_Marti_Miercuri_Joi_Vineri_Sambata'.split('_'),
+  weekdaysShort: 'Dum_Lun_Mar_Mie_Jo_Vin_Sam'.split('_'),
+  weekdaysMin: 'Du_lu_Ma_Mi_Jo_Vi_Sa'.split('_'),
   longDateFormat: {
     LT: 'HH:mm',
     LTS: 'HH:mm:ss',
@@ -20,41 +24,33 @@ export const roLocale: LocaleData = {
     LLLL: 'dddd D MMMM YYYY HH:mm'
   },
   calendar : {
-    sameDay: '[Astăzi la] LT',
-    nextDay: '[Mâine la] LT',
+    sameDay: '[Astazi la] LT',
+    nextDay: '[Maine la] LT',
     nextWeek: 'dddd [la] LT',
     lastDay: '[Leri la] LT',
     lastWeek: '[ultimul] dddd [la] LT',
     sameElse: 'L'
   },
   relativeTime: {
-    future: 'în %s',
-    past: '%s în urmă',
+    future: 'despre %s',
+    past: 'există %s',
     s: 'câteva secunde',
     ss: '%d secunde',
     m: 'un minut',
     mm: '%d minute',
     h: 'o ora',
     hh: '%d ore',
-    d: 'o zi',
+    d: 'intr-o zi',
     dd: '%d zi',
     M: 'o luna',
-    MM: '%d lună',
+    MM: '%d luni',
     y: 'un an',
-    yy: '% an'
+    yy: 'ani'
   },
-  dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
-  ordinal(_num: number): string {
-    const num = Number(_num);
-    const b = num % 10,
-      output = (~~(num % 100 / 10) === 1) ? 'th' :
-        (b === 1) ? 'st' :
-          (b === 2) ? 'nd' :
-            (b === 3) ? 'rd' : 'th';
-    return num + output;
-  },
-  week : {
-    dow : 1, // Monday is the first day of the week.
-    doy : 4  // The week that contains Jan 4th is the first week of the year.
+  dayOfMonthOrdinalParse: /\d{1,2}\./,
+  ordinal: '%d',
+  week: {
+    dow: 1,
+    doy: 4
   }
 };
