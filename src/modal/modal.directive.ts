@@ -110,6 +110,10 @@ export class ModalDirective implements OnDestroy, OnInit {
   // todo: consider preventing default and stopping propagation
   @HostListener('window:keydown.esc', ['$event'])
   onEsc(event: any): void {
+    if (!this._isShown) {
+      return;
+    }
+
     if (event.keyCode === 27) {
       event.preventDefault();
     }
