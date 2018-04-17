@@ -873,6 +873,25 @@ describe('Modals demo page test suite', () => {
           .should('not.to.be.visible');
       });
     });
+
+    describe(' Confirm Windows', () => {
+      const confirmWindow = modals.exampleDemosArr.serviceConfirm;
+      const buttonText = 'Open modal';
+      const modalNoBtn = 'No';
+      const modalYesBtn = 'Yes';
+
+      it('confirm window can be opened by clicking on button and closed by clicking no button or yes button', () => {
+        modals.clickByText(confirmWindow, buttonText);
+        cy.get(modals.modalContent)
+          .should('to.be.visible');
+        modals.clickByText(modals.modalContent, modalNoBtn);
+        cy.get(modals.backServiceMod)
+          .should('not.to.be.visible');
+        modals.clickByText(modals.modalContent, modalYesBtn);
+        cy.get(modals.backServiceMod)
+          .should('not.to.be.visible');
+      });
+    });
   });
 
   describe('Directive examples', () => {
