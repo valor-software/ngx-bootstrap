@@ -24,7 +24,7 @@ this.NPM_DEPENDENCIES = [
 
 // *towards the bottom, replace extended packages with this:
 
-let additionalPackages: ExtendPackages[] = [
+const additionalPackages: ExtendPackages[] = [
 // required for dev build
 {
   name: 'ngx-bootstrap',
