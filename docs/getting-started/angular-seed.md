@@ -17,8 +17,9 @@ this.NPM_DEPENDENCIES = [
   // {src: 'lodash/lodash.min.js', inject: 'libs'},
   { src: 'bootstrap/dist/js/bootstrap.min.js', inject: 'libs' },
   { src: 'bootstrap/dist/css/bootstrap.min.css', inject: true }, // inject into css section
-  { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
-  { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
+  // Uncomment when using Bootstrap v3. Bootstrap v4 removed bootstrap-theme
+  // { src: 'bootstrap/dist/css/bootstrap-theme.min.css', inject: true }, // inject into css section
+  // { src: 'bootstrap/dist/css/bootstrap-theme.min.css.map', inject: true }, // inject into css section
 ];
 
 // *towards the bottom, replace extended packages with this:
