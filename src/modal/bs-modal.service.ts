@@ -59,7 +59,7 @@ export class BsModalService {
       null
     );
     this._renderer = rendererFactory.createRenderer(null, null);
-    this.config = modalDefaultOption || modalConfigDefaults;
+    this.config = modalDefaultOption ? (Object.assign({}, modalConfigDefaults, modalDefaultOption)) : modalConfigDefaults;
   }
 
   /** Shows a modal */
