@@ -14,7 +14,10 @@ import { CarouselComponent } from './carousel.component';
     <div [class.active]="active" class="item">
       <ng-content></ng-content>
     </div>
-  `
+  `,
+  host: {
+    '[attr.aria-hidden]': '!active'
+  }
 })
 export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */

@@ -4,11 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { fireEvent } from '../../../scripts/helpers';
-import { TimepickerActions } from '../../timepicker/reducer/timepicker.actions';
-import { TimepickerComponent } from '../../timepicker/timepicker.component';
-
-import { TimepickerConfig } from '../../timepicker/timepicker.config';
-import { TimepickerModule } from '../../timepicker/timepicker.module';
+import {
+  TimepickerActions,
+  TimepickerComponent,
+  TimepickerConfig,
+  TimepickerModule
+} from '../../timepicker';
 
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement;
@@ -31,7 +32,7 @@ function testTime(hours?: number, minutes?: number, seconds?: number) {
   return time;
 }
 
-describe('Component: timepicker', () => {
+describe('Component: TimepickerComponent', () => {
   let fixture: ComponentFixture<TimepickerComponent>;
   let component: TimepickerComponent;
   let inputHours: HTMLInputElement;
@@ -63,25 +64,24 @@ describe('Component: timepicker', () => {
       buttonMeridian = getElements(fixture, 'button');
     });
 
-    // поле часы и минуты отображаются
     it('should seconds fields is not display', () => {
       expect(inputHours).toBeTruthy();
       expect(inputMinutes).toBeTruthy();
     });
-    // поле секунды не отображается
+
     it('should seconds fields is not display', () => {
       expect(inputSeconds).toBeFalsy();
     });
-    // поле часы и минуты должно быть пустым
+
     it('should be empty inputs fields hours and minutes', () => {
       expect(inputHours.value).toBeFalsy();
       expect(inputMinutes.value).toBeFalsy();
     });
-    // должны отображаться кнопки изменения времени
+
     it('should visible change buttons', () => {
       expect(buttonChanges).toBeTruthy();
     });
-    // должна отображаться кнопка меридиана
+
     it('should visible meridian button', () => {
       expect(buttonMeridian).toBeTruthy();
     });
@@ -98,7 +98,6 @@ describe('Component: timepicker', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    // проверить данные в поле минуты корректные данные
     it('should validate the data in the minutes input with valid data', () => {
       fireEvent(inputMinutes, 'change');
 
@@ -108,14 +107,14 @@ describe('Component: timepicker', () => {
 
       expect(inputMinutes.value).toEqual('12');
     });
-    // проверить данные в поле минуты корректные данные с неполным значением
+
     it('should validate the data in the minutes input with valid data with half value', () => {
       component.writeValue(testTime(0, 2, 0));
       fixture.detectChanges();
 
       expect(inputMinutes.value).toEqual('02');
     });
-    // установить время путем нажатия на кнопку изменения времени
+
     it('should set time in a input field after click on input change button', () => {
       expect(inputHours.value).toBeFalsy();
       expect(inputMinutes.value).toBeFalsy();
@@ -140,11 +139,10 @@ describe('Component: timepicker', () => {
       buttonDebugMeridian = getDebugElements(fixture, 'button')[0];
     });
 
-    // отобразить кнопку AM/PM при состоянии showMeridian по умолчанию
     it('should default state showMeridian display AM/PM button', () => {
       expect(buttonMeridian).toBeTruthy();
     });
-    // проверить данные в поле ввода Часы при вормате времени 12h
+
     it('should validate the data in the hours input at time format 12h', () => {
       fireEvent(inputHours, 'change');
 
@@ -154,7 +152,7 @@ describe('Component: timepicker', () => {
 
       expect(inputHours.value).toEqual('10');
     });
-    // изменить временной период после клика на кнопку AM/PM
+
     it('should change time period after click on AM/PM button', () => {
       expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
 
@@ -165,7 +163,7 @@ describe('Component: timepicker', () => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
       });
     });
-    // изменить временной период после клика на кнопку AM/PM без readonlyInput
+
     it('should change time period after click on AM/PM button without readonlyInput', () => {
       component.readonlyInput = false;
       component.showMeridian = false;
@@ -179,7 +177,7 @@ describe('Component: timepicker', () => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
       });
     });
-    // изменить временной период после клика на кнопку AM/PM с readonlyInput
+
     it('should change time period after click on AM/PM button with readonlyInput', () => {
       component.readonlyInput = false;
       component.showMeridian = true;
@@ -205,7 +203,6 @@ describe('Component: timepicker', () => {
       inputHours = getInputElements(fixture)[0];
     });
 
-    // не отобразить кнопку AM/PM если showMeridian выключен
     it('should not display AM/PM button if showMeridian switch off', () => {
       expect(buttonMeridian).toBeTruthy();
 
@@ -218,7 +215,7 @@ describe('Component: timepicker', () => {
         expect(buttonMeridian).toBeFalsy();
       });
     });
-    // проверить данные в поле часы при формате времени 24h
+
     it('should validate the data in the hours input at time format 24h', () => {
       component.showMeridian = false;
 
@@ -242,7 +239,6 @@ describe('Component: timepicker', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    // заблокировать кнопку увеличения часов
     it('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
       component.max = testTime(18);
       component.writeValue(testTime(17, 50));
@@ -270,7 +266,6 @@ describe('Component: timepicker', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    // заблокировать кнопку уменьшения часов
     it('should block the hours / minutes decrement button if clicking on it will cause exceeding the min value', () => {
       component.min = testTime(13);
       component.writeValue(testTime(13, 22));
@@ -310,7 +305,6 @@ describe('Component: timepicker', () => {
       inputSeconds = getInputElements(fixture)[2];
     });
 
-    // отображать поле секунды если showSeconds включен
     it('should display seconds field if showMeridian switch on', () => {
       component.showSeconds = true;
 
@@ -325,7 +319,7 @@ describe('Component: timepicker', () => {
         expect(inputSeconds).toBeTruthy();
       });
     });
-    // проверить данные в поле секунды
+
     it('should validate the data in the seconds input', () => {
       component.showSeconds = true;
 
@@ -353,7 +347,7 @@ describe('Component: timepicker', () => {
       inputSeconds = getInputElements(fixture)[2];
       buttonChanges = getElements(fixture, 'a.btn');
     });
-    // должна быть возможность ввода значений
+
     it('should be possible to enter values', () => {
       expect(inputHours.getAttribute('readonly')).toBeFalsy();
       expect(inputMinutes.getAttribute('readonly')).toBeFalsy();
@@ -369,11 +363,11 @@ describe('Component: timepicker', () => {
         expect(inputSeconds.getAttribute('readonly')).toBeFalsy();
       });
     });
-    // должна отображать кнопки изменения времени
+
     it('should be display is time change buttons', () => {
       expect(buttonChanges).toBeTruthy();
     });
-    // не должно быть возможности ввода значений
+
     it('should be impossible to enter values', () => {
       component.readonlyInput = true;
       component.showSeconds = true;
@@ -390,8 +384,8 @@ describe('Component: timepicker', () => {
         expect(inputSeconds.getAttribute('readonly')).toBe('');
       });
     });
-    // не должны отображаться кнопки изменения времени
-    it('should not display is time change buttons', () => {
+
+    it('should disable buttons if readonlyInput is true', () => {
       expect(buttonChanges).toBeTruthy();
 
       component.readonlyInput = true;
@@ -400,10 +394,24 @@ describe('Component: timepicker', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const buttonsHidden = fixture.nativeElement.querySelector('a.btn');
-        expect(buttonsHidden.parentElement.parentElement.className).toContain(
-          'hidden'
-        );
+        const buttonsDisabled = fixture.nativeElement.querySelector('a.btn');
+
+        expect(buttonsDisabled.className).toContain('disabled');
+      });
+    });
+
+    it('should disable buttons if disabled is true', () => {
+      expect(buttonChanges).toBeTruthy();
+
+      component.disabled = true;
+
+      component.writeValue(testTime());
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        const buttonsDisabled = fixture.nativeElement.querySelector('a.btn');
+
+        expect(buttonsDisabled.className).toContain('disabled');
       });
     });
   });
@@ -419,7 +427,7 @@ describe('Component: timepicker', () => {
       inputSeconds = getInputElements(fixture)[2];
       buttonChanges = getElements(fixture, 'a.btn');
     });
-    // добавить в поле ввода часы значение с учетом hourStep инкримент
+
     it('should add to the hour input field value, hourStep value increment', () => {
       component.hourStep = 2;
 
@@ -432,7 +440,7 @@ describe('Component: timepicker', () => {
         expect(inputHours.value).toBe('02');
       });
     });
-    // добавить в поле ввода часы значение с учетом hourStep декримент
+
     it('should add to the hour input field value, hourStep value decrement', () => {
       component.hourStep = 2;
 
@@ -445,7 +453,7 @@ describe('Component: timepicker', () => {
         expect(inputHours.value).toBe('04');
       });
     });
-    // вычесть в поле ввода часы значение с учетом minuteStep инкримент
+
     it('should input field value, minuteStep value increment', () => {
       component.minuteStep = 12;
 
@@ -458,7 +466,7 @@ describe('Component: timepicker', () => {
         expect(inputMinutes.value).toBe('34');
       });
     });
-    // вычесть в поле ввода часы значение с учетом minuteStep декримент
+
     it('should input field value, minuteStep value decrement', () => {
       component.minuteStep = 12;
 
@@ -471,7 +479,7 @@ describe('Component: timepicker', () => {
         expect(inputMinutes.value).toBe('10');
       });
     });
-    // вычесть в поле ввода часы значение с учетом secondsStep инкримент
+
     it('should input field value, secondsStep value increment', () => {
       component.showSeconds = true;
       component.secondsStep = 10;
@@ -489,7 +497,7 @@ describe('Component: timepicker', () => {
         expect(inputSeconds.value).toBe('40');
       });
     });
-    // вычесть в поле ввода часы значение с учетом secondsStep декримент
+
     it('should input field value, secondsStep value decrement', () => {
       component.showSeconds = true;
       component.secondsStep = 10;
@@ -517,7 +525,6 @@ describe('Component: timepicker', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    // скрыть кнопки изменения времени
     it('should hide change button', () => {
       component.showSpinners = false;
 
@@ -547,7 +554,6 @@ describe('Component: timepicker', () => {
       inputDebugSeconds = getDebugElements(fixture, 'input')[2];
     });
 
-    // измененить часы колесом мыши инкремент
     it('should can change hours value with the mouse wheel increment', () => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
@@ -568,7 +574,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // измененить минуты колесом мыши инкремент
+
     it('should can change minutes value with the mouse wheel increment', () => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
@@ -589,7 +595,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // измененить секунды колесом мыши инкремент
+
     it('should can change seconds value with the mouse wheel increment', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
 
@@ -616,7 +622,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // измененить часы колесом мыши декремент
+
     it('should can change hours value with the mouse wheel decrement', () => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
@@ -637,7 +643,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // измененить минуты колесом мыши декремент
+
     it('should can change minutes value with the mouse wheel decrement', () => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
@@ -658,7 +664,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // измененить секунды колесом мыши декремент
+
     it('should can change seconds value with the mouse wheel decrement', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.secondsStep = 3;
@@ -684,7 +690,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // отключить изменение часы колесом мыши
+
     it('should can not change hours value with the mouse wheel', () => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
@@ -706,7 +712,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // отключить изменение минуты колесом мыши
+
     it('should can not change minutes value with the mouse wheel', () => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
@@ -728,7 +734,7 @@ describe('Component: timepicker', () => {
         );
       });
     });
-    // отключить изменение секунды колесом мыши
+
     it('should can not change seconds value with the mouse wheel', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.showSeconds = true;
@@ -771,7 +777,6 @@ describe('Component: timepicker', () => {
       inputDebugSeconds = getDebugElements(fixture, 'input')[2];
     });
 
-    // изменить часы кнопками вверх
     it('should can change hours value with the arrow keys up', () => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
@@ -787,7 +792,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(component.hourStep, 'key');
       });
     });
-    // изменить минуты кнопками вверх
+
     it('should can change minutes value with the arrow keys up', () => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
@@ -803,7 +808,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(component.minuteStep, 'key');
       });
     });
-    // изменить секунды кнопками вверх
+
     it('should can change seconds value with the arrow keys up', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.showSeconds = true;
@@ -824,7 +829,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
       });
     });
-    // изменить часы кнопками вниз
+
     it('should can not change hours value with the arrow keys down', () => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
@@ -840,7 +845,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(-component.hourStep, 'key');
       });
     });
-    // изменить минуты кнопками вниз
+
     it('should can not change minutes value with the arrow keys down', () => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
@@ -856,7 +861,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(-component.minuteStep, 'key');
       });
     });
-    // изменить секунды кнопками вниз
+
     it('should can not change seconds value with the arrow keys down', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
 
@@ -878,7 +883,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(-component.secondsStep, 'key');
       });
     });
-    // отключить часы времени кнопками
+
     it('should can not change hours value with the arrow keys', () => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
@@ -895,7 +900,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(component.hourStep, 'key');
       });
     });
-    // отключить минуты времени кнопками
+
     it('should can not change minutes value with the arrow keys', () => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
@@ -912,7 +917,7 @@ describe('Component: timepicker', () => {
         expect(methodSpy).toHaveBeenCalledWith(component.minuteStep, 'key');
       });
     });
-    // отключить секунды времени кнопками
+
     it('should can not change seconds value with the arrow keys', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
 
@@ -948,7 +953,6 @@ describe('Component: timepicker', () => {
       inputSeconds = getInputElements(fixture)[2];
     });
 
-    // отставить поля не заполненными
     it('should leave the input fields not specified', () => {
       expect(inputHours.value).toBe('');
       expect(inputMinutes.value).toBe('');
@@ -964,7 +968,6 @@ describe('Component: timepicker', () => {
       expect(methodSpy).not.toHaveBeenCalled();
     });
 
-    // не верное значение поля должно сбрасывать время
     it('should clear model if values are invalid', () => {
       component.showSeconds = true;
       component.writeValue(testTime(12, 12, 12));
@@ -984,7 +987,108 @@ describe('Component: timepicker', () => {
 
       expect(methodSpy).toHaveBeenCalledWith(null);
     });
-    // верное значение поля
+
+    it('should clear model if hour input is invalid', () => {
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      spyOn(component.isValid, 'emit').and.stub();
+      component.hours = '10';
+      component.showMeridian = false;
+
+      component.updateHours('99');
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.invalidHours).toEqual(true);
+    });
+
+    it('should clear model if hour limits are invalid', () => {
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      spyOn(component.isValid, 'emit').and.stub();
+      spyOn(component, 'isValidLimit').and.returnValue(false);
+
+      component.updateHours('19');
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.invalidHours).toEqual(true);
+    });
+
+    it('should update time if hour is valid', () => {
+      spyOn(component, '_updateTime').and.stub();
+      component.hours = '10';
+      component.showMeridian = false;
+
+      component.updateHours('17');
+
+      expect(component.invalidHours).toEqual(false);
+      expect(component._updateTime).toHaveBeenCalled();
+    });
+
+    it('should clear model if minute input is invalid', () => {
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      spyOn(component.isValid, 'emit').and.stub();
+      component.minutes = '10';
+
+      component.updateMinutes('99');
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+    });
+
+    it('should clear model if minute limits are invalid', () => {
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      spyOn(component.isValid, 'emit').and.stub();
+      spyOn(component, 'isValidLimit').and.returnValue(false);
+
+      component.updateMinutes('30');
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+    });
+
+    it('should update time if minute is valid', () => {
+      spyOn(component, '_updateTime').and.stub();
+      component.minutes = '10';
+
+      component.updateMinutes('30');
+
+      expect(component.invalidMinutes).toEqual(false);
+      expect(component._updateTime).toHaveBeenCalled();
+    });
+
+    it('should clear model if second input is invalid', () => {
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      spyOn(component.isValid, 'emit').and.stub();
+      component.showSeconds = true;
+      component.seconds = '10';
+
+      component.updateSeconds('99');
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+    });
+
+    it('should clear model if second limits are invalid', () => {
+      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      spyOn(component.isValid, 'emit').and.stub();
+      spyOn(component, 'isValidLimit').and.returnValue(false);
+
+      component.updateSeconds('50');
+
+      expect(methodSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+    });
+
+    it('should update time if second is valid', () => {
+      spyOn(component, '_updateTime').and.stub();
+      component.seconds = '10';
+
+      component.updateSeconds('30');
+
+      expect(component.invalidSeconds).toEqual(false);
+      expect(component._updateTime).toHaveBeenCalled();
+    });
+
     it('should valid value in input fields', () => {
       component.showSeconds = true;
       component.showMeridian = false;

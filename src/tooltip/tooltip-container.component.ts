@@ -23,9 +23,11 @@ import { isBs3 } from '../utils/theme-provider';
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: 50%;
+      margin-left: -6px;
     }
     :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
       top: 50%;
+      margin-top: -6px;
     }
   `
   ],
