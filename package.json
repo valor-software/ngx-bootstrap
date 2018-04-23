@@ -142,7 +142,7 @@
     "protractor": "5.1.2",
     "reflect-metadata": "0.1.12",
     "require-dir": "0.3.2",
-    "rollup": "0.54.1",
+    "rollup": "0.58.2",
     "rollup-plugin-commonjs": "8.2.6",
     "rollup-plugin-node-resolve": "3.0.2",
     "rxjs": "5.5.6",
