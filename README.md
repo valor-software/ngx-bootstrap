@@ -78,6 +78,19 @@ You will need bootstrap styles:
 <!--- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 ```
+### Setting up the bootstrap version manually
+Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+```
+import { setTheme } from 'ngx-bootstrap/utils';
+
+@Component({...})
+export class AppComponent {
+  constructor() {
+    setTheme('bs3'); // or 'bs4'
+    ...
+  }
+}
+```
 
 ## Usage & Demo
 
@@ -113,15 +126,15 @@ To update your fork and prepare it for local usage:
  - `npm install`
  - `npm run test` _*// it will build the lib, create a link in node_modules and run package's "test" script*_
 
- To run the demo:
+To run the demo:
  - `npm run demo.serve` _*// to serve local demo. This is for testing only, without watchers.*_
 
- For local development run:
+For local development run:
  - `npm run build.watch` _*// in first terminal*_
  - `ng serve` _*// in second*_
 
-  If you want to run the demo with Angular Universal:
-  - `npm run demo.serve-universal`
+If you want to run the demo with Angular Universal:
+ - `npm run demo.serve-universal`
 
 ## Troubleshooting
 
