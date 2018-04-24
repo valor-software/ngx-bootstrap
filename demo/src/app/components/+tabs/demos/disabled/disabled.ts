@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
-  selector: 'demo-tabs-disable',
-  templateUrl: './disable.html'
+  selector: 'demo-tabs-disabled',
+  templateUrl: './disabled.html'
 })
-export class DemoTabsDisableComponent {
+export class DemoTabsDisabledComponent {
   @ViewChild('staticTabs') staticTabs: TabsetComponent;
 
   disableEnable() {
