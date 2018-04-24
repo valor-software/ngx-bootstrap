@@ -39,8 +39,7 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Alerts are available for any length of text, as well as an optional dismiss
           button. For proper styling, use one of the four <strong>required</strong>
           contextual classes (e.g., <code>.alert-success</code>). For inline
-          dismissal, use the <a routerLink="." fragment="dismissing"><code>dismiss
-          property</code></a>.</p>`,
+          dismissal, use the <code>dismissible</code> property.</p>`,
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoAlertBasicComponent

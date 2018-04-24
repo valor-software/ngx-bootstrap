@@ -15,6 +15,7 @@ import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -43,9 +44,9 @@ export const demoComponentContent: ContentSection[] = [
     outlet: ExamplesComponent,
     description: `
       <p>Open a modal from service.</p>
-      <p>To be able to open modals from service, inject BsModalService to your constructor.<br>Then, call
-      <code>.show()</code> method of modal service. Pass a TemplateRef or a component as a first argument and
-      config as a second (optionally). <br> <code>.show()</code> method returns an instance of BsModalRef
+      <p>To be able to open modals from service, inject <code>BsModalService</code> to your constructor.<br>Then, call
+      <code>.show()</code> method of modal service. Pass a <code>TemplateRef</code> or a component as a first argument and
+      config as a second (optionally). <br> <code>.show()</code> method returns an instance of <code>BsModalRef</code>
       class with <code>.hide()</code> method and <code>content</code> property where you'll find a component
       which you've passed to service.</p>`,
     content: [
@@ -63,8 +64,8 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/service-component/service-component.html'),
         description: `<p>Creating a modal with component just as easy as it is with template. Just pass your component
           in <code>.show()</code> method as in example, and don't forget to include your component to
-          <code>entryComponents</code> of your NgModule<br> If you passed a component
-          to <code>.show()</code> you can get access to opened modal by injecting BsModalRef. Also you can pass data 
+          <code>entryComponents</code> of your <code>NgModule</code><br> If you passed a component
+          to <code>.show()</code> you can get access to opened modal by injecting <code>BsModalRef</code>. Also you can pass data 
           in your modal by adding <code>initialState</code> field in config. See example for more info</p>`,
         outlet: DemoModalServiceFromComponent
       },
@@ -89,10 +90,12 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/service-events/service-events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-events/service-events.html'),
         description: `
-          <p>Modal service events. Modal service exposes 4 events: onShow, onShown, onHide, onHidden.
+          <p>Modal service events. Modal service exposes 4 events: <code>onShow</code>, <code>onShown</code>,
+          <code>onHide</code>, <code>onHidden</code>.
           See usage example below.</p>
-          <p>onHide and onHidden emit dismiss reason. Possible values are <code>backdrop-click</code>,
-          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>`,
+          <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
+          <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of
+          <code>hide()</code> method</p>`,
         outlet: DemoModalServiceEventsComponent
       },
       {
@@ -100,7 +103,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'confirm-window',
         component: require('!!raw-loader?lang=typescript!./demos/service-confirm-window/service-confirm-window.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-confirm-window/service-confirm-window.html'),
-        description: `<p>Modal with buttons to confirm.</p>`,
+        description: `<p>Modal with opportunity to <code>confirm</code> or <code>decline</code>.</p>`,
         outlet: DemoModalServiceConfirmWindowComponent
       },
       {
@@ -108,8 +111,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'service-custom-css-class',
         component: require('!!raw-loader?lang=typescript!./demos/service-options/custom-css-class/custom-css-class.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-options/custom-css-class/custom-css-class.html'),
-        description: `<p>There is additional css classes that you can configure.
-          See the demo below to learn how to configure your modal</p>`,
+        description: `<p>There is possibility to add custom css class to a modal.
+          See the demo below to learn how to use it</p>`,
         outlet: DemoModalServiceCustomCSSClassComponent
       },
       {
@@ -127,6 +130,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/service-options/disable-esc-closing/disable-esc-closing.html'),
         description: `<p>There is closing by Esc button option that you can configure.</p>`,
         outlet: DemoModalServiceDisableEscClosingComponent
+      },
+      {
+        title: 'Modal window with tooltip and popover',
+        anchor: 'modal-with-popups',
+        component: require('!!raw-loader?lang=typescript!./demos/modal-with-popups/modal-with-popups.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/modal-with-popups/modal-with-popups.html'),
+        description: `<p><code>Tooltips</code> and <code>popovers</code> can be placed within modals as needed. When modals are closed, any <code>tooltips</code> and <code>popovers</code> within are also automatically dismissed.</p>`,
+        outlet: DemoModalWithPopupsComponent
       },
       {
         title: 'Backdrop options',
@@ -179,12 +190,13 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'directive-events',
         component: require('!!raw-loader?lang=typescript!./demos/events/events.ts'),
         html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
-        description: `<p>ModalDirective exposes 4 events: OnShow, OnShown, OnHide, OnHidden. See
-          usage example below.<br> <code>$event</code> is an instance of ModalDirective. There you may
+        description: `<p><code>ModalDirective</code> exposes 4 events: <code>onShow</code>, <code>onShown</code>,
+          <code>onHide</code>, <code>onHidden</code>. See usage example below.<br>
+          <code>$event</code> is an instance of <code>ModalDirective</code>. There you may
           find some useful properties like <code>isShown</code>, <code>dismissReason</code>, etc.
           <br>For example, you may want to know which one of user's actions caused closing of a modal.
-          Just get the value of <code>dismissReason</code>, possible values are <code>backdrop-click</code>,
-          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code></p>`,
+          Just get the value of <code>dismissReason</code>,<br> possible values are <code>backdrop-click</code>,
+          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code> method</p>`,
         outlet: DemoModalEventsComponent
       },
       {
