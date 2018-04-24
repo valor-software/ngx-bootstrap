@@ -28,11 +28,6 @@
           [routerLinkActiveOptions]="{exact: true}">
         <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
       </li>
-      <li *ngFor="let route of routes | slice:2 | SearchFilter:search.text"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
-      </li>
     </ul>
   </div>
 </div>
