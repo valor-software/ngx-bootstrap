@@ -6,51 +6,70 @@ import { LocaleData } from '../locale/locale.class';
 
 // ! moment.js locale configuration
 // ! locale : Romanian [ro]
+//! author : Vlad Gurdiga : https://github.com/gurdiga
+//! author : Valentin Agachi : https://github.com/avaly
 // ! author : Earle white: https://github.com/5earle
+
+function relativeTimeWithPlural(num, withoutSuffix, key) {
+  let format = {
+    ss: 'secunde',
+    mm: 'minute',
+    hh: 'ore',
+    dd: 'zile',
+    MM: 'luni',
+    yy: 'ani'
+  };
+
+  let separator = ' ';
+  if (num % 100 >= 20 || (num >= 100 && num % 100 === 0)) {
+    separator = ' de ';
+  }
+  return num + separator + format[key];
+}
+
 
 export const roLocale: LocaleData = {
   abbr: 'ro',
-  months: 'Ianuarie_Februarie_Martie_Aprilie_Mai_Iunie_Iulie_August_Septembrie_Octombrie_Noiembrie_Decembrie'.split('_'),
-  monthsShort: 'Ian_Feb_Mar_Apr_Mai_Iun_Iul_Aug_Sep_Oct_Noi_Dec'.split('_'),
-  weekdays: 'Duminica_Luni_Marti_Miercuri_Joi_Vineri_Sambata'.split('_'),
-  weekdaysShort: 'Dum_Lun_Mar_Mie_Jo_Vin_Sam'.split('_'),
-  weekdaysMin: 'Du_lu_Ma_Mi_Jo_Vi_Sa'.split('_'),
+  months: 'ianuarie_februarie_martie_aprilie_mai_iunie_iulie_august_septembrie_octombrie_noiembrie_decembrie'.split('_'),
+  monthsShort: 'ian._febr._mart._apr._mai_iun._iul._aug._sept._oct._nov._dec.'.split('_'),
+  monthsParseExact: true,
+  weekdays: 'duminică_luni_marți_miercuri_joi_vineri_sâmbătă'.split('_'),
+  weekdaysShort: 'Dum_Lun_Mar_Mie_Joi_Vin_Sâm'.split('_'),
+  weekdaysMin: 'Du_Lu_Ma_Mi_Jo_Vi_Sâ'.split('_'),
   longDateFormat: {
-    LT: 'HH:mm',
-    LTS: 'HH:mm:ss',
-    L: 'DD/MM/YYYY',
+    LT: 'H:mm',
+    LTS: 'H:mm:ss',
+    L: 'DD.MM.YYYY',
     LL: 'D MMMM YYYY',
-    LLL: 'D MMMM YYYY HH:mm',
-    LLLL: 'dddd D MMMM YYYY HH:mm'
+    LLL: 'D MMMM YYYY H:mm',
+    LLLL: 'dddd, D MMMM YYYY H:mm'
   },
-  calendar : {
-    sameDay: '[Astazi la] LT',
-    nextDay: '[Maine la] LT',
+  calendar: {
+    sameDay: '[azi la] LT',
+    nextDay: '[mâine la] LT',
     nextWeek: 'dddd [la] LT',
-    lastDay: '[Leri la] LT',
-    lastWeek: '[ultimul] dddd [la] LT',
+    lastDay: '[ieri la] LT',
+    lastWeek: '[fosta] dddd [la] LT',
     sameElse: 'L'
   },
   relativeTime: {
-    future: 'despre %s',
-    past: 'există %s',
+    future: 'peste %s',
+    past: '%s în urmă',
     s: 'câteva secunde',
-    ss: '%d secunde',
+    ss: relativeTimeWithPlural,
     m: 'un minut',
-    mm: '%d minute',
-    h: 'o ora',
-    hh: '%d ore',
-    d: 'intr-o zi',
-    dd: '%d zi',
-    M: 'o luna',
-    MM: '%d luni',
+    mm: relativeTimeWithPlural,
+    h: 'o oră',
+    hh: relativeTimeWithPlural,
+    d: 'o zi',
+    dd: relativeTimeWithPlural,
+    M: 'o lună',
+    MM: relativeTimeWithPlural,
     y: 'un an',
-    yy: 'ani'
+    yy: relativeTimeWithPlural
   },
-  dayOfMonthOrdinalParse: /\d{1,2}\./,
-  ordinal: '%d',
   week: {
-    dow: 1,
-    doy: 4
+    dow: 1, // Monday is the first day of the week.
+    doy: 7  // The week that contains Jan 1st is the first week of the year.
   }
 };
