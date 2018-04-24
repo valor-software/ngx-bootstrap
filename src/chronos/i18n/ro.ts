@@ -10,8 +10,8 @@ import { LocaleData } from '../locale/locale.class';
 //! author : Valentin Agachi : https://github.com/avaly
 // ! author : Earle white: https://github.com/5earle
 
-function relativeTimeWithPlural(num, withoutSuffix, key) {
-  let format = {
+function relativeTimeWithPlural(num: number, withoutSuffix: boolean, key: string): string {
+  let format: {[key:string]: string} = {
     ss: 'secunde',
     mm: 'minute',
     hh: 'ore',
