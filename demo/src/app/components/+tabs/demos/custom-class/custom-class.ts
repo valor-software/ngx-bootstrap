@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-tabs-styling',
-  templateUrl: './styling.html'
+  selector: 'demo-tabs-custom-class',
+  templateUrl: './custom-class.html'
 })
-export class DemoTabsStylingComponent {
+export class DemoTabsCustomClassComponent {
   tabs: any[] = [
     {
       title: 'Dynamic Title 1',
