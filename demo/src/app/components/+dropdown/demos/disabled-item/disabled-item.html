@@ -1,8 +1,10 @@
 <div class="btn-group" dropdown>
-  <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+  <button id="button-disabled-item" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+          aria-controls="dropdown-disabled-item">
     Button dropdown <span class="caret"></span>
   </button>
-  <ul *dropdownMenu class="dropdown-menu" role="menu">
+  <ul id="dropdown-disabled-item" *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-disabled-item">
     <li class="disabled" role="menuitem"><a class="dropdown-item disabled" href="#">Action</a></li>
     <li role="menuitem"><a class="dropdown-item" href="#">Another action</a>
     </li>

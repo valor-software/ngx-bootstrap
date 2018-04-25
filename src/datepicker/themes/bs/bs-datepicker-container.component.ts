@@ -14,7 +14,9 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './bs-datepicker-view.html',
   host: {
     '(click)': '_stopPropagation($event)',
-    style: 'position: absolute; display: block;'
+    style: 'position: absolute; display: block;',
+    role: 'dialog',
+    'aria-label': 'calendar'
   }
 })
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
