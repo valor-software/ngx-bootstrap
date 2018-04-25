@@ -1,12 +1,16 @@
-<ul class="pager">
-  <li [class.disabled]="noPrevious()" [class.previous]="align"
-      [ngClass]="{'pull-right': align, 'float-right': align}"
-      class="{{ pageBtnClass }}">
-    <a href (click)="selectPage(page - 1, $event)">{{ getText('previous') }}</a>
-  </li>
-  <li [class.disabled]="noNext()" [class.next]="align"
-      [ngClass]="{'pull-right': align, 'float-right': align}"
-      class="{{ pageBtnClass }}">
-    <a href (click)="selectPage(page + 1, $event)">{{ getText('next') }}</a>
-  </li>
-</ul>
+<nav [attr.aria-label]="getText('nav')">
+  <ul class="pager">
+    <li [class.disabled]="noPrevious()" [class.previous]="align"
+        [ngClass]="{'pull-right': align, 'float-right': align}"
+        class="{{ pageBtnClass }}">
+      <a href [attr.aria-label]="getText('previousLabel')" (click)="selectPage(page - 1, $event)"
+         [innerHTML]="getText('previous', 'previousLabel')"></a>
+    </li>
+    <li [class.disabled]="noNext()" [class.next]="align"
+        [ngClass]="{'pull-right': align, 'float-right': align}"
+        class="{{ pageBtnClass }}">
+      <a href [attr.aria-label]="getText('nextLabel')" (click)="selectPage(page + 1, $event)"
+         [innerHTML]="getText('next', 'nextLabel')"></a>
+    </li>
+  </ul>
+</nav>

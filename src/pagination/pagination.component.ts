@@ -30,6 +30,8 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {
+  textAriaLabel = 'Go to page';
+  currentTextAriaLabel = 'Current page';
   config: any;
   /** if `true` aligns each link to the sides of pager */
   @Input() align: boolean;
@@ -48,6 +50,35 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() nextText: string;
   /** last button text */
   @Input() lastText: string;
+  /** customize the object supporting accessibility */
+  @Input() accessibleParameters: object;
+  /** if false previous and next buttons, supporting accessibility, will be hidden */
+  @Input() accessibleLinks: boolean;
+  /** if false first and last buttons, supporting accessibility, will be hidden */
+  @Input() boundaryAccessibleLinks: boolean;
+  /** aria-label attribute text for current page */
+  @Input() currentPageLabelText: string;
+  /** aria-label attribute text for page */
+  @Input() pageLabelText: string;
+  /** previous button text supporting accessibility */
+  @Input() previousAccessibleText: string;
+  /** next button text supporting accessibility */
+  @Input() nextAccessibleText: string;
+  /** first button text supporting accessibility */
+  @Input() firstAccessibleText: string;
+  /** last button text supporting accessibility */
+  @Input() lastAccessibleText: string;
+  /** aria-label attribute text for previous button */
+  @Input() previousLabelText: string;
+  /** aria-label attribute text for next button */
+  @Input() nextLabelText: string;
+  /** aria-label attribute text for first button */
+  @Input() firstLabelText: string;
+  /** aria-label attribute text for last button */
+  @Input() lastLabelText: string;
+  /** aria-label attribute text for nav tag */
+  @Input() navText: string;
+
   /** if true current page will in the middle of pages list */
   @Input() rotate: boolean;
   // css
@@ -160,6 +191,14 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       typeof this.boundaryLinks !== 'undefined'
         ? this.boundaryLinks
         : this.config.boundaryLinks;
+    this.accessibleParameters =
+      typeof this.accessibleParameters !== 'undefined'
+        ? this.accessibleParameters
+        : this.config.accessibleParameters;
+    this.boundaryAccessibleLinks =
+      typeof  this.accessibleParameters !== 'undefined'
+        ? (this as any).accessibleParameters.boundaryAccessibleLinks
+        : this.config.boundaryAccessibleLinks;
     this.directionLinks =
       typeof this.directionLinks !== 'undefined'
         ? this.directionLinks
@@ -168,7 +207,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       typeof this.pageBtnClass !== 'undefined'
         ? this.pageBtnClass
         : this.config.pageBtnClass;
-
     // base class
     this.itemsPerPage =
       typeof this.itemsPerPage !== 'undefined'
@@ -185,7 +223,26 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.pages = this.getPages(this.page, this.totalPages);
   }
 
-  getText(key: string): string {
+  getText(key: string, flag?: string & number): string {
+    if (this.accessibleParameters) {
+      const helperValue = (this as any).accessibleParameters;
+      if (typeof flag === 'number') {
+        const value = helperValue[`${key}Text`] || this.config[`${key}Text`];
+        return `${value} ${flag}`;
+      }
+      if ((this as any).accessibleParameters.accessibleLinks === true) {
+        const helperText = helperValue[`${flag}Text`] || this.config[`${flag}Text`];
+        const value = helperValue[`${key}AccessibleText`] || this.config[`${key}AccessibleText`];
+        const text = `
+          <span aria-hidden="true">${value}</span>
+          <span class="sr-only">${helperText}</span>
+        `;
+        if (flag) {
+          return text;
+        }
+      }
+      return helperValue[`${key}Text`] || this.config[`${key}Text`];
+    }
     return (this as any)[`${key}Text`] || this.config[`${key}Text`];
   }
 
