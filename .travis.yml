@@ -55,8 +55,6 @@ jobs:
     - env: NGV=next
     - env: SAUCE=true
     - stage: sauce-tests
-#    temporary solution. will be fixed
-    - stage: test
   include:
 # precache npm and apt dependencies
     - stage: precache
