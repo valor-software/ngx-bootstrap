@@ -14,6 +14,7 @@ export { idLocale } from './chronos/i18n/id';
 export { itLocale } from './chronos/i18n/it';
 export { jaLocale } from './chronos/i18n/ja';
 export { koLocale } from './chronos/i18n/ko';
+export { mnLocale } from './chronos/i18n/mn';
 export { nlLocale } from './chronos/i18n/nl';
 export { nlBeLocale } from './chronos/i18n/nl-be';
 export { plLocale } from './chronos/i18n/pl';
