@@ -99,7 +99,7 @@
     "@types/marked": "0.3.0",
     "@types/node": "8.5.1",
     "@types/tapable": "1.0.0",
-    "@types/webpack": "4.1.0",
+    "@types/webpack": "4.1.4",
     "awesome-typescript-loader": "3.4.1",
     "bootstrap": "4.0.0",
     "chai": "4.1.2",
