@@ -20,6 +20,7 @@ export { plLocale } from './chronos/i18n/pl';
 export { ptBrLocale } from './chronos/i18n/pt-br';
 export { svLocale } from './chronos/i18n/sv';
 export { ruLocale } from './chronos/i18n/ru';
+export { roLocale }  from './chronos/i18n/ro';
 export { zhCnLocale } from './chronos/i18n/zh-cn';
 export { trLocale } from './chronos/i18n/tr';
 export { heLocale } from './chronos/i18n/he';
