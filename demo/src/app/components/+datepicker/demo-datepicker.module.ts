@@ -8,7 +8,7 @@ import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import {
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, frLocale, fiLocale,
   heLocale, hiLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, nlBeLocale, nlLocale, plLocale,
-  ptBrLocale, ruLocale, svLocale, thLocale, trLocale, zhCnLocale
+  ptBrLocale, ruLocale, roLocale, svLocale, thLocale, trLocale, zhCnLocale
 } from 'ngx-bootstrap/locale';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
@@ -20,7 +20,7 @@ import { DEMO_COMPONENTS } from './demos';
 const locales = [
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esLocale, esDoLocale, esUsLocale,
   frLocale, fiLocale, hiLocale, heLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, nlLocale,
-  nlBeLocale, plLocale, ptBrLocale, svLocale, ruLocale, zhCnLocale, trLocale, thLocale
+  nlBeLocale, plLocale, ptBrLocale, svLocale, ruLocale, roLocale, zhCnLocale, trLocale, thLocale
 ];
 locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
 

@@ -7,16 +7,14 @@ import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 
-const _bs3Css =
-  'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
-const _bs4Css =
-  'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
+const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
+const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html'
 })
-export class SidebarComponent implements OnDestroy{
+export class SidebarComponent implements OnDestroy {
   isShown = false;
 
   get isBs3(): boolean {
@@ -32,11 +30,11 @@ export class SidebarComponent implements OnDestroy{
   constructor(
     public styleManager: StyleManager,
     private router: Router,
-    private _themeStorage: ThemeStorage,
+    private themeStorage: ThemeStorage,
     private renderer: Renderer,
     @Inject(DOCUMENT) private document: any
   ) {
-    const currentTheme = this._themeStorage.getStoredTheme();
+    const currentTheme = this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
@@ -54,11 +52,7 @@ export class SidebarComponent implements OnDestroy{
   toggle(isShown?: boolean): void {
     this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
     if (this.document && this.document.body) {
-      this.renderer.setElementClass(
-        this.document.body,
-        'isOpenMenu',
-        this.isShown
-      );
+      this.renderer.setElementClass(this.document.body, 'isOpenMenu', this.isShown);
       if (this.isShown === false && this.document.documentElement) {
         this.renderer.setElementProperty(this.document.documentElement, 'scrollTop', 0);
         this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
@@ -72,7 +66,7 @@ export class SidebarComponent implements OnDestroy{
     this.styleManager.setStyle('theme', this.isBs3 ? _bs3Css : _bs4Css);
 
     if (this.currentTheme) {
-      this._themeStorage.storeTheme(this.currentTheme);
+      this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 
