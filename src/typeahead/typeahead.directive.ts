@@ -73,8 +73,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** should be used only in case typeaheadSingleWords attribute is true.
    * Sets the word delimiter to match exact phrase.
    * Defaults to simple and double quotes.
-   */
+   */  
   @Input() typeaheadPhraseDelimiters = '\'"';
+  /** used to enable/disable the selection on TAB Event.   
+   */
+  @Input() typeaheadSelectOnTab: boolean = true;
   /** used to specify a custom item template.
    * Template variables exposed are called item and index;
    */
@@ -260,9 +263,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     // if an item is visible - don't change focus
     if (e.keyCode === 9) {
-      e.preventDefault();
-      this._container.selectActiveMatch();
-
+      // only select item if selection on TAB is wanted
+      if(this.typeaheadSelectOnTab) {
+        e.preventDefault();
+        this._container.selectActiveMatch();
+      } else {
+        this.hide();
+      }
+      
       return;
     }
   }

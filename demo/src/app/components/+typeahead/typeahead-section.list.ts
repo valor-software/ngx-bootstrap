@@ -22,6 +22,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
+import { DemoTypeaheadSelectOnTabComponent } from './demos/select-on-tab/select-on-tab';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -195,6 +196,18 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),
         outlet: DemoTypeaheadOnSelectComponent
+      },
+      {
+        title: 'Enable/Disable selection on Tab-Event',
+        anchor: 'select-on-tab',
+        description: `
+          <p><code>typeaheadSelectOnTab</code> is a boolean that is initially true.
+          When set to false, the keydown-event of the TAB-Key does not automatically select
+          the highlighted option. Instead it tabs out of the input.</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/select-on-tab/select-on-tab.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/select-on-tab/select-on-tab.html'),
+        outlet: DemoTypeaheadSelectOnTabComponent
       }
     ]
   },

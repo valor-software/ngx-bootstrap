@@ -1,0 +1,11 @@
+<pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
+<pre class="card card-block card-header mb-3">SelectOnTab: {{selectOnTabOption | json}}</pre>
+<div class="row">
+    <button type="button" class="btn btn-primary" (click)="toggleOption()">Toggle selectOnTab Option</button>    
+</div>
+<div class="row">
+    <input [(ngModel)]="selected"
+       [typeahead]="states"
+       [typeaheadSelectOnTab]="selectOnTabOption"
+       class="form-control">
+</div>

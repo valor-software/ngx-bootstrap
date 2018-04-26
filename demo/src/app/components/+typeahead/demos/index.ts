@@ -15,6 +15,7 @@ import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadFormComponent } from './form/form';
 import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
+import { DemoTypeaheadSelectOnTabComponent } from './select-on-tab/select-on-tab';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadBasicComponent,
@@ -33,7 +34,8 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadLatinizeComponent,
   DemoTypeaheadContainerComponent,
   DemoTypeaheadFormComponent,
-  DemoTypeaheadOnSelectComponent
+  DemoTypeaheadOnSelectComponent,
+  DemoTypeaheadSelectOnTabComponent
 ];
 
 export const DEMOS = {
@@ -96,5 +98,9 @@ export const DEMOS = {
   onSelect: {
     component: require('!!raw-loader?lang=typescript!./on-select/on-select.ts'),
     html: require('!!raw-loader?lang=markup!./on-select/on-select.html')
-  }
+  },
+  selectOnTab: {
+    component: require('!!raw-loader?lang=typescript!./select-on-tab/select-on-tab.ts'),
+    html: require('!!raw-loader?lang=markup!./select-on-tab/select-on-tab.html')
+  },
 };

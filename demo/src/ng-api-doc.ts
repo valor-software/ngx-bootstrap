@@ -151,13 +151,13 @@ export const ngdoc: any = {
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
-        "type": "boolean",
+        "type": "any",
         "description": "<p>Falsy value, will be set to ngModel </p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
-        "type": "boolean",
+        "type": "any",
         "description": "<p>Truthy value, will be set to ngModel </p>\n"
       }
     ],
@@ -3216,6 +3216,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>specifies if typeahead is scrollable  </p>\n"
+      },
+      {
+        "name": "typeaheadSelectOnTab",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>used to enable/disable the selection on TAB Event.   </p>\n"
       },
       {
         "name": "typeaheadSingleWords",
