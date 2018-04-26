@@ -151,13 +151,13 @@ export const ngdoc: any = {
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
-        "type": "any",
+        "type": "boolean",
         "description": "<p>Falsy value, will be set to ngModel </p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
-        "type": "any",
+        "type": "boolean",
         "description": "<p>Truthy value, will be set to ngModel </p>\n"
       }
     ],
@@ -1812,7 +1812,7 @@ export const ngdoc: any = {
       },
       {
         "name": "toggle",
-        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover. With parameter <code>true</code> allows toggling, with parameter <code>false</code>\nonly hides opened dropdown. Parameter usage will be removed in ngx-bootstrap v3</p>\n",
         "args": [
           {
             "name": "value",

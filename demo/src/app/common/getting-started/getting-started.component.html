@@ -80,6 +80,21 @@
       <p>To enable bootstrap 4 theme templates in ngx-bootstrap, please read <a href="https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap.md">here</a></p>
       <pre class="prettyprint prettyprinted"><span class="com">&lt;!-- index.html --&gt;</span><span class="pln">
 </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span></pre>
+      
+      <h3>Setting up the bootstrap version manually</h3>
+      
+      <p>Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. <code>AppComonent</code>):</p>
+      
+      <pre class="prettyprint lang-js prettyprinted">
+<span class="kwd">import</span><span class="pln"> </span><span class="pun">{{'{'}}</span><span class="pln"> setTheme </span><span class="pun">{{'}'}}</span><span class="pln"> from </span><span class="str">'ngx-bootstrap/utils'</span><span class="pun">;</span>
+<span class="pln">&nbsp;</span>
+<span class="lit">@Component</span><span class="pun">({{'{'}}</span><span class="pln">&hellip;</span><span class="pun">{{'}'}})</span>
+<span class="kwd">export</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">AppComponent</span><span class="pln"> </span><span class="pun">{{'{'}}</span>
+<span class="pln">  constructor</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{{'{'}}</span>
+<span class="pln">    setTheme</span><span class="pun">(</span><span class="str">'bs3'</span><span class="pun">);</span><span class="pln"> </span><span class="com">// or 'bs4'</span>
+<span class="pln">    <span class="pln">&hellip;</span></span>
+<span class="pln">  </span><span class="pun">{{'}'}}</span>
+<span class="pun">{{'}'}}</span></pre>
 
       <h3>How to use it with:</h3>
 

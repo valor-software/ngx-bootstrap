@@ -219,35 +219,13 @@ describe('locale: fi', () => {
 
   it('calendar last week', function() {
     var i, m;
-
-    function makeFormat(d) {
-      switch (d.day()) {
-        case 0:
-          return '[viime sunnuntaina klo] LT';
-        case 1:
-          return '[viime maanantaina klo] LT';
-        case 2:
-          return '[viime tiistaina klo] LT';
-        case 4:
-          return '[viime torstaina klo] LT';
-        case 5:
-          return '[viime perjantaina klo] LT';
-        case 6:
-          return '[viime lauantaina klo] LT';
-        default:
-          return '[viime] dddd [klo] LT';
-      }
-    }
-
     for (i = 2; i < 7; i++) {
-      m = moment().subtract({ d: i });
-      assert.equal(m.calendar(), m.format(makeFormat(m)), 'Today - ' + i + ' days current time');
-
+      m = moment().subtract({d: i});
+      assert.equal(m.calendar(),       m.format('[viime] dddd[na] [klo] LT'),  'today - ' + i + ' days current time');
       m.hours(0).minutes(0).seconds(0).milliseconds(0);
-      assert.equal(m.calendar(), m.format(makeFormat(m)), 'Today - ' + i + ' days beginning of day');
-
+      assert.equal(m.calendar(),       m.format('[viime] dddd[na] [klo] LT'),  'today - ' + i + ' days beginning of day');
       m.hours(23).minutes(59).seconds(59).milliseconds(999);
-      assert.equal(m.calendar(), m.format(makeFormat(m)), 'Today - ' + i + ' days end of day');
+      assert.equal(m.calendar(),       m.format('[viime] dddd[na] [klo] LT'),  'today - ' + i + ' days end of day');
     }
   });
 

@@ -1,18 +1,9 @@
+import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  UrlSerializer
-} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
+import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ng2-page-scroll';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
-import {
-  PageScrollConfig,
-  PageScrollInstance,
-  PageScrollService
-} from 'ng2-page-scroll';
-import { DOCUMENT } from '@angular/common';
 import { Analytics } from './docs/api-docs/analytics/analytics';
 
 PageScrollConfig.defaultDuration = 11;
@@ -32,18 +23,15 @@ export class AppComponent implements AfterContentInit {
     private router: Router,
     private pageScrollService: PageScrollService,
     private urlSerializer: UrlSerializer,
-    private _analytics: Analytics,
+    private analytics: Analytics,
     @Inject(DOCUMENT) private document: any
   ) {}
 
   // almost same logic exists in top-menu component
   ngAfterContentInit(): any {
-    this._analytics.trackPageViews();
+    this.analytics.trackPageViews();
     const getUrl = (router: Router) =>
-      router.routerState.snapshot.url.slice(
-        0,
-        router.routerState.snapshot.url.indexOf('#')
-      );
+      router.routerState.snapshot.url.slice(0, router.routerState.snapshot.url.indexOf('#'));
     let _prev = getUrl(this.router);
     const justDoIt = (event: any): void => {
       const _cur = getUrl(this.router);
