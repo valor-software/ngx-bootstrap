@@ -2085,7 +2085,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code> li </code>  </p>\n"
       },
       {
         "name": "previousText",
@@ -2177,7 +2177,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code> li </code>  </p>\n"
       },
       {
         "name": "previousText",
