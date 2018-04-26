@@ -805,7 +805,7 @@ export const ngdoc: any = {
         "type": "BsDatepickerViewMode",
         "description": "<p> Defaut minimum view mode : day, month, or year</p>\n"
       },
-      }
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
