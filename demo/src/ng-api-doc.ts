@@ -151,13 +151,13 @@ export const ngdoc: any = {
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
-        "type": "any",
+        "type": "boolean",
         "description": "<p>Falsy value, will be set to ngModel </p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
-        "type": "any",
+        "type": "boolean",
         "description": "<p>Truthy value, will be set to ngModel </p>\n"
       }
     ],
