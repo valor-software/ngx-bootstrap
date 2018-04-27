@@ -40,7 +40,7 @@ export class BsModalService {
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  private lastDismissReason = '';
+  private lastDismissReason: any = null;
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
@@ -115,12 +115,14 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
+      .show({ content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this, id: this.config.id });
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
       setTimeout(() => modalContainerRef.instance.hide(), duration);
     };
+    bsModalRef.id = modalContainerRef.instance.config.id;
+
     bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;
@@ -132,7 +134,7 @@ export class BsModalService {
   _hideModal(level: number): void {
     const modalLoader = this.loaders[level - 1];
     if (modalLoader) {
-      modalLoader.hide();
+      modalLoader.hide(this.config.id);
     }
   }
 
@@ -174,6 +176,10 @@ export class BsModalService {
     }
   }
 
+  private getModalIdObject(): { id: number } {
+    return { id: this.config.id };
+  }
+
   private resetScrollbar(): void {
     document.body.style.paddingRight = `${this.originalBodyPadding}px`;
   }
@@ -213,8 +219,8 @@ export class BsModalService {
 
   // tslint:disable-next-line:no-any
   private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
-    from.subscribe(() => {
-      to.emit(this.lastDismissReason);
+    from.subscribe((data: any) => {
+      to.emit(this.lastDismissReason || data);
     });
   }
 }

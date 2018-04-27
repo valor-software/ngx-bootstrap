@@ -4,6 +4,10 @@ import { ClassName, DismissReasons, Selector, TransitionDurations } from './mode
 @Injectable()
 export class ModalOptions {
   /**
+   *  Allow user to ID for the modal. Otherwise, a unique number will be given
+   */
+  id? : number;
+  /**
    *  Includes a modal-backdrop element. Alternatively,
    *  specify static for a backdrop which doesn't close the modal on click.
    */
@@ -36,8 +40,8 @@ export class ModalOptions {
   initialState?: Object;
 }
 
-
 export const modalConfigDefaults: ModalOptions = {
+  id: (new Date()).getUTCMilliseconds(),
   backdrop: true,
   keyboard: true,
   focus: true,
