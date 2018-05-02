@@ -108,8 +108,12 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   // todo: consider preventing default and stopping propagation
-  @HostListener('window:keydown.esc', ['$event'])
+  @HostListener('keydown.esc', ['$event'])
   onEsc(event: any): void {
+    if (!this._isShown) {
+      return;
+    }
+
     if (event.keyCode === 27) {
       event.preventDefault();
     }
@@ -231,6 +235,11 @@ export class ModalDirective implements OnDestroy, OnInit {
       this._element.nativeElement,
       'aria-hidden',
       'false'
+    );
+    this._renderer.setAttribute(
+      this._element.nativeElement,
+      'aria-modal',
+      'true'
     );
     this._renderer.setStyle(
       this._element.nativeElement,

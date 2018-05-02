@@ -533,9 +533,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const buttonsHidden = fixture.nativeElement.querySelector('a.btn');
-        expect(buttonsHidden.parentElement.parentElement.className).toContain(
-          'hidden'
-        );
+        expect(buttonsHidden.parentElement.parentElement.hasAttribute('hidden')).toEqual(true)
       });
     });
   });

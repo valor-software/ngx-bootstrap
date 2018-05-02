@@ -27,7 +27,8 @@ import { isBs3 } from '../utils/theme-provider';
   host: {
     class: 'modal',
     role: 'dialog',
-    tabindex: '-1'
+    tabindex: '-1',
+    '[attr.aria-modal]': 'true'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
@@ -90,6 +91,10 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown.esc', ['$event'])
   onEsc(event: any): void {
+    if (!this.isShown) {
+      return;
+    }
+
     if (event.keyCode === 27) {
       event.preventDefault();
     }

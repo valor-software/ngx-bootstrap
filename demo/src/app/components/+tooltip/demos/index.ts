@@ -11,11 +11,13 @@ import { DemoTooltipTriggersManualComponent } from './triggers-manual/triggers-m
 import { DemoTooltipDynamicHtmlComponent } from './dynamic-html/dynamic-html';
 import { DemoTooltipClassComponent } from './class/class';
 import { DemoTooltipDelayComponent } from './delay/delay';
+import { DemoTooltipCustomContentComponent } from './custom-content/custom-content';
 
 export const DEMO_COMPONENTS = [
   DemoTooltipBasicComponent,
   DemoTooltipPlacementComponent,
   DemoTooltipDismissComponent,
+  DemoTooltipCustomContentComponent,
   DemoTooltipDynamicComponent,
   DemoTooltipDynamicHtmlComponent,
   DemoTooltipContainerComponent,
