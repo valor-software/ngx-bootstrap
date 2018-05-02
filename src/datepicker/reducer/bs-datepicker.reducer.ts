@@ -141,11 +141,6 @@ export function bsDatepickerReducer(state = initialDatepickerState,
         isDisabled: action.payload
       });
     }
-    case BsDatepickerActions.SET_DATE_CUSTOM_CLASSES: {
-      return Object.assign({}, state, {
-        dateCustomClasses: action.payload
-      });
-    }
 
     default:
       return state;
@@ -281,7 +276,6 @@ function flagReducer(state: BsDatepickerState,
           selectedDate: state.selectedDate,
           selectedRange: state.selectedRange,
           displayMonths: state.displayMonths,
-          dateCustomClasses: state.dateCustomClasses,
           monthIndex
         })
     );

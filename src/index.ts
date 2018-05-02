@@ -55,7 +55,6 @@ export {
   MonthPickerComponent,
   YearPickerComponent,
   BsDatepickerModule,
-  BsDatepickerDateCustomClasses,
   BsDatepickerConfig,
   BsDaterangepickerConfig,
   BsDatepickerInlineConfig,

@@ -54,8 +54,6 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     expect(el).not.toHaveCssClass('select-start');
     expect(el).not.toHaveCssClass('select-end');
     expect(el).not.toHaveCssClass('selected');
-    expect(el).not.toHaveCssClass('custom1');
-    expect(el).not.toHaveCssClass('custom2');
   });
 
   it('should add classes corresponding to day state', () => {
@@ -76,30 +74,5 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     expect(el).toHaveCssClass('select-start');
     expect(el).toHaveCssClass('select-end');
     expect(el).toHaveCssClass('selected');
-    expect(el).not.toHaveCssClass('custom1');
-    expect(el).not.toHaveCssClass('custom2');
-  });
-
-  it('should add custom and state classes corresponding to day state', () => {
-    setDay(fixture, {
-      isDisabled: true,
-      isHovered: true,
-      isOtherMonth: true,
-      isInRange: true,
-      isSelectionStart: true,
-      isSelectionEnd: true,
-      isSelected: true,
-      customClasses: "custom1 custom2"
-    });
-    const el = getDayElement(fixture);
-    expect(el).toHaveCssClass('disabled');
-    expect(el).toHaveCssClass('is-highlighted');
-    expect(el).toHaveCssClass('is-other-month');
-    expect(el).toHaveCssClass('in-range');
-    expect(el).toHaveCssClass('select-start');
-    expect(el).toHaveCssClass('select-end');
-    expect(el).toHaveCssClass('selected');
-    expect(el).toHaveCssClass('custom1');
-    expect(el).toHaveCssClass('custom2');
   });
 });

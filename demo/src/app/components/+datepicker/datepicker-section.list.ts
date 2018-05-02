@@ -18,7 +18,6 @@ import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-even
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
-import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes.component';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -243,14 +242,6 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/triggers/triggers.html'),
         description: `<p>Use different triggers ( for example <code>keydown</code>, <code>mouseenter</code>, <code>dblclick</code> ) to interact with datepicker</p>`,
         outlet: DemoDatepickerTriggersComponent
-      },
-      {
-        title: 'Date custom classes',
-        anchor: 'date-custom-classes',
-        component: require('!!raw-loader?lang=typescript!./demos/date-custom-classes/date-custom-classes.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/date-custom-classes/date-custom-classes.component.html'),
-        description: `<p>Style dates with custom classes</p>`,
-        outlet: DemoDatepickerDateCustomClassesComponent
       }
     ]
   },

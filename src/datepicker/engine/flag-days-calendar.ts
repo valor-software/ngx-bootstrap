@@ -1,8 +1,7 @@
 import {
   DaysCalendarViewModel,
   DayViewModel,
-  WeekViewModel,
-  DatepickerDateCustomClasses
+  WeekViewModel
 } from '../models/index';
 import { isSameDay, isSameMonth } from '../../chronos/utils/date-getters';
 import { isAfter, isBefore } from '../../chronos/utils/date-compare';
@@ -19,7 +18,6 @@ export interface FlagDaysCalendarOptions {
   selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
-  dateCustomClasses: DatepickerDateCustomClasses[];
 }
 
 export function flagDaysCalendar(
@@ -58,13 +56,6 @@ export function flagDaysCalendar(
         isBefore(day.date, options.minDate, 'day') ||
         isAfter(day.date, options.maxDate, 'day');
 
-      const customClasses = options.dateCustomClasses && options.dateCustomClasses
-        .map(dcc => isSameDay(day.date, dcc.date) ? dcc.classes : [])
-        .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
-        .join(' ')
-        || "";
-
-
       // decide update or not
       const newDay = Object.assign({}, day, {
         isOtherMonth,
@@ -73,8 +64,7 @@ export function flagDaysCalendar(
         isSelectionStart,
         isSelectionEnd,
         isInRange,
-        isDisabled,
-        customClasses
+        isDisabled
       });
 
       if (
@@ -83,9 +73,8 @@ export function flagDaysCalendar(
         day.isSelected !== newDay.isSelected ||
         day.isSelectionStart !== newDay.isSelectionStart ||
         day.isSelectionEnd !== newDay.isSelectionEnd ||
-        day.isInRange !== newDay.isInRange ||
         day.isDisabled !== newDay.isDisabled ||
-        day.customClasses !== newDay.customClasses
+        day.isInRange !== newDay.isInRange
       ) {
         week.days[dayIndex] = newDay;
       }
