@@ -11,7 +11,7 @@ export class DropdownsPo extends BaseComponent {
 
   exampleDemosArr = {
     basic: 'demo-dropdown-basic',
-    triggerByTag: 'demo-dropdown-basic-link',
+    triggerByTag: 'demo-dropdown-anchor-trigger',
     splitButton: 'demo-dropdown-split',
     disabledMenu: 'demo-dropdown-disabled'
   };

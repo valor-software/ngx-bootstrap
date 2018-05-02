@@ -1,5 +1,5 @@
 import { DemoDropdownBasicComponent } from './demos/basic/basic';
-import { DemoDropdownBasicLinkComponent } from './demos/basic/basic-link';
+import { DemoDropdownAnchorTriggerComponent } from './demos/anchor-trigger/anchor-trigger';
 import { DemoDropdownSplitComponent } from './demos/split/split';
 import { DemoDropdownTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDropdownByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
@@ -57,10 +57,10 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Trigger by tag <a>',
-        anchor: 'link-button',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic-link.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic-link.html'),
-        outlet: DemoDropdownBasicLinkComponent
+        anchor: 'anchor-trigger',
+        component: require('!!raw-loader?lang=typescript!./demos/anchor-trigger/anchor-trigger.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/anchor-trigger/anchor-trigger.html'),
+        outlet: DemoDropdownAnchorTriggerComponent
       },
       {
         title: 'Split button dropdowns',
