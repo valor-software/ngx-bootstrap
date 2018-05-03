@@ -225,7 +225,7 @@ export class ComponentLoader<T> {
     if (this._contentRef.componentRef) {
       this._contentRef.componentRef.destroy();
     }
-    this._componentRef.destroy();
+    
     if (this._viewContainerRef && this._contentRef.viewRef) {
       this._viewContainerRef.remove(
         this._viewContainerRef.indexOf(this._contentRef.viewRef)

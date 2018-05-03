@@ -67,15 +67,15 @@ export class BsModalService {
     return this._showModal(content);
   }
 
-  hide(level: number) {
-    if (this.modalsCount === 1) {
+  hide(id?: number) {
+    if (this.modalsCount === 1 || id == null) {
       this._hideBackdrop();
       this.resetScrollbar();
     }
-    this.modalsCount = this.modalsCount >= 1 ? this.modalsCount - 1 : 0;
+    this.modalsCount = this.modalsCount >= 1 && id != null ? this.modalsCount - 1 : 0;
     setTimeout(() => {
-      this._hideModal(level);
-      this.removeLoaders(level);
+      this._hideModal(id);
+      this.removeLoaders(id);
     }, this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0);
   }
 
@@ -131,10 +131,19 @@ export class BsModalService {
     return bsModalRef;
   }
 
-  _hideModal(level: number): void {
-    const modalLoader = this.loaders[level - 1];
-    if (modalLoader) {
-      modalLoader.hide(this.config.id);
+  _hideModal(id?: number): void {
+    if (id != null) {
+      let indexToRemove = this.loaders.findIndex((loader) => loader.instance.config.id == id);
+      const modalLoader = this.loaders[indexToRemove];
+      if (modalLoader) {
+        modalLoader.hide(id);
+      }
+    } else {
+      this.loaders.forEach(
+        (loader: ComponentLoader<ModalContainerComponent>) => {
+          loader.hide(loader.instance.config.id);
+        }
+      );
     }
   }
 
@@ -147,6 +156,7 @@ export class BsModalService {
   }
 
   removeBackdrop(): void {
+    this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
     this._backdropLoader.hide();
     this.backdropRef = null;
   }
@@ -162,7 +172,7 @@ export class BsModalService {
     if (!document) {
       return;
     }
-
+    
     this.originalBodyPadding = parseInt(
       window
         .getComputedStyle(document.body)
@@ -208,13 +218,20 @@ export class BsModalService {
     this.loaders.push(loader);
   }
 
-  private removeLoaders(level: number): void {
-    this.loaders.splice(level - 1, 1);
-    this.loaders.forEach(
-      (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
-        loader.instance.level = i + 1;
+  private removeLoaders(id?: number): void {
+    if (id != null) {
+      let indexToRemove = this.loaders.findIndex((loader) => loader.instance.config.id == id);
+      if (indexToRemove >= 0) {
+        this.loaders.splice(indexToRemove, 1);
+        this.loaders.forEach(
+          (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
+            loader.instance.level = i + 1;
+          }
+        );
       }
-    );
+    } else {
+      this.loaders.splice(0, this.loaders.length);
+    }
   }
 
   // tslint:disable-next-line:no-any

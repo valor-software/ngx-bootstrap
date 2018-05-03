@@ -2243,6 +2243,11 @@ export const ngdoc: any = {
         "defaultValue": "Function",
         "type": "(newClass: string) => void",
         "description": "<p>Sets new class to modal window</p>\n"
+      },
+      {
+        "name": "id",
+        "type": "number",
+        "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       }
     ]
   },
@@ -2315,6 +2320,11 @@ export const ngdoc: any = {
         "name": "class",
         "type": "string",
         "description": "<p>Css class for opened modal</p>\n"
+      },
+      {
+        "name": "id",
+        "type": "number",
+        "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
         "name": "ignoreBackdropClick",
