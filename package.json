@@ -75,7 +75,7 @@
     "rxjs": ">=5.4.3"
   },
   "devDependencies": {
-    "@angular-devkit/core": "0.0.28",
+    "@angular-devkit/core": "0.6.0",
     "@angular-devkit/schematics": "0.0.51",
     "@angular/animations": "4.3.6",
     "@angular/cli": "1.7.2",
