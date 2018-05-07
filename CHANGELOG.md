@@ -1,3 +1,26 @@
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.4...v2.0.5) (2018-05-07)
+
+
+### Bug Fixes
+
+* **chronos:** ro locale updated to momenjs etalon ([2634e8f](https://github.com/valor-software/ngx-bootstrap/commit/2634e8f))
+* **chronos:** updated fi locale tests ([ae01bb0](https://github.com/valor-software/ngx-bootstrap/commit/ae01bb0))
+* **demo:** fix api references for pagination component ([#4303](https://github.com/valor-software/ngx-bootstrap/issues/4303)) ([edc7b95](https://github.com/valor-software/ngx-bootstrap/commit/edc7b95))
+
+
+### Features
+
+* **buttons:** add aria-attributes ([#4082](https://github.com/valor-software/ngx-bootstrap/issues/4082)) ([49ee88e](https://github.com/valor-software/ngx-bootstrap/commit/49ee88e)), closes [#4068](https://github.com/valor-software/ngx-bootstrap/issues/4068)
+* **datepicker:** add Romanian locale to date picker ([#4205](https://github.com/valor-software/ngx-bootstrap/issues/4205)) ([6a95b76](https://github.com/valor-software/ngx-bootstrap/commit/6a95b76))
+* **datepicker:** Added Slovenian locale support for datepicker ([#4035](https://github.com/valor-software/ngx-bootstrap/issues/4035)) ([6e2e60f](https://github.com/valor-software/ngx-bootstrap/commit/6e2e60f))
+* **locale:** Galician locale ([#4246](https://github.com/valor-software/ngx-bootstrap/issues/4246)) ([08e3f56](https://github.com/valor-software/ngx-bootstrap/commit/08e3f56))
+* **locale:** Mongolian locale ([#4161](https://github.com/valor-software/ngx-bootstrap/issues/4161)) ([91ffd36](https://github.com/valor-software/ngx-bootstrap/commit/91ffd36))
+* **sortable:** add aria attributes ([#4163](https://github.com/valor-software/ngx-bootstrap/issues/4163)) ([00a331a](https://github.com/valor-software/ngx-bootstrap/commit/00a331a)), closes [#4152](https://github.com/valor-software/ngx-bootstrap/issues/4152)
+* **timepicker:** hide arrows with [hidden] attribute ([#4197](https://github.com/valor-software/ngx-bootstrap/issues/4197)) ([190e2db](https://github.com/valor-software/ngx-bootstrap/commit/190e2db))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.3...v2.0.4) (2018-04-16)
 
