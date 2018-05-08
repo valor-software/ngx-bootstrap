@@ -57,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'custom-meridian',
         component: require('!!raw-loader?lang=typescript!./demos/custom-meridian/custom-meridian'),
         html: require('!!raw-loader?lang=markup!./demos/custom-meridian/custom-meridian.html'),
+        description: `<p>Text in meridian labels can be customized by using <code>meridians</code> input property</p>`,
         outlet: DemoTimepickerCustomMeridianComponent
       },
       {
@@ -102,13 +103,12 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTimepickerCustomValidationComponent
       },
       {
-        title: 'IsValid',
+        title: 'Custom validation with isValid event',
         anchor: 'isvalid',
         component: require('!!raw-loader?lang=typescript!./demos/isvalid/isvalid'),
         html: require('!!raw-loader?lang=markup!./demos/isvalid/isvalid.html'),
-        description: `
-        <p>isValid event emits true if a value is a valid date. Enter an invalid date to see the error</p>
-        `,
+        description: `<p><code>isValid</code> event emits true if a value is a valid data.
+            Enter an invalid data to see error</p>`,
         outlet: DemoTimepickerIsValidComponent
       },
       {

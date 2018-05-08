@@ -10,11 +10,10 @@ export class DemoDatepickerChangeLocaleComponent {
   locale = 'en';
   locales = listLocales();
 
-  constructor(private _localeService: BsLocaleService) {
-  }
+  constructor(private localeService: BsLocaleService) {}
 
   applyLocale(pop: any) {
-    this._localeService.use(this.locale);
+    this.localeService.use(this.locale);
     pop.hide();
     pop.show();
   }

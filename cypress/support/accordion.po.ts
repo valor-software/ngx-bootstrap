@@ -9,9 +9,12 @@ export class AccordionPo extends BaseComponent {
   disabledPanelText = '.text-muted';
   panelCard = '.card';
   panelBody = '.panel-body';
+  accordionHeading = '[accordion-heading]';
 
   exampleDemosArr = {
     basic: 'demo-accordion-basic',
+    openEvent: 'demo-accordion-open-event',
+    customHtml: 'demo-accordion-custom-html',
     disabled: 'demo-accordion-disabled',
     initiallyOpened: 'demo-accordion-opened',
     dynamicAccGroup: 'demo-accordion-dynamic',

@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
-import { Http } from '@angular/http';
 import { NavigationEnd, Router } from '@angular/router';
+<<<<<<< HEAD
 import { map } from 'rxjs/operators';
+=======
+>>>>>>> upstream/development
 
 @Component({
   selector: 'top-menu',
@@ -15,16 +18,14 @@ export class TopMenuComponent implements AfterViewInit {
   isLocalhost = false;
   needPrefix = false;
 
-  constructor(
-    private router: Router,
-    private http: Http
-  ) { }
+  constructor(private router: Router, private http: HttpClient) {}
 
   ngAfterViewInit(): any {
     // todo: remove this sh**
     if (typeof window !== 'undefined') {
       this.isLocalhost = location.hostname === 'localhost';
       this.needPrefix = location.pathname !== '/';
+<<<<<<< HEAD
       this.appUrl =
         location.protocol +
         '//' +
@@ -46,6 +47,15 @@ export class TopMenuComponent implements AfterViewInit {
         .subscribe((data: any) => {
           this.currentVersion = data.version;
         });
+=======
+      this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
+      this.http.get<any>('assets/json/versions.json').subscribe(data => {
+        this.previousDocs = data;
+      });
+      this.http.get<{ version: string }>('assets/json/current-version.json').subscribe(data => {
+        this.currentVersion = data.version;
+      });
+>>>>>>> upstream/development
     }
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');

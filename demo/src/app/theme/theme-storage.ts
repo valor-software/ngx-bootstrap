@@ -1,5 +1,4 @@
 // Copyright (c) 2017 Google, Inc.
-
 import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable()
