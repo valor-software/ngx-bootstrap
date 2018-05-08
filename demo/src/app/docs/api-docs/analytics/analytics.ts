@@ -35,23 +35,11 @@ export class Analytics {
     if (!this.enabled) {
       return;
     }
-<<<<<<< HEAD
-    this._router.events
-      .pipe(
-        filter((event: any) => event instanceof NavigationEnd)
-      )
-      .subscribe(() => {
-        if (typeof ga !== 'undefined') {
-          ga('send', { hitType: 'pageview', page: this._location.path() });
-        }
-      });
-=======
-    this.router.events.filter((event: any) => event instanceof NavigationEnd).subscribe(() => {
+    this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe(() => {
       if (typeof ga !== 'undefined') {
         ga('send', { hitType: 'pageview', page: this.location.path() });
       }
     });
->>>>>>> upstream/development
   }
 
   /**

@@ -1,10 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-<<<<<<< HEAD
-import { map } from 'rxjs/operators';
-=======
->>>>>>> upstream/development
 
 @Component({
   selector: 'top-menu',
@@ -25,29 +21,7 @@ export class TopMenuComponent implements AfterViewInit {
     if (typeof window !== 'undefined') {
       this.isLocalhost = location.hostname === 'localhost';
       this.needPrefix = location.pathname !== '/';
-<<<<<<< HEAD
-      this.appUrl =
-        location.protocol +
-        '//' +
-        location.hostname +
-        (this.isLocalhost ? ':' + location.port + '/' : '/');
-      this.http
-        .get('assets/json/versions.json')
-        .pipe(
-          map(res => res.json())
-        )
-        .subscribe((data: any) => {
-          this.previousDocs = data;
-        });
-      this.http
-        .get('assets/json/current-version.json')
-        .pipe(
-          map(res => res.json())
-        )
-        .subscribe((data: any) => {
-          this.currentVersion = data.version;
-        });
-=======
+
       this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
       this.http.get<any>('assets/json/versions.json').subscribe(data => {
         this.previousDocs = data;
@@ -55,7 +29,6 @@ export class TopMenuComponent implements AfterViewInit {
       this.http.get<{ version: string }>('assets/json/current-version.json').subscribe(data => {
         this.currentVersion = data.version;
       });
->>>>>>> upstream/development
     }
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');
