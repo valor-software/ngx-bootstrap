@@ -18,7 +18,7 @@ import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
 import { Subscription } from 'rxjs/Subscription';
 import { BsLocaleService } from '../bs-locale.service';
-import { filter, map } from 'rxjs/operators';
+import { filter, map } from 'rxjs';
 
 @Injectable()
 export class BsDatepickerEffects {

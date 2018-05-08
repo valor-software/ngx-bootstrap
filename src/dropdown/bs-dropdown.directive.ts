@@ -3,7 +3,7 @@ import {
   Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
   OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { filter } from 'rxjs';
 import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 

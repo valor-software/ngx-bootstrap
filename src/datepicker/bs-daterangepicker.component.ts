@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { filter } from 'rxjs/operators';
+import { filter } from 'rxjs';
 
 @Directive({
   selector: '[bsDaterangepicker]',

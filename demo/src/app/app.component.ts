@@ -5,7 +5,7 @@ import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ng2-pag
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { Analytics } from './docs/api-docs/analytics/analytics';
-import { filter } from 'rxjs/operators';
+import { filter } from 'rxjs';
 
 PageScrollConfig.defaultDuration = 11;
 PageScrollConfig.defaultScrollOffset = 70;

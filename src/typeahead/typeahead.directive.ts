@@ -21,8 +21,7 @@ import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/ind
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
-import 'rxjs/add/observable/from';
+import { debounceTime, filter, mergeMap, switchMap, toArray, from } from 'rxjs';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -356,7 +355,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
           mergeMap((value: string) => {
             const normalizedQuery = this.normalizeQuery(value);
 
-            return Observable.from(this.typeahead)
+            return from(this.typeahead)
               .pipe(
                 filter((option: any) => {
                   return (
