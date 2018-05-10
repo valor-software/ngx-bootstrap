@@ -5,6 +5,7 @@ import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ng2-pag
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { Analytics } from './docs/api-docs/analytics/analytics';
+import { filter } from 'rxjs';
 
 PageScrollConfig.defaultDuration = 11;
 PageScrollConfig.defaultScrollOffset = 70;
@@ -53,7 +54,9 @@ export class AppComponent implements AfterContentInit {
     };
 
     this.router.events
-      .filter(event => event instanceof NavigationEnd)
+      .pipe(
+        filter(event => event instanceof NavigationEnd)
+      )
       .subscribe((event: any) => setTimeout(() => justDoIt(event), 50));
   }
 }

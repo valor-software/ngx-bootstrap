@@ -21,6 +21,7 @@ export class TopMenuComponent implements AfterViewInit {
     if (typeof window !== 'undefined') {
       this.isLocalhost = location.hostname === 'localhost';
       this.needPrefix = location.pathname !== '/';
+
       this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
       this.http.get<any>('assets/json/versions.json').subscribe(data => {
         this.previousDocs = data;

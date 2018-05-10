@@ -32,7 +32,7 @@ import {
   isSecondInputValid,
   isInputLimitValid
 } from './timepicker.utils';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,

@@ -3,7 +3,6 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
-  Input,
   OnDestroy
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';

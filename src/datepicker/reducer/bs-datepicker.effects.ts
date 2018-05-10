@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { getFullYear, getMonth } from '../../chronos/utils/date-getters';
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
@@ -20,6 +18,7 @@ import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
 import { Subscription } from 'rxjs/Subscription';
 import { BsLocaleService } from '../bs-locale.service';
+import { filter, map } from 'rxjs';
 
 @Injectable()
 export class BsDatepickerEffects {
@@ -81,23 +80,31 @@ export class BsDatepickerEffects {
   setBindings(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.daysCalendar = this._store
       .select(state => state.flaggedMonths)
-      .filter(months => !!months);
+      .pipe(
+        filter(months => !!months)
+      );
 
     // month calendar
     container.monthsCalendar = this._store
       .select(state => state.flaggedMonthsCalendar)
-      .filter(months => !!months);
+      .pipe(
+        filter(months => !!months)
+      );
 
     // year calendar
     container.yearsCalendar = this._store
       .select(state => state.yearsCalendarFlagged)
-      .filter(years => !!years);
+      .pipe(
+        filter(years => !!years)
+      );
 
     container.viewMode = this._store.select(state => state.view.mode);
 
     container.options = this._store
       .select(state => state.showWeekNumbers)
-      .map(showWeekNumbers => ({showWeekNumbers}));
+      .pipe(
+        map(showWeekNumbers => ({showWeekNumbers}))
+      );
 
     return this;
   }
@@ -176,7 +183,9 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._store
         .select(state => state.monthsModel)
-        .filter(monthModel => !!monthModel)
+        .pipe(
+          filter(monthModel => !!monthModel)
+        )
         .subscribe(month => this._store.dispatch(this._actions.format()))
     );
 
@@ -184,7 +193,9 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._store
         .select(state => state.formattedMonths)
-        .filter(month => !!month)
+        .pipe(
+          filter(month => !!month)
+        )
         .subscribe(month => this._store.dispatch(this._actions.flag()))
     );
 
@@ -192,7 +203,9 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._store
         .select(state => state.selectedDate)
-        .filter(selectedDate => !!selectedDate)
+        .pipe(
+          filter(selectedDate => !!selectedDate)
+        )
         .subscribe(selectedDate => this._store.dispatch(this._actions.flag()))
     );
 
@@ -200,7 +213,9 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._store
         .select(state => state.selectedRange)
-        .filter(selectedRange => !!selectedRange)
+        .pipe(
+          filter(selectedRange => !!selectedRange)
+        )
         .subscribe(selectedRange => this._store.dispatch(this._actions.flag()))
     );
 
@@ -215,7 +230,9 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._store
         .select(state => state.yearsCalendarModel)
-        .filter(state => !!state)
+        .pipe(
+          filter(state => !!state)
+        )
         .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
@@ -223,7 +240,9 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._store
         .select(state => state.hoveredDate)
-        .filter(hoveredDate => !!hoveredDate)
+        .pipe(
+          filter(hoveredDate => !!hoveredDate)
+        )
         .subscribe(hoveredDate => this._store.dispatch(this._actions.flag()))
     );
 
@@ -231,7 +250,7 @@ export class BsDatepickerEffects {
     this._subs.push(
       this._localeService.localeChange
         .subscribe(locale => this._store.dispatch(this._actions.setLocale(locale)))
-    )
+    );
 
     return this;
   }
