@@ -47,7 +47,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore],
   templateUrl: './timepicker.component.html',
   styles: [`
-    .bs-chevron{
+    .bs-chevron {
       border-style: solid;
       display: block;
       width: 9px;
@@ -55,17 +55,20 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
       position: relative;
       border-width: 3px 0px 0 3px;
     }
-    .bs-chevron-up{
+
+    .bs-chevron-up {
       -webkit-transform: rotate(45deg);
       transform: rotate(45deg);
       top: 2px;
     }
-    .bs-chevron-down{
+
+    .bs-chevron-down {
       -webkit-transform: rotate(-135deg);
       transform: rotate(-135deg);
       top: -2px;
     }
-    .bs-timepicker-field{
+
+    .bs-timepicker-field {
       width: 50px;
     }
   `],
@@ -154,21 +157,25 @@ export class TimepickerComponent
   ) {
     Object.assign(this, _config);
 
-    this.timepickerSub = _store.select(state => state.value).subscribe(value => {
-      // update UI values if date changed
-      this._renderTime(value);
-      this.onChange(value);
+    this.timepickerSub = _store
+      .select(state => state.value)
+      .subscribe((value: Date) => {
+        // update UI values if date changed
+        this._renderTime(value);
+        this.onChange(value);
 
-      this._store.dispatch(
-        this._timepickerActions.updateControls(getControlsValue(this))
-      );
-    });
+        this._store.dispatch(
+          this._timepickerActions.updateControls(getControlsValue(this))
+        );
+      });
 
-    _store.select(state => state.controls).subscribe(controlsState => {
-      this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
-      Object.assign(this, controlsState);
-      _cd.markForCheck();
-    });
+    _store
+      .select(state => state.controls)
+      .subscribe((controlsState: TimepickerControls) => {
+        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
+        Object.assign(this, controlsState);
+        _cd.markForCheck();
+      });
   }
 
   resetValidation(): void {

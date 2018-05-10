@@ -225,7 +225,7 @@ describe('locale: cs', () => {
     assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'včera v 12:00', 'yesterday at the same time');
   });
 
-  xit('calendar next week', function () {
+  it('calendar next week', function () {
     var i, m, nextDay;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
@@ -261,7 +261,7 @@ describe('locale: cs', () => {
     }
   });
 
-  xit('calendar last week', function () {
+  it('calendar last week', function () {
     var i, m, lastDay;
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });

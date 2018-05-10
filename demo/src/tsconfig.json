@@ -1,25 +1,28 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "declaration": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "noEmitHelpers" :true,
-    "lib": ["es6", "dom"],
+    "outDir": "../temp/out-tsc",
+    "module": "es2015",
     "types": [
-      "jasmine",
       "webpack"
     ],
-    "mapRoot": "./",
-    "module": "es6",
-    "moduleResolution": "node",
-    "outDir": "../temp/out-tsc",
-    "sourceMap": true,
-    "target": "es5",
-    "typeRoots": [
-      "../node_modules/@types"
-    ]
+
+//    "declaration": false,
+//    "emitDecoratorMetadata": true,
+//    "experimentalDecorators": true,
+//    "noEmitHelpers" :true,
+//    "lib": ["es6", "dom"],
+//    "mapRoot": "./",
+//
+//    "moduleResolution": "node",
+//    "sourceMap": true,
+//    "target": "es5",
+//    "typeRoots": [
+//      "../node_modules/@types"
+//    ]
   },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true
-  }
+  "exclude": [
+    "src/test.ts",
+    "**/*.spec.ts"
+  ]
 }

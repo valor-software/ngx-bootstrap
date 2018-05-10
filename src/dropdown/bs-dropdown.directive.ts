@@ -1,10 +1,18 @@
 // tslint:disable:max-file-line-count
 import {
-  Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
-  OnInit, Output, Renderer2, ViewContainerRef
+  Directive,
+  ElementRef,
+  EmbeddedViewRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewContainerRef
 } from '@angular/core';
-import { filter } from 'rxjs';
-import { Subscription } from 'rxjs/Subscription';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 
 import { BsDropdownConfig } from './bs-dropdown.config';

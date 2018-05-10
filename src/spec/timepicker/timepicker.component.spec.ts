@@ -52,24 +52,25 @@ describe('Component: TimepickerComponent', () => {
     });
   });
 
-  describe('default configuration', () => {
+  describe('by default', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
       fixture.detectChanges();
 
-      component = fixture.componentInstance;
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
       buttonChanges = getElements(fixture, 'a.btn');
       buttonMeridian = getElements(fixture, 'button');
     });
 
-    it('should seconds fields is not display', () => {
+    it('hours and minutes fields should be visible', () => {
       expect(inputHours).toBeTruthy();
       expect(inputMinutes).toBeTruthy();
     });
 
-    it('should seconds fields is not display', () => {
+    it('seconds input should be hidden', () => {
       expect(inputSeconds).toBeFalsy();
     });
 
@@ -285,14 +286,14 @@ describe('Component: TimepickerComponent', () => {
   describe('hide minutes fields with property of showMinutes', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
-      fixture.detectChanges();
       component = fixture.componentInstance;
+      component.showMinutes = false;
+
+      fixture.detectChanges();
       inputMinutes = getInputElements(fixture)[1];
     });
     it('should hide minutes field when property showMinutes is == false', () => {
-      component.showMinutes = false;
-      fixture.detectChanges();
-      expect(inputSeconds).toBeFalsy();
+      expect(inputMinutes).toBeFalsy();
     });
   });
 
@@ -541,9 +542,10 @@ describe('Component: TimepickerComponent', () => {
   describe('validate mousewheel', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      component.showSeconds = true;
       fixture.detectChanges();
 
-      component = fixture.componentInstance;
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
       inputSeconds = getInputElements(fixture)[2];
@@ -601,18 +603,13 @@ describe('Component: TimepickerComponent', () => {
       component.secondsStep = 3;
 
       component.writeValue(testTime(6, 30, 30));
-
       fixture.detectChanges();
+
+      const wheelEvent = {deltaY: -1, preventDefault: () => Function.prototype};
+      inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
+      fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        inputDebugSeconds = getDebugElements(fixture, 'input')[2];
-
-        const wheelEvent = {deltaY: -1, preventDefault: () => Function.prototype};
-        inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
-
-        fixture.detectChanges();
-
-        inputSeconds = getInputElements(fixture)[2];
-
         expect(inputSeconds.value).toEqual('33');
         expect(methodSpy).toHaveBeenCalledWith(
           component.secondsStep * component.wheelSign(wheelEvent),
@@ -669,18 +666,13 @@ describe('Component: TimepickerComponent', () => {
       component.showSeconds = true;
 
       component.writeValue(testTime(6, 30, 30));
-
       fixture.detectChanges();
+
+      const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
+      inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
+      fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        inputSeconds = getInputElements(fixture)[2];
-        inputDebugSeconds = getDebugElements(fixture, 'input')[2];
-
-        const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
-
-        inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
-
-        fixture.detectChanges();
-
         expect(inputSeconds.value).toEqual('27');
         expect(methodSpy).toHaveBeenCalledWith(
           component.secondsStep * component.wheelSign(wheelEvent),
@@ -735,23 +727,18 @@ describe('Component: TimepickerComponent', () => {
 
     it('should can not change seconds value with the mouse wheel', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
-      component.showSeconds = true;
       component.secondsStep = 3;
       component.mousewheel = false;
 
       component.writeValue(testTime(6, 30, 30));
 
       const wheelEvent = {deltaY: 1, preventDefault: Function.prototype};
-
       fixture.detectChanges();
+
+      inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
+      fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        inputSeconds = getInputElements(fixture)[2];
-        inputDebugSeconds = getDebugElements(fixture, 'input')[2];
-
-        inputDebugSeconds.triggerEventHandler('wheel', wheelEvent);
-
-        fixture.detectChanges();
-
         expect(inputSeconds.value).toEqual('30');
         expect(methodSpy).toHaveBeenCalledWith(
           component.secondsStep * component.wheelSign(wheelEvent),
@@ -764,9 +751,10 @@ describe('Component: TimepickerComponent', () => {
   describe('validate arrowkeys', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      component.showSeconds = true;
       fixture.detectChanges();
 
-      component = fixture.componentInstance;
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
       inputSeconds = getInputElements(fixture)[2];
@@ -809,20 +797,16 @@ describe('Component: TimepickerComponent', () => {
 
     it('should can change seconds value with the arrow keys up', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
-      component.showSeconds = true;
       component.secondsStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
-
       fixture.detectChanges();
+
+      inputDebugSeconds.triggerEventHandler('keydown.ArrowUp', null);
+      fixture.detectChanges();
+
+
       fixture.whenStable().then(() => {
-        inputDebugSeconds = getDebugElements(fixture, 'input')[2];
-
-        inputDebugSeconds.triggerEventHandler('keydown.ArrowUp', null);
-
-        fixture.detectChanges();
-        inputSeconds = getInputElements(fixture)[2];
-
         expect(inputSeconds.value).toEqual('06');
         expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
       });
@@ -862,21 +846,16 @@ describe('Component: TimepickerComponent', () => {
 
     it('should can not change seconds value with the arrow keys down', () => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
-
       component.showSeconds = true;
       component.secondsStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
-
       fixture.detectChanges();
+
+      inputDebugSeconds.triggerEventHandler('keydown.ArrowDown', null);
+      fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        inputDebugSeconds = getDebugElements(fixture, 'input')[2];
-
-        inputDebugSeconds.triggerEventHandler('keydown.ArrowDown', null);
-
-        fixture.detectChanges();
-        inputSeconds = getInputElements(fixture)[2];
-
         expect(inputSeconds.value).toEqual('00');
         expect(methodSpy).toHaveBeenCalledWith(-component.secondsStep, 'key');
       });
@@ -924,16 +903,12 @@ describe('Component: TimepickerComponent', () => {
       component.arrowkeys = false;
 
       component.writeValue(testTime(6, 2, 3));
-
       fixture.detectChanges();
+
+      inputDebugSeconds.triggerEventHandler('keydown.ArrowUp', null);
+      fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        inputDebugSeconds = getDebugElements(fixture, 'input')[2];
-
-        inputDebugSeconds.triggerEventHandler('keydown.ArrowUp', null);
-
-        fixture.detectChanges();
-        inputSeconds = getInputElements(fixture)[2];
-
         expect(inputSeconds.value).toEqual('03');
         expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
       });
@@ -943,9 +918,10 @@ describe('Component: TimepickerComponent', () => {
   describe('custom validate', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      component.showSeconds = true;
       fixture.detectChanges();
 
-      component = fixture.componentInstance;
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
       inputSeconds = getInputElements(fixture)[2];
@@ -957,12 +933,15 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should ignore minutes for validation if showMinutes flag == false', () => {
+      const methodSpy = spyOn(component, 'onChange');
+
       component.showMinutes = false;
-      const methodSpy = spyOn(component, 'onChange').and.callThrough();
+      component.showSeconds = false;
       component.hours = '12';
       component.minutes = '99';
-      component._updateTime();
       fixture.detectChanges();
+
+      component._updateTime();
       expect(methodSpy).not.toHaveBeenCalled();
     });
 
@@ -1088,7 +1067,6 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should valid value in input fields', () => {
-      component.showSeconds = true;
       component.showMeridian = false;
 
       component.writeValue(testTime(11, 25, 45));
@@ -1102,13 +1080,12 @@ describe('Component: TimepickerComponent', () => {
       expect(inputMinutes.value).toBeLessThan(60);
 
       component.writeValue(testTime(22, 25, 45));
-
       fixture.detectChanges();
+
       fixture.whenStable().then(() => {
         expect(inputHours.value).toBeGreaterThan(-1);
         expect(inputHours.value).toBeLessThan(24);
 
-        inputSeconds = getInputElements(fixture)[2];
         expect(inputSeconds.value).toBeGreaterThan(-1);
         expect(inputSeconds.value).toBeLessThan(60);
       });

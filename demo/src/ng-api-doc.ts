@@ -2365,7 +2365,7 @@ export const ngdoc: any = {
       },
       {
         "name": "element",
-        "type": "string | HTMLElement | ElementRef",
+        "type": "string | HTMLElement | ElementRef<any>",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which will be moved </p>\n"
       },
       {
@@ -2375,7 +2375,7 @@ export const ngdoc: any = {
       },
       {
         "name": "target",
-        "type": "string | HTMLElement | ElementRef",
+        "type": "string | HTMLElement | ElementRef<any>",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which the element will be attached to  </p>\n"
       },
       {

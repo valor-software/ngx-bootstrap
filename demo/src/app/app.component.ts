@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
-import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ng2-page-scroll';
+import { PageScrollConfig, PageScrollInstance, PageScrollService } from 'ngx-page-scroll';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { Analytics } from './docs/api-docs/analytics/analytics';
-import { filter } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 PageScrollConfig.defaultDuration = 11;
 PageScrollConfig.defaultScrollOffset = 70;
@@ -44,10 +44,9 @@ export class AppComponent implements AfterContentInit {
 
       const hash = this.route.snapshot.fragment;
       if (hash) {
-        const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleDirectionInstance(
+        const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleInstance(
           this.document,
-          `#${hash}`,
-          true
+          `#${hash}`
         );
         this.pageScrollService.start(pageScrollInstance);
       }

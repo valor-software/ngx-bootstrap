@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subscription } from 'rxjs';
 import { getFullYear, getMonth } from '../../chronos/utils/date-getters';
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
@@ -16,9 +16,8 @@ import {
 } from '../models/index';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
-import { Subscription } from 'rxjs/Subscription';
 import { BsLocaleService } from '../bs-locale.service';
-import { filter, map } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable()
 export class BsDatepickerEffects {
