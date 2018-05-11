@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'demo-dropdown-basic-link',
-  templateUrl: './basic-link.html'
+  selector: 'demo-dropdown-anchor-trigger',
+  templateUrl: './anchor-trigger.html'
 })
-export class DemoDropdownBasicLinkComponent {
+export class DemoDropdownAnchorTriggerComponent {
   items: string[] = [
     'The first choice!',
     'And another choice for you.',

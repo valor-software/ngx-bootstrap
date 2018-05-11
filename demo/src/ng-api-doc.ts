@@ -1802,7 +1802,7 @@ export const ngdoc: any = {
       },
       {
         "name": "toggle",
-        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover. With parameter <code>true</code> allows toggling, with parameter <code>false</code>\nonly hides opened dropdown. Parameter usage will be removed in ngx-bootstrap v3</p>\n",
         "args": [
           {
             "name": "value",
@@ -2177,7 +2177,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code>&lt;li></code></p>\n"
       },
       {
         "name": "previousText",
