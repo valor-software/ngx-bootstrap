@@ -24,5 +24,8 @@
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "preserveWhitespaces": true
+  }
 }
