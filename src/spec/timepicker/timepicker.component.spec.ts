@@ -1,5 +1,5 @@
 // tslint:disable:no-floating-promises
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
@@ -154,7 +154,7 @@ describe('Component: TimepickerComponent', () => {
       expect(inputHours.value).toEqual('10');
     });
 
-    it('should change time period after click on AM/PM button', () => {
+    it('should change time period after click on AM/PM button', fakeAsync(() => {
       expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
 
       buttonDebugMeridian.triggerEventHandler('click', null);
@@ -163,9 +163,9 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
       });
-    });
+    }));
 
-    it('should change time period after click on AM/PM button without readonlyInput', () => {
+    it('should change time period after click on AM/PM button without readonlyInput', fakeAsync(() => {
       component.readonlyInput = false;
       component.showMeridian = false;
 
@@ -177,9 +177,9 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
       });
-    });
+    }));
 
-    it('should change time period after click on AM/PM button with readonlyInput', () => {
+    it('should change time period after click on AM/PM button with readonlyInput', fakeAsync(() => {
       component.readonlyInput = false;
       component.showMeridian = true;
 
@@ -191,7 +191,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
       });
-    });
+    }));
   });
 
   describe('validate input fields with property of showMeridian switch off', () => {
@@ -204,7 +204,7 @@ describe('Component: TimepickerComponent', () => {
       inputHours = getInputElements(fixture)[0];
     });
 
-    it('should not display AM/PM button if showMeridian switch off', () => {
+    it('should not display AM/PM button if showMeridian switch off', fakeAsync(() => {
       expect(buttonMeridian).toBeTruthy();
 
       component.showMeridian = false;
@@ -215,9 +215,9 @@ describe('Component: TimepickerComponent', () => {
         buttonMeridian = getElements(fixture, 'button')[0];
         expect(buttonMeridian).toBeFalsy();
       });
-    });
+    }));
 
-    it('should validate the data in the hours input at time format 24h', () => {
+    it('should validate the data in the hours input at time format 24h', fakeAsync(() => {
       component.showMeridian = false;
 
       component.writeValue(testTime(22));
@@ -226,7 +226,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputHours.value).toBe('22');
       });
-    });
+    }));
   });
 
   describe('validate input fields with property of max', () => {
@@ -306,7 +306,7 @@ describe('Component: TimepickerComponent', () => {
       inputSeconds = getInputElements(fixture)[2];
     });
 
-    it('should display seconds field if showMeridian switch on', () => {
+    it('should display seconds field if showMeridian switch on', fakeAsync(() => {
       component.showSeconds = true;
 
       component.writeValue(testTime());
@@ -319,9 +319,9 @@ describe('Component: TimepickerComponent', () => {
 
         expect(inputSeconds).toBeTruthy();
       });
-    });
+    }));
 
-    it('should validate the data in the seconds input', () => {
+    it('should validate the data in the seconds input', fakeAsync(() => {
       component.showSeconds = true;
 
       component.writeValue(testTime(2, 6, 7));
@@ -334,7 +334,7 @@ describe('Component: TimepickerComponent', () => {
 
         expect(inputSeconds.value).toBe('07');
       });
-    });
+    }));
   });
 
   describe('input fields with property of readonlyInput', () => {
@@ -349,7 +349,7 @@ describe('Component: TimepickerComponent', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    it('should be possible to enter values', () => {
+    it('should be possible to enter values', fakeAsync(() => {
       expect(inputHours.getAttribute('readonly')).toBeFalsy();
       expect(inputMinutes.getAttribute('readonly')).toBeFalsy();
 
@@ -363,13 +363,13 @@ describe('Component: TimepickerComponent', () => {
 
         expect(inputSeconds.getAttribute('readonly')).toBeFalsy();
       });
-    });
+    }));
 
     it('should be display is time change buttons', () => {
       expect(buttonChanges).toBeTruthy();
     });
 
-    it('should be impossible to enter values', () => {
+    it('should be impossible to enter values', fakeAsync(() => {
       component.readonlyInput = true;
       component.showSeconds = true;
 
@@ -384,9 +384,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputMinutes.getAttribute('readonly')).toBe('');
         expect(inputSeconds.getAttribute('readonly')).toBe('');
       });
-    });
+    }));
 
-    it('should disable buttons if readonlyInput is true', () => {
+    it('should disable buttons if readonlyInput is true', fakeAsync(() => {
       expect(buttonChanges).toBeTruthy();
 
       component.readonlyInput = true;
@@ -399,9 +399,9 @@ describe('Component: TimepickerComponent', () => {
 
         expect(buttonsDisabled.className).toContain('disabled');
       });
-    });
+    }));
 
-    it('should disable buttons if disabled is true', () => {
+    it('should disable buttons if disabled is true', fakeAsync(() => {
       expect(buttonChanges).toBeTruthy();
 
       component.disabled = true;
@@ -414,7 +414,7 @@ describe('Component: TimepickerComponent', () => {
 
         expect(buttonsDisabled.className).toContain('disabled');
       });
-    });
+    }));
   });
 
   describe('input fields hour with property of hourStep', () => {
@@ -429,7 +429,7 @@ describe('Component: TimepickerComponent', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    it('should add to the hour input field value, hourStep value increment', () => {
+    it('should add to the hour input field value, hourStep value increment', fakeAsync(() => {
       component.hourStep = 2;
 
       component.writeValue(testTime());
@@ -440,9 +440,9 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputHours.value).toBe('02');
       });
-    });
+    }));
 
-    it('should add to the hour input field value, hourStep value decrement', () => {
+    it('should add to the hour input field value, hourStep value decrement', fakeAsync(() => {
       component.hourStep = 2;
 
       component.writeValue(testTime(6));
@@ -453,9 +453,9 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputHours.value).toBe('04');
       });
-    });
+    }));
 
-    it('should input field value, minuteStep value increment', () => {
+    it('should input field value, minuteStep value increment', fakeAsync(() => {
       component.minuteStep = 12;
 
       component.writeValue(testTime(6, 22));
@@ -466,9 +466,9 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toBe('34');
       });
-    });
+    }));
 
-    it('should input field value, minuteStep value decrement', () => {
+    it('should input field value, minuteStep value decrement', fakeAsync(() => {
       component.minuteStep = 12;
 
       component.writeValue(testTime(6, 22));
@@ -479,9 +479,9 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toBe('10');
       });
-    });
+    }));
 
-    it('should input field value, secondsStep value increment', () => {
+    it('should input field value, secondsStep value increment', fakeAsync(() => {
       component.showSeconds = true;
       component.secondsStep = 10;
 
@@ -497,9 +497,9 @@ describe('Component: TimepickerComponent', () => {
         inputSeconds = getInputElements(fixture)[2];
         expect(inputSeconds.value).toBe('40');
       });
-    });
+    }));
 
-    it('should input field value, secondsStep value decrement', () => {
+    it('should input field value, secondsStep value decrement', fakeAsync(() => {
       component.showSeconds = true;
       component.secondsStep = 10;
 
@@ -514,7 +514,7 @@ describe('Component: TimepickerComponent', () => {
         inputSeconds = getInputElements(fixture)[2];
         expect(inputSeconds.value).toBe('20');
       });
-    });
+    }));
   });
 
   describe('hide change button', () => {
@@ -526,7 +526,7 @@ describe('Component: TimepickerComponent', () => {
       buttonChanges = getElements(fixture, 'a.btn');
     });
 
-    it('should hide change button', () => {
+    it('should hide change button', fakeAsync(() => {
       component.showSpinners = false;
 
       component.writeValue(testTime());
@@ -536,7 +536,7 @@ describe('Component: TimepickerComponent', () => {
         const buttonsHidden = fixture.nativeElement.querySelector('a.btn');
         expect(buttonsHidden.parentElement.parentElement.hasAttribute('hidden')).toEqual(true)
       });
-    });
+    }));
   });
 
   describe('validate mousewheel', () => {
@@ -554,7 +554,7 @@ describe('Component: TimepickerComponent', () => {
       inputDebugSeconds = getDebugElements(fixture, 'input')[2];
     });
 
-    it('should can change hours value with the mouse wheel increment', () => {
+    it('should can change hours value with the mouse wheel increment', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
 
@@ -573,9 +573,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can change minutes value with the mouse wheel increment', () => {
+    it('should can change minutes value with the mouse wheel increment', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
 
@@ -594,9 +594,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can change seconds value with the mouse wheel increment', () => {
+    it('should can change seconds value with the mouse wheel increment', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
 
       component.showSeconds = true;
@@ -616,9 +616,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can change hours value with the mouse wheel decrement', () => {
+    it('should can change hours value with the mouse wheel decrement', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
 
@@ -637,9 +637,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can change minutes value with the mouse wheel decrement', () => {
+    it('should can change minutes value with the mouse wheel decrement', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
 
@@ -658,9 +658,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can change seconds value with the mouse wheel decrement', () => {
+    it('should can change seconds value with the mouse wheel decrement', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.secondsStep = 3;
       component.showSeconds = true;
@@ -679,9 +679,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can not change hours value with the mouse wheel', () => {
+    it('should can not change hours value with the mouse wheel', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
       component.mousewheel = false;
@@ -701,9 +701,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can not change minutes value with the mouse wheel', () => {
+    it('should can not change minutes value with the mouse wheel', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
       component.mousewheel = false;
@@ -723,9 +723,9 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
 
-    it('should can not change seconds value with the mouse wheel', () => {
+    it('should can not change seconds value with the mouse wheel', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.secondsStep = 3;
       component.mousewheel = false;
@@ -745,7 +745,7 @@ describe('Component: TimepickerComponent', () => {
           'wheel'
         );
       });
-    });
+    }));
   });
 
   describe('validate arrowkeys', () => {
@@ -763,7 +763,7 @@ describe('Component: TimepickerComponent', () => {
       inputDebugSeconds = getDebugElements(fixture, 'input')[2];
     });
 
-    it('should can change hours value with the arrow keys up', () => {
+    it('should can change hours value with the arrow keys up', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
 
@@ -777,9 +777,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputHours.value).toEqual('09');
         expect(methodSpy).toHaveBeenCalledWith(component.hourStep, 'key');
       });
-    });
+    }));
 
-    it('should can change minutes value with the arrow keys up', () => {
+    it('should can change minutes value with the arrow keys up', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
 
@@ -793,9 +793,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputMinutes.value).toEqual('05');
         expect(methodSpy).toHaveBeenCalledWith(component.minuteStep, 'key');
       });
-    });
+    }));
 
-    it('should can change seconds value with the arrow keys up', () => {
+    it('should can change seconds value with the arrow keys up', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.secondsStep = 3;
 
@@ -810,9 +810,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputSeconds.value).toEqual('06');
         expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
       });
-    });
+    }));
 
-    it('should can not change hours value with the arrow keys down', () => {
+    it('should can not change hours value with the arrow keys down', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
 
@@ -826,9 +826,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputHours.value).toEqual('03');
         expect(methodSpy).toHaveBeenCalledWith(-component.hourStep, 'key');
       });
-    });
+    }));
 
-    it('should can not change minutes value with the arrow keys down', () => {
+    it('should can not change minutes value with the arrow keys down', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
 
@@ -842,9 +842,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputMinutes.value).toEqual('59');
         expect(methodSpy).toHaveBeenCalledWith(-component.minuteStep, 'key');
       });
-    });
+    }));
 
-    it('should can not change seconds value with the arrow keys down', () => {
+    it('should can not change seconds value with the arrow keys down', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
       component.showSeconds = true;
       component.secondsStep = 3;
@@ -859,9 +859,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputSeconds.value).toEqual('00');
         expect(methodSpy).toHaveBeenCalledWith(-component.secondsStep, 'key');
       });
-    });
+    }));
 
-    it('should can not change hours value with the arrow keys', () => {
+    it('should can not change hours value with the arrow keys', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeHours').and.callThrough();
       component.hourStep = 3;
       component.arrowkeys = false;
@@ -876,9 +876,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputHours.value).toEqual('06');
         expect(methodSpy).toHaveBeenCalledWith(component.hourStep, 'key');
       });
-    });
+    }));
 
-    it('should can not change minutes value with the arrow keys', () => {
+    it('should can not change minutes value with the arrow keys', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
       component.minuteStep = 3;
       component.arrowkeys = false;
@@ -893,9 +893,9 @@ describe('Component: TimepickerComponent', () => {
         expect(inputMinutes.value).toEqual('02');
         expect(methodSpy).toHaveBeenCalledWith(component.minuteStep, 'key');
       });
-    });
+    }));
 
-    it('should can not change seconds value with the arrow keys', () => {
+    it('should can not change seconds value with the arrow keys', fakeAsync(() => {
       const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
 
       component.showSeconds = true;
@@ -912,7 +912,7 @@ describe('Component: TimepickerComponent', () => {
         expect(inputSeconds.value).toEqual('03');
         expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
       });
-    });
+    }));
   });
 
   describe('custom validate', () => {
@@ -1066,7 +1066,7 @@ describe('Component: TimepickerComponent', () => {
       expect(component._updateTime).toHaveBeenCalled();
     });
 
-    it('should valid value in input fields', () => {
+    it('should valid value in input fields', fakeAsync(() => {
       component.showMeridian = false;
 
       component.writeValue(testTime(11, 25, 45));
@@ -1089,6 +1089,6 @@ describe('Component: TimepickerComponent', () => {
         expect(inputSeconds.value).toBeGreaterThan(-1);
         expect(inputSeconds.value).toBeLessThan(60);
       });
-    });
+    }));
   });
 });
