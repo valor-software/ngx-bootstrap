@@ -27,6 +27,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
@@ -77,7 +78,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadPhraseDelimiters = '\'"';
   /** used to enable/disable the selection on TAB Event.   
    */
-  @Input() typeaheadSelectOnTab: boolean = true;
+  @Input() 
+  get selectOnTab(): boolean {
+    return this._selectOnTab;
+  }
+  set selectOnTab(value: boolean) {
+    this._selectOnTab = value;
+  }  
   /** used to specify a custom item template.
    * Template variables exposed are called item and index;
    */
@@ -131,7 +138,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
   protected _matches: TypeaheadMatch[];
-  protected placement = 'bottom-left';
+  protected placement = 'bottom-left';  
+  protected _selectOnTab: boolean;
   // protected popup:ComponentRef<TypeaheadContainerComponent>;
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
@@ -143,12 +151,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               viewContainerRef: ViewContainerRef,
               private renderer: Renderer2,
               cis: ComponentLoaderFactory,
-              private changeDetection: ChangeDetectorRef) {
+              private changeDetection: ChangeDetectorRef,
+              config: TypeaheadConfig) {
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
       renderer
     );
+    Object.assign(this, config);
   }
 
   ngOnInit(): void {
@@ -264,7 +274,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // if an item is visible - don't change focus
     if (e.keyCode === 9) {
       // only select item if selection on TAB is wanted
-      if(this.typeaheadSelectOnTab) {
+      if(this._selectOnTab) {
         e.preventDefault();
         this._container.selectActiveMatch();
       } else {
