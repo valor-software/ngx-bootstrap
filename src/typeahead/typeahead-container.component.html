@@ -3,7 +3,7 @@
              [ngTemplateOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query}"></ng-template>
 
 <!-- default options item template -->
-<ng-template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="hightlight(match, query)"></span>
+<ng-template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="highlight(match, query)"></span>
 </ng-template>
 
 <!-- Bootstrap 3 options list template -->

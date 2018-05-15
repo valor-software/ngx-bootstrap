@@ -135,7 +135,7 @@ export class TypeaheadContainerComponent {
     this._active = value;
   }
 
-  hightlight(match: TypeaheadMatch, query: any): string {
+  highlight(match: TypeaheadMatch, query: any): string {
     let itemStr: string = match.value;
     let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
       ? latinize(itemStr)
