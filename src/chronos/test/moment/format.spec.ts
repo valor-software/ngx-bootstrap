@@ -106,7 +106,7 @@ describe('format', () => {
   });
 
   it('utcOffset sanity checks', function () {
-    assertEq(moment().utcOffset() % 15, 0,
+    assertEq(Math.abs(moment().utcOffset()) % 15, 0,
       'utc offset should be a multiple of 15 (was ' + moment().utcOffset() + ')');
 
     assertEq(moment().utcOffset(), -(new Date()).getTimezoneOffset(),
