@@ -141,7 +141,7 @@
     "rollup-plugin-node-resolve": "3.3.0",
     "rxjs": "6.1.0",
     "ts-helpers": "^1.1.1",
-    "ts-loader": "4.3.0",
+    "ts-loader": "3.5.0",
     "ts-node": "6.0.3",
     "tslint": "5.10.0",
     "tslint-config-valorsoft": "2.1.1",
