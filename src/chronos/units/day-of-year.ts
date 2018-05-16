@@ -34,9 +34,9 @@ addParseToken(['DDD', 'DDDD'],
     return config;
   });
 
-export function getDayOfYear(date: Date): number {
-  const date1 = +startOf(date, 'day');
-  const date2 = +startOf(date, 'year');
+export function getDayOfYear(date: Date, isUTC?: boolean): number {
+  const date1 = +startOf(date, 'day', isUTC);
+  const date2 = +startOf(date, 'year', isUTC);
   const someDate = date1 - date2;
   const oneDay = 1000 * 60 * 60 * 24;
 

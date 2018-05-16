@@ -14,20 +14,13 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/toArray';
 
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
+import { from, Observable, Subscription } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -343,8 +336,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected asyncActions(): void {
     this._subscriptions.push(
       this.keyUpEventEmitter
-        .debounceTime(this.typeaheadWaitMs)
-        .switchMap(() => this.typeahead)
+        .pipe(
+          debounceTime(this.typeaheadWaitMs),
+          switchMap(() => this.typeahead)
+        )
         .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })
@@ -354,19 +349,23 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected syncActions(): void {
     this._subscriptions.push(
       this.keyUpEventEmitter
-        .debounceTime(this.typeaheadWaitMs)
-        .mergeMap((value: string) => {
-          const normalizedQuery = this.normalizeQuery(value);
+        .pipe(
+          debounceTime(this.typeaheadWaitMs),
+          mergeMap((value: string) => {
+            const normalizedQuery = this.normalizeQuery(value);
 
-          return Observable.from(this.typeahead)
-            .filter((option: any) => {
-              return (
-                option &&
-                this.testMatch(this.normalizeOption(option), normalizedQuery)
+            return from(this.typeahead)
+              .pipe(
+                filter((option: any) => {
+                  return (
+                    option &&
+                    this.testMatch(this.normalizeOption(option), normalizedQuery)
+                  );
+                }),
+                toArray()
               );
-            })
-            .toArray();
-        })
+          })
+        )
         .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })

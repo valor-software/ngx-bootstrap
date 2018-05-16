@@ -6,24 +6,23 @@ const customLaunchers = require('./scripts/sauce-browsers').customLaunchers;
 module.exports = function (config) {
   const configuration = {
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
-      require('karma-firefox-launcher'),
+      // require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma'),
-      require('karma-sauce-launcher')
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
-    files: [
-      {pattern: './scripts/test.ts', watched: false}
-    ],
-    preprocessors: {
-      './scripts/test.ts': ['@angular/cli']
-    },
+    // files: [
+    //   {pattern: './scripts/test.ts', watched: false}
+    // ],
+    // preprocessors: {
+    //   './scripts/test.ts': ['@angular-devkit/build-angular']
+    // },
     coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly'],
+      dir: require('path').join(__dirname, 'coverage'), reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
     angularCli: {
@@ -40,7 +39,7 @@ module.exports = function (config) {
     browserNoActivityTimeout: 20000,
     browserDisconnectTolerance: 2,
     browserDisconnectTimeout: 5000,
-    singleRun: false,
+    singleRun: true,
     customLaunchers: {
       Chrome_travis_ci: {
           base: 'ChromeHeadless',

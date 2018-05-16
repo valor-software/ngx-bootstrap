@@ -13,7 +13,7 @@ class TestRatingComponent {
   max = 5;
   rate = 0;
   isReadonly = false;
-  titles: [string] = ['one', 'two', 'three', 'four', 'five'];
+  titles: string[] = ['one', 'two', 'three', 'four', 'five'];
 }
 
 describe('Component: Rating. Init:', () => {

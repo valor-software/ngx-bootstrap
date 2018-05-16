@@ -1,13 +1,24 @@
 import {
-  ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
-  OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
+  ComponentRef,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewContainerRef
 } from '@angular/core';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { filter } from 'rxjs/operators';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -168,7 +179,9 @@ export class BsDaterangepickerDirective
     // if date changes from picker (view -> model)
     this._subs.push(
       this._datepickerRef.instance.valueChange
-        .filter((range: Date[]) => range && range[0] && !!range[1])
+        .pipe(
+          filter((range: Date[]) => range && range[0] && !!range[1])
+        )
         .subscribe((value: Date[]) => {
           this.bsValue = value;
           this.hide();
