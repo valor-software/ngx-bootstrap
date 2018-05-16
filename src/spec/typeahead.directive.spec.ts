@@ -2,12 +2,11 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { fireEvent } from '../../scripts/helpers';
 import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
 import { TypeaheadDirective } from '../typeahead/typeahead.directive';
 import { TypeaheadModule } from '../typeahead/typeahead.module';
-import 'rxjs/add/observable/of';
 
 interface State {
   id: number;
@@ -84,7 +83,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should typeaheadAsync to false, if typeahead is an observable', () => {
-      directive.typeahead = Observable.of(component.states);
+      directive.typeahead = of(component.states);
       directive.ngOnInit();
 
       expect(directive.typeaheadAsync).toBeTruthy();

@@ -1,7 +1,7 @@
 import { DemoDropdownBasicComponent } from './basic/basic';
 import { DemoDropdownSplitComponent } from './split/split';
 import { DemoDropdownContainerComponent } from './container/container';
-import { DemoDropdownBasicLinkComponent } from './basic/basic-link';
+import { DemoDropdownAnchorTriggerComponent } from './anchor-trigger/anchor-trigger';
 import { DemoDropdownKeyboardComponent } from './keyboard/keyboard';
 import { DemoDropdownConfigComponent } from './config/config';
 import { DemoDropdownDropupComponent } from './dropup/dropup';
@@ -16,10 +16,11 @@ import { DemoDropdownStateChangeEventComponent } from './state-change-event/stat
 import { DemoDropdownAutoCloseComponent } from './autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './custom-html/custom-html';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
+import { DemoDropdownByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
 
 export const DEMO_COMPONENTS = [
   DemoDropdownBasicComponent,
-  DemoDropdownBasicLinkComponent,
+  DemoDropdownAnchorTriggerComponent,
   DemoDropdownSplitComponent,
   DemoDropdownContainerComponent,
   DemoDropdownKeyboardComponent,
@@ -27,6 +28,7 @@ export const DEMO_COMPONENTS = [
   DemoDropdownDropupComponent,
   DemoDropdownMenuDividersComponent,
   DemoDropdownTriggersManualComponent,
+  DemoDropdownByIsOpenPropComponent,
   DemoDropdownDisabledComponent,
   DemoDropdownDisabledItemComponent,
   DemoDropdownAlignmentComponent,

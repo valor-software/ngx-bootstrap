@@ -58,8 +58,8 @@ export function setWeek(date: Date, input: number, locale = getLocale()): Date {
   return add(date, (input - week) * 7, 'day');
 }
 
-export function getWeek(date: Date, locale = getLocale()): number {
-  return locale.week(date);
+export function getWeek(date: Date, locale = getLocale(), isUTC?: boolean): number {
+  return locale.week(date, isUTC);
 }
 
 // export function getSetISOWeek (input) {
@@ -73,7 +73,7 @@ export function setISOWeek(date: Date, input: number): Date {
   return add(date, (input - week) * 7, 'day');
 }
 
-export function getISOWeek(date: Date): number {
-  return weekOfYear(date, 1, 4).week;
+export function getISOWeek(date: Date, isUTC?: boolean): number {
+  return weekOfYear(date, 1, 4, isUTC).week;
 }
 

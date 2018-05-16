@@ -1,14 +1,14 @@
 // tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
 // tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
 // tslint:disable:variable-name
-import { assert } from 'chai';
+import { assertEq, assertDeepEq, assertOk } from '../test-helpers';
 import { moment } from '../chain';
 
 xdescribe('calendar', () => {
 
 it('passing a function', function () {
     var a  = moment().hours(13).minutes(0).seconds(0);
-    assert.equal(moment(a).calendar(null, {
+    assertEq(moment(a).calendar(null, {
         sameDay: function () {
             return 'h:mmA';
         }
@@ -49,9 +49,9 @@ it('extending calendar options', function () {
     var a = moment('2016-01-01').add(28, 'days');
     var b = moment('2016-01-01').add(1, 'month');
     try {
-        assert.equal(a.calendar('2016-01-01'), 'This month on the 29th', 'Ad hoc calendar format for this month');
-        assert.equal(b.calendar('2016-01-01'), 'Next month on the 1st', 'Ad hoc calendar format for next month');
-        assert.equal(a.locale('fr').calendar('2016-01-01'), a.locale('fr').format('L'), 'French falls back to default because thisMonth is not defined in that locale');
+        assertEq(a.calendar('2016-01-01'), 'This month on the 29th', 'Ad hoc calendar format for this month');
+        assertEq(b.calendar('2016-01-01'), 'Next month on the 1st', 'Ad hoc calendar format for next month');
+        assertEq(a.locale('fr').calendar('2016-01-01'), a.locale('fr').format('L'), 'French falls back to default because thisMonth is not defined in that locale');
     } finally {
         moment.calendarFormat = calendarFormat;
         moment.updateLocale('en', null);

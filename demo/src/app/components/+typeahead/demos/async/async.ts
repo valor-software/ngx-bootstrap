@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-typeahead-async',
@@ -70,13 +70,16 @@ export class DemoTypeaheadAsyncComponent {
     this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
-    }).mergeMap((token: string) => this.getStatesAsObservable(token));
+    })
+      .pipe(
+        mergeMap((token: string) => this.getStatesAsObservable(token))
+      );
   }
 
   getStatesAsObservable(token: string): Observable<any> {
-    let query = new RegExp(token, 'ig');
+    const query = new RegExp(token, 'ig');
 
-    return Observable.of(
+    return of(
       this.statesComplex.filter((state: any) => {
         return query.test(state.name);
       })
