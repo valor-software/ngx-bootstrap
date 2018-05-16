@@ -7,8 +7,10 @@ import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
 import { DemoTimepickerCustomComponent } from './demos/custom/custom';
 import { DemoTimepickerCustomValidationComponent } from './demos/custom-validation/custom-validation';
 import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
-import { DemoTimepickerMousewheelArrowkeysComponent } from './demos/mousewheel-arrowkeys/mousewheel-arrowkeys';
+import { DemoTimepickerMousewheelComponent } from './demos/mousewheel/mousewheel';
+import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
+import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
 import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -20,6 +22,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoTimepickerIsValidComponent } from './demos/isvalid/isvalid';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -54,6 +57,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'custom-meridian',
         component: require('!!raw-loader?lang=typescript!./demos/custom-meridian/custom-meridian'),
         html: require('!!raw-loader?lang=markup!./demos/custom-meridian/custom-meridian.html'),
+        description: `<p>Text in meridian labels can be customized by using <code>meridians</code> input property</p>`,
         outlet: DemoTimepickerCustomMeridianComponent
       },
       {
@@ -78,6 +82,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTimepickerDisabledComponent
       },
       {
+        title: 'Readonly',
+        anchor: 'readonly',
+        component: require('!!raw-loader?lang=typescript!./demos/readonly/readonly'),
+        html: require('!!raw-loader?lang=markup!./demos/readonly/readonly.html'),
+        outlet: DemoTimepickerReadonlyComponent
+      },
+      {
         title: 'Custom steps',
         anchor: 'custom',
         component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
@@ -92,6 +103,15 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTimepickerCustomValidationComponent
       },
       {
+        title: 'Custom validation with isValid event',
+        anchor: 'isvalid',
+        component: require('!!raw-loader?lang=typescript!./demos/isvalid/isvalid'),
+        html: require('!!raw-loader?lang=markup!./demos/isvalid/isvalid.html'),
+        description: `<p><code>isValid</code> event emits true if a value is a valid data.
+            Enter an invalid data to see error</p>`,
+        outlet: DemoTimepickerIsValidComponent
+      },
+      {
         title: 'Dynamic',
         anchor: 'dynamic',
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
@@ -99,11 +119,18 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTimepickerDynamicComponent
       },
       {
-        title: 'Mouse wheel and Arrow keys',
+        title: 'Mouse wheel',
         anchor: 'mouse-wheel',
-        component: require('!!raw-loader?lang=typescript!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys'),
-        html: require('!!raw-loader?lang=markup!./demos/mousewheel-arrowkeys/mousewheel-arrowkeys.html'),
-        outlet: DemoTimepickerMousewheelArrowkeysComponent
+        component: require('!!raw-loader?lang=typescript!./demos/mousewheel/mousewheel'),
+        html: require('!!raw-loader?lang=markup!./demos/mousewheel/mousewheel.html'),
+        outlet: DemoTimepickerMousewheelComponent
+      },
+      {
+        title: 'Arrow keys',
+        anchor: 'arrow keys',
+        component: require('!!raw-loader?lang=typescript!./demos/arrowkeys/arrowkeys'),
+        html: require('!!raw-loader?lang=markup!./demos/arrowkeys/arrowkeys.html'),
+        outlet: DemoTimepickerArrowkeysComponent
       },
       {
         title: 'Spinners',

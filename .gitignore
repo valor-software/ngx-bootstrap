@@ -3,7 +3,6 @@
 /node_modules
 /bower_components
 yarn.lock
-package-lock.json
 
 # IDEs and editors
 /.idea

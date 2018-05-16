@@ -51,7 +51,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   /** if true current page will in the middle of pages list */
   @Input() rotate: boolean;
   // css
-  /** add class to <li> */
+  /** add class to <code><li\></code>*/
   @Input() pageBtnClass: string;
 
   /** if true pagination component will be disabled */

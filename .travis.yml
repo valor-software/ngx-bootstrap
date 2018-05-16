@@ -41,10 +41,11 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm install > /dev/null
+  - npm i -g npm@5.7.1
+  - npm ci > /dev/null
   - npm run build > /dev/null
-  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
-  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+#  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+#  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
@@ -57,10 +58,11 @@ jobs:
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install: npm install > /dev/null
+      install:
+        - npm i -g npm@5.7.1
+        - npm ci > /dev/null
       script: true
       addons:
-        firefox: latest
         chrome: stable
         apt:
           sources:
@@ -80,29 +82,25 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-    - <<: *test
-      env: NGV=latest
-    - <<: *test
-      env: NGV=next
+#    - <<: *test
+#      env: NGV=latest
+#    - <<: *test
+#      env: NGV=next
 
 #     test cypress
     - stage: cypress-tests
-      env: URL=http://localhost:3000/
-      before_script:
-      - npm run build:dynamic
-      - node  ./demo/dist/server.js &
-      - sleep 3
-      script:
-      - CYPRESS_baseUrl=$URL npm run cy:run -- --config videoRecording=false
+      env: URL=localhost:4200/#
+      before_script: ng serve --prod &
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
       stage: build
       script: npm run demo.ng-build
-    - <<: *build
-      env: NGV=latest
-    - <<: *build
-      env: NGV=next
+#    - <<: *build
+#      env: NGV=latest
+#    - <<: *build
+#      env: NGV=next
     - stage: sauce-tests
       env: SAUCE=true
       before_script:
@@ -122,13 +120,13 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap.surge.sh
         on: development
-    - <<: *surge
-      env: NGV=latest
-      deploy:
-        provider: surge
-        project: ./gh-pages/
-        domain: ngx-bootstrap-latest.surge.sh
-        on: development
+#    - <<: *surge
+#      env: NGV=latest
+#      deploy:
+#        provider: surge
+#        project: ./gh-pages/
+#        domain: ngx-bootstrap-latest.surge.sh
+#        on: development
     - stage: deploy
       script: npm run build:dynamic
       before_deploy:

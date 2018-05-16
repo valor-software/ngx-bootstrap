@@ -4,6 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-buttons-basic',
   templateUrl: './basic.html'
 })
-export class DemoButtonsBasicComponent {
-  singleModel: string = '1';
-}
+export class DemoButtonsBasicComponent {}
