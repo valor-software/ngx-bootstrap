@@ -1,3 +1,19 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0-RC.1...v3.0.0) (2018-05-17)
+
+
+### Bug Fixes
+
+* **main:** fix whitespaces globally for aot ([#4326](https://github.com/valor-software/ngx-bootstrap/issues/4326)) ([0478637](https://github.com/valor-software/ngx-bootstrap/commit/0478637))
+* **typeahead:** change function name from hightlight to highlight ([#4091](https://github.com/valor-software/ngx-bootstrap/issues/4091)) ([97171ff](https://github.com/valor-software/ngx-bootstrap/commit/97171ff)), closes [#3518](https://github.com/valor-software/ngx-bootstrap/issues/3518)
+
+
+### Features
+
+* **accordion:** add key navigation to accordion ([#4192](https://github.com/valor-software/ngx-bootstrap/issues/4192)) ([69b35b3](https://github.com/valor-software/ngx-bootstrap/commit/69b35b3))
+
+
+
 <a name="3.0.0-RC.1"></a>
 # [3.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.5...v3.0.0-RC.1) (2018-05-15)
 
