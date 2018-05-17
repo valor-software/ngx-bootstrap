@@ -144,7 +144,7 @@
     "ts-loader": "4.3.0",
     "ts-node": "6.0.3",
     "tslint": "5.10.0",
-    "tslint-config-valorsoft": "2.1.1",
+    "tslint-config-valorsoft": "2.2.0",
     "typedoc": "0.11.1",
     "typescript": "~2.7.2",
     "wait-on": "2.1.0",
