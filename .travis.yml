@@ -41,9 +41,9 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm i -g npm@5.7.1
-  - npm ci > /dev/null
-  - npm run build > /dev/null
+  - npm i -g npm@6.0.1
+  - npm ci
+  - npm run build
 #  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 #  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
@@ -59,8 +59,8 @@ jobs:
 # precache npm and apt dependencies
     - stage: precache
       install:
-        - npm i -g npm@5.7.1
-        - npm ci > /dev/null
+        - npm i -g npm@6.0.1
+        - npm ci
       script: true
       addons:
         chrome: stable
@@ -91,7 +91,10 @@ jobs:
     - stage: cypress-tests
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script:
+      # until this is fixed https://github.com/bahmutov/add-typescript-to-cypress/issues/23
+      - npm i ts-loader@3 --no-save
+      - $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
@@ -127,16 +130,17 @@ jobs:
 #        project: ./gh-pages/
 #        domain: ngx-bootstrap-latest.surge.sh
 #        on: development
-    - stage: deploy
-      script: npm run build:dynamic
-      before_deploy:
-        - cd ./demo/dist
-      deploy:
-        provider: heroku
-        api_key: $HEROKU_API_KEY
-        skip_cleanup: true
-        app: ngx-universal
-        on: development
+# todo: Illya please fix
+#    - stage: deploy
+#      script: npm run build:dynamic
+#      before_deploy:
+#        - cd ./demo/dist
+#      deploy:
+#        provider: heroku
+#        api_key: $HEROKU_API_KEY
+#        skip_cleanup: true
+#        app: ngx-universal
+#        on: development
 
 # publish to gh pages and npm
     - stage: publish
