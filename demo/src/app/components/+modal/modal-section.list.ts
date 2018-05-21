@@ -66,7 +66,9 @@ export const demoComponentContent: ContentSection[] = [
           in <code>.show()</code> method as in example, and don't forget to include your component to
           <code>entryComponents</code> of your <code>NgModule</code><br> If you passed a component
           to <code>.show()</code> you can get access to opened modal by injecting <code>BsModalRef</code>. Also you can pass data 
-          in your modal by adding <code>initialState</code> field in config. See example for more info</p>`,
+          in your modal by adding <code>initialState</code> field in config. If you are trying to use a component from a lazy
+          loaded module, be sure that your module provides a <code>ComponentLoaderFactory</code> and is added to the 
+          <code>ModalOptions</code> supplied to <code>.show()</code>. See example for more info</p>`,
         outlet: DemoModalServiceFromComponent
       },
       {

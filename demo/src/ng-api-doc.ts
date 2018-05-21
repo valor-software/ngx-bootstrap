@@ -1941,6 +1941,11 @@ export const ngdoc: any = {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
+      },
+      {
+        "name": "componentLoaderFactory",
+        "type": "ComponentLoaderFactory",
+        "description": "<p> A custom component loader factory. Useful when trying to show a component from within a lazy loaded module.</p>\n"
       }
     ]
   },
