@@ -38,7 +38,7 @@ export class ModalOptions {
    * A custom component loader factory. Useful when trying to show a component
    * from within a lazy loaded module.
    */
-  componentLoaderFactory?: ComponentLoaderFactory
+  componentLoaderFactory?: ComponentLoaderFactory;
 }
 
 
