@@ -258,4 +258,38 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
     });
   });
+
+  describe('onFocus', () => {
+    beforeEach(fakeAsync(() => {
+      inputElement.value = 'bama';
+      directive.typeaheadMinLength = 0;
+      fireEvent(inputElement, 'input');
+
+      fixture.detectChanges();
+      tick(100);
+    }));
+    it(
+      'should show all options on focus if typeaheadShowAllOnFocus is enabled and typeaheadMinLength is 0',
+      fakeAsync(() => {
+        directive.typeaheadShowAllOnFocus = true;
+        fireEvent(inputElement, 'focus');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(2);
+      })
+    );
+
+    it(
+      `should show matching options on focus if typeaheadShowAllOnFocus is not
+      enabled (default) and typeaheadMinLength is 0`,
+      fakeAsync(() => {
+        directive.typeaheadShowAllOnFocus = false;
+        fireEvent(inputElement, 'focus');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(1);
+      })
+    );
+  });
+
 });

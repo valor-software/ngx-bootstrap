@@ -3218,6 +3218,12 @@ export const ngdoc: any = {
         "description": "<p>specifies if typeahead is scrollable  </p>\n"
       },
       {
+        "name": "typeaheadShowAllOnFocus",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If enabled, options will not be filtered by field value on focus </p>\n"
+      },
+      {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",

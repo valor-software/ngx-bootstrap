@@ -51,6 +51,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * true make sense if options array is large.
    */
   @Input() typeaheadAsync: boolean = void 0;
+  /** If enabled, options will not be filtered by field value on focus when typeaheadMinLength is 0 */
+  @Input() typeaheadShowAllOnFocus = false;
   /** match latin symbols.
    * If true the word súper would match super and vice versa.
    */
@@ -226,7 +228,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onFocus(): void {
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
+      this.keyUpEventEmitter.emit(this.typeaheadShowAllOnFocus ? '' : this.element.nativeElement.value || '');
     }
   }
 
