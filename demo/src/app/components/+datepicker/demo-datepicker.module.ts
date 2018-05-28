@@ -9,7 +9,7 @@ import {
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, frLocale, heLocale, hiLocale,
   fiLocale, glLocale,
   huLocale, idLocale, itLocale, jaLocale, koLocale, mnLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale,
-  roLocale, slLocale, svLocale, thLocale, trLocale, zhCnLocale
+  roLocale, skLocale, slLocale, svLocale, thLocale, trLocale, zhCnLocale
 } from 'ngx-bootstrap/locale';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
@@ -22,7 +22,7 @@ const locales = [
   arLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, frLocale, heLocale, hiLocale,
   fiLocale, glLocale,
   huLocale, idLocale, itLocale, jaLocale, koLocale, mnLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale,
-  roLocale, slLocale, svLocale, thLocale, trLocale, zhCnLocale
+  roLocale, skLocale, slLocale, svLocale, thLocale, trLocale, zhCnLocale
 ];
 locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
 
