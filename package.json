@@ -128,7 +128,7 @@
     "karma-typescript": "3.0.12",
     "lite-server": "2.3.0",
     "lodash": "4.17.10",
-    "mocha": "5.1.1",
+    "mocha": "5.2.0",
     "ngm-cli": "1.0.4",
     "ngx-page-scroll": "5.0.0",
     "npm-run-all": "4.1.3",
