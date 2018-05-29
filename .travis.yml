@@ -32,7 +32,7 @@ stages:
   - name: deploy
     if: branch = development AND type = push OR tag =~ ^v2
   - name: publish
-    if: tag =~ ^v2
+    if: tag =~ ^v\d+
   - <<: *stage
     name: sauce-tests
 
