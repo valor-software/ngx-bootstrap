@@ -20,7 +20,7 @@ env:
 stages:
   - &stage
     name: precache
-    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v2
+    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
   - <<: *stage
     name: lint
   - <<: *stage
@@ -30,7 +30,7 @@ stages:
   - <<: *stage
     name: build
   - name: deploy
-    if: branch = development AND type = push OR tag =~ ^v2
+    if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
     if: tag =~ ^v\d+
   - <<: *stage
