@@ -68,7 +68,8 @@
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "peerDependencies": {
     "@angular/common": ">=6.0.0",
-    "@angular/core": ">=6.0.0"
+    "@angular/core": ">=6.0.0",
+    "@angular/forms": ">=6.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.1",
