@@ -1,3 +1,8 @@
+<a name="3.0.7"></a>
+## [3.0.7](https://github.com/Yalrafih/ngx-bootstrap/compare/v3.0.0...v3.0.7) (2018-06-14)
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0-RC.1...v3.0.0) (2018-05-17)
 
