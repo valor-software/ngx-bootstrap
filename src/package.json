@@ -1,9 +1,9 @@
 {
-  "name": "ngx-bootstrap",
+  "name": "@blackline/ngx-bootstrap",
   "es2015": "bundles/ngx-bootstrap.es2015.js",
   "peerDependencies": {
-    "@angular/core": "*",
-    "@angular/common": "*",
-    "@angular/forms": "*"
+    "@angular/core": ">=6.0.0",
+    "@angular/common": ">=6.0.0",
+    "@angular/forms": ">=6.0.0"
   }
 }
