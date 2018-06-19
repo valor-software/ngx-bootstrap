@@ -50,11 +50,14 @@ export function parseHours(
   value: string | number,
   isPM = false
 ): number {
-  const hour = toNumber(value);
+  let hour = toNumber(value);
+  if (hour > hoursPerDayHalf && isPM) {
+    hour -= hoursPerDayHalf;
+  }
   if (
     isNaN(hour) ||
     hour < 0 ||
-    hour > (isPM ? hoursPerDayHalf : hoursPerDay)
+    hour > hoursPerDayHalf
   ) {
     return NaN;
   }
@@ -98,10 +101,7 @@ export function changeTime(value: Date, diff: Time): Date {
   let seconds = value.getSeconds();
 
   if (diff.hour) {
-    hour = (hour + toNumber(diff.hour)) % hoursPerDay;
-    if (hour < 0) {
-      hour += hoursPerDay;
-    }
+    hour = hour + toNumber(diff.hour);
   }
 
   if (diff.minute) {
