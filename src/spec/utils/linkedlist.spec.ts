@@ -92,7 +92,7 @@ describe('Linked List. Overridden (from Array) methods.', () => {
 
   it('Check forEach', () => {
     list.forEach((item: string, index: number) => {
-      list.set(index, 'new_' + item);
+      list.set(index, `new_${item}`);
     });
     expect(list.toArray().join()).toEqual('new_1,new_2,new_3,new_4,new_5');
   });
@@ -102,7 +102,7 @@ describe('Linked List. Overridden (from Array) methods.', () => {
   });
 
   it('Positive check some()', () => {
-    expect(list.some((item: string) => item === '2'));
+    expect(list.some((item: string) => item === '2')).toBeTruthy();
   });
 
   it('Negative check some()', () => {

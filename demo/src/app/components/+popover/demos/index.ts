@@ -10,7 +10,7 @@ import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-glob
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
-import { DemoPopoverTriggerByInput } from './trigger-by-input/trigger-by-input';
+import { DemoPopoverByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoPopoverClassComponent } from './class/class';
 import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
 import { DemoPopoverEventsComponent } from './events/events';
@@ -29,7 +29,7 @@ export const DEMO_COMPONENTS = [
   DemoPopoverStylingLocalComponent,
   DemoPopoverTriggersCustomComponent,
   DemoPopoverTriggersManualComponent,
-  DemoPopoverTriggerByInput,
+  DemoPopoverByIsOpenPropComponent,
   DemoPopoverClassComponent,
   DemoPopoverOutsideClickComponent,
   DemoPopoverEventsComponent,

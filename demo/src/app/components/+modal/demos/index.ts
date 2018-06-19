@@ -16,6 +16,7 @@ import { DemoModalServiceEventsComponent } from './service-events/service-events
 import { DemoModalServiceConfirmWindowComponent } from './service-confirm-window/service-confirm-window';
 import { DemoModalScrollingLongContentComponent } from './scrolling-long-content/scrolling-long-content';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
+import { DemoModalWithPopupsComponent } from './modal-with-popups/modal-with-popups';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -34,5 +35,6 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceEventsComponent,
   DemoModalServiceConfirmWindowComponent,
   DemoModalScrollingLongContentComponent,
-  DemoAccessibilityComponent
+  DemoAccessibilityComponent,
+  DemoModalWithPopupsComponent
 ];

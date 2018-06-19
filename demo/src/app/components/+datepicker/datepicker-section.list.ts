@@ -7,16 +7,16 @@ import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.compo
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DemoDatepickerConfigMethodComponent } from './demos/config-method/config-method';
-import { DemoDatepickerVisibilityMethodsComponent } from './demos/visibility-methods/visibility-methods';
+import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
-import { DemoDatepickerIsOpenComponent } from './demos/is-open/is-open';
+import { DemoDatepickerByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
 import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
-import { DemoDatepickerTriggersComponent } from './demos/triggers/triggers';
+import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -172,12 +172,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerReactiveFormsComponent
       },
       {
-        title: 'Visibility methods',
-        anchor: 'visibility-methods',
-        component: require('!!raw-loader?lang=typescript!./demos/visibility-methods/visibility-methods.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/visibility-methods/visibility-methods.html'),
-        description: `<p>You can manage datepicker's state by using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
-        outlet: DemoDatepickerVisibilityMethodsComponent
+        title: 'Manual triggering',
+        anchor: 'triggers-manual',
+        component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        description: `<p>You can manage datepicker's state by using its <code>show()</code>, <code>hide()</code>
+          and <code>toggle()</code> methods</p>`,
+        outlet: DemoDatepickerTriggersManualComponent
       },
       {
         title: 'Placement',
@@ -229,20 +230,21 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerOutsideClickComponent
       },
       {
-        title: 'IsOpen property',
-        anchor: 'is-open',
-        component: require('!!raw-loader?lang=typescript!./demos/is-open/is-open.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/is-open/is-open.html'),
-        description: `<p>The datepicker's closed by default. To change this behavior, use <code>isOpen</code> property.</p>`,
-        outlet: DemoDatepickerIsOpenComponent
+        title: 'Trigger by isOpen property',
+        anchor: 'trigger-by-isopen-property',
+        component: require('!!raw-loader?lang=typescript!./demos/trigger-by-isopen-property/trigger-by-isopen-property.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/trigger-by-isopen-property/trigger-by-isopen-property.html'),
+        description: `<p>Datepicker can be shown or hidden by changing <code>isOpen</code> property</p>`,
+        outlet: DemoDatepickerByIsOpenPropComponent
       },
       {
-        title: 'Triggers',
-        anchor: 'triggers',
-        component: require('!!raw-loader?lang=typescript!./demos/triggers/triggers.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/triggers/triggers.html'),
-        description: `<p>Use different triggers ( for example <code>keydown</code>, <code>mouseenter</code>, <code>dblclick</code> ) to interact with datepicker</p>`,
-        outlet: DemoDatepickerTriggersComponent
+        title: 'Custom triggers',
+        anchor: 'triggers-custom',
+        component: require('!!raw-loader?lang=typescript!./demos/triggers-custom/triggers-custom.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/triggers-custom/triggers-custom.html'),
+        description: `<p>Use different triggers ( for example <code>keydown</code>, <code>mouseenter</code> and
+          <code>dblclick</code> ) to interact with datepicker</p>`,
+        outlet: DemoDatepickerTriggersCustomComponent
       }
     ]
   },

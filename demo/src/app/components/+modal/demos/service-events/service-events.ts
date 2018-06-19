@@ -1,10 +1,6 @@
 import { ChangeDetectorRef, Component, TemplateRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
-
-import 'rxjs/add/observable/combineLatest';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
   selector: 'demo-modal-service-events',
@@ -27,7 +23,7 @@ export class DemoModalServiceEventsComponent {
   openModal(template: TemplateRef<any>) {
     this.messages = [];
 
-    const _combine = Observable.combineLatest(
+    const _combine = combineLatest(
       this.modalService.onShow,
       this.modalService.onShown,
       this.modalService.onHide,

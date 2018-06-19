@@ -6,7 +6,7 @@ import { DayViewModel } from '../../models/index';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -14,7 +14,9 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './bs-datepicker-view.html',
   host: {
     '(click)': '_stopPropagation($event)',
-    style: 'position: absolute; display: block;'
+    style: 'position: absolute; display: block;',
+    role: 'dialog',
+    'aria-label': 'calendar'
   }
 })
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
