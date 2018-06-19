@@ -53,7 +53,11 @@ export class BsModalService {
   /** Shows a modal */
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
-    this._createLoaders();
+    if (config && config.componentLoaderFactory) {
+      this._createLoaders(config.componentLoaderFactory);
+    } else {
+      this._createLoaders(this.clf);
+    }
     this.config = Object.assign({}, modalConfigDefaults, config);
     this._showBackdrop();
     this.lastDismissReason = null;
@@ -180,8 +184,8 @@ export class BsModalService {
     return scrollbarWidth;
   }
 
-  private _createLoaders(): void {
-    const loader = this.clf.createLoader<ModalContainerComponent>(
+  private _createLoaders(clf: ComponentLoaderFactory): void {
+    const loader = clf.createLoader<ModalContainerComponent>(
       null,
       null,
       null
