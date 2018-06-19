@@ -39,6 +39,8 @@ import { DraggableItemService } from './draggable-item.service';
         (dragend)="resetActiveItem($event)"
         (dragover)="onItemDragover($event, i)"
         (dragenter)="cancelEvent($event)"
+        aria-dropeffect="move"
+        [attr.aria-grabbed]="i === activeItem"
     ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
   [ngTemplateOutletContext]="{item:item, index: i}"></ng-template></div>
 </div>
@@ -56,7 +58,6 @@ import { DraggableItemService } from './draggable-item.service';
 /* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;
-
   /** field name if input array consists of objects */
   @Input() fieldName: string;
 
