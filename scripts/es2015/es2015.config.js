@@ -16,7 +16,7 @@ export default {
     sourcemap: true,
     name: libName
   },
-  external: Object.keys(ROLLUP_GLOBALS),
+  external: ROLLUP_GLOBALS,
   plugins: [
     resolve({
       module: true,
