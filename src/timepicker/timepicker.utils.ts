@@ -54,7 +54,7 @@ export function parseHours(
   if (
     isNaN(hour) ||
     hour < 0 ||
-    hour > (isPM ? hoursPerDayHalf : hoursPerDay)
+    hour > hoursPerDay // (isPM ? hoursPerDayHalf : hoursPerDay)
   ) {
     return NaN;
   }
@@ -120,9 +120,9 @@ export function setTime(value: Date, opts: Time): Date {
   const minute = parseMinutes(opts.minute);
   const seconds = parseSeconds(opts.seconds) || 0;
 
-  if (opts.isPM) {
-    hour += hoursPerDayHalf;
-  }
+  // if (opts.isPM) {
+  //   hour += hoursPerDayHalf;
+  // }
 
   if (!value) {
     if (!isNaN(hour) && !isNaN(minute)) {

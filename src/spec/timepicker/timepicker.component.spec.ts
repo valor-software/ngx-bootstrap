@@ -192,6 +192,20 @@ describe('Component: TimepickerComponent', () => {
         expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
       });
     }));
+
+    // fit('should convert time to 12h format when meridian is shown', fakeAsync(() => {
+    //   component.readonlyInput = false;
+    //   component.showMeridian = true;
+    //   component.meridian = component.meridians[0];
+    //
+    //   fireEvent(inputHours, 'change');
+    //
+    //   component.updateHours('23');
+    //
+    //   fixture.detectChanges();
+    //
+    //   expect(component.hours).toEqual('11');
+    // }));
   });
 
   describe('validate input fields with property of showMeridian switch off', () => {

@@ -88,8 +88,12 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     isNumber('12');
   });
 
-  it('should parse hours valid value', () => {
+  it('should parse 12 hours valid value', () => {
     parseHours(12);
+  });
+
+  it('should parse 24 hours valid value', () => {
+    parseHours(24);
   });
 
   it('should parse hours invalid value', () => {
@@ -230,6 +234,10 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     const result = isInputValid('5', '12', '30', true);
 
     expect(result).toEqual(true);
+  });
+
+  fit('should parse 24 hours valid value when isPM === true', () => {
+    expect(parseHours(24, true)).toEqual(24);
   });
 
   it('isInputLimitValid method should validate input according to the max limit and return false', () => {

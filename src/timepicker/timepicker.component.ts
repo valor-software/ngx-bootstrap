@@ -226,6 +226,7 @@ export class TimepickerComponent
     this.hours = hours;
 
     const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit();
+    // const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit(); // this.isPM()
 
     if (!isValid) {
       this.invalidHours = true;
@@ -284,7 +285,7 @@ export class TimepickerComponent
   _updateTime() {
     const _seconds = this.showSeconds ? this.seconds : void 0;
     const _minutes = this.showMinutes ? this.minutes : void 0;
-    if (!isInputValid(this.hours, _minutes, _seconds, this.isPM())) {
+    if (!isInputValid(this.hours, _minutes, _seconds, this.isPM())) { // this.isPM()
       this.isValid.emit(false);
       this.onChange(null);
 
@@ -296,7 +297,7 @@ export class TimepickerComponent
         hour: this.hours,
         minute: this.minutes,
         seconds: this.seconds,
-        isPM: this.isPM()
+        isPM: this.isPM() // false (utils setTime)
       })
     );
   }
