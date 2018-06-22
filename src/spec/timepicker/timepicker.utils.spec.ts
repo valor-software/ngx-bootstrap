@@ -46,13 +46,11 @@ function testTime(hours?: number, minutes?: number, seconds?: number): Date {
 
 function modelTime(hours: string | number,
                    minutes: string | number,
-                   second: string | number,
-                   PM: boolean): Time {
+                   second: string | number): Time {
   return {
     hour: hours || null,
     minute: minutes || null,
-    seconds: second || null,
-    isPM: PM || null
+    seconds: second || null
   };
 }
 
@@ -88,12 +86,8 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     isNumber('12');
   });
 
-  it('should parse 12 hours valid value', () => {
+  it('should parse hours valid value', () => {
     parseHours(12);
-  });
-
-  it('should parse 24 hours valid value', () => {
-    parseHours(24);
   });
 
   it('should parse hours invalid value', () => {
@@ -125,27 +119,27 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
   });
 
   it('should change time valid value', () => {
-    changeTime(testTime(), modelTime(1, 2, 3, true));
+    changeTime(testTime(), modelTime(1, 2, 3));
   });
 
   it('should change time invalid diff', () => {
-    changeTime(testTime(), modelTime(-1, 0, 0, false));
+    changeTime(testTime(), modelTime(-1, 0, 0));
   });
 
   it('should change time invalid diff hour NaN', () => {
-    changeTime(testTime(), modelTime(NaN, 0, 0, false));
+    changeTime(testTime(), modelTime(NaN, 0, 0));
   });
 
   it('should set time opts true', () => {
-    setTime(testTime(), modelTime(0, 0, 0, true));
+    setTime(testTime(), modelTime(0, 0, 0));
   });
 
   it('should set time opts false', () => {
-    setTime(testTime(), modelTime(0, 0, 0, false));
+    setTime(testTime(), modelTime(0, 0, 0));
   });
 
   it('should set time opts hours NaN', () => {
-    setTime(testTime(), modelTime(1, 1, 0, false));
+    setTime(testTime(), modelTime(1, 1, 0));
   });
 
   it('should create date', () => {
@@ -189,13 +183,13 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
   });
 
   it('isHourInputValid method should validate hour and return true', () => {
-    const result = isHourInputValid('3', true);
+    const result = isHourInputValid('3');
 
     expect(result).toEqual(true);
   });
 
   it('isHourInputValid method should validate hour and return false', () => {
-    const result = isHourInputValid('78', false);
+    const result = isHourInputValid('78');
 
     expect(result).toEqual(false);
   });
@@ -225,24 +219,20 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
   });
 
   it('isInputValid method should validate time and return false', () => {
-    const result = isInputValid('78', undefined, undefined, false);
+    const result = isInputValid('78', undefined, undefined);
 
     expect(result).toEqual(false);
   });
 
   it('isInputValid method should validate time and return true', () => {
-    const result = isInputValid('5', '12', '30', true);
+    const result = isInputValid('5', '12', '30');
 
     expect(result).toEqual(true);
   });
 
-  fit('should parse 24 hours valid value when isPM === true', () => {
-    expect(parseHours(24, true)).toEqual(24);
-  });
-
   it('isInputLimitValid method should validate input according to the max limit and return false', () => {
-    const date = modelTime(0, 0, 0, true);
-    const max = changeTime(new Date(), modelTime(-1, 0, 0, true));
+    const date = modelTime(0, 0, 0);
+    const max = changeTime(new Date(), modelTime(-1, 0, 0));
 
     const result = isInputLimitValid(date, max, null);
 
@@ -250,8 +240,8 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
   });
 
   it('isInputLimitValid method should validate input according to the min limit and return false', () => {
-    const date = modelTime(0, 0, 0, true);
-    const min = changeTime(new Date(), modelTime(0, 30, 0, true));
+    const date = modelTime(0, 0, 0);
+    const min = changeTime(new Date(), modelTime(0, 30, 0));
 
     const result = isInputLimitValid(date, null, min);
 
@@ -259,8 +249,18 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
   });
 
   it('isInputLimitValid method should validate input according to the limits and return true', () => {
-    const result = isInputLimitValid(modelTime(1, 0, 0, true), null, null);
+    const result = isInputLimitValid(modelTime(1, 0, 0), null, null);
 
     expect(result).toEqual(true);
+  });
+
+  it('setTime method should return time with correct hours', () => {
+    const newDate: Date = setTime(testTime(), modelTime(23, 30, 0));
+
+    expect(newDate.getHours()).toEqual(23);
+  });
+
+  it('parseHours method should validate 24 hours as valid value and return it', () => {
+    expect(parseHours(24)).toEqual(24);
   });
 });

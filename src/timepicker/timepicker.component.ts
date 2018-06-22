@@ -172,7 +172,7 @@ export class TimepickerComponent
     _store
       .select(state => state.controls)
       .subscribe((controlsState: TimepickerControls) => {
-        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
+        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds));
         Object.assign(this, controlsState);
         _cd.markForCheck();
       });
@@ -225,8 +225,7 @@ export class TimepickerComponent
     this.resetValidation();
     this.hours = hours;
 
-    const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit();
-    // const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit(); // this.isPM()
+    const isValid = isHourInputValid(this.hours) && this.isValidLimit();
 
     if (!isValid) {
       this.invalidHours = true;
@@ -285,7 +284,7 @@ export class TimepickerComponent
   _updateTime() {
     const _seconds = this.showSeconds ? this.seconds : void 0;
     const _minutes = this.showMinutes ? this.minutes : void 0;
-    if (!isInputValid(this.hours, _minutes, _seconds, this.isPM())) { // this.isPM()
+    if (!isInputValid(this.hours, _minutes, _seconds)) {
       this.isValid.emit(false);
       this.onChange(null);
 
@@ -297,7 +296,7 @@ export class TimepickerComponent
         hour: this.hours,
         minute: this.minutes,
         seconds: this.seconds,
-        isPM: this.isPM() // false (utils setTime)
+        isPM: this.isPM()
       })
     );
   }
