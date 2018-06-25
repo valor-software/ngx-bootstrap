@@ -8,6 +8,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -43,6 +44,11 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/custom-item-template/custom-item-template.ts'),
         html: require('!!raw-loader?lang=markup!./demos/custom-item-template/custom-item-template.html'),
         outlet: CustomItemTemplateDemoComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },
