@@ -10,6 +10,7 @@ import { DemoTooltipTriggersManualComponent } from './demos/triggers-manual/trig
 import { DemoTooltipStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoTooltipClassComponent } from './demos/class/class';
 import { DemoTooltipStylingGlobalComponent } from './demos/styling-global/styling-global';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -151,6 +152,11 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
         description: `<p>Hold on cursor above button for 0,5 second or more to see delayed tooltip</p>`,
         outlet: DemoTooltipDelayComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility-demo',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },
