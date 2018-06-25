@@ -1,3 +1,13 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0...v3.0.1) (2018-06-19)
+
+
+### Bug Fixes
+
+* remove peer dependency on [@angular](https://github.com/angular)/forms ([#4420](https://github.com/valor-software/ngx-bootstrap/issues/4420)) ([550af9c](https://github.com/valor-software/ngx-bootstrap/commit/550af9c)), closes [#4411](https://github.com/valor-software/ngx-bootstrap/issues/4411)
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0-RC.1...v3.0.0) (2018-05-17)
 
