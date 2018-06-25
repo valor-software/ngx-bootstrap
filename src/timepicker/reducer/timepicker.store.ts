@@ -4,7 +4,7 @@ import {
   TimepickerState,
   initialState
 } from './timepicker.reducer';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 import { Action, MiniStore, MiniState } from '../../mini-ngrx/index';
 

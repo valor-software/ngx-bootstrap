@@ -91,6 +91,10 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown.esc', ['$event'])
   onEsc(event: any): void {
+    if (!this.isShown) {
+      return;
+    }
+
     if (event.keyCode === 27) {
       event.preventDefault();
     }

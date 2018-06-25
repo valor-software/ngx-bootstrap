@@ -404,6 +404,18 @@ describe('Alerts page test suite', () => {
     });
   });
 
+  describe('Dismiss on timeout', () => {
+    const dismisTimeout = alerts.exampleDemosArr.dismissTimeout;
+    const timeoutLength = 5000;
+
+    it('After timeout in 5 seconds, default alert disappears', () => {
+      cy.get(`${ dismisTimeout } ${ alerts.alertClass }`).as('defaultAlert')
+        .should('to.be.visible');
+      cy.wait(timeoutLength);
+      cy.get('@defaultAlert').should('not.to.exist');
+    });
+  });
+
   describe('Global styling', () => {
     const globalStyle = alerts.exampleDemosArr.globalStyling;
     const stylesColors = [

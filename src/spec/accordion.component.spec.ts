@@ -11,9 +11,9 @@ import { AccordionModule } from '../accordion/accordion.module';
 class TestAccordionComponent {
   oneAtATime = true;
   panels: any[] = [
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false}
+    { isOpen: false, isDisabled: false },
+    { isOpen: false, isDisabled: false },
+    { isOpen: false, isDisabled: false }
   ];
 
   constructor(config: AccordionConfig) {
@@ -63,7 +63,7 @@ function expectOpenPanels(nativeEl: HTMLElement,
 }
 
 function hasTitle(element: HTMLElement, str: string): boolean {
-  return element.textContent === str;
+  return element.textContent.trim() === str;
 }
 
 describe('Component: Accordion', () => {
@@ -77,7 +77,7 @@ describe('Component: Accordion', () => {
       imports: [AccordionModule.forRoot()]
     });
     TestBed.overrideComponent(TestAccordionComponent, {
-      set: {template: html}
+      set: { template: html }
     });
     fixture = TestBed.createComponent(TestAccordionComponent);
     context = fixture.componentInstance;
@@ -125,11 +125,13 @@ describe('Component: Accordion', () => {
 
   it('should have the appropriate heading', () => {
     const titles = Array.from(
-      element.querySelectorAll('.panel-heading .accordion-toggle span')
+      element.querySelectorAll('.panel-heading .accordion-toggle div')
     );
-    titles.forEach((title: HTMLElement, idx: number) =>
-      expect(hasTitle(title, `Panel ${idx + 1}`)).toBe(true)
-    );
+    titles.forEach((title: HTMLElement, idx: number) => {
+      const expectedTitle = `Panel ${idx + 1}`;
+      expect(hasTitle(title, expectedTitle))
+        .toBeTruthy(`Expected "${expectedTitle}" to be "${title.textContent}"`);
+    });
   });
 
   it('should only open one at a time', () => {

@@ -1,6 +1,6 @@
 <table>
   <tbody>
-  <tr class="text-center" [class.hidden]="!showSpinners">
+  <tr class="text-center" [hidden]="!showSpinners">
     <!-- increment hours button-->
     <td>
       <a class="btn btn-link" [class.disabled]="!canIncrementHours || !isEditable"
@@ -87,7 +87,7 @@
       </button>
     </td>
   </tr>
-  <tr class="text-center" [class.hidden]="!showSpinners">
+  <tr class="text-center" [hidden]="!showSpinners">
     <!-- decrement hours button-->
     <td>
       <a class="btn btn-link" [class.disabled]="!canDecrementHours || !isEditable"

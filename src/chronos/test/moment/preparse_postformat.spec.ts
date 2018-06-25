@@ -1,7 +1,7 @@
 // tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
 // tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
 // tslint:disable:variable-name object-literal-key-quotes
-import { assert } from 'chai';
+import { assertEq, assertDeepEq, assertOk } from '../test-helpers';
 import { moment } from '../chain';
 
 var symbolMap = {
@@ -51,27 +51,27 @@ describe('preparse and postformat', () => {
   });
 
   it('transform', function () {
-    assert.equal(moment.utc('@)!@-)*-@&', 'YYYY-MM-DD').unix(), 1346025600, 'preparse string + format');
-    assert.equal(moment.utc('@)!@-)*-@&').unix(), 1346025600, 'preparse ISO8601 string');
-    assert.equal(moment.unix(1346025600).utc().format('YYYY-MM-DD'), '@)!@-)*-@&', 'postformat');
+    assertEq(moment.utc('@)!@-)*-@&', 'YYYY-MM-DD').unix(), 1346025600, 'preparse string + format');
+    assertEq(moment.utc('@)!@-)*-@&').unix(), 1346025600, 'preparse ISO8601 string');
+    assertEq(moment.unix(1346025600).utc().format('YYYY-MM-DD'), '@)!@-)*-@&', 'postformat');
   });
 
   it('transform from', function () {
     var start = moment([2007, 1, 28]);
 
-    assert.equal(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '@ minutes', 'postformat should work on moment.fn.from');
-    assert.equal(moment().add(6, 'd').fromNow(true), '^ days', 'postformat should work on moment.fn.fromNow');
-    assert.equal(moment.duration(10, 'h').humanize(), '!) hours', 'postformat should work on moment.duration.fn.humanize');
+    assertEq(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '@ minutes', 'postformat should work on moment.fn.from');
+    assertEq(moment().add(6, 'd').fromNow(true), '^ days', 'postformat should work on moment.fn.fromNow');
+    assertEq(moment.duration(10, 'h').humanize(), '!) hours', 'postformat should work on moment.duration.fn.humanize');
   });
 
   it('calendar day', function () {
     var a = moment().hours(12).minutes(0).seconds(0);
 
-    assert.equal(moment(a).calendar(), 'Today at !@:)) PM', 'today at the same time');
-    assert.equal(moment(a).add({ m: 25 }).calendar(), 'Today at !@:@% PM', 'Now plus 25 min');
-    assert.equal(moment(a).add({ h: 1 }).calendar(), 'Today at !:)) PM', 'Now plus 1 hour');
-    assert.equal(moment(a).add({ d: 1 }).calendar(), 'Tomorrow at !@:)) PM', 'tomorrow at the same time');
-    assert.equal(moment(a).subtract({ h: 1 }).calendar(), 'Today at !!:)) AM', 'Now minus 1 hour');
-    assert.equal(moment(a).subtract({ d: 1 }).calendar(), 'Yesterday at !@:)) PM', 'yesterday at the same time');
+    assertEq(moment(a).calendar(), 'Today at !@:)) PM', 'today at the same time');
+    assertEq(moment(a).add({ m: 25 }).calendar(), 'Today at !@:@% PM', 'Now plus 25 min');
+    assertEq(moment(a).add({ h: 1 }).calendar(), 'Today at !:)) PM', 'Now plus 1 hour');
+    assertEq(moment(a).add({ d: 1 }).calendar(), 'Tomorrow at !@:)) PM', 'tomorrow at the same time');
+    assertEq(moment(a).subtract({ h: 1 }).calendar(), 'Today at !!:)) AM', 'Now minus 1 hour');
+    assertEq(moment(a).subtract({ d: 1 }).calendar(), 'Yesterday at !@:)) PM', 'yesterday at the same time');
   });
 });

@@ -1,7 +1,15 @@
 // tslint:disable:deprecation
 import {
-  Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
-  Renderer2, TemplateRef, ViewContainerRef
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
@@ -9,8 +17,7 @@ import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/ind
 import { OnChange } from '../utils/decorators';
 import { warnOnce } from '../utils/warn-once';
 import { parseTriggers } from '../utils/triggers';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/timer';
+import { timer } from 'rxjs';
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
@@ -258,7 +265,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     };
 
     if (this.delay) {
-      const timer = Observable.timer(this.delay).subscribe(() => {
+      const _timer = timer(this.delay).subscribe(() => {
         showTooltip();
         cancelDelayedTooltipShowing();
       });
@@ -266,7 +273,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       if (this.triggers) {
         const triggers = parseTriggers(this.triggers);
         this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
-          timer.unsubscribe();
+          _timer.unsubscribe();
           cancelDelayedTooltipShowing();
         });
       }
