@@ -8,6 +8,7 @@ import { DemoAlertTimeoutComponent } from './demos/dismiss-on-timeout/dismiss-on
 import { DemoAlertStylingGlobalComponent } from './demos/styling-global/styling-global';
 import { DemoAlertStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoAlertConfigComponent } from './demos/config/config';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -120,6 +121,11 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoAlertConfigComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility-demo',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },
