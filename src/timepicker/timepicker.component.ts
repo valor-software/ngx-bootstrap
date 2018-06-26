@@ -389,17 +389,17 @@ export class TimepickerComponent
     this.hours = padNumber(_hours);
     // rewrite value only if do not passed
     if (this.hoursRef && this.hoursRef.nativeElement.value !== this.hours) {
-      this._renderer.setValue(this.hoursRef.nativeElement, this.hours);
+      this.hoursRef.nativeElement.value = this.hours;
     }
 
     this.minutes = padNumber(_value.getMinutes());
     if (this.minutesRef && this.minutesRef.nativeElement.value !== this.minutes) {
-      this._renderer.setValue(this.minutesRef.nativeElement, this.minutes);
+      this.minutesRef.nativeElement.value = this.minutes;
     }
 
     this.seconds = padNumber(_value.getUTCSeconds());
     if (this.secondsRef && this.secondsRef.nativeElement.value !== this.seconds) {
-      this._renderer.setValue(this.secondsRef.nativeElement, this.seconds);
+      this.secondsRef.nativeElement.value = this.seconds;
     }
   }
 }
