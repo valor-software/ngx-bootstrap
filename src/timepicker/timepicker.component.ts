@@ -10,7 +10,6 @@ import {
   OnChanges,
   OnDestroy,
   Output,
-  Renderer2,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation
@@ -160,7 +159,6 @@ export class TimepickerComponent
   constructor(
     _cd: ChangeDetectorRef,
     _config: TimepickerConfig,
-    private _renderer: Renderer2,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
