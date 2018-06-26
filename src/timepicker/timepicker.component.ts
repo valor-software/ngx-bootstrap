@@ -389,7 +389,7 @@ export class TimepickerComponent
     this.hours = padNumber(_hours);
     // rewrite value only if do not passed
     if (this.hoursRef && this.hoursRef.nativeElement.value !== this.hours) {
-      this.hoursRef.nativeElement.value = this.hours;
+      this._renderer.setValue(this.hoursRef.nativeElement, this.hours);
     }
 
     this.minutes = padNumber(_value.getMinutes());
