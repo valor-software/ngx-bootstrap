@@ -3,13 +3,16 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Input,
   OnChanges,
   OnDestroy,
   Output,
-  SimpleChanges, ViewEncapsulation
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -80,6 +83,10 @@ export class TimepickerComponent
     TimepickerControls,
     OnChanges,
     OnDestroy {
+  @ViewChild('hoursRef') hoursRef: ElementRef;
+  @ViewChild('minutesRef') minutesRef: ElementRef;
+  @ViewChild('secondsRef') secondsRef: ElementRef;
+
   /** hours change step */
   @Input() hourStep: number;
   /** hours change step */
@@ -378,7 +385,19 @@ export class TimepickerComponent
     }
 
     this.hours = padNumber(_hours);
+    // rewrite value only if do not passed
+    if (this.hoursRef && this.hoursRef.nativeElement.value !== this.hours) {
+      this.hoursRef.nativeElement.value = this.hours;
+    }
+
     this.minutes = padNumber(_value.getMinutes());
+    if (this.minutesRef && this.minutesRef.nativeElement.value !== this.minutes) {
+      this.minutesRef.nativeElement.value = this.minutes;
+    }
+
     this.seconds = padNumber(_value.getUTCSeconds());
+    if (this.secondsRef && this.secondsRef.nativeElement.value !== this.seconds) {
+      this.secondsRef.nativeElement.value = this.seconds;
+    }
   }
 }
