@@ -94,7 +94,7 @@
     "@types/marked": "0.3.0",
     "@types/node": "10.0.8",
     "@types/tapable": "1.0.2",
-    "@types/webpack": "4.1.6",
+    "@types/webpack": "4.4.3",
     "bootstrap": "4.1.1",
     "chai": "4.1.2",
     "classlist-polyfill": "1.2.0",
