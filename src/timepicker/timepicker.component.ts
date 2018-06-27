@@ -10,6 +10,7 @@ import {
   OnChanges,
   OnDestroy,
   Output,
+  Renderer2,
   SimpleChanges,
   ViewChild,
   ViewEncapsulation
@@ -159,6 +160,7 @@ export class TimepickerComponent
   constructor(
     _cd: ChangeDetectorRef,
     _config: TimepickerConfig,
+    private renderer: Renderer2,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
@@ -387,17 +389,17 @@ export class TimepickerComponent
     this.hours = padNumber(_hours);
     // rewrite value only if do not passed
     if (this.hoursRef && this.hoursRef.nativeElement.value !== this.hours) {
-      this.hoursRef.nativeElement.value = this.hours;
+      this.renderer.setProperty(this.hoursRef.nativeElement, 'value', this.hours);
     }
 
     this.minutes = padNumber(_value.getMinutes());
     if (this.minutesRef && this.minutesRef.nativeElement.value !== this.minutes) {
-      this.minutesRef.nativeElement.value = this.minutes;
+      this.renderer.setProperty(this.minutesRef.nativeElement, 'value', this.minutes);
     }
 
     this.seconds = padNumber(_value.getUTCSeconds());
     if (this.secondsRef && this.secondsRef.nativeElement.value !== this.seconds) {
-      this.secondsRef.nativeElement.value = this.seconds;
+      this.renderer.setProperty(this.secondsRef.nativeElement, 'value', this.seconds);
     }
   }
 }
