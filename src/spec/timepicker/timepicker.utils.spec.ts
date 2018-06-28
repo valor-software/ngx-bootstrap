@@ -54,108 +54,131 @@ function modelTime(hours: string | number,
   };
 }
 
-// todo: OMG
-xdescribe('Runtime coverage. Utils: Timepicker', () => {
-  it('should is not empty', () => {
-    expect(isValidDate()).toBeTruthy();
+
+describe('Runtime coverage. Utils: Timepicker', () => {
+  it('should validate time with blank value and return false', () => {
+    expect(isValidDate()).toEqual(false);
   });
 
-  it('should is empty', () => {
-    isValidDate(testTime());
+  it('should validate time and return true', () => {
+    expect(isValidDate(testTime())).toEqual(true);
   });
 
-  it('should date is interface Data', () => {
+  it('should validate time with invalid hours and return false', () => {
     const time = new Date();
     time.setHours(NaN);
-    isValidDate(time);
+
+    expect(isValidDate(time)).toEqual(false);
   });
 
-  it('should date is string', () => {
-    isValidDate('123');
+  it('should validate date in string as valid', () => {
+    expect(isValidDate('123')).toEqual(true);
   });
 
-  it('should to number', () => {
-    toNumber(12);
+  it('should return numeric value', () => {
+    expect(toNumber(12)).toEqual(12);
   });
 
-  it('should to string', () => {
-    toNumber('12');
+  it('should convert number in string to numeric value', () => {
+    expect(toNumber('12')).toEqual(12);
   });
 
-  it('should date is string', () => {
-    isNumber('12');
+  it('should return NaN with invalid value', () => {
+    expect(toNumber('string')).toEqual(NaN);
+  });
+
+  it('should validate number in string as number', () => {
+    expect(isNumber('12')).toEqual(true);
   });
 
   it('should parse hours valid value', () => {
-    parseHours(12);
+    expect(parseHours(12)).toEqual(12);
   });
 
   it('should parse hours invalid value', () => {
-    parseHours('q');
+    expect(parseHours('q')).toEqual(NaN);
   });
 
   it('should parse minutes valid value', () => {
-    parseMinutes(12);
+    expect(parseMinutes(12)).toEqual(12);
   });
 
   it('should parse minutes invalid value', () => {
-    parseMinutes('q');
+    expect(parseMinutes('q')).toEqual(NaN);
   });
 
   it('should parse seconds valid value', () => {
-    parseSeconds(12);
+    expect(parseSeconds(60)).toEqual(60);
   });
 
   it('should parse seconds invalid value', () => {
-    parseSeconds('q');
+    expect(parseSeconds('q')).toEqual(NaN);
   });
 
   it('should parse time string value', () => {
-    parseTime('12');
+    const date = parseTime('12');
+
+    expect(isValidDate(date)).toEqual(true);
   });
 
   it('should parse time date value', () => {
-    parseTime(testTime());
+    const date = parseTime(testTime());
+
+    expect(isValidDate(date)).toEqual(true);
   });
 
   it('should change time valid value', () => {
-    changeTime(testTime(), modelTime(1, 2, 3));
+    const newDate = changeTime(testTime(), modelTime(1, 2, 3));
+
+    expect(`${newDate.getHours()} ${newDate.getMinutes()} ${newDate.getSeconds()}`)
+      .toEqual('1 2 3');
   });
 
-  it('should change time invalid diff', () => {
-    changeTime(testTime(), modelTime(-1, 0, 0));
+  it('should change time with invalid diff', () => {
+    const newDate: any = changeTime(testTime(), modelTime(-1, 0, 0));
+
+    expect(`${newDate.getHours()} ${newDate.getMinutes()} ${newDate.getSeconds()}`)
+      .toEqual('23 0 0');
   });
 
-  it('should change time invalid diff hour NaN', () => {
-    changeTime(testTime(), modelTime(NaN, 0, 0));
+  it('should change time with invalid diff hour NaN', () => {
+    const newDate: any = changeTime(testTime(), modelTime(NaN, 0, 0));
+
+    expect(`${newDate.getHours()} ${newDate.getMinutes()} ${newDate.getSeconds()}`)
+      .toEqual('0 0 0');
   });
 
   it('should set time opts true', () => {
-    setTime(testTime(), modelTime(0, 0, 0));
+    const newDate: Date = setTime(testTime(), modelTime(0, 0, 0));
+
+    expect(`${newDate.getHours()} ${newDate.getMinutes()} ${newDate.getSeconds()}`)
+      .toEqual('0 0 0');
   });
 
-  it('should set time opts false', () => {
-    setTime(testTime(), modelTime(0, 0, 0));
+  it('should create date with correct hours value', () => {
+    const newDate: Date = createDate(testTime(), 10, 0, 0);
+
+    expect(newDate.getHours()).toEqual(10);
   });
 
-  it('should set time opts hours NaN', () => {
-    setTime(testTime(), modelTime(1, 1, 0));
+  it('should create date with correct minutes value', () => {
+    const newDate: Date = createDate(testTime(), 0, 20, 0);
+
+    expect(newDate.getMinutes()).toEqual(20);
   });
 
-  it('should create date', () => {
-    createDate(testTime(), 10, 20, 30);
-  });
+  it('should create date with correct seconds value', () => {
+    const newDate: Date = createDate(testTime(), 0, 0, 30);
 
-  it('should create date false', () => {
-    createDate(testTime(), 10, 20, 30);
+    expect(newDate.getSeconds()).toEqual(30);
   });
 
   it('should pad number', () => {
-    padNumber(10);
+    expect(padNumber(10)).toEqual('10');
   });
 
   it('should pad number length', () => {
-    padNumber(1);
+    expect(padNumber(1)).toEqual('01');
   });
 
   it('isValidLimit method should validate the date according to the max limit and return false', () => {
@@ -254,10 +277,18 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     expect(result).toEqual(true);
   });
 
-  it('setTime method should return time with correct hours', () => {
-    const newDate: Date = setTime(testTime(), modelTime(23, 30, 0));
+  it('setTime method should return correct time when entered string values', () => {
+    const newDate: Date = setTime(testTime(), modelTime('test', 'test', 'test'));
 
-    expect(newDate.getHours()).toEqual(23);
+    expect(`${newDate.getHours()} ${newDate.getMinutes()} ${newDate.getSeconds()}`)
+      .toEqual('0 0 0');
+  });
+
+  it('setTime method should return correct time', () => {
+    const newDate: Date = setTime(testTime(), modelTime(23, 30, 40));
+
+    expect(`${newDate.getHours()} ${newDate.getMinutes()} ${newDate.getSeconds()}`)
+      .toEqual('23 30 40');
   });
 
   it('parseHours method should validate 24 hours as valid value and return it', () => {
