@@ -433,12 +433,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     if (this._container) {
-      // This improves the speed as it won't have to be done for each list item
-      const normalizedQuery = (this.typeaheadLatinize
+      // fix: remove usage of ngControl internals
+      const _controlValue = (this.typeaheadLatinize
         ? latinize(this.ngControl.control.value)
-        : this.ngControl.control.value)
-        .toString()
-        .toLowerCase();
+        : this.ngControl.control.value) || '';
+      // This improves the speed as it won't have to be done for each list item
+      const normalizedQuery = _controlValue.toString().toLowerCase();
       this._container.query = this.typeaheadSingleWords
         ? tokenize(
           normalizedQuery,
