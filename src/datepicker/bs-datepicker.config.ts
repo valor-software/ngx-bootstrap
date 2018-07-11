@@ -22,6 +22,8 @@ export class BsDatepickerConfig
    */
   maxDate?: Date;
 
+  daysDisabled?: number[];
+
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
    */
