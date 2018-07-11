@@ -11,6 +11,7 @@ import { isDate, isDateValid } from '../chronos/utils/type-checks';
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsLocaleService } from './bs-locale.service';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -59,6 +60,11 @@ export class BsDatepickerInputDirective
 
     // update input value on locale change
     this._localeService.localeChange.subscribe(() => {
+      this._setInputValue(this._value);
+    });
+
+    // update input value on format change
+    this._picker.dateInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
       this._setInputValue(this._value);
     });
   }

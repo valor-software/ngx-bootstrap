@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { BsDatepickerConfig } from './bs-datepicker.config';
@@ -86,7 +86,14 @@ export class BsDaterangepickerDirective
   /**
    * Config object for daterangepicker
    */
-  @Input() bsConfig: Partial<BsDaterangepickerConfig>;
+  @Input() set bsConfig(bsConfig: Partial<BsDaterangepickerConfig>) {
+    this._bsConfig = bsConfig;
+    this.setConfig();
+    this._rangeInputFormat$.next(bsConfig && bsConfig.rangeInputFormat);
+  }
+  get bsConfig(): Partial<BsDaterangepickerConfig> {
+    return this._bsConfig;
+  }
   /**
    * Indicates whether daterangepicker's content is enabled or not
    */
@@ -104,10 +111,16 @@ export class BsDaterangepickerDirective
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
+  get rangeInputFormat$(): Observable<string> {
+    return this._rangeInputFormat$;
+  }
+
   protected _subs: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
+  private _bsConfig: Partial<BsDaterangepickerConfig>;
+  private readonly _rangeInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDaterangepickerConfig,
               _elementRef: ElementRef,

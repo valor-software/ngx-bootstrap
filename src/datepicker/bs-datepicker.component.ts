@@ -5,7 +5,7 @@ import {
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 
 @Directive({
@@ -73,7 +73,14 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Config object for datepicker
    */
-  @Input() bsConfig: Partial<BsDatepickerConfig>;
+  @Input() set bsConfig(bsConfig: Partial<BsDatepickerConfig>) {
+    this._bsConfig = bsConfig;
+    this.setConfig();
+    this._dateInputFormat$.next(bsConfig && bsConfig.dateInputFormat);
+  }
+  get bsConfig(): Partial<BsDatepickerConfig> {
+    return this._bsConfig;
+  }
   /**
    * Indicates whether datepicker's content is enabled or not
    */
@@ -91,10 +98,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
+  get dateInputFormat$(): Observable<string> {
+    return this._dateInputFormat$;
+  }
+
   protected _subs: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
+  private _bsConfig: Partial<BsDatepickerConfig>;
+  private readonly _dateInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDatepickerConfig,
               _elementRef: ElementRef,

@@ -11,6 +11,7 @@ import { isArray, isDateValid } from '../chronos/utils/type-checks';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -61,6 +62,11 @@ export class BsDaterangepickerInputDirective
 
     // update input value on locale change
     this._localeService.localeChange.subscribe(() => {
+      this._setInputValue(this._value);
+    });
+
+    // update input value on format change
+    this._picker.rangeInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
       this._setInputValue(this._value);
     });
   }
@@ -141,7 +147,7 @@ export class BsDaterangepickerInputDirective
 
       this._value = (_input as string[])
         .map((_val: string): Date =>
-          parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale))
+          parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale))
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
     }
 
