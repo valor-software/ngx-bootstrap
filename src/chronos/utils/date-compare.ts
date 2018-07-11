@@ -33,6 +33,11 @@ export function isBefore(
   return endOf(date1, units).valueOf() < date2.valueOf();
 }
 
+export function isDisabledDay(date: Date, daysDisabled: number[]):boolean{
+  if(daysDisabled === undefined) return false;
+  return (daysDisabled.filter(d => d == date.getDay()).length > 0);
+}
+
 export function isBetween(
   date: Date,
   from: Date,
@@ -71,6 +76,10 @@ export function isSame(
     startOf(date1, units).valueOf() <= inputMs &&
     inputMs <= endOf(date1, units).valueOf()
   );
+}
+
+export function isSameDay(date1: Date, date2: Date):boolean{
+  return (date1.getDay() == date2.getDay());
 }
 
 export function isSameOrAfter(
