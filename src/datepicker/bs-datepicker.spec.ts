@@ -19,13 +19,31 @@ class TestComponent {
 
 type TestFixture = ComponentFixture<TestComponent>;
 
-function getDatepickerContainer(fixture: TestFixture): BsDatepickerContainerComponent {
-    const datepickerInstance: BsDatepickerDirective = fixture.componentInstance.datepicker;
-    datepickerInstance.show();
+function getDatepickerDirective(fixture: TestFixture): BsDatepickerDirective {
+    const datepicker: BsDatepickerDirective = fixture.componentInstance.datepicker;
+
+    return datepicker;
+}
+
+function showDatepicker(fixture: TestFixture): BsDatepickerDirective {
+    const datepicker = getDatepickerDirective(fixture);
+    datepicker.show();
     fixture.detectChanges();
 
+    return datepicker;
+}
+
+function hideDatepicker(fixture: TestFixture): BsDatepickerDirective {
+    const datepicker = getDatepickerDirective(fixture);
+    datepicker.hide();
+    fixture.detectChanges();
+
+    return datepicker;
+}
+
+function getDatepickerContainer(datepicker: BsDatepickerDirective): BsDatepickerContainerComponent | null {
     // tslint:disable-next-line:no-string-literal
-    return datepickerInstance['_datepickerRef'].instance;
+    return datepicker['_datepickerRef'] ? datepicker['_datepickerRef'].instance : null;
 }
 
 describe('datepicker:', () => {
@@ -41,8 +59,19 @@ describe('datepicker:', () => {
         fixture.detectChanges();
     });
 
+    it('should display datepicker on show', () => {
+        const datepicker = showDatepicker(fixture);
+        expect(getDatepickerContainer(datepicker)).toBeDefined();
+    });
+
+    it('should hide datepicker on hide', () => {
+        const datepicker = hideDatepicker(fixture);
+        expect(getDatepickerContainer(datepicker)).toBeNull();
+    });
+
     it('should select correct year when a month other than selected year is chosen', () => {
-        const datepickerContainerInstance = getDatepickerContainer(fixture);
+        const datepicker = showDatepicker(fixture);
+        const datepickerContainerInstance = getDatepickerContainer(datepicker);
         const yearSelection: CalendarCellViewModel = { date: new Date(2017, 1, 1), label: 'label' };
         const monthSelection: CalendarCellViewModel = { date: new Date(2018, 1, 1), label: 'label' };
         datepickerContainerInstance.yearSelectHandler(yearSelection);
