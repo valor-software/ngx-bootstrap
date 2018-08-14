@@ -16,7 +16,7 @@ import {
   isMinuteInputValid,
   isSecondInputValid,
   isInputLimitValid,
-  isInputValid
+  isInputValid, isInRange
 } from '../../timepicker/timepicker.utils';
 
 const controls: TimepickerComponentState = {
@@ -179,6 +179,30 @@ describe('Runtime coverage. Utils: Timepicker', () => {
 
   it('should pad number length', () => {
     expect(padNumber(1)).toEqual('01');
+  });
+
+  it('isInRange method should validate the date according to the max limit and return false', () => {
+    const result = isInRange(testTime(18, 0, 0), controls.max, controls.min);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isInRange method should validate the date according to the max limit and return false', () => {
+    const result = isInRange(testTime(2, 0, 0), controls.max, controls.min);
+
+    expect(result).toEqual(false);
+  });
+
+  it('isInRange method should validate the date according to the max limit and return false', () => {
+    const result = isInRange(testTime(4, 0, 0), controls.max, controls.min);
+
+    expect(result).toEqual(true);
+  });
+
+  it('isInRange method should validate the date according to the max and min limit and return true', () => {
+    const result = isInRange(testTime(4, 0, 0), null, null);
+
+    expect(result).toEqual(true);
   });
 
   it('isValidLimit method should validate the date according to the max limit and return false', () => {

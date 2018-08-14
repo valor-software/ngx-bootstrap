@@ -5,27 +5,30 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  forwardRef,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
+  Optional,
   Output,
   Renderer2,
+  Self,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {
+  AbstractControl,
   ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  FormGroup,
-  FormControl
+  NG_VALIDATORS,
+  NgControl,
+  ValidationErrors,
+  Validators
 } from '@angular/forms';
 
-import { TimepickerActions } from './reducer/timepicker.actions';
-import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
+import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerConfig } from './timepicker.config';
+import { TimepickerStore } from './reducer/timepicker.store';
 import {
   TimeChangeSource,
   TimepickerComponentState,
@@ -38,24 +41,39 @@ import {
   parseTime
 } from './timepicker.utils';
 import {
-  getHoursValidator,
-  getLimitsValidator,
-  getMinutesValidator,
-  getSecondsValidator
+  hoursValidator,
+  limitsValidator,
+  minutesValidator,
+  secondsValidator
 } from './input.validator';
+
+import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
-export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => TimepickerComponent),
+export function validate(control: AbstractControl): ValidationErrors | null {
+  if (!control.value) {
+
+    return null;
+  }
+
+  return Validators.compose([
+    hoursValidator,
+    minutesValidator,
+    secondsValidator,
+    limitsValidator
+  ])(control);
+}
+
+export const TIMEPICKER_VALIDATORS: any = {
+  provide: NG_VALIDATORS,
+  useValue: validate,
   multi: true
 };
-
 
 @Component({
   selector: 'timepicker',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore],
+  providers: [TIMEPICKER_VALIDATORS, TimepickerStore],
   templateUrl: './timepicker.component.html',
   styleUrls: ['./timepicker.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -110,8 +128,6 @@ export class TimepickerComponent
   seconds: string;
   meridian: string;
 
-  timepickerGroup: FormGroup;
-
   /** @deprecated - please use `isEditable` instead */
   get isSpinnersVisible(): boolean {
     return this.showSpinners && !this.readonlyInput;
@@ -132,23 +148,30 @@ export class TimepickerComponent
 
   canToggleMeridian: boolean;
 
+  timepickerSub: Subscription;
+
   // control value accessor methods
   onChange: any = Function.prototype;
   onTouched: any = Function.prototype;
 
-  timepickerSub: Subscription;
-
 
   constructor(
+    @Self() @Optional() public ngControl: NgControl,
     _config: TimepickerConfig,
-    private _cd: ChangeDetectorRef,
+    changeDetection: ChangeDetectorRef,
     private _renderer: Renderer2,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
     Object.assign(this, _config);
 
-    this.timepickerSub = _store
+    if (this.ngControl) {
+      // we provide the value accessor through here, instead of
+      // the `providers` to avoid running into a circular import.
+      this.ngControl.valueAccessor = this;
+    }
+
+    this.timepickerSub = this._store
       .select(state => state.value)
       .subscribe((value: Date) => {
         // update UI values if date changed
@@ -160,42 +183,42 @@ export class TimepickerComponent
         );
       });
 
-    _store
+    this._store
       .select(state => state.controls)
       .subscribe((controlsState: TimepickerControls) => {
         this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds));
         Object.assign(this, controlsState);
-        _cd.markForCheck();
+        changeDetection.markForCheck();
       });
   }
 
   ngOnInit(): void {
-    this.timepickerGroup = new FormGroup(
-      {
-        hours: new FormControl(0, { validators: [getHoursValidator()], updateOn: 'blur' }),
-        minutes: new FormControl(0, { validators: [getMinutesValidator()], updateOn: 'blur' }),
-        seconds: new FormControl(0, { validators: [getSecondsValidator()], updateOn: 'blur' })
-      },
-      getLimitsValidator(this.min, this.max)
-    );
-
-    this.timepickerGroup.valueChanges
-      .subscribe(() => {
-        if (this.timepickerGroup.invalid) {
-          this.onChange(null);
-          this.isValid.emit(false);
-
-          return;
-        }
+    this.ngControl.valueChanges
+      .pipe(
+        filter(() => Boolean(!this.ngControl.errors)),
+        filter((value: any) => value && value.hours)
+      )
+      .subscribe((value: any) => {
+        this.hours = value.hours;
+        this.minutes = value.minutes;
+        this.seconds = value.seconds;
 
         this.isValid.emit(true);
-      });
-  }
 
-  resetValidation(): void {
-    this.timepickerGroup.get('hours').setErrors(null);
-    this.timepickerGroup.get('minutes').setErrors(null);
-    this.timepickerGroup.get('seconds').setErrors(null);
+        this._updateTime();
+      });
+
+    this.ngControl.statusChanges
+      .pipe(
+        map(() => this.ngControl.errors),
+        filter(Boolean),
+        distinctUntilChanged()
+      )
+      .subscribe((errors: ValidationErrors | null) => {
+        this.onChange(null);
+        this.isValid.emit(false);
+        this.ngControl.control.setErrors(errors);
+      });
   }
 
   isPM(): boolean {
@@ -222,8 +245,6 @@ export class TimepickerComponent
       minutes: 'changeMinutes',
       seconds: 'changeSeconds'
     };
-
-    this.resetValidation();
 
     this._store.dispatch(
       (this as any)._timepickerActions[action[option]]({ step, source })
@@ -264,11 +285,6 @@ export class TimepickerComponent
   }
 
   _updateTime() {
-    if (this.timepickerGroup.invalid) {
-
-      return;
-    }
-
     this._store.dispatch(
       this._timepickerActions.setTime({
         hour: this.hours,
@@ -277,6 +293,13 @@ export class TimepickerComponent
         isPM: this.isPM()
       })
     );
+  }
+
+  onChanged(hours: string, minutes: string, seconds: string) {
+    this.onChange({ hours, minutes, seconds, range: {
+      min: this.min,
+      max: this.max
+    } });
   }
 
   toggleMeridian(): void {
@@ -327,12 +350,12 @@ export class TimepickerComponent
    */
   setDisabledState(isDisabled: boolean): void {
     if (isDisabled) {
-      this.timepickerGroup.disable();
+      this.ngControl.control.disable();
 
       return;
     }
 
-    this.timepickerGroup.enable();
+    this.ngControl.control.enable();
   }
 
   ngOnDestroy(): void {

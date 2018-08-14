@@ -1,4 +1,4 @@
-<table [formGroup]="timepickerGroup">
+<table>
   <tbody>
   <tr class="text-center" [hidden]="!showSpinners">
     <!-- increment hours button-->
@@ -12,8 +12,8 @@
     <!-- increment minutes button -->
     <td *ngIf="showMinutes">
       <a class="btn btn-link" [class.disabled]="!canIncrementMinutes || !isEditable || !arrowkeys"
-         (click)="changeTimeOption('minutes', minuteStep)"
-      ><span class="bs-chevron bs-chevron-up"></span></a>
+         (click)="changeTimeOption('minutes', minuteStep)">
+        <span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;</td>
@@ -31,52 +31,52 @@
   </tr>
   <tr>
     <!-- hours -->
-    <td class="form-group" [class.has-error]="timepickerGroup.invalid">
-      <input type="text" [class.is-invalid]="timepickerGroup.get('hours').invalid"
+    <td class="form-group" [class.has-error]="ngControl.hasError('hours')">
+      <input type="text" [class.is-invalid]="ngControl.hasError('hours')"
              class="form-control text-center bs-timepicker-field"
              placeholder="HH"
              maxlength="2"
              #hoursRef
-             formControlName="hours"
+             name="hours"
              [value]="hours"
              [readonly]="readonlyInput"
              (wheel)="prevDef($event);changeTimeOption('hours', hourStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeTimeOption('hours', hourStep, 'key')"
              (keydown.ArrowDown)="changeTimeOption('hours', -hourStep, 'key')"
-             (change)="updateTimeOption('hours', $event.target.value)"></td>
+             (change)="onChanged($event.target.value, minutes, seconds)"></td>
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
-    <td class="form-group" *ngIf="showMinutes" [class.has-error]="timepickerGroup.invalid">
-      <input type="text" [class.is-invalid]="timepickerGroup.get('minutes').invalid"
+    <td class="form-group" *ngIf="showMinutes" [class.has-error]="ngControl.hasError('minutes')">
+      <input type="text" [class.is-invalid]="ngControl.hasError('minutes')"
              class="form-control text-center bs-timepicker-field"
              placeholder="MM"
              maxlength="2"
              #minutesRef
-             formControlName="minutes"
+             name="minutes"
              [value]="minutes"
              [readonly]="readonlyInput"
              (wheel)="prevDef($event);changeTimeOption('minutes', minuteStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeTimeOption('minutes', minuteStep, 'key')"
              (keydown.ArrowDown)="changeTimeOption('minutes', -minuteStep, 'key')"
-             (change)="updateTimeOption('minutes', $event.target.value)">
+             (change)="onChanged(hours, $event.target.value, seconds)">
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
     <!-- seconds -->
-    <td class="form-group" *ngIf="showSeconds" [class.has-error]="timepickerGroup.invalid">
-      <input type="text" [class.is-invalid]="timepickerGroup.get('seconds').invalid"
+    <td class="form-group" *ngIf="showSeconds" [class.has-error]="ngControl.hasError('seconds')">
+      <input type="text" [class.is-invalid]="ngControl.hasError('seconds')"
              class="form-control text-center bs-timepicker-field"
              placeholder="SS"
              maxlength="2"
              #secondsRef
-             formControlName="seconds"
+             name="seconds"
              [value]="seconds"
              [readonly]="readonlyInput"
              (wheel)="prevDef($event);changeTimeOption('seconds', secondsStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeTimeOption('seconds', secondsStep, 'key')"
              (keydown.ArrowDown)="changeTimeOption('seconds', -secondsStep, 'key')"
-             (change)="updateTimeOption('seconds', $event.target.value)">
+             (change)="onChanged(hours, minutes, $event.target.value)">
     </td>
     <!-- space between -->
     <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>

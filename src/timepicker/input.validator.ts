@@ -1,54 +1,56 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import {
   isHourInputValid,
-  isInputLimitValid,
+  isInRange,
   isMinuteInputValid,
   isSecondInputValid
 } from './timepicker.utils';
 
 
-export function getHoursValidator(): ValidatorFn {
-  return ({ value }: AbstractControl): ValidationErrors | null => {
-    if (!isHourInputValid(value)) {
-      return { hours : true };
-    }
+export function hoursValidator({ value }: AbstractControl): ValidationErrors | null {
+  if (value.hours && !isHourInputValid(value.hours)) {
+    return { hours : true };
+  }
 
-    return null;
-  };
+  return null;
 }
 
-export function getMinutesValidator(): ValidatorFn {
-  return ({ value }: AbstractControl): ValidationErrors | null => {
-    if (!isMinuteInputValid(value)) {
-      return { minutes : true };
-    }
+export function minutesValidator({ value }: AbstractControl): ValidationErrors | null {
+  if (value.minutes && !isMinuteInputValid(value.minutes)) {
+    return { minutes : true };
+  }
 
-    return null;
-  };
+  return null;
 }
 
-export function getSecondsValidator(): ValidatorFn {
-  return ({ value }: AbstractControl): ValidationErrors | null => {
-    if (!isSecondInputValid(value)) {
-      return { seconds : true };
-    }
+export function secondsValidator({ value }: AbstractControl): ValidationErrors | null {
+  if (value.seconds && !isSecondInputValid(value.seconds)) {
+    return { seconds : true };
+  }
 
-    return null;
-  };
+  return null;
 }
 
-export function getLimitsValidator(min: Date, max: Date): ValidatorFn {
-  return ({ value }: AbstractControl): ValidationErrors | null => {
+export function limitsValidator({ value }: AbstractControl): ValidationErrors | null {
+  if (!value.range) {
 
-    if (isInputLimitValid({
-      hour: value.hours,
-      minute: value.minutes,
-      seconds: value.seconds
-    }, max, min)) {
+    return null;
+  }
 
-      return null;
-    }
+  const time: Date = new Date();
 
-    return { inputLimit: true };
+  time.setHours(value.hours);
+  time.setMinutes(value.minutes);
+  time.setSeconds(value.seconds);
+
+  if (isInRange(time, value.range.max, value.range.min)) {
+
+    return null;
+  }
+
+  return {
+    hours: { inputLimit: true },
+    minutes: { inputLimit: true },
+    seconds: { inputLimit: true }
   };
 }

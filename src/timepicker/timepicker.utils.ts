@@ -185,6 +185,18 @@ export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
   return true;
 }
 
+export function isInRange(time: Date, maxTime: Date, minTime: Date): boolean {
+  if (maxTime && time > maxTime) {
+    return false;
+  }
+
+  if (minTime && time < minTime) {
+    return false;
+  }
+
+  return true;
+}
+
 export function isInputValid(
   hours: string,
   minutes = '0',
