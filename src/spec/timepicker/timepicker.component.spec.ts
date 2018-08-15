@@ -1083,7 +1083,8 @@ describe('Component: TimepickerComponent', () => {
 
       expect(methodSpy).toHaveBeenCalledWith({
         hours: '23', minutes: '40', seconds: '35',
-        range: { min: undefined, max: undefined }
+        range: { min: null, max: null },
+        isPM: false
       });
     });
 

@@ -38,8 +38,9 @@ export function limitsValidator({ value }: AbstractControl): ValidationErrors | 
   }
 
   const time: Date = new Date();
+  const hours = value.isPM ? (Number(value.hours) + 12) : value.hours;
 
-  time.setHours(value.hours);
+  time.setHours(hours);
   time.setMinutes(value.minutes);
   time.setSeconds(value.seconds);
 

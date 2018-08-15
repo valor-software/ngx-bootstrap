@@ -195,15 +195,11 @@ export class TimepickerComponent
   ngOnInit(): void {
     this.ngControl.valueChanges
       .pipe(
-        filter(() => Boolean(!this.ngControl.errors)),
+        filter(() => !this.ngControl.errors),
         filter((value: any) => value && value.hours)
       )
-      .subscribe((value: any) => {
-        this.hours = value.hours;
-        this.minutes = value.minutes;
-        this.seconds = value.seconds;
-
-        this.isValid.emit(true);
+      .subscribe(({ hours, minutes, seconds }: any) => {
+        [this.hours, this.minutes, this.seconds] = [hours, minutes, seconds];
 
         this._updateTime();
       });
@@ -215,8 +211,7 @@ export class TimepickerComponent
         distinctUntilChanged()
       )
       .subscribe((errors: ValidationErrors | null) => {
-        this.onChange(null);
-        this.isValid.emit(false);
+        this.ngControl.control.setValue('', { emitEvent: false });
         this.ngControl.control.setErrors(errors);
       });
   }
@@ -297,9 +292,9 @@ export class TimepickerComponent
 
   onChanged(hours: string, minutes: string, seconds: string) {
     this.onChange({ hours, minutes, seconds, range: {
-      min: this.min,
-      max: this.max
-    } });
+      min: this.min || null,
+      max: this.max || null
+    }, isPM: this.isPM() });
   }
 
   toggleMeridian(): void {
@@ -349,13 +344,7 @@ export class TimepickerComponent
    * @param isDisabled
    */
   setDisabledState(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.ngControl.control.disable();
-
-      return;
-    }
-
-    this.ngControl.control.enable();
+    this.disabled = isDisabled;
   }
 
   ngOnDestroy(): void {

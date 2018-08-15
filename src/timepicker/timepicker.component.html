@@ -37,8 +37,8 @@
              placeholder="HH"
              maxlength="2"
              #hoursRef
-             name="hours"
              [value]="hours"
+             [disabled]="disabled"
              [readonly]="readonlyInput"
              (wheel)="prevDef($event);changeTimeOption('hours', hourStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeTimeOption('hours', hourStep, 'key')"
@@ -53,8 +53,8 @@
              placeholder="MM"
              maxlength="2"
              #minutesRef
-             name="minutes"
              [value]="minutes"
+             [disabled]="disabled"
              [readonly]="readonlyInput"
              (wheel)="prevDef($event);changeTimeOption('minutes', minuteStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeTimeOption('minutes', minuteStep, 'key')"
@@ -70,8 +70,8 @@
              placeholder="SS"
              maxlength="2"
              #secondsRef
-             name="seconds"
              [value]="seconds"
+             [disabled]="disabled"
              [readonly]="readonlyInput"
              (wheel)="prevDef($event);changeTimeOption('seconds', secondsStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeTimeOption('seconds', secondsStep, 'key')"
