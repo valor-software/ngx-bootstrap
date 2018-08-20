@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "../dist",
     "rootDir": "./",
-    "target": "es5",
+    "target": "es6",
     "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
