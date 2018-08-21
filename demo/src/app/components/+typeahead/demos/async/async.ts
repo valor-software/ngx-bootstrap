@@ -77,7 +77,7 @@ export class DemoTypeaheadAsyncComponent {
   }
 
   getStatesAsObservable(token: string): Observable<any> {
-    const query = new RegExp(token, 'ig');
+    const query = new RegExp(token, 'i');
 
     return of(
       this.statesComplex.filter((state: any) => {
