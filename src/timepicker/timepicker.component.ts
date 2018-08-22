@@ -151,7 +151,7 @@ export class TimepickerComponent
 
   constructor(
     _config: TimepickerConfig,
-    _cd: ChangeDetectorRef,
+    private _cd: ChangeDetectorRef,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
@@ -348,6 +348,7 @@ export class TimepickerComponent
    */
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this._cd.markForCheck();
   }
 
   ngOnDestroy(): void {
