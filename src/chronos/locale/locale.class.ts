@@ -276,13 +276,13 @@ export class Locale {
       // make the regex if we don't have it already
       date = new Date(Date.UTC(2000, i));
       if (strict && !this._longMonthsParse[i]) {
-        const _months = this.months(date, '').replace('.', '');
-        const _shortMonths = this.monthsShort(date, '').replace('.', '');
+        const _months = this.months(date, '', true).replace('.', '');
+        const _shortMonths = this.monthsShort(date, '', true).replace('.', '');
         this._longMonthsParse[i] = new RegExp(`^${_months}$`, 'i');
         this._shortMonthsParse[i] = new RegExp(`^${_shortMonths}$`, 'i');
       }
       if (!strict && !this._monthsParse[i]) {
-        regex = `^${this.months(date, '')}|^${this.monthsShort(date, '')}`;
+        regex = `^${this.months(date, '', true)}|^${this.monthsShort(date, '', true)}`;
         this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
       }
       // test the regex
@@ -340,8 +340,8 @@ export class Locale {
   }
 
   /** Week */
-  week(date: Date): number {
-    return weekOfYear(date, this._week.dow, this._week.doy).week;
+  week(date: Date, isUTC?: boolean): number {
+    return weekOfYear(date, this._week.dow, this._week.doy, isUTC).week;
   }
 
   firstDayOfWeek(): number {
@@ -407,12 +407,12 @@ export class Locale {
       // fix: here is the issue
       const date = setDayOfWeek(new Date(Date.UTC(2000, 1)), i, null, true);
       if (strict && !this._fullWeekdaysParse[i]) {
-        this._fullWeekdaysParse[i] = new RegExp(`^${this.weekdays(date, '').replace('.', '\.?')}$`, 'i');
-        this._shortWeekdaysParse[i] = new RegExp(`^${this.weekdaysShort(date).replace('.', '\.?')}$`, 'i');
-        this._minWeekdaysParse[i] = new RegExp(`^${this.weekdaysMin(date).replace('.', '\.?')}$`, 'i');
+        this._fullWeekdaysParse[i] = new RegExp(`^${this.weekdays(date, '', true).replace('.', '\.?')}$`, 'i');
+        this._shortWeekdaysParse[i] = new RegExp(`^${this.weekdaysShort(date, '', true).replace('.', '\.?')}$`, 'i');
+        this._minWeekdaysParse[i] = new RegExp(`^${this.weekdaysMin(date, '', true).replace('.', '\.?')}$`, 'i');
       }
       if (!this._weekdaysParse[i]) {
-        regex = `^${this.weekdays(date, '')}|^${this.weekdaysShort(date)}|^${this.weekdaysMin(date)}`;
+        regex = `^${this.weekdays(date, '', true)}|^${this.weekdaysShort(date, '', true)}|^${this.weekdaysMin(date, '', true)}`;
         this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
       }
 

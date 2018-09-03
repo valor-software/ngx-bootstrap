@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "9"
+node_js: "8"
 
 notifications:
   email: false
@@ -20,7 +20,7 @@ env:
 stages:
   - &stage
     name: precache
-    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v2
+    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
   - <<: *stage
     name: lint
   - <<: *stage
@@ -30,9 +30,9 @@ stages:
   - <<: *stage
     name: build
   - name: deploy
-    if: branch = development AND type = push OR tag =~ ^v2
+    if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
-    if: tag =~ ^v2
+    if: tag =~ ^v\d+
   - <<: *stage
     name: sauce-tests
 
@@ -41,11 +41,11 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm i -g npm@5.7.1
-  - npm ci > /dev/null
-  - npm run build > /dev/null
-  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
-  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+  - npm i -g npm@6.0.1
+  - npm ci
+  - npm run build
+#  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+#  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
@@ -55,14 +55,12 @@ jobs:
     - env: NGV=next
     - env: SAUCE=true
     - stage: sauce-tests
-#    temporary solution. will be fixed
-    - stage: test
   include:
 # precache npm and apt dependencies
     - stage: precache
       install:
-        - npm i -g npm@5.7.1
-        - npm ci > /dev/null
+        - npm i -g npm@6.0.1
+        - npm ci
       script: true
       addons:
         chrome: stable
@@ -84,25 +82,28 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-    - <<: *test
-      env: NGV=latest
-    - <<: *test
-      env: NGV=next
+#    - <<: *test
+#      env: NGV=latest
+#    - <<: *test
+#      env: NGV=next
 
 #     test cypress
     - stage: cypress-tests
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script:
+      # until this is fixed https://github.com/bahmutov/add-typescript-to-cypress/issues/23
+      - npm i ts-loader@3 --no-save
+      - $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
       stage: build
       script: npm run demo.ng-build
-    - <<: *build
-      env: NGV=latest
-    - <<: *build
-      env: NGV=next
+#    - <<: *build
+#      env: NGV=latest
+#    - <<: *build
+#      env: NGV=next
     - stage: sauce-tests
       env: SAUCE=true
       before_script:
@@ -122,23 +123,24 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap.surge.sh
         on: development
-    - <<: *surge
-      env: NGV=latest
-      deploy:
-        provider: surge
-        project: ./gh-pages/
-        domain: ngx-bootstrap-latest.surge.sh
-        on: development
-    - stage: deploy
-      script: npm run build:dynamic
-      before_deploy:
-        - cd ./demo/dist
-      deploy:
-        provider: heroku
-        api_key: $HEROKU_API_KEY
-        skip_cleanup: true
-        app: ngx-universal
-        on: development
+#    - <<: *surge
+#      env: NGV=latest
+#      deploy:
+#        provider: surge
+#        project: ./gh-pages/
+#        domain: ngx-bootstrap-latest.surge.sh
+#        on: development
+# todo: Illya please fix
+#    - stage: deploy
+#      script: npm run build:dynamic
+#      before_deploy:
+#        - cd ./demo/dist
+#      deploy:
+#        provider: heroku
+#        api_key: $HEROKU_API_KEY
+#        skip_cleanup: true
+#        app: ngx-universal
+#        on: development
 
 # publish to gh pages and npm
     - stage: publish

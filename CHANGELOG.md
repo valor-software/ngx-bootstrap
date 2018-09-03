@@ -1,3 +1,70 @@
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0...v3.0.1) (2018-06-19)
+
+
+### Bug Fixes
+
+* remove peer dependency on [@angular](https://github.com/angular)/forms ([#4420](https://github.com/valor-software/ngx-bootstrap/issues/4420)) ([550af9c](https://github.com/valor-software/ngx-bootstrap/commit/550af9c)), closes [#4411](https://github.com/valor-software/ngx-bootstrap/issues/4411)
+
+
+
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0-RC.1...v3.0.0) (2018-05-17)
+
+
+### Bug Fixes
+
+* **main:** fix whitespaces globally for aot ([#4326](https://github.com/valor-software/ngx-bootstrap/issues/4326)) ([0478637](https://github.com/valor-software/ngx-bootstrap/commit/0478637))
+* **typeahead:** change function name from hightlight to highlight ([#4091](https://github.com/valor-software/ngx-bootstrap/issues/4091)) ([97171ff](https://github.com/valor-software/ngx-bootstrap/commit/97171ff)), closes [#3518](https://github.com/valor-software/ngx-bootstrap/issues/3518)
+
+
+### Features
+
+* **accordion:** add key navigation to accordion ([#4192](https://github.com/valor-software/ngx-bootstrap/issues/4192)) ([69b35b3](https://github.com/valor-software/ngx-bootstrap/commit/69b35b3))
+
+
+
+<a name="3.0.0-RC.1"></a>
+# [3.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.5...v3.0.0-RC.1) (2018-05-15)
+
+
+### Bug Fixes
+
+* **chronos:** isUTC tests fixes ([b7bd4b5](https://github.com/valor-software/ngx-bootstrap/commit/b7bd4b5))
+* **demo:** fix api refenrences for pager component ([#4323](https://github.com/valor-software/ngx-bootstrap/issues/4323)) ([3249452](https://github.com/valor-software/ngx-bootstrap/commit/3249452))
+* **main:** preserve whitespaces globally ([#4324](https://github.com/valor-software/ngx-bootstrap/issues/4324)) ([fee535a](https://github.com/valor-software/ngx-bootstrap/commit/fee535a))
+* **rxjs/operators:** use rxjs pipeable operators pattern, remove import path(not used) ([#4169](https://github.com/valor-software/ngx-bootstrap/issues/4169)) ([f7c5423](https://github.com/valor-software/ngx-bootstrap/commit/f7c5423))
+
+
+### Features
+
+* **angular:** upgraded angular and rxjs to v6 ([e36f7d9](https://github.com/valor-software/ngx-bootstrap/commit/e36f7d9))
+
+
+
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.4...v2.0.5) (2018-05-07)
+
+
+### Bug Fixes
+
+* **chronos:** ro locale updated to momenjs etalon ([2634e8f](https://github.com/valor-software/ngx-bootstrap/commit/2634e8f))
+* **chronos:** updated fi locale tests ([ae01bb0](https://github.com/valor-software/ngx-bootstrap/commit/ae01bb0))
+* **demo:** fix api references for pagination component ([#4303](https://github.com/valor-software/ngx-bootstrap/issues/4303)) ([edc7b95](https://github.com/valor-software/ngx-bootstrap/commit/edc7b95))
+
+
+### Features
+
+* **buttons:** add aria-attributes ([#4082](https://github.com/valor-software/ngx-bootstrap/issues/4082)) ([49ee88e](https://github.com/valor-software/ngx-bootstrap/commit/49ee88e)), closes [#4068](https://github.com/valor-software/ngx-bootstrap/issues/4068)
+* **datepicker:** add Romanian locale to date picker ([#4205](https://github.com/valor-software/ngx-bootstrap/issues/4205)) ([6a95b76](https://github.com/valor-software/ngx-bootstrap/commit/6a95b76))
+* **datepicker:** Added Slovenian locale support for datepicker ([#4035](https://github.com/valor-software/ngx-bootstrap/issues/4035)) ([6e2e60f](https://github.com/valor-software/ngx-bootstrap/commit/6e2e60f))
+* **locale:** Galician locale ([#4246](https://github.com/valor-software/ngx-bootstrap/issues/4246)) ([08e3f56](https://github.com/valor-software/ngx-bootstrap/commit/08e3f56))
+* **locale:** Mongolian locale ([#4161](https://github.com/valor-software/ngx-bootstrap/issues/4161)) ([91ffd36](https://github.com/valor-software/ngx-bootstrap/commit/91ffd36))
+* **sortable:** add aria attributes ([#4163](https://github.com/valor-software/ngx-bootstrap/issues/4163)) ([00a331a](https://github.com/valor-software/ngx-bootstrap/commit/00a331a)), closes [#4152](https://github.com/valor-software/ngx-bootstrap/issues/4152)
+* **timepicker:** hide arrows with [hidden] attribute ([#4197](https://github.com/valor-software/ngx-bootstrap/issues/4197)) ([190e2db](https://github.com/valor-software/ngx-bootstrap/commit/190e2db))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/valor-software/ngx-bootstrap/compare/v2.0.3...v2.0.4) (2018-04-16)
 

@@ -460,7 +460,7 @@ export class Khronos {
     // this._date = parseDate(input, format, localeKey, strict, isUTC);
     const config = createLocalOrUTC(input, format, localeKey, strict, isUTC);
     this._date = config._d;
-    this._offset = config._offset;
+    this._offset = isNumber(config._offset) ? config._offset : this._offset;
     this._isUTC = config._isUTC;
     this._isStrict = config._strict;
     this._format = config._f;
@@ -521,7 +521,7 @@ export class Khronos {
   calendar(time?: DateInput | Khronos, formats?: CalendarSpec): string {
     const _time = time instanceof Khronos ? time : new Khronos(time || new Date());
     const _offset = (this._offset || 0) - (_time._offset || 0);
-    const _config = Object.assign(this._toConfig(), {_offset});
+    const _config = Object.assign(this._toConfig(), { _offset });
 
     return calendar(this._date, _time._date,
       formats, this._locale, _config);
@@ -697,7 +697,7 @@ export class Khronos {
     if (isObject<MomentInputObject>(period)) {
       const _mapped = mapMomentInputObject(period);
       Object.keys(_mapped)
-        .sort(function (a: UnitOfTime, b: UnitOfTime): number {
+        .sort(function(a: UnitOfTime, b: UnitOfTime): number {
           return _unitsPriority[a] - _unitsPriority[b];
         })
         .forEach((key: UnitOfTime) => this.set(key, _mapped[key]));
@@ -910,10 +910,10 @@ export class Khronos {
   weekYear(val: number): Khronos;
   weekYear(val?: number): Khronos | number {
     if (!val && val !== 0) {
-      return getWeekYear(this._date, this._locale);
+      return getWeekYear(this._date, this._locale, this.isUTC());
     }
 
-    const date = getSetWeekYear(this._date, val, this._locale);
+    const date = getSetWeekYear(this._date, val, this._locale, this.isUTC());
     if (isDate(date)) {
       this._date = date;
     }
@@ -925,10 +925,10 @@ export class Khronos {
   isoWeekYear(val: number): Khronos ;
   isoWeekYear(val?: number): Khronos | number {
     if (!val && val !== 0) {
-      return getISOWeekYear(this._date);
+      return getISOWeekYear(this._date, this.isUTC());
     }
 
-    const date = getSetISOWeekYear(this._date, val);
+    const date = getSetISOWeekYear(this._date, val, this.isUtc());
 
     if (isDate(date)) {
       this._date = date;

@@ -1,10 +1,18 @@
 // tslint:disable:max-file-line-count
 import {
-  Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
-  OnInit, Output, Renderer2, ViewContainerRef
+  Directive,
+  ElementRef,
+  EmbeddedViewRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewContainerRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
@@ -176,7 +184,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // hide dropdown if set disabled while opened
     this._subscriptions.push(
       this._state.isDisabledChange
-        .filter((value: boolean) => value)
+        .pipe(
+          filter((value: boolean) => value)
+        )
         .subscribe((value: boolean) => this.hide())
     );
   }
@@ -260,7 +270,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   /**
    * Toggles an element’s popover. This is considered a “manual” triggering of
-   * the popover.
+   * the popover. With parameter <code>true</code> allows toggling, with parameter <code>false</code>
+   * only hides opened dropdown. Parameter usage will be removed in ngx-bootstrap v3
    */
   toggle(value?: boolean): void {
     if (this.isOpen || !value) {

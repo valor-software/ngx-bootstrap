@@ -21,12 +21,12 @@ export class NgApiDocClassComponent {
   headerAnchor: string;
   apiDocs: ClassDesc;
 
-  private _analytics: Analytics;
+  private analytics: Analytics;
   private docs: NgApiDoc;
 
-  constructor(_analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
+  constructor(analytics: Analytics, docs: NgApiDoc, content: ComponentApi) {
     this.docs = docs;
-    this._analytics = _analytics;
+    this.analytics = analytics;
 
     this.headerAnchor = content.anchor;
     this.apiDocs = this.docs[content.title];
@@ -37,6 +37,6 @@ export class NgApiDocClassComponent {
   }
 
   trackSourceClick(): void {
-    this._analytics.trackEvent('Source File View', this.apiDocs.className);
+    this.analytics.trackEvent('Source File View', this.apiDocs.className);
   }
 }

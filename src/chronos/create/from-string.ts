@@ -17,7 +17,7 @@ const basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|
 
 const tzRegex = /Z|[+-]\d\d(?::?\d\d)?/;
 
-const isoDates: [[string, RegExp, boolean]] = [
+const isoDates: [string, RegExp, boolean][] = [
   ['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/, true],
   ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/, true],
   ['GGGG-[W]WW-E', /\d{4}-W\d\d-\d/, true],
@@ -33,7 +33,7 @@ const isoDates: [[string, RegExp, boolean]] = [
 ];
 
 // iso time formats and regexes
-const isoTimes: [[string, RegExp]] = [
+const isoTimes: [string, RegExp][] = [
   ['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/],
   ['HH:mm:ss,SSSS', /\d\d:\d\d:\d\d,\d+/],
   ['HH:mm:ss', /\d\d:\d\d:\d\d/],
