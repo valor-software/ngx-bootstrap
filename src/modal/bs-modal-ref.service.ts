@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class BsModalRef {
@@ -10,5 +10,11 @@ export class BsModalRef {
   /**
    * Hides the modal
    */
-  hide: () => void = Function;
+  hide: (msg?: any | null) => void = Function;
+
+
+  /**
+   * Emits on modal hide with any supplied arguments in hide()
+   */
+  onHide: EventEmitter<any | null>;
 }
