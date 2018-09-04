@@ -19,6 +19,7 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { filter } from 'rxjs/operators';
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -99,6 +100,8 @@ export class BsDaterangepickerDirective
    * Maximum date which is available for selection
    */
   @Input() maxDate: Date;
+
+  @Input() customDates: BsCustomDates[];
   /**
    * Emits when daterangepicker value has been changed
    */
@@ -201,7 +204,8 @@ export class BsDaterangepickerDirective
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        customDates: this.customDates
       }
     );
   }

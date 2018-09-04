@@ -14,12 +14,13 @@ import {
   MonthsCalendarViewModel,
   YearsCalendarViewModel
 } from '../models/index';
+import { EventEmitter, Output } from '@angular/core';
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
 
   _effects: BsDatepickerEffects;
-  _customRangesFish: BsCustomDates[] = [];
+  customDates: BsCustomDates[] = [];
 
   set minDate(value: Date) {
     this._effects.setMinDate(value);

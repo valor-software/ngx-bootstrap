@@ -7,6 +7,7 @@ import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { Subscription } from 'rxjs';
+import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -56,6 +57,8 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         .select(state => state.selectedDate)
         .subscribe(date => this.valueChange.emit(date))
     );
+
+    this.customDates = this._config.customDates;
   }
 
   daySelectHandler(day: DayViewModel): void {
@@ -70,5 +73,9 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       sub.unsubscribe();
     }
     this._effects.destroy();
+  }
+
+  onCustomDateSelect(bsCustomDate: BsCustomDates) {
+    this._store.dispatch(this._actions.select(<any>bsCustomDate.value));
   }
 }

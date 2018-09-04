@@ -6,6 +6,7 @@ import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { Subscription } from 'rxjs';
+import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -58,6 +59,8 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
         .select(state => state.selectedRange)
         .subscribe(date => this.valueChange.emit(date))
     );
+
+    this.customDates = this._config.customDates;
   }
 
   daySelectHandler(day: DayViewModel): void {
@@ -79,6 +82,24 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
     if (this._rangeStack.length === 0) {
       this._rangeStack = [day.date];
+    }
+
+    this._store.dispatch(this._actions.selectRange(this._rangeStack));
+
+    if (this._rangeStack.length === 2) {
+      this._rangeStack = [];
+    }
+  }
+
+  onCustomDateSelect(bsCustomDate: BsCustomDates) {
+    if (this._rangeStack.length === 1) {
+      this._rangeStack =
+      <any>bsCustomDate.value >= this._rangeStack[0]
+          ? [this._rangeStack[0], <any>bsCustomDate.value]
+          : [<any>bsCustomDate.value];
+    }
+    if (this._rangeStack.length === 0) {
+      this._rangeStack = [<any>bsCustomDate.value];
     }
 
     this._store.dispatch(this._actions.selectRange(this._rangeStack));

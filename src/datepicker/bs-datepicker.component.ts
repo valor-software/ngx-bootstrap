@@ -7,6 +7,7 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -86,6 +87,9 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Maximum date which is available for selection
    */
   @Input() maxDate: Date;
+
+
+  @Input() customDates: BsCustomDates[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -206,7 +210,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+      customDates: this.customDates
     });
   }
 
