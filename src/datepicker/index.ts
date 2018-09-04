@@ -12,3 +12,7 @@ export { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 export { BsDatepickerConfig } from './bs-datepicker.config';
 export { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 export { BsLocaleService } from './bs-locale.service';
+
+export { BsDatepickerEffects } from './reducer/bs-datepicker.effects';
+export { BsDatepickerStore } from './reducer/bs-datepicker.store';
+export { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';

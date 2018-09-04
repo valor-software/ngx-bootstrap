@@ -58,7 +58,11 @@ export {
   BsDaterangepickerConfig,
   BsLocaleService,
   BsDaterangepickerDirective,
-  BsDatepickerDirective
+  BsDatepickerDirective,
+
+  BsDatepickerEffects,
+  BsDatepickerStore,
+  BsDatepickerContainerComponent,
 } from './datepicker/index';
 
 export {
