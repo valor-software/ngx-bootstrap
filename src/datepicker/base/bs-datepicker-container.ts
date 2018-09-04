@@ -20,6 +20,7 @@ export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
 
   _effects: BsDatepickerEffects;
+  _customRangesFish: BsCustomDates[] = [];
   customDates: BsCustomDates[] = [];
 
   set minDate(value: Date) {
