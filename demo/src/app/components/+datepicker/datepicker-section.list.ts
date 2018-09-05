@@ -18,6 +18,7 @@ import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-even
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
+import { DemoCustomDatesFooterComponent } from './demos/custom-dates-footer/custom-dates-footer.component';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -145,6 +146,18 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>minDate</code> is set to yesterday and <code>maxDate</code>
           to the current day in the next week</p>`,
         outlet: DemoDatepickerMinMaxComponent
+      },
+      {
+        title: 'Custom dates footer',
+        anchor: 'custom-dates-footer',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-dates-footer/custom-dates-footer.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-dates-footer/custom-dates-footer.component.html'),
+        description: `
+          <p>You can set the footer with custom dates using <code>customDates</code> properties</p>
+          <p>In the following Datepicker example <code>customDates</code> is set to Today and Max
+          <p>And in Daterangepicker example <code>customDates</code> is set to Today, After Month, After Year and Max
+          </p>`,
+        outlet: DemoCustomDatesFooterComponent
       },
       {
         title: 'Disabled',

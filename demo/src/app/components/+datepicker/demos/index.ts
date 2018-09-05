@@ -18,6 +18,7 @@ import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-cli
 import { DemoDatepickerByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
+import { DemoCustomDatesFooterComponent } from './custom-dates-footer/custom-dates-footer.component';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -41,6 +42,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerOutsideClickComponent,
   DemoDatepickerByIsOpenPropComponent,
   DemoDatepickerDateInitialStateComponent,
-  DemoDatepickerTriggersCustomComponent
+  DemoDatepickerTriggersCustomComponent,
+  DemoCustomDatesFooterComponent
 ];
 
