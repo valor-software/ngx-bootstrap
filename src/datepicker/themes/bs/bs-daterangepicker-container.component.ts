@@ -92,21 +92,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   onCustomDateSelect(bsCustomDate: BsCustomDates) {
-    if (this._rangeStack.length === 1) {
-      this._rangeStack =
-      <any>bsCustomDate.value >= this._rangeStack[0]
-          ? [this._rangeStack[0], <any>bsCustomDate.value]
-          : [<any>bsCustomDate.value];
-    }
-    if (this._rangeStack.length === 0) {
-      this._rangeStack = [<any>bsCustomDate.value];
-    }
-
-    this._store.dispatch(this._actions.selectRange(this._rangeStack));
-
-    if (this._rangeStack.length === 2) {
-      this._rangeStack = [];
-    }
+    this.daySelectHandler({isDisabled: false, isOtherMonth: false, date: <any>bsCustomDate.value, label: bsCustomDate.label});
   }
 
   ngOnDestroy(): void {
