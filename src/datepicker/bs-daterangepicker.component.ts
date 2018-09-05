@@ -19,7 +19,7 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { ComponentLoader } from '../component-loader/component-loader.class';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { filter } from 'rxjs/operators';
-import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
+import { BsCustomDates } from './bs-customdates';
 
 @Directive({
   selector: '[bsDaterangepicker]',

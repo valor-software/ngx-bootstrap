@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   DatepickerRenderOptions
 } from './models/index';
-import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
+import { BsCustomDates } from './bs-customdates';
 
 
 /**

@@ -1,9 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { BsCustomDates } from '../../bs-customdates';
 
-export interface BsCustomDates {
-  label: string;
-  value: Date | Date[];
-}
 
 @Component({
   selector: 'bs-custom-date-view',

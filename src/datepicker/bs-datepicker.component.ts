@@ -7,7 +7,7 @@ import { ComponentLoaderFactory } from '../component-loader/component-loader.fac
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
+import { BsCustomDates } from './bs-customdates';
 
 @Directive({
   selector: '[bsDatepicker]',
