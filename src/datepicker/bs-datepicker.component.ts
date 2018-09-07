@@ -87,6 +87,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() maxDate: Date;
   /**
+   * Indicate whether the given date will be disabled or not
+   */
+  @Input() markDisabled: ((date: Date) => boolean);
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -136,6 +140,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.markDisabled) {
+      this._datepickerRef.instance.markDisabled = this.markDisabled;
     }
   }
 
@@ -206,7 +214,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+      markDisabled: this.markDisabled || this.bsConfig && this.bsConfig.markDisabled
     });
   }
 

@@ -703,6 +703,11 @@ export const ngdoc: any = {
         "description": "<p>Returns whether or not the datepicker is currently being shown</p>\n"
       },
       {
+        "name": "markDisabled",
+        "type": "(date: Date) => boolean",
+        "description": "<p>Indicate whether the given date will be disabled or not</p>\n"
+      },
+      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Maximum date which is available for selection</p>\n"
@@ -796,6 +801,11 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
+        "name": "markDisabled",
+        "type": "(date: Date) => boolean",
+        "description": "<p>Indicate whether the given date will be disabled or not</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
@@ -851,6 +861,11 @@ export const ngdoc: any = {
         "name": "isOpen",
         "type": "boolean",
         "description": "<p>Returns whether or not the daterangepicker is currently being shown</p>\n"
+      },
+      {
+        "name": "markDisabled",
+        "type": "(date: Date) => boolean",
+        "description": "<p>Indicate whether the given date will be disabled or not</p>\n"
       },
       {
         "name": "maxDate",

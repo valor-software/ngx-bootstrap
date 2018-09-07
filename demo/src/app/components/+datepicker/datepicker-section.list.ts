@@ -2,6 +2,7 @@ import { DemoDatepickerBasicComponent } from './demos/basic/basic';
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
+import { DemoDatePickerMarkDisabledComponent } from './demos/mark-disabled/mark-disabled';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
@@ -145,6 +146,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>minDate</code> is set to yesterday and <code>maxDate</code>
           to the current day in the next week</p>`,
         outlet: DemoDatepickerMinMaxComponent
+      },
+      {
+        title: 'Mark Disabled',
+        anchor: 'mark-disabled',
+        component: require('!!raw-loader?lang=typescript!./demos/mark-disabled/mark-disabled.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/mark-disabled/mark-disabled.html'),
+        description: `
+        <p>You can provide a callback function which will be used in order to determiner where 
+        any rendered date will be disabled</p>`,
+        outlet: DemoDatePickerMarkDisabledComponent
       },
       {
         title: 'Disabled',

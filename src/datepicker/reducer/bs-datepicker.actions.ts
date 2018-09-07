@@ -23,6 +23,7 @@ export class BsDatepickerActions {
   static readonly SET_MIN_DATE = '[datepicker] set min date';
   static readonly SET_MAX_DATE = '[datepicker] set max date';
   static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
+  static readonly SET_MARK_DISABLED = '[datepicker] mark date disabled';
 
   static readonly SET_LOCALE = '[datepicker] set datepicker locale';
 
@@ -109,6 +110,13 @@ export class BsDatepickerActions {
       type: BsDatepickerActions.SET_IS_DISABLED,
       payload: value
     };
+  }
+
+  markDisabled(callback: ((date: Date) => boolean)) {
+    return {
+      type: BsDatepickerActions.SET_MARK_DISABLED,
+      payload: callback
+    }
   }
 
   setLocale(locale: string): Action {
