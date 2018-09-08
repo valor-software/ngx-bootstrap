@@ -1,4 +1,5 @@
 export { arLocale } from './chronos/i18n/ar';
+export { bgLocale } from './chronos/i18n/bg';
 export { csLocale } from './chronos/i18n/cs';
 export { daLocale } from './chronos/i18n/da';
 export { deLocale } from './chronos/i18n/de';
