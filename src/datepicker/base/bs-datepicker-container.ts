@@ -14,7 +14,6 @@ import {
   MonthsCalendarViewModel,
   YearsCalendarViewModel
 } from '../models/index';
-import { EventEmitter, Output } from '@angular/core';
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;

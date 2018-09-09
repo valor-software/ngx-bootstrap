@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsCustomDates } from '../../../../../../../src/datepicker/bs-customdates';
+import { BsCustomDates } from '../../../../../../../src/datepicker';
 
 @Component({
   selector: 'custom-dates-footer',
