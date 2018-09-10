@@ -3,7 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
 import { PositioningService } from '../positioning/positioning.service';
 
-import { warnOnce } from '../utils/warn-once';
+import { warnOnce } from '../utils/src/warn-once';
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';

@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { CLASS_NAME } from './modal-options.class';
-import { isBs3 } from '../utils/theme-provider';
-import { Utils } from '../utils/utils.class';
+import { isBs3 } from '../utils/src/theme-provider';
+import { Utils } from '../utils/src/utils.class';
 
 
 /** This component will be added as background layout for modals if enabled */

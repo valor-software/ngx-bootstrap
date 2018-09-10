@@ -3,7 +3,7 @@ import { AlertModule } from './alert/alert.module';
 import { AccordionModule } from './accordion/accordion.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CarouselModule } from './carousel/carousel.module';
-import { CollapseModule } from './collapse/collapse.module';
+import { CollapseModule } from './collapse/src/collapse.module';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { BsDropdownModule } from './dropdown/bs-dropdown.module';
 import { ModalModule } from './modal/modal.module';
