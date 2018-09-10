@@ -22,6 +22,9 @@ export class BsDatepickerConfig
    */
   maxDate?: Date;
 
+  /**
+   * Indicate whether a given Date should be disabled or not
+   */
   markDisabled?: ((date: Date) => boolean);
 
   /** CSS class which will be applied to datepicker container,
