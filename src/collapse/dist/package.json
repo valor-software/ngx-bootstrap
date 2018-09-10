@@ -1,0 +1,17 @@
+{
+  "name": "collapse",
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "main": "bundles/collapse.umd.js",
+  "module": "fesm5/collapse.js",
+  "es2015": "fesm2015/collapse.js",
+  "esm5": "esm5/collapse.js",
+  "esm2015": "esm2015/collapse.js",
+  "fesm5": "fesm5/collapse.js",
+  "fesm2015": "fesm2015/collapse.js",
+  "typings": "collapse.d.ts",
+  "metadata": "collapse.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

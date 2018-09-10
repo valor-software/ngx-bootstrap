@@ -2,7 +2,7 @@
 // tslint:disable
 import { Component, OnInit } from '@angular/core';
 
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from '../utils/src/theme-provider';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 @Component({

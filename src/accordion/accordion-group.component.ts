@@ -1,7 +1,7 @@
 import {
   Component, HostBinding, Inject, Input, OnDestroy, OnInit, Output, EventEmitter
 } from '@angular/core';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from '../utils/src/theme-provider';
 import { AccordionComponent } from './accordion.component';
 
 /**

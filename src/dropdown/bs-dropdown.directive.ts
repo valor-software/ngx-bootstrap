@@ -20,7 +20,7 @@ import { BsDropdownContainerComponent } from './bs-dropdown-container.component'
 import { BsDropdownState } from './bs-dropdown.state';
 import { BsComponentRef } from '../component-loader/bs-component-ref.class';
 import { BsDropdownMenuDirective } from './';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from '../utils/src/theme-provider';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',

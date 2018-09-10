@@ -6,7 +6,7 @@ import { Renderer2 } from '@angular/core';
 import { Trigger } from './trigger.class';
 import {
   BsEventCallback, ListenOptions
-} from '../component-loader/listen-options.model';
+} from '../../component-loader/listen-options.model';
 
 const DEFAULT_ALIASES = {
   hover: ['mouseover', 'mouseout'],

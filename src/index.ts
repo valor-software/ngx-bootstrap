@@ -3,7 +3,7 @@ import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CarouselModule } from './carousel/carousel.module';
-import { CollapseModule } from './collapse/collapse.module';
+import { CollapseModule } from './collapse/src/collapse.module';
 import { BsDaterangepickerConfig } from './datepicker/bs-daterangepicker.config';
 import { DatepickerModule } from './datepicker/datepicker.module';
 import { BsDropdownModule } from './dropdown/bs-dropdown.module';
@@ -19,7 +19,7 @@ import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 
 export { listLocales } from './chronos/locale/locales';
-export { setTheme } from './utils/theme-provider';
+export { setTheme } from './utils/src/theme-provider';
 
 export {
   AccordionComponent,
@@ -43,7 +43,7 @@ export {
   SlideComponent
 } from './carousel/index';
 
-export { CollapseDirective, CollapseModule } from './collapse/index';
+export { CollapseDirective, CollapseModule } from './collapse/src/index';
 
 export {
   DateFormatter,
@@ -143,7 +143,7 @@ export {
   PopoverModule
 } from './popover/index';
 
-export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils/index';
+export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils/src/index';
 
 export {
   ComponentLoader,

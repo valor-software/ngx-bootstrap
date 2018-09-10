@@ -8,10 +8,10 @@ import {
   OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 
-import { document, window } from '../utils/facade/browser';
+import { document, window } from '../utils/src/facade/browser';
 
-import { isBs3 } from '../utils/theme-provider';
-import { Utils } from '../utils/utils.class';
+import { isBs3 } from '../utils/src/theme-provider';
+import { Utils } from '../utils/src/utils.class';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions

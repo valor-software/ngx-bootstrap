@@ -22,7 +22,7 @@
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "flow.github-release": "conventional-github-releaser -p angular",
-    "build": "run-s build.ngm build.sass build.es2015",
+    "build": "run-s build:collapse",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
     "build.ngm": "ngm build -p src --clean",
     "build.watch": "ngm build -p src --watch --skip-bundles",
@@ -43,7 +43,9 @@
     "serve:dynamic": "node demo/dist/server.js",
     "build:client-and-server-bundles": "ng build -bh / --prod --env=server && ng build -bh / --prod --env=server --app 1 --output-hashing=false",
     "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors",
-    "configure-heroku": "node scripts/universal/configure-heroku.js"
+    "configure-heroku": "node scripts/universal/configure-heroku.js",
+    "build:utils": "ng-packagr -p src/utils/package.json",
+    "build:collapse": "ng-packagr -p src/collapse/package.json"
   },
   "main": "bundles/ngx-bootstrap.umd.js",
   "module": "index.js",
@@ -129,6 +131,7 @@
     "lite-server": "2.3.0",
     "lodash": "4.17.10",
     "mocha": "5.1.1",
+    "ng-packagr": "4.1.1",
     "ngm-cli": "1.0.4",
     "ngx-page-scroll": "5.0.0",
     "npm-run-all": "4.1.3",

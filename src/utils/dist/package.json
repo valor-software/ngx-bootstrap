@@ -1,0 +1,17 @@
+{
+  "name": "utils",
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "main": "bundles/utils.umd.js",
+  "module": "fesm5/utils.js",
+  "es2015": "fesm2015/utils.js",
+  "esm5": "esm5/utils.js",
+  "esm2015": "esm2015/utils.js",
+  "fesm5": "fesm5/utils.js",
+  "fesm2015": "fesm2015/utils.js",
+  "typings": "utils.d.ts",
+  "metadata": "utils.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

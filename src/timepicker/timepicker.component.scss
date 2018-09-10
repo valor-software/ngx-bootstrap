@@ -1,0 +1,24 @@
+.bs-chevron {
+  border-style: solid;
+  display: block;
+  width: 9px;
+  height: 9px;
+  position: relative;
+  border-width: 3px 0px 0 3px;
+}
+
+.bs-chevron-up {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 2px;
+}
+
+.bs-chevron-down {
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  top: -2px;
+}
+
+.bs-timepicker-field {
+  width: 50px;
+}
