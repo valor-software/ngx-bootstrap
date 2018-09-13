@@ -104,7 +104,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
-  // @Input() protected typeaheadEditable:boolean;
+    @Input() protected typeaheadEditable:boolean = false;
   /** if false the first match automatically will not be focused as you type */
   // @Input() protected typeaheadFocusFirst:boolean;
   /** format the ng-model result after selection */
@@ -122,6 +122,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
   protected _matches: TypeaheadMatch[];
   protected placement = 'bottom-left';
+  protected value = '';
   // protected popup:ComponentRef<TypeaheadContainerComponent>;
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
@@ -178,6 +179,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         : e.target.textContent !== undefined
         ? e.target.textContent
         : e.target.innerText;
+
+    if(this.typeaheadEditable) {
+      this.value = value;
+    }
     if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
@@ -214,7 +219,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // enter, tab
       if (e.keyCode === 13) {
-        this._container.selectActiveMatch();
+        this._container.selectActiveMatch(this.value);
 
         return;
       }

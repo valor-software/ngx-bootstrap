@@ -20,15 +20,10 @@ describe('Component: TypeaheadContainer', () => {
       }]
     });
     fixture = testModule.createComponent(TypeaheadContainerComponent);
-
     component = fixture.componentInstance;
     fixture.detectChanges();
     tick(1);
   }));
-
-  it('should be defined', () => {
-    expect(component).toBeTruthy();
-  });
 
   it('should have an "element" property', () => {
     expect(component.element).toBeTruthy();
@@ -350,6 +345,55 @@ describe('Component: TypeaheadContainer', () => {
       });
     });
 
+  });
+
+  describe('not auto select', () => {
+
+    beforeEach(() => {
+      component.query = 'fo';
+      component.matches = [
+        new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
+        new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
+      ];
+
+      fixture.detectChanges();
+    });
+
+    it('select should be installed with input data', () => {
+      component.isChanged = false;
+      spyOn(component, 'selectMatch').and.stub();
+
+      component.selectActiveMatch('fo');
+
+      expect(component.setValue).toEqual(new TypeaheadMatch('fo', 'fo', false));
+    });
+
+    it('select the first item match', () => {
+      component.isChanged = false;
+      spyOn(component, 'selectMatch').and.stub();
+
+      component.selectActiveMatch('');
+
+      expect(component.setValue).toEqual(component.matches[0]);
+    });
+
+    it('select the active item match', () => {
+      component.isChanged = true;
+      spyOn(component, 'selectMatch').and.stub();
+
+      component.selectActiveMatch('fo');
+
+      expect(component.setValue).toEqual((component as any)._active);
+    });
+
+    it('select the active item match', () => {
+      component.isChanged = true;
+      spyOn(component, 'selectMatch').and.stub();
+
+      component.selectActiveMatch('');
+
+      expect(component.setValue).toEqual((component as any)._active);
+    });
   });
 
 });

@@ -3233,6 +3233,12 @@ export const ngdoc: any = {
         "defaultValue": " ",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to break words. Defaults to space.</p>\n"
+      },
+      {
+        "name": "typeaheadEditable",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if the value didn\'t choose, used input data</p>\n"
       }
     ],
     "outputs": [

@@ -33,6 +33,7 @@ export class TypeaheadContainerComponent {
   query: any;
   element: ElementRef;
   isFocused = false;
+  isChanged = false;
   top: string;
   left: string;
   display: string;
@@ -40,6 +41,7 @@ export class TypeaheadContainerComponent {
   dropup: boolean;
   guiHeight: string;
   needScrollbar: boolean;
+  setValue: TypeaheadMatch;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -81,6 +83,7 @@ export class TypeaheadContainerComponent {
         this.nextActiveMatch();
       }
     }
+    this.isChanged = false;
   }
 
   get optionsListTemplate(): TemplateRef<any> {
@@ -100,11 +103,17 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(inputValue?: string): void {
+    this.setValue = this._active;
+    if (inputValue && !this.isChanged) {
+      this.setValue = new TypeaheadMatch(inputValue, inputValue, false);
+    }
+
+    this.selectMatch(this.setValue);
   }
 
   prevActiveMatch(): void {
+    this.isChanged = true;
     const index = this.matches.indexOf(this._active);
     this._active = this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
@@ -118,6 +127,7 @@ export class TypeaheadContainerComponent {
   }
 
   nextActiveMatch(): void {
+    this.isChanged = true;
     const index = this.matches.indexOf(this._active);
     this._active = this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
@@ -131,6 +141,7 @@ export class TypeaheadContainerComponent {
   }
 
   selectActive(value: TypeaheadMatch): void {
+    this.isChanged = true;
     this.isFocused = true;
     this._active = value;
   }
@@ -200,7 +211,9 @@ export class TypeaheadContainerComponent {
     if (this.liElements.first) {
       const ulStyles = Utils.getStyles(this.ulElement.nativeElement);
       const liStyles = Utils.getStyles(this.liElements.first.nativeElement);
-      const ulPaddingBottom = parseFloat((ulStyles['padding-bottom'] ? ulStyles['padding-bottom'] : '').replace('px', ''));
+      const ulPaddingBottom = parseFloat((ulStyles['padding-bottom'] ? ulStyles['padding-bottom'] : '')
+        .replace('px', ''));
+
       const ulPaddingTop = parseFloat((ulStyles['padding-top'] ? ulStyles['padding-top'] : '0').replace('px', ''));
       const optionHeight = parseFloat((liStyles['height'] ? liStyles['height'] : '0').replace('px', ''));
       const height = this.typeaheadOptionsInScrollableView * optionHeight;

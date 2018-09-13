@@ -22,6 +22,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
+import { DemoTypeaheadEditableSelectComponent } from './demos/editable-select/editable-select';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -195,6 +196,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),
         outlet: DemoTypeaheadOnSelectComponent
+      },
+      {
+        title: 'Editable select',
+        anchor: 'Editable select',
+        description: `
+          <p><code>typeaheadEditable</code> event is fired when an option was selected.
+          Returns an object with this option</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/editable-select/editable-select.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/editable-select/editable-select.html'),
+        outlet: DemoTypeaheadEditableSelectComponent
       }
     ]
   },
