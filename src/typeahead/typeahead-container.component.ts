@@ -76,7 +76,7 @@ export class TypeaheadContainerComponent {
     }
 
     if (this._matches.length > 0) {
-      this._active = this._matches[0];
+      this.setActive(this._matches[0]);
       if (this._active.isHeader()) {
         this.nextActiveMatch();
       }
@@ -106,9 +106,9 @@ export class TypeaheadContainerComponent {
 
   prevActiveMatch(): void {
     const index = this.matches.indexOf(this._active);
-    this._active = this.matches[
+    this.setActive(this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
-      ];
+      ]);
     if (this._active.isHeader()) {
       this.prevActiveMatch();
     }
@@ -119,9 +119,9 @@ export class TypeaheadContainerComponent {
 
   nextActiveMatch(): void {
     const index = this.matches.indexOf(this._active);
-    this._active = this.matches[
+    this.setActive(this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
-      ];
+      ]);
     if (this._active.isHeader()) {
       this.nextActiveMatch();
     }
@@ -132,7 +132,16 @@ export class TypeaheadContainerComponent {
 
   selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
+    this.setActive(value);
+  }
+
+  protected setActive(value: TypeaheadMatch): void {
     this._active = value;
+    let preview = value;
+    if ((this._active === null) || (this._active.isHeader())) {
+      preview = null;
+    }
+    setTimeout(() => this.parent.typeaheadOnPreview.emit(preview), 0);
   }
 
   highlight(match: TypeaheadMatch, query: any): string {
@@ -176,6 +185,7 @@ export class TypeaheadContainerComponent {
   @HostListener('blur')
   focusLost(): void {
     this.isFocused = false;
+    this.setActive(null);
   }
 
   isActive(value: TypeaheadMatch): boolean {

@@ -3249,8 +3249,12 @@ export const ngdoc: any = {
         "description": "<p>fired when blur event occurres. returns the active item </p>\n"
       },
       {
+        "name": "typeaheadOnPreview",
+        "description": "<p>fired when option was previewed, return object with data of this option. </p>\n"
+      },
+      {
         "name": "typeaheadOnSelect",
-        "description": "<p>fired when option was selected, return object with data of this option </p>\n"
+        "description": "<p>fired when option was selected, return object with data of this option. </p>\n"
       }
     ],
     "properties": [

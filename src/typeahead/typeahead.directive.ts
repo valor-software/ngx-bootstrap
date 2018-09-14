@@ -88,8 +88,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * in case of matches are not detected
    */
   @Output() typeaheadNoResults = new EventEmitter<boolean>();
-  /** fired when option was selected, return object with data of this option */
+  /** fired when option was selected, return object with data of this option. */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
+  /** fired when option was previewed, return object with data of this option. */
+  @Output() typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurres. returns the active item */
   @Output() typeaheadOnBlur = new EventEmitter<any>();
 
@@ -317,6 +319,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._outsideClickListener();
       this._container = null;
     }
+    this.typeaheadOnPreview.emit(null);
   }
 
   onOutsideClick(): void {

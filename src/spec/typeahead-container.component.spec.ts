@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
-import { asNativeElements } from '@angular/core';
+import { asNativeElements, EventEmitter } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { TypeaheadContainerComponent } from '../typeahead/typeahead-container.component';
 import { TypeaheadOptions } from '../typeahead/typeahead-options.class';
@@ -22,6 +22,8 @@ describe('Component: TypeaheadContainer', () => {
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
+    component.parent = { } as TypeaheadDirective;
+    component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
     fixture.detectChanges();
     tick(1);
   }));
@@ -226,6 +228,7 @@ describe('Component: TypeaheadContainer', () => {
       fixture = testModule.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
       component.parent = { typeaheadOptionsInScrollableView: 3, typeaheadScrollable: true } as TypeaheadDirective;
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
       fixture.detectChanges();
       tick(1);
       component.query = 'a';
