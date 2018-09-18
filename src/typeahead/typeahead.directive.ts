@@ -101,6 +101,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   /** This attribute indicates that the dropdown should be opened upwards */
   @Input() dropup = false;
+  /** if true, typeahead will cancel async request on blur */
+  @Input() typeaheadCancelOnBlur = false;
 
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
@@ -118,6 +120,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   _container: TypeaheadContainerComponent;
   isTypeaheadOptionsListActive = false;
+  isFocused = false;
 
   protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
   protected _matches: TypeaheadMatch[];
@@ -224,6 +227,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('click')
   @HostListener('focus')
   onFocus(): void {
+    this.isFocused = true;
     if (this.typeaheadMinLength === 0) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
@@ -232,6 +236,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   @HostListener('blur')
   onBlur(): void {
+    this.isFocused = false;
     if (this._container && !this._container.isFocused) {
       this.typeaheadOnBlur.emit(this._container.active);
     }
@@ -428,6 +433,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     if (!this.hasMatches()) {
       this.hide();
+
+      return;
+    }
+
+    if (!this.isFocused && this.typeaheadCancelOnBlur) {
 
       return;
     }

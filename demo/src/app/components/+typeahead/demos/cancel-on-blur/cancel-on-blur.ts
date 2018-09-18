@@ -5,10 +5,10 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap, delay } from 'rxjs/operators';
 
 @Component({
-  selector: 'demo-typeahead-async',
-  templateUrl: './async.html'
+  selector: 'demo-typeahead-cancel-on-blur',
+  templateUrl: './cancel-on-blur.html'
 })
-export class DemoTypeaheadAsyncComponent {
+export class DemoTypeaheadCancelOnBlurComponent {
   asyncSelected: string;
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;
