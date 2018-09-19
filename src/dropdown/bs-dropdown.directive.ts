@@ -358,6 +358,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         'transform',
         this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
+      this._renderer.setStyle(
+        this._inlinedMenu.rootNodes[0],
+        'bottom',
+        'auto'
+      );
     }
   }
 
