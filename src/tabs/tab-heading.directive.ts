@@ -5,9 +5,9 @@ import { TabDirective } from './tab.directive';
 /** Should be used to mark <ng-template> element as a template for tab heading */
 @Directive({ selector: '[tabHeading]' })
 export class TabHeadingDirective {
-  templateRef: TemplateRef<any>;
+  templateRef: TemplateRef<object>;
 
-  constructor(templateRef: TemplateRef<any>, tab: TabDirective) {
+  constructor(templateRef: TemplateRef<object>, tab: TabDirective) {
     tab.headingRef = templateRef;
   }
 }
