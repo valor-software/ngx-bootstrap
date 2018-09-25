@@ -18,9 +18,9 @@ import {
 })
 export class CollapseDirective {
   /** This event fires as soon as content collapses */
-  @Output() collapsed: EventEmitter<any> = new EventEmitter();
+  @Output() collapsed: EventEmitter<object> = new EventEmitter();
   /** This event fires as soon as content becomes visible */
-  @Output() expanded: EventEmitter<any> = new EventEmitter();
+  @Output() expanded: EventEmitter<object> = new EventEmitter();
 
   @HostBinding('style.display') display: string;
   // shown
