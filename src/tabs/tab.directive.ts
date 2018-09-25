@@ -83,7 +83,7 @@ export class TabDirective implements OnInit, OnDestroy {
 
   @HostBinding('class.tab-pane') addClass = true;
 
-  headingRef: TemplateRef<any>;
+  headingRef: TemplateRef<object>;
   tabset: TabsetComponent;
   protected _active: boolean;
   protected _customClass: string;

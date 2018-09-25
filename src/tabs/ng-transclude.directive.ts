@@ -7,17 +7,17 @@ export class NgTranscludeDirective {
   viewRef: ViewContainerRef;
 
   protected _viewRef: ViewContainerRef;
-  protected _ngTransclude: TemplateRef<any>;
+  protected _ngTransclude: TemplateRef<object>;
 
   @Input()
-  set ngTransclude(templateRef: TemplateRef<any>) {
+  set ngTransclude(templateRef: TemplateRef<object>) {
     this._ngTransclude = templateRef;
     if (templateRef) {
       this.viewRef.createEmbeddedView(templateRef);
     }
   }
 
-  get ngTransclude(): TemplateRef<any> {
+  get ngTransclude(): TemplateRef<object> {
     return this._ngTransclude;
   }
 
