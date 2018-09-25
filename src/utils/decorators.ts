@@ -1,14 +1,17 @@
 /*tslint:disable:no-invalid-this */
-export function OnChange(defaultValue?: any): any {
+// tslint:disable-next-line:no-any
+export function OnChange(): any {
   const sufix = 'Change';
 
+  // tslint:disable-next-line:no-any
   return function OnChangeHandler(target: any, propertyKey: string): void {
+
     const _key = ` __${propertyKey}Value`;
     Object.defineProperty(target, propertyKey, {
-      get(): any {
+      get(): boolean {
         return this[_key];
       },
-      set(value: any): void {
+      set(value: boolean): void {
         const prevValue = this[_key];
         this[_key] = value;
         if (prevValue !== value && this[propertyKey + sufix]) {

@@ -46,12 +46,12 @@ describe('Linked List. Base functions.', () => {
   });
 
   it('Check add(4, 2)', () => {
-    list.add(4, 2);
+    list.add('4', 2);
     expect(list.toArray().join()).toEqual('1,2,4,3,4,5');
   });
 
   it('Check set(4, 2)', () => {
-    list.set(4, 2);
+    list.set(4, '2');
     expect(list.toArray().join()).toEqual('1,2,3,4,2');
   });
 });

@@ -1,12 +1,12 @@
 import { window } from './facade/browser';
 
 export class Utils {
-  static reflow(element: any): void {
-    ((bs: any): void => bs)(element.offsetHeight);
+  static reflow(element: HTMLElement): void {
+    ((bs: number): number => bs)(element.offsetHeight);
   }
 
   // source: https://github.com/jquery/jquery/blob/master/src/css/var/getStyles.js
-  static getStyles(elem: any): any {
+  static getStyles(elem: HTMLElement): CSSStyleDeclaration {
     // Support: IE <=11 only, Firefox <=30 (#15098, #14150)
     // IE throws on elements created in popups
     // FF meanwhile throws on frame elements through "defaultView.getComputedStyle"

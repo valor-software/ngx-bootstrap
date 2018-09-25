@@ -1,8 +1,10 @@
+import { Node, NodeComponent } from './models/index';
+
 export class LinkedList<T> {
   length = 0;
-  protected head: any;
-  protected tail: any;
-  protected current: any;
+  protected head: Node<T>;
+  protected tail: Node<T>;
+  protected current: Node<T>;
   protected asArray: T[] = [];
 
   get(position: number): T {
@@ -24,10 +26,10 @@ export class LinkedList<T> {
       throw new Error('Position is out of the list');
     }
 
-    const node = {
-      value: value as any,
-      next: undefined as any,
-      previous: undefined as any
+    const node: Node<T> = {
+      value,
+      next: undefined,
+      previous: undefined
     };
 
     if (this.length === 0) {
@@ -106,12 +108,12 @@ export class LinkedList<T> {
     return this.asArray;
   }
 
-  findAll(fn: any): any[] {
+  findAll(fn: (x: T, y: number) => boolean): NodeComponent<T>[] {
     let current = this.head;
-    const result: any[] = [];
+    const result: NodeComponent<T>[] = [];
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
-        result.push({index, value: current.value});
+        result.push({ index, value: current.value });
       }
       current = current.next;
     }
@@ -121,7 +123,7 @@ export class LinkedList<T> {
 
   // Array methods overriding start
   push(...args: T[]): number {
-    args.forEach((arg: any) => {
+    args.forEach((arg: T) => {
       this.add(arg);
     });
 
@@ -140,7 +142,7 @@ export class LinkedList<T> {
 
   unshift(...args: T[]): number {
     args.reverse();
-    args.forEach((arg: any) => {
+    args.forEach((arg: T) => {
       this.add(arg, 0);
     });
 
@@ -157,7 +159,7 @@ export class LinkedList<T> {
     return lastItem;
   }
 
-  forEach(fn: any): void {
+  forEach(fn: (x: T, y: number) => void): void {
     let current = this.head;
     for (let index = 0; index < this.length; index++) {
       fn(current.value, index);
@@ -180,7 +182,7 @@ export class LinkedList<T> {
     return position;
   }
 
-  some(fn: any): boolean {
+  some(fn: (x: T) => boolean): boolean {
     let current = this.head;
     let result = false;
     while (current && !result) {
@@ -194,7 +196,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  every(fn: any): boolean {
+  every(fn: (x: T) => boolean): boolean {
     let current = this.head;
     let result = true;
     while (current && result) {
@@ -211,7 +213,7 @@ export class LinkedList<T> {
     return '[Linked List]';
   }
 
-  find(fn: any): T {
+  find(fn: (x: T, y: number) => boolean): T {
     let current = this.head;
     let result: T;
     for (let index = 0; index < this.length; index++) {
@@ -225,7 +227,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  findIndex(fn: any): number {
+  findIndex(fn: (x: T, y: number) => boolean): number {
     let current = this.head;
     let result: number;
     for (let index = 0; index < this.length; index++) {
@@ -239,7 +241,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  protected getNode(position: number): any {
+  protected getNode(position: number): Node<T> {
     if (this.length === 0 || position < 0 || position >= this.length) {
       throw new Error('Position is out of the list');
     }
@@ -254,7 +256,7 @@ export class LinkedList<T> {
   }
 
   protected createInternalArrayRepresentation(): void {
-    const outArray: any[] = [];
+    const outArray = [];
     let current = this.head;
 
     while (current) {

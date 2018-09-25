@@ -129,7 +129,7 @@
     "lite-server": "2.3.0",
     "lodash": "4.17.10",
     "mocha": "5.1.1",
-    "ngm-cli": "1.0.4",
+    "ngm-cli": "0.8.5",
     "ngx-page-scroll": "5.0.0",
     "npm-run-all": "4.1.3",
     "prettier": "1.12.1",
@@ -146,10 +146,13 @@
     "tslint": "5.10.0",
     "tslint-config-valorsoft": "2.1.1",
     "typedoc": "0.11.1",
-    "typescript": "~2.7.2",
+    "typescript": "2.7.2",
     "wait-on": "2.1.0",
     "wallaby-webpack": "3.9.7",
     "webpack-bundle-analyzer": "2.11.3",
     "zone.js": "0.8.26"
+  },
+  "dependencies": {
+    "tsc": "1.20150623.0"
   }
 }
