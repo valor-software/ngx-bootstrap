@@ -5,9 +5,11 @@ import { TabDirective } from './tab.directive';
 /** Should be used to mark <ng-template> element as a template for tab heading */
 @Directive({ selector: '[tabHeading]' })
 export class TabHeadingDirective {
-  templateRef: TemplateRef<object>;
+  // tslint:disable-next-line:no-any
+  templateRef: TemplateRef<any>;
 
-  constructor(templateRef: TemplateRef<object>, tab: TabDirective) {
+  // tslint:disable-next-line:no-any
+  constructor(templateRef: TemplateRef<any>, tab: TabDirective) {
     tab.headingRef = templateRef;
   }
 }
