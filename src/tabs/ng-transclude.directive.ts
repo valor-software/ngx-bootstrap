@@ -7,6 +7,7 @@ export class NgTranscludeDirective {
   viewRef: ViewContainerRef;
 
   protected _viewRef: ViewContainerRef;
+  // tslint:disable-next-line:no-any
   protected _ngTransclude: TemplateRef<any>;
 
   @Input()
