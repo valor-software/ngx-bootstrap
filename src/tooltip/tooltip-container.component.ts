@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
 import { isBs3 } from '../utils/theme-provider';
+import { TooltipClassMap } from './models';
 
 @Component({
   selector: 'bs-tooltip-container',
@@ -37,7 +38,7 @@ import { isBs3 } from '../utils/theme-provider';
     `
 })
 export class TooltipContainerComponent implements AfterViewInit {
-  classMap: any;
+  classMap: TooltipClassMap;
   placement: string;
   containerClass: string;
   animation: boolean;
