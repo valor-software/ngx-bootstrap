@@ -12,6 +12,7 @@ export class BsDropdownState {
   /**
    * Content to be displayed as popover.
    */
+  // tslint:disable:no-any
   dropdownMenu: Promise<BsComponentRef<any>>;
   resolveDropdownMenu: (componentRef: BsComponentRef<any>) => void;
 

@@ -29,6 +29,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
     return this._state.direction;
   }
 
+// tslint:disable-next-line:no-any
   private _subscription: any;
 
   constructor(
