@@ -22,9 +22,13 @@ export class BsModalService {
   // constructor props
   config: ModalOptions = modalConfigDefaults;
 
+  // tslint:disable-next-line:no-any
   onShow: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-any
   onShown: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-any
   onHide: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-any
   onHidden: EventEmitter<any> = new EventEmitter();
 
   protected isBodyOverflowing = false;
@@ -51,6 +55,7 @@ export class BsModalService {
   }
 
   /** Shows a modal */
+  // tslint:disable-next-line:no-any
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
@@ -100,7 +105,7 @@ export class BsModalService {
     const duration = this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
-
+  // tslint:disable-next-line:no-any
   _showModal(content: any): BsModalRef {
     const modalLoader = this.loaders[this.loaders.length - 1];
     const bsModalRef = new BsModalRef();
@@ -202,6 +207,7 @@ export class BsModalService {
     );
   }
 
+  // tslint:disable-next-line:no-any
   private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
     from.subscribe(() => {
       to.emit(this.lastDismissReason);
