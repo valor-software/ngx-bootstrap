@@ -13,7 +13,7 @@ import {
   DayViewModel,
   MonthsCalendarViewModel,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models';
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
