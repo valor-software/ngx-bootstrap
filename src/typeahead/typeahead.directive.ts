@@ -27,6 +27,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
    */
+    // tslint:disable-next-line:no-any
   @Input() typeahead: any;
   /** minimal no of characters that needs to be entered before
    * typeahead kicks-in. When set to 0, typeahead shows on focus with full
@@ -71,10 +72,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** used to specify a custom item template.
    * Template variables exposed are called item and index;
    */
+    // tslint:disable-next-line:no-any
   @Input() typeaheadItemTemplate: TemplateRef<any>;
   /** used to specify a custom options list template.
    * Template variables: matches, itemTemplate, query
    */
+    // tslint:disable-next-line:no-any
   @Input() optionsListTemplate: TemplateRef<any>;
   /** specifies if typeahead is scrollable  */
   @Input() typeaheadScrollable = false;
@@ -91,6 +94,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurres. returns the active item */
+    // tslint:disable-next-line:no-any
   @Output() typeaheadOnBlur = new EventEmitter<any>();
 
   /**
@@ -119,6 +123,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   _container: TypeaheadContainerComponent;
   isTypeaheadOptionsListActive = false;
 
+  // tslint:disable-next-line:no-any
   protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
   protected _matches: TypeaheadMatch[];
   protected placement = 'bottom-left';
@@ -167,6 +172,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('input', ['$event'])
+  // tslint:disable-next-line:no-any
   onInput(e: any): void {
     // For `<input>`s, use the `value` property. For others that don't have a
     // `value` (such as `<span contenteditable="true">`), use either
@@ -189,7 +195,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keyup', ['$event'])
-  onChange(e: any): void {
+  onChange(e: KeyboardEvent): void {
     if (this._container) {
       // esc
       if (e.keyCode === 27) {
@@ -238,7 +244,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown(e: any): void {
+  onKeydown(e: KeyboardEvent): void {
     // no container - no problems
     if (!this._container) {
       return;
@@ -268,7 +274,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this.hide();
   }
 
-  get matches(): any[] {
+  get matches(): TypeaheadMatch[] {
     return this._matches;
   }
 
@@ -287,7 +293,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this._outsideClickListener = this.renderer.listen('document', 'click', (e: MouseEvent) => {
       if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(e.target)) {
-        return;
+        return undefined;
       }
       this.onOutsideClick();
     });
@@ -325,7 +331,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy() {
     // clean up subscriptions
     for (const sub of this._subscriptions) {
       sub.unsubscribe();
@@ -340,7 +346,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
           debounceTime(this.typeaheadWaitMs),
           switchMap(() => this.typeahead)
         )
-        .subscribe((matches: any[]) => {
+        .subscribe((matches: TypeaheadMatch[]) => {
           this.finalizeAsyncCall(matches);
         })
     );
@@ -356,7 +362,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
             return from(this.typeahead)
               .pipe(
-                filter((option: any) => {
+                filter((option: TypeaheadMatch) => {
+
                   return (
                     option &&
                     this.testMatch(this.normalizeOption(option), normalizedQuery)
@@ -366,12 +373,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               );
           })
         )
-        .subscribe((matches: any[]) => {
+        .subscribe((matches: TypeaheadMatch[]) => {
           this.finalizeAsyncCall(matches);
         })
     );
   }
 
+  // tslint:disable-next-line:no-any
   protected normalizeOption(option: any): any {
     const optionValue: string = getValueFromObject(
       option,
@@ -384,10 +392,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return normalizedOption.toLowerCase();
   }
 
-  protected normalizeQuery(value: string): any {
+  protected normalizeQuery(value: string): string | string[] {
     // If singleWords, break model here to not be doing extra work on each
     // iteration
-    let normalizedQuery: any = (this.typeaheadLatinize
+    let normalizedQuery: string | string[] = (this.typeaheadLatinize
       ? latinize(value)
       : value)
       .toString()
@@ -403,7 +411,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return normalizedQuery;
   }
 
-  protected testMatch(match: string, test: any): boolean {
+  protected testMatch(match: string, test: string[] | string): boolean {
     let spaceLength: number;
 
     if (typeof test === 'object') {
@@ -420,7 +428,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return match.indexOf(test) >= 0;
   }
 
-  protected finalizeAsyncCall(matches: any[]): void {
+  protected finalizeAsyncCall(matches: TypeaheadMatch[]): void {
     this.prepareMatches(matches);
 
     this.typeaheadLoading.emit(false);
@@ -452,18 +460,18 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  protected prepareMatches(options: any[]): void {
-    const limited: any[] = options.slice(0, this.typeaheadOptionsLimit);
+  protected prepareMatches(options: TypeaheadMatch[]): void {
+    const limited: TypeaheadMatch[] = options.slice(0, this.typeaheadOptionsLimit);
 
     if (this.typeaheadGroupField) {
       let matches: TypeaheadMatch[] = [];
 
       // extract all group names
       const groups = limited
-        .map((option: any) =>
+        .map((option: TypeaheadMatch) =>
           getValueFromObject(option, this.typeaheadGroupField)
         )
-        .filter((v: string, i: number, a: any[]) => a.indexOf(v) === i);
+        .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
 
       groups.forEach((group: string) => {
         // add group header to array of matches
@@ -473,10 +481,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         matches = matches.concat(
           limited
             .filter(
+              // tslint:disable-next-line:no-any
               (option: any) =>
                 getValueFromObject(option, this.typeaheadGroupField) === group
             )
             .map(
+              // tslint:disable-next-line:no-any
               (option: any) =>
                 new TypeaheadMatch(
                   option,
@@ -489,6 +499,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._matches = matches;
     } else {
       this._matches = limited.map(
+        // tslint:disable-next-line:no-any
         (option: any) =>
           new TypeaheadMatch(
             option,

@@ -15,8 +15,10 @@
     "directive-selector": false,
     "component-selector": false,
     "no-magic-numbers": false,
-    "no-any": false,
+    "no-any": true,
     "prefer-object-spread": false,
-    "prefer-for-of": false
+    "prefer-for-of": false,
+    "linebreak-style": [false, "LF"],
+    "restrict-plus-operands": false
   }
 }
