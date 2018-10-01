@@ -108,16 +108,24 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: Event) {
+    this.hide();
+  }
+
   ngOnDestroy(): void {
     if (this.isShown) {
       this.hide();
+
     }
   }
+
 
   hide(): void {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
+
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,
