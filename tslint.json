@@ -17,6 +17,8 @@
     "no-magic-numbers": false,
     "no-any": true,
     "prefer-object-spread": false,
-    "prefer-for-of": false
+    "prefer-for-of": false,
+    "linebreak-style": [false, "LF"],
+    "restrict-plus-operands": false
   }
 }
