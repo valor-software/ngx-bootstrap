@@ -330,6 +330,11 @@ a:hover {
       &.bd-example {
         margin-bottom: 10px;
       }
+      timepicker {
+        .form-control {
+          padding: .375rem .55rem;
+        }
+      }
     }
 
     .tab-content {
