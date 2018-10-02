@@ -665,11 +665,11 @@ describe('Datepicker demo page test suite', () => {
     const basic = datepicker.exampleDemosArr.basic;
 
     it('basic date- and daterangepicker can be opened by click on input', () => {
-      cy.get(`${ basic } ${ datepicker.datepickerInput }`).click();
+      cy.get(`${ basic } ${ datepicker.datepickerInput }`).focus();
       cy.get(datepicker.datepickerLastOpened)
         .should('to.be.visible');
 
-      cy.get(`${ basic } ${ datepicker.daterangepickerInput }`).click();
+      cy.get(`${ basic } ${ datepicker.daterangepickerInput }`).focus();
       cy.get(datepicker.daterangepickerLastOpened)
         .should('to.be.visible');
     });
@@ -700,7 +700,7 @@ describe('Datepicker demo page test suite', () => {
       const expectedDate = Cypress.moment().format('YYYY-MM-DD');
       const day = Cypress.moment().format('D');
 
-      cy.get(`${ reactiveForms } ${ datepicker.datepickerInput }`).click();
+      cy.get(`${ reactiveForms } ${ datepicker.datepickerInput }`).focus();
       datepicker.clickOnDayInCurrMonth(`${ datepicker.datepickerLastOpened }`, day);
 
       cy.get(`${ reactiveForms } ${ datepicker.formOutput }`)

@@ -21,7 +21,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers = 'click';
+  @Input() triggers = 'focusin';
   /**
    * Close datepicker on outside click
    */

@@ -726,7 +726,7 @@ export const ngdoc: any = {
       },
       {
         "name": "triggers",
-        "defaultValue": "click",
+        "defaultValue": "focusin",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }
@@ -876,7 +876,7 @@ export const ngdoc: any = {
       },
       {
         "name": "triggers",
-        "defaultValue": "click",
+        "defaultValue": "focusin",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }

@@ -34,7 +34,7 @@ export class BsDaterangepickerDirective
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers = 'click';
+  @Input() triggers = 'focusin';
   /**
    * Close daterangepicker on outside click
    */
