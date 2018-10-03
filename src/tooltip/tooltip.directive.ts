@@ -48,7 +48,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Currently only supports "body".
    */
   @Input() container: string;
-
+  /**
+   * Css class for tooltip container
+   */
+  @Input() containerClass = '';
   /**
    * Returns whether or not the tooltip is currently being shown
    */
@@ -70,10 +73,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
    */
   @Input() isDisabled: boolean;
 
-  /**
-   * Css class for tooltip container
-   */
-  @Input() containerClass = '';
   /**
    * Delay before showing the tooltip
    */
