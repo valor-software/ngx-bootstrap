@@ -152,10 +152,11 @@
           -moz-user-select: none;
           -webkit-user-select: none;
           -ms-user-select: none;
-        }
-
-        &:not(.disabled) span {
           cursor: pointer;
+
+          &.disabled {
+            cursor: default;
+          }
         }
 
         &.is-highlighted:not(.disabled):not(.selected) span,
@@ -229,6 +230,12 @@
         &[class*="select-"] span {
           border-radius: 50%;
           color: $font-color-01;
+        }
+
+        &.week {
+          span {
+            cursor: default;
+          }
         }
       }
 
