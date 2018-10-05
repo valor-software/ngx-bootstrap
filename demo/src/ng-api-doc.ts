@@ -2751,7 +2751,7 @@ export const ngdoc: any = {
       {
         "name": "arrowkeys",
         "type": "boolean",
-        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
       },
       {
         "name": "disabled",
@@ -2838,7 +2838,7 @@ export const ngdoc: any = {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
       },
       {
         "name": "disabled",
