@@ -15,6 +15,7 @@ import { DemoPopoverClassComponent } from './class/class';
 import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
 import { DemoPopoverEventsComponent } from './events/events';
 import { DemoPopoverContextComponent } from './popover-context/popover-context';
+import { DemoPopoverHoverOutsideClickComponent } from './hover-outside-click-trigger/hover-outside-click-trigger';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverBasicComponent,
@@ -33,5 +34,6 @@ export const DEMO_COMPONENTS = [
   DemoPopoverClassComponent,
   DemoPopoverOutsideClickComponent,
   DemoPopoverEventsComponent,
-  DemoPopoverContextComponent
+  DemoPopoverContextComponent,
+  DemoPopoverHoverOutsideClickComponent
 ];

@@ -13,8 +13,8 @@ import { DemoPopoverByIsOpenPropComponent } from './demos/trigger-by-isopen-prop
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverClassComponent } from './demos/class/class';
 import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
-import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
 import { DemoPopoverEventsComponent } from './demos/events/events';
+import { DemoPopoverHoverOutsideClickComponent } from './demos/hover-outside-click-trigger/hover-outside-click-trigger';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -129,6 +129,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/triggers-custom/triggers-custom.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-custom/triggers-custom.html'),
         outlet: DemoPopoverTriggersCustomComponent
+      },
+      {
+        title: 'Hover outside click trigger',
+        anchor: 'hover-outside-click-trigger',
+        component: require('!!raw-loader?lang=typescript!./demos/hover-outside-click-trigger/hover-outside-click-trigger.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/hover-outside-click-trigger/hover-outside-click-trigger.html'),
+        outlet: DemoPopoverHoverOutsideClickComponent
       },
       {
         title: 'Manual triggering',
