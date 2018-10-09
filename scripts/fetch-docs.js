@@ -2,8 +2,8 @@ const fs = require('fs-extra');
 const exec = require('child_process').exec;
 
 const repoUrl = process.env.TRAVIS
-  ? 'https://github.com/valor-software/ngx-bootstrap.git'
-  : 'git@github.com:valor-software/ngx-bootstrap.git';
+  ? 'https://amaneiro@bitbucket.org/differenttravel/ngx-bootstrap.git'
+  : 'https://amaneiro@bitbucket.org/differenttravel/ngx-bootstrap.git';
 
 if (!fs.existsSync('gh-pages')) {
   console.log('Cloning the latest version of gh-pages');

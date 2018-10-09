@@ -121,7 +121,11 @@ export function bsDatepickerReducer(state = initialDatepickerState,
       const mode = state.view.mode;
       const _date = action.payload && action.payload[0] || state.view.date;
       const date = getViewDate(_date, state.minDate, state.maxDate);
-      newState.view = { mode, date };
+
+      if (state.changeMonthOnClick) {
+        newState.view = { mode, date };
+      }
+      
 
       return Object.assign({}, state, newState);
     }

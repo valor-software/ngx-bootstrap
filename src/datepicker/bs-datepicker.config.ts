@@ -49,4 +49,5 @@ export class BsDatepickerConfig
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
+  changeMonthOnClick = false;
 }

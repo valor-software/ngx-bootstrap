@@ -66,6 +66,7 @@ export class BsDatepickerState
   yearLabel: string;
 
   weekNumbers: string;
+  changeMonthOnClick : boolean;
 }
 
 const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };
@@ -76,6 +77,7 @@ export const initialDatepickerState: BsDatepickerState = Object.assign(
     locale: 'en',
     view: _initialView,
     selectedRange: [],
+    changeMonthOnClick: false,
     monthViewOptions: defaultMonthOptions
   }
 );
