@@ -88,6 +88,11 @@ export class BsDaterangepickerDirective
    * Maximum date which is available for selection
    */
   @Input() maxDate: Date;
+
+  /*
+  * Indicates whether the year in the datepicker header is enabled
+  */
+  @Input() disableYearView: boolean;
   /**
    * Emits when daterangepicker value has been changed
    */
@@ -188,7 +193,8 @@ export class BsDaterangepickerDirective
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        disableYearView: this.disableYearView || (this.bsConfig && this.bsConfig.disableYearView)
       }
     );
   }

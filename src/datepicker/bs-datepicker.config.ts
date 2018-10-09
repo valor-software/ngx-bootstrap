@@ -50,4 +50,5 @@ export class BsDatepickerConfig
   yearLabel = 'YYYY';
   weekNumbers = 'w';
   changeMonthOnClick = false;
+  disableYearView  = false;
 }

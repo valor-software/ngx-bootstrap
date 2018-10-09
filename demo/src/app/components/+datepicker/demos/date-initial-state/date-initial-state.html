@@ -5,7 +5,7 @@
            class="form-control"
            #dp="bsDatepicker"
            bsDatepicker
-           [bsValue]="bsValue">
+           [bsValue]="bsValue" [disableYearView]='true'>
   </div>
   <div class="col-xs-12 col-12 col-md-3 form-group">
     <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen">Date Picker</button>
