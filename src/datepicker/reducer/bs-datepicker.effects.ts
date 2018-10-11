@@ -144,7 +144,7 @@ export class BsDatepickerEffects {
       }
       this._store.dispatch(
         this._actions.navigateTo({
-          unit: {month: getMonth(event.date)},
+          unit: { month: getMonth(event.date), year: getFullYear(event.date)},
           viewMode: 'day'
         })
       );
