@@ -1,65 +1,10 @@
-<a name="3.0.13"></a>
-## [3.0.13](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.12...v3.0.13) (2018-10-12)
-
-
-
-<a name="3.0.12"></a>
-## [3.0.12](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.11...v3.0.12) (2018-10-12)
-
-
-
-<a name="3.0.12"></a>
-## [3.0.12](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.11...v3.0.12) (2018-10-12)
-
-
-
-<a name="3.0.11"></a>
-## [3.0.11](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.1...v3.0.11) (2018-10-12)
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.0...v3.0.1) (2018-06-19)
 
 
 ### Bug Fixes
 
-* **build:** adding a script for an update of version ([1b59ca0](https://github.com/valor-software/ngx-bootstrap/commit/1b59ca0))
-* **build:** build with ng-packagr ([751aa49](https://github.com/valor-software/ngx-bootstrap/commit/751aa49))
-* **build:** clean up ([e5ab73d](https://github.com/valor-software/ngx-bootstrap/commit/e5ab73d))
-* **datepicker:** Fix navigation alignment with preserveWhitespaces: false ([#4509](https://github.com/valor-software/ngx-bootstrap/issues/4509)) ([9980218](https://github.com/valor-software/ngx-bootstrap/commit/9980218)), closes [#4443](https://github.com/valor-software/ngx-bootstrap/issues/4443)
-* **Demo:** typeahead, wrong filtering ([#4559](https://github.com/valor-software/ngx-bootstrap/issues/4559)) ([29d9656](https://github.com/valor-software/ngx-bootstrap/commit/29d9656)), closes [#4557](https://github.com/valor-software/ngx-bootstrap/issues/4557)
-* **positioning:** browser rounding width/height bug ([#4328](https://github.com/valor-software/ngx-bootstrap/issues/4328)) ([4201a30](https://github.com/valor-software/ngx-bootstrap/commit/4201a30)), closes [#4322](https://github.com/valor-software/ngx-bootstrap/issues/4322)
-* **tooltip:** fix containerClass when isOpen is true ([#4579](https://github.com/valor-software/ngx-bootstrap/issues/4579)) ([e225d8d](https://github.com/valor-software/ngx-bootstrap/commit/e225d8d)), closes [#4247](https://github.com/valor-software/ngx-bootstrap/issues/4247)
-* **typeahead:** dont throw error if latinize is off and no value for input ([#4480](https://github.com/valor-software/ngx-bootstrap/issues/4480)) ([fa6f174](https://github.com/valor-software/ngx-bootstrap/commit/fa6f174)), closes [#4465](https://github.com/valor-software/ngx-bootstrap/issues/4465)
-
-
-### Features
-
-* **datapicker:** Capitalize pt-br's locale month names ([#4455](https://github.com/valor-software/ngx-bootstrap/issues/4455)) ([86dd8e8](https://github.com/valor-software/ngx-bootstrap/commit/86dd8e8))
-* **datepicker:** Slovak locale added to chronos ([#4391](https://github.com/valor-software/ngx-bootstrap/issues/4391)) ([e8d777c](https://github.com/valor-software/ngx-bootstrap/commit/e8d777c))
-* **doc:** added docs for modals component ([#4679](https://github.com/valor-software/ngx-bootstrap/issues/4679)) ([6e32261](https://github.com/valor-software/ngx-bootstrap/commit/6e32261))
-* **docs:** add use-cases for alerts ([#4680](https://github.com/valor-software/ngx-bootstrap/issues/4680)) ([7c7c515](https://github.com/valor-software/ngx-bootstrap/commit/7c7c515))
-
-
-
-<a name="3.0.11"></a>
-## [3.0.11](https://github.com/valor-software/ngx-bootstrap/compare/v3.0.1...v3.0.11) (2018-10-12)
-
-
-### Bug Fixes
-
-* **build:** adding a script for an update of version ([1b59ca0](https://github.com/valor-software/ngx-bootstrap/commit/1b59ca0))
-* **build:** build with ng-packagr ([751aa49](https://github.com/valor-software/ngx-bootstrap/commit/751aa49))
-* **build:** clean up ([e5ab73d](https://github.com/valor-software/ngx-bootstrap/commit/e5ab73d))
-* **datepicker:** Fix navigation alignment with preserveWhitespaces: false ([#4509](https://github.com/valor-software/ngx-bootstrap/issues/4509)) ([9980218](https://github.com/valor-software/ngx-bootstrap/commit/9980218)), closes [#4443](https://github.com/valor-software/ngx-bootstrap/issues/4443)
-* **Demo:** typeahead, wrong filtering ([#4559](https://github.com/valor-software/ngx-bootstrap/issues/4559)) ([29d9656](https://github.com/valor-software/ngx-bootstrap/commit/29d9656)), closes [#4557](https://github.com/valor-software/ngx-bootstrap/issues/4557)
-* **positioning:** browser rounding width/height bug ([#4328](https://github.com/valor-software/ngx-bootstrap/issues/4328)) ([4201a30](https://github.com/valor-software/ngx-bootstrap/commit/4201a30)), closes [#4322](https://github.com/valor-software/ngx-bootstrap/issues/4322)
-* **tooltip:** fix containerClass when isOpen is true ([#4579](https://github.com/valor-software/ngx-bootstrap/issues/4579)) ([e225d8d](https://github.com/valor-software/ngx-bootstrap/commit/e225d8d)), closes [#4247](https://github.com/valor-software/ngx-bootstrap/issues/4247)
-* **typeahead:** dont throw error if latinize is off and no value for input ([#4480](https://github.com/valor-software/ngx-bootstrap/issues/4480)) ([fa6f174](https://github.com/valor-software/ngx-bootstrap/commit/fa6f174)), closes [#4465](https://github.com/valor-software/ngx-bootstrap/issues/4465)
-
-
-### Features
-
-* **datapicker:** Capitalize pt-br's locale month names ([#4455](https://github.com/valor-software/ngx-bootstrap/issues/4455)) ([86dd8e8](https://github.com/valor-software/ngx-bootstrap/commit/86dd8e8))
-* **datepicker:** Slovak locale added to chronos ([#4391](https://github.com/valor-software/ngx-bootstrap/issues/4391)) ([e8d777c](https://github.com/valor-software/ngx-bootstrap/commit/e8d777c))
-* **doc:** added docs for modals component ([#4679](https://github.com/valor-software/ngx-bootstrap/issues/4679)) ([6e32261](https://github.com/valor-software/ngx-bootstrap/commit/6e32261))
-* **docs:** add use-cases for alerts ([#4680](https://github.com/valor-software/ngx-bootstrap/issues/4680)) ([7c7c515](https://github.com/valor-software/ngx-bootstrap/commit/7c7c515))
+* remove peer dependency on [@angular](https://github.com/angular)/forms ([#4420](https://github.com/valor-software/ngx-bootstrap/issues/4420)) ([550af9c](https://github.com/valor-software/ngx-bootstrap/commit/550af9c)), closes [#4411](https://github.com/valor-software/ngx-bootstrap/issues/4411)
 
 
 
@@ -290,7 +235,7 @@
 
 ### BREAKING CHANGES
 
-* **progressbar:** `progress` directive was removed, use `progressbar` instead 
+* **progressbar:** `progress` directive was removed, use `progressbar` instead
 * **chronos:** `bs-moment` renamed to `chronos`
 * **chronos:** all locales was suffixed with Locale (`en` -> `enLocale`)
 * **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
