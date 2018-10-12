@@ -13,6 +13,37 @@ class TestProgressbarComponent extends ProgressbarComponent {}
 describe('Component: Progress Bar', () => {
   let fixture: ComponentFixture<TestProgressbarComponent>;
   let element: any;
+  let component: ProgressbarComponent;
+
+  it('check animate setter when _animate is equal to setter\'s argument', () => {
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    fixture = TestBed.createComponent(TestProgressbarComponent);
+    component = fixture.componentInstance;
+    component._animate = false;
+    component.bars = [{}];
+
+    component.animate = true;
+
+    expect(component._animate).toBeTruthy();
+  });
+
+  it('check striped setter when _striped is equal to setter\'s argument', () => {
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    fixture = TestBed.createComponent(TestProgressbarComponent);
+    component = fixture.componentInstance;
+    component._striped = false;
+    component.bars = [{}];
+
+    component.striped = true;
+
+    expect(component._striped).toBeTruthy();
+  });
 
   it('should work correctly with default values', () => {
     const tpl = `<progressbar></progressbar>`;
