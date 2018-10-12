@@ -2,11 +2,11 @@
   <div class="panel-heading card-header" role="tab"
        (click)="toggleOpen($event)">
     <div class="panel-title">
-      <div role="button" class="accordion-toggle"
-           [attr.aria-expanded]="isOpen">
-        <button class="btn btn-link" *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">
+      <div class="accordion-toggle">
+        <a role="button" [attr.aria-expanded]="isOpen" href=""
+           class="btn btn-link" *ngIf="heading" [ngClass]="{'text-muted': isDisabled}">
           {{ heading }}
-        </button>
+        </a>
         <ng-content select="[accordion-heading]"></ng-content>
       </div>
     </div>
