@@ -92,7 +92,7 @@ export class TimepickerComponent
   @Input() disabled: boolean;
   /** if true scroll inside hours and minutes inputs will change time */
   @Input() mousewheel: boolean;
-  /** if true up/down arrowkeys inside hours and minutes inputs will change time */
+  /** if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard */
   @Input() arrowkeys: boolean;
   /** if true spinner arrows above and below the inputs will be shown */
   @Input() showSpinners: boolean;

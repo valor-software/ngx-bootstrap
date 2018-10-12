@@ -16,10 +16,23 @@ import { BarComponent } from './bar.component';
   ]
 })
 export class ProgressbarComponent {
-  /** if `true` changing value of progress bar will be animated*/
-  @Input() animate: boolean;
+  /** if `true` changing value of progress bar will be animated */
+  @Input()
+  set animate(value: boolean) {
+    this._animate = value;
+    this.bars.forEach((b: BarComponent) => {
+      b.animate = value;
+    });
+  }
   /** If `true`, striped classes are applied */
-  @Input() striped: boolean;
+  @Input()
+  set striped(value: boolean) {
+    this._striped = value;
+    this.bars.forEach((b: BarComponent) => {
+      b.striped = value;
+    });
+  }
+
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type: string;
   /** current value of progress bar. Could be a number or array of objects
@@ -31,6 +44,8 @@ export class ProgressbarComponent {
     this._value = value;
   }
   isStacked = false;
+  _striped: boolean;
+  _animate: boolean;
   _value: number | any[];
   get isBs3(): boolean {
     return isBs3();
@@ -60,8 +75,8 @@ export class ProgressbarComponent {
     Object.assign(this, config);
   }
   addBar(bar: BarComponent): void {
-    bar.animate = this.animate;
-    bar.striped = this.striped;
+    bar.animate = this._animate;
+    bar.striped = this._striped;
 
     this.bars.push(bar);
   }

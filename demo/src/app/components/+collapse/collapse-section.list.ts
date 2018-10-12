@@ -7,6 +7,7 @@ import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { InlineDisplayDemoComponent } from './demos/inline-display/inline-display';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
 
@@ -46,6 +47,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
         html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
         outlet: ToggleManualDemoComponent
+      },
+      {
+        title: 'Inline display',
+        anchor: 'inline-display',
+        component: require('!!raw-loader?lang=typescript!./demos/inline-display/inline-display'),
+        html: require('!!raw-loader?lang=markup!./demos/inline-display/inline-display.html'),
+        outlet: InlineDisplayDemoComponent
       },
       {
         title: 'Accessibility',

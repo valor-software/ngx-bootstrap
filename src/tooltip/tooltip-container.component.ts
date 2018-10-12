@@ -20,6 +20,7 @@ import { isBs3 } from '../utils/theme-provider';
     `
     :host.tooltip {
       display: block;
+      pointer-events: none;
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: 50%;
