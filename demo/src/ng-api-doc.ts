@@ -2499,7 +2499,7 @@ export const ngdoc: any = {
       {
         "name": "titles",
         "type": "string[]",
-        "description": "<p>array of icons titles, default: ([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]) </p>\n"
+        "description": "<p>array of icons titles</p>\n"
       }
     ],
     "outputs": [
