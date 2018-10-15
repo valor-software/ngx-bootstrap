@@ -284,7 +284,7 @@ describe('popover', () => {
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('right');
+      expect(windowEl).toHaveCssClass('bottom');
       expect(windowEl.textContent.trim()).toBe('Great tip!');
     });
 

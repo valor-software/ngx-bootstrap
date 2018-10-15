@@ -253,7 +253,7 @@ describe('tooltip', () => {
 
         expect(windowEl).toHaveCssClass('tooltip');
         expect(windowEl).toHaveCssClass('tooltip-auto');
-        expect(windowEl).toHaveCssClass('right');
+        expect(windowEl).toHaveCssClass('bottom');
         expect(windowEl.textContent.trim()).toBe('Great tip!');
       });
     });

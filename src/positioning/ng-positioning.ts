@@ -98,6 +98,13 @@ export class Positioning {
     let placementPrimary = placement.split(' ')[0] || 'top';
     const placementSecondary = placement.split(' ')[1] || 'center';
 
+    const rightOffset = window.innerWidth
+                        - targetElement.getBoundingClientRect().left
+                        - targetElement.getBoundingClientRect().width;
+
+    const pageBCR = document.querySelector('body').getBoundingClientRect();
+
+
     let targetElPosition: ClientRect = {
       height: targetElBCR.height || targetElement.offsetHeight,
       width: targetElBCR.width || targetElement.offsetWidth,
@@ -122,7 +129,7 @@ export class Positioning {
         hostElPosition.width / 2 -
         targetElPosition.width / 2,
       right: hostElPosition.left + hostElPosition.width
-    };    
+    };
 
     if (placementPrimary === 'auto') {
       let newPlacementPrimary = this.autoPosition(
@@ -131,14 +138,16 @@ export class Positioning {
         targetElement,
         placementSecondary
       );
-      if (!newPlacementPrimary)
+      if (!newPlacementPrimary) {
         newPlacementPrimary = this.autoPosition(
           targetElPosition,
           hostElPosition,
           targetElement
         );
+      }
       if (newPlacementPrimary) placementPrimary = newPlacementPrimary;
       targetElement.classList.add(placementPrimary);
+
     }
 
     switch (placementPrimary) {
@@ -149,14 +158,43 @@ export class Positioning {
             parseFloat(targetElStyles.marginBottom));
         targetElPosition.bottom +=
           hostElPosition.top - targetElPosition.height;
+
+        if(rightOffset < 100
+          && targetElPosition.height / targetElPosition.width > 1.6) {
+          let shiftRight;
+          if (targetElPosition.width < 200) {
+            shiftRight = 200;
+          }
+          if (rightOffset < 0) {
+            shiftRight = targetElPosition.width;
+          }
+          targetElPosition.right = pageBCR.right;
+          targetElPosition.left = pageBCR.right - shiftRight;
+          break;
+        }
         targetElPosition.left = shiftWidth[placementSecondary];
         targetElPosition.right += shiftWidth[placementSecondary];
         break;
       case 'bottom':
         targetElPosition.top = shiftHeight[placementPrimary];
         targetElPosition.bottom += shiftHeight[placementPrimary];
+
+        if(rightOffset < 100
+          && targetElPosition.height / targetElPosition.width > 1.6) {
+          let shiftRight;
+          if (targetElPosition.width < 200) {
+            shiftRight = 200;
+          }
+          if (rightOffset < 0) {
+            shiftRight = targetElPosition.width;
+          }
+          targetElPosition.right = pageBCR.right;
+          targetElPosition.left = pageBCR.right - shiftRight;
+          break;
+        }
         targetElPosition.left = shiftWidth[placementSecondary];
         targetElPosition.right += shiftWidth[placementSecondary];
+
         break;
       case 'left':
         targetElPosition.top = shiftHeight[placementSecondary];
@@ -182,6 +220,7 @@ export class Positioning {
 
     return targetElPosition;
   }
+
 
   private autoPosition(
     targetElPosition: ClientRect,
@@ -217,7 +256,7 @@ export class Positioning {
     ) {
       return 'left';
     }
-    return null;
+    return 'bottom';
   }
 
   private getAllStyles(element: HTMLElement) {

@@ -18,6 +18,16 @@
     display: block;
   }
 
+  .bs-wrapper-calendar {
+    margin: -5px;
+
+    & bs-days-calendar-view,
+    & bs-month-calendar-view,
+    & bs-days-calendar-view {
+      padding: 5px;
+    }
+  }
+
   bs-day-picker {
     float: left;
   }
@@ -358,10 +368,6 @@
     display: inline-block;
     border-radius: 4px 0 0 4px;
 
-    & + & {
-      margin-left: 10px;
-    }
-
     .bs-datepicker {
       box-shadow: none;
       position: relative;
@@ -514,11 +520,6 @@ bs-daterangepicker-container {
   .bs-datepicker {
     &-multiple {
       display: flex;
-
-      & + & {
-        margin-top: 10px;
-        margin-left: 0;
-      }
     }
   }
 }
