@@ -4,5 +4,6 @@
   "peerDependencies": {
     "@angular/core": "*",
     "@angular/common": "*"
-  }
+  },
+  "version": "3.0.1"
 }
