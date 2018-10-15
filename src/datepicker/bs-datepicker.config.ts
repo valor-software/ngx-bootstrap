@@ -51,4 +51,5 @@ export class BsDatepickerConfig
   weekNumbers = 'w';
   changeMonthOnClick = false;
   disableYearView  = false;
+  disableMonthView = false;
 }

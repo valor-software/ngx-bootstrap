@@ -94,6 +94,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   * */
   @Input() disableYearView: boolean;
 
+  /*
+  * Indicates whether the month in the datepicker header is enabled
+  * */
+  @Input() disableMonthView: boolean;
+
   /**
    * Emits when datepicker value has been changed
    */
@@ -215,7 +220,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
-      disableYearView: this.disableYearView || this.bsConfig && this.bsConfig.disableYearView
+      disableYearView: this.disableYearView || this.bsConfig && this.bsConfig.disableYearView,
+      disableMonthView: this.disableMonthView || this.bsConfig && this.bsConfig.disableMonthView
     });
   }
 

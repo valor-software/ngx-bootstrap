@@ -693,6 +693,11 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the datepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
+        "name": "disableMonthView",
+        "type": "boolean",
+        "description": ""
+      },
+      {
         "name": "disableYearView",
         "type": "boolean",
         "description": ""
@@ -846,6 +851,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the daterangepicker should be appended\nto. Currently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "disableMonthView",
+        "type": "boolean",
+        "description": ""
       },
       {
         "name": "disableYearView",

@@ -53,7 +53,9 @@ export class BsDatepickerNavigationViewComponent {
   config: BsDatepickerConfig;
   view(viewMode: BsDatepickerViewMode): void {
     if(viewMode != 'year' || !this.config.disableYearView) {
-      this.onViewMode.emit(viewMode);
+      if(viewMode != 'month' || !this.config.disableMonthView) {
+        this.onViewMode.emit(viewMode);
+      }   
     }    
   }
 
