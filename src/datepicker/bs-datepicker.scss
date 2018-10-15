@@ -53,7 +53,7 @@
     }
 
     /* .bs-datepicker-head button */
-    button {
+    button, div {
       display: inline-block;
       vertical-align: top;
       padding: 0;
@@ -97,6 +97,11 @@
         padding: 0 13px;
       }
     }
+
+    div {
+      cursor: auto;
+    }
+    
   }
 
   &-head {

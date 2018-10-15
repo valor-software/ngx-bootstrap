@@ -28,8 +28,9 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
     ><span>{{ calendar.monthTitle }}</span>
     </button>
 
-    <button class="current" (click)="view('year')"
+    <button class="current" (click)="view('year')" *ngIf="!config.disableYearView"
     ><span>{{ calendar.yearTitle }}</span></button>
+    <div class="current" *ngIf="config.disableYearView"><span>{{ calendar.yearTitle }}</span></div>
 
     <button class="next"
             [disabled]="calendar.disableRightArrow"
