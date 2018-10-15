@@ -100,8 +100,8 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(e: any): void {
+    this.selectMatch(this._active, e);
   }
 
   prevActiveMatch(): void {
@@ -188,6 +188,9 @@ export class TypeaheadContainerComponent {
       e.preventDefault();
     }
     this.parent.changeModel(value);
+
+    value.selectEvent = e;
+
     setTimeout(() => this.parent.typeaheadOnSelect.emit(value), 0);
 
     return false;

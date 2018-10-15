@@ -1,4 +1,5 @@
 export class TypeaheadMatch {
+  selectEvent: Event = null;
   readonly value: string;
   readonly item: any;
   protected header: boolean;
