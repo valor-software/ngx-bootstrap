@@ -5,7 +5,7 @@
  
  **Scope**: Ngx-bootstrap DEMO / BS version 3&4
  
- **Goal**: Show user Centering the active page link functionality
+ **Goal**: Show user centering the active page link functionality
  
  Main success scenario:
 ----------------------
@@ -14,15 +14,15 @@
  2. User clicks on "Centering the active page link" sub-menu
  3. By default maximum page numbers equal to 5 and active page 1.
  4. By default centering the active page link is enabled
- 5. When user clicks on 5th page, then active page should 5 and should by center, maximum count of pages should 5
- 6. After click on "Next" button, then active page should 6 and should by center, maximum count of pages should 5
- 7. After click on "Previous" button, then active page should 5 and should by center , maximum count of pages should 5
+ 5. When user clicks on 5th page, then active page - 5 and it centered, maximum count of pages - 5
+ 6. After click on "Next" button, then active page - 6 and it centered, maximum count of pages - 5
+ 7. After click on "Previous" button, then active page - 5 and it centered , maximum count of pages should 5
  8. When user clicks on "Toggle centering current page link", then "last" and "first" buttons are appeared, should marked like "..."
- 9. When user clicks on 5th page, then active page should 5 and should by right side, maximum count of pages should 5
- 10.After click on "Next" button, then active page should 6 and should by left side, maximum count page should 5
- 11. After click on "Previous" button, then active page should 5 and should by left side, maximum count of pages should 5
- 12. After click on "Last" button, next 5 pages are appeared, maximum count page should 5
- 13. After click on "Previous" button, Previous 5 pages are appeared, maximum count of pages should 5
+ 9. When user clicks on 5th page, then active page - 5 and it located by right side, maximum count of pages - 5
+ 10.After click on "Next" button, then active page - 6 and it located by left side, maximum count page - 5
+ 11. After click on "Previous" button, then active page - 5 and it located by left side, maximum count of pages - 5
+ 12. After click on "Last" button, next 5 pages are appeared, maximum count of pages - 5
+ 13. After click on "Previous" button, Previous 5 pages are appeared, maximum count of pages - 5
  
  Variations:
  ----------

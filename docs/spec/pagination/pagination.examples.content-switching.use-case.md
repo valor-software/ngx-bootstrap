@@ -13,7 +13,7 @@
  1. User opens "Pagination" demo page
  2. User clicks on "Content switching" sub-menu
  3. After click on "Next" button, pagination content should be changed
- 4. After click on "Previous" button, pagination content should be changed
+ 4. After click on "Previous" button, pagination content should be as default
  5. When user clicks on next/previous page, pagination content should be changed
  
  Variations:

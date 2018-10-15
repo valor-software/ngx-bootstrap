@@ -44,7 +44,7 @@ describe('Component: Rating. Init:', () => {
 
     expect(icons[0].classList).not.toContain('active');
     expect(icons[4].classList).not.toContain('active');
-    expect(icons[4].getAttribute('title')).toEqual('five');
+    expect(icons[4].getAttribute('title')).toEqual('5');
   });
 
   it('checking of working with changed values', () => {

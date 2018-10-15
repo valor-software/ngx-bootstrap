@@ -5,7 +5,7 @@
  
  **Scope**: Ngx-bootstrap DEMO / BS version 3&4
  
- **Goal**: Show user custom links content functionality
+ **Goal**: Show user disabled functionality
  
  Main success scenario:
 ----------------------

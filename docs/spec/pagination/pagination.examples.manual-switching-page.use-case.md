@@ -18,4 +18,4 @@
  Variations:
  ----------
  
- 2*. User scrolls to 'Manual switching page'
+ 2*. User scrolls to "Manual switching page"

@@ -12,7 +12,7 @@
 
  1. User opens "Pagination" demo page
  2. User clicks on "Custom links content" sub-menu
- 3. Links should be instead  Previous, Next, Last, First text
+ 3. Instead of text, pagination should be with arrow links "«" and "‹", "›", "»"
  4. After click on "Last link", "Next link" and "Last link" are disabled, 8th page is active,
    "First link" and "Previous" link are enabled
  5. After click on "First link", "Next link" and "Last link" are enabled, 1st page is active,

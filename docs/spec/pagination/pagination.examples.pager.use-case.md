@@ -22,4 +22,4 @@
  Variations:
  ----------
  
- 2*. User scrolls to 'Pager'
+ 2*. User scrolls to "Pager"
