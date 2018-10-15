@@ -4,12 +4,12 @@
 
 **Scope**: Ngx-bootstrap DEMO / BS version 3&4
 
-**Goal**: Show user Basic On select functionality
+**Goal**: Show user On select functionality
 
 Main success scenario:
 ----------------------
 1. User open Typeahead demo page
-2. User click on Basic array sub-menu
+2. User click on Selected sub-menu
 3. User is able to fill the "Model:" input
 4. User is able to see "Selected option:" filed
 5. When user starts to type a name of a State from "states" array then a drop-down with a list of States matches is shown
@@ -25,4 +25,4 @@ Extensions:
 
 Variations:
 -----------
-2*. User scroll to Basic array sub-menu
+2*. User scroll to On selected sub-menu
