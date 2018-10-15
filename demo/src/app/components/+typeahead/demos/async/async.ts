@@ -87,7 +87,7 @@ export class DemoTypeaheadAsyncComponent {
   }
 
   changeTypeaheadLoading(e: boolean): void {
-    this.typeaheadLoading = e;
+     this.typeaheadLoading = e;
   }
 
   typeaheadOnSelect(e: TypeaheadMatch): void {
