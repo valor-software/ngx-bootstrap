@@ -4,7 +4,7 @@ const meow = require('meow');
 const execa = require('execa');
 const fs = require('fs-extra');
 const cpy = require('cpy');
-const chokidar = require('chokidar')
+const chokidar = require('chokidar');
 const del = require('del');
 const buildPkgJson = require('ngm-cli/tasks/npm/build-pkg-json.task');
 const src = 'src';
@@ -23,11 +23,15 @@ async function buildAll() {
   }
 
   await buildPkgJson.buildPkgJson({ src, dist });
+  await execa.shell(`json -I -f ${dist}/package.json -e 'this.schematics="./schematics/collection.json"'`);
   cpy(['*.md', 'LICENSE'], dist);
 
   await execa.shell(`npm run link`);
 
-  const requiredModules = ['collapse', 'chronos', 'utils', 'positioning', 'component-loader', 'dropdown', 'locale', 'alert', 'buttons', 'carousel', 'mini-ngrx', 'modal', 'pagination', 'popover', 'progressbar', 'rating', 'sortable', 'tabs', 'timepicker', 'tooltip', 'typeahead', 'datepicker'];
+  const requiredModules = ['collapse', 'chronos', 'utils', 'positioning', 'component-loader', 'dropdown', 'locale',
+    'alert', 'buttons', 'carousel', 'mini-ngrx', 'modal', 'pagination', 'popover', 'progressbar',
+    'rating', 'sortable', 'tabs', 'timepicker', 'tooltip', 'typeahead', 'datepicker'];
+
   await buildModules(requiredModules);
 
   console.log('Building accordion module');
