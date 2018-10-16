@@ -12,6 +12,14 @@
 
 ## Collapse
 
+[Collapse. Basic](collapse/collapse.examples.basic.use-case.md)
+
+[Collapse. Events](collapse/collapse.examples.events.use-case.md)
+
+[Collapse. Manual toggle](collapse/collapse.examples.manual-toggle.use-case.md)
+
+[Collapse. Accessibility](collapse/collapse.examples.accessibility.use-case.md)
+
 ## Datepicker
 
 ## Dropdowns
