@@ -151,7 +151,7 @@
     "typescript": "~2.7.2",
     "wait-on": "2.1.0",
     "wallaby-webpack": "3.9.7",
-    "webpack-bundle-analyzer": "2.11.3",
+    "webpack-bundle-analyzer": "3.0.3",
     "zone.js": "0.8.26"
   }
 }
