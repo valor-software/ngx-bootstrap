@@ -12,11 +12,11 @@ import { Schema } from './schema';
 import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
 
 import {
+  addPackageToPackageJson,
   addStyleToTarget,
   getProjectFromWorkspace,
   installPackageJsonDependencies
 } from '../utils';
-import { addPackageToPackageJson } from '../utils/index';
 
 const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.css`;
 const datePickerStylePath =  `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
