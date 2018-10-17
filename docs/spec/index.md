@@ -26,6 +26,28 @@
 
 ## Carousel
 
+[Carousel. Basic](carousel/carousel.examples.basic.use-case.md)
+
+[Carousel. Optional captions](carousel/carousel.examples.optional-captions.use-case.md)
+
+[Carousel. Configuring defaults](carousel/carousel.examples.config-defaults.use-case.md)
+
+[Carousel. Dynamic Slides](carousel/carousel.examples.dynamic-slides.use-case.md)
+
+[Carousel. Pause on hover](carousel/carousel.examples.pause-on-hover.use-case.md)
+
+[Carousel. Custom content](carousel/carousel.examples.custom-content.use-case.md)
+
+[Carousel. Disable slide looping](carousel/carousel.examples.disable-looping.use-case.md)
+
+[Carousel. Disable indicator](carousel/carousel.examples.disable-indicator.use-case.md)
+
+[Carousel. Interval](carousel/carousel.examples.interval.use-case.md)
+
+[Carousel. Slide changed event](carousel/carousel.examples.slide-changed-event.use-case.md)
+
+[Carousel. Accessibility](carousel/carousel.examples.accessibility.use-case.md)
+
 ## Collapse
 
 [Collapse. Basic](collapse/collapse.examples.basic.use-case.md)
