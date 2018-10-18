@@ -52,6 +52,9 @@ export class CarouselComponent implements OnDestroy {
   /** Index of currently displayed slide(started for 0) */
   @Input()
   set activeSlide(index: number) {
+    if (!this._defaultActiveSlide) {
+      this._defaultActiveSlide = index;
+    }
     if (this._slides.length && index !== this._currentActiveSlide) {
       this._select(index);
     }
@@ -80,6 +83,7 @@ export class CarouselComponent implements OnDestroy {
   }
 
   protected _currentActiveSlide: number;
+  protected _defaultActiveSlide: number;
   protected _interval: number;
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
   protected currentInterval: any;
@@ -105,6 +109,8 @@ export class CarouselComponent implements OnDestroy {
    */
   addSlide(slide: SlideComponent): void {
     this._slides.add(slide);
+    this.activeSlide = (this._slides.length < this._defaultActiveSlide) ? 0 : this._defaultActiveSlide;
+
     if (this._slides.length === 1) {
       this._currentActiveSlide = void 0;
       this.activeSlide = 0;

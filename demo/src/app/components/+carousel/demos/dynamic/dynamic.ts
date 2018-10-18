@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DemoCarouselDynamicComponent {
   slides = [];
-  activeSlideIndex = 0;
+  activeSlideIndex = 2;
 
   constructor() {
     for (let i = 0; i < 4; i++) {

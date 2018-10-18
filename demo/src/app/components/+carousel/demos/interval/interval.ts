@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DemoCarouselIntervalComponent {
   myInterval = 1500;
-  activeSlideIndex = 0;
+  activeSlideIndex = 1;
 
   slides = [
     {image: 'assets/images/nature/3.jpg'},
