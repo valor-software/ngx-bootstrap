@@ -11,14 +11,5 @@
   ],
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
-  "schematics": "./src/collection.json",
-  "dependencies": {
-    "@angular-devkit/core": "^7.0.0-rc.1",
-    "@angular-devkit/schematics": "^7.0.0-rc.1",
-    "@schematics/angular": "0.8.4",
-    "@types/jasmine": "^2.6.0",
-    "@types/node": "^8.0.31",
-    "jasmine": "^2.8.0",
-    "typescript": "^2.5.2"
-  }
+  "schematics": "./src/collection.json"
 }
