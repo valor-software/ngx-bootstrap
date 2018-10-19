@@ -1,6 +1,7 @@
 import { DemoTabsBasicComponent } from './basic/basic';
 import { DemoTabsDynamicComponent } from './dynamic/dynamic';
 import { DemoTabsCustomClassComponent } from './custom-class/custom-class';
+import { DemoTabsetCustomClassComponent } from './custom-class-tabset/custom-class-tabset';
 import { DemoTabsPillsComponent } from './pills/pills';
 import { DemoTabsVerticalPillsComponent } from './vertical-pills/vertical-pills';
 import { DemoTabsJustifiedComponent } from './justified/justified';
@@ -17,6 +18,7 @@ export const DEMO_COMPONENTS = [
   DemoTabsDisabledComponent,
   DemoTabsDynamicComponent,
   DemoTabsCustomClassComponent,
+  DemoTabsetCustomClassComponent,
   DemoTabsPillsComponent,
   DemoTabsVerticalPillsComponent,
   DemoTabsJustifiedComponent,

@@ -2708,6 +2708,11 @@ export const ngdoc: any = {
         "name": "vertical",
         "type": "boolean",
         "description": "<p>if true tabs will be placed vertically </p>\n"
+      },
+      {
+        "name": "tabsetClass",
+        "type": "string",
+        "description": "<p>if set, class attribute will be added to the tabset </p>\n"
       }
     ],
     "outputs": [],

@@ -496,6 +496,28 @@ a:hover {
   }
 }
 
+tabset {
+  &.custom-class {
+    .nav {
+      display: flex;
+      justify-content: space-between;
+
+      .nav-item {
+        a {
+          color: #495057;
+          background-color: #fff;
+          border-color: #dee2e6 #dee2e6 #fff;
+        }
+        &.active {
+          a {
+            background-color: #50ff50;
+          }
+        }
+      }
+    }
+  }
+}
+
 .card.customClass,
 .card.customClass .card-header,
 .panel.customClass {

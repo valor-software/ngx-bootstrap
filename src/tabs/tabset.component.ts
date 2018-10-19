@@ -9,6 +9,10 @@ import { TabsetConfig } from './tabset.config';
   templateUrl: './tabset.component.html'
 })
 export class TabsetComponent implements OnDestroy {
+  /** custom class for tabset */
+  @HostBinding('class')
+  @Input() tabsetClass = '';
+
   /** if true tabs will be placed vertically */
   @Input()
   get vertical(): boolean {

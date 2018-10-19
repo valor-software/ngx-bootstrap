@@ -5,6 +5,7 @@ import { DemoTabsPillsComponent } from './demos/pills/pills';
 import { DemoTabsVerticalPillsComponent } from './demos/vertical-pills/vertical-pills';
 import { DemoTabsJustifiedComponent } from './demos/justified/justified';
 import { DemoTabsCustomClassComponent } from './demos/custom-class/custom-class';
+import { DemoTabsetCustomClassComponent } from './demos/custom-class-tabset/custom-class-tabset';
 import { DemoTabsConfigComponent } from './demos/config/config';
 import { DemoTabsDisabledComponent } from './demos/disabled/disabled';
 import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
@@ -91,6 +92,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/custom-class/custom-class'),
         html: require('!!raw-loader?lang=markup!./demos/custom-class/custom-class.html'),
         outlet: DemoTabsCustomClassComponent
+      },
+      {
+        title: 'Tabset custom class',
+        anchor: 'tabset-custom-class',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-class-tabset/custom-class-tabset'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-class-tabset/custom-class-tabset.html'),
+        outlet: DemoTabsetCustomClassComponent
       },
       {
         title: 'Select event',
