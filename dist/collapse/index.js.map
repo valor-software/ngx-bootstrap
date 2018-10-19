@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../.tmp/collapse/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,sBAAsB,CAAC;AACzD,OAAO,EAAE,cAAc,EAAE,MAAM,mBAAmB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { CollapseDirective } from './collapse.directive';\r\nexport { CollapseModule } from './collapse.module';\r\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../.tmp/rating/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,oBAAoB,CAAC;AACrD,OAAO,EAAE,YAAY,EAAE,MAAM,iBAAiB,CAAC","file":"index.js","sourceRoot":"","sourcesContent":["export { RatingComponent } from './rating.component';\r\nexport { RatingModule } from './rating.module';\r\n"]}

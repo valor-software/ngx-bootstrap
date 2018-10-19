@@ -1,0 +1,32 @@
+{
+	"main": "bundles/ngx-bootstrap.umd.js",
+	"version": "2.0.5",
+	"description": "Native Angular Bootstrap Components",
+	"module": "index.js",
+	"typings": "index.d.ts",
+	"keywords": [
+		"angular",
+		"bootstap",
+		"ng",
+		"ng2",
+		"angular2",
+		"twitter-bootstrap"
+	],
+	"author": {
+		"name": "Dmitriy Shekhovtsov",
+		"email": "valorkin@gmail.com"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
+	},
+	"name": "ngx-bootstrap",
+	"es2015": "bundles/ngx-bootstrap.es2015.js",
+	"peerDependencies": {
+		"@angular/common": ">=4.3.0 || >5.0.0",
+		"@angular/core": ">=4.3.0 || >5.0.0",
+		"@angular/forms": ">=4.3.0 || >5.0.0"
+	},
+	"_id": "ngx-bootstrap@"
+}

@@ -1,0 +1,33 @@
+import { TimeUnit } from '../../chronos/types';
+import { Action } from '../../mini-ngrx/index';
+import { BsDatepickerViewMode, BsViewNavigationEvent, CellHoverEvent, DatepickerRenderOptions } from '../models/index';
+export declare class BsDatepickerActions {
+    static readonly CALCULATE: string;
+    static readonly FORMAT: string;
+    static readonly FLAG: string;
+    static readonly SELECT: string;
+    static readonly NAVIGATE_OFFSET: string;
+    static readonly NAVIGATE_TO: string;
+    static readonly SET_OPTIONS: string;
+    static readonly HOVER: string;
+    static readonly CHANGE_VIEWMODE: string;
+    static readonly SET_MIN_DATE: string;
+    static readonly SET_MAX_DATE: string;
+    static readonly SET_IS_DISABLED: string;
+    static readonly SET_LOCALE: string;
+    static readonly SELECT_RANGE: string;
+    calculate(): Action;
+    format(): Action;
+    flag(): Action;
+    select(date: Date): Action;
+    changeViewMode(event: BsDatepickerViewMode): Action;
+    navigateTo(event: BsViewNavigationEvent): Action;
+    navigateStep(step: TimeUnit): Action;
+    setOptions(options: DatepickerRenderOptions): Action;
+    selectRange(value: Date[]): Action;
+    hoverDay(event: CellHoverEvent): Action;
+    minDate(date: Date): Action;
+    maxDate(date: Date): Action;
+    isDisabled(value: boolean): Action;
+    setLocale(locale: string): Action;
+}

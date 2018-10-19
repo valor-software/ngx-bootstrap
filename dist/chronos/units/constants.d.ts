@@ -1,0 +1,9 @@
+export declare const YEAR = 0;
+export declare const MONTH = 1;
+export declare const DATE = 2;
+export declare const HOUR = 3;
+export declare const MINUTE = 4;
+export declare const SECOND = 5;
+export declare const MILLISECOND = 6;
+export declare const WEEK = 7;
+export declare const WEEKDAY = 8;

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../.tmp/datepicker/engine/view-mode.ts"],"names":[],"mappings":"AAEA,MAAM,wBAAwB,IAA0B;IACtD,MAAM,CAAC,IAAI,CAAC;AACd,CAAC","file":"view-mode.js","sourceRoot":"","sourcesContent":["import { BsDatepickerViewMode } from '../models/index';\r\n\r\nexport function canSwitchMode(mode: BsDatepickerViewMode): boolean {\r\n  return true;\r\n}\r\n"]}
