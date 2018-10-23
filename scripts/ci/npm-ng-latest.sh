@@ -14,4 +14,6 @@ npm i @angular/animations@latest \
     @angular/platform-browser-dynamic@latest \
     @angular/router@latest \
     @angular/service-worker@latest \
-    rxjs@6.0.0
+    @schematics/angular@latest \
+    typescript@3.1.1 \
+    rxjs@6.3
