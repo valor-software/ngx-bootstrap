@@ -39,26 +39,27 @@ export default function (options: Schema): Rule {
 
 function addModuleOfComponent(projectName: string | undefined, componentName: string) {
 
-  const components: { [key: string]: { moduleName: string; link: string } } = {
-    accordion: { moduleName: 'AccordionModule', link: 'ngx-bootstrap/accordion' },
-    alerts: { moduleName: 'AlertModule', link: 'ngx-bootstrap/alert' },
-    buttons: { moduleName: 'ButtonsModule', link: 'ngx-bootstrap/buttons' },
-    carousel: { moduleName: 'CarouselModule', link: 'ngx-bootstrap/carousel' },
-    collapse: { moduleName: 'CollapseModule', link: 'ngx-bootstrap/collapse' },
-    datepicker: { moduleName: 'BsDatepickerModule', link: 'ngx-bootstrap/datepicker' },
-    dropdowns: { moduleName: 'BsDropdownModule', link: 'ngx-bootstrap/dropdown' },
-    modals: { moduleName: 'ModalModule', link: 'ngx-bootstrap/modal' },
-    pagination: { moduleName: 'PaginationModule', link: 'ngx-bootstrap/pagination' },
-    popover: { moduleName: 'PopoverModule', link: 'ngx-bootstrap/popover' },
-    progressbar: { moduleName: 'ProgressbarModule', link: 'ngx-bootstrap/progressbar' },
-    rating: { moduleName: 'RatingModule', link: 'ngx-bootstrap/rating' },
-    sortable: { moduleName: 'SortableModule', link: 'ngx-bootstrap/sortable' },
-    tabs: { moduleName: 'TabsModule', link: 'ngx-bootstrap/tabs' },
-    timepicker: { moduleName: 'TimepickerModule', link: 'ngx-bootstrap/timepicker' },
-    tooltip: { moduleName: 'TooltipModule', link: 'ngx-bootstrap/tooltip' },
-    typeahead: { moduleName: 'TypeaheadModule', link: 'ngx-bootstrap/typeahead' }
-  };
+  const bsName = 'ngx-bootstrap';
 
+  const components: { [key: string]: { moduleName: string; link: string } } = {
+    accordion:   { moduleName: 'AccordionModule',    link: `${bsName}/accordion` },
+    alerts:      { moduleName: 'AlertModule',        link: `${bsName}/alert` },
+    buttons:     { moduleName: 'ButtonsModule',      link: `${bsName}/buttons` },
+    carousel:    { moduleName: 'CarouselModule',     link: `${bsName}/carousel` },
+    collapse:    { moduleName: 'CollapseModule',     link: `${bsName}/collapse` },
+    datepicker:  { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker` },
+    dropdowns:   { moduleName: 'BsDropdownModule',   link: `${bsName}/dropdown` },
+    modals:      { moduleName: 'ModalModule',        link: `${bsName}/modal` },
+    pagination:  { moduleName: 'PaginationModule',   link: `${bsName}/pagination` },
+    popover:     { moduleName: 'PopoverModule',      link: `${bsName}/popover` },
+    progressbar: { moduleName: 'ProgressbarModule',  link: `${bsName}/progressbar` },
+    rating:      { moduleName: 'RatingModule',       link: `${bsName}/rating` },
+    sortable:    { moduleName: 'SortableModule',     link: `${bsName}/sortable` },
+    tabs:        { moduleName: 'TabsModule',         link: `${bsName}/tabs` },
+    timepicker:  { moduleName: 'TimepickerModule',   link: `${bsName}/timepicker` },
+    tooltip:     { moduleName: 'TooltipModule',      link: `${bsName}/tooltip` },
+    typeahead:   { moduleName: 'TypeaheadModule',    link: `${bsName}/typeahead` }
+  };
 
   return (host: Tree) => {
     const workspace = getWorkspace(host);

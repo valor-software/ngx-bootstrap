@@ -2,7 +2,6 @@
   "name": "ngx-bootstrap-base",
   "version": "3.1.0",
   "description": "Native Angular Bootstrap Components",
-  "schematics": "./schematics/src/collection.json",
   "private": true,
   "scripts": {
     "lite-server": "lite-server -c scripts/bs-config.js",
@@ -31,7 +30,8 @@
     "build.es2015": "node ./scripts/es2015/bundle.es2015.js",
     "start": "ng serve --aot --host 0.0.0.0",
     "pretest": "run-s lint build",
-    "test": "ng test",
+    "test": "ng test && npm run test:schematics",
+    "test:schematics": "jasmine schematics/src/**/*.spec.js",
     "test-cross": "SAUCE=true ng test",
     "test-coverage": "ng test --code-coverage",
     "version": "node scripts/version && npm run version.changelog",
