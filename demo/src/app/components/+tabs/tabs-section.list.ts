@@ -10,6 +10,7 @@ import { DemoTabsDisabledComponent } from './demos/disabled/disabled';
 import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DynamicContentRenderingComponent } from './demos/dynamic-content-rendering/dynamic-content-rendering';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -113,6 +114,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/custom-template/custom-template'),
         html: require('!!raw-loader!./demos/custom-template/custom-template.html'),
         outlet: DemoTabsCustomComponent
+      },
+      {
+        title: 'Dynamic content rendering',
+        anchor: 'dynamic-content-rendering',
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic-content-rendering/dynamic-content-rendering'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic-content-rendering/dynamic-content-rendering.html'),
+        outlet: DynamicContentRenderingComponent
       },
       {
         title: 'Accessibility',
