@@ -44,7 +44,7 @@ install:
   - npm i -g npm@6.0.1
   - npm ci
   - npm run build
-#  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 #  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
@@ -82,8 +82,8 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-#    - <<: *test
-#      env: NGV=latest
+    - <<: *test
+      env: NGV=latest
 #    - <<: *test
 #      env: NGV=next
 
@@ -100,8 +100,8 @@ jobs:
     - &build
       stage: build
       script: npm run demo.ng-build
-#    - <<: *build
-#      env: NGV=latest
+    - <<: *build
+      env: NGV=latest
 #    - <<: *build
 #      env: NGV=next
     - stage: sauce-tests
@@ -123,13 +123,13 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap.surge.sh
         on: development
-#    - <<: *surge
-#      env: NGV=latest
-#      deploy:
-#        provider: surge
-#        project: ./gh-pages/
-#        domain: ngx-bootstrap-latest.surge.sh
-#        on: development
+    - <<: *surge
+      env: NGV=latest
+      deploy:
+        provider: surge
+        project: ./gh-pages/
+        domain: ngx-bootstrap-latest.surge.sh
+        on: development
 # todo: Illya please fix
 #    - stage: deploy
 #      script: npm run build:dynamic

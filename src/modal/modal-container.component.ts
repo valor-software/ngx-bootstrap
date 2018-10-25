@@ -13,7 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',

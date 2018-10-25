@@ -2,11 +2,9 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { fireEvent } from '../../scripts/helpers';
-import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
-import { TypeaheadDirective } from '../typeahead/typeahead.directive';
-import { TypeaheadModule } from '../typeahead/typeahead.module';
+import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 interface State {
   id: number;
