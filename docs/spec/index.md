@@ -104,6 +104,43 @@
 
 ## Dropdowns
 
+[Dropdowns. Basic](dropdowns/dropdowns.examples.basic.use-case.md)
+
+[Dropdowns. Trigger by tag \<a>](dropdowns/dropdowns.examples.trigger-by-a.use-case.md)
+
+[Dropdowns. Split button dropdowns](dropdowns/dropdowns.examples.split-button.use-case.md)
+
+[Dropdowns. Manual triggering](dropdowns/dropdowns.examples.manual-trigger.md)
+
+[Dropdowns. Trigger by isOpen property](dropdowns/dropdowns.examples.trigger-by-isopen.use-case.md)
+
+[Dropdowns. Disabled menu](dropdowns/dropdowns.examples.disabled-menu.use-case.md)
+
+[Dropdowns. Mark item as disabled](dropdowns/dropdowns.examples.mark-item-disabled.use-case.md)
+
+[Dropdowns. Menu alignment](dropdowns/dropdowns.examples.menu-alignment.use-case.md)
+
+[Dropdowns. Nested dropdowns](dropdowns/dropdowns.examples.nested-dropdowns.use-case.md)
+
+[Dropdowns. Append to body](dropdowns/dropdowns.examples.append-to-body.use-case.md)
+
+[Dropdowns. Dropup variation](dropdowns/dropdowns.examples.dropup-variation.use-case.md)
+
+[Dropdowns. Menu dividers](dropdowns/dropdowns.examples.menu-dividers.use-case.md)
+
+[Dropdowns. Custom html](dropdowns/dropdowns.examples.custom-html.use-case.md)
+
+[Dropdowns. Configuring defaults](dropdowns/dropdowns.examples.config-defaults.use-case.md)
+
+[Dropdowns. Visibility Events](dropdowns/dropdowns.examples.visibility-events.use-case.md)
+
+[Dropdowns. State change event](dropdowns/dropdowns.examples.state-change-event.use-case.md)
+
+[Dropdowns. Auto close](dropdowns/dropdowns.examples.auto-close.use-case.md)
+
+[Dropdowns. Accessibility](dropdowns/dropdowns.examples.accessibility.use-case.md)
+
+
 ## Modals
 
 [Service examples. Template](modals/modals.service-examples.template.use-case.md)
