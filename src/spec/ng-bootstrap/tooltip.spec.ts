@@ -8,7 +8,7 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 
-import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip/index';
+import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from 'ngx-bootstrap/tooltip';
 import { createGenericTestComponent } from './test/common';
 
 @Component({

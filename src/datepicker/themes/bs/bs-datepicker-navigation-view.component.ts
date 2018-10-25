@@ -9,7 +9,7 @@ import {
   BsDatepickerViewMode,
   BsNavigationDirection,
   DaysCalendarViewModel
-} from '../../models/index';
+} from '../../models';
 
 @Component({
   selector: 'bs-datepicker-navigation-view',
