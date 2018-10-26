@@ -171,6 +171,15 @@
 
 ## Progressbar
 
+[Progressbar. Static](progressbar/progressbar.examples.static.use-case.md)
+
+[Progressbar. Dynamic](progressbar/progressbar.examples.dynamic.use-case.md)
+
+[Progressbar. Stacked](progressbar/progressbar.examples.stacked.use-case.md)
+
+[Progressbar. Configuring defaults](progressbar/progressbar.examples.config-default.use-case.md)
+
+
 ## Rating
 
 ## Sortable
