@@ -26,6 +26,7 @@ import {
   isValidDate,
   padNumber,
   parseTime,
+  applyOffset,
   isInputValid,
   isHourInputValid,
   isMinuteInputValid,
@@ -108,6 +109,8 @@ export class TimepickerComponent
   @Input() min: Date;
   /** maximum time user can select */
   @Input() max: Date;
+  /** offset to shift the display format of the shown time  */
+  @Input() offset: number;
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
@@ -367,6 +370,13 @@ export class TimepickerComponent
     const _value = parseTime(value);
     const _hoursPerDayHalf = 12;
     let _hours = _value.getHours();
+    let _minutes = _value.getMinutes();
+
+    if (this.offset) {
+      const { hours, minutes } = applyOffset(this.offset, _hours, _minutes);
+      _hours = hours;
+      _minutes = minutes;
+    }
 
     if (this.showMeridian) {
       this.meridian = this.meridians[_hours >= _hoursPerDayHalf ? 1 : 0];
@@ -378,7 +388,7 @@ export class TimepickerComponent
     }
 
     this.hours = padNumber(_hours);
-    this.minutes = padNumber(_value.getMinutes());
+    this.minutes = padNumber(_minutes);
     this.seconds = padNumber(_value.getUTCSeconds());
   }
 }

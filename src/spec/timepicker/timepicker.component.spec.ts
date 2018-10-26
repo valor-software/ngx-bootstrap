@@ -88,6 +88,246 @@ describe('Component: TimepickerComponent', () => {
     });
   });
 
+  fdescribe('given an offset', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
+      buttonChanges = getElements(fixture, 'a.btn');
+      buttonMeridian = getElements(fixture, 'button');
+    });
+    describe('when offset is positive', () => {
+      describe('and meridian true', () => {
+        it('hours and minutes fields should increase according to offset', () => {
+          component.showMeridian = true;
+
+          component.offset = 60;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('01');
+          expect(inputMinutes.value).toBe('00');
+
+          component.writeValue(testTime(23, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('12');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = 80;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('01');
+          expect(inputMinutes.value).toBe('20');
+
+          component.writeValue(testTime(23, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('12');
+          expect(inputMinutes.value).toBe('20');
+
+          component.offset = 80;
+          component.writeValue(testTime(12, 40, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('02');
+          expect(inputMinutes.value).toBe('00');
+
+          component.writeValue(testTime(23, 40, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('01');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = 140;
+          component.writeValue(testTime(12, 20, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('02');
+          expect(inputMinutes.value).toBe('40');
+
+          component.writeValue(testTime(23, 20, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('01');
+          expect(inputMinutes.value).toBe('40');
+        });
+
+        it('should change the meridian accordingly | AM to PM transition', () => {
+          component.showMeridian = true;
+
+          component.writeValue(testTime(11, 0, 0));
+          fixture.detectChanges()
+          expect(component.meridian).toEqual('AM');
+
+          component.offset = 80;
+          component.writeValue(testTime(11, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('12');
+          expect(inputMinutes.value).toBe('20');
+          expect(component.meridian).toEqual('PM');
+        });
+
+
+        it('should change the meridian accordingly | PM to AM transition', () => {
+          component.showMeridian = true;
+
+          component.writeValue(testTime(23, 0, 0));
+          fixture.detectChanges()
+          expect(component.meridian).toEqual('PM');
+
+          component.offset = 80;
+          component.writeValue(testTime(23, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('12');
+          expect(inputMinutes.value).toBe('20');
+          expect(component.meridian).toEqual('AM');
+        });
+      });
+
+      describe('and meridian false', () => {
+        it('hours and minutes fields should increase according to offset', () => {
+          component.showMeridian = false;
+
+          component.offset = 60;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('13');
+          expect(inputMinutes.value).toBe('00');
+
+          component.writeValue(testTime(23, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('00');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = 80;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('13');
+          expect(inputMinutes.value).toBe('20');
+
+          component.writeValue(testTime(23, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('00');
+          expect(inputMinutes.value).toBe('20');
+
+          component.offset = 80;
+          component.writeValue(testTime(12, 40, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('14');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = 80;
+          component.writeValue(testTime(23, 40, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('01');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = 140;
+          component.writeValue(testTime(12, 20, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('14');
+          expect(inputMinutes.value).toBe('40');
+
+          component.writeValue(testTime(23, 20, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('01');
+          expect(inputMinutes.value).toBe('40');
+        });
+      });
+    });
+
+    describe('when offset is negative', () => {
+      describe('and meridian true', () => {
+        it('hours and minutes fields should decrease according to offset', () => {
+          component.showMeridian = true;
+
+          component.offset = -60;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('11');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = -80;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('10');
+          expect(inputMinutes.value).toBe('40')
+
+          component.offset = -80;
+          component.writeValue(testTime(12, 40, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('11');
+          expect(inputMinutes.value).toBe('20');
+
+          component.offset = -140;
+          component.writeValue(testTime(12, 20, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('10');
+          expect(inputMinutes.value).toBe('00');
+        });
+
+        it('should change the meridian accordingly | AM to PM transition', () => {
+          component.showMeridian = true;
+
+          component.writeValue(testTime(1, 0, 0));
+          fixture.detectChanges()
+          expect(component.meridian).toEqual('AM');
+
+          component.offset = -80;
+          component.writeValue(testTime(1, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('11');
+          expect(inputMinutes.value).toBe('40');
+          expect(component.meridian).toEqual('PM');
+        });
+
+        it('should change the meridian accordingly | PM to AM transition', () => {
+          component.showMeridian = true;
+
+          component.writeValue(testTime(13, 0, 0));
+          fixture.detectChanges()
+          expect(component.meridian).toEqual('PM');
+
+          component.offset = -80;
+          component.writeValue(testTime(13, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('11');
+          expect(inputMinutes.value).toBe('40');
+          expect(component.meridian).toEqual('AM');
+        });
+      });
+
+      describe('and meridian false', () => {
+        it('hours and minutes fields should decrease according to offset', () => {
+          component.showMeridian = false;
+
+          component.offset = -60;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('11');
+          expect(inputMinutes.value).toBe('00');
+
+          component.offset = -80;
+          component.writeValue(testTime(12, 0, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('10');
+          expect(inputMinutes.value).toBe('40')
+
+          component.offset = -80;
+          component.writeValue(testTime(12, 40, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('11');
+          expect(inputMinutes.value).toBe('20');
+
+          component.offset = -140;
+          component.writeValue(testTime(12, 20, 0));
+          fixture.detectChanges();
+          expect(inputHours.value).toBe('10');
+          expect(inputMinutes.value).toBe('00');
+        });
+
+      });
+    });
+  });
+
   describe('validate input fields with default state', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);

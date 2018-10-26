@@ -31,4 +31,6 @@ export class TimepickerConfig {
   min: Date;
   /** maximum time user can select */
   max: Date;
+  /** offset to shift the display format of the shown time  */
+  offset: number;
 }
