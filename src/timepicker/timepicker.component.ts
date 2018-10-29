@@ -109,7 +109,7 @@ export class TimepickerComponent
   @Input() min: Date;
   /** maximum time user can select */
   @Input() max: Date;
-  /** offset to shift the display format of the shown time  */
+  /** apply offset in minutes to apply to the displayed time (the date object itself is not modified) */
   @Input() offset: number;
   /** defines the target the offset should be applied to: Client applies given offset to the timezone the user is in,
    * Utc applies to the utc time.

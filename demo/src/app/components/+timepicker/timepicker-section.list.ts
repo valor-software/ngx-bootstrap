@@ -23,6 +23,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoTimepickerIsValidComponent } from './demos/isvalid/isvalid';
+import { DemoTimepickerOffsetComponent } from './demos/offset/offset';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -117,6 +118,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoTimepickerDynamicComponent
+      },
+      {
+        title: 'Offset',
+        anchor: 'offset',
+        component: require('!!raw-loader?lang=typescript!./demos/offset/offset'),
+        html: require('!!raw-loader?lang=markup!./demos/offset/offset.html'),
+        description: `<p><code>offset</code> input property allows to configure offsets in minutes
+        (these don't affect the date object itself. It's just about the display format).
+        You can also provide a target by using the <code>offsetTarget</code> property to control
+        if the offset should be UTC related. Possible values are <code>client</code> and <code>UTC</code></p>`,
+        outlet: DemoTimepickerOffsetComponent
       },
       {
         title: 'Mouse wheel',

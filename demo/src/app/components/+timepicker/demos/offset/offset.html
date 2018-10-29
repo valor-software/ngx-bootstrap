@@ -1,0 +1,22 @@
+<timepicker [(ngModel)]="mytime" [min]="mintime" [max]="maxtime" [(offset)]="offset" [offsetTarget]="offsetTarget" [showMeridian]="showMeridian"></timepicker>
+
+<pre class="alert alert-info">
+  Time is: {{mytime}}
+  Max is: {{maxtime}}
+  Min is: {{mintime}}
+  offset: {{offset}} minutes
+  offsetTarget: {{offsetTarget}}
+  showMeridian: {{showMeridian}}
+</pre>
+
+<div class="row">
+  <div class="col-4">
+    <button type="button" class="btn btn-info" (click)="showMeridian = !showMeridian">Enable/Disable Meridian</button>
+  </div>
+  <div class="col-4">
+    <button type="button" class="btn btn-info" (click)="offsetTarget = offsetTarget === 'client' ? 'UTC' : 'client'">Change offsetTarget: {{offsetTarget}}</button>
+  </div>
+  <div class="col-4">
+    <input type="number" class="form-control" [(ngModel)]="offset" />
+  </div>
+</div>
