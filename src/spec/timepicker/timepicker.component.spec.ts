@@ -89,7 +89,7 @@ describe('Component: TimepickerComponent', () => {
     });
   });
 
-  fdescribe('given an offset', () => {
+  describe('given an offset', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
       component = fixture.componentInstance;
