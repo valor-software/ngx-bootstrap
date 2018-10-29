@@ -51,6 +51,7 @@ export { itLocale } from './i18n/it';
 export { jaLocale } from './i18n/ja';
 export { koLocale } from './i18n/ko';
 export { mnLocale } from './i18n/mn';
+export { nbLocale } from './i18n/nb';
 export { nlLocale } from './i18n/nl';
 export { nlBeLocale } from './i18n/nl-be';
 export { plLocale } from './i18n/pl';
