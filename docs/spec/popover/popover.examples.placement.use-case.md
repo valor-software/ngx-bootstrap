@@ -15,7 +15,7 @@ Main success scenario:
 5. When user click on "Popover on top" again, then popover-container disappeared
 6. When user click on "Popover on right", then popover-container shown on the right of button with specific text and header "Popover on right"
 7. When user click on "Popover on right" again, then popover-container disappeared
-8. When user click on "Popover auto", then popover-container shown on the right of button with specific text and header "Popover auto"
+8. When user click on "Popover auto", then popover-container shown on the bottom of button with specific text and header "Popover auto"
 9. When user click on "Popover auto" again, then popover-container disappeared
 10. When user click on "Popover on left", then popover-container shown on the left of button with specific text and header "Popover on left"
 11. When user click on "Popover on left" again, then popover-container disappeared
