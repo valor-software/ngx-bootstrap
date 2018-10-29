@@ -16,7 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
-import { TimepickerConfig } from './timepicker.config';
+import { TimepickerConfig, TimepickerOffsetTarget } from './timepicker.config';
 import {
   TimeChangeSource,
   TimepickerComponentState,
@@ -111,6 +111,10 @@ export class TimepickerComponent
   @Input() max: Date;
   /** offset to shift the display format of the shown time  */
   @Input() offset: number;
+  /** defines the target the offset should be applied to: Client applies given offset to the timezone the user is in,
+   * Utc applies to the utc time.
+   */
+  @Input() offsetTarget: TimepickerOffsetTarget = TimepickerOffsetTarget.Client;
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
@@ -373,6 +377,10 @@ export class TimepickerComponent
     let _minutes = _value.getMinutes();
 
     if (this.offset) {
+      if (this.offsetTarget === TimepickerOffsetTarget.UTC) {
+        _hours = _value.getUTCHours();
+        _minutes = _value.getUTCMinutes();
+      }
       const { hours, minutes } = applyOffset(this.offset, _hours, _minutes);
       _hours = hours;
       _minutes = minutes;

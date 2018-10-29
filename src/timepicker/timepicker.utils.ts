@@ -1,4 +1,5 @@
 import { Time, TimepickerComponentState } from './timepicker.models';
+import { TimepickerConfig, TimepickerOffsetTarget } from './timepicker.config';
 
 const dex = 10;
 const hoursPerDay = 24;
@@ -165,7 +166,11 @@ export function padNumber(value: number): string {
   return `0${_value}`;
 }
 
-export function applyOffset(offset: number, hours: number, minutes: number): { hours: number; minutes: number } {
+export function applyOffset(
+  offset: number,
+  hours: number,
+  minutes: number
+): { hours: number; minutes: number } {
   let _hoursOffset = 0;
   let _minutesOffset = 0;
   let _negativeOffset = false;
