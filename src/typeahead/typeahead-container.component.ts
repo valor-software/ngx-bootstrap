@@ -9,7 +9,10 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewChildren
+  ViewChildren,
+  EventEmitter,
+  OnInit,
+  Output
 } from '@angular/core';
 
 import { isBs3, Utils } from 'ngx-bootstrap/utils';
@@ -46,7 +49,7 @@ import { Subscription } from 'rxjs';
   ],
   animations: [typeaheadAnimation]
 })
-export class TypeaheadContainerComponent implements OnDestroy {
+export class TypeaheadContainerComponent implements OnDestroy, OnInit {
   parent: TypeaheadDirective;
   query: string[] | string;
   isFocused = false;
@@ -60,6 +63,8 @@ export class TypeaheadContainerComponent implements OnDestroy {
   animationState: string;
   positionServiceSubscription: Subscription;
   height = 0;
+  actionEmitter = new EventEmitter<any>();
+  @Output() getIsActiveClass = new EventEmitter<any>();
 
   get isBs4(): boolean {
     return !isBs3();
@@ -168,9 +173,31 @@ export class TypeaheadContainerComponent implements OnDestroy {
   get typeaheadIsFirstItemActive(): boolean {
     return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
-// tslint:disable-next-line:no-any
+  // tslint:disable-next-line:no-any
   get itemTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
+  }
+
+  ngOnInit(): void {
+    this.actionEmitter.subscribe((data: any) => {
+      switch (data.eventType) {
+        case 'click':
+          this.selectMatch(data.match, data.event);
+          break;
+        case 'mouseenter':
+          this.selectActive(data.match);
+          break;
+        case 'isHasClass':
+          const value = this.isActive(data.match);
+          if (value) {
+            data.isActive = true;
+            this.getIsActiveClass.emit(data.isActive);
+          }
+          break;
+        default:
+          return;
+      }
+    });
   }
 
   selectActiveMatch(isActiveItemChanged?: boolean): void {
