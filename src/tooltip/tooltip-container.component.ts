@@ -21,6 +21,7 @@ import { TooltipClassMap } from './models';
     `
     :host.tooltip {
       display: block;
+      pointer-events: none;
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: 50%;

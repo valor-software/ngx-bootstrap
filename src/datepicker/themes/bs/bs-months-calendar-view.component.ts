@@ -6,7 +6,7 @@ import {
   CellHoverEvent,
   MonthsCalendarViewModel,
   CalendarCellViewModel
-} from '../../models/index';
+} from '../../models';
 
 @Component({
   selector: 'bs-month-calendar-view',

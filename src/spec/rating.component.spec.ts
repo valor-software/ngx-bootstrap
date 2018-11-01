@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { RatingComponent } from '../rating/rating.component';
-import { RatingModule } from '../rating/rating.module';
+import { RatingComponent, RatingModule } from 'ngx-bootstrap/rating';
 
 @Component({
   selector: 'rating-test',
@@ -44,7 +43,7 @@ describe('Component: Rating. Init:', () => {
 
     expect(icons[0].classList).not.toContain('active');
     expect(icons[4].classList).not.toContain('active');
-    expect(icons[4].getAttribute('title')).toEqual('five');
+    expect(icons[4].getAttribute('title')).toEqual('5');
   });
 
   it('checking of working with changed values', () => {

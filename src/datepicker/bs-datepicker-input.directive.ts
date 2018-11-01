@@ -3,13 +3,8 @@ import {
   AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors,
   Validator
 } from '@angular/forms';
-import { parseDate } from '../chronos/create/local';
-import { formatDate } from '../chronos/format';
-import { getLocale } from '../chronos/locale/locales';
-import { isAfter, isBefore } from '../chronos/utils/date-compare';
-import { isDate, isDateValid } from '../chronos/utils/type-checks';
+import { parseDate, formatDate, getLocale, isAfter, isBefore, isDate, isDateValid } from 'ngx-bootstrap/chronos';
 import { BsDatepickerDirective } from './bs-datepicker.component';
-import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsLocaleService } from './bs-locale.service';
 
 const BS_DATEPICKER_VALUE_ACCESSOR = {
