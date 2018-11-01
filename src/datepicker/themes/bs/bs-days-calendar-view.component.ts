@@ -12,7 +12,7 @@ import {
   DatepickerRenderOptions,
   DaysCalendarViewModel,
   DayViewModel
-} from '../../models/index';
+} from '../../models';
 
 @Component({
   selector: 'bs-days-calendar-view',

@@ -6,7 +6,8 @@ import {
   Input,
   Output,
   EventEmitter,
-  forwardRef, ChangeDetectorRef
+  forwardRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { PageChangedEvent } from './pagination.component';
