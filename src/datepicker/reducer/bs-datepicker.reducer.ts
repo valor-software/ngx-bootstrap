@@ -1,21 +1,26 @@
 // tslint:disable:max-file-line-count
 import { BsDatepickerState, initialDatepickerState } from './bs-datepicker.state';
-import { Action } from '../../mini-ngrx/index';
+import { Action } from 'ngx-bootstrap/mini-ngrx';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { calcDaysCalendar } from '../engine/calc-days-calendar';
 import { formatDaysCalendar } from '../engine/format-days-calendar';
 import { flagDaysCalendar } from '../engine/flag-days-calendar';
-import { setFullDate, shiftDate } from '../../chronos/utils/date-setters';
+import {
+  setFullDate,
+  shiftDate,
+  isArray,
+  isDateValid,
+  startOf,
+  getLocale,
+  isAfter,
+  isBefore
+} from 'ngx-bootstrap/chronos';
 import { canSwitchMode } from '../engine/view-mode';
 import { formatMonthsCalendar } from '../engine/format-months-calendar';
 import { flagMonthsCalendar } from '../engine/flag-months-calendar';
 import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
-import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models/index';
-import { isArray, isDateValid } from '../../chronos/utils/type-checks';
-import { startOf } from '../../chronos/utils/start-end-of';
-import { getLocale } from '../../chronos/locale/locales';
-import { isAfter, isBefore } from '../../chronos/utils/date-compare';
+import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models';
 
 export function bsDatepickerReducer(state = initialDatepickerState,
                                     action: Action): BsDatepickerState {

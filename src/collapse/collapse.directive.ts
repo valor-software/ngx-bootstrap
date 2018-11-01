@@ -46,8 +46,7 @@ export class CollapseDirective {
     return this.isExpanded;
   }
 
-  constructor(private _el: ElementRef, private _renderer: Renderer2) {
-  }
+  constructor(private _el: ElementRef, private _renderer: Renderer2) {}
 
   /** allows to manually toggle content visibility */
   toggle(): void {

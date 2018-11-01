@@ -42,3 +42,7 @@ src/**/*.js
 src/**/*.map
 scripts/**/*.js
 scripts/**/*.map
+
+schematics/src/**/*.js
+schematics/src/**/*.js.map
+schematics/src/**/*.d.ts

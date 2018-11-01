@@ -37,7 +37,7 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": true,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "fileReplacements": [
                 {
                   "replace": "demo/src/environments/environment.ts",

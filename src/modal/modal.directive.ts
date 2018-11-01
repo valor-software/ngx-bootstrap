@@ -8,16 +8,12 @@ import {
   OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 
-import { document, window } from '../utils/facade/browser';
-
-import { isBs3 } from '../utils/theme-provider';
-import { Utils } from '../utils/utils.class';
+import { document, window, isBs3, Utils } from 'ngx-bootstrap/utils';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
 } from './modal-options.class';
-import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/loader';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;

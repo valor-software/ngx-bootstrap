@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'bs-tooltip-container',
@@ -20,6 +20,7 @@ import { isBs3 } from '../utils/theme-provider';
     `
     :host.tooltip {
       display: block;
+      pointer-events: none;
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: 50%;
