@@ -13,10 +13,8 @@ import {
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
-import { OnChange } from '../utils/decorators';
-import { warnOnce } from '../utils/warn-once';
-import { parseTriggers } from '../utils/triggers';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/loader';
+import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
 import { timer } from 'rxjs';
 
 @Directive({
@@ -48,7 +46,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Currently only supports "body".
    */
   @Input() container: string;
-
+  /**
+   * Css class for tooltip container
+   */
+  @Input() containerClass = '';
   /**
    * Returns whether or not the tooltip is currently being shown
    */
@@ -70,10 +71,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
    */
   @Input() isDisabled: boolean;
 
-  /**
-   * Css class for tooltip container
-   */
-  @Input() containerClass = '';
   /**
    * Delay before showing the tooltip
    */

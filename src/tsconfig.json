@@ -11,6 +11,7 @@
     "inlineSources": true,
     "noEmitHelpers": false,
     "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
     "declaration": true,
     "skipLibCheck": false,
     "stripInternal": true,

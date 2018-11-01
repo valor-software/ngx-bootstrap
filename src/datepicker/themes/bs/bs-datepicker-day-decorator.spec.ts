@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel } from '../../models';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
 
 @Component({

@@ -16,7 +16,7 @@ import {
 import { NgControl } from '@angular/forms';
 
 import { from, Observable, Subscription } from 'rxjs';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/loader';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
