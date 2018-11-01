@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { DatepickerModule } from 'ngx-bootstrap/datepicker';
 // or
 import { DatepickerModule } from 'ngx-bootstrap';

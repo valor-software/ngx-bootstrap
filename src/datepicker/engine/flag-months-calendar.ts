@@ -1,10 +1,9 @@
-import { isSameMonth } from '../../chronos/utils/date-getters';
+import { isSameMonth, shiftDate } from 'ngx-bootstrap/chronos';
 import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
-} from '../models/index';
+} from '../models';
 import { isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
-import { shiftDate } from '../../chronos/utils/date-setters';
 
 export interface FlagMonthCalendarOptions {
   isDisabled: boolean;
