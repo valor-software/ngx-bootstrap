@@ -2,11 +2,12 @@ import {
   ComponentRef,
   Injectable,
   TemplateRef,
-  EventEmitter, Renderer2, RendererFactory2
+  EventEmitter,
+  Renderer2,
+  RendererFactory2
 } from '@angular/core';
 
-import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/loader';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
 import {

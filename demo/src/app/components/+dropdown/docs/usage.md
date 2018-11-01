@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 // or
 import { BsDropdownModule } from 'ngx-bootstrap';
