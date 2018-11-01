@@ -34,6 +34,8 @@ async function buildAll() {
 
   await buildModules(requiredModules);
 
+  await execa.shell(`rsync -avr  --include='*/' --include='*.scss' --exclude='*' ${src}/datepicker ${dist}`);
+
   console.log('Building accordion module');
   await execa.shell(`node scripts/ng-packagr/api ../../src/accordion/package.json`);
   console.log('Build of accordion module completed');
