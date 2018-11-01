@@ -62,7 +62,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.titles =
       typeof this.titles !== 'undefined' && this.titles.length > 0
         ? this.titles
-        : ['one', 'two', 'three', 'four', 'five'];
+        : [];
     this.range = this.buildTemplateObjects(this.max);
   }
 

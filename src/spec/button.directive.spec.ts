@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { ButtonsModule } from '../buttons/buttons.module';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @Component({selector: 'buttons-test', template: ''})
 class TestButtonsComponent {

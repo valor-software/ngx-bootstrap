@@ -9,7 +9,7 @@ import {
   TimepickerComponent,
   TimepickerConfig,
   TimepickerModule
-} from '../../timepicker';
+} from 'ngx-bootstrap/timepicker';
 
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement;

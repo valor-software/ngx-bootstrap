@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 // or
 import { TypeaheadModule } from 'ngx-bootstrap';

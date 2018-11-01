@@ -34,7 +34,9 @@ export function isArray<T>(input?: any): input is T[] {
   );
 }
 
-export function hasOwnProp<T>(a: T /*object*/, b: string): b is keyof T {
+// TODO: returned type should be changed to "b is Extract<keyof T, string>"
+// after update to typescript 3.1.1 (issue 4728)
+export function hasOwnProp<T>(a: T /*object*/, b: string): boolean {
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 

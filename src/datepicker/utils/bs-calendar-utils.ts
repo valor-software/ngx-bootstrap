@@ -1,13 +1,12 @@
 import {
   getDay,
-  isFirstDayOfWeek
-} from '../../chronos/utils/date-getters';
-import { shiftDate } from '../../chronos/utils/date-setters';
-import {
+  isFirstDayOfWeek,
   isAfter,
-  isBefore
-} from '../../chronos/utils/date-compare';
-import { endOf, startOf } from '../../chronos/utils/start-end-of';
+  isBefore,
+  shiftDate,
+  endOf,
+  startOf
+} from 'ngx-bootstrap/chronos';
 
 export function getStartingDayOfCalendar(date: Date,
                                          options: { firstDayOfWeek?: number }): Date {

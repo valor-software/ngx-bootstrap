@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 // or
 import { CarouselModule } from 'ngx-bootstrap';
