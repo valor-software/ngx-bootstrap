@@ -20,7 +20,7 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output
 } from '@angular/core';
 
-import { isBs3, LinkedList } from '../utils/index';
+import { isBs3, LinkedList } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 
@@ -194,7 +194,6 @@ export class CarouselComponent implements OnDestroy {
 
   /**
    * Finds and returns index of currently displayed slide
-   * @returns {number}
    */
   getCurrentSlideIndex(): number {
     return this._slides.findIndex((slide: SlideComponent) => slide.active);
@@ -203,7 +202,6 @@ export class CarouselComponent implements OnDestroy {
   /**
    * Defines, whether the specified index is last in collection
    * @param index
-   * @returns {boolean}
    */
   isLast(index: number): boolean {
     return index + 1 >= this._slides.length;
@@ -214,7 +212,6 @@ export class CarouselComponent implements OnDestroy {
    * @param direction: Direction(UNKNOWN|PREV|NEXT)
    * @param force: {boolean} if TRUE - will ignore noWrap flag, else will
    *   return undefined if next slide require wrapping
-   * @returns {any}
    */
   private findNextSlideIndex(direction: Direction, force: boolean): number {
     let nextSlideIndex = 0;
@@ -256,7 +253,6 @@ export class CarouselComponent implements OnDestroy {
   /**
    * Sets a slide, which specified through index, as active
    * @param index
-   * @private
    */
   private _select(index: number): void {
     if (isNaN(index)) {

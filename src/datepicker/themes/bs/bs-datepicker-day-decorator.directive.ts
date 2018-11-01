@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel } from '../../models';
 
 @Component({
   selector: '[bsDatepickerDayDecorator]',
