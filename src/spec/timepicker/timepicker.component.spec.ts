@@ -1,4 +1,4 @@
-// tslint:disable:no-floating-promises
+// tslint:disable:no-floating-promises max-file-line-count
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -11,14 +11,17 @@ import {
   TimepickerModule
 } from 'ngx-bootstrap/timepicker';
 
+/* tslint:disable-next-line: no-any */
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement;
 }
 
+/* tslint:disable-next-line: no-any */
 function getElements(fixture: any, selector: string) {
   return fixture.nativeElement.querySelectorAll(selector) as HTMLElement;
 }
 
+/* tslint:disable-next-line: no-any */
 function getDebugElements(fixture: any, selector: string) {
   return fixture.debugElement.queryAll(By.css(selector));
 }
@@ -38,10 +41,14 @@ describe('Component: TimepickerComponent', () => {
   let inputHours: HTMLInputElement;
   let inputMinutes: HTMLInputElement;
   let inputSeconds: HTMLInputElement;
+  /* tslint:disable-next-line: no-any */
   let inputDebugHours: any;
+  /* tslint:disable-next-line: no-any */
   let inputDebugMinutes: any;
+  /* tslint:disable-next-line: no-any */
   let inputDebugSeconds: any;
   let buttonMeridian: HTMLElement;
+  /* tslint:disable-next-line: no-any */
   let buttonDebugMeridian: any;
   let buttonChanges: HTMLElement;
 

@@ -12,6 +12,7 @@ class TestAlertComponent extends AlertComponent {
 
 describe('Component: Alert', () => {
   let fixture: ComponentFixture<TestAlertComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
   const overTemplate = `
     <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">

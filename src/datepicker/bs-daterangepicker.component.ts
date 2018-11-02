@@ -63,10 +63,12 @@ export class BsDaterangepickerDirective
   /**
    * Emits an event when the daterangepicker is shown
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the daterangepicker is hidden
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date[];
@@ -123,7 +125,7 @@ export class BsDaterangepickerDirective
     this.onHidden = this._datepicker.onHidden;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
       triggers: this.triggers,
@@ -230,7 +232,7 @@ export class BsDaterangepickerDirective
     this.show();
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._datepicker.dispose();
   }
 }

@@ -8,6 +8,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 @Component({selector: 'buttons-test', template: ''})
 class TestButtonsComponent {
   singleModel = '0';
+  /* tslint:disable-next-line: no-any */
   checkModel: any = {left: false, middle: true, right: false};
   radioModel = 'Middle';
 
@@ -76,7 +77,9 @@ function createComponent(htmlTemplate,
 
 describe('Directive: Buttons', () => {
   let fixture: ComponentFixture<TestButtonsComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(

@@ -70,7 +70,7 @@ describe('tooltip', () => {
     });
   });
 
-  function getWindow(element: any): HTMLElement {
+  function getWindow(element: HTMLElement): HTMLElement {
     return element.querySelector('bs-tooltip-container');
   }
 

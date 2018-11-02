@@ -29,6 +29,7 @@ const HEROES_OBJ: any[] = [
 class TestSortableComponent {
   selectedState: string;
   heroes: string[] = [...HEROES];
+  /* tslint:disable-next-line: no-any*/
   heroesObj: any[] = [...HEROES_OBJ];
 }
 
@@ -63,7 +64,9 @@ xdescribe('Component: Sortable', () => {
   });
 
   it('different zones should have different ids', () => {
+    /* tslint:disable-next-line: no-any*/
     expect((sort1 as any).currentZoneIndex).not.toBe(
+      /* tslint:disable-next-line: no-any*/
       (sort2 as any).currentZoneIndex
     );
   });
@@ -83,6 +86,7 @@ xdescribe('Component: Sortable', () => {
       // act
       const renderedItems = getItemsByContainerId('sort2');
       // assert
+      /* tslint:disable-next-line: no-any*/
       expect(renderedItems).toEqual(HEROES_OBJ.map((h: any) => h.name));
     });
   });
@@ -125,10 +129,12 @@ xdescribe('Component: Sortable', () => {
       inject([DraggableItemService], (service: DraggableItemService) => {
         transfer = service;
         item = getItemToDrag();
+        /* tslint:disable-next-line: no-object-literal-type-assertion */
         event = {
           preventDefault: Function.prototype,
           dataTransfer: { setData: Function.prototype }
         } as DragEvent;
+        /* tslint:disable-next-line: no-any*/
         sort1ZoneNumber = (sort1 as any).currentZoneIndex;
         draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
         spyOnChanged = spyOn(sort1, 'onChanged');
@@ -350,6 +356,7 @@ xdescribe('Component: Sortable', () => {
       transfer
         .onCaptureItem()
         .subscribe(() => {
+          /* tslint:disable-next-line: no-any*/
           expect((sort1 as any).activeItem).toBe(-1);
           done();
         });
@@ -376,6 +383,7 @@ xdescribe('Component: Sortable', () => {
   function getItemsByContainerId(id = 'sort1'): string[] {
     return fixture.debugElement
       .queryAll(By.css(`#${id} div[draggable]`))
+      /* tslint:disable-next-line: no-any */
       .map((item: any) => item.nativeElement.innerText);
   }
 });

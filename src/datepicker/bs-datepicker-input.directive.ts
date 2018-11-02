@@ -65,8 +65,9 @@ export class BsDatepickerInputDirective
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
   }
 
-  onChange(event: any) {
-    this.writeValue(event.target.value);
+  onChange(event: Event) {
+    /* tslint:disable-next-line: no-any*/
+    this.writeValue((event.target as any).value);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -74,6 +75,7 @@ export class BsDatepickerInputDirective
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: Date | string = c.value;
 
+    /* tslint:disable-next-line: prefer-switch */
     if (_value === null || _value === undefined || _value === '') {
       return null;
     }
@@ -125,11 +127,11 @@ export class BsDatepickerInputDirective
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
   }
 
-  registerOnChange(fn: (value: any) => any): void {
+  registerOnChange(fn: () => void): void {
     this._onChange = fn;
   }
 
-  registerOnTouched(fn: () => any): void {
+  registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
   }
 

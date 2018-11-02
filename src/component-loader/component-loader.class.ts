@@ -23,12 +23,15 @@ import { PositioningOptions, PositioningService } from 'ngx-bootstrap/positionin
 import { listenToTriggersV2, registerOutsideClick } from 'ngx-bootstrap/utils';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
+import { Subscription } from 'rxjs';
 
 export class ComponentLoader<T> {
-  onBeforeShow: EventEmitter<any> = new EventEmitter();
+  onBeforeShow: EventEmitter<void> = new EventEmitter();
+  /* tslint:disable-next-line: no-any*/
   onShown: EventEmitter<any> = new EventEmitter();
+  /* tslint:disable-next-line: no-any*/
   onBeforeHide: EventEmitter<any> = new EventEmitter();
-  onHidden: EventEmitter<any> = new EventEmitter();
+  onHidden: EventEmitter<void> = new EventEmitter();
 
   instance: T;
   _componentRef: ComponentRef<T>;
@@ -36,7 +39,7 @@ export class ComponentLoader<T> {
 
   private _providers: Provider[] = [];
   private _componentFactory: ComponentFactory<T>;
-  private _zoneSubscription: any;
+  private _zoneSubscription: Subscription;
   private _contentRef: ContentRef;
   private _innerComponent: ComponentRef<T>;
 
@@ -61,6 +64,7 @@ export class ComponentLoader<T> {
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".
    */
+  /* tslint:disable-next-line: no-any*/
   private container: string | ElementRef | any;
 
   /**
@@ -119,9 +123,14 @@ export class ComponentLoader<T> {
   // todo: appendChild to element or document.querySelector(this.container)
 
   show(opts: {
+    /* tslint:disable-next-line: no-any*/
     content?: string | TemplateRef<any>;
+    /* tslint:disable-next-line: no-any*/
     context?: any;
-    initialState?: any; [key: string]: any;
+    /* tslint:disable-next-line: no-any*/
+    initialState?: any;
+    /* tslint:disable-next-line: no-any*/
+    [key: string]: any;
   } = {}
   ): ComponentRef<T> {
 
@@ -203,11 +212,6 @@ export class ComponentLoader<T> {
     if (this._contentRef.viewRef) {
       this._contentRef.viewRef.destroy();
     }
-    // this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
-    //
-    // if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {
-    //   this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
-    // }
 
     this._contentRef = null;
     this._componentRef = null;
@@ -276,6 +280,7 @@ export class ComponentLoader<T> {
 
   attachInline(
     vRef: ViewContainerRef,
+    /* tslint:disable-next-line: no-any*/
     template: TemplateRef<any>
   ): ComponentLoader<T> {
     this._inlineViewRef = vRef.createEmbeddedView(template);
@@ -331,8 +336,11 @@ export class ComponentLoader<T> {
   }
 
   private _getContentRef(
+    /* tslint:disable-next-line: no-any*/
     content: string | TemplateRef<any> | any,
+    /* tslint:disable-next-line: no-any*/
     context?: any,
+    /* tslint:disable-next-line: no-any*/
     initialState?: any
   ): ContentRef {
     if (!content) {

@@ -124,7 +124,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   @ViewChild(DatePickerInnerComponent)
   _datePicker: DatePickerInnerComponent;
 
+  /* tslint:disable-next-line: no-any*/
   onChange: any = Function.prototype;
+  /* tslint:disable-next-line: no-any*/
   onTouched: any = Function.prototype;
 
   config: DatepickerConfig;
@@ -141,7 +143,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     Object.assign(this, this.config);
   }
 
-  onUpdate(event: any): void {
+  onUpdate(event: Date): void {
     this.activeDate = event;
     this.onChange(event);
   }
@@ -154,6 +156,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.activeDateChange.emit(event);
   }
   // todo: support null value
+  /* tslint:disable-next-line: no-any*/
   writeValue(value: any): void {
     if (this._datePicker.compare(value, this._activeDate) === 0) {
       return;
@@ -168,11 +171,11 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.activeDate = value ? new Date(value) : void 0;
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 }

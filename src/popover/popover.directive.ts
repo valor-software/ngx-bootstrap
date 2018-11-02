@@ -14,10 +14,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Content to be displayed as popover.
    */
+  /* tslint:disable-next-line: no-any */
   @Input() popover: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
+  /* tslint:disable-next-line: no-any */
   @Input() popoverContext: any;
   /**
    * Title of a popover.
@@ -66,10 +68,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the popover is shown
    */
+  /* tslint:disable-next-line: no-any */
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the popover is hidden
    */
+  /* tslint:disable-next-line: no-any */
   @Output() onHidden: EventEmitter<any>;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
@@ -149,7 +153,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this.show();
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     // fix: seems there are an issue with `routerLinkActive`
     // which result in duplicated call ngOnInit without call to ngOnDestroy
     // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
@@ -165,7 +169,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._popover.dispose();
   }
 }

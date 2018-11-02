@@ -79,8 +79,9 @@ export class BsDaterangepickerInputDirective
     this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
   }
 
-  onChange(event: any) {
-    this.writeValue(event.target.value);
+  onChange(event: Event) {
+    /* tslint:disable-next-line: no-any*/
+    this.writeValue((event.target as any).value);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -153,11 +154,13 @@ export class BsDaterangepickerInputDirective
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
   }
 
-  registerOnChange(fn: (value: any) => any): void {
+  /* tslint:disable-next-line: no-any*/
+  registerOnChange(fn: () => void): void {
     this._onChange = fn;
   }
 
-  registerOnTouched(fn: () => any): void {
+  /* tslint:disable-next-line: no-any*/
+  registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
   }
 
