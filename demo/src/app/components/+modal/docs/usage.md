@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { ModalModule } from 'ngx-bootstrap/modal';
 // or
 import { ModalModule } from 'ngx-bootstrap';
