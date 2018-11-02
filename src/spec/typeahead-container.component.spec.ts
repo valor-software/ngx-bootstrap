@@ -1,3 +1,4 @@
+/* tslint:disable: max-file-line-count */
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';

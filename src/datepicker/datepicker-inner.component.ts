@@ -1,4 +1,4 @@
-﻿/* tslint:disable:max-file-line-count */
+/* tslint:disable: max-file-line-count */
 import {
   Component,
   EventEmitter,
@@ -104,6 +104,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   // Check if activeDate has been update and then emit the activeDateChange with the new date
+  /* tslint:disable-next-line: no-any */
   checkIfActiveDateGotUpdated(activeDate: any): void {
     if (activeDate && !activeDate.firstChange) {
       const previousValue = activeDate.previousValue;
@@ -327,6 +328,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       date: Date;
       mode: string;
       clazz: string;
+    /* tslint:disable-next-line: no-any */
     } = this.customClass.find((customClass: any) => {
       return (
         customClass.date.valueOf() === date.valueOf() &&
