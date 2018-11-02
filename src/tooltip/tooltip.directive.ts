@@ -99,7 +99,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this.placement = value;
   }
 
-  /** @deprecated - please use `isOpen` instead*/
+  /** @deprecated - please use `isOpen` instead */
   @Input('tooltipIsOpen')
   set _isOpen(value: boolean) {
     warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
@@ -108,6 +108,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   get _isOpen(): boolean {
     warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
+
     return this.isOpen;
   }
 
@@ -120,6 +121,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   get _enable(): boolean {
     warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
+
     return this.isDisabled;
   }
 
@@ -136,6 +138,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     warnOnce(
       'tooltipAppendToBody was deprecated, please use `container="body"` instead'
     );
+
     return this.container === 'body';
   }
 
@@ -168,6 +171,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input('tooltipTrigger')
   get _tooltipTrigger(): string | string[] {
     warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
+
     return this.triggers;
   }
 
@@ -184,11 +188,14 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
 
-  constructor(_viewContainerRef: ViewContainerRef,
-                     private _renderer: Renderer2,
-                     private _elementRef: ElementRef,
-                     cis: ComponentLoaderFactory,
-                     config: TooltipConfig) {
+  constructor(
+    _viewContainerRef: ViewContainerRef,
+    private _renderer: Renderer2,
+    private _elementRef: ElementRef,
+    cis: ComponentLoaderFactory,
+    config: TooltipConfig
+  ) {
+
     this._tooltip = cis
       .createLoader<TooltipContainerComponent>(
         this._elementRef,
