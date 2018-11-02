@@ -46,9 +46,8 @@ export class ProgressbarComponent {
     this._value = value;
   }
   isStacked = false;
-
-  private _striped: boolean;
-  private _animate: boolean;
+  _striped: boolean;
+  _animate: boolean;
 
 // tslint:disable-next-line:no-any
   _value: number | any[];
