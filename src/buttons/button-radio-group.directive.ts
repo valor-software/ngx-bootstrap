@@ -1,5 +1,5 @@
 // tslint:disable:no-use-before-declare
-import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Input } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: any = {

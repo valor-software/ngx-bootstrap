@@ -9,7 +9,7 @@ import {
   BsDatepickerViewMode,
   BsNavigationDirection,
   DaysCalendarViewModel
-} from '../../models/index';
+} from '../../models';
 
 @Component({
   selector: 'bs-datepicker-navigation-view',
@@ -21,14 +21,23 @@ import {
             (click)="navTo(true)"><span>&lsaquo;</span>
     </button>
 
+    &#8203;  <!-- zero-width space needed for correct alignement
+                  with preserveWhitespaces: false in Angular -->
+
     <button class="current"
             *ngIf="calendar.monthTitle"
             (click)="view('month')"
     ><span>{{ calendar.monthTitle }}</span>
     </button>
 
+    &#8203;  <!-- zero-width space needed for correct alignement
+                  with preserveWhitespaces: false in Angular -->
+
     <button class="current" (click)="view('year')"
     ><span>{{ calendar.yearTitle }}</span></button>
+
+    &#8203;  <!-- zero-width space needed for correct alignement
+                  with preserveWhitespaces: false in Angular -->
 
     <button class="next"
             [disabled]="calendar.disableRightArrow"
