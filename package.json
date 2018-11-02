@@ -19,7 +19,6 @@
     "lint-pretty": "prettier --config .prettierrc --write -l  \"{demo/src,src}/**/*.ts\"",
     "lint-src": "tslint \"src/**/*.ts\" -c tslint.json --type-check -p src/tsconfig.spec.json -e \"src/chronos/**\" -e \"src/**/bs-datepicker-view.html\"",
     "lint": "exit 0",
-    "lint.test": "tslint 'src/tabs/**/*.ts' -c tslint.json -p src/tsconfig.spec.json -e 'src/**/bs-datepicker-view.html'",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "flow.github-release": "conventional-github-releaser -p angular",
