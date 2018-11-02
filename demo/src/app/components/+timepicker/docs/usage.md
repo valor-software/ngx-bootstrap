@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 // or
 import { TimepickerModule } from 'ngx-bootstrap';

@@ -1,2 +1,1 @@
-export { positionElements, Positioning } from './ng-positioning';
-export { PositioningService, PositioningOptions } from './positioning.service';
+export * from './public_api';

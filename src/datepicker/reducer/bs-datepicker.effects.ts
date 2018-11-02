@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { getFullYear, getMonth } from '../../chronos/utils/date-getters';
+import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 import {
@@ -13,7 +13,7 @@ import {
   DayViewModel,
   MonthsCalendarViewModel,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
 import { BsLocaleService } from '../bs-locale.service';

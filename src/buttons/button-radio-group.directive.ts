@@ -1,5 +1,5 @@
 // tslint:disable:no-use-before-declare
-import { ChangeDetectorRef, Directive, forwardRef } from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // tslint:disable-next-line:no-any
