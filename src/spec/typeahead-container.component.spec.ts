@@ -1,10 +1,12 @@
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TypeaheadContainerComponent } from '../typeahead/typeahead-container.component';
-import { TypeaheadOptions } from '../typeahead/typeahead-options.class';
-import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
-import { TypeaheadDirective } from '../typeahead/typeahead.directive';
+import {
+  TypeaheadContainerComponent,
+  TypeaheadDirective,
+  TypeaheadMatch,
+  TypeaheadOptions
+} from 'ngx-bootstrap/typeahead';
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
