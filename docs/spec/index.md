@@ -182,6 +182,15 @@
 
 ## Rating
 
+[Rating. Basic rating](rating/rating.examples.basic.use-case.md)
+
+[Rating. Dynamic rating](rating/rating.examples.dynamic.use-case.md)
+
+[Rating. Custom icons](rating/rating.examples.custom-icons.use-case.md)
+
+[Rating. Select on enter](rating/rating.examples.select-on-enter.use-case.md)
+
+
 ## Sortable
 
 ## Tabs
