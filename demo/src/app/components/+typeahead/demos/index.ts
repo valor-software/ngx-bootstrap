@@ -15,6 +15,7 @@ import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadFormComponent } from './form/form';
 import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
+import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadBasicComponent,
@@ -33,6 +34,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadLatinizeComponent,
   DemoTypeaheadContainerComponent,
   DemoTypeaheadFormComponent,
+  DemoTypeaheadShowOnBlurComponent,
   DemoTypeaheadOnSelectComponent
 ];
 

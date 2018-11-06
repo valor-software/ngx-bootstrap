@@ -15,6 +15,7 @@ import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
+import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
@@ -195,6 +196,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),
         outlet: DemoTypeaheadOnSelectComponent
+      },
+      {
+        title: 'Show on blur',
+        anchor: 'show-on-blur',
+        description: `
+          <p>Use <code>typeaheadIsShowOnBlur</code> property to prevent hiding typeahead's results 
+          after input loses focus</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/show-on-blur/show-on-blur.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/show-on-blur/show-on-blur.html'),
+        outlet: DemoTypeaheadShowOnBlurComponent
       }
     ]
   },
