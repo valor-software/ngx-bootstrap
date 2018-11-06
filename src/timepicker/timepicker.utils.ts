@@ -199,7 +199,6 @@ export function applyOffset(
     _hours -= _hoursOffset;
   }
 
-
   if (_hours >= 24) {
     _hours = _hours % 24;
   } else if (_hours < 0) {

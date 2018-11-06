@@ -95,7 +95,9 @@ export function getControlsValue(
     showSeconds,
     meridians,
     min,
-    max
+    max,
+    offset,
+    offsetTarget
   } = state;
 
   return {
@@ -111,7 +113,9 @@ export function getControlsValue(
     showSeconds,
     meridians,
     min,
-    max
+    max,
+    offset,
+    offsetTarget
   };
 }
 

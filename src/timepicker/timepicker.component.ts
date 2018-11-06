@@ -312,7 +312,6 @@ export class TimepickerComponent
     if (!this.showMeridian || !this.isEditable) {
       return;
     }
-
     const _hoursPerDayHalf = 12;
     this._store.dispatch(
       this._timepickerActions.changeHours({

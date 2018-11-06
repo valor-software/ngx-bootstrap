@@ -1,3 +1,5 @@
+import { TimepickerOffsetTarget } from './timepicker.config';
+
 export interface Time {
   hour?: string | number;
   minute?: string | number;
@@ -36,6 +38,9 @@ export interface TimepickerComponentState {
   showSeconds: boolean;
 
   meridians: string[];
+
+  offset: number;
+  offsetTarget: TimepickerOffsetTarget;
 }
 
 export type TimeChangeSource = 'wheel' | 'key' | '';
