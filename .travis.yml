@@ -91,10 +91,7 @@ jobs:
     - stage: cypress-tests
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script:
-      # until this is fixed https://github.com/bahmutov/add-typescript-to-cypress/issues/23
-      - npm i ts-loader@3 --no-save
-      - $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
