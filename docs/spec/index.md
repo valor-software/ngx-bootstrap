@@ -47,6 +47,7 @@
 
 [Examples. Configuring defaults](alerts/alerts.examples.conf-defaults.use-case.md)
 
+
 ## Buttons
 
 [Buttons examples. Basic](buttons/buttons.examples.basic.use-case.md)
@@ -90,6 +91,7 @@
 
 [Carousel. Accessibility](carousel/carousel.examples.accessibility.use-case.md)
 
+
 ## Collapse
 
 [Collapse. Basic](collapse/collapse.examples.basic.use-case.md)
@@ -100,7 +102,47 @@
 
 [Collapse. Accessibility](collapse/collapse.examples.accessibility.use-case.md)
 
+
 ## Datepicker
+
+[Datepicker. Basic](datepicker/datepicker.examples.basic.use-case.md)
+
+[Datepicker. Initial state](datepicker/datepicker.examples.initial-state.use-case.md)
+
+[Datepicker. Custom date format](datepicker/datepicker.examples.custom-date-format.use-case.md)
+
+[Datepicker. Hide on scroll](datepicker/datepicker.examples.hide-on-scroll.use-case.md)
+
+[Datepicker. Themes](datepicker/datepicker.examples.themes.use-case.md)
+
+[Datepicker. Locales](datepicker/datepicker.examples.locales.use-case.md)
+
+[Datepicker. Min-max](datepicker/datepicker.examples.min-max.use-case.md)
+
+[Datepicker. Disabled](datepicker/datepicker.examples.disabled.use-case.md)
+
+[Datepicker. Forms](datepicker/datepicker.examples.forms.use-case.md)
+
+[Datepicker. Reactive forms](datepicker/datepicker.examples.reactive-forms.use-case.md)
+
+[Datepicker. Manual triggering](datepicker/datepicker.examples.manual-trigger.use-case.md)
+
+[Datepicker. Placement](datepicker/datepicker.examples.placement.use-case.md)
+
+[Datepicker. Config method](datepicker/datepicker.examples.config-method.use-case.md)
+
+[Datepicker. Visibility Events](datepicker/datepicker.examples.visibility-events.use-case.md)
+
+[Datepicker. Value change event](datepicker/datepicker.examples.value-change-event.use-case.md)
+
+[Datepicker. Config properties](datepicker/datepicker.examples.config-properties.md)
+
+[Datepicker. Outside click](datepicker/datepicker.examples.outside-click.md)
+
+[Datepicker. Trigger by isOpen property](datepicker/datepicker.examples.trigger-by-isopen.md)
+
+[Datepicker. Custom triggers](datepicker/datepicker.examples.custom-trigger.md)
+
 
 ## Dropdowns
 
