@@ -4,6 +4,7 @@
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
+    "postinstall": "bash ./setup-hooks.sh",
     "lite-server": "lite-server -c scripts/bs-config.js",
     "demo.gen-docs": "node scripts/docs/get-doc.js",
     "demo.fetch": "node scripts/fetch-docs.js",

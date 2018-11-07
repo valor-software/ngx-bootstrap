@@ -31,7 +31,7 @@ export class ComponentLoader<T> {
   onShown: EventEmitter<any> = new EventEmitter();
   /* tslint:disable-next-line: no-any*/
   onBeforeHide: EventEmitter<any> = new EventEmitter();
-  onHidden: EventEmitter<void> = new EventEmitter();
+  onHidden: EventEmitter<boolean> = new EventEmitter();
 
   instance: T;
   _componentRef: ComponentRef<T>;
