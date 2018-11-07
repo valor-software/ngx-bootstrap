@@ -78,6 +78,9 @@ describe('Directive: Typeahead', () => {
     it('should set a default value for typeaheadAsync', () => {
       expect(directive.typeaheadAsync).toBeFalsy();
     });
+    it('should set a default value for typeaheadIsShowOnBlur', () => {
+      expect(directive.typeaheadIsShowOnBlur).toBeFalsy();
+    });
 
     it('should typeaheadAsync to false, if typeahead is an observable', () => {
       directive.typeahead = of(component.states);

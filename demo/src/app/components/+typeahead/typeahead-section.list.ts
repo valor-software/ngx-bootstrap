@@ -198,11 +198,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadOnSelectComponent
       },
       {
-        title: 'Show on blur',
+        title: 'Show results on blur',
         anchor: 'show-on-blur',
         description: `
           <p>Use <code>typeaheadIsShowOnBlur</code> property to prevent hiding typeahead's results 
-          after input loses focus</p>
+          until a user doesn't choose an item</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/show-on-blur/show-on-blur.ts'),
         html: require('!!raw-loader?lang=markup!./demos/show-on-blur/show-on-blur.html'),
