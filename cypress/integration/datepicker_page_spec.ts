@@ -41,14 +41,14 @@ describe('Datepicker demo page test suite', () => {
     const reactiveForms = datepicker.exampleDemosArr.reactiveForms;
 
     it('chosen in datepicker date can be displayed in reactive form', () => {
-      const expectedDate = Cypress.moment().format('YYYY-MM-DD');
+      const expectedDateValue = Cypress.moment().format('MMM DD, YYYY');
       const day = Cypress.moment().format('D');
 
       cy.get(`${ reactiveForms } ${ datepicker.datepickerInput }`).click();
       datepicker.clickOnDayInCurrMonth(`${ datepicker.datepickerLastOpened }`, day);
 
       cy.get(`${ reactiveForms } ${ datepicker.formOutput }`)
-        .should('to.contain', `"date": "${ expectedDate }`);
+        .should('to.contain', `${ expectedDateValue }`);
     });
   });
 });
