@@ -12,6 +12,7 @@ import {
 } from 'ngx-bootstrap/sortable';
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
+/* tslint:disable-next-line: no-any */
 const HEROES_OBJ: any[] = [
   { id: 1, name: 'Windstorm' },
   { id: 2, name: 'Bombasto' },
@@ -52,7 +53,7 @@ xdescribe('Component: Sortable', () => {
         .queryAll(By.directive(SortableComponent))
         .map(
           (de: DebugElement) =>
-            de.injector.get(SortableComponent) as SortableComponent
+            de.injector.get<SortableComponent>(SortableComponent)
         );
       [sort1, sort2] = sortableComponents;
     }

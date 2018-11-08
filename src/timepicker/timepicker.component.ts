@@ -11,17 +11,20 @@ import {
   Output,
   SimpleChanges, ViewEncapsulation
 } from '@angular/core';
+
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
+
 import {
   TimeChangeSource,
   TimepickerComponentState,
   TimepickerControls
 } from './timepicker.models';
+
 import {
   isValidDate,
   padNumber,
@@ -32,13 +35,14 @@ import {
   isSecondInputValid,
   isInputLimitValid
 } from './timepicker.utils';
+
 import { Subscription } from 'rxjs';
 
 import { ControlValueAccessorModel } from './models';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => TimepickerComponent),
   multi: true
 };

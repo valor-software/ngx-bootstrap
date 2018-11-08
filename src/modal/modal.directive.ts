@@ -129,7 +129,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this._config = this._config || this.getConfig();
     setTimeout(() => {
       if (this._config.show) {

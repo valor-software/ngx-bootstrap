@@ -237,16 +237,16 @@ export class TypeaheadContainerComponent {
       if (liElement && !this.isScrolledIntoView(liElement.nativeElement)) {
         this.ulElement.nativeElement.scrollTop =
           liElement.nativeElement.offsetTop -
-          this.ulElement.nativeElement.offsetHeight +
-          liElement.nativeElement.offsetHeight;
+          Number(this.ulElement.nativeElement.offsetHeight) +
+          Number(liElement.nativeElement.offsetHeight);
       }
     }
   }
 
 
   private isScrolledIntoView = function (elem: HTMLElement) {
-    const containerViewTop = this.ulElement.nativeElement.scrollTop;
-    const containerViewBottom = containerViewTop + this.ulElement.nativeElement.offsetHeight;
+    const containerViewTop: number = this.ulElement.nativeElement.scrollTop;
+    const containerViewBottom = containerViewTop + Number(this.ulElement.nativeElement.offsetHeight);
     const elemTop = elem.offsetTop;
     const elemBottom = elemTop + elem.offsetHeight;
 

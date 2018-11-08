@@ -223,13 +223,19 @@ describe('Component: TypeaheadContainer', () => {
   });
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
+    /* tslint:disable-next-line: no-unused-variable */
     let headerMatch: HTMLLIElement;
     let containingElementScrollable: HTMLElement[];
 
     beforeEach(fakeAsync(() => {
       fixture = testModule.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
-      component.parent = { typeaheadOptionsInScrollableView: 3, typeaheadScrollable: true } as TypeaheadDirective;
+      /* tslint:disable-next-line: no-object-literal-type-assertion */
+      component.parent = {
+        typeaheadOptionsInScrollableView: 3,
+        typeaheadScrollable: true
+      } as TypeaheadDirective;
+
       fixture.detectChanges();
       tick(1);
       component.query = 'a';
@@ -249,7 +255,6 @@ describe('Component: TypeaheadContainer', () => {
 
       fixture.detectChanges();
       tick(1);
-      // component.ngAfterViewInit();
       const headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
       if (headers) {
         headerMatch = asNativeElements(headers);

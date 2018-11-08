@@ -1,10 +1,9 @@
-// tslint:disable:no-use-before-declare
-import { ChangeDetectorRef, Directive, forwardRef } from '@angular/core';
+import { ChangeDetectorRef, Directive, forwardRef, Provider } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-// tslint:disable-next-line:no-any
-export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
+export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonRadioGroupDirective),
   multi: true
 };

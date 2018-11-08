@@ -1,11 +1,13 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
+  forwardRef,
   Input,
   OnInit,
   Output,
-  forwardRef, ChangeDetectorRef
+  Provider
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -18,10 +20,9 @@ export interface PageChangedEvent {
   page: number;
 }
 
-// tslint:disable-next-line:no-any
-export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
+export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => PaginationComponent),
   multi: true
 };

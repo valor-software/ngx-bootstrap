@@ -12,9 +12,8 @@ import {
   EventEmitter,
   Injector,
   NgZone,
-  Provider,
-  ReflectiveInjector,
   Renderer2,
+  StaticProvider,
   TemplateRef,
   Type,
   ViewContainerRef
@@ -37,7 +36,7 @@ export class ComponentLoader<T> {
   _componentRef: ComponentRef<T>;
   _inlineViewRef: EmbeddedViewRef<T>;
 
-  private _providers: Provider[] = [];
+  private _providers: StaticProvider[] = [];
   private _componentFactory: ComponentFactory<T>;
   private _zoneSubscription: Subscription;
   private _contentRef: ContentRef;
@@ -114,7 +113,7 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  provide(provider: Provider): ComponentLoader<T> {
+  provide(provider: StaticProvider): ComponentLoader<T> {
     this._providers.push(provider);
 
     return this;
@@ -140,7 +139,11 @@ export class ComponentLoader<T> {
     if (!this._componentRef) {
       this.onBeforeShow.emit();
       this._contentRef = this._getContentRef(opts.content, opts.context, opts.initialState);
-      const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
+
+      const injector = Injector.create({
+        providers: this._providers,
+        parent: this._injector
+      });
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
       this._applicationRef.attachView(this._componentRef.hostView);
@@ -365,10 +368,12 @@ export class ComponentLoader<T> {
       const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(
         content
       );
-      const modalContentInjector = ReflectiveInjector.resolveAndCreate(
-        [...this._providers],
-        this._injector
-      );
+
+      const modalContentInjector = Injector.create({
+        providers: this._providers,
+        parent: this._injector
+      });
+
       const componentRef = contentCmptFactory.create(modalContentInjector);
       Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);

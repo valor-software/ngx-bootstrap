@@ -1,18 +1,19 @@
 // tslint:disable:no-use-before-declare
 import {
   Directive,
+  forwardRef,
   HostBinding,
   HostListener,
   Input,
   OnInit,
-  forwardRef
+  Provider
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // TODO: config: activeClass - Class to apply to the checked buttons
-// tslint:disable-next-line:no-any
-export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
+export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonCheckboxDirective),
   multi: true
 };
@@ -51,7 +52,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.onChange(this.value);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.toggle(this.trueValue === this.value);
   }
 

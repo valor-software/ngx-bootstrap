@@ -541,7 +541,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const buttonsHidden = fixture.nativeElement.querySelector('a.btn');
-        expect(buttonsHidden.parentElement.parentElement.hasAttribute('hidden')).toEqual(true)
+        expect(buttonsHidden.parentElement.parentElement.hasAttribute('hidden')).toEqual(true);
       });
     }));
   });
@@ -568,7 +568,7 @@ describe('Component: TimepickerComponent', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = {deltaY: -1, preventDefault: () => {}};
+      const wheelEvent = { deltaY: -1, preventDefault: () => undefined };
 
       inputDebugHours.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();

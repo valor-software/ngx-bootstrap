@@ -22,6 +22,7 @@ import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-ca
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions } from '../models';
 
+/* tslint:disable-next-line: cyclomatic-complexity */
 export function bsDatepickerReducer(state = initialDatepickerState,
                                     action: Action): BsDatepickerState {
   switch (action.type) {

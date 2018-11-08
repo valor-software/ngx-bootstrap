@@ -63,7 +63,7 @@ describe('Component: Carousel', () => {
   let context: TestCarouselComponent;
   /* tslint:disable-next-line: no-any */
   let element: any;
-  /* tslint:disable-next-line: no-any */
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let clean: any;
 
   beforeEach(() => {

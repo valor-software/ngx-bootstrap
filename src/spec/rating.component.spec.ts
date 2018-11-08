@@ -17,7 +17,7 @@ class TestRatingComponent {
 
 describe('Component: Rating. Init:', () => {
   let fixture: ComponentFixture<RatingComponent>;
-  /* tslint:disable-next-line: no-any */
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let context: any;
   /* tslint:disable-next-line: no-any */
   let element: any;
@@ -71,7 +71,7 @@ describe('Component: Rating. Init:', () => {
 
 describe('Component: Rating. Custom template:', () => {
   let fixture: ComponentFixture<TestRatingComponent>;
-  /* tslint:disable-next-line: no-any */
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let context: any;
   /* tslint:disable-next-line: no-any */
   let element: any;

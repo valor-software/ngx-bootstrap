@@ -13,7 +13,6 @@ interface State {
 }
 
 @Component({
-  // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
     <input [(ngModel)]="selectedState"
            [typeahead]="states"
@@ -28,7 +27,7 @@ class TestTypeaheadComponent {
     {id: 2, name: 'Alaska', region: 'West'}
   ];
 
-  onBlurEvent(activeItem) {}
+  onBlurEvent(activeItem) { return undefined; }
 }
 
 describe('Directive: Typeahead', () => {
@@ -55,7 +54,7 @@ describe('Directive: Typeahead', () => {
     );
     directive = inputs.map(
       (de: DebugElement) =>
-        de.injector.get(TypeaheadDirective) as TypeaheadDirective
+        de.injector.get<TypeaheadDirective>(TypeaheadDirective)
     )[0];
   });
 
