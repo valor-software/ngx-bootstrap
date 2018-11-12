@@ -1,4 +1,5 @@
 import { TimeChangeEvent, TimepickerComponentState, TimepickerControls } from '../../timepicker/timepicker.models';
+import { TimepickerOffsetTarget } from '../../timepicker/timepicker.config';
 import {
   canChangeValue,
   canChangeHours,
@@ -36,7 +37,9 @@ describe('Util: Timepicker-controls', () => {
       showSpinners: true,
       showMeridian: true,
       showSeconds: false,
-      meridians: ['AM', 'PM']
+      meridians: ['AM', 'PM'],
+      offset: 0,
+      offsetTarget: TimepickerOffsetTarget.Client
     };
 
     controls = {

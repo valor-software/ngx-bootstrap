@@ -1,4 +1,5 @@
 import { Time, TimepickerComponentState } from '../../timepicker/timepicker.models';
+import { TimepickerOffsetTarget } from '../../timepicker/timepicker.config';
 import {
   isValidDate,
   isValidLimit,
@@ -32,7 +33,9 @@ const controls: TimepickerComponentState = {
   showSpinners: false,
   showMeridian: true,
   showSeconds: true,
-  meridians: ['AM', 'PM']
+  meridians: ['AM', 'PM'],
+  offset: 0,
+  offsetTarget: TimepickerOffsetTarget.Client
 };
 
 function testTime(hours?: number, minutes?: number, seconds?: number): Date {

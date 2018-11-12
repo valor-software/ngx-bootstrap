@@ -178,8 +178,8 @@ export function applyOffset(
   let _minutes = minutes;
 
   if (offset < 0) { _negativeOffset = true; }
-  _hoursOffset = Math.trunc(Math.abs(offset) / 60);
-  _minutesOffset = Math.abs(offset) % 60;
+  _hoursOffset = getOffsetHours(offset);
+  _minutesOffset = getOffsetMinutes(offset);
 
   if (!_negativeOffset) {
     if (_minutes + _minutesOffset >= 60) {
@@ -209,6 +209,14 @@ export function applyOffset(
     hours: _hours,
     minutes: _minutes
   };
+}
+
+export function getOffsetHours(offset: number) {
+  return Math.trunc(Math.abs(offset) / 60);
+}
+
+export function getOffsetMinutes(offset: number) {
+  return Math.abs(offset) % 60;
 }
 
 export function isHourInputValid(hours: string, isPM: boolean): boolean {

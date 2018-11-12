@@ -653,7 +653,7 @@ export const ngdoc: any = {
     "properties": []
   },
   "ListenOptions": {
-    "fileName": "src/component-loader/listen-options.model.ts",
+    "fileName": "src/utils/triggers.ts",
     "className": "ListenOptions",
     "description": "",
     "methods": [],
@@ -1827,7 +1827,7 @@ export const ngdoc: any = {
     ]
   },
   "Action": {
-    "fileName": "src/mini-ngrx/index.ts",
+    "fileName": "src/mini-ngrx/public_api.ts",
     "className": "Action",
     "description": "",
     "methods": [],
@@ -2427,7 +2427,7 @@ export const ngdoc: any = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated </p>\n"
       },
       {
         "name": "max",
@@ -2499,7 +2499,7 @@ export const ngdoc: any = {
       {
         "name": "titles",
         "type": "string[]",
-        "description": "<p>array of icons titles</p>\n"
+        "description": "<p>array of icons titles, default: ([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]) </p>\n"
       }
     ],
     "outputs": [
@@ -2789,6 +2789,16 @@ export const ngdoc: any = {
         "description": "<p>if true scroll inside hours and minutes inputs will change time </p>\n"
       },
       {
+        "name": "offset",
+        "type": "number",
+        "description": "<p>apply offset in minutes to apply to the displayed time (the date object itself is not modified) </p>\n"
+      },
+      {
+        "name": "offsetTarget",
+        "type": "TimepickerOffsetTarget",
+        "description": "<p>defines the target the offset should be applied to: Client applies given offset to the timezone the user is in,\nUtc applies to the utc time.</p>\n"
+      },
+      {
         "name": "readonlyInput",
         "type": "boolean",
         "description": "<p>if true hours and minutes fields will be readonly </p>\n"
@@ -2878,6 +2888,16 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true scroll inside hours and minutes inputs will change time </p>\n"
+      },
+      {
+        "name": "offset",
+        "type": "number",
+        "description": "<p>offset to shift the display format of the shown time  </p>\n"
+      },
+      {
+        "name": "offsetTarget",
+        "type": "TimepickerOffsetTarget",
+        "description": "<p>decide how the offset should be applied: Client applies given offset to the timezone the user is in,\nUtc applies to the utc time.</p>\n"
       },
       {
         "name": "readonlyInput",

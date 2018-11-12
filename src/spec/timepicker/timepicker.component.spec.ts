@@ -518,6 +518,80 @@ describe('Component: TimepickerComponent', () => {
     });
   });
 
+  fdescribe('validate input fields with property of max and offset', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      buttonChanges = getElements(fixture, 'a.btn');
+      component.showMeridian = false;
+      component.offsetTarget = TimepickerOffsetTarget.Client;
+    });
+
+    fit('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
+      component.max = testTime(18);
+      component.offset = 60;
+      component.writeValue(testTime(16, 50));
+      fixture.detectChanges();
+      console.log('SPEC: ', inputHours.value, inputMinutes.value, component.max.getHours() + Math.trunc(Math.abs(component.offset / 60)), component.max.getMinutes());
+      expect(buttonChanges[0]).not.toHaveCssClass('disabled');
+      expect(buttonChanges[1]).not.toHaveCssClass('disabled');
+    });
+
+    fit('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
+      component.max = testTime(18);
+      component.offset = 60;
+      component.writeValue(testTime(17, 50));
+      fixture.detectChanges();
+      console.log('SPEC: ', inputHours.value, inputMinutes.value, component.max.getHours() + Math.trunc(Math.abs(component.offset / 60)), component.max.getMinutes());
+      expect(buttonChanges[0]).toHaveCssClass('disabled');
+      expect(buttonChanges[1]).not.toHaveCssClass('disabled');
+    });
+
+    fit('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
+      component.max = testTime(18);
+      component.offset = 60;
+      component.writeValue(testTime(17, 57));
+      fixture.detectChanges();
+      console.log('SPEC: ', inputHours.value, inputMinutes.value, component.max.getHours() + Math.trunc(Math.abs(component.offset / 60)), component.max.getMinutes());
+      expect(buttonChanges[0]).toHaveCssClass('disabled');
+      expect(buttonChanges[1]).toHaveCssClass('disabled');
+    });
+
+    it('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
+      component.max = testTime(18);
+      component.offset = -60;
+      component.writeValue(testTime(16, 50));
+      fixture.detectChanges();
+      console.log(inputHours.value, inputMinutes.value, component.max.getHours() - Math.trunc(Math.abs(component.offset / 60)), component.max.getMinutes());
+      expect(buttonChanges[0]).not.toHaveCssClass('disabled');
+      expect(buttonChanges[1]).not.toHaveCssClass('disabled');
+    });
+
+    it('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
+      component.max = testTime(18);
+      component.offset = -60;
+      component.writeValue(testTime(17, 50));
+      fixture.detectChanges();
+      console.log(inputHours.value, inputMinutes.value, component.max.getHours() - Math.trunc(Math.abs(component.offset / 60)), component.max.getMinutes());
+      expect(buttonChanges[0]).toHaveCssClass('disabled');
+      expect(buttonChanges[1]).not.toHaveCssClass('disabled');
+    });
+
+    it('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
+      component.max = testTime(18);
+      component.offset = -60;
+      component.writeValue(testTime(17, 57));
+      fixture.detectChanges();
+      console.log(inputHours.value, inputMinutes.value, component.max.getHours() - Math.trunc(Math.abs(component.offset / 60)), component.max.getMinutes());
+      expect(buttonChanges[0]).toHaveCssClass('disabled');
+      expect(buttonChanges[1]).toHaveCssClass('disabled');
+    });
+  });
+
   describe('validate input fields with property of min', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
