@@ -38,7 +38,7 @@ export function formatMoment(date: Date, _format: string, locale: Locale, isUTC?
   const format = expandFormat(_format, locale);
   formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
 
-  return formatFunctions[format](date, locale, isUTC, offset);
+  return formatFunctions[format](date, locale, isUTC, offset);;
 }
 
 export function expandFormat(_format: string, locale: Locale): string {
