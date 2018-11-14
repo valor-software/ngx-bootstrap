@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BsComponentRef } from 'ngx-bootstrap/loader';
+import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 
 @Injectable()
 export class BsDropdownState {
