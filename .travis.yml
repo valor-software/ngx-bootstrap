@@ -91,10 +91,7 @@ jobs:
     - stage: cypress-tests
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script:
-      # until this is fixed https://github.com/bahmutov/add-typescript-to-cypress/issues/23
-      - npm i ts-loader@3 --no-save
-      - $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
@@ -106,14 +103,14 @@ jobs:
 #      env: NGV=next
     - stage: sauce-tests
       env: SAUCE=true
+      addons:
+        sauce_connect:
+          username: $SAUCE_USERNAME_PR
+          access_key: $SAUCE_ACCESS_KEY_PR
       before_script:
         - mkdir -p $LOGS_DIR
-        - ./scripts/sauce/sauce_connect_setup.sh
       script:
-        - ./scripts/sauce/sauce_connect_block.sh
         - npm run test-cross
-      after_script: ./scripts/sauce/sauce_connect_teardown.sh
-
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
       stage: deploy
