@@ -44,7 +44,7 @@ install:
   - npm i -g npm@6.0.1
   - npm ci
   - npm run build
-#  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+  - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 #  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
@@ -82,8 +82,8 @@ jobs:
       script: npm run test-coverage
       after_success:
         - ./node_modules/.bin/codecov
-#    - <<: *test
-#      env: NGV=latest
+    - <<: *test
+      env: NGV=latest
 #    - <<: *test
 #      env: NGV=next
 
@@ -91,29 +91,26 @@ jobs:
     - stage: cypress-tests
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script:
-      # until this is fixed https://github.com/bahmutov/add-typescript-to-cypress/issues/23
-      - npm i ts-loader@3 --no-save
-      - $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
 
 #    check prod build
     - &build
       stage: build
       script: npm run demo.ng-build
-#    - <<: *build
-#      env: NGV=latest
+    - <<: *build
+      env: NGV=latest
 #    - <<: *build
 #      env: NGV=next
     - stage: sauce-tests
       env: SAUCE=true
+      addons:
+        sauce_connect:
+          username: $SAUCE_USERNAME_PR
+          access_key: $SAUCE_ACCESS_KEY_PR
       before_script:
         - mkdir -p $LOGS_DIR
-        - ./scripts/sauce/sauce_connect_setup.sh
       script:
-        - ./scripts/sauce/sauce_connect_block.sh
         - npm run test-cross
-      after_script: ./scripts/sauce/sauce_connect_teardown.sh
-
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
       stage: deploy
@@ -123,13 +120,13 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap.surge.sh
         on: development
-#    - <<: *surge
-#      env: NGV=latest
-#      deploy:
-#        provider: surge
-#        project: ./gh-pages/
-#        domain: ngx-bootstrap-latest.surge.sh
-#        on: development
+    - <<: *surge
+      env: NGV=latest
+      deploy:
+        provider: surge
+        project: ./gh-pages/
+        domain: ngx-bootstrap-latest.surge.sh
+        on: development
 # todo: Illya please fix
 #    - stage: deploy
 #      script: npm run build:dynamic

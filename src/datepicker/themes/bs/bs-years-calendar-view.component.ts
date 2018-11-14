@@ -7,7 +7,7 @@ import {
   CalendarCellViewModel,
   CellHoverEvent,
   YearsCalendarViewModel
-} from '../../models/index';
+} from '../../models';
 
 @Component({
   selector: 'bs-years-calendar-view',

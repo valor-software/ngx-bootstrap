@@ -1,4 +1,4 @@
-import { cloneWithOffset, getUTCOffset } from '../units/offset';
+import { cloneWithOffset, getDateOffset, getUTCOffset } from '../units/offset';
 import { DateParsingConfig } from '../create/parsing.types';
 import { UnitOfTime } from '../types';
 import { absFloor } from '../utils';
@@ -21,7 +21,7 @@ export function diff(date: Date, input: Date,
     return NaN;
   }
 
-  // const zoneDelta = (getUTCOffset(input, dateConfig) - getUTCOffset(date, dateConfig)) * 6e4;
+  const zoneOffset = (getDateOffset(input) - getDateOffset(date)) * 6e4;
   const zoneDelta = isNumber(config._zoneDelta)
     ? config._zoneDelta * 6e4
     : (getUTCOffset(input, config) - getUTCOffset(date, config)) * 6e4;
@@ -47,7 +47,7 @@ export function diff(date: Date, input: Date,
       output = (date.valueOf() - that.valueOf()) / 36e5;
       break; // 1000 * 60 * 60
     case 'day':
-      output = (date.valueOf() - that.valueOf() - zoneDelta) / 864e5;
+      output = (date.valueOf() - that.valueOf() - (zoneDelta === 0 ? zoneOffset : zoneDelta)) / 864e5;
       break; // 1000 * 60 * 60 * 24, negate dst
     case 'week':
       output = (date.valueOf() - that.valueOf() - zoneDelta) / 6048e5;

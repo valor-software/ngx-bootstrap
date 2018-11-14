@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { PopoverModule } from 'ngx-bootstrap/popover';
 // or
 import { PopoverModule } from 'ngx-bootstrap';
