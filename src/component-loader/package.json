@@ -1,5 +1,5 @@
 {
-  "name": "ngx-bootstrap/loader",
+  "name": "ngx-bootstrap/component-loader",
   "version": "3.1.1",
   "description": "Native Angular Bootstrap Components",
   "private": true,
@@ -8,6 +8,6 @@
     "lib": {
       "entryFile": "public_api.ts"
     },
-    "dest": "../../dist/loader"
+    "dest": "../../dist/component-loader"
   }
 }
