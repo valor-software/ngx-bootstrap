@@ -29,18 +29,12 @@ async function buildAll() {
   await execa.shell(`npm run link`);
 
   const requiredModules = ['collapse', 'chronos', 'utils', 'positioning', 'component-loader', 'dropdown', 'locale',
-    'alert', 'buttons', 'carousel', 'mini-ngrx', 'modal', 'pagination', 'popover', 'progressbar',
-    'rating', 'sortable', 'tabs', 'timepicker', 'tooltip', 'typeahead', 'datepicker'];
+    'alert', 'buttons', 'carousel', 'mini-ngrx', 'modal', 'pagination', 'popover', 'progressbar', 'rating',
+    'sortable', 'tabs', 'timepicker', 'tooltip', 'typeahead', 'datepicker', 'accordion', 'common'];
 
   await buildModules(requiredModules);
 
   await execa.shell(`rsync -avr  --include='*/' --include='*.scss' --exclude='*' ${src}/datepicker ${dist}`);
-
-  console.log('Building accordion module');
-  await execa.shell(`node scripts/ng-packagr/api ../../src/accordion/package.json`);
-  console.log('Build of accordion module completed');
-
-  await buildModules(['common']);
 
   await execa.shell(`rsync -a dist/common/. dist/ --exclude package.json`);
   await del(`${dist}/${common}`);
@@ -73,7 +67,7 @@ buildAll();
 async function buildModules(modules) {
   for (let module of modules) {
     console.log('Building', module, 'module');
-    await execa.shell(`rimraf ${dist}/${module} && ng-packagr -p src/${module}`);
+    await execa.shell(`rimraf ${dist}/${module} && node scripts/ng-packagr/api ../../src/${module}/package.json`);
     console.log(`Build of ${module} module completed`);
   }
 }
