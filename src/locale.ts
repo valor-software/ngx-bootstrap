@@ -1,4 +1,3 @@
-// add bulgarian locale
 export { arLocale } from './chronos/i18n/ar';
 export { bgLocale } from './chronos/i18n/bg';
 export { csLocale } from './chronos/i18n/cs';
