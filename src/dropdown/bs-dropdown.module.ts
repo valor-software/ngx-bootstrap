@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/loader';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
