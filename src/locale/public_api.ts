@@ -17,6 +17,7 @@ export { itLocale } from 'ngx-bootstrap/chronos';
 export { jaLocale } from 'ngx-bootstrap/chronos';
 export { koLocale } from 'ngx-bootstrap/chronos';
 export { mnLocale } from 'ngx-bootstrap/chronos';
+export { nbLocale } from 'ngx-bootstrap/chronos';
 export { nlLocale } from 'ngx-bootstrap/chronos';
 export { nlBeLocale } from 'ngx-bootstrap/chronos';
 export { plLocale } from 'ngx-bootstrap/chronos';
