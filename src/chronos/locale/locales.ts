@@ -214,7 +214,12 @@ export function updateLocale(name: string, config?: LocaleData): Locale {
 
 // returns locale data
 export function getLocale(key?: string | string[]): Locale {
-  setDefaultLocale();
+  // set default local and init units
+  if (!locales[`en`]) {
+
+    setEnLocale();
+    initUnits();
+  }
 
   if (!key) {
     return globalLocale;
@@ -229,13 +234,7 @@ export function listLocales(): string[] {
   return Object.keys(locales);
 }
 
-
-function setDefaultLocale(): void {
-  if (locales[`en`]) {
-
-    return undefined;
-  }
-
+function setEnLocale(): void {
   getSetGlobalLocale('en', {
     dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
     ordinal(num: number): string {
@@ -248,7 +247,9 @@ function setDefaultLocale(): void {
       return num + output;
     }
   });
+}
 
+function initUnits(): void {
   initWeek();
   initWeekYear();
   initYear();
