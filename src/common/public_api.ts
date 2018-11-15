@@ -162,7 +162,7 @@ export {
   ComponentLoaderFactory,
   ContentRef,
   BsComponentRef
-} from 'ngx-bootstrap/loader';
+} from 'ngx-bootstrap/component-loader';
 
 export {
   Positioning,

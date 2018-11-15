@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
-import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/loader';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
 import { timer } from 'rxjs';
 
