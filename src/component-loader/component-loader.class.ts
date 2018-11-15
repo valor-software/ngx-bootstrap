@@ -12,9 +12,8 @@ import {
   EventEmitter,
   Injector,
   NgZone,
-  Provider,
-  ReflectiveInjector,
   Renderer2,
+  StaticProvider,
   TemplateRef,
   Type,
   ViewContainerRef
@@ -23,20 +22,23 @@ import { PositioningOptions, PositioningService } from 'ngx-bootstrap/positionin
 import { listenToTriggersV2, registerOutsideClick } from 'ngx-bootstrap/utils';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
+import { Subscription } from 'rxjs';
 
 export class ComponentLoader<T> {
-  onBeforeShow: EventEmitter<any> = new EventEmitter();
+  onBeforeShow: EventEmitter<void> = new EventEmitter();
+  /* tslint:disable-next-line: no-any*/
   onShown: EventEmitter<any> = new EventEmitter();
+  /* tslint:disable-next-line: no-any*/
   onBeforeHide: EventEmitter<any> = new EventEmitter();
-  onHidden: EventEmitter<any> = new EventEmitter();
+  onHidden: EventEmitter<boolean> = new EventEmitter();
 
   instance: T;
   _componentRef: ComponentRef<T>;
   _inlineViewRef: EmbeddedViewRef<T>;
 
-  private _providers: Provider[] = [];
+  private _providers: StaticProvider[] = [];
   private _componentFactory: ComponentFactory<T>;
-  private _zoneSubscription: any;
+  private _zoneSubscription: Subscription;
   private _contentRef: ContentRef;
   private _innerComponent: ComponentRef<T>;
 
@@ -61,6 +63,7 @@ export class ComponentLoader<T> {
    * A selector specifying the element the popover should be appended to.
    * Currently only supports "body".
    */
+  /* tslint:disable-next-line: no-any*/
   private container: string | ElementRef | any;
 
   /**
@@ -110,7 +113,7 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  provide(provider: Provider): ComponentLoader<T> {
+  provide(provider: StaticProvider): ComponentLoader<T> {
     this._providers.push(provider);
 
     return this;
@@ -119,9 +122,14 @@ export class ComponentLoader<T> {
   // todo: appendChild to element or document.querySelector(this.container)
 
   show(opts: {
+    /* tslint:disable-next-line: no-any*/
     content?: string | TemplateRef<any>;
+    /* tslint:disable-next-line: no-any*/
     context?: any;
-    initialState?: any; [key: string]: any;
+    /* tslint:disable-next-line: no-any*/
+    initialState?: any;
+    /* tslint:disable-next-line: no-any*/
+    [key: string]: any;
   } = {}
   ): ComponentRef<T> {
 
@@ -131,7 +139,11 @@ export class ComponentLoader<T> {
     if (!this._componentRef) {
       this.onBeforeShow.emit();
       this._contentRef = this._getContentRef(opts.content, opts.context, opts.initialState);
-      const injector = ReflectiveInjector.resolveAndCreate(this._providers, this._injector);
+
+      const injector = Injector.create({
+        providers: this._providers,
+        parent: this._injector
+      });
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
       this._applicationRef.attachView(this._componentRef.hostView);
@@ -203,11 +215,6 @@ export class ComponentLoader<T> {
     if (this._contentRef.viewRef) {
       this._contentRef.viewRef.destroy();
     }
-    // this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._componentRef.hostView));
-    //
-    // if (this._contentRef.viewRef && this._viewContainerRef.indexOf(this._contentRef.viewRef) !== -1) {
-    //   this._viewContainerRef.remove(this._viewContainerRef.indexOf(this._contentRef.viewRef));
-    // }
 
     this._contentRef = null;
     this._componentRef = null;
@@ -276,6 +283,7 @@ export class ComponentLoader<T> {
 
   attachInline(
     vRef: ViewContainerRef,
+    /* tslint:disable-next-line: no-any*/
     template: TemplateRef<any>
   ): ComponentLoader<T> {
     this._inlineViewRef = vRef.createEmbeddedView(template);
@@ -331,8 +339,11 @@ export class ComponentLoader<T> {
   }
 
   private _getContentRef(
+    /* tslint:disable-next-line: no-any*/
     content: string | TemplateRef<any> | any,
+    /* tslint:disable-next-line: no-any*/
     context?: any,
+    /* tslint:disable-next-line: no-any*/
     initialState?: any
   ): ContentRef {
     if (!content) {
@@ -357,10 +368,12 @@ export class ComponentLoader<T> {
       const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(
         content
       );
-      const modalContentInjector = ReflectiveInjector.resolveAndCreate(
-        [...this._providers],
-        this._injector
-      );
+
+      const modalContentInjector = Injector.create({
+        providers: this._providers,
+        parent: this._injector
+      });
+
       const componentRef = contentCmptFactory.create(modalContentInjector);
       Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);

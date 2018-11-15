@@ -11,7 +11,7 @@ class TestProgressbarComponent extends ProgressbarComponent {}
 
 describe('Component: Progress Bar', () => {
   let fixture: ComponentFixture<TestProgressbarComponent>;
-  let element: any;
+  let element: HTMLElement;
   let component: ProgressbarComponent;
 
   it('check animate setter when _animate is equal to setter\'s argument', () => {
@@ -22,7 +22,7 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     component = fixture.componentInstance;
     component._animate = false;
-    component.bars = [{}];
+    component.bars = [];
 
     component.animate = true;
 
@@ -37,7 +37,7 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     component = fixture.componentInstance;
     component._striped = false;
-    component.bars = [{}];
+    component.bars = [];
 
     component.striped = true;
 
@@ -88,7 +88,7 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barElement = element.querySelector('bar');
+    const barElement: HTMLElement = element.querySelector('bar');
     expect(barElement.style.width).toEqual('60%');
   });
 
@@ -117,7 +117,7 @@ describe('Component: Progress Bar', () => {
     const context = fixture.debugElement.componentInstance;
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barElement = element.querySelector('bar');
+    const barElement: HTMLElement = element.querySelector('bar');
 
     context.maxValue = componentData.initial.max;
     context.typeValue = componentData.initial.type;

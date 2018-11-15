@@ -104,17 +104,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  @Output() isOpenChange: EventEmitter<any>;
+  @Output() isOpenChange: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is shown
    */
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<boolean>;
 
   get isBs4(): boolean {
     return !isBs3();

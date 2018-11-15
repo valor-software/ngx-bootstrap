@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
 export class ModalOptions {
@@ -47,7 +48,7 @@ export const modalConfigDefaults: ModalOptions = {
   initialState: {}
 };
 
-export const CLASS_NAME: any = {
+export const CLASS_NAME: ClassName = {
   SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
   BACKDROP: 'modal-backdrop',
   OPEN: 'modal-open',
@@ -56,19 +57,19 @@ export const CLASS_NAME: any = {
   SHOW: 'show' // bs4
 };
 
-export const SELECTOR: any = {
+export const SELECTOR: Selector = {
   DIALOG: '.modal-dialog',
   DATA_TOGGLE: '[data-toggle="modal"]',
   DATA_DISMISS: '[data-dismiss="modal"]',
   FIXED_CONTENT: '.navbar-fixed-top, .navbar-fixed-bottom, .is-fixed'
 };
 
-export const TRANSITION_DURATIONS: any = {
+export const TRANSITION_DURATIONS: TransitionDurations = {
   MODAL: 300,
   BACKDROP: 150
 };
 
-export const DISMISS_REASONS = {
+export const DISMISS_REASONS: DismissReasons = {
   BACKRDOP: 'backdrop-click',
   ESC: 'esc'
 };
