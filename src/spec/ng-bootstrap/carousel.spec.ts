@@ -503,7 +503,6 @@ describe('ngb-carousel', () => {
       expect(carousel.interval).toBe(config.interval);
       expect(carousel.noWrap).toBe(config.noWrap);
       expect(carousel.showIndicators).toBe(config.showIndicators);
-      // expect(carousel.keyboard).toBe(config.keyboard);
     });
   });
 });

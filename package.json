@@ -17,7 +17,7 @@
     "demo.deploy": "run-s demo.build demo.deploy-gh-pages",
     "link": "npm link ./dist && npm link ngx-bootstrap",
     "lint-pretty": "prettier --config .prettierrc --write -l  \"{demo/src,src}/**/*.ts\"",
-    "lint-src": "tslint \"src/**/*.ts\" -c tslint.json --type-check -p src/tsconfig.spec.json -e \"src/chronos/**\" -e \"src/**/bs-datepicker-view.html\"",
+    "lint-src": "tslint \"src/**/*.ts\" -c tslint.json -p src/tsconfig.spec.json -e \"src/chronos/**\"",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
@@ -48,6 +48,11 @@
     "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors",
     "configure-heroku": "node scripts/universal/configure-heroku.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint-src"
+    }
+  },
   "main": "bundles/ngx-bootstrap.umd.js",
   "module": "esm5/ngx-bootstrap.js",
   "typings": "ngx-bootstrap.d.ts",
@@ -75,6 +80,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.1",
+    "@angular-devkit/core": "0.8.5",
+    "@angular-devkit/schematics": "0.8.5",
     "@angular/animations": "6.0.1",
     "@angular/cli": "6.1.5",
     "@angular/common": "6.0.1",
@@ -89,8 +96,6 @@
     "@angular/platform-server": "6.0.1",
     "@angular/router": "6.0.1",
     "@angular/service-worker": "6.0.1",
-    "@angular-devkit/core": "0.8.5",
-    "@angular-devkit/schematics": "0.8.5",
     "@cypress/webpack-preprocessor": "3.0.1",
     "@nguniversal/express-engine": "6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "6.0.0",
@@ -117,6 +122,7 @@
     "gitignore-to-glob": "0.3.0",
     "google-code-prettify": "1.0.5",
     "html-loader": "0.5.5",
+    "husky": "1.0.0",
     "intl": "^1.2.5",
     "jasmine": "3.1.0",
     "jasmine-core": "3.1.0",

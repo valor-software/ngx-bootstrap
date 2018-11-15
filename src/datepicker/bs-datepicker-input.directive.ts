@@ -1,21 +1,45 @@
-import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 } from '@angular/core';
 import {
-  AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors,
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  forwardRef,
+  Host,
+  Provider,
+  Renderer2
+} from '@angular/core';
+
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
   Validator
 } from '@angular/forms';
-import { parseDate, formatDate, getLocale, isAfter, isBefore, isDate, isDateValid } from 'ngx-bootstrap/chronos';
+
+import {
+  parseDate,
+  formatDate,
+  getLocale,
+  isAfter,
+  isBefore,
+  isDate,
+  isDateValid
+} from 'ngx-bootstrap/chronos';
+
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 
-const BS_DATEPICKER_VALUE_ACCESSOR = {
+const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
-const BS_DATEPICKER_VALIDATOR = {
+const BS_DATEPICKER_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
@@ -33,6 +57,7 @@ export class BsDatepickerInputDirective
   implements ControlValueAccessor, Validator {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
+  /* tslint:disable-next-line: no-unused-variable */
   private _validatorChange = Function.prototype;
   private _value: Date;
 
@@ -65,8 +90,9 @@ export class BsDatepickerInputDirective
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
   }
 
-  onChange(event: any) {
-    this.writeValue(event.target.value);
+  onChange(event: Event) {
+    /* tslint:disable-next-line: no-any*/
+    this.writeValue((event.target as any).value);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -74,6 +100,7 @@ export class BsDatepickerInputDirective
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: Date | string = c.value;
 
+    /* tslint:disable-next-line: prefer-switch */
     if (_value === null || _value === undefined || _value === '') {
       return null;
     }
@@ -125,11 +152,11 @@ export class BsDatepickerInputDirective
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
   }
 
-  registerOnChange(fn: (value: any) => any): void {
+  registerOnChange(fn: () => void): void {
     this._onChange = fn;
   }
 
-  registerOnTouched(fn: () => any): void {
+  registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
   }
 

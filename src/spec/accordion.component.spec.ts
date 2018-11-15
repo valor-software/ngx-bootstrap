@@ -8,6 +8,7 @@ import { AccordionConfig, AccordionModule } from 'ngx-bootstrap/accordion';
 })
 class TestAccordionComponent {
   oneAtATime = true;
+  /* tslint:disable-next-line: no-any */
   panels: any[] = [
     { isOpen: false, isDisabled: false },
     { isOpen: false, isDisabled: false },
@@ -66,7 +67,9 @@ function hasTitle(element: HTMLElement, str: string): boolean {
 
 describe('Component: Accordion', () => {
   let fixture: ComponentFixture<TestAccordionComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {

@@ -50,10 +50,12 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Emits an event when the datepicker is shown
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the datepicker is hidden
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date;
@@ -111,7 +113,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     this.onHidden = this._datepicker.onHidden;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
       triggers: this.triggers,
@@ -209,7 +211,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._datepicker.dispose();
   }
 }
