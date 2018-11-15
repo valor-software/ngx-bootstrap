@@ -38,7 +38,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     `
 })
 export class TooltipContainerComponent implements AfterViewInit {
-  classMap: any;
+  classMap: { [key: string]: boolean };
   placement: string;
   containerClass: string;
   animation: boolean;

@@ -47,7 +47,7 @@ export class CarouselComponent implements OnDestroy {
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
   @Output()
-  activeSlideChange: EventEmitter<any> = new EventEmitter<any>(false);
+  activeSlideChange: EventEmitter<number> = new EventEmitter<number>(false);
 
   /** Index of currently displayed slide(started for 0) */
   @Input()
@@ -79,10 +79,11 @@ export class CarouselComponent implements OnDestroy {
     return this._slides.toArray();
   }
 
+  // tslint:disable-next-line:no-any
+  protected currentInterval: any;
   protected _currentActiveSlide: number;
   protected _interval: number;
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
-  protected currentInterval: any;
   protected isPlaying: boolean;
   protected destroyed = false;
 
@@ -276,7 +277,7 @@ export class CarouselComponent implements OnDestroy {
   /**
    * Starts loop of auto changing of slides
    */
-  private restartTimer(): any {
+  private restartTimer() {
     this.resetTimer();
     const interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {

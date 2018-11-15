@@ -51,12 +51,12 @@ export class PositioningService {
 function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
   // it means that we got a selector
   if (typeof element === 'string') {
-    return document.querySelector(element) as HTMLElement;
+    return document.querySelector(element);
   }
 
   if (element instanceof ElementRef) {
     return element.nativeElement;
   }
 
-  return element as HTMLElement;
+  return element;
 }
