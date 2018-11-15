@@ -3,18 +3,19 @@ import './units/index';
 export { add, subtract } from './moment/add-subtract';
 
 export {
-  getDay,
-  isFirstDayOfWeek,
-  isSameYear,
-  isSameDay,
-  isSameMonth,
-  getFullYear,
-  getFirstDayOfMonth,
-  getMonth
+getDay,
+isFirstDayOfWeek,
+isSameYear,
+isSameDay,
+isSameMonth,
+getFullYear,
+getFirstDayOfMonth,
+getMonth
 } from './utils/date-getters';
 
 export { parseDate } from './create/local';
 export { formatDate } from './format';
+
 
 export {
   listLocales,
