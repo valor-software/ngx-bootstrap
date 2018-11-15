@@ -8,7 +8,9 @@ import { PaginationModule, PaginationComponent } from 'ngx-bootstrap/pagination'
 
 describe('Component: Pagination:', () => {
   let fixture: ComponentFixture<PaginationComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {

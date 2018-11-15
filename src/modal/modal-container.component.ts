@@ -77,7 +77,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('click', ['$event'])
-  onClick(event: any): void {
+  onClick(event: MouseEvent): void {
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
@@ -90,12 +90,13 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:keydown.esc', ['$event'])
-  onEsc(event: any): void {
+  onEsc(event: KeyboardEvent): void {
     if (!this.isShown) {
       return;
     }
 
-    if (event.keyCode === 27) {
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
 

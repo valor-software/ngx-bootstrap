@@ -7,6 +7,7 @@ class TestCarouselComponent {
   myInterval = 5000;
   noWrapSlides = false;
   showIndicators = true;
+  /* tslint:disable-next-line: no-any */
   slides: any[] = [
     {image: '//placekitten.com/600/300', text: 'slide0'},
     {image: '//placekitten.com/600/300', text: 'slide1'},
@@ -57,9 +58,12 @@ function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[]): void {
 }
 
 describe('Component: Carousel', () => {
+  /* tslint:disable-next-line: no-any */
   let fixture: ComponentFixture<any>;
   let context: TestCarouselComponent;
+  /* tslint:disable-next-line: no-any */
   let element: any;
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let clean: any;
 
   beforeEach(() => {
@@ -76,20 +80,6 @@ describe('Component: Carousel', () => {
     clean = fixture.nativeElement.querySelector('#c2');
     fixture.detectChanges();
   });
-
-  // beforeEach(fakeAsync(inject([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-  //   return tcb
-  //     .overrideTemplate(TestCarouselComponent, html)
-  //     .createAsync(TestCarouselComponent)
-  //     .then((f:ComponentFixture<any>) => {
-  //       fixture = f;
-  //       context = fixture.componentInstance;
-  //       fixture.detectChanges();
-  //       element = fixture.nativeElement.querySelector('#c1');
-  //       clean = fixture.nativeElement.querySelector('#c2');
-  //       discardPeriodicTasks();
-  //     });
-  // })));
 
   it('should set first slide as active by default', () => {
     expectActiveSlides(element, [true, false, false]);
@@ -169,13 +159,6 @@ describe('Component: Carousel', () => {
     fixture.detectChanges();
     expectActiveSlides(element, [true, false, false]);
   });
-
-  // it('should change slide on time passage (default)', fakeAsync(() => {
-  //   expectActiveSlides(clean, [true, false]);
-  //   tick(6000);
-  //   fixture.detectChanges();
-  //   expectActiveSlides(clean, [false, true]);
-  // }));
 
   it('should wrap slide changes by default', () => {
     const prev = element.querySelector('a.left');

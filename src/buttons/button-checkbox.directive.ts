@@ -1,18 +1,19 @@
 // tslint:disable:no-use-before-declare
 import {
   Directive,
+  forwardRef,
   HostBinding,
   HostListener,
   Input,
   OnInit,
-  forwardRef
+  Provider
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // TODO: config: activeClass - Class to apply to the checked buttons
-
-export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
+export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonCheckboxDirective),
   multi: true
 };
@@ -26,19 +27,19 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */
-  @Input() btnCheckboxTrue: any = true;
+  @Input() btnCheckboxTrue = true;
   /** Falsy value, will be set to ngModel */
-  @Input() btnCheckboxFalse: any = false;
+  @Input() btnCheckboxFalse = false;
 
   @HostBinding('class.active')
   @HostBinding('attr.aria-pressed')
   state = false;
 
-  protected value: any;
+  protected value: boolean | string;
   protected isDisabled: boolean;
 
-  protected onChange: any = Function.prototype;
-  protected onTouched: any = Function.prototype;
+  protected onChange = Function.prototype;
+  protected onTouched = Function.prototype;
 
   // view -> model
   @HostListener('click')
@@ -51,7 +52,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.onChange(this.value);
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this.toggle(this.trueValue === this.value);
   }
 
@@ -74,7 +75,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
 
   // ControlValueAccessor
   // model -> view
-  writeValue(value: any): void {
+  writeValue(value: boolean | string | null): void {
     this.state = this.trueValue === value;
     this.value = value ? this.trueValue : this.falseValue;
   }
@@ -83,7 +84,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.isDisabled = isDisabled;
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: () => {}): void {
     this.onChange = fn;
   }
 

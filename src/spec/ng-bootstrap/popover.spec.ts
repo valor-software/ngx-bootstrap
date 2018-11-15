@@ -104,7 +104,7 @@ describe('popover', () => {
     });
   });
 
-  function getWindow(element: any): HTMLElement {
+  function getWindow(element: HTMLElement): HTMLElement {
     return element.querySelector('popover-container');
   }
 
