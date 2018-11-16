@@ -6,7 +6,7 @@ export class CollapsePo extends BaseComponent {
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/collapse';
 
   collapseClass = '.collapse';
-  showIndicator = 'in show';
+  showIndicator = 'show';
 
   exampleDemosArr = {
     basic: 'collapse-demo'
