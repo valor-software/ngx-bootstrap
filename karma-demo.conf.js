@@ -18,9 +18,10 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    // files: [
+     files: [
     //   {pattern: './scripts/test.ts', watched: false}
-    // ],
+         "node_modules/bootstrap/dist/css/bootstrap.min.css",
+     ],
     // preprocessors: {
     //   './scripts/test.ts': ['@angular-devkit/build-angular']
     // },

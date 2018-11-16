@@ -1,8 +1,9 @@
 // tslint:disable:max-file-line-count
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
+import { Subscription } from 'rxjs';
 
 const template = `
   <div [collapse]="isCollapsed">
@@ -15,17 +16,17 @@ const template = `
   selector: 'collapse-test',
   template
 })
-class TestCollapseComponent {}
-
-// TODO: - add animate
-//       - check callbacks have been called or not called (expanding, expanded, collapsing, collapsed)
+class TestCollapseComponent {
+  @ViewChild(CollapseDirective)
+  collapse: CollapseDirective;
+  isCollapsed = false;
+  isHidden = false;
+}
 
 describe('Directive: Collapse', () => {
   let fixture: ComponentFixture<TestCollapseComponent>;
-  /* tslint:disable-next-line: no-any */
-  let element: any;
-  /* tslint:disable-next-line: no-any */
-  let context: any;
+  let element: HTMLDivElement;
+  let context: TestCollapseComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,45 +44,75 @@ describe('Directive: Collapse', () => {
     expect(div.classList).toContain('collapse');
   });
 
-  it('should add/remove in class on toggle', () => {
-    expect(element.classList).toContain('in');
-    context.isCollapsed = true;
+  it('should be hidden on initialization if isCollapsed = true and ' +
+    'should not trigger any animation on initialization', () => {
+    fixture = TestBed.createComponent(TestCollapseComponent);
+    fixture.componentInstance.isCollapsed = true;
     fixture.detectChanges();
-    expect(element.classList).not.toContain('in');
-  });
-
-  it('should be hidden on initialization if isCollapsed = true', () => {
-    context.isCollapsed = true;
-    fixture.detectChanges();
+    // animation test by immediate height check
+    element = fixture.nativeElement.querySelector('.collapse');
     expect(element.offsetHeight).toBe(0);
   });
 
-  xit(
-    'should not trigger any animation on initialization if isCollapsed = true',
-    () => {
-      expect(true);
-    }
-  );
-
-  it('should collapse if isCollapsed = true on subsequent use', () => {
-    context.isCollapsed = false;
-    fixture.detectChanges();
-    context.isCollapsed = true;
-    fixture.detectChanges();
-    expect(element.offsetHeight).toBe(0);
-  });
-
-  it('should show after toggled from collapsed', () => {
-    context.isCollapsed = true;
-    fixture.detectChanges();
-    expect(element.offsetHeight).toBe(0);
+  it('should collapse if isCollapsed = true on subsequent use', done => {
     context.isCollapsed = false;
     fixture.detectChanges();
     expect(element.offsetHeight).not.toBe(0);
+
+    let subscription: Subscription;
+
+    const detectCollapsed = () => {
+      subscription = context.collapse.collapsed.subscribe(() => {
+        subscription.unsubscribe();
+        expect(element.offsetHeight).toBe(0);
+        done();
+      });
+    };
+    const detectCollapsing = () => {
+      subscription = context.collapse.collapses.subscribe(() => {
+        subscription.unsubscribe();
+        detectCollapsed();
+      });
+    };
+    const triggerCollapse = () => {
+      detectCollapsing();
+      context.isCollapsed = true;
+      fixture.detectChanges();
+    };
+
+    triggerCollapse();
+  });
+
+  it('should show after toggled from isCollapsed', done => {
+    let subscription: Subscription;
+
+    const detectExpanded = () => {
+      subscription = context.collapse.expanded.subscribe(() => {
+        subscription.unsubscribe();
+        expect(element.offsetHeight).not.toBe(0);
+        done();
+      });
+    };
+    const detectCollapsed = () => {
+      subscription = context.collapse.collapsed.subscribe(() => {
+        subscription.unsubscribe();
+        expect(element.offsetHeight).toBe(0);
+        detectExpanded();
+        context.isCollapsed = false;
+        fixture.detectChanges();
+      });
+    };
+    const triggerCollapse = () => {
+      detectCollapsed();
+      context.isCollapsed = true;
+      fixture.detectChanges();
+    };
+
+    triggerCollapse();
   });
 
   xit(
-    'should not trigger any animation on initialization if isCollapsed = false',
+    'should not trigger any animation on initialization if isHidden = false',
     () => {
       expect(true);
     }
@@ -97,16 +128,19 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).not.toBe(0);
   });
 
-  it('should collapse if isCollapsed = true on subsequent uses', () => {
+  it('should collapse if isCollapsed = true on subsequent uses', done => {
     context.isCollapsed = false;
     fixture.detectChanges();
     context.isCollapsed = true;
     fixture.detectChanges();
     context.isCollapsed = false;
     fixture.detectChanges();
+    context.collapse.collapsed.subscribe(() => {
+      expect(element.offsetHeight).toBe(0);
+      done();
+    });
     context.isCollapsed = true;
     fixture.detectChanges();
-    expect(element.offsetHeight).toBe(0);
   });
 
   it('should change aria-expanded attribute', () => {

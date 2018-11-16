@@ -610,11 +610,18 @@ export const ngdoc: any = {
     "outputs": [
       {
         "name": "collapsed",
-        "description": "<p>This event fires as soon as content collapses </p>\n"
+        "description": "<p>This event fires as soon as content has completely collapsing (animation complete) </p>\n"
       },
       {
         "name": "expanded",
-        "description": "<p>This event fires as soon as content becomes visible </p>\n"
+        "description": "<p>This event fires as soon as content has become completely visible (animation complete) </p>\n"
+      },{
+        "name": "collapses",
+        "description": "<p>This event fires as soon as content started collapsing (event triggered) </p>\n"
+      },
+      {
+        "name": "expands",
+        "description": "<p>This event fires as soon as content start to become visible (event triggered) </p>\n"
       }
     ],
     "properties": [

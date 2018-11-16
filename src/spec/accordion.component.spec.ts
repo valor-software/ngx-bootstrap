@@ -196,5 +196,7 @@ describe('Component: Accordion', () => {
     expect(context.panels[0].isOpen).toBe(false);
     expect(context.panels[1].isOpen).toBe(true);
     expect(context.panels[2].isOpen).toBe(false);
+
+    tick(5000);
   }));
 });

@@ -3,11 +3,10 @@ import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';
 import { CollapseDemoEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
-import { InlineDisplayDemoComponent } from './demos/inline-display/inline-display';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
 
@@ -37,7 +36,9 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'events',
         component: require('!!raw-loader?lang=typescript!./demos/events/events'),
         html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
-        description: `Collapse directive exposes 2 events: <code>collapsed</code>, that fires when a content was hidden, 
+        description: `Collapse directive exposes 4 events: <code>collapses</code>, that fires when a collapse was triggered (aniamtion start),
+                        <code>collapsed</code>, that fires when a content was hidden (aniamtion finished), 
+                        <code>expands</code>, that fires when a expansion was triggered (animation start)
                       and <code>expanded</code>, that fires when a content was shown`,
         outlet: CollapseDemoEventsComponent
       },
@@ -47,13 +48,6 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
         html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
         outlet: ToggleManualDemoComponent
-      },
-      {
-        title: 'Inline display',
-        anchor: 'inline-display',
-        component: require('!!raw-loader?lang=typescript!./demos/inline-display/inline-display'),
-        html: require('!!raw-loader?lang=markup!./demos/inline-display/inline-display.html'),
-        outlet: InlineDisplayDemoComponent
       },
       {
         title: 'Accessibility',
