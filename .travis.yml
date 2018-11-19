@@ -137,8 +137,7 @@ jobs:
         api_key: $HEROKU_API_KEY
         skip_cleanup: true
         app: ngx-universal
-        on:
-          branch: fix-travis-heroku-stage
+        on: development
 
 # publish to gh pages and npm
     - stage: publish
