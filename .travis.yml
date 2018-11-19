@@ -74,7 +74,7 @@ jobs:
 #   lint code
     - stage: lint
       install: true
-      script: npm run lint
+      script: npm run lint-src
 
 #   test
     - &test
