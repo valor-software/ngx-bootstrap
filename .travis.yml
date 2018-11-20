@@ -74,7 +74,7 @@ jobs:
 #   lint code
     - stage: lint
       install: true
-      script: npm run lint
+      script: npm run lint-src
 
 #   test
     - &test
@@ -127,17 +127,17 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap-latest.surge.sh
         on: development
-# todo: Illya please fix
-#    - stage: deploy
-#      script: npm run build:dynamic
-#      before_deploy:
-#        - cd ./demo/dist
-#      deploy:
-#        provider: heroku
-#        api_key: $HEROKU_API_KEY
-#        skip_cleanup: true
-#        app: ngx-universal
-#        on: development
+#   deploy to ngx-universal.herokuapp.com/
+    - stage: deploy
+      script: npm run build:dynamic
+      before_deploy:
+        - cd ./demo/dist
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        skip_cleanup: true
+        app: ngx-universal
+        on: development
 
 # publish to gh pages and npm
     - stage: publish
