@@ -135,6 +135,13 @@ export class TypeaheadContainerComponent {
     this._active = value;
   }
 
+  toSafeHTML(input: string): string {
+    const doc = new DOMParser().parseFromString('', 'text/html');
+    doc.body.appendChild(doc.createTextNode(input));
+
+    return doc.body.innerHTML;
+  }
+
   highlight(match: TypeaheadMatch, query: string[] | string): string {
     let itemStr: string = match.value;
     let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
@@ -151,11 +158,12 @@ export class TypeaheadContainerComponent {
         tokenLen = query[i].length;
         if (startIdx >= 0 && tokenLen > 0) {
           itemStr =
-            `${itemStr.substring(0, startIdx)}<strong>${itemStr.substring(startIdx, startIdx + tokenLen)}</strong>` +
-            `${itemStr.substring(startIdx + tokenLen)}`;
+            `${this.toSafeHTML(itemStr.substring(0, startIdx))}` +
+            `<strong>${this.toSafeHTML(itemStr.substring(startIdx, startIdx + tokenLen))}</strong>` +
+            `${this.toSafeHTML(itemStr.substring(startIdx + tokenLen))}`;
           itemStrHelper =
-            `${itemStrHelper.substring(0, startIdx)}        ${' '.repeat(tokenLen)}         ` +
-            `${itemStrHelper.substring(startIdx + tokenLen)}`;
+            `${this.toSafeHTML(itemStrHelper.substring(0, startIdx))}        ${' '.repeat(tokenLen)}         ` +
+            `${this.toSafeHTML(itemStrHelper.substring(startIdx + tokenLen))}`;
         }
       }
     } else if (query) {
@@ -164,8 +172,9 @@ export class TypeaheadContainerComponent {
       tokenLen = query.length;
       if (startIdx >= 0 && tokenLen > 0) {
         itemStr =
-          `${itemStr.substring(0, startIdx)}<strong>${itemStr.substring(startIdx, startIdx + tokenLen)}</strong>` +
-          `${itemStr.substring(startIdx + tokenLen)}`;
+          `${this.toSafeHTML(itemStr.substring(0, startIdx))}` +
+          `<strong>${this.toSafeHTML(itemStr.substring(startIdx, startIdx + tokenLen))}</strong>` +
+          `${this.toSafeHTML(itemStr.substring(startIdx + tokenLen))}`;
       }
     }
 

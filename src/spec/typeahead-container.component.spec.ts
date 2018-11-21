@@ -63,8 +63,8 @@ describe('Component: TypeaheadContainer', () => {
     beforeEach(() => {
       component.query = 'fo';
       component.matches = [
-        new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
-        new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
+        new TypeaheadMatch({ id: 0, name: '&foo' }, '&foo'),
+        new TypeaheadMatch({ id: 1, name: '<food>' }, '<food>')
       ];
       fixture.detectChanges();
 
@@ -76,6 +76,13 @@ describe('Component: TypeaheadContainer', () => {
     describe('rendering', () => {
       it('should render 2 matches', () => {
         expect(matches.length).toBe(2);
+      });
+
+      it('escapes the markup to prevent XSS', () => {
+        const ms = fixture.debugElement.queryAll(
+          By.css('.dropdown-menu li span')
+        );
+        expect(ms[1].nativeElement.innerHTML).toBe('&lt;<strong>fo</strong>od&gt;');
       });
 
       xit('should highlight query for match', () => {
