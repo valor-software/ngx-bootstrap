@@ -120,7 +120,7 @@ export class BsDatepickerEffects {
 
     container.dayHoverHandler = (event: CellHoverEvent): void => {
       const _cell = event.cell as DayViewModel;
-      if (_cell.isOtherMonth || _cell.isDisabled) {
+      if (_cell.isDisabled) {
         return;
       }
 
