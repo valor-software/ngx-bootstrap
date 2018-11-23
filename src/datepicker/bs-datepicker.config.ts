@@ -21,7 +21,10 @@ export class BsDatepickerConfig
    * Default max date for all date/range pickers
    */
   maxDate?: Date;
-
+  /**
+   * Makes dates from other months active
+   */
+  isOtherMonthsDatesActive = false;
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
    */
