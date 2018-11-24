@@ -21,11 +21,11 @@ const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent);
 
 function getAlertElement(element: HTMLElement): HTMLDivElement {
-  return element.querySelector('.alert') as HTMLDivElement;
+  return element.querySelector<HTMLDivElement>('.alert');
 }
 
 function getCloseButton(element: HTMLElement): HTMLButtonElement {
-  return element.querySelector('button');
+  return element.querySelector<HTMLButtonElement>('button');
 }
 
 describe('ngb-alert', () => {

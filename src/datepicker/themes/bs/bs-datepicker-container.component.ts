@@ -53,8 +53,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // on selected date change
     this._subs.push(
       this._store
-        .select(state => state.selectedDate)
-        .subscribe(date => this.valueChange.emit(date))
+        /* tslint:disable-next-line: no-any */
+        .select((state: any) => state.selectedDate)
+        /* tslint:disable-next-line: no-any */
+        .subscribe((date: any) => this.valueChange.emit(date))
     );
   }
 
