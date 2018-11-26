@@ -9,7 +9,6 @@ describe('ModalBackdropComponent tests', () => {
     TestBed.configureTestingModule({
       declarations: [ModalBackdropComponent]
     });
-
     fixture = TestBed.createComponent(ModalBackdropComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
