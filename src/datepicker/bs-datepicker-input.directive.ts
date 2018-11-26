@@ -84,7 +84,9 @@ export class BsDatepickerInputDirective
   }
 
   _setInputValue(value: Date): void {
-    const initialDate = !value ? ''
+    const initialDate = !value || isBefore(value, this._picker.minDate, 'date')
+      || isAfter(value, this._picker.maxDate, 'date') || !isDateValid(value)
+      ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
