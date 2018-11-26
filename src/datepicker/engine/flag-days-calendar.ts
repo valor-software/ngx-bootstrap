@@ -22,6 +22,7 @@ export function flagDaysCalendar(
   options: FlagDaysCalendarOptions
 ): DaysCalendarViewModel {
   formattedMonth.weeks.forEach((week: WeekViewModel, weekIndex: number) => {
+    // tslint:disable-next-line:cyclomatic-complexity
     week.days.forEach((day: DayViewModel, dayIndex: number) => {
       // datepicker
       const isOtherMonth = !isSameMonth(day.date, formattedMonth.month);
