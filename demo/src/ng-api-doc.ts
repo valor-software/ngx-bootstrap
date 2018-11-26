@@ -151,13 +151,13 @@ export const ngdoc: any = {
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
-        "type": "any",
+        "type": "boolean",
         "description": "<p>Falsy value, will be set to ngModel </p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
-        "type": "any",
+        "type": "boolean",
         "description": "<p>Truthy value, will be set to ngModel </p>\n"
       }
     ],
@@ -183,7 +183,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "btnRadio",
-        "type": "any",
+        "type": "string",
         "description": "<p>Radio button value, will be set to <code>ngModel</code> </p>\n"
       },
       {
@@ -198,7 +198,7 @@ export const ngdoc: any = {
       },
       {
         "name": "value",
-        "type": "any",
+        "type": "string",
         "description": "<p>Current value of radio component or group </p>\n"
       }
     ],
@@ -366,7 +366,7 @@ export const ngdoc: any = {
         "name": "restartTimer",
         "description": "<p>Starts loop of auto changing of slides</p>\n",
         "args": [],
-        "returnType": "any"
+        "returnType": "void"
       },
       {
         "name": "resetTimer",
@@ -653,7 +653,7 @@ export const ngdoc: any = {
     "properties": []
   },
   "ListenOptions": {
-    "fileName": "src/component-loader/listen-options.model.ts",
+    "fileName": "src/utils/triggers.ts",
     "className": "ListenOptions",
     "description": "",
     "methods": [],
@@ -1827,7 +1827,7 @@ export const ngdoc: any = {
     ]
   },
   "Action": {
-    "fileName": "src/mini-ngrx/index.ts",
+    "fileName": "src/mini-ngrx/public_api.ts",
     "className": "Action",
     "description": "",
     "methods": [],
@@ -2031,6 +2031,55 @@ export const ngdoc: any = {
       }
     ]
   },
+  "ClassName": {
+    "fileName": "src/modal/models/index.ts",
+    "className": "ClassName",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "Selector": {
+    "fileName": "src/modal/models/index.ts",
+    "className": "Selector",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "TransitionDurations": {
+    "fileName": "src/modal/models/index.ts",
+    "className": "TransitionDurations",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DismissReasons": {
+    "fileName": "src/modal/models/index.ts",
+    "className": "DismissReasons",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "ConfigModel": {
+    "fileName": "src/pagination/models/index.ts",
+    "className": "ConfigModel",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "PagesModel": {
+    "fileName": "src/pagination/models/index.ts",
+    "className": "PagesModel",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "PagerModel": {
+    "fileName": "src/pagination/models/index.ts",
+    "className": "PagerModel",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "PagerComponent": {
     "fileName": "src/pagination/pager.component.ts",
     "className": "PagerComponent",
@@ -2177,7 +2226,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <code>&lt;li></code></p>\n"
+        "description": "<p>add class to <code>&lt;li></code> </p>\n"
       },
       {
         "name": "previousText",
@@ -2427,7 +2476,7 @@ export const ngdoc: any = {
       {
         "name": "animate",
         "type": "boolean",
-        "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated </p>\n"
       },
       {
         "name": "max",
@@ -2474,6 +2523,20 @@ export const ngdoc: any = {
       }
     ]
   },
+  "RatingResults": {
+    "fileName": "src/rating/models/index.ts",
+    "className": "RatingResults",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "AccessorContent": {
+    "fileName": "src/rating/models/index.ts",
+    "className": "AccessorContent",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "RatingComponent": {
     "fileName": "src/rating/rating.component.ts",
     "className": "RatingComponent",
@@ -2499,7 +2562,7 @@ export const ngdoc: any = {
       {
         "name": "titles",
         "type": "string[]",
-        "description": "<p>array of icons titles</p>\n"
+        "description": "<p>array of icons titles, default: ([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]) </p>\n"
       }
     ],
     "outputs": [
@@ -2727,6 +2790,13 @@ export const ngdoc: any = {
         "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39; </p>\n"
       }
     ]
+  },
+  "ControlValueAccessorModel": {
+    "fileName": "src/timepicker/models/index.ts",
+    "className": "ControlValueAccessorModel",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "TimepickerActions": {
     "fileName": "src/timepicker/reducer/timepicker.actions.ts",

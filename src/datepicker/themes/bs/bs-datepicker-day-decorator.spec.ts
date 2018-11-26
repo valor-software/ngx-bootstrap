@@ -54,6 +54,7 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     expect(el).not.toHaveCssClass('select-start');
     expect(el).not.toHaveCssClass('select-end');
     expect(el).not.toHaveCssClass('selected');
+    expect(el).not.toHaveCssClass('today');
   });
 
   it('should add classes corresponding to day state', () => {
@@ -64,7 +65,8 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
       isInRange: true,
       isSelectionStart: true,
       isSelectionEnd: true,
-      isSelected: true
+      isSelected: true,
+      isToday: true
     });
     const el = getDayElement(fixture);
     expect(el).toHaveCssClass('disabled');
@@ -74,5 +76,6 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     expect(el).toHaveCssClass('select-start');
     expect(el).toHaveCssClass('select-end');
     expect(el).toHaveCssClass('selected');
+    expect(el).toHaveCssClass('today');
   });
 });

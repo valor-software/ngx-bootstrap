@@ -11,7 +11,8 @@ import { DayViewModel } from '../../models';
     '[class.in-range]': 'day.isInRange',
     '[class.select-start]': 'day.isSelectionStart',
     '[class.select-end]': 'day.isSelectionEnd',
-    '[class.selected]': 'day.isSelected'
+    '[class.selected]': 'day.isSelected',
+    '[class.today]': 'day.isToday'
   },
   template: `{{ day.label }}`
 })
