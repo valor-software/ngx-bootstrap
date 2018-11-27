@@ -55,6 +55,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   yearSelectHandler(event: CalendarCellViewModel): void {}
 
+  /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {
     event.stopPropagation();
   }

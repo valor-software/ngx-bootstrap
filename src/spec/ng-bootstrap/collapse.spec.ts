@@ -49,11 +49,16 @@ describe('bs-collapse', () => {
     const collapseEl = getCollapsibleContent(fixture.nativeElement);
     fixture.detectChanges();
 
-    fixture.whenStable().then(() => {
-      expect(collapseEl).not.toHaveCssClass('in');
-      expect(collapseEl).not.toHaveCssClass('show');
-      expect(collapseEl.getAttribute('aria-expanded')).toBe('false');
-      done();
+    fixture.whenStable()
+      .then(() => {
+        expect(collapseEl).not.toHaveCssClass('in');
+        expect(collapseEl).not.toHaveCssClass('show');
+        expect(collapseEl.getAttribute('aria-expanded')).toBe('false');
+        done();
+      })
+      .catch((error: Error) => {
+      /* tslint:disable: no-console */
+      console.log(error);
     });
   });
 

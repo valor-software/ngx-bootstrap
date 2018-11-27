@@ -24,7 +24,7 @@ import { getProjectMainFile } from '../utils/project-main-file';
 import { hasNgModuleImport } from '../utils/ng-module-imports';
 
 
-const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.css`;
+const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
 const datePickerStylePath =  `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
 
 /* tslint:disable-next-line: no-default-export */

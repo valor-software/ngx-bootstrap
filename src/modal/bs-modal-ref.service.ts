@@ -5,6 +5,7 @@ export class BsModalRef {
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
+  // tslint:disable-next-line:no-any
   content?: any | null;
 
   /**

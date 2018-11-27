@@ -1,3 +1,4 @@
+/* tslint:disable: max-file-line-count */
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
 import { By } from '@angular/platform-browser';
@@ -10,6 +11,7 @@ import {
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
+  /* tslint:disable-next-line: no-any */
   let testModule: any;
   let component: TypeaheadContainerComponent;
 
@@ -221,13 +223,19 @@ describe('Component: TypeaheadContainer', () => {
   });
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
+    /* tslint:disable-next-line: no-unused-variable */
     let headerMatch: HTMLLIElement;
     let containingElementScrollable: HTMLElement[];
 
     beforeEach(fakeAsync(() => {
       fixture = testModule.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
-      component.parent = { typeaheadOptionsInScrollableView: 3, typeaheadScrollable: true } as TypeaheadDirective;
+      /* tslint:disable-next-line: no-object-literal-type-assertion */
+      component.parent = {
+        typeaheadOptionsInScrollableView: 3,
+        typeaheadScrollable: true
+      } as TypeaheadDirective;
+
       fixture.detectChanges();
       tick(1);
       component.query = 'a';
@@ -247,8 +255,7 @@ describe('Component: TypeaheadContainer', () => {
 
       fixture.detectChanges();
       tick(1);
-      // component.ngAfterViewInit();
-      let headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
+      const headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
       if (headers) {
         headerMatch = asNativeElements(headers);
       }
@@ -262,26 +269,32 @@ describe('Component: TypeaheadContainer', () => {
       });
 
       it('should not throw exception when scrollPrevious is without li elements', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).liElements = undefined;
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollPrevious(1);
         expect(component.element.nativeElement.scrollTop).toBe(0);
       });
 
       it('should not throw exception when scrollPrevious is scrolling outside of index ', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollPrevious(100);
         expect(component.element.nativeElement.scrollTop).toBe(0);
 
       });
 
       it('should not throw exception when scrollNext is without li elements', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).liElements = undefined;
 
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollNext(1);
         expect(component.element.nativeElement.scrollTop).toBe(0);
 
       });
 
       it('should not throw exception when scrollNext is scrolling outside of index', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollNext(100);
         expect(component.element.nativeElement.scrollTop).toBe(0);
       });

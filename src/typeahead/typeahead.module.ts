@@ -3,7 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadDirective } from './typeahead.directive';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/loader';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 @NgModule({
