@@ -48,7 +48,11 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
       this._isOpen = value;
       Promise.resolve(null).then(() => {
         this.isOpenChange.emit(value);
-      });
+      })
+        .catch((error: Error) => {
+          /* tslint:disable: no-console */
+          console.log(error);
+        });
     }
   }
 
@@ -63,16 +67,16 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     this.accordion = accordion;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this.accordion.removeGroup(this);
   }
 
-  toggleOpen(event: Event): any {
+  toggleOpen(): void {
     if (!this.isDisabled) {
       this.isOpen = !this.isOpen;
     }

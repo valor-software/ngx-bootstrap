@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BsComponentRef } from 'ngx-bootstrap/loader';
+import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 
 @Injectable()
 export class BsDropdownState {
@@ -12,6 +12,7 @@ export class BsDropdownState {
   /**
    * Content to be displayed as popover.
    */
+  // tslint:disable:no-any
   dropdownMenu: Promise<BsComponentRef<any>>;
   resolveDropdownMenu: (componentRef: BsComponentRef<any>) => void;
 

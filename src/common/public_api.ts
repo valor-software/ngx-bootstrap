@@ -1,4 +1,4 @@
-/* tslint:disable: max-classes-per-file */
+/* tslint:disable */
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
@@ -162,7 +162,7 @@ export {
   ComponentLoaderFactory,
   ContentRef,
   BsComponentRef
-} from 'ngx-bootstrap/loader';
+} from 'ngx-bootstrap/component-loader';
 
 export {
   Positioning,
