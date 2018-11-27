@@ -21,7 +21,6 @@ describe('ModalBackdropComponent tests', () => {
   it('should get and set isAnimated correctly', () => {
     component.isAnimated = false;
     expect(component.isAnimated).toBeFalsy();
-
     component.isAnimated = true;
     expect(component.isAnimated).toBeTruthy();
   });
@@ -29,7 +28,6 @@ describe('ModalBackdropComponent tests', () => {
   it('should get and set isShown correctly', () => {
     component.isShown = false;
     expect(component.isShown).toBeFalsy();
-
     component.isShown = true;
     expect(component.isShown).toBeTruthy();
   });
