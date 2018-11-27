@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 describe('ModalBackdropComponent tests', () => {
   let fixture: ComponentFixture<ModalBackdropComponent>;
   let component: ModalBackdropComponent;
+  
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ModalBackdropComponent]
