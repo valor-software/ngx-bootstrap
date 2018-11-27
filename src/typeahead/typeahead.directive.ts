@@ -298,7 +298,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         return undefined;
       }
       if (this.typeaheadIsShowOnBlur || this.element.nativeElement.contains(e.target)) {
-        return;
+        return undefined;
       }
       this.onOutsideClick();
     });

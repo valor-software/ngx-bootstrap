@@ -2,6 +2,7 @@ import { TypeaheadMatch } from '../typeahead';
 
 describe('TypeaheadMatch tests', () => {
   let typeaheadMatch: TypeaheadMatch = null;
+
   beforeEach(() => {
     typeaheadMatch = new TypeaheadMatch('test', 'test text', false);
   });
