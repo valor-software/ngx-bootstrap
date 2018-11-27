@@ -6,7 +6,7 @@ import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
 import { Subscription } from 'rxjs';
 
 const template = `
-  <div [collapse]="isCollapsed">
+  <div [collapse]="isCollapsed" [animate]="true">
     collapse directive
     <div [hidden]="isHidden">dynamic content</div>
   </div>

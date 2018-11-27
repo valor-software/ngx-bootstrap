@@ -21,7 +21,7 @@ function getCollapsibleContent(element: HTMLElement): Element {
 }
 
 describe('bs-collapse', () => {
-    let html = `<div [collapse]="collapsed">Some content</div>`;
+    let html = `<div [collapse]="collapsed" [animate]="true">Some content</div>`;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -80,7 +80,7 @@ describe('bs-collapse', () => {
     it('should allow toggling collapse from outside', done => {
         html = `
       <button (click)="collapse.toggle()">Collapse</button>
-      <div [collapse] #collapse="bs-collapse"></div>`;
+      <div [collapse] #collapse="bs-collapse" [animate]="true"></div>`;
 
         const fixture = createTestComponent(html);
 

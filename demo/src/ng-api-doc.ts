@@ -605,6 +605,10 @@ export const ngdoc: any = {
         "name": "collapse",
         "type": "boolean",
         "description": "<p>A flag indicating visibility of content (shown or hidden) </p>\n"
+      }, {
+        "name": "animate",
+        "type": "boolean",
+        "description": "<p>A flag to enable animated transition on toggle event (default: false) </p>\n"
       }
     ],
     "outputs": [
@@ -615,7 +619,7 @@ export const ngdoc: any = {
       {
         "name": "expanded",
         "description": "<p>This event fires as soon as content has become completely visible (animation complete) </p>\n"
-      },{
+      }, {
         "name": "collapses",
         "description": "<p>This event fires as soon as content started collapsing (event triggered) </p>\n"
       },

@@ -14,6 +14,10 @@ import Timer = NodeJS.Timer;
   exportAs: 'bs-collapse'
 })
 export class CollapseDirective implements OnInit {
+  /** enable animated toggle */
+  @Input()
+  animate: boolean | undefined;
+
   /** This event fires as soon as content collapses and animation has finished */
   @Output() collapsed: EventEmitter<CollapseDirective> = new EventEmitter();
   /** This event fires when collapsing is started */
@@ -73,26 +77,33 @@ export class CollapseDirective implements OnInit {
     }
     this.collapses.emit(this);
 
-    // set old dimension value as to not lose it on class change
-    const dimension = this._getDimension();
-    const dimensionValue = window.getComputedStyle(this._el.nativeElement)[dimension];
-    this._renderer.setStyle(this._el.nativeElement, dimension, dimensionValue);
+    if (this.animate) {
+      // set old dimension value as to not lose it on class change
+      const dimension = this._getDimension();
+      const dimensionValue = window.getComputedStyle(this._el.nativeElement)[dimension];
+      this._renderer.setStyle(this._el.nativeElement, dimension, dimensionValue);
 
-    // toggle bootstrap classes and properties
-    this.isExpanded = false;
-    this.isHidden = true;
-    this._setClasses('collapsing', ['collapse', 'show']);
+      // toggle bootstrap classes and properties
+      this.isExpanded = false;
+      this.isHidden = true;
+      this._setClasses('collapsing', ['collapse', 'show']);
 
-    // remove previously set dimension value to start transition
-    const duration = this._getDuration();
-    this._renderer.removeStyle(this._el.nativeElement, dimension);
+      // remove previously set dimension value to start transition
+      const duration = this._getDuration();
+      this._renderer.removeStyle(this._el.nativeElement, dimension);
 
-    // on transition finish, toggle bootstrap classes and emit finished
-    this._timeout = setTimeout(() => {
-      this._timeout = undefined;
-      this._setClasses('collapse', 'collapsing');
+      // on transition finish, toggle bootstrap classes and emit finished
+      this._timeout = setTimeout(() => {
+        this._timeout = undefined;
+        this._setClasses('collapse', 'collapsing');
+        this.collapsed.emit(this);
+      }, duration);
+    } else {
+      this.isExpanded = false;
+      this.isHidden = true;
+      this._setClasses([], 'show');
       this.collapsed.emit(this);
-    }, duration);
+    }
   }
 
 
@@ -109,22 +120,28 @@ export class CollapseDirective implements OnInit {
     // toggle bootstrap classes and properties
     this.isExpanded = true;
     this.isHidden = false;
-    this._setClasses('collapsing', 'collapse');
-
-    // set new height or width to scale to
     const dimension = this._getDimension();
-    const scrollDimension = `scroll${dimension.charAt(0).toUpperCase()}${dimension.substring(1)}`;
-    const dimensionValue = `${this._el.nativeElement[scrollDimension]}px`;
-    this._renderer.setStyle(this._el.nativeElement, dimension, dimensionValue);
-    const duration = this._getDuration();
+    if (this.animate) {
+      this._setClasses('collapsing', 'collapse');
 
-    // on transition finish, toggle bootstrap classes and emit finished
-    this._timeout = setTimeout(() => {
-      this._timeout = undefined;
+      // set new height or width to scale to
+      const scrollDimension = `scroll${dimension.charAt(0).toUpperCase()}${dimension.substring(1)}`;
+      const dimensionValue = `${this._el.nativeElement[scrollDimension]}px`;
+      this._renderer.setStyle(this._el.nativeElement, dimension, dimensionValue);
+      const duration = this._getDuration();
+
+      // on transition finish, toggle bootstrap classes and emit finished
+      this._timeout = setTimeout(() => {
+        this._timeout = undefined;
+        this._renderer.removeStyle(this._el.nativeElement, dimension);
+        this._setClasses(['collapse', 'show'], 'collapsing');
+        this.expanded.emit(this);
+      }, duration);
+    } else {
       this._renderer.removeStyle(this._el.nativeElement, dimension);
       this._setClasses(['collapse', 'show'], 'collapsing');
       this.expanded.emit(this);
-    }, duration);
+    }
   }
 
   /**
