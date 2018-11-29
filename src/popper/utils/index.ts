@@ -27,6 +27,8 @@ export { runModifiers } from './runModifiers';
 export { setAttributes } from './setAttributes';
 export { setStyles } from './setStyles';
 export { setupEventListeners } from './setupEventListeners';
+export { getOppositePlacement } from './getOppositePlacement';
+export { getOppositeVariation } from './getOppositeVariation';
 
 // export {
 //   computeAutoPlacement,

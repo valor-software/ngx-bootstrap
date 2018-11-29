@@ -1,250 +1,301 @@
 /**
  * @copyright Valor Software
- * @copyright Angular ng-bootstrap team
+ * @copyright popper.js team
  */
 
-// previous version:
+import {
+  computeAutoPlacement,
+  getBoundaries,
+  getBoundingClientRect,
+  getOffsetParent,
+  getPopperOffsets,
+  getReferenceOffsets,
+  getOppositePlacement,
+  getOppositeVariation
+} from 'ngx-bootstrap/popper';
+
+// previous version:`
 // https://github.com/angular-ui/bootstrap/blob/07c31d0731f7cb068a1932b8e01d2312b796b4ec/src/position/position.js
 // tslint:disable
 export class Positioning {
+
   public position(element: HTMLElement, round = true): ClientRect {
     let elPosition: ClientRect;
-    let parentOffset: ClientRect = {
-      width: 0,
+    // let parentOffset: ClientRect = {
+    //   width: 0,
+    //   height: 0,
+    //   top: 0,
+    //   bottom: 0,
+    //   left: 0,
+    //   right: 0
+    // };
+    //
+    // if (this.getStyle(element, 'position') === 'fixed') {
+    //
+    //   const bcRect = element.getBoundingClientRect();
+    //   elPosition = {
+    //     width: bcRect.width,
+    //     height: bcRect.height,
+    //     top: bcRect.top,
+    //     bottom: bcRect.bottom,
+    //     left: bcRect.left,
+    //     right: bcRect.right
+    //   };
+    // } else {
+    //   const offsetParentEl = this.offsetParent(element);
+    //
+    //   elPosition = this.offset(element, false);
+    //
+    //   if (offsetParentEl !== document.documentElement) {
+    //     parentOffset = this.offset(offsetParentEl, false);
+    //   }
+    //
+    //   parentOffset.top += offsetParentEl.clientTop;
+    //   parentOffset.left += offsetParentEl.clientLeft;
+    // }
+    //
+    // elPosition.top -= parentOffset.top;
+    // elPosition.bottom -= parentOffset.top;
+    // elPosition.left -= parentOffset.left;
+    // elPosition.right -= parentOffset.left;
+    //
+    // if (round) {
+    //   elPosition.top = Math.round(elPosition.top);
+    //   elPosition.bottom = Math.round(elPosition.bottom);
+    //   elPosition.left = Math.round(elPosition.left);
+    //   elPosition.right = Math.round(elPosition.right);
+    // }
+    //
+    return elPosition;
+  }
+
+  preventOverflow(boundariesEl, tooltip, reference, offsetsPopper) {
+    let boundariesElement =
+      boundariesEl || getOffsetParent(tooltip);
+
+    // If offsetParent is the reference element, we really want to
+    // go one step up and use the next offsetParent as reference to
+    // avoid to make this modifier completely useless and look like broken
+    if (reference === boundariesElement) {
+      boundariesElement = getOffsetParent(boundariesElement);
+    }
+
+    // NOTE: DOM access here
+    // resets the popper's position so that the document size can be calculated excluding
+    // the size of the popper element itself
+    const transformProp = 'transform';
+    const popperStyles = tooltip.style; // assignment to help minification
+    const { top, left, [transformProp]: transform } = popperStyles;
+    popperStyles.top = '';
+    popperStyles.left = '';
+    popperStyles[transformProp] = '';
+
+    const boundaries = getBoundaries(
+      tooltip,
+      reference,
+      0, // options.padding
+      boundariesElement,
+      false // data.positionFixed
+    );
+
+    // NOTE: DOM access here
+    // restores the original style properties after the offsets have been computed
+    popperStyles.top = top;
+    popperStyles.left = left;
+    popperStyles[transformProp] = transform;
+
+    // options.boundaries = boundaries;
+
+    const order = ['left', 'right', 'top', 'bottom'];
+    let popper = offsetsPopper;
+
+    const check = {
+      primary(placement) {
+        let value = popper[placement];
+        if (
+          popper[placement] < boundaries[placement] &&
+          !false // options.escapeWithReference
+        ) {
+          value = Math.max(popper[placement], boundaries[placement]);
+        }
+
+        return { [placement]: value };
+      },
+      secondary(placement) {
+        const mainSide = placement === 'right' ? 'left' : 'top';
+        let value = popper[mainSide];
+        if (
+          popper[placement] > boundaries[placement] &&
+          !false // options.escapeWithReference
+        ) {
+          value = Math.min(
+            popper[mainSide],
+            boundaries[placement] -
+            (placement === 'right' ? popper.width : popper.height)
+          );
+        }
+
+        return { [mainSide]: value };
+      }
+    };
+
+    order.forEach(placement => {
+      const side = ['left', 'top']
+        .indexOf(placement) !== -1
+        ? 'primary'
+        : 'secondary';
+
+      popper = { ...popper, ...check[side](placement) };
+    });
+
+    offsetsPopper = popper;
+
+    return offsetsPopper;
+  }
+
+  flip(boundariesEl, tooltip, reference, offsetsPopper, referenceOffsets, inputPlacement) {
+    let boundariesElement =
+      boundariesEl || getOffsetParent(tooltip);
+
+    const boundaries = getBoundaries(
+      tooltip,
+      reference,
+      5, // options.padding
+      boundariesElement,
+      false // data.positionFixed
+    );
+
+    let placement = inputPlacement.split('-')[0];
+    let placementOpposite = getOppositePlacement(placement);
+    let variation = inputPlacement.split('-')[1] || '';
+
+    let flipOrder = [];
+
+    flipOrder = [placement, placementOpposite];
+
+    /* tslint:disable-next-line: cyclomatic-complexity */
+    flipOrder.forEach((step, index) => {
+      if (placement !== step || flipOrder.length === index + 1) {
+        return placement;
+      }
+
+      placement = inputPlacement.split('-')[0];
+      placementOpposite = getOppositePlacement(placement);
+
+      const popperOffsets = referenceOffsets;
+      const refOffsets = offsetsPopper;
+
+      // using floor because the reference offsets may contain decimals we are not going to consider here
+      const floor = Math.floor;
+      const overlapsRef =
+        (placement === 'left' &&
+          floor(popperOffsets.right) > floor(refOffsets.left)) ||
+        (placement === 'right' &&
+          floor(popperOffsets.left) < floor(refOffsets.right)) ||
+        (placement === 'top' &&
+          floor(popperOffsets.bottom) > floor(refOffsets.top)) ||
+        (placement === 'bottom' &&
+          floor(popperOffsets.top) < floor(refOffsets.bottom));
+
+      const overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+      const overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+      const overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+      const overflowsBottom =
+        floor(popperOffsets.bottom) > floor(boundaries.bottom);
+
+      const overflowsBoundaries =
+        (placement === 'left' && overflowsLeft) ||
+        (placement === 'right' && overflowsRight) ||
+        (placement === 'top' && overflowsTop) ||
+        (placement === 'bottom' && overflowsBottom);
+
+      // flip the variation if required
+      const isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+      const flippedVariation =
+        ((isVertical && variation === 'start' && overflowsLeft) ||
+          (isVertical && variation === 'end' && overflowsRight) ||
+          (!isVertical && variation === 'start' && overflowsTop) ||
+          (!isVertical && variation === 'end' && overflowsBottom));
+
+      if (overlapsRef || overflowsBoundaries || flippedVariation) {
+        // this boolean to detect any flip loop
+        // data.flipped = true;
+
+        if (overlapsRef || overflowsBoundaries) {
+          placement = flipOrder[index + 1];
+        }
+
+        if (flippedVariation) {
+          variation = getOppositeVariation(variation);
+        }
+
+        placement = placement + (variation ? `-${variation}` : '');
+      }
+    });
+
+    console.log(placement);
+
+    return placement;
+  }
+
+
+  public positionElements(
+    hostElement: HTMLElement,   // button or reference
+    targetElement: HTMLElement, // tooltip or popper
+    placement: string,
+    appendToBody?: boolean
+  ): ClientRect {
+
+    const referenceOffsets = getReferenceOffsets({}, targetElement, hostElement);
+    const autoPlacement = computeAutoPlacement(
+      placement,
+      referenceOffsets,
+      targetElement,
+      hostElement,
+      'viewport',
+      0
+    );
+
+    const popperOffsets: any = getPopperOffsets(targetElement, referenceOffsets, autoPlacement);
+
+    const overPlacement = this.preventOverflow('scrollParent', targetElement, hostElement, popperOffsets);
+
+
+    window.addEventListener('scroll', () => this.flip('viewport', targetElement, hostElement, popperOffsets, referenceOffsets, placement), true);
+    window.addEventListener('resize', () => this.flip('viewport', targetElement, hostElement, popperOffsets, referenceOffsets, placement), true);
+
+    // const hostElPosition = appendToBody
+    //   ? this.offset(hostElement, false)
+    //   : this.position(hostElement, false);
+    // const targetElStyles = this.getAllStyles(targetElement);
+    // const targetElBCR = targetElement.getBoundingClientRect();
+    // let placementPrimary = placement.split(' ')[0] || 'top';
+    // const placementSecondary = placement.split(' ')[1] || 'center';
+
+    let targetElPosition: any = {
       height: 0,
+      width: 0,
       top: 0,
       bottom: 0,
       left: 0,
       right: 0
     };
 
-    if (this.getStyle(element, 'position') === 'fixed') {
-      const bcRect = element.getBoundingClientRect();
-      elPosition = {
-        width: bcRect.width,
-        height: bcRect.height,
-        top: bcRect.top,
-        bottom: bcRect.bottom,
-        left: bcRect.left,
-        right: bcRect.right
-      };
-    } else {
-      const offsetParentEl = this.offsetParent(element);
+    targetElPosition.top = Math.round(popperOffsets.top);
+    targetElPosition.left = Math.round(popperOffsets.left);
 
-      elPosition = this.offset(element, false);
+    const offsetParent = getOffsetParent(hostElement);
 
-      if (offsetParentEl !== document.documentElement) {
-        parentOffset = this.offset(offsetParentEl, false);
-      }
-
-      parentOffset.top += offsetParentEl.clientTop;
-      parentOffset.left += offsetParentEl.clientLeft;
-    }
-
-    elPosition.top -= parentOffset.top;
-    elPosition.bottom -= parentOffset.top;
-    elPosition.left -= parentOffset.left;
-    elPosition.right -= parentOffset.left;
-
-    if (round) {
-      elPosition.top = Math.round(elPosition.top);
-      elPosition.bottom = Math.round(elPosition.bottom);
-      elPosition.left = Math.round(elPosition.left);
-      elPosition.right = Math.round(elPosition.right);
-    }
-
-    return elPosition;
-  }
-
-  public offset(element: HTMLElement, round = true): ClientRect {
-    const elBcr = element.getBoundingClientRect();
-    const viewportOffset = {
-      top: window.pageYOffset - document.documentElement.clientTop,
-      left: window.pageXOffset - document.documentElement.clientLeft
+    const offsets: any = {
+      width: popperOffsets.width,
+      height: popperOffsets.height,
+      left: Math.floor(popperOffsets.left),
+      top: Math.round(popperOffsets.top),
+      bottom: Math.round(popperOffsets.bottom),
+      right: Math.floor(popperOffsets.right)
     };
 
-    let elOffset = {
-      height: elBcr.height || element.offsetHeight,
-      width: elBcr.width || element.offsetWidth,
-      top: elBcr.top + viewportOffset.top,
-      bottom: elBcr.bottom + viewportOffset.top,
-      left: elBcr.left + viewportOffset.left,
-      right: elBcr.right + viewportOffset.left
-    };
-
-    if (round) {
-      elOffset.height = Math.round(elOffset.height);
-      elOffset.width = Math.round(elOffset.width);
-      elOffset.top = Math.round(elOffset.top);
-      elOffset.bottom = Math.round(elOffset.bottom);
-      elOffset.left = Math.round(elOffset.left);
-      elOffset.right = Math.round(elOffset.right);
-    }
-
-    return elOffset;
-  }
-
-  public positionElements(
-    hostElement: HTMLElement,
-    targetElement: HTMLElement,
-    placement: string,
-    appendToBody?: boolean
-  ): ClientRect {
-    const hostElPosition = appendToBody
-      ? this.offset(hostElement, false)
-      : this.position(hostElement, false);
-    const targetElStyles = this.getAllStyles(targetElement);
-    const targetElBCR = targetElement.getBoundingClientRect();
-    let placementPrimary = placement.split(' ')[0] || 'top';
-    const placementSecondary = placement.split(' ')[1] || 'center';
-
-    let targetElPosition: ClientRect = {
-      height: targetElBCR.height || targetElement.offsetHeight,
-      width: targetElBCR.width || targetElement.offsetWidth,
-      top: 0,
-      bottom: targetElBCR.height || targetElement.offsetHeight,
-      left: 0,
-      right: targetElBCR.width || targetElement.offsetWidth
-    };
-
-    const shiftHeight: any = {
-      top: hostElPosition.top,
-      center:
-        hostElPosition.top +
-        hostElPosition.height / 2 -
-        targetElPosition.height / 2,
-      bottom: hostElPosition.top + hostElPosition.height
-    };
-    const shiftWidth: any = {
-      left: hostElPosition.left,
-      center:
-        hostElPosition.left +
-        hostElPosition.width / 2 -
-        targetElPosition.width / 2,
-      right: hostElPosition.left + hostElPosition.width
-    };    
-
-    if (placementPrimary === 'auto') {
-      let newPlacementPrimary = this.autoPosition(
-        targetElPosition,
-        hostElPosition,
-        targetElement,
-        placementSecondary
-      );
-      if (!newPlacementPrimary)
-        newPlacementPrimary = this.autoPosition(
-          targetElPosition,
-          hostElPosition,
-          targetElement
-        );
-      if (newPlacementPrimary) placementPrimary = newPlacementPrimary;
-      targetElement.classList.add(placementPrimary);
-    }
-
-    switch (placementPrimary) {
-      case 'top':
-        targetElPosition.top =
-          hostElPosition.top -
-          (targetElPosition.height +
-            parseFloat(targetElStyles.marginBottom));
-        targetElPosition.bottom +=
-          hostElPosition.top - targetElPosition.height;
-        targetElPosition.left = shiftWidth[placementSecondary];
-        targetElPosition.right += shiftWidth[placementSecondary];
-        break;
-      case 'bottom':
-        targetElPosition.top = shiftHeight[placementPrimary];
-        targetElPosition.bottom += shiftHeight[placementPrimary];
-        targetElPosition.left = shiftWidth[placementSecondary];
-        targetElPosition.right += shiftWidth[placementSecondary];
-        break;
-      case 'left':
-        targetElPosition.top = shiftHeight[placementSecondary];
-        targetElPosition.bottom += shiftHeight[placementSecondary];
-        targetElPosition.left =
-          hostElPosition.left -
-          (targetElPosition.width + parseFloat(targetElStyles.marginRight));
-        targetElPosition.right +=
-          hostElPosition.left - targetElPosition.width;
-        break;
-      case 'right':
-        targetElPosition.top = shiftHeight[placementSecondary];
-        targetElPosition.bottom += shiftHeight[placementSecondary];
-        targetElPosition.left = shiftWidth[placementPrimary];
-        targetElPosition.right += shiftWidth[placementPrimary];
-        break;
-    }
-
-    targetElPosition.top = Math.round(targetElPosition.top);
-    targetElPosition.bottom = Math.round(targetElPosition.bottom);
-    targetElPosition.left = Math.round(targetElPosition.left);
-    targetElPosition.right = Math.round(targetElPosition.right);
-
-    return targetElPosition;
-  }
-
-  private autoPosition(
-    targetElPosition: ClientRect,
-    hostElPosition: ClientRect,
-    targetElement: HTMLElement,
-    preferredPosition?: string
-  ) {
-    if (
-      (!preferredPosition || preferredPosition === 'right') &&
-      targetElPosition.left + hostElPosition.left - targetElPosition.width <
-        0
-    ) {
-      return 'right';
-    } else if (
-      (!preferredPosition || preferredPosition === 'top') &&
-      targetElPosition.bottom +
-        hostElPosition.bottom +
-        targetElPosition.height >
-        window.innerHeight
-    ) {
-      return 'top';
-    } else if (
-      (!preferredPosition || preferredPosition === 'bottom') &&
-      targetElPosition.top + hostElPosition.top - targetElPosition.height < 0
-    ) {
-      return 'bottom';
-    } else if (
-      (!preferredPosition || preferredPosition === 'left') &&
-      targetElPosition.right +
-        hostElPosition.right +
-        targetElPosition.width >
-        window.innerWidth
-    ) {
-      return 'left';
-    }
-    return null;
-  }
-
-  private getAllStyles(element: HTMLElement) {
-    return window.getComputedStyle(element);
-  }
-
-  private getStyle(element: HTMLElement, prop: string): string {
-    return (this.getAllStyles(element) as any)[prop];
-  }
-
-  private isStaticPositioned(element: HTMLElement): boolean {
-    return (this.getStyle(element, 'position') || 'static') === 'static';
-  }
-
-  private offsetParent(element: HTMLElement): HTMLElement {
-    let offsetParentEl =
-      <HTMLElement>element.offsetParent || document.documentElement;
-
-    while (
-      offsetParentEl &&
-      offsetParentEl !== document.documentElement &&
-      this.isStaticPositioned(offsetParentEl)
-    ) {
-      offsetParentEl = <HTMLElement>offsetParentEl.offsetParent;
-    }
-
-    return offsetParentEl || document.documentElement;
+    return offsets;
   }
 }
 

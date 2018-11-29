@@ -24,7 +24,7 @@ export function update() {
     arrowStyles: {},
     attributes: {},
     flipped: false,
-    offsets: {},
+    offsets: {}
   };
 
   // compute reference element offsets

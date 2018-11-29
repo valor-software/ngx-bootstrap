@@ -42,7 +42,7 @@ export const modifiers = {
     /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
-    fn: shift,
+    fn: shift
   },
 
   /**
@@ -327,7 +327,7 @@ export const modifiers = {
      * Otherwise, it will use the `top` and `left` properties
      */
     gpuAcceleration: undefined
-  },
+  }
 };
 
 /**

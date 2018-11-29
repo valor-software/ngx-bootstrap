@@ -34,20 +34,20 @@ export function computeAutoPlacement(
   const rects: any = {
     top: {
       width: boundaries.width,
-      height: refRect.top - boundaries.top,
+      height: refRect.top - boundaries.top
     },
     right: {
       width: boundaries.right - refRect.right,
-      height: boundaries.height,
+      height: boundaries.height
     },
     bottom: {
       width: boundaries.width,
-      height: boundaries.bottom - refRect.bottom,
+      height: boundaries.bottom - refRect.bottom
     },
     left: {
       width: refRect.left - boundaries.left,
-      height: boundaries.height,
-    },
+      height: boundaries.height
+    }
   };
 
   const sortedAreas = Object.keys(rects)

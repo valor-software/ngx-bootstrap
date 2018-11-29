@@ -15,7 +15,7 @@ export function getPopperOffsets(popper, referenceOffsets, placement) {
   // Add position, width and height to our offsets object
   const popperOffsets = {
     width: popperRect.width,
-    height: popperRect.height,
+    height: popperRect.height
   };
 
   // depending by the popper placement we have to compute its offsets slightly differently
@@ -29,6 +29,7 @@ export function getPopperOffsets(popper, referenceOffsets, placement) {
     referenceOffsets[mainSide] +
     referenceOffsets[measurement] / 2 -
     popperRect[measurement] / 2;
+
   if (placement === secondarySide) {
     popperOffsets[secondarySide] =
       referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];

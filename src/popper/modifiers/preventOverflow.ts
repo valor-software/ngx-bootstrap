@@ -72,17 +72,23 @@ export function preventOverflow(data, options) {
             (placement === 'right' ? popper.width : popper.height)
         );
       }
+
       return { [mainSide]: value };
-    },
+    }
   };
 
   order.forEach(placement => {
-    const side =
-      ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    const side = ['left', 'top']
+      .indexOf(placement) !== -1
+      ? 'primary'
+      : 'secondary';
+
     popper = { ...popper, ...check[side](placement) };
   });
 
   data.offsets.popper = popper;
+
+  console.dir(data);
 
   return data;
 }

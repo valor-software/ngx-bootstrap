@@ -4,7 +4,7 @@ import {
   getPopperOffsets,
   runModifiers,
   getBoundaries,
-  isModifierEnabled,
+  isModifierEnabled
 } from '../utils';
 
 import { clockwise } from '../utils/clockwise';
@@ -25,11 +25,13 @@ export function flip(data, options) {
   if (isModifierEnabled(data.instance.modifiers, 'inner')) {
     return data;
   }
+  console.log(data.placement);
 
   if (data.flipped && data.placement === data.originalPlacement) {
     // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
     return data;
   }
+  console.log(data.placement);
 
   const boundaries = getBoundaries(
     data.instance.popper,
@@ -86,8 +88,7 @@ export function flip(data, options) {
     const overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
     const overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
     const overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
-    const overflowsBottom =
-      floor(popperOffsets.bottom) > floor(boundaries.bottom);
+    const overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
 
     const overflowsBoundaries =
       (placement === 'left' && overflowsLeft) ||
@@ -95,10 +96,13 @@ export function flip(data, options) {
       (placement === 'top' && overflowsTop) ||
       (placement === 'bottom' && overflowsBottom);
 
+    console.log(overflowsBoundaries);
+
     // flip the variation if required
     const isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+
     const flippedVariation =
-      !!options.flipVariations &&
+      // !!options.flipVariations &&
       ((isVertical && variation === 'start' && overflowsLeft) ||
         (isVertical && variation === 'end' && overflowsRight) ||
         (!isVertical && variation === 'start' && overflowsTop) ||
@@ -133,6 +137,8 @@ export function flip(data, options) {
       data = runModifiers(data.instance.modifiers, data, 'flip');
     }
   });
+
+  console.log(data.placement);
 
   return data;
 }

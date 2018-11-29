@@ -83,6 +83,7 @@ export function computeStyle(data, options) {
   } else {
     left = offsets.left;
   }
+
   if (gpuAcceleration && prefixedProperty) {
     styles[prefixedProperty] = `translate3d(${left}px, ${top}px, 0)`;
     styles[sideA] = 0;
@@ -99,7 +100,7 @@ export function computeStyle(data, options) {
 
   // Attributes
   const attributes = {
-    'x-placement': data.placement,
+    'x-placement': data.placement
   };
 
   // Update `data` attributes, styles and arrowStyles

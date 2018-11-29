@@ -24,6 +24,7 @@
     "flow.github-release": "conventional-github-releaser -p angular",
     "build": "run-s build.modules build:schematics build.sass build.es2015",
     "build.popper": "rimraf dist/popper && node scripts/ng-packagr/api ../../src/popper/package.json",
+    "build.position": "rimraf dist/positioning && node scripts/ng-packagr/api ../../src/positioning/package.json",
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",

@@ -11,7 +11,8 @@ export function getOuterSizes(element) {
   const y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
   const result: any = {
     width: element.offsetWidth + y,
-    height: element.offsetHeight + x,
+    height: element.offsetHeight + x
   };
+
   return result;
 }

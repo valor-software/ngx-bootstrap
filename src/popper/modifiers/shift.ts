@@ -19,7 +19,7 @@ export function shift(data) {
       start: { [side]: reference[side] },
       end: {
         [side]: reference[side] + reference[measurement] - popper[measurement],
-      },
+      }
     };
 
     data.offsets.popper = { ...popper, ...shiftOffsets[shiftvariation] };
