@@ -981,8 +981,8 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
       /* tslint:disable-next-line:no-unbound-method */
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
 
@@ -994,8 +994,8 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('19');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
       /* tslint:disable-next-line:no-unbound-method */
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
 

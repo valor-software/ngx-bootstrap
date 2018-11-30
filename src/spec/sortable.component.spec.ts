@@ -100,9 +100,9 @@ xdescribe('Component: Sortable', () => {
       sort1.itemActiveStyle
     );
     // act
+    /* tslint:disable-next-line:no-inferred-empty-object-type */
     const style = sort1.getItemStyle(true);
     // assert
-    /* tslint:disable-next-line:no-inferred-empty-object-type */
     expect(style).toEqual(activeItemStyle);
   });
 
@@ -110,9 +110,9 @@ xdescribe('Component: Sortable', () => {
     // arrange
     const normalItemStyle = Object.assign({}, sort1.itemStyle);
     // act
+    /* tslint:disable-next-line:no-inferred-empty-object-type */
     const style = sort1.getItemStyle(false);
     // assert
-    /* tslint:disable-next-line:no-inferred-empty-object-type */
     expect(style).toEqual(normalItemStyle);
   });
 
