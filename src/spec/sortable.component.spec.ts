@@ -9,7 +9,7 @@ import {
   SortableComponent,
   SortableItem,
   SortableModule
-} from 'ngx-bootstrap/sortable';
+} from '../sortable';
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
 /* tslint:disable-next-line: no-any */
@@ -102,6 +102,7 @@ xdescribe('Component: Sortable', () => {
     // act
     const style = sort1.getItemStyle(true);
     // assert
+    /* tslint:disable-next-line:no-inferred-empty-object-type */
     expect(style).toEqual(activeItemStyle);
   });
 
@@ -111,6 +112,7 @@ xdescribe('Component: Sortable', () => {
     // act
     const style = sort1.getItemStyle(false);
     // assert
+    /* tslint:disable-next-line:no-inferred-empty-object-type */
     expect(style).toEqual(normalItemStyle);
   });
 

@@ -4,7 +4,7 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing';
-import { PaginationModule, PaginationComponent } from 'ngx-bootstrap/pagination';
+import { PaginationModule, PaginationComponent } from '../pagination';
 
 describe('Component: Pagination:', () => {
   let fixture: ComponentFixture<PaginationComponent>;
