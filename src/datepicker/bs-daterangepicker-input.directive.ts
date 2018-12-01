@@ -107,7 +107,7 @@ export class BsDaterangepickerInputDirective
     }
 
 
-    const _isDateValid = isDateValid(_value[0]) && isDateValid(_value[0]);
+    const _isDateValid = isDateValid(_value[0]);
 
     if (!_isDateValid) {
       return { bsDate: { invalid: _value } };
