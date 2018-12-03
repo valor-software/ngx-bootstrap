@@ -6,7 +6,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { BsDatepickerViewMode } from './models/index';
+import { BsDatepickerViewMode } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',

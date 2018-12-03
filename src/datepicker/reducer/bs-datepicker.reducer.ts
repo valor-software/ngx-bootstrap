@@ -21,10 +21,7 @@ import { flagMonthsCalendar } from '../engine/flag-months-calendar';
 import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } from '../models';
-import { isArray, isDateValid } from '../../chronos/utils/type-checks';
-import { startOf } from '../../chronos/utils/start-end-of';
-import { getLocale } from '../../chronos/locale/locales';
-import { isAfter, isBefore } from '../../chronos/utils/date-compare';
+
 
 /* tslint:disable-next-line: cyclomatic-complexity */
 export function bsDatepickerReducer(state = initialDatepickerState,
@@ -59,13 +56,12 @@ export function bsDatepickerReducer(state = initialDatepickerState,
 
       const date = setFullDate(state.view.date, payload.unit);
       let newState;
-      let mode:BsDatepickerViewMode;
+      let mode: BsDatepickerViewMode;
       if (canSwitchMode(payload.viewMode, state.minMode)) {
         mode = payload.viewMode;
         newState = { view: { date, mode } };
-      }
-      else {
-        mode = state.view.mode
+      } else {
+        mode = state.view.mode;
         newState = { selectedDate: date, view: { date, mode } };
       }
 
