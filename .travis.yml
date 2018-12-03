@@ -22,25 +22,31 @@ stages:
     name: precache
     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
   - <<: *stage
-    name: lint
-  - <<: *stage
-    name: test
-  - <<: *stage
-    name: cypress-tests:smoke
-  - <<: *stage
-    name: build
+    name: Testing
+#  - <<: *stage
+#    name: lint
+#  - <<: *stage
+#    name: test
+#  - <<: *stage
+#    name: cypress-tests:smoke
+#  - <<: *stage
+#    name: build
+#   - <<: *stage
+#      name: sauce-tests
+
   - name: deploy
     if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
     if: tag =~ ^v\d+
   - <<: *stage
-    name: sauce-tests
-  - <<: *stage
-    name: cypress-tests:full:herokuapp
+    name: cypress-tests:full
     if: branch = development AND type = push OR tag =~ ^v\d+
-  - <<: *stage
-    name: cypress-tests:full:gh-pages
-    if: branch = development AND type = push OR tag =~ ^v\d+
+#  - <<: *stage
+#    name: cypress-tests:full:herokuapp
+#    if: branch = development AND type = push OR tag =~ ^v\d+
+#  - <<: *stage
+#    name: cypress-tests:full:gh-pages
+#    if: branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
   - sh -e /etc/init.d/xvfb start
@@ -60,6 +66,7 @@ jobs:
     - env: NGV=next
     - env: SAUCE=true
     - stage: sauce-tests
+    - name: sauce-tests
   include:
 # precache npm and apt dependencies
     - stage: precache
@@ -74,7 +81,7 @@ jobs:
           packages:
           - g++-4.8
 # run in parallel
-    - stage: "All the things"
+    - stage: Testing
 #   lint code
       name: "Lint"
       install: true
@@ -83,31 +90,36 @@ jobs:
 #   test
     - script: npm run test-coverage
       name: "Test with current Angular version"
-      install: npm ci
+#      install: npm ci
       after_success: ./node_modules/.bin/codecov
     - script: npm run test
       name: "Test with latest Angular version"
-      install: npm ci
+#      install: npm ci
       env: NGV=latest
 #     env: NGV=next
 
 #     test cypress smoke
-    - script: $(npm bin)/wait-on http-get://$URL && npm run cy:run:smoke
-      name: cypress-tests:smoke
-      install: npm ci
+    - script:
+        - ng serve --prod &
+        - $(npm bin)/wait-on http-get://$URL
+        - npm run cy:run:smoke
+        # after all tests finish running we need
+        # to kill all background jobs (like "npm start &")
+        - kill $(jobs -p) || true
+      name: "Run cypress smoke testing"
+#      install: npm ci
       env: URL=localhost:4200/#
-      before_script: ng serve --prod &
-
 #    check prod build
     - script: npm run demo.ng-build
       name: "Check prod build with current Angular version"
-      install: npm ci
+#      install: npm ci
     - script: npm run demo.ng-build
       name: "Check prod build with latest Angular version"
       env: NGV=latest
-      install: npm ci
+#      install: npm ci
 #      env: NGV=next
-    - stage: sauce-tests
+    - script: npm run test-cross
+      name: sauce-tests
       env: SAUCE=true
       addons:
         sauce_connect:
@@ -115,8 +127,7 @@ jobs:
           access_key: $SAUCE_ACCESS_KEY_PR
       before_script:
         - mkdir -p $LOGS_DIR
-      script:
-        - npm run test-cross
+
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
       stage: deploy
@@ -170,14 +181,15 @@ jobs:
           tags: true
 
 #     test cypress full for herokuapp
-    - stage: cypress-tests:full:herokuapp
+    - stage: cypress-tests:full
+      name: "Run cypress to check SSR"
       env: URL=https://ngx-universal.herokuapp.com/#
       script: npm run cy:run:smoke && npm run cy:run:full
 
 #     test cypress full for gh-pages
-    - stage: cypress-tests:full:gh-pages
+    - script: npm run cy:run:smoke && npm run cy:run:full
+      name: "Run cypress to check demo pages"
       env: URL=https://valor-software.com/ngx-bootstrap/#/
-      script: npm run cy:run:smoke && npm run cy:run:full
 
 cache:
   apt: true
