@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDropdownConfig, BsDropdownModule } from '../dropdown';
 
 @Component({
   selector: 'dropdown-test',
