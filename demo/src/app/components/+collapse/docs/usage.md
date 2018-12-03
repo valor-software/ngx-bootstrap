@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 // or
 import { CollapseModule } from 'ngx-bootstrap';

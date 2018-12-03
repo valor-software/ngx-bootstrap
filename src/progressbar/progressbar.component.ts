@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { ProgressbarConfig } from './progressbar.config';
-import { isBs3 } from '../utils/index';
+import { isBs3 } from 'ngx-bootstrap/utils';
 import { BarComponent } from './bar.component';
 
 @Component({
@@ -39,6 +39,7 @@ export class ProgressbarComponent {
    * like {"value":15,"type":"info","label":"15 %"}
    */
   @Input()
+  /* tslint:disable-next-line:no-any */
   set value(value: number | any[]) {
     this.isStacked = Array.isArray(value);
     this._value = value;
@@ -46,6 +47,7 @@ export class ProgressbarComponent {
   isStacked = false;
   _striped: boolean;
   _animate: boolean;
+  /* tslint:disable-next-line:no-any */
   _value: number | any[];
   get isBs3(): boolean {
     return isBs3();
@@ -67,7 +69,8 @@ export class ProgressbarComponent {
 
   @HostBinding('class.progress') addClass = true;
 
-  bars: any[] = [];
+  /* tslint:disable-next-line:no-any */
+  bars: BarComponent[] = [];
 
   protected _max = 100;
 

@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { RatingComponent } from '../rating/rating.component';
-import { RatingModule } from '../rating/rating.module';
+import { RatingComponent, RatingModule } from '../rating';
 
 @Component({
   selector: 'rating-test',
@@ -18,7 +17,9 @@ class TestRatingComponent {
 
 describe('Component: Rating. Init:', () => {
   let fixture: ComponentFixture<RatingComponent>;
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {
@@ -70,7 +71,9 @@ describe('Component: Rating. Init:', () => {
 
 describe('Component: Rating. Custom template:', () => {
   let fixture: ComponentFixture<TestRatingComponent>;
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(
@@ -106,7 +109,9 @@ describe('Component: Rating. Clicks:', () => {
         [titles]="titles"></rating>
     `;
   let fixture: ComponentFixture<TestRatingComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(

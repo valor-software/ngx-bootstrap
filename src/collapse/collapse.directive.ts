@@ -18,8 +18,10 @@ import {
 })
 export class CollapseDirective {
   /** This event fires as soon as content collapses */
+  /* tslint:disable-next-line: no-any */
   @Output() collapsed: EventEmitter<any> = new EventEmitter();
   /** This event fires as soon as content becomes visible */
+  /* tslint:disable-next-line: no-any */
   @Output() expanded: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('style.display') display: string;
@@ -46,8 +48,7 @@ export class CollapseDirective {
     return this.isExpanded;
   }
 
-  constructor(private _el: ElementRef, private _renderer: Renderer2) {
-  }
+  constructor(private _el: ElementRef, private _renderer: Renderer2) {}
 
   /** allows to manually toggle content visibility */
   toggle(): void {

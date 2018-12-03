@@ -8,10 +8,11 @@ import {
   forwardRef, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AccessorContent, RatingResults } from './models';
 
-export const RATING_CONTROL_VALUE_ACCESSOR: any = {
+export const RATING_CONTROL_VALUE_ACCESSOR: AccessorContent = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => RatingComponent),
   multi: true
 };
@@ -30,23 +31,26 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
   @Input() titles: string[];
   /** custom template for icons */
+  // tslint:disable-next-line:no-any
   @Input() customTemplate: TemplateRef<any>;
   /** fired when icon selected, $event:number equals to selected rating */
   @Output() onHover: EventEmitter<number> = new EventEmitter();
   /** fired when icon selected, $event:number equals to previous rating value */
   @Output() onLeave: EventEmitter<number> = new EventEmitter();
 
+  // tslint:disable-next-line:no-any
   onChange: any = Function.prototype;
+  // tslint:disable-next-line:no-any
   onTouched: any = Function.prototype;
 
-  range: any[];
+  range: RatingResults[];
   value: number;
   protected preValue: number;
 
   constructor(private changeDetection: ChangeDetectorRef) {}
 
   @HostListener('keydown', ['$event'])
-  onKeydown(event: any): void {
+  onKeydown(event: KeyboardEvent): void {
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
@@ -95,7 +99,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.onLeave.emit(this.value);
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: (_: number) => {}): void {
     this.onChange = fn;
   }
 
@@ -110,8 +114,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     }
   }
 
-  protected buildTemplateObjects(max: number): any[] {
-    const result: any[] = [];
+  protected buildTemplateObjects(max: number): RatingResults[] {
+    const result: RatingResults[] = [];
     for (let i = 0; i < max; i++) {
       result.push({
           index: i,
