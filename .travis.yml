@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "8"
+node_js: "10"
 
 notifications:
   email: false
@@ -47,7 +47,7 @@ before_install:
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm i -g npm@6.0.1
+#  - npm i -g npm@6.0.1
   - npm ci
   - npm run build
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
