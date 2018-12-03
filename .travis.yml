@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "9"
+node_js: "8"
 
 notifications:
   email: false
@@ -20,32 +20,38 @@ env:
 stages:
   - &stage
     name: precache
-    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v2
+    if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
   - <<: *stage
     name: lint
   - <<: *stage
     name: test
   - <<: *stage
-    name: cypress-tests
+    name: cypress-tests:smoke
   - <<: *stage
     name: build
   - name: deploy
-    if: branch = development AND type = push OR tag =~ ^v2
+    if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
-    if: tag =~ ^v2
+    if: tag =~ ^v\d+
   - <<: *stage
     name: sauce-tests
+  - <<: *stage
+    name: cypress-tests:full:herokuapp
+    if: branch = development AND type = push OR tag =~ ^v\d+
+  - <<: *stage
+    name: cypress-tests:full:gh-pages
+    if: branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
   - sh -e /etc/init.d/xvfb start
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm i -g npm@5.7.1
-  - npm ci > /dev/null
-  - npm run build > /dev/null
+  - npm i -g npm@6.0.1
+  - npm ci
+  - npm run build
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
-  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+#  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
@@ -59,8 +65,8 @@ jobs:
 # precache npm and apt dependencies
     - stage: precache
       install:
-        - npm i -g npm@5.7.1
-        - npm ci > /dev/null
+        - npm i -g npm@6.0.1
+        - npm ci
       script: true
       addons:
         chrome: stable
@@ -74,7 +80,7 @@ jobs:
 #   lint code
     - stage: lint
       install: true
-      script: npm run lint
+      script: npm run lint-src
 
 #   test
     - &test
@@ -84,14 +90,14 @@ jobs:
         - ./node_modules/.bin/codecov
     - <<: *test
       env: NGV=latest
-    - <<: *test
-      env: NGV=next
+#    - <<: *test
+#      env: NGV=next
 
-#     test cypress
-    - stage: cypress-tests
+#     test cypress smoke
+    - stage: cypress-tests:smoke
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run:smoke
 
 #    check prod build
     - &build
@@ -99,18 +105,18 @@ jobs:
       script: npm run demo.ng-build
     - <<: *build
       env: NGV=latest
-    - <<: *build
-      env: NGV=next
+#    - <<: *build
+#      env: NGV=next
     - stage: sauce-tests
       env: SAUCE=true
+      addons:
+        sauce_connect:
+          username: $SAUCE_USERNAME_PR
+          access_key: $SAUCE_ACCESS_KEY_PR
       before_script:
         - mkdir -p $LOGS_DIR
-        - ./scripts/sauce/sauce_connect_setup.sh
       script:
-        - ./scripts/sauce/sauce_connect_block.sh
         - npm run test-cross
-      after_script: ./scripts/sauce/sauce_connect_teardown.sh
-
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
       stage: deploy
@@ -127,6 +133,7 @@ jobs:
         project: ./gh-pages/
         domain: ngx-bootstrap-latest.surge.sh
         on: development
+#   deploy to ngx-universal.herokuapp.com/
     - stage: deploy
       script: npm run build:dynamic
       before_deploy:
@@ -161,6 +168,16 @@ jobs:
         skip_cleanup: true
         on:
           tags: true
+
+#     test cypress full for herokuapp
+    - stage: cypress-tests:full:herokuapp
+      env: URL=https://ngx-universal.herokuapp.com/#
+      script: npm run cy:run:smoke && npm run cy:run:full
+
+#     test cypress full for gh-pages
+    - stage: cypress-tests:full:gh-pages
+      env: URL=https://valor-software.com/ngx-bootstrap/#/
+      script: npm run cy:run:smoke && npm run cy:run:full
 
 cache:
   apt: true

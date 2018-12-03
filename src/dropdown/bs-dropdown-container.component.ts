@@ -7,7 +7,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { BsDropdownState } from './bs-dropdown.state';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'bs-dropdown-container',
@@ -29,6 +29,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
     return this._state.direction;
   }
 
+// tslint:disable-next-line:no-any
   private _subscription: any;
 
   constructor(

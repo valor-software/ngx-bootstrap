@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { fireEvent } from '../../scripts/helpers';
-import { TooltipModule } from '../tooltip/tooltip.module';
+import { TooltipModule } from '../tooltip';
 
 @Component({
   selector: 'test-tooltip',
@@ -38,6 +38,7 @@ const overTemplate = `
 
 xdescribe('Directives: Tooltips', () => {
   let fixture: ComponentFixture<TestTooltipComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
 
   beforeEach(() => {
@@ -67,6 +68,7 @@ xdescribe('Directives: Tooltips', () => {
     'tooltip should be displayed by focus event after 0 ms by default',
     fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
+      /* tslint:disable-next-line: no-any */
       const tooltipElement: any = element.querySelector('#test-tooltip1');
       tooltipElement.focus();
       fixture.detectChanges();
@@ -80,6 +82,7 @@ xdescribe('Directives: Tooltips', () => {
     'tooltip should be displayed after specified delay',
     fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
+      /* tslint:disable-next-line: no-any */
       const tooltipElement: any = element.querySelector('#test-tooltip1');
       context._delay = 1000;
       fixture.detectChanges();
@@ -95,6 +98,7 @@ xdescribe('Directives: Tooltips', () => {
     'tooltip should be displayed by mouseenter event',
     fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
+      /* tslint:disable-next-line: no-any */
       const tooltipElement: any = element.querySelector('#test-tooltip1');
       fireEvent(tooltipElement, 'mouseenter');
       fixture.detectChanges();
@@ -108,6 +112,7 @@ xdescribe('Directives: Tooltips', () => {
     'tooltip should be displayed after user clicks on specified DOM element which refers to showing the tooltip',
     fakeAsync(() => {
       const element: Element = fixture.debugElement.nativeElement;
+      /* tslint:disable-next-line: no-any */
       const showTooltipBtn: any = element.querySelector('#showTooltipBtn');
       showTooltipBtn.click();
       fixture.detectChanges();
@@ -121,6 +126,7 @@ xdescribe('Directives: Tooltips', () => {
     'tooltip should be hidden after user clicks on specified DOM element which refers to hiding the tooltip',
     fakeAsync(() => {
       const element: Element = fixture.debugElement.nativeElement;
+      /* tslint:disable-next-line: no-any */
       const showTooltipBtn: any = element.querySelector('#hideTooltipBtn');
       showTooltipBtn.click();
       fixture.detectChanges();

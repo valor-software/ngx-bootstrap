@@ -1,7 +1,7 @@
 import { DemoDropdownBasicComponent } from './basic/basic';
 import { DemoDropdownSplitComponent } from './split/split';
 import { DemoDropdownContainerComponent } from './container/container';
-import { DemoDropdownBasicLinkComponent } from './basic/basic-link';
+import { DemoDropdownAnchorTriggerComponent } from './anchor-trigger/anchor-trigger';
 import { DemoDropdownKeyboardComponent } from './keyboard/keyboard';
 import { DemoDropdownConfigComponent } from './config/config';
 import { DemoDropdownDropupComponent } from './dropup/dropup';
@@ -20,7 +20,7 @@ import { DemoDropdownByIsOpenPropComponent } from './trigger-by-isopen-property/
 
 export const DEMO_COMPONENTS = [
   DemoDropdownBasicComponent,
-  DemoDropdownBasicLinkComponent,
+  DemoDropdownAnchorTriggerComponent,
   DemoDropdownSplitComponent,
   DemoDropdownContainerComponent,
   DemoDropdownKeyboardComponent,

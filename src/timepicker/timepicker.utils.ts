@@ -42,7 +42,7 @@ export function toNumber(value: string | number): number {
   return parseInt(value, dex);
 }
 
-export function isNumber(value: any): value is number {
+export function isNumber(value: string | number): value is number {
   return !isNaN(toNumber(value));
 }
 

@@ -2,12 +2,9 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs';
 import { fireEvent } from '../../scripts/helpers';
-import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
-import { TypeaheadDirective } from '../typeahead/typeahead.directive';
-import { TypeaheadModule } from '../typeahead/typeahead.module';
-import 'rxjs/add/observable/of';
+import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
 
 interface State {
   id: number;
@@ -16,7 +13,6 @@ interface State {
 }
 
 @Component({
-  // (typeaheadOnSelect)="typeaheadOnSelect($event)"
   template: `
     <input [(ngModel)]="selectedState"
            [typeahead]="states"
@@ -31,7 +27,7 @@ class TestTypeaheadComponent {
     {id: 2, name: 'Alaska', region: 'West'}
   ];
 
-  onBlurEvent(activeItem) {}
+  onBlurEvent(activeItem) { return undefined; }
 }
 
 describe('Directive: Typeahead', () => {
@@ -58,7 +54,7 @@ describe('Directive: Typeahead', () => {
     );
     directive = inputs.map(
       (de: DebugElement) =>
-        de.injector.get(TypeaheadDirective) as TypeaheadDirective
+        de.injector.get<TypeaheadDirective>(TypeaheadDirective)
     )[0];
   });
 
@@ -84,7 +80,7 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should typeaheadAsync to false, if typeahead is an observable', () => {
-      directive.typeahead = Observable.of(component.states);
+      directive.typeahead = of(component.states);
       directive.ngOnInit();
 
       expect(directive.typeaheadAsync).toBeTruthy();

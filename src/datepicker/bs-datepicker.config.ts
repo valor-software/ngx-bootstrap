@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
-  DatepickerFormatOptions,
   DatepickerRenderOptions,
   BsDatepickerViewMode
-} from './models/index';
+} from './models';
 
 
 /**

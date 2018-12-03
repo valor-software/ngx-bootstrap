@@ -3,7 +3,7 @@
   "es2015": "bundles/ngx-bootstrap.es2015.js",
   "peerDependencies": {
     "@angular/core": "*",
-    "@angular/common": "*",
-    "@angular/forms": "*"
-  }
+    "@angular/common": "*"
+  },
+  "version": "3.1.2"
 }

@@ -151,13 +151,13 @@ export const ngdoc: any = {
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
-        "type": "boolean",
+        "type": "any",
         "description": "<p>Falsy value, will be set to ngModel </p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
-        "type": "boolean",
+        "type": "any",
         "description": "<p>Truthy value, will be set to ngModel </p>\n"
       }
     ],
@@ -2095,7 +2095,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code>&lt;li></code> </p>\n"
       },
       {
         "name": "previousText",
@@ -2187,7 +2187,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code>&lt;li></code></p>\n"
       },
       {
         "name": "previousText",
@@ -2375,7 +2375,7 @@ export const ngdoc: any = {
       },
       {
         "name": "element",
-        "type": "string | HTMLElement | ElementRef",
+        "type": "string | HTMLElement | ElementRef<any>",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which will be moved </p>\n"
       },
       {
@@ -2385,7 +2385,7 @@ export const ngdoc: any = {
       },
       {
         "name": "target",
-        "type": "string | HTMLElement | ElementRef",
+        "type": "string | HTMLElement | ElementRef<any>",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which the element will be attached to  </p>\n"
       },
       {
@@ -2509,7 +2509,7 @@ export const ngdoc: any = {
       {
         "name": "titles",
         "type": "string[]",
-        "description": "<p>array of icons titles, default: ([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]) </p>\n"
+        "description": "<p>array of icons titles</p>\n"
       }
     ],
     "outputs": [
@@ -2761,7 +2761,7 @@ export const ngdoc: any = {
       {
         "name": "arrowkeys",
         "type": "boolean",
-        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
       },
       {
         "name": "disabled",
@@ -2848,7 +2848,7 @@ export const ngdoc: any = {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
       },
       {
         "name": "disabled",
