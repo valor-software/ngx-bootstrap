@@ -63,8 +63,7 @@ jobs:
   include:
 # precache npm and apt dependencies
     - stage: precache
-      install:
-        - npm ci
+      install: npm ci
       script: true
       addons:
         chrome: stable
@@ -74,36 +73,39 @@ jobs:
           # required by node-gyp to build some packages
           packages:
           - g++-4.8
-
+# run in parallel
+    - stage: "All the things"
 #   lint code
-    - stage: lint
+      name: "Lint"
       install: true
       script: npm run lint-src
 
 #   test
-    - &test
-      stage: test
-      script: npm run test-coverage
-      after_success:
-        - ./node_modules/.bin/codecov
-    - <<: *test
+    - script: npm run test-coverage
+      name: "Test with current Angular version"
+      install: npm ci
+      after_success: ./node_modules/.bin/codecov
+    - script: npm run test
+      name: "Test with latest Angular version"
+      install: npm ci
       env: NGV=latest
-#    - <<: *test
-#      env: NGV=next
+#     env: NGV=next
 
 #     test cypress smoke
-    - stage: cypress-tests:smoke
+    - script: $(npm bin)/wait-on http-get://$URL && npm run cy:run:smoke
+      name: cypress-tests:smoke
+      install: npm ci
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run:smoke
 
 #    check prod build
-    - &build
-      stage: build
-      script: npm run demo.ng-build
-    - <<: *build
+    - script: npm run demo.ng-build
+      name: "Check prod build with current Angular version"
+      install: npm ci
+    - script: npm run demo.ng-build
+      name: "Check prod build with latest Angular version"
       env: NGV=latest
-#    - <<: *build
+      install: npm ci
 #      env: NGV=next
     - stage: sauce-tests
       env: SAUCE=true
