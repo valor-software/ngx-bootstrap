@@ -18,17 +18,13 @@ env:
     - LOGS_DIR=/tmp/logs
 
 stages:
-  - &stage
-    name: precache
+  - name: Testing
     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
-  - <<: *stage
-    name: Testing
-
   - name: deploy
     if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
     if: tag =~ ^v\d+
-  -  name: cypress-tests:full
+  - name: cypress-tests:full
     if: branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
