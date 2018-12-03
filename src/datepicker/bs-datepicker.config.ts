@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  DatepickerRenderOptions
+  DatepickerRenderOptions,
+  BsDatepickerViewMode
 } from './models';
 
 
@@ -21,6 +22,11 @@ export class BsDatepickerConfig
    * Default max date for all date/range pickers
    */
   maxDate?: Date;
+
+  /**
+   * Defaut mode for all date pickers
+   */
+  minMode?: BsDatepickerViewMode;
 
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
