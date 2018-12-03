@@ -184,3 +184,5 @@ cache:
   npm: true
   directories:
     - node_modules
+    - ~/.npm
+    - ~/.cache
