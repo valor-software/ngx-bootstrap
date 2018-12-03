@@ -9,11 +9,7 @@ describe('Carousel page test suite', () => {
     const basic = carousel.exampleDemosArr.basic;
 
     it('example contains slides, indicators, left and right controls', () => {
-      cy.get(`${ basic } ${ carousel.carouselClass }`)
-        .should('to.have.descendants', carousel.indicatorClass)
-        .and('to.have.descendants', carousel.itemClass)
-        .and('to.have.descendants', carousel.leftControl)
-        .and('to.have.descendants', carousel.rightControl);
+      carousel.isCarouselHaveIndicatorsItemsCtrls(basic);
     });
   });
 });
