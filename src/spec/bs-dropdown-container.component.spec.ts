@@ -24,6 +24,7 @@ describe('BsDropdownContainerComponent tests', () => {
 
   it('should set isOpen property', () => {
     component.isOpen = true;
+    
     expect(component.isOpen).toBeTruthy();
   });
 
