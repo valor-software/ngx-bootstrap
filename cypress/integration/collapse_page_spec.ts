@@ -10,13 +10,10 @@ describe('Collapse demo page test suite', () => {
 
     it('contains togler and content, that can be collapsed', () => {
       const toglerText = 'Toggle collapse';
-
-      cy.get(`${ basic } ${ collapse.collapseClass }`)
-        .should('to.have.class', collapse.showIndicator);
+      collapse.isCollapseExpanded(basic, 'true');
 
       collapse.clickByText(basic, toglerText);
-      cy.get(`${ basic } ${ collapse.collapseClass }`)
-        .should('not.to.have.class', collapse.showIndicator);
+      collapse.isCollapseExpanded(basic, 'false');
     });
   });
 });
