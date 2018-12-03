@@ -9,6 +9,7 @@ export class SortablePo extends BaseComponent {
   classItem = '.sortable-item';
 
   exampleDemosArr = {
-    basic: 'basic-demo'
+    basic: 'basic-demo',
+    complex: 'complex-datamodel-demo'
   };
 }
