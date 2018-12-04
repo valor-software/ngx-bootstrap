@@ -9,7 +9,8 @@ export abstract class BaseComponent {
   titleDefaultExample = 'Usage';
 
   navigateTo() {
-    cy.visit(this.pageUrl);
+    const bsVersionRoute = Cypress.env('bsVersion') ? `?_bsVersion=bs${Cypress.env('bsVersion')}` : '';
+    cy.visit(`${ this.pageUrl }${bsVersionRoute}`);
   }
 
   scrollToMenu(subMenu: string) {
@@ -74,5 +75,15 @@ export abstract class BaseComponent {
         expect(blockTxt).to.contains(expectedTxt);
         expect(blockTxt).to.contains(expectedTxtOther ? expectedTxtOther : expectedTxt);
       });
+  }
+
+  isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number) {
+    cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
+      .should(btnTxt => expect(btnTxt).to.equal(buttonName));
+  }
+
+  isPreviewExist(baseSelector: string, previewText: string, previewNumber?: number) {
+    cy.get(`${baseSelector} .card.card-block`).eq(previewNumber ? previewNumber : 0).invoke('text')
+      .should(btnTxt => expect(btnTxt).to.contain(previewText));
   }
 }

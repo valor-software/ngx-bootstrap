@@ -49,6 +49,6 @@ describe('ng-add schematic', () => {
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
 
-    expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.css');
+    expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
   });
 });
