@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'demo-datepicker-min-mode',
   templateUrl: './min-mode.component.html'
 })
-export class DemoDatepickerMinModeComponent {
+export class DemoDatepickerMinModeComponent implements OnInit {
   bsValue: Date = new Date(2017, 7);
+  minMode: BsDatepickerViewMode = 'month';
 
-  /* tslint:disable-next-line: no-any*/
-  bsConfig: any;
+  bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor () {
+  ngOnInit(): void {
     this.bsConfig = Object.assign({}, {
-      minMode : 'month'
+      minMode : this.minMode
     });
   }
 }

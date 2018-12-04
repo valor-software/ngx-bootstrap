@@ -10,8 +10,7 @@ import {
  * except `displayMonths`, for range picker it default to `2`
  */
 @Injectable()
-export class BsDatepickerConfig
-  implements DatepickerRenderOptions {
+export class BsDatepickerConfig implements DatepickerRenderOptions {
   value?: Date | Date[];
   isDisabled?: boolean;
   /**
