@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 // or
 import { ButtonsModule } from 'ngx-bootstrap';

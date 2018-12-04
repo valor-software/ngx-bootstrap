@@ -34,19 +34,19 @@
       <!--years calendar-->
       <div *ngSwitchCase="'year'">
         <bs-years-calendar-view
-          *ngFor="let calendar of (yearsCalendar | async)"
-          [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
-          [calendar]="calendar"
-          (onNavigate)="navigateTo($event)"
-          (onViewMode)="setViewMode($event)"
-          (onHover)="yearHoverHandler($event)"
-          (onSelect)="yearSelectHandler($event)"
-        ></bs-years-calendar-view>
-      </div>
-
+        *ngFor="let calendar of (yearsCalendar | async)"
+        [class.bs-datepicker-multiple]="(daysCalendar | async )?.length > 1"
+        [calendar]="calendar"
+        (onNavigate)="navigateTo($event)"
+        (onViewMode)="setViewMode($event)"
+        (onHover)="yearHoverHandler($event)"
+        (onSelect)="yearSelectHandler($event)"
+      ></bs-years-calendar-view>
     </div>
 
-    <!--applycancel buttons-->
+  </div>
+
+  <!--applycancel buttons-->
     <div class="bs-datepicker-buttons" *ngIf="false">
       <button class="btn btn-success">Apply</button>
       <button class="btn btn-default">Cancel</button>

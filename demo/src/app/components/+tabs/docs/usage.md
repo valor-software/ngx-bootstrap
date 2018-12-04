@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { TabsModule } from 'ngx-bootstrap/tabs';
 // or
 import { TabsModule } from 'ngx-bootstrap';

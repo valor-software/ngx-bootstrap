@@ -89,11 +89,13 @@ export class SortableComponent implements ControlValueAccessor {
   @Input() placeholderItem = '';
 
   /** used to specify a custom item template. Template variables: item and index; */
+  /* tslint:disable-next-line: no-any */
   @Input() itemTemplate: TemplateRef<any>;
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.
    */
+  /* tslint:disable-next-line: no-any */
   @Output() onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   showPlaceholder = false;
@@ -110,7 +112,9 @@ export class SortableComponent implements ControlValueAccessor {
     this.onChange.emit(out);
   }
 
+  /* tslint:disable-next-line: no-any */
   onTouched: any = Function.prototype;
+  /* tslint:disable-next-line: no-any */
   onChanged: any = Function.prototype;
 
   private transfer: DraggableItemService;
@@ -151,7 +155,10 @@ export class SortableComponent implements ControlValueAccessor {
       this.currentZoneIndex,
       this.items.length
     );
+
+    /* tslint:disable-next-line: no-any */
     let newArray: any[] = [];
+
     if (!this.items.length) {
       newArray = [dragItem.item];
     } else if (dragItem.i > i) {
@@ -202,7 +209,7 @@ export class SortableComponent implements ControlValueAccessor {
     this.activeItem = -1;
   }
 
-  registerOnChange(callback: (_: any) => void): void {
+  registerOnChange(callback: () => void): void {
     this.onChanged = callback;
   }
 
@@ -210,8 +217,10 @@ export class SortableComponent implements ControlValueAccessor {
     this.onTouched = callback;
   }
 
+  /* tslint:disable-next-line: no-any */
   writeValue(value: any[]): void {
     if (value) {
+      /* tslint:disable-next-line: no-any */
       this.items = value.map((x: any, i: number) => ({
         id: i,
         initData: x,
@@ -245,5 +254,6 @@ export class SortableComponent implements ControlValueAccessor {
 export declare interface SortableItem {
   id: number;
   value: string;
+  /* tslint:disable-next-line: no-any */
   initData: any;
 }

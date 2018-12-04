@@ -13,14 +13,13 @@ import {
 } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
+import { ComponentLoader, ComponentLoaderFactory, BsComponentRef } from 'ngx-bootstrap/component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
-import { BsComponentRef } from '../component-loader/bs-component-ref.class';
-import { BsDropdownMenuDirective } from './';
-import { isBs3 } from '../utils/theme-provider';
+import { BsDropdownMenuDirective } from './index';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',
@@ -105,17 +104,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  @Output() isOpenChange: EventEmitter<any>;
+  @Output() isOpenChange: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is shown
    */
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<boolean>;
 
   get isBs4(): boolean {
     return !isBs3();

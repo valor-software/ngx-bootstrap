@@ -14,54 +14,56 @@ function getYear(date: Date, opts: DateFormatterOptions): string {
   return getFullYear(date, opts.isUTC).toString();
 }
 
-addFormatToken('Y', null, null,
-  function (date: Date, opts: DateFormatterOptions): string {
-  const y = getFullYear(date, opts.isUTC);
+export function initYear() {
+  addFormatToken('Y', null, null,
+    function (date: Date, opts: DateFormatterOptions): string {
+    const y = getFullYear(date, opts.isUTC);
 
-  return y <= 9999 ? y.toString(10) : `+${y}`;
-});
+    return y <= 9999 ? y.toString(10) : `+${y}`;
+  });
 
-addFormatToken(null, ['YY', 2, false], null,
-  function (date: Date, opts: DateFormatterOptions): string {
-  return (getFullYear(date, opts.isUTC) % 100).toString(10);
-});
+  addFormatToken(null, ['YY', 2, false], null,
+    function (date: Date, opts: DateFormatterOptions): string {
+    return (getFullYear(date, opts.isUTC) % 100).toString(10);
+  });
 
-addFormatToken(null, ['YYYY', 4, false], null, getYear);
-addFormatToken(null, ['YYYYY', 5, false], null, getYear);
-addFormatToken(null, ['YYYYYY', 6, true], null, getYear);
+  addFormatToken(null, ['YYYY', 4, false], null, getYear);
+  addFormatToken(null, ['YYYYY', 5, false], null, getYear);
+  addFormatToken(null, ['YYYYYY', 6, true], null, getYear);
 
-// ALIASES
+  // ALIASES
 
-addUnitAlias('year', 'y');
+  addUnitAlias('year', 'y');
 
-// PRIORITIES
+  // PRIORITIES
 
-addUnitPriority('year', 1);
+  addUnitPriority('year', 1);
 
-// PARSING
+  // PARSING
 
-addRegexToken('Y', matchSigned);
-addRegexToken('YY', match1to2, match2);
-addRegexToken('YYYY', match1to4, match4);
-addRegexToken('YYYYY', match1to6, match6);
-addRegexToken('YYYYYY', match1to6, match6);
+  addRegexToken('Y', matchSigned);
+  addRegexToken('YY', match1to2, match2);
+  addRegexToken('YYYY', match1to4, match4);
+  addRegexToken('YYYYY', match1to6, match6);
+  addRegexToken('YYYYYY', match1to6, match6);
 
-addParseToken(['YYYYY', 'YYYYYY'], YEAR);
-addParseToken('YYYY', function (input, array, config) {
-  array[YEAR] = input.length === 2 ? parseTwoDigitYear(input) : toInt(input);
+  addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+  addParseToken('YYYY', function (input, array, config) {
+    array[YEAR] = input.length === 2 ? parseTwoDigitYear(input) : toInt(input);
 
-  return config;
-});
-addParseToken('YY', function (input, array, config) {
-  array[YEAR] = parseTwoDigitYear(input);
+    return config;
+  });
+  addParseToken('YY', function (input, array, config) {
+    array[YEAR] = parseTwoDigitYear(input);
 
-  return config;
-});
-addParseToken('Y', function (input, array, config) {
-  array[YEAR] = parseInt(input, 10);
+    return config;
+  });
+  addParseToken('Y', function (input, array, config) {
+    array[YEAR] = parseInt(input, 10);
 
-  return config;
-});
+    return config;
+  });
+}
 
 export function parseTwoDigitYear(input: string): number {
   return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
