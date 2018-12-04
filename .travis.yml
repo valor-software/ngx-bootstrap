@@ -155,13 +155,17 @@ jobs:
 #     test cypress full for herokuapp
     - stage: cypress-tests:full
       name: "Run cypress to check SSR"
-      env: URL=https://ngx-universal.herokuapp.com/#
-      script: npm run cy:run:smoke && npm run cy:run:full
+#      env: URL=https://ngx-universal.herokuapp.com/#
+      script:
+         - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://ngx-universal.herokuapp.com/#/
+         - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://ngx-universal.herokuapp.com/#/
 
 #     test cypress full for gh-pages
-    - script: npm run cy:run:smoke && npm run cy:run:full
+    - script:
+        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://valor-software.com/ngx-bootstrap/#/
+        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://valor-software.com/ngx-bootstrap/#/
       name: "Run cypress to check demo pages"
-      env: URL=https://valor-software.com/ngx-bootstrap/#/
+#      env: URL=https://valor-software.com/ngx-bootstrap/#/
 
 cache:
   apt: true
