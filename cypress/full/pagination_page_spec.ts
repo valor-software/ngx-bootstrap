@@ -18,7 +18,7 @@ describe('Pagination demo page test suite', () => {
     });
 
     it('when user click on "Set current page to: 3", 3rd is active, previous page is inactive', () => {
-      pagination.clickOnBtn(manualSwitchingPage, 'Set current page to: 3');
+      pagination.clickOnPaginationBtn(manualSwitchingPage, 'Set current page to: 3');
       pagination.isActivePositionEqual(manualSwitchingPage, '3');
       pagination.isPageActive(manualSwitchingPage, '4', false);
       pagination.isPagerDisabled(manualSwitchingPage, 'Previous', false);
@@ -142,7 +142,7 @@ describe('Pagination demo page test suite', () => {
     });
 
     it('when user click on "Hide/show boundary links", "First" and "Last" buttons are disappeared', () => {
-      pagination.clickOnBtn(boundaryLinks, 'Hide/show boundary links');
+      pagination.clickOnPaginationBtn(boundaryLinks, 'Hide/show boundary links');
       pagination.isPagerExist(boundaryLinks, 'First', false);
       pagination.isPagerExist(boundaryLinks, 'Last', false);
       pagination.isPagerExist(boundaryLinks, 'Previous', true);
@@ -150,8 +150,8 @@ describe('Pagination demo page test suite', () => {
     });
 
     it('when user click on "Hide/show boundary links" again, "First" and "Last" buttons are appeared', () => {
-      pagination.clickOnBtn(boundaryLinks, 'Hide/show boundary links');
-      pagination.clickOnBtn(boundaryLinks, 'Hide/show boundary links');
+      pagination.clickOnPaginationBtn(boundaryLinks, 'Hide/show boundary links');
+      pagination.clickOnPaginationBtn(boundaryLinks, 'Hide/show boundary links');
       pagination.isPagerExist(boundaryLinks, 'First', true);
       pagination.isPagerExist(boundaryLinks, 'Last', true);
       pagination.isPagerExist(boundaryLinks, 'Previous', true);
@@ -174,14 +174,14 @@ describe('Pagination demo page test suite', () => {
 
     it('when user clicks on "Hide/show direction links", then "Previous/Next" are disappeared', () => {
       pagination.isActivePositionEqual(directionLinks, '1');
-      pagination.clickOnBtn(directionLinks, 'Hide/show direction links');
+      pagination.clickOnPaginationBtn(directionLinks, 'Hide/show direction links');
       pagination.isPagerExist(directionLinks, 'Previous', false);
       pagination.isPagerExist(directionLinks, 'Next', false);
     });
 
     it('when user clicks on "Hide/show direction links" again, then "Previous/Next" buttons are appeared', () => {
-      pagination.clickOnBtn(directionLinks, 'Hide/show direction links');
-      pagination.clickOnBtn(directionLinks, 'Hide/show direction links');
+      pagination.clickOnPaginationBtn(directionLinks, 'Hide/show direction links');
+      pagination.clickOnPaginationBtn(directionLinks, 'Hide/show direction links');
       pagination.isPagerExist(directionLinks, 'Previous', true);
       pagination.isPagerExist(directionLinks, 'Next', true);
     });
@@ -250,7 +250,7 @@ describe('Pagination demo page test suite', () => {
     });
 
     it('when user clicks on "Toggle state" button, then pagination panel is disabled', () => {
-      pagination.clickOnBtn(disabled, 'Toggle state');
+      pagination.clickOnPaginationBtn(disabled, 'Toggle state');
       pagination.isPagerDisabled(disabled, 'Previous', true);
       pagination.isPagerDisabled(disabled, 'Next', true);
       pagination.isPageDisabled(disabled, '2', true);
@@ -260,8 +260,8 @@ describe('Pagination demo page test suite', () => {
     });
 
     it('when user clicks on "Toggle state" button again, then pagination panel is enabled', () => {
-      pagination.clickOnBtn(disabled, 'Toggle state');
-      pagination.clickOnBtn(disabled, 'Toggle state');
+      pagination.clickOnPaginationBtn(disabled, 'Toggle state');
+      pagination.clickOnPaginationBtn(disabled, 'Toggle state');
       pagination.isPagerDisabled(disabled, 'Previous', true);
       pagination.isPagerDisabled(disabled, 'Next', false);
       pagination.isPageDisabled(disabled, '2', false);
@@ -358,7 +358,7 @@ describe('Pagination demo page test suite', () => {
     it('when user clicks on 6, "Toggle centering" and "Next", then "last/first" - appeared, like "..."', () => {
       pagination.clickOnPage(centeringPageLink, '5');
       pagination.clickOnPage(centeringPageLink, '6');
-      pagination.clickOnBtn(centeringPageLink, 'Toggle centering current page link');
+      pagination.clickOnPaginationBtn(centeringPageLink, 'Toggle centering current page link');
       pagination.clickOnPager(centeringPageLink, 'Next');
       pagination.isPaginationLengthEqual(centeringPageLink, 7);
       pagination.isActivePositionEqual(centeringPageLink, '7');

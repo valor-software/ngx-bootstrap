@@ -70,7 +70,7 @@ export class PaginationPo extends BaseComponent {
     cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).click();
   }
 
-  clickOnBtn(baseSelector: string, btnName: string) {
+  clickOnPaginationBtn(baseSelector: string, btnName: string) {
     cy.contains(`${baseSelector} button`, btnName).click();
   }
 

@@ -9,7 +9,8 @@ export abstract class BaseComponent {
   titleDefaultExample = 'Usage';
 
   navigateTo() {
-    cy.visit(this.pageUrl);
+    const bsVersionRoute = Cypress.env('bsVersion') ? `?_bsVersion=bs${Cypress.env('bsVersion')}` : '';
+    cy.visit(`${ this.pageUrl }${bsVersionRoute}`);
   }
 
   scrollToMenu(subMenu: string) {
