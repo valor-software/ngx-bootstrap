@@ -1,8 +1,10 @@
 /* tslint:disable:max-file-line-count */
-import { Component } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { async, fakeAsync, TestBed, tick, ComponentFixture } from '@angular/core/testing';
 
-import { BsDropdownConfig, BsDropdownModule } from '../dropdown';
+import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../dropdown';
+import { window } from '../utils/facade/browser';
+import { By } from '@angular/platform-browser';
 
 @Component({
   selector: 'dropdown-test',
@@ -12,9 +14,10 @@ class TestDropdownComponent {
   isOpen: Boolean = false;
   dropup: Boolean = false;
   isDisabled: Boolean = false;
-  autoClose: Boolean = false;
+  autoClose: Boolean = true;
   isOpenChangeValue: Boolean = false;
   insideClick: Boolean = false;
+  container: String = '';
 
   constructor(config: BsDropdownConfig) {
     Object.assign(this, config);
@@ -42,6 +45,7 @@ describe('Directive: Dropdown', () => {
   let fixture: ComponentFixture<TestDropdownComponent>;
   let element: HTMLElement;
   let context: TestDropdownComponent;
+  let directive: BsDropdownDirective;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
@@ -55,11 +59,23 @@ describe('Directive: Dropdown', () => {
     fixture = TestBed.createComponent(TestDropdownComponent);
     element = fixture.nativeElement;
     context = fixture.componentInstance;
+    // get the typeahead directive instance
+    const inputs = fixture.debugElement.queryAll(
+      By.directive(BsDropdownDirective)
+    );
+    directive = inputs.map(
+      (de: DebugElement) =>
+        de.injector.get<BsDropdownDirective>(BsDropdownDirective)
+    )[0];
     fixture.detectChanges();
   });
 
   it('should be closed by default', () => {
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+  });
+
+  it('autoClose value should be true by default', () => {
+    expect(directive.autoClose).toBeTruthy();
   });
 
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {
@@ -280,4 +296,29 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
     expect(element.querySelector('[dropdownToggle]').getAttribute('disabled')).toEqual('true');
   }));
+
+  it('should open if container is body', () => {
+    context.container = 'body';
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    element.querySelector('button').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    element.querySelector('button').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+  });
+
+  it('should open if isBs3 method return true', () => {
+    const tempVal = window.__theme;
+    window.__theme = 'bs4';
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    element.querySelector('button').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    element.querySelector('button').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    window.__theme = tempVal;
+  });
 });
