@@ -60,7 +60,7 @@ jobs:
 # run in parallel
     - stage: Testing
 #   lint code
-    -  script: npm run lint-src
+      script: npm run lint-src
       name: "Lint"
       install: true
 
