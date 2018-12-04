@@ -2,11 +2,11 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -14,7 +14,9 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './bs-datepicker-view.html',
   host: {
     '(click)': '_stopPropagation($event)',
-    style: 'position: absolute; display: block;'
+    style: 'position: absolute; display: block;',
+    role: 'dialog',
+    'aria-label': 'calendar'
   }
 })
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
@@ -51,8 +53,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // on selected date change
     this._subs.push(
       this._store
-        .select(state => state.selectedDate)
-        .subscribe(date => this.valueChange.emit(date))
+        /* tslint:disable-next-line: no-any */
+        .select((state: any) => state.selectedDate)
+        /* tslint:disable-next-line: no-any */
+        .subscribe((date: any) => this.valueChange.emit(date))
     );
   }
 

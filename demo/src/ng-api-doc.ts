@@ -751,7 +751,7 @@ export const ngdoc: any = {
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
+        "description": "<p>Indicates whether datepicker&#39;s content is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
@@ -852,6 +852,12 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
+        "name": "rangeInputFormat",
+        "defaultValue": "L",
+        "type": "string",
+        "description": "<p>Date format for date range input field</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
@@ -895,7 +901,7 @@ export const ngdoc: any = {
       {
         "name": "isDisabled",
         "type": "boolean",
-        "description": "<p>Indicates whether daterangepicker is enabled or not</p>\n"
+        "description": "<p>Indicates whether daterangepicker&#39;s content is enabled or not</p>\n"
       },
       {
         "name": "isOpen",
@@ -1862,7 +1868,7 @@ export const ngdoc: any = {
       },
       {
         "name": "toggle",
-        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
+        "description": "<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover. With parameter <code>true</code> allows toggling, with parameter <code>false</code>\nonly hides opened dropdown. Parameter usage will be removed in ngx-bootstrap v3</p>\n",
         "args": [
           {
             "name": "value",
@@ -2145,7 +2151,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code>&lt;li></code> </p>\n"
       },
       {
         "name": "previousText",
@@ -2237,7 +2243,7 @@ export const ngdoc: any = {
       {
         "name": "pageBtnClass",
         "type": "string",
-        "description": "<p>add class to <li> </p>\n"
+        "description": "<p>add class to <code>&lt;li></code></p>\n"
       },
       {
         "name": "previousText",
@@ -2425,7 +2431,7 @@ export const ngdoc: any = {
       },
       {
         "name": "element",
-        "type": "string | HTMLElement | ElementRef",
+        "type": "string | HTMLElement | ElementRef<any>",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which will be moved </p>\n"
       },
       {
@@ -2435,7 +2441,7 @@ export const ngdoc: any = {
       },
       {
         "name": "target",
-        "type": "string | HTMLElement | ElementRef",
+        "type": "string | HTMLElement | ElementRef<any>",
         "description": "<p>The DOM element, ElementRef, or a selector string of an element which the element will be attached to  </p>\n"
       },
       {
@@ -2559,7 +2565,7 @@ export const ngdoc: any = {
       {
         "name": "titles",
         "type": "string[]",
-        "description": "<p>array of icons titles, default: ([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;]) </p>\n"
+        "description": "<p>array of icons titles</p>\n"
       }
     ],
     "outputs": [
@@ -2811,7 +2817,12 @@ export const ngdoc: any = {
       {
         "name": "arrowkeys",
         "type": "boolean",
-        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
         "name": "disabled",
@@ -2898,7 +2909,13 @@ export const ngdoc: any = {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>if true up/down arrowkeys inside hours and minutes inputs will change time </p>\n"
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
+      },
+      {
+        "name": "disabled",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
         "name": "disabled",

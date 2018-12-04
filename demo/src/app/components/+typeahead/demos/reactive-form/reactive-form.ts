@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import 'rxjs/add/observable/of';
-
 @Component({
   selector: 'demo-typeahead-reactive-form',
   templateUrl: './reactive-form.html'

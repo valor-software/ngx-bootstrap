@@ -2,7 +2,7 @@
 // tslint:disable
 import { Component, OnInit } from '@angular/core';
 
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 
 @Component({
@@ -32,7 +32,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   </thead>
   <tbody>
     <tr *ngFor="let rowz of rows">
-      <td *ngFor="let dtz of rowz" class="text-center" role="gridcell">
+      <td *ngFor="let dtz of rowz" class="text-center" role="gridcell" [attr.id]="dtz.uid">
         <button type="button" style="min-width:100%;" class="btn btn-default"
                 [ngClass]="{'btn-link': isBs4 && !dtz.selected && !datePicker.isActive(dtz), 'btn-info': dtz.selected || (isBs4 && !dtz.selected && datePicker.isActive(dtz)), disabled: dtz.disabled, active: !isBs4 && datePicker.isActive(dtz)}"
                 [disabled]="dtz.disabled"

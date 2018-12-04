@@ -69,8 +69,8 @@ export const demoComponentContent: ContentSection[] = [
         title: 'With delay',
         anchor: 'delay',
         description: `
-          <p>Use to set minimal waiting time after last character typed before typeahead kicks-in.
-          In example a search begins with delay in 1 second</p>
+          <p>Use <code>typeaheadWaitMs</code> to set minimal waiting time after last character typed
+          before typeahead kicks-in. In example a search begins with delay in 1 second</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
         html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
@@ -80,9 +80,8 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Template-driven forms',
         anchor: 'forms',
         description: `
-          <p>
-            Typeahead can be used in template-driven forms. Keep in mind that value of <code>ngModel</code> is string
-          </p>
+          <p>Typeahead can be used in template-driven forms. Keep in mind that value of <code>ngModel</code> is
+          <code>string</code></p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/form/form.ts'),
         html: require('!!raw-loader?lang=markup!./demos/form/form.html'),
@@ -110,8 +109,11 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'single-world',
         component: require('!!raw-loader?lang=typescript!./demos/single-world/single-world.ts'),
         html: require('!!raw-loader?lang=markup!./demos/single-world/single-world.html'),
-        description: `If <code>typeaheadSingleWords=true</code> ignores spaces and seeking for matches with occurrences of entered words.
-          For example: <pre>ari zona -> Arizona</pre>`,
+        description: `
+          <p>After setting <code>typeaheadSingleWords</code> input property to <code>true</code>
+          order of typed symbols and spaces between them will be ignored. For example, "<i>zona ari</i>"
+          will match with "<i>Arizona</i>"</p>
+        `,
         outlet: DemoTypeaheadSingleWorldComponent
       },
       {
@@ -119,7 +121,10 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'phrase-delimiters',
         component: require('!!raw-loader?lang=typescript!./demos/phrase-delimiters/phrase-delimiters.ts'),
         html: require('!!raw-loader?lang=markup!./demos/phrase-delimiters/phrase-delimiters.html'),
-        description: `Sets the word delimiter to match exact phrase. For example that are <code>&</code> and <code>,</code>`,
+        description: `
+          <p>Set the word delimiter by <code>typeaheadPhraseDelimiters</code> to match exact phrase.
+          This is demo with delimeters "<code>&</code>" and "<code>,</code>"</p>
+        `,
         outlet: DemoTypeaheadPhraseDelimitersComponent
       },
       {
@@ -144,7 +149,8 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Append to body',
         anchor: 'container',
         description: `
-        <p>A selector specifying the element the typeahead should be appended to. Currently only supports "body".</p>
+        <p><code>container</code> is an input property specifying the element the typeahead should be appended to.
+        Currently only supports <code>body</code>.</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
@@ -171,8 +177,10 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Latinize',
         anchor: 'latinize',
-        description: `<p>Allow to match latin symbols. If true the word <strong>súper</strong> would match
-          <strong>super</strong> and vice versa.</p>`,
+        description: `
+          <p>Use <code>typeaheadLatinize</code> property for matching latin symbols. If it is set
+          to <code>true</code> the word <strong>súper</strong> would match <strong>super</strong> and vice versa.</p>
+        `,
         component: require('!!raw-loader?lang=typescript!./demos/latinize/latinize.ts'),
         html: require('!!raw-loader?lang=markup!./demos/latinize/latinize.html'),
         outlet: DemoTypeaheadLatinizeComponent
@@ -181,7 +189,8 @@ export const demoComponentContent: ContentSection[] = [
         title: 'On select',
         anchor: 'on-select',
         description: `
-          <p>Fired when an option was selected, returns an object with this option</p>
+          <p><code>typeaheadOnSelect</code> event is fired when an option was selected.
+          Returns an object with this option</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),

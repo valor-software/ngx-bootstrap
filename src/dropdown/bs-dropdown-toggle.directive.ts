@@ -3,10 +3,9 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
-  Input,
   OnDestroy
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { BsDropdownState } from './bs-dropdown.state';
 
@@ -49,7 +48,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
   }
 
   @HostListener('document:click', ['$event'])
-  onDocumentClick(event: any): void {
+  onDocumentClick(event: MouseEvent): void {
     if (
       this._state.autoClose &&
       event.button !== 2 &&

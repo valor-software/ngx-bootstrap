@@ -1,2 +1,1 @@
-export { CollapseDirective } from './collapse.directive';
-export { CollapseModule } from './collapse.module';
+export * from './public_api';

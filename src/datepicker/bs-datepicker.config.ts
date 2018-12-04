@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   DatepickerRenderOptions
-} from './models/index';
+} from './models';
 
 
 /**
@@ -37,6 +37,9 @@ export class BsDatepickerConfig
   dateInputFormat = 'L';
   // range picker
   rangeSeparator = ' - ';
+  /**
+   * Date format for date range input field
+   */
   rangeInputFormat = 'L';
 
   // DatepickerFormatOptions

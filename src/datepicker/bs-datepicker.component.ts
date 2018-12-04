@@ -2,13 +2,10 @@ import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
-import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
+import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { BsLocaleService } from './bs-locale.service';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -53,10 +50,12 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Emits an event when the datepicker is shown
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the datepicker is hidden
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date;
@@ -77,7 +76,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() bsConfig: Partial<BsDatepickerConfig>;
   /**
-   * Indicates whether datepicker is enabled or not
+   * Indicates whether datepicker's content is enabled or not
    */
   @Input() isDisabled: boolean;
   /**
@@ -114,7 +113,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     this.onHidden = this._datepicker.onHidden;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
       triggers: this.triggers,
@@ -212,7 +211,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._datepicker.dispose();
   }
 }

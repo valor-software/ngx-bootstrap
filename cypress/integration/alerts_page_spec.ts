@@ -2,149 +2,172 @@ import { AlertsPo } from '../support/alerts.po';
 
 describe('Alerts page test suite', () => {
   const alerts = new AlertsPo();
-  const alertsDemos = alerts.exampleDemosArr;
-
-  let alertTypes: string[];
-  let stylesColors: string[];
 
   beforeEach(() => alerts.navigateTo());
 
-  it('alerts page loads and displays it\'s content', () => {
-    cy.get('.content')
-      .should('be.visible');
-  });
-
-  it('content header contains title and link to accordion component at github', () => {
-    cy.get('.content-header').children('h1').as('title')
-      .should('be.visible')
-      .and('to.contain', alerts.pageTitle);
-
-    cy.get('@title').children('a')
-      .should('be.enabled')
-      .and('have.attr', 'href', alerts.ghLinkToComponent);
-  });
-
-  it('usage code example is displayed at demo top section', () => {
-    cy.get('demo-top-section').as('demoTop').children('h2')
-      .should('be.visible')
-      .and('to.contain', alerts.titleDefaultExample);
-
-    cy.get('@demoTop').children('.prettyprint')
-      .should('be.visible')
-      .and('not.to.be.empty');
-  });
-
-  it('basic alert example displays success, info, warning and danger types of alerts', () => {
-    alertTypes = [
+  describe('Basic', () => {
+    const basicDemo = alerts.exampleDemosArr.basic;
+    const alertTypes = [
       'alert-success',
       'alert-info',
       'alert-warning',
       'alert-danger'
     ];
 
-    cy.get(alertsDemos[0]).find('div').as('alertsBasic').each(($alert, i) => {
-      expect($alert).to.have.class(alertTypes[i]);
-      cy.get('@alertsBasic').eq(i)
-        .should('be.visible');
+    it('success, info, warning and danger types of alerts are displayed', () => {
+      alertTypes.forEach(type => cy.get(`${ basicDemo } .${ type }`)
+        .should('be.visible'));
     });
   });
 
-  it('link in alerts can be provided by class alert-link', () => {
-    cy.get(alertsDemos[1]).find('div').as('alertsLink').each(() => {
-      cy.get('@alertsLink').find(alerts.linkClass)
-        .should('have.attr', 'href', '#');
+  describe('Link color', () => {
+    const linkDemo = alerts.exampleDemosArr.link;
+    const alertTypes = [
+      'alert-success',
+      'alert-info',
+      'alert-warning',
+      'alert-danger'
+    ];
+
+    it('links can be provided by class alert-link', () => {
+      alertTypes.forEach(type => cy.get(`${ linkDemo } .${ type }`).find(alerts.linkClass)
+        .should('have.attr', 'href', '#'));
     });
   });
 
-  it('alert with additional content contains html elements', () => {
-    cy.get(alertsDemos[2]).find('div')
-      .should('to.have.descendants', 'h4')
-      .and('to.have.descendants', 'p');
+  describe('Additional content', () => {
+    const contentDemo = alerts.exampleDemosArr.content;
+
+    it('alert with additional content contains html elements', () => {
+      cy.get(contentDemo).find(alerts.alertClass)
+        .should('to.have.descendants', 'h4')
+        .and('to.have.descendants', 'p')
+        .and('to.have.descendants', alerts.heading);
+    });
   });
 
-  it('alerts in dismissing example can stop being dismissible', () => {
-    cy.get(alertsDemos[3]).find('alert').as('dismissAlert').last()
-      .should('to.have.descendants', '.close');
+  describe('Dismissing', () => {
+    const dismissingDemo = alerts.exampleDemosArr.dismissing;
+    const alertTypes = [
+      'alert-success',
+      'alert-info',
+      'alert-danger'
+    ];
+    const buttonToggler = 'Toggle dismissible';
+    const buttonReset = 'Reset';
 
-    alerts.clickByText(alertsDemos[3], alerts.buttonToggler);
-    cy.get('@dismissAlert').last()
-      .should('not.to.have.descendants', '.close');
-  });
+    it('alerts can stop being dismissible', () => {
+      cy.get(dismissingDemo).find(alerts.alertClass).last().as('dismissAlert')
+        .should('to.have.descendants', alerts.dismissOption);
 
-  it('alerts in dismissible example can all be closed and then resetting to default state', () => {
-    cy.get(alertsDemos[3]).find('alert').as('dismissAlert').each(($alert) => {
-      $alert.find('.close').click();
+      alerts.clickByText(dismissingDemo, buttonToggler);
+      cy.get('@dismissAlert')
+        .should('not.to.have.descendants', alerts.dismissOption);
+
+      alerts.clickByText(dismissingDemo, buttonToggler);
+      cy.get('@dismissAlert')
+        .should('to.have.descendants', alerts.dismissOption);
     });
 
-    cy.get('@dismissAlert')
-      .should('not.to.have.descendants', 'div');
+    it('alerts can all be closed and then resetting to default state', () => {
+      alertTypes.forEach(type => {
+        cy.get(`${ dismissingDemo } .${ type } ${alerts.dismissOption}`).click();
+        cy.get(`${ dismissingDemo } .${ type }`)
+          .should('not.to.exist');
+      });
 
-    alerts.clickByText(alertsDemos[3], alerts.buttonReset);
-    cy.get('@dismissAlert')
-      .should('to.have.descendants', 'div');
+      alerts.clickByText(dismissingDemo, buttonReset);
+      alertTypes.forEach(type => cy.get(`${ dismissingDemo } .${ type }`)
+        .should('to.exist'));
+    });
   });
 
-  it('alerts in dynamic html example contains style and content from component', () => {
-    alertTypes = [
+  describe('Dynamic html', () => {
+    const dynamicHtml = alerts.exampleDemosArr.dynamicHtml;
+    const alertTypes = [
       'alert-success',
       'alert-info',
       'alert-danger'
     ];
 
-    cy.get(alertsDemos[4]).find('alert').children('div').as('alertsDynamic').each(($alert, i) => {
-      expect($alert).to.have.class(alertTypes[i]);
-      cy.get('@alertsDynamic').eq(i)
+    it('each alert contains style and content from component', () => {
+      alertTypes.forEach(type => cy.get(`${ dynamicHtml} .${ type }`)
         .should('be.visible')
-        .and('to.have.descendants', 'span');
+        .and('to.have.descendants', alerts.textWrapper));
     });
   });
 
-  it('dynamic content in alerts can be changed by click on button', () => {
-    cy.get(alertsDemos[5]).find('.alert').as('alertDynamicText')
-      .should('to.contain', alerts.dynamicAlertText[0]);
+  describe('Dynamic content', () => {
+    const dynamicContent = alerts.exampleDemosArr.dynamicContent;
+    const dynamicAlertText = [
+      'You successfully read this important alert message.',
+      'Now this text is different from what it was before. Go ahead and click the button one more time',
+      'Well done! Click reset button'
+    ];
 
-    alerts.clickByText(alertsDemos[5], alerts.buttonChangeText);
-    cy.get('@alertDynamicText')
-      .should('to.contain', alerts.dynamicAlertText[1])
-      .and('not.to.contain', alerts.dynamicAlertText[0]);
-
-    alerts.clickByText(alertsDemos[5], alerts.buttonChangeText);
-    cy.get('@alertDynamicText')
-      .should('to.contain', alerts.dynamicAlertText[2]);
-
-    alerts.clickByText(alertsDemos[5], alerts.buttonReset);
-    cy.get('@alertDynamicText')
-      .should('to.contain', alerts.dynamicAlertText[0])
-      .and('not.to.contain', alerts.dynamicAlertText[2]);
+    it('alert\'s content can be changed dynamicly', () => {
+      dynamicAlertText.forEach(text => {
+        cy.get(dynamicContent).find(alerts.alertClass)
+          .should('to.contain', text);
+        cy.get(dynamicContent).find('button').click();
+      });
+    });
   });
 
-  it('alert with global style has added style', () => {
-    stylesColors = ['rgb(123, 31, 162)', 'rgb(74, 20, 140)', 'rgb(255, 255, 255)'];
+  describe('Dismiss on timeout', () => {
+    const dismisTimeout = alerts.exampleDemosArr.dismissTimeout;
+    const timeoutLength = 5000;
 
-    cy.get(alertsDemos[7]).find('.alert')
-      .should('to.have.css', 'background-color', stylesColors[0])
-      .and('to.have.css', 'border-color', stylesColors[1])
-      .and('to.have.css', 'color', stylesColors[2]);
+    it('After timeout in 5 seconds, default alert disappears', () => {
+      cy.get(`${ dismisTimeout } ${ alerts.alertClass }`).as('defaultAlert')
+        .should('to.be.visible');
+      cy.wait(timeoutLength);
+      cy.get('@defaultAlert').should('not.to.exist');
+    });
   });
 
-  it('alert with component level styling has added style', () => {
-    stylesColors = ['rgb(0, 150, 136)', 'rgb(0, 105, 92)', 'rgb(255, 255, 255)'];
+  describe('Global styling', () => {
+    const globalStyle = alerts.exampleDemosArr.globalStyling;
+    const stylesColors = [
+      'rgb(123, 31, 162)', // violet
+      'rgb(74, 20, 140)', // indigo
+      'rgb(255, 255, 255)' // white
+    ];
 
-    cy.get(alertsDemos[8]).find('.alert')
-      .should('to.have.css', 'background-color', stylesColors[0])
-      .and('to.have.css', 'border-color', stylesColors[1])
-      .and('to.have.css', 'color', stylesColors[2]);
+    it('alert is displayed with added style', () => {
+      cy.get(globalStyle).find(alerts.alertClass)
+        .should('to.have.css', 'background-color', stylesColors[0])
+        .and('to.have.css', 'border-color', stylesColors[1])
+        .and('to.have.css', 'color', stylesColors[2]);
+    });
   });
 
-  it('alerts with preconfigured defaults have added config', () => {
-    alertTypes = [
+  describe('Component level styling', () => {
+    const componentStyle = alerts.exampleDemosArr.localStyling;
+    const stylesColors = [
+      'rgb(0, 150, 136)', // dark cyan
+      'rgb(0, 105, 92)', // mosque
+      'rgb(255, 255, 255)' // white
+    ];
+
+    it('alert is displayed with added style', () => {
+      cy.get(componentStyle).find(alerts.alertClass)
+        .should('to.have.css', 'background-color', stylesColors[0])
+        .and('to.have.css', 'border-color', stylesColors[1])
+        .and('to.have.css', 'color', stylesColors[2]);
+    });
+  });
+
+  describe('Configuring defaults', () => {
+    const configDemo = alerts.exampleDemosArr.config;
+    const alertTypes = [
       'alert-success',
       'alert-info'
     ];
 
-    cy.get(alertsDemos[9]).find('.alert').as('configuredAlerts').eq(0)
-      .should('to.have.class', alertTypes[0]);
-    cy.get('@configuredAlerts').eq(1)
-      .should('to.have.class', alertTypes[1]);
+    it('each alert contains added config', () => {
+      alertTypes.forEach(type => cy.get(`${ configDemo } .${ type }`)
+        .should('be.visible'));
+    });
   });
 });

@@ -223,10 +223,14 @@ a:hover {
     padding: 15px 19px 10px 20px;
     display: flex;
     flex-flow: row wrap;
+    align-items: center;
     border-bottom: 1px solid #dadada;
 
+    span {
+      margin-right: 4px;
+    }
+
     .btn {
-      margin-bottom: 5px;
       cursor: pointer;
       text-align: center;
       white-space: nowrap;
@@ -240,11 +244,13 @@ a:hover {
       padding: 6px 8px;
       font-size: 0.8125rem;
       line-height: 1.25;
-      border-radius: .25rem;
       transition: all .15s ease-in-out;
 
-      &:first-child {
-        margin-right: 6px;
+      &:first-of-type {
+        border-radius: .25rem 0 0 .25rem;
+      }
+      &:last-of-type {
+        border-radius: 0 .25rem .25rem 0;
       }
 
       &.selected {
@@ -298,6 +304,7 @@ a:hover {
 .main-container {
   flex: 0 0 66.666667%;
   max-width: 66.666667%;
+  margin-left: 16.66667%;
 }
 .content {
   padding: 30px 30px 120px;
@@ -366,8 +373,7 @@ a:hover {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
   padding-right: 5px;
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 84px;
   left: 83.33%;
   right: 0;
@@ -535,11 +541,12 @@ a:hover {
     z-index: 2001; // to overlap header :)
   }
   .sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: $header-height;
-    max-height: calc(100vh - #{$header-height});
+    bottom: 0;
   }
+
+
   #mobile-main-menu {
     display: none;
   }
@@ -552,6 +559,7 @@ a:hover {
   .main-container {
     flex: 0 0 75%;
     max-width: 75%;
+    margin-left: 25%;
   }
 
   .content {
@@ -605,6 +613,11 @@ a:hover {
     flex: 0 0 100%;
     max-width: 100%;
   }
+
+  .main-container {
+    margin-left: 0;
+  }
+
   .sidebar {
     border-right: none;
     border-bottom: none;

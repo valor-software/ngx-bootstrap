@@ -4,6 +4,7 @@
 // tslint:disable:one-variable-per-declaration newline-before-return
 
 import { LocaleData } from '../locale/locale.class';
+import { getDayOfWeek } from '../units/day-of-week';
 
 //! moment.js locale configuration
 //! locale : Czech [cs]
@@ -118,8 +119,8 @@ export const csLocale: LocaleData = {
   calendar: {
     sameDay: '[dnes v] LT',
     nextDay: '[zítra v] LT',
-    nextWeek(dayOfWeek: number): string {
-      switch (dayOfWeek) {
+    nextWeek(date: Date): string {
+      switch (getDayOfWeek(date)) {
         case 0:
           return '[v neděli v] LT';
         case 1:
@@ -136,8 +137,8 @@ export const csLocale: LocaleData = {
       }
     },
     lastDay: '[včera v] LT',
-    lastWeek(dayOfWeek: number): string {
-      switch (dayOfWeek) {
+    lastWeek(date: Date): string {
+      switch (getDayOfWeek(date)) {
         case 0:
           return '[minulou neděli v] LT';
         case 1:

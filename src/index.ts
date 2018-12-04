@@ -1,4 +1,4 @@
-/* tslint:disable: max-classes-per-file */
+/* tslint:disable */
 import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -145,12 +145,25 @@ export {
   PopoverModule
 } from './popover/index';
 
-export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils/index';
+export {
+  OnChange,
+  document,
+  window,
+  parseTriggers,
+  LinkedList,
+  isBs3,
+  Trigger,
+  warnOnce,
+  Utils,
+  listenToTriggersV2,
+  registerOutsideClick
+} from './utils/index';
 
 export {
   ComponentLoader,
   ComponentLoaderFactory,
-  ContentRef
+  ContentRef,
+  BsComponentRef
 } from './component-loader/index';
 
 export {
@@ -160,6 +173,38 @@ export {
   positionElements
 } from './positioning/index';
 
-export { defineLocale, getSetGlobalLocale, LocaleData } from './chronos/index';
+export {
+  Action,
+  MiniState,
+  MiniStore
+} from './mini-ngrx/index';
+
+export {
+  defineLocale,
+  getSetGlobalLocale,
+  LocaleData,
+  parseDate,
+  formatDate,
+  getDay,
+  isFirstDayOfWeek,
+  isSameYear,
+  isSameDay,
+  isSameMonth,
+  getFullYear,
+  getFirstDayOfMonth,
+  getMonth,
+  getLocale,
+  updateLocale,
+  isAfter,
+  isBefore,
+  isArray,
+  isDateValid,
+  isDate,
+  shiftDate,
+  setFullDate,
+  endOf,
+  startOf,
+  TimeUnit
+} from './chronos/index';
 
 export * from './locale';

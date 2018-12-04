@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ComponentLoaderFactory } from '../component-loader/index';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
-import { PositioningService } from '../positioning/index';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
 import { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
@@ -25,6 +25,7 @@ import { BsDropdownState } from './bs-dropdown.state';
   entryComponents: [BsDropdownContainerComponent]
 })
 export class BsDropdownModule {
+  // tslint:disable-next-line:no-any
   static forRoot(config?: any): ModuleWithProviders {
     return {
       ngModule: BsDropdownModule,
