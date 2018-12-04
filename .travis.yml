@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "8"
+node_js: "10"
 
 notifications:
   email: false
@@ -26,7 +26,7 @@ stages:
   - <<: *stage
     name: test
   - <<: *stage
-    name: cypress-tests
+    name: cypress-tests:smoke
   - <<: *stage
     name: build
   - name: deploy
@@ -35,13 +35,18 @@ stages:
     if: tag =~ ^v\d+
   - <<: *stage
     name: sauce-tests
+  - <<: *stage
+    name: cypress-tests:full:herokuapp
+    if: branch = development AND type = push OR tag =~ ^v\d+
+  - <<: *stage
+    name: cypress-tests:full:gh-pages
+    if: branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
   - sh -e /etc/init.d/xvfb start
   - rm -rf node_modules/ngx-bootstrap
 
 install:
-  - npm i -g npm@6.0.1
   - npm ci
   - npm run build
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
@@ -59,7 +64,6 @@ jobs:
 # precache npm and apt dependencies
     - stage: precache
       install:
-        - npm i -g npm@6.0.1
         - npm ci
       script: true
       addons:
@@ -87,11 +91,11 @@ jobs:
 #    - <<: *test
 #      env: NGV=next
 
-#     test cypress
-    - stage: cypress-tests
+#     test cypress smoke
+    - stage: cypress-tests:smoke
       env: URL=localhost:4200/#
       before_script: ng serve --prod &
-      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run
+      script: $(npm bin)/wait-on http-get://$URL && npm run cy:run:smoke
 
 #    check prod build
     - &build
@@ -163,8 +167,20 @@ jobs:
         on:
           tags: true
 
+#     test cypress full for herokuapp
+    - stage: cypress-tests:full:herokuapp
+      env: URL=https://ngx-universal.herokuapp.com/#
+      script: npm run cy:run:smoke && npm run cy:run:full
+
+#     test cypress full for gh-pages
+    - stage: cypress-tests:full:gh-pages
+      env: URL=https://valor-software.com/ngx-bootstrap/#/
+      script: npm run cy:run:smoke && npm run cy:run:full
+
 cache:
   apt: true
   npm: true
   directories:
     - node_modules
+    - ~/.npm
+    - ~/.cache
