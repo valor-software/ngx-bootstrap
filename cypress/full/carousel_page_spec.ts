@@ -231,15 +231,14 @@ describe('Carousel page test suite', () => {
       carousel.scrollToMenu('Interval');
       carousel.isCarouselHaveIndicatorsItemsCtrls(intervalSlides);
       carousel.isInputHaveAttrs(intervalSlides,
-        [{ attr: 'type', value: 'number' }, { attr: 'ng-reflect-model', value: '1500' }]);
+        [{ attr: 'type', value: 'number' }]);
     });
 
     it('when user change the interval in input to any positive value - then slides change after added interval', () => {
       carousel.scrollToMenu('Interval');
       const newInterval = '3000';
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
-      carousel.isInputHaveAttrs(intervalSlides,
-        [{ attr: 'type', value: 'number' }, { attr: 'ng-reflect-model', value: newInterval }]);
+      carousel.isInputHaveAttrs(intervalSlides, [{ attr: 'type', value: 'number' }]);
       carousel.isCarouselItemActive(intervalSlides, 0);
       cy.tick(4000);
       carousel.isCarouselItemActive(intervalSlides, 1);
@@ -249,8 +248,7 @@ describe('Carousel page test suite', () => {
       carousel.scrollToMenu('Interval');
       const newInterval = '0';
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
-      carousel.isInputHaveAttrs(intervalSlides,
-        [{ attr: 'type', value: 'number' }, { attr: 'ng-reflect-model', value: newInterval }]);
+      carousel.isInputHaveAttrs(intervalSlides, [{ attr: 'type', value: 'number' }]);
       carousel.isCarouselItemActive(intervalSlides, 0);
       cy.tick(3000);
       carousel.isCarouselItemActive(intervalSlides, 0);
@@ -260,8 +258,7 @@ describe('Carousel page test suite', () => {
       carousel.scrollToMenu('Interval');
       const newInterval = '-100';
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
-      carousel.isInputHaveAttrs(intervalSlides,
-        [{ attr: 'type', value: 'number' }, { attr: 'ng-reflect-model', value: newInterval }]);
+      carousel.isInputHaveAttrs(intervalSlides, [{ attr: 'type', value: 'number' }]);
       carousel.isCarouselItemActive(intervalSlides, 0);
       cy.tick(3000);
       carousel.isCarouselItemActive(intervalSlides, 0);
