@@ -5,18 +5,19 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoTimepickerDynamicComponent {
-  mytime: Date = new Date();
+  mytime: Date | undefined = new Date();
   isValid: boolean;
 
   update(): void {
-    let d = new Date();
-    d.setHours(14);
-    d.setMinutes(0);
-    this.mytime = d;
+    const time = new Date();
+    time.setHours(14);
+    time.setMinutes(0);
+
+    this.mytime = time;
   }
 
   changed(): void {
-    console.log('Time changed to: ' + this.mytime);
+    console.log(`Time changed to: ${this.mytime}`);
   }
 
   clear(): void {

@@ -10,7 +10,6 @@ export interface ConfigModel {
   pageBtnClass: string;
   previousText: string;
   rotate: boolean;
-  [key: string]: string | number | boolean;
 }
 
 export interface PagesModel {
