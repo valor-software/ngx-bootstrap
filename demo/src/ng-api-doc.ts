@@ -713,6 +713,11 @@ export const ngdoc: any = {
         "description": "<p>Minimum date which is available for selection</p>\n"
       },
       {
+        "name": "minMode",
+        "type": "BsDatepickerViewMode",
+        "description": "<p> Minimum view mode : day, month, or year</p>\n"
+      },
+      {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
@@ -794,6 +799,11 @@ export const ngdoc: any = {
         "name": "minDate",
         "type": "Date",
         "description": "<p>Default min date for all date/range pickers</p>\n"
+      },
+      {
+        "name": "minMode",
+        "type": "BsDatepickerViewMode",
+        "description": "<p> Defaut minimum view mode : day, month, or year</p>\n"
       },
       {
         "name": "rangeInputFormat",
