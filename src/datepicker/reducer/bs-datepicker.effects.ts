@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
+
 import { Observable, Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
 import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
+
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
+import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
+import { BsDatepickerStore } from './bs-datepicker.store';
+import { BsLocaleService } from '../bs-locale.service';
+
 import {
   BsDatepickerViewMode,
   BsNavigationEvent,
@@ -14,10 +22,7 @@ import {
   MonthsCalendarViewModel,
   YearsCalendarViewModel
 } from '../models';
-import { BsDatepickerActions } from './bs-datepicker.actions';
-import { BsDatepickerStore } from './bs-datepicker.store';
-import { BsLocaleService } from '../bs-locale.service';
-import { filter, map } from 'rxjs/operators';
+
 
 @Injectable()
 export class BsDatepickerEffects {
@@ -136,21 +141,16 @@ export class BsDatepickerEffects {
       event.cell.isHovered = event.isHovered;
     };
 
-    /** select handlers */
-    // container.daySelectHandler = (day: DayViewModel): void => {
-    //   if (day.isOtherMonth || day.isDisabled) {
-    //     return;
-    //   }
-    //   this._store.dispatch(this._actions.select(day.date));
-    // };
-
     container.monthSelectHandler = (event: CalendarCellViewModel): void => {
       if (event.isDisabled) {
         return;
       }
       this._store.dispatch(
         this._actions.navigateTo({
-          unit: {month: getMonth(event.date)},
+          unit: {
+            month: getMonth(event.date),
+            year: getFullYear(event.date)
+          },
           viewMode: 'day'
         })
       );
@@ -162,7 +162,9 @@ export class BsDatepickerEffects {
       }
       this._store.dispatch(
         this._actions.navigateTo({
-          unit: {year: getFullYear(event.date)},
+          unit: {
+            year: getFullYear(event.date)
+          },
           viewMode: 'month'
         })
       );
