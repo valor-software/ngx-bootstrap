@@ -24,7 +24,14 @@ const locales = [
   nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, svLocale, thLocale, trLocale,
   zhCnLocale
 ];
-locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
+
+locales.forEach((locale: LocaleData) => {
+  if (!locale.abbr) {
+    return;
+  }
+
+  defineLocale(locale.abbr, locale);
+});
 
 @NgModule({
   declarations: [
@@ -44,5 +51,4 @@ locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
   exports: [DatepickerSectionComponent],
   entryComponents: [...DEMO_COMPONENTS]
 })
-export class DemoDatepickerModule {
-}
+export class DemoDatepickerModule {}
