@@ -35,8 +35,7 @@ describe('ng-add schematic', () => {
     const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
     const dependencies = packageJson.dependencies;
 
-    /* tslint:disable-next-line: no-string-literal */
-    expect(dependencies['bootstrap']).toBeDefined();
+    expect(dependencies.bootstrap).toBeDefined();
     expect(dependencies['ngx-bootstrap']).toBeDefined();
 
     expect(Object.keys(dependencies)).toEqual(Object.keys(dependencies).sort(),
