@@ -21,10 +21,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default max date for all date/range pickers
    */
   maxDate?: Date;
+
   /**
    * Makes dates from other months active
    */
-  isOtherMonthsDatesActive = false;
+  selectFromOtherMonth?: boolean;
 
   /**
    * Defaut mode for all date pickers

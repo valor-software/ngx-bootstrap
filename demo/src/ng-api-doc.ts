@@ -818,7 +818,7 @@ export const ngdoc: any = {
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
       },
       {
-        "name": "isOtherMonthsDatesActive",
+        "name": "selectFromOtherMonth",
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Allows to use dates from previous/future month as active</p>\n"

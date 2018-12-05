@@ -82,7 +82,7 @@ export class BsDaysCalendarViewComponent {
   }
 
   hoverDay(cell: DayViewModel, isHovered: boolean): void {
-    if (this._config.isOtherMonthsDatesActive && cell.isOtherMonth) {
+    if (this._config.selectFromOtherMonth && cell.isOtherMonth) {
       cell.isOtherMonthHovered = isHovered;
     }
 

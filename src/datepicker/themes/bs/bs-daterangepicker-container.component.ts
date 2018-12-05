@@ -40,7 +40,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   ngOnInit(): void {
     this.containerClass = this._config.containerClass;
-    this.isOtherMonthsActive = this._config.isOtherMonthsDatesActive;
+    this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this._effects
       .init(this._store)
       // intial state options
