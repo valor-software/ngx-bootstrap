@@ -66,6 +66,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   /**
+   * This attribute indicates that the dropdown shouldn't close on inside click when autoClose is set to true
+   */
+  @Input() insideClick: boolean;
+
+  /**
    * Disables dropdown toggle and hides dropdown menu if opened
    */
   @Input()
@@ -120,17 +125,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     return !isBs3();
   }
 
-  // todo: move to component loader
-  private _isInlineOpen = false;
+  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
   private get _showInline(): boolean {
     return !this.container;
   }
 
-  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
+  // todo: move to component loader
+  private _isInlineOpen = false;
 
+  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
   private _isDisabled: boolean;
-  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
 
@@ -278,6 +283,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     return this.show();
+  }
+
+  /** @internal */
+  _contains(event: any): boolean {
+    return this._elementRef.nativeElement.contains(event.target) ||
+      (this._dropdown.instance && this._dropdown.instance._contains(event.target));
   }
 
   ngOnDestroy(): void {

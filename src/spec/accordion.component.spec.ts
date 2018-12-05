@@ -126,7 +126,7 @@ describe('Component: Accordion', () => {
 
   it('should have the appropriate heading', () => {
     const titles = Array.from(
-      element.querySelectorAll('.panel-heading .accordion-toggle div')
+      element.querySelectorAll('.panel-heading .accordion-toggle button')
     );
     titles.forEach((title: HTMLElement, idx: number) => {
       const expectedTitle = `Panel ${idx + 1}`;
