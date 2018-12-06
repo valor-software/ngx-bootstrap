@@ -163,6 +163,13 @@
           transition: 0s;
         }
 
+        &.is-active-other-month:not(.disabled):not(.selected) span,
+        span.is-active-other-month:not(.disabled):not(.selected) {
+          background-color: $highlighted;
+          transition: 0s;
+          cursor: pointer !important;
+        }
+
         span.disabled,
         &.disabled span {
           color: $font-color-02;
@@ -432,6 +439,7 @@
   /* .is-other-month */
   .is-other-month {
     color: rgba(0, 0, 0, 0.25);
+    cursor: default !important;
   }
 
   /* .bs-datepicker-buttons */

@@ -17,6 +17,7 @@ import {
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
+  isOtherMonthsActive: boolean;
 
   _effects: BsDatepickerEffects;
   _customRangesFish: BsCustomDates[] = [];

@@ -19,7 +19,7 @@ import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-even
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
-
+import { DemoDatePickerSelectDatesFromOtherMonthsComponent } from './demos/select-dates-from-other-months/select-dates-from-other-months';
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
@@ -231,6 +231,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/config-object/config-object.html'),
         description: `<p>You can configure the datepicker via its <code>bsConfig</code> option</p>`,
         outlet: DemoDatePickerConfigObjectComponent
+      },
+      {
+        title: 'Select dates from other month',
+        anchor: 'select-dates-from-other-month',
+        component: require('!!raw-loader?lang=typescript!./demos/select-dates-from-other-months/select-dates-from-other-months.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/select-dates-from-other-months/select-dates-from-other-months.html'),
+        description: `<p>You can enable dates from other months via <code>selectFromOtherMonth</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerSelectDatesFromOtherMonthsComponent
       },
       {
         title: 'Outside click',

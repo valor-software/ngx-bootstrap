@@ -55,6 +55,7 @@ export class BsDatepickerState
   // DatepickerRenderOptions
   showWeekNumbers?: boolean;
   displayMonths?: number;
+  selectFromOtherMonth?: boolean;
 
   // DatepickerFormatOptions
   locale: string;

@@ -15,6 +15,7 @@ import { DemoDatepickerConfigMethodComponent } from './config-method/config-meth
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerConfigObjectComponent } from './config-object/config-object';
+import { DemoDatePickerSelectDatesFromOtherMonthsComponent } from './select-dates-from-other-months/select-dates-from-other-months';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
 import { DemoDatepickerByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
@@ -40,6 +41,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerPlacementComponent,
   DemoDatepickerValueChangeEventComponent,
   DemoDatePickerConfigObjectComponent,
+  DemoDatePickerSelectDatesFromOtherMonthsComponent,
   DemoDatepickerOutsideClickComponent,
   DemoDatepickerByIsOpenPropComponent,
   DemoDatepickerDateInitialStateComponent,
