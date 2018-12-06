@@ -28,7 +28,7 @@ export abstract class BsDatepickerAbstractComponent {
   set maxDate(value: Date) {
     this._effects.setMaxDate(value);
   }
-  set daysDisabled(value: number[]){
+  set daysDisabled(value: number[]) {
     this._effects.setDaysDisabled(value);
   }
 

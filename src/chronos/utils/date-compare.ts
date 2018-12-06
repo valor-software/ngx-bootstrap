@@ -33,9 +33,18 @@ export function isBefore(
   return endOf(date1, units).valueOf() < date2.valueOf();
 }
 
-export function isDisabledDay(date: Date, daysDisabled: number[]):boolean{
-  if(daysDisabled === undefined) return false;
-  return (daysDisabled.filter(d => d == date.getDay()).length > 0);
+export function isDisabledDay(date: Date, daysDisabled: number[]): boolean {
+  if (daysDisabled === undefined || !daysDisabled.length) {
+    return false;
+  }
+
+  return (
+    daysDisabled.some(
+      (day: number) => {
+        return day === date.getDay();
+      }
+    )
+  );
 }
 
 export function isBetween(

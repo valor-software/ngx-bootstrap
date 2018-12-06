@@ -27,7 +27,7 @@ export {
 
 export { LocaleData } from './locale/locale.class';
 
-export { isAfter, isBefore } from './utils/date-compare';
+export { isAfter, isBefore, isDisabledDay } from './utils/date-compare';
 export { isArray, isDateValid, isDate } from './utils/type-checks';
 export { shiftDate, setFullDate } from './utils/date-setters';
 export { endOf, startOf } from './utils/start-end-of';

@@ -4,7 +4,15 @@ import {
   WeekViewModel
 } from '../models';
 
-import { isSameDay, isSameMonth, isAfter, isBefore, shiftDate, isDisabledDay } from 'ngx-bootstrap/chronos';
+import {
+  isAfter,
+  isBefore,
+  isDisabledDay,
+  isSameDay,
+  isSameMonth,
+  shiftDate
+} from 'ngx-bootstrap/chronos';
+
 import { isMonthDisabled } from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
@@ -23,7 +31,8 @@ export function flagDaysCalendar(
   formattedMonth: DaysCalendarViewModel,
   options: FlagDaysCalendarOptions
 ): DaysCalendarViewModel {
-  formattedMonth.weeks.forEach((week: WeekViewModel, weekIndex: number) => {
+  formattedMonth.weeks.forEach((week: WeekViewModel) => {
+    /* tslint:disable-next-line: cyclomatic-complexity */
     week.days.forEach((day: DayViewModel, dayIndex: number) => {
       // datepicker
       const isOtherMonth = !isSameMonth(day.date, formattedMonth.month);

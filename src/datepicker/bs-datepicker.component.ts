@@ -146,7 +146,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
 
-    if(changes.daysDisabled){
+    if (changes.daysDisabled) {
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
 
