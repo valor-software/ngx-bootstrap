@@ -41,7 +41,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
 
 ## Installation instructions
-
+##### Method 1
 Install `ngx-bootstrap` from `npm`:
 ```bash
 npm install ngx-bootstrap --save
@@ -77,6 +77,22 @@ You will need bootstrap styles:
 ```
 <!--- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+```
+##### Method 2
+Use the Angular CLI ng add command for updating your Angular project
+```bash
+ng add ngx-bootstrap
+```
+OR use `ng add` to add needed component (for example tooltip)
+```bash
+ng add ngx-bootstrap --component tooltip
+```
+Add component to your page:
+```
+<button type="button" class="btn btn-primary"
+        tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+  Simple demo
+</button>
 ```
 ### Setting up the bootstrap version manually
 Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
@@ -118,13 +134,13 @@ Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 First time:
  - clone repository
  - `npm install`
- - `npm run test`
+ - `npm run build`
 
 To update your fork and prepare it for local usage:
  - `git pull upstream development`
  - `rm -rf node_modules`
  - `npm install`
- - `npm run test` _*// it will build the lib, create a link in node_modules and run package's "test" script*_
+ - `npm run build`
 
 To run the demo:
  - `npm run demo.serve` _*// to serve local demo. This is for testing only, without watchers.*_

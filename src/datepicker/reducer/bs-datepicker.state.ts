@@ -7,7 +7,7 @@ import {
   MonthsCalendarViewModel,
   MonthViewOptions,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models';
 import { defaultMonthOptions } from './_defaults';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 
@@ -31,6 +31,7 @@ export class BsDatepickerState
   minDate?: Date;
   maxDate?: Date;
   daysDisabled?: number[];
+  minMode?: BsDatepickerViewMode;
 
   hoveredDate?: Date;
   hoveredMonth?: Date;

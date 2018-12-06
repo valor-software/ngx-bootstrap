@@ -13,11 +13,6 @@
     "typeRoots": [
       "../node_modules/@types"
     ],
-    "paths": {
-      "ngx-bootstrap*": [
-        "."
-      ]
-    },
     "types": [
       "jasmine",
       "webpack"

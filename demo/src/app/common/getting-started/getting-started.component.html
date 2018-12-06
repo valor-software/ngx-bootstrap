@@ -65,6 +65,7 @@
       <p>ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.</p>
 
       <h2 id="installation-instructions">Installation instructions</h2>
+      <h4>Method 1</h4>
 
       <p>Install <code>ngx-bootstrap</code> from <code>npm</code></p>
       <pre class="prettyprint lang-bash prettyprinted"><span class="pln">npm install ngx</span><span class="pun">-</span><span class="pln">bootstrap </span><span class="pun">--</span><span class="pln">save</span></pre>
@@ -80,7 +81,32 @@
       <p>To enable bootstrap 4 theme templates in ngx-bootstrap, please read <a href="https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/bootstrap.md">here</a></p>
       <pre class="prettyprint prettyprinted"><span class="com">&lt;!-- index.html --&gt;</span><span class="pln">
 </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span></pre>
-      
+
+      <h4>Method 2</h4>
+      <p>Angular CLI <code>ng add</code> command will update your Angular project with the necessary ngx-bootstrap dependencies, make changes to package.json, angular.json and will execute initialization code.</p>
+      <pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span></pre>
+      <pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">componentName</span></pre>
+      <p>ng add will use your package manager to download dependencies for ngx-bootstrap and invoke an installation script (implemented as a schematic) which will update your project and add additional dependencies (e.g. styles)</p>
+      List of possible commands for adding appropriate component
+      <pre class="prettyprint lang-bash prettyprinted">
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">accordion</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">alerts</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">buttons</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">carousel</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">collapse</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">datepicker</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">dropdowns</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">modals</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">pagination</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">popover</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">progressbar</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">rating</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">sortable</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">tabs</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">timepicker</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">tooltip</span>
+        <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">typeahead</span></pre>
+
       <h3>Setting up the bootstrap version manually</h3>
       
       <p>Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. <code>AppComonent</code>):</p>

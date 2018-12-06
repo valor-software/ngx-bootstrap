@@ -1,5 +1,5 @@
-@import './utils/scss/variables';
-@import './utils/scss/mixins';
+@import 'utils/scss/variables';
+@import 'utils/scss/mixins';
 
 /* .bs-datepicker */
 .bs-datepicker {
@@ -10,7 +10,6 @@
   box-shadow: 0 0 10px 0 $main-box-shadow;
   position: relative;
   z-index: 1;
-
 
   &:after {
     clear: both;
@@ -355,7 +354,6 @@
 
   /* .bs-datepicker-multiple */
   &-multiple {
-    display: inline-block;
     border-radius: 4px 0 0 4px;
 
     & + & {
@@ -394,6 +392,13 @@
   /* .bs-datepicker-btns */
   &-container {
     padding: 15px;
+  }
+
+  .bs-media-container {
+    display: flex;
+    @media(max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   /*.bs-datepicker-custom-range */

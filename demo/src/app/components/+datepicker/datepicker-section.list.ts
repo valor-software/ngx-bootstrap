@@ -3,6 +3,7 @@ import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-st
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
+import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.component';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
@@ -51,6 +52,7 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `
+          <p>Note: If you installed ngx-bootstrap not via ng add command, you will need to perform a several actions</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
@@ -157,6 +159,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>daysDisabled</code> is set with an array which disabled saturday and sunday.
           Sunday is considered the first day of the week and thus has the value 0</p>`,
         outlet: DemoDatepickerDaysDisabledComponent
+      },
+      {
+        title: 'Min-mode',
+        anchor: 'min-mode',
+        component: require('!!raw-loader?lang=typescript!./demos/min-mode/min-mode.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/min-mode/min-mode.component.html'),
+        description: `
+          <p>You can set min view mode of datepicker using <code>minMode</code> property</p>
+          <p>In the following example <code>minMode</code> is set to 'month'</p>`,
+        outlet: DemoDatepickerMinModeComponent
       },
       {
         title: 'Disabled',
