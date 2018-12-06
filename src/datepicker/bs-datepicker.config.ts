@@ -24,6 +24,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
 
   daysDisabled?: number[];
   /**
+   * Makes dates from other months active
+   */
+  selectFromOtherMonth?: boolean;
+
+  /**
    * Defaut mode for all date pickers
    */
   minMode?: BsDatepickerViewMode;
