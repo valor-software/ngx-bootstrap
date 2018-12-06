@@ -162,10 +162,15 @@ jobs:
 
 #     test cypress full for gh-pages
     - script:
-        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://valor-software.com/ngx-bootstrap/#/
-        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://valor-software.com/ngx-bootstrap/#/
+        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=http://ngx-bootstrap-latest.surge.sh/#/
+        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=http://ngx-bootstrap-latest.surge.sh/#/
       name: "Run cypress to check demo pages"
 #      env: URL=https://valor-software.com/ngx-bootstrap/#/
+    -  if: tag =~ ^v\d+
+       name: "Run cypress for production"
+       script:
+          - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://valor-software.com/ngx-bootstrap/#/
+          - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://valor-software.com/ngx-bootstrap/#/
 
 cache:
   apt: true
