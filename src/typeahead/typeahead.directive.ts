@@ -19,9 +19,9 @@ import { from, Subscription, isObservable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
-import { TypeaheadConfig } from './typeahead.config';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -86,6 +86,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadOptionsInScrollableView = 5;
   /** used to hide result on blur */
   @Input() typeaheadHideResultsOnBlur: boolean;
+  /** fired when an options list was opened and the user clicked Tab
+   * If a value equal true, it will be chosen first or active item in the list
+   * If value equal false, it will be chosen an active item in the list or nothing
+   */
+  @Input() typeaheadSelectFirstItem = true;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -96,7 +101,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Output() typeaheadNoResults = new EventEmitter<boolean>();
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
-  /** fired when blur event occurres. returns the active item */
+  /** fired when blur event occurs. returns the active item */
     // tslint:disable-next-line:no-any
   @Output() typeaheadOnBlur = new EventEmitter<any>();
 
@@ -266,7 +271,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     // if an item is visible - prevent form submission
     /* tslint:disable-next-line: deprecation */
-    if (e.keyCode === 13) {
+    if (this._container.active && e.keyCode === 13) {
       e.preventDefault();
 
       return;
@@ -275,10 +280,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // if an item is visible - don't change focus
     /* tslint:disable-next-line: deprecation */
     if (e.keyCode === 9) {
-      e.preventDefault();
-      this._container.selectActiveMatch();
+      if (this._container.active || this.typeaheadSelectFirstItem) {
+        e.preventDefault();
+        this._container.selectActiveMatch(this.typeaheadSelectFirstItem);
 
-      return;
+        return;
+      }
+      this.hide();
     }
   }
 

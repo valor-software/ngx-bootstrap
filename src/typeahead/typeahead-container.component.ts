@@ -74,8 +74,16 @@ export class TypeaheadContainerComponent {
         this.setScrollableMode();
       });
     }
+    if (this._active) {
+      const match = this._matches.find(m => m.value === this._active.value);
+      if (match) {
+        this.selectActive(match);
 
-    if (this._matches.length > 0) {
+        return;
+      }
+      this._active = undefined;
+    }
+    if (this._matches.length > 0 && this.parent.typeaheadSelectFirstItem && !this._active) {
       this._active = this._matches[0];
       if (this._active.isHeader()) {
         this.nextActiveMatch();
@@ -100,8 +108,10 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(value?: boolean): void {
+    if (this._active) {
+      this.selectMatch(this._active);
+    }
   }
 
   prevActiveMatch(): void {

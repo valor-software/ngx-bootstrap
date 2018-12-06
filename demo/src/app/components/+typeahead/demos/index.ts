@@ -17,6 +17,7 @@ import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-for
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
 import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
+import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadAsyncComponent,
@@ -37,5 +38,6 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadReactiveFormComponent,
   DemoTypeaheadScrollableComponent,
   DemoTypeaheadShowOnBlurComponent,
-  DemoTypeaheadSingleWorldComponent
+  DemoTypeaheadSingleWorldComponent,
+  DemotypeaheadSelectFirstItemComponent
 ];
