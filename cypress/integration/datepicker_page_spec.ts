@@ -41,7 +41,7 @@ describe('Datepicker demo page test suite', () => {
     const reactiveForms = datepicker.exampleDemosArr.reactiveForms;
 
     it('chosen in datepicker date can be displayed in reactive form', () => {
-      const expectedDateValue = Cypress.moment().format('MMM DD, YYYY');
+      const expectedDateValue = Cypress.moment().format('MMM D, YYYY');
       const day = Cypress.moment().format('D');
 
       cy.get(`${ reactiveForms } ${ datepicker.datepickerInput }`).click();
