@@ -34,17 +34,11 @@ export function isBefore(
 }
 
 export function isDisabledDay(date: Date, daysDisabled: number[]): boolean {
-  if (daysDisabled === undefined || !daysDisabled.length) {
+  if (daysDisabled === undefined || !daysDisabled || !daysDisabled.length) {
     return false;
   }
 
-  return (
-    daysDisabled.some(
-      (day: number) => {
-        return day === date.getDay();
-      }
-    )
-  );
+  return daysDisabled.some((day: number) => day === date.getDay());
 }
 
 export function isBetween(

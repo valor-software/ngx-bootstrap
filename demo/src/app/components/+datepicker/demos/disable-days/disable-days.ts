@@ -4,7 +4,4 @@ import { Component } from '@angular/core';
   selector: 'demo-datepicker-daysdisabled',
   templateUrl: './disable-days.html'
 })
-export class DemoDatepickerDaysDisabledComponent {
-  data: Date;
-
-}
+export class DemoDatepickerDaysDisabledComponent {}
