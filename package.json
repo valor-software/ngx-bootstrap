@@ -125,7 +125,7 @@
     "html-loader": "0.5.5",
     "husky": "1.0.0",
     "intl": "^1.2.5",
-    "jasmine": "3.1.0",
+    "jasmine": "3.3.1",
     "jasmine-core": "3.1.0",
     "jasmine-data-provider": "2.2.0",
     "jasmine-spec-reporter": "4.2.1",
