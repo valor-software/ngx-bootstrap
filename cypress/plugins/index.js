@@ -1,5 +1,9 @@
 const cypressTypeScriptPreprocessor = require('./cy-ts-preprocessor');
 
-module.exports = on => {
-  on('file:preprocessor', cypressTypeScriptPreprocessor)
+module.exports = (on, config) => {
+  on('file:preprocessor', cypressTypeScriptPreprocessor);
+
+  config.env.bsVersion = process.env.bsVersion ? process.env.bsVersion : false;
+
+  return config
 };

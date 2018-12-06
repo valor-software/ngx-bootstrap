@@ -14,6 +14,7 @@
   },
   "include": [
     "integration/*.ts",
+    "full/*.ts",
     "support/*.ts",
     "../node_modules/cypress"
   ]
