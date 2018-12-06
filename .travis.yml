@@ -24,7 +24,7 @@ stages:
     if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
     if: tag =~ ^v\d+
-  - name: cypress-tests:full
+  - name: "post deploy testing"
     if: branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
@@ -153,19 +153,25 @@ jobs:
           tags: true
 
 #     test cypress full for herokuapp
-    - stage: cypress-tests:full
+    - stage: "post deploy testing"
       name: "Run cypress to check SSR"
 #      env: URL=https://ngx-universal.herokuapp.com/#
-      script:
-         - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://ngx-universal.herokuapp.com/#/
-         - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://ngx-universal.herokuapp.com/#/
-
+    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://ngx-universal.herokuapp.com/#/
+      name: "Cypress integration suit run on SSR "
+    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://ngx-universal.herokuapp.com/#/
+      name: "Cypress full suit run on SSR "
 #     test cypress full for gh-pages
-    - script:
-        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://valor-software.com/ngx-bootstrap/#/
-        - ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://valor-software.com/ngx-bootstrap/#/
-      name: "Run cypress to check demo pages"
+    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=http://ngx-bootstrap-latest.surge.sh/#/
+      name: "Cypres integration run with @latest angular"
+    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=http://ngx-bootstrap-latest.surge.sh/#/
+      name: "Cypres full run with @latest angular"
 #      env: URL=https://valor-software.com/ngx-bootstrap/#/
+    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://valor-software.com/ngx-bootstrap/#/
+      name: "Cypress integration on gh-pages after deploy"
+      if: tag =~ ^v\d+
+    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://valor-software.com/ngx-bootstrap/#/
+      name: "Cypress full on gh-pages after deploy"
+      if: tag =~ ^v\d+
 
 cache:
   apt: true
