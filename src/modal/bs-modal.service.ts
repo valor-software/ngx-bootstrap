@@ -121,6 +121,9 @@ export class BsModalService {
       modalContainerRef.instance.hide();
     };
     bsModalRef.content = modalLoader.getInnerComponent() || null;
+    bsModalRef.setClass = (newClass: string) => {
+      modalContainerRef.instance.config.class = newClass;
+    };
 
     return bsModalRef;
   }
