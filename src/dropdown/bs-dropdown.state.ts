@@ -5,6 +5,7 @@ import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 export class BsDropdownState {
   direction: 'down' | 'up' = 'down';
   autoClose: boolean;
+  insideClick: boolean;
   isOpenChange = new EventEmitter<boolean>();
   isDisabledChange = new EventEmitter<boolean>();
   toggleClick = new EventEmitter<boolean>();

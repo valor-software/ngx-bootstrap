@@ -68,7 +68,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * This attribute indicates that the dropdown shouldn't close on inside click when autoClose is set to true
    */
-  @Input() insideClick: boolean;
+  @Input()
+  set insideClick(value: boolean) {
+    this._state.insideClick = value;
+  }
+
+  get insideClick(): boolean {
+    return this._state.insideClick;
+  }
 
   /**
    * Disables dropdown toggle and hides dropdown menu if opened
@@ -147,6 +154,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
               private _state: BsDropdownState) {
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
+    this._state.insideClick = this._config.insideClick;
 
     // create dropdown component loader
     this._dropdown = this._cis
