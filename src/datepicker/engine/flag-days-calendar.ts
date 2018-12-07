@@ -3,13 +3,23 @@ import {
   DayViewModel,
   WeekViewModel
 } from '../models';
-import { isSameDay, isSameMonth, isAfter, isBefore, shiftDate } from 'ngx-bootstrap/chronos';
+
+import {
+  isAfter,
+  isBefore,
+  isDisabledDay,
+  isSameDay,
+  isSameMonth,
+  shiftDate
+} from 'ngx-bootstrap/chronos';
+
 import { isMonthDisabled } from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;
   minDate: Date;
   maxDate: Date;
+  daysDisabled: number[];
   hoveredDate: Date;
   selectedDate: Date;
   selectedRange: Date[];
@@ -21,7 +31,8 @@ export function flagDaysCalendar(
   formattedMonth: DaysCalendarViewModel,
   options: FlagDaysCalendarOptions
 ): DaysCalendarViewModel {
-  formattedMonth.weeks.forEach((week: WeekViewModel, weekIndex: number) => {
+  formattedMonth.weeks.forEach((week: WeekViewModel) => {
+    /* tslint:disable-next-line: cyclomatic-complexity */
     week.days.forEach((day: DayViewModel, dayIndex: number) => {
       // datepicker
       const isOtherMonth = !isSameMonth(day.date, formattedMonth.month);
@@ -51,7 +62,8 @@ export function flagDaysCalendar(
       const isDisabled =
         options.isDisabled ||
         isBefore(day.date, options.minDate, 'day') ||
-        isAfter(day.date, options.maxDate, 'day');
+        isAfter(day.date, options.maxDate, 'day') ||
+        isDisabledDay(day.date, options.daysDisabled);
 
       // decide update or not
       const newDay = Object.assign({}, day, {
