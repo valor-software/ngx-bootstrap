@@ -258,4 +258,35 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
     });
   });
+
+  describe('if typeaheadIsShowOnBlur', () => {
+    beforeEach(
+      fakeAsync(() => {
+        inputElement.value = 'Ala';
+        fireEvent(inputElement, 'input');
+        directive.typeaheadIsShowOnBlur = true;
+        fixture.detectChanges();
+        tick(100);
+      })
+    );
+
+    it('equal true should be opened',
+      fakeAsync(() => {
+        document.dispatchEvent(new Event('click'));
+        tick();
+
+        expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
+      })
+    );
+
+    it('equal false should be closed',
+      fakeAsync(() => {
+        directive.typeaheadIsShowOnBlur = false;
+        document.dispatchEvent(new Event('click'));
+        tick();
+
+        expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
+      })
+    );
+  });
 });
