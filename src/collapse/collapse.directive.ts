@@ -18,8 +18,10 @@ import {
 })
 export class CollapseDirective {
   /** This event fires as soon as content collapses */
+  /* tslint:disable-next-line: no-any */
   @Output() collapsed: EventEmitter<any> = new EventEmitter();
   /** This event fires as soon as content becomes visible */
+  /* tslint:disable-next-line: no-any */
   @Output() expanded: EventEmitter<any> = new EventEmitter();
 
   @HostBinding('style.display') display: string;

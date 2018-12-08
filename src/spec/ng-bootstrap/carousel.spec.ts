@@ -7,7 +7,7 @@ import { discardPeriodicTasks, fakeAsync, inject, TestBed, tick } from '@angular
 
 import { By } from '@angular/platform-browser';
 
-import { CarouselComponent, CarouselConfig, CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselComponent, CarouselConfig, CarouselModule } from '../../carousel';
 import { createGenericTestComponent } from './test/common';
 
 @Component({selector: 'test-cmp', template: ''})
@@ -503,7 +503,6 @@ describe('ngb-carousel', () => {
       expect(carousel.interval).toBe(config.interval);
       expect(carousel.noWrap).toBe(config.noWrap);
       expect(carousel.showIndicators).toBe(config.showIndicators);
-      // expect(carousel.keyboard).toBe(config.keyboard);
     });
   });
 });

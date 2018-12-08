@@ -23,6 +23,7 @@ export interface CalendarCellViewModel {
 /** *************** */
 // days matrix: day cell view model
 export interface DayViewModel extends CalendarCellViewModel {
+  isOtherMonthHovered?: boolean;
   isOtherMonth?: boolean;
   isInRange?: boolean;
   isSelectionStart?: boolean;

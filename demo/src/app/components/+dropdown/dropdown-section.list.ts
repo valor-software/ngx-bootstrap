@@ -17,6 +17,7 @@ import { DemoDropdownStateChangeEventComponent } from './demos/state-change-even
 import { DemoDropdownAutoCloseComponent } from './demos/autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './demos/custom-html/custom-html';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DemoDropdownInsideClickComponent } from './demos/inside-click/inside-click';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -119,6 +120,15 @@ export const demoComponentContent: ContentSection[] = [
           the left side of its parent. Add class <code>.dropdown-menu-right</code> to a <code>dropdownMenu</code>
           to right align the dropdown menu.</p>`,
         outlet: DemoDropdownAlignmentComponent
+      },
+      {
+        title: 'Inside click',
+        anchor: 'inside-click',
+        component: require('!!raw-loader?lang=typescript!./demos/inside-click/inside-click.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/inside-click/inside-click.html'),
+        description: `<p>By default, a dropdown menu closes on document click, even if you clicked on an element inside the dropdown.
+        Use <code>[insideClick]="true"</code> to allow click inside the dropdown</p>`,
+        outlet: DemoDropdownInsideClickComponent
       },
       {
         title: 'Nested dropdowns (experimental)',

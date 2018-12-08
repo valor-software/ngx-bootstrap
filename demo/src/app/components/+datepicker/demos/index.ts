@@ -3,6 +3,7 @@ import { DemoDatepickerBasicComponent } from './basic/basic';
 import { DemoDatepickerColorThemingComponent } from './color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';
 import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
+import { DemoDatepickerMinModeComponent } from './min-mode/min-mode.component';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
@@ -14,10 +15,12 @@ import { DemoDatepickerConfigMethodComponent } from './config-method/config-meth
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerConfigObjectComponent } from './config-object/config-object';
+import { DemoDatePickerSelectDatesFromOtherMonthsComponent } from './select-dates-from-other-months/select-dates-from-other-months';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
 import { DemoDatepickerByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
+import { DemoDatepickerDaysDisabledComponent } from './disable-days/disable-days';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -26,6 +29,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerColorThemingComponent,
   DemoDatepickerChangeLocaleComponent,
   DemoDatepickerMinMaxComponent,
+  DemoDatepickerMinModeComponent,
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
   DemoDatepickerReactiveFormsComponent,
@@ -38,9 +42,11 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerPlacementComponent,
   DemoDatepickerValueChangeEventComponent,
   DemoDatePickerConfigObjectComponent,
+  DemoDatePickerSelectDatesFromOtherMonthsComponent,
   DemoDatepickerOutsideClickComponent,
   DemoDatepickerByIsOpenPropComponent,
   DemoDatepickerDateInitialStateComponent,
-  DemoDatepickerTriggersCustomComponent
+  DemoDatepickerTriggersCustomComponent,
+  DemoDatepickerDaysDisabledComponent
 ];
 

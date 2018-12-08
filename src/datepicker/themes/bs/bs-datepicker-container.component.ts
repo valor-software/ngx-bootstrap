@@ -38,6 +38,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
   }
 
   ngOnInit(): void {
+    this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
     this._effects
       .init(this._store)
@@ -53,15 +54,20 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // on selected date change
     this._subs.push(
       this._store
-        .select(state => state.selectedDate)
-        .subscribe(date => this.valueChange.emit(date))
+        /* tslint:disable-next-line: no-any */
+        .select((state: any) => state.selectedDate)
+        /* tslint:disable-next-line: no-any */
+        .subscribe((date: any) => this.valueChange.emit(date))
     );
   }
 
   daySelectHandler(day: DayViewModel): void {
-    if (day.isOtherMonth || day.isDisabled) {
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+
+    if (isDisabled) {
       return;
     }
+
     this._store.dispatch(this._actions.select(day.date));
   }
 

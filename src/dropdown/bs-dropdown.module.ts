@@ -1,5 +1,5 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/loader';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
@@ -25,6 +25,7 @@ import { BsDropdownState } from './bs-dropdown.state';
   entryComponents: [BsDropdownContainerComponent]
 })
 export class BsDropdownModule {
+  // tslint:disable-next-line:no-any
   static forRoot(config?: any): ModuleWithProviders {
     return {
       ngModule: BsDropdownModule,
@@ -34,7 +35,7 @@ export class BsDropdownModule {
         BsDropdownState,
         {
           provide: BsDropdownConfig,
-          useValue: config ? config : { autoClose: true }
+          useValue: config ? config : { autoClose: true, insideClick: false }
         }
       ]
     };

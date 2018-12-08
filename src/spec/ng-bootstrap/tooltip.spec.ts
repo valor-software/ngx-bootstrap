@@ -8,7 +8,7 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 
-import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
 import { createGenericTestComponent } from './test/common';
 
 @Component({
@@ -70,7 +70,7 @@ describe('tooltip', () => {
     });
   });
 
-  function getWindow(element: any): HTMLElement {
+  function getWindow(element: HTMLElement): HTMLElement {
     return element.querySelector('bs-tooltip-container');
   }
 
@@ -396,7 +396,7 @@ describe('tooltip', () => {
     it('should be appended to the element matching the selector passed to "container"', () => {
       const selector = 'body';
       const fixture = createTestComponent(
-        `<div tooltip="Great tip!" container="` + selector + `"></div>`
+        `<div tooltip="Great tip!" container="${selector}"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
@@ -411,9 +411,7 @@ describe('tooltip', () => {
     it('should properly destroy tooltips when the "container" option is used', () => {
       const selector = 'body';
       const fixture = createTestComponent(
-        `<div *ngIf="show" tooltip="Great tip!" container="` +
-        selector +
-        `"></div>`
+        `<div *ngIf="show" tooltip="Great tip!" container="${selector}"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)

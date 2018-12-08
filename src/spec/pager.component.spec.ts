@@ -5,12 +5,14 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing';
-import { PagerComponent, PaginationModule } from 'ngx-bootstrap/pagination';
+import { PagerComponent, PaginationModule } from '../pagination';
 import { fireEvent } from '../../scripts/helpers';
 
 describe('Component: Pager:', () => {
   let fixture: ComponentFixture<PagerComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {
