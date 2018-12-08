@@ -78,6 +78,10 @@ describe('Directive: Dropdown', () => {
     expect(directive.autoClose).toBeTruthy();
   });
 
+  it('insideClick value should be true by default', () => {
+    expect(directive.insideClick).toBeFalsy();
+  });
+
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {
     context.isOpen = true;
     fixture.detectChanges();

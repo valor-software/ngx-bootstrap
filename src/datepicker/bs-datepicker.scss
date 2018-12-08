@@ -153,7 +153,8 @@
           -ms-user-select: none;
         }
 
-        &:not(.disabled) span {
+        // todo: check first :not(.disabled) usage
+        &:not(.disabled):not(.week) span:not(.disabled) {
           cursor: pointer;
         }
 
