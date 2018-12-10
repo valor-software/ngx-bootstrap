@@ -1,3 +1,4 @@
+import { DemoDatepickerContainerComponent } from './container/container';
 import { DatepickerDemoComponent } from './datepicker-demo.component';
 import { DemoDatepickerBasicComponent } from './basic/basic';
 import { DemoDatepickerColorThemingComponent } from './color-theming/color-theming';
@@ -47,6 +48,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerByIsOpenPropComponent,
   DemoDatepickerDateInitialStateComponent,
   DemoDatepickerTriggersCustomComponent,
-  DemoDatepickerDaysDisabledComponent
+  DemoDatepickerDaysDisabledComponent,
+  DemoDatepickerContainerComponent
 ];
 

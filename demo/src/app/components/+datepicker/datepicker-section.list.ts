@@ -1,4 +1,5 @@
 import { DemoDatepickerBasicComponent } from './demos/basic/basic';
+import { DemoDatepickerContainerComponent } from './demos/container/container';
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
@@ -72,6 +73,17 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/date-initial-state/date-initial-state.ts'),
         html: require('!!raw-loader?lang=markup!./demos/date-initial-state/date-initial-state.html'),
         outlet: DemoDatepickerDateInitialStateComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'container',
+        component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        description: `When you have any styles on a parent element that interfere with a datepicker, you’ll want to 
+        specify a <code>container="body"</code> so that the datepicker’s HTML will be appended to body. This will help
+        to avoid rendering problems in more complex components (like input groups, button groups, etc.) or inside
+        elements with <code>overflow: hidden</code>`,
+        outlet: DemoDatepickerContainerComponent
       },
       {
         title: 'Custom date format',
