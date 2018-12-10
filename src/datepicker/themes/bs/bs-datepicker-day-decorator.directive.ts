@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel } from '../../models';
 
 @Component({
   selector: '[bsDatepickerDayDecorator]',
@@ -8,6 +8,7 @@ import { DayViewModel } from '../../models/index';
     '[class.disabled]': 'day.isDisabled',
     '[class.is-highlighted]': 'day.isHovered',
     '[class.is-other-month]': 'day.isOtherMonth',
+    '[class.is-active-other-month]': 'day.isOtherMonthHovered',
     '[class.in-range]': 'day.isInRange',
     '[class.select-start]': 'day.isSelectionStart',
     '[class.select-end]': 'day.isSelectionEnd',

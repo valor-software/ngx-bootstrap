@@ -1,5 +1,5 @@
-@import './utils/scss/variables';
-@import './utils/scss/mixins';
+@import 'utils/scss/variables';
+@import 'utils/scss/mixins';
 
 /* .bs-datepicker */
 .bs-datepicker {
@@ -10,7 +10,6 @@
   box-shadow: 0 0 10px 0 $main-box-shadow;
   position: relative;
   z-index: 1;
-
 
   &:after {
     clear: both;
@@ -154,7 +153,8 @@
           -ms-user-select: none;
         }
 
-        &:not(.disabled) span {
+        // todo: check first :not(.disabled) usage
+        &:not(.disabled):not(.week) span:not(.disabled) {
           cursor: pointer;
         }
 
@@ -162,6 +162,13 @@
         span.is-highlighted:not(.disabled):not(.selected) {
           background-color: $highlighted;
           transition: 0s;
+        }
+
+        &.is-active-other-month:not(.disabled):not(.selected) span,
+        span.is-active-other-month:not(.disabled):not(.selected) {
+          background-color: $highlighted;
+          transition: 0s;
+          cursor: pointer !important;
         }
 
         span.disabled,
@@ -355,7 +362,6 @@
 
   /* .bs-datepicker-multiple */
   &-multiple {
-    display: inline-block;
     border-radius: 4px 0 0 4px;
 
     & + & {
@@ -396,6 +402,13 @@
     padding: 15px;
   }
 
+  .bs-media-container {
+    display: flex;
+    @media(max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
   /*.bs-datepicker-custom-range */
   &-custom-range {
     padding: 15px;
@@ -427,6 +440,7 @@
   /* .is-other-month */
   .is-other-month {
     color: rgba(0, 0, 0, 0.25);
+    cursor: default !important;
   }
 
   /* .bs-datepicker-buttons */
