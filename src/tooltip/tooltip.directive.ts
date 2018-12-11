@@ -24,6 +24,7 @@ let id = 0;
   exportAs: 'bs-tooltip'
 })
 export class TooltipDirective implements OnInit, OnDestroy {
+  tooltipId = id++;
   /**
    * Content to be displayed as tooltip.
    */
@@ -196,7 +197,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
-  private tooltipId = id++;
 
   @HostBinding('attr.aria-describedby') ariaDescribedby = `tooltip-${this.tooltipId}`;
   constructor(
