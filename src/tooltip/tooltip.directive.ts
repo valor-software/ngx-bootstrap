@@ -2,7 +2,8 @@
 import {
   Directive,
   ElementRef,
-  EventEmitter, HostBinding,
+  EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -189,6 +190,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this.triggers = (value || '').toString();
   }
 
+  @HostBinding('attr.aria-describedby') ariaDescribedby = `tooltip-${this.tooltipId}`;
+
   /** @deprecated */
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -197,8 +200,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
-
-  @HostBinding('attr.aria-describedby') ariaDescribedby = `tooltip-${this.tooltipId}`;
   constructor(
     _viewContainerRef: ViewContainerRef,
     private _renderer: Renderer2,
