@@ -43,6 +43,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   placement: string;
   containerClass: string;
   animation: boolean;
+  id: string;
 
   get isBs3(): boolean {
     return isBs3();
