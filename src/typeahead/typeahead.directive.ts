@@ -21,6 +21,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { TypeaheadConfig } from './typeahead.config';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -84,7 +85,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** specifies number of options to show in scroll view  */
   @Input() typeaheadOptionsInScrollableView = 5;
   /** used to not to hide result on blur */
-  @Input() typeaheadIsHideOnBlur = true;
+
+  @Input() typeaheadIsHideOnBlur: boolean;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -139,13 +141,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               private element: ElementRef,
               viewContainerRef: ViewContainerRef,
               private renderer: Renderer2,
+              private config: TypeaheadConfig,
               cis: ComponentLoaderFactory,
               private changeDetection: ChangeDetectorRef) {
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
       renderer
-    );
+    ).provide({provide: TypeaheadConfig, useValue: config});
+    Object.assign(this, config);
   }
 
   ngOnInit(): void {
@@ -153,7 +157,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this.typeaheadMinLength =
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
-
+    const isTypeaheadIsHideOnBlurInput = !this.typeaheadIsHideOnBlur || !this.config.typeaheadIsHideOnBlur;
+    this.typeaheadIsHideOnBlur = !isTypeaheadIsHideOnBlurInput;
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
