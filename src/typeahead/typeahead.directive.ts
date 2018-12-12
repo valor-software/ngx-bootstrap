@@ -84,7 +84,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** specifies number of options to show in scroll view  */
   @Input() typeaheadOptionsInScrollableView = 5;
   /** used to not to hide result on blur */
-  @Input() typeaheadIsShowOnBlur = false;
+  @Input() typeaheadIsHideOnBlur = true;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -297,7 +297,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(e.target)) {
         return undefined;
       }
-      if (this.typeaheadIsShowOnBlur || this.element.nativeElement.contains(e.target)) {
+      if (!this.typeaheadIsHideOnBlur || this.element.nativeElement.contains(e.target)) {
         return undefined;
       }
       this.onOutsideClick();

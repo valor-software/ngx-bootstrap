@@ -78,8 +78,8 @@ describe('Directive: Typeahead', () => {
     it('should set a default value for typeaheadAsync', () => {
       expect(directive.typeaheadAsync).toBeFalsy();
     });
-    it('should set a default value for typeaheadIsShowOnBlur', () => {
-      expect(directive.typeaheadIsShowOnBlur).toBeFalsy();
+    it('should set a default value for typeaheadIsHideOnBlur', () => {
+      expect(directive.typeaheadIsHideOnBlur).toBeTruthy();
     });
 
     it('should typeaheadAsync to false, if typeahead is an observable', () => {
@@ -259,12 +259,12 @@ describe('Directive: Typeahead', () => {
     });
   });
 
-  describe('if typeaheadIsShowOnBlur', () => {
+  describe('if typeaheadIsHideOnBlur', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
         fireEvent(inputElement, 'input');
-        directive.typeaheadIsShowOnBlur = true;
+        directive.typeaheadIsHideOnBlur = false;
         fixture.detectChanges();
         tick(100);
       })
@@ -281,7 +281,7 @@ describe('Directive: Typeahead', () => {
 
     it('equal false should be closed',
       fakeAsync(() => {
-        directive.typeaheadIsShowOnBlur = false;
+        directive.typeaheadIsHideOnBlur = true;
         document.dispatchEvent(new Event('click'));
         tick();
 
