@@ -1,3 +1,4 @@
+/* tslint:disable: no-unused-variable */
 import { AccordionModule } from './accordion';
 import { AlertModule } from './alert';
 
