@@ -3,6 +3,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -17,11 +18,14 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
 import { timer } from 'rxjs';
 
+let id = 0;
+
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
   exportAs: 'bs-tooltip'
 })
 export class TooltipDirective implements OnInit, OnDestroy {
+  tooltipId = id++;
   /**
    * Content to be displayed as tooltip.
    */
@@ -186,6 +190,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this.triggers = (value || '').toString();
   }
 
+  @HostBinding('attr.aria-describedby') ariaDescribedby = `tooltip-${this.tooltipId}`;
+
   /** @deprecated */
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -194,7 +200,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
-
   constructor(
     _viewContainerRef: ViewContainerRef,
     private _renderer: Renderer2,
@@ -267,7 +272,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
         .show({
           content: this.tooltip,
           placement: this.placement,
-          containerClass: this.containerClass
+          containerClass: this.containerClass,
+          id: this.ariaDescribedby
         });
     };
     const cancelDelayedTooltipShowing = () => {

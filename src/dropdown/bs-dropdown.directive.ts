@@ -358,6 +358,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         'transform',
         this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
+      this._renderer.setStyle(
+        this._inlinedMenu.rootNodes[0],
+        'bottom',
+        'auto'
+      );
     }
   }
 
@@ -365,6 +370,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'top');
       this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'transform');
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'bottom');
     }
   }
 }

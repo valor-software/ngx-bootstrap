@@ -14,6 +14,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     '[class]':
       '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
+    '[attr.id]': 'this.id',
     role: 'tooltip'
   },
   styles: [
@@ -42,6 +43,7 @@ export class TooltipContainerComponent implements AfterViewInit {
   placement: string;
   containerClass: string;
   animation: boolean;
+  id: string;
 
   get isBs3(): boolean {
     return isBs3();

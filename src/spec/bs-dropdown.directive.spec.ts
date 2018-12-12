@@ -18,6 +18,7 @@ class TestDropdownComponent {
   isOpenChangeValue: Boolean = false;
   insideClick: Boolean = false;
   container: String = '';
+  placement: String = '';
 
   constructor(config: BsDropdownConfig) {
     Object.assign(this, config);
@@ -313,16 +314,17 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   });
 
-  it('should open if isBs3 method return true', () => {
+  it('should open if isBs3 method return true', fakeAsync(() => {
+    context.placement = 'bottom';
     const tempVal = window.__theme;
     window.__theme = 'bs4';
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
-    element.querySelector('button').click();
-    fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdownToggle]').getAttribute('aria-expanded')).toEqual('true');
+    tick();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
     window.__theme = tempVal;
-  });
+  }));
 });
