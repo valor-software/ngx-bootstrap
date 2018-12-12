@@ -3,6 +3,6 @@ import { Injectable } from '@angular/core';
 /** Default values provider for typeahead */
 @Injectable()
 export class TypeaheadConfig {
-  /** used to not to hide result on blur */
-  typeaheadIsHideOnBlur = true;
+  /** used to hide results on blur */
+  typeaheadHideResultsOnBlur = true;
 }

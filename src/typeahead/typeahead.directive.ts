@@ -86,7 +86,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadOptionsInScrollableView = 5;
   /** used to not to hide result on blur */
 
-  @Input() typeaheadIsHideOnBlur: boolean;
+  @Input() typeaheadHideResultsOnBlur: boolean;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -157,8 +157,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this.typeaheadMinLength =
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
-    const isTypeaheadIsHideOnBlurInput = !this.typeaheadIsHideOnBlur || !this.config.typeaheadIsHideOnBlur;
-    this.typeaheadIsHideOnBlur = !isTypeaheadIsHideOnBlurInput;
+    const showOnBlur = !this.typeaheadHideResultsOnBlur || !this.config.typeaheadHideResultsOnBlur;
+    this.typeaheadHideResultsOnBlur = !showOnBlur;
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
@@ -302,7 +302,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(e.target)) {
         return undefined;
       }
-      if (!this.typeaheadIsHideOnBlur || this.element.nativeElement.contains(e.target)) {
+      if (!this.typeaheadHideResultsOnBlur || this.element.nativeElement.contains(e.target)) {
         return undefined;
       }
       this.onOutsideClick();

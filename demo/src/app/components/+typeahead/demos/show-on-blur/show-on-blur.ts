@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './show-on-blur.html'
 })
 export class DemoTypeaheadShowOnBlurComponent {
-  typeaheadIsHideOnBlur = false;
+  typeaheadHideResultsOnBlur = false;
   selected: string;
   states = [
     'Alabama',

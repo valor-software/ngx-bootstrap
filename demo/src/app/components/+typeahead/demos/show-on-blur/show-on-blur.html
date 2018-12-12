@@ -1,11 +1,11 @@
 <button type="button" class="btn btn-primary mb-3"
-        (click)="typeaheadIsHideOnBlur = !typeaheadIsHideOnBlur">Toggle typeaheadIsHideOnBlur
+        (click)="typeaheadHideResultsOnBlur = !typeaheadHideResultsOnBlur">Toggle typeaheadHideResultsOnBlur
 </button>
 <pre class="card card-block card-header mb-3">
-  typeaheadIsHideOnBlur: {{typeaheadIsHideOnBlur}}
+  typeaheadHideResultsOnBlur: {{typeaheadHideResultsOnBlur}}
   Model: {{selected | json}}
 </pre>
 <input [(ngModel)]="selected"
        [typeahead]="states"
-       [typeaheadIsHideOnBlur]="typeaheadIsHideOnBlur"
+       [typeaheadHideResultsOnBlur]="typeaheadHideResultsOnBlur"
        class="form-control">
