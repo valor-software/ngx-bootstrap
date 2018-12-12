@@ -121,7 +121,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input('tooltipEnable')
   set _enable(value: boolean) {
     warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
-    this.isDisabled = value;
+    this.isDisabled = !value;
   }
 
   get _enable(): boolean {
