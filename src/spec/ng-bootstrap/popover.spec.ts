@@ -16,7 +16,7 @@ import {
   PopoverContainerComponent,
   PopoverDirective,
   PopoverConfig
-} from '../../popover/index';
+} from '../../popover';
 import { createGenericTestComponent } from './test/common';
 
 @Component({selector: 'test-cmpt', template: ``})
@@ -104,7 +104,7 @@ describe('popover', () => {
     });
   });
 
-  function getWindow(element: any): HTMLElement {
+  function getWindow(element: HTMLElement): HTMLElement {
     return element.querySelector('popover-container');
   }
 

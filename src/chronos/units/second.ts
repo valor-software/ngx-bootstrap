@@ -7,23 +7,28 @@ import { addUnitAlias } from './aliases';
 import { addUnitPriority } from './priorities';
 import { DateFormatterOptions } from '../types';
 
+
+export function initSecond() {
 // FORMATTING
 
-addFormatToken('s', ['ss', 2, false], null,
-  function (date: Date, opts: DateFormatterOptions): string {
-    return getSeconds(date, opts.isUTC).toString(10);
-  });
+  addFormatToken('s', ['ss', 2, false], null,
+    function(date: Date, opts: DateFormatterOptions): string {
+      return getSeconds(date, opts.isUTC)
+        .toString(10);
+    }
+  );
 
 // ALIASES
 
-addUnitAlias('second', 's');
+  addUnitAlias('second', 's');
 
 // PRIORITY
 
-addUnitPriority('second', 15);
+  addUnitPriority('second', 15);
 
 // PARSING
 
-addRegexToken('s', match1to2);
-addRegexToken('ss', match1to2, match2);
-addParseToken(['s', 'ss'], SECOND);
+  addRegexToken('s', match1to2);
+  addRegexToken('ss', match1to2, match2);
+  addParseToken(['s', 'ss'], SECOND);
+}

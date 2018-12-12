@@ -6,10 +6,12 @@
     <div class="btn-group"
          dropdown
          (isOpenChange)="onOpenChange($event)">
-      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      <button id="button-state-change" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              aria-controls="dropdown-state-change">
         Button dropdown <span class="caret"></span>
       </button>
-      <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <ul id="dropdown-state-change" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-state-change">
         <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
         <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
         <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>

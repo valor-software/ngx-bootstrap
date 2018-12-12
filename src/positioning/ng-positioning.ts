@@ -94,22 +94,6 @@ export class Positioning {
       ? this.offset(hostElement, false)
       : this.position(hostElement, false);
     const targetElStyles = this.getAllStyles(targetElement);
-    const shiftWidth: any = {
-      left: hostElPosition.left,
-      center:
-        hostElPosition.left +
-        hostElPosition.width / 2 -
-        targetElement.offsetWidth / 2,
-      right: hostElPosition.left + hostElPosition.width
-    };
-    const shiftHeight: any = {
-      top: hostElPosition.top,
-      center:
-        hostElPosition.top +
-        hostElPosition.height / 2 -
-        targetElement.offsetHeight / 2,
-      bottom: hostElPosition.top + hostElPosition.height
-    };
     const targetElBCR = targetElement.getBoundingClientRect();
     let placementPrimary = placement.split(' ')[0] || 'top';
     const placementSecondary = placement.split(' ')[1] || 'center';
@@ -122,6 +106,23 @@ export class Positioning {
       left: 0,
       right: targetElBCR.width || targetElement.offsetWidth
     };
+
+    const shiftHeight: any = {
+      top: hostElPosition.top,
+      center:
+        hostElPosition.top +
+        hostElPosition.height / 2 -
+        targetElPosition.height / 2,
+      bottom: hostElPosition.top + hostElPosition.height
+    };
+    const shiftWidth: any = {
+      left: hostElPosition.left,
+      center:
+        hostElPosition.left +
+        hostElPosition.width / 2 -
+        targetElPosition.width / 2,
+      right: hostElPosition.left + hostElPosition.width
+    };    
 
     if (placementPrimary === 'auto') {
       let newPlacementPrimary = this.autoPosition(
@@ -144,10 +145,10 @@ export class Positioning {
       case 'top':
         targetElPosition.top =
           hostElPosition.top -
-          (targetElement.offsetHeight +
+          (targetElPosition.height +
             parseFloat(targetElStyles.marginBottom));
         targetElPosition.bottom +=
-          hostElPosition.top - targetElement.offsetHeight;
+          hostElPosition.top - targetElPosition.height;
         targetElPosition.left = shiftWidth[placementSecondary];
         targetElPosition.right += shiftWidth[placementSecondary];
         break;
@@ -162,9 +163,9 @@ export class Positioning {
         targetElPosition.bottom += shiftHeight[placementSecondary];
         targetElPosition.left =
           hostElPosition.left -
-          (targetElement.offsetWidth + parseFloat(targetElStyles.marginRight));
+          (targetElPosition.width + parseFloat(targetElStyles.marginRight));
         targetElPosition.right +=
-          hostElPosition.left - targetElement.offsetWidth;
+          hostElPosition.left - targetElPosition.width;
         break;
       case 'right':
         targetElPosition.top = shiftHeight[placementSecondary];
@@ -190,7 +191,7 @@ export class Positioning {
   ) {
     if (
       (!preferredPosition || preferredPosition === 'right') &&
-      targetElPosition.left + hostElPosition.left - targetElement.offsetWidth <
+      targetElPosition.left + hostElPosition.left - targetElPosition.width <
         0
     ) {
       return 'right';
@@ -198,20 +199,20 @@ export class Positioning {
       (!preferredPosition || preferredPosition === 'top') &&
       targetElPosition.bottom +
         hostElPosition.bottom +
-        targetElement.offsetHeight >
+        targetElPosition.height >
         window.innerHeight
     ) {
       return 'top';
     } else if (
       (!preferredPosition || preferredPosition === 'bottom') &&
-      targetElPosition.top + hostElPosition.top - targetElement.offsetHeight < 0
+      targetElPosition.top + hostElPosition.top - targetElPosition.height < 0
     ) {
       return 'bottom';
     } else if (
       (!preferredPosition || preferredPosition === 'left') &&
       targetElPosition.right +
         hostElPosition.right +
-        targetElement.offsetWidth >
+        targetElPosition.width >
         window.innerWidth
     ) {
       return 'left';

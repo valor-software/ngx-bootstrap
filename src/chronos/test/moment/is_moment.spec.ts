@@ -2,7 +2,7 @@
 // tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
 // tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
 // tslint:disable:variable-name
-import { assert } from 'chai';
+import { assertEq, assertDeepEq, assertOk } from '../test-helpers';
 import { moment } from '../chain';
 
 describe('is moment', () => {
@@ -21,20 +21,20 @@ describe('is moment', () => {
       return new Date();
     };
 
-    assert.ok(moment.isMoment(moment()), 'simple moment object');
-    assert.ok(moment.isMoment(moment(null)), 'invalid moment object');
-    assert.ok(moment.isMoment(extend({}, moment())), 'externally cloned moments are moments');
-    assert.ok(moment.isMoment(extend({}, moment.utc())), 'externally cloned utc moments are moments');
+    assertOk(moment.isMoment(moment()), 'simple moment object');
+    assertOk(moment.isMoment(moment(null)), 'invalid moment object');
+    assertOk(moment.isMoment(extend({}, moment())), 'externally cloned moments are moments');
+    assertOk(moment.isMoment(extend({}, moment.utc())), 'externally cloned utc moments are moments');
 
-    assert.ok(!moment.isMoment(new MyObj()), 'myObj is not moment object');
-    assert.ok(!moment.isMoment(moment), 'moment function is not moment object');
-    assert.ok(!moment.isMoment(new Date()), 'date object is not moment object');
-    assert.ok(!moment.isMoment(Object), 'Object is not moment object');
-    assert.ok(!moment.isMoment('foo'), 'string is not moment object');
-    assert.ok(!moment.isMoment(1), 'number is not moment object');
-    assert.ok(!moment.isMoment(NaN), 'NaN is not moment object');
-    assert.ok(!moment.isMoment(null), 'null is not moment object');
-    assert.ok(!moment.isMoment(undefined), 'undefined is not moment object');
+    assertOk(!moment.isMoment(new MyObj()), 'myObj is not moment object');
+    assertOk(!moment.isMoment(moment), 'moment function is not moment object');
+    assertOk(!moment.isMoment(new Date()), 'date object is not moment object');
+    assertOk(!moment.isMoment(Object), 'Object is not moment object');
+    assertOk(!moment.isMoment('foo'), 'string is not moment object');
+    assertOk(!moment.isMoment(1), 'number is not moment object');
+    assertOk(!moment.isMoment(NaN), 'NaN is not moment object');
+    assertOk(!moment.isMoment(null), 'null is not moment object');
+    assertOk(!moment.isMoment(undefined), 'undefined is not moment object');
   });
 
   it('is moment with hacked hasOwnProperty', function () {
@@ -44,7 +44,7 @@ describe('is moment', () => {
       return true;
     };
 
-    assert.ok(!moment.isMoment(obj), 'isMoment works even if passed object has a wrong hasOwnProperty implementation (ie8)');
+    assertOk(!moment.isMoment(obj), 'isMoment works even if passed object has a wrong hasOwnProperty implementation (ie8)');
   });
 });
 */

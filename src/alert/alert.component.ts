@@ -8,7 +8,7 @@ import {
   Output
 } from '@angular/core';
 import { AlertConfig } from './alert.config';
-import { OnChange } from '../utils/decorators';
+import { OnChange } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'alert,bs-alert',

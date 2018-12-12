@@ -4,7 +4,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'bs-tooltip-container',
@@ -14,18 +14,22 @@ import { isBs3 } from '../utils/theme-provider';
     '[class]':
       '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
+    '[attr.id]': 'this.id',
     role: 'tooltip'
   },
   styles: [
     `
     :host.tooltip {
       display: block;
+      pointer-events: none;
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: 50%;
+      transform: translateX(-50%);
     }
     :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
       top: 50%;
+      transform: translateY(-50%);
     }
   `
   ],
@@ -35,10 +39,11 @@ import { isBs3 } from '../utils/theme-provider';
     `
 })
 export class TooltipContainerComponent implements AfterViewInit {
-  classMap: any;
+  classMap: { [key: string]: boolean };
   placement: string;
   containerClass: string;
   animation: boolean;
+  id: string;
 
   get isBs3(): boolean {
     return isBs3();

@@ -2,7 +2,7 @@
 /* tslint:disable:no-empty */
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import {
   BsDatepickerViewMode,
   BsNavigationEvent,
@@ -13,10 +13,11 @@ import {
   DayViewModel,
   MonthsCalendarViewModel,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models';
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
+  isOtherMonthsActive: boolean;
 
   _effects: BsDatepickerEffects;
   _customRangesFish: BsCustomDates[] = [];
@@ -27,6 +28,9 @@ export abstract class BsDatepickerAbstractComponent {
 
   set maxDate(value: Date) {
     this._effects.setMaxDate(value);
+  }
+  set daysDisabled(value: number[]) {
+    this._effects.setDaysDisabled(value);
   }
 
   set isDisabled(value: boolean) {
@@ -55,6 +59,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   yearSelectHandler(event: CalendarCellViewModel): void {}
 
+  /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {
     event.stopPropagation();
   }

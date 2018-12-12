@@ -15,6 +15,9 @@ import { DemoModalServiceDisableBackdropComponent } from './service-options/disa
 import { DemoModalServiceEventsComponent } from './service-events/service-events';
 import { DemoModalServiceConfirmWindowComponent } from './service-confirm-window/service-confirm-window';
 import { DemoModalScrollingLongContentComponent } from './scrolling-long-content/scrolling-long-content';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
+import { DemoModalWithPopupsComponent } from './modal-with-popups/modal-with-popups';
+import { DemoModalServiceChangeClassComponent } from './service-options/change-class/change-class';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -32,5 +35,8 @@ export const DEMO_COMPONENTS = [
   DemoModalEventsComponent,
   DemoModalServiceEventsComponent,
   DemoModalServiceConfirmWindowComponent,
-  DemoModalScrollingLongContentComponent
+  DemoModalScrollingLongContentComponent,
+  DemoAccessibilityComponent,
+  DemoModalServiceChangeClassComponent,
+  DemoModalWithPopupsComponent
 ];
