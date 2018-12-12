@@ -4,5 +4,5 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TypeaheadConfig {
   /** used to hide results on blur */
-  typeaheadHideResultsOnBlur = true;
+  hideResultsOnBlur = true;
 }
