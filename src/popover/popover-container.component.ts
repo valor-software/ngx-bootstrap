@@ -17,11 +17,11 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     `
     :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {
       left: 50%;
-      margin-left: -8px;
+      transform: translateX(-50%);
     }
     :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {
       top: 50%;
-      margin-top: -8px;
+      transform: translateY(-50%);
     }
   `
   ],

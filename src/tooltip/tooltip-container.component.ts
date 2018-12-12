@@ -25,11 +25,11 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     }
     :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
       left: 50%;
-      margin-left: -6px;
+      transform: translateX(-50%);
     }
     :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
       top: 50%;
-      margin-top: -6px;
+      transform: translateY(-50%);
     }
   `
   ],
