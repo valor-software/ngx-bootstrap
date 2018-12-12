@@ -801,6 +801,11 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
+        "name": "customTodayClass",
+        "type": "string",
+        "description": "<p>Allows to add custom class for today</p>\n"
+      },
+      {
         "name": "minMode",
         "type": "BsDatepickerViewMode",
         "description": "<p> Defaut minimum view mode : day, month, or year</p>\n"
