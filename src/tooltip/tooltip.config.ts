@@ -9,4 +9,6 @@ export class TooltipConfig {
   triggers = 'hover focus';
   /** a selector specifying the element the tooltip should be appended to. Currently only supports "body" */
   container: string;
+  /** delay before showing the tooltip */
+  delay = 0;
 }
