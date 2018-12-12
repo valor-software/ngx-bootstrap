@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { from, Observable, Subscription } from 'rxjs';
+import { from, Subscription, isObservable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
@@ -155,12 +155,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
-      !(this.typeahead instanceof Observable)
+      !(isObservable(this.typeahead))
     ) {
       this.typeaheadAsync = false;
     }
 
-    if (this.typeahead instanceof Observable) {
+    if (isObservable(this.typeahead)) {
       this.typeaheadAsync = true;
     }
 
@@ -198,6 +198,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onChange(e: KeyboardEvent): void {
     if (this._container) {
       // esc
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 27) {
         this.hide();
 
@@ -205,6 +206,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // up
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 38) {
         this._container.prevActiveMatch();
 
@@ -212,6 +214,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // down
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 40) {
         this._container.nextActiveMatch();
 
@@ -219,6 +222,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter, tab
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 13) {
         this._container.selectActiveMatch();
 
@@ -251,6 +255,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if an item is visible - prevent form submission
+    /* tslint:disable-next-line: deprecation */
     if (e.keyCode === 13) {
       e.preventDefault();
 
@@ -258,6 +263,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if an item is visible - don't change focus
+    /* tslint:disable-next-line: deprecation */
     if (e.keyCode === 9) {
       e.preventDefault();
       this._container.selectActiveMatch();
