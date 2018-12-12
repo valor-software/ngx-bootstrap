@@ -65,6 +65,9 @@ export function flagDaysCalendar(
         isAfter(day.date, options.maxDate, 'day') ||
         isDisabledDay(day.date, options.daysDisabled);
 
+      const currentDate = new Date();
+      const isToday = !isOtherMonth && isSameDay(day.date, currentDate);
+
       // decide update or not
       const newDay = Object.assign({}, day, {
         isOtherMonth,
@@ -73,7 +76,8 @@ export function flagDaysCalendar(
         isSelectionStart,
         isSelectionEnd,
         isInRange,
-        isDisabled
+        isDisabled,
+        isToday
       });
 
       if (
