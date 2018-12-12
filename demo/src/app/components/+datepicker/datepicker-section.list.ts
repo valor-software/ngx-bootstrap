@@ -14,12 +14,19 @@ import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.compo
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 import { DemoDatepickerInlineComponent } from './demos/inline-datepicker/inline-datepicker.component';
+import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
+import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
+import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
 import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DemoDatePickerSelectDatesFromOtherMonthsComponent } from './demos/select-dates-from-other-months/select-dates-from-other-months';
+import {
+  DemoDatePickerSelectDatesFromOtherMonthsComponent
+} from './demos/select-dates-from-other-months/select-dates-from-other-months';
+import { DemoDatepickerCustomTodayClassComponent } from './demos/custom-today-class/custom-today-class.component';
 import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
@@ -184,6 +191,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.component.html'),
         description: `<p>If you want to disable datepicker's or daterangepicker's content set <code>isDisabled</code> property to true</p>`,
         outlet: DemoDatepickerDisabledComponent
+      },
+      {
+        title: 'Custom today class',
+        anchor: 'today-class',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-today-class/custom-today-class.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-today-class/custom-today-class.component.html'),
+        description: `<p>If you want to add custom class to current day datepicker's content set value to <code>customTodayClass</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatepickerCustomTodayClassComponent
       },
       {
         title: 'Forms',
@@ -352,4 +367,3 @@ export const demoComponentContentOld: ContentSection[] = [
     ]
   }
 ];
-

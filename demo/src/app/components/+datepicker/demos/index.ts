@@ -6,6 +6,7 @@ import { DemoDatepickerColorThemingComponent } from './color-theming/color-themi
 import { DemoDatepickerConfigMethodComponent } from './config-method/config-method';
 import { DemoDatePickerConfigObjectComponent } from './config-object/config-object';
 import { DemoDatePickerCustomFormatComponent } from './custom-format/custom-format';
+import { DemoDatepickerCustomTodayClassComponent } from './custom-today-class/custom-today-class.component';
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
 import { DemoDatepickerDaysDisabledComponent } from './disable-days/disable-days';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
@@ -36,6 +37,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerConfigMethodComponent,
   DemoDatePickerConfigObjectComponent,
   DemoDatePickerCustomFormatComponent,
+  DemoDatepickerCustomTodayClassComponent,
   DemoDatepickerDateInitialStateComponent,
   DemoDatepickerDaysDisabledComponent,
   DemoDatepickerDisabledComponent,
@@ -55,4 +57,3 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerValueChangeEventComponent,
   DemoDatePickerVisibilityEventsComponent
 ];
-
