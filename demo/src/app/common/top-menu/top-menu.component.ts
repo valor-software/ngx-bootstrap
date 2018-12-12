@@ -10,7 +10,13 @@ export class TopMenuComponent implements AfterViewInit {
   appUrl: string;
   appHash: string;
   currentVersion: string;
-  previousDocs: string[] = [];
+
+  previousDocs: {
+    url: string;
+    version: string;
+    unprefixedUrl: string;
+  }[] = [];
+
   isLocalhost = false;
   needPrefix = false;
 
@@ -23,18 +29,27 @@ export class TopMenuComponent implements AfterViewInit {
       this.needPrefix = location.pathname !== '/';
 
       this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
-      this.http.get<any>('assets/json/versions.json').subscribe(data => {
-        this.previousDocs = data;
-      });
-      this.http.get<{ version: string }>('assets/json/current-version.json').subscribe(data => {
-        this.currentVersion = data.version;
-      });
+
+      this.http.get<any>('assets/json/versions.json')
+        .subscribe((data: { url: string; version: string; unprefixedUrl: string }[]) => {
+          this.previousDocs.push(data[0]);
+          this.previousDocs = this.previousDocs
+            .concat(data.reverse())
+            .slice(0, -1);
+        });
+
+      this.http.get<{ version: string }>('assets/json/current-version.json')
+        .subscribe((data: { version: string }) => {
+          this.currentVersion = data.version;
+        });
     }
+
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');
 
       return router.routerState.snapshot.url.slice(0, indexOfHash);
     };
+
     let _prev = getUrl(this.router);
     this.router.events.subscribe((event: any) => {
       const _cur = getUrl(this.router);
