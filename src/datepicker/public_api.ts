@@ -1,5 +1,6 @@
 export { BsDatepickerConfig } from './bs-datepicker.config';
 export { BsDatepickerDirective } from './bs-datepicker.component';
+export { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 export { BsDatepickerModule } from './bs-datepicker.module';
 export { BsDatepickerViewMode } from './models';
 export { BsDaterangepickerConfig } from './bs-daterangepicker.config';

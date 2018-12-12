@@ -2,13 +2,10 @@ import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
-import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
+import { Subscription } from 'rxjs';
 import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
-import { BsLocaleService } from './bs-locale.service';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 
 @Directive({
