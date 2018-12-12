@@ -141,7 +141,7 @@
     "karma-jasmine-html-reporter": "1.1.0",
     "karma-remap-istanbul": "0.6.0",
     "karma-safari-launcher": "1.0.0",
-    "karma-sauce-launcher": "1.2.0",
+    "karma-sauce-launcher": "2.0.1",
     "karma-typescript": "3.0.12",
     "lite-server": "2.3.0",
     "lodash": "4.17.10",
