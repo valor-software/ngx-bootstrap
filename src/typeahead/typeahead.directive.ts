@@ -151,7 +151,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     )
       .provide({ provide: TypeaheadConfig, useValue: config });
 
-    Object.assign(this, config, { hideResultsOnBlur: true });
+    Object.assign(this, config);
   }
 
   ngOnInit(): void {

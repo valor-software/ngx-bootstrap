@@ -1,26 +1,27 @@
-import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
-import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
-import { DemoTypeaheadFieldComponent } from './demos/field/field';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
-import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
-import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
-import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
-import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
+import { DemoTypeaheadConfigComponent } from './demos/config/config';
+import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadDelayComponent } from './demos/delay/delay';
+import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
+import { DemoTypeaheadFieldComponent } from './demos/field/field';
+import { DemoTypeaheadFormComponent } from './demos/form/form';
+import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
+import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
 import { DemoTypeaheadLatinizeComponent } from './demos/latinize/latinize';
 import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
-import { DemoTypeaheadFormComponent } from './demos/form/form';
-import { DemoTypeaheadContainerComponent } from './demos/container/container';
-import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
-import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
+import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
+import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
+import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
+import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 
@@ -207,6 +208,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/show-on-blur/show-on-blur.ts'),
         html: require('!!raw-loader?lang=markup!./demos/show-on-blur/show-on-blur.html'),
         outlet: DemoTypeaheadShowOnBlurComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'configuration',
+        component: require('!!raw-loader?lang=typescript!./demos/config/config'),
+        html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
+        outlet: DemoTypeaheadConfigComponent
       }
     ]
   },
