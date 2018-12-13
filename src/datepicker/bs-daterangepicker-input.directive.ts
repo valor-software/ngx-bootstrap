@@ -106,11 +106,15 @@ export class BsDaterangepickerInputDirective
       return null;
     }
 
+    const _isFirstDateValid = isDateValid(_value[0]);
+    const _isSecondDateValid = isDateValid(_value[1]);
 
-    const _isDateValid = isDateValid(_value[0]) && isDateValid(_value[0]);
+    if (!_isFirstDateValid) {
+      return { bsDate: { invalid: _value[0] } };
+    }
 
-    if (!_isDateValid) {
-      return { bsDate: { invalid: _value } };
+    if (!_isSecondDateValid) {
+      return { bsDate: { invalid: _value[1] } };
     }
 
     if (this._picker && this._picker.minDate && isBefore(_value[0], this._picker.minDate, 'date')) {
