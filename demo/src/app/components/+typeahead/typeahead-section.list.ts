@@ -22,7 +22,7 @@ import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
-import { NgApiDocComponent } from '../../docs/api-docs';
+import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -219,6 +219,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TypeaheadDirective',
         anchor: 'TypeaheadDirective',
         outlet: NgApiDocComponent
+      },
+      {
+        title: 'TypeaheadConfig',
+        anchor: 'bs-typeahead-config',
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

@@ -3212,7 +3212,7 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
-        "name": "typeaheadHideResultsOnBlur",
+        "name": "hideResultsOnBlur",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>used to hide results on blur </p>\n"
@@ -3260,7 +3260,7 @@ export const ngdoc: any = {
       {
         "name": "typeaheadHideResultsOnBlur",
         "type": "boolean",
-        "description": "<p>used to not to hide result on blur </p>\n"
+        "description": "<p>used to hide result on blur </p>\n"
       },
       {
         "name": "typeaheadItemTemplate",

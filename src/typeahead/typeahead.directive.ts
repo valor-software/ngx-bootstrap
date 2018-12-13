@@ -84,8 +84,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
   @Input() typeaheadOptionsInScrollableView = 5;
-  /** used to not to hide result on blur */
-
+  /** used to hide result on blur */
   @Input() typeaheadHideResultsOnBlur: boolean;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
@@ -144,22 +143,30 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               private config: TypeaheadConfig,
               cis: ComponentLoaderFactory,
               private changeDetection: ChangeDetectorRef) {
+
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
       renderer
-    ).provide({provide: TypeaheadConfig, useValue: config});
-    Object.assign(this, config, {hideResultsOnBlur: true});
+    )
+      .provide({ provide: TypeaheadConfig, useValue: config });
+
+    Object.assign(this, config, { hideResultsOnBlur: true });
   }
 
   ngOnInit(): void {
     this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
+
     this.typeaheadMinLength =
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
+
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
-    const showOnBlur = typeof this.typeaheadHideResultsOnBlur === 'undefined';
-    this.typeaheadHideResultsOnBlur =
-      showOnBlur ? this.config.hideResultsOnBlur : this.typeaheadHideResultsOnBlur;
+
+    const hasInputValue = typeof this.typeaheadHideResultsOnBlur === 'undefined';
+    this.typeaheadHideResultsOnBlur = hasInputValue
+        ? this.config.hideResultsOnBlur
+        : this.typeaheadHideResultsOnBlur;
+
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
