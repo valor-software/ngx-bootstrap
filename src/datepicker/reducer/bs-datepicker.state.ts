@@ -30,6 +30,8 @@ export class BsDatepickerState
   // bounds
   minDate?: Date;
   maxDate?: Date;
+  daysDisabled?: number[];
+  minMode?: BsDatepickerViewMode;
 
   hoveredDate?: Date;
   hoveredMonth?: Date;
@@ -54,6 +56,7 @@ export class BsDatepickerState
   // DatepickerRenderOptions
   showWeekNumbers?: boolean;
   displayMonths?: number;
+  selectFromOtherMonth?: boolean;
 
   // DatepickerFormatOptions
   locale: string;

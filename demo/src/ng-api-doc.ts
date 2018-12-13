@@ -713,6 +713,11 @@ export const ngdoc: any = {
         "description": "<p>Minimum date which is available for selection</p>\n"
       },
       {
+        "name": "minMode",
+        "type": "BsDatepickerViewMode",
+        "description": "<p> Minimum view mode : day, month, or year</p>\n"
+      },
+      {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
@@ -796,6 +801,16 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
+        "name": "customTodayClass",
+        "type": "string",
+        "description": "<p>Allows to add custom class for today</p>\n"
+      },
+      {
+        "name": "minMode",
+        "type": "BsDatepickerViewMode",
+        "description": "<p> Defaut minimum view mode : day, month, or year</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
@@ -806,6 +821,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
+      },
+      {
+        "name": "selectFromOtherMonth",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Allows to use dates from previous/future month as active</p>\n"
       }
     ]
   },

@@ -7,6 +7,7 @@ import { DemoModalServiceCustomCSSClassComponent } from './demos/service-options
 import { DemoModalServiceDisableEscClosingComponent } from './demos/service-options/disable-esc-closing/disable-esc-closing';
 import { DemoModalServiceDisableBackdropComponent } from './demos/service-options/disable-backdrop/disable-backdrop';
 import { DemoModalServiceConfirmWindowComponent } from './demos/service-confirm-window/service-confirm-window';
+import { DemoModalServiceChangeClassComponent } from './demos/service-options/change-class/change-class';
 
 import { DemoModalStaticComponent } from './demos/static/static';
 import { DemoModalSizesComponent } from './demos/sizes/sizes';
@@ -146,6 +147,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/service-options/disable-backdrop/disable-backdrop.html'),
         description: `<p>There is backdrop options that you can configure.</p>`,
         outlet: DemoModalServiceDisableBackdropComponent
+      },
+      {
+        title: 'Change class',
+        anchor: 'change-class',
+        component: require('!!raw-loader?lang=typescript!./demos/service-options/change-class/change-class.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-options/change-class/change-class.html'),
+        description: `<p>Calling setClass method to change modal's window class</p>`,
+        outlet: DemoModalServiceChangeClassComponent
       }
     ]
   },
