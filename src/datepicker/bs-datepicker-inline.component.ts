@@ -66,7 +66,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
     );
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this.setConfig();
 
     this._datepickerRef = this._datepicker
