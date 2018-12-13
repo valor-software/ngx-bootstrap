@@ -168,8 +168,4 @@ export class BsDatepickerInputDirective
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
   }
-
-  toggle() {
-    this._picker.outsideClick = true;
-  }
 }
