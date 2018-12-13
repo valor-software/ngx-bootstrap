@@ -44,8 +44,6 @@ export class BsDaterangepickerDirective
    */
   @Input() container = 'body';
 
-  @Input() tabCanClose = 'keydown.Tab';
-
   @Input() outsideEsc = true;
 
   /**
@@ -134,7 +132,6 @@ export class BsDaterangepickerDirective
       outsideClick: this.outsideClick,
       outsideEsc: this.outsideEsc,
       triggers: this.triggers,
-      tabCanClose: this.tabCanClose,
       show: () => this.show()
     });
     this.setConfig();

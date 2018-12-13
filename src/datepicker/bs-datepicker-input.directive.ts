@@ -166,6 +166,7 @@ export class BsDatepickerInputDirective
 
   hide() {
     this._picker.hide();
+    this._renderer.selectRootElement(this._elRef.nativeElement).blur();
   }
 
   toggle() {

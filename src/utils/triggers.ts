@@ -13,6 +13,7 @@ export interface ListenOptions {
   targets?: HTMLElement[];
   triggers?: string;
   outsideClick?: boolean;
+  outsideEsc?: boolean;
   show?: BsEventCallback;
   hide?: BsEventCallback;
   toggle?: BsEventCallback;
@@ -91,7 +92,6 @@ export function listenToTriggers(renderer: Renderer2,
 export function listenToTriggersV2(renderer: Renderer2,
                                    options: ListenOptions): Function {
   const parsedTriggers = parseTriggers(options.triggers);
-  const parsedTapTriggers = parseTriggers(options.tabCanClose);
   const target = options.target;
   // do nothing
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
@@ -126,21 +126,6 @@ export function listenToTriggersV2(renderer: Renderer2,
       renderer.listen(target, trigger.open, () => showFn(registerHide))
     );
   });
-
-  parsedTapTriggers.forEach((trigger: Trigger) => {
-    const useToggle = trigger.open === trigger.close;
-    const showFn = useToggle ? options.toggle : options.show;
-
-    if (!useToggle) {
-      _registerHide.push(() =>
-        renderer.listen(target, trigger.close, options.hide)
-      );
-    }
-
-    listeners.push(
-      renderer.listen(target, trigger.open, () => showFn(registerHide))
-    );
-  })
 
   return () => {
     listeners.forEach((unsubscribeFn: Function) => unsubscribeFn());
@@ -177,13 +162,13 @@ export function registerEscClick(renderer: Renderer2,
 
   return renderer.listen('document', 'keyup.esc', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
-      return;
+      return undefined;
     }
     if (
       options.targets &&
       options.targets.some(target => target.contains(event.target))
     ) {
-      return;
+      return undefined;
     }
 
     options.hide();

@@ -32,8 +32,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() container = 'body';
 
-  @Input() tabCanClose = 'keydown.Tab';
-
   @Input() outsideEsc = true;
 
   /**
@@ -132,7 +130,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
       outsideEsc: this.outsideEsc,
-      tabCanClose: this.tabCanClose,
       triggers: this.triggers,
       show: () => this.show()
     });
