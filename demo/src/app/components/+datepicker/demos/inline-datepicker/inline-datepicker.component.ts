@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
   selector: 'demo-datepicker-inline',
   templateUrl: './inline-datepicker.component.html'
 })
-export class DemoDatepickerInlineComponent {}
+export class DemoDatepickerInlineComponent {
+  bsInlineValue = new Date();
+}

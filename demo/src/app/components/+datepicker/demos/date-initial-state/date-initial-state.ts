@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 export class DemoDatepickerDateInitialStateComponent {
   bsValue = new Date();
   bsRangeValue: Date[];
-  bsInlineValue = new Date();
   maxDate = new Date();
   constructor() {
     this.maxDate.setDate(this.maxDate.getDate() + 7);
