@@ -17,6 +17,7 @@ import {
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
+  isOtherMonthsActive: boolean;
 
   _effects: BsDatepickerEffects;
   _customRangesFish: BsCustomDates[] = [];
@@ -27,6 +28,9 @@ export abstract class BsDatepickerAbstractComponent {
 
   set maxDate(value: Date) {
     this._effects.setMaxDate(value);
+  }
+  set daysDisabled(value: number[]) {
+    this._effects.setDaysDisabled(value);
   }
 
   set isDisabled(value: boolean) {
