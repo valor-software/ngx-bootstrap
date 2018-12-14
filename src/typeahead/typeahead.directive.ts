@@ -140,7 +140,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               private element: ElementRef,
               viewContainerRef: ViewContainerRef,
               private renderer: Renderer2,
-              private config: TypeaheadConfig,
+              config: TypeaheadConfig,
               cis: ComponentLoaderFactory,
               private changeDetection: ChangeDetectorRef) {
 
@@ -151,7 +151,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     )
       .provide({ provide: TypeaheadConfig, useValue: config });
 
-    Object.assign(this, config);
+    Object.assign(this, { typeaheadHideResultsOnBlur: config.hideResultsOnBlur });
   }
 
   ngOnInit(): void {
@@ -161,11 +161,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
 
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
-
-    const hasInputValue = typeof this.typeaheadHideResultsOnBlur === 'undefined';
-    this.typeaheadHideResultsOnBlur = hasInputValue
-        ? this.config.hideResultsOnBlur
-        : this.typeaheadHideResultsOnBlur;
 
     // async should be false in case of array
     if (
