@@ -443,6 +443,10 @@
     cursor: default !important;
   }
 
+  .active-week {
+    cursor: pointer;
+  }
+
   /* .bs-datepicker-buttons */
   &-buttons {
     display: flex;

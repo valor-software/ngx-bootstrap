@@ -38,6 +38,7 @@ export interface DayViewModel extends CalendarCellViewModel {
 
 export interface WeekViewModel {
   days: DayViewModel[];
+  isHovered?: boolean;
 }
 
 // todo: split navigation settings
