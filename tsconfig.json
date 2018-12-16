@@ -4,6 +4,8 @@
     "baseUrl": "./",
     "outDir": "./temp/out-tsc",
     "sourceMap": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -12,14 +14,6 @@
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": ["es2017", "dom"],
-//    "noEmitHelpers" :true,
-//    "types": [
-//      "jasmine",
-//      "webpack",
-//      "chai"
-//    ],
-//    "mapRoot": "./",
-//    "module": "es6"
+    "lib": ["es2017", "dom"]
   }
 }

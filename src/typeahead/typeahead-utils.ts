@@ -40,6 +40,7 @@ export function tokenize(str: string,
   return result;
 }
 
+// tslint:disable-next-line:no-any
 export function getValueFromObject(object: any, option: string): string {
   if (!option || typeof object !== 'object') {
     return object.toString();

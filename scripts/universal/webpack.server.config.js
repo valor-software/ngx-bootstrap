@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  // https://github.com/angular/angular-cli/issues/10635
+  mode: 'development',
   entry: {  server: './scripts/universal/server.ts', prerender: './scripts/universal/prerender.ts' },
   resolve: { extensions: ['.ts', '.js'] },
   target: 'node',
@@ -29,4 +31,4 @@ module.exports = {
       path.join(__dirname, 'src'),
     )
   ]
-}
+};

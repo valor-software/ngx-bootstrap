@@ -25,19 +25,21 @@ function addOffsetFormatToken(token: string, separator: string): void {
   });
 }
 
-addOffsetFormatToken('Z', ':');
-addOffsetFormatToken('ZZ', '');
+export function initOffset() {
+  addOffsetFormatToken('Z', ':');
+  addOffsetFormatToken('ZZ', '');
 
 // PARSING
 
-addRegexToken('Z', matchShortOffset);
-addRegexToken('ZZ', matchShortOffset);
-addParseToken(['Z', 'ZZ'], function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
-  config._useUTC = true;
-  config._tzm = offsetFromString(matchShortOffset, input);
+  addRegexToken('Z', matchShortOffset);
+  addRegexToken('ZZ', matchShortOffset);
+  addParseToken(['Z', 'ZZ'], function(input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+    config._useUTC = true;
+    config._tzm = offsetFromString(matchShortOffset, input);
 
-  return config;
-});
+    return config;
+  });
+}
 
 // HELPERS
 
