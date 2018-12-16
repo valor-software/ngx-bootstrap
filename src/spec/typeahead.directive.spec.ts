@@ -78,6 +78,9 @@ describe('Directive: Typeahead', () => {
     it('should set a default value for typeaheadAsync', () => {
       expect(directive.typeaheadAsync).toBeFalsy();
     });
+    it('should set a default value for typeaheadHideResultsOnBlur', () => {
+      expect(directive.typeaheadHideResultsOnBlur).toBeTruthy();
+    });
 
     it('should typeaheadAsync to false, if typeahead is an observable', () => {
       directive.typeahead = of(component.states);
@@ -254,5 +257,36 @@ describe('Directive: Typeahead', () => {
       directive.onBlur();
       fixture.detectChanges();
     });
+  });
+
+  describe('if typeaheadHideResultsOnBlur', () => {
+    beforeEach(
+      fakeAsync(() => {
+        inputElement.value = 'Ala';
+        fireEvent(inputElement, 'input');
+        directive.typeaheadHideResultsOnBlur = false;
+        fixture.detectChanges();
+        tick(100);
+      })
+    );
+
+    it('equal true should be opened',
+      fakeAsync(() => {
+        document.dispatchEvent(new Event('click'));
+        tick();
+
+        expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
+      })
+    );
+
+    it('equal false should be closed',
+      fakeAsync(() => {
+        directive.typeaheadHideResultsOnBlur = true;
+        document.dispatchEvent(new Event('click'));
+        tick();
+
+        expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
+      })
+    );
   });
 });
